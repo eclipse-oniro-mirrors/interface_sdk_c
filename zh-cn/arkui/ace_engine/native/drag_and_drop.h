@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,6 +39,7 @@
 
 #include <stdint.h>
 
+#include "common_type.h"
 #include "native_type.h"
 
 #include "database/udmf/udmf.h"
@@ -173,27 +174,6 @@ typedef enum {
      */
     ARKUI_DRAG_STATUS_ENDED
 } ArkUI_DragStatus;
-
-/**
- * @brief 定义组件事件的通用结构类型。
- *
- * @since 12
- */
-typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
-
-/**
- * @brief native UI的上下文实例对象。
- *
- * @since 12
- */
-typedef struct ArkUI_Context ArkUI_Context;
-
-/**
- * @brief 定义ArkUI native UI的上下文实例对象指针定义。
- *
- * @since 12
- */
-typedef struct ArkUI_Context* ArkUI_ContextHandle;
 
 /**
  * @brief 拖拽事件。

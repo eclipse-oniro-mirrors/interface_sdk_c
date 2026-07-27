@@ -182,6 +182,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-/** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_EVENT_H
+/** @} */

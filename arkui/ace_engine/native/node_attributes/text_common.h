@@ -49,18 +49,21 @@ extern "C" {
 * @since 14
 */
 typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor;
+
 /**
  * @brief Defines the textField's counter configuration.
  *
  * @since 22
  */
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
+
 /**
  * @brief Defines the text content base controller.
  *
  * @since 23
  */
 typedef struct ArkUI_TextContentBaseController ArkUI_TextContentBaseController;
+
 /**
  * @brief Enumerates the text alignment mode.
  *
@@ -75,17 +78,16 @@ typedef enum {
     ARKUI_TEXT_ALIGNMENT_END,
     /** Aligned with both margins. */
     ARKUI_TEXT_ALIGNMENT_JUSTIFY,
-    /**
-     * Aligned with left to right.
+    /** Aligned with left to right.
      * @since 23
      */
     ARKUI_TEXT_ALIGNMENT_LEFT_TO_RIGHT = 4,
-    /**
-     * Aligned with right to left.
+    /** Aligned with right to left.
      * @since 23
      */
     ARKUI_TEXT_ALIGNMENT_RIGHT_TO_LEFT = 5,
 } ArkUI_TextAlignment;
+
 /**
  * @brief Enumerates text vertical alignment styles.
  *
@@ -101,6 +103,7 @@ typedef enum {
     /** Top aligned. */
     ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP,
 } ArkUI_TextVerticalAlignment;
+
 /**
  * @brief Enumerates text content align styles.
  *
@@ -114,6 +117,7 @@ typedef enum {
     /** Bottom aligned. */
     ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2,
 } ArkUI_TextContentAlign;
+
 /**
  * @brief Enumerates the text text direction.
  *
@@ -129,6 +133,7 @@ typedef enum {
     /** The text direction follows the actual text. */
     ARKUI_TEXT_DIRECTION_AUTO = 3,
 } ArkUI_TextDirection;
+
 /**
  * @brief Enumerates the types of the Enter key for a single-line text box.
  *
@@ -150,6 +155,7 @@ typedef enum {
     /** The Enter key is labeled "New Line." */
     ARKUI_ENTER_KEY_TYPE_NEW_LINE,
 } ArkUI_EnterKeyType;
+
 /**
  * @brief Enumerates the text decoration types.
  *
@@ -165,6 +171,7 @@ typedef enum {
     /** Line through the text. */
     ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH,
 } ArkUI_TextDecorationType;
+
 /**
  * @brief Enumerates the text decoration styles.
  *
@@ -182,6 +189,7 @@ typedef enum {
     /** Wavy line. */
     ARKUI_TEXT_DECORATION_STYLE_WAVY,
 } ArkUI_TextDecorationStyle;
+
 /**
  * @brief Enumerates the text cases.
  *
@@ -195,6 +203,7 @@ typedef enum {
     /** All letters in the text are in uppercase. */
     ARKUI_TEXT_CASE_UPPER,
 } ArkUI_TextCase;
+
 /**
  * @brief Defines whether copy and paste is allowed for text content.
  *
@@ -210,6 +219,7 @@ typedef enum {
     /** Cross-device copy is allowed. */
     ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE,
 } ArkUI_TextCopyOptions;
+
 /**
  * @brief Enumerates the display modes when the text is too long.
  *
@@ -225,6 +235,7 @@ typedef enum {
     /** Text continuously scrolls when text overflow occurs. */
     ARKUI_TEXT_OVERFLOW_MARQUEE,
 } ArkUI_TextOverflow;
+
 /**
  * @brief Enumerates the word break rules.
  *
@@ -248,6 +259,7 @@ typedef enum {
      */
     ARKUI_WORD_BREAK_HYPHENATION,
 } ArkUI_WordBreak;
+
 /**
  * @brief Enumerates the ellipsis positions.
  *
@@ -261,16 +273,17 @@ typedef enum {
     /** An ellipsis is used at the end of the line of text. */
     ARKUI_ELLIPSIS_MODE_END,
     /**
-     * @brief An ellipsis is used at the start of the line of text for multiline and single line.
-     * @since 24
+     *@brief An ellipsis is used at the start of the line of text for multiline and single line.
+     *@since 24
      */
     ARKUI_ELLIPSIS_MODE_MULTILINE_START,
     /**
-     * @brief An ellipsis is used at the center of the line of text for multiline and single line.
-     * @since 24
+     *@brief An ellipsis is used at the center of the line of text for multiline and single line.
+     *@since 24
      */
     ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER,
 } ArkUI_EllipsisMode;
+
 /**
  * @brief Defines the keyboard style of input box
  *
@@ -298,18 +311,21 @@ typedef enum {
      */
     ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3,
 } ArkUI_KeyboardAppearance;
+
 /**
  * @brief Defines the text menu item for edit menu item.
  *
  * @since 22
  */
 typedef struct ArkUI_TextMenuItem ArkUI_TextMenuItem;
+
 /**
  * @brief Defines text menu item array.
  *
  * @since 22
  */
 typedef struct ArkUI_TextMenuItemArray ArkUI_TextMenuItemArray;
+
 /**
  * @brief Enumerates the text menu item id.
  *
@@ -418,12 +434,14 @@ typedef enum {
      */
     ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_END = 20000,
 } ArkUI_TextMenuItemId;
+
 /**
  * @brief Defines the text menu item for edit menu options.
  *
  * @since 22
  */
 typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
+
 /**
  * The text menu create callback function.
  *
@@ -438,6 +456,7 @@ typedef void (*ArkUI_TextCreateMenuCallback)(
     ArkUI_TextMenuItemArray*    items,
     void*                       userData
 );
+
 /**
  * The text menu prepare callback function.
  *
@@ -452,6 +471,7 @@ typedef void (*ArkUI_TextPrepareMenuCallback)(
     ArkUI_TextMenuItemArray*    items,
     void*                       userData
 );
+
 /**
  * The text menu item click callback function.
  *
@@ -468,18 +488,21 @@ typedef bool (*ArkUI_TextMenuItemClickCallback)(
     int32_t                      end,
     void*                        userData
 );
+
 /**
  * @brief Defines the selection menu.
  *
  * @since 22
  */
 typedef struct ArkUI_TextSelectionMenuOptions ArkUI_TextSelectionMenuOptions;
+
 /**
  * @brief Defines decoration style options.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_DecorationStyleOptions OH_ArkUI_DecorationStyleOptions;
+
 /**
  * @brief Enumerates line break policies.
  *
@@ -504,6 +527,7 @@ typedef enum {
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2,
 } OH_ArkUI_LineBreakStrategy;
+
 /**
  * @brief Enumerates the text span type.
  *
@@ -523,6 +547,7 @@ typedef enum {
      */
     ARKUI_TEXT_SPAN_TYPE_DEFAULT = 3,
 } ArkUI_TextSpanType;
+
 /**
  * @brief Enumerates the text response type.
  *
@@ -594,6 +619,7 @@ uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextColor(ArkUI_ShowCounterConfig*
  * @since 22
  */
 uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config);
+
 /**
  * @brief Create an object of the text edit menu item.
  *
@@ -609,6 +635,7 @@ ArkUI_TextMenuItem* OH_ArkUI_TextMenuItem_Create();
  * @since 22
  */
 void OH_ArkUI_TextMenuItem_Dispose(ArkUI_TextMenuItem* textMenuItem);
+
 /**
  * @brief Create an object of the text edit menu options.
  *
@@ -624,6 +651,7 @@ ArkUI_TextEditMenuOptions* OH_ArkUI_TextEditMenuOptions_Create();
  * @since 22
  */
 void OH_ArkUI_TextEditMenuOptions_Dispose(ArkUI_TextEditMenuOptions* editMenuOptions);
+
 /**
  * @brief Create an object of the text selection menu options.
  *
@@ -639,6 +667,7 @@ ArkUI_TextSelectionMenuOptions* OH_ArkUI_TextSelectionMenuOptions_Create();
  * @since 22
  */
 void OH_ArkUI_TextSelectionMenuOptions_Dispose(ArkUI_TextSelectionMenuOptions* selectionMenuOptions);
+
 /**
  * @brief Create an object of the text content base controller.
  *
@@ -675,6 +704,7 @@ void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseCont
  */
 void OH_ArkUI_TextContentBaseController_ScrollToVisible(
     ArkUI_TextContentBaseController *controller, int32_t start, int32_t end);
+
 /**
  * @brief Creates a decorative line style object. When the object is no longer used, call
  * {@link OH_ArkUI_DecorationStyleOptions_Destroy} to destroy it.
@@ -691,6 +721,7 @@ OH_ArkUI_DecorationStyleOptions* OH_ArkUI_DecorationStyleOptions_Create();
  * @since 24
  */
 void OH_ArkUI_DecorationStyleOptions_Destroy(OH_ArkUI_DecorationStyleOptions* options);
+
 #ifdef __cplusplus
 }
 #endif

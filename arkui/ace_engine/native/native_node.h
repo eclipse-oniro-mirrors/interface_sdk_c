@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_NODE_H
 #define ARKUI_NATIVE_NODE_H
 
+#include "common_type.h"
 #include "native_type.h"
 #include "ui_input_event.h"
 
@@ -191,23 +192,6 @@ typedef enum {
      */
     ARKUI_NODE_ARC_SWIPER = 1022,
 } ArkUI_NodeType;
-
-/**
- * @brief Defines the general input parameter structure of the {@link setAttribute} function. The property
- * setting interfaces can utilize the member variables within it to store data of specific parameter types.
- *
- * @since 12
- */
-typedef struct {
-    /** A number array, used to store parameters of the number array type. */
-    const ArkUI_NumberValue* value;
-    /** The size of the number array, used together with the variable value, indicating the length of the value array. */
-    int32_t size;
-    /** String type, used to store parameters of the string type. */
-    const char* string;
-    /** Object type, used to store parameters of the object type. */
-    void* object;
-} ArkUI_AttributeItem;
 
 /**
  * @brief Defines the ArkUI style attributes that can be set on the native side.
@@ -675,6 +659,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0...15].f32: 16 floating-point numbers. \n
      *
+     * @ingroup Visual
      */
     NODE_TRANSFORM,
     /**
@@ -2093,6 +2078,7 @@ typedef enum {
      * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
      * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
      *
+     * @ingroup Visual
      * @since 20
      */
     NODE_ROTATE_ANGLE = 104,
@@ -2497,7 +2483,7 @@ typedef enum {
      * <li>.string: text content.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
@@ -2513,7 +2499,7 @@ typedef enum {
      * <li>.value[0].u32: font color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_COLOR,
     /**
@@ -2529,7 +2515,7 @@ typedef enum {
      * <li>.value[0].f32: font size, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_SIZE,
     /**
@@ -2545,7 +2531,7 @@ typedef enum {
      * <li>.value[0].i32: font style {@link ArkUI_FontStyle}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_STYLE,
     /**
@@ -2561,7 +2547,7 @@ typedef enum {
      * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_WEIGHT,
     /**
@@ -2577,43 +2563,31 @@ typedef enum {
      * <li>.value[0].f32: line height, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LINE_HEIGHT,
     /**
      * @brief Defines the text decoration style and color.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
-     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
-     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
-     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
-     * .value[1].u32: text decoration color, in 0xARGB format. \n
-     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
+     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.</li>
+     * <li>.value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.</li>
+     * <li>.value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}.</li>
+     * <li>.value[3]?.f32: text decoration thickness scale. This parameter is supported since API version 22.</li>
+     * </ul>
      *
-     */
-    /**
-     * @brief Defines the text decoration style and color.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.</li>
+     * <li>.value[1].u32: text decoration color, in 0xARGB format.</li>
+     * <li>.value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}.</li>
+     * <li>.value[3]?.f32: text decoration thickness scale. This parameter is supported since API version 22.</li>
+     * </ul>
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
-     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
-     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
-     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3]?.f32: text decoration thickness scale. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
-     * .value[1].u32: text decoration color, in 0xARGB format. \n
-     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3].f32: text decoration thickness scale. \n
-     *
-     *  since 22
+     * @ingroup Text Display
      */
     NODE_TEXT_DECORATION,
     /**
@@ -2629,7 +2603,7 @@ typedef enum {
      * <li>.value[0].i32: text case.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_CASE,
     /**
@@ -2645,7 +2619,7 @@ typedef enum {
      * <li>.value[0].f32: letter spacing, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LETTER_SPACING,
     /**
@@ -2662,7 +2636,7 @@ typedef enum {
      * <li>.value[0].i32: maximum number of lines in the text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MAX_LINES,
     /**
@@ -2679,7 +2653,7 @@ typedef enum {
      * <li>.value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ALIGN,
     /**
@@ -2695,7 +2669,7 @@ typedef enum {
      * <li>.value[0].i32: display mode when the text is too long. {@link ArkUI_TextOverflow}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_OVERFLOW,
     /**
@@ -2711,7 +2685,7 @@ typedef enum {
      * <li>.string: fonts, separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_FAMILY,
     /**
@@ -2727,7 +2701,7 @@ typedef enum {
      * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_COPY_OPTION,
     /**
@@ -2744,7 +2718,7 @@ typedef enum {
      * <li>.value[0].f32: baseline offset, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_BASELINE_OFFSET,
     /**
@@ -2768,7 +2742,7 @@ typedef enum {
      * <li>.value[4].f32: offset of the shadow along the y-axis, in vp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_TEXT_SHADOW,
     /**
@@ -2784,7 +2758,7 @@ typedef enum {
      * <li>.value[0].f32: minimum font size, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MIN_FONT_SIZE,
 
@@ -2801,7 +2775,7 @@ typedef enum {
      * <li>.value[0].f32: maximum font size, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MAX_FONT_SIZE,
 
@@ -2824,7 +2798,7 @@ typedef enum {
      * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_FONT,
 
@@ -2842,7 +2816,7 @@ typedef enum {
      * <li>.value[0].i32: how the adaptive height is determined for the text. The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_HEIGHT_ADAPTIVE_POLICY,
     /**
@@ -2859,7 +2833,7 @@ typedef enum {
      * <li>.value[0].f32: indentation of the first line.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_INDENT,
     /**
@@ -2875,7 +2849,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_WORD_BREAK,
     /**
@@ -2891,7 +2865,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ELLIPSIS_MODE,
     /**
@@ -2907,7 +2881,7 @@ typedef enum {
      * <li>.value[0].f32: line spacing, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LINE_SPACING,
     /**
@@ -2926,7 +2900,7 @@ typedef enum {
      * <li>.string indicates the content of the text feature. Multiple text features are separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_FEATURE,
     /**
@@ -2942,7 +2916,7 @@ typedef enum {
      * <li>.value[0].i32: Enable Text Recognition.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR,
     /**
@@ -2958,7 +2932,7 @@ typedef enum {
      * <li>.value[0...].i32: Array of entity types, parameter types {@link ArkUI_TextDataDetectorType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG,
     /**
@@ -2975,7 +2949,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_SELECTED_BACKGROUND_COLOR,
 
@@ -2993,7 +2967,7 @@ typedef enum {
      * <li>.object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_CONTENT_WITH_STYLED_STRING,
 
@@ -3010,7 +2984,7 @@ typedef enum {
      * <li>.value[0].i32: whether to center text vertically.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_HALF_LEADING = 1029,
 
@@ -3028,8 +3002,8 @@ typedef enum {
      * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
@@ -3041,8 +3015,8 @@ typedef enum {
      * <li>.value[0].i32: line count of the node.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINE_COUNT = 1031,
  
@@ -3060,8 +3034,8 @@ typedef enum {
      * <li>.value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
 
@@ -3085,8 +3059,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINEAR_GRADIENT = 1033,
 
@@ -3112,8 +3086,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_RADIAL_GRADIENT = 1034,
 
@@ -3131,8 +3105,8 @@ typedef enum {
      * <li>.value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment} enum.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_VERTICAL_ALIGN = 1035,
 
@@ -3150,8 +3124,8 @@ typedef enum {
      * <li>.value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign} enum.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 21
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTENT_ALIGN = 1036,
 
@@ -3171,7 +3145,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MIN_LINES = 1037,
 
@@ -3188,8 +3162,8 @@ typedef enum {
      * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
 
@@ -3208,7 +3182,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MIN_LINE_HEIGHT = 1040,
 
@@ -3227,7 +3201,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MAX_LINE_HEIGHT = 1041,
 
@@ -3246,7 +3220,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
 
@@ -3258,8 +3232,8 @@ typedef enum {
      * <li>.object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LAYOUT_MANAGER = 1043,
 
@@ -3271,8 +3245,8 @@ typedef enum {
      * <li>.object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
 
@@ -3284,8 +3258,8 @@ typedef enum {
      * <li>.object: the custom selection menu of text.     The parameter type is {@link ArkUI_SelectionMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
@@ -3307,8 +3281,8 @@ typedef enum {
      * <li>.object: selection options including the menu popup policy.     The parameter type is {@link ArkUI_SelectionOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TEXT_SELECTION = 1046,
 
@@ -3325,8 +3299,8 @@ typedef enum {
      * <li>.value[0].i32: The current state of this feature.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
  	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
 
@@ -3343,8 +3317,8 @@ typedef enum {
      * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_COMPRESS_LEADING_PUNCTUATION = 1048,
 
@@ -3361,8 +3335,8 @@ typedef enum {
      * <li>.value[0].i32: Whether include the font padding.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_INCLUDE_FONT_PADDING = 1049,
 
@@ -3379,8 +3353,8 @@ typedef enum {
      * <li>.value[0].i32: Whether fallback line spacing.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_FALLBACK_LINE_SPACING = 1050,
 
@@ -3397,8 +3371,8 @@ typedef enum {
      * <li>.object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MARQUEE_OPTIONS = 1051,
 
@@ -3416,8 +3390,8 @@ typedef enum {
      * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_DIRECTION = 1052,
 
@@ -3434,8 +3408,8 @@ typedef enum {
      * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE = 1053,
 
@@ -3447,8 +3421,8 @@ typedef enum {
      * <li>.object: the controller of the text. The parameter type is {@link OH_ArkUI_TextController}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTROLLER = 1054,
 
@@ -3466,8 +3440,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_PUNCTUATION_OVERFLOW = 1055,
 
@@ -3487,8 +3461,8 @@ typedef enum {
      * <li>.size: number of tail indent values.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TAIL_INDENTS = 1056,
 
@@ -3505,7 +3479,7 @@ typedef enum {
      * <li>.string: content of the text span.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SPAN,
     /**
@@ -3529,7 +3503,7 @@ typedef enum {
      * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_SPAN_TEXT_BACKGROUND_STYLE,
     /**
@@ -3546,7 +3520,7 @@ typedef enum {
      * <li>.value[0].f32: baseline offset, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_SPAN_BASELINE_OFFSET,
     /**
@@ -3570,8 +3544,8 @@ typedef enum {
      * <li>.object: the font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_FONT = 2003,
 
@@ -3590,8 +3564,8 @@ typedef enum {
      * <li>.object: the font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_FONT_WEIGHT = 2004,
     /**
@@ -3610,7 +3584,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_SPAN,
     /**
@@ -3627,7 +3601,7 @@ typedef enum {
      * <li>.value[0].i32: alignment mode of the image with the text. The value is an enum of {@link ArkUI_ImageSpanAlignment}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT,
     /**
@@ -3646,7 +3620,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_IMAGE_SPAN_ALT,
     /**
@@ -3665,8 +3639,8 @@ typedef enum {
      * <li>.value[0].f32: baseline offset, in fp.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 13
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
 
@@ -3688,8 +3662,8 @@ typedef enum {
      * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
     /**
@@ -3706,178 +3680,247 @@ typedef enum {
      * <li>.value[0].i32: enable switch.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: image source.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: image source.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
      * @brief Defines how the image is resized to fit its container.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the image is resized to fit its container. The value is an enum of {@link ArkUI_ObjectFit}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the image is resized to fit its container. The value is an enum of {@link ArkUI_ObjectFit}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the image is resized to fit its container. The value is an enum of
+     * {@link ArkUI_ObjectFit}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the image is resized to fit its container. The value is an enum of
+     * {@link ArkUI_ObjectFit}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_OBJECT_FIT,
     /**
      * @brief Defines the interpolation effect of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: interpolation effect of the image. The value is an enum of {@link ArkUI_ImageInterpolation}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: interpolation effect of the image. The value is an enum of {@link ArkUI_ImageInterpolation}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the image. The value is an enum of
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the image. The value is an enum of
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_INTERPOLATION,
     /**
      * @brief Defines how the image is repeated.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_OBJECT_REPEAT,
     /**
      * @brief Defines the color filter of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32 to .value[19].f32: filter matrix array. \n
-     * .size: 5 x 4 filter array size. \n
-     * .object: the pointer to OH_Drawing_ColorFilter. Either .value or .object is set. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32 to .value[19].f32: filter matrix array. \n
-     * .size: 5 x 4 filter array size. \n
-     * .object: the pointer to OH_Drawing_ColorFilter. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter. Either .value or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_COLOR_FILTER,
     /**
      * @brief Defines the auto resize attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 : whether to resize the image source. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32 : whether to resize the image source. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to resize the image source.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to resize the image source.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_AUTO_RESIZE,
     /**
      * @brief Defines the placeholder image source.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ALT,
     /**
      * @brief Defines whether the image is draggable.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the image is draggable. The value <b>true</b> means that the image is draggable. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the image is draggable. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image is draggable. The value <b>true</b> means that the image is draggable.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image is draggable.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_DRAGGABLE,
     /**
      * @brief Defines the image rendering mode. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_RENDER_MODE,
     /**
      * @brief Defines whether the image display size follows the image source size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: wheter to follow, true means to follow.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: wheter to follow, true means to follow.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_FIT_ORIGINAL_SIZE,
     /**
-     * @brief Defines the fill color of the swiper.
+     * @brief Defines the fill color of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: fill color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: fill color, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: fill color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: fill color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_FILL_COLOR,
     /**
-     * @brief Resize the image when stretching it with array or a lattice object.
+     * @brief Defines how the image is resized when stretched using an array or a lattice object.
      * The parameter types for setting and getting should be the same.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge, in vp.</li>
+     * <li>.value[1].f32: width of the top edge, in vp.</li>
+     * <li>.value[2].f32: width of the right edge, in vp.</li>
+     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
+     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge, in vp.</li>
+     * <li>.value[1].f32: width of the top edge, in vp.</li>
+     * <li>.value[2].f32: width of the right edge, in vp.</li>
+     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
+     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_RESIZABLE,
     /**
      * @brief Defines the synchronous image loading attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to load the image synchronously. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to load the image synchronously. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to load the image synchronously.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to load the image synchronously.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 20
      */
     NODE_IMAGE_SYNC_LOAD = 4012,
@@ -3885,14 +3928,19 @@ typedef enum {
      * @brief Defines the image decoding size attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: width of the image decoding, in px.\n
-     * .value[1].i32: height of the image decoding, in px.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: width of the image decoding, in px.\n
-     * .value[1].i32: height of the image decoding, in px.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: width of the decoded image, in px.</li>
+     * <li>.value[1].i32: height of the decoded image, in px.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: width of the decoded image, in px.</li>
+     * <li>.value[1].i32: height of the decoded image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
@@ -3901,12 +3949,17 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      * The parameter types for setting and getting should be the same.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...15].f32: 16 floating-point numbers.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0...15].f32: 16 floating-point numbers.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_IMAGE_MATRIX = 4014,
@@ -3914,12 +3967,17 @@ typedef enum {
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to follows the text direction.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to follows the text direction.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
@@ -3927,12 +3985,18 @@ typedef enum {
      * @brief Defines the image copy attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is
+     * <b>ARKUI_COPY_OPTIONS_NONE</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_COPY_OPTION = 4016,
@@ -3940,12 +4004,17 @@ typedef enum {
      * @brief Defines the image AI analysis enable attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable AI analysis for the image.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable AI analysis for the image.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
@@ -3953,13 +4022,18 @@ typedef enum {
      * @brief Defines the image dynamic display range attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.
-     * The default value is <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}. The default value is
+     * <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018,
@@ -3967,12 +4041,17 @@ typedef enum {
      * @brief Defines the image dynamic display brightness attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: hdr brightness. value range [0, 1]\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: hdr brightness. value range [0, 1]\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_HDR_BRIGHTNESS = 4019,
@@ -3980,39 +4059,53 @@ typedef enum {
      * @brief Defines the image display direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: orientation {@link ArkUI_Orientation}.
-     * The default value is <b>ARKUI_ORIENTATION_UP</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: orientation {@link ArkUI_Orientation.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}. The default value is <b>ARKUI_ORIENTATION_UP</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
     /**
-     * @brief Set the range of SVG parsing capabilities supported through enable switch.
+     * @brief Defines the range of SVG parsing capabilities supported through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: enable switch.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
-    NODE_IMAGE_SUPPORT_SVG2 = 4021, 
+    NODE_IMAGE_SUPPORT_SVG2 = 4021,
     /**
-     * @brief Set the animation effect for the image content transformation.
+     * @brief Defines the animation effect for the image content transformation.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
@@ -4020,14 +4113,19 @@ typedef enum {
      * @brief Defines the placeholder image during loading process.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 22
      */
     NODE_IMAGE_ALT_PLACEHOLDER = 4023,
@@ -4035,27 +4133,37 @@ typedef enum {
      * @brief Defines the placeholder image when loading fails.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 22
      */
     NODE_IMAGE_ALT_ERROR = 4024,
     /**
-     * @brief Configure image edge anti-aliasing via an enable switch.
+     * @brief Defines image edge anti-aliasing through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: enable switch,the default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: enable switch. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 23
      */
     NODE_IMAGE_ANTIALIASED = 4025,
@@ -4063,35 +4171,50 @@ typedef enum {
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle
      */
     NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
      * @brief Defines the color of the circular slider for the component of the switch type.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the circular slider, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the circular slider, in 0xARGB format.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle
      */
     NODE_TOGGLE_SWITCH_POINT_COLOR,
     /**
      * @brief Defines the toggle switch value. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the toggle. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to enable the toggle.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle
      */
     NODE_TOGGLE_VALUE,
 
@@ -4099,12 +4222,17 @@ typedef enum {
      * @brief Defines the color of the component when it is deselected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     *.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     *<li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle
      */
     NODE_TOGGLE_UNSELECTED_COLOR,
 
@@ -4122,7 +4250,7 @@ typedef enum {
      * <li>.value[0].u32: foreground color, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LOADING_PROGRESS,
     /**
@@ -4139,7 +4267,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to show the loading animation, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_LOADING_PROGRESS_ENABLE_LOADING,
 
@@ -4157,7 +4285,7 @@ typedef enum {
      * <li>.string: default placeholder text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
@@ -4174,7 +4302,7 @@ typedef enum {
      * <li>.string: default text content.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_TEXT,
     /**
@@ -4191,7 +4319,7 @@ typedef enum {
      * <li>.value[0].u32: caret color, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CARET_COLOR,
     /**
@@ -4208,7 +4336,7 @@ typedef enum {
      * <li>.value[0].f32: caret width, in vp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CARET_STYLE,
     /**
@@ -4225,7 +4353,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to show an underline, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SHOW_UNDERLINE,
     /**
@@ -4242,7 +4370,7 @@ typedef enum {
      * <li>.value[0].i32: maximum number of characters in the text input.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_MAX_LENGTH,
     /**
@@ -4259,7 +4387,7 @@ typedef enum {
      * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ENTER_KEY_TYPE,
     /**
@@ -4276,7 +4404,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PLACEHOLDER_COLOR,
     /**
@@ -4299,7 +4427,7 @@ typedef enum {
      * <li>.string: font family. Multiple font families are separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PLACEHOLDER_FONT,
     /**
@@ -4316,7 +4444,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS,
     /**
@@ -4332,7 +4460,7 @@ typedef enum {
      * <li>.value[0].i32: text box type {@link ArkUI_TextInputType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_TYPE,
     /**
@@ -4349,7 +4477,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR,
     /**
@@ -4366,7 +4494,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to display the password icon at the end of the password text box, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SHOW_PASSWORD_ICON,
     /**
@@ -4383,7 +4511,7 @@ typedef enum {
      * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_EDITING,
     /**
@@ -4406,7 +4534,7 @@ typedef enum {
      * <li>.string: button icon image source.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CANCEL_BUTTON,
     /**
@@ -4425,7 +4553,7 @@ typedef enum {
      * <li>.value[1].i32: end position of the text selection.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_TEXT_SELECTION,
     /**
@@ -4449,7 +4577,7 @@ typedef enum {
      * <li>.value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_UNDERLINE_COLOR,
     /**
@@ -4465,7 +4593,7 @@ typedef enum {
      * <li>.value[0].i32: whether to enable autofill.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ENABLE_AUTO_FILL,
     /**
@@ -4481,7 +4609,7 @@ typedef enum {
      * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CONTENT_TYPE,
     /**
@@ -4498,7 +4626,7 @@ typedef enum {
      * <li>.string: rules for generating passwords.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PASSWORD_RULES,
     /**
@@ -4514,7 +4642,7 @@ typedef enum {
      * <li>.value[0].i32: whether to select all text in the initial state.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SELECT_ALL,
     /**
@@ -4533,7 +4661,7 @@ typedef enum {
      * <li>.string: regular expression.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_INPUT_FILTER,
     /**
@@ -4551,7 +4679,7 @@ typedef enum {
      * <li>.value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_STYLE,
     /**
@@ -4569,7 +4697,7 @@ typedef enum {
      * <li>.value[2].f32: Y coordinate of the caret relative to the text box.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CARET_OFFSET,
     /**
@@ -4583,7 +4711,7 @@ typedef enum {
      * <li>.value[3].f32: content height.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
@@ -4594,7 +4722,7 @@ typedef enum {
      * <li>.value[0].i32: number of lines of the edited text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
@@ -4611,7 +4739,7 @@ typedef enum {
      * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SELECTION_MENU_HIDDEN,
     /**
@@ -4627,7 +4755,7 @@ typedef enum {
      * <li>.value[0].i32: whether the text box loses focus.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_BLUR_ON_SUBMIT,
     /**
@@ -4645,7 +4773,7 @@ typedef enum {
      * <li>.value[0].i32: Set whether the custom keyboard supports the avoidance function.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CUSTOM_KEYBOARD,
     /**
@@ -4661,7 +4789,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_WORD_BREAK,
 
@@ -4679,7 +4807,7 @@ typedef enum {
      * <li>.value[0].i32: Whether to pop up the keyboard.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SHOW_KEYBOARD_ON_FOCUS,
 
@@ -4696,7 +4824,7 @@ typedef enum {
      * <li>.value[0].i32: the value of numberOfLines.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
 
@@ -4714,8 +4842,8 @@ typedef enum {
      * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
 
@@ -4733,8 +4861,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable preview tex.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT = 7033,
 
@@ -4751,8 +4879,8 @@ typedef enum {
      * <li>.value[0].i32: whether to center text vertically.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 18
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
@@ -4769,8 +4897,8 @@ typedef enum {
      * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
@@ -4787,8 +4915,8 @@ typedef enum {
      * <li>.value[0].i32: Get the flag of whether the auto fill animation is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
 
@@ -4806,8 +4934,8 @@ typedef enum {
      * <li>.value[0].i32: line height value.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
 
@@ -4824,8 +4952,8 @@ typedef enum {
      * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
 
@@ -4848,8 +4976,8 @@ typedef enum {
      * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SHOW_COUNTER = 7040,
 
@@ -4866,8 +4994,8 @@ typedef enum {
      * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE = 7041,
 
@@ -4885,8 +5013,8 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      *  @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
@@ -4903,8 +5031,8 @@ typedef enum {
      * <li>.value[0].i32: The current state of this feature.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
  	  NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
 
@@ -4921,8 +5049,8 @@ typedef enum {
      * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION = 7044,
 
@@ -4939,8 +5067,8 @@ typedef enum {
      * <li>.value[0].i32: Whether include the font padding.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_INCLUDE_FONT_PADDING = 7045,
 
@@ -4957,8 +5085,8 @@ typedef enum {
      * <li>.value[0].i32: Whether fallback line spacing.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_FALLBACK_LINE_SPACING = 7046,
 
@@ -4976,8 +5104,8 @@ typedef enum {
      * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_DIRECTION = 7047,
 
@@ -4994,8 +5122,8 @@ typedef enum {
      * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE = 7048,
 
@@ -5013,8 +5141,8 @@ typedef enum {
      * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      *  @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -5032,8 +5160,8 @@ typedef enum {
      * <li>.object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_DECORATION = 7050,
 
@@ -5057,8 +5185,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LINEAR_GRADIENT = 7051,
 
@@ -5084,8 +5212,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052,
 
@@ -5103,8 +5231,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_PUNCTUATION_OVERFLOW = 7053,
 
@@ -5122,7 +5250,7 @@ typedef enum {
      * <li>.string: default placeholder text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
@@ -5139,7 +5267,7 @@ typedef enum {
      * <li>.string: default text content.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_TEXT,
     /**
@@ -5156,7 +5284,7 @@ typedef enum {
      * <li>.value[0].i32: maximum number of characters in the text input.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_MAX_LENGTH,
     /**
@@ -5173,7 +5301,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_PLACEHOLDER_COLOR,
     /**
@@ -5196,7 +5324,7 @@ typedef enum {
      * <li>.string: font family. Multiple font families are separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_PLACEHOLDER_FONT,
     /**
@@ -5213,7 +5341,7 @@ typedef enum {
      * <li>.value[0].u32: background color, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CARET_COLOR,
     /**
@@ -5230,7 +5358,7 @@ typedef enum {
      * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_EDITING,
     /**
@@ -5246,7 +5374,7 @@ typedef enum {
      * <li>.value[0].i32: text box type {@link ArkUI_TextAreaType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_TYPE,
     /**
@@ -5268,7 +5396,7 @@ typedef enum {
      * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SHOW_COUNTER,
     /**
@@ -5285,7 +5413,7 @@ typedef enum {
      * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SELECTION_MENU_HIDDEN,
     /**
@@ -5301,7 +5429,7 @@ typedef enum {
      * <li>.value[0].i32: whether the text box loses focus.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_BLUR_ON_SUBMIT,
     /**
@@ -5320,7 +5448,7 @@ typedef enum {
      * <li>.string: regular expression.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_INPUT_FILTER,
     /**
@@ -5337,7 +5465,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SELECTED_BACKGROUND_COLOR,
     /**
@@ -5354,7 +5482,7 @@ typedef enum {
      * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ENTER_KEY_TYPE,
     /**
@@ -5371,7 +5499,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ENABLE_KEYBOARD_ON_FOCUS,
     /**
@@ -5390,7 +5518,7 @@ typedef enum {
      * <li>.value[2].f32: indicates the y-coordinate value of the cursor relative to the text box.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CARET_OFFSET,
     /**
@@ -5404,7 +5532,7 @@ typedef enum {
      * <li>.value[3].f32: content height.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CONTENT_RECT,
     /**
@@ -5415,7 +5543,7 @@ typedef enum {
      * <li>.value[0].i32: number of lines of the edited text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CONTENT_LINE_COUNT,
     /**
@@ -5434,7 +5562,7 @@ typedef enum {
      * <li>.value[1].i32: end position of the text selection.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_TEXT_SELECTION,
     /**
@@ -5450,7 +5578,7 @@ typedef enum {
      * <li>.value[0].i32: whether to enable autofill.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ENABLE_AUTO_FILL,
     /**
@@ -5466,7 +5594,7 @@ typedef enum {
      * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CONTENT_TYPE,
 
@@ -5484,7 +5612,7 @@ typedef enum {
      * <li>.value[0].i32: Whether to pop up the keyboard.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
 
@@ -5501,7 +5629,7 @@ typedef enum {
      * <li>.value[0].i32: Set the value of numberOfLines.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_NUMBER_OF_LINES,
 
@@ -5519,8 +5647,8 @@ typedef enum {
      * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LETTER_SPACING = 8023,
     /**
@@ -5537,8 +5665,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable preview tex.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT = 8024,
 
@@ -5555,8 +5683,8 @@ typedef enum {
      * <li>.value[0].i32: whether to center text vertically.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 18
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
@@ -5573,8 +5701,8 @@ typedef enum {
      * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
@@ -5591,8 +5719,8 @@ typedef enum {
      * <li>.value[0].i32: max lines count.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LINES = 8027,
 
@@ -5609,8 +5737,8 @@ typedef enum {
      * <li>.value[0].i32: line spacing value.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
@@ -5628,8 +5756,8 @@ typedef enum {
      * </ul>
      *
      * @since 20
-     * 
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     *
+     * @ingroup Text Input 
      */
     NODE_TEXT_AREA_MIN_LINES = 8029,
  
@@ -5647,8 +5775,8 @@ typedef enum {
      * <li>.value[0].i32: max line count with scroll.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
@@ -5665,8 +5793,8 @@ typedef enum {
      * <li>.value[0].i32: line height value.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINE_HEIGHT = 8031,
 
@@ -5684,8 +5812,8 @@ typedef enum {
      * <li>.value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
      NODE_TEXT_AREA_BAR_STATE = 8032,
 
@@ -5702,8 +5830,8 @@ typedef enum {
      * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
 
@@ -5721,8 +5849,8 @@ typedef enum {
      * <li>.data[0].u32: color of the scroll bar thumb, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
@@ -5741,8 +5869,8 @@ typedef enum {
      * <li>.value[0].i32: Set whether the custom keyboard supports the avoidance function.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CUSTOM_KEYBOARD = 8036,
 
@@ -5759,8 +5887,8 @@ typedef enum {
      * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
 
@@ -5778,8 +5906,8 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
@@ -5796,8 +5924,8 @@ typedef enum {
      * <li>.value[0].i32: The current state of this feature.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION = 8039,
 
@@ -5814,8 +5942,8 @@ typedef enum {
      * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION = 8040,
 
@@ -5832,8 +5960,8 @@ typedef enum {
      * <li>.value[0].i32: Whether include the font padding.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_INCLUDE_FONT_PADDING = 8041,
 
@@ -5850,8 +5978,8 @@ typedef enum {
      * <li>.value[0].i32: Whether fallback line spacing.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_FALLBACK_LINE_SPACING = 8042,
 
@@ -5869,8 +5997,8 @@ typedef enum {
      * <li>.value[0].i32: Whether enable the feature.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_HORIZONTAL_SCROLLING = 8043,
 
@@ -5888,8 +6016,8 @@ typedef enum {
      * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_DIRECTION = 8044,
 
@@ -5906,8 +6034,8 @@ typedef enum {
      * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE = 8045,
 
@@ -5925,8 +6053,8 @@ typedef enum {
      * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      *  @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
 
@@ -5944,8 +6072,8 @@ typedef enum {
      * <li>.object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_DECORATION = 8047,
 
@@ -5969,8 +6097,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINEAR_GRADIENT = 8048,
 
@@ -5996,8 +6124,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
 
@@ -6015,46 +6143,61 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_PUNCTUATION_OVERFLOW = 8050,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
+     * 
+     * @ingroup Button
      */
     NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_BUTTON,
 
     /**
      * @brief Sets the button type. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
+     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
+     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * </ul>
+     * 
+     * @ingroup Button
      */
     NODE_BUTTON_TYPE,
 
     /**
     * @brief Defines the minimum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: minimum font scale, in fp.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * <ul>
+    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * </ul>
     * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: minimum font scale, in fp.
-    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * <ul>
+    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * </ul>
+    * 
+    * @ingroup Button
     * @since 18
     */
     NODE_BUTTON_MIN_FONT_SCALE,
@@ -6062,12 +6205,17 @@ typedef enum {
     /**
     * @brief Defines the maximum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: maximum font scale, in fp.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * <ul>
+    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * </ul>
     * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: maximum font scale, in fp.
-    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * <ul>
+    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * </ul>
+    * 
+    * @ingroup Button
     * @since 18
     */
     NODE_BUTTON_MAX_FONT_SCALE,
@@ -6086,7 +6234,7 @@ typedef enum {
      * <li>.value[0].f32: current value of the progress indicator.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PROGRESS,
     /**
@@ -6103,7 +6251,7 @@ typedef enum {
      * <li>.value[0].f32: total value of the progress indicator.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_TOTAL,
     /**
@@ -6120,7 +6268,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_COLOR,
     /**
@@ -6137,7 +6285,7 @@ typedef enum {
      * <li>.value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_TYPE,
     /**
@@ -6155,8 +6303,8 @@ typedef enum {
      * <li>.object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style.</li>
      * </ul>
      *
+     * @ingroup Information Display
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_LINEAR_STYLE,
 
@@ -6164,13 +6312,18 @@ typedef enum {
      * @brief Defines whether the check box is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the check box is selected.
-     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the check box is selected.
+     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * 
+     * @ingroup Checkbox
      */
     NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
@@ -6178,12 +6331,17 @@ typedef enum {
      * @brief Defines the color of the check box when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Checkbox
      */
     NODE_CHECKBOX_SELECT_COLOR,
 
@@ -6191,12 +6349,17 @@ typedef enum {
      * @brief Defines the border color of the check box when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * 
+     * @ingroup Checkbox
      */
     NODE_CHECKBOX_UNSELECT_COLOR,
 
@@ -6204,16 +6367,21 @@ typedef enum {
      * @brief Defines the internal icon style of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1]?.f32: size of the internal mark, in vp. Optional.\n
-     * .value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
+     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1].f32: size of the internal mark, in vp. \n
-     * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
+     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * </ul>
+     * 
+     * @ingroup Checkbox
      */
     NODE_CHECKBOX_MARK,
 
@@ -6221,12 +6389,17 @@ typedef enum {
      * @brief Defines the shape of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * </ul>
+     * 
+     * @ingroup Checkbox
      */
     NODE_CHECKBOX_SHAPE,
 
@@ -6234,12 +6407,17 @@ typedef enum {
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
+     * 
+     * @ingroup Checkbox
      * @since 15
      */
     NODE_CHECKBOX_NAME,
@@ -6248,12 +6426,17 @@ typedef enum {
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      *
+     * @ingroup Checkbox
      * @since 15
      */
     NODE_CHECKBOX_GROUP,
@@ -6326,132 +6509,172 @@ typedef enum {
      * @brief Defines whether to display the lunar calendar in the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to display the lunar calendar in the date picker. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to display the lunar calendar in the date picker.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
     /**
      * @brief Defines the start date of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The default value is <b>"1970-1-1"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_START,
     /**
      * @brief Defines the end date of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The default value is <b>"2100-12-31"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_END,
     /**
      * @brief Defines the selected date of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2024-01-22"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The default value is <b>"2024-01-22"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_SELECTED,
     /**
      * @brief Defines the font color, font size, and font weight for the top and bottom items in the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected
      * items in the date picker. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight of the selected item in the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_SELECTED_TEXT_STYLE,
     /**
      * @brief Defines the mode of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      * @since 18
      */
     NODE_DATE_PICKER_MODE = 13007,
@@ -6459,13 +6682,18 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether to feedback.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      * @since 18
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
@@ -6473,13 +6701,18 @@ typedef enum {
      * @brief Defines whether to support scroll looping for the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      * @since 20
      */
      NODE_DATE_PICKER_CAN_LOOP = 13009,
@@ -6487,309 +6720,396 @@ typedef enum {
      * @brief Defines the time of the selected item. in the timer picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is the current system time. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: time. The default value is the current system time.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: time.</li>
+     * </ul>
+     *
+     * @ingroup Timepicker
      */
-
     NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
     /**
      * @brief Defines whether the display time is in 24-hour format.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the display time is in 24-hour format. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the display time is in 24-hour format.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the display time is in 24-hour format. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the display time is in 24-hour format.</li>
+     * </ul>
+     *
+     * @ingroup Timepicker
      */
     NODE_TIME_PICKER_USE_MILITARY_TIME,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     *
-     */
+      * @brief Defines the font color, font size, and font weight for the top and bottom items in the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      */
     NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected items
-     * in the time picker. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     *
-     */
+      * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected items
+      * in the time picker. This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      */
     NODE_TIME_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of the selected item in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     *
-     */
+      * @brief Defines the font color, font size, and font weight of the selected item in the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the start time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
-     *
-     * @since 18
-     */
+      * @brief Defines the start time of the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"00:00:00"</b>.</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"00:00:00"</b>.</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      * @since 18
+      */
     NODE_TIME_PICKER_START = 14005,
     /**
-     * @brief Defines the end time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
-     *
-     * @since 18
-     */
+      * @brief Defines the end time of the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"23:59:59"</b>.</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"23:59:59"</b>.</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      * @since 18
+      */
     NODE_TIME_PICKER_END = 14006,
     /**
-     * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable cascade. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable cascade.\n
-     *
-     * @since 18
-     */
+      * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.value[0].i32: whether to enable cascade. The default value is <b>false</b>.</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.value[0].i32: whether to enable cascade.</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      * @since 18
+      */
     NODE_TIME_PICKER_ENABLE_CASCADE = 14007,
 
     /**
      * @brief Defines the data selection range of the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.
-     * The default value is <b>ARKUI_TEXTPICKER_RANGETYPE_SINGLE</b>. \n
-     * ?.string: string input, whose format varies by picker type.\n
-     * 1: single-column picker. The input format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.object: Object input, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The input structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The input structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.\n
-     * ?.string: string output, whose format varies by picker type.\n
-     * 1: single-column picker. The output format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.string: Object output, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The output structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The output structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.
+     * The default value is <b>ARKUI_TEXTPICKER_RANGETYPE_SINGLE</b>. </li>
+     * <li>.string: string input, whose format varies by picker type.</li>
+     * <li>1: single-column picker. The input format is a group of strings separated by semicolons (;).</li>
+     * <li>2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
+     * semicolons (;), and strings within each pair are separated by commas (,).</li>
+     * <li>.object: Object input, whose format varies by picker type.</li>
+     * <li>1: single-column picker with image support. The input structure is {@link ARKUI_TextPickerRangeContent}.</li>
+     * <li>2: multi-column interconnected picker. The input structure is {@link ARKUI_TextPickerCascadeRangeContent}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.</li>
+     * <li>.string: string output, whose format varies by picker type.</li>
+     * <li>1: single-column picker. The output format is a group of strings separated by semicolons (;).</li>
+     * <li>2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
+     * semicolons (;), and strings within each pair are separated by commas (,).</li>
+     * <li>.string: Object output, whose format varies by picker type.</li>
+     * <li>1: single-column picker with image support. The output structure is {@link ARKUI_TextPickerRangeContent}.</li>
+     * <li>2: multi-column interconnected picker. The output structure is {@link ARKUI_TextPickerCascadeRangeContent}.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
     /**
      * @brief Defines the index of the default selected item in the data selection range of the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: index. If there are multiple index values, add them one by one.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: index. If there are multiple index values, add them one by one.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_OPTION_SELECTED,
     /**
      * @brief Defines the value of the default selected item in the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;). \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;).\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: value of the selected item. If there are multiple values, add them one by one and
+     * separate them with semicolons (;).</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: value of the selected item. If there are multiple values, add them one by one and
+     * separate them with semicolons (;).</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_OPTION_VALUE,
     /**
      * @brief Defines the font color, font size, and font weight for the top and bottom items in the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight for all items except the top, bottom, and selected
      * items in the text picker. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight for the selected item in the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_SELECTED_TEXT_STYLE,
     /**
      * @brief Defines the index of the default selected item in the data selection range of the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...].i32: index of the default item in the data selection range.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...].i32: index of the default item in the data selection range.</li>
+     * </ul>
      *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_SELECTED_INDEX,
     /**
      * @brief Defines whether to support scroll looping for the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_CAN_LOOP,
     /**
      * @brief Defines the height of each item in the picker. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: item height, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].f32: item height, in vp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: item height, in vp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].f32: item height, in vp.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT,
     /**
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether to feedback.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
@@ -6797,21 +7117,26 @@ typedef enum {
      * @brief Defines the background color and border radius of the selected items.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
-     * 1: .value[1].f32: radius of the four corners. \n
-     * 2: .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
-     * .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>1: .value[1].f32: radius of the four corners.</li>
+     * <li>2: .value[1].f32: radius of the upper left corner.</li>
+     * <li>.value[2].f32: radius of the upper right corner.</li>
+     * <li>.value[3].f32: radius of the lower left corner.</li>
+     * <li>.value[4].f32: radius of the lower right corner.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[1].f32: radius of the upper left corner.</li>
+     * <li>.value[2].f32: radius of the upper right corner.</li>
+     * <li>.value[3].f32: radius of the lower left corner.</li>
+     * <li>.value[4].f32: radius of the lower right corner.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      * @since 20
      */
     NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
@@ -6819,81 +7144,106 @@ typedef enum {
      * @brief Defines the style of the background in the selected state of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: style of the background in the selected state of the calendar picker.
      * The value range is [0, +∞). If the value is <b>0</b>, the background is a rectangle with square corners.
      If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to
-     * or greater than 16, the background is a circle. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker. The value range is [0, +∞).
+     * or greater than 16, the background is a circle.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: style of the background in the selected state of the calendar picker. The value range is [0, +∞).
      * If the value is <b>0</b>, the background is a rectangle with square corners.
      If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to or
-     * greater than 16, the background is a circle. \n
+     * greater than 16, the background is a circle.</li>
+     * </ul>
      *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
     /**
      * @brief Defines the date of the selected item in the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: year of the selected date.</li>
+     * <li>.value[1].u32: month of the selected date.</li>
+     * <li>.value[2].u32: day of the selected date.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: year of the selected date.</li>
+     * <li>.value[1].u32: month of the selected date.</li>
+     * <li>.value[2].u32: day of the selected date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_SELECTED_DATE,
     /**
      * @brief Defines how the calendar picker is aligned with the entry component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}.</li>
+     * <li>.value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
+     * the specified alignment mode.</li>
+     * <li>.value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
+     * the specified alignment mode.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}.</li>
+     * <li>.value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
+     * the specified alignment mode.</li>
+     * <li>.value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
+     * the specified alignment mode.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_EDGE_ALIGNMENT,
     /**
      * @brief Defines the font color, font size, and font weight in the entry area of the calendar picker.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.u32: font color of the entry area. \n
-     * .value[1]?.f32: font size of the entry area, in fp. \n
-     * .value[2]?.i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: font color of the entry area. \n
-     * .value[1].f32: font size of the entry area, in fp. \n
-     * .value[2].i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.u32: font color of the entry area.</li>
+     * <li>.value[1]?.f32: font size of the entry area, in fp.</li>
+     * <li>.value[2]?.i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: font color of the entry area.</li>
+     * <li>.value[1].f32: font size of the entry area, in fp.</li>
+     * <li>.value[2].i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_TEXT_STYLE,
     /**
      * @brief Defines the start date of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The value like <b>"1970-1-1"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 18
      */
     NODE_CALENDAR_PICKER_START = 16004,
@@ -6901,24 +7251,34 @@ typedef enum {
      * @brief Defines the end date of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The value like <b>"2100-12-31"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 18
      */
     NODE_CALENDAR_PICKER_END = 16005,
     /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
@@ -6926,12 +7286,17 @@ typedef enum {
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_TRACK_COLOR,
 
@@ -6939,12 +7304,17 @@ typedef enum {
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_SELECTED_COLOR,
 
@@ -6952,80 +7322,110 @@ typedef enum {
      * @brief Sets whether to display the stepping value. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
+     * and <b>0</b> (default value) means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
+     * and <b>0</b> (default value) means the opposite.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_SHOW_STEPS,
 
     /**
      * @brief Defines the slider shape, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}. \n
-     * .string?: depending on the shape. Optional. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
+     * <li>.string?: depending on the shape. Optional.</li> \n
+     * <ul>
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
+     * </ul>
      * There are five types:\n
-     * 1. Rectangle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[2].f32: width of the rectangle.\n
-     * .value[3].f32: height of the rectangle.\n
-     * .value[4].f32: width of the rounded corner of the rectangle.\n
-     * .value[5].f32: height of the rounded corner of the rectangle.\n
-     * 2. Circle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[2].f32: width of the circle.\n
-     * .value[3].f32: height of the circle.\n
-     * 3.Ellipse:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[2].f32: width of the ellipse.\n
-     * .value[3].f32: height of the ellipse;\n
-     * 4. Path:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
-     * .value[2].f32: width of the path.\n
-     * .value[3].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * **1. Rectangle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
+     * <li>.value[2].f32: width of the rectangle.</li>\n
+     * <li>.value[3].f32: height of the rectangle.</li>\n
+     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
+     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
+     * </ul>
+     * **2. Circle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
+     * <li>.value[2].f32: width of the circle.</li>\n
+     * <li>.value[3].f32: height of the circle.</li>\n
+     * </ul>
+     * **3.Ellipse:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
+     * <li>.value[2].f32: width of the ellipse.</li>\n
+     * <li>.value[3].f32: height of the ellipse.</li>\n
+     * </ul>
+     * **4. Path:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
+     * <li>.value[2].f32: width of the path.</li>\n
+     * <li>.value[3].f32: height of the path.</li>\n
+     * <li>.string: command for drawing the path.</li>\n
+     * <ul>
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}. \n
-     * .string?: depending on the shape. Optional. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
+     * <li>.string?: depending on the shape. Optional.</li> \n
+     * <ul>
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
+     * </ul>
       * There are five types:\n
-     * 1. Rectangle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[2].f32: width of the rectangle.\n
-     * .value[3].f32: height of the rectangle.\n
-     * .value[4].f32: width of the rounded corner of the rectangle.\n
-     * .value[5].f32: height of the rounded corner of the rectangle.\n
-     * 2. Circle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[2].f32: width of the circle.\n
-     * .value[3].f32: height of the circle.\n
-     * 3.Ellipse:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[2].f32: width of the ellipse.\n
-     * .value[3].f32: height of the ellipse;\n
-     * 4. Path:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
-     * .value[2].f32: width of the path.\n
-     * .value[3].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * **1. Rectangle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
+     * <li>.value[2].f32: width of the rectangle.</li>\n
+     * <li>.value[3].f32: height of the rectangle.</li>\n
+     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
+     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
+     * </ul>
+     * **2. Circle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
+     * <li>.value[2].f32: width of the circle.</li>\n
+     * <li>.value[3].f32: height of the circle.</li>\n
+     * </ul>
+     * **3.Ellipse:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
+     * <li>.value[2].f32: width of the ellipse.</li>\n
+     * <li>.value[3].f32: height of the ellipse.</li>\n
+     * </ul>
+     * **4. Path:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
+     * <li>.value[2].f32: width of the path.</li>\n
+     * <li>.value[3].f32: height of the path.</li>\n
+     * <li>.string: command for drawing the path.</li>\n
+     * </ul>
+     * </ul>
      *
+     * @ingroup Slider
      */
     NODE_SLIDER_BLOCK_STYLE,
 
@@ -7033,12 +7433,17 @@ typedef enum {
      * @brief Defines the current value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: current value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: current value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: current value.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_VALUE,
 
@@ -7046,12 +7451,17 @@ typedef enum {
      * @brief Defines the minimum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: minimum value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: minimum value.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_MIN_VALUE,
 
@@ -7059,24 +7469,34 @@ typedef enum {
      * @brief Defines the maximum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: maximum value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: maximum value.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_MAX_VALUE,
 
     /**
      * @brief Defines the step of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: step. The value range is [0.01, 100]. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: step. The value range is [0.01, 100].</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: step. The value range is [0.01, 100].
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: step. The value range is [0.01, 100].</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_STEP,
 
@@ -7084,13 +7504,18 @@ typedef enum {
      * @brief Defines whether the slider moves horizontally or vertically. This attribute can be set, reset, and
      * obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the slider moves horizontally or vertically.
-     * The parameter type is {@link ArkUI_SliderDirection}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider moves horizontally or vertically.
+     * The parameter type is {@link ArkUI_SliderDirection}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the slider moves horizontally or vertically.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider moves horizontally or vertically.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_DIRECTION,
 
@@ -7098,14 +7523,19 @@ typedef enum {
      * @brief Defines whether the slider values are reversed. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
+     * reversed, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
+     * reversed, and <b>0</b> means the opposite.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_REVERSE,
 
@@ -7113,12 +7543,17 @@ typedef enum {
      * @brief Defines the style of the slider thumb and track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li>
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_STYLE,
 
@@ -7126,14 +7561,19 @@ typedef enum {
      * @brief Sets the track thickness of the slider.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
      * is set to <b>ARKUI_SLIDER_STYLE_OUT_SET</b> and 20.0 vp when <b>NODE_SLIDER_STYLE</b> is set to
-     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>. \n
+     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: track thickness of the slider, in vp. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: track thickness of the slider, in vp.</li> \n
+     * </ul>
      *
+     * @ingroup Slider
      */
     NODE_SLIDER_TRACK_THICKNESS,
 
@@ -7141,15 +7581,20 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>value[0].i32: whether to feedback.\n
      * When enabling haptic feedback, you need to add "ohos.permission.VIBRATE" in the
-     * requestPermissions field of the module.json5 file to enable vibration permission.\n
-     *
+     * requestPermissions field of the module.json5 file to enable vibration permission.</li>\n
+     * </ul>
+     * 
+     * @ingroup Slider
      * @since 18
      */
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
@@ -7157,12 +7602,14 @@ typedef enum {
     /**
      * @brief Sets a custom component on the leading side of the Slider component.
      *
-     * Attribute setting method {@link ArkUI_AttributeItem} parameter format:\n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
-     *
+     * **Attribute setting method {@link ArkUI_AttributeItem} parameter format:**\n
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * </ul>
      * The prefix component will be placed at the start position of the Slider，
      * typically on the left side in LTR layouts.
 	 *
+   * @ingroup Slider
 	 * @since 20
      */
     NODE_SLIDER_PREFIX,
@@ -7170,12 +7617,14 @@ typedef enum {
     /**
      * @brief Sets a custom component on the trailing side of the Slider component.
      *
-     * Attribute setting method {@link link ArkUI_AttributeItem} parameter format:\n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
-     *
+     * **Attribute setting method {@link link ArkUI_AttributeItem} parameter format:**\n
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * </ul>
      * The suffix component will be placed at the end position of the Slider,
      * typically on the right side in LTR layouts.
 	 *
+   * @ingroup Slider
 	 * @since 20
      */
     NODE_SLIDER_SUFFIX,
@@ -7183,20 +7632,25 @@ typedef enum {
     /**
      * @brief Defines the color of the slider block. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider
      * @since 21
      */
     NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR,
@@ -7205,20 +7659,25 @@ typedef enum {
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider
      * @since 21
      */
     NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR,
@@ -7227,20 +7686,25 @@ typedef enum {
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider
      * @since 21
      */
     NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR,
@@ -7248,166 +7712,227 @@ typedef enum {
     /**
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: check status of an option button. The default value is false.
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: selection status of an option button.
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.value[0].i32: check status of an option button. The default value is false.</li>
+     * </ul>
+     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * <ul>
+     * <li>.value[0].i32: selection status of an option button.</li>
+     * </ul>
+     * 
+     * @ingroup Radio
      */
     NODE_RADIO_CHECKED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
     /**
      * @brief Set the styles of the selected and deselected states of the option button.
      * The attribute setting, attribute resetting, and attribute obtaining are supported.
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0]?. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF. \n
-     * .value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431. \n
-     * .value[2]?. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFFF. \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0]. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF. \n
-     * .value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431. \n
-     * .value[2]. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFF. \n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.value[0]?. u32: color of the mother board in enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
+     * <li>.value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
+     * and the default value is 0xFF182431.</li> \n
+     * <li>.value[2]?. u32: color of the internal round pie in the enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFFFFFFFF.</li> \n
+     * </ul>
+     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * <ul>
+     * <li>.value[0]. u32: color of the mother board in enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
+     * <li>.value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
+     * and the default value is 0xFF182431.</li> \n
+     * <li>.value[2]. u32: color of the internal round pie in the enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFFFFFFF.</li> \n
+     * </ul>
+     * 
+     * @ingroup Radio
      */
     NODE_RADIO_STYLE,
     /**
      * @brief Sets the value of the current radio.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .string: radio value.\n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.string: radio value.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: radio value.\n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: radio value.</li>\n
+     * </ul>
+     * 
+     * @ingroup Radio
      */
     NODE_RADIO_VALUE,
     /**
      * @brief Set the group name of the current Radio group, only one radio of the same group can be selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .string: name of the group to which the current option box belongs.\n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: name of the group to which the current option box belongs.\n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * </ul>
+     * 
+     * @ingroup Radio
      */
     NODE_RADIO_GROUP,
 
     /**
-     * @brief Set the image frames for the image animator. Dynamic updates is not supported.
+     * @brief Defines the image frames for the image animator. Dynamic updates are not supported.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
-     * \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
      *
-    */
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
+     *
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
     /**
-     * @brief Set the playback status of the animation for the image animator.
+     * @brief Defines the playback status of the animation for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus},
-     * and the default value is ARKUI_ANIMATION_STATUS_INITIAL.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is
+     * {@link ArkUI_AnimationStatus}. The default value is <b>ARKUI_ANIMATION_STATUS_INITIAL</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus}.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
     /**
-     * @brief Set the playback duration for the image animator. When the duration is 0, no image is played.
+     * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
      * The value change takes effect only at the beginning of the next cycle.
      * When a separate duration is set in images, the setting of this attribute is invalid.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback duration, the unit is ms and the default value is 1000.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms. The default value is 1000.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback duration, the unit is ms.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
     /**
-     * @brief Set the playback direction for the image animator.
+     * @brief Defines the playback direction for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
     /**
-     * @brief Set whether the image size is the same as the component size.
+     * @brief Defines whether the image size is the same as the component size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * In this case, the width, height, top, and left attributes of the image are invalid.
-     * 0 indicates the image size is customized.
-     * The width, height, top, and left attributes of each image must be set separately.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. In this case, the width, height, top, and left
+     * attributes of the image are invalid. <b>0</b> indicates that the image size is customized. The width,
+     * height, top, and left attributes of each image must be set separately.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * 0 indicates the image size is customized.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
     /**
-     * @brief Set the status before and after execution of the animation in the current playback direction.
+     * @brief Defines the status before and after execution of the animation in the current playback direction.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode} and the default value is ARKUI_ANIMATION_FILL_MODE_FORWARDS.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}. The default value is
+     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode}.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
     /**
-     * @brief Set the number of times that the animation is played.
+     * @brief Defines the number of times that the animation is played.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
     /**
      * @brief Defines the name of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * 
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_NAME  = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
@@ -7416,13 +7941,18 @@ typedef enum {
      * @brief Defines whether the checkboxgroup is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the checkboxgroup is selected.
-     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the checkboxgroup is selected.
+     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * 
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECT_ALL,
@@ -7431,13 +7961,18 @@ typedef enum {
      * @brief Defines the color of the checkboxgroup when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
-     * for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
+     * for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
@@ -7445,12 +7980,17 @@ typedef enum {
      * @brief Defines the border color of the checkboxgroup when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * 
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_UNSELECTED_COLOR,
@@ -7459,16 +7999,21 @@ typedef enum {
      * @brief Defines the internal icon style of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1]?.f32: size of the internal mark, in vp. Optional.\n
-     * .value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
+     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1].f32: size of the internal mark, in vp. \n
-     * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
+     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * </ul>
+     * 
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_MARK,
@@ -7477,12 +8022,17 @@ typedef enum {
      * @brief Defines the shape of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * </ul>
+     * 
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SHAPE,
@@ -7500,8 +8050,8 @@ typedef enum {
      * <li>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENTER_KEY_TYPE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
@@ -7518,8 +8068,8 @@ typedef enum {
      * <li>.value[0].u32: Caret color, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_CARET_COLOR,
 
@@ -7536,8 +8086,8 @@ typedef enum {
      * <li>.data[0].u32: Scroll bar color, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SCROLL_BAR_COLOR,
 
@@ -7554,8 +8104,8 @@ typedef enum {
      * <li>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_BAR_STATE,
 
@@ -7572,8 +8122,8 @@ typedef enum {
      * <li>.value[0].i32: Whether text entity recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
 
@@ -7585,8 +8135,8 @@ typedef enum {
      * <li>.object: Recognition configuration. The parameter type is {@link ArkUI_TextDataDetectorConfig}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG,
 
@@ -7598,8 +8148,8 @@ typedef enum {
      * <li>.object: Extended menu options. The parameter type is {@link ArkUI_TextEditMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_EDIT_MENU_OPTIONS,
 
@@ -7611,8 +8161,8 @@ typedef enum {
      * <li>.object: Placeholder options when there is no input. The parameter type is {@link ArkUI_TextEditorPlaceholderOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
 
@@ -7624,8 +8174,8 @@ typedef enum {
      * <li>.object: Styled string controller. The parameter type is {@link ArkUI_TextEditorStyledStringController}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
 
@@ -7642,8 +8192,8 @@ typedef enum {
      * <li>.value[0].i32: Whether preview text is enabled. The value **1** indicates preview text is enabled, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
 
@@ -7655,8 +8205,8 @@ typedef enum {
      * <li>.object: Layout manager. The parameter type is {@link ArkUI_TextLayoutManager}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
@@ -7673,8 +8223,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the AI menu is enabled for text selection and recognition.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_SELECTED_DATA_DETECTOR,
 
@@ -7691,8 +8241,8 @@ typedef enum {
      * <li>.data[0].u32: Background color of the selected content, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SELECTED_BACKGROUND_COLOR,
 
@@ -7709,8 +8259,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the input method is enabled when the focus is obtained in a way other than clicking. The value **1** indicates the input method is enabled, and **0** indicates the input method is disabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_KEYBOARD_ON_FOCUS,
 
@@ -7727,8 +8277,8 @@ typedef enum {
      * <li>.value[0].i32: Maximum number of characters.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_MAX_LENGTH,
 
@@ -7745,8 +8295,8 @@ typedef enum {
      * <li>.value[0].i32: Maximum number of lines in the text editor.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_MAX_LINES,
 
@@ -7763,8 +8313,8 @@ typedef enum {
      * <li>.value[0].i32: Whether haptic feedback is enabled. The value **1** indicates haptic feedback is enabled, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_HAPTIC_FEEDBACK,
 
@@ -7781,8 +8331,8 @@ typedef enum {
      * <li>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_COPY_OPTIONS,
 
@@ -7799,8 +8349,8 @@ typedef enum {
      * <li>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
 
@@ -7817,8 +8367,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the propagation of return events is blocked. The value **1** indicates that the propagation of return events is blocked, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
 
@@ -7835,8 +8385,8 @@ typedef enum {
      * <li>.value[0].i32: Whether automatic spacing is enabled. The value **1** indicates automatic spacing is enabled, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
 
@@ -7855,8 +8405,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value ** 1** indicates yes.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_CUSTOM_KEYBOARD,
 
@@ -7868,8 +8418,8 @@ typedef enum {
      * <li>.object: Text selection menu. The parameter type is {@link ArkUI_TextEditorSelectionMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
 
@@ -7886,8 +8436,8 @@ typedef enum {
      * <li>.value[0].i32: Whether spacing is added. The value **1** means that spacing is added, and **0** means spacing is not added.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
 
@@ -7904,8 +8454,8 @@ typedef enum {
      * <li>.value[0].i32: Whether line height adaptation is enabled. The value **1** means line height adaptation is enabled, and **0** means the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
 
@@ -7922,8 +8472,8 @@ typedef enum {
      * <li>.value[0].i32: Whether punctuation compression is enabled. The value **1** means punctuation compression is enabled, and **0** means the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_COMPRESS_LEADING_PUNCTUATION,
 
@@ -7940,8 +8490,8 @@ typedef enum {
      * <li>.object: Selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
 
@@ -7958,8 +8508,8 @@ typedef enum {
      * <li>.value[0].i32: Whether single-line mode is enabled. The value **1** means single-line mode is enabled, and ** 0** means the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
@@ -7980,8 +8530,8 @@ typedef enum {
      * <li>.value[0].i32: Whether orphan character optimization is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
@@ -7998,8 +8548,8 @@ typedef enum {
      * <li>.value[0].i32: Whether horizontal scrolling is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
 
@@ -8017,8 +8567,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
 
@@ -10404,38 +10954,48 @@ typedef enum {
     NODE_GRID_ITEM_SELECTED = 1014002,
 
     /**
-    * @brief Defines the column width of the text picker.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * ...\n
-    * .value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * value[0].f32: percentage of total width.\n
-    * value[1].f32: percentage of total width.\n
-    * value[2].f32: percentage of total width.\n
-    * ...\n
-    * value[n].f32: percentage of total width.\n
-    *
-    * @since 18
-    */
+     * @brief Defines the column width of the text picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * <li>.value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * <li>.value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * <li>...</li>
+     * <li>.value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].f32: percentage of total width.</li>
+     * <li>value[1].f32: percentage of total width.</li>
+     * <li>value[2].f32: percentage of total width.</li>
+     * <li>...</li>
+     * <li>value[n].f32: percentage of total width.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
+     * @since 18
+     */
     NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
     /**
      * @brief Defines the disabled date range of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: A string of dates. The `1st start date`,`1st end date`,`2nd start date`,`2nd end date`,
-     * ...,`nth start date`,`nth end date` of the disabled date range.\n
-     *  Example: 1910-01-01,1910-12-31,2020-01-01,2020-12-31\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: A string of dates.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: A string of dates. The `1st start date`,`1st end date`,`2nd start date`,`2nd end date`,
+     * ...,`nth start date`,`nth end date` of the disabled date range.</li>
+     * <li> Example: 1910-01-01,1910-12-31,2020-01-01,2020-12-31</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: A string of dates.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 19
      */
     NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
@@ -10444,12 +11004,17 @@ typedef enum {
      * @brief Defines whether the calendar picker marks today.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: whether the calendar picker marks today. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether the calendar picker marks today.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: whether the calendar picker marks today. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether the calendar picker marks today.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 19
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
@@ -10481,12 +11046,17 @@ typedef enum {
      * @brief Defines the index of the default selected item in the data selection range of the picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: index.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: index.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_OPTION_SELECTED_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PICKER,
@@ -10494,13 +11064,17 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether to feedback.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_ENABLE_HAPTIC_FEEDBACK = 1018001,
@@ -10508,13 +11082,17 @@ typedef enum {
      * @brief Defines whether to support scroll looping for the picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_CAN_LOOP = 1018002,
@@ -10522,12 +11100,17 @@ typedef enum {
      * @brief Sets the type and parameters of the selection indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} Format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
+     * **Attribute setting method parameter {@link ArkUI_AttributeItem} Format:**
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_PickerIndicatorStyle}.</li>
+     * </ul>
      *
+     * **Attribute fetch method return value {@link ArkUI_AttributeItem} format:**
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_PickerIndicatorStyle}.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
@@ -11472,7 +12055,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: Indicates the result of text recognition, in Json format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
@@ -11481,8 +12064,8 @@ typedef enum {
      * The event is triggered when the span is long pressed.
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_UIInputEvent} object. \n
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
 
@@ -11497,8 +12080,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_TEXT_SELECTION_CHANGE = 1002,
 
@@ -11513,8 +12096,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_COPY = 1003,
 
@@ -11533,8 +12116,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_WILL_COPY = 1004,
 
@@ -11544,19 +12127,23 @@ typedef enum {
      * This event is triggered when an image is successfully loaded or decoded. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains nine parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: loading status. The value <b>0</b> indicates that the image is
-     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: height of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: width of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: height of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: offset of the rendered content relative to the component on the
-     * x-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: offset of the rendered content relative to the component on the
-     * y-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: actual rendered width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: actual rendered height of the image, in px. \n
+     * **{@link ArkUI_NodeComponentEvent} contains nine parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: loading status. The value <b>0</b> indicates that the image is
+     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: height of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32: width of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32: height of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[5].f32: offset of the rendered content relative to the component on the
+     * x-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[6].f32: offset of the rendered content relative to the component on the
+     * y-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[7].f32: actual rendered width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[8].f32: actual rendered height of the image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
@@ -11565,10 +12152,13 @@ typedef enum {
      * This event is triggered when an error occurs during image loading. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>error code:\n
-     * 401: The image could not be obtained because the image path is invalid. \n
-     * 103101: The image format is not supported. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: error code.<br><b>401</b>: The image could not be obtained because
+     * the image path is invalid.<br><b>103101</b>: The image format is not supported.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_ERROR,
     /**
@@ -11578,17 +12168,23 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_SVG_PLAY_FINISH,
     /**
-     * @brief Defines image download process event.
+     * @brief Defines the image download progress event.
      *
      * This event is triggered when downloading webpage images from page components.\n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].u32</b>: the num of bytes downloaded. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].u32</b>: the total number of bytes to download. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].u32: number of bytes downloaded.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].u32: total number of bytes to download.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
@@ -11597,9 +12193,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.
-     *
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:** \n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.</li>
+     * </ul>
+     * 
+     * @ingroup Toggle
      */
     NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
@@ -11613,7 +12212,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text input.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
@@ -11627,7 +12226,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: Enter key type of the input method.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_SUBMIT,
     /**
@@ -11642,7 +12241,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CUT,
     /**
@@ -11663,7 +12262,7 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_PASTE,
     /**
@@ -11677,7 +12276,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE,
 
@@ -11691,7 +12290,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: true indicates that text input is in progress.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_EDIT_CHANGE,
 
@@ -11707,7 +12306,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].f32: Indicates the height of the text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
 
@@ -11722,7 +12321,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: content that is filtered out when regular expression matching fails.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_INPUT_FILTER_ERROR,
 
@@ -11737,7 +12336,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: Indicates the vertical coordinate offset of the text in the content area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
 
@@ -11752,7 +12351,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_WILL_INSERT = 7009,
 
@@ -11765,7 +12364,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_DID_INSERT = 7010,
 
@@ -11781,7 +12380,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_WILL_DELETE = 7011,
 
@@ -11795,7 +12394,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
@@ -11810,8 +12409,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextInput component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextInput component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
@@ -11825,8 +12424,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextInput component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextInput component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
 
@@ -11841,8 +12440,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_COPY = 7015,
 
@@ -11861,8 +12460,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_COPY = 7016,
 
@@ -11881,8 +12480,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the cut is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_CUT = 7017,
 
@@ -11897,7 +12496,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text entered.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
@@ -11918,7 +12517,7 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_PASTE,
     /**
@@ -11933,7 +12532,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE,
     /**
@@ -11948,7 +12547,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: content that is filtered out when regular expression matching fails.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_INPUT_FILTER_ERROR,
     /**
@@ -11963,7 +12562,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: Indicates the vertical coordinate offset of the text in the content area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_CONTENT_SCROLL,
 
@@ -11978,7 +12577,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: true indicates that text input is in progress.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_EDIT_CHANGE,
 
@@ -11993,7 +12592,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: type of the Enter key.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_SUBMIT,
 
@@ -12009,7 +12608,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].f32: Indicates the height of the text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
 
@@ -12024,7 +12623,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_WILL_INSERT = 8008,
 
@@ -12037,7 +12636,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_DID_INSERT = 8009,
 
@@ -12053,7 +12652,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_WILL_DELETE = 8010,
 
@@ -12067,7 +12666,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_DID_DELETE = 8011,
 
@@ -12082,8 +12681,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextArea component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextArea component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
@@ -12097,8 +12696,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextArea component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextArea component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
@@ -12113,8 +12712,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_COPY = 8014,
 
@@ -12133,8 +12732,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_COPY = 8015,
 
@@ -12149,8 +12748,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CUT = 8016,
 
@@ -12169,8 +12768,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the cut is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
@@ -12180,42 +12779,53 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b><b>1</b>: selected; <b>0</b>: not selected.\n
+     * 
+     * @ingroup Checkbox
      */
     NODE_CHECKBOX_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
     /**
      * @brief Defines the event triggered when a date is selected in the <b>ARKUI_NODE_DATE_PICKER</b> component.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: month of the selected date. Value range: [0-11]. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: day of the selected date. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains three parameters:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: year of the selected date.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: month of the selected date. Value range: [0-11].</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[2].i32</b>: day of the selected date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
 
     /**
      * @brief Defines the event triggered when a time is selected in the <b>ARKUI_NODE_TIME_PICKER</b> component.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: hour of the selected time. Value range: [0-23]. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: minute of the selected time. Value range: [0-59]. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains two parameters:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: hour of the selected time. Value range: [0-23].</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: minute of the selected time. Value range: [0-59].</li>
+     * </ul>
+     *
+     * @ingroup Timepicker
      */
     NODE_TIME_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
 
     /**
      * @brief Defines the event triggered when an item is selected in the <b>ARKUI_NODE_TEXT_PICKER</b> component.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
 
@@ -12224,10 +12834,13 @@ typedef enum {
      * <b>ARKUI_NODE_TEXT_PICKER</b> component.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item.</li>
+     * </ul>
      *
+     * @ingroup Textpicker
      * @since 14
      */
     NODE_TEXT_PICKER_EVENT_ON_SCROLL_STOP = 15001,
@@ -12236,10 +12849,14 @@ typedef enum {
      * @brief Defines the event triggered when a date is selected in the <b>NODE_CALENDAR_PICKER</b>.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * <b>ArkUI_NodeComponent.data[0].u32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[1].u32</b>: month of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[2].u32</b>: day of the selected date. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * <ul>
+     * <li><b>ArkUI_NodeComponent.data[0].u32</b>: year of the selected date.</li>
+     * <li><b>ArkUI_NodeComponent.data[1].u32</b>: month of the selected date.</li>
+     * <li><b>ArkUI_NodeComponent.data[2].u32</b>: day of the selected date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
@@ -12248,9 +12865,13 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.\n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**\n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value.</li> \n
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.</li>\n
+     * </ul>
+     * 
+     * @ingroup Slider
      */
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
@@ -12258,57 +12879,66 @@ typedef enum {
      * @brief Defines the event callback function triggered when an object is dragged or clicked by ARKUI_NODE_RADIO.
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * ArkUI_NodeComponentEvent.data[0].i32: option button status. \n
+     * **{@Link ArkUI_NodeComponentEvent} contains one parameter:**\n
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: option button status.</li> \n
+     * </ul>
+     * 
+     * @ingroup Radio
      */
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
 
     /**
-     * @brief Defines the event callback function triggered when the animation starts to play.
+     * @brief Defines the event triggered when the animation starts to play.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_START = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_ANIMATOR,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is paused.
+     * @brief Defines the event triggered when the animation playback is paused.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE = 19001,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is repeated.
+     * @brief Defines the event triggered when the animation playback is repeated.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_REPEAT = 19002,
     /**
-     * @brief Defines the event callback function when the animation playback returns to the initial state.
+     * @brief Defines the event triggered when the animation playback returns to the initial state.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_CANCEL = 19003,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is complete or stopped.
+     * @brief Defines the event triggered when the animation playback is complete or stopped.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
-    
+
     /**
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
@@ -12317,11 +12947,14 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}. \n
      * <b>ArkUI_StringAsyncEvent.pStr</b>
      * Name: The names of the selected checkboxes;
-     * Status:
-     * 0: All checkboxes are selected.
-     * 1: Some checkboxes are selected.
-     * 2: No checkboxes are selected. \n
+     * **Status:**
+     * <ul>
+     * <li>0: All checkboxes are selected.</li>
+     * <li>1: Some checkboxes are selected.</li>
+     * <li>2: No checkboxes are selected.</li> \n
+     * </ul>
      *
+     * @ingroup CheckboxGroup
      * @since 15
      */
     NODE_CHECKBOX_GROUP_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
@@ -12336,8 +12969,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end index of the selection.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_SELECTION_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
@@ -12346,8 +12979,8 @@ typedef enum {
      * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}.
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_READY,
 
@@ -12359,8 +12992,8 @@ typedef enum {
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_PASTE,
 
@@ -12373,8 +13006,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: editing status of the component.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_EDITING_CHANGE,
 
@@ -12387,8 +13020,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: type of the Enter key, specified using {@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_SUBMIT,
 
@@ -12399,8 +13032,8 @@ typedef enum {
      * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_CUT,
 
@@ -12411,8 +13044,8 @@ typedef enum {
      * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_COPY,
 
@@ -12429,8 +13062,8 @@ typedef enum {
      * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
      * <br>**value.i32** whose **index** is set to **0** indicates whether the current content can be changed. **0**:
      * The content cannot be changed. **1**: The content can be changed.
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_WILL_CHANGE,
 
@@ -12446,8 +13079,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[3].i32: end index of the text range of the new content after the text changes.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_DID_CHANGE,
 
@@ -13438,13 +14071,6 @@ typedef enum {
      */
     NODE_ARC_SWIPER_EVENT_ON_GESTURE_SWIPE,
 } ArkUI_NodeEventType;
-
-/**
- * @brief Defines the common structure type of a component event.
- *
- * @since 12
- */
-typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
 
 /**
  * @brief Obtains the type of a component event.
@@ -15049,21 +15675,6 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
 /**
- * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
- * tree or is not rendered yet.
- * Note: the pixelmap should be released through OH_PixelmapNative_Release when it's not used any more.
- *
- * @param node Indicates the target node.
- * @param snapshotOptions the given configuration for taking snapshot, can be null for using default.
- * @param pixelmap Pixelmap pointer created by system, it's the out result.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the snapshot taking failed will null pixelmap returned.
- *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot taking is timeout.
- * @since 15
- */
-/**
  * @brief Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered,
  * the snapshot operation will fail. When the <b>Pixelmap</b> object created is no longer in use, it should be released
  * by calling {@link OH_PixelmapNative_Release}.
@@ -15084,7 +15695,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *         dynamic range mode is not supported.
  *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED} if the isAuto parameter of the color
  *         space or dynamic range mode is set to true for offscreen node snapshot.
- * @since 23
+ * @since 15
  */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);

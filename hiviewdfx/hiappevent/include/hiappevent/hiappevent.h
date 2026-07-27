@@ -67,19 +67,19 @@ typedef enum {
     HIAPPEVENT_SUCCESS = 0,
 
     /**
-     * @error Invalid param value length
+     * The parameter value length is invalid.
      * @since 18
      */
     HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4,
 
     /**
-     * @error Processor is null
+     * The processor is null.
      * @since 18
      */
     HIAPPEVENT_PROCESSOR_IS_NULL = -7,
 
     /**
-     * @error Processor not found
+     * The processor is not found.
      * @since 18
      */
     HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,
@@ -97,20 +97,20 @@ typedef enum {
     HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10,
 
     /**
-     * @error Operate failed
+     * The operation failed.
      * @since 18
      */
     HIAPPEVENT_OPERATE_FAILED = -100,
 
     /**
-     * @error Invalid uid
+     * The user ID is invalid.
      * @since 18
      */
     HIAPPEVENT_INVALID_UID = -200,
     /**
- * @error Report frequency exceeded.
- * @since 26.0.0
- */
+     * The reporting frequency exceeds the limit.
+     * @since 26.0.0
+     */
     HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED = -300
 } HiAppEvent_ErrorCode;
 
@@ -120,7 +120,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-enum EventType {
+typedef enum EventType {
     /* Fault event type */
     FAULT = 1,
 
@@ -132,10 +132,10 @@ enum EventType {
 
     /* Behavior event type */
     BEHAVIOR = 4
-};
+} EventType;
 
 /**
- * @brief Defines a struct for the information about a single event, including the domain, name, type, and
+ * @brief Defines a struct for the information about a single event, including the domain, name, type, and custom
  * parameter list in JSON string format.
  *
  * @since 12
@@ -163,7 +163,7 @@ typedef struct HiAppEvent_AppEventInfo {
 typedef struct HiAppEvent_AppEventGroup {
     /* The name of the event. */
     const char* name;
-    /* The event array which is group by the name. */
+    /* The event array which is grouped by the name. */
     const struct HiAppEvent_AppEventInfo* appEventInfos;
     /* The length of appEventInfos array. */
     uint32_t infoLen;
@@ -215,9 +215,9 @@ typedef void (*OH_HiAppEvent_OnReceive)(
     const char* domain, const struct HiAppEvent_AppEventGroup* appEventGroups, uint32_t groupLen);
 
 /**
- * @brief Invoked if the event received by the watcher meets the conditions specified by **
- * OH_HiAppEvent_SetTriggerCondition**. When the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the
- * event received by the watcher will be saved.
+ * @brief Invoked if the event received by the watcher meets the conditions specified by
+ * {@link OH_HiAppEvent_SetTriggerCondition}. When the **OH_HiAppEvent_OnReceive** callback is not set in the watcher,
+ * the event received by the watcher will be saved.
  * After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
  *
  * @param row Number of events newly received by the watcher.
@@ -229,7 +229,7 @@ typedef void (*OH_HiAppEvent_OnReceive)(
 typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
 
 /**
- * @brief Passes the events received by the watcher to the caller when **OH_HiAppEvent_TakeWatcherData** is used to
+ * @brief Passes the events received by the watcher to the caller when {@link OH_HiAppEvent_TakeWatcherData} is used to
  * obtain the events. Note: The lifecycle of the object pointed by the pointer in the callback is limited to the
  * callback function. Do not use the pointer outside of the callback function. If the information needs to be cached,
  * perform a deep copy of the content pointed by the pointer.
@@ -242,7 +242,8 @@ typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
 typedef void (*OH_HiAppEvent_OnTake)(const char* const *events, uint32_t eventLen);
 
 /**
- * @brief Creates a pointer to a parameter list object.
+ * @brief Creates a pointer to a parameter list object. Note: If the created pointer to a parameter list object is
+ * no longer used, destroy it by calling {@link OH_HiAppEvent_DestroyParamList}.
  *
  * @return Pointer to the parameter list object.
  * @since 8
@@ -520,10 +521,11 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
 bool OH_HiAppEvent_Configure(const char* name, const char* value);
 
 /**
- * @brief Creates a watcher for application events.
+ * @brief Creates a watcher for application events. Note: If a created watcher is no longer used, destroy it by calling
+ * {@link OH_HiAppEvent_DestroyWatcher}.
  *
- * @param name Watcher name.
- * @return Pointer to the new watcher if the API is called successfully; **nullptr** if the **name** parameter is
+ * @param name Pointer to the watcher name.
+ * @return Pointer to the new watcher if the API is called successfully; **NULL** if the **name** parameter is
  *     invalid.
  * @since 12
  * @version 1.0
@@ -534,18 +536,18 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
  * @brief Destroys a created watcher. Note: If a created watcher is no longer used, destroy it to release memory to
  * prevent memory leaks. After the watcher is destroyed, set its pointer to null.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @since 12
  * @version 1.0
  */
 void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
 
 /**
- * @brief Sets the trigger condition of the **OH_HiAppEvent_OnTrigger** callback.
+ * @brief Sets the trigger condition of the {@link OH_HiAppEvent_OnTrigger} callback.
  * You can set the trigger condition by the number and size of new events received by the watcher, and **onTrigger**
  * timeout interval. Ensure that at least one of the trigger conditions is set on the caller side.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @param row Row count. If the input value is greater than 0 and the number of newly received events is greater than
  *     or equal to the value of this parameter, the configured **onTrigger** callback is called.
  *     If the input value is less than or equal to 0, the number of received events is not used as the condition to
@@ -555,13 +557,10 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  *     size of a single event is the length of the JSON string converted from the event.
  *     If the input value is less than or equal to 0, the size of received events is not used as the condition to
  *     trigger the **onTrigger** callback.
- * @param timeOut Timeout value, in seconds. If the input value is greater than 0, the system checks the watcher for
- *     newly received events based on the timeout * 30 interval. If there are any newly received events, the configured
- *     onTrigger callback is triggered.
- *     After the callback is complete, the system checks the watcher for newly received events when the timeout * 30
- *     value expires.
- *     If the input value is less than or equal to 0, the timeout interval is not used as the condition to trigger the
- *     onTrigger callback.
+ * @param timeOut Timeout interval, in seconds. The actual value is the value of **timeOut** multiplied by 30 seconds.
+ *     If the value of **timeOut** is greater than 0, the system checks for new events every **timeOut** * 30 seconds.
+ *     If a new event is detected, the **onTrigger** callback is triggered, and the timer restarts. If the value of
+ *     **timeOut** is less than or equal to 0, the **onTrigger** callback is not enabled.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
  * @version 1.0
@@ -573,15 +572,16 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
  * conditions instead of replacing them. The watcher will receive notifications of events that meet any of the
  * filtering conditions.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @param domain Domain of events to be listened for.
  * @param eventTypes Types of events to be listened for. The bitwise AND matching mode is used. Multiple types of
  *     events can be listened for. If the first bit is **1** (the value is **1**), fault events can be listened for.
  *     <br>If the second bit is **1** (the value is **2**), statistics events can be listened for.
  *     <br>If the third bit is **1** (the value is **4**), security events can be listened for.
- *     <br>If the fourth digit is **1**(the value is **8**), events of the listening behavior type can be listened for.
+ *     <br>If the fourth digit is **1** (the value is **8**), events of the listening behavior type can be
+ *     listened for.
  *     <br>If four digits are **1** (the value is **15**) or 0 (the value is **0**), events of all types can be
- *     <br>listened for.
+ *     listened for.
  * @param names Array of the event names.
  * @param namesLen Length of the event name array.
  * @return **0** if the API is called successfully; **-1** if the **names** parameter is invalid; **-4** if the **
@@ -598,7 +598,7 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * If the saved application events meet the trigger conditions of the **onTrigger** callback, the **onTrigger**
  * callback will be called.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @param onTrigger Callback to be set.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
@@ -610,7 +610,7 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @brief Sets the **onReceive** callback. When the listener detects the corresponding event, the onReceive callback is
  * called.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @param onReceive Pointer to the callback function.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
@@ -621,13 +621,13 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
 /**
  * @brief Obtains the event saved by the watcher.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @param eventNum If the input value is less than or equal to **0**, all saved events are obtained. If the input value
  *     is greater than **0**, events are sorted by time in descending order and a specified number of saved events are
  *     obtained.
  * @param onTake Pointer to the callback. The event information is returned through this callback.
- * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if **
- *     OH_HiAppEvent_AddWatcher** has not been called to add a watcher.
+ * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if
+ *     {@link OH_HiAppEvent_AddWatcher} has not been called to add a watcher.
  * @since 12
  * @version 1.0
  */
@@ -636,7 +636,15 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
 /**
  * @brief Adds a watcher. Once a watcher is added, it starts to listen for system messages.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
+ * > **NOTE**
+ * >
+ * > The {@link OH_HiAppEvent_AddWatcher} API involves I/O operations. In performance-sensitive service scenarios,
+ * > you need to determine whether to call this API in the main thread or a child thread based on the actual service
+ * > requirements.
+ * > The name passed to the {@link OH_HiAppEvent_AddWatcher} API should be unique. If the same name is passed, the
+ * > previous subscription will be overwritten.
+ *
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
  * @version 1.0
@@ -646,11 +654,11 @@ int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
 /**
  * @brief Removes a watcher. Once a watcher is removed, it stops listening for system messages. Note: This API only
  * enables the watcher to stop listening for system messages. It does not destroy the watcher. The watcher still
- * resides in the memory until the OH_HiAppEvent_DestroyWatcher API is called.
+ * resides in the memory until the {@link OH_HiAppEvent_DestroyWatcher} API is called.
  *
- * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
- * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if **
- *     OH_HiAppEvent_AddWatcher** has not been called to add a watcher.
+ * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
+ * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if
+ *     {@link OH_HiAppEvent_AddWatcher} has not been called to add a watcher.
  * @since 12
  * @version 1.0
  */
@@ -665,11 +673,12 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
 void OH_HiAppEvent_ClearData();
 
 /**
- * @brief Creates a processor for application events.
+ * @brief Creates a processor for application events. Note: If a created processor is no longer used, destroy it by
+ * calling {@link OH_HiAppEvent_DestroyProcessor}.
  *
  * @param name Processor name, which can contain only letters, digits, underscores (_), and dollar signs ($). It cannot
  *     start with a digit and cannot exceed 256 characters.
- * @return Pointer to the new processor if the API is called successfully; **nullptr** if the **name** parameter is
+ * @return Pointer to the new processor if the API is called successfully; **NULL** if the **name** parameter is
  *     invalid.
  * @since 18
  */
@@ -678,16 +687,16 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
 /**
  * @brief Sets the report route for the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param appId Application ID of the processor.
  * @param routeInfo Server location information. The default value is an empty string. The string length cannot exceed
  *     8 KB. Otherwise, the default value is used.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid parameter value length.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -697,18 +706,18 @@ int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* ap
 /**
  * @brief Sets the report policy for the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
- * @param periodReport Period for reporting events, in seconds.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
+ * @param periodReport Period for reporting events, in seconds. The input value must be greater than or equal to 0.
  * @param batchReport Threshold for reporting events. When the number of events reaches the threshold, an event is
- *     reported.
+ *     reported. The value range is [0, 1000].
  * @param onStartReport Whether to report events during startup. **true**: yes; **false**: no.
  * @param onBackgroundReport Whether to report events after an application switches to the background. **true**:
  *     yes; **false**: no.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -719,16 +728,16 @@ int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodRep
 /**
  * @brief Sets the report event for the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param domain Domain of the report event.
  * @param name Name of the report event.
  * @param isRealTime Whether to report events in real time. The value **true** means to report events in real time,
  *     and **false** means the opposite.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -739,15 +748,15 @@ int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* do
 /**
  * @brief Sets the custom extension parameters of the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param key Parameter name, which contains a maximum of 32 characters.
  * @param value Parameter value, which contains a maximum of 1024 characters.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid parameter value length.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -757,13 +766,13 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
 /**
  * @brief Sets the configuration ID of the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param configId Configuration ID of the processor, which is a natural number.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -773,15 +782,15 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
 /**
  * @brief Sets the configuration name of the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param configName Configuration name of the data processor, which can contain only letters, digits,
  *     underscores (_), and dollar signs ($). It cannot start with a digit and cannot exceed 256 characters.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid parameter value length.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 20
@@ -791,15 +800,15 @@ int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* con
 /**
  * @brief Sets the report user ID of the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param userIdNames Name array of user IDs that can be reported by the processor.
  * @param size Length of the name array of user IDs.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid parameter value length.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -809,15 +818,15 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
 /**
  * @brief Sets the report user property of the processor.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @param userPropertyNames Name array of user properties that can be reported by the processor.
  * @param size Length of the name array of user properties.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid uid.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID} Invalid user ID.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid parameter value length.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -831,13 +840,13 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  * configuration information of **Processor** must be provided by the data processor. Yet, as no data processor is
  * preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @return <ul>
- *         <li>process id if set is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL}: The processor is nullptr.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE}: Invalid Param value.</li>
- *         <li>{@link HIAPPEVENT_OPERATE_FAILED}: Name not found or register processor error.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID}: Invalid uid.</li>
+ *         <li>Unique ID if set is successful. The value is greater than 0.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL}: The **processor** parameter is empty.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE}: Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_OPERATE_FAILED}: Failed to find or register the data processor name.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID}: Invalid user ID.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -848,22 +857,22 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
  * @brief Destroys a processor. Note: If a processor is no longer used, destroy it to release memory to prevent memory
  * leaks. After the processor is destroyed, set its pointer to null.
  *
- * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
+ * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
  * @since 18
  */
 void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 
 /**
  * @brief Removes a processor. Once a processor is removed, it stops reporting events. Note: This API only stops the
- * processor reporting events but does not destroy the processor. You can call **OH_HiAppEvent_DestroyProcessor** to
+ * processor reporting events but does not destroy the processor. You can call {@link OH_HiAppEvent_DestroyProcessor} to
  * destroy the processor and release the memory.
  *
  * @param processorId Unique ID of a processor.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS}: The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_PROCESSOR_NOT_FOUND}: Processor not add.</li>
- *         <li>{@link HIAPPEVENT_OPERATE_FAILED}: The operation is failed.</li>
- *         <li>{@link HIAPPEVENT_INVALID_UID}: Invalid uid.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS}: Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_PROCESSOR_NOT_FOUND}: Failed to find the processor.</li>
+ *         <li>{@link HIAPPEVENT_OPERATE_FAILED}: Operation failed.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_UID}: Invalid user ID.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 18
@@ -871,7 +880,9 @@ void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
 
 /**
- * @brief Creates a pointer to the configuration object that sets the conditions for triggering system events.
+ * @brief Creates a pointer to the configuration object that sets the conditions for triggering system events. Note: If
+ * the created pointer to the configuration object that sets the conditions for triggering system events is no longer
+ * used, destroy it by calling {@link OH_HiAppEvent_DestroyConfig}.
  *
  * @return Pointer to the configuration object that sets the conditions for triggering system events.
  * @since 15
@@ -883,7 +894,7 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
  * memory to prevent memory leaks. After the object is destroyed, set its pointer to null.
  *
  * @param config Pointer to the configuration object, that is, the pointer returned by
- *     the **OH_HiAppEvent_CreateConfig** API.
+ *     the {@link OH_HiAppEvent_CreateConfig} API.
  * @since 15
  */
 void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
@@ -892,13 +903,13 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
  * @brief Sets the items in the configuration object.
  *
  * @param config Pointer to the configuration object, that is, the pointer returned by
- *     the **OH_HiAppEvent_CreateConfig** API.
+ *     the {@link OH_HiAppEvent_CreateConfig} API.
  * @param itemName Name of the configuration item.
  * @param itemValue Value of the configuration item.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The event config is null.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} The item is invalid.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The input pointer to the configuration object is null.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid configuration item.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 15
@@ -909,17 +920,17 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * @brief Sets event configuration parameters.
  * Configuration items vary depending on events. Currently, only the following events are supported:
  * **MAIN_THREAD_JANK**. (For details about the parameter configuration, see {@link Main Thread Jank Event Overview}.)
- * **MAIN_THREAD_JANK_V2**. (For details about the parameter configuration, see {@link Main Thread Jank Event Overview}.
- * )
+ * **MAIN_THREAD_JANK_V2**. (For details about the parameter configuration, see
+ * {@link Main Thread Jank Event Overview}.)
  * **EVENT_APP_CRASH**. (For details about the parameter configuration, see {@link Crash Event Overview}.) This event
  * is supported since API version 24.
  *
  * @param name Name of the system event.
  * @param config Pointer to the configuration object, that is, the pointer returned by
- *     the **OH_HiAppEvent_CreateConfig** API.
+ *     the {@link OH_HiAppEvent_CreateConfig} API.
  * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} The config is invalid.</li>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter.</li>
  *         </ul>
  *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 15
@@ -927,9 +938,8 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
 int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
 
 /**
- * @brief Framework types.
- *
- * You are advised to select framework types based on their respective usage scenarios.
+ * @brief Enumerates the application framework types. You are advised to select an application framework type based on
+ * the actual application scenario.
  *
  * @since 26.0.0
  */
@@ -957,16 +967,28 @@ typedef enum OH_HiAppEvent_FrameworkType {
 } OH_HiAppEvent_FrameworkType;
 
 /**
- * @brief When a framework has a memory leak report event.
+ * @brief Reports information about abnormal memory usage of the application framework.
+ * <br>This API can be called once every minute at most. If the frequency limit is exceeded, the error code
+ * **HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED** will be returned.
+ * <br>When the application detects that the memory usage of the application framework is abnormal and the operation is
+ * successful after this API is called:
+ * <br>1. If you have subscribed to the application event whose domain is **HIVIEWDFX** and name is **FW_MEM_ANOMALY**,
+ * the application will receive a callback containing the information about the abnormal memory usage of the
+ * application framework.
+ * <br>2. If you have not subscribed to this application event, the application will not receive the callback
+ * containing the information about the abnormal memory usage of the application framework.
  *
- * @param frameworkType Framework type.
- * @param frameworkVersion Framework version.
- * @param description Description of the framework memory leak event.
- * @return report result.
- *     {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *     {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
- *     {@link HIAPPEVENT_OPERATE_FAILED} System/application event write failed, or timestamp retrieval failed.
- *     {@link HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED} Report frequency exceeded.
+ * @param frameworkType Application framework type.
+ * @param frameworkVersion Pointer to the application framework version.
+ * @param description Description of the abnormal memory usage of the application framework.
+ * @return <ul>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation succeeded.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_OPERATE_FAILED} System/application event write failed, or timestamp retrieval
+ *             failed.</li>
+ *         <li>{@link HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED} The reporting frequency exceeds the limit.</li>
+ *         </ul>
+ *     For details, see {@link HiAppEvent_ErrorCode}.
  * @since 26.0.0
  */
 int OH_HiAppEvent_ReportFrameworkMemAnomaly(
@@ -974,6 +996,5 @@ int OH_HiAppEvent_ReportFrameworkMemAnomaly(
 #ifdef __cplusplus
 }
 #endif
-
-/** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_H
+/** @} */

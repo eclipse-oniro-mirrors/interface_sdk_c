@@ -46,12 +46,13 @@ extern "C" {
 
 /**
  * @brief 新增一条关键资产。
+ * 如果要设置Asset_Tag.ASSET_TAG_IS_PERSISTENT属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限，申请方式请参考声明权限。
  *
  * @param attributes 待新增关键资产的属性集合。
  * @param attrCnt 待新增关键资产的属性数量。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
  *     {@link ASSET_PERMISSION_DENIED} 201 - 调用者没有权限。
- *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因:
+ *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 必选参数未指定。
  *         2. 参数类型错误。
  *         3. 参数校验失败。
@@ -78,7 +79,7 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
  * @param query 待删除关键资产的搜索条件。
  * @param queryCnt 待删除关键资产搜索条件的个数。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
- *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因:
+ *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 参数类型错误。
  *         2. 参数校验失败。
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - 关键资产服务不可用。
@@ -103,7 +104,7 @@ int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt);
  * @param attributesToUpdate 待更新关键资产的属性集合。
  * @param updateCnt 待更新关键资产的属性数量。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
- *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因:
+ *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 必选参数未指定。
  *         2. 参数类型错误。
  *         3. 参数校验失败。
@@ -131,7 +132,7 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
  * @param queryCnt 关键资产查询条件的个数。
  * @param challenge 挑战值，在后续调用{@link OH_Asset_Query}时使用。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
- *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因:
+ *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 参数类型错误。
  *         2. 参数校验失败。
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - 关键资产服务不可用。
@@ -158,7 +159,7 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
  * @param queryCnt 关键资产查询条件的个数。
  * @param resultSet 查询结果列表。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
- *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因:
+ *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 参数类型错误。
  *         2. 参数校验失败。
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - 关键资产服务不可用。
@@ -184,7 +185,7 @@ int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultS
  * @param handle 待处理的查询句柄，当前包含{@link OH_Asset_PreQuery}执行成功返回的挑战值。
  * @param handleCnt 句柄属性集合中元素的个数。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
- *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因:
+ *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 必选参数未指定。
  *         2. 参数类型错误。
  *         3. 参数校验失败。

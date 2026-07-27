@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_NODE_H
 #define ARKUI_NATIVE_NODE_H
 
+#include "common_type.h"
 #include "native_type.h"
 #include "ui_input_event.h"
 
@@ -89,13 +90,13 @@ typedef enum {
     ARKUI_NODE_CHECKBOX = 11,
     /** XComponent. */
     ARKUI_NODE_XCOMPONENT = 12,
-    /** Date picker. */
+    /** 日期选择器组件。 */
     ARKUI_NODE_DATE_PICKER = 13,
-    /** Time picker. */
+    /** 时间选择组件。 */
     ARKUI_NODE_TIME_PICKER = 14,
-    /** Text picker. */
+    /** 滑动选择文本内容的组件。 */
     ARKUI_NODE_TEXT_PICKER = 15,
-    /** Calendar picker. */
+    /** 日历选择器组件。*/
     ARKUI_NODE_CALENDAR_PICKER = 16,
     /** Slider. */
     ARKUI_NODE_SLIDER = 17,
@@ -154,33 +155,16 @@ typedef enum {
      */
     ARKUI_NODE_EMBEDDED_COMPONENT,
     /**
-     * Undefined.
+     * 组件类型未定义。在反色接口中代表全部组件类型。
      * @since 20
      */
     ARKUI_NODE_UNDEFINED,
     /**
-     * Picker container.
+     * Picker容器，用于实现用户选择操作的组件。
      * @since 23
      */
     ARKUI_NODE_PICKER = 1018,
 } ArkUI_NodeType;
-
-/**
- * @brief Defines the general input parameter structure of the {@link setAttribute} function. The property
- * setting interfaces can utilize the member variables within it to store data of specific parameter types.
- *
- * @since 12
- */
-typedef struct {
-    /** A number array, used to store parameters of the number array type. */
-    const ArkUI_NumberValue* value;
-    /** The size of the number array, used together with the variable value, indicating the length of the value array. */
-    int32_t size;
-    /** String type, used to store parameters of the string type. */
-    const char* string;
-    /** Object type, used to store parameters of the object type. */
-    void* object;
-} ArkUI_AttributeItem;
 
 /**
  * @brief 定义ArkUI在Native侧可以设置的属性样式集合。
@@ -2404,69 +2388,99 @@ typedef enum {
     NODE_SYSTEM_MATERIAL = 127,
 
     /**
-     * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Text组件设置文本内容属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: text content.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: text content.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示文本内容。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示文本内容。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
-     * @brief Defines the font color attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 组件字体颜色属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: font color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-      * .value[0].u32: font color value, in 0xARGB format.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：字体颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：字体颜色数值，0xargb格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_FONT_COLOR,
     /**
-     * @brief Defines the font size attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 组件字体大小属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: font size, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: font size, in fp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：字体大小数值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。默认值：16fp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：字体大小数值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_FONT_SIZE,
     /**
-     * @brief Defines the font style attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 组件字体样式属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font style {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font style {@link ArkUI_FontStyle}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：字体样式，具体枚举值请参考{@link ArkUI_FontStyle}。默认值为ARKUI_FONT_STYLE_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：字体样式{@link ArkUI_FontStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_FONT_STYLE,
     /**
-     * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 组件字体粗细属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：字体粗细样式{@link ArkUI_FontWeight}。取值越大字体越粗。默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：字体粗细样式{@link ArkUI_FontWeight}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_FONT_WEIGHT,
     /**
-     * @brief Defines the text line height attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本行高属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: line height, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: line height, in fp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示行高值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示行高值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_LINE_HEIGHT,
     /**
@@ -2486,326 +2500,446 @@ typedef enum {
      *
      */
     /**
-     * @brief Defines the text decoration style and color.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本装饰线样式及其颜色属性，支持属性设置、属性重置和属性获取接口。适用于添加文本装饰效果，如下划线表示链接、删除线表示已删除内容、或上划线表示强调。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
-     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
-     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
-     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3]?.f32: text decoration thickness scale. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
-     * .value[1].u32: text decoration color, in 0xARGB format. \n
-     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3].f32: text decoration thickness scale. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本装饰线类型，具体枚举值请参考{@link ArkUI_TextDecorationType}。默认值为ARKUI_TEXT_DECORATION_TYPE_NONE，无装饰线。</li>
+     * <li>.value[1]?.u32：可选值，装饰线颜色，0xargb格式，形如 0xFFFF0000 表示红色。默认值：0xFF000000，表示黑色。</li>
+     * <li>.value[2]?.i32：文本装饰线样式，具体枚举值请参考{@link ArkUI_TextDecorationStyle}。默认值为ARKUI_TEXT_DECORATION_STYLE_SOLID，实线装饰线。</li>
+     * <li>.value[3]?.f32：可选值，文本装饰线粗细比例，默认值：1.0，取值范围：[0, +∞)。传入负数时参数不生效。该参数从API version 22开始支持。</li>
+     * </ul>
      *
-     *  since 22
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本装饰线类型{@link ArkUI_TextDecorationType}。</li>
+     * <li>.value[1].u32：装饰线颜色，0xargb格式。</li>
+     * <li>.value[2].i32：文本装饰线样式{@link ArkUI_TextDecorationStyle}。</li>
+     * <li>.value[3].f32：文本装饰线粗细比例。该返回值从API version 22开始支持。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_DECORATION,
     /**
-     * @brief Defines the text case attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本大小写属性，支持属性设置、属性重置和属性获取接口。适用于控制文本显示格式，如显示标题时自动大写、或格式化用户输入为统一大小写。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text case.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text case.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本大小写类型，具体枚举值请参考{@link ArkUI_TextCase}。默认值为ARKUI_TEXT_CASE_NORMAL，表示保持原样。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本大小写类型{@link ArkUI_TextCase}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_CASE,
     /**
-     * @brief Defines the letter spacing attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本字符间距属性，支持属性设置、属性重置和属性获取接口。适用于调整文本排版效果，如设置标题字符间距以增强视觉效果、或调整特殊文本样式的排版美观度。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: letter spacing, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: letter spacing, in fp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示字符间距值，单位为fp。取值范围：(-∞, +∞)。当取值为负值时，文字会被压缩。负值过小时会将组件内容区大小压缩为0，导致内容无法显示。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示字符间距值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_LETTER_SPACING,
     /**
-     * @brief Sets the maximum number of lines in the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本最大行数属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: maximum number of lines in the text.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: maximum number of lines in the text.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示最大行数，取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示最大行数。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_MAX_LINES,
     /**
-     * @brief Horizontal alignment mode of the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本水平对齐方式，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本水平对齐方式，具体枚举值请参考{@link ArkUI_TextAlignment}。默认值为ARKUI_TEXT_ALIGNMENT_START，表示水平对齐首部。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本水平对齐方式，取{@link ArkUI_TextAlignment}枚举值。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_ALIGN,
     /**
-     * @brief Defines the text overflow attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本超长时的显示方式属性，支持属性设置、属性重置和属性获取接口。适用于处理文本内容超出显示区域的场景，如单行标题显示时使用省略号、或卡片内容截断显示等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: display mode when the text is too long. {@ArkUI_TextOverflow}\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: display mode when the text is too long. {@ArkUI_TextOverflow}\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本超长时的显示方式，具体枚举值请参考{@link ArkUI_TextOverflow}。默认值为ARKUI_TEXT_OVERFLOW_NONE，表示文本超长时不裁剪显示。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本超长时的显示方式{@link ArkUI_TextOverflow}。</li>
+     * </ul>
+     *
+     * 说明：支持此属性的{@link ArkUI_NodeType}为：ARKUI_NODE_TEXT、ARKUI_NODE_TEXT_INPUT、ARKUI_NODE_TEXT_AREA。\n
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_OVERFLOW,
     /**
-     * @brief Defines the font family attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Text字体列表属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: fonts, separated by commas (,).
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: fonts, separated by commas (,).
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：字体字符串，多个字体用英文逗号(,)分隔。不传入时使用系统默认字体。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：字体字符串，多个字体用英文逗号(,)分隔。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_FONT_FAMILY,
     /**
-     * @brief Defines the copy option attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本复制粘贴属性，支持属性设置、属性重置和属性获取接口。适用于控制文本复制粘贴行为，如密码输入框禁止复制、或敏感信息保护。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：复制粘贴方式，具体枚举值请参考{@link ArkUI_CopyOptions}。默认值为ARKUI_COPY_OPTIONS_NONE，表示不支持复制。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：复制粘贴方式{@link ArkUI_CopyOptions}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_COPY_OPTION,
     /**
-     * @brief Defines the text baseline offset attribute
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本基线的偏移量属性，支持属性设置、属性重置和属性获取接口。适用于调整文本基线位置，如显示上下标时调整偏移量、或图文混排时实现文本与图片的精确对齐。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: baseline offset, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: baseline offset, in fp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：偏移量数值，单位为fp。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：偏移量数值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_BASELINE_OFFSET,
     /**
-     * @brief Defines the text shadow attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文字阴影效果属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: blur radius of the shadow, in vp.\n
-     * .value[1].i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.\n
-     * .value[2].u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * .value[3].f32: offset of the shadow along the x-axis, in vp.\n
-     * .value[4].f32: offset of the shadow along the y-axis, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: blur radius of the shadow, in vp.\n
-     * .value[1].i32: shadow type {@link ArkUI_ShadowType}.\n
-     * .value[2].u32: shadow color, in 0xARGB format.\n
-     * .value[3].f32: offset of the shadow along the x-axis, in vp.\n
-     * .value[4].f32: offset of the shadow along the y-axis, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：阴影模糊半径，单位为vp。取值范围：[0, +∞)。默认值为0，表示无模糊效果。</li>
+     * <li>.value[1].i32：阴影类型，具体枚举值请参考{@link ArkUI_ShadowType}。默认值为ARKUI_SHADOW_TYPE_COLOR，表示颜色阴影。</li>
+     * <li>.value[2].u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色。</li>
+     * <li>.value[3].f32：阴影X轴偏移量，单位为vp。</li>
+     * <li>.value[4].f32：阴影Y轴偏移量，单位为vp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：阴影模糊半径，单位为vp。</li>
+     * <li>.value[1].i32：阴影类型{@link ArkUI_ShadowType}。</li>
+     * <li>.value[2].u32：阴影颜色，0xargb格式。</li>
+     * <li>.value[3].f32：阴影X轴偏移量，单位为vp。</li>
+     * <li>.value[4].f32：阴影Y轴偏移量，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_TEXT_SHADOW,
     /**
-     * @brief Defines the minimum font size attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Text最小显示字号，支持属性设置、属性重置和属性获取。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum font size, in fp.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum font size, in fp.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最小显示字号，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最小显示字号，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_MIN_FONT_SIZE,
 
     /**
-     * @brief Defines the maximum font size attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Text最大显示字号，支持属性设置、属性重置和属性获取。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum font size, in fp.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum font size, in fp.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最大显示字号，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最大显示字号，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_MAX_FONT_SIZE,
 
     /**
-     * @brief Defines the text style attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Text样式，支持属性设置、属性重置和属性获取。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string?: font family. Optional. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1]?.i32: font weight. Optional. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>. \n
-     * .value[2]?.i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: font family. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1].i32: font weight. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>. \n
-     * .value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string?：可选值：字体列表，多个字体使用','进行分隔。不传入时使用系统默认字体。</li>
+     * <li>.value[0].f32：文本尺寸，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * <li>.value[1]?.i32：可选值，文本的字体粗细，具体枚举值请参考{@link ArkUI_FontWeight}。取值越大字体越粗。默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * <li>.value[2]?.i32：可选值，字体样式，具体枚举值请参考{@link ArkUI_FontStyle}。默认值为ARKUI_FONT_STYLE_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：字体列表，使用多个字体，使用','进行分割。</li>
+     * <li>.value[0].f32：文本尺寸，单位为fp。取值范围：[0, +∞)。</li>
+     * <li>.value[1].i32：文本的字体粗细，具体枚举值请参考{@link ArkUI_FontWeight}。默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * <li>.value[2].i32：字体样式，具体枚举值请参考{@link ArkUI_FontStyle}。默认值为ARKUI_FONT_STYLE_NORMAL。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_FONT,
 
     /**
-     * @brief Defines how the adaptive height is determined for the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Text自适应高度的方式，支持属性设置、属性重置和属性获取。适用于文本内容动态变化的场景，如优先按最大行数限制高度、或优先按最小字号确保文本可读性等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the adaptive height is determined for the text.
-     * The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the adaptive height is determined for the text.
-     * The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型，具体枚举值请参考{@link ArkUI_TextHeightAdaptivePolicy}。默认值为ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST，表示以MaxLines优先。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：获取的文本自适应高度方式的枚举值，参数类型{@link ArkUI_TextHeightAdaptivePolicy}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_HEIGHT_ADAPTIVE_POLICY,
     /**
-     * @brief Defines the indentation of the first line.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本首行缩进属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: indentation of the first line. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: indentation of the first line. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示首行缩进值，入参单位为fp，返回值单位为vp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示首行缩进值，入参单位为fp，返回值单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_INDENT,
     /**
-     * @brief Defines the line break rule. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本断行规则属性，支持属性设置、属性重置和属性获取接口。适用于控制文本换行方式， \n
+     * 如英文单词完整断行、或中文任意字符断行等不同排版需求。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型，具体枚举值请参考{@link ArkUI_WordBreak}。默认值为ARKUI_WORD_BREAK_BREAK_WORD，对于Non-CJK的文本可在任意2个字符间断行，
+     * 一行文本中有断行破发点（如空白符）时，优先按破发点换行。对于CJK的文本，换行效果与NORMAL效果保持一致。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：获取的文本断行规则枚举值，参数类型{@link ArkUI_WordBreak}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_WORD_BREAK,
     /**
-     * @brief Defines the ellipsis position. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本省略位置，支持属性设置、属性重置和属性获取接口。适用于控制文本省略号显示位置，如尾部省略适合常规文本、头部省略适合路径显示、中间省略适合长标题等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型，具体枚举值请参考{@link ArkUI_EllipsisMode}。默认值为ARKUI_ELLIPSIS_MODE_END，表示省略行末内容。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：获取的文本省略位置枚举值，参数类型{@link ArkUI_EllipsisMode}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_ELLIPSIS_MODE,
     /**
-     * @brief Defines the text line spacing attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本行间距属性，支持属性设置、属性重置和属性获取接口。适用于调整多行文本的间距，如优化阅读体验、或实现特定的排版风格效果。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: line spacing, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: line spacing, in fp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示行间距值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：表示行间距值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_LINE_SPACING,
     /**
-     * @brief  Set the text feature effect and the NODE_FONT_FEATURE attribute,
-     * NODE_FONT_FEATURE is the advanced typesetting capability of OpenType
-     * Features such as ligatures and equal-width digits are generally used in customized fonts. \n
-     * The capabilities need to be supported by the fonts, \n
-     * Interfaces for setting, resetting, and obtaining attributes are supported. \n
-     * Attribute setting method parameter {@Link ArkUI_AttributeItem} format: \n
-     * .string: complies with the text feature format. The format is normal | \n
-     * is in the format of [ | on | off],\n.
-     * There can be multiple values separated by commas (,). \n
-     * For example, the input format of a number with the same width is ss01 on. \n
-     * \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .string indicates the content of the text feature. Multiple text features are separated by commas (,). \n
+     * @brief 设置文本特性效果。NODE_FONT_FEATURE是OpenType字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：符合文本特性格式的字符串，格式为normal | <feature-tag-value>。 \n
+     * <feature-tag-value>的格式为：string [ <integer> | on | off ]。 \n
+     * <feature-tag-value>的个数可以有多个，中间用','隔开，例如，使用等宽数字的输入格式为：ss01 on。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示文本特性的内容，多个文本特性之间使用逗号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_FONT_FEATURE,
     /**
-     * @brief Setting Enable Text Recognition.
+     * @brief 设置是否使能文本实体识别，识别的实体类型可通过NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG属性配置。
+     * 适用于识别文本中的特定实体类型（如电话号码、邮箱地址、网址链接等），实现点击跳转、智能交互等功能。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:Enable text recognition, default value false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32：Enable Text Recognition\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：使能文本识别，1表示文本可实体识别，0表示不可识别。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：使能文本识别。1表示文本可实体识别，0表示不可识别。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR,
     /**
-     * @brief Set the text recognition configuration.
+     * @brief 设置文本识别配置。适用于自定义需要识别的实体类型（如电话号码、邮箱地址、网址链接等），实现精准的文本智能识别和交互功能。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...].i32: Array of entity types, parameter types{@link ArkUI_TextDataDetectorType}。\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0...].i32：Array of entity types, parameter types{@link ArkUI_TextDataDetectorType}。\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0...].i32：实体类型数组，参数类型{@link ArkUI_TextDataDetectorType}。数组中可包含电话号码、URL、邮箱等实体类型，
+     * 具体取值请参考枚举定义。本参数仅在NODE_TEXT_ENABLE_DATA_DETECTOR设置为1（开启文本实体识别）时生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0...].i32：实体类型数组，参数类型{@link ArkUI_TextDataDetectorType}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG,
     /**
-     * @brief Defines the background color of the selected text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本选中时的背景色属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xargb格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_SELECTED_BACKGROUND_COLOR,
 
     /**
-     * @brief The text component uses a formatted string object to set text content properties,
-     * and supports property setting, property reset, and property acquisition interfaces.
+     * @brief Text组件使用格式化字符串对象设置文本内容属性，支持属性设置、属性重置和属性获取接口。
+     *        配置自定义{@link OH_Drawing_Typography}对象到Text组件，会跳过文本控件的布局测算阶段。注意事项：\n
+     *        1. 需要保证OH_ArkUI_StyledString对象、OH_Drawing_Typography对象的生命周期跟随Text组件生命周期，
+     *        Text组件析构时重置OH_ArkUI_StyledString对象，否则会导致应用出现空指针崩溃。\n
+     *        2. 保证OH_Drawing_TypographyLayout方法调用时序在Text组件的布局测算之前。\n
+     *        3. 释放OH_ArkUI_StyledString对象、OH_Drawing_Typography对象时，需要同步调用Text组件的reset方法，否则会导致应用出现空指针崩溃。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：表示 ArkUI_StyledString 格式化字符串数据，参数类型为{@link ArkUI_StyledString}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：表示 ArkUI_StyledString 格式化字符串数据，参数类型为{@link ArkUI_StyledString}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_CONTENT_WITH_STYLED_STRING,
 
     /**
-     * @brief Sets whether to center text vertically in the text component.
+     * @brief Text组件设置文本纵向居中显示。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to center text vertically. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本是否纵向居中显示，默认值：0。\n
+     * 1表示文本是纵向居中显示，0表示文本不是纵向居中显示。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本是否纵向居中显示。1表示文本纵向居中显示，0表示文本不纵向居中显示。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_HALF_LEADING = 1029,
 
     /**
-     * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
-     * The font weight specified by this API is not affected by any changes in the system font weight settings.
+     * @brief 组件字体粗细属性，支持属性设置、属性重置和属性获取接口。
+     * 通过此接口设置的粗细属性不会跟随系统字体粗细变化。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：字体粗细样式{@link ArkUI_FontWeight}。取值越大字体越粗，默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：字体粗细样式{@link ArkUI_FontWeight}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 15
+     *
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
@@ -2820,318 +2954,406 @@ typedef enum {
     NODE_TEXT_LINE_COUNT = 1031,
  
     /**
-     * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本排版时是否优化每行结尾的空格，支持属性设置、属性重置和属性获取接口。适用于优化文本排版效果，如去除结尾多余空格以实现更好的文本对齐。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.
-     *               The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置文本排版时是否优化每行结尾的空格，默认值：0。\n
+     * 1表示设置文本排版时优化每行结尾的空格，0表示不优化。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本排版时是否优化每行结尾的空格。1表示已开启优化，0表示未开启优化。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 20
+     *
      */
     NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
 
     /**
-     * @brief Sets a linear gradient effect for text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本线性渐变效果，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位为deg。当direction属性设置为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle属性生效； \n
+     * 否则，以direction属性为主要布局方式。0点方向顺时针旋转为正向角度，默认值：180。</li>
+     * <li>.value[1].i32：线性渐变的方向{@link ArkUI_LinearGradientDirection}。设置除ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的线性渐变方向后，angle不生效。 \n
+     * 默认值：ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM。</li>
+     * <li>.value[2].i32：是否为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。</li>
+     * <li>stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 \n
+     * 想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。</li>
+     * <li>size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度。当为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle为设置值，其他情况均为默认值0。</li>
+     * <li>.value[1].i32：线性渐变的方向{@link ArkUI_LinearGradientDirection}。</li>
+     * <li>.value[2].i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。</li>
+     * <li>stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。</li>
+     * <li>size：生效后渐变色的颜色个数。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 20
+     *
      */
     NODE_TEXT_LINEAR_GRADIENT = 1033,
 
     /**
-     * @brief Sets a radial gradient effect for text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本径向渐变效果，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：为径向渐变的中心点，即相对于当前文本框左上角的X轴坐标，单位为vp。默认值：0。</li>
+     * <li>.value[1]?.f32：为径向渐变的中心点，即相对于当前文本框左上角的Y轴坐标，单位为vp。文本框左上角的坐标为[0,0]。默认值：0。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，默认值0。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * <li>.value[3]?.i32：是否为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。 \n
+     * colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 \n
+     * stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 \n
+     * 想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。 \n
+     * size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：为径向渐变的中心点，即相对于当前文本框左上角的X轴坐标，单位为vp。</li>
+     * <li>.value[1]?.f32：为径向渐变的中心点，即相对于当前文本框左上角的Y轴坐标，单位为vp。文本框左上角的坐标为[0,0]。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，单位为vp。默认值0。</li>
+     * <li>.value[3]?.i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。 \n
+     * colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。 \n
+     * stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。 \n
+     * size：生效后渐变色的颜色个数。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 20
+     *
      */
     NODE_TEXT_RADIAL_GRADIENT = 1034,
 
     /**
-     * @brief Sets the vertical alignment of the text content.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本内容垂直对齐方式，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
-     * enum. The default value is <b>ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
-     * enum. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本内容垂直对齐方式{@link ArkUI_TextVerticalAlignment}，默认值：ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本内容垂直对齐方式{@link ArkUI_TextVerticalAlignment}。</li>
+     * </ul>
+     *
+     * 说明：支持此属性的{@link ArkUI_NodeType}为：ARKUI_NODE_TEXT。\n
+     *
+     * @ingroup Text Display[文本显示]
      * @since 20
+     *
      */
     NODE_TEXT_VERTICAL_ALIGN = 1035,
 
     /**
-     * @brief Sets the content align of the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本内容区垂直对齐方式，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
-     * enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_CENTER</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
-     * enum. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本内容垂直对齐方式{@link ArkUI_TextContentAlign}，默认值：ARKUI_TEXT_CONTENT_ALIGN_CENTER。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本内容垂直对齐方式{@link ArkUI_TextContentAlign}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 21
+     *
      */
     NODE_TEXT_CONTENT_ALIGN = 1036,
 
     /**
-     * @brief Sets the minimum number of lines in the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本最小行数属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: minimum number of lines in the text.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: minimum number of lines in the text.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本最小行数，取值范围：正整数。传入0或负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本最小行数，取值范围：正整数。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 22
+     *
      */
     NODE_TEXT_MIN_LINES = 1037,
 
     /**
-     * @brief Enables the selected data detector.
+     * @brief 开启选中词的文本实体识别，用于在用户选中文本时识别其中的特定类型数据（如电话号码、邮箱、网址等）。
+     * 适用于用户选中文本后进行智能识别，如识别选中词的语义类型、实现智能搜索推荐或上下文分析等功能。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value true.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether selected text recognition is enabled.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：开启选中词文本识别，1表示开启识别，0表示关闭识别。默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启选中词文本识别。1表示已开启识别，0表示已关闭识别。</li>
+     * </ul>
      *
      * @since 22
+     *
      */
     NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
 
     /**
-     * @brief Defines the minimum text line height attribute, which can be set, reset, and obtained as required through APIs.
+     * @group {ArkUI_NodeAttributeType (文本显示类组件相关属性)}[capi-native-node-h-node-attributetype-text]
+     * @brief 设置文本最小行高，支持属性设置、属性重置和属性获取接口。适用于限制文本行高的最小值，如确保文本可读性、或防止行高过小导致文字重叠显示。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum line height.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum line height.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最小行高，默认值：0。单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最小行高。单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 22
      *
      */
     NODE_TEXT_MIN_LINE_HEIGHT = 1040,
 
     /**
-     * @brief Defines the maximum text line height attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本最大行高，支持属性设置、属性重置和属性获取接口。适用于限制文本行高的最大值，如控制文本布局紧凑度、或防止行高过大导致显示空间浪费。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum line height.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum line height.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最大行高，默认值：0，表示最大行高不受限制。单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本最大行高。单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 22
      *
      */
     NODE_TEXT_MAX_LINE_HEIGHT = 1041,
 
     /**
-     * @brief Defines line height multiple value of text, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置倍数行高模式的倍数值，支持属性设置、属性重置和属性获取接口。适用于相对字号设置行高，如实现动态排版、或字号变化时自动调整行高。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: line height multiple value of text.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: line height multiple value of text.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：倍数行高模式的倍数值，默认值：0，表示使用默认行高高度。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：倍数行高模式的倍数值。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 22
      *
      */
     NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
 
     /**
-     * @brief Get the text layout manager of the text.
+     * @brief 文本布局管理器，支持属性获取接口。适用于获取文本布局信息，如查询文本行数、字符位置、测量文本尺寸等。
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本布局管理器对象，参数类型为{@link ArkUI_TextLayoutManager}。</li>
+     * </ul>
      *
+     * @ingroup Text Display[文本显示]
      * @since 22
      */
     NODE_TEXT_LAYOUT_MANAGER = 1043,
 
     /**
-     * @brief Set the edit menu options of the text.
+     * @brief 文本菜单扩展项，支持属性设置接口。适用于扩展文本编辑菜单，如添加自定义操作项、或扩展复制粘贴等功能。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本菜单扩展项配置数据，参数类型为{@link ArkUI_TextEditMenuOptions}。</li>
+     * </ul>
      *
+     * @ingroup Text Display[文本显示]
      * @since 22
      */
     NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
 
     /**
-     * @brief Bind the selection menu for text.
+     * @brief 自定义文本选择菜单，支持属性设置接口。适用于定制文本选择菜单，如添加特定操作按钮、或定制菜单UI风格。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the custom selection menu of text.
-     *     The parameter type is {@link ArkUI_SelectionMenuOptions}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义文本选择菜单配置数据，参数类型为{@link ArkUI_TextSelectionMenuOptions}。</li>
+     * </ul>
      *
+     * @ingroup Text Display[文本显示]
      * @since 22
      */
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
     /**
-     * @brief Sets the text selection area, which will be highlighted.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本选择区域，设置后选中区域将被高亮显示，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * .object: selection options including the menu popup policy.
-     *     The parameter type is {@link ArkUI_SelectionOptions}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * .object: selection options including the menu popup policy.
-     *     The parameter type is {@link ArkUI_SelectionOptions}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本选择的起始位置。取值范围：[0, 文本长度]，必须是有效的文本索引。</li>
+     * <li>.value[1].i32：文本选择的结束位置。取值范围：[0, 文本长度]，必须是有效的文本索引。</li>
+     * <li>.object：选择选项。参数类型为{@link ArkUI_SelectionOptions}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本选择的起始位置。</li>
+     * <li>.value[1].i32：文本选择的结束位置。</li>
+     * <li>.object：选择选项。参数类型为{@link ArkUI_SelectionOptions}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
+     *
      */
     NODE_TEXT_TEXT_SELECTION = 1046,
 
     /**
-     * @brief Whether to avoid an orphan word on the last line of the paragraph.
+     * @brief 设置Text文本排版时是否使能孤字优化，设置后通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局。
+     * 使能后，它会调整换行点以尽可能避免孤立字符。孤字优化特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The current state of this feature.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否使能孤字优化，1表示使能，0表示不使能。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否使能孤字优化。1表示已使能孤字优化，0表示未使能孤字优化。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 26.0.0
+     *
      */
  	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
 
     /**
-     * @brief Whether to compress punctuation at the beginning of line.
+     * @brief 文本行首标点压缩开关，支持属性设置、属性重置和属性获取接口。适用于中文排版场景，压缩行首标点以提升排版美观度和阅读体验。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否打开行首标点压缩开关。\n
+     * 1表示开启行首标点压缩，0表示关闭行首标点压缩。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否打开行首标点压缩开关。1表示已开启行首标点压缩，0表示已关闭行首标点压缩。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
+     *
      */
     NODE_TEXT_COMPRESS_LEADING_PUNCTUATION = 1048,
 
     /**
-     * @brief Determines whether the layout adds extra padding at the top and bottom to make space for characters.
+     * @brief 设置是否在首行和尾行增加间距以避免文字截断。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable include the font padding, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether include the font padding.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置是否在首行和尾行增加间距以避免文字截断。\n
+     * 1表示开启增加间距，0表示关闭增加间距。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在首行和尾行增加间距。1表示增加间距，0表示不增加间距。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
+     *
      */
     NODE_TEXT_INCLUDE_FONT_PADDING = 1049,
 
     /**
-     * @brief Whether to include ascent/descent from fallback fonts to prevent overlapping lines.
+     * @brief 针对多行文字叠加，支持行高基于文字实际高度自适应。此接口仅当行高小于文字实际高度时生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether fallback line spacing.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：支持行高基于文字实际高度自适应。\n
+     * 1表示开启自适应，0表示关闭自适应。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启行高基于文字实际高度自适应。1表示开启自适应，0表示关闭自适应。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
+     *
      */
     NODE_TEXT_FALLBACK_LINE_SPACING = 1050,
 
     /**
-     * @brief Set the marquee options of text.
+     * @brief 文本跑马灯模式配置项，支持属性设置、属性重置和属性获取接口。适用于长文本滚动显示场景，如通知提醒、标题滚动显示等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本跑马灯模式配置，参数类型为{@link ArkUI_TextMarqueeOptions}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本跑马灯模式配置，参数类型为{@link ArkUI_TextMarqueeOptions}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
+     *
      */
     NODE_TEXT_MARQUEE_OPTIONS = 1051,
 
     /**
-     * @brief Writing direction of the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本排版方向。适用于支持不同语言的排版需求，如阿拉伯语、希伯来语等从右向左（RTL）的语言显示。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本的排版方向，取{@link ArkUI_TextDirection}枚举值。默认值为ARKUI_TEXT_DIRECTION_DEFAULT，表示文本排版方向遵循组件布局。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本的排版方向，对应取值及含义请参考{@link ArkUI_TextDirection}枚举值。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
+     *
      */
     NODE_TEXT_DIRECTION = 1052,
 
@@ -3151,354 +3373,476 @@ typedef enum {
     NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE = 1053,
 
     /**
-     * @brief Sets the controller of the text.
+     * @brief 设置文本的控制器。适用于管理文本编辑行为，如控制文本显示、管理格式化字符串等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the controller of the text. The parameter type is
-     * {@link OH_ArkUI_TextController }.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本的控制器，参数类型为{@link OH_ArkUI_TextController}。</li>
+     * </ul>
      *
+     * @ingroup Text Display[文本显示]
      * @since 26.0.0
      */
     NODE_TEXT_CONTROLLER = 1054,
 
     /**
-     * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 文本内容属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: content of the text span. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: content of the text span. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示span的文本内容。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示span的文本内容。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SPAN,
     /**
-     * @brief Defines the text background style.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本背景色属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the text background, in 0xARGB format, for example, <b>0xFFFF0000</b> indicating red. \n
-     * The second parameter indicates the rounded corners of the text background. Two setting modes are available: \n
-     * 1: .value[1].f32: radius of the four corners, in vp. \n
-     * 2: .value[1].f32: radius of the upper left corner, in vp. \n
-     * .value[2].f32: radius of the upper right corner, in vp. \n
-     * .value[3].f32: radius of the lower left corner, in vp. \n
-     * .value[4].f32: radius of the lower right corner, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the text background, in 0xARGB format. \n
-     * .value[1].f32: radius of the upper left corner, in vp. \n
-     * .value[2].f32: radius of the upper right corner, in vp. \n
-     * .value[3].f32: radius of the lower left corner, in vp. \n
-     * .value[4].f32: radius of the lower right corner, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：表示文本背景颜色，0xargb格式，形如0xFFFF0000表示红色。</li>
+     * <li>.value[1].f32：文本背景圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。支持两种设置方式： \n
+     * 1）仅设置.value[1].f32，未设置.value[2].f32~.value[4].f32时，表示四个方向的圆角半径统一设置； \n
+     * 2）设置了.value[2].f32~.value[4].f32中任意项时，.value[1].f32仅表示左上角圆角半径。</li>
+     * <li>.value[2].f32：设置右上角圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * <li>.value[3].f32：设置左下角圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * <li>.value[4].f32：设置右下角圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：文本背景颜色，0xargb格式。</li>
+     * <li>.value[1].f32：左上角圆角半径，单位为vp。</li>
+     * <li>.value[2].f32：右上角圆角半径，单位为vp。</li>
+     * <li>.value[3].f32：左下角圆角半径，单位为vp。</li>
+     * <li>.value[4].f32：右下角圆角半径，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_SPAN_TEXT_BACKGROUND_STYLE,
     /**
-     * @brief Defines the text baseline offset attribute
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本基线的偏移量属性，支持属性设置、属性重置和属性获取接口。适用于调整Span文本的基线位置，如显示上下标、或实现特殊排版效果。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: baseline offset, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: baseline offset, in fp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：偏移量数值，单位为fp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：偏移量数值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_SPAN_BASELINE_OFFSET,
     /**
-     * @brief Defines the text style attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 定义文本样式属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * ?.string: font family. Optional. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1]?.i32: font weight. Optional.
-     * .value[2]?.i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
-     * ?.object: Optional. The font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: font family. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1].i32: font weight. \n
-     * .value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
-     * .object: the font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string?：字体列表，多个字体使用`,`进行分割。可选。</li>
+     * <li>.value[0].f32：文本尺寸，单位为fp。取值范围：[0, +∞)。</li>
+     * <li>.value[1]?.i32：文本的字体粗细。可选。取值为`[100, 900]`，默认为`400`。取值越大，字体越粗。</li>
+     * <li>.value[2]?.i32：字体样式。可选。参数类型为{@link ArkUI_FontStyle}。默认值为`ARKUI_FONT_STYLE_NORMAL`。</li>
+     * <li>.object?：字体配置。可选，不设置时使用系统默认配置。参数类型为{@link OH_ArkUI_FontConfigs}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：字体列表，多个字体使用`,`进行分割。</li>
+     * <li>.value[0].f32：文本尺寸，单位为fp。取值范围：[0, +∞)。</li>
+     * <li>.value[1].i32：文本的字体粗细，无单位。取值越大，字体越粗。</li>
+     * <li>.value[2].i32：字体样式。参数类型为{@link ArkUI_FontStyle}。</li>
+     * <li>.object：字体配置。参数类型为{@link OH_ArkUI_FontConfigs}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 24
+     *
      */
     NODE_SPAN_FONT = 2003,
 
     /**
-     * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 定义文本字体粗细属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font weight. The default value is 400.\n
-     * ?.object: Optional. The font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font weight.\n
-     * .object: the font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的字体粗细。取值为`[100, 900]`，默认为`400`。取值越大，字体越粗。超出范围时按默认值400处理。</li>
+     * <li>.object?：可选，文本字体粗细配置，不设置时使用默认字体粗细配置。参数类型为{@link OH_ArkUI_FontWeightConfigs}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本字体粗细，无单位。取值越大，字体越粗。</li>
+     * <li>.object：文本字体粗细配置。参数类型为{@link OH_ArkUI_FontWeightConfigs}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 24
+     *
      */
     NODE_SPAN_FONT_WEIGHT = 2004,
     /**
-     * @brief Defines the image source of the image span.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief imageSpan组件图片地址属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: image address of the image span.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: image address of the image span.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示imageSpan的图片地址。</li>
+     * <li>.object：表示 PixelMap 图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。\n
+     * .object参数和.string参数二选一，不可同时设置。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示imageSpan的图片地址。</li>
+     * <li>.object：表示 PixelMap 图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_SPAN,
     /**
-     * @brief Defines the alignment mode of the image with the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 图片基于文本的对齐方式属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode of the image with the text.
-     * The value is an enum of {@link ArkUI_ImageSpanAlignment}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode of the image with the text.
-     * The value is an enum of {@link ArkUI_ImageSpanAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示图片基于文本的对齐方式，取{@link ArkUI_ImageSpanAlignment}枚举值。默认值为ARKUI_IMAGE_SPAN_ALIGNMENT_BOTTOM，图片下边沿与文本下边沿对齐。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示图片基于文本的对齐方式，取{@link ArkUI_ImageSpanAlignment}枚举值。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT,
     /**
-     * @brief Defines the placeholder image source.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief imageSpan组件占位图地址属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示imageSpan组件占位图地址（不支持gif类型图源）。</li>
+     * <li>.object：表示 PixelMap 图片数据，参数类型为{@link ArkUI_DrawableDescriptor}；\n
+     * .object参数和.string参数二选一，不可同时设置。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：表示imageSpan组件占位图地址。</li>
+     * <li>.object：表示 PixelMap 图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_ALT,
     /**
-     * @brief Defines the baseline offset attribute of the <b>ImageSpan</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * A positive value means an upward offset, while a negative value means a downward offset.
-     * The default value is <b>0</b>, and the unit is fp. \n
+     * @brief imageSpan组件的基线偏移量属性，支持属性设置、属性重置和属性获取接口。偏移量数值为正数时向上偏移，负数时向下偏移，默认值0，单位为fp。 \n
+     * 适用于图文混排时调整图片与文本的相对位置，实现精确的排版对齐效果。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: baseline offset, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: baseline offset, in fp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：偏移量数值，单位为fp。取值范围：(-∞, +∞)。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：偏移量数值，单位为fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 13
+     *
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
 
     /**
-     * @brief Defines the color filter of the image span.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * 
-     * Format of the {@link ArkUI_AttributeItem } parameter for setting the attribute:\n 
-     * .value [0].f32 to . value [19].f32: filter matrix array. \n 
-     * .size :5 x 4 filter array size. \n 
-     * .object : the pointer to OH_Drawing_ColorFilter. Either . value or . object is set. \n 
-     * \n 
-     * Format of the return value {@ link ArkUI_AttributeItem ):\n 
-     * .value [0].f32 to .value [19].f32: filter matrix array. \n 
-     * .size: 5 x 4 filter array size. \n 
-     * .object: the pointer to OH_Drawing_ColorFilter. \n 
-     * 
+     * @brief 图片滤镜效果属性，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 ~ .value[19].f32：表示5x4颜色滤镜矩阵数组，共20个浮点数元素，按行优先顺序排列。矩阵前4列分别对应红（R）、绿（G）、蓝（B）、透明度（A）通道的颜色变换系数，第5列为各通道的偏移量。用于对图片进行颜色变换处理，如亮度、对比度、色调调整等。</li>
+     * <li>.size：表示滤镜数组大小为5x4。</li>
+     * <li>.object：颜色滤波器指针，参数类型为{@link OH_Drawing_ColorFilter}。\n
+     * .object和.size参数只能二选一，不可同时设置。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 ~ .value[19].f32：表示滤镜矩阵数组。</li>
+     * <li>.size：表示滤镜数组大小为5x4。</li>
+     * <li>.object：颜色滤波器指针，参数类型为{@link OH_Drawing_ColorFilter}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 22
+     *
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
     /**
-     * @brief Set the range of SVG parsing capabilities supported through enable switch.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 通过启用SVG新解析能力开关设置SVG解析功能支持的范围，支持属性设置、属性重置和属性获取接口。ImageSpan组件创建后，不支持动态修改该属性的值。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether color fliter support svg. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用SVG新解析能力开关。1表示支持SVG解析新能力；0表示保持原有SVG解析能力。\n
+     * 默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用SVG新解析能力开关。1表示支持SVG解析新能力，0表示保持原有SVG解析能力。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 22
+     *
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: image source.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: image source.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
      * @brief Defines how the image is resized to fit its container.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the image is resized to fit its container. The value is an enum of {@link ArkUI_ObjectFit}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the image is resized to fit its container. The value is an enum of {@link ArkUI_ObjectFit}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the image is resized to fit its container. The value is an enum of
+     * {@link ArkUI_ObjectFit}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the image is resized to fit its container. The value is an enum of
+     * {@link ArkUI_ObjectFit}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_FIT,
     /**
      * @brief Defines the interpolation effect of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: interpolation effect of the image. The value is an enum of {@link ArkUI_ImageInterpolation}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: interpolation effect of the image. The value is an enum of {@link ArkUI_ImageInterpolation}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the image. The value is an enum of
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the image. The value is an enum of
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_INTERPOLATION,
     /**
      * @brief Defines how the image is repeated.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_REPEAT,
     /**
      * @brief Defines the color filter of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32 to .value[19].f32: filter matrix array. \n
-     * .size: 5 x 4 filter array size. \n
-     * .object: the pointer to OH_Drawing_ColorFilter. Either .value or .object is set. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32 to .value[19].f32: filter matrix array. \n
-     * .size: 5 x 4 filter array size. \n
-     * .object: the pointer to OH_Drawing_ColorFilter. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter. Either .value or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_COLOR_FILTER,
     /**
      * @brief Defines the auto resize attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 : whether to resize the image source. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32 : whether to resize the image source. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to resize the image source.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to resize the image source.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_AUTO_RESIZE,
     /**
      * @brief Defines the placeholder image source.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_ALT,
     /**
      * @brief Defines whether the image is draggable.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the image is draggable. The value <b>true</b> means that the image is draggable. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the image is draggable. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image is draggable. The value <b>true</b> means that the image is draggable.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image is draggable.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_DRAGGABLE,
     /**
      * @brief Defines the image rendering mode. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_RENDER_MODE,
     /**
      * @brief Defines whether the image display size follows the image source size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: wheter to follow, true means to follow.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: wheter to follow, true means to follow.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_FIT_ORIGINAL_SIZE,
     /**
-     * @brief Defines the fill color of the swiper.
+     * @brief Defines the fill color of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: fill color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: fill color, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: fill color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: fill color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_FILL_COLOR,
     /**
-     * @brief Resize the image when stretching it with array or a lattice object.
+     * @brief Defines how the image is resized when stretched using an array or a lattice object.
      * The parameter types for setting and getting should be the same.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge, in vp.</li>
+     * <li>.value[1].f32: width of the top edge, in vp.</li>
+     * <li>.value[2].f32: width of the right edge, in vp.</li>
+     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
+     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge, in vp.</li>
+     * <li>.value[1].f32: width of the top edge, in vp.</li>
+     * <li>.value[2].f32: width of the right edge, in vp.</li>
+     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
+     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_RESIZABLE,
     /**
      * @brief Defines the synchronous image loading attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to load the image synchronously. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to load the image synchronously. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to load the image synchronously.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to load the image synchronously.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 20
      */
     NODE_IMAGE_SYNC_LOAD = 4012,
@@ -3506,14 +3850,19 @@ typedef enum {
      * @brief Defines the image decoding size attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: width of the image decoding, in px.\n
-     * .value[1].i32: height of the image decoding, in px.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: width of the image decoding, in px.\n
-     * .value[1].i32: height of the image decoding, in px.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: width of the decoded image, in px.</li>
+     * <li>.value[1].i32: height of the decoded image, in px.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: width of the decoded image, in px.</li>
+     * <li>.value[1].i32: height of the decoded image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
@@ -3522,12 +3871,17 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      * The parameter types for setting and getting should be the same.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...15].f32: 16 floating-point numbers.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0...15].f32: 16 floating-point numbers.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_IMAGE_MATRIX = 4014,
@@ -3535,12 +3889,17 @@ typedef enum {
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to follows the text direction.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to follows the text direction.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
@@ -3548,12 +3907,18 @@ typedef enum {
      * @brief Defines the image copy attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is
+     * <b>ARKUI_COPY_OPTIONS_NONE</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_COPY_OPTION = 4016,
@@ -3561,12 +3926,17 @@ typedef enum {
      * @brief Defines the image AI analysis enable attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable AI analysis for the image.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable AI analysis for the image.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
@@ -3574,13 +3944,18 @@ typedef enum {
      * @brief Defines the image dynamic display range attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.
-     * The default value is <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}. The default value is
+     * <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018,
@@ -3588,12 +3963,17 @@ typedef enum {
      * @brief Defines the image dynamic display brightness attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: hdr brightness. value range [0, 1]\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: hdr brightness. value range [0, 1]\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_HDR_BRIGHTNESS = 4019,
@@ -3601,39 +3981,53 @@ typedef enum {
      * @brief Defines the image display direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: orientation {@link ArkUI_Orientation}.
-     * The default value is <b>ARKUI_ORIENTATION_UP</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: orientation {@link ArkUI_Orientation.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}. The default value is <b>ARKUI_ORIENTATION_UP</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
     /**
-     * @brief Set the range of SVG parsing capabilities supported through enable switch.
+     * @brief Defines the range of SVG parsing capabilities supported through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: enable switch.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_SUPPORT_SVG2 = 4021, 
     /**
-     * @brief Set the animation effect for the image content transformation.
+     * @brief Defines the animation effect for the image content transformation.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
@@ -3641,14 +4035,19 @@ typedef enum {
      * @brief Defines the placeholder image during loading process.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 22
      */
     NODE_IMAGE_ALT_PLACEHOLDER = 4023,
@@ -3656,27 +4055,37 @@ typedef enum {
      * @brief Defines the placeholder image when loading fails.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 22
      */
     NODE_IMAGE_ALT_ERROR = 4024,
     /**
-     * @brief Configure image edge anti-aliasing via an enable switch.
+     * @brief Defines image edge anti-aliasing through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: enable switch,the default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: enable switch. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 23
      */
     NODE_IMAGE_ANTIALIASED = 4025,
@@ -3684,35 +4093,50 @@ typedef enum {
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
      * @brief Defines the color of the circular slider for the component of the switch type.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the circular slider, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the circular slider, in 0xARGB format.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_SWITCH_POINT_COLOR,
     /**
      * @brief Defines the toggle switch value. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the toggle. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to enable the toggle.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_VALUE,
 
@@ -3720,63 +4144,83 @@ typedef enum {
      * @brief Defines the color of the component when it is deselected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     *.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     *<li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * </ul>
+     * 
+     * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_UNSELECTED_COLOR,
 
     /**
-     * @brief Defines the foreground color of the loading progress bar.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 加载进度条前景色属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: foreground color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: foreground color, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：前景颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。默认值：跟随主题。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：前景颜色数值，0xargb格式。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      */
     NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LOADING_PROGRESS,
     /**
-     * @brief Defines whether to show the loading animation for the <LoadingProgress> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief LoadingProgress动画显示属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show the loading animation.
-     * The value <b>true</b> means to show the loading animation, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to show the loading animation, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：1时不显示动画，1时显示动画。默认值为1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：1时不显示动画，1时显示动画。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      */
     NODE_LOADING_PROGRESS_ENABLE_LOADING,
 
     /**
-     * @brief Defines the default placeholder text of the single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 单行文本输入框的默认提示文本内容属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default placeholder text. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default placeholder text. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：默认提示文本的内容。当需要在输入框显示提示信息引导用户输入时设置此属性，例如"请输入用户名"、"请输入密码"等。不设置时输入框无提示文本。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：默认提示文本的内容。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
-     * @brief Defines the default text content of the single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 单行文本输入框的默认文本内容属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：输入框的默认文本内容，用于设置输入框初始显示的文本。当需要在输入框中预置文本时设置此属性，例如表单默认值、编辑初始内容等。不设置时输入框为空。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：默认文本的内容。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_TEXT,
     /**
@@ -3792,52 +4236,67 @@ typedef enum {
      */
     NODE_TEXT_INPUT_CARET_COLOR,
     /**
-     * @brief Defines the caret style attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 光标风格属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: caret width, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: caret width, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：光标宽度数值，单位为vp。取值范围：[0, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：光标宽度数值，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CARET_STYLE,
     /**
-     * @brief Defines the underline attribute of the single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 单行文本输入框下划线属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show an underline.
-     * The value <b>true</b> means to show an underline, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to show an underline, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不展示下划线，1表示展示下划线。默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不展示下划线，1表示展示下划线。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_SHOW_UNDERLINE,
     /**
-     * @brief Defines the maximum number of characters in the text input.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 输入框支持的最大文本数属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: maximum number of characters in the text input, without a unit. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: maximum number of characters in the text input. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：最大文本数，无单位。取值范围：[0, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：最大文本数，无单位。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_MAX_LENGTH,
     /**
-     * @brief Defines the type of the Enter key.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 回车键类型属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：回车键类型，具体枚举值请参考{@link ArkUI_EnterKeyType}。默认值ARKUI_ENTER_KEY_TYPE_DONE，显示为完成样式。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：回车键类型枚举{@link ArkUI_EnterKeyType}，用于确定输入框回车键的显示样式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ENTER_KEY_TYPE,
     /**
@@ -3853,50 +4312,57 @@ typedef enum {
      */
     NODE_TEXT_INPUT_PLACEHOLDER_COLOR,
     /**
-     * @brief Defines the placeholder text font.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 无输入时默认提示文本的字体配置（包括大小、字重、样式、字体列表）属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: font size, in fp. Optional. The default value is <b>16.0</b>.\n
-     * .value[1]?.i32: font style {@link ArkUI_FontStyle}. Optional.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>. \n
-     * .value[2]?.i32: font weight {@link ArkUI_FontWeight}. Optional.
-     * The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>. \n
-     * ?.string: font family. Multiple font families are separated by commas (,).
-     * Example: "font weight; font family 1, font family 2". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: font size, in fp.\n
-     * .value[1].i32: font style {@link ArkUI_FontStyle}.\n
-     * .value[2].i32: font weight {@link ArkUI_FontWeight}.\n
-     * .string: font family. Multiple font families are separated by commas (,). \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：可选字体大小数值，默认值16.0，单位为fp。取值范围：[0, +∞)。传入负数时不生效。</li>
+     * <li>.value[1]?.i32：可选字体样式，具体枚举值请参考{@link ArkUI_FontStyle}。默认值为ARKUI_FONT_STYLE_NORMAL，表示标准字体样式。</li>
+     * <li>.value[2]?.i32：可选字体粗细样式，具体枚举值请参考{@link ArkUI_FontWeight}。默认值ARKUI_FONT_WEIGHT_NORMAL，表示正常字体粗细。</li>
+     * <li>?.string：字体族内容，多个字体族之间使用逗号分隔，形如“字重；字体族1，字体族2”。不传入时使用系统默认字体族。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：字体大小数值，单位为fp。</li>
+     * <li>.value[1].i32：字体样式{@link ArkUI_FontStyle}。</li>
+     * <li>.value[2].i32：字体粗细样式{@link ArkUI_FontWeight}。</li>
+     * <li>.string：字体族内容，多个字体族之间使用逗号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_PLACEHOLDER_FONT,
     /**
-     * @brief Defines whether to enable the input method when the component obtains focus.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 聚焦时是否绑定输入法属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the input method when the component obtains focus.
-     * The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-      * .value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus,
-      * and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示聚焦不拉起输入法，1表示拉起，默认值为1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示聚焦不拉起输入法，1表示拉起。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS,
     /**
-     * @brief Defines the text box type. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 输入框的类型属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text box type {@link ArkUI_TextInputType}.
-     * The default value is <b>ARKUI_TEXTINPUT_TYPE_NORMAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text box type {@link ArkUI_TextInputType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：输入框类型，具体枚举值请参考{@link ArkUI_TextInputType}。默认值为ARKUI_TEXTINPUT_TYPE_NORMAL，表示基本输入模式。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：输入框类型枚举{@link ArkUI_TextInputType}，用于确定输入框的输入内容和键盘样式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_TYPE,
     /**
@@ -3912,186 +4378,232 @@ typedef enum {
      */
     NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR,
     /**
-     * @brief Defines whether to display the password icon at the end of the password text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 密码输入模式时是否显示末尾图标属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the password icon at the end of the password text box.
-     * The value <b>true</b> means to display the password icon, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to display the password icon at the end of the password text box,
-     * and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不显示图标，1表示显示图标，默认值为0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不显示图标，1表示显示图标。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_SHOW_PASSWORD_ICON,
     /**
-     * @brief Defines the editable state for the single-line text box.
-     * This attribute can be set as required through APIs.
+     * @brief 控制单行文本输入框编辑态属性，支持属性设置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: whether to remain in the editable state. The value
-     * <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state. \n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:
-     * .value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable
-     * state, and <b>false</b> means to exit the editable state. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示退出编辑态，1表示维持现状。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示退出编辑态，1表示维持现状。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_EDITING,
     /**
-     * @brief Defines the style of the cancel button on the right of the single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 单行文本右侧清除按钮样式属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: button style {@link ArkUI_CancelButtonStyle}.
-     * The default value is <b>ARKUI_CANCELBUTTON_STYLE_INPUT</b>.\n
-     * .value[1]?.f32: button icon size, in vp.\n
-     * .value[2]?.u32: button icon color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * ?.string: button icon image source. The value is the local address of the image, for example, /pages/icon.png. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: button style {@link ArkUI_CancelButtonStyle}.\n
-     * .value[1].f32: icon size, in vp.\n
-     * .value[2].u32: button icon color, in 0xARGB format.\n
-     * .string: button icon image source. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：按钮样式{@link ArkUI_CancelButtonStyle}，默认值为ARKUI_CANCELBUTTON_STYLE_INPUT，表示清除按钮输入样式。</li>
+     * <li>.value[1]?.f32：图标大小数值，单位为vp。取值范围：[0, +∞)。传入负数时不生效。不传入时使用系统默认图标大小。</li>
+     * <li>.value[2]?.u32：按钮图标颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。不传入时使用系统默认图标颜色。</li>
+     * <li>?.string：按钮图标地址，入参内容为图片本地地址，例如 /pages/icon.png。不传入时使用系统默认清除图标。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：按钮样式{@link ArkUI_CancelButtonStyle}。</li>
+     * <li>.value[1].f32：图标大小数值，单位为vp。</li>
+     * <li>.value[2].u32：按钮图标颜色数值，0xargb格式。</li>
+     * <li>.string：按钮图标地址。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CANCEL_BUTTON,
     /**
-     * @brief Sets the text selection area, which will be highlighted.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件在获焦状态下，设置文本选中并高亮的区域，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：选中文本的起始位置，取值范围[0, 文本长度]，需小于终止位置才生效。</li>
+     * <li>.value[1].i32：选中文本的终止位置，取值范围[0, 文本长度]。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：选中文本的起始位置。</li>
+     * <li>.value[1].i32：选中文本的终止位置。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_TEXT_SELECTION,
     /**
-     * @brief Sets the color of the text underline when it is enabled.
+     * @brief 开启下划线时，支持配置下划线颜色。
      *
-     * The default underline color configured for the theme is <b>'0x33182431'</b>.
+     * 需先设置NODE_TEXT_INPUT_SHOW_UNDERLINE属性为1以开启下划线后，本属性设置才生效。主题配置的默认下划线颜色为0x33182431，表示深灰色，不透明度为20%。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the underline applied to the text being typed in.
-     * The value is in 0xARGB format. \n
-     * .value[1].u32: color of the underline applied to the text in the normal state.
-     * The value is in 0xARGB format. \n
-     * .value[2].u32: color of the underline applied to the text when an error is detected.
-     * The value is in 0xARGB format. \n
-     * .value[3].u32: color of the underline applied to the text when it is disabled.
-     * The value is in 0xARGB format. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format. \n
-     * .value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format. \n
-     * .value[2].u32: color of the underline applied to the text when an error is detected.
-     * The value is in 0xARGB format. \n
-     * .value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：typing下划线颜色，必填，表示键入时的下划线颜色，0xargb类型。</li>
+     * <li>.value[1].u32：normal下划线颜色，必填，表示非特殊状态时下划线颜色，0xargb类型。</li>
+     * <li>.value[2].u32：error下划线颜色，必填，表示错误时下划线颜色，0xargb类型。</li>
+     * <li>.value[3].u32：disable下划线颜色，必填，表示禁用时下划线颜色，0xargb类型。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xargb类型。</li>
+     * <li>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xargb类型。</li>
+     * <li>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xargb类型。</li>
+     * <li>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xargb类型。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_UNDERLINE_COLOR,
     /**
-     * @brief Sets whether to enable autofill.
+     * @brief 设置是否启用自动填充。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable autofill. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充，默认值1。\n
+     * 0表示不启用，1表示启用。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充。1表示启用，0表示不启用。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ENABLE_AUTO_FILL,
     /**
-     * @brief Sets the autofill type.
+     * @brief 自动填充类型。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_TextInputContentType}，用于自动填充场景指定内容类型。具体枚举值及适用场景请参考{@link ArkUI_TextInputContentType}枚举说明。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：自动填充内容类型枚举{@link ArkUI_TextInputContentType}，用于确定自动填充的内容类型。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CONTENT_TYPE,
     /**
-     * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
-     * transmitted to Password Vault for generating a new password.
+     * @brief 定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: rules for generating passwords. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: rules for generating passwords. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：定义生成密码的规则，用于在触发自动填充时透传给密码保险箱以控制新密码的生成。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：定义生成密码的规则。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_PASSWORD_RULES,
     /**
-     * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
+     * @brief 设置当初始状态，是否全选文本。不支持内联模式。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to select all text in the initial state. The default value is b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to select all text in the initial state. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否全选文本，默认值：0。\n
+     * 1表示会全选文本，0表示不会全选文本。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否全选文本。1表示会全选文本，0表示不会全选文本。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_SELECT_ALL,
     /**
-     * @brief Sets the regular expression for input filtering.
-     * Only inputs that comply with the regular expression can be displayed.
-     * Other inputs are filtered out. The specified regular expression can match single characters,
-     * but not strings.
+     * @brief 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
+     * 单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: regular expression. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: regular expression. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：正则表达式，用于过滤用户输入内容。匹配表达式的输入允许显示，不匹配的输入将被过滤。当需要限制用户只能输入特定格式的字符时设置此属性，例如"^[a-zA-Z]+$"表示只允许字母，"^[0-9]+$"表示只允许数字。不设置时允许所有字符输入。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：正则表达式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_INPUT_FILTER,
     /**
-     * @brief Sets the text box to the default style or inline input style.
+     * @brief 设置输入框为默认风格或内联输入风格。内联输入风格是一种无边框的嵌入式输入样式，输入框直接融入页面内容中。
+     * 内联输入风格只支持输入框类型的枚举{@link ArkUI_TextInputType}设置为ARKUI_TEXTINPUT_TYPE_NORMAL。
      *
-     * For the inline input style, only <b>InputType.Normal</b> is supported.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_TextInputStyle}。内联输入风格只支持输入框类型{@link ArkUI_TextInputType}设置为ARKUI_TEXTINPUT_TYPE_NORMAL。默认值为ARKUI_TEXTINPUT_STYLE_DEFAULT。</li>
+     * </ul>
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：输入框样式枚举{@link ArkUI_TextInputStyle}，用于确定输入框的显示样式。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_STYLE,
     /**
-     * @brief Sets or obtains the caret position.
+     * @brief 设置或获取光标所在位置信息。设置输入光标的位置。返回当前光标所在位置信息。
+     * 在当前帧更新光标位置同时调用该接口，该接口不生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * In the case of setting the caret position:
-     * .value[0].i32: character count from the beginning of a string to the caret position. \n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * In the case of obtaining the caret position: If this API is called when the caret position is updated in the
-     * current frame, it will not take effect.
-     * .value[0].i32: index of the caret position. \n
-     * .value[1].f32: X coordinate of the caret relative to the text box. \n
-     * .value[2].f32: Y coordinate of the caret relative to the text box. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：从字符串开始到光标所在位置的字符长度，取值范围[0, 文本长度]。超出范围时自动修正为边界值。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：光标所在位置的索引值。</li>
+     * <li>.value[1].f32：光标相对输入框的x坐标值，单位为px。</li>
+     * <li>.value[2].f32：光标相对输入框的y坐标值，单位为px。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CARET_OFFSET,
     /**
-     * @brief Obtains the position of the edited text area relative to the component and its size.
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: horizontal coordinate. \n
-     * .value[1].f32: vertical coordinate. \n
-     * .value[2].f32: content width. \n
-     * .value[3].f32: content height. \n
+     * @brief 获取已编辑文本内容区域相对组件的位置和大小。
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：水平方向横坐标，单位为px。</li>
+     * <li>.value[1].f32：竖直方向纵坐标，单位为px。</li>
+     * <li>.value[2].f32：内容宽度大小，单位为px。</li>
+     * <li>.value[3].f32：内容高度大小，单位为px。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
@@ -4103,77 +4615,109 @@ typedef enum {
      */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
-     * @brief Sets whether to hide the text selection menu when the text box is long-pressed, double-click, or
-     * right-clicked. This attribute can be set, reset, and obtained as required through APIs.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or
-     * right-clicked. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or
-     * right-clicked. \n
+     * @brief 设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单，支持属性设置，属性重置和属性获取接口。
      *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。默认值0。\n
+     * 设置为1时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，隐藏系统文本选择菜单。\n
+     * 设置为0时，显示系统文本选择菜单。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。1表示不弹出菜单，0表示弹出菜单。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_SELECTION_MENU_HIDDEN,
     /**
-     * @brief Sets whether the text box loses focus after the Enter key is pressed to submit information.
+     * @brief 设置输入框在submit状态下，触发回车键是否失焦。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the text box loses focus. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the text box loses focus. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：触发回车键后是否失焦。默认值1。\n
+     * 0表示不失焦，1表示失焦。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：触发回车键后是否失焦。1表示失焦，0表示不失焦。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_BLUR_ON_SUBMIT,
     /**
-     * @brief Set up a custom keyboard.
+     * @brief 设置自定义键盘。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object：custom keyboard,The parameter type is{@Link ArkUI_NodeHandle}。\n
-     * .value[0]?.i32：Sets whether the custom keyboard supports the avoidance feature, default value false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object:custom keyboard,The parameter type is{@Link ArkUI_NodeHandle}。\n
-     * .value[0].i32：Set whether the custom keyboard supports the avoidance function.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。</li>
+     * <li>.value[0]?.i32：设置自定义键盘是否支持避让功能，默认值0。\n
+     * 1表示支持避让，0表示不支持避让。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。</li>
+     * <li>.value[0].i32：设置自定义键盘是否支持避让功能。0表示不支持避让，1表示支持避让。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CUSTOM_KEYBOARD,
     /**
-     * @brief Defines the line break rule. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 文本断行规则属性，仅在内联输入风格编辑态生效，支持属性设置，属性重置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_WordBreak}。仅在内联输入风格编辑态生效。默认值ARKUI_WORD_BREAK_BREAK_WORD。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本断行规则枚举{@link ArkUI_WordBreak}，用于确定文本的断行方式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_WORD_BREAK,
 
     /**
-     * @brief Sets whether the keyboard pops up when the input box gains focus.
-     * It supports property setting, property reset and property acquisition interfaces.
+     * @brief 设置输入框获取焦点时是否弹出键盘，支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: Whether to pop up the keyboard. \n
-     * \n
-     * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-     * .value[0].i32: Whether to pop up the keyboard. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否弹出键盘。默认值1。\n
+     * 0表示获取焦点时不弹出键盘，1表示获取焦点时弹出键盘。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否弹出键盘。1表示弹出键盘，0表示不弹出键盘。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_SHOW_KEYBOARD_ON_FOCUS,
 
     /**
-     * @brief When this property is set, the height of the textInput component is calculated using this property.
+     * @brief 设置该属性后，通过该属性计算TextInput组件的高度。
+     * 例如：设置numberOfLines为3时，组件将默认显示足够容纳3行文本内容的高度。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: set the value of numberOfLines.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: the value of numberOfLines.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置行数，取值范围[1, +∞)，用于通过该属性计算TextInput组件的高度。例如：设置为3时，组件将默认显示足够容纳3行文本内容的高度。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置numberOfLines的值。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
 
@@ -4192,69 +4736,100 @@ typedef enum {
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
 
     /**
-     * @brief Sets whether to enable preview text for the <b>TextInput</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置TextInput组件是否开启输入预上屏。
+     * 接口支持设置，重置以及获取该属性。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable preview tex. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable preview tex. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置是否开启输入预上屏。默认值1。\n
+     * 0表示不开启输入预上屏，1表示开启输入预上屏。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：获取是否开启输入预上屏。0表示不开启输入预上屏，1表示开启输入预上屏。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 15
+     *
      */
     NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT = 7033,
 
     /**
-     * @brief Sets whether to center text vertically in the textInput component.
+     * @brief 设置文本将行间距平分至行的顶部与底部。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to center text vertically. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置文本是否将行间距平分至行的顶部与底部。默认值0。\n
+     * 1表示将行间距平分至行的顶部与底部，0表示不平分。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本行间距是否平分至行的顶部与底部。1表示平分，0表示不平分。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 18
+     *
      */
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
     /**
-     * @brief Set the keyboard style of textInput
+     * @brief 设置输入框拉起的键盘样式。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}：\n
-     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：键盘样式，参数类型{@link ArkUI_KeyboardAppearance}。具体枚举值请参考ArkUI_KeyboardAppearance枚举说明。默认值ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE，不使用沉浸式样式。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：键盘样式，参数类型{@link ArkUI_KeyboardAppearance}。具体枚举值请参考ArkUI_KeyboardAppearance枚举说明。默认值ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 15
+     *
      */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
     /**
-     * @brief Set whether to enable the auto fill animation or not.
+     * @brief 设置是否启用自动填充动效。仅当输入框类型{@link ArkUI_TextInputType}设置为ARKUI_TEXTINPUT_TYPE_PASSWORD、ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD或ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD时，该动效才生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether to enable the auto fill animation.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: Get the flag of whether the auto fill animation is enabled.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充动效。启用之后，仅输入框类型的枚举{@link ArkUI_TextInputType}设置为ARKUI_TEXTINPUT_TYPE_PASSWORD、ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD或ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD的输入框在进行自动填充时动效可生效。1表示启用，0表示不启用。默认值1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充动效。0表示不启用，1表示启用。启用之后，仅输入框类型的枚举{@link ArkUI_TextInputType}设置为ARKUI_TEXTINPUT_TYPE_PASSWORD、ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD或ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD的输入框在进行自动填充时动效可生效。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
+     *
      */
     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
 
     /**
-     * @brief Set the line height of the input node.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入框文本的高度，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的高度，单位fp。默认值是自适应字体大小。不传入该参数时，文本的高度设置为5fp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的高度，单位fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
+     *
      */
     NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
 
@@ -4272,26 +4847,27 @@ typedef enum {
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
 
     /**
-     * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入的字符数超过阈值时是否显示计数器并设置计数器样式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter. \n
-     * .value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down. \n
-     * .value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to show a character counter. \n
-     * .value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. \n
-     * .value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum.
-     * The default value is <b>true</b>. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.\n
-     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启计数器。值为1表示开启计数器，值为0表示不开启计数器。</li>
+     * <li>.value[1]?.f32：可输入字符数占最大字符限制的百分比值，超过此值时显示计数器，取值范围[1, 100]，小数时向下取整，若超出取值范围，则接口属性设置不生效。默认值-1，即始终显示计数器。</li>
+     * <li>.value[2]?.i32：输入字符超出限制时高亮边框，1表示高亮边框，0表示不高亮边框。默认值1。</li>
+     * <li>.object：计数器配置，配置属性为文本输入框未达到最大字符数时计数器的颜色以及超出最大字符数时计数器的颜色。参数类型为 {@link ArkUI_ShowCounterConfig}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启计数器。0表示不开启计数器，1表示开启计数器。</li>
+     * <li>.value[1].f32：可输入字符数占最大字符限制的百分比值，超过此值时显示计数器，取值范围[1, 100]。</li>
+     * <li>.value[2].i32：输入字符超出限制时高亮边框。0表示不高亮边框，1表示高亮边框。</li>
+     * <li>.object：计数器配置，配置属性为文本输入框未达到最大字符数时计数器的颜色以及超出最大字符数时计数器的颜色。参数类型为 {@link ArkUI_ShowCounterConfig}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 22
+     *
      */
     NODE_TEXT_INPUT_SHOW_COUNTER = 7040,
 
@@ -4324,58 +4900,79 @@ typedef enum {
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
     /**
-     * @brief Whether to avoid an orphan word on the last line of the paragraph.
+     * @brief 设置TextInput文本排版时是否使能孤字优化。使能后通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局，调整换行点以尽可能避免孤立字符。
+     * 注意：该特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The current state of this feature.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否使能孤字优化。该特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。1表示使能，0表示不使能。默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否使能孤字优化。0表示不使能，1表示使能。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
  	  NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
 
     /**
-     * @brief Whether to compress punctuation at the beginning of line.
+     * @brief 设置输入字符行首标点压缩开关，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否打开行首标点压缩开关。1表示开启行首标点压缩，0表示关闭行首标点压缩。默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否打开行首标点压缩开关。0表示关闭行首标点压缩，1表示开启行首标点压缩。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION = 7044,
 
     /**
-     * @brief Determines whether the layout adds extra padding at the top and bottom to make space for characters.
+     * @brief 设置单行输入框内文字是否在首行顶部和尾行底部增加间距以避免文字截断。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable include the font padding, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether include the font padding.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置输入框内文字是否在首行顶部和尾行底部增加间距以避免文字截断。1表示开启增加间距，0表示关闭增加间距。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在首行顶部和尾行底部增加间距。0表示不增加间距，1表示增加间距。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_INPUT_INCLUDE_FONT_PADDING = 7045,
 
     /**
-     * @brief Whether to include ascent/descent from fallback fonts to prevent overlapping lines.
+     * @brief 针对多行文本显示场景，支持行高基于文字实际高度自适应。此接口仅当行高小于文字实际高度时生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether fallback line spacing.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：支持行高基于文字实际高度自适应。此接口仅当行高小于文字实际高度时生效。1表示开启自适应，0表示关闭自适应。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启行高基于文字实际高度自适应。0表示关闭自适应，1表示开启自适应。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_INPUT_FALLBACK_LINE_SPACING = 7046,
 
@@ -4394,16 +4991,19 @@ typedef enum {
     NODE_TEXT_INPUT_DIRECTION = 7047,
 
     /**
-     * @brief Used to set the selected drag preview style.
-     * 
-     * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration.
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * \n
-     * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration.\n
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     * @brief 用于设置文本输入框内文本选中状态下的拖拽预览样式。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本选中状态下的拖拽预览样式。参数类型为{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本选中状态下的拖拽预览样式。参数类型为{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
      */
     NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE = 7048,
@@ -4423,81 +5023,85 @@ typedef enum {
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
     /**
-     * @brief Defines the text decoration style and color for single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义单行输入框的文本装饰线样式与颜色，支持属性设置、属性重置和属性获取接口。
      *
-     * ?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：装饰样式配置项，为可选参数。参数类型为{@link OH_ArkUI_DecorationStyleOptions}。不传入时不添加装饰线。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：装饰样式配置项。参数类型为{@link OH_ArkUI_DecorationStyleOptions}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_INPUT_DECORATION = 7050,
 
     /**
-     * @brief Sets a linear gradient effect for text in the single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本输入框内文本线性渐变效果，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位为deg。当线性渐变的方向为{@link ArkUI_LinearGradientDirection}的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度属性生效，否则按线性渐变的方向属性为主要布局方式。取值范围为(-∞,+∞)，0点方向顺时针旋转为正向角度，当超过360时，是按照360取余处理，默认值：180。</li>
+     * <li>.value[1].i32：线性渐变的方向，取值为{@link ArkUI_LinearGradientDirection}枚举。设置除ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的方向后，起始角度不生效。默认值：ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM。</li>
+     * <li>.value[2].i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色，参数类型为{@link ArkUI_ColorStop}。
+     * - colors：渐变色颜色数组，元素为0xargb格式，形如0xFFFF0000表示红色。
+     * - stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置。
+     * - size：颜色个数，若小于colors数组长度则仅生效前size个颜色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位为deg。当线性渐变的方向为{@link ArkUI_LinearGradientDirection}的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度为设置值，其他情况均为默认值0。</li>
+     * <li>.value[1].i32：线性渐变的方向。对应取值及含义请参考{@link ArkUI_LinearGradientDirection}。</li>
+     * <li>.value[2].i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色。参数类型为{@link ArkUI_ColorStop}。
+     *  colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。
+     *  stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。
+     *  size：生效后渐变色的颜色个数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_INPUT_LINEAR_GRADIENT = 7051,
 
     /**
-     * @brief Sets a radial gradient effect for text in the single-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本输入框的文本径向渐变效果，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：径向渐变的中心点X轴坐标，即相对于当前文本输入框左上角的X轴坐标，单位为vp。默认值为文本输入框宽度的一半。</li>
+     * <li>.value[1]?.f32：径向渐变的中心点Y轴坐标，即相对于当前文本输入框左上角的Y轴坐标，单位为vp。默认值为文本输入框高度的一半。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，单位为vp。取值范围[0, +∞)，默认值0。传入负数时不生效。</li>
+     * <li>.value[3]?.i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色。参数类型为{@link ArkUI_ColorStop}。
+     *  colors：渐变色数组，元素为0xargb格式，形如0xFFFF0000表示红色。
+     *  stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置，若后一元素小于前一元素，则按等于前一元素的值处理。
+     *  size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置异常值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：径向渐变的中心点X轴坐标，即相对于当前文本输入框左上角的X轴坐标，单位为vp。</li>
+     * <li>.value[1]?.f32：径向渐变的中心点Y轴坐标，即相对于当前文本输入框左上角的Y轴坐标，单位为vp。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，单位为vp，默认值0。</li>
+     * <li>.value[3]?.i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色。参数类型为{@link ArkUI_ColorStop}。
+     *  colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。
+     *  stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。
+     *  size：生效后渐变色的颜色个数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052,
 
@@ -4580,17 +5184,19 @@ typedef enum {
      */
     NODE_TEXT_AREA_CARET_COLOR,
     /**
-     * @brief Defines the editable state for the multi-line text box.
-     * This attribute can be set as required through APIs.
+     * @brief 控制多行文本输入框编辑态属性，支持属性设置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the
-     * editable state, and <b>false</b> means to exit the editable state.\n \n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:
-     * .value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable
-     * state, and <b>false</b> means to exit the editable state.\n \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示退出编辑态，1表示维持现状。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示退出编辑态，1表示维持现状。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_EDITING,
     /**
@@ -4606,64 +5212,79 @@ typedef enum {
      */
     NODE_TEXT_AREA_TYPE,
     /**
-     * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入的字符数超过阈值时是否显示计数器并设置计数器样式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter. \n
-     * .value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down. \n
-     * .value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to show a character counter. \n
-     * .value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. \n
-     * .value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum.
-     * The default value is <b>true</b>. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启计数器。值为1时为开启。默认值0。</li>
+     * <li>.value[1]?.f32：可输入字符数占最大字符限制的百分比值，超过此值时显示计数器，取值范围[1, 100]，小数时向下取整，若超出取值范围，则接口属性设置不生效。默认值-1，即始终显示计数器。</li>
+     * <li>.value[2]?.i32：输入字符超出限制时是否高亮边框。1表示高亮边框，0表示不高亮边框。默认值1。</li>
+     * <li>.object：计数器配置，配置属性为文本输入框未达到最大字符数时计数器的颜色以及超出最大字符数时计数器的颜色。参数类型为 {@link ArkUI_ShowCounterConfig}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启计数器。0表示不开启计数器，1表示开启计数器。</li>
+     * <li>.value[1].f32：可输入字符数占最大字符限制的百分比值，超过此值时显示计数器，取值范围[1, 100]。</li>
+     * <li>.value[2].i32：输入字符超出限制时是否高亮边框。0表示不高亮边框，1表示高亮边框。</li>
+     * <li>.object：计数器配置，配置属性为文本输入框未达到最大字符数时计数器的颜色以及超出最大字符数时计数器的颜色。参数类型为 {@link ArkUI_ShowCounterConfig}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_SHOW_COUNTER,
     /**
-     * @brief Sets whether to hide the text selection menu when the text box is long-pressed, double-click,
-     * or right-clicked. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click,
-     * or right-clicked. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click,
-     * or right-clicked. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。\n
+     * 设置为1时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，隐藏系统文本选择菜单。\n
+     * 设置为0时，显示系统文本选择菜单。\n
+     * 默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。0表示显示系统文本选择菜单，1表示隐藏系统文本选择菜单。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_SELECTION_MENU_HIDDEN,
     /**
-     * @brief Sets whether the multi-line text box loses focus after the Enter key is pressed to submit information.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the text box loses focus. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the text box loses focus. \n
+     * @brief 设置多行输入框在submit状态下，触发回车键是否失焦。
      *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：触发回车键后是否失焦。\n
+     * 0表示触发回车键后不失焦，1表示触发回车键后失焦。\n
+     * 默认值0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：触发回车键后是否失焦。0表示触发回车键后不失焦，1表示触发回车键后失焦。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_BLUR_ON_SUBMIT,
     /**
-     * @brief Sets the regular expression for input filtering.
-     * Only inputs that comply with the regular expression can be displayed.
-     * Other inputs are filtered out. The specified regular expression can match single characters,
-     * but not strings.
+     * @brief 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
+     * 单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: regular expression. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: regular expression. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：正则表达式，用于过滤用户输入内容。匹配表达式的输入允许显示，不匹配的输入将被过滤。当需要限制用户只能输入特定格式的字符时设置此属性，例如"^[a-zA-Z]+$"表示只允许字母，"^[0-9]+$"表示只允许数字。不设置时允许所有字符输入。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：正则表达式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_INPUT_FILTER,
     /**
@@ -4691,42 +5312,52 @@ typedef enum {
      */
     NODE_TEXT_AREA_ENTER_KEY_TYPE,
     /**
-     * @brief Defines whether to enable the input method when the component obtains focus.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置TextArea通过点击以外的方式获焦时，是否绑定输入法，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the input method when the component obtains focus.
-     * The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus,
-     * and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示聚焦不拉起输入法，1表示拉起。默认值为1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示聚焦不拉起输入法，1表示拉起。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ENABLE_KEYBOARD_ON_FOCUS,
     /**
-     * @brief Defines whether to enable the input method when the component obtains focus.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置或获取光标所在位置信息。设置输入光标的位置。返回当前光标所在位置信息。
+     * 在当前帧更新光标位置同时调用该接口，该接口不生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the input method when the component obtains focus.
-     * The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus,
-     * and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：从字符串开始到光标所在位置的字符长度，取值范围[0, 文本长度]。超出范围时自动修正为边界值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：光标所在位置的索引值。</li>
+     * <li>.value[1].f32：光标相对输入框的x坐标位值，单位为px。</li>
+     * <li>.value[2].f32：光标相对输入框的y坐标位值，单位为px。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_CARET_OFFSET,
     /**
-     * @brief Obtains the position of the edited text area relative to the component and its size.
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: horizontal coordinate. \n
-     * .value[1].f32: vertical coordinate. \n
-     * .value[2].f32: content width. \n
-     * .value[3].f32: content height. \n
+     * @brief 获取已编辑文本内容区域相对组件的位置和大小。
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：水平方向横坐标，单位为px。</li>
+     * <li>.value[1].f32：竖直方向纵坐标，单位为px。</li>
+     * <li>.value[2].f32：内容宽度大小，单位为px。</li>
+     * <li>.value[3].f32：内容高度大小，单位为px。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_CONTENT_RECT,
     /**
@@ -4738,64 +5369,92 @@ typedef enum {
      */
     NODE_TEXT_AREA_CONTENT_LINE_COUNT,
     /**
-     * @brief Sets the text selection area, which will be highlighted.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：选中文本的起始位置，取值范围[0, 文本长度]，需小于终止位置才生效。</li>
+     * <li>.value[1].i32：选中文本的终止位置，取值范围[0, 文本长度]。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：选中文本的起始位置。</li>
+     * <li>.value[1].i32：选中文本的终止位置。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_TEXT_SELECTION,
     /**
-     * @brief Sets whether to enable autofill.
+     * @brief 设置是否启用自动填充。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable autofill. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充。\n
+     * 1表示启用，0表示不启用。\n
+     * 默认值1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充。1表示已启用，0表示未启用。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ENABLE_AUTO_FILL,
     /**
-     * @brief Sets the autofill type.
+     * @brief 自动填充类型。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_TextInputContentType}。用于指定自动填充的内容类型，以便系统提供更准确的自动填充建议。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_TextInputContentType}。用于指定自动填充的内容类型，以便系统提供更准确的自动填充建议。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_CONTENT_TYPE,
 
     /**
-     * @brief Sets whether the keyboard pops up when the input box gains focus.
-     * It supports property setting, property reset and property acquisition interfaces.
+     * @brief 设置输入框获取焦点时是否弹出键盘，支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: Whether to pop up the keyboard. \n
-     * \n
-     * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-     * .value[0].i32: Whether to pop up the keyboard. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：获取焦点时是否弹出键盘。\n
+     * 1表示弹出键盘，0表示不弹出键盘。\n
+     * 默认值1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：获取焦点时是否弹出键盘。1表示弹出键盘，0表示不弹出键盘。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
 
     /**
-     * @brief When this property is set, the height of the textArea component is calculated using this property.
+     * @brief 设置该属性后，通过该属性计算TextArea组件的高度。
+     * 例如：设置numberOfLines为3时，组件将默认显示足够容纳3行文本内容的高度。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: set the value of numberOfLines.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Set the value of numberOfLines\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置行数，取值范围[1, +∞)。用于通过该属性计算TextArea组件的高度。例如：设置为3时，组件将默认显示足够容纳3行文本内容的高度。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置numberOfLines的值。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_NUMBER_OF_LINES,
 
@@ -4813,29 +5472,45 @@ typedef enum {
      */
     NODE_TEXT_AREA_LETTER_SPACING = 8023,
     /**
-     * @brief Sets whether to enable preview text for the <b>TextArea</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置TextArea组件是否开启输入预上屏。
+     * 接口支持设置，重置以及获取该属性。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable preview tex. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable preview tex. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置是否开启输入预上屏。\n
+     * 0表示不开启输入预上屏，1表示开启输入预上屏。\n
+     * 默认值1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启输入预上屏。1表示已开启，0表示未开启。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 15
+     *
      */
     NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT = 8024,
 
     /**
-     * @brief Sets whether to center text vertically in the textArea component.
+     * @brief 设置文本是否将行间距平分至行的顶部与底部。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to center text vertically. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置文本是否将行间距平分至行的顶部与底部。\n
+     * 1表示将行间距平分至行的顶部与底部，0表示不平分。\n
+     * 默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本行间距是否平分至行的顶部与底部。1表示平分，0表示不平分。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 18
+     *
      */
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
@@ -4853,69 +5528,99 @@ typedef enum {
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
-     * @brief Set the max lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入框内联模式编辑态时文本可显示的最大行数，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: max lines count.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：内联输入风格编辑态时文本可显示的最大行数。取值范围[1, +∞)。\n
+     * 内联模式下，默认值是3，非内联模式下，默认值是+∞，不限制最大行数。\n
+     * 不传入该参数时，使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：最大行数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
+     *
      */
     NODE_TEXT_AREA_MAX_LINES = 8027,
 
     /**
-     * @brief Set line spacing of the node. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入框文本的行间距，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line spacing value. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: line spacing value. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的行间距，取值范围[0, +∞)，单位为fp。默认值是0。超出范围时自动修正为边界值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的行间距，单位fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
+     *
      */
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
     /**
-     * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置节点的最小行数。支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: min lines count.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: min line count.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：最小行数，取值范围[1, +∞)。传入0或负数时参数不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：最小行数，取值范围[1, +∞)。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
-     * 
+     *
      */
     NODE_TEXT_AREA_MIN_LINES = 8029,
  
     /**
-     * @brief Set the max lines of the node with scroll.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置支持滚动时节点的最大行数。支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count with scroll.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: max line count with scroll.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：支持滚动时的最大行数。取值范围[1, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：支持滚动时的最大行数。取值范围[1, +∞)。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
+     *
      */
     NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
     /**
-     * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入框文本的高度，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的高度。默认值是自适应字体大小，单位fp。不传入该参数时，文本的高度设置为5fp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本的高度，单位fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
+     *
      */
     NODE_TEXT_AREA_LINE_HEIGHT = 8031,
 
@@ -4962,17 +5667,25 @@ typedef enum {
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
     /**
-     * @brief Sets up a custom keyboard.
+     * @brief 设置文本输入框的自定义键盘。支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: custom keyboard,The parameter type is {@Link ArkUI_NodeHandle}.\n
-     * .value[0]?.i32: Sets whether the custom keyboard supports the avoidance feature, default value false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object:custom keyboard,The parameter type is {@Link ArkUI_NodeHandle}.\n
-     * .value[0].i32: Set whether the custom keyboard supports the avoidance function.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。</li>
+     * <li>.value[0]?.i32：设置自定义键盘是否支持避让功能，\n
+     * 1表示支持避让，0表示不支持避让。\n
+     * 默认值为0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。</li>
+     * <li>.value[0].i32：设置自定义键盘是否支持避让功能。0表示不支持避让，1表示支持避让。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 22
+     *
      */
     NODE_TEXT_AREA_CUSTOM_KEYBOARD = 8036,
 
@@ -5005,72 +5718,99 @@ typedef enum {
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
     /**
-     * @brief Whether to avoid an orphan word on the last line of the paragraph.
+     * @brief 设置TextArea文本排版时是否使能孤字优化。使能后通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局，调整换行点以尽可能避免孤立字符。
+     * 注意：该特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The current state of this feature.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否使能孤字优化。该特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。1表示使能，0表示不使能。默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否使能孤字优化。0表示不使能，1表示使能。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION = 8039,
 
     /**
-     * @brief Whether to compress punctuation at the beginning of line.
+     * @brief 设置输入字符行首标点压缩开关，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否打开行首标点压缩开关。\n
+     * 1表示开启行首标点压缩，0表示关闭行首标点压缩。默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否打开行首标点压缩开关。0表示关闭行首标点压缩，1表示开启行首标点压缩。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION = 8040,
 
     /**
-     * @brief Determines whether the layout adds extra padding at the top and bottom to make space for characters.
+     * @brief 设置多行输入框内文字是否在首行顶部和尾行底部增加间距以避免文字截断。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable include the font padding, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether include the font padding.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置输入框内文字是否在首行顶部和尾行底部增加间距以避免文字截断。1表示开启增加间距，0表示关闭增加间距。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在首行顶部和尾行底部增加间距。0表示不增加间距，1表示增加间距。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_AREA_INCLUDE_FONT_PADDING = 8041,
 
     /**
-     * @brief Whether to include ascent/descent from fallback fonts to prevent overlapping lines.
+     * @brief 针对多行文本显示场景，支持行高基于文字实际高度自适应。此接口仅当行高小于文字实际高度时生效。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether fallback line spacing.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：支持行高基于文字实际高度自适应。此接口仅当行高小于文字实际高度时生效。1表示开启自适应，0表示关闭自适应。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启行高基于文字实际高度自适应。0表示关闭自适应，1表示开启自适应。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_AREA_FALLBACK_LINE_SPACING = 8042,
 
     /**
-     * @brief Whether to enable horizontal scrolling when text is wider than the view.
-     * The default value is false, and text will be wrapped by the view.
+     * @brief 设置多行输入框在文本宽度超过输入框内容区宽度时是否启用水平滚动。默认值为0，文本会被输入框自动换行。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether enable the feature, true means enable this feature, false means disable. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether enable the feature. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用水平滚动。1表示启用水平滚动，0表示不启用水平滚动。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用水平滚动。1表示启用水平滚动，0表示不启用水平滚动。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 24
+     *
      */
     NODE_TEXT_AREA_HORIZONTAL_SCROLLING = 8043,
 
@@ -5130,108 +5870,119 @@ typedef enum {
     NODE_TEXT_AREA_DECORATION = 8047,
 
     /**
-     * @brief Sets a linear gradient effect for text in the multi-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置多行文本输入框的文本线性渐变效果，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位为deg。当线性渐变的方向为{@link ArkUI_LinearGradientDirection}的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度属性生效，否则按线性渐变的方向属性为主要布局方式。取值范围为(-∞,+∞)，0点方向顺时针旋转为正向角度，当超过360时，是按照360取余处理，默认值：180。</li>
+     * <li>.value[1].i32：线性渐变的方向，取值为{@link ArkUI_LinearGradientDirection}枚举。设置除ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的方向后，起始角度不生效。默认值：ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM。</li>
+     * <li>.value[2].i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色，参数类型为{@link ArkUI_ColorStop}。\n
+     * - colors：渐变色颜色数组，元素为0xargb格式，形如0xFFFF0000表示红色。\n
+     * - stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置。\n
+     * - size：颜色个数，若小于colors数组长度则仅生效前size个颜色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位为deg。当线性渐变的方向为{@link ArkUI_LinearGradientDirection}的ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，线性渐变的起始角度为设置值，其他情况均为默认值0。</li>
+     * <li>.value[1].i32：线性渐变的方向。对应取值及含义请参考{@link ArkUI_LinearGradientDirection}。</li>
+     * <li>.value[2].i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色。参数类型为{@link ArkUI_ColorStop}。\n
+     *  colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。\n
+     *  stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。\n
+     *  size：生效后渐变色的颜色个数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_AREA_LINEAR_GRADIENT = 8048,
 
     /**
-     * @brief Sets a radial gradient effect for text in the multi-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置多行文本输入框的文本径向渐变效果，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：径向渐变的中心点X轴坐标，即相对于当前多行文本输入框左上角的X轴坐标，单位为vp。默认值为多行文本输入框宽度的一半。</li>
+     * <li>.value[1]?.f32：径向渐变的中心点Y轴坐标，即相对于当前多行文本输入框左上角的Y轴坐标，单位为vp。默认值为多行文本输入框高度的一半。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，单位为vp。取值范围[0, +∞)，默认值0。传入负数时不生效。</li>
+     * <li>.value[3]?.i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色。参数类型为{@link ArkUI_ColorStop}。\n
+     *  colors：渐变色数组，元素为0xargb格式，形如0xFFFF0000表示红色。\n
+     *  stops：指定颜色所处位置的数组，取值范围[0,1.0]，0表示容器开始处，1.0表示结尾处。建议递增设置，若后一元素小于前一元素，则按等于前一元素的值处理。\n
+     *  size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置异常值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：径向渐变的中心点X轴坐标，即相对于当前多行文本输入框左上角的X轴坐标，单位为vp。</li>
+     * <li>.value[1]?.f32：径向渐变的中心点Y轴坐标，即相对于当前多行文本输入框左上角的Y轴坐标，单位为vp。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，单位为vp，默认值0。</li>
+     * <li>.value[3]?.i32：渐变的颜色是否重复着色，0表示不重复着色，1表示重复着色。默认值：0。</li>
+     * <li>.object：指定位置处的渐变色颜色。参数类型为{@link ArkUI_ColorStop}。\n
+     *  colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。\n
+     *  stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。\n
+     *  size：生效后渐变色的颜色个数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
-     */
-     * @since 26.0.0
+     *
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
+     * 
+     * @ingroup Button[按钮]
      */
     NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_BUTTON,
 
     /**
      * @brief Sets the button type. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
+     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
+     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * </ul>
+     * 
+     * @ingroup Button[按钮]
      */
     NODE_BUTTON_TYPE,
 
     /**
     * @brief Defines the minimum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: minimum font scale, in fp.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * <ul>
+    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * </ul>
     * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: minimum font scale, in fp.
-    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * <ul>
+    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * </ul>
+    * 
+    * @ingroup Button[按钮]
     * @since 18
     */
     NODE_BUTTON_MIN_FONT_SCALE,
@@ -5239,76 +5990,99 @@ typedef enum {
     /**
     * @brief Defines the maximum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: maximum font scale, in fp.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * <ul>
+    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * </ul>
     * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: maximum font scale, in fp.
-    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * <ul>
+    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * </ul>
+    * 
+    * @ingroup Button[按钮]
     * @since 18
     */
     NODE_BUTTON_MAX_FONT_SCALE,
 
     /**
-     * @brief Defines the current value of the progress indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 进度条的当前进度值属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: current value of the progress indicator. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current value of the progress indicator. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：进度条当前值，取值范围为[0, total]，默认值为0。超出范围时自动修正至有效范围边界值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：进度条当前值，取值范围为[0, total]，默认值为0。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      */
     NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PROGRESS,
     /**
-     * @brief Defines the total value of the progress indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 进度条的总长属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: total value of the progress indicator. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: total value of the progress indicator. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：进度条总长，取值范围为(0, +∞)，默认值为100，需大于0。传入小于等于0的值时不生效。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：进度条总长，取值范围为(0, +∞)，默认值为100。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      */
     NODE_PROGRESS_TOTAL,
     /**
-     * @brief Defines the color for the progress value on the progress indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 进度条显示进度值的颜色属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。默认值：跟随主题。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xargb格式。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      */
     NODE_PROGRESS_COLOR,
     /**
-     * @brief Defines the type of the progress indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 进度条的类型属性，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.
-     * The default value is <b>ARKUI_PROGRESS_TYPE_LINEAR</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：进度条类型，具体枚举值及含义参见{@link ArkUI_ProgressType}。默认值为ARKUI_PROGRESS_TYPE_LINEAR。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：进度条类型。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      */
     NODE_PROGRESS_TYPE,
     /**
-     * @brief Sets the style of the linear progress indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * If the progress indicator type is not linear, it will not take effect.
+     * @brief 线性进度条样式设置，支持属性设置、属性重置和属性获取接口，如果进度条类型不是线性样式则不生效，需先通过NODE_PROGRESS_TYPE将进度条类型设置为ARKUI_PROGRESS_TYPE_LINEAR。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to set the style. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：使用{@link ArkUI_ProgressLinearStyleOption}对象设置组件样式。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：返回{@link ArkUI_ProgressLinearStyleOption}对象，包含线性进度条的样式信息。</li>
+     * </ul>
+     *
+     * @ingroup Information Display[信息展示]
      * @since 15
      */
     NODE_PROGRESS_LINEAR_STYLE,
@@ -5317,13 +6091,18 @@ typedef enum {
      * @brief Defines whether the check box is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the check box is selected.
-     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the check box is selected.
+     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * 
+     * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
@@ -5331,12 +6110,17 @@ typedef enum {
      * @brief Defines the color of the check box when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_SELECT_COLOR,
 
@@ -5344,12 +6128,17 @@ typedef enum {
      * @brief Defines the border color of the check box when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * 
+     * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_UNSELECT_COLOR,
 
@@ -5357,16 +6146,21 @@ typedef enum {
      * @brief Defines the internal icon style of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1]?.f32: size of the internal mark, in vp. Optional.\n
-     * .value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
+     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1].f32: size of the internal mark, in vp. \n
-     * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
+     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * </ul>
+     * 
+     * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_MARK,
 
@@ -5374,12 +6168,17 @@ typedef enum {
      * @brief Defines the shape of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * </ul>
+     * 
+     * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_SHAPE,
 
@@ -5387,12 +6186,17 @@ typedef enum {
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
+     * 
+     * @ingroup Checkbox[复选框]
      * @since 15
      */
     NODE_CHECKBOX_NAME,
@@ -5401,12 +6205,17 @@ typedef enum {
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      *
+     * @ingroup Checkbox[复选框]
      * @since 15
      */
     NODE_CHECKBOX_GROUP,
@@ -5476,602 +6285,786 @@ typedef enum {
     NODE_XCOMPONENT_ENABLE_ANALYZER,
 
     /**
-     * @brief Defines whether to display the lunar calendar in the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的日期是否显示农历，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否显示农历，默认值0。0表示不展示农历，1表示展示农历。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否显示农历。返回0表示不展示农历，返回1表示展示农历。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
     /**
-     * @brief Defines the start date of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件选择器的起始日期，支持属性设置，属性重置和属性获取接口。设置的起始日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期，默认值"1970-1-1"。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的起始日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_START,
     /**
-     * @brief Defines the end date of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件选择器的结束日期，支持属性设置，属性重置和属性获取接口。设置的结束日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期，默认值"2100-12-31"。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的结束日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_END,
     /**
-     * @brief Defines the selected date of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件选中项的日期，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2024-01-22"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期，默认值"2024-01-22"，未设置时使用默认值。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中的日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_SELECTED,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的所有选项中最上和最下两个选项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#ARGB类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected
-     * items in the date picker. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的所有选项中除了边缘项及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of the selected item in the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的选中项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the mode of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置要显示的日期选项列。DatePicker显示不同样式的日期列，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：根据应用需求选择合适的日期显示模式，如需要精确选择到日时使用年/月/日模式，只需要月份时使用年/月模式等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：显示的日期列类型。参数类型{@link ArkUI_DatePickerMode}。默认值：完整的日期列（年、月、日）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：当前设置的日期列类型枚举值，类型为{@link ArkUI_DatePickerMode}。</li>
+     * </ul>
+     *
+     * @ingroup Datepicker[日期选择器]
      * @since 18
      */
     NODE_DATE_PICKER_MODE = 13007,
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置是否开启触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。开启后，是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。</li>
+     * </ul>
+     *
+     * @ingroup Datepicker[日期选择器]
      * @since 18
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
     /**
-     * @brief Defines whether to support scroll looping for the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Picker组件可循环滚动属性，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：循环滚动适用于选项有限且希望提供快速选择体验的场景（如月份选择）；非循环滚动适用于选项有明确边界、需要限制用户选择范围的场景（如日期选择避免跨年混淆）。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否可循环。1表示可循环，0表示不可循环。默认值：1，设置异常值时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不可循环，1表示可循环。</li>
+     * </ul>
+     *
+     * 说明：可循环情况下，年份随着月份的循环滚动进行联动加减，月份随着日的循环滚动进行联动加减。\n
+     * 不可循环情况下，年/月/日到达本列的顶部或底部时，无法再进行滚动，年/月/日之间也无法再联动加减。
+     *
+     * @ingroup Datepicker[日期选择器]
      * @since 20
      */
-     NODE_DATE_PICKER_CAN_LOOP = 13009,
+    NODE_DATE_PICKER_CAN_LOOP = 13009,
     /**
-     * @brief Defines the time of the selected item. in the timer picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择器组件的选中项时间，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is the current system time. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：时间。默认值：当前系统时间。设置格式：时:分或时-分（例：23:59或23-59）。返回格式：时,分,秒（例：23,59,0）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中的时间。格式：时,分,秒，使用`,`分隔（例：23,59,0）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
 
     NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
     /**
-     * @brief Defines whether the display time is in 24-hour format.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择组件展示时间是否为24小时制，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the display time is in 24-hour format. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the display time is in 24-hour format.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否为24小时制，默认值：0。0表示展示时间为12小时制，1表示展示时间为24小时制。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否为24小时制。返回0表示展示时间为12小时制（对应false），返回1表示展示时间为24小时制（对应true）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_USE_MILITARY_TIME,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置边缘项（以选中项为基准向上或向下的第二项）的文本样式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected items
-     * in the time picker. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择组件所有选项中除了边缘项及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of the selected item in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择组件选中项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the start time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择器组件的起始时间，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：时间。默认值："0:0"。设置时仅支持时:分，使用`:`或`-`分隔（例：12:59或12-59）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的起始时间。格式：时:分:秒（例：0:0:0）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      * @since 18
      */
     NODE_TIME_PICKER_START = 14005,
     /**
-     * @brief Defines the end time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择器组件的结束时间，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：时间。默认值："23:59"。设置时仅支持时:分，使用`:`或`-`分隔（例：23:59或23-59）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的结束时间。格式：时:分:秒（例：23:59:0）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      * @since 18
      */
     NODE_TIME_PICKER_END = 14006,
+
     /**
-     * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 在设置12小时制时，上午和下午的标识会根据小时数自动切换，支持属性设置、重置和获取；在24小时制时，该参数不生效。
+     * 使用场景：适用于需要提供友好的12小时制选择体验的场景，例如用户滚动选择小时时，上午/下午标识自动跟随变化，无需用户手动切换。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable cascade. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable cascade.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：在12小时制时，设置上午和下午的标识是否会根据小时数自动切换，默认值：0。0表示不自动切换，1表示自动切换。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：在12小时制时，上午和下午的标识是否会根据小时数自动切换。返回0表示不自动切换（对应false），返回1表示自动切换（对应true）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      * @since 18
      */
     NODE_TIME_PICKER_ENABLE_CASCADE = 14007,
 
     /**
-     * @brief Defines the data selection range of the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本选择器的选择列表，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：单列选择器适用于单一类别选择（如省份、品牌），多列选择器适用于多个独立类别组合选择（如省-市），多列联动选择器适用于有层级关系的选择场景（如省-市-区，第二列根据第一列自动更新）。
+     * 需先设置该参数后，才能使用 NODE_TEXT_PICKER_OPTION_SELECTED 和 NODE_TEXT_PICKER_SELECTED_INDEX 设置选中项。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.
-     * The default value is <b>ARKUI_TEXTPICKER_RANGETYPE_SINGLE</b>. \n
-     * ?.string: string input, whose format varies by picker type.\n
-     * 1: single-column picker. The input format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.object: Object input, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The input structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The input structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.\n
-     * ?.string: string output, whose format varies by picker type.\n
-     * 1: single-column picker. The output format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.string: Object output, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The output structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The output structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：使用的选择器类型{@link ArkUI_TextPickerRangeType}，默认值为ARKUI_TEXTPICKER_RANGETYPE_SINGLE。
+     * ARKUI_TEXTPICKER_RANGETYPE_SINGLE适用于单列选择，ARKUI_TEXTPICKER_RANGETYPE_MULTI适用于多列独立选择，
+     * ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT适用于单列带图片选择，ARKUI_TEXTPICKER_RANGETYPE_CASCADE适用于多列联动选择。</li>
+     * <li>?.string：针对不同选择器类型有如下输入范式：1：单列选择器，入参格式为用分号分隔的一组字符串；
+     * 2：多列选择器，支持多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔。不传此参数时不设置选择列表。</li>
+     * <li>?.object：针对不同选择器类型有如下输入范式：
+     * 1：单列支持图片的选择器，输入结构体为{@link ARKUI_TextPickerRangeContentArray}；
+     * 2：多列联动选择器，输入结构体为{@link ARKUI_TextCascadePickerRangeContentArray}。不传此参数时不设置选择列表。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：使用的选择器类型{@link ArkUI_TextPickerRangeType}。</li>
+     * <li>?.string：针对不同选择器类型有如下输出范式：1：单列选择器，输出格式为用分号分隔的一组字符串；2：多列选择器，输出多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
     /**
-     * @brief Defines the index of the default selected item in the data selection range of the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件默认选中项在数组中的索引值，支持属性设置，属性重置和属性获取接口。需先通过 NODE_TEXT_PICKER_OPTION_RANGE 设置选项列表后才能使用该参数。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：默认选中项在选择器选项数组中的索引值，取值范围为[0, length-1]。超出范围时抛出异常。多列选择器时，如存在多个索引值则逐个添加。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选中项在选择器选项数组中的索引值，如存在多个索引值则逐个添加。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_OPTION_SELECTED,
     /**
-     * @brief Defines the value of the default selected item in the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件默认选中项的值，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;). \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;).\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中项的值，如存在多个值则逐个添加，用分号分隔。默认值：空字符串，未设置时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中项的值，如存在多个值则逐个添加，用分号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_OPTION_VALUE,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件所有选项中最上和最下两个选项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型；
+     *  参数2： 文本大小，数字类型，单位fp；
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；
+     *  参数4： 文本字体列表，使用 ',' 进行分割；
+     *  参数5： 文本样式，字符串枚举("normal", "italic")；
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight for all items except the top, bottom, and selected
-     * items in the text picker. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight for the selected item in the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件选中项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型；
+     *  参数2： 文本大小，数字类型，单位fp；
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；
+     *  参数4： 文本字体列表，使用 ',' 进行分割；
+     *  参数5： 文本样式，字符串枚举("normal", "italic")；
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the index of the default selected item in the data selection range of the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件默认选中项的索引数组，支持属性设置，属性重置和属性获取接口。
+     * 需先通过 NODE_TEXT_PICKER_OPTION_RANGE 设置选项列表后才能使用该参数。设置选项列表后，如未通过本参数设置索引数组，则默认选中各列的第1项。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...].i32: index of the default item in the data selection range.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0...].i32：默认选中项在选择器选项数组中的索引值数组。用于多列选择器时设置每列的默认选中项索引。默认值：每列均为0。取值范围：每列索引值为[0, 对应列长度-1]，超出范围时抛出异常。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0...].i32：当前选中的索引值数组，用于多列选择器时表示每列的选中项索引。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_SELECTED_INDEX,
     /**
-     * @brief Defines whether to support scroll looping for the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Picker组件可循环滚动属性，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：循环滚动适用于选项有限且希望提供快速选择体验的场景（如省份选择）；非循环滚动适用于选项有明确边界、需要限制用户选择范围的场景（如数量选择避免误操作）。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不可循环，1表示可循环。默认值：1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不可循环，1表示可循环。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_CAN_LOOP,
     /**
-     * @brief Defines the height of each item in the picker. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置Picker组件各选择项的高度，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: item height, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].f32: item height, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：当前设置的选项高度值，单位为vp。默认值：40.0vp，未设置时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：当前设置的选项高度值，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT,
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置是否开启触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。开启后，是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
     /**
-     * @brief Defines the background color and border radius of the selected items.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置选中项的背景颜色和边框圆角。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
-     * 1: .value[1].f32: radius of the four corners. \n
-     * 2: .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
-     * .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：背景颜色，采用 0xARGB 格式。其中A表示透明度(0x00完全透明~0xFF完全不透明)，
+     * RGB表示颜色值(0x000000~0xFFFFFF)，每个字节取值范围0x00~0xFF。例如，0xFF1122FF表示完全不透明的蓝色。</li>
+     * <li>.value[1].f32：左上角的圆角半径，单位为VP。</li>
+     * <li>.value[2].f32：右上角的圆角半径，单位为VP。</li>
+     * <li>.value[3].f32：左下角的圆角半径，单位为VP。</li>
+     * <li>.value[4].f32：右下角的圆角半径，单位为VP。</li>
+     * </ul>
+     * <p>默认值：背景颜色：0x0C182431；圆角半径：24.0。</p>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：背景颜色，采用 0xARGB 格式，例如，<b>0xFF1122FF</b>。</li>
+     * <li>.value[1].f32：左上角的圆角半径，单位为VP。</li>
+     * <li>.value[2].f32：右上角的圆角半径，单位为VP。</li>
+     * <li>.value[3].f32：左下角的圆角半径，单位为VP。</li>
+     * <li>.value[4].f32：右下角的圆角半径，单位为VP。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      * @since 20
      */
     NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
     /**
-     * @brief Defines the style of the background in the selected state of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选中态底板圆角半径的参数，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker.
-     * The value range is [0, +∞). If the value is <b>0</b>, the background is a rectangle with square corners.
-     If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to
-     * or greater than 16, the background is a circle. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker. The value range is [0, +∞).
-     * If the value is <b>0</b>, the background is a rectangle with square corners.
-     If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to or
-     * greater than 16, the background is a circle. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：日历选中态底板圆角半径，默认值：16.0，单位为vp，表示底板样式为圆形。
+     * 当输入参数为0.0时表示底板样式为直角矩形；当输入参数为(0.0, 16.0)时，底板样式为圆角矩形；当输入参数为负数或大于16.0时，恢复成默认值16.0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：日历选中态底板圆角半径，默认值：16.0，单位为vp，表示底板样式为圆形。取值范围[0.0, 16.0]，其中取值为0.0表示底板样式为直角矩形。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
     /**
-     * @brief Defines the date of the selected item in the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择选中日期的参数，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选中的年。默认值：当前系统年份。传入无效值时使用默认值。</li>
+     * <li>.value[1].u32：选中的月。默认值：当前系统月份。传入无效值时使用默认值。</li>
+     * <li>.value[2].u32：选中的日。默认值：当前系统日期。传入无效值时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选中的年。</li>
+     * <li>.value[1].u32：选中的月。</li>
+     * <li>.value[2].u32：选中的日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_SELECTED_DATE,
     /**
-     * @brief Defines how the calendar picker is aligned with the entry component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择器与入口组件的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：对齐方式类型，参数类型{@link ArkUI_CalendarAlignment}。用于设置日历选择器相对入口组件的对齐位置。</li>
+     * <li>.value[1]?.f32：按照对齐方式对齐后，选择器相对入口组件的x轴方向相对偏移，单位为vp。默认值：0。</li>
+     * <li>.value[2]?.f32：按照对齐方式对齐后，选择器相对入口组件的y轴方向相对偏移，单位为vp。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：对齐方式类型，参数类型{@link ArkUI_CalendarAlignment}。</li>
+     * <li>.value[1].f32：按照对齐方式对齐后，选择器相对入口组件的x轴方向相对偏移。</li>
+     * <li>.value[2].f32：按照对齐方式对齐后，选择器相对入口组件的y轴方向相对偏移。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_EDGE_ALIGNMENT,
     /**
-     * @brief Defines the font color, font size, and font weight in the entry area of the calendar picker.
+     * @brief 设置日历选择器入口区的文本颜色、字号、字体粗细。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.u32: font color of the entry area. \n
-     * .value[1]?.f32: font size of the entry area, in fp. \n
-     * .value[2]?.i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: font color of the entry area. \n
-     * .value[1].f32: font size of the entry area, in fp. \n
-     * .value[2].i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.u32：入口区的文本颜色。未设置或执行resetAttribute后，使用系统主题
+     * `calendar_picker_entry_font_color` 解析的值（具体色值随主题变化，可通过getAttribute获取）。</li>
+     * <li>.value[1]?.f32：入口区的文本字号，单位为fp。未设置或执行resetAttribute后，使用系统主题
+     * `calendar_picker_entry_font_size` 解析的值（具体数值随主题变化，可通过getAttribute获取）。</li>
+     * <li>.value[2]?.i32：入口区的文本字体粗细，参数类型{@link ArkUI_FontWeight}。未设置或执行resetAttribute后，
+     * 默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：入口区的文本颜色。</li>
+     * <li>.value[1].f32：入口区的文本字号，单位为fp。</li>
+     * <li>.value[2].i32：入口区的文本字体粗细，参数类型{@link ArkUI_FontWeight}。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the start date of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择器的开始日期，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字，如"1970-1-1"、"2024-05-20"。默认值：1970-1-1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的日历选择器开始日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      * @since 18
      */
     NODE_CALENDAR_PICKER_START = 16004,
     /**
-     * @brief Defines the end date of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择器的结束日期，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字，如"2100-12-31"、"2025-1-25"。默认值："2100-12-31"。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的日历选择器结束日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      * @since 18
      */
     NODE_CALENDAR_PICKER_END = 16005,
     /**
+     * @brief 设置日历选择器的禁用日期区间，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：禁用日期区间字符串。禁用日期区间："第一个区间开始日期,第一个区间结束日期,第二个区间开始日期,第二个区间结束日期,...,第n个区间开始日期,第n个区间结束日期"。
+     * 设置的禁用日期区间格式："1910-01-01,1910-12-31,2020-01-01,2020-12-31"。默认值：空字符串，表示不设置禁用日期区间。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的禁用日期区间字符串，格式为"开始日期,结束日期,..."，如"1910-01-01,1910-12-31"。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
+     * @since 19
+     */
+    NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
+    /**
+     * @brief 设置日历选择器在系统当前日期时，是否保持高亮显示，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器在系统当前日期时，是否保持高亮显示。返回0表示不保持高亮显示，返回1表示保持高亮显示。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器在系统当前日期时，是否保持高亮显示。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
+     * @since 19
+     */
+    NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
+    /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
@@ -6079,12 +7072,17 @@ typedef enum {
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_TRACK_COLOR,
 
@@ -6092,12 +7090,17 @@ typedef enum {
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_SELECTED_COLOR,
 
@@ -6105,80 +7108,110 @@ typedef enum {
      * @brief Sets whether to display the stepping value. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
+     * and <b>0</b> (default value) means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
+     * and <b>0</b> (default value) means the opposite.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_SHOW_STEPS,
 
     /**
      * @brief Defines the slider shape, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}. \n
-     * .string?: depending on the shape. Optional. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
+     * <li>.string?: depending on the shape. Optional.</li> \n
+     * <ul>
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
+     * </ul>
      * There are five types:\n
-     * 1. Rectangle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[2].f32: width of the rectangle.\n
-     * .value[3].f32: height of the rectangle.\n
-     * .value[4].f32: width of the rounded corner of the rectangle.\n
-     * .value[5].f32: height of the rounded corner of the rectangle.\n
-     * 2. Circle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[2].f32: width of the circle.\n
-     * .value[3].f32: height of the circle.\n
-     * 3.Ellipse:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[2].f32: width of the ellipse.\n
-     * .value[3].f32: height of the ellipse;\n
-     * 4. Path:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
-     * .value[2].f32: width of the path.\n
-     * .value[3].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * **1. Rectangle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
+     * <li>.value[2].f32: width of the rectangle.</li>\n
+     * <li>.value[3].f32: height of the rectangle.</li>\n
+     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
+     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
+     * </ul>
+     * **2. Circle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
+     * <li>.value[2].f32: width of the circle.</li>\n
+     * <li>.value[3].f32: height of the circle.</li>\n
+     * </ul>
+     * **3.Ellipse:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
+     * <li>.value[2].f32: width of the ellipse.</li>\n
+     * <li>.value[3].f32: height of the ellipse.</li>\n
+     * </ul>
+     * **4. Path:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
+     * <li>.value[2].f32: width of the path.</li>\n
+     * <li>.value[3].f32: height of the path.</li>\n
+     * <li>.string: command for drawing the path.</li>\n
+     * <ul>
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}. \n
-     * .string?: depending on the shape. Optional. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
+     * <li>.string?: depending on the shape. Optional.</li> \n
+     * <ul>
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
+     * </ul>
       * There are five types:\n
-     * 1. Rectangle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[2].f32: width of the rectangle.\n
-     * .value[3].f32: height of the rectangle.\n
-     * .value[4].f32: width of the rounded corner of the rectangle.\n
-     * .value[5].f32: height of the rounded corner of the rectangle.\n
-     * 2. Circle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[2].f32: width of the circle.\n
-     * .value[3].f32: height of the circle.\n
-     * 3.Ellipse:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[2].f32: width of the ellipse.\n
-     * .value[3].f32: height of the ellipse;\n
-     * 4. Path:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
-     * .value[2].f32: width of the path.\n
-     * .value[3].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * **1. Rectangle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
+     * <li>.value[2].f32: width of the rectangle.</li>\n
+     * <li>.value[3].f32: height of the rectangle.</li>\n
+     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
+     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
+     * </ul>
+     * **2. Circle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
+     * <li>.value[2].f32: width of the circle.</li>\n
+     * <li>.value[3].f32: height of the circle.</li>\n
+     * </ul>
+     * **3.Ellipse:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
+     * <li>.value[2].f32: width of the ellipse.</li>\n
+     * <li>.value[3].f32: height of the ellipse.</li>\n
+     * </ul>
+     * **4. Path:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
+     * <li>.value[2].f32: width of the path.</li>\n
+     * <li>.value[3].f32: height of the path.</li>\n
+     * <li>.string: command for drawing the path.</li>\n
+     * </ul>
+     * </ul>
      *
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_BLOCK_STYLE,
 
@@ -6186,12 +7219,17 @@ typedef enum {
      * @brief Defines the current value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: current value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: current value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: current value.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_VALUE,
 
@@ -6199,12 +7237,17 @@ typedef enum {
      * @brief Defines the minimum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: minimum value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: minimum value.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_MIN_VALUE,
 
@@ -6212,24 +7255,34 @@ typedef enum {
      * @brief Defines the maximum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: maximum value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: maximum value.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_MAX_VALUE,
 
     /**
      * @brief Defines the step of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: step. The value range is [0.01, 100]. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: step. The value range is [0.01, 100].</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: step. The value range is [0.01, 100].
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: step. The value range is [0.01, 100].</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_STEP,
 
@@ -6237,13 +7290,18 @@ typedef enum {
      * @brief Defines whether the slider moves horizontally or vertically. This attribute can be set, reset, and
      * obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the slider moves horizontally or vertically.
-     * The parameter type is {@link ArkUI_SliderDirection}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider moves horizontally or vertically.
+     * The parameter type is {@link ArkUI_SliderDirection}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the slider moves horizontally or vertically.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider moves horizontally or vertically.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_DIRECTION,
 
@@ -6251,14 +7309,19 @@ typedef enum {
      * @brief Defines whether the slider values are reversed. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
+     * reversed, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
+     * reversed, and <b>0</b> means the opposite.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_REVERSE,
 
@@ -6266,12 +7329,17 @@ typedef enum {
      * @brief Defines the style of the slider thumb and track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li>
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_STYLE,
 
@@ -6279,14 +7347,19 @@ typedef enum {
      * @brief Sets the track thickness of the slider.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
      * is set to <b>ARKUI_SLIDER_STYLE_OUT_SET</b> and 20.0 vp when <b>NODE_SLIDER_STYLE</b> is set to
-     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>. \n
+     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: track thickness of the slider, in vp. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: track thickness of the slider, in vp.</li> \n
+     * </ul>
      *
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_TRACK_THICKNESS,
 
@@ -6294,15 +7367,20 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>value[0].i32: whether to feedback.\n
      * When enabling haptic feedback, you need to add "ohos.permission.VIBRATE" in the
-     * requestPermissions field of the module.json5 file to enable vibration permission.\n
-     *
+     * requestPermissions field of the module.json5 file to enable vibration permission.</li>\n
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      * @since 18
      */
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
@@ -6310,12 +7388,14 @@ typedef enum {
     /**
      * @brief Sets a custom component on the leading side of the Slider component.
      *
-     * Attribute setting method {@link ArkUI_AttributeItem} parameter format:\n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
-     *
+     * **Attribute setting method {@link ArkUI_AttributeItem} parameter format:**\n
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * </ul>
      * The prefix component will be placed at the start position of the Slider，
      * typically on the left side in LTR layouts.
 	 *
+     * @ingroup Slider[滑动条]
 	 * @since 20
      */
     NODE_SLIDER_PREFIX,
@@ -6323,12 +7403,14 @@ typedef enum {
     /**
      * @brief Sets a custom component on the trailing side of the Slider component.
      *
-     * Attribute setting method {@link link ArkUI_AttributeItem} parameter format:\n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
-     *
+     * **Attribute setting method {@link link ArkUI_AttributeItem} parameter format:**\n
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * </ul>
      * The suffix component will be placed at the end position of the Slider,
      * typically on the right side in LTR layouts.
 	 *
+     * @ingroup Slider[滑动条]
 	 * @since 20
      */
     NODE_SLIDER_SUFFIX,
@@ -6336,20 +7418,25 @@ typedef enum {
     /**
      * @brief Defines the color of the slider block. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      * @since 21
      */
     NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR,
@@ -6358,20 +7445,25 @@ typedef enum {
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      * @since 21
      */
     NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR,
@@ -6380,20 +7472,25 @@ typedef enum {
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      * @since 21
      */
     NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR,
@@ -6401,166 +7498,227 @@ typedef enum {
     /**
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: check status of an option button. The default value is false.
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: selection status of an option button.
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.value[0].i32: check status of an option button. The default value is false.</li>
+     * </ul>
+     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * <ul>
+     * <li>.value[0].i32: selection status of an option button.</li>
+     * </ul>
+     * 
+     * @ingroup Radio[单选框]
      */
     NODE_RADIO_CHECKED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
     /**
      * @brief Set the styles of the selected and deselected states of the option button.
      * The attribute setting, attribute resetting, and attribute obtaining are supported.
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0]?. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF. \n
-     * .value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431. \n
-     * .value[2]?. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFFF. \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0]. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF. \n
-     * .value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431. \n
-     * .value[2]. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFF. \n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.value[0]?. u32: color of the mother board in enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
+     * <li>.value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
+     * and the default value is 0xFF182431.</li> \n
+     * <li>.value[2]?. u32: color of the internal round pie in the enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFFFFFFFF.</li> \n
+     * </ul>
+     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * <ul>
+     * <li>.value[0]. u32: color of the mother board in enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
+     * <li>.value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
+     * and the default value is 0xFF182431.</li> \n
+     * <li>.value[2]. u32: color of the internal round pie in the enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFFFFFFF.</li> \n
+     * </ul>
+     * 
+     * @ingroup Radio[单选框]
      */
     NODE_RADIO_STYLE,
     /**
      * @brief Sets the value of the current radio.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .string: radio value.\n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.string: radio value.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: radio value.\n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: radio value.</li>\n
+     * </ul>
+     * 
+     * @ingroup Radio[单选框]
      */
     NODE_RADIO_VALUE,
     /**
      * @brief Set the group name of the current Radio group, only one radio of the same group can be selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .string: name of the group to which the current option box belongs.\n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: name of the group to which the current option box belongs.\n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * </ul>
+     * 
+     * @ingroup Radio[单选框]
      */
     NODE_RADIO_GROUP,
 
     /**
-     * @brief Set the image frames for the image animator. Dynamic updates is not supported.
+     * @brief Defines the image frames for the image animator. Dynamic updates are not supported.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
-     * \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
      *
-    */
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
+     *
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
     /**
-     * @brief Set the playback status of the animation for the image animator.
+     * @brief Defines the playback status of the animation for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus},
-     * and the default value is ARKUI_ANIMATION_STATUS_INITIAL.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is
+     * {@link ArkUI_AnimationStatus}. The default value is <b>ARKUI_ANIMATION_STATUS_INITIAL</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus}.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
     /**
-     * @brief Set the playback duration for the image animator. When the duration is 0, no image is played.
+     * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
      * The value change takes effect only at the beginning of the next cycle.
      * When a separate duration is set in images, the setting of this attribute is invalid.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback duration, the unit is ms and the default value is 1000.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms. The default value is 1000.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback duration, the unit is ms.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
     /**
-     * @brief Set the playback direction for the image animator.
+     * @brief Defines the playback direction for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
     /**
-     * @brief Set whether the image size is the same as the component size.
+     * @brief Defines whether the image size is the same as the component size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * In this case, the width, height, top, and left attributes of the image are invalid.
-     * 0 indicates the image size is customized.
-     * The width, height, top, and left attributes of each image must be set separately.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. In this case, the width, height, top, and left
+     * attributes of the image are invalid. <b>0</b> indicates that the image size is customized. The width,
+     * height, top, and left attributes of each image must be set separately.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * 0 indicates the image size is customized.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
     /**
-     * @brief Set the status before and after execution of the animation in the current playback direction.
+     * @brief Defines the status before and after execution of the animation in the current playback direction.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode} and the default value is ARKUI_ANIMATION_FILL_MODE_FORWARDS.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}. The default value is
+     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode}.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
     /**
-     * @brief Set the number of times that the animation is played.
+     * @brief Defines the number of times that the animation is played.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
     /**
      * @brief Defines the name of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * 
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_NAME  = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
@@ -6569,13 +7727,18 @@ typedef enum {
      * @brief Defines whether the checkboxgroup is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the checkboxgroup is selected.
-     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the checkboxgroup is selected.
+     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * 
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECT_ALL,
@@ -6584,13 +7747,18 @@ typedef enum {
      * @brief Defines the color of the checkboxgroup when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
-     * for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
+     * for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
+     * 
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
@@ -6598,12 +7766,17 @@ typedef enum {
      * @brief Defines the border color of the checkboxgroup when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * 
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_UNSELECTED_COLOR,
@@ -6612,16 +7785,21 @@ typedef enum {
      * @brief Defines the internal icon style of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1]?.f32: size of the internal mark, in vp. Optional.\n
-     * .value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
+     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1].f32: size of the internal mark, in vp. \n
-     * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
+     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * </ul>
+     * 
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_MARK,
@@ -6630,12 +7808,17 @@ typedef enum {
      * @brief Defines the shape of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * </ul>
+     * 
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SHAPE,
@@ -8031,10 +9214,13 @@ typedef enum {
     NODE_SWIPER_EDGE_EFFECT_MODE,
 
     /**
-    * @brief Defines the swiper adapter. The attribute can be set, reset, and obtained as required through APIs.
+    * @brief Swiper组件适配器，支持属性设置，属性重置和属性获取接口。适用场景：当Swiper需要动态加载或复用子组件时使用适配器，如数据量较大的列表轮播、无限循环轮播等场景。
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .object: {@link ArkUI_NodeAdapter} object as the adapter. \n
+    * 属性设置方法参数{@link ArkUI_AttributeItem}格式：\n
+    * .object：使用{@link ArkUI_NodeAdapter}对象作为适配器。建议配合NODE_SWIPER_CACHED_COUNT使用以提升性能。\n
+    * \n
+    * 属性获取方法返回值{@link ArkUI_AttributeItem}格式： \n
+    * .object：返回值格式为{@link ArkUI_NodeAdapter}。 \n
     */
     NODE_SWIPER_NODE_ADAPTER,
 
@@ -9086,55 +10272,30 @@ typedef enum {
     NODE_GRID_ITEM_SELECTED = 1014002,
 
     /**
-    * @brief Defines the column width of the text picker.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * ...\n
-    * .value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * value[0].f32: percentage of total width.\n
-    * value[1].f32: percentage of total width.\n
-    * value[2].f32: percentage of total width.\n
-    * ...\n
-    * value[n].f32: percentage of total width.\n
-    *
-    * @since 18
+     * @brief 设置每一个选择项列宽，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置的第1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等，默认值为不设置时各列均分。</li>
+     * <li>.value[1]?.f32：设置的第2个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。</li>
+     * <li>.value[2]?.f32：设置的第3个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。</li>
+     * <li>...</li>
+     * <li>.value[n]?.f32：设置的第n+1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：第1列宽度，总宽度的百分比。</li>
+     * <li>.value[1].f32：第2列宽度，总宽度的百分比。</li>
+     * <li>.value[2].f32：第3列宽度，总宽度的百分比。</li>
+     * <li>...</li>
+     * <li>.value[n].f32：第n+1列宽度，总宽度的百分比。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
+     * @since 18
     */
     NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
-    /**
-     * @brief Defines the disabled date range of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: A string of dates. The `1st start date`,`1st end date`,`2nd start date`,`2nd end date`,
-     * ...,`nth start date`,`nth end date` of the disabled date range.\n
-     *  Example: 1910-01-01,1910-12-31,2020-01-01,2020-12-31\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: A string of dates.\n
-     *
-     * @since 19
-     */
-    NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
-
-    /**
-     * @brief Defines whether the calendar picker marks today.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: whether the calendar picker marks today. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether the calendar picker marks today.\n
-     *
-     * @since 19
-     */
-    NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
 
     /**
      * @brief Defines the want used to start EmbeddedAbility.
@@ -9160,84 +10321,120 @@ typedef enum {
     NODE_EMBEDDED_COMPONENT_OPTION,
 
     /**
-     * @brief Defines the index of the default selected item in the data selection range of the picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义选择器数据选择范围内默认选中项的索引。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：索引值。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选择器数据选择范围内当前选中项的索引。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_OPTION_SELECTED_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PICKER,
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义是否启用触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用触控反馈。1表示启用反馈，0表示不启用。默认值：1。开启后，是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用触控反馈。1表示启用反馈，0表示不启用。是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_ENABLE_HAPTIC_FEEDBACK = 1018001,
     /**
-     * @brief Defines whether to support scroll looping for the picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义选择器是否支持滚动循环。支持属性设置，属性重置和属性获取接口。
+     * 使用场景：循环滚动适用于选项有限且希望提供快速选择体验的场景（如性别选择）；非循环滚动适用于选项有明确边界、需要限制用户选择范围的场景。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否支持滚动循环。1表示支持滚动循环，0表示不支持。默认值：1。如果子组件的个数小于8个，无论设置为1还是0，都不会循环滚动。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否支持滚动循环。返回0表示不支持滚动循环，返回1表示支持滚动循环。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_CAN_LOOP = 1018002,
     /**
-     * @brief Sets the type and parameters of the selection indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置选择指示器的类型和参数。支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} Format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：参数类型为{@link ArkUI_PickerIndicatorStyle}。默认值：
+     * {
+     * type: PickerIndicatorType.BACKGROUND,
+     * borderRadius: {
+     * value:12,
+     * unit:LengthUnit.vp
+     * },
+     * backgroundColor: 'sys.color.comp_background_tertiary'
+     * }
+     * 未设置时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：当前设置的选择指示器样式对象，类型为{@link ArkUI_PickerIndicatorStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
-
     /**
-     * @brief Sets the total number of visible items.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Picker容器可见选项的数量，语义与ArkTS侧UIPickerComponent的displayedItemCount一致。
+     * 未设置时，可见选项为7行。Picker为立体滚轮样式时，除选中项外的选项会按角度旋转，实际可视高度会小于选项行高；若增大可见行数或行高，请相应增大容器高度，详见UIPickerComponent。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: number of visible items. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: number of visible items. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：可见选项数量。取值范围为<b>[2, 9]</b>内的整数。传入小数时按向下取整处理；
+     * 传入偶数时，会规范为不小于该值的奇数（例如2变为3、8变为9）。不在取值范围内时使用默认值<b>7</b>。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：当前Picker容器可见选项的数量，取值范围为[2, 9]内的整数。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 26.0.0
      */
     NODE_PICKER_DISPLAYED_ITEM_COUNT = 1018004,
-
     /**
-     * @brief Sets the height of each item.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Picker容器每个选项的高度，语义与ArkTS侧UIPickerComponent的itemHeight一致。
+     * 未设置时，每个选项高度为40vp。CAPI以vp为单位传入高度值。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: the height of each item, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: the height of each item, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：选项高度，单位为vp。有效范围为<b>[40, 64]</b>。小于40vp或大于64vp时使用默认值<b>40</b>vp。不支持百分比。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：当前选项高度，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 26.0.0
      */
     NODE_PICKER_ITEM_HEIGHT = 1018005,
@@ -9604,13 +10801,11 @@ typedef enum {
     NODE_ON_CLICK_EVENT = 26,
 
     /**
-     * @brief Defines the event triggered when the mouse pointer hovers over or moves away from a component.
+     * @brief 定义鼠标指针移至组件上方或远离组件时触发的事件。 \n
+     * 当鼠标指针移到组件上方或远离组件时触发该事件。 \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合类型为{@link ArkUI_UIInputEvent}。 \n
      *
-     * This event is triggered when the mouse pointer enters or leaves the component's bounding box. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_UIInputEvent}. \n
-     *
-     *@since 17
+     * @since 17
      */
     NODE_ON_HOVER_EVENT = 27,
 
@@ -9815,19 +11010,23 @@ typedef enum {
      * This event is triggered when an image is successfully loaded or decoded. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains nine parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: loading status. The value <b>0</b> indicates that the image is
-     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: height of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: width of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: height of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: offset of the rendered content relative to the component on the
-     * x-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: offset of the rendered content relative to the component on the
-     * y-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: actual rendered width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: actual rendered height of the image, in px. \n
+     * **{@link ArkUI_NodeComponentEvent} contains nine parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: loading status. The value <b>0</b> indicates that the image is
+     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: height of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32: width of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32: height of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[5].f32: offset of the rendered content relative to the component on the
+     * x-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[6].f32: offset of the rendered content relative to the component on the
+     * y-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[7].f32: actual rendered width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[8].f32: actual rendered height of the image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
@@ -9836,10 +11035,13 @@ typedef enum {
      * This event is triggered when an error occurs during image loading. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>error code:\n
-     * 401: The image could not be obtained because the image path is invalid. \n
-     * 103101: The image format is not supported. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: error code.<br><b>401</b>: The image could not be obtained because
+     * the image path is invalid.<br><b>103101</b>: The image format is not supported.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_ON_ERROR,
     /**
@@ -9849,17 +11051,23 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_ON_SVG_PLAY_FINISH,
     /**
-     * @brief Defines image download process event.
+     * @brief Defines the image download progress event.
      *
      * This event is triggered when downloading webpage images from page components.\n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].u32</b>: the num of bytes downloaded. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].u32</b>: the total number of bytes to download. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].u32: number of bytes downloaded.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].u32: total number of bytes to download.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
@@ -9868,9 +11076,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.
-     *
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:** \n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.</li>
+     * </ul>
+     * 
+     * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
@@ -9991,56 +11202,48 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
 
     /**
-     * @brief Defines the event triggered when text is about to be entered.
+     * @brief 定义在将要输入时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
-     * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：插入的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：插入的值。
+     * @return 在返回true时，表示正常插入，返回false时，表示不插入。
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。\n
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_WILL_INSERT = 7009,
 
     /**
-     * @brief Defines the event triggered when text is entered.
+     * @brief 定义在输入完成时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：插入的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：插入的值。
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_DID_INSERT = 7010,
 
     /**
-     * @brief Defines the event triggered when text is about to be deleted.
+     * @brief 定义在将要删除时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text to delete, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
-     * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：删除的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：删除的值。
+     * @return 在返回true时，表示正常插入，返回false时，表示不插入。\n
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。\n
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_WILL_DELETE = 7011,
 
     /**
-     * @brief Defines the event triggered when text is deleted.
+     * @brief 定义在删除完成时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text deleted, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：删除的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：删除的值。
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
@@ -10221,42 +11424,37 @@ typedef enum {
     NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
 
     /**
-     * @brief Defines the event triggered when text is about to be entered.
+     * @brief 定义在将要输入时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
-     * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：插入的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：插入的值。
+     * @return 在返回true时，表示正常插入，返回false时，表示不插入。
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。\n
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_WILL_INSERT = 8008,
 
     /**
-     * @brief Defines the event triggered when text is entered.
+     * @brief 定义在输入完成时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：插入的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：插入的值。
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_DID_INSERT = 8009,
 
     /**
-     * @brief Defines the event triggered when text is about to be deleted.
+     * @brief 定义在将要删除时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text to delete, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
-     * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为0的value.f32：删除的值的位置信息。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetNumberValue}获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。\n
+     * 通过{@link OH_ArkUI_NodeEvent_GetStringValue}获取到index为0的buffer字符串：删除的值。
+     * @return 在返回true时，表示正常插入，返回false时，表示不插入。\n
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。\n
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_WILL_DELETE = 8010,
 
@@ -10363,66 +11561,83 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b><b>1</b>: selected; <b>0</b>: not selected.\n
+     * 
+     * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
     /**
-     * @brief Defines the event triggered when a date is selected in the <b>ARKUI_NODE_DATE_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_DATE_PICKER列表组件的滚动触摸事件枚举值。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: month of the selected date. Value range: [0-11]. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: day of the selected date. \n
+     * 触发该事件的条件：选择日期时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含3个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示选中时间的年。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示选中时间的月，取值范围：[0-11]。</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].i32：表示选中时间的天。</li>
+     * </ul>
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
 
     /**
-     * @brief Defines the event triggered when a time is selected in the <b>ARKUI_NODE_TIME_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_TIME_PICKER列表组件的滚动触摸事件枚举值。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: hour of the selected time. Value range: [0-23]. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: minute of the selected time. Value range: [0-59]. \n
+     * 触发该事件的条件：选择时间时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示选中时间的时，取值范围：[0-23]。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示选中时间的分，取值范围：[0-59]。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
 
     /**
-     * @brief Defines the event triggered when an item is selected in the <b>ARKUI_NODE_TEXT_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_TEXT_PICKER列表组件的滚动触摸事件枚举值。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * 触发该事件的条件：选择文本时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0...11].i32：表示选中数据的维度。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
 
     /**
-     * @brief Defines the event triggered when an item is selected and scrolling has stopped in the
-     * <b>ARKUI_NODE_TEXT_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_TEXT_PICKER列表组件的滚动触摸事件枚举值。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * 触发该事件的条件：滑动选择文本项停止时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0...11].i32：表示选中数据的维度。</li>
+     * </ul>
      *
+     * @ingroup Textpicker[滑动选择文本选择器]
      * @since 14
      */
     NODE_TEXT_PICKER_EVENT_ON_SCROLL_STOP = 15001,
 
     /**
-     * @brief Defines the event triggered when a date is selected in the <b>NODE_CALENDAR_PICKER</b>.
+     * @brief 定义NODE_CALENDAR_PICKER选中日期时触发的事件。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * <b>ArkUI_NodeComponent.data[0].u32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[1].u32</b>: month of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[2].u32</b>: day of the selected date. \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含3个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].u32：选中的年。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].u32：选中的月。</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].u32：选中的日。</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker[日历选择器]
      */
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
@@ -10431,9 +11646,13 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.\n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**\n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value.</li> \n
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.</li>\n
+     * </ul>
+     * 
+     * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
@@ -10441,55 +11660,64 @@ typedef enum {
      * @brief Defines the event callback function triggered when an object is dragged or clicked by ARKUI_NODE_RADIO.
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * ArkUI_NodeComponentEvent.data[0].i32: option button status. \n
+     * **{@Link ArkUI_NodeComponentEvent} contains one parameter:**\n
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: option button status.</li> \n
+     * </ul>
+     * 
+     * @ingroup Radio[单选框]
      */
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
 
     /**
-     * @brief Defines the event callback function triggered when the animation starts to play.
+     * @brief Defines the event triggered when the animation starts to play.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_START = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_ANIMATOR,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is paused.
+     * @brief Defines the event triggered when the animation playback is paused.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE = 19001,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is repeated.
+     * @brief Defines the event triggered when the animation playback is repeated.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_REPEAT = 19002,
     /**
-     * @brief Defines the event callback function when the animation playback returns to the initial state.
+     * @brief Defines the event triggered when the animation playback returns to the initial state.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_CANCEL = 19003,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is complete or stopped.
+     * @brief Defines the event triggered when the animation playback is complete or stopped.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator [图片帧动画]
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
     
     /**
@@ -10500,11 +11728,14 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}. \n
      * <b>ArkUI_StringAsyncEvent.pStr</b>
      * Name: The names of the selected checkboxes;
-     * Status:
-     * 0: All checkboxes are selected.
-     * 1: Some checkboxes are selected.
-     * 2: No checkboxes are selected. \n
+     * **Status:**
+     * <ul>
+     * <li>0: All checkboxes are selected.</li>
+     * <li>1: Some checkboxes are selected.</li>
+     * <li>2: No checkboxes are selected.</li> \n
+     * </ul>
      *
+     * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
     NODE_CHECKBOX_GROUP_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
@@ -10530,11 +11761,13 @@ typedef enum {
 
     /**
      * @brief 定义TextEditor组件执行粘贴时触发的事件。
-     * <br>系统会根据回调函数返回值判断是否拦截组件的默认行为。
-     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
-     * <br>返回值中索引为0的value.i32表示是否拦截组件的默认行为。
-     * <br>0：不拦截。1：拦截。
      *
+     * 系统会根据回调函数返回值判断是否拦截组件的默认行为。 \n
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否拦截组件的默认行为。 \n
+     * 0：不拦截。1：拦截。 \n
+     *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_PASTE,
@@ -10561,20 +11794,26 @@ typedef enum {
 
     /**
      * @brief 定义TextEditor组件执行剪切时触发的事件。
-     * <br>系统会根据回调函数返回值判断是否拦截组件的默认行为。
-     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
-     * <br>返回值中索引为0的value.i32表示是否拦截组件的默认行为。
-     * <br>0：不拦截。1：拦截。
+     *
+     * 系统会根据回调函数返回值判断是否拦截组件的默认行为。 \n
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否拦截组件的默认行为。 \n
+     * 0：不拦截。1：拦截。 \n
+     *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_CUT,
 
     /**
      * @brief 定义TextEditor组件执行复制时触发的事件。
-     * <br>系统会根据回调函数返回值判断是否拦截组件的默认行为。
-     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
-     * <br>返回值中索引为0的value.i32表示是否拦截组件的默认行为。
-     * <br>0：不拦截。1：拦截。
+     *
+     * 系统会根据回调函数返回值判断是否拦截组件的默认行为。 \n
+     * 可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否拦截组件的默认行为。 \n
+     * 0：不拦截。1：拦截。 \n
+     *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_COPY,
@@ -11324,37 +12563,32 @@ typedef enum {
      */
     NODE_GRID_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
     /**
-     * @brief Defines the event triggered when an item is selected in the <b>ARKUI_NODE_PICKER</b> component.
+     * @brief 定义Picker容器组件中选择某项时触发的事件。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：选中项的值。</li>
+     * </ul>
      *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PICKER,
-     /**
-      * @brief Defines the event triggered when an item is selected and scrolling has stopped in the
-      * <b>ARKUI_NODE_PICKER</b> component.
-      *
-      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-      * {@link ArkUI_NodeComponentEvent}. \n
-      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-      * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
-      *
-      * @since 23
-      */
+    /**
+     * @brief 定义Picker容器组件中选择某项且滚动停止时触发的事件。
+     *
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：选中项的值。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
+     * @since 23
+     */
     NODE_PICKER_EVENT_ON_SCROLL_STOP = 1018001,
 } ArkUI_NodeEventType;
-
-/**
- * @brief Defines the common structure type of a component event.
- *
- * @since 12
- */
-typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
 
 /**
  * @brief Obtains the type of a component event.
@@ -11435,47 +12669,43 @@ ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* ev
 void* OH_ArkUI_NodeEvent_GetUserData(ArkUI_NodeEvent* event);
 
 /**
- * @brief Obtains the numeric-type parameter of a component event.
+ * @brief 获取组件回调事件的数字类型参数。
  *
- * @param event Indicates the pointer to the component event.
- * @param index Indicates the index of the return value.
- * @param value Indicates the return value.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE} if the parameter length exceeds
- *         the limit.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if the data does not exist in the component event.
+ * @param event 组件事件指针。
+ * @param index 返回值索引。
+ * @param value 具体返回值。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE} 组件事件中参数长度超限。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} 组件事件中不存在该数据。
  * @since 12
  */
 int32_t OH_ArkUI_NodeEvent_GetNumberValue(ArkUI_NodeEvent* event, int32_t index, ArkUI_NumberValue* value);
 
 /**
- * @brief Obtains the string-type parameter of a component event. The string data is valid only during an event
- * callback. To use it outside an event callback, you are advised to copy the string data.
+ * @brief 获取组件回调事件的字符串类型参数，字符串数据仅在事件回调过程中有效，需要在事件回调外使用建议进行额外拷贝处理。
  *
- * @param event Indicates the pointer to the component event.
- * @param index Indicates the index of the return value.
- * @param string Indicates the pointer to the string array.
- * @param stringSize Indicates the length of the string array.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE} if the parameter length exceeds
- *         the limit.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if the data does not exist in the component event.
+ * @param event 组件事件指针。
+ * @param index 返回值索引。
+ * @param string 字符串数组的指针。
+ * @param stringSize 字符串数组的长度。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE} 组件事件中参数长度超限。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} 组件事件中不存在该数据。
  * @since 12
  */
 int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index, char** string, int32_t* stringSize);
 
 /**
- * @brief Sets the return value for a component event.
+ * @brief 设置组件回调事件的返回值。
  *
- * @param event Indicates the pointer to the component event.
- * @param value Indicates the numeric-type array.
- * @param size Indicates the array length.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN} if the component event does not support return values.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if data does not exist in the component event.
+ * @param event 组件事件指针。
+ * @param value 事件数字类型数组。
+ * @param size 数组长度。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} 组件事件中不存在该数据。
  * @since 12
  */
 int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue(ArkUI_NodeEvent* event, ArkUI_NumberValue* value, int32_t size);
@@ -11601,13 +12831,13 @@ ArkUI_NodeAdapterHandle OH_ArkUI_NodeAdapter_Create();
 void OH_ArkUI_NodeAdapter_Dispose(ArkUI_NodeAdapterHandle handle);
 
 /**
-* @brief Sets the total number of elements in the specified adapter.
+* @brief 设置Adapter中的元素总数。
 *
-* @param handle Indicates the target component adapter.
-* @param size Indicates the number of elements.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param size 元素数量。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount(ArkUI_NodeAdapterHandle handle, uint32_t size);
@@ -11622,14 +12852,14 @@ int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount(ArkUI_NodeAdapterHandle handle, u
 uint32_t OH_ArkUI_NodeAdapter_GetTotalNodeCount(ArkUI_NodeAdapterHandle handle);
 
 /**
-* @brief Registers an event callback for the adapter.
+* @brief 注册Adapter相关回调事件。在相关回调事件不需要之后，需要执行{@link OH_ArkUI_NodeAdapter_UnregisterEventReceiver}接口注销相关回调事件。
 *
-* @param handle Indicates the target component adapter.
-* @param userData Indicates custom data.
-* @param receiver Indicates the event receiver callback.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param userData 自定义数据。
+* @param receiver 事件接收回调。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_RegisterEventReceiver(
@@ -11644,83 +12874,87 @@ ArkUI_NodeAdapterHandle handle, void* userData, void (*receiver)(ArkUI_NodeAdapt
 void OH_ArkUI_NodeAdapter_UnregisterEventReceiver(ArkUI_NodeAdapterHandle handle);
 
 /**
-* @brief Instructs the specified adapter to reload all elements.
+* @brief 通知Adapter进行全量元素变化。
 *
-* @param handle Indicates the target component adapter.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_ReloadAllItems(ArkUI_NodeAdapterHandle handle);
 
 /**
-* @brief Instructs the specified adapter to reload certain elements.
+* @brief 通知Adapter进行局部元素变化。
 *
-* @param handle Indicates the target component adapter.
-* @param startPosition Indicates the start position of the elements to reload.
-* @param itemCount Indicates the number of the elements to reload.
-*  @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param startPosition 元素变化起始位置。
+* @param itemCount 元素变化数量。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+*         {@link ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_NO_LISTENER_ERROR} NodeAdapter需要添加监听器。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_ReloadItem(
 ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 
 /**
-* @brief Instructs the specified adapter to remove certain elements.
+* @brief 通知Adapter进行局部元素删除。
 *
-* @param handle Indicates the target component adapter.
-* @param startPosition Indicates the start position of the elements to remove.
-* @param itemCount Indicates the number of the elements to remove.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param startPosition 元素删除起始位置。
+* @param itemCount 元素删除数量。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+*         {@link ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_NO_LISTENER_ERROR} NodeAdapter需要添加监听器。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_RemoveItem(
 ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 
 /**
-* @brief Instructs the specified adapter to insert certain elements.
+* @brief 通知Adapter进行局部元素插入。
 *
-* @param handle Indicates the target component adapter.
-* @param startPosition Indicates the start position of the elements to insert.
-* @param itemCount Indicates the number of the elements to insert.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param startPosition 元素插入起始位置。
+* @param itemCount 元素插入数量。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+*         {@link ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_NO_LISTENER_ERROR} NodeAdapter需要添加监听器。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_InsertItem(
 ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 
 /**
-* @brief Instructs the specified adapter to move certain elements.
+* @brief 通知Adapter进行局部元素移位。
 *
-* @param handle Indicates the target component adapter.
-* @param from Indicates the start position of the elements to move.
-* @param to  Indicates the end position of the elements to move.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param from 元素移位起始位置。
+* @param to 元素移位结束位置。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+*         {@link ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_NO_LISTENER_ERROR} NodeAdapter需要添加监听器。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_MoveItem(ArkUI_NodeAdapterHandle handle, uint32_t from, uint32_t to);
 
 /**
-* @brief Obtains all elements stored in the specified adapter.
+* @brief 获取存储在Adapter中的所有元素。
 *
-* This API returns the pointer to the array of the elements. You need to manually release the memory data
-* to which the pointer points.
+* 接口调用会返回元素的数组对象指针，该指针指向的内存数据需要开发者手动释放。
 *
-* @param handle Indicates the target component adapter.
-* @param items Indicates the pointer to the array of the elements in the adapter.
-* @param size Indicates the number of elements.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param handle 组件适配器对象。
+* @param items 适配器内节点数组。
+* @param size 元素数量。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+*         {@link ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_NO_LISTENER_ERROR} NodeAdapter需要添加监听器。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_GetAllItems(ArkUI_NodeAdapterHandle handle, ArkUI_NodeHandle** items, uint32_t* size);
@@ -11770,25 +13004,25 @@ uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex(ArkUI_NodeAdapterEvent* event);
 ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* event);
 
 /**
-* @brief Sets the component to be added to the specified adapter.
+* @brief 设置需要新增到Adapter中的组件。
 *
-* @param event Indicates the target adapter event.
-* @param node Indicates the component to be added.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param event 适配器事件对象。
+* @param node 待添加的组件。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_NodeHandle node);
 
 /**
-* @brief Sets the component ID to be generated.
+* @brief 设置生成的组件标识。
 *
-* @param event Indicates the target adapter event.
-* @param id Indicates the component ID to set.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @param event 适配器事件对象。
+* @param id 设置返回的组件标识。
+* @return 错误码。 \n
+*         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+*         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32_t id);
@@ -12465,13 +13699,13 @@ typedef struct ArkUI_NodeContentEvent ArkUI_NodeContentEvent;
 typedef void (*ArkUI_NodeContentCallback)(ArkUI_NodeContentEvent* event);
 
 /**
- * @brief register a callback function to a node content.
+ * @brief 注册NodeContent事件函数。
  *
- * @param content Indicates the pointer to the node content instance.
- * @param callback Indicates the callback function.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param content 需要注册事件的NodeContent对象。
+ * @param callback 事件触发时需要执行的函数回调。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback);
@@ -12516,105 +13750,105 @@ int32_t OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* 
 void* OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content);
 
 /**
- * @brief Add a node to a node content.
+ * @brief 将一个ArkUI组件节点添加到对应的NodeContent对象下。
  *
- * @param content Indicates the pointer to the node content instance.
- * @param node Indicates the pointer to the node
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the node has already been adopted. add since api 22.
+ * @param content 需要被添加节点的NodeContent对象。
+ * @param node 需要被添加的节点。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 子节点已经被接纳。从API version 22开始支持。
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node);
 
 /**
- * @brief remove a node from a node content.
+ * @brief 删除NodeContent对象下的一个ArkUI组件节点。
  *
- * @param content Indicates the pointer to the node content instance.
- * @param node Indicates the pointer to the node
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param content 需要被删除节点的NodeContent对象。
+ * @param node 需要被删除的节点。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node);
 
 /**
- * @brief insert a node into a node content at a given position.
+ * @brief 将一个ArkUI组件节点插入到对应的NodeContent对象的特定位置下。
  *
- * @param content Indicates the pointer to the node content instance.
- * @param node Indicates the pointer to the node
- * @param position Indicates the position for inserting the node
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the node has already been adopted. add since api 22.
+ * @param content 需要被插入节点的NodeContent对象。
+ * @param node 需要被插入的节点。
+ * @param position 需要被插入的位置。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 子节点已经被接纳。从API version 22开始支持。
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position);
 
 /**
- * @brief Get the size of the component layout area.
- * The layout area size does not include graphic variation attributes such as scaling.
+ * @brief 获取组件布局区域的大小。
+ * 布局区域大小不包含图形变化属性，如缩放。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param size The drawing area size of the component handle, in px.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param node ArkUI_NodeHandle指针。
+ * @param size 组件handle的绘制区域尺寸，单位：px。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* size);
 
 /**
- * @brief Obtain the position of the component layout area relative to the parent component.
- * The relative position of the layout area does not include graphic variation attributes, such as translation.
+ * @brief 获取组件布局区域相对父组件的位置。
+ * 布局区域相对位置不包含图形变化属性，如平移。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param localOffset The offset value of the component handle relative to the parent component, in px.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param node ArkUI_NodeHandle指针。
+ * @param localOffset 组件handle相对父组件的偏移值，单位：px。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOffset* localOffset);
 
 /**
- * @brief Obtain the position of the component layout area relative to the window.
- * The relative position of the layout area does not include graphic variation attributes, such as translation.
+ * @brief 获取组件布局区域相对窗口的位置。
+ * 布局区域相对位置不包含图形变化属性，如平移。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param globalOffset The offset value of the component handle relative to the window, in px.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param node ArkUI_NodeHandle指针。
+ * @param globalOffset 组件handle相对窗口的偏移值，单位：px。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
 
 /**
- * @brief Obtain the position of the component layout area relative to the screen.
- * The relative position of the layout area does not include graphic variation attributes, such as translation.
+ * @brief 获取组件布局区域相对屏幕的位置。
+ * 布局区域相对位置不包含图形变化属性，如平移。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param screenOffset The offset value of the component handle relative to the screen, in px.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param node ArkUI_NodeHandle指针。
+ * @param screenOffset 组件handle相对屏幕的偏移值，单位：px。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset);
 
 /**
- * @brief Obtains the offset of a component relative to the global display.
- * The relative position does not count in transformation attributes, such as translate.
+ * @brief 获取组件相对于全局屏幕的偏移。
+ * 布局区域相对位置不包含图形变化属性，如平移。
  *
- * @param node Pointer to the <b>ArkUI_NodeHandle</b> representing the component.
- * @param offset Offset of the component relative to the global display, in px.
- * @return Result code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param node ArkUI_NodeHandle指针。
+ * @param offset 组件handle相对屏幕的偏移值，单位：px。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 20
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay(ArkUI_NodeHandle node, ArkUI_IntOffset* offset);
@@ -12741,54 +13975,54 @@ int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
  
 /**
- * @brief Obtains the index of the current FrameNode's first child node which is on the tree.
+ * @brief 获取目标节点在树上的第一个子节点的下标。
  *
- * @param node Indicates the target node.
- * @param index The index of the subnode.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node 目标节点的指针。
+ * @param index 子节点的下标值。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
 
 /**
- * @brief Obtains the index of the current FrameNode's last child node which is on the tree.
+ * @brief 获取目标节点在树上的最后一个子节点的下标。
  *
- * @param node Indicates the target node.
- * @param index the index of the subnode.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node 目标节点的指针。
+ * @param index 子节点的下标值。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
 
 /**
- * @brief Obtains a subnode by position with the expand mode.
+ * @brief 用不同的展开模式获取对应下标的子节点。
  *
- * @param node Indicates the target node.
- * @param position Indicates the position of the subnode.
- * @param subnode The pointer to the subnode.
- * @param expandMode Indicates the expand mode. {@link ArkUI_ExpandMode}.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node 目标节点的指针。
+ * @param position 对应子节点的下标。
+ * @param subnode 获取子节点的指针。
+ * @param expandMode 节点遍历展开方式。 {@link ArkUI_ExpandMode}。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t position,
     ArkUI_NodeHandle* subnode, uint32_t expandMode);
 
 /**
- * @brief Collapse the ListItem in its expanded state.
+ * @brief 收起展开状态下的ListItem。
  *
- * @param node Node objects that need to be registered for events.
- * @param userData Custom event parameters are carried back in the callback parameter when the event is triggered.
- * @param onFinish The callback triggered after the completion of the folding animation.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
+ * @param node 需要注册事件的节点对象。
+ * @param userData 自定义事件参数，当事件触发时在回调参数中携带回来。
+ * @param onFinish 在收起动画完成后触发的回调。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+ *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
  * @since 12
  */
 int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData, void (*onFinish)(void* userData));
@@ -12880,56 +14114,54 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontSty
 int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
 
 /**
- * @brief Move the node handle to target parent node as child.
+ * @brief 将节点移动到目标父节点下，作为子节点。
  *
- * @param node The node handle of the node to move.
- * @param target_parent The node handle of target parent.
- * @param index Indicates the index which the node is moved to. If the value is a nagative number of invalid, the
- *              node is moved to the end of the target parent node.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the node has already been adopted. add since api 22.
+ * @param node 待移动的节点对象。
+ * @param target_parent 目标父节点指针。
+ * @param index 转移后的节点下标，如果下标值为非法值，则添加在目标父节点的最后一位。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 子节点已经被接纳。从API version 22开始支持。
  * @since 18
  */
 int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target_parent, int32_t index);
 
 /**
- * @brief Triggers node updates in the current frame.
- * When node attributes are modified after the current frame's build phase,
- * the node updates will be deferred to the next
- * frame. This function forces immediate node updates within the current frame to
- * ensure rendering effects are applied synchronously.
+ * @brief 在当前帧触发节点属性更新。
+ * 
+ * 当前节点的属性在构建阶段后被修改，这些改动不会立即生效，而是延迟到下一帧统一处理。
+ * 此功能强制当前帧内即时节点更新，确保同步应用渲染效果。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node 待更新的节点对象。
+ * @return  错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_InvalidateAttributes(ArkUI_NodeHandle node);
 
 /**
- * @brief Set the cross-language option of the target node handle.
+ * @brief 设置目标节点跨语言设置属性的能力。
  *
- * @param node The target node handle.
- * @param option The cross-language option {@link ArkUI_CrossLanguageOption}.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node 目标节点的指针。
+ * @param option 跨语言配置项 {@link ArkUI_CrossLanguageOption}。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Get the cross-language option of the target node handle.
+ * @brief 获取目标节点跨语言设置属性的配置项。
  *
- * @param node The target node handle.
- * @param option The cross-language option {@link ArkUI_CrossLanguageOption}.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node 目标节点的指针。
+ * @param option 跨语言配置项 {@link ArkUI_CrossLanguageOption}。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
@@ -12986,21 +14218,6 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
 /**
- * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
- * tree or is not rendered yet.
- * Note: the pixelmap should be released through OH_PixelmapNative_Release when it's not used any more.
- *
- * @param node Indicates the target node.
- * @param snapshotOptions the given configuration for taking snapshot, can be null for using default.
- * @param pixelmap Pixelmap pointer created by system, it's the out result.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the snapshot taking failed will null pixelmap returned.
- *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot taking is timeout.
- * @since 15
- */
-/**
  * @brief Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered,
  * the snapshot operation will fail. When the <b>Pixelmap</b> object created is no longer in use, it should be released
  * by calling {@link OH_PixelmapNative_Release}.
@@ -13021,7 +14238,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *         dynamic range mode is not supported.
  *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED} if the isAuto parameter of the color
  *         space or dynamic range mode is set to true for offscreen node snapshot.
- * @since 23
+ * @since 15
  */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);
@@ -13039,37 +14256,36 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
 int32_t OH_ArkUI_GetNodeSnapshotSizeLimitation(int32_t* maxWidth, int32_t* maxHeight);
 
 /**
- * @brief Obtains the offset of a specific node relative to its parent node.
+ * @brief 获取目标节点相对于父节点的偏移值，单位：px。
  *
- * @param node Target node.
- * @param globalOffset Offset of the target node relative to its parent node, in px.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param node 目标节点。
+ * @param globalOffset 目标节点相对父节点的偏移值，单位：px。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
 
 /**
- * @brief 设置组件支持的{@link 多态样式}状态。为了更高效地处理，需传入所关注的状态值及对应的状态处理函数，当关注的状态发生时，处理函数会被执行。可在回调中根据当前状态调整UI样式。当在同一个节点上多次调用该方法时，
- * 将以最后一次传入的状态及处理函数为准。有些类型的组件节点，系统内部已有对某些状态的默认处理。例如，Button组件默认具备对PRESSED状态的样式变化，当在此类组件上使用此方法自定义状态处理时，会先应用系统默认样式变化，
- * 再执行自定义的样式处理，最终效果为两者叠加。可以通过指定excludeInner为true来禁用系统内部的默认样式效果，但这通常取决于系统内部实现规范是否允许。当调用该函数时，
- * 传入的statesChangeHandler函数会立即执行一次，且无需特意注册对NORMAL状态的监听，只要注册了非NORMAL状态，当状态从任意状态变化回NORMAL时，系统都会进行回调，以便应用进行样式复原。
+ * @brief 设置组件支持的多态样式状态。为了更高效地处理，需传入所关注的状态值及对应的状态处理函数，当关注的状态发生时，处理函数会被执行。
+ *        可在回调中根据当前状态调整UI样式。当在同一个节点上多次调用该方法时，将以最后一次传入的状态及处理函数为准。
+ *        有些类型的组件节点，系统内部已有对某些状态的默认处理。例如，Button组件默认具备对PRESSED状态的样式变化，当在此类组件上使用此方法自定义状态处理时，
+ *        会先应用系统默认样式变化，再执行自定义的样式处理，最终效果为两者叠加。
+ *        可以通过指定excludeInner为true来禁用系统内部的默认样式效果，但这通常取决于系统内部实现规范是否允许。当调用该函数时，传入的statesChangeHandler函数会立即执行一次，
+ *        且无需特意注册对NORMAL状态的监听，只要注册了非NORMAL状态，当状态从任意状态变化回NORMAL时，系统都会进行回调，以便应用进行样式复原。
  *
  * @param node 目标节点。
- * @param uiStates 目标节点需要处理的目标UI状态。所有目标UI状态的组合结果可以通过“\|”操作来计算。例如：targetUIStates = ArkUI_UIState::PRESSED \|
- *     ArkUI_UIState::FOCUSED。
- * @param statesChangeHandler Handler for UI state changes.
- *     It rturns the current UI status. The value is the result of combining all current state enum values using the
- *     <b>|</b> operator. You can determine the state using the <b>&</b> operator.
- *     Example: <b>if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)</b>.
- *     However, for checking the normal state, use the equality operator directly.
- *     Example: <b>if (currentStates == ArkUI_UIState::NORMAL)</b>.
+ * @param uiStates 目标节点需要处理的目标UI状态。
+ *        所有目标UI状态的组合结果可以通过“|”操作来计算。例如：targetUIStates = ArkUI_UIState::PRESSED | ArkUI_UIState::FOCUSED。
+ * @param statesChangeHandler UI状态改变处理函数。
+ *        返回当前UI状态，该值是所有当前状态枚举值“|”计算的结果，可以通过执行“&”操作来确定状态。例如：if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)。
+ *        但是，对于正常状态检查，应直接使用等号。例如：if (currentStates == ArkUI_UIState::NORMAL)
  * @param excludeInner 禁止内部默认状态样式的标志。​​true​​表示禁用系统内部的默认样式，false表示不禁用。
- * @param userData statesChangeHandler回调函数中使用的自定义数据。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @param userData onDrawCompleted回调函数中使用的自定义数据。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates,
@@ -13080,9 +14296,9 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
  *
  * @param node 目标节点。
  * @param uiStates 节点需要删除的目标UI状态。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
@@ -13129,62 +14345,61 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
 int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
 
 /**
- * @brief Returns true if the node is in the render state. A node is considered to be in the render state if its
- * corresponding RenderNode is on the render tree.
+ * @brief 获取节点是否处于渲染状态，如果一个节点的对应RenderNode在渲染树上，则处于渲染状态。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param isInRenderState If the node is in the render state.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @param node ArkUI节点指针。
+ * @param isInRenderState 节点是否处于渲染状态。true：处于渲染状态；false：不处于渲染状态。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 方法参数错误。 \n
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
  * @since 23
  */
 int32_t OH_ArkUI_NativeModule_IsInRenderState(ArkUI_NodeHandle node, bool* isInRenderState);
 
 /**
- * @brief The current node adopts the target child node. The node being adopted must not have an existing parent node.
- * This operation does not actually append it as a child, but only allows it to receive life-cycle
- * callbacks as if it were a child.
+ * @brief 当前节点接纳目标节点为附属节点。被接纳的节点不能已有父节点。
+ * 调用该接口实际上不会将其添加为子节点，而是仅允许其接收对应子节点的生命周期回调。
  *
- * @param node ArkUI_NodeHandle pointer, the parent node that will adopt the child node.
- * @param child ArkUI_NodeHandle pointer, the target node being adopted.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- *         {@link ARKUI_ERROR_CODE_NODE_HAS_PARENT} The child already has a parent node.
- *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED} The child can not be adopted.
- *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO} The node can not adopt children.
+ * @param node ArkUI_NodeHandle指针，指定待接纳节点的父节点。
+ * @param child ArkUI_NodeHandle指针，指定待被接纳的子节点。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_HAS_PARENT} 被接纳的节点已有父节点。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED} 节点无法被接纳为附属节点。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO} 节点无法接纳其它附属节点。
  * @since 22
  */
 int32_t OH_ArkUI_NativeModule_AdoptChild(ArkUI_NodeHandle node, ArkUI_NodeHandle child);
 
 /**
- * @brief Remove the target adopted child node.
+ * @brief 移除被接纳的目标附属节点。
  *
- * @param node ArkUI_NodeHandle pointer, the parent node.
- * @param child ArkUI_NodeHandle pointer, the node being removed.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- *         {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN} This child node is not adopted by the parent node.
+ * @param node ArkUI_NodeHandle指针，父节点。
+ * @param child ArkUI_NodeHandle指针，将要被移除的子节点。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN} 节点不是被目标节点接纳的附属节点。
  * @since 22
  */
 int32_t OH_ArkUI_NativeModule_RemoveAdoptedChild(ArkUI_NodeHandle node, ArkUI_NodeHandle child);
 
 /**
- * @brief Sets the inverse color algorithm for components and instances.
+ * @brief 为组件和实例设置反色算法。详细介绍请参考：[利用反色能力快速适配深色模式](../../ui/ui-dark-light-color-adaptation.md#利用反色能力快速适配深色模式)。
  *
- * @param uiContext Indicates the context in which the inverse color feature should take effect.
- *     If the value is null, the feature applies to the entire application process.
- * @param forceDark Indicates whether the inverse color feature is enabled.
- * @param nodeType Indicates the component type for which to enable the inverse color feature.
- *     If the value is ARKUI_NODE_UNDEFINED, enabling the feature for all components.
- * @param colorInvertFunc Indicates the user-defined inverse color algorithm.
- * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         Returns {@link ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID} if force dark config is invalid.
+ * @param uiContext UI实例对象指针。 \n
+ *         如果该值为null，则该功能适用于整个应用进程。
+ * @param forceDark 是否使用反色能力。取值为true：组件使用反色能力，取值为false：组件不使用反色能力。
+ * @param nodeType 指定使用反色能力生效组件范围。 \n
+ *         ARKUI_NODE_UNDEFINED代表对所有组件类型生效。
+ * @param colorInvertFunc 开发者自定义反色算法函数。 \n
+ *         如果该值为nullptr，则对组件使用系统默认反色算法，即三原色取反。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。 \n
+ *         {@link ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID} 反色能力入参错误。
  * @since 20
  */
 int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDark, ArkUI_NodeType nodeType,
@@ -13211,15 +14426,14 @@ int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_N
 
 /**
  * @brief 注销目标节点的基础事件回调。
- *
- * 当前支持的事件类型请参考{@link OH_ArkUI_NativeModule_RegisterCommonEvent}。
+ *        当前支持的事件类型请参考{@link OH_ArkUI_NativeModule_RegisterCommonEvent}。
  *
  * @param node 目标节点。
  * @param eventType 事件类型。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} 暂不支持该事件类型。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} 暂不支持该事件类型。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
@@ -13233,9 +14447,9 @@ int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI
  * @param expectedUpdateInterval 开发人员预期的计算间隔。
  * @param userData 开发者自定义的数据指针，以便在回调函数中处理自定义数据，需确保自定义函数执行时数据有效。
  * @param callback 开发者自定义的回调函数。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_RegisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node, float* ratios,
@@ -13245,50 +14459,48 @@ int32_t OH_ArkUI_NativeModule_RegisterCommonVisibleAreaApproximateChangeEvent(Ar
  * @brief 注销限制回调间隔的可见区域变化的基础事件回调。
  *
  * @param node 目标节点。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_UnregisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node);
 
 /**
- * @brief Converts a point's coordinates from the target node's coordinate system 
- * to the current window's coordinate system, with consideration of the node’s transformation.
+ * @brief 将点的坐标从指定节点的坐标系转换至当前窗口的坐标系。节点的坐标系考虑节点本身的变换，例如，节点A的变换效果为向左平移100，会使得其坐标系中的点的坐标也向左平移100。
  *
- * @param {ArkUI_NodeHandle} currentNode ArkUI_NodeHandle The target node.
- * @param {ArkUI_IntOffset} localPosition The point's coordinates in the target node's local coordinate system, in px.
- * @param {ArkUI_IntOffset*} windowPosition The converted coordinates in the current window's coordinate system, in px.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The target node is not on main tree.
+ * @param currentNode 指定节点。
+ * @param localPosition 点在指定节点坐标系中的坐标，单位：px。
+ * @param windowPosition 指向接收转换后坐标（位于当前窗口坐标系中，单位：px）的指针。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} 节点未挂载到节点树上。
  * @since 23
  */
 int32_t OH_ArkUI_NativeModule_ConvertPositionToWindow(ArkUI_NodeHandle currentNode, ArkUI_IntOffset localPosition, ArkUI_IntOffset* windowPosition);
 
 /**
- * @brief Converts a point's coordinates from the current window's coordinate system 
- * to the target node's coordinate system, with consideration of the node’s transformation.
+ * @brief 将点的坐标从当前窗口的坐标系转换至目标节点的坐标系。节点的坐标系考虑节点本身的变换，例如，节点A的变换效果为向左平移100，会使得其坐标系中的点的坐标也向左平移100。
  *
- * @param {ArkUI_NodeHandle } targetNode ArkUI_NodeHandle The target node.
- * @param {ArkUI_IntOffset} windowPosition The point's coordinates in the current window's coordinate system, in px.
- * @param {ArkUI_IntOffset*} localPosition The converted coordinates in the target node's local coordinate system, in px.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The target node is not on main tree.
+ * @param targetNode 目标节点。
+ * @param windowPosition 点在当前窗口坐标系中的坐标，单位：px。
+ * @param localPosition 指向接收转换后坐标（位于目标节点坐标系中，单位：px）的指针。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。 \n
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} 节点未挂载到节点树上。
  * @since 23
  */
 int32_t OH_ArkUI_NativeModule_ConvertPositionFromWindow(ArkUI_NodeHandle targetNode, ArkUI_IntOffset windowPosition, ArkUI_IntOffset* localPosition);
 
-/** 
- * @brief Stop the animation being executed by the Swiper node.
- * 
- * @param node ArkUI_NodeHandle pointer.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+/**
+ * @brief 停止指定的Swiper节点正在执行的翻页动画。
+ *
+ * @param node 指定的节点。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。 \n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 22
  */
 int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node);
@@ -13322,16 +14534,13 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
 int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
 
 /**
- * @brief set the visiblity of the menubar.
+ * @brief 设置菜单栏的可见性。
  *
- * @param uiContext ArkUI_ContextHandle. - The designated ArkUI container context.
- * @param visible visibility. true indicate the menubar is visible,
-          false indicate the menubar is invisible.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the uiContext is invalid.
-           for example, 1.uiContext is nullptr 2.can not get container by uiContext.
-           3. the uiContext is not belong to atomic service.
+ * @param uiContext ArkUI上下文句柄，指定的ArkUI容器上下文。
+ * @param visible 菜单栏是否可见。true表示菜单栏可见，false表示菜单栏不可见。
+ * @return 错误码。 \n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。 \n
+ *         {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 实例异常（uiContext为空指针、无法通过uiContext获取容器、uiContext不属于原子化服务）。
  * @since 23
  */
 int32_t OH_ArkUI_NativeModule_AtomicServiceMenuBarSetVisible(ArkUI_ContextHandle uiContext, bool visible);

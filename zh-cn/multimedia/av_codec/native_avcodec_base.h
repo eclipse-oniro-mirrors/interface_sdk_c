@@ -1447,7 +1447,7 @@ extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
 /**
  * @brief 用于指定视频解码器关闭时是否输出空白帧的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。
  * 该键是可选的且仅用于视频解码Surface模式。\n
- * 使能后，调用{@OH_VideoDecoder_Stop}接口或者{@OH_VideoDecoder_Destroy}接口时，视频解码器将输出空白帧（通常为黑色）。
+ * 使能后，调用{@link OH_VideoDecoder_Stop}接口或者{@link OH_VideoDecoder_Destroy}接口时，视频解码器将输出空白帧（通常为黑色）。
  * 该机制可避免因解码器突然终止导致的显示残留。
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase

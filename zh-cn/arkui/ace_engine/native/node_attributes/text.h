@@ -89,7 +89,7 @@ typedef enum {
     ARKUI_FONT_WEIGHT_LIGHTER,
     /** 字体粗细适中。 */
     ARKUI_FONT_WEIGHT_MEDIUM,
-    /** 字体粗细正常。 */
+    /** 字体粗细正常。*/
     ARKUI_FONT_WEIGHT_REGULAR
 } ArkUI_FontWeight;
 /**
@@ -121,7 +121,7 @@ typedef enum {
     ARKUI_TEXT_DATA_DETECTOR_TYPE_ADDRESS
 } ArkUI_TextDataDetectorType;
 /**
- * @brief 定义文本实体识别的配置。
+ * @brief 定义文本实体识别的配置。文本实体指的是地址、电话号码等特殊内容实体。
  *
  * @since 24
  */
@@ -149,24 +149,40 @@ typedef enum {
     ARKUI_MARQUEEUPDATEPOLICY_PRESERVEPOSITION = 1
 } ArkUI_MarqueeUpdatePolicy;
 /**
- * @brief 定义文本跑马灯选项类型。
+ * @brief 定义文本跑马灯模式配置项，用于配置文本跑马灯效果的各项显示参数。适用于需要在有限空间内循环展示较长文本内容的场景，如通知栏滚动消息、标题滚动展示等，可有效解决文本超出显示区域时的展示问题。
  *
  * @since 23
  */
 typedef struct ArkUI_TextMarqueeOptions ArkUI_TextMarqueeOptions;
 /**
- * @brief 定义文本控制器。
+ * @brief 定义文本组件的控制器，用于在Native侧对文本组件进行控制和交互。
+ *        可通过{@link OH_ArkUI_TextController_Create}创建控制器对象，创建后必须在使用完毕后调用{@link OH_ArkUI_TextController_Destroy}
+ *        接口销毁对象以释放资源，二者必须成对使用，否则会导致内存泄漏。
+ *        创建控制器后，可使用{@link OH_ArkUI_TextController_SetStyledString}等接口设置文本组件的属性字符串，
+ *        实现对文本内容的动态管理和样式控制。适用于需要在Native层操作文本组件的场景。
+ *
  * @since 26.0.0
  */
 typedef struct OH_ArkUI_TextController OH_ArkUI_TextController;
 /**
- * @brief 定义文本的字体粗细配置。
+ * @brief 定义文本的字体粗细配置，适用于需要精确控制文本字体粗细或需要文本字体粗细跟随设备字体设置变化的应用场景。
+ *        可以通过{@link OH_ArkUI_FontWeightConfigs_Create}接口创建文本字体粗细配置对象，
+ *        使用完毕后必须调用{@link OH_ArkUI_FontWeightConfigs_Destroy}接口销毁对象以释放资源，避免内存泄漏。
+ *        配置创建后通过{@link OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight}接口设置是否启用可变字重调节。
+ *        配置创建后通过{@link OH_ArkUI_FontWeightConfigs_GetEnableVariableFontWeight}接口查看是否启用了可变字重调节。
+ *        配置创建后通过{@link OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory}接口设置文本字体粗细是否跟随设备的字体粗细级别更新。
+ *        配置创建后通过{@link OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory}接口查看文本字体粗细是否跟随设备的字体粗细级别更新。
+ *        当该配置对象被使用且不为空指针时，若用户未通过接口显式设置，各项配置将使用默认值（可变字重调节默认为禁用，文本字体粗细跟随设备字体粗细级别更新默认为启用）。
+ *        当该配置为空指针时，不应用默认值，文本字体粗细行为与父组件保持一致。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_FontWeightConfigs OH_ArkUI_FontWeightConfigs;
 /**
- * @brief 定义文本的字体配置。
+ * @brief 定义文本的字体配置，当前支持通过相关接口设置和获取字体粗细配置，适用于需要自定义字体粗细显示效果的场景。
+ *        可以通过{@link OH_ArkUI_FontConfigs_Create}接口创建字体配置对象，通过{@link OH_ArkUI_FontConfigs_Destroy}接口销毁字体配置对象。
+ *        配置创建后通过{@link OH_ArkUI_FontConfigs_SetFontWeightConfigs}接口设置字体粗细配置，
+ *        通过{@link OH_ArkUI_FontConfigs_GetFontWeightConfigs}接口获取字体粗细配置。
  *
  * @since 24
  */
@@ -297,12 +313,13 @@ void OH_ArkUI_TextMarqueeOptions_SetDelay(ArkUI_TextMarqueeOptions* option, int3
 int32_t OH_ArkUI_TextMarqueeOptions_GetDelay(ArkUI_TextMarqueeOptions* option);
 
 /**
- * @brief 设置文本跑马灯模式配置项是否支持文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。
- *        若两端均有文字未完全显示，则两端同时应用渐隐效果。
+ * @brief 设置文本跑马灯模式配置项是否支持文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。\n
+ *        若两端均有文字未完全显示，则两端同时应用渐隐效果。\n
  *        在渐隐效果开启状态下，{@link ArkUI_NodeAttributeType}中的NODE_CLIP属性将自动锁定为true，不允许设置为false。
  *
  * @param option 文本跑马灯模式配置项。
- * @param fadeout 跑马灯是否支持文字超长时的渐隐效果。true表示支持渐隐效果，false表示不支持渐隐效果。
+ * @param fadeout 跑马灯是否支持文字超长时的渐隐效果。\n
+ *     true表示支持渐隐效果，false表示不支持渐隐效果。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetFadeout(ArkUI_TextMarqueeOptions* option, bool fadeout);
@@ -353,8 +370,7 @@ void OH_ArkUI_TextMarqueeOptions_SetUpdatePolicy(ArkUI_TextMarqueeOptions* optio
  */
 ArkUI_MarqueeUpdatePolicy OH_ArkUI_TextMarqueeOptions_GetUpdatePolicy(ArkUI_TextMarqueeOptions* option);
 /**
- * @brief 创建一个文本实体识别配置对象。
- * 当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
+ * @brief 创建一个文本实体识别配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
  *
  * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
  * @since 24
@@ -371,7 +387,7 @@ void OH_ArkUI_TextDataDetectorConfig_Destroy(OH_ArkUI_TextDataDetectorConfig* co
 /**
  * @brief 创建一个文本控制器对象。
  *
- * @return 返回指向文本控制器对象的指针。
+ * @return 返回指向文本组件控制器对象的指针。如果创建失败，返回空指针。
  * @since 26.0.0
  */
 OH_ArkUI_TextController* OH_ArkUI_TextController_Create();
@@ -379,7 +395,7 @@ OH_ArkUI_TextController* OH_ArkUI_TextController_Create();
 /**
  * @brief 销毁文本控制器。
  *
- * @param controller 文本的控制器。
+ * @param controller 指向文本组件控制器对象的指针。
  * @since 26.0.0
  */
 void OH_ArkUI_TextController_Destroy(OH_ArkUI_TextController* controller);
@@ -415,9 +431,9 @@ void OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(OH_ArkUI_FontWeightC
  * @brief 获取文本字体粗细配置对象是否启用了可变字重调节。
  *
  * @param option 指向文本字体粗细配置对象的指针。
- * @return 返回是否启用可变字重调节。
- *  *      true表示启用可变字重调节。此时如果设置的字重weight取值为[100, 900]范围内任意整数，则字重取值为weight，否则取默认值400。
- *         false表示禁用可变字重调节。此时如果设置的字重weight取值为[100, 900]范围内的整百数值，字重取值为weight；weight是非整百数值时，字重取默认值400。
+ * @return 返回是否启用可变字重调节。\n
+ *         true表示启用可变字重调节。此时如果设置的字重weight取值为[100, 900]范围内任意整数，则字重取值为weight，否则取默认值400。\n
+ *         false表示禁用可变字重调节。此时如果设置的字重weight取值为[100, 900]范围内的整百数值，字重取值为weight；weight是非整百数值时，字重取默认值400。\n
  *         默认值为false。字重weight取值为[100, 900]范围外的值，字重取默认值400。
  * @since 24
  */
@@ -426,10 +442,10 @@ bool OH_ArkUI_FontWeightConfigs_GetEnableVariableFontWeight(OH_ArkUI_FontWeightC
 /**
  * @brief 设置设备的字体粗细级别改变时文本字体粗细是否自动更新。
  *
- * @param option 指向待修改的文本文本字体粗配置对象的指针。
+ * @param option 指向待修改的文本字体粗细配置对象的指针。
  * @param enable 是否启用文本字体粗细跟随设备的字体粗细级别更新。
  *               true表示当设备的字体粗细级别改变时，文本字体粗细将自动更新。
- *               false表示当设备的字体粗细级别改变时，文本字体粗不会自动更新。
+ *               false表示当设备的字体粗细级别改变时，文本字体粗细不会自动更新。
  *               默认值为true。
  * @since 24
  */
@@ -439,8 +455,8 @@ void OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(OH_ArkUI_FontW
  * @brief 获取文本字体粗细是否跟随设备的字体粗细级别更新。
  *
  * @param option 指向文本字体粗细配置对象的指针。
- * @return 返回文本字体粗细是否跟随设备的字体粗细级别更新。
- *         true表示当设备的字体粗细级别改变时，文本字体粗细将自动更新。
+ * @return 返回文本字体粗细是否跟随设备的字体粗细级别更新。\n
+ *         true表示当设备的字体粗细级别改变时，文本字体粗细将自动更新。\n
  *         false表示当设备的字体粗细级别改变时，文本字体粗细不会自动更新。
  * @since 24
  */

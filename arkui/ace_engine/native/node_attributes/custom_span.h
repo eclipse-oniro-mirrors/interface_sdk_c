@@ -48,18 +48,30 @@ extern "C" {
  * @since 12
  */
 typedef struct ArkUI_CustomSpanMeasureInfo ArkUI_CustomSpanMeasureInfo;
+
 /**
  * @brief Defines a struct for the measurement metrics of a custom span.
  *
  * @since 12
  */
 typedef struct ArkUI_CustomSpanMetrics ArkUI_CustomSpanMetrics;
+
 /**
  * @brief Defines a struct for the drawing information of a custom span.
  *
  * @since 12
  */
 typedef struct ArkUI_CustomSpanDrawInfo ArkUI_CustomSpanDrawInfo;
+
+/**
+ * @brief Creates measurement information for this custom span.
+ *
+ * @return Returns a <b>CustomSpanMeasureInfo</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
+ * @since 12
+*/
+ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
+
 /**
  * @brief Disposes of measurement information of this custom span.
  *
@@ -67,6 +79,7 @@ typedef struct ArkUI_CustomSpanDrawInfo ArkUI_CustomSpanDrawInfo;
  * @since 12
 */
 void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
+
 /**
  * @brief Obtains the font size of a custom span.
  *
@@ -76,6 +89,16 @@ void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
  * @since 12
 */
 float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* info);
+
+/**
+ * @brief Creates measurement metrics for this custom span.
+ *
+ * @return Returns a <b>CustomSpanMetrics</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
+ * @since 12
+*/
+ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
+
 /**
  * @brief Disposes of measurement metrics of this custom span.
  *
@@ -83,6 +106,7 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* in
  * @since 12
 */
 void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
+
 /**
  * @brief Sets the width for a custom span.
  *
@@ -95,6 +119,7 @@ void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
  * @since 12
 */
 int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, float width);
+
 /**
  * @brief Sets the height for a custom span.
  *
@@ -107,6 +132,16 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, fl
  * @since 12
 */
 int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, float height);
+
+/**
+ * @brief Creates drawing information for this custom span.
+ *
+ * @return Returns a <b>CustomSpanDrawInfo</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
+ * @since 12
+*/
+ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
+
 /**
  * @brief Disposes of drawing information for this custom span.
  *
@@ -114,6 +149,7 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, f
  * @since 12
 */
 void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
+
 /**
  * @brief Obtains the x-axis offset of the custom span relative to the mounted component.
  *
@@ -123,6 +159,7 @@ void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
+
 /**
  * @brief Obtains the top margin of the custom span relative to the mounted component.
  *
@@ -132,6 +169,7 @@ float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
+
 /**
  * @brief Obtains the bottom margin of the custom span relative to the mounted component.
  *
@@ -141,6 +179,7 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
+
 /**
  * @brief Obtains the baseline offset of the custom span relative to the mounted component.
  *
@@ -151,31 +190,6 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info);
 
-
-/**
- * @brief Creates measurement information for this custom span.
- *
- * @return Returns a <b>CustomSpanMeasureInfo</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 12
-*/
-ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
-/**
- * @brief Creates measurement metrics for this custom span.
- *
- * @return Returns a <b>CustomSpanMetrics</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 12
-*/
-ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
-/**
- * @brief Creates drawing information for this custom span.
- *
- * @return Returns a <b>CustomSpanDrawInfo</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 12
-*/
-ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
 #ifdef __cplusplus
 }
 #endif

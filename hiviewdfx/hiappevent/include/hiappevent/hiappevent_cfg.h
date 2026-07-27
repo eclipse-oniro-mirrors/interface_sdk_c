@@ -50,23 +50,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
- * @brief Event logging switch.
+ * @brief Whether to disable event logging. The default value is false. The value true means to disable the event
+ * logging function, and the value false means the opposite.
  *
  * @since 8
  * @version 1.0
  */
 #define DISABLE "disable"
+
 /**
- * @brief Event file directory storage quota size.
+ * @brief Event file directory storage quota size. The default value is 10MB.
  *
  * @since 8
  * @version 1.0
  */
 #define MAX_STORAGE "max_storage"
+
 #ifdef __cplusplus
 }
 #endif
-
-/** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_CONFIG_H
+/** @} */
