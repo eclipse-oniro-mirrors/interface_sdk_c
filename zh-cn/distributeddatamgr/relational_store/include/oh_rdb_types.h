@@ -35,8 +35,8 @@
  * @since 18
  */
 
-#ifndef OH_RDB_TYPES_H
-#define OH_RDB_TYPES_H
+#ifndef OH_RDB_TYPES_ZH_CN_H
+#define OH_RDB_TYPES_ZH_CN_H
 #include <inttypes.h>
 #include "database/rdb/oh_cursor.h"
 #ifdef __cplusplus

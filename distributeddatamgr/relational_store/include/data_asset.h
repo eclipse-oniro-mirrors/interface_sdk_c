@@ -38,11 +38,7 @@
 #ifndef DATA_ASSET_H
 #define DATA_ASSET_H
 
-#ifdef __cplusplus
-#include <cstddef>
-#else
 #include <stddef.h>
-#endif
 
 #include <stdint.h>
 #ifdef __cplusplus

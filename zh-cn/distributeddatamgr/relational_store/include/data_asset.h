@@ -35,14 +35,10 @@
  * @since 11
  */
 
-#ifndef DATA_ASSET_H
-#define DATA_ASSET_H
+#ifndef DATA_ASSET_ZH_CN_H
+#define DATA_ASSET_ZH_CN_H
 
-#ifdef __cplusplus
-#include <cstddef>
-#else
 #include <stddef.h>
-#endif
 
 #include <stdint.h>
 #ifdef __cplusplus
@@ -342,4 +338,4 @@ int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count);
 
 /** @} */
 
-#endif // DATA_ASSET_H
+#endif // DATA_ASSET_ZH_CN_H
