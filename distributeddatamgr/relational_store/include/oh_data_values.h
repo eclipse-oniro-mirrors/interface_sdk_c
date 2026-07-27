@@ -36,8 +36,8 @@
  *
  * @since 18
  */
-#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_OH_DATA_VALUES_H
-#define OHOS_DISTRIBUTEDDATAMGR_RDB_OH_DATA_VALUES_H
+#ifndef OH_DATA_VALUES_H
+#define OH_DATA_VALUES_H
 #include <inttypes.h>
 #include <stdbool.h>
 
