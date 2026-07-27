@@ -48,13 +48,11 @@ extern "C" {
 typedef enum {
     /**
      * 圆形。
-     *
      * @since 12
      */
     ArkUI_CHECKBOX_SHAPE_CIRCLE = 0,
     /**
      * 圆角方形。
-     *
      * @since 12
      */
     ArkUI_CHECKBOX_SHAPE_ROUNDED_SQUARE,
