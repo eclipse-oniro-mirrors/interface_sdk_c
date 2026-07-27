@@ -56,7 +56,7 @@ typedef struct OH_VObject OH_VObject;
  *
  * @since 10
  */
-struct OH_VObject {
+typedef struct OH_VObject {
     /**
      * OH_VObject结构体的唯一标识符。
      */

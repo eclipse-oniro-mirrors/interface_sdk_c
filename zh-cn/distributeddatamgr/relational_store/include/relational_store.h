@@ -1049,8 +1049,10 @@ typedef struct Rdb_KeyInfo {
 
     /**
      * 表示密钥信息的数据。
+     *
+     * @since 11
      */
-    union Rdb_KeyData {
+    typedef union Rdb_KeyData {
         /**
          * 表示uint64_t类型的数据。
          */

@@ -359,8 +359,8 @@ OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *pre
  * @return 如果执行成功，则返回指向{@link OH_Cursor}实例的指针。如果数据库已关闭或数据库没有响应，则返回nullptr。
  * @since 23
  */
-OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char * const columns[],
-    int len);
+OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_Predicates *predicates,
+    const char *const columns[], int len);
 
 /**
  * @brief 根据SQL语句查询数据库中的数据。

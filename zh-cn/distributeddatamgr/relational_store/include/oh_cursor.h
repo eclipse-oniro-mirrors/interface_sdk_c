@@ -59,7 +59,7 @@ typedef struct OH_Cursor OH_Cursor;
  *
  * @since 10
  */
-struct OH_Cursor {
+typedef struct OH_Cursor {
     /**
      * OH_Cursor结构体的唯一标识符。
      */
