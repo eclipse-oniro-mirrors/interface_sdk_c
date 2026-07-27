@@ -36,8 +36,8 @@
  */
 
 
-#ifndef OH_VALUES_BUCKETS_H
-#define OH_VALUES_BUCKETS_H
+#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_DATA_VALUES_BUCKETS_H
+#define OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_DATA_VALUES_BUCKETS_H
 #include "database/rdb/oh_values_bucket.h"
 #ifdef __cplusplus
 extern "C" {
