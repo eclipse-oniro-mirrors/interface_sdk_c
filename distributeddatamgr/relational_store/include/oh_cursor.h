@@ -36,8 +36,8 @@
  * @since 10
  */
 
-#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_OH_CURSOR_H
-#define OHOS_DISTRIBUTEDDATAMGR_RDB_OH_CURSOR_H
+#ifndef OH_CURSOR_H
+#define OH_CURSOR_H
 
 #include <stdint.h>
 
@@ -318,4 +318,4 @@ int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val,
 
 /** @} */
 
-#endif // OHOS_DISTRIBUTEDDATAMGR_RDB_OH_CURSOR_H
+#endif // OH_CURSOR_H

@@ -36,8 +36,8 @@
  * @since 10
  */
 
-#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_OH_VALUE_OBJECT_H
-#define OHOS_DISTRIBUTEDDATAMGR_RDB_OH_VALUE_OBJECT_H
+#ifndef OH_VALUE_OBJECT_H
+#define OH_VALUE_OBJECT_H
 
 #include <stdint.h>
 
@@ -130,4 +130,4 @@ struct OH_VObject {
 
 /** @} */
 
-#endif // OHOS_DISTRIBUTEDDATAMGR_RDB_OH_VALUE_OBJECT_H
+#endif // OH_VALUE_OBJECT_H

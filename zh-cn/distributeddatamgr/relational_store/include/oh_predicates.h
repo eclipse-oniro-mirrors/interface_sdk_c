@@ -34,8 +34,8 @@
  * @since 10
  */
 
-#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_PREDICATES_H
-#define OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_PREDICATES_H
+#ifndef OH_PREDICATES_ZH_CN_H
+#define OH_PREDICATES_ZH_CN_H
 
 #include <stdint.h>
 
@@ -433,4 +433,4 @@ int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, cons
 
 /** @} */
 
-#endif // OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_PREDICATES_H
+#endif // OH_PREDICATES_ZH_CN_H

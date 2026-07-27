@@ -36,8 +36,8 @@
  * @since 10
  */
 
-#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_OH_VALUES_BUCKET_H
-#define OHOS_DISTRIBUTEDDATAMGR_RDB_OH_VALUES_BUCKET_H
+#ifndef OH_VALUES_BUCKET_H
+#define OH_VALUES_BUCKET_H
 
 #include <stdint.h>
 
@@ -216,4 +216,4 @@ int OH_VBucket_PutUnlimitedInt(OH_VBucket *bucket, const char *field, int sign, 
 
 /** @} */
 
-#endif // OHOS_DISTRIBUTEDDATAMGR_RDB_OH_VALUES_BUCKET_H
+#endif // OH_VALUES_BUCKET_H
