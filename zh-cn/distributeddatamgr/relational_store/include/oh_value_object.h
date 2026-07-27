@@ -34,14 +34,10 @@
  * @since 10
  */
 
-#ifndef OH_VALUE_OBJECT_H
-#define OH_VALUE_OBJECT_H
+#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_VALUE_OBJECT_H
+#define OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_VALUE_OBJECT_H
 
-#ifdef __cplusplus
-#include <cstdint>
-#else
 #include <stdint.h>
-#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -130,4 +126,4 @@ struct OH_VObject {
 
 /** @} */
 
-#endif // OH_VALUE_OBJECT_H
+#endif // OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_VALUE_OBJECT_H

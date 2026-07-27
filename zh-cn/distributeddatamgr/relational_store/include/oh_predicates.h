@@ -34,14 +34,10 @@
  * @since 10
  */
 
-#ifndef OH_PREDICATES_H
-#define OH_PREDICATES_H
+#ifndef OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_PREDICATES_H
+#define OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_PREDICATES_H
 
-#ifdef __cplusplus
-#include <cstdint>
-#else
 #include <stdint.h>
-#endif
 
 #include <stddef.h>
 #include "database/rdb/oh_value_object.h"
@@ -437,4 +433,4 @@ int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, cons
 
 /** @} */
 
-#endif // OH_PREDICATES_H
+#endif // OHOS_DISTRIBUTEDDATAMGR_RDB_ZH_CN_OH_PREDICATES_H
