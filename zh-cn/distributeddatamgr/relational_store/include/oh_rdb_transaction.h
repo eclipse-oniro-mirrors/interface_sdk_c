@@ -37,12 +37,12 @@
 
 #ifndef OH_RDB_TRANSACTION_ZH_CN_H
 #define OH_RDB_TRANSACTION_ZH_CN_H
-#include "database/data/oh_data_values.h"
-#include "database/data/oh_data_values_buckets.h"
+
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
-#include "database/rdb/oh_rdb_types.h"
 #include "database/rdb/oh_values_bucket.h"
+#include "database/data/oh_data_values.h"
+#include "database/data/oh_data_values_buckets.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,8 +66,7 @@ typedef enum OH_RDB_TransType {
     RDB_TRANS_IMMEDIATE,
     /**
      * @brief 与RDB_TRANS_IMMEDIATE类型相似，写事务会立即启动。
-     * <br>RDB_TRANS_EXCLUSIVE和RDB_TRANS_IMMEDIATE类型在WAL模式下相同，
-     * <br>但在其他日志模式下，RDB_TRANS_EXCLUSIVE会阻止其他数据库连接在事务进行时读取数据库。
+     * <br>RDB_TRANS_EXCLUSIVE和RDB_TRANS_IMMEDIATE类型在WAL模式下相同，但在其他日志模式下，RDB_TRANS_EXCLUSIVE会阻止其他数据库连接在事务进行时读取数据库。
      *
      */
     RDB_TRANS_EXCLUSIVE,
@@ -85,7 +84,7 @@ typedef enum OH_RDB_TransType {
 typedef struct OH_RDB_TransOptions OH_RDB_TransOptions;
 
 /**
- * @brief 表示事务类型。
+ * @brief 定义OH_Rdb_Transaction结构体类型。
  *
  * @since 18
  */
@@ -105,7 +104,9 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void);
  * @brief 销毁事务配置对象。
  *
  * @param options 指向{@link OH_RDB_TransOptions}实例的指针。
- * @return 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示无效参数。
+ * @return 返回错误码。
+ *     <br>返回RDB_OK表示成功。
+ *     <br>返回RDB_E_INVALID_ARGS表示无效参数。
  * @since 18
  */
 int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options);
@@ -115,7 +116,9 @@ int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options);
  *
  * @param options 指向{@link OH_RDB_TransOptions}实例的指针。
  * @param type 表示关系型数据库事务类型。
- * @return 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示无效参数。
+ * @return 返回错误码。
+ *     <br>返回RDB_OK表示成功。
+ *     <br>返回RDB_E_INVALID_ARGS表示无效参数。
  * @since 18
  */
 int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type);
@@ -163,27 +166,26 @@ int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans);
 /**
  * @brief 将一行数据插入到目标表中。
  *
- * @param trans 表示指向{@link OH_Rdb_Transaction}实例的指针。
- * @param table 表示目标表名。
- * @param row 表示要插入到表中的数据。
- * @param rowId 输出参数，表示插入成功后返回的行号。
- * @return Returns the status code of the execution.
- *     <br>Returns {@link RDB_OK} if the execution is successful.
- *     <br>Returns {@link RDB_E_ERROR} database common error.
- *     <br>Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- *     <br>Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
- *     <br>Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
- *     <br>Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
- *     <br>Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
- *     <br>Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
- *     <br>Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
- *     <br>Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
- *     <br>Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
- *     <br>Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
- *     <br>Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
- *     <br>Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
- *     <br>Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
-
+ * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
+ * @param table 要插入的目标表名。
+ * @param row 要插入到表中的数据行。
+ * @param rowId 输出参数，表示插入后返回的行号。
+ * @return 返回执行结果。
+ *     <br>返回RDB_OK表示成功。
+ *     <br>返回RDB_E_ERROR表示数据库常见错误。
+ *     <br>返回RDB_E_INVALID_ARGS表示无效参数。
+ *     <br>返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+ *     <br>返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+ *     <br>返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+ *     <br>返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+ *     <br>返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+ *     <br>返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+ *     <br>返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
+ *     <br>返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+ *     <br>返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+ *     <br>返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+ *     <br>返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+ *     <br>返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
  * @since 18
  */
 int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId);
@@ -220,15 +222,13 @@ int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const ch
 
 /**
  * @brief 将一组数据批量插入到目标表中。
- * <br>单次插入参数的最大数量限制为32766，超出上限会返回RDB_E_INVALID_ARGS错误码。
- * <br>参数数量计算方式为插入数据条数乘以插入数据的所有字段的并集大小。
+ * <br>单次插入参数的最大数量限制为32766，超出上限会返回RDB_E_INVALID_ARGS错误码。参数数量计算方式为插入数据条数乘以插入数据的所有字段的并集大小。
  * <br>例如：插入数据的所有字段的并集大小为10，则最多可以插入3276条数据（3276*10=32760）。
  * <br>请确保在调用接口时遵守此限制，以避免因参数数量过多而导致错误。
  *
  * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
  * @param table 要插入的目标表名。
  * @param rows 表示要插入到表中的一组数据。
- * @param resolution 表示发生冲突时的解决策略。
  * @param changes 输出参数，表示插入成功的次数。
  * @return 返回执行结果。
  *     <br>返回RDB_OK表示成功。
@@ -250,7 +250,7 @@ int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const ch
  * @since 18
  */
 int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,
-    Rdb_ConflictResolution resolution, int64_t *changes);
+    int64_t *changes);
 
 /**
  * @brief 根据指定的条件更新数据库中的数据。
@@ -337,19 +337,6 @@ int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH
 int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes);
 
 /**
- * @brief 根据指定的条件查询数据库中的数据，不计算行数。
- *
- * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
- * @param predicates {@link OH_Predicates}指定的查询条件。
- * @param columns 表示要查询的列。如果值为空数组，则查询适用于所有列。
- * @param len 传入的columns数组的长度。若len大于columns数组的实际长度，则会访问越界。
- * @return 如果执行成功，则返回指向{@link OH_Cursor}实例的指针。如果数据库已关闭或数据库没有响应，则返回nullptr。
- * @since 23
- */
-OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_Predicates *predicates,
-    const char *const columns[], int len);
-
-/**
  * @brief 根据指定的条件查询数据库中的数据。
  *
  * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
@@ -360,6 +347,19 @@ OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_
  * @since 18
  */
 OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[],
+    int len);
+
+/**
+ * @brief 根据指定的条件查询数据库中的数据，不计算行数。
+ *
+ * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
+ * @param predicates {@link OH_Predicates}指定的查询条件。
+ * @param columns 要查询的列，如果传入空值，则查询所有列。
+ * @param len 传入的columns数组的长度。若len大于columns数组的实际长度，则会访问越界。
+ * @return 如果执行成功，则返回指向{@link OH_Cursor}实例的指针。如果数据库已关闭或数据库没有响应，则返回nullptr。
+ * @since 23
+ */
+OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char * const columns[],
     int len);
 
 /**
@@ -417,10 +417,44 @@ int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Dat
  * @brief 销毁事务对象。
  *
  * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
- * @return 返回错误码。<br>返回RDB_OK表示成功。<br>返回RDB_E_INVALID_ARGS表示无效参数。
+ * @return 返回错误码。
+ *     <br>返回RDB_OK表示成功。
+ *     <br>返回RDB_E_INVALID_ARGS表示无效参数。
  * @since 18
  */
 int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans);
+/**
+ * @brief 将一组数据批量插入到目标表中。
+ * <br>单次插入参数的最大数量限制为32766，超出上限会返回RDB_E_INVALID_ARGS错误码。参数数量计算方式为插入数据条数乘以插入数据的所有字段的并集大小。
+ * <br>例如：插入数据的所有字段的并集大小为10，则最多可以插入3276条数据（3276*10=32760）。
+ * <br>请确保在调用接口时遵守此限制，以避免因参数数量过多而导致错误。
+ *
+ * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
+ * @param table 要插入的目标表名。
+ * @param rows 表示要插入到表中的一组数据。
+ * @param resolution 表示发生冲突时的解决策略。
+ * @param changes 输出参数，表示插入成功的次数。
+ * @return 返回执行结果。
+ *     <br>返回RDB_OK表示成功。
+ *     <br>返回RDB_E_ERROR表示数据库常见错误。
+ *     <br>返回RDB_E_INVALID_ARGS表示无效参数。
+ *     <br>返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+ *     <br>返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+ *     <br>返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+ *     <br>返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+ *     <br>返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+ *     <br>返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+ *     <br>返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
+ *     <br>返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+ *     <br>返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+ *     <br>返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+ *     <br>返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+ *     <br>返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
+ *     <br>返回RDB_E_SQLITE_CONSTRAINT表示SQLite错误码：SQLite约束。
+ * @since 18
+ */
+int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,
+    Rdb_ConflictResolution resolution, int64_t *changes);
 
 /**
  * @brief 将批量数据插入目标表，并将变更信息输出到上下文中。
@@ -518,6 +552,7 @@ int OH_RdbTrans_UpdateWithReturning(OH_Rdb_Transaction *trans, OH_VBucket *row, 
  */
 int OH_RdbTrans_DeleteWithReturning(
     OH_Rdb_Transaction *trans, OH_Predicates *predicates, OH_RDB_ReturningContext *context);
+
 #ifdef __cplusplus
 };
 #endif
