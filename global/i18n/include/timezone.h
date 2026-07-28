@@ -37,6 +37,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "errorcode.h"
 
 #ifdef __cplusplus
@@ -60,12 +61,14 @@ typedef enum DateRuleType {
     DOW = 1,
 
     /**
-     * @brief Indicates that first weekday after the specified day of the month. For example, October 16 in 2025 is the first Thursday after the 13th, 14th, or 15th day of October.
+     * @brief Indicates that first weekday after the specified day of the month.
+     * For example, October 16 in 2025 is the first Thursday after the 13th, 14th, or 15th day of October.
      */
     DOW_GEQ_DOM = 2,
     
     /**
-     * @brief Indicates that last weekday before the specified day of the month. For example, October 16 in 2025 is the last Thursday before the 20th day of October.
+     * @brief Indicates that last weekday before the specified day of the month.
+     * For example, October 16 in 2025 is the last Thursday before the 20th day of October.
      */
     DOW_LEQ_DOM = 3
 } DateRuleType;
