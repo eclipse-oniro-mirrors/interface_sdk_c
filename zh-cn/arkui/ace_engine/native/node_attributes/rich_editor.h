@@ -200,7 +200,7 @@ void OH_ArkUI_TextEditorPlaceholderOptions_Destroy(OH_ArkUI_TextEditorPlaceholde
 
 /**
  * @brief 为文本编辑器创建一个带样式的字符串控制器对象。当对象不再使用时，调用
- * {@链接OH_ArkUI_TextEditorStyledStringController_Destroy}来销毁它。
+ * {@link OH_ArkUI_TextEditorStyledStringController_Destroy}来销毁它。
  *
  * @return 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
  * @since 24
@@ -217,7 +217,7 @@ void OH_ArkUI_TextEditorStyledStringController_Destroy(OH_ArkUI_TextEditorStyled
 
 /**
  * @brief 为文本编辑器创建段落样式对象。当对象不再使用时，调用
- * {@链接OH_ArkUI_TextEditorParagraphStyle_Destroy}来销毁它。
+ * {@link OH_ArkUI_TextEditorParagraphStyle_Destroy}来销毁它。
  *
  * @return 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
  * @since 24
@@ -234,7 +234,7 @@ void OH_ArkUI_TextEditorParagraphStyle_Destroy(OH_ArkUI_TextEditorParagraphStyle
 
 /**
  * @brief 创建文本样式对象。当对象不再使用时，调用
- * {@链接OH_ArkUI_TextEditorTextStyle_Destroy}来销毁它。
+ * {@link OH_ArkUI_TextEditorTextStyle_Destroy}来销毁它。
  *
  * @return 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
  * @since 24
@@ -251,7 +251,7 @@ void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
 
 /**
  * @brief 创建文本编辑器的文本选择菜单选项对象。当对象不再使用时，调用
- * {@链接OH_ArkUI_TextEditorSelectionMenuOptions_Destroy}来销毁它。
+ * {@link OH_ArkUI_TextEditorSelectionMenuOptions_Destroy}来销毁它。
  *
  * @return 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
  * @since 24
@@ -259,16 +259,16 @@ void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
 OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions_Create();
 
 /**
- * @brief Destroys the text selection menu option object of the text editor.
+ * @brief 销毁文本编辑器的文本选择菜单选项对象。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectionMenuOptions* options);
-/** @} */
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif // ARKUI_NATIVE_NODE_ATTRIBUTES_RICH_EDITOR_H
+/** @} */
