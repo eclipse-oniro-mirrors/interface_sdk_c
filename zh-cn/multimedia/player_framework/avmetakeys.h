@@ -16,7 +16,7 @@
  * @addtogroup avmetakeys
  * @{
  *
- * @brief Defines the avmetakeys.
+ * @brief 定义音视频元数据键。
  *
  * @since 23
  */
