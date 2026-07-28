@@ -588,9 +588,10 @@ Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput*
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param compressionQuality Image compression quality.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
@@ -601,9 +602,10 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param rotation Image rotation, defined in the Camera_ImageRotation enumeration.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
@@ -614,9 +616,10 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptu
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param mirror The switch of the mirror effect. **true** for enabled, **false** for disabled.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
@@ -637,9 +640,10 @@ Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCap
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param location Image location, defined in the Camera_Location enumeration.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
