@@ -16,8 +16,7 @@
  * @addtogroup LowPowerAudioSink
  * @{
  *
- * @brief The LowPowerAudioSink sub module provides variables, properties, and functions
- * for lowpower audio sink.
+ * @brief LowPowerAudioSink子模块提供低功耗音频输出的变量、属性和函数。
  *
  * @since 20
  */
