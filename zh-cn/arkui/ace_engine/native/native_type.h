@@ -66,7 +66,7 @@ extern "C" {
 struct ArkUI_Node;
 
 /**
- * @brief Defines the pointer type of the ArkUI node content
+ * @brief 定义ArkUI_NodeContent在Native侧的实例对象指针，用于在Native接口中引用和传递NodeContent实例。
  *
  * @since 12
  */
@@ -87,14 +87,16 @@ struct ArkUI_NativeDialog;
 typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
 
 /**
- * @brief Defines the structure of the component drawing context.
+ * @brief 定义组件绘制上下文的结构体类型，用于在自定义组件绘制过程中提供绘制上下文信息，
+ * 可获取用于绘制的 Canvas 指针和可绘制区域大小。
  *
  * @since 12
  */
 typedef struct ArkUI_DrawContext ArkUI_DrawContext;
 
 /**
- * @brief Defines the pointer to the ArkUI native component object.
+ * @brief 定义 ArkUI Native 组件实例对象指针，用于在 ArkUI Native 接口中标识和传递组件实例，
+ * 例如创建、挂载、移除或销毁组件节点。
  *
  * @since 12
  */
@@ -310,7 +312,8 @@ typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState;
 typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 
 /**
- * @brief Define the information of the Custom Property class for custom properties.
+ * @brief 定义表示组件自定义属性的 ArkUI_CustomProperty 结构体。
+ 通过相关接口，可以为 ArkUI 组件添加、移除和获取自定义属性，以及获取自定义属性的字符串值。
  *
  * @since 14
  */
@@ -324,14 +327,18 @@ typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo;
 
 /**
- * @brief Define ActiveChildenInfo class information.
+ * @brief 定义ArkUI_ActiveChildrenInfo结构体，用于保存内部活跃状态为true的FrameNode子节点信
+ 息，支持查询子节点数量和按下标获取子节点。
+ 该结构体实例由OH_ArkUI_NodeUtils_GetActiveChildrenInfo生成，使用完毕后必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
  *
  * @since 14
  */
 typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 
 /**
- * @brief The cross-language option.
+ * @brief 定义跨语言配置
+ 项，用于配置目标节点的跨语言访问能力，例如是否允许跨语言修改属性；从API version 26.0.0开始，还可配置节点树跨语言操作状态。
+
  *
  * @since 15
  */
@@ -380,18 +387,19 @@ typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
 typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
 
 /**
- * @brief Defines the event callback type.
+ * @brief 事件回调类型，用于定义回调函数及其用户自定义数据。
+ * 使用该类型的接口触发回调时，会调用callback，并将userData作为参数传入。
  *
  * @since 12
  */
 typedef struct {
     /** Custom type, data of a user-defined type that is passed as a parameter during callbacks. */
     void* userData;
-    /** Event callback. */
+    /** 事件触发时执行的回调函数，调用时会传入userData指向的用户自定义数据。 */
     void (*callback)(void* userData);
 } ArkUI_ContextCallback;
 /**
- * @brief Provides the number types of ArkUI in the native code.
+ * @brief ArkUI 在 Native 侧使用的数字类型，用于通过统一类型承载浮点、有符号整型和无符号整型数值。
  *
  * @since 12
  */
@@ -2489,7 +2497,7 @@ typedef enum {
 } ArkUI_LayoutPolicy;
 
 /**
- * @brief Defines parameter used by the system font style callback event.
+ * @brief 系统字体样式变更事件定义，用于在系统字体大小或字体粗细发生变化时，向已注册的系统字体样式变更回调传递事件信息。
  *
  * @since 12
  */
@@ -4653,7 +4661,7 @@ const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy ActiveChildenInfo instance.
+ * @brief 销毁{@link OH_ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
  *
  * @param handle ActiveChild instance to be destroyed.
  * @since 14
@@ -4671,7 +4679,7 @@ void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
+ * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
  *
  * @param handle The ActiveChildenInfo instance for obtaining information.
  * @return Number of child nodes. Default value: 0.
