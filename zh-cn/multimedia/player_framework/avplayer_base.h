@@ -94,7 +94,7 @@ typedef enum AVPlayerSeekMode {
     /* sync to keyframes after the time point. */
     AV_SEEK_NEXT_SYNC = 0,
     /* sync to keyframes before the time point. */
-    AV_SEEK_PREVIOUS_SYNC,
+    AV_SEEK_PREVIOUS_SYNC = 1,
     /**
      * @brief 同步到距离指定时间点最近的帧。
      * 
@@ -116,45 +116,45 @@ typedef enum AVPlayerSeekMode {
  */
 typedef enum AVPlaybackSpeed {
     /* Video playback at 0.75x normal speed */
-    AV_SPEED_FORWARD_0_75_X,
+    AV_SPEED_FORWARD_0_75_X = 0,
     /* Video playback at normal speed */
-    AV_SPEED_FORWARD_1_00_X,
+    AV_SPEED_FORWARD_1_00_X = 1,
     /* Video playback at 1.25x normal speed */
-    AV_SPEED_FORWARD_1_25_X,
+    AV_SPEED_FORWARD_1_25_X = 2,
     /* Video playback at 1.75x normal speed */
-    AV_SPEED_FORWARD_1_75_X,
+    AV_SPEED_FORWARD_1_75_X = 3,
     /* Video playback at 2.0x normal speed */
-    AV_SPEED_FORWARD_2_00_X,
+    AV_SPEED_FORWARD_2_00_X = 4,
     /**
      * @brief 0.5倍速播放。
      * 
      * @since 12
      */
-    AV_SPEED_FORWARD_0_50_X,
+    AV_SPEED_FORWARD_0_50_X = 5,
     /**
      * @brief 1.5倍速播放。
      * 
      * @since 12
      */
-    AV_SPEED_FORWARD_1_50_X,
+    AV_SPEED_FORWARD_1_50_X = 6,
     /**
      * @brief 3.0倍速播放。
      * 
      * @since 13
     */
-    AV_SPEED_FORWARD_3_00_X,
+    AV_SPEED_FORWARD_3_00_X = 7,
     /**
      * @brief 0.25倍速播放。
      * 
      * @since 13
     */
-    AV_SPEED_FORWARD_0_25_X,
+    AV_SPEED_FORWARD_0_25_X = 8,
     /**
      * @brief 0.125倍速播放。
      * 
      * @since 13
     */
-    AV_SPEED_FORWARD_0_125_X,
+    AV_SPEED_FORWARD_0_125_X = 9,
 } AVPlaybackSpeed;
 
 /**
