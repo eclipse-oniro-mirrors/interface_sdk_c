@@ -15,7 +15,7 @@
 /**
  * @addtogroup AVPlayer
  *
- * @brief Provides APIs of Playback capability for Media Source.
+ * @brief 提供媒体源的播放能力接口。
  *
  * @Syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
@@ -61,7 +61,7 @@ typedef struct MediaKeySession MediaKeySession;
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
- * @brief OH_AVPlayerVideoOutput field.
+ * @brief OH_AVPlayerVideoOutput字段声明。
  * @since 26.0.0
  */ 
 typedef struct OH_AVPlayerVideoOutput OH_AVPlayerVideoOutput;
@@ -992,8 +992,7 @@ uint32_t OH_AVPlayer_GetTrackCount(OH_AVPlayer *player);
 OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex);
 
 /**
- * @brief Method to set video decoded frame output callback. This API can be called only
- *     when the avplayer is in the idle or initalized state.
+ * @brief 设置视频解码帧输出回调的方法。此接口仅在播放器处于空闲或已初始化状态时可调用。
  * @param player Pointer to an OH_AVPlayer instance.
  * @param window A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
  * @return Returns a pointer to an OH_AVPlayerVideoOutput instance, released by system when avplayer was
@@ -1003,8 +1002,7 @@ OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex
 OH_AVPlayerVideoOutput* OH_AVPlayer_SetVideoSideOutput(OH_AVPlayer *player, OHNativeWindow *window);
 
 /**
- * @brief Method to get one video decoded frame. This API can be called only when the avplayer is
- *     in the paused or playing state.
+ * @brief 获取一个已解码视频帧的方法。此接口仅在播放器处于暂停或播放状态时可调用。
  * @param videoOutput Pointer to an OH_AVPlayerVideoOutput instance returned by OH_AVPlayer_SetVideoSideOutput.
  * @return Returns OH_VIDEO_OUTPUT_OK when got a frame.
  *         Returns OH_VIDEO_OUTPUT_NO_IMAGE when there is no frame ready to render.
