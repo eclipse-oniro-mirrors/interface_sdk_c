@@ -16,7 +16,7 @@
  * @addtogroup AVMediaBase
  * @{
  *
- * @brief Defines the structure and enumeration for AVMedia.
+ * @brief 定义AVMedia的结构体和枚举。
  *
  * @since 23
  */
