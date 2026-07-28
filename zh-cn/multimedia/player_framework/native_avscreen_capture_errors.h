@@ -16,7 +16,7 @@
  * @addtogroup AVScreenCapture
  * @{
  *
- * @brief Provides APIs of request capability for Screen Capture.
+ * @brief 提供屏幕录制的请求能力接口。
  * @since 10
  */
 /**
