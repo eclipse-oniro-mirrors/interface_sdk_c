@@ -16,7 +16,7 @@
  * @addtogroup AVMetadataExtractor
  * @{
  *
- * @brief Provides APIs of metadata capability for Media Source.
+ * @brief 提供媒体源的元数据能力接口。
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
