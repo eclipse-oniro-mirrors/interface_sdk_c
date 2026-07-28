@@ -13954,7 +13954,7 @@ void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* nam
 void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name);
 
 /**
- * @brief Get the value of the custom property of the component.
+ * @brief 获取组件的自定义属性，并通过handle返回ArkUI_CustomProperty实例。
  *
  * @param node ArkUI-NodeHandle pointer.
  * @param name The name of the custom attribute.
@@ -13976,7 +13976,8 @@ int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* 
 ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
 
 /**
- * @brief Retrieve all active child nodes of a node. Span will not be counted in the children.
+ * @brief 获取内部活跃状态为true的FrameNode子节点，并生成ArkUI_ActiveChildrenInfo实例。Span不会被计入子节点统计。
+ 获取成功后，可查询子节点数量并按下标读取子节点；实例使用完毕后必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
  *
  * @param head Pass in the node that needs to be obtained.
  * @param handle The structure corresponding to the sub node information of the head node.
