@@ -596,11 +596,12 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
  *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create().
  * @param mode The playback capture mode to set. This can be a combination of the available
- *     {@link #OH_AudioStream_PlaybackCaptureMode}.
- * @return Function result code:
- *     {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
- *     {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1.The param of builder is nullptr;
- *                                             2.The param of mode is invalid.
+ * {@link #OH_AudioStream_PlaybackCaptureMode}.
+ * @return <ul>
+ * <li>{@link #AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ * <li>{@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1.The param of builder is nullptr;
+ * 2.The param of mode is invalid.</li>
+ * </ul>
  * @since 23
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStreamBuilder* builder,
