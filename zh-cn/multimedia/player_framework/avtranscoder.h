@@ -16,7 +16,7 @@
  * @addtogroup AVTranscoder
  * @{
  *
- * @brief Provides APIs of request capability for Transcoder.
+ * @brief 提供转码的请求能力接口。
  *
  * @syscap SystemCapability.Multimedia.Media.AVTranscoder
  * @since 20
