@@ -16,7 +16,7 @@
  * @addtogroup avmedia_source
  * @{
  *
- * @brief Defines APIs for AVMediaSource.
+ * @brief 定义AVMediaSource的接口。
  *
  * @since 23
  */
@@ -328,10 +328,8 @@ OH_AVErrCode OH_AVMediaSourceLoader_Destroy(OH_AVMediaSourceLoader *loader);
 OH_AVErrCode OH_AVMediaSource_SetMediaSourceLoader(OH_AVMediaSource *source, OH_AVMediaSourceLoader *loader);
 
 /**
- * @brief Defines the SourceOpenCallback function which is called by the service.
- * client should process the incoming request
- * and return the unique handle to the open resource.
- * The client must return the handle immediately after processing the request.
+ * @brief 定义由服务端调用的SourceOpenCallback函数。客户端应处理传入的请求，并返回所打开资源的唯一句柄。
+ * 客户端必须在处理完请求后立即返回句柄。
  * @param request Parameters for the resource open request,
  * including detailed information about the requested resource and the data push method.
  * @param userData The data set by user in OH_AVMediaSourceLoader_SetSourceOpenCallback
