@@ -16,8 +16,7 @@
  * @addtogroup AVSinkBase
  * @{
  *
- * @brief The AVSinkBase module provides variables, properties, and functions
- * for lowpower audio sink and lowpower video sink.
+ * @brief AVSinkBase模块提供低功耗音频输出和低功耗视频输出的变量、属性和函数。
  *
  * @since 20
  */
@@ -51,7 +50,7 @@ extern "C" {
 typedef struct OH_AVSamplesBuffer OH_AVSamplesBuffer;
 
 /**
- * @brief Forward declaration of OH_LowPowerAVSink_Capability.
+ * @brief OH_LowPowerAVSink_Capability的前向声明。
  *
  * @since 20
  */
