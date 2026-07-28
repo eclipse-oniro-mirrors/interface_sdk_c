@@ -16,8 +16,7 @@
  * @addtogroup LowPowerVideoSink
  * @{
  *
- * @brief The LowPowerVideoSink submodule provides variables, properties, and functions
- * for lowpower video sink.
+ * @brief LowPowerVideoSink子模块提供低功耗视频输出的变量、属性和函数。
  *
  * @since 20
  */
