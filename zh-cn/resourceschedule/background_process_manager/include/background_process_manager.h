@@ -26,6 +26,7 @@
  * @brief 本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。本模块接口仅对通过
  * {@link OH_Ability_StartNativeChildProcess}接口创建的子进程生效。
  *
+ * @include <background_process_manager/background_process_manager.h>
  * @library libbackground_process_manager.z.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.Resourceschedule.BackgroundProcessManager
@@ -67,23 +68,21 @@ typedef enum BackgroundProcessManager_ProcessPriority {
  */
 typedef enum BackgroundProcessManager_ErrorCode {
     /**
-     * @error result is OK.
+     * @brief 压制参数发送成功。
      *
      * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS = 0,
 
     /**
-     * @error invalid parameter. Possible causes:
-     * 1. priority is out of range.
+     * @brief 参数检查失败。
      *
      * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM = 401,
 
     /**
-     * @error remote error. Possible causes:
-     * 1. remote is not work.
+     * @brief 客户端进程请求系统服务进程，获取系统服务操作失败。
      *
      * @since 17
      */

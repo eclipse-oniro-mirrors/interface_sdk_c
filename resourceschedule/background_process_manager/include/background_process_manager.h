@@ -28,6 +28,7 @@
  * resources and causing system stuttering. The APIs take effect only for the child processes created through
  * {@link OH_Ability_StartNativeChildProcess}.
  *
+ * @include <background_process_manager/background_process_manager.h>
  * @library libbackground_process_manager.z.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.Resourceschedule.BackgroundProcessManager
@@ -72,14 +73,14 @@ typedef enum BackgroundProcessManager_ProcessPriority {
  */
 typedef enum BackgroundProcessManager_ErrorCode {
     /**
-     * @error result is OK.
+     * @brief result is OK.
      *
      * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS = 0,
 
     /**
-     * @error invalid parameter. Possible causes:
+     * @brief invalid parameter. Possible causes:
      * 1. priority is out of range.
      *
      * @since 17
@@ -87,7 +88,7 @@ typedef enum BackgroundProcessManager_ErrorCode {
     ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM = 401,
 
     /**
-     * @error remote error. Possible causes:
+     * @brief remote error. Possible causes:
      * 1. remote is not work.
      *
      * @since 17
