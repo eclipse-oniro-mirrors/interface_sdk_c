@@ -16,7 +16,7 @@
  * @addtogroup AVScreenCapture
  * @{
  *
- * @brief Provides APIs of request capability for Screen Capture.
+ * @brief 提供屏幕录制的请求能力接口。
  * @since 10
  */
 /**
@@ -559,7 +559,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForKeepCaptureDuringCall(
     OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
 
 /**
- * @brief Set the fill mode for screen capture when a privacy window exists
+ * @brief 设置隐私窗口存在时屏幕录制的填充模式。
  * @param strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
  * @param value 
  *         If set to 0, it means that when there is a privacy window interface, the output screen image is completely black. 
@@ -738,7 +738,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetPrivacyProtectCallback(struct 
     OH_AVScreenCapture_OnPrivacyProtect callback, void *userData);
 
 /**
- * @brief Allow to pause screen capture
+ * @brief 允许暂停屏幕录制。
  * @param strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance.
  * @param value The default value is false, which means that screen recording is not allowed to pause
  * @return Function result code.
@@ -750,7 +750,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPause(OH_AVScreenCaptu
     bool value);
 
 /**
- * @brief Pause screen capture
+ * @brief 暂停屏幕录制。
  * @param capture Initialized screen capture instance.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
@@ -761,7 +761,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPause(OH_AVScreenCaptu
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_PauseScreenCapture(struct OH_AVScreenCapture *capture);
 
 /**
- * @brief Resume screen capture
+ * @brief 恢复屏幕录制。
  * @param capture Initialized screen capture instance.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
