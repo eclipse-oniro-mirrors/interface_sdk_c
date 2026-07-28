@@ -1431,12 +1431,12 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: accessibility service model. The parameter type is {@link ArkUI_AccessibilityMode}.</li>
      * </ul>
-     *
+*
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
      * <li>.value[0].i32: accessibility service model. The parameter type is {@link ArkUI_AccessibilityMode}.</li>
      * </ul>
-     *
+     *... 【公共能力组】超大文件采用@ingroup分组并补充zh-cn中文注释
      * @ingroup Accessibility
      * @since 12
      */
@@ -5624,12 +5624,12 @@ typedef enum {
      * <ul>
      * <li>.string: component ID.</li>
      * </ul>
-     *
+*
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
      * <li>.string: component ID.</li>
      * </ul>
-     *
+     *... 【公共能力组】超大文件采用@ingroup分组并补充zh-cn中文注释
      * @ingroup XComponent
      * @since 12
      */
