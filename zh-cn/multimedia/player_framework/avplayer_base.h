@@ -16,7 +16,7 @@
  * @addtogroup AVPlayer
  * @{
  *
- * @brief Provides APIs of Playback capability for Media Source.
+ * @brief 提供媒体源的播放能力接口。
  *
  * @Syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
@@ -272,17 +272,17 @@ typedef enum AVPlayerTrackSwitchMode {
 } AVPlayerTrackSwitchMode;
 
 /**
- * @brief Result of Video output.
+ * @brief 视频输出的结果。
  * @since 26.0.0
  */
 typedef enum OH_VideoOutputResult {
     /**
-     * @brief Output one decoded video frame.
+     * @brief 输出一个已解码的视频帧。
      * @since 26.0.0
      */
     OH_VIDEO_OUTPUT_OK = 0,
     /**
-     * @brief No frame ready to render.
+     * @brief 无帧可渲染。
      * @since 26.0.0
      */
     OH_VIDEO_OUTPUT_NO_IMAGE = 1,
