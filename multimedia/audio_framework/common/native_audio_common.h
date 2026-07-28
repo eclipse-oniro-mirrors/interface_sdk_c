@@ -60,6 +60,13 @@ typedef enum {
     AUDIOCOMMON_RESULT_SUCCESS = 0,
 
     /**
+     * @error This means that caller does not have the required permission.
+     *
+     * @since 26.0.0
+     */
+    AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED = 201,
+
+    /**
      * @error This means that the input parameter is invalid.
      */
     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101,
@@ -83,6 +90,13 @@ typedef enum {
      * @error This means the operation timed out.
      */
     AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,
+
+    /**
+     * @error This means the input audio data does not match the required frame length.
+     *
+     * @since 26.0.0
+     */
+    AUDIOCOMMON_RESULT_ERROR_FRAME_LENGTH_MISMATCH = 6800106,
 
     /**
      * @error This means the stream limit is reached.
