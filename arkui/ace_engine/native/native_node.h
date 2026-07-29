@@ -1397,42 +1397,58 @@ typedef enum {
     /**
      * @brief Sets the accessibility group. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Accessibility group. The value <b>1</b> means that the component and all its child components
-     * form an entire selectable component.
-     * In this case, the accessibility service will no longer be available for the content of its child components.
-     * The value is <b>1</b> or <b>0</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Accessibility group. The value <b>1</b> means that the component and all its child components
-     * form an entire selectable component.
-     * In this case, the accessibility service will no longer be available for the content of its child components.
-     * The value is <b>1</b> or <b>0</b>.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Accessibility group. The value <b>1</b> means that the component and all its child components
+     * form an entire selectable component.</li>
+     * <li>In this case, the accessibility service will no longer be available for the content of
+     * its child components.</li>
+     * <li>The value is <b>1</b> or <b>0</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Accessibility group. The value <b>1</b> means that the component and all its child components
+     * form an entire selectable component.</li>
+     * <li>In this case, the accessibility service will no longer be available for the content of
+     * its child components.</li>
+     * <li>The value is <b>1</b> or <b>0</b>.</li>
+     * </ul>
+     *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_GROUP,
 
     /**
      * @brief Sets the accessibility text. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: accessibility text.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: accessibility text.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: accessibility text.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_TEXT,
 
     /**
-     * @brief Sets the accessibility service model. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets the accessibility service model. This attribute can be set, reset, and obtained as required
+     * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: accessibility service model. The parameter type is {@link ArkUI_AccessibilityMode}.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: accessibility service model. The parameter type is {@link ArkUI_AccessibilityMode}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: accessibility service model. The parameter type is {@link ArkUI_AccessibilityMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: accessibility service model. The parameter type is {@link ArkUI_AccessibilityMode}.</li>
+     * </ul>
+     *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_MODE,
 
@@ -1440,12 +1456,13 @@ typedef enum {
      * @brief Sets the accessibility description.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: accessibility description.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: accessibility description.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: accessibility description.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_DESCRIPTION,
 
@@ -1792,57 +1809,66 @@ typedef enum {
     /**
      * @brief Accessible ID, which can be obtained as required through APIs.
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32：Accessible ID。\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Accessible ID.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_ID = 87,
 
     /**
      * @brief Define accessible actions, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32：accessible action types，and uses the {@link ArkUI_AccessibilityActionType} enumeration value.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32：accessible action types，and uses the {@link ArkUI_AccessibilityActionType} enumeration value.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: accessible action types, and uses the {@link ArkUI_AccessibilityActionType}
+     * enumeration value.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_ACTIONS = 88,
 
     /**
      * @brief Define accessible role, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32：accessible role type，and uses the {@link ArkUI_NodeType} enumeration value.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32：accessible role type，and uses the {@link ArkUI_NodeType} enumeration value.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: accessible role type, and uses the {@link ArkUI_NodeType} enumeration value.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_ROLE = 89,
 
     /**
      * @brief Define accessible state, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object：the parameter type is {@link ArkUI_AccessibilityState}.\n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object：the parameter type is {@link ArkUI_AccessibilityState}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the parameter type is {@link ArkUI_AccessibilityState}.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_STATE = 90,
 
     /**
      * @brief Define accessible value, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object：the parameter type is {@link ArkUI_AccessibilityValue}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object：the parameter type is {@link ArkUI_AccessibilityValue}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the parameter type is {@link ArkUI_AccessibilityValue}.</li>
+     * </ul>
      *
+     * @ingroup Accessibility
+     * @since 12
      */
     NODE_ACCESSIBILITY_VALUE = 91,
     /**
@@ -2389,29 +2415,43 @@ typedef enum {
     NODE_INSPECTOR_LABEL = 126,
 
     /**
-     * @brief Defines the next accessibility focus id of current component for accessibility processing to find the next focus component. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Defines the next accessibility focus id of current component for accessibility processing to find
+     * the next focus component. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: accessibility next focus ID.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: accessibility next focus ID.
-     * \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: accessibility next focus ID.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: accessibility next focus ID.</li>
+     * </ul>
+     *
+     * @ingroup Accessibility
      * @since 26.0.0
      */
     NODE_ACCESSIBILITY_NEXT_FOCUS_ID = 124,
 
     /**
-     * @brief Sets the accessibility default focus flag for accessibility services to find the default focus component. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets the accessibility default focus flag for accessibility services to find the default focus component.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Accessibility default focus. The value <b>1</b> means that the component is defined as default focus in accessibility services.\n
-     * The value is <b>1</b> or <b>0</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Accessibility default focus. The value <b>1</b> means that the component is defined as default focus in accessibility services.\n
-     * The value is <b>1</b> or <b>0</b>.
-     * \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Accessibility default focus. The value <b>1</b> means that the component is defined as
+     * default focus in accessibility services.</li>
+     * <li>The value is <b>1</b> or <b>0</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Accessibility default focus. The value <b>1</b> means that the component is defined
+     * as default focus in accessibility services.</li>
+     * <li>The value is <b>1</b> or <b>0</b>.</li>
+     * </ul>
+     *
+     * @ingroup Accessibility
      * @since 26.0.0
      */
     NODE_ACCESSIBILITY_DEFAULT_FOCUS = 125,
@@ -5590,50 +5630,70 @@ typedef enum {
      * @brief Defines the ID of the <b><XComponent></b> component.
      * This attribute can be set and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component ID. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component ID. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: component ID.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: component ID.</li>
+     * </ul>
+     *
+     * @ingroup XComponent
+     * @since 12
      */
     NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT,
     /**
-     * @brief Specifies the type of the <b>XComponent</b> component. This attribute is read-only. \n
-     * The type of the <b>XComponent</b> component must be explicitly set during creation using {@link ARKUI_NODE_XCOMPONENT} or {@link ARKUI_NODE_XCOMPONENT_TEXTURE}, and cannot be modified afterward. \n
+     * @brief Specifies the type of the <b>XComponent</b> component. This attribute is read-only.
+     * The type of the <b>XComponent</b> component must be explicitly set during creation
+     * using{@link ARKUI_NODE_XCOMPONENT} or {@link ARKUI_NODE_XCOMPONENT_TEXTURE}, and cannot be modified afterward.
      * Attempting to change the type through {@link setAttribute} will cause rendering exceptions.
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type {@link ArkUI_XComponentType}. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: type {@link ArkUI_XComponentType}.</li>
+     * </ul>
      *
+     * @ingroup XComponent
+     * @since 12
      */
     NODE_XCOMPONENT_TYPE,
     /**
-     * @brief Specifies the size of the <b>XComponent</b> component. This attribute is read-only. \n
+     * @brief Specifies the size of the <b>XComponent</b> component. This attribute is read-only.
      * Attempting to modify the size through {@link setAttribute} will have no effect.
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: width, in px. \n
-     * .value[1].u32: height, in px. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: width, in px.</li>
+     * <li>.value[1].u32: height, in px.</li>
+     * </ul>
      *
+     * @ingroup XComponent
+     * @since 12
      */
     NODE_XCOMPONENT_SURFACE_SIZE,
     /**
      * @brief Defines the rectangle information of surface created by the <b><XComponent></b> component.
      * This attribute can be set and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The horizontal offset of the surface relative to XComponent, in pixels. \n
-     * .value[1].i32: The vertical offset of the surface relative to XComponent, in pixels. \n
-     * .value[2].i32: The width of the surface created by XComponent, in pixels. \n
-     * .value[3].i32: The height of the surface created by XComponent, in pixels. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The horizontal offset of the surface relative to XComponent, in pixels. \n
-     * .value[1].i32: The vertical offset of the surface relative to XComponent, in pixels. \n
-     * .value[2].i32: The width of the surface created by XComponent, in pixels. \n
-     * .value[3].i32: The height of the surface created by XComponent, in pixels. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The horizontal offset of the surface relative to XComponent, in pixels.</li>
+     * <li>.value[1].i32: The vertical offset of the surface relative to XComponent, in pixels.</li>
+     * <li>.value[2].i32: The width of the surface created by XComponent, in pixels.</li>
+     * <li>.value[3].i32: The height of the surface created by XComponent, in pixels.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The horizontal offset of the surface relative to XComponent, in pixels.</li>
+     * <li>.value[1].i32: The vertical offset of the surface relative to XComponent, in pixels.</li>
+     * <li>.value[2].i32: The width of the surface created by XComponent, in pixels.</li>
+     * <li>.value[3].i32: The height of the surface created by XComponent, in pixels.</li>
+     * </ul>
+     *
+     * @ingroup XComponent
      * @since 18
      */
     NODE_XCOMPONENT_SURFACE_RECT,
@@ -5641,11 +5701,17 @@ typedef enum {
      * @brief Defines whether to enable the AI analyzer for the <b><XComponent></b> component.
      * This attribute can be set and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The parameter type is 1 or 0.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: The parameter type is 1 or 0.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The parameter type is 1 or 0.</li>
+     * </ul>
+     *
+     * @ingroup XComponent
      * @since 18
      */
     NODE_XCOMPONENT_ENABLE_ANALYZER,
@@ -9845,10 +9911,13 @@ typedef enum {
      * @brief Defines the want used to start EmbeddedAbility.
      * This attribute can be set as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The want of EmbeddedComponent, with parameter type {@AbilityBase_Want}.
-     * The default value is <b>nullptr</b>.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: The want of EmbeddedComponent, with parameter type {@AbilityBase_Want}.</li>
+     * <li>The default value is <b>nullptr</b>.</li>
+     * </ul>
      *
+     * @ingroup EmbeddedComponent
      * @since 20
      */
     NODE_EMBEDDED_COMPONENT_WANT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_EMBEDDED_COMPONENT,
@@ -9857,9 +9926,12 @@ typedef enum {
      * @brief Set onError and onTerminated callbacks for EMBEDDED_COMPONENT.
      * This attribute can be set as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The option for EmbeddedComponent, with parameter type {@ArkUI_EmbeddedComponentOption}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: The option for EmbeddedComponent, with parameter type {@ArkUI_EmbeddedComponentOption}.</li>
+     * </ul>
      *
+     * @ingroup EmbeddedComponent
      * @since 20
      */
     NODE_EMBEDDED_COMPONENT_OPTION,
