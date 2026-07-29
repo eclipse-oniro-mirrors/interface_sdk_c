@@ -23,9 +23,8 @@
  */
 /**
  * @file native_mediakeysession.h
- * @brief The file declares the MediaKeySession APIs for DRM operations.
- * The APIs can be used to generate media key requests, process responses to media key requests, listen for events,
- * obtain content protection levels, check media key status, and remove media keys.
+ * @brief 定义Drm MediaKeySession API。提供以下功能：
+ * 生成媒体密钥请求、处理媒体密钥响应、事件监听、获取内容保护级别、检查媒体密钥状态、删除媒体密钥等。
  * 
  * @library libnative_drm.z.so
  * @syscap SystemCapability.Multimedia.Drm.Core
@@ -47,13 +46,13 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the callback used to listen for media key session events, for example, key expiration events.
+ * @brief MediaKeySession事件触发时将调用的回调函数，如密钥过期事件。
  * 
- * @param eventType Event type.
- * @param info Pointer to the event information obtained from the media key session.
- * @param infoLen Length of the event information.
- * @param extra Pointer to the additional information obtained from the media key session.
- * @return Error code.
+ * @param eventType 输入参数，事件类型。
+ * @param info 输出参数，从媒体密钥会话获取的事件信息。
+ * @param infoLen 输出参数，事件信息长度。
+ * @param extra 输出参数，从媒体密钥会话中获得的额外信息。
+ * @return 错误码。
  * @since 11
  * @version 1.0
  */
@@ -61,43 +60,43 @@ typedef  Drm_ErrCode (*MediaKeySession_EventCallback)(DRM_EventType eventType, u
     int32_t infoLen, char *extra);
 
 /**
- * @brief Call back will be invoked when key changes.
- * @param keysInfo Key info gotten from media key system.
- * @param newKeysAvailable Whether new keys available.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @brief 密钥变更时将调用回调。
+ * 
+ * @param keysInfo 密钥信息。
+ * @param newKeysAvailable 新密钥是否可用，true表示可用，false表示不可用。
+ * @return DRM_ERR_OK：执行成功。
+ * DRM_ERR_INVALID_VAL：参数检查失败。
  * @since 11
  * @version 1.0
  */
 typedef  Drm_ErrCode (*MediaKeySession_KeyChangeCallback)(DRM_KeysInfo *keysInfo, bool newKeysAvailable);
 
 /**
- * @brief The MediaKeySession_Callback struct describes the callbacks for media key session events such as key
- * expiration and key changes. It does not provide a MediaKeySession instance, making it suitable for single-session
- * decryption scenarios.
+ * @brief MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，不返回媒体密钥会话实例，适用于单媒体密钥会话解密场景。
  * 
  * @since 11
  * @version 1.0
  */
 typedef struct MediaKeySession_Callback {
     /**
-     * Callback for standard events, such as key expiration.
+     * 正常事件回调，如密钥过期等。
      */
     MediaKeySession_EventCallback eventCallback;
     /**
-     * Callback for media key change events.
+     * 密钥更改事件的密钥更改回调。
      */
     MediaKeySession_KeyChangeCallback keyChangeCallback;
 } MediaKeySession_Callback;
 
 /**
- * @brief Defines the callback used to listen for media key session events.
+ * @brief 事件触发时将调用的回调函数。事件信息来源于媒体播放过程中的DRM事件，通过MediaKeySession实例触发。
  * 
- * @param mediaKeySession Pointer to the MediaKeySession instance.
- * @param eventType Event type.
- * @param info Pointer to the event information.
- * @param infoLen Length of the event information.
- * @param extra Pointer to the additional information.
- * @return Error code.
+ * @param mediaKeySession 输入参数，会话实例，用于标识事件来源。
+ * @param eventType 输入参数，事件类型。
+ * @param info 输出参数，事件信息，来源于DRM事件。
+ * @param infoLen 输出参数，事件信息长度。
+ * @param extra 输出参数，增量信息，来源于DRM事件。
+ * @return 错误码。
  * @since 12
  * @version 1.0
  */
@@ -105,11 +104,13 @@ typedef Drm_ErrCode (*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKe
     uint8_t *info, int32_t infoLen, char *extra);
 
 /**
- * @brief Call back will be invoked when key changes.
- * @param mediaKeySession MediaKeySession instance.
- * @param keysInfo Key info gotten from media key system.
- * @param newKeysAvailable Whether new keys available.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @brief 密钥变更时将调用的回调。
+ * 
+ * @param mediaKeySession 媒体密钥会话实例。
+ * @param keysInfo 密钥信息。
+ * @param newKeysAvailable 新密钥是否可用，true表示可用，false表示不可用。
+ * @return DRM_ERR_OK：执行成功。
+ * DRM_ERR_INVALID_VAL：参数检查失败。
  * @since 12
  * @version 1.0
  */
@@ -117,20 +118,18 @@ typedef Drm_ErrCode (*OH_MediaKeySession_KeyChangeCallback)(MediaKeySession *med
     bool newKeysAvailable);
 
 /**
- * @brief The OH_MediaKeySession_Callback struct describes the callbacks for media key session events such as key
- * expiration and key changes. It provides a MediaKeySession instance, making it suitable for multi-session decryption
- * scenarios.
+ * @brief OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用于多个媒体密钥会话的解密场景。
  * 
  * @since 12
  * @version 1.0
  */
 typedef struct OH_MediaKeySession_Callback {
     /**
-     * Callback for standard events, such as key expiration.
+     * 正常事件回调，如密钥过期等。
      */
     OH_MediaKeySession_EventCallback eventCallback;
     /**
-     * Callback for media key change events.
+     * 密钥更改事件的密钥更改回调。
      */
     OH_MediaKeySession_KeyChangeCallback keyChangeCallback;
 } OH_MediaKeySession_Callback;
