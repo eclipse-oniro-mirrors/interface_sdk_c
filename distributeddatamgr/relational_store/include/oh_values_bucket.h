@@ -39,11 +39,7 @@
 #ifndef OH_VALUES_BUCKET_H
 #define OH_VALUES_BUCKET_H
 
-#ifdef __cplusplus
-#include <cstdint>
-#else
 #include <stdint.h>
-#endif
 
 #include "database/data/data_asset.h"
 #ifdef __cplusplus
