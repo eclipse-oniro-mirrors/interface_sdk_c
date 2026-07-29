@@ -52,6 +52,9 @@ extern "C" {
  * @return Returns the pointer to the <b>OH_Drawing_FontCollection</b> object created.
  * @since 8
  * @version 1.0
+ * @release OH_Drawing_DestroyFontCollection {return}
+ * @deprecated since 26.1.0
+ * @useinstead OH_Drawing_CreateSharedFontCollection
  */
 OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);
 
@@ -94,6 +97,7 @@ void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontC
  * @return Returns the pointer to the <b>OH_Drawing_FontCollection</b> object created.
  * @since 12
  * @version 1.0
+ * @release OH_Drawing_DestroyFontCollection {return}
  */
 OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
 
