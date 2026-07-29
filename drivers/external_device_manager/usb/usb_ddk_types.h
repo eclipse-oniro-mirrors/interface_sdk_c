@@ -20,6 +20,7 @@
  * @brief Provides USB DDK types and declares the macros, enumerated variables, and
  * data structures required by the USB DDK APIs.
  *
+ * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
@@ -513,6 +514,8 @@ typedef struct Usb_NonRootHubArray {
 } Usb_NonRootHubArray;
 #ifdef __cplusplus
 }
-/** @} */
 #endif /* __cplusplus */
+
+/** @} */
+
 #endif // USB_DDK_TYPES_H
