@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup MetadataObjectExt
+ * @addtogroup OH_Camera
  * @{
  *
  * @brief Provide the definition of the C interface for the camera module.
