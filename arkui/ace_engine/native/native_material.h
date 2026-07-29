@@ -213,12 +213,16 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetStyle(
     ArkUI_ImmersiveMaterialHandle material, ArkUI_ImmersiveStyle* style);
 
 /**
- * @brief Sets the material color of an immersive material object. This parameter is only effective for exquisite
- * and gentle materials. If not set, the default value is 0 which means transparent color.
+ * @brief Sets the material color of an immersive material object. This parameter is effective for all levels of
+ * materials. If not set, the default visual behavior varies by material level: for exquisite and gentle levels,
+ * the material color appears transparent; for smooth level, the default background color of that level is used.
+ * When set, the specified color takes effect on all levels. Calling
+ * {@link OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor} on an unset value will return
+ * {@link ARKUI_ERROR_CODE_PARAM_ERROR}.
  *
  * @param material The pointer to the immersive material object. The parameter
  *        type is {@link ArkUI_ImmersiveMaterialHandle}.
- * @param color The material color in 0xAARRGGBB format. Pass 0 for transparent (default value).
+ * @param color The material color in 0xAARRGGBB format.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -230,12 +234,14 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetMaterialColor(
 
 /**
  * @brief Gets the material color of an immersive material object.
+ * If the value is never set, the function will return {@link ARKUI_ERROR_CODE_PARAM_ERROR}.
  *
  * @param material Pointer to material object. The type is {@link ArkUI_ImmersiveMaterialHandle}.
  * @param color Pointer to color in 0xAARRGGBB format.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_ERROR} if the value is never set.</li>
  *         </ul>
  * @since 26.0.0
  */
