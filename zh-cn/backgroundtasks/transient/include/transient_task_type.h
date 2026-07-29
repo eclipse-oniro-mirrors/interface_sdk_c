@@ -56,55 +56,55 @@ extern "C" {
  */
 typedef enum TransientTask_ErrorCode {
     /**
-     * 成功。
+     * @brief 成功。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_OK = 0,
     /**
-     * 参数检查失败。可能原因：1.必选参数没有传入。2.参数类型错误。
+     * @brief 参数检查失败。可能原因：1.必选参数没有传入。2.参数类型错误。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_INVALID_PARAM = 401,
     /**
-     * Parcel读写操作失败
+     * @brief Parcel读写操作失败
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_PARCEL_FAILED = 9800002,
     /**
-     * IPC通信失败。
+     * @brief IPC通信失败。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_TRANSACTION_FAILED = 9800003,
     /**
-     * 系统服务失败。
+     * @brief 系统服务失败。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_SYS_NOT_READY = 9800004,
     /**
-     * 短时任务客户端信息校验失败。
+     * @brief 短时任务客户端信息校验失败。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED = 9900001,
     /**
-     * 短时任务服务端校验失败。
+     * @brief 短时任务服务端校验失败。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002,
     /**
-     * 短时任务Parcel读写操作失败。可能原因：1.参数非法。2.申请内存失败。
+     * @brief 短时任务Parcel读写操作失败。可能原因：1.参数非法。2.申请内存失败。
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_PARCELABLE_FAILED = 9900003,
     /**
-     * 系统服务失败。
+     * @brief 系统服务失败。
      *
      * @since 13
      */
@@ -119,13 +119,13 @@ typedef enum TransientTask_ErrorCode {
  */
 typedef struct TransientTask_DelaySuspendInfo {
     /**
-     * 短时任务请求ID。
+     * @brief 短时任务请求ID。
      *
      * @since 13
      */
     int32_t requestId;
     /**
-     * 应用实际申请的短时任务时间，单位：ms。
+     * @brief 应用实际申请的短时任务时间，单位：ms。
      *
      * @since 13
      */
@@ -140,13 +140,13 @@ typedef struct TransientTask_DelaySuspendInfo {
  */
 typedef struct TransientTask_TransientTaskInfo {
     /**
-     * 当日剩余总配额。单位：ms。
+     * @brief 当日剩余总配额。单位：ms。
      *
      * @since 20
      */
     int32_t remainingQuota;
     /*
-     * 已申请的所有短时任务信息。包括短时任务请求ID、剩余时间。单位：ms。
+     * @brief 已申请的所有短时任务信息。包括短时任务请求ID、剩余时间。单位：ms。
      *
      * @since 20
      */
