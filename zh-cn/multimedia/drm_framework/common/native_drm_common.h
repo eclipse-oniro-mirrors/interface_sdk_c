@@ -24,7 +24,7 @@
 /**
  * @file native_drm_common.h
  *
- * @brief The file declares the DRM data types.
+ * @brief 定义DRM数据类型。
  * 
  * @library libnative_drm.z.so
  * @syscap SystemCapability.Multimedia.Drm.Core
@@ -44,69 +44,69 @@ extern "C" {
 
 /**
   *
-  * @brief Enumerates the types of events that can be subscribed to.
+  * @brief 监听事件类型。
   * 
   * @since 11
   * @version 1.0
 */
 typedef enum DRM_EventType {
     /**
-     * DRM event.
+     * DRM基础事件。
      */
     EVENT_DRM_BASE = 200,
     /**
-     * Event indicating that the application needs to request a device certificate.
+     * 设备证书请求事件。
      */
     EVENT_PROVISION_REQUIRED = 201,
     /**
-     * Event indicating that the application needs to request a media key.
+     * 密钥请求事件。
      */
     EVENT_KEY_REQUIRED = 202,
     /**
-     * Event indicating that the media key expires.
+     * 密钥过期事件。
      */
     EVENT_KEY_EXPIRED = 203,
     /**
-     * Vendor-defined event.
+     * DRM解决方案自定义事件。
      */
     EVENT_VENDOR_DEFINED = 204,
     /**
-     * Event indicating that the media key is updated on expiry.
+     * 密钥过期更新事件。
      */
     EVENT_EXPIRATION_UPDATE = 206,
   } DRM_EventType;
 
 /**
- * @brief Enumerates the content protection levels.
+ * @brief 内容保护级别。
  * 
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_ContentProtectionLevel {
     /**
-     * Unknown level.
+     * 未知级别。
      */
     CONTENT_PROTECTION_LEVEL_UNKNOWN = 0,
     /**
-     * Software-based content protection.
+     * 软件安全级别。
      */
     CONTENT_PROTECTION_LEVEL_SW_CRYPTO,
     /**
-     * Hardware-based content protection.
+     * 硬件安全级别。
      */
     CONTENT_PROTECTION_LEVEL_HW_CRYPTO,
     /**
-     * Enhanced hardware-based content protection.
+     * 硬件增强级别。
      */
     CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO,
     /**
-     * Maximum content protection level.
+     * 最大安全级别。
      */
     CONTENT_PROTECTION_LEVEL_MAX,
 } DRM_ContentProtectionLevel;
 
 /**
- * @brief Enumerates the types of media keys.
+ * @brief 媒体密钥类型。
  * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -114,17 +114,17 @@ typedef enum DRM_ContentProtectionLevel {
  */
 typedef enum DRM_MediaKeyType {
     /**
-     * Offline media key.
+     * 离线。
      */
     MEDIA_KEY_TYPE_OFFLINE = 0,
     /**
-     * Online media key.
+     * 在线。
      */
     MEDIA_KEY_TYPE_ONLINE,
 } DRM_MediaKeyType;
 
 /**
- * @brief Enumerates the types of media key requests.
+ * @brief 媒体密钥请求类型。
  * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -132,33 +132,33 @@ typedef enum DRM_MediaKeyType {
  */
 typedef enum DRM_MediaKeyRequestType {
     /**
-     * Unknown type.
+     * 未知请求类型。
      */
     MEDIA_KEY_REQUEST_TYPE_UNKNOWN = 0,
     /**
-     * Initialization request.
+     * 初始化请求。
      */
     MEDIA_KEY_REQUEST_TYPE_INITIAL,
     /**
-     * Renewal request.
+     * 续订请求。
      */
     MEDIA_KEY_REQUEST_TYPE_RENEWAL,
     /**
-     * Release request.
+     * 释放请求。
      */
     MEDIA_KEY_REQUEST_TYPE_RELEASE,
     /**
-     * No request.
+     * 无请求。
      */
     MEDIA_KEY_REQUEST_TYPE_NONE,
     /**
-     * Update request.
+     * 更新请求。
      */
     MEDIA_KEY_REQUEST_TYPE_UPDATE,
 } DRM_MediaKeyRequestType;
 
 /**
- * @brief Enumerates the statuses of offline media keys.
+ * @brief 离线媒体密钥状态。
  * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -166,21 +166,21 @@ typedef enum DRM_MediaKeyRequestType {
  */
 typedef enum DRM_OfflineMediaKeyStatus {
     /**
-     * Unknown status.
+     * 未知状态。
      */
     OFFLINE_MEDIA_KEY_STATUS_UNKNOWN = 0,
     /**
-     * The media key is available.
+     * 可用状态。
      */
     OFFLINE_MEDIA_KEY_STATUS_USABLE,
     /**
-     * The media key is inactive.
+     * 失活状态。
      */
     OFFLINE_MEDIA_KEY_STATUS_INACTIVE,
 } DRM_OfflineMediaKeyStatus;
 
 /**
- * @brief Enumerates the device certificate statuses.
+ * @brief 设备DRM证书状态。
  * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -188,57 +188,57 @@ typedef enum DRM_OfflineMediaKeyStatus {
  */
 typedef enum DRM_CertificateStatus {
     /**
-     * A device certificate is provisioned.
+     * 设备已安装设备DRM证书。
      */
     CERT_STATUS_PROVISIONED = 0,
     /**
-     * No device certificate is provisioned or the certificate status is abnormal.
+     * 设备未安装设备DRM证书或证书状态异常。
      */
     CERT_STATUS_NOT_PROVISIONED,
     /**
-     * The device certificate has expired.
+     * 设备DRM证书过期。
      */
     CERT_STATUS_EXPIRED,
     /**
-     * The device certificate is invalid.
+     * 设备DRM证书无效。
      */
     CERT_STATUS_INVALID,
     /**
-     * The device certificate is unavailable.
+     * 设备DRM证书不可用。
      */
     CERT_STATUS_UNAVAILABLE,
 } DRM_CertificateStatus;
 
 /**
- * @brief Maximum number of optional data entries in a media key request.
+ * @brief 媒体密钥请求可选数据的最大数量。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_OPTION_COUNT 16
 /**
- * @brief Maximum length of an optional data name in a media key request.
+ * @brief 媒体密钥请求可选数据名称的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN 64
 /**
- * @brief Maximum length of optional data in a media key request.
+ * @brief 媒体密钥请求可选数据的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN 128
 /**
- * @brief Maximum length of initialization data for a media key request.
+ * @brief 媒体密钥请求初始化数据的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_INIT_DATA_LEN 2048
 /**
- * @brief Maximum length of a MIME type.
+ * @brief 媒体mimetype的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -246,18 +246,18 @@ typedef enum DRM_CertificateStatus {
 #define MAX_MIMETYPE_LEN 64
 
 /**
- * @brief The struct describes the information about a media key request.
+ * @brief 媒体密钥请求信息。
  * 
  * @since 11
  * @version 1.0
  */
 typedef struct DRM_MediaKeyRequestInfo {
     /**
-     * Type of the media key request.
+     * 密钥类型。
      */
     DRM_MediaKeyType type;
     /**
-     * Length of the initialization data.
+     * 初始数据长度。
      */
     int32_t initDataLen;
     /**
@@ -269,7 +269,7 @@ typedef struct DRM_MediaKeyRequestInfo {
      */
     char mimeType[MAX_MIMETYPE_LEN];
     /**
-     * Number of options.
+     * 选项数据计数。
      */
     uint32_t optionsCount;
     /**
@@ -283,32 +283,32 @@ typedef struct DRM_MediaKeyRequestInfo {
 } DRM_MediaKeyRequestInfo;
 
 /**
- * @brief Maximum length of data in a media key request.
+ * @brief 媒体密钥请求数据的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_DATA_LEN 8192
 /**
- * @brief Maximum length of a URL.
+ * @brief URL最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_DEFAULT_URL_LEN 2048
 /**
- * @brief The struct describes a media key request.
+ * @brief 媒体密钥请求。
  * 
  * @since 11
  * @version 1.0
  */
 typedef struct DRM_MediaKeyRequest {
     /**
-     * Type of the media key request.
+     * 媒体密钥请求类型。
      */
     DRM_MediaKeyRequestType type;
     /**
-     * Length of data in the media key request.
+     * 媒体密钥请求数据长度。
      */
     int32_t dataLen;
     /**
@@ -322,21 +322,21 @@ typedef struct DRM_MediaKeyRequest {
 } DRM_MediaKeyRequest;
 
 /**
- * @brief Maximum number of metric records.
+ * @brief 度量记录的最大数量。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_STATISTICS_COUNT 10
 /**
- * @brief Maximum length of a metric name.
+ * @brief 度量记录名称的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_STATISTICS_NAME_LEN 64
 /**
- * @brief Maximum length of a metric buffer.
+ * @brief 度量记录缓冲区的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -344,7 +344,7 @@ typedef struct DRM_MediaKeyRequest {
 #define MAX_STATISTICS_BUFFER_LEN 256
 
 /**
- * @brief The struct describes the metrics for a media key system.
+ * @brief MediaKeySystem的度量信息。
  * 
  * @since 11
  * @version 1.0
@@ -359,14 +359,14 @@ typedef struct DRM_Statistics {
 } DRM_Statistics;
 
 /**
- * @brief Maximum number of offline media key IDs.
+ * @brief 离线媒体密钥标识的最大数量。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_OFFLINE_MEDIA_KEY_ID_COUNT 512
 /**
- * @brief Maximum length of an offline media key ID.
+ * @brief 离线媒体密钥标识的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -374,7 +374,7 @@ typedef struct DRM_Statistics {
 #define MAX_OFFLINE_MEDIA_KEY_ID_LEN 64
 
 /**
- * @brief The struct describes an array of offline media key IDs.
+ * @brief 离线媒体密钥ID数组。
  * 
  * @since 11
  * @version 1.0
@@ -389,21 +389,21 @@ typedef struct DRM_OfflineMediakeyIdArray {
 } DRM_OfflineMediakeyIdArray;
 
 /**
- * @brief Maximum number of key information entries.
+ * @brief 密钥信息的最大数量。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_KEY_INFO_COUNT 64
 /**
- * @brief Maximum length of a key ID.
+ * @brief 密钥标识的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_KEY_ID_LEN 16
 /**
- * @brief Maximum length of a key status value.
+ * @brief 密钥状态值的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -411,7 +411,7 @@ typedef struct DRM_OfflineMediakeyIdArray {
 #define MAX_KEY_STATUS_VALUE_LEN 128
 
 /**
- * @brief The struct describes the information about media keys.
+ * @brief 媒体密钥信息。
  * 
  * @since 11
  * @version 1.0
@@ -426,21 +426,21 @@ typedef struct DRM_KeysInfo {
 } DRM_KeysInfo;
 
 /**
- * @brief Maximum number of media key statuses.
+ * @brief 媒体密钥状态的最大数量。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_STATUS_COUNT 64
 /**
- * @brief Maximum length of a media key status name.
+ * @brief 媒体密钥状态名称的最大长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_STATUS_NAME_LEN 64
 /**
- * @brief Maximum length of a media key status value.
+ * @brief 媒体密钥状态值的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -448,7 +448,7 @@ typedef struct DRM_KeysInfo {
 #define MAX_MEDIA_KEY_STATUS_VALUE_LEN 256
 
 /**
- * @brief The struct describes the media key status.
+ * @brief 媒体密钥状态。
  * 
  * @since 11
  * @version 1.0
@@ -463,14 +463,14 @@ typedef struct DRM_MediaKeyStatus {
 } DRM_MediaKeyStatus;
 
 /**
- * @brief Length of the UUID of a DRM solution.
+ * @brief DRM解决方案的UUID长度。
  * 
  * @since 11
  * @version 1.0
  */
 #define DRM_UUID_LEN 16
 /**
- * @brief Maximum length of PSSH data.
+ * @brief PSSH（Protected System Specific Header）信息的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -478,7 +478,7 @@ typedef struct DRM_MediaKeyStatus {
 #define MAX_PSSH_DATA_LEN 2048
 
 /**
- * @brief The struct describes the Protection System Specific Header (PSSH) data for a DRM system.
+ * @brief DRM内容保护系统专用头（Protection System Specific Header）信息。
  * 
  * @since 11
  * @version 1.0
@@ -489,7 +489,7 @@ typedef struct DRM_PsshInfo {
      */
     uint8_t uuid[DRM_UUID_LEN];
     /**
-     * Length of the PSSH data payload.
+     * PSSH数据长度。
      */
     int32_t dataLen;
     /**
@@ -499,7 +499,7 @@ typedef struct DRM_PsshInfo {
 } DRM_PsshInfo;
 
 /**
- * @brief Maximum number of PSSH data entries.
+ * @brief PSSH（Protected System Specific Header）信息的最大数量。
  * 
  * @since 11
  * @version 1.0
@@ -507,7 +507,7 @@ typedef struct DRM_PsshInfo {
 #define MAX_PSSH_INFO_COUNT 8
 
 /**
- * @brief The struct describes the DRM information for encrypted content.
+ * @brief 加密媒体内容的DRM信息。
  * 
  * @since 11
  * @version 1.0
@@ -520,7 +520,7 @@ typedef struct DRM_MediaKeySystemInfo {
 } DRM_MediaKeySystemInfo;
 
 /**
-* @brief Defines the callback used to obtain DRM information from a media source.
+* @brief 应用为从媒体源获取DRM信息而设置的回调函数。
 * 
 * @since 11
 * @version 1.0
@@ -528,7 +528,7 @@ typedef struct DRM_MediaKeySystemInfo {
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
- * @brief The struct describes a media key system.
+ * @brief MediaKeySystem结构。
  * 
  * @since 11
  * @version 1.0
@@ -536,14 +536,14 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeyS
 typedef struct MediaKeySystem MediaKeySystem;
 
 /**
- * @brief The struct describes a media key session.
+ * @brief MediaKeySession结构。
  * 
  * @since 11
  * @version 1.0
  */
 typedef struct MediaKeySession MediaKeySession;
 /**
- * @brief Maximum length of a MediaKeySystem instance name.
+ * @brief MediaKeySystem名称的最大长度。
  * 
  * @since 12
  * @version 1.0
@@ -551,7 +551,7 @@ typedef struct MediaKeySession MediaKeySession;
 #define MAX_MEDIA_KEY_SYSTEM_NAME_LEN 128
 
 /**
- * @brief Maximum number of MediaKeySystem instances.
+ * @brief MediaKeySystem的最大数量。
  * 
  * @since 12
  * @version 1.0
@@ -559,7 +559,7 @@ typedef struct MediaKeySession MediaKeySession;
 #define MAX_MEDIA_KEY_SYSTEM_NUM 8
 
 /**
- * @brief The struct describes the DRM solution name and UUID list.
+ * @brief DRM解决方案名称及其UUID的列表。
  * 
  * @since 12
  * @version 1.0

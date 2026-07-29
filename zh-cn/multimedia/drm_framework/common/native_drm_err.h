@@ -23,7 +23,7 @@
  */
 /**
  * @file native_drm_err.h
- * @brief The file declares the DRM error codes.
+ * @brief 定义DRM错误码。
  * 
  * @library libnative_drm.z.so
  * @syscap SystemCapability.Multimedia.Drm.Core
@@ -42,7 +42,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the DRM error codes.
+ * @brief DRM错误码。
  * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -50,59 +50,59 @@ extern "C" {
  */
 typedef enum Drm_ErrCode {
     /**
-     * Operation successful.
+     * 操作成功完成。
      */
     DRM_ERR_OK = 0,
     /**
-     * Base error code.
+     * 基础错误。
      */
     DRM_CAPI_ERR_BASE = 24700500,
     /**
-     * Insufficient memory.
+     * 内存不足。
      */
     DRM_ERR_NO_MEMORY = DRM_CAPI_ERR_BASE + 1,
     /**
-     * Operation not permitted.
+     * 不支持的操作。
      */
     DRM_ERR_OPERATION_NOT_PERMITTED = DRM_CAPI_ERR_BASE + 2,
     /**
-     * Invalid parameter.
+     * 无效参数。
      */
     DRM_ERR_INVALID_VAL = DRM_CAPI_ERR_BASE + 3,
     /**
-     * I/O error.
+     * IO错误。
      */
     DRM_ERR_IO = DRM_CAPI_ERR_BASE + 4,
     /**
-     * Network timeout.
+     * 网络超时。
      */
     DRM_ERR_TIMEOUT = DRM_CAPI_ERR_BASE + 5,
     /**
-     * Unknown error.
+     * 未知错误。
      */
     DRM_ERR_UNKNOWN = DRM_CAPI_ERR_BASE + 6,
     /**
-     * DRM service unavailable.
+     * DRM服务死亡。
      */
     DRM_ERR_SERVICE_DIED = DRM_CAPI_ERR_BASE + 7,
     /**
-     * Invalid operation state.
+     * 无效的操作状态。
      */
     DRM_ERR_INVALID_STATE = DRM_CAPI_ERR_BASE + 8,
     /**
-     * Unsupported operation.
+     * 不支持的操作。
      */
     DRM_ERR_UNSUPPORTED = DRM_CAPI_ERR_BASE + 9,
     /**
-     * Too many MediaKeySystem instances.
+     * MediaKeySystem最大实例数。
      */
     DRM_ERR_MAX_SYSTEM_NUM_REACHED = DRM_CAPI_ERR_BASE + 10,
     /**
-     * Too many MediaKeySession instances.
+     * MediaKeySession最大实例数。
      */
     DRM_ERR_MAX_SESSION_NUM_REACHED = DRM_CAPI_ERR_BASE + 11,
     /**
-     * Extended error codes start.
+     * 扩展错误。
      */
     DRM_ERR_EXTEND_START  = DRM_CAPI_ERR_BASE + 100,
 } Drm_ErrCode;
