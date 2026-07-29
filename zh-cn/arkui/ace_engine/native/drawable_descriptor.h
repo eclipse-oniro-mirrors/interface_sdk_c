@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +18,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。
  *
  * @since 12
  */
@@ -52,10 +52,7 @@ extern "C" {
 typedef struct ArkUI_DrawableDescriptor ArkUI_DrawableDescriptor;
 
 /**
- * @brief OH_PixelmapNative结构体是Native层封装的图像解码后无压缩的位图格式结构体，支持像素数据读写、透明度设置、缩放、平移、旋转、翻转、裁剪等操作，
- * 适用于需要在Native层对Pixelmap进行像素级处理与变换的场景。<br>创建OH_PixelmapNative使用{@link OH_PixelmapNative_CreatePixelmap}函数，当未指定源像素格式时，
- * 默认采用BGRA_8888格式处理数据。使用完毕后，必须调用{@link OH_PixelmapNative_Release}函数释放资源，两者需配对使用，否则会导致内存泄漏。<br>
- * OH_PixelmapNative结构体内容和操作方式如下：
+ * @brief 使用Image Kit定义的Native侧的OH_PixelmapNative对象。
  *
  * @since 12
  */
@@ -69,14 +66,15 @@ struct OH_PixelmapNative;
 typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle;
 
 /**
- * @brief 定义ArkUI native组件实例对象。
+ * @brief 定义ArkUI Native组件实例对象，供ArkUI_NodeHandle指针在Native接口中标识和传递组件实例。
  *
  * @since 22
  */
 struct ArkUI_Node;
 
 /**
- * @brief 定义ArkUI native组件实例对象指针。
+ * @brief 定义ArkUI Native组件实例对象指针，用于在ArkUI Native接口中标识和传递组件实例，
+ * 例如创建、挂载、移除或销毁组件节点。
  *
  * @since 22
  */
@@ -115,7 +113,7 @@ typedef enum {
 } DrawableDescriptor_AnimationStatus;
 
 /**
- * @brief 定义{@link DrawableDescriptor}动图的停止模式。
+ * @brief 定义{@link ArkUI_DrawableDescriptor}动图的停止模式。
  *
  * @since 24
  */
@@ -154,7 +152,7 @@ ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromPixelMap(OH_Pixe
  * @brief 使用PixelMap图片数组创建DrawableDescriptor对象。
  *
  * @param array PixelMap图片数组对象指针。
- * @param size PixelMap图片数组大小。
+ * @param size PixelMap图片数组大小，单位为元素个数，必须为正整数；传入NULL数组或size <= 0时返回nullptr。
  * @return 返回DrawableDescriptor对象指针。
  * @since 12
  */
@@ -202,6 +200,8 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize(ArkUI_DrawableD
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
  * @param duration 播放总时长，单位ms。取值范围：[0, +∞)。传入负数时按0处理。
+ *                  该时长设置的优先级低于{@link OH_ArkUI_DrawableDescriptor_SetAnimationFrameDurations}，
+ *                  同时设置两者时本函数设置不生效。
  * @since 12
  */
 void OH_ArkUI_DrawableDescriptor_SetAnimationDuration(ArkUI_DrawableDescriptor* drawableDescriptor, int32_t duration);
@@ -210,7 +210,7 @@ void OH_ArkUI_DrawableDescriptor_SetAnimationDuration(ArkUI_DrawableDescriptor* 
  * @brief 获取PixelMap图片数组播放总时长。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @return 播放总时长，单位ms。
+ * @return 播放总时长，单位ms。未设置时返回0。
  * @since 12
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationDuration(ArkUI_DrawableDescriptor* drawableDescriptor);
@@ -219,7 +219,7 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationDuration(ArkUI_DrawableDescripto
  * @brief 设置PixelMap图片数组播放次数。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @param iteration Indicates the number of playback times.
+ * @param iteration 播放次数。取值范围：[0, +∞)，0表示无限循环播放。传入负数时按0处理。
  * @since 12
  */
 void OH_ArkUI_DrawableDescriptor_SetAnimationIteration(
@@ -229,7 +229,7 @@ void OH_ArkUI_DrawableDescriptor_SetAnimationIteration(
  * @brief 获取PixelMap图片数组播放次数。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @return 播放次数。
+ * @return 播放次数。0表示无限循环播放。
  * @since 12
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationIteration(ArkUI_DrawableDescriptor* drawableDescriptor);
@@ -238,13 +238,12 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationIteration(ArkUI_DrawableDescript
  * @brief 设置动图中的单帧播放时间。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @param durations 动图中的单帧播放时间数组，单位ms。
- *     不设置则按照总时间播放。设置的优先级高于{@link OH_ArkUI_DrawableDescriptor_SetAnimationDuration}，
- *     即同时设置了OH_ArkUI_DrawableDescriptor_SetAnimationDuration和OH_ArkUI_DrawableDescriptor_SetAnimationFrameDurations时，
- *     OH_ArkUI_DrawableDescriptor_SetAnimationDuration不生效。
- *     数组大小必须与PixelMap图片数组大小相同。
- *     每帧播放时间取值范围：[0, +∞)。默认值：均匀分配总时长。
- * @param size 数组大小。
+ * @param durations 动图中的单帧播放时间数组，单位ms。不设置则按照总时间播放。
+ *                  设置的优先级高于{@link OH_ArkUI_DrawableDescriptor_SetAnimationDuration}，
+ *                  即同时设置两者时{@link OH_ArkUI_DrawableDescriptor_SetAnimationDuration}不生效。
+ *                  数组大小必须与PixelMap图片数组大小相同。
+ *                  每帧播放时间取值范围：[0, +∞)。默认值：均匀分配总时长。
+ * @param size 数组大小（元素个数），必须与PixelMap图片数组大小相同，否则返回错误码ARKUI_ERROR_CODE_PARAM_INVALID。
  * @return 错误码。
  *     <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
@@ -260,7 +259,7 @@ int32_t OH_ArkUI_DrawableDescriptor_SetAnimationFrameDurations(
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
  * @param durations 动图中的单帧播放时间数组。
- * @param size 数组大小。
+ * @param size 数组大小（元素个数）。
  * @return 错误码。
  *     <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
@@ -292,7 +291,7 @@ int32_t OH_ArkUI_DrawableDescriptor_SetAnimationAutoPlay(
  * @brief 获取动图是否自动播放。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @param autoPlay 是否自动播放。
+ * @param autoPlay 是否自动播放。1表示自动播放，0表示不自动播放。
  * @return 错误码。
  *     <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
@@ -336,11 +335,13 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationStopMode(
     const ArkUI_DrawableDescriptor* drawableDescriptor, DrawableDescriptor_AnimationStopMode* mode);
 
 /**
- * @brief 创建动图控制器。
+ * @brief 创建动图控制器。当需要手动控制动图播放而非使用自动播放时，通过本接口获取控制器，
+ * 再调用StartAnimation/Pause等控制接口。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @param node 组件节点指针。
- * @param controller DrawableDescriptor动图控制器对象指针。
+ *                            必须是通过{@link OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap}创建的动图对象。
+ * @param node 组件节点指针。必须是有效的ArkUI组件节点。
+ * @param controller DrawableDescriptor动图控制器对象指针。输出参数，调用成功时返回控制器指针。
  * @return 错误码。
  *     <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
@@ -373,7 +374,8 @@ void OH_ArkUI_DrawableDescriptor_DisposeAnimationController(ArkUI_DrawableDescri
 int32_t OH_ArkUI_DrawableDescriptor_StartAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief 停止动图播放并回到首帧。
+ * @brief 停止动图播放。停止后的位置由{@link OH_ArkUI_DrawableDescriptor_SetAnimationStopMode}设置的停止模式决定：
+ * DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME时回到首帧，DRAWABLE_DESCRIPTOR_ANIMATION_LAST_FRAME时停留在最后一帧。
  *
  * @param controller DrawableDescriptor动图控制器对象指针。
  * @return 错误码。
