@@ -438,7 +438,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
     uint32_t *disposalTypes, size_t disposalTypesLength);
 
 /**
- * @brief 设定编码时图片循环播放次数，取值范围为[0，65535]，0表示无限循环；若无此字段，则表示不循环播放。
+ * @brief 设定编码时图片循环播放次数，取值范围为[0, 65535]，0表示无限循环；若无此字段，则表示不循环播放。
  * <br>使用约束：options不能为空指针。本接口仅保存传入的loopCount。当loopCount大于65535时，本接口仍会返回成功，但后续调用
  * {@link OH_ImagePackerNative_PackToDataFromPixelmapSequence}或
  * {@link OH_ImagePackerNative_PackToFileFromPixelmapSequence}编码时会返回参数错误。

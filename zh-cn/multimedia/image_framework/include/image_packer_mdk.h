@@ -108,7 +108,7 @@ int32_t OH_ImagePacker_Create(napi_env env, napi_value *res);
 ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer);
 
 /**
- * @brief 通过一个给定的选项ImagePacker_Opts结构体，将输入JavaScript native层PixelMap对象或者ImageSource对象编码并输出到指定的缓存区outData中。
+ * @brief 通过一个给定的选项ImagePacker_Opts结构体，将输入JavaScript native层PixelMap对象或者ImageSource对象编码并输出到指定的缓冲区outData中。
  *
  * @param native 表明指向native层ImagePacker的指针。
  * @param source 表明待编码JavaScript native层PixelMap对象或者ImageSource对象。
