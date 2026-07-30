@@ -24,7 +24,7 @@
 /**
  * @file timezone.h
  *
- * @brief 提供获取时区信息的能力。
+ * @brief 完整的时区规则，包括起始时区规则、起始时间戳数组定义的时区规则和每年生效的时区规则，能够全面描述时区的历史和未来规则。
  *
  * @library libohi18n.so
  * @kit LocalizationKit
@@ -74,6 +74,7 @@ typedef enum DateRuleType {
 /**
  * @brief 时间规则类型的枚举。
  *
+ * @syscap SystemCapability.Global.I18n
  * @since 22
  */
 typedef enum TimeRuleType {
