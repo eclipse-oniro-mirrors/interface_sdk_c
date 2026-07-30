@@ -53,6 +53,9 @@ extern "C" {
  *     {@link OH_Drawing_CreateSharedFontCollection}函数创建OH_Drawing_FontCollection对象。
  * @since 8
  * @version 1.0
+ * @release OH_Drawing_DestroyFontCollection {return}
+ * @deprecated since 26.1.0
+ * @useinstead OH_Drawing_CreateSharedFontCollection
  */
 OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);
 
@@ -95,6 +98,7 @@ void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontC
  * @return 指向创建的字体集对象的指针。
  * @since 12
  * @version 1.0
+ * @release OH_Drawing_DestroyFontCollection {return}
  */
 OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
 
