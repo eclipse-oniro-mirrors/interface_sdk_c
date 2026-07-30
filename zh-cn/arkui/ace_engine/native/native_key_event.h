@@ -25,7 +25,7 @@
 /**
  * @file native_key_event.h
  *
- * @brief Declares the APIs of **NativeKeyEvent**.
+ * @brief 提供NativeKeyEvent相关接口定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -34,21 +34,15 @@
  */
 
 #ifndef ARKUI_NATIVE_KEY_EVENT_H
-
 #define ARKUI_NATIVE_KEY_EVENT_H
 
 #include <stdint.h>
 
 #include "native_type.h"
-
 #include "ui_input_event.h"
 
 #ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-};
 #endif
 
 /**
@@ -433,7 +427,7 @@ typedef enum {
     ARKUI_KEYCODE_SLASH = 2064,
 
     /**
-     * Key @
+     * 按键 '@'。
      */
     ARKUI_KEYCODE_AT = 2065,
 
@@ -1111,6 +1105,9 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, 
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event, bool* state);
 
-#endif // ARKUI_NATIVE_KEY_EVENT_H
+#ifdef __cplusplus
+}
+#endif
 
+#endif // ARKUI_NATIVE_KEY_EVENT_H
 /** @} */

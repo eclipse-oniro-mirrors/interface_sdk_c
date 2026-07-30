@@ -25,7 +25,7 @@
 /**
  * @file drag_and_drop.h
  *
- * @brief Declares the APIs of **NativeDrag**.
+ * @brief 提供NativeDrag相关接口定义。
  *
  * @library libace_ndk.z.so
  * @kit ArkUI
@@ -34,15 +34,12 @@
  */
 
 #ifndef ARKUI_NATIVE_DRAG_AND_DROP_H
-
 #define ARKUI_NATIVE_DRAG_AND_DROP_H
 
 #include <stdint.h>
 
 #include "native_type.h"
-
 #include "database/udmf/udmf.h"
-
 #include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
@@ -95,7 +92,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Unknown.
+     * Unknown。
      */
     ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1,
 
@@ -637,7 +634,7 @@ int32_t OH_ArkUI_SetNodeDraggable(ArkUI_NodeHandle node, bool enabled);
 int32_t OH_ArkUI_SetNodeDragPreview(ArkUI_NodeHandle node, OH_PixelmapNative* preview);
 
 /**
- * @brief Creates an ArkUI_DragPreviewOption对象。
+ * @brief 构建一个ArkUI_DragPreviewOption对象。
  *
  * @return ArkUI_DragPreviewOption对象。
  * @since 12
@@ -1013,5 +1010,4 @@ ArkUI_ErrorCode OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext
 #endif
 
 #endif // ARKUI_NATIVE_DRAG_AND_DROP_H
-
 /** @} */
