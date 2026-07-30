@@ -8966,7 +8966,7 @@ typedef enum {
      * <li>.value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
     /**
@@ -8983,7 +8983,7 @@ typedef enum {
      * <li>.value[0].f32: width of the scrollbar, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_BAR_WIDTH,
     /**
@@ -9000,7 +9000,7 @@ typedef enum {
      * <li>.data[0].u32: color of the scrollbar, in 0xARGB format.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_BAR_COLOR,
     /**
@@ -9017,7 +9017,7 @@ typedef enum {
      * <li>.value[0].i32: scroll direction. The parameter type is {@link ArkUI_ScrollDirection}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_SCROLL_DIRECTION,
     /**
@@ -9048,7 +9048,7 @@ typedef enum {
      * reached. The parameter type is {@link ArkUI_EffectEdge}. This parameter is supported since API version 16.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_EDGE_EFFECT,
     /**
@@ -9065,7 +9065,7 @@ typedef enum {
      * <li>.value[0].i32: whether to support scroll gestures.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_ENABLE_SCROLL_INTERACTION,
     /**
@@ -9083,7 +9083,7 @@ typedef enum {
      * <li>.value[0].f32: friction coefficient.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_FRICTION,
     /**
@@ -9119,7 +9119,7 @@ typedef enum {
      * edge to which the <b><Scroll></b> component can scroll.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_SNAP,
 
@@ -9143,7 +9143,7 @@ typedef enum {
      * {@link ArkUI_ScrollNestedMode}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_NESTED_SCROLL,
     /**
@@ -9171,7 +9171,7 @@ typedef enum {
      * <li>.value[1].f32: vertical scrolling offset, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_OFFSET,
 
@@ -9190,7 +9190,7 @@ typedef enum {
      * {@link ArkUI_ScrollEdge}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_EDGE,
 
@@ -9210,7 +9210,7 @@ typedef enum {
      * <li>.value[0].i32: whether to enable the swipe-to-turn-pages feature.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_ENABLE_PAGING,
 
@@ -9224,7 +9224,7 @@ typedef enum {
      * <li>.value[1]?.i32: Indicates whether to enable animation. Value 1 indicates enable and 0 indicates disable.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_PAGE,
 
@@ -9238,7 +9238,7 @@ typedef enum {
      * <li>.value[1].f32: Vertical scrolling distance in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_SCROLL_BY,
 
@@ -9252,8 +9252,8 @@ typedef enum {
      * scroll will move downward; if the value is negative, the scroll will move upward.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 13
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_FLING,
 
@@ -9274,8 +9274,8 @@ typedef enum {
      * <li>.value[1].f32: length of the fading effect on edges, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 14
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_FADING_EDGE,
 
@@ -9292,8 +9292,8 @@ typedef enum {
      * these rounded pixel values.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 14
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_SIZE,
 
@@ -9310,8 +9310,8 @@ typedef enum {
      * <li>.value[0].f32: offset from the start of the content, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_CONTENT_START_OFFSET,
 
@@ -9328,8 +9328,8 @@ typedef enum {
      * <li>.value[0].f32: offset from the end of the content, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_CONTENT_END_OFFSET,
 
@@ -9347,8 +9347,8 @@ typedef enum {
      * <li>.value[0].f32: maximum starting fling speed, Unit: vp/s</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 18
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_FLING_SPEED_LIMIT = 1002019,
 
@@ -9368,8 +9368,8 @@ typedef enum {
      * <li>.value[0].i32: clip content mode. The parameter type is {@link ArkUI_ContentClipMode}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 18
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_CLIP_CONTENT = 1002020,
 
@@ -9390,8 +9390,8 @@ typedef enum {
      * <li>.value[0].i32: whether the scrollable scrolls back to top when status bar is clicked.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
@@ -9411,8 +9411,8 @@ typedef enum {
      * <li>.value[1].f32: end margin of the scrollbar, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_BAR_MARGIN = 1002022,
 
@@ -9429,8 +9429,8 @@ typedef enum {
      * <li>.value[0].f32: current maximum zoom scale.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_MAX_ZOOM_SCALE = 1002023,
 
@@ -9447,8 +9447,8 @@ typedef enum {
      * <li>.value[0].f32: current minimum zoom scale.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_MIN_ZOOM_SCALE = 1002024,
 
@@ -9465,8 +9465,8 @@ typedef enum {
      * <li>.value[0].f32: current zoom scale.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_ZOOM_SCALE = 1002025,
 
@@ -9485,8 +9485,8 @@ typedef enum {
      * <b>1</b> means to enable the effect, and <b>0</b> means the opposite.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
@@ -9505,8 +9505,8 @@ typedef enum {
      * <b>1</b>: yes.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
 
@@ -9525,8 +9525,8 @@ typedef enum {
      * <li>.value[0].i32: whether to automatically adjust the margin of the scrollbar. <b>0</b>: yes; <b>1</b>: no.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_AUTO_ADJUST_MARGIN = 1002028,
 
@@ -9546,8 +9546,8 @@ typedef enum {
      * <li>.value[0].f32: height of the scrollbar track, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_SCROLL_BAR_HEIGHT = 1002029,
 
@@ -9566,7 +9566,7 @@ typedef enum {
      * <li>.value[0].i32: direction in which the list items are arranged. The parameter type is {@link ArkUI_Axis}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
     /**
@@ -9587,7 +9587,7 @@ typedef enum {
      * type is {@link ArkUI_StickyStyle}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_STICKY,
     /**
@@ -9604,7 +9604,7 @@ typedef enum {
      * <li>.value[0].f32: spacing between list items along the main axis.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_SPACE,
     /**
@@ -9615,7 +9615,7 @@ typedef enum {
      * <li>.object: {@link ArkUI_NodeAdapter} object as the adapter.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_NODE_ADAPTER,
 
@@ -9639,7 +9639,7 @@ typedef enum {
      * <li>.value[2].i32: maximum cache count. This parameter is supported since API version 22.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_CACHED_COUNT,
 
@@ -9659,7 +9659,7 @@ typedef enum {
      * version 15.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_SCROLL_TO_INDEX,
     /**
@@ -9679,7 +9679,7 @@ typedef enum {
      * {@link ArkUI_ListItemAlignment}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_ALIGN_LIST_ITEM,
 
@@ -9696,7 +9696,7 @@ typedef enum {
      * <li>.object: The parameter format is {@link ArkUI_ListChildrenMainSize}</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_CHILDREN_MAIN_SIZE = 1003007,
 
@@ -9716,7 +9716,7 @@ typedef enum {
      * loaded for the first time. Default value: 0.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_INITIAL_INDEX = 1003008,
     /**
@@ -9739,7 +9739,7 @@ typedef enum {
      * <li>.value[3].f32: distance between the divider and the end of the list, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_DIVIDER = 1003009,
 
@@ -9759,8 +9759,8 @@ typedef enum {
      * {@link ArkUI_ScrollAlignment}. The default value is <b>ARKUI_SCROLL_ALIGNMENT_START</b>.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_SCROLL_TO_INDEX_IN_GROUP = 1003010,
 
@@ -9785,8 +9785,8 @@ typedef enum {
      * <li>.value[3].f32: lane spacing, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_LANES = 1003011,
 
@@ -9805,8 +9805,8 @@ typedef enum {
      * {@link ArkUI_ScrollSnapAlign}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_SCROLL_SNAP_ALIGN = 1003012,
 
@@ -9828,8 +9828,8 @@ typedef enum {
      * position, and <b>1</b> means the opposite. The default value is <b>0</b>.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION = 1003013,
 
@@ -9848,8 +9848,8 @@ typedef enum {
      * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 19
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_STACK_FROM_END = 1003014,
     
@@ -9869,8 +9869,8 @@ typedef enum {
      * {@link ArkUI_FocusWrapMode}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_FOCUS_WRAP_MODE = 1003015,
 
@@ -9890,8 +9890,8 @@ typedef enum {
      * loading by frames, and <b>1</b> means synchronous loading.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_SYNC_LOAD = 1003016,
 
@@ -9911,8 +9911,8 @@ typedef enum {
      * {@link ArkUI_ScrollSnapAnimationSpeed}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_SCROLL_SNAP_ANIMATION_SPEED = 1003017,
 
@@ -9934,8 +9934,8 @@ typedef enum {
      * <li>.value[1].f32: column spacing. unit: vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
@@ -9958,8 +9958,8 @@ typedef enum {
      * <li>.value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
 
@@ -9978,8 +9978,8 @@ typedef enum {
      * <li>.value[0].i32: Whether to collapse the scroll menu when the back button is clicked. 0: no; 1: yes.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
@@ -10007,8 +10007,8 @@ typedef enum {
      * Editable.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_ENABLE_EDIT_MODE = 1003021,
 
@@ -10036,8 +10036,8 @@ typedef enum {
      * Enabled.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_EDIT_MODE_OPTIONS = 1003022,
 
@@ -10601,7 +10601,7 @@ typedef enum {
      * <li>.object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_ITEM_SWIPE_ACTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
@@ -10619,7 +10619,7 @@ typedef enum {
      * <li>.object: {@link ArkUI_NodeHandle} object to be used as the header of the list item group.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM_GROUP,
     /**
@@ -10636,7 +10636,7 @@ typedef enum {
      * <li>.object: {@link ArkUI_NodeHandle} object to be used as the footer of the list item group.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_ITEM_GROUP_SET_FOOTER,
     /**
@@ -10659,7 +10659,7 @@ typedef enum {
      * <li>.value[3].f32: distance between the divider and the end of the list, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_ITEM_GROUP_SET_DIVIDER,
 
@@ -10676,7 +10676,7 @@ typedef enum {
      * <li>.object: The parameter format is {@link ArkUI_ListChildrenMainSize}</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_LIST_ITEM_GROUP_CHILDREN_MAIN_SIZE = 1005003,
 
@@ -10694,8 +10694,8 @@ typedef enum {
      * <li>.object: {@link ArkUI_NodeAdapter} object.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 15
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_LIST_ITEM_GROUP_NODE_ADAPTER = 1005004,
 
@@ -10844,7 +10844,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is 1 or 0.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
@@ -10856,7 +10856,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_NodeHandle}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_REFRESH_CONTENT,
     /**
@@ -10873,7 +10873,7 @@ typedef enum {
      * <li>.value[0].f32: pull-down hand coefficient, valid value between 0 and 1.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
     /**
@@ -10890,7 +10890,7 @@ typedef enum {
      * <li>.value[0].f32: pull-down offset, in vp. The default value is <b>64vp</b>.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_REFRESH_OFFSET = 1009003,
     /**
@@ -10909,7 +10909,7 @@ typedef enum {
      * means the opposite.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_REFRESH_PULL_TO_REFRESH = 1009004,
     /**
@@ -10926,8 +10926,8 @@ typedef enum {
      * <li>.value[0].f32: maximum pull-down distance, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
     /**
@@ -10946,8 +10946,8 @@ typedef enum {
      * gesture cancels refresh, and <b>0</b> means the opposite.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_REFRESH_PULL_UP_TO_CANCEL_REFRESH = 1009006,
 
@@ -10965,7 +10965,7 @@ typedef enum {
      * <li>.value[0].i32: main axis direction. The parameter type is {@link ArkUI_FlexDirection}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_LAYOUT_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
 
@@ -10989,7 +10989,7 @@ typedef enum {
      * <li>.string: number of columns in the layout.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_COLUMN_TEMPLATE,
 
@@ -11013,7 +11013,7 @@ typedef enum {
      * <li>.string: number of rows in the layout.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_ROW_TEMPLATE,
 
@@ -11031,7 +11031,7 @@ typedef enum {
      * <li>.value[0].f32: gap between columns, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_COLUMN_GAP,
 
@@ -11049,7 +11049,7 @@ typedef enum {
      * <li>.value[0].f32: gap between lines, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_ROW_GAP,
 
@@ -11069,7 +11069,7 @@ typedef enum {
      * <li>.object: {@link ArkUI_WaterFlowSectionOption} object.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_SECTION_OPTION,
 
@@ -11081,7 +11081,7 @@ typedef enum {
      * <li>.object: {@link ArkUI_NodeAdapter} object as the adapter.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_NODE_ADAPTER,
 
@@ -11103,7 +11103,7 @@ typedef enum {
      * Default value: <b>0</b>. This parameter is supported since API version 16.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_CACHED_COUNT,
 
@@ -11115,7 +11115,7 @@ typedef enum {
      * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_FOOTER,
 
@@ -11137,7 +11137,7 @@ typedef enum {
      * negative, it will offset further towards the top. This parameter is supported since API version 23.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_SCROLL_TO_INDEX,
 
@@ -11161,7 +11161,7 @@ typedef enum {
      * <li>.value[3].f32: maximum height, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE,
 
@@ -11179,8 +11179,8 @@ typedef enum {
      * <li>.value[0].i32: waterflow layout mode. The parameter type is {@link ArkUI_WaterFlowLayoutMode}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 18
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_WATER_FLOW_LAYOUT_MODE,
 
@@ -11200,8 +11200,8 @@ typedef enum {
      * means loading by frames, and <b>1</b> means synchronous loading.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_WATER_FLOW_SYNC_LOAD = 1010012,
 
@@ -11221,8 +11221,8 @@ typedef enum {
      * {@link ArkUI_ItemFillPolicy}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_WATER_FLOW_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1010013,
 
@@ -11246,8 +11246,8 @@ typedef enum {
      * <li>.value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
@@ -11297,7 +11297,7 @@ typedef enum {
      * <li>.string: number of columns in the layout.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_GRID_COLUMN_TEMPLATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
 
@@ -11321,7 +11321,7 @@ typedef enum {
      * <li>.string: number of rows in the layout.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_GRID_ROW_TEMPLATE,
 
@@ -11338,7 +11338,7 @@ typedef enum {
      * <li>.value[0].f32: gap between columns, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_GRID_COLUMN_GAP,
 
@@ -11355,7 +11355,7 @@ typedef enum {
      * <li>.value[0].f32: gap between lines, in vp.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_GRID_ROW_GAP,
 
@@ -11367,7 +11367,7 @@ typedef enum {
      * <li>.object: {@link ArkUI_NodeAdapter} object as the adapter.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_GRID_NODE_ADAPTER,
 
@@ -11388,7 +11388,7 @@ typedef enum {
      * <li>.value[1].i32: whether to display cached nodes. 0 means not display, 1 means display. [since 26.0.0]</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute
+     * @ingroup Scrollable Container Component
      */
     NODE_GRID_CACHED_COUNT,
 
@@ -11408,8 +11408,8 @@ typedef enum {
      * {@link ArkUI_FocusWrapMode}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_FOCUS_WRAP_MODE = 1013006,
 
@@ -11429,8 +11429,8 @@ typedef enum {
      * loading by frames, and <b>1</b> means synchronous loading.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 20
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_SYNC_LOAD = 1013007,
 
@@ -11450,8 +11450,8 @@ typedef enum {
      * the {@link ArkUI_GridItemAlignment} enum.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_ALIGN_ITEMS = 1013008,
 
@@ -11469,8 +11469,8 @@ typedef enum {
      * <li>.object: current {@link ArkUI_GridLayoutOptions} object.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_LAYOUT_OPTIONS = 1013009,
 
@@ -11490,8 +11490,8 @@ typedef enum {
      * {@link ArkUI_ItemFillPolicy}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1013010,
 
@@ -11512,8 +11512,8 @@ typedef enum {
      * <b>1</b>: Enable edit mode.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_EDIT_MODE = 1013011,
 
@@ -11537,8 +11537,8 @@ typedef enum {
      * container. <b>0</b>: Disable the drag animation. <b>1</b>: Enable the drag animation.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_DRAG_ANIMATION = 1013012,
 
@@ -11559,8 +11559,8 @@ typedef enum {
      * <b>1</b>: Enable mouse-based multi-selection.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_MULTI_SELECTABLE = 1013013,
   
@@ -11582,8 +11582,8 @@ typedef enum {
      * negative, it will offset further towards the top.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_SCROLL_TO_INDEX = 1013014,
 
@@ -11606,8 +11606,8 @@ typedef enum {
      * <li>.value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
 
@@ -11635,8 +11635,8 @@ typedef enum {
      * Editable.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_ENABLE_EDIT_MODE = 1013016,
 
@@ -11665,8 +11665,8 @@ typedef enum {
      * Disabled. <b>1</b>: Enabled.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_EDIT_MODE_OPTIONS = 1013017,
 
@@ -11685,8 +11685,8 @@ typedef enum {
      * <li>.value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 22
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_ITEM_STYLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
 
@@ -11706,8 +11706,8 @@ typedef enum {
      * <b>0</b>: not selectable. <b>1</b>: selectable.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_ITEM_SELECTABLE = 1014001,
 
@@ -11727,8 +11727,8 @@ typedef enum {
      * selected.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 23
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_GRID_ITEM_SELECTED = 1014002,
 
@@ -11916,8 +11916,8 @@ typedef enum {
      * <li>.value[0].i32: digital crown sensitivity type. The parameter type is {@link ArkUI_CrownSensitivity}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_DIGITAL_CROWN_SENSITIVITY = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
 
@@ -11936,8 +11936,8 @@ typedef enum {
      * <li>.value[0].f32: interval between child components in the main axis direction.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_SPACE = 1019001,
 
@@ -11955,8 +11955,8 @@ typedef enum {
      * <li>.value[0].i32: cache count.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_CACHED_COUNT = 1019002,
 
@@ -11975,8 +11975,8 @@ typedef enum {
      * <li>.value[3]?.f32: additional offset. Default value: 0, unit: vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_SCROLL_TO_INDEX = 1019003,
 
@@ -11995,8 +11995,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable chain animation.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_CHAIN_ANIMATION = 1019004,
 
@@ -12009,8 +12009,8 @@ typedef enum {
      * <li>.object: parameter format is {@link ArkUI_ListChildrenMainSize}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_CHILDREN_MAIN_SIZE = 1019005,
 
@@ -12028,8 +12028,8 @@ typedef enum {
      * <li>.object: use {@link ArkUI_NodeHandle} object as the ArcList header component.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_SET_HEADER = 1019006,
 
@@ -12048,8 +12048,8 @@ typedef enum {
      * <li>.value[0].i32: scroll bar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_SCROLL_BAR = 1019007,
 
@@ -12067,8 +12067,8 @@ typedef enum {
      * <li>.data[0].u32: scroll bar color, in ARGB format.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_SCROLL_BAR_COLOR = 1019008,
 
@@ -12087,8 +12087,8 @@ typedef enum {
      * <li>.value[0].f32: scroll bar width, in vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_SCROLL_BAR_WIDTH = 1019009,
 
@@ -12107,8 +12107,8 @@ typedef enum {
      * <li>.value[0].i32: whether to support scroll gesture.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_ENABLE_SCROLL_INTERACTION = 1019010,
 
@@ -12130,8 +12130,8 @@ typedef enum {
      * <li>.value[1].f32: length of the fading edge effect. Unit: vp.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_FADING_EDGE = 1019011,
 
@@ -12151,8 +12151,8 @@ typedef enum {
      * <li>.value[0].f32: friction coefficient.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_FRICTION = 1019012,
 
@@ -12171,8 +12171,8 @@ typedef enum {
      * <li>.value[0].f32: maximum initial velocity at the start of Fling animation.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_FLING_SPEED_LIMIT = 1019013,
 
@@ -12192,8 +12192,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable auto scale.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_ITEM_AUTO_SCALE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST_ITEM,
 
@@ -12206,8 +12206,8 @@ typedef enum {
      * <li>.object: use {@link ArkUI_ListItemSwipeActionOption} object to construct.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_LIST_ITEM_SWIPE_ACTION = 1020001,
 
@@ -12225,8 +12225,8 @@ typedef enum {
      * <li>.object: use {@link ArkUI_NodeHandle} object as the scrollable component bound by the scroll bar.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_SCROLL_BAR_BIND_SCROLLABLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SCROLL_BAR,
 
@@ -12245,8 +12245,8 @@ typedef enum {
      * <li>.value[0].i32: scroll bar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}.</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute
      */
     NODE_ARC_SCROLL_BAR_DISPLAY_MODE = 1021001,
 
