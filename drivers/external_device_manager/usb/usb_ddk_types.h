@@ -513,6 +513,8 @@ typedef struct Usb_NonRootHubArray {
 } Usb_NonRootHubArray;
 #ifdef __cplusplus
 }
-/** @} */
 #endif /* __cplusplus */
+
+/** @} */
+
 #endif // USB_DDK_TYPES_H
