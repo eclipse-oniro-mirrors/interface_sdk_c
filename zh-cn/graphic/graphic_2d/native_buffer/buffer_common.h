@@ -457,6 +457,36 @@ typedef enum OH_NativeBuffer_TransformType {
     NATIVEBUFFER_FLIP_V_ROT270,           /**< 垂直翻转并旋转270度 */
 } OH_NativeBuffer_TransformType;
 
+/**
+ * @brief 视频维度类型枚举。
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @since 26.0.0
+ * @version 1.0
+ */
+typedef enum OH_NativeBuffer_VideoDimensionType {
+    /** 二维视频 */
+    OH_VIDEO_DIM_TYPE_2D = 0,
+    /** 三维视频，格式：左右排列 */
+    OH_VIDEO_DIM_TYPE_3D_SBS,
+    /** 三维视频，格式：上下排列 */
+    OH_VIDEO_DIM_TYPE_3D_TAB,
+    /** 无效的视频维度类型 */
+    OH_VIDEO_DIM_TYPE_BUTT,
+} OH_NativeBuffer_VideoDimensionType;
+
+/**
+ * @brief 表示NativeBuffer的3D元数据枚举属性。
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @since 26.0.0
+ * @version 1.0
+ */
+typedef enum OH_NativeBuffer_3D_MetadataKey {
+    /** value: NativeBuffer的视频维度类型 */
+    OH_VIDEO_DIM_TYPE,
+} OH_NativeBuffer_3D_MetadataKey;
+
 #ifdef __cplusplus
 }
 #endif
