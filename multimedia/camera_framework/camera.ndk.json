@@ -1057,6 +1057,18 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_IsLockFocusTrackingSupported"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_LockFocusTracking"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_UnlockFocusTracking"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_MetadataOutput_RegisterMetadataObjectExtAvailableCallback"
     },
     {
