@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @addtogroup ArkUI_Accessibility
  * @{
@@ -26,7 +26,7 @@
 /**
  * @file native_interface_accessibility.h
  *
- * @brief Declares the APIs used to access the native Accessibility.
+ * @brief Declares the APIs for accessing Native Accessibility features.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -47,28 +47,30 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a struct for accessibility element information.
+ * @brief Provides accessibility node information for accessibility services and assistive applications (such as screen
+ * readers).
  *
  * @since 13
  */
 typedef struct ArkUI_AccessibilityElementInfo ArkUI_AccessibilityElementInfo;
 
 /**
- * @brief Defines a struct for accessibility event information.
+ * @brief Describes the accessibility event information. After a component completes an action requested by an
+ * accessibility service or application, it needs to send a success event to confirm the operation.
  *
  * @since 13
  */
 typedef struct ArkUI_AccessibilityEventInfo ArkUI_AccessibilityEventInfo;
 
 /**
- * @brief Defines a struct for the local provider of accessibility.
+ * @brief Defines a third-party operation provider to implement callback functions.
  *
  * @since 13
  */
 typedef struct ArkUI_AccessibilityProvider ArkUI_AccessibilityProvider;
 
 /**
- * @brief Defines a struct for accessibility action arguments.
+ * @brief Sets the arguments of accessibility actions.
  *
  * @since 13
  */
@@ -82,448 +84,667 @@ typedef struct ArkUI_AccessibilityActionArguments ArkUI_AccessibilityActionArgum
 typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
- * @brief Defines an enum for accessibility action types.
+* @brief Enumerates accessibility action types.
  *
  * @since 13
  */
 typedef enum {
-    /** Invalid action. */
+    /**
+     * Invalid value.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_INVALID = 0,
-    /** Response to a click. */
+    /**
+     * Triggers the component's click event handling.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CLICK = 0x00000010,
-    /** Response to a long click. */
+    /**
+     * Triggers the component's long-click event handling.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_LONG_CLICK = 0x00000020,
-    /** Accessibility focus acquisition. */
+    /**
+     * Requests accessibility focus for the component.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_GAIN_ACCESSIBILITY_FOCUS = 0x00000040,
-    /** Accessibility focus clearance. */
+    /**
+     * Clears accessibility focus from the component.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CLEAR_ACCESSIBILITY_FOCUS = 0x00000080,
-    /** Forward scroll action. */
+    /**
+     * Initiates forward scrolling in scrollable containers.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SCROLL_FORWARD = 0x00000100,
-    /** Backward scroll action. */
+    /**
+     * Initiates backward scrolling in scrollable containers.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SCROLL_BACKWARD = 0x00000200,
-    /** Copy action for text content. */
+    /**
+     * Copies the current text selection.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_COPY = 0x00000400,
-    /** Paste action for text content. */
+    /**
+     * Pastes content to the text component.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PASTE = 0x00000800,
-    /** Cut action for text content. */
+    /**
+     * Cuts the current text selection to the pasteboard.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CUT = 0x00001000,
-    /** Text selection action, requiring the setting of <b>selectTextBegin</b>, <b>TextEnd</b>, and <b>TextInForward</b>
-     *  parameters to select a text segment in the text box. */
+    /**
+     * Selects a range of text within an editable area in a text component. Selects a range of text within an editable
+     * area by using **ArkUI_AccessibilityActionArguments** and setting **selectTextBegin** (indicates the start
+     * position of the selection), **selectTextEnd** (indicates the end position of the selection), and **
+     * selectTextInForWard** (**true** indicates to select text forward, and **false** indicates to select text
+     * backward).
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SELECT_TEXT = 0x00002000,
-    /** Text content setting action. */
+    /**
+     * Sets the text content of the text component.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_TEXT = 0x00004000,
-    /** Cursor position setting action. */
+    /**
+     * Sets the cursor position where the text can be entered for the text component. This API is used together with **
+     * ArkUI_AccessibilityActionArguments**.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_CURSOR_POSITION = 0x00100000,
-    /** Support action for find next item in focus move operation
-     *  @since 15
+    /**
+     * Support action for find next item in focus move operation.
+     * @since 15
      */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_NEXT_HTML_ITEM = 0x02000000,
-    /** Support action for find previous item in focus move operation
-     *  @since 15
+    /**
+     * Support action for find previous item in focus move operation.
+     * @since 15
      */
-    ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PREVIOUS_HTML_ITEM = 0x04000000,
+    ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PREVIOUS_HTML_ITEM = 0x04000000
 } ArkUI_Accessibility_ActionType;
 
 /**
- * @brief Defines an enum for accessibility event types.
+ * @brief Enumerates accessibility event types.
  *
  * @since 13
  */
 typedef enum {
-    /** Invalid event. */
+    /**
+     * Invalid value.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_INVALID = 0,
-    /** Click event, sent after the UI component responds. */
+    /**
+     * Click event, sent after the UI component responds.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_CLICKED = 0x00000001,
-    /** Long click event, sent after the UI component responds. */
+    /**
+     * Long-click event, sent after the UI component responds.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_LONG_CLICKED = 0x00000002,
-    /** Selection event, sent after the UI component responds. */
+    /**
+     * Selection event, sent after the UI component responds.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SELECTED = 0x00000004,
-    /** Text update event, sent when text is updated. */
+    /**
+     * Text update event, sent when text is updated.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_TEXT_UPDATE = 0x00000010,
-    /** Page state update event, sent when the page transitions, switches, resizes, or moves. */
+    /**
+     * Page state update event, sent on page navigation, switching, resizing, or movement.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_STATE_UPDATE = 0x00000020,
-    /** Page content update event, sent when the page content changes. */
+    /**
+     * Page content update event, sent when the page content changes.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CONTENT_UPDATE = 0x00000800,
-    /** Scrolled event, sent when a scrollable component experiences a scroll event. */
+    /**
+     * Scroll event, sent when scrolling occurs on scrollable components.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED = 0x000001000,
-    /** Accessibility focus event, sent after the UI component responds. */
+    /**
+     * Accessibility focus event, sent after the UI component receives focus.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED = 0x00008000,
-    /** Accessibility focus cleared event, sent after the UI component responds. */
+    /**
+     * Accessibility focus cleared event, sent after the UI component loses focus.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUS_CLEARED = 0x00010000,
-    /** FOcus request for a specific node. */
+    /**
+     * Event to actively requests focus for the specified node.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_ACCESSIBILITY_FOCUS = 0x02000000,
-    /** Page open event reported by the UI component. */
+    /**
+     * Page open event reported by the UI component.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_OPEN = 0x20000000,
-    /** Page close event reported by the UI component. */
+    /**
+     * Page close event reported by the UI component.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CLOSE = 0x08000000,
-    /** Announcement event, indicating a request to proactively announce specified content. */
+    /**
+     * Announcement event, indicating a request to proactively announce specified content.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ANNOUNCE_FOR_ACCESSIBILITY = 0x10000000,
-    /** Focus update event, used for focus update scenarios. */
-    ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_FOCUS_NODE_UPDATE = 0x10000001,
+    /**
+     * Focus update event, used in the focus update scenarios.
+     * @since 13
+     */
+    ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_FOCUS_NODE_UPDATE = 0x10000001
 } ArkUI_AccessibilityEventType;
 
 /**
- * @brief Defines a struct for the accessible action.
+ * @brief Defines an accessibility action.
  *
  * @since 13
  */
 typedef struct {
-    /** Action type. */
+    /**
+     * Action type.
+     * @since 13
+     */
     ArkUI_Accessibility_ActionType actionType;
-    /** Action description. */
+    /**
+     * Action description.
+     * @since 13
+     */
     const char* description;
 } ArkUI_AccessibleAction;
 
 /**
- * @brief Defines a struct for the accessible rectangle.
+ * @brief Provides the coordinate position where the node is located.
  *
  * @since 13
  */
 typedef struct {
-    /** X coordinate of the upper left corner. */
+    /**
+     * X-coordinate of the upper left corner.
+     * @since 13
+     */
     int32_t leftTopX;
-    /** Y coordinate of the upper left corner. */
+    /**
+     * Y-coordinate of the upper left corner.
+     * @since 13
+     */
     int32_t leftTopY;
-    /** X coordinate of the lower right corner. */
+    /**
+     * X-coordinate of the lower right corner.
+     * @since 13
+     */
     int32_t rightBottomX;
-    /** Y coordinate of the lower right corner. */
+    /**
+     * Y-coordinate of the lower right corner.
+     * @since 13
+     */
     int32_t rightBottomY;
 } ArkUI_AccessibleRect;
 
 /**
- * @brief Define a struct for the accessible range information.
+ * @brief Sets and obtains the current value, maximum value, and minimum value of a specific component (such as
+ * {@link Slider}, {@link Rating}, or {@link Progress}).
  *
  * @since 13
  */
 typedef struct {
-    /** Minimum value. */
+    /**
+     * Minimum value of the component.
+     * @since 13
+     */
     double min;
-    /** Maximum value. */
+    /**
+     * Maximum value of the component.
+     * @since 13
+     */
     double max;
-    /** Current value. */
+    /**
+     * Current value of the component.
+     * @since 13
+     */
     double current;
 } ArkUI_AccessibleRangeInfo;
 
 /**
- * @brief Defines a struct for the accessible grid information.
+ * @brief Configures the grid layout attributes of a specific component (such as {@link List}, {@link Flex},
+ * {@link Select}, or {@link Swiper}).
  *
  * @since 13
  */
 typedef struct {
-    /** Number of rows. */
+    /**
+     * Number of rows of the component. The value is an integer greater than 0.
+     * @since 13
+     */
     int32_t rowCount;
-    /** Number of columns. */
+    /**
+     * Number of columns of the component. The value is an integer greater than 0.
+     * @since 13
+     */
     int32_t columnCount;
-    /** Selection mode. The value <b>0</b> indicates that only one row can be selected. */
+    /**
+     * Selection mode. If the value is **0**, only a single row in the grid can be selected. If the value is not 0,
+     * multiple rows can be selected.
+     * @since 13
+     */
     int32_t selectionMode;
 } ArkUI_AccessibleGridInfo;
 
 /**
- * @brief Defines a struct for the accessible grid item information.
+ * @brief Configures the attributes of a specific component (such as {@link List}, {@link Flex}, {@link Select}, or
+ * {@link Swiper}).
  *
  * @since 13
  */
 typedef struct {
-    /** Whether it is a header. */
+    /**
+     * Whether the item is a heading. **true** for heading, **false** for non-heading.
+     * @since 13
+     */
     bool heading;
-    /** Whether it is selected. */
+    /**
+     * Whether the item is selected. **true** for selected, **false** for unselected.
+     * @since 13
+     */
     bool selected;
-    /** Column index. */
+    /**
+     * Row index of the item. The value is an integer greater than 0.
+     * @since 13
+     */
     int32_t columnIndex;
-    /** Row index. */
+    /**
+     * Column index of the item. The value is an integer greater than 0.
+     * @since 13
+     */
     int32_t rowIndex;
-    /** Column span. */
+    /**
+     * Number of rows that the item spans. The value is an integer greater than 0.
+     * @since 13
+     */
     int32_t columnSpan;
-    /** Row span. */
+    /**
+     * Number of columns that the item spans. The value is an integer greater than 0.
+     * @since 13
+     */
     int32_t rowSpan;
 } ArkUI_AccessibleGridItemInfo;
 
 /**
- * @brief Enumerates the accessibility error codes.
+ * @brief Enumerates accessibility error codes.
  *
  * @since 13
  */
 typedef enum {
     /**
-     * @error Success.
+     * The operation is successful.
+     * @since 13
      */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL = 0,
     /**
-     * @error Failure.
+     * The operation failed.
+     * @since 13
      */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED = -1,
     /**
-     * @error Invalid parameter.
+     * Invalid parameter.
+     * @since 13
      */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER = -2,
     /**
-     * @error Out of memory.
+     * Insufficient memory.
+     * @since 13
      */
-    ARKUI_ACCESSIBILITY_NATIVE_RESULT_OUT_OF_MEMORY = -3,
+    ARKUI_ACCESSIBILITY_NATIVE_RESULT_OUT_OF_MEMORY = -3
 } ArkUI_AcessbilityErrorCode;
 
 /**
- * @brief Defines an enum for the accessibility search modes.
+ * @brief Enumerates accessibility search modes.
  *
  * @since 13
  */
 typedef enum {
-    /** Search for current nodes. */
+    /**
+     * Searches the current node.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_CURRENT = 0,
-    /** Search for parent nodes. */
+    /**
+     * Searches parent nodes.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_PREDECESSORS = 1 << 0,
-    /** Search for sibling nodes. */
+    /**
+     * Searches sibling nodes.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_SIBLINGS = 1 << 1,
-    /** Search for child nodes at the next level. */
+    /**
+     * Searches immediate child nodes.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_CHILDREN = 1 << 2,
-    /** Search for all child nodes. */
-    ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_RECURSIVE_CHILDREN = 1 << 3,
+    /**
+     * Searches all child nodes.
+     * @since 13
+     */
+    ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_RECURSIVE_CHILDREN = 1 << 3
 } ArkUI_AccessibilitySearchMode;
 
 /**
- * @brief Defines an enum for the accessibility focus types.
+ * @brief Enumerates accessibility focus types.
  *
  * @since 13
  */
 typedef enum {
-    /** Invalid type. */
+    /**
+     * Invalid value.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_INVALID = -1,
-    /** Input focus type. */
+    /**
+     * Input focus type.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_INPUT = 1 << 0,
-    /** Accessibility focus type. */
-    ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_ACCESSIBILITY = 1 << 1,
+    /**
+     * Accessibility focus type.
+     * @since 13
+     */
+    ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_ACCESSIBILITY = 1 << 1
 } ArkUI_AccessibilityFocusType;
 
 /**
- * @brief Enumerates the directions for moving the accessibility focus.
+ * @brief Enumerates accessibility focus movement directions.
  *
  * @since 13
  */
 typedef enum {
-    /** Invalid direction. */
+    /**
+     * Invalid value.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_INVALID = 0,
-    /** Up. */
+    /**
+     * Moves focus up.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_UP = 0x00000001,
-    /** Down. */
+    /**
+     * Moves focus down.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_DOWN = 0x00000002,
-    /** Left. */
+    /**
+     * Moves focus left.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_LEFT = 0x00000004,
-    /** Right. */
+    /**
+     * Moves focus right.
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_RIGHT = 0x00000008,
-    /** Forward. */
+    /**
+     * Moves focus to the next focusable node (relative to the reference node in query).
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_FORWARD = 0x00000010,
-    /** Backward. */
-    ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_BACKWARD = 0x00000020,
+    /**
+     * Moves focus to the previous focusable node (relative to the reference node in query).
+     * @since 13
+     */
+    ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_BACKWARD = 0x00000020
 } ArkUI_AccessibilityFocusMoveDirection;
 
 /**
- * @brief Defines a struct for the accessibility element information list.
+ * @brief Provides a **List** instance of encapsulated {@link ArkUI_AccessibilityElementInfo}.
  *
  * @since 13
  */
 typedef struct ArkUI_AccessibilityElementInfoList ArkUI_AccessibilityElementInfoList;
 
 /**
- * @brief Registers callbacks for the accessibility provider.
+ * @brief Defines callback functions of a third-party operation {@link provider}. The functions that need to be
+ * implemented by the third-party platform are registered with the system through
+ * {@link OH_ArkUI_AccessibilityProviderRegisterCallback}.
  *
  * @since 13
  */
 typedef struct ArkUI_AccessibilityProviderCallbacks {
     /**
-    * @brief Called to obtain element information based on a specified node.
-    *
-    * @param elementId Indicates the element ID.
-    * @param mode Indicates accessibility search mode.
-    * @param requestId Indicates the request ID.
-    * @param elementList Indicates accessibility elementInfo list.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds node information for the specified node. Callback function implemented by the third-party platform
+     * and registered with the system.
+     *
+     * @param elementId Unique ID of the accessibility element.
+     * @param mode Accessibility search mode.
+     * @param requestId Request ID.
+     * @param elementList Accessibility element information list.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     * @since 13
+     */
     int32_t (*findAccessibilityNodeInfosById)(int64_t elementId, ArkUI_AccessibilitySearchMode mode,
         int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
     /**
-    * @brief Called to obtain element information based on a specified node and text content.
-    *
-    * @param elementId Indicates the element ID.
-    * @param text Indicates accessibility text.
-    * @param requestId Indicates the request ID.
-    * @param elementList Indicates accessibility elementInfo list.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds the nodes that contain specific text content. Callback function implemented by the third-party
+     * platform and registered with the system.
+     *
+     * @param elementId Unique ID of the accessibility element.
+     * @param text Accessibility text.
+     * @param requestId Request ID.
+     * @param elementList Accessibility element information list.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*findAccessibilityNodeInfosByText)(int64_t elementId, const char* text, int32_t requestId,
         ArkUI_AccessibilityElementInfoList* elementList);
     /**
-    * @brief Called to obtain focused element information based on a specified node.
-    *
-    * @param elementId Indicates the element ID.
-    * @param focusType Indicates focus type.
-    * @param requestId Indicates the request ID.
-    * @param elementInfo Indicates accessibility elementInfo.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds the node that has obtained the focus based on the focus type and returns the element information of
+     * the node. Callback function implemented by the third-party platform and registered with the system.
+     *
+     * @param elementId Unique ID of the accessibility element.
+     * @param focusType Focus type.
+     * @param requestId Request ID.
+     * @param elementInfo Accessibility element information.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*findFocusedAccessibilityNode)(int64_t elementId, ArkUI_AccessibilityFocusType focusType,
         int32_t requestId, ArkUI_AccessibilityElementInfo* elementInfo);
     /**
-    * @brief Called to find the next focusable node based on the reference node.
-    *
-    * @param elementId Indicates the element ID.
-    * @param direction Indicates direction.
-    * @param requestId Indicates the request ID.
-    * @param elementInfo Indicates accessibility elementInfo.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Called to find the next focusable node based on the reference node mode and search direction.
+     *
+     * @param elementId Unique ID of the accessibility element.
+     * @param direction Search direction.
+     * @param requestId Request ID.
+     * @param elementInfo Information about the found accessibility element.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*findNextFocusAccessibilityNode)(
         int64_t elementId, ArkUI_AccessibilityFocusMoveDirection direction,
         int32_t requestId, ArkUI_AccessibilityElementInfo* elementInfo);
     /**
-    * @brief Called to execute a specified action on a specified node.
-    *
-    * @param elementId Indicates the element ID.
-    * @param action Indicates action.
-    * @param actionArguments Indicates action arguments.
-    * @param requestId Indicates the request ID.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Executes an accessibility action on the specified accessibility node.
+     *
+     * @param elementId Unique ID of the accessibility element.
+     * @param action Action to execute.
+     * @param actionArguments Indicates action arguments.
+     * @param requestId Request ID.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*executeAccessibilityAction)(int64_t elementId, ArkUI_Accessibility_ActionType action,
         ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId);
     /**
-    * @brief Called to clear the focus state of the current focused node.
-    *
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED} if the operation is failed.
-    */
+     * @brief Called to clear the focus state of the current focused node.
+     *
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*clearFocusedFocusAccessibilityNode)();
     /**
-    * @brief Called to query the current cursor position of the specified node.
-    *
-    * @param elementId Indicates the element ID.
-    * @param requestId Indicates the request ID.
-    * @param index Indicates index.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Called to query the current cursor position of the specified node.
+     *
+     * @param elementId Unique ID of the accessibility element.
+     * @param requestId Request ID.
+     * @param index Index of the cursor position.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*getAccessibilityNodeCursorPosition)(int64_t elementId, int32_t requestId, int32_t* index);
 } ArkUI_AccessibilityProviderCallbacks;
 
 /**
- * @brief Registers a callback for this <b>ArkUI_AccessibilityProvider</b> instance.
+ * @brief Defines a struct for third-party accessibility provider callback functions, which third-party platforms need
+ * to implement. These functions are registered with the system side through **
+ * OH_ArkUI_AccessibilityProviderRegisterCallback**.
  *
- * @param provider Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
- * @param callbacks Indicates the pointer to the <b>GetAccessibilityNodeCursorPosition</b> callback.
- * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ * @param provider Pointer to an **ArkUI_AccessibilityProvider** instance.
+ * @param callbacks Pointer to an **ArkUI_AccessibilityProviderCallbacks** struct that contains the set of callback
+ *     functions implemented by the third-party platform.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
  * @since 13
  */
 int32_t OH_ArkUI_AccessibilityProviderRegisterCallback(
     ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacks* callbacks);
 
 /**
- * @brief Registers callbacks with instance for the accessibility provider.
+ * @brief Defines callback functions of a third-party operation provider with instance ID.
+ * These callback functions need to be implemented by the third-party platform and registered
+ * with the system through {@link OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance}.
+ *
  * @since 15
  */
 typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
     /**
-    * @brief Called to obtain element information based on a specified node.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @param elementId The unique id of the component ID.
-    * @param mode Indicates accessibility search mode.
-    * @param requestId Matched the request and response. transfer it by callback only.
-    * @param elementList The all obtained accessibility elements list information.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds node information for the specified node with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @param elementId Unique ID of the accessibility element.
+     * @param mode Accessibility search mode.
+     * @param requestId Request ID.
+     * @param elementList Accessibility element information list.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     * @since 15
+     */
     int32_t (*findAccessibilityNodeInfosById)(const char* instanceId, int64_t elementId,
         ArkUI_AccessibilitySearchMode mode, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
     /**
-    * @brief Called to obtain element information based on a specified node and text content.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @param elementId The unique id of the component ID.
-    * @param text Filter for the child components to matched with the text.
-    * @param requestId Matched the request and response. transfer it by callback only.
-    * @param elementList The all obtained accessibility elements list information.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds the nodes that contain specific text content with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @param elementId Unique ID of the accessibility element.
+     * @param text Accessibility text.
+     * @param requestId Request ID.
+     * @param elementList Accessibility element information list.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*findAccessibilityNodeInfosByText)(const char* instanceId, int64_t elementId, const char* text,
         int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
     /**
-    * @brief Called to obtain focused element information based on a specified node.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @param elementId The unique id of the component ID.
-    * @param focusType Indicates focus type.
-    * @param requestId Matched the request and response. transfer it by callback only.
-    * @param elementInfo The all obtained accessibility elements list information.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds the node that has obtained the focus based on the focus type with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @param elementId Unique ID of the accessibility element.
+     * @param focusType Focus type.
+     * @param requestId Request ID.
+     * @param elementInfo Accessibility element information.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*findFocusedAccessibilityNode)(const char* instanceId, int64_t elementId,
         ArkUI_AccessibilityFocusType focusType, int32_t requestId, ArkUI_AccessibilityElementInfo* elementInfo);
     /**
-    * @brief Called to find the next focusable node based on the reference node.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @param elementId The unique id of the component ID.
-    * @param direction Indicates direction.
-    * @param requestId Matched the request and response. transfer it by callback only.
-    * @param elementInfo The all obtained accessibility elements list information.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Finds the next focusable node based on the reference node with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @param elementId Unique ID of the accessibility element.
+     * @param direction Search direction.
+     * @param requestId Request ID.
+     * @param elementInfo Information about the found accessibility element.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*findNextFocusAccessibilityNode)(
         const char* instanceId, int64_t elementId, ArkUI_AccessibilityFocusMoveDirection direction,
         int32_t requestId, ArkUI_AccessibilityElementInfo* elementInfo);
     /**
-    * @brief Called to execute a specified action on a specified node.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @param elementId The unique id of the component ID.
-    * @param action Indicates action.
-    * @param actionArguments Indicates action arguments.
-    * @param requestId Matched the request and response. transfer it by callback only.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Executes an accessibility action on the specified accessibility node with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @param elementId Unique ID of the accessibility element.
+     * @param action Action to execute.
+     * @param actionArguments Indicates action arguments.
+     * @param requestId Request ID.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*executeAccessibilityAction)(const char* instanceId, int64_t elementId,
         ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId);
     /**
-    * @brief Called to clear the focus state of the current focused node.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED} if the operation is failed.
-    */
+     * @brief Clears the focus state of the current focused node with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED} if the operation fails.
+     */
     int32_t (*clearFocusedFocusAccessibilityNode)(const char* instanceId);
     /**
-    * @brief Called to query the current cursor position of the specified node.
-    * @param instanceId Indicates ID of third-party framework instance.
-    * @param elementId The unique id of the component ID.
-    * @param requestId Matched the request and response. transfer it by callback only.
-    * @param index Indicates index.
-    * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-    *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-    */
+     * @brief Queries the current cursor position of the specified node with instance ID.
+     *
+     * @param instanceId Unique ID of the third-party framework instance.
+     * @param elementId Unique ID of the accessibility element.
+     * @param requestId Request ID.
+     * @param index Index of the cursor position.
+     * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+     *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+     */
     int32_t (*getAccessibilityNodeCursorPosition)(const char* instanceId, int64_t elementId,
         int32_t requestId, int32_t* index);
 } ArkUI_AccessibilityProviderCallbacksWithInstance;
 
 /**
- * @brief Registers a callback with instance for this <b>ArkUI_AccessibilityProvider</b> instance.
- * @param instanceId Indicates ID of third-party framework instance.
- * @param provider Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
- * @param callbacks Indicates the pointer to the <b>ArkUI_AccessibilityProviderCallbacksWithInstance</b> callback.
- * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ * @brief Registers callbacks with instance for the accessibility provider.
+ *
+ * @param instanceId Unique ID of the third-party framework instance.
+ * @param provider Pointer to an {@link ArkUI_AccessibilityProvider} instance.
+ * @param callbacks Pointer to an {@link ArkUI_AccessibilityProviderCallbacksWithInstance} struct that contains
+ *     the set of callback functions implemented by the third-party platform.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
  * @since 15
  */
 int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* instanceId,
     ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacksWithInstance* callbacks);
 
 /**
- * @brief Sends accessibility event information.
+ * @brief Proactively sends an event to notify the accessibility service.
  *
- * @param provider Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
- * @param eventInfo Indicates the pointer to the accessibility event information.
+ * @param provider Handle to the third-party platform provider.
+ * @param eventInfo Pointer to the accessibility event information.
  * @param callback Indicates the pointer to the callback that is called after the event is sent.
  * @since 13
  */
@@ -532,643 +753,689 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
     void (*callback)(int32_t errorCode));
 
 /**
- * @brief Adds and obtains the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
+ * @brief Adds an **ArkUI_AccessibilityElementInfo** member to the specified list and returns the **
+ * ArkUI_AccessibilityElementInfo** struct.
  *
- * @param list Indicates the pointer to an <b>ArkUI_AccessibilityElementInfoList</b> object.
- * @return Returns the pointer to the <b>ArkUI_AccessibilityElementInfo</b> object.
+ * @param list **ArkUI_AccessibilityElementInfoList** struct to which the newly created **
+ *     ArkUI_AccessibilityElementInfo** member is added and then returned to the function caller.
+ * @return Pointer to the created **ArkUI_AccessibilityElementInfo** struct; returns **NULL** if creation fails.
  * @since 13
  */
 ArkUI_AccessibilityElementInfo* OH_ArkUI_AddAndGetAccessibilityElementInfo(
     ArkUI_AccessibilityElementInfoList* list);
 
 /**
-* @brief Sets the element ID for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param elementId Indicates the element ID.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the component ID for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to an **ArkUI_AccessibilityElementInfo** object.
+ * @param elementId Unique ID of the accessibility element.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetElementId(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t elementId);
 
 /**
-* @brief Sets the parent ID for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param parentId Indicates the parent ID.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the parent ID for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param parentId Accessibility ID of the element's parent component.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetParentId(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t parentId);
 
 /**
-* @brief Sets the component type for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param componentType Indicates the component type.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the component type for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param componentType Pointer to the component type of the element.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetComponentType(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* componentType);
 
 /**
-* @brief Sets the component content for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param contents Indicates the component content.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the component text content for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param contents Pointer to the text content recognized by accessibility services for the element.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetContents(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* contents);
 
 /**
-* @brief Sets the hint text for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param hintText Indicates the hint text.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the hint text for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param hintText Pointer to the hint text. The default value is **""**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetHintText(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* hintText);
 
 /**
-* @brief Sets the accessibility text for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param accessibilityText Indicates the accessibility text.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the accessibility text for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param accessibilityText Pointer to the accessibility text. The default value is **""**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityText(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityText);
 
 /**
-* @brief Sets the accessibility description for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param accessibilityDescription Indicates the accessibility description.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the accessibility description for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param accessibilityDescription Pointer to the accessibility description. The default value is **""**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityDescription(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityDescription);
 
 /**
-* @brief Set the number of child nodes and child node IDs for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param childCount Indicates the number of child nodes.
-* @param childNodeIds Indicates an array of child node IDs.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the child node count and IDs for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param childCount Child node count. The default value is **0**.
+ * @param childNodeIds Pointer to the array of child node IDs.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetChildNodeIds(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t childCount, int64_t* childNodeIds);
 
 /**
-* @brief Sets the operation actions for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param operationCount Indicates the operation count.
-* @param operationActions Indicates the operation actions.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the supported operations for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param operationCount Pointer to the number of actions supported by the component.
+ * @param operationActions Pointer to the array of actions supported by the component.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetOperationActions(ArkUI_AccessibilityElementInfo* elementInfo,
     int32_t operationCount, ArkUI_AccessibleAction* operationActions);
 
 /**
-* @brief Sets the screen area for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param screenRect Indicates the screen area.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the screen coordinates for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param screenRect Pointer to the screen coordinates.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetScreenRect(
     ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleRect* screenRect);
 
 /**
-* @brief Sets whether the element is checkable for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param checkable Indicates whether the element is checkable.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is checkable.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param checkable Whether the object is checkable. **true**: checkable; **false**: not checkable. The default value is
+ *     **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetCheckable(
     ArkUI_AccessibilityElementInfo* elementInfo, bool checkable);
 
 /**
-* @brief Sets whether the element is checked for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param checked Indicates whether the element is checked.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is checked.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param checked Whether the object is checked. **true**: checked; **false**: unchecked.
+ * The default value is **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetChecked(
     ArkUI_AccessibilityElementInfo* elementInfo, bool checked);
 
 /**
-* @brief Sets whether the element is focusable for an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param focusable Indicates whether the element is focusable.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is focusable.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param focusable Whether the object is focusable. **true**: focusable; **false**: not focusable. The default value is
+ *     **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetFocusable(
     ArkUI_AccessibilityElementInfo* elementInfo, bool focusable);
 
 /**
-* @brief Sets whether the element is focused for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param isFocused Indicates whether the element is focused.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is focused.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param isFocused Whether the object is focused. **true**: focused; **false**: not focused. The default value is **
+ *     false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetFocused(
     ArkUI_AccessibilityElementInfo* elementInfo, bool isFocused);
 
 /**
-* @brief Sets whether the element is visible for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param isVisible Indicates whether the element is visible.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether an **ArkUI_AccessibilityElementInfo** object is visible.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param isVisible Whether the element is visible. **true**: visible; **false**: not visible. The default value is **
+ *     false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetVisible(
     ArkUI_AccessibilityElementInfo* elementInfo, bool isVisible);
 
 /**
-* @brief Sets the accessibility focus state for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param accessibilityFocused Indicates whether the element has accessibility focus.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the element is focused for accessibility purposes for an **ArkUI_AccessibilityElementInfo**
+ * object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param accessibilityFocused Accessibility focus state. **true**: Accessibility focus is set. **false**: Accessibility
+ *     focus is not set. The default value is **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityFocused(
     ArkUI_AccessibilityElementInfo* elementInfo, bool accessibilityFocused);
 
 /**
-* @brief Sets whether the element is selected for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param selected Indicates whether the element is selected.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is selected.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param selected Whether the object is selected. **true**: selected; **false**: not selected. The default value is **
+ *     false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetSelected(
     ArkUI_AccessibilityElementInfo* elementInfo, bool selected);
 
 /**
-* @brief Sets whether the element is clickable for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param clickable Indicates whether the element is clickable.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is clickable.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param clickable Whether the object is clickable. **true**: supported; **false**: not supported. The default value is
+ *     **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetClickable(
     ArkUI_AccessibilityElementInfo* elementInfo, bool clickable);
 
 /**
-* @brief Sets whether the element is long clickable for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param longClickable Indicates whether the element is long clickable.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object supports long-press gestures.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param longClickable Whether long-press gestures are supported. **true**: supported; **false**: not supported. The
+ *     default value is **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetLongClickable(
     ArkUI_AccessibilityElementInfo* elementInfo, bool longClickable);
 
 /**
-* @brief Sets whether the element is enabled for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param isEnabled Indicates whether the element is enabled.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is enabled.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param isEnabled Whether the object is enabled. **true**: enabled; **false**: not enabled. The default value is **
+ *     false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetEnabled(
     ArkUI_AccessibilityElementInfo* elementInfo, bool isEnabled);
 
 /**
-* @brief Sets whether the element is a password for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param isPassword Indicates whether the element is a password.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is a password.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param isPassword Whether the object is a password. **true**: The object is a password. **false**: The object is not
+ *     a password. The default value is **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetIsPassword(
     ArkUI_AccessibilityElementInfo* elementInfo, bool isPassword);
 
 /**
-* @brief Sets whether the element is scrollable for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param scrollable Indicates whether the element is scrollable.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is scrollable.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param scrollable Whether scrolling is supported. **true**: supported; **false**: not supported. The default value is
+ *     **false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetScrollable(
     ArkUI_AccessibilityElementInfo* elementInfo, bool scrollable);
 
 /**
-* @brief Sets whether the element is editable for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param editable Indicates whether the element is editable.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object is editable.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param editable Whether editing is supported. **true**: supported; **false**: not supported. The default value is **
+ *     false**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetEditable(
     ArkUI_AccessibilityElementInfo* elementInfo, bool editable);
 
 /**
-* @brief Sets whether the element is a hint for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param isHint Indicates whether the element is a hint.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the hint status for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param isHint Whether the object represents a hint. **true** if the object represents a hint, **false** otherwise.
+ *     The **hintText** information is obtained only when the object is in the hint state.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetIsHint(
     ArkUI_AccessibilityElementInfo* elementInfo, bool isHint);
 
 /**
-* @brief Sets the range information for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param rangeInfo Indicates the range information.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the range information for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param rangeInfo Pointer to the current value, maximum value, and minimum value of the specific component.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetRangeInfo(
     ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleRangeInfo* rangeInfo);
 
 /**
-* @brief Sets the grid information for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param gridInfo Indicates the grid information.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the grid information for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param gridInfo Pointer to the number of rows, number of columns, and selection mode of the specific component.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetGridInfo(
     ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleGridInfo* gridInfo);
 
 /**
-* @brief Sets the grid item for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param gridItem Indicates the grid item.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets a single-item container within a grid container for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param gridItem Pointer to the attribute values for the specific component.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetGridItemInfo(
     ArkUI_AccessibilityElementInfo* elementInfo, ArkUI_AccessibleGridItemInfo* gridItem);
 
 /**
-* @brief Sets the starting index of the selected text for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param selectedTextStart Indicates the starting index of the selected text
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the start position of the selected text for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param selectedTextStart Start position of the selected text. Applicable to text components.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextStart);
 
 /**
-* @brief Sets the end index of the selected text for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param selectedTextEnd Indicates the end index of the selected text
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the end position of the selected text for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param selectedTextEnd End position of the selected text. Applicable to text components.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextEnd);
 
 /**
-* @brief Sets the index of the currently selected item for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param currentItemIndex Indicates the index of the currently selected item.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the position information of the currently focused component for an **ArkUI_AccessibilityElementInfo**
+ * object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param currentItemIndex Position information of the currently focused component.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetCurrentItemIndex(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t currentItemIndex);
 
 /**
-* @brief Sets the index of the first item for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param startItemIndex Indicates the index of the first item.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the position information of the first element displayed on the current screen for an **
+ * ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param startItemIndex Index of the first item displayed on the current screen. Applicable to components such as **
+ *     List**, **Select**, **Swiper**, and **Tab_Bar**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetStartItemIndex(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t startItemIndex);
 
 /**
-* @brief Sets the index of the last item for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param endItemIndex Indicates the index of the last item.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the position information of the last element displayed on the current screen for an **
+ * ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param endItemIndex Index of the last item displayed on the current screen.
+ * Applicable to components such as **List**, **Select**, **Swiper**, and **Tab_Bar**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetEndItemIndex(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t endItemIndex);
 
 /**
-* @brief Sets the number of items for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param itemCount Indicates the number of items.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the total number of elements of a specific component for an **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param itemCount Total count of items of the specific component.
+ * Applicable to components such as **List**, **Select**, **Swiper**, and **Tab_Bar**.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetItemCount(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t itemCount);
 
 /**
-* @brief Sets the offset for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param offset Indicates the scroll pixel offset relative to the top of the element.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the scrolling pixel offset of the content area relative to the top coordinate of the element for an **
+ * ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param offset Scrolling pixel offset of the content area relative to the top coordinate of the element for scrollable
+ *     controls, such as {@link List} and {@link Grid}.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityOffset(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t offset);
 
 /**
-* @brief Sets the accessibility group for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param accessibilityGroup Indicates the accessibility group.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets whether the **ArkUI_AccessibilityElementInfo** object should be treated as an accessibility group.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param accessibilityGroup Whether to enable accessibility group behavior for the object. **true**: enable; **false**:
+ *     disable.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityGroup(
     ArkUI_AccessibilityElementInfo* elementInfo, bool accessibilityGroup);
 
 /**
-* @brief Sets the accessibility level for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param accessibilityLevel Indicates the accessibility level.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the accessibility level for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param accessibilityLevel Pointer to the accessibility level of the component, which is used to decide whether the
+ *     component is recognized by accessibility services.
+ *     <br>- **auto**: The system automatically determines the component's importance based on its attributes and
+ *     decides whether to allow accessibility services to recognize it.
+ *     <br>- **yes**: The component is important and allows recognition by accessibility services.
+ *     <br>- **no**: The component is not important and prohibits recognition by accessibility services.
+ *     <br>- **no-hide-descendants**: The component and its descendant nodes are not important, and prohibits
+ *     recognition of the component and its descendants by accessibility services.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityLevel(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* accessibilityLevel);
 
 /**
-* @brief Sets the z-index for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param zIndex Indicates the z-index value.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the z-order of the component for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param zIndex Z-order of the component, used to control the position of the component along the z-axis perpendicular
+ *     to the screen. This parameter is required for {@link UiTest}.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetZIndex(
     ArkUI_AccessibilityElementInfo* elementInfo, int32_t zIndex);
 
 /**
-* @brief Sets the opacity for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param opacity Indicates the opacity.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the opacity for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param opacity Opacity. The value ranges from 0 to 1, where **1** indicates opaque and **0** indicates completely
+ *     transparent. This parameter is required for {@link UiTest}.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetAccessibilityOpacity(
     ArkUI_AccessibilityElementInfo* elementInfo, float opacity);
 
 /**
-* @brief Sets the background color for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param backgroundColor Indicates the background color.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the background color for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param backgroundColor Pointer to the background color. The value is in the **#ARGB** format. For example, the value
+ *     for non-transparent white is **"#FFFFFFFF"**. This parameter is required for {@link UiTest}.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetBackgroundColor(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* backgroundColor);
 
 /**
-* @brief Sets the background image for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param backgroundImage Indicates the backgroundImage.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the background image for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param backgroundImage Pointer to the background image. This parameter is required for {@link UiTest}.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetBackgroundImage(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* backgroundImage);
 
 /**
-* @brief Sets the blur effect for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param blur Indicates the blur effect.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the blur value for the **ArkUI_AccessibilityElementInfo** object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param blur Pointer to the blur value. This parameter is required for {@link UiTest}.
+ * @return <ul>
+ *         <li>{@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.</li>
+ *         </ul>
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetBlur(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* blur);
 
 /**
-* @brief Sets the hit test behavior for an <b>ArkUI_AccessibilityElementInfo</b> object.
-*
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @param hitTestBehavior Indicates the hit test behavior.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the response logic and node blocking rules for the hit test for an **ArkUI_AccessibilityElementInfo**
+ * object.
+ *
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
+ * @param hitTestBehavior Pointer to the hit test mode. For details about the value range, see {@link HitTestMode}.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* hitTestBehavior);
 
 /**
- * @brief Creates an <b>ArkUI_AccessibilityElementInfo</b> object.
+ * @brief Sets the component identifier for the accessibility node information of the **ArkUI_AccessibilityElementInfo**
+ * object, which can be used to identify specific components in automated tests.
  *
- * @return Returns the <b>ArkUI_AccessibilityElementInfo</b> object, or NULL if it fails to create.
- *         The possible reason for failure is that the memory error occurred during object creation.
+ * @param elementInfo Pointer to the element information of an accessibility node.
+ * @param identifier Pointer to the unique identifier of a component.
+ *     <br>Ensure that the component identifier in the reported component tree is unique and the character string
+ *     contains a maximum of 1024 characters. If the character string exceeds 1024 characters, it will be truncated.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 24
+ */
+int32_t OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier(
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* identifier);
+
+/**
+ * @brief Creates an **ArkUI_AccessibilityElementInfo** object, which must be destroyed with **
+ * OH_ArkUI_DestoryAccessibilityElementInfo**.
+ *
+ * @return Pointer to the **ArkUI_AccessibilityElementInfo** object.
  * @since 13
  * @version 1.0
  */
 ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void);
 
 /**
- * @brief Destroys an <b>ArkUI_AccessibilityElementInfo</b> object.
+ * @brief Destroys an **ArkUI_AccessibilityElementInfo** object.
  *
- * @param elementInfo Indicates the pointer to the <b>ArkUI_AccessibilityElementInfo</b> object to destroy.
+ * @param elementInfo Pointer to the target **ArkUI_AccessibilityElementInfo** object.
  * @since 13
  * @version 1.0
  */
 void OH_ArkUI_DestoryAccessibilityElementInfo(ArkUI_AccessibilityElementInfo* elementInfo);
 
 /**
- * @brief Creates an <b>ArkUI_AccessibilityEventInfo</b> object.
+ * @brief Creates an **ArkUI_AccessibilityEventInfo** object, which must be destroyed with **
+ * OH_ArkUI_DestoryAccessibilityEventInfo**.
  *
- * @return Returns the <b>ArkUI_AccessibilityEventInfo</b> object, or NULL if it fails to create.
- *         The possible reason for failure is that the memory error occurred during object creation.
+ * @return Pointer to the **ArkUI_AccessibilityEventInfo** object.
  * @since 13
  */
 ArkUI_AccessibilityEventInfo* OH_ArkUI_CreateAccessibilityEventInfo(void);
 
 /**
- * @brief Destroys an <b>ArkUI_AccessibilityEventInfo</b> object.
+ * @brief Destroys an **ArkUI_AccessibilityEventInfo** object.
  *
- * @param eventInfo Indicates the pointer to the <b>ArkUI_AccessibilityEventInfo</b> object to destroy.
+ * @param eventInfo Pointer to the **ArkUI_AccessibilityEventInfo** object to destroy.
  * @since 13
  */
 void OH_ArkUI_DestoryAccessibilityEventInfo(ArkUI_AccessibilityEventInfo* eventInfo);
 
 /**
-* @brief Sets the event type for an <b>ArkUI_AccessibilityEventInfo</b> object.
-*
-* @param eventInfo Indicates the pointer to an <b>ArkUI_AccessibilityEventInfo</b> object.
-* @param eventType Indicates the event type.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the event type for an **ArkUI_AccessibilityEventInfo** object.
+ *
+ * @param eventInfo Pointer to an **ArkUI_AccessibilityEventInfo** object.
+ * @param eventType Event type.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityEventSetEventType(
     ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityEventType eventType);
 
 /**
-* @brief Sets the text announced for accessibility for an <b>ArkUI_AccessibilityEventInfo</b> object.
-*
-* @param eventInfo Indicates the pointer to an <b>ArkUI_AccessibilityEventInfo</b> object.
-* @param textAnnouncedForAccessibility Indicates the text announced for accessibility.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the content for auto-broadcasting for the **ArkUI_AccessibilityEventInfo** object.
+ *
+ * @param eventInfo Pointer to an **ArkUI_AccessibilityEventInfo** object.
+ * @param textAnnouncedForAccessibility Pointer to the content for auto-broadcasting.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityEventSetTextAnnouncedForAccessibility(
     ArkUI_AccessibilityEventInfo* eventInfo,  const char* textAnnouncedForAccessibility);
 
 /**
-* @brief Sets the request focus ID for an <b>ArkUI_AccessibilityEventInfo</b> object.
-*
-* @param eventInfo Indicates the pointer to an <b>ArkUI_AccessibilityEventInfo</b> object.
-* @param requestFocusId Indicates the request focus ID.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the focus request ID for an **ArkUI_AccessibilityEventInfo** object.
+ *
+ * @param eventInfo Pointer to an **ArkUI_AccessibilityEventInfo** object.
+ * @param requestFocusId Focus request ID.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityEventSetRequestFocusId(
     ArkUI_AccessibilityEventInfo* eventInfo,  int32_t requestFocusId);
 
 /**
-* @brief Sets the element information for an <b>ArkUI_AccessibilityEventInfo</b> object.
-*
-* @param eventInfo Indicates the pointer to an <b>ArkUI_AccessibilityEventInfo</b> object.
-* @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Sets the element information for an **ArkUI_AccessibilityEventInfo** object.
+ *
+ * @param eventInfo Pointer to an **ArkUI_AccessibilityEventInfo** object.
+ * @param elementInfo Pointer to an **ArkUI_AccessibilityElementInfo** object.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_AccessibilityEventSetElementInfo(
     ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityElementInfo* elementInfo);
 
 /**
-* @brief Obtains the value of a key from an <b>ArkUI_AccessibilityActionArguments</b> object.
-*
-* @param arguments Indicates the pointer to an <b>ArkUI_AccessibilityActionArguments</b> object.
-* @param key Indicates the key.
-* @param value Indicates the value.
-* @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
-*         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
-* @since 13
-*/
+ * @brief Obtains the value associated with a specified key in an **ArkUI_AccessibilityActionArguments** struct.
+ *
+ * @param arguments Pointer to an **ArkUI_AccessibilityActionArguments** object.
+ * @param key Pointer to the key.
+ * @param value Pointer to the value.
+ * @return {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
 int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
     ArkUI_AccessibilityActionArguments* arguments, const char* key, char** value);
 
 /**
- * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
- * instance of this <b>ArkUI_NodeHandle</b> instance.
+ * @brief Obtains the level-2 pointer variable of the pointer to the {@link ArkUI_AccessibilityProvider} object.
  *
- * @param node Indicates the pointer to the <b>ArkUI_NodeHandle</b> instance.
- * @param provider Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
- * @return Returns the result code.
- * @return Returns <b>ARKUI_ERROR_CODE_NO_ERROR<b> if the operation is successful.
- *         Returns <b>ARKUI_ERROR_CODE_PARAM_INVALID<b> if a parameter error occurs:1. node or
- *         provider is nullptr. 2. the type of node is not ARKUI_NODE_CUSTOM.
+ * @param node Pointer to an **ArkUI_NodeHandle** object.
+ * @param provider Double pointer to an object of the **ArkUI_AccessibilityProvider** type. **provider** is used to
+ *     register an accessibility callback function.
+ * @return <ul>
+ *         <li>Status code.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *         <li><br>Parameter error: 1. The input parameter **node** or **provider** is a null pointer.</li>
+ *         <li><br>2. The **ArkUI_NodeHandle** type corresponding to **node** is not **ARKUI_NODE_CUSTOM**.</li>
+ *         </ul>
  * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetNativeAccessibilityProvider(
     ArkUI_NodeHandle* node, ArkUI_AccessibilityProvider** provider);
-
-/**
- * @brief Sets the component identifier for an <b>ArkUI_AccessibilityElementInfo</b> object.
- *
- * @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
- * @param identifier Indicates the component identifier. A string up to 1024 bytes.
- * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
- *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
- * @since 24
- */
-int32_t OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier(
-    ArkUI_AccessibilityElementInfo* elementInfo, const char* identifier);
 #ifdef __cplusplus
 };
 #endif

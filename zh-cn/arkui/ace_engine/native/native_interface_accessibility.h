@@ -89,44 +89,81 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle;
  * @since 13
  */
 typedef enum {
-    /** 无效值。 */
+    /**
+     * 无效值。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_INVALID = 0,
-    /** 收到事件后，组件需要对点击做出响应。 */
+    /**
+     * 收到事件后，组件需要对点击做出响应。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CLICK = 0x00000010,
-    /** 收到事件后，组件需要对长按做出响应。 */
+    /**
+     * 收到事件后，组件需要对长按做出响应。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_LONG_CLICK = 0x00000020,
-    /** 表示获取辅助功能焦点的操作，特定组件已聚焦。 */
+    /**
+     * 表示获取辅助功能焦点的操作，特定组件已聚焦。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_GAIN_ACCESSIBILITY_FOCUS = 0x00000040,
-    /** 表示清除辅助功能焦点的操作。 */
+    /**
+     * 表示清除辅助功能焦点的操作。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CLEAR_ACCESSIBILITY_FOCUS = 0x00000080,
-    /** 滚动组件响应向前滚动动作。 */
+    /**
+     * 滚动组件响应向前滚动动作。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SCROLL_FORWARD = 0x00000100,
-    /** 滚动组件响应反向滚动操作。 */
+    /**
+     * 滚动组件响应反向滚动操作。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SCROLL_BACKWARD = 0x00000200,
-    /** 复制文本组件的选定内容。 */
+    /**
+     * 复制文本组件的选定内容。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_COPY = 0x00000400,
-    /** 粘贴文本组件的选定内容。 */
+    /**
+     * 粘贴文本组件的选定内容。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PASTE = 0x00000800,
-    /** 剪切文本组件的选定内容。 */
+    /**
+     * 剪切文本组件的选定内容。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CUT = 0x00001000,
     /** 针对文本组件进行选择操作。结合{@link ArkUI_AccessibilityActionArguments}使用，
      * 配置selectTextBegin（表示选择起始位置），selectTextEnd（表示选择结束位置），selectTextInForWard（true表示为前光标，false表示为后光标）进入编辑区选择一段文本内容。
+     * @since 13
      */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SELECT_TEXT = 0x00002000,
-    /** 设置文本组件的文本内容。 */
+    /**
+     * 设置文本组件的文本内容。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_TEXT = 0x00004000,
-    /** 针对文本组件设置光标位置，结合ArkUI_AccessibilityActionArguments使用，配置可输入文本控件的光标位置。 */
+    /**
+     * 针对文本组件设置光标位置，结合ArkUI_AccessibilityActionArguments使用，配置可输入文本控件的光标位置。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_CURSOR_POSITION = 0x00100000,
     /** 焦点移动操作中支持查找下一个焦点。
      * 此处的HTML并不代表网页元素，仅用于表示具有可自行查找下一个可见聚焦组件的能力，与Web支持的能力相似。
      * 实现findNextFocusAccessibilityNode的能力才可配置该属性。
-     *  @since 15
+     * @since 15
      */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_NEXT_HTML_ITEM = 0x02000000,
     /** 焦点移动操作中支持查找上一个焦点。
      * 此处的HTML并不代表网页元素，仅用于表示具有可自行查找上一个可见聚焦组件的能力，与Web支持的能力相似。
      * 实现findNextFocusAccessibilityNode的能力才可配置该属性。
-     *  @since 15
+     * @since 15
      */
     ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PREVIOUS_HTML_ITEM = 0x04000000,
 } ArkUI_Accessibility_ActionType;
@@ -137,35 +174,80 @@ typedef enum {
  * @since 13
  */
 typedef enum {
-    /** 无效值。 */
+    /**
+     * 无效值。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_INVALID = 0,
-    /** 点击事件，在UI组件响应后发送。 */
+    /**
+     * 点击事件，在UI组件响应后发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_CLICKED = 0x00000001,
-    /** 长按事件，在UI组件响应后发送。 */
+    /**
+     * 长按事件，在UI组件响应后发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_LONG_CLICKED = 0x00000002,
-    /** 被选中事件，控件响应完成后发送。 */
+    /**
+     * 被选中事件，控件响应完成后发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SELECTED = 0x00000004,
-    /** 文本更新事件，需要在文本更新时发送。 */
+    /**
+     * 文本更新事件，需要在文本更新时发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_TEXT_UPDATE = 0x00000010,
-    /** 页面更新事件，当页面跳转、切换、大小更改或移动时发送。 */
+    /**
+     * 页面更新事件，当页面跳转、切换、大小更改或移动时发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_STATE_UPDATE = 0x00000020,
-    /** 页面内容发生变化时需要发送事件。 */
+    /**
+     * 页面内容发生变化时需要发送事件。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CONTENT_UPDATE = 0x00000800,
-    /** scrolled事件，当可滚动的组件上发生滚动事件时，会发送此事件。 */
+    /**
+     * scrolled事件，当可滚动的组件上发生滚动事件时，会发送此事件。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED = 0x000001000,
-    /** Accessibility焦点事件，在UI组件响应后发送。 */
+    /**
+     * Accessibility焦点事件，在UI组件响应后发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED = 0x00008000,
-    /** Accessibility焦点清除事件，在UI组件响应后发送。 */
+    /**
+     * Accessibility焦点清除事件，在UI组件响应后发送。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUS_CLEARED = 0x00010000,
-    /** 主动请求指定节点聚焦。 */
+    /**
+     * 主动请求指定节点聚焦。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_ACCESSIBILITY_FOCUS = 0x02000000,
-    /** UI组件上报页面打开事件。 */
+    /**
+     * UI组件上报页面打开事件。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_OPEN = 0x20000000,
-    /** UI组件上报页面关闭事件。 */
+    /**
+     * UI组件上报页面关闭事件。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CLOSE = 0x08000000,
-    /** 广播Accessibility事件，请求主动播放指定的内容事件。 */
+    /**
+     * 广播Accessibility事件，请求主动播放指定的内容事件。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ANNOUNCE_FOR_ACCESSIBILITY = 0x10000000,
-    /** 焦点更新事件，用于焦点更新场景。 */
+    /**
+     * 焦点更新事件，用于焦点更新场景。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_FOCUS_NODE_UPDATE = 0x10000001,
 } ArkUI_AccessibilityEventType;
 
@@ -175,9 +257,15 @@ typedef enum {
  * @since 13
  */
 typedef struct {
-    /** 无障碍操作类型。 */
+    /**
+     * 无障碍操作类型。
+     * @since 13
+     */
     ArkUI_Accessibility_ActionType actionType;
-    /** 操作描述信息。 */
+    /**
+     * 操作描述信息。
+     * @since 13
+     */
     const char* description;
 } ArkUI_AccessibleAction;
 
@@ -187,13 +275,25 @@ typedef struct {
  * @since 13
  */
 typedef struct {
-    /** 左上角X轴坐标位置。 */
+    /**
+     * 左上角X轴坐标位置。
+     * @since 13
+     */
     int32_t leftTopX;
-    /** 左上角Y轴坐标位置。 */
+    /**
+     * 左上角Y轴坐标位置。
+     * @since 13
+     */
     int32_t leftTopY;
-    /** 右下角X轴坐标位置。 */
+    /**
+     * 右下角X轴坐标位置。
+     * @since 13
+     */
     int32_t rightBottomX;
-    /** 右下角Y轴坐标位置。 */
+    /**
+     * 右下角Y轴坐标位置。
+     * @since 13
+     */
     int32_t rightBottomY;
 } ArkUI_AccessibleRect;
 
@@ -203,11 +303,20 @@ typedef struct {
  * @since 13
  */
 typedef struct {
-    /** 最小值。 */
+    /**
+     * 最小值。
+     * @since 13
+     */
     double min;
-    /** 最大值。 */
+    /**
+     * 最大值。
+     * @since 13
+     */
     double max;
-    /** 当前值。 */
+    /**
+     * 当前值。
+     * @since 13
+     */
     double current;
 } ArkUI_AccessibleRangeInfo;
 
@@ -217,11 +326,20 @@ typedef struct {
  * @since 13
  */
 typedef struct {
-    /** 行数。 */
+    /**
+     * 行数。
+     * @since 13
+     */
     int32_t rowCount;
-    /** 列数。 */
+    /**
+     * 列数。
+     * @since 13
+     */
     int32_t columnCount;
-    /** 值为0时表示仅选中网格的一行，非0值时表示选中网格的多行。 */
+    /**
+     * 值为0时表示仅选中网格的一行，非0值时表示选中网格的多行。
+     * @since 13
+     */
     int32_t selectionMode;
 } ArkUI_AccessibleGridInfo;
 
@@ -235,13 +353,25 @@ typedef struct {
     bool heading;
     /** 是否被选中。 true表示被选中，false表示未被选中。*/
     bool selected;
-    /** 列下标。 */
+    /**
+     * 列下标。
+     * @since 13
+     */
     int32_t columnIndex;
-    /** 行下标。 */
+    /**
+     * 行下标。
+     * @since 13
+     */
     int32_t rowIndex;
-    /** 列跨度。 */
+    /**
+     * 列跨度。
+     * @since 13
+     */
     int32_t columnSpan;
-    /** 行跨度。 */
+    /**
+     * 行跨度。
+     * @since 13
+     */
     int32_t rowSpan;
 } ArkUI_AccessibleGridItemInfo;
 
@@ -251,13 +381,25 @@ typedef struct {
  * @since 13
  */
 typedef enum{
-    /** 成功。 */
+    /**
+     * 成功。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL = 0,
-    /** 失败。 */
+    /**
+     * 失败。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED = -1,
-    /** 无效参数。 */
+    /**
+     * 无效参数。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER = -2,
-    /** 内存不足。 */
+    /**
+     * 内存不足。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_RESULT_OUT_OF_MEMORY = -3,
 } ArkUI_AcessbilityErrorCode;
 
@@ -267,15 +409,30 @@ typedef enum{
  * @since 13
  */
 typedef enum {
-    /** 查询当前节点。 */
+    /**
+     * 查询当前节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_CURRENT = 0,
-    /** 查询父节点。 */
+    /**
+     * 查询父节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_PREDECESSORS = 1 << 0,
-    /** 查询兄弟节点。 */
+    /**
+     * 查询兄弟节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_SIBLINGS = 1 << 1,
-    /** 查询下一层孩子节点。 */
+    /**
+     * 查询下一层孩子节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_CHILDREN = 1 << 2,
-    /** 查询所有孩子节点。 */
+    /**
+     * 查询所有孩子节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_RECURSIVE_CHILDREN = 1 << 3,
 } ArkUI_AccessibilitySearchMode;
 
@@ -285,11 +442,20 @@ typedef enum {
  * @since 13
  */
 typedef enum {
-    /** 无效值。 */
+    /**
+     * 无效值。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_INVALID = -1,
-    /** 输入焦点类型。 */
+    /**
+     * 输入焦点类型。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_INPUT = 1 << 0,
-    /** Accessibility焦点类型。 */
+    /**
+     * Accessibility焦点类型。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_FOCUS_TYPE_ACCESSIBILITY = 1 << 1,
 } ArkUI_AccessibilityFocusType;
 
@@ -299,19 +465,40 @@ typedef enum {
  * @since 13
  */
 typedef enum {
-    /** 无效值。 */
+    /**
+     * 无效值。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_INVALID = 0,
-    /** 焦点向上移动。 */
+    /**
+     * 焦点向上移动。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_UP = 0x00000001,
-    /** 焦点向下移动。 */
+    /**
+     * 焦点向下移动。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_DOWN = 0x00000002,
-    /** 焦点向左移动。 */
+    /**
+     * 焦点向左移动。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_LEFT = 0x00000004,
-    /** 焦点向右移动。 */
+    /**
+     * 焦点向右移动。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_RIGHT = 0x00000008,
-    /** 焦点向下一个可聚焦节点移动，基于查询请求中指定的基准节点。 */
+    /**
+     * 焦点向下一个可聚焦节点移动，基于查询请求中指定的基准节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_FORWARD = 0x00000010,
-    /** 焦点向上一个可聚焦节点移动，基于查询请求中指定的基准节点。 */
+    /**
+     * 焦点向上一个可聚焦节点移动，基于查询请求中指定的基准节点。
+     * @since 13
+     */
     ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_BACKWARD = 0x00000020,
 } ArkUI_AccessibilityFocusMoveDirection;
 
@@ -1268,12 +1455,25 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(
     ArkUI_AccessibilityElementInfo* elementInfo, const char* hitTestBehavior);
 
 /**
+ * @brief 为无障碍节点信息{@link ArkUI_AccessibilityElementInfo}设置组件标识，可用于自动化测试识别特定组件。
+ *
+ * @param elementInfo 表示无障碍节点信息元素信息。
+ * @param identifier 表示组件的唯一标识字符串。<br>需保证上报的组件树中的组件标识唯一，且字符串长度不大于1024，超过1024会截断使用。
+ * @return 成功返回 {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL}。\n
+ * 参数错误返回 {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER}。
+ * @since 24
+ */
+int32_t OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier(
+    ArkUI_AccessibilityElementInfo *elementInfo, const char *identifier);
+
+/**
  * @brief 创建一个{@link ArkUI_AccessibilityElementInfo}对象。
  *
  * 创建后需要调用{@link OH_ArkUI_DestoryAccessibilityElementInfo}释放。
  *
  * @return 返回{@link ArkUI_AccessibilityElementInfo}对象。
  * @since 13
+ * @version 1.0
  */
 ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void);
 
@@ -1282,6 +1482,7 @@ ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void);
  *
  * @param elementInfo 表示指向{@link ArkUI_AccessibilityElementInfo}的指针。
  * @since 13
+ * @version 1.0
  */
 void OH_ArkUI_DestoryAccessibilityElementInfo(ArkUI_AccessibilityElementInfo* elementInfo);
 
@@ -1387,17 +1588,6 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 int32_t OH_ArkUI_NativeModule_GetNativeAccessibilityProvider(
     ArkUI_NodeHandle* node, ArkUI_AccessibilityProvider** provider);
 
-/**
- * @brief 为无障碍节点信息{@link ArkUI_AccessibilityElementInfo}设置组件标识，可用于自动化测试识别特定组件。
- *
- * @param elementInfo 表示无障碍节点信息元素信息。
- * @param identifier 表示组件的唯一标识字符串。<br>需保证上报的组件树中的组件标识唯一，且字符串长度不大于1024，超过1024会截断使用。
- * @return 成功返回 {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL}。\n
- * 参数错误返回 {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER}。
- * @since 24
- */
-int32_t OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier(
-    ArkUI_AccessibilityElementInfo *elementInfo, const char *identifier);
 
 #ifdef __cplusplus
 };

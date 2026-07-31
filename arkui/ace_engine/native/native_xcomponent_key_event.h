@@ -26,7 +26,8 @@
 /**
  * @file native_xcomponent_key_event.h
  *
- * @brief Declares enums for key event of Native XComponent.
+ * @brief Declares the enums used to access native XComponent key events.
+ *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
@@ -42,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Represents the key event code.
+ * @brief Enumerates the key codes for key events.
  *
  * @since 10
  * @version 1.0
@@ -377,11 +378,11 @@ typedef enum {
     KEY_BTN_6 = 3106,
     KEY_BTN_7 = 3107,
     KEY_BTN_8 = 3108,
-    KEY_BTN_9 = 3109,
+    KEY_BTN_9 = 3109
 } OH_NativeXComponent_KeyCode;
 
 /**
- * @brief Represents the key event action.
+ * @brief Enumerates the key event actions.
  *
  * @since 10
  * @version 1.0
@@ -389,7 +390,7 @@ typedef enum {
 typedef enum {
     OH_NATIVEXCOMPONENT_KEY_ACTION_UNKNOWN = -1,
     OH_NATIVEXCOMPONENT_KEY_ACTION_DOWN = 0,
-    OH_NATIVEXCOMPONENT_KEY_ACTION_UP,
+    OH_NATIVEXCOMPONENT_KEY_ACTION_UP
 } OH_NativeXComponent_KeyAction;
 
 #ifdef __cplusplus
