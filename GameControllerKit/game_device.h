@@ -54,8 +54,10 @@ typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
  *
  * @param allDeviceInfos Output parameter. Double pointer to the {@link GameDevice_AllDeviceInfos} instance. The
  *     pointer cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR} if the multimodal input is abnormal.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     allDeviceInfos** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If querying
+ *     all device information in multimodal input fails, {@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR} is returned.
+ *     </li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
@@ -64,8 +66,8 @@ GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInf
  * @brief Registers a callback for device status change events.
  *
  * @param deviceMonitorCallback Callback function {@link GameDevice_DeviceMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     deviceMonitorCallback** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
@@ -74,7 +76,7 @@ GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
 /**
  * @brief Unregisters the callback for device status change events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
@@ -83,8 +85,8 @@ GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
  * @brief Destroys all device information instances.
  *
  * @param allDeviceInfos Double pointer to the {@link GameDevice_AllDeviceInfos} instance. The pointer cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if allDeviceInfos is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     allDeviceInfos** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
@@ -94,8 +96,8 @@ GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDevic
  *
  * @param allDeviceInfos Pointer to the {@link GameDevice_AllDeviceInfos} instance. The pointer cannot be null.
  * @param count Output parameter. Number of devices.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if allDeviceInfos is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     allDeviceInfos** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
@@ -108,9 +110,9 @@ GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
  * @param allDeviceInfos Pointer to the {@link GameDevice_AllDeviceInfos} instance. The pointer cannot be null.
  * @param index Index of the device.
  * @param deviceInfo Output parameter. Double pointer to the device information.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if allDeviceInfos is null, or the index is less than 0
- *     or greater than or equal to the total number of game devices.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     allDeviceInfos** is null, or **index** is less than 0 or greater than or equal to the total number of devices,
+ *     {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetDeviceInfo(

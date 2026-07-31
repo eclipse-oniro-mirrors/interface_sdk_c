@@ -142,9 +142,9 @@ typedef void(* GamePad_AxisInputMonitorCallback)(const struct GamePad_AxisEvent*
  *
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param deviceId Output parameter. Double pointer to the device ID.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent or deviceId is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     buttonEvent** or **deviceId** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If the
+ *     device has insufficient memory, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetDeviceId(const struct GamePad_ButtonEvent* buttonEvent,
@@ -155,8 +155,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetDeviceId(const struct GamePad
  *
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param actionType Output parameter. Button action type.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     buttonEvent** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonAction(const struct GamePad_ButtonEvent* buttonEvent,
@@ -167,8 +167,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonAction(const struct Gam
  *
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param code Output parameter. Button code.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     buttonEvent** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCode(const struct GamePad_ButtonEvent* buttonEvent,
@@ -179,9 +179,9 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCode(const struct GameP
  *
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param codeName Output parameter. Double pointer to the button name.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent or codeName is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     buttonEvent** or **codeName** is null. {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If the
+ *     device has insufficient memory, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCodeName(const struct GamePad_ButtonEvent* buttonEvent,
@@ -192,8 +192,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCodeName(const struct G
  *
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param count Output parameter. Number of buttons.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     buttonEvent** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad_ButtonEvent* buttonEvent,
@@ -205,9 +205,9 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param index Button index.
  * @param pressedButton Output parameter. Double pointer to the pressed button.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent is null, or the index is less than 0
- *     or greater than or equal to the number of all buttons.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     buttonEvent** is null, or **index** is less than 0 or greater than or equal to the total number of keys,
+ *     {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct GamePad_ButtonEvent* buttonEvent,
@@ -218,8 +218,8 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct Ga
  * @brief Destroys a pressed button instance.
  *
  * @param pressedButton Double pointer to the {@link GamePad_PressedButton} instance. The pointer cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if pressedButton is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     pressedButton** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton** pressedButton);
@@ -229,8 +229,8 @@ GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton**
  *
  * @param pressedButton Pointer to the {@link GamePad_PressedButton} instance. The pointer cannot be null.
  * @param code Output parameter. Button code.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if pressedButton is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     pressedButton** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCode(const struct GamePad_PressedButton* pressedButton,
@@ -241,9 +241,9 @@ GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCode(const struct Gam
  *
  * @param pressedButton Pointer to the {@link GamePad_PressedButton} instance. The pointer cannot be null.
  * @param codeName Output parameter. Double pointer to the button name.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if pressedButton or codeName is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     pressedButton** or **codeName** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If the
+ *     device has insufficient memory, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCodeName(const struct GamePad_PressedButton* pressedButton,
@@ -254,8 +254,8 @@ GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCodeName(const struct
  *
  * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance. The pointer cannot be null.
  * @param actionTime Output parameter. Action time. Unix timestamp, in milliseconds.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if buttonEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, returns {@link GAME_CONTROLLER_SUCCESS}.</li>     <li>If the **
+ *     buttonEvent** parameter is null, returns {@link GAME_CONTROLLER_PARAM_ERROR}.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetActionTime(const struct GamePad_ButtonEvent* buttonEvent,
@@ -266,9 +266,9 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetActionTime(const struct GameP
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param deviceId Output parameter. Double pointer to the device ID.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent or deviceId is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     axisEvent** or **deviceId** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If the device
+ *     has insufficient memory, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetDeviceId(const struct GamePad_AxisEvent* axisEvent,
@@ -279,8 +279,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetDeviceId(const struct GamePad_A
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisSourceType Output parameter. Source type of the axis event.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, returns {@link GAME_CONTROLLER_SUCCESS}.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetAxisSourceType(const struct GamePad_AxisEvent* axisEvent,
@@ -291,8 +291,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetAxisSourceType(const struct Gam
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetXAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -303,8 +303,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetXAxisValue(const struct GamePad
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetYAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -315,8 +315,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetYAxisValue(const struct GamePad
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, returns {@link GAME_CONTROLLER_SUCCESS}.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetZAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -327,8 +327,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetZAxisValue(const struct GamePad
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, returns {@link GAME_CONTROLLER_SUCCESS}.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetRZAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -339,8 +339,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetRZAxisValue(const struct GamePa
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetHatXAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -351,8 +351,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetHatXAxisValue(const struct Game
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetHatYAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -363,8 +363,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetHatYAxisValue(const struct Game
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetBrakeAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -375,8 +375,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetBrakeAxisValue(const struct Gam
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param axisValue Output parameter. Axis value. The value range is [-1.0, 1.0].
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, returns {@link GAME_CONTROLLER_SUCCESS}.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetGasAxisValue(const struct GamePad_AxisEvent* axisEvent,
@@ -387,8 +387,8 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetGasAxisValue(const struct GameP
  *
  * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance. The pointer cannot be null.
  * @param actionTime Output parameter. Action time. Unix timestamp, in milliseconds.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if axisEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     axisEvent** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetActionTime(const struct GamePad_AxisEvent* axisEvent,
