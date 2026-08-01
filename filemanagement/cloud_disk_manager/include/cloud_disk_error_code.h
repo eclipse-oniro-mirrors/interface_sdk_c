@@ -153,6 +153,66 @@ typedef enum CloudDisk_ErrorCode {
      * @since 21
      */
     CLOUD_DISK_NOT_ALLOWED = 34400015,
+    /**
+     * @brief A file with the same name already exists in the target path.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_FILE_ALREADY_EXISTS = 34400016,
+    /**
+     * @brief The target path is not a placeholder file.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_NOT_A_PLACEHOLDER = 34400017,
+    /**
+     * @brief The target path is already a placeholder file.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_IS_A_PLACEHOLDER = 34400018,
+    /**
+     * @brief Hydration in progress.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_HYDRATE_IN_PROGRESS = 34400019,
+    /**
+     * @brief The available disk space is insufficient.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_NO_SPACE_LEFT = 34400020,
+    /**
+     * @brief The callback table is not registered.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_CALLBACK_NOT_REGISTERED = 34400021,
+    /**
+     * @brief The callback table has been registered.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_CALLBACK_ALREADY_REGISTERED = 34400022,
+    /**
+     * @brief The parent directory of the target path is not a directory.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_NOT_A_DIRECTORY = 34400023,
+    /**
+     * @brief The target path does not exist.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_FILE_NOT_EXIST = 34400024,
+    /**
+     * @brief The file name or path is too long.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_NAME_TOO_LONG = 34400025
 } CloudDisk_ErrorCode;
 
 #ifdef __cplusplus

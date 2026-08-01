@@ -133,6 +133,12 @@ typedef enum CloudDisk_OperationType {
      * @since 21
      */
     SYNC_FOLDER_INVALID = 5,
+    /**
+     * @brief Close a file after modifying content.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_CLOSE_MODIFY = 6
 } CloudDisk_OperationType;
 
 /**
@@ -449,6 +455,29 @@ typedef struct CloudDisk_SyncFolder {
 } CloudDisk_SyncFolder;
 
 /**
+ * @brief Metadata information for the placeholder file.
+ * @since 26.1.0
+ */
+typedef struct OH_CloudDisk_PlaceholderInfo {
+    /**
+     * @brief Logical size of the placeholder file, in bytes, which reflects the actual size of the cloud file.
+     * @since 26.1.0
+     */
+    uint64_t logicalSize;
+    /**
+     * @brief Time when the placeholder file is created,
+     * which maps the actual time when the file is created on the cloud.
+     * @since 26.1.0
+     */
+    uint64_t atimeMs;
+    /**
+     * @brief Modification time of the placeholder file, which maps the actual modification time of the cloud file.
+     * @since 26.1.0
+     */
+    uint64_t mtimeMs;
+} OH_CloudDisk_PlaceholderInfo;
+
+/**
  * @brief Registers a callback to obtain file changes in the sync root path.
  *
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
@@ -589,6 +618,60 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolders(CloudDisk_SyncFolder **syncFolde
  */
 CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
+
+/**
+ * @brief Creates a placeholder in a registered sync folder.
+ *
+ * @param syncFolderPath Indicates the registered sync folder path.
+ * @param relativePathInfo Indicates the relative path in the sync folder.
+ * @param placeholderInfo Indicates the placeholder metadata information.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                   const CloudDisk_PathInfo relativePathInfo,
+                                                   const OH_CloudDisk_PlaceholderInfo placeholderInfo);
+
+/**
+ * @brief Checks whether a file in a sync folder is a placeholder file.
+ *
+ * @param syncFolderPath Indicates the registered sync folder path.
+ * @param relativePathInfo Indicates the relative path in the sync folder.
+ * @param isPlaceholder Output parameter. The value is valid only when the return value is {@link CLOUD_DISK_OK}.
+ *     Returns true if the file is a placeholder file; returns false otherwise. The value is set to false on error.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_IsPlaceholderFile(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                   const CloudDisk_PathInfo relativePathInfo,
+                                                   bool *isPlaceholder);
+
+/**
+ * @brief Converts a placeholder file to a 0-byte normal file.
+ *
+ * @param syncFolderPath Indicates the registered sync folder path.
+ * @param relativePathInfo Indicates the relative path in the sync folder.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_ConvertPlaceholderToFile(const CloudDisk_SyncFolderPath syncFolderPath,
+    const CloudDisk_PathInfo relativePathInfo);
+
+/**
+ * @brief Updates file metadata (supports placeholder and normal files).
+ *
+ * @param syncFolderPath Indicates the registered sync folder path.
+ * @param relativePathInfo Indicates the relative path in the sync folder.
+ * @param placeholderInfo Indicates the placeholder metadata.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
+    const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo);
 #ifdef __cplusplus
 };
 #endif
