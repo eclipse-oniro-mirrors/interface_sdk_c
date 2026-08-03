@@ -17,24 +17,23 @@
  * @addtogroup HiAppEvent
  * @{
  *
- * @brief Provides application event logging functions.
+ * @brief 提供应用事件打点功能。
  *
- * Provides the event logging function for applications to log the fault, statistical, security, and user behavior
- * events reported during running. Based on event information, you will be able to analyze the running status of
- * applications.
+ * 为应用提供事件打点功能，记录故障、统计、安全、用户行为等
+ * 运行过程中上报的事件。通过事件信息，可以分析应用程序的
+ * 运行状态。
  *
  * @since 8
- * @version 1.0
  */
 
 /**
  * @file hiappevent_param.h
  *
- * @brief Defines the param names of all predefined events.
+ * @brief 定义所有预定义的参数名称。
  *
- * In addition to custom events associated with specific apps, you can also use predefined events for logging.
+ * 开发者可以使用特定预定义的参数名称进行打点或对系统事件进行自定义参数规格设置。
  *
- * Sample code:
+ * 示例代码：
  * <pre>
  *     ParamList list = OH_HiAppEvent_CreateParamList();
  *     OH_HiAppEvent_AddInt32Param(list, PARAM_USER_ID, 123);
@@ -42,118 +41,117 @@
  *     OH_HiAppEvent_DestroyParamList(list);
  * </pre>
  *
- * @kit PerformanceAnalysisKit
- * @library libhiappevent_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
+ * @library libhiappevent_ndk.z.so
+ * @kit PerformanceAnalysisKit
  * @since 8
- * @version 1.0
  */
+
 #ifndef HIVIEWDFX_HIAPPEVENT_PARAM_H
 #define HIVIEWDFX_HIAPPEVENT_PARAM_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
- * @brief Preset param name, user id param.
+ * @brief 用户ID。可用于预定义事件打点。
  *
  * @since 8
- * @version 1.0
  */
 #define PARAM_USER_ID "user_id"
+
 /**
- * @brief Preset param name, distributed service name param.
+ * @brief 分布式服务名称。可用于预定义事件打点。
  *
  * @since 8
- * @version 1.0
  */
 #define PARAM_DISTRIBUTED_SERVICE_NAME "ds_name"
+
 /**
- * @brief Preset param name, distributed service instance id param.
+ * @brief 分布式服务实例ID。可用于预定义事件打点。
  *
  * @since 8
- * @version 1.0
  */
 #define PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID "ds_instance_id"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, type of the log that needs to be collected when main thread jank happened.
+ * @brief 用于MAIN_THREAD_JANK_V2事件，主线程超时检测采集日志的类型。
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_LOG_TYPE "log_type"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, The timeout detection interval and sampling interval for the main thread.
- * Unit: ms.
+ * @brief 用于MAIN_THREAD_JANK_V2事件，主线程超时检测间隔和采样间隔，单位为ms。
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_INTERVAL "sample_interval"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup. Unit: s.
+ * @brief 用于MAIN_THREAD_JANK_V2事件，应用启动期间忽略主线程超时检测的时间，单位为s。
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_IGNORE_STARTUP_TIME "ignore_startup_time"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Number of main thread timeout samples.
+ * @brief 用于MAIN_THREAD_JANK_V2事件，主线程超时检测的采样栈的次数。
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_COUNT "sample_count"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Number of main thread timeout sampling reports per application PID within a
- * single lifecycle.
+ * @brief 用于MAIN_THREAD_JANK_V2事件，每个应用PID一个生命周期内，主线程超时采样上报的次数，一个生命周期内只能设置一次。
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_REPORT_TIMES_PER_APP "report_times_per_app"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Stop sampling main thread stack when main thread blockage is resolved.
+ * @brief 用于MAIN_THREAD_JANK_V2事件，主线程超时结束时，是否停止采样主线程堆栈。
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_AUTO_STOP_SAMPLING "auto_stop_sampling"
 
 /**
- * @brief Print additional memory information near the PC and LR registers
+ * @brief 用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，是否打印PC、LR寄存器扩展字节范围的内存内容。
  *
  * @since 24
  */
 #define OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING "extend_pc_lr_printing"
 
 /**
- * @brief Used to set the log specifications of the CPP_CRASH type in the APP_CRASH event, that is, truncate CPP_CRASH
- * logs based on the configured parameter value.
+ * @brief 用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，按设置的参数值大小截断CPP_CRASH日志。
  *
  * @since 24
  */
 #define OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES "log_file_cutoff_sz_bytes"
 
 /**
- * @brief Only print VMA within the stacktrace of the cppcrash log
+ * @brief 用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，是否只打印崩溃日志中出现的地址所属的VMA映射信息，以减小CPP_CRASH日志文件大小。
  *
  * @since 24
  */
 #define OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING "simplify_vma_printing"
 
 /**
- * @brief Merge the app log into the system cppcrash log and return it via external_log in the APP_CRASH event
+ * @brief 用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，是否在CPP_CRASH场景拼接应用沙箱中指定文件的日志。
  *
  * @since 24
  */
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
 
 /**
- * @brief Enable minidump in the APP_CRASH event
+ * @brief 用于APP_CRASH事件，是否使能minidump。
  *
  * @since 26.0.0
  */
 #define OH_APP_CRASH_PARAM_COLLECT_MINIDUMP "collect_minidump"
+
 #ifdef __cplusplus
 }
 #endif

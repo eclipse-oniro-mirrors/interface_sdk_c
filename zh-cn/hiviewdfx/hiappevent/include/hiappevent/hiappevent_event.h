@@ -17,24 +17,22 @@
  * @addtogroup HiAppEvent
  * @{
  *
- * @brief Provides application event logging functions.
+ * @brief 提供应用事件打点功能。
  *
- * Provides the event logging function for applications to log the fault, statistical, security, and user behavior
- * events reported during running. Based on event information, you will be able to analyze the running status of
- * applications.
+ * 为应用提供事件打点功能，记录故障、统计、安全、用户行为等
+ * 运行过程中上报的事件。通过事件信息，可以分析应用程序的
+ * 运行状态。
  *
  * @since 8
- * @version 1.0
  */
-
 /**
  * @file hiappevent_event.h
  *
- * @brief Defines the event names of all predefined events.
+ * @brief 定义所有预定义事件的事件名称。
  *
- * In addition to custom events associated with specific apps, you can also use predefined events for logging.
+ * 除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。
  *
- * Sample code:
+ * 示例代码：
  * <pre>
  *     ParamList list = OH_HiAppEvent_CreateParamList();
  *     OH_HiAppEvent_AddInt32Param(list, PARAM_USER_ID, 123);
@@ -42,143 +40,145 @@
  *     OH_HiAppEvent_DestroyParamList(list);
  * </pre>
  *
- * @kit PerformanceAnalysisKit
- * @library libhiappevent_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
+ * @library libhiappevent_ndk.z.so
+ * @kit PerformanceAnalysisKit
  * @since 8
- * @version 1.0
  */
+
 #ifndef HIVIEWDFX_HIAPPEVENT_EVENT_H
 #define HIVIEWDFX_HIAPPEVENT_EVENT_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
- * @brief user login event.
+ * @brief 用户登录事件。
  *
  * @since 8
- * @version 1.0
  */
 #define EVENT_USER_LOGIN "hiappevent.user_login"
+
 /**
- * @brief user logout event.
+ * @brief 用户登出事件。
  *
  * @since 8
- * @version 1.0
  */
 #define EVENT_USER_LOGOUT "hiappevent.user_logout"
+
 /**
- * @brief distributed service event.
+ * @brief 分布式服务事件。
  *
  * @since 8
- * @version 1.0
  */
 #define EVENT_DISTRIBUTED_SERVICE_START "hiappevent.distributed_service_start"
+
 /**
- * @brief app crash event.
+ * @brief 崩溃事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_APP_CRASH "APP_CRASH"
+
 /**
- * @brief app freeze event.
+ * @brief 应用冻屏事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_APP_FREEZE "APP_FREEZE"
+
 /**
- * @brief app launch event.
+ * @brief 启动耗时事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_APP_LAUNCH "APP_LAUNCH"
+
 /**
- * @brief app scroll jank event.
+ * @brief 滑动丢帧事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_SCROLL_JANK "SCROLL_JANK"
+
 /**
- * @brief app cpu usage high event.
+ * @brief CPU高负载事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_CPU_USAGE_HIGH "CPU_USAGE_HIGH"
+
 /**
- * @brief app battery usage event.
+ * @brief 24h功耗器件分解统计事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_BATTERY_USAGE "BATTERY_USAGE"
+
 /**
- * @brief app resource overlimit event.
+ * @brief 资源泄漏事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_RESOURCE_OVERLIMIT "RESOURCE_OVERLIMIT"
+
 /**
- * @brief app address sanitizer event.
+ * @brief 地址越界事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_ADDRESS_SANITIZER "ADDRESS_SANITIZER"
+
 /**
- * @brief app main thread jank event.
+ * @brief 主线程超时事件。
  *
  * @since 12
- * @version 1.0
  */
 #define EVENT_MAIN_THREAD_JANK "MAIN_THREAD_JANK"
 
 /**
- * @brief app main thread jank event with extended params.
+ * @brief 用于设置主线程超时事件配置策略。
  *
  * @since 22
  */
 #define EVENT_MAIN_THREAD_JANK_V2 "MAIN_THREAD_JANK_V2"
+
 /**
- * @brief app hicollie event.
+ * @brief 任务执行超时事件。
  *
  * @since 18
- * @version 1.0
  */
 #define EVENT_APP_HICOLLIE "APP_HICOLLIE"
+
 /**
- * @brief OS domain.
+ * @brief OS作用域。
  *
  * @since 12
- * @version 1.0
  */
 #define DOMAIN_OS "OS"
+
 /**
- * @brief app killed event.
+ * @brief 应用终止事件。
  *
  * @since 20
- * @version 1.0
  */
 #define EVENT_APP_KILLED "APP_KILLED"
+
 /**
- * @brief audio jank frame event.
+ * @brief 音频卡顿事件。
  *
  * @since 21
- * @version 1.0
  */
 #define EVENT_AUDIO_JANK_FRAME "AUDIO_JANK_FRAME"
 
 /**
- * @brief appfreeze warning event.
+ * @brief 应用冻屏告警事件。
  *
  * @since 26.0.0
  */
 #define OH_EVENT_APP_FREEZE_WARNING "APPFREEZE_WARNING"
+
 #ifdef __cplusplus
 }
 #endif
