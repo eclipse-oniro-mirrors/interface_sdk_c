@@ -189,25 +189,33 @@ typedef struct {
  */
 typedef enum {
     /**
-     * @brief Defines the width attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 宽度属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置宽度数值，单位为vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：宽度数值，单位为vp。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_WIDTH = 0,
     /**
-     * @brief Defines the height attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 高度属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: height, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: height, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置高度数值，单位为vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：高度数值，单位为vp。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_HEIGHT,
     /**
@@ -237,23 +245,30 @@ typedef enum {
      */
     NODE_BACKGROUND_IMAGE,
     /**
-     * @brief Defines the padding attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 内间距属性，支持属性设置，属性重置和属性获取接口。
      *
-     * There are two formats of {@link ArkUI_AttributeItem} for setting the attribute value:\n
-     * 1: Specify the same padding for the four directions. \n
-     * .value[0].f32: padding, in vp.\n
-     * 2: Specify different paddings for different directions. \n
-     * .value[0].f32: top padding, in vp.\n
-     * .value[1].f32: right padding, in vp.\n
-     * .value[2].f32: bottom padding, in vp.\n
-     * .value[3].f32: left padding, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: top padding, in vp.\n
-     * .value[1].f32: right padding, in vp.\n
-     * .value[2].f32: bottom padding, in vp.\n
-     * .value[3].f32: left padding, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置上下左右四个位置的内间距值。
+     * <ul>
+     * <li>.value[0].f32：统一设置内间距数值，单位为vp。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置上下左右四个位置的内间距值。
+     * <ul>
+     * <li>.value[0].f32：设置上内间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[1].f32：设置右内间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[2].f32：设置下内间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[3].f32：设置左内间距数值，单位为vp，默认值为0vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上内间距数值，单位为vp。</li>
+     * <li>.value[1].f32：右内间距数值，单位为vp。</li>
+     * <li>.value[2].f32：下内间距数值，单位为vp。</li>
+     * <li>.value[3].f32：左内间距数值，单位为vp。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_PADDING,
     /**
@@ -278,23 +293,30 @@ typedef enum {
      */
     NODE_ENABLED,
     /**
-     * @brief Defines the margin attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 外间距属性，支持属性设置，属性重置和属性获取接口。
      *
-     * There are two formats of {@link ArkUI_AttributeItem} for setting the attribute value:\n
-     * 1: Specify the same margin for the four directions. \n
-     * .value[0].f32: margin, in vp.\n
-     * 2: Specify different margins for different directions. \n
-     * .value[0].f32: top margin, in vp.\n
-     * .value[1].f32: right margin, in vp.\n
-     * .value[2].f32: bottom margin, in vp.\n
-     * .value[3].f32: left margin, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: top margin, in vp.\n
-     * .value[1].f32: right margin, in vp.\n
-     * .value[2].f32: bottom margin, in vp.\n
-     * .value[3].f32: left margin, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置上下左右四个位置的外间距值。
+     * <ul>
+     * <li>.value[0].f32：统一设置上下左右四个位置的外间距值，单位为vp。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置上下左右四个位置的外间距值。
+     * <ul>
+     * <li>.value[0].f32：设置上外间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[1].f32：设置右外间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[2].f32：设置下外间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[3].f32：设置左外间距数值，单位为vp，默认值为0vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上外间距数值，单位为vp。</li>
+     * <li>.value[1].f32：右外间距数值，单位为vp。</li>
+     * <li>.value[2].f32：下外间距数值，单位为vp。</li>
+     * <li>.value[3].f32：左外间距数值，单位为vp。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_MARGIN,
     /**
@@ -409,15 +431,19 @@ typedef enum {
      */
     NODE_LINEAR_GRADIENT,
     /**
-     * @brief Sets the alignment attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置组件内容在元素绘制区域内的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode. The data type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_CENTER</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode. The data type is {@link ArkUI_Alignment}. \n
+     * 在Stack中该属性与NODE_STACK_ALIGN_CONTENT效果一致，只能设置子组件在容器内的对齐方式。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32： 设置对齐方式，数据类型{@link ArkUI_Alignment}，默认值ARKUI_ALIGNMENT_CENTER。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32： 对齐方式，数据类型{@link ArkUI_Alignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_ALIGNMENT,
     /**
@@ -432,80 +458,111 @@ typedef enum {
      */
     NODE_OPACITY,
     /**
-     * @brief Defines the border width attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 边框宽度属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].f32: width of the four borders. \n
-     * 2: .value[0].f32: width of the top border. \n
-     * .value[1].f32: width of the right border. \n
-     * .value[2].f32: width of the bottom border. \n
-     * .value[3].f32: width of the left border. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the top border. \n
-     * .value[1].f32: width of the right border. \n
-     * .value[2].f32: width of the bottom border. \n
-     * .value[3].f32: width of the left border. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置四条边的边框宽度。
+     * <ul>
+     * <li>.value[0].f32：统一设置四条边的边框宽度，单位为vp。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置四条边的边框宽度。
+     * <ul>
+     * <li>.value[0].f32：设置上边框的边框宽度，单位为vp，默认值为0vp。</li>
+     * <li>.value[1].f32：设置右边框的边框宽度，单位为vp，默认值为0vp。</li>
+     * <li>.value[2].f32：设置下边框的边框宽度，单位为vp，默认值为0vp。</li>
+     * <li>.value[3].f32：设置左边框的边框宽度，单位为vp，默认值为0vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上边框的边框宽度。</li>
+     * <li>.value[1].f32：右边框的边框宽度。</li>
+     * <li>.value[2].f32：下边框的边框宽度。</li>
+     * <li>.value[3].f32：左边框的边框宽度。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_BORDER_WIDTH,
     /**
-     * @brief Defines the border corner radius attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 边框圆角属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].f32: radius of the four corners. \n
-     * 2: .value[0].f32: radius of the upper left corner. \n
-     * .value[1].f32: radius of the upper right corner. \n
-     * .value[2].f32: radius of the lower left corner. \n
-     * .value[3].f32: radius of the lower right corner. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: radius of the upper left corner. \n
-     * .value[1].f32: radius of the upper right corner. \n
-     * .value[2].f32: radius of the lower left corner. \n
-     * .value[3].f32: radius of the lower right corner. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置四条边的边框圆角。
+     * <ul>
+     * <li>.value[0].f32：统一设置四条边的边框圆角。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置四条边的边框圆角。
+     * <ul>
+     * <li>.value[0].f32：设置左上角圆角半径，单位为vp，默认值为0vp。</li>
+     * <li>.value[1].f32：设置右上角圆角半径，单位为vp，默认值为0vp。</li>
+     * <li>.value[2].f32：设置左下角圆角半径，单位为vp，默认值为0vp。</li>
+     * <li>.value[3].f32：设置右下角圆角半径，单位为vp，默认值为0vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：左上角圆角半径。</li>
+     * <li>.value[1].f32：右上角圆角半径。</li>
+     * <li>.value[2].f32：左下角圆角半径。</li>
+     * <li>.value[3].f32：右下角圆角半径。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_BORDER_RADIUS,
     /**
-     * @brief Defines the border color attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 边框颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].u32: color of the four borders, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * 2: .value[0].u32: color of the top border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * .value[1].u32: color of the right border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * .value[2].u32: color of the lower border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * .value[3].u32: color of the left border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the top border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * .value[1].u32: color of the right border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * .value[2].u32: color of the lower border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
-     * .value[3].u32: color of the left border, in 0xARGB format, for example, <b>0xFFFF11FF</b>. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1：统一设置四条边的边框颜色。
+     * <ul>
+     * <li>.value[0].u32：统一设置四条边的边框颜色，使用0xargb表示，如`0xFFFF11FF`。</li>
+     * </ul>
+     * 2：分别设置四条边的边框颜色。
+     * <ul>
+     * <li>.value[0].u32：设置上侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
+     * <li>.value[1].u32：设置右侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
+     * <li>.value[2].u32：设置下侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
+     * <li>.value[3].u32：设置左侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：上侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[1].u32：右侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[2].u32：下侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[3].u32：左侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_BORDER_COLOR,
     /**
-     * @brief Defines the border line style attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 边框线条样式属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].i32: line style of the four borders. The parameter type is {@link ArkUI_BorderStyle}.
-     * The default value is <b>ARKUI_BORDER_STYLE_SOLID</b>. \n
-     * 2: .value[0].i32: line style of the top border. The parameter type is {@link ArkUI_BorderStyle}.
-     * The default value is <b>ARKUI_BORDER_STYLE_SOLID</b>. \n
-     * .value[1].i32: line style of the right border. The parameter type is {@link ArkUI_BorderStyle}.
-     * The default value is <b>ARKUI_BORDER_STYLE_SOLID</b>. \n
-     * .value[2].i32: line style of the bottom border. The parameter type is {@link ArkUI_BorderStyle}.
-     * The default value is <b>ARKUI_BORDER_STYLE_SOLID</b>. \n
-     * .value[3].i32: line style of the left border. The parameter type is {@link ArkUI_BorderStyle}.
-     * The default value is <b>ARKUI_BORDER_STYLE_SOLID</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: line style of the top border. \n
-     * .value[1].i32: line style of the right border. \n
-     * .value[2].i32: line style of the bottom border. \n
-     * .value[3].i32: line style of the left border. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置四条边的边框线条样式。
+     * <ul>
+     * <li>.value[0].i32：统一设置四条边的边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置四条边的边框线条样式。
+     * <ul>
+     * <li>.value[0].i32：设置上侧边框线条样式，参数类型{@linkArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
+     * <li>.value[1].i32：设置右侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
+     * <li>.value[2].i32：设置下侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
+     * <li>.value[3].i32：设置左侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：上侧边框线条样式对应的数值。</li>
+     * <li>.value[1].i32：右侧边框线条样式对应的数值。</li>
+     * <li>.value[2].i32：下侧边框线条样式对应的数值。</li>
+     * <li>.value[3].i32：左侧边框线条样式对应的数值。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_BORDER_STYLE,
     /**
@@ -643,17 +700,21 @@ typedef enum {
      */
     NODE_HIT_TEST_BEHAVIOR,
     /**
-     * @brief Defines the offset attribute, which specifies the offset of the component's upper left corner relative
-     * to the parent container's. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 元素左上角相对于父容器左上角偏移位置，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: X coordinate. \n
-     * .value[1].f32: Y coordinate. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X coordinate. \n
-     * .value[1].f32: Y coordinate. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置x轴坐标。</li>
+     * <li>.value[1].f32: 设置y轴坐标。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：x轴坐标。</li>
+     * <li>.value[1].f32: y轴坐标。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_POSITION,
     /**
@@ -1138,35 +1199,40 @@ typedef enum {
      */
     NODE_BLEND_MODE,
     /**
-     * @brief Sets the direction of the main axis.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置容器元素内主轴方向上的布局，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: direction of the main axis.\n
-     * The parameter type is {@link ArkUI_Direction}. The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: direction of the main axis.\n
-     * The parameter type is {@link ArkUI_Direction}. The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置容器元素内主轴方向上的布局类型，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：容器元素内主轴方向上的布局类型，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_DIRECTION,
     /**
-     * @brief Defines the size constraints.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 约束尺寸属性，组件布局时，进行尺寸范围限制，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum width, in vp.\n
-     * .value[1].f32: maximum width, in vp.\n
-     * .value[2].f32: minimum height, in vp.\n
-     * .value[3].f32: maximum height, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum width, in vp.\n
-     * .value[1].f32: maximum width, in vp.\n
-     * .value[2].f32: minimum height, in vp.\n
-     * .value[3].f32: maximum height, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置最小宽度，单位vp。</li>
+     * <li>.value[1].f32：设置最大宽度，单位vp。</li>
+     * <li>.value[2].f32：设置最小高度，单位vp。</li>
+     * <li>.value[3].f32：设置最大高度，单位vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：最小宽度，单位vp。</li>
+     * <li>.value[1].f32：最大宽度，单位vp。</li>
+     * <li>.value[2].f32：最小高度，单位vp。</li>
+     * <li>.value[3].f32：最大高度，单位vp。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_CONSTRAINT_SIZE,
     /**
@@ -1234,31 +1300,37 @@ typedef enum {
     NODE_FOREGROUND_COLOR,
 
     /**
-     * @brief Defines the offset of the component's child relative to the component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件子元素相对组件自身的额外偏移属性，支持属性设置，属性重置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32 : offset along the x-axis, in vp. \n
-     * .value[1].f32 : offset along the y-axis, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32 : offset along the x-axis, in vp. \n
-     * .value[1].f32 : offset along the y-axis, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 设置x轴方向的偏移值, 单位为vp。</li>
+     * <li>.value[1].f32 设置y轴方向的偏移值, 单位为vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 x轴方向的偏移值, 单位为vp。</li>
+     * <li>.value[1].f32 y轴方向的偏移值, 单位为vp。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_OFFSET,
     /**
-     * @brief Sets the anchor for locating the component's child.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件子元素在位置定位时的锚点属性，支持属性设置，属性重置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: X coordinate of the anchor, in vp.\n
-     * .value[1].f32: Y coordinate of the anchor, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X coordinate of the anchor, in vp.\n
-     * .value[1].f32: Y coordinate of the anchor, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 设置锚点x坐标值, 单位为vp。</li>
+     * <li>.value[1].f32 设置锚点y坐标值, 单位为vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 锚点x坐标值, 单位为vp。</li>
+     * <li>.value[1].f32 锚点y坐标值, 单位为vp。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_MARK_ANCHOR,
 
@@ -1281,65 +1353,78 @@ typedef enum {
      */
     NODE_BACKGROUND_IMAGE_POSITION,
     /**
-     * @brief Sets the alignment rules in the relative container.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 相对容器中子组件的对齐规则属性，支持属性设置，属性重置，获取属性接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: Use the {@link ArkUI_AlignmentRuleOption} object as the component’s alignment rule. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: Use the {@link ArkUI_AlignmentRuleOption} object as the component’s alignment rule. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：设置相对容器中子组件的对齐规则，参数类型为{@link ArkUI_AlignmentRuleOption}。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：相对容器中子组件的对齐规则，参数类型为{@link ArkUI_AlignmentRuleOption}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_ALIGN_RULES,
     /**
-     * @brief Sets the alignment mode of the child components along the cross axis of the parent container.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置子组件在父容器交叉轴的对齐格式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode of the child components along the cross axis of the parent container.\n
-     * The parameter type is {@link ArkUI_ItemAlignment}. The default value is <b>ARKUI_ITEM_ALIGNMENT_AUTO</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode of the child components along the cross axis of the parent container.\n
-     * The parameter type is {@link ArkUI_ItemAlignment}. The default value is <b>ARKUI_ITEM_ALIGNMENT_AUTO</b>. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置子组件在父容器交叉轴的对齐格式类型，参数类型{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_AUTO。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：子组件在父容器交叉轴的对齐格式类型，参数类型{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_AUTO。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_ALIGN_SELF,
     /**
-     * @brief Sets the percentage of the parent container's remaining space that is allocated to the component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置组件在父容器的剩余空间所占比例，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: percentage of the parent container's remaining space that is allocated to the component. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: percentage of the parent container's remaining space that is allocated to the component. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置父容器的剩余空间所占比例。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：父容器的剩余空间所占比例。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_FLEX_GROW,
     /**
-     * @brief Sets the percentage of the parent container's shrink size that is allocated to the component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置父容器压缩尺寸分配给此属性所在组件的比例，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: percentage of the parent container's shrink size that is allocated to the component. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: percentage of the parent container's shrink size that is allocated to the component. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置父容器压缩尺寸分配给此属性所在组件的比例数值。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：父容器压缩尺寸分配给此属性所在组件的比例数值。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_FLEX_SHRINK,
     /**
-     * @brief Sets the base size of the component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置组件的基准尺寸，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: percentage of the parent container's remaining space that is allocated to the component. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: percentage of the parent container's remaining space that is allocated to the component. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置组件在父容器主轴方向上的基准尺寸。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：组件在父容器主轴方向上的基准尺寸。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_FLEX_BASIS,
     /**
@@ -1421,39 +1506,49 @@ typedef enum {
      */
     NODE_FOCUS_STATUS,
     /**
-     * @brief Defines the aspect ratio attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置组件的宽高比，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: aspect ratio of the component, in width/height format. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: aspect ratio of the component, in width/height format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置组件的宽高比，输入值为 width/height。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：组件的宽高比，width/height的比值。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_ASPECT_RATIO,
     /**
-     * @brief Defines the weight of the component within its row, column, or flex container for proportional
-     * distribution of available space within the container.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Row/Column/Flex 布局下的子组件布局权重参数，支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: weight of the component along the main axis. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: weight of the component along the main axis. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：设置子组件占主轴尺寸的权重。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：子组件占主轴尺寸的权重。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_LAYOUT_WEIGHT,
     /**
-     * @brief Sets the display priority for the component in the row, column, or flex  (single-line) container.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Row/Column/Flex(单行) 布局下的子组件在布局容器中显示的优先级。
+     *        当子组件的displayPriority大于1时，displayPriority数值越大，优先级越高。支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: display priority of the component in the container. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: display priority of the component in the container. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：设置子组件在父容器中的显示优先级。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：子组件在父容器中的显示优先级。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_DISPLAY_PRIORITY,
     /**
@@ -1474,65 +1569,87 @@ typedef enum {
      */
     NODE_OUTLINE_WIDTH,
     /**
-     * @brief Defines the width attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 宽度属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width, in percentage.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width, in percentage.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置宽度数值，单位为百分比。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：宽度数值，单位为百分比。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_WIDTH_PERCENT,
     /**
-     * @brief Defines the height attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 高度属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: height, in percentage.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: height, in percentage.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置高度数值，单位为百分比。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：高度数值，单位为百分比。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_HEIGHT_PERCENT,
     /**
-     * @brief Defines the padding attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 内间距属性，支持属性设置，属性重置和属性获取接口。
      *
-     * There are two formats of {@link ArkUI_AttributeItem} for setting the attribute value:\n
-     * 1: Specify the same padding for the four directions. \n
-     * .value[0].f32: padding, in percentage.\n
-     * 2: Specify different paddings for different directions. \n
-     * .value[0].f32: top padding, in percentage.\n
-     * .value[1].f32: right padding, in percentage.\n
-     * .value[2].f32: bottom padding, in percentage.\n
-     * .value[3].f32: left padding, in percentage.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: top padding, in percentage.\n
-     * .value[1].f32: right padding, in percentage.\n
-     * .value[2].f32: bottom padding, in percentage.\n
-     * .value[3].f32: left padding, in percentage.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置上下左右四个位置的内间距百分比数值。
+     * <ul>
+     * <li>.value[0].f32：统一设置上下左右四个位置的内间距数值，单位为百分比。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置上下左右四个位置的内间距百分比数值。
+     * <ul>
+     * <li>.value[0].f32：设置上内间距数值，单位为百分比。</li>
+     * <li>.value[1].f32：设置右内间距数值，单位为百分比。</li>
+     * <li>.value[2].f32：设置下内间距数值，单位为百分比。</li>
+     * <li>.value[3].f32：设置左内间距数值，单位为百分比。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上内间距数值，单位为百分比。</li>
+     * <li>.value[1].f32：右内间距数值，单位为百分比。</li>
+     * <li>.value[2].f32：下内间距数值，单位为百分比。</li>
+     * <li>.value[3].f32：左内间距数值，单位为百分比。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_PADDING_PERCENT,
     /**
-     * @brief Defines the margin attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 外间距属性，支持属性设置，属性重置和属性获取接口。
      *
-     * There are two formats of {@link ArkUI_AttributeItem} for setting the attribute value:\n
-     * 1: Specify the same margin for the four directions. \n
-     * .value[0].f32: margin, in percentage.\n
-     * 2: Specify different margins for different directions. \n
-     * .value[0].f32: top margin, in percentage.\n
-     * .value[1].f32: right margin, in percentage.\n
-     * .value[2].f32: bottom margin, in percentage.\n
-     * .value[3].f32: left margin, in percentage.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: top margin, in percentage.\n
-     * .value[1].f32: right margin, in percentage.\n
-     * .value[2].f32: bottom margin, in percentage.\n
-     * .value[3].f32: left margin, in percentage.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1. 只传入一个参数，表示统一设置上下左右四个位置的外间距百分比数值。
+     * <ul>
+     * <li>.value[0].f32：统一设置上下左右四个位置的外间距数值，单位为百分比。</li>
+     * </ul>
+     * 2. 传入四个参数，表示分别设置上下左右四个位置的外间距百分比数值。
+     * <ul>
+     * <li>.value[0].f32：设置上外间距数值，单位为百分比。</li>
+     * <li>.value[1].f32：设置右外间距数值，单位为百分比。</li>
+     * <li>.value[2].f32：设置下外间距数值，单位为百分比。</li>
+     * <li>.value[3].f32：设置左外间距数值，单位为百分比。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上外间距数值，单位为百分比。</li>
+     * <li>.value[1].f32：右外间距数值，单位为百分比。</li>
+     * <li>.value[2].f32：下外间距数值，单位为百分比。</li>
+     * <li>.value[3].f32：左外间距数值，单位为百分比。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_MARGIN_PERCENT,
 
@@ -1563,18 +1680,22 @@ typedef enum {
     NODE_GEOMETRY_TRANSITION,
 
     /**
-      * @brief specifies the parameters of the chain formed by this component as the chain head,
-      * and supports attribute setting, attribute reset and attribute acquisition interfaces.
-      *
-      * Only takes effect when the parent container is RelativeContainer
-      *
-      * Attribute setting method parameter {@link ArkUI_AttributeItem} format: \n
-      * .value[0].i32: The direction of the chain. Enum {@link ArkUI_Axis}. \n
-      * .value[1].i32: Chain style. Enum {@link ArkUI_RelativeLayoutChainStyle}. \n
-      *\n
-      * .value[0].i32: The direction of the chain. Enum {@link ArkUI_Axis}. \n
-      * .value[1].i32: Chain style. Enum {@link ArkUI_RelativeLayoutChainStyle}. \n
-      */
+     * @brief 指定以该组件为链头所构成的链的参数，支持属性设置、属性重置和属性获取接口。
+     *
+     * 仅当父容器为RelativeContainer时生效。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置链的方向。枚举{@link ArkUI_Axis}。</li>
+     * <li>.value[1].i32：设置链的样式。枚举{@link ArkUI_RelativeLayoutChainStyle}。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：链的方向。枚举{@link ArkUI_Axis}。</li>
+     * <li>.value[1].i32：链的样式。枚举{@link ArkUI_RelativeLayoutChainStyle}。</li>
+     * </ul>
+     * @ingroup Layout
+     */
     NODE_RELATIVE_LAYOUT_CHAIN_MODE,
 
     /**
@@ -1611,17 +1732,21 @@ typedef enum {
     NODE_OUTLINE_COLOR,
 
     /**
-     * @brief Set the height and width dimensions, support property setting,
-     * property reset and property acquisition interface.
+     * @brief 设置高宽尺寸，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: Width value, unit is vp;\n
-     * .value[1].f32: Height value, unit is vp;\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: Width value, unit is vp;\n
-     * .value[1].f32: Height value, unit is vp;\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置宽度数值，单位为vp。</li>
+     * <li>.value[1].f32：设置高度数值，单位为vp。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：宽度数值，单位为vp。</li>
+     * <li>.value[1].f32：高度数值，单位为vp。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_SIZE,
 
@@ -1680,21 +1805,24 @@ typedef enum {
     NODE_FOREGROUND_BLUR_STYLE,
 
     /**
-     * @brief Defines the component size and position for layout.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件布局大小位置属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: X coordinate of the component, in px. \n
-     * .value[1].i32: Y coordinate of the component, in px. \n
-     * .value[2].i32: width of the component, in px. \n
-     * .value[3].i32: height of the component, in px. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: X coordinate of the component, in px. \n
-     * .value[1].i32: Y coordinate of the component, in px. \n
-     * .value[2].i32: width of the component, in px. \n
-     * .value[3].i32: height of the component, in px. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置组件X轴坐标，单位为px。</li>
+     * <li>.value[1].i32：设置组件Y轴坐标，单位为px。</li>
+     * <li>.value[2].i32：设置组件宽度，单位为px。</li>
+     * <li>.value[3].i32：设置组件高度，单位为px。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：组件X轴坐标，单位为px。</li>
+     * <li>.value[1].i32：组件Y轴坐标，单位为px。</li>
+     * <li>.value[2].i32：组件宽度，单位为px。</li>
+     * <li>.value[3].i32：组件高度，单位为px。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_LAYOUT_RECT,
 
@@ -1710,39 +1838,57 @@ typedef enum {
     NODE_FOCUS_ON_TOUCH,
 
     /**
-     * @brief Defines the border width attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 边框宽度属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].f32: width of the four borders, in percentage. \n
-     * 2: .value[0].f32: width of the top border, in percentage. \n
-     * .value[1].f32: width of the right border, in percentage. \n
-     * .value[2].f32: width of the bottom border, in percentage. \n
-     * .value[3].f32: width of the left border, in percentage. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the top border, in percentage. \n
-     * .value[1].f32: width of the right border, in percentage. \n
-     * .value[2].f32: width of the bottom border, in percentage. \n
-     * .value[3].f32: width of the left border, in percentage. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1: 只传入一个参数，表示统一设置四条边的边框宽度百分比数值。
+     * <ul>
+     * <li>.value[0].f32：统一设置四条边的边框宽度，单位为百分比。</li>
+     * </ul>
+     * 2: 传入四个参数，表示分别设置四条边的边框宽度百分比数值。
+     * <ul>
+     * <li>.value[0].f32：设置上边框的边框宽度，单位为百分比。</li>
+     * <li>.value[1].f32：设置右边框的边框宽度，单位为百分比。</li>
+     * <li>.value[2].f32：设置下边框的边框宽度，单位为百分比。</li>
+     * <li>.value[3].f32：设置左边框的边框宽度，单位为百分比。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上边框的边框宽度，单位为百分比。</li>
+     * <li>.value[1].f32：右边框的边框宽度，单位为百分比。</li>
+     * <li>.value[2].f32：下边框的边框宽度，单位为百分比。</li>
+     * <li>.value[3].f32：左边框的边框宽度，单位为百分比。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_BORDER_WIDTH_PERCENT = 85,
     /**
-     * @brief Defines the border corner radius attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 边框圆角属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].f32: radius of the four corners, in percentage. \n
-     * 2: .value[0].f32: radius of the upper left corner, in percentage. \n
-     * .value[1].f32: radius of the upper right corner, in percentage. \n
-     * .value[2].f32: radius of the lower left corner, in percentage. \n
-     * .value[3].f32: radius of the lower right corner, in percentage. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: radius of the upper left corner, in percentage. \n
-     * .value[1].f32: radius of the upper right corner, in percentage. \n
-     * .value[2].f32: radius of the lower left corner, in percentage. \n
-     * .value[3].f32: radius of the lower right corner, in percentage. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
+     * 1: 只传入一个参数，表示统一设置四条边的边框圆角半径百分比数值。
+     * <ul>
+     * <li>.value[0].f32：统一设置四条边的边框圆角半径百分比数值，单位为百分比。</li>
+     * </ul>
+     * 2: 传入四个参数，表示分别设置四条边的边框圆角半径百分比数值。
+     * <ul>
+     * <li>.value[0].f32：设置左上角圆角半径，单位为百分比。</li>
+     * <li>.value[1].f32：设置右上角圆角半径，单位为百分比。</li>
+     * <li>.value[2].f32：设置左下角圆角半径，单位为百分比。</li>
+     * <li>.value[3].f32：设置右下角圆角半径，单位为百分比。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：左上角圆角半径，单位为百分比。</li>
+     * <li>.value[1].f32：右上角圆角半径，单位为百分比。</li>
+     * <li>.value[2].f32：左下角圆角半径，单位为百分比。</li>
+     * <li>.value[3].f32：右下角圆角半径，单位为百分比。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_BORDER_RADIUS_PERCENT = 86,
 
@@ -1811,19 +1957,20 @@ typedef enum {
      */
     NODE_ACCESSIBILITY_VALUE = 91,
     /**
-     * @brief defines control components to extend their security zones,
-     * supporting property setting, property reset, and property fetching.
+     * @brief 定义控制组件扩展其安全区域，支持属性设置，属性重置和属性获取。
      *
-     * Attribute setting method {@link ArkUI_AttributeItem} Parameter format: \n
-     * .value[0]? .u32: Set of extended security zone enumerated values {@link ArkUI_SafeAreaType},
-     * For example, ARKUI_SAFE_AREA_TYPE_SYSTEM | ARKUI_SAFE_AREA_TYPE_CUTOUT; \n
-     * .value[1]? .u32: set of directional enum values for extended security zones {@link ArkUI_SafeAreaEdge}; \n
-     * For example: ARKUI_SAFE_AREA_EDGE_TOP | ARKUI_SAFE_AREA_EDGE_BOTTOM; \n
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     *.value[0].u32: extends the security zone. \n. \n
-     *.value[1].u32: indicates the direction to extend the security zone. \n. \n
+     * **属性设置方法{@link ArkUI_AttributeItem}参数格式：**
+     * <ul>
+     * <li>.value[0]?.u32：设置扩展安全区域的枚举值集合{@link ArkUI_SafeAreaType}，例如：ARKUI_SAFE_AREA_TYPE_SYSTEM | ARKUI_SAFE_AREA_TYPE_CUTOUT。</li>
+     * <li>.value[1]?.u32：设置扩展安全区域的方向枚举值集合{@link ArkUI_SafeAreaEdge}。例如：ARKUI_SAFE_AREA_EDGE_TOP | ARKUI_SAFE_AREA_EDGE_BOTTOM。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：扩展安全区域。</li>
+     * <li>.value[1].u32：扩展安全区域的方向。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_EXPAND_SAFE_AREA = 92,
 
@@ -2020,48 +2167,52 @@ typedef enum {
     NODE_ROTATE_ANGLE = 104,
 
     /**
-     * @brief Defines the width attribute with param type LayoutPolicy, which can be set, reset, and obtained
-     * as required through APIs.
+     * @brief 设置组件宽度布局策略，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: the LayoutPolicy that the width of the component follows.\n
-     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: the LayoutPolicy that the width of the component follows.\n
-     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置组件宽度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：组件宽度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 21
      */
     NODE_WIDTH_LAYOUTPOLICY = 105,
 
     /**
-     * @brief Defines the height attribute with param type LayoutPolicy, which can be set, reset, and obtained
-     * as required through APIs.
+     * @brief 设置组件高度布局策略，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: the LayoutPolicy that the height of the component follows.\n
-     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: the LayoutPolicy that the height of the component follows.\n
-     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置组件高度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：组件高度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 21
      */
     NODE_HEIGHT_LAYOUTPOLICY = 106,
 
     /**
-     * @brief Defines the position attribute in param type Edges, which specifies the position of the component
-     * by the distance relative to the parent container's four edges. This attribute can be set, reset, and obtained as
-     * required through APIs.
+     * @brief 设置组件相对容器内容区边界的位置，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object indicates struct of edges for position. The parameter type is {@link ArkUI_PositionEdges}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object indicates struct of edges for position. The parameter type is {@link ArkUI_PositionEdges}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：设置组件相对容器内容区边界的位置；参数类型为{@link ArkUI_PositionEdges}。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：组件相对容器内容区边界的位置；参数类型为{@link ArkUI_PositionEdges}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 21
      */
     NODE_POSITION_EDGES = 107,
@@ -2078,14 +2229,18 @@ typedef enum {
     NODE_ALLOW_FORCE_DARK = 108,
 
     /**
-     * @brief Defines the pixelRound attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置组件的像素取整策略，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object indicates struct of policy for pixelRound. The parameter type is {@link ArkUI_PixelRoundPolicy}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object indicates struct of policy for pixelRound. The parameter type is {@link ArkUI_PixelRoundPolicy}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：设置组件的像素取整策略；参数类型为{@link ArkUI_PixelRoundPolicy}。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：组件的像素取整策略；参数类型为{@link ArkUI_PixelRoundPolicy}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 21
      */
     NODE_PIXEL_ROUND = 109,
@@ -2212,101 +2367,123 @@ typedef enum {
     NODE_MONOPOLIZE_EVENTS = 117,
 
     /**
-     * @brief Sets the weight of the component in a chain, which is used to re-lay out components that form the chain.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 父组件为RelativeContainer时，设置已形成链的组件的布局位置，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: Horizontal ChainWeight.\n
-     * .value[1].f32: Vertical ChainWeight.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: Horizontal ChainWeight.\n
-     * .value[1].f32: Vertical ChainWeight.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置组件在水平方向的布局权重，默认值：0。设置异常值时，按默认值显示。</li>
+     * <li>.value[1].f32：设置组件在竖直方向的布局权重，默认值：0。设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：组件在水平方向的布局权重。</li>
+     * <li>.value[1].f32：组件在竖直方向的布局权重。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      * @since 23
      */
     NODE_CHAIN_WEIGHT = 118,
 
     /**
-     * @brief Expands the layout safe area of a component.,
-     * supporting property setting, property reset, and property fetching.
+     * @brief 设置扩展组件布局时的安全区域，支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method {@link ArkUI_AttributeItem} Parameter format: \n
-     * .value[0].u32: The region type to expand the component's layout safe area into. The default value is LayoutSafeAreaType.SYSTEM. {@link ArkUI_LayoutSafeAreaType},
-     * For example, ARKUI_LAYOUT_SAFE_AREA_TYPE_SYSTEM; \n
-     * .value[1].u32: The set of edges for which to ignore layout safe area. The default value is LayoutSafeAreaEdge.ALL. {@link ArkUI_LayoutSafeAreaEdge}; \n
-     * For example: ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP | ARKUI_LAYOUT_SAFE_AREA_EDGE_START; \n
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     *.value[0].u32: The region type to expand the component's layout safe area into. \n
-     *.value[1].u32: The set of edges for which to ignore layout safe area. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：设置扩展安全区域的类型。参数类型为{@link ArkUI_LayoutSafeAreaType}，默认值：ARKUI_LAYOUT_SAFE_AREA_TYPE_SYSTEM。设置异常值时，按默认值显示。</li>
+     * <li>.value[1].u32：设置扩展安全区域的方向。参数类型为{@link ArkUI_LayoutSafeAreaEdge}，默认值：ARKUI_LAYOUT_SAFE_AREA_EDGE_ALL。例如：ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP | ARKUI_LAYOUT_SAFE_AREA_EDGE_START。设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：扩展安全区域的类型。</li>
+     * <li>.value[1].u32：扩展安全区域的方向。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      * @since 23
      */
     NODE_IGNORE_LAYOUT_SAFE_AREA = 119,
 
     /**
-     * @brief Defines the length of dash when BorderStyle is dashed, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置边框样式为虚线时虚线的长度，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: The length of dash on the top border. \n
-     * .value[1].f32: The length of dash on the right border. \n
-     * .value[2].f32: The length of dash on the bottom border. \n
-     * .value[3].f32: The length of dash on the left border. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: The length of dash on the top border. \n
-     * .value[1].f32: The length of dash on the right border. \n
-     * .value[2].f32: The length of dash on the bottom border. \n
-     * .value[3].f32: The length of dash on the left border. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置上边框虚线的长度，单位vp。</li>
+     * <li>.value[1].f32：设置右边框虚线的长度，单位vp。</li>
+     * <li>.value[2].f32：设置下边框虚线的长度，单位vp。</li>
+     * <li>.value[3].f32：设置左边框虚线的长度，单位vp。取值范围：[0, +∞)设置异常值时，按默认的虚线效果显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上边框虚线的长度，单位vp。</li>
+     * <li>.value[1].f32：右边框虚线的长度，单位vp。</li>
+     * <li>.value[2].f32：下边框虚线的长度，单位vp。</li>
+     * <li>.value[3].f32：左边框虚线的长度，单位vp。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      * @since 23
      */
     NODE_DASH_WIDTH = 120,
 
     /**
-     * @brief Defines the gap of dash when BorderStyle is dashed, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置边框样式为虚线时虚线的间隙，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: The gap of dash on the top border. \n
-     * .value[1].f32: The gap of dash on the right border. \n
-     * .value[2].f32: The gap of dash on the bottom border. \n
-     * .value[3].f32: The gap of dash on the left border. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: The gap of dash on the top border. \n  
-     * .value[1].f32: The gap of dash on the right border. \n
-     * .value[2].f32: The gap of dash on the bottom border. \n
-     * .value[3].f32: The gap of dash on the left border. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置上边框虚线的间隙，单位vp。</li>
+     * <li>.value[1].f32：设置右边框虚线的间隙，单位vp。</li>
+     * <li>.value[2].f32：设置下边框虚线的间隙，单位vp。</li>
+     * <li>.value[3].f32：设置左边框虚线的间隙，单位vp。取值范围：[0, +∞)设置异常值时，按默认的虚线效果显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：上边框虚线的间隙，单位vp。</li>
+     * <li>.value[1].f32：右边框虚线的间隙，单位vp。</li>
+     * <li>.value[2].f32：下边框虚线的间隙，单位vp。</li>
+     * <li>.value[3].f32：左边框虚线的间隙，单位vp。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      * @since 23
      */
     NODE_DASH_GAP = 121,
 
     /**
-     * @brief Defines the align rules of child component in Stack container, which can be set, reset, and obtained as required through APIs.\n
-     * The default value is <b>ARKUI_LOCALIZED_ALIGNMENT_CENTER</b>. \n
+     * @brief 设置Stack容器中子组件的对齐规则，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: LocalizedAlignment mode. The data type is {@link ArkUI_LocalizedAlignment}.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: LocalizedAlignment mode. The data type is {@link ArkUI_LocalizedAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置Stack容器中子组件的对齐规则。参数类型为{@link ArkUI_LocalizedAlignment}，默认值：ARKUI_ALIGNMENT_CENTER。设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：Stack容器中子组件的对齐规则。参数类型为{@link ArkUI_LocalizedAlignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 23
      */
     NODE_LAYOUT_GRAVITY = 122,
 
     /**
-     * @brief Defines the render types for drawing rounded corners when the radius of the border rounded corners is set, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置组件绘制圆角的模式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Render types for drawing rounded corners. The data type is {@link ArkUI_RenderStrategy}.
-     * The default value is <b>ARKUI_RENDERSTRATEGY_FAST</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Render types for drawing rounded corners. The data type is {@link ArkUI_RenderStrategy}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置组件绘制圆角的模式。参数类型为{@link ArkUI_RenderStrategy}，默认值：ARKUI_RENDERSTRATEGY_FAST。设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：组件绘制圆角的模式。参数类型为{@link ArkUI_RenderStrategy}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 23
      */
     NODE_BORDER_RADIUS_TYPE = 123,
@@ -8030,16 +8207,19 @@ typedef enum {
     NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
 
     /**
-     * @brief Defines the alignment mode of the child components in the container. This attribute can be set, reset,
-     * and obtained as required through APIs.
+     * @brief 设置子组件在Stack容器中的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode. The data type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_CENTER</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode. The data type is {@link ArkUI_Alignment}. \n
+     * 该属性与通用属性NODE_ALIGNMENT同时设置时，后设置的属性生效。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32： 设置子组件在Stack容器中的对齐方式，数据类型{@link ArkUI_Alignment}，默认值ARKUI_ALIGNMENT_CENTER。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32： 子组件在Stack容器中的对齐方式，数据类型{@link ArkUI_Alignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_STACK,
 
@@ -9323,127 +9503,142 @@ typedef enum {
     NODE_LIST_ITEM_GROUP_NODE_ADAPTER = 1005004,
 
     /**
-     * @brief Defines the horizontal alignment mode of child components in the column.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置子组件在Column容器中水平方向上的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: horizontal alignment mode of child components.
-     * The parameter type is {@link ArkUI_HorizontalAlignment}.\n
-     * Default value: <b>ARKUI_HORIZONTAL_ALIGNMENT_CENTER</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: horizontal alignment mode of child components.
-     * The parameter type is {@link ArkUI_HorizontalAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置子组件在Column容器中水平方向上的对齐方式，数据类型{@link ArkUI_HorizontalAlignment}，默认值ARKUI_HORIZONTAL_ALIGNMENT_CENTER。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：Column子组件在Column容器中水平方向上的对齐方式，数据类型{@link ArkUI_HorizontalAlignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_COLUMN_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_COLUMN,
     /**
-     * @brief Defines the vertical alignment mode of child components in the column.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置子组件在Column容器中垂直方向上的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: vertical alignment mode of child components. The parameter type is {@link ArkUI_FlexAlignment}.\n
-     * Default value: <b>ARKUI_FLEX_ALIGNMENT_START</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: vertical alignment mode of child components. The parameter type is {@link ArkUI_FlexAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置子组件在Column容器中垂直方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}，默认值ARKUI_FLEX_ALIGNMENT_START。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：子组件在Column容器中垂直方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_COLUMN_JUSTIFY_CONTENT,
 
     /**
-     * @brief Defines Row constructor options or Column constructor options used for settting the spacing of child components, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置Column或Row容器中子组件的间距，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: The space of child components, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: The space of child components, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置Column或Row容器中子组件之间的间距，单位vp，默认值：0。取值范围：[0, +∞)设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**
+     * <ul>
+     * <li>.value[0].f32：Column或Row容器中子组件之间的间距，单位vp。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 23
      */
     NODE_LINEAR_LAYOUT_SPACE,
 
     /**
-     * @brief Defines whether the arrangement of child components along the main axis in a Column or Row is reversed, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置Column或Row容器中沿主轴方向的子组件排列是否反向，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The value that determines whether the arrangement of child components along the main axis is reversed.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value that determines whether the arrangement of child components along the main axis is reversed.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置Column或Row容器中沿主轴方向的子组件排列是否反向，默认值：false。值为true时，子组件在主轴方向上反转排列。值为false时，子组件在主轴方向上正序排列。设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**
+     * <ul>
+     * <li>.value[0].i32：Column或Row容器中主轴方向的子组件排列是否反向。</li>
+     * </ul>
      *
+     * @ingroup Layout
      * @since 23
      */
     NODE_LINEAR_LAYOUT_REVERSE,
 
     /**
-     * @brief Defines the vertical alignment mode of child components in the row.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置子组件在Row容器中垂直方向上的对齐格式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: vertical alignment mode of child components.
-     * The parameter type is {@link ArkUI_VerticalAlignment}.\n
-     * Default value: <b>ARKUI_VERTICAL_ALIGNMENT_CENTER</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: vertical alignment mode of child components.
-     * The parameter type is {@link ArkUI_VerticalAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置子组件在Row容器中垂直方向上的对齐方式，数据类型{@link ArkUI_VerticalAlignment}，默认值ARKUI_VERTICAL_ALIGNMENT_CENTER。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：子组件在Row容器中垂直方向上的对齐方式，数据类型{@link ArkUI_VerticalAlignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_ROW_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ROW,
     /**
-     * @brief Defines the horizontal alignment mode of child components in the row.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Row子组件在水平方向上的对齐格式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: horizontal alignment mode of child components.
-     * The parameter type is {@link ArkUI_FlexAlignment}.\n
-     * Default value: <b>ARKUI_FLEX_ALIGNMENT_START</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: horizontal alignment mode of child components.
-     * The parameter type is {@link ArkUI_FlexAlignment}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：设置子组件在Row容器中水平方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}，默认值ARKUI_FLEX_ALIGNMENT_START。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：子组件在Row容器中水平方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_ROW_JUSTIFY_CONTENT,
 
     /**
-     * @brief Defines the flex attribute. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Flex属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.i32: direction in which flex items are arranged. The parameter type is {@link ArkUI_FlexDirection}.
-     * The default value is <b>ARKUI_FLEX_DIRECTION_ROW</b>.\n
-     * .value[1]?.i32: how the flex items are wrapped. The parameter type is {@link ArkUI_FlexWrap}.
-     * The default value is <b>ARKUI_FLEX_WRAP_NO_WRAP</b>.\n
-     * .value[2]?.i32: alignment mode along the main axis. The parameter type is {@link ArkUI_FlexAlignment}.
-     * The default value is <b>ARKUI_FLEX_ALIGNMENT_START</b>.\n
-     * .value[3]?.i32: alignment mode along the cross axis. The parameter type is {@link ArkUI_ItemAlignment}.
-     * The default value is <b>ARKUI_ITEM_ALIGNMENT_START</b>.\n
-     * .value[4]?.i32: alignment mode along the cross axis for multi-line content. The parameter type is
-     * {@link ArkUI_FlexAlignment}. The default value is <b>ARKUI_FLEX_ALIGNMENT_START</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: direction in which flex items are arranged. \n
-     * .value[1].i32: how the flex items are wrapped. \n
-     * .value[2].i32: alignment mode along the main axis. \n
-     * .value[3].i32: alignment mode along the cross axis. \n
-     * .value[4].i32: alignment mode along the cross axis for multi-line content.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.i32：设置子组件在Flex容器上排列的方向{@link ArkUI_FlexDirection}，默认值为ARKUI_FLEX_DIRECTION_ROW。</li>
+     * <li>.value[1]?.i32：设置排列规则{@link ArkUI_FlexWrap}，默认值为ARKUI_FLEX_WRAP_NO_WRAP。</li>
+     * <li>.value[2]?.i32：设置主轴上的对齐格式{@link ArkUI_FlexAlignment}，默认值为ARKUI_FLEX_ALIGNMENT_START。</li>
+     * <li>.value[3]?.i32：设置交叉轴上的对齐格式{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_START。</li>
+     * <li>.value[4]?.i32：设置交叉轴中有额外的空间时，多行内容的对齐方式{@link ArkUI_FlexAlignment}，默认值为ARKUI_FLEX_ALIGNMENT_START。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：子组件在Flex容器上排列的方向的枚举值。</li>
+     * <li>.value[1].i32：排列规则的枚举值。</li>
+     * <li>.value[2].i32：主轴上的对齐格式的枚举值。</li>
+     * <li>.value[3].i32：交叉轴上的对齐格式的枚举值。</li>
+     * <li>.value[4].i32：交叉轴中有额外的空间时，多行内容的对齐方式的枚举值。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      */
     NODE_FLEX_OPTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_FLEX,
 
     /**
-     * @brief Defines Row constructor options used for settting the spacing of child components, which can be set, reset, and obtained as required through APIs.
+     * @brief 设置Flex容器内子组件的间距，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: Space on the main axis of the flex container., in vp.\n
-     * .value[1].f32: Space on the cross axis of a flex container., in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: Space on the main axis of the flex container., in vp.\n
-     * .value[1].f32: Space on the cross axis of a flex container., in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置Flex容器主轴方向的间距，单位vp，默认值：0。取值范围：[0, +∞)设置异常值时，按默认值显示。</li>
+     * <li>.value[1].f32：设置Flex容器交叉轴方向的间距，单位vp，默认值：0。取值范围：[0, +∞)设置异常值时，按默认值显示。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**
+     * <ul>
+     * <li>.value[0].f32：Flex容器主轴方向的间距，单位vp，默认值：0。</li>
+     * <li>.value[1].f32：Flex容器交叉轴方向的间距，单位vp，默认值：0。</li>
+     * </ul>
      *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * @ingroup Layout
      * @since 23
      */
     NODE_FLEX_SPACE,
@@ -9763,28 +9958,34 @@ typedef enum {
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
     /**
-     * @brief Set the auxiliary line in the RelativeContaine container, supporting property setting,
-     * property reset and property acquisition interfaces.
+     * @brief 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format: \n
-     * .object: Auxiliary lines within the RelativeContaine container: \n
-     *\n
-     * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-     * .object: Auxiliary lines within the RelativeContaine container: \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object: 设置RelativeContaine容器内的辅助线。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object: RelativeContaine容器内的辅助线。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_RELATIVE_CONTAINER_GUIDE_LINE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RELATIVE_CONTAINER,
 
     /**
-     * @brief Sets the barrier within the RelativeContaine container and supports property setting,
-     * property reset and property acquisition interfaces.
+     * @brief 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format: \n
-     * .object: Auxiliary lines within the RelativeContaine container: \n
-     *\n
-     * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-     * .object: Barrier within the RelativeContaine container: \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object: 设置RelativeContaine容器内的屏障。</li>
+     * </ul>
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object: RelativeContaine容器内的屏障。</li>
+     * </ul>
      *
+     * @ingroup Layout
      */
     NODE_RELATIVE_CONTAINER_BARRIER,
 
