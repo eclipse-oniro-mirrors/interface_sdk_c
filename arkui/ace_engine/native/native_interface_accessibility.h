@@ -42,6 +42,8 @@
 #include <stdint.h>
 #endif
 
+#include "common_type.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -84,7 +86,7 @@ typedef struct ArkUI_AccessibilityActionArguments ArkUI_AccessibilityActionArgum
 typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
-* @brief Enumerates accessibility action types.
+ * @brief Enumerates accessibility action types.
  *
  * @since 13
  */
