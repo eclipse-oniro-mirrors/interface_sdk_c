@@ -42,8 +42,6 @@
 #include <stdint.h>
 #endif
 
-#include "common_type.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
