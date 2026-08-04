@@ -231,33 +231,47 @@ typedef enum {
     NODE_HEIGHT,
     /**
      * @brief Defines the background color attribute, which can be set, reset, and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
+     *
+     * @ingroup Background Display
      *
      */
     NODE_BACKGROUND_COLOR,
     /**
      * @brief Defines the background image attribute, which can be set, reset, and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.string: image address. In API version 22 and earlier versions, the value can be a network image resource
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: image address. In API version 22 and earlier versions, the value can be a network image resource
      * address, local image resource address, Base64 image, or {@link PixelMap}, but cannot be an animated image such
      * as an {@link SVG}, GIF, or WebP image. In API version 23 and later versions, animated images of the WebP and GIF
      * types are supported. Only the first frame of the animated image is displayed. Other types of animated images are
-     * not supported.
-     * <br>.value[0]?.i32: whether to repeat the image. Optional. The parameter type is {@link ArkUI_ImageRepeat}. The
-     * default value is **ARKUI_IMAGE_REPEAT_NONE**.
-     * <br>.object: **PixelMap** object. The parameter type is {@link ArkUI_DrawableDescriptor}.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.string: image address. In API version 22 and earlier versions, the value can be network image resource
+     * not supported.</li>
+     * <li>.value[0]?.i32: whether to repeat the image. Optional. The parameter type is {@link ArkUI_ImageRepeat}. The
+     * default value is **ARKUI_IMAGE_REPEAT_NONE**.</li>
+     * <li>.object: **PixelMap** object. The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: image address. In API version 22 and earlier versions, the value can be network image resource
      * addresses, local image resource addresses, Base64 strings, or PixelMap resources, but cannot be addresses of SVG
      * images, or animated images such as GIF and WebP. In API version 23 and later versions, animated images of the
      * WebP and GIF types are supported. Only the first frame of the animated image is displayed. Other types of
-     * animated images are not supported.
-     * <br>.value[0].i32: whether to repeat the image. The parameter type is {@link ArkUI_ImageRepeat}.
-     * <br>.object: **PixelMap** object. The parameter type is {@link ArkUI_DrawableDescriptor}.
-     * <br>Either **.object** or **.string** must be set.
+     * animated images are not supported.</li>
+     * <li>.value[0].i32: whether to repeat the image. The parameter type is {@link ArkUI_ImageRepeat}.</li>
+     * <li>.object: **PixelMap** object. The parameter type is {@link ArkUI_DrawableDescriptor}.
+     * <br>Either **.object** or **.string** must be set.</li>
+     * </ul>
+     *
+     * @ingroup Background Display
      *
      */
     NODE_BACKGROUND_IMAGE,
@@ -596,12 +610,19 @@ typedef enum {
     NODE_Z_INDEX,
     /**
      * @brief Defines the visibility attribute, which can be set, reset, and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether to show or hide the component. The parameter type is {@link ArkUI_Visibility}. The
-     * default value is **ARKUI_VISIBILITY_VISIBLE**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether the component is shown or hidden. The parameter type is {@link ArkUI_Visibility}. The
-     * default value is **ARKUI_VISIBILITY_VISIBLE**.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to show or hide the component. The parameter type is {@link ArkUI_Visibility}. The
+     * default value is **ARKUI_VISIBILITY_VISIBLE**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the component is shown or hidden. The parameter type is {@link ArkUI_Visibility}. The
+     * default value is **ARKUI_VISIBILITY_VISIBLE**.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      */
     NODE_VISIBILITY,
@@ -714,12 +735,18 @@ typedef enum {
     NODE_TRANSFORM,
     /**
      * @brief Defines the hit test behavior attribute, which can be set, reset, and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: hit test mode. The parameter type is {@link ArkUI_HitTestMode}. The default value is **
-     * ARKUI_HIT_TEST_MODE_DEFAULT**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: hit test mode. The parameter type is **ArkUI_HitTestMode**. The default value is **
-     * ARKUI_HIT_TEST_MODE_DEFAULT**.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: hit test mode. The parameter type is {@link ArkUI_HitTestMode}. The default value is **
+     * ARKUI_HIT_TEST_MODE_DEFAULT**.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: hit test mode. The parameter type is **ArkUI_HitTestMode**. The default value is **
+     * ARKUI_HIT_TEST_MODE_DEFAULT**.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      */
     NODE_HIT_TEST_BEHAVIOR,
@@ -784,45 +811,58 @@ typedef enum {
     /**
      * @brief Defines the background image size attribute, which can be set, reset, and obtained as required through
      * APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: width of the image. The value range is [0, +∞), and the unit is vp.
-     * <br>.value[1].f32: height of the image. The value range is [0, +∞), and the unit is vp.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].f32: width of the image, in vp.
-     * <br>.value[1].f32: height of the image, in vp.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: width of the image. The value range is [0, +∞), and the unit is vp.</li>
+     * <li>.value[1].f32: height of the image. The value range is [0, +∞), and the unit is vp.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: width of the image, in vp.</li>
+     * <li>.value[1].f32: height of the image, in vp.</li>
+     * </ul>
      *
+     * @ingroup Background Display
      */
     NODE_BACKGROUND_IMAGE_SIZE,
     /**
      * @brief Defines the background image size with style. This attribute can be set, reset, and obtained as required
      * through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: size of the background image. The value is an enumerated value of {@link ArkUI_ImageSize}.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: size of the background image. The value is an enumerated value of {@link ArkUI_ImageSize}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: size of the background image. The value is an enumerated value of {@link ArkUI_ImageSize}.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: size of the background image. The value is an enumerated value of {@link ArkUI_ImageSize}.</li>
+     * </ul>
      *
+     * @ingroup Background Display
      */
     NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,
     /**
      * @brief Defines the background blur attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}. \n
-     * .value[1]?.i32: color mode. The value is an enum of {@link ArkUI_ColorMode}. \n
-     * .value[2]?.i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}. \n
-     * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4]?.f32: start boundary of grayscale blur. \n
-     * .value[5]?.f32: end boundary of grayscale blur. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}. \n
-     * .value[1].i32: color mode. The value is an enum of {@link ArkUI_ColorMode}. \n
-     * .value[2].i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}. \n
-     * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4].f32: start boundary of grayscale blur. \n
-     * .value[5].f32: end boundary of grayscale blur. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}.</li>
+     * <li>.value[1]?.i32: color mode. The value is an enum of {@link ArkUI_ColorMode}.</li>
+     * <li>.value[2]?.i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}.</li>
+     * <li>.value[3]?.f32: blur degree. The value range is [0.0, 1.0].</li>
+     * <li>.value[4]?.f32: start boundary of grayscale blur.</li>
+     * <li>.value[5]?.f32: end boundary of grayscale blur.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}.</li>
+     * <li>.value[1].i32: color mode. The value is an enum of {@link ArkUI_ColorMode}.</li>
+     * <li>.value[2].i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}.</li>
+     * <li>.value[3].f32: blur degree. The value range is [0.0, 1.0].</li>
+     * <li>.value[4].f32: start boundary of grayscale blur.</li>
+     * <li>.value[5].f32: end boundary of grayscale blur.</li>
+     * </ul>
      *
-     * @ingroup Visual
+     * @ingroup Background Display
      */
     NODE_BACKGROUND_BLUR_STYLE,
     /**
@@ -989,78 +1029,100 @@ typedef enum {
     NODE_MOVE_TRANSITION,
 
     /**
-     * @brief Defines the focus attribute, which can be set, reset, and obtained as required through APIs. Format of
-     * the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: The value **1** indicates focusable, and **0** indicates not focusable. The default value is *
-     * *0**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: The value **1** indicates focusable, and **0** indicates not focusable.
+     * @brief Defines the focus attribute, which can be set, reset, and obtained as required through APIs.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The value **1** indicates focusable, and **0** indicates not focusable.
+     * The default value is *
+     * *0**.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value **1** indicates focusable, and **0** indicates not focusable.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_FOCUSABLE,
 
     /**
      * @brief Defines the default focus attribute, which can be set, reset, and obtained as required through APIs.
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>value[0].i32: The value **1** indicates that the target is the default focus, and **0** indicates that it is
-     * not the default focus.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>value[0].i32: The value **1** indicates that the target is the default focus, and **0** indicates that it is
-     * not the default focus.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: The value **1** indicates that the target is the default focus, and **0** indicates that it is
+     * not the default focus.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value **1** indicates that the target is the default focus, and **0** indicates that it is
+     * not the default focus.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_DEFAULT_FOCUS,
 
     /**
      * @brief Defines the touch target attribute, which can be set, reset, and obtained as required through APIs.
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.data[0].f32: X coordinate of the touch point relative to the upper left corner of the component, in vp.
-     * <br>.data[1].f32: Y coordinate of the touch point relative to the upper left corner of the component, in vp.
-     * <br>.data[2].f32: width of the touch target, in percentage.
-     * <br>.data[3].f32: height of the touch target, in percentage.
-     * <br>.data[4...].f32: Multiple touch targets can be set. The sequence of the parameters is the same as the
-     * preceding.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.data[0].f32: X coordinate of the touch point relative to the upper left corner of the component, in vp.
-     * <br>.data[1].f32: Y coordinate of the touch point relative to the upper left corner of the component, in vp.
-     * <br>.data[2].f32: width of the touch target, in percentage.
-     * <br>.data[3].f32: height of the touch target, in percentage.
-     * <br>.data[4...].f32: Multiple touch targets can be set. The sequence of the parameters is the same as the
-     * preceding.
-     * <br>Note: During configuration, the data array can contain any number of values (all will be accepted), but only
-     * the first 20 values can be retrieved.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.data[0].f32: X coordinate of the touch point relative to the upper left corner of the component, in vp.</li>
+     * <li>.data[1].f32: Y coordinate of the touch point relative to the upper left corner of the component, in vp.</li>
+     * <li>.data[2].f32: width of the touch target, in percentage.</li>
+     * <li>.data[3].f32: height of the touch target, in percentage.</li>
+     * <li>.data[4...].f32: Multiple touch targets can be set. The sequence of the parameters is the same as the
+     * preceding.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.data[0].f32: X coordinate of the touch point relative to the upper left corner of the component, in vp.</li>
+     * <li>.data[1].f32: Y coordinate of the touch point relative to the upper left corner of the component, in vp.</li>
+     * <li>.data[2].f32: width of the touch target, in percentage.</li>
+     * <li>.data[3].f32: height of the touch target, in percentage.</li>
+     * <li>.data[4...].f32: Multiple touch targets can be set. The sequence of the parameters is the same as the
+     * preceding.</li>
+     * <li>Note: During configuration, the data array can contain any number of values (all will be accepted), but only
+     * the first 20 values can be retrieved.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_RESPONSE_REGION,
 
     /**
      * @brief Defines the overlay attribute. This attribute can be set, reset, and obtained as required through APIs.
-     * You can set the overlay content through .string or .object, with .string having higher priority. Format of the
-     * {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.string: mask text.
-     * <br>.value[0]?.i32: position of the overlay relative to the component. Optional. The parameter type is
-     * {@link ArkUI_Alignment}. The default value is **ARKUI_ALIGNMENT_TOP_START**.
-     * <br>.value[1]?.f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp.
-     * Optional. The default value is **0** vp.
-     * <br>.value[2]? .f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
-     * Optional. The default value is **0** vp.
-     * <br>.value[3]?.i32: layout direction of the overlay. Optional. The parameter type is {@link ArkUI_Direction}.
+     * You can set the overlay content through .string or .object, with .string having higher priority.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: mask text.</li>
+     * <li>.value[0]?.i32: position of the overlay relative to the component. Optional. The parameter type is
+     * {@link ArkUI_Alignment}. The default value is **ARKUI_ALIGNMENT_TOP_START**.</li>
+     * <li>.value[1]?.f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp.
+     * Optional. The default value is **0** vp.</li>
+     * <li>.value[2]? .f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
+     * Optional. The default value is **0** vp.</li>
+     * <li>.value[3]?.i32: layout direction of the overlay. Optional. The parameter type is {@link ArkUI_Direction}.
      * The default value is **ARKUI_DIRECTION_LTR**.
-     * <br>In most scenarios, this parameter should be set to **Auto**, which allows the system to automatically handle
+     * In most scenarios, this parameter should be set to **Auto**, which allows the system to automatically handle
      * the layout direction. If specific directions need to be maintained in certain scenarios, set this parameter to **
-     * LTR** (left-to-right) or **RTL** (right-to-left). It is supported since API version 21.
-     * <br>.object: node tree used for overlay. The parameter type is {@link ArkUI_NodeHandle}, and the default value
-     * is **nullptr**. It is supported since API version 21.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.string: mask text.
-     * <br>.value[0].i32: position of the overlay relative to the component. The parameter type is
-     * {@link ArkUI_Alignment}. The default value is **ARKUI_ALIGNMENT_TOP_START**.
-     * <br>.value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp.
-     * <br>.value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
-     * <br>.value[3].i32: layout direction of the overlay. The parameter type is {@link ArkUI_Direction}. The default
-     * value is **ARKUI_DIRECTION_LTR**. It is supported since API version 21.
-     * <br>.object: node tree used for overlay. The parameter type is {@link ArkUI_NodeHandle}. It is supported since
-     * API version 21.
+     * LTR** (left-to-right) or **RTL** (right-to-left). It is supported since API version 21.</li>
+     * <li>.object: node tree used for overlay. The parameter type is {@link ArkUI_NodeHandle}, and the default value
+     * is **nullptr**. It is supported since API version 21.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: mask text.</li>
+     * <li>.value[0].i32: position of the overlay relative to the component. The parameter type is
+     * {@link ArkUI_Alignment}. The default value is **ARKUI_ALIGNMENT_TOP_START**.</li>
+     * <li>.value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp.</li>
+     * <li>.value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.</li>
+     * <li>.value[3].i32: layout direction of the overlay. The parameter type is {@link ArkUI_Direction}. The default
+     * value is **ARKUI_DIRECTION_LTR**. It is supported since API version 21.</li>
+     * <li>.object: node tree used for overlay. The parameter type is {@link ArkUI_NodeHandle}. It is supported since
+     * API version 21.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      */
     NODE_OVERLAY,
@@ -1393,24 +1455,29 @@ typedef enum {
     /**
      * @brief Defines the position of the background image in the component, that is, the coordinates relative to the
      * upper left corner of the component. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: position along the x-axis, in px.
-     * <br>.value[1].f32: position along the y-axis, in px.
-     * <br>.value[2].?i32: alignment mode. The parameter type is {@link ArkUI_Alignment}. The default value is **
-     * ARKUI_ALIGNMENT_TOP_START**.
-     * <br>.value[3].?i32: layout direction. The parameter type is {@link ArkUI_Direction}. The default value is **
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: position along the x-axis, in px.</li>
+     * <li>.value[1].f32: position along the y-axis, in px.</li>
+     * <li>.value[2].?i32: alignment mode. The parameter type is {@link ArkUI_Alignment}. The default value is **
+     * ARKUI_ALIGNMENT_TOP_START**.</li>
+     * <li>.value[3].?i32: layout direction. The parameter type is {@link ArkUI_Direction}. The default value is **
      * ARKUI_DIRECTION_AUTO**.
      * <br>In most scenarios, this parameter should be set to **AUTO**, which allows the system to automatically handle
      * the layout direction. If specific directions need to be maintained in certain scenarios, set this parameter to **
-     * LTR** (left-to-right) or **RTL** (right-to-left).
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].f32: position along the x-axis, in px.
-     * <br>.value[1].f32: position along the y-axis, in px.
-     * <br>.value[2].i32: alignment mode. The parameter type is {@link ArkUI_Alignment}. The default value is **
-     * ARKUI_ALIGNMENT_TOP_START**.
-     * <br>.value[3].i32: layout direction. The parameter type is {@link ArkUI_Direction}. The default value is **
-     * ARKUI_DIRECTION_AUTO**.
+     * LTR** (left-to-right) or **RTL** (right-to-left).</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: position along the x-axis, in px.</li>
+     * <li>.value[1].f32: position along the y-axis, in px.</li>
+     * <li>.value[2].i32: alignment mode. The parameter type is {@link ArkUI_Alignment}. The default value is **
+     * ARKUI_ALIGNMENT_TOP_START**.</li>
+     * <li>.value[3].i32: layout direction. The parameter type is {@link ArkUI_Direction}. The default value is **
+     * ARKUI_DIRECTION_AUTO**.</li>
+     * </ul>
      *
+     * @ingroup Background Display
      */
     NODE_BACKGROUND_IMAGE_POSITION,
     /**
@@ -1569,13 +1636,18 @@ typedef enum {
      * @brief Defines the component focus status. This attribute can be set and obtained as required through APIs.
      * <br>Note: Setting the parameter to **0** shifts focus from the currently focused component on the current level
      * of the page to the root container.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: The value **1** indicates that the component gains focus and **0** indicates that the
-     * component loses focus.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: The value **1** indicates that the component gains focus and **0** indicates that the
-     * component loses focus.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The value **1** indicates that the component gains focus and **0** indicates that the
+     * component loses focus.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value **1** indicates that the component gains focus and **0** indicates that the
+     * component loses focus.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_FOCUS_STATUS,
     /**
@@ -1909,13 +1981,19 @@ typedef enum {
 
     /**
      * @brief Sets whether the component is focusable on touch. This attribute can be set, reset, and obtained as
-     * required through APIs. Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether the component is focusable on touch. The value **1** means that the component is
-     * focusable on touch, and **0** means the opposite.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether the component is focusable on touch. The value **1** means that the component is
-     * focusable on touch, and **0** means the opposite.
+     * required through APIs.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the component is focusable on touch. The value **1** means that the component is
+     * focusable on touch, and **0** means the opposite.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the component is focusable on touch. The value **1** means that the component is
+     * focusable on touch, and **0** means the opposite.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_FOCUS_ON_TOUCH,
 
@@ -2058,13 +2136,20 @@ typedef enum {
 
     /**
      * @brief Defines the visible area ratio (visible area/total area of the component) threshold for invoking the
-     * visible area change event of the component. Format of the {@link ArkUI_AttributeItem} parameter for setting the
-     * attribute:
-     * <br>.value[...].f32: threshold array. The value ranges from 0 to 1.
-     * <br>.object: The parameter type is {@link ArkUI_VisibleAreaEventOptions}.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[...].f32: threshold array.
-     * <br>.object: The return type is {@link ArkUI_VisibleAreaEventOptions}.
+     * visible area change event of the component.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the
+     * attribute:**
+     * <ul>
+     * <li>.value[...].f32: threshold array. The value ranges from 0 to 1.</li>
+     * <li>.object: The parameter type is {@link ArkUI_VisibleAreaEventOptions}.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[...].f32: threshold array.</li>
+     * <li>.object: The return type is {@link ArkUI_VisibleAreaEventOptions}.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 12
      */
@@ -2098,33 +2183,46 @@ typedef enum {
 
     /**
      * @brief Sets the style of the system focus box for this component.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: distance between the focus box and the edge of the component
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: distance between the focus box and the edge of the component
      * <br>A positive number indicates the outside, and a negative number indicates the inside.
-     * <br>The value cannot be in percentage.
-     * <br>.value[1].f32: width of the focus box. Negative numbers and percentages are not supported.
-     * <br>.value[2].u32: color of the focus box.
+     * <br>The value cannot be in percentage.</li>
+     * <li>.value[1].f32: width of the focus box. Negative numbers and percentages are not supported.</li>
+     * <li>.value[2].u32: color of the focus box.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_FOCUS_BOX = 96,
 
     /**
      * @brief Defines the moving distance limit for the component-bound tap gesture. This attribute can be set as
      * required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: allowed moving distance of a finger, in vp.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: allowed moving distance of a finger, in vp.</li>
+     * </ul>
      *
+     * @ingroup Interaction
      */
     NODE_CLICK_DISTANCE = 97,
 
     /**
      * @brief Sets whether the focus can be placed on this component. This attribute can be set, reset, and obtained as
-     * required through APIs. Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether the focus can be placed on the current component. The value **1** means that the
-     * focus can be placed on the current component, and **0** means the opposite. The default value is **0**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether the focus can be placed on the current component. The value **1** means that the
-     * focus can be placed on the current component, and **0** means the opposite.
+     * required through APIs.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the focus can be placed on the current component. The value **1** means that the
+     * focus can be placed on the current component, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the focus can be placed on the current component. The value **1** means that the
+     * focus can be placed on the current component, and **0** means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 14
      */
@@ -2156,26 +2254,37 @@ typedef enum {
      * @brief Defines the background image resizable attribute, which can be set, reset,
      * and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge. The unit is vp. </li>
+     * <li>.value[1].f32: width of the top edge. The unit is vp. </li>
+     * <li>.value[2].f32: width of the right edge. The unit is vp. </li>
+     * <li>.value[3].f32: width of the bottom edge. The unit is vp.
+     * </li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge. The unit is vp. </li>
+     * <li>.value[1].f32: width of the top edge. The unit is vp. </li>
+     * <li>.value[2].f32: width of the right edge. The unit is vp. </li>
+     * <li>.value[3].f32: width of the bottom edge. The unit is vp. </li>
+     * </ul>
+     *
+     * @ingroup Background Display
      *
      * @since 19
      */
     NODE_BACKGROUND_IMAGE_RESIZABLE_WITH_SLICE = 100,
 
     /**
-     * @brief Sets the next focus node. Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: focus movement direction, as defined in {@link ArkUI_FocusMove}.
-     * <br>.object: next focus node. The parameter type is {@link ArkUI_NodeHandle}.
+     * @brief Sets the next focus node.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: focus movement direction, as defined in {@link ArkUI_FocusMove}.</li>
+     * <li>.object: next focus node. The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 18
      */
@@ -2189,12 +2298,18 @@ typedef enum {
      * the actual callback interval will be determined by the system load. By default, the interval threshold of the
      * visible area change callback includes 0. This means that, if the provided threshold is [0.5], the effective
      * threshold will be [0.0, 0.5].
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.object: parameters for visible area change events. The parameter type is
-     * {@link ArkUI_VisibleAreaEventOptions}.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.object: parameters for visible area change events. The parameter type is
-     * {@link ArkUI_VisibleAreaEventOptions}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: parameters for visible area change events. The parameter type is
+     * {@link ArkUI_VisibleAreaEventOptions}.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: parameters for visible area change events. The parameter type is
+     * {@link ArkUI_VisibleAreaEventOptions}.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 17
      */
@@ -2348,14 +2463,20 @@ typedef enum {
      * the default click sound effect is enabled on other devices, the sound effect is not played. Whether the sound
      * can be played depends on the sound settings of the device. For example, the sound effect is not played in mute
      * mode.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: The value can be **1** or **0**. The value **1** indicates that the default click sound
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The value can be **1** or **0**. The value **1** indicates that the default click sound
      * effect is enabled, and the value **0** indicates that the default click sound effect is disabled. The default
-     * value is **1**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether the default click sound effect is enabled for the node. The value can be **1** or **0*
+     * value is **1**.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the default click sound effect is enabled for the node. The value can be **1** or **0*
      * *. The value **1** indicates that the default click sound effect is enabled, and the value **0** indicates that
-     * the default click sound effect is disabled.
+     * the default click sound effect is disabled.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 24
      */
@@ -2380,12 +2501,18 @@ typedef enum {
     /**
      * @brief Defines the hover effect applied when the component is hovered over. This attribute can be set, reset,
      * and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: hover effect applied when the component is hovered over. The parameter type is
-     * {@link ArkUI_HoverEffect}. The default value is **ARKUI_HOVER_EFFECT_AUTO**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: hover effect applied when the component is hovered over. The parameter type is
-     * {@link ArkUI_HoverEffect}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: hover effect applied when the component is hovered over. The parameter type is
+     * {@link ArkUI_HoverEffect}. The default value is **ARKUI_HOVER_EFFECT_AUTO**.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: hover effect applied when the component is hovered over. The parameter type is
+     * {@link ArkUI_HoverEffect}.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 23
      */
@@ -2394,24 +2521,30 @@ typedef enum {
     /**
      * @brief Configures the container as a focus group with the specified identifier. This attribute can be set, reset,
      *  and obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.string: focus scope identifier.
-     * <br>.value[0].i32: whether the scope is a focus group. The default value is **0**. The value can be **1** or **0*
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: focus scope identifier.</li>
+     * <li>.value[0].i32: whether the scope is a focus group. The default value is **0**. The value can be **1** or **0*
      * *. The value **1** indicates that the component is set as a focus group. The value **0** indicates that the
-     * component is not set as a focus group.
-     * <br>.value[1].i32: whether arrow keys can move focus from inside the focus group to outside. This setting only
+     * component is not set as a focus group.</li>
+     * <li>.value[1].i32: whether arrow keys can move focus from inside the focus group to outside. This setting only
      * takes effect when **isGroup** is **true**. The default value is **1**. The value can be **1** or **0**. The
      * value **1** indicates that arrow keys can move focus from inside the focus group to outside, and the value **0**
-     * indicates that arrow keys cannot move focus from inside the focus group to outside.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.string: focus scope identifier.
-     * <br>.value[0].i32: whether the scope is a focus group. The default value is **0**. The value can be **1** or **0*
+     * indicates that arrow keys cannot move focus from inside the focus group to outside.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: focus scope identifier.</li>
+     * <li>.value[0].i32: whether the scope is a focus group. The default value is **0**. The value can be **1** or **0*
      * *. The value **1** indicates that the component is set as a focus group. The value **0** indicates that the
-     * component is not set as a focus group.
-     * <br>.value[1].i32: whether arrow keys can move focus from inside the focus group to outside. This setting only
+     * component is not set as a focus group.</li>
+     * <li>.value[1].i32: whether arrow keys can move focus from inside the focus group to outside. This setting only
      * takes effect when **isGroup** is **true**. The default value is **1**. The value can be **1** or **0**. The
      * value **1** indicates that arrow keys can move focus from inside the focus group to outside, and the value **0**
-     * indicates that arrow keys cannot move focus from inside the focus group to outside.
+     * indicates that arrow keys cannot move focus from inside the focus group to outside.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 23
      */
@@ -2420,13 +2553,19 @@ typedef enum {
     /**
      * @brief Sets the component focus priority within a specific focus scope. This attribute can be set, reset, and
      * obtained as required through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.string: focus scope identifier.
-     * <br>.value[0].i32: focus priority within the focus scope. The parameter type is {@link ArkUI_FocusPriority}. The
-     * default value is **ARKUI_FOCUS_PRIORITY_AUTO**.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.string: focus scope identifier.
-     * <br>.value[0].i32: focus scope priority. The parameter type is {@link ArkUI_FocusPriority}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: focus scope identifier.</li>
+     * <li>.value[0].i32: focus priority within the focus scope. The parameter type is {@link ArkUI_FocusPriority}. The
+     * default value is **ARKUI_FOCUS_PRIORITY_AUTO**.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: focus scope identifier.</li>
+     * <li>.value[0].i32: focus scope priority. The parameter type is {@link ArkUI_FocusPriority}.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 23
      */
@@ -2435,12 +2574,18 @@ typedef enum {
     /**
      * @brief Sets the distance threshold for click events. This attribute can be set, reset, and obtained as required
      * through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: movement threshold for click events. Value range: (0, +∞) Default value: **+∞**.
-     * <br>Unit: vp.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: movement threshold for click events. Value range: (0, +∞) Default value:**+∞**.
+     *  Unit: vp.</li>
+     * </ul>
      *
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].f32: movement threshold for click events.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: movement threshold for click events.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 23
      */
@@ -2449,28 +2594,34 @@ typedef enum {
     /**
      * @brief Defines the component event response region. This attribute can be set, reset, and obtained as required
      * through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.data[0].i32: event tool type for the response region. The parameter type is
-     * {@link ArkUI_ResponseRegionSupportedTool}. Default value: **ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL**.
-     * <br>.data[1].f32: X coordinate of the pointer position relative to the upper left corner of the component, in vp.
-     *  The default value is **0.0**.
-     * <br>.data[2].f32: Y coordinate of the pointer position relative to the upper left corner of the component, in vp.
-     *  The default value is **0.0**.
-     * <br>.data[3].f32: width of the response region, in percentage. The default value is **100.0**.
-     * <br>.data[4].f32: height of the response region, in percentage. The default value is **100.0**.
-     * <br>.data[5...].f32: additional response regions in the same parameter order.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.data[0].i32: event tool type for the response region. The parameter type is
-     * {@link ArkUI_ResponseRegionSupportedTool}. Default value: **ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL**.
-     * <br>.data[1].f32: X coordinate of the pointer position relative to the upper left corner of the component, in vp.
-     *  The default value is **0.0**.
-     * <br>.data[2].f32: Y coordinate of the pointer position relative to the upper left corner of the component, in vp.
-     *  The default value is **0.0**.
-     * <br>.data[3].f32: width of the response region, in percentage. The default value is **100.0**.
-     * <br>.data[4].f32: height of the response region, in percentage. The default value is **100.0**.
-     * <br>.data[5...].f32: additional response regions in the same parameter order.
-     * <br>Note: During configuration, the data array can contain any number of values (all will be accepted), but only
-     * 20 values can be retrieved. The order of the retrieved data array may be different from that of the settings.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.data[0].i32: event tool type for the response region. The parameter type is
+     * {@link ArkUI_ResponseRegionSupportedTool}. Default value:**ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL**.</li>
+     * <li>.data[1].f32: X coordinate of the pointer position relative to the upper left corner of the component, in vp.
+     *  The default value is **0.0**.</li>
+     * <li>.data[2].f32: Y coordinate of the pointer position relative to the upper left corner of the component, in vp.
+     *  The default value is **0.0**.</li>
+     * <li>.data[3].f32: width of the response region, in percentage. The default value is **100.0**.</li>
+     * <li>.data[4].f32: height of the response region, in percentage. The default value is **100.0**.</li>
+     * <li>.data[5...].f32: additional response regions in the same parameter order.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.data[0].i32: event tool type for the response region. The parameter type is
+     * {@link ArkUI_ResponseRegionSupportedTool}. Default value:**ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL**.</li>
+     * <li>.data[1].f32: X coordinate of the pointer position relative to the upper left corner of the component, in vp.
+     *  The default value is **0.0**.</li>
+     * <li>.data[2].f32: Y coordinate of the pointer position relative to the upper left corner of the component, in vp.
+     *  The default value is **0.0**.</li>
+     * <li>.data[3].f32: width of the response region, in percentage. The default value is **100.0**.</li>
+     * <li>.data[4].f32: height of the response region, in percentage. The default value is **100.0**.</li>
+     * <li>.data[5...].f32: additional response regions in the same parameter order.</li>
+     * <li>Note: During configuration, the data array can contain any number of values (all will be accepted), but only
+     * 20 values can be retrieved. The order of the retrieved data array may be different from that of the settings.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 23
      */
@@ -2479,12 +2630,18 @@ typedef enum {
     /**
      * @brief Defines the event monopolization attribute. This attribute can be set, reset, and obtained as required
      * through APIs.
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: The value can be **1** or **0**. The value **1** indicates that the component exclusively
-     * handles events. The value **0** indicates that the component does not exclusively handle events.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: The value can be **1** or **0**. The value **1** indicates that the component exclusively
-     * handles events. The value **0** indicates that the component does not exclusively handle events.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The value can be **1** or **0**. The value **1** indicates that the component exclusively
+     * handles events. The value **0** indicates that the component does not exclusively handle events.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value can be **1** or **0**. The value **1** indicates that the component exclusively
+     * handles events. The value **0** indicates that the component does not exclusively handle events.</li>
+     * </ul>
+     *
+     * @ingroup Interaction
      *
      * @since 23
      */
@@ -12736,6 +12893,8 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}.
+     *
+     * @ingroup Interaction Event
      */
     NODE_TOUCH_EVENT = 0,
 
@@ -12746,6 +12905,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event
      */
     NODE_EVENT_ON_APPEAR,
     /**
@@ -12755,6 +12916,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event
      */
     NODE_EVENT_ON_DISAPPEAR,
 
@@ -12766,28 +12929,32 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      *  {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains 12 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: original width of the target element, in vp.
-     * The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: original height of the target element, in vp.
-     * The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: original X coordinate of the target element's upper left corner
-     * relative to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: original Y coordinate of the target element's upper left corner
-     * relative to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: original X coordinate of the target element's upper left corner
-     * relative to the page's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: original Y coordinate of the target element's upper left corner
-     * relative to the page's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: new width of the target element, in vp. The value is a number. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: new height of the target element, in vp. The value is a number. \n
-     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: new X coordinate of the target element's upper left corner relative
-     * to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[9].f32</b>: new Y coordinate of the target element's upper left corner relative
-     * to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[10].f32</b>: new X coordinate of the target element's upper left corner relative
-     * to the page's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[11].f32</b>: new Y coordinate of the target element's upper left corner relative
-     * to the page's, in vp. The value type is number. \n
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32</b>: original width of the target element, in vp.
+     * The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32</b>: original height of the target element, in vp.
+     * The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32</b>: original X coordinate of the target element's upper left corner
+     * relative to the parent element's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32</b>: original Y coordinate of the target element's upper left corner
+     * relative to the parent element's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32</b>: original X coordinate of the target element's upper left corner
+     * relative to the page's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[5].f32</b>: original Y coordinate of the target element's upper left corner
+     * relative to the page's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[6].f32</b>: new width of the target element, in vp. The value is a number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[7].f32</b>: new height of the target element, in vp. The value is a number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[8].f32</b>: new X coordinate of the target element's upper left corner relative
+     * to the parent element's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[9].f32</b>: new Y coordinate of the target element's upper left corner relative
+     * to the parent element's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[10].f32</b>: new X coordinate of the target element's upper left corner relative
+     * to the page's, in vp. The value type is number.</li>
+     * <li>ArkUI_NodeComponentEvent.data[11].f32</b>: new Y coordinate of the target element's upper left corner relative
+     * to the page's, in vp. The value type is number.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event
      */
     NODE_EVENT_ON_AREA_CHANGE,
     /**
@@ -12797,6 +12964,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event
      */
     NODE_ON_FOCUS,
     /**
@@ -12806,6 +12975,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event
      */
     NODE_ON_BLUR,
     /**
@@ -12815,22 +12986,26 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains 12 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: X coordinate of the click relative to the upper left corner of the
-     * clicked component's original area, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: Y coordinate of the click relative to the upper left corner of the
-     * clicked component's original area, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: event timestamp. It is the interval between the time when the event
-     * is triggered and the time when the system starts, in microseconds. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: event input device. The value <b>1</b> indicates the mouse,
-     * <b>2</b> indicates the touchscreen, and <b>4</b> indicates the key. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: X coordinate of the click relative to the upper left corner of the
-     * application window, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: Y coordinate of the click relative to the upper left corner of the
-     * application window, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: X coordinate of the click relative to the upper left corner of the
-     * application screen, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: Y coordinate of the click relative to the upper left corner of the
-     * application screen, in vp. \n
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32</b>: X coordinate of the click relative to the upper left corner of the
+     * clicked component's original area, in vp.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32</b>: Y coordinate of the click relative to the upper left corner of the
+     * clicked component's original area, in vp.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32</b>: event timestamp. It is the interval between the time when the event
+     * is triggered and the time when the system starts, in microseconds.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].i32</b>: event input device. The value <b>1</b> indicates the mouse,
+     * <li>2</b> indicates the touchscreen, and <b>4</b> indicates the key.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32</b>: X coordinate of the click relative to the upper left corner of the
+     * application window, in vp.</li>
+     * <li>ArkUI_NodeComponentEvent.data[5].f32</b>: Y coordinate of the click relative to the upper left corner of the
+     * application window, in vp.</li>
+     * <li>ArkUI_NodeComponentEvent.data[6].f32</b>: X coordinate of the click relative to the upper left corner of the
+     * application screen, in vp.</li>
+     * <li>ArkUI_NodeComponentEvent.data[7].f32</b>: Y coordinate of the click relative to the upper left corner of the
+     * application screen, in vp.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event
      */
     NODE_ON_CLICK,
     /**
@@ -12839,6 +13014,8 @@ typedef enum {
      * This event is triggered when the component is touched. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event
      */
     NODE_ON_TOUCH_INTERCEPT,
     /**
@@ -12850,11 +13027,15 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
      * changes compared to the previous one. The value <b>1</b> indicates an increase, and <b>0</b> indicates a
-     * decrease. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area when this
-     * callback is invoked. \n
+     * decrease.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area when this
+     * callback is invoked.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event
      */
     NODE_EVENT_ON_VISIBLE_AREA_CHANGE,
     /**
@@ -12864,9 +13045,13 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether the mouse pointer is hovered over the component.
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32</b>: whether the mouse pointer is hovered over the component.
      * The value <b>1</b> indicates that the mouse pointer is hovered over the component, and <b>0</b> indicates that
-     * the mouse pointer is moved away from the component. \n
+     * the mouse pointer is moved away from the component.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event
      */
     NODE_ON_HOVER,
     /**
@@ -12876,6 +13061,8 @@ typedef enum {
      * within the component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event
      */
     NODE_ON_MOUSE,
     /**
@@ -12885,6 +13072,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event
      */
     NODE_EVENT_ON_ATTACH,
     /**
@@ -12894,6 +13083,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event
      */
     NODE_EVENT_ON_DETACH,
 
@@ -12918,7 +13109,11 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: corresponds to {@link ArkUI_PreDragStatus}. \n
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32</b>: corresponds to {@link ArkUI_PreDragStatus}.</li>
+     * </ul>
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_PRE_DRAG = 14,
     /**
@@ -12927,6 +13122,8 @@ typedef enum {
      * A drag operation is recognized only when the dragged item is moved far enough. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_DRAG_START = 15,
     /**
@@ -12935,6 +13132,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_DRAG_ENTER = 16,
     /**
@@ -12943,6 +13142,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_DRAG_MOVE = 17,
     /**
@@ -12951,6 +13152,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_DRAG_LEAVE = 18,
     /**
@@ -12960,6 +13163,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_DROP = 19,
     /**
@@ -12969,6 +13174,8 @@ typedef enum {
      * A drag operation ends when the dragged item is released.
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event
      */
     NODE_ON_DRAG_END = 20,
     /**
@@ -12978,7 +13185,9 @@ typedef enum {
      * device. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * 
+     *
+     * @ingroup Interaction Event
+     *
      * @since 14
      */
     NODE_ON_KEY_EVENT = 21,
@@ -12992,7 +13201,9 @@ typedef enum {
      * device. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * 
+     *
+     * @ingroup Interaction Event
+     *
      * @since 14
      */
     NODE_ON_KEY_PRE_IME = 22,
@@ -13002,7 +13213,9 @@ typedef enum {
      * The event callback is triggered by interactions with a joystick and a focused component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
-     * 
+     *
+     * @ingroup Interaction Event
+     *
      * @since 15
      */
     NODE_ON_FOCUS_AXIS = 23,
@@ -13014,7 +13227,9 @@ typedef enum {
      * children. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * 
+     *
+     * @ingroup Interaction Event
+     *
      * @since 15
      */
     NODE_DISPATCH_KEY_EVENT = 24,
@@ -13024,7 +13239,9 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
-     * 
+     *
+     * @ingroup Interaction Event
+     *
      * @since 17
      */
     NODE_ON_AXIS = 25,
@@ -13034,6 +13251,8 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}.  \n
+     *
+     * @ingroup Interaction Event
      *
      * @since 18
      */
@@ -13045,6 +13264,8 @@ typedef enum {
      * This event is triggered when the mouse pointer enters or leaves the component's bounding box. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event
      *
      *@since 17
      */
@@ -13059,11 +13280,15 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
      * changes compared to the previous one. The value <b>1</b> indicates an increase, and <b>0</b> indicates
-     * a decrease. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area
-     * when this callback is invoked. \n
+     * a decrease.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area
+     * when this callback is invoked.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event
      *
      * @since 17
      */
@@ -13071,26 +13296,32 @@ typedef enum {
 
     /**
      * @brief Defines the hover event.
-     * 
+     *
      * The event is triggered when the pointer is hovered by a pen device.
      * within the component. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_UIInputEvent} object. \n
+     *
+     * @ingroup Interaction Event
+     *
      * @since 15
     */
     NODE_ON_HOVER_MOVE = 29,
 
     /**
-     * @brief Defines the size change event.
-     *
-     * The event will be triggered when the component size changes.
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. 
+     * @brief Size change event. This event is triggered when the component size changes.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
      * {@link ArkUI_NodeComponentEvent} contains four parameters:
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: the width of the old rectangle.
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: the height of the old rectangle.
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the width of the new rectangle.
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: the height of the new rectangle.
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32</b>: the width of the old rectangle.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32</b>: the height of the old rectangle.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32</b>: the width of the new rectangle.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32</b>: the height of the new rectangle.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event
+     *
      * @since 21
      */
     NODE_ON_SIZE_CHANGE = 30,
@@ -13107,16 +13338,21 @@ typedef enum {
      * And the {@link ArkUI_CoastingAxisEvent} object can be obtained from the {@link ArkUI_UIInputEvent}
      * object through {@link OH_ArkUI_UIInputEvent_GetCoastingAxisEvent}. \n
      *
+     * @ingroup Interaction Event
+     *
      * @since 22
      */
     NODE_ON_COASTING_AXIS_EVENT = 31,
 
     /**
      * @brief Defines the pre-touch test of sub component in touch events. Called to specify how to perform the touch test on the children of this component.
-     * 
+     *
      * The event is triggered when the component is touched. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_TouchTestInfo} object. \n
+     *
+     * @ingroup Interaction Event
+     *
      * @since 22
     */
     NODE_ON_CHILD_TOUCH_TEST = 32,
@@ -13126,6 +13362,9 @@ typedef enum {
      * This event is triggered when the crown is rotated. \n
      * When the event callback occurs, the {@link ArkUI_UIInputEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Interaction Event
+     *
      * @since 24
     */
     NODE_ON_DIGITAL_CROWN = 33,
@@ -13175,9 +13414,12 @@ typedef enum {
      * @brief This callback is invoked when the events and gestures on this node and
      * higher-priority nodes are collected. \n
      * This callback is used to intervene in the collection result of events and gestures. \n
-     * 
+     *
      * When the event callback occurs, the {@link ArkUI_GestureCollectInterceptInfo} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Interaction Event
+     *
      * @since 26.0.0
      */
     NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,

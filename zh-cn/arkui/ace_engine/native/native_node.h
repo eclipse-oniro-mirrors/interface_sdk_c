@@ -230,27 +230,37 @@ typedef enum {
     /**
      * @brief 背景色属性，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].u32</b>：背景色数值，0xargb格式，形如 `0xFFFF0000` 表示红色。
-     * <br>**返回：**
-     * <br><b>.value[0].u32</b>：背景色数值，0xargb格式，形如 `0xFFFF0000` 表示红色。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].u32</b>：背景色数值，0xargb格式，形如 `0xFFFF0000` 表示红色。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].u32</b>：背景色数值，0xargb格式，形如 `0xFFFF0000` 表示红色。</li>
+     * </ul>
      *
+     * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_COLOR,
     /**
      * @brief 背景色图片属性，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.string</b>：图片地址。API version 22及之前版本，支持网络图片资源地址、本地图片资源地址、Base64和{@link PixelMap}资源，不支持{@link svg}图片、
-     * gif和webp等类型的动图。从API version 23开始，新增支持webp和gif类型的动图，显示动图第一帧，不支持其他类型的动图。
-     * <br><b>.value[0]?.i32</b>：可选值，repeat参数，参数类型{@link ArkUI_ImageRepeat}，默认值为ARKUI_IMAGE_REPEAT_NONE。
-     * <br><b>.object</b>：PixelMap图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。`.object`参数和`.string`参数二选一，不可同时设置。
-     * <br>**返回：**
-     * <br><b>.string</b>：图片地址。API version 22及之前版本，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg图片、gif和webp等类型的动图。从API
-     * version 23开始，新增支持webp和gif类型的动图，显示动图第一帧，不支持其他类型的动图。
-     * <br><b>.value[0].i32</b>：repeat参数，参数类型{@link ArkUI_ImageRepeat}。
-     * <br><b>.object</b>：PixelMap图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。
+     * **参数：**
+     * <ul>
+     * <li><b>.string</b>：图片地址。API version 22及之前版本，支持网络图片资源地址、本地图片资源地址、Base64和{@link PixelMap}资源，不支持{@link svg}图片、
+     * gif和webp等类型的动图。从API version 23开始，新增支持webp和gif类型的动图，显示动图第一帧，不支持其他类型的动图。</li>
+     * <li><b>.value[0]?.i32</b>：可选值，repeat参数，参数类型{@link ArkUI_ImageRepeat}，默认值为ARKUI_IMAGE_REPEAT_NONE。</li>
+     * <li><b>.object</b>：PixelMap图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。`.object`参数和`.string`参数二选一，不可同时设置。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.string</b>：图片地址。API version 22及之前版本，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg图片、gif和webp等类型的动图。从API
+     * version 23开始，新增支持webp和gif类型的动图，显示动图第一帧，不支持其他类型的动图。</li>
+     * <li><b>.value[0].i32</b>：repeat参数，参数类型{@link ArkUI_ImageRepeat}。</li>
+     * <li><b>.object</b>：PixelMap图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。</li>
+     * </ul>
      *
+     * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_IMAGE,
     /**
@@ -595,11 +605,16 @@ typedef enum {
     /**
      * @brief 组件是否可见属性，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_VISIBILITY,
     /**
@@ -712,11 +727,16 @@ typedef enum {
     /**
      * @brief 触摸测试类型，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：控制当前组件的触摸测试类型，参数类型{@link ArkUI_HitTestMode}，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：控制当前组件的触摸测试类型，参数类型{@link ArkUI_HitTestMode}，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：控制当前组件的触摸测试类型，参数类型{@link ArkUI_HitTestMode}，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：控制当前组件的触摸测试类型，参数类型{@link ArkUI_HitTestMode}，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_HIT_TEST_BEHAVIOR,
     /**
@@ -780,45 +800,58 @@ typedef enum {
     /**
      * @brief 背景图片的宽高属性，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].f32</b>：图片的宽度值，取值范围`[0,+∞)`，单位为vp。
-     * <br><b>.value[1].f32</b>：图片的高度值，取值范围`[0,+∞)`，单位为vp。
-     * <br>**返回：**
-     * <br><b>.value[0].f32</b>：图片的宽度值，单位为vp。
-     * <br><b>.value[1].f32</b>：图片的高度值，单位为vp。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].f32</b>：图片的宽度值，取值范围`[0,+∞)`，单位为vp。</li>
+     * <li><b>.value[1].f32</b>：图片的高度值，取值范围`[0,+∞)`，单位为vp。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].f32</b>：图片的宽度值，单位为vp。</li>
+     * <li><b>.value[1].f32</b>：图片的高度值，单位为vp。</li>
+     * </ul>
      *
+     * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_IMAGE_SIZE,
     /**
      * @brief 背景图片的宽高样式属性，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：背景图片的宽高样式，取{@link ArkUI_ImageSize}枚举值。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：背景图片的宽高样式，取{@link ArkUI_ImageSize}枚举值。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：背景图片的宽高样式，取{@link ArkUI_ImageSize}枚举值。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：背景图片的宽高样式，取{@link ArkUI_ImageSize}枚举值。</li>
+     * </ul>
      *
+     * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,
     /**
      * @brief Defines the background blur attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}. \n
-     * .value[1]?.i32: color mode. The value is an enum of {@link ArkUI_ColorMode}. \n
-     * .value[2]?.i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}. \n
-     * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4]?.f32: start boundary of grayscale blur. \n
-     * .value[5]?.f32: end boundary of grayscale blur. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}. \n
-     * .value[1].i32: color mode. The value is an enum of {@link ArkUI_ColorMode}. \n
-     * .value[2].i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}. \n
-     * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4].f32: start boundary of grayscale blur. \n
-     * .value[5].f32: end boundary of grayscale blur. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}.</li>
+     * <li>.value[1]?.i32: color mode. The value is an enum of {@link ArkUI_ColorMode}.</li>
+     * <li>.value[2]?.i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}.</li>
+     * <li>.value[3]?.f32: blur degree. The value range is [0.0, 1.0].</li>
+     * <li>.value[4]?.f32: start boundary of grayscale blur.</li>
+     * <li>.value[5]?.f32: end boundary of grayscale blur.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}.</li>
+     * <li>.value[1].i32: color mode. The value is an enum of {@link ArkUI_ColorMode}.</li>
+     * <li>.value[2].i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}.</li>
+     * <li>.value[3].f32: blur degree. The value range is [0.0, 1.0].</li>
+     * <li>.value[4].f32: start boundary of grayscale blur.</li>
+     * <li>.value[5].f32: end boundary of grayscale blur.</li>
+     * </ul>
      *
-     * @ingroup Visual [视效属性]
+     * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_BLUR_STYLE,
     /**
@@ -987,22 +1020,32 @@ typedef enum {
     /**
      * @brief 获焦属性，支持属性设置，属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：参数类型为1表示可获焦，为0表示不可获焦。默认为不可获焦。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：参数类型为1表示可获焦，为0表示不可获焦。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：参数类型为1表示可获焦，为0表示不可获焦。默认为不可获焦。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：参数类型为1表示可获焦，为0表示不可获焦。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_FOCUSABLE,
 
     /**
      * @brief 默认焦点属性，支持属性设置，属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：参数值为1表示是默认焦点，为0表示不是默认焦点。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：参数值为1表示是默认焦点，为0表示不是默认焦点。
+     * **参数：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：参数值为1表示是默认焦点，为0表示不是默认焦点。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li><b>.value[0].i32</b>：参数值为1表示是默认焦点，为0表示不是默认焦点。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_DEFAULT_FOCUS,
 
@@ -1011,42 +1054,52 @@ typedef enum {
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**说明：**
      * <br>设置时data数据大小无数量限制，均可以设置成功，但仅支持获取到前20个。
-     * <br>**参数：**
-     * <br><b>.data[0].f32</b>：触摸点相对于组件左上角的x轴坐标，单位为vp。
-     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的y轴坐标，单位为vp。
-     * <br><b>.data[2].f32</b>：触摸热区的宽度，单位为百分比。
-     * <br><b>.data[3].f32</b>：触摸热区的高度，单位为百分比。
-     * <br><b>.data[4...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
-     * <br>**返回：**
-     * <br><b>.data[0].f32</b>：触摸点相对于组件左上角的x轴坐标，单位为vp。
-     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的y轴坐标，单位为vp。
-     * <br><b>.data[2].f32</b>：触摸热区的宽度，单位为百分比。
-     * <br><b>.data[3].f32</b>：触摸热区的高度，单位为百分比。
-     * <br><b>.data[4...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
+     * **参数：**
+     * <ul>
+     * <li>.data[0].f32</b>：触摸点相对于组件左上角的x轴坐标，单位为vp。</li>
+     * <li>.data[1].f32</b>：触摸点相对于组件左上角的y轴坐标，单位为vp。</li>
+     * <li>.data[2].f32</b>：触摸热区的宽度，单位为百分比。</li>
+     * <li>.data[3].f32</b>：触摸热区的高度，单位为百分比。</li>
+     * <li>.data[4...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.data[0].f32</b>：触摸点相对于组件左上角的x轴坐标，单位为vp。</li>
+     * <li>.data[1].f32</b>：触摸点相对于组件左上角的y轴坐标，单位为vp。</li>
+     * <li>.data[2].f32</b>：触摸热区的宽度，单位为百分比。</li>
+     * <li>.data[3].f32</b>：触摸热区的高度，单位为百分比。</li>
+     * <li>.data[4...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_RESPONSE_REGION,
 
     /**
      * @brief 定义遮罩属性，支持属性设置，属性重置和属性获取。开发者可以通过如下.string或.object设置浮层内容，.string有更高的优先级。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.string</b>：遮罩文本。
-     * <br><b>.value[0]?.i32</b>：可选值，浮层相对于组件的位置，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。
-     * <br><b>.value[1]?.f32</b>：可选值，浮层基于自身左上角的偏移量X，单位为vp，默认值为0vp。
-     * <br><b>.value[2]?.f32</b>：可选值，浮层基于自身左上角的偏移量Y，单位为vp，默认值为0vp。
-     * <br><b>.value[3]?.i32</b>：可选值，浮层的布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_LTR。
-     * <br>在大部分场景下，这个参数都应该被设置成Auto，这个模式允许系统自动处理布局方向，如果在某些场景下需要保持特定的方向，设置这个属性为LTR（Left-to-Right）或者RTL（Right-to-Left）。
-     * 从API version 21开始支持。
-     * <br><b>.object</b>：用于overlay的节点树，参数类型为{@link ArkUI_NodeHandle}，默认值为nullptr。从API version 21开始支持。
-     * <br>**返回：**
-     * <br><b>.string</b>：遮罩文本。
-     * <br><b>.value[0].i32</b>：浮层相对于组件的位置，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。
-     * <br><b>.value[1].f32</b>：浮层基于自身左上角的偏移量X，单位为vp。
-     * <br><b>.value[2].f32</b>：浮层基于自身左上角的偏移量Y，单位为vp。
-     * <br><b>.value[3].i32</b>：浮层的布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_LTR。从API version 21开始支持。
-     * <br><b>.object</b>：用于overlay的节点树，参数类型为{@link ArkUI_NodeHandle}。从API version 21开始支持。
+     * **参数：**
+     * <ul>
+     * <li>.string</b>：遮罩文本。</li>
+     * <li>.value[0]?.i32</b>：可选值，浮层相对于组件的位置，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。</li>
+     * <li>.value[1]?.f32</b>：可选值，浮层基于自身左上角的偏移量X，单位为vp，默认值为0vp。</li>
+     * <li>.value[2]?.f32</b>：可选值，浮层基于自身左上角的偏移量Y，单位为vp，默认值为0vp。</li>
+     * <li>.value[3]?.i32</b>：可选值，浮层的布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_LTR。
+     * 在大部分场景下，这个参数都应该被设置成Auto，这个模式允许系统自动处理布局方向，如果在某些场景下需要保持特定的方向，设置这个属性为LTR（Left-to-Right）或者RTL（Right-to-Left）。
+     * 从API version 21开始支持。</li>
+     * <li>.object</b>：用于overlay的节点树，参数类型为{@link ArkUI_NodeHandle}，默认值为nullptr。从API version 21开始支持。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.string</b>：遮罩文本。</li>
+     * <li>.value[0].i32</b>：浮层相对于组件的位置，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。</li>
+     * <li>.value[1].f32</b>：浮层基于自身左上角的偏移量X，单位为vp。</li>
+     * <li>.value[2].f32</b>：浮层基于自身左上角的偏移量Y，单位为vp。</li>
+     * <li>.value[3].i32</b>：浮层的布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_LTR。从API version 21开始支持。</li>
+     * <li>.object</b>：用于overlay的节点树，参数类型为{@link ArkUI_NodeHandle}。从API version 21开始支持。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_OVERLAY,
     /**
@@ -1375,19 +1428,24 @@ typedef enum {
     /**
      * @brief 背景图在组件中显示位置，即相对于组件左上角的坐标，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].f32</b>：x轴位置，单位为px。
-     * <br><b>.value[1].f32</b>：y轴位置，单位为px。
-     * <br><b>.value[2]?.i32</b>：可选值，对齐方式，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。该参数从API version
-     * 21开始支持。
-     * <br><b>.value[3]?.i32</b>：可选值，布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。多数场景下建议设置为AUTO，
-     * 由系统自动处理布局方向；若需要固定方向，可设置为LTR或RTL。该参数从API version 21开始支持。
-     * <br>**返回：**
-     * <br><b>.value[0].f32</b>：x轴位置，单位为px。
-     * <br><b>.value[1].f32</b>：y轴位置，单位为px。
-     * <br><b>.value[2].i32</b>：对齐方式，参数类型{@link ArkUI_Alignment}。该返回值从API version 21开始支持。
-     * <br><b>.value[3].i32</b>：布局方向，参数类型{@link ArkUI_Direction}。该返回值从API version 21开始支持。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32</b>：x轴位置，单位为px。</li>
+     * <li>.value[1].f32</b>：y轴位置，单位为px。</li>
+     * <li>.value[2]?.i32</b>：可选值，对齐方式，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。该参数从API version
+     * 21开始支持。</li>
+     * <li>.value[3]?.i32</b>：可选值，布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。多数场景下建议设置为AUTO，
+     * 由系统自动处理布局方向；若需要固定方向，可设置为LTR或RTL。该参数从API version 21开始支持。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32</b>：x轴位置，单位为px。</li>
+     * <li>.value[1].f32</b>：y轴位置，单位为px。</li>
+     * <li>.value[2].i32</b>：对齐方式，参数类型{@link ArkUI_Alignment}。该返回值从API version 21开始支持。</li>
+     * <li>.value[3].i32</b>：布局方向，参数类型{@link ArkUI_Direction}。该返回值从API version 21开始支持。</li>
+     * </ul>
      *
+     * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_IMAGE_POSITION,
     /**
@@ -1536,11 +1594,16 @@ typedef enum {
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**说明：**
      * <br>设置参数为0时，当前层级页面获焦组件失焦，焦点转移到根容器上。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：参数值为1表示组件获焦，为0表示组件失焦。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：参数值为1表示组件获焦，为0表示组件失焦。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32</b>：参数值为1表示组件获焦，为0表示组件失焦。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32</b>：参数值为1表示组件获焦，为0表示组件失焦。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_FOCUS_STATUS,
     /**
@@ -1875,11 +1938,16 @@ typedef enum {
     /**
      * @brief 设置当前组件是否支持点击获焦能力，支持属性设置，属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：参数值为1表示支持点击获焦，为0表示不支持点击获焦。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：参数值为1表示支持点击获焦，为0表示不支持点击获焦。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：参数值为1表示支持点击获焦，为0表示不支持点击获焦。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：参数值为1表示支持点击获焦，为0表示不支持点击获焦。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_FOCUS_ON_TOUCH,
 
@@ -2022,13 +2090,20 @@ typedef enum {
 
     /**
      * @brief Defines the visible area ratio (visible area/total area of the component) threshold for invoking the
-     * visible area change event of the component. Format of the {@link ArkUI_AttributeItem} parameter for setting the
-     * attribute:
-     * <br>.value[...].f32: threshold array. The value ranges from 0 to 1.
-     * <br>.object: The parameter type is {@link ArkUI_VisibleAreaEventOptions}.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[...].f32: threshold array.
-     * <br>.object: The return type is {@link ArkUI_VisibleAreaEventOptions}.
+     * visible area change event of the component.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the
+     * attribute:**
+     * <ul>
+     * <li>.value[...].f32: threshold array. The value ranges from 0 to 1.</li>
+     * <li>.object: The parameter type is {@link ArkUI_VisibleAreaEventOptions}.</li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[...].f32: threshold array.</li>
+     * <li>.object: The return type is {@link ArkUI_VisibleAreaEventOptions}.</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 12
      */
@@ -2063,30 +2138,42 @@ typedef enum {
     /**
      * @brief 设置当前组件系统焦点框样式。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].f32</b>：焦点框相对组件边缘的距离。正数代表外侧，负数代表内侧。不支持百分比。
-     * <br><b>.value[1].f32</b>：焦点框宽度。不支持负数和百分比。
-     * <br><b>.value[2].u32</b>：焦点框颜色。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32</b>：焦点框相对组件边缘的距离。正数代表外侧，负数代表内侧。不支持百分比。</li>
+     * <li>.value[1].f32</b>：焦点框宽度。不支持负数和百分比。</li>
+     * <li>.value[2].u32</b>：焦点框颜色。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_FOCUS_BOX = 96,
 
     /**
      * @brief 组件所绑定的点击手势移动距离限制，支持属性设置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].f32</b>：表示识别点击手势时允许手指在该范围内移动，单位为vp。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32</b>：表示识别点击手势时允许手指在该范围内移动，单位为vp。</li>
+     * </ul>
      *
+     * @ingroup Interaction [交互属性]
      */
     NODE_CLICK_DISTANCE = 97,
 
     /**
      * @brief 控制焦点是否能停在当前组件，支持属性设置，属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：参数值为1表示焦点能停在当前组件，为0表示焦点不能停在当前组件。默认值为0。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：参数值为1表示焦点停在当前组件，为0表示焦点未停在当前组件。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32</b>：参数值为1表示焦点能停在当前组件，为0表示焦点不能停在当前组件。默认值为0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32</b>：参数值为1表示焦点停在当前组件，为0表示焦点未停在当前组件。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 14
      */
@@ -2118,17 +2205,23 @@ typedef enum {
      * @brief Defines the background image resizable attribute, which can be set, reset,
      * and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge. The unit is vp. </li>
+     * <li>.value[1].f32: width of the top edge. The unit is vp. </li>
+     * <li>.value[2].f32: width of the right edge. The unit is vp. </li>
+     * <li>.value[3].f32: width of the bottom edge. The unit is vp.
+     * </li>
+     * </ul>
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge. The unit is vp. </li>
+     * <li>.value[1].f32: width of the top edge. The unit is vp. </li>
+     * <li>.value[2].f32: width of the right edge. The unit is vp. </li>
+     * <li>.value[3].f32: width of the bottom edge. The unit is vp. </li>
+     * </ul>
+     *
+     * @ingroup Background Display [背景显示]
      *
      * @since 19
      */
@@ -2137,9 +2230,13 @@ typedef enum {
     /**
      * @brief 设置下一个走焦节点。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：走焦类型，定义在{@link ArkUI_FocusMove}。
-     * <br><b>.object</b>：下一个焦点。参数类型为{@link ArkUI_NodeHandle}。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32</b>：走焦类型，定义在{@link ArkUI_FocusMove}。</li>
+     * <li>.object</b>：下一个焦点。参数类型为{@link ArkUI_NodeHandle}。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 18
      */
@@ -2151,10 +2248,16 @@ typedef enum {
      * <br>**说明：**
      * <br>非实时回调，实际回调与预期间隔可能存在差别。两次可见区域回调的时间间隔不小于预期更新间隔。当开发者设置的预期间隔过小时，由系统负载决定实际回调间隔时间。当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[
      * 0.5]，实际生效的阈值为[0.0, 0.5]。
-     * <br>**参数：**
-     * <br><b>.object</b>：参数类型为{@link ArkUI_VisibleAreaEventOptions}。
-     * <br>**返回：**
-     * <br><b>.object</b>：参数类型为{@link ArkUI_VisibleAreaEventOptions}。
+     * **参数：**
+     * <ul>
+     * <li>.object</b>：参数类型为{@link ArkUI_VisibleAreaEventOptions}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.object</b>：参数类型为{@link ArkUI_VisibleAreaEventOptions}。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 17
      */
@@ -2298,10 +2401,16 @@ typedef enum {
     /**
      * @brief 设置组件是否启用默认点击音效。此功能仅在TV上生效，在其他设备上启用默认点击音效也不会播放音效。是否能够发音依赖设备声音相关的设置，如静音模式下不会播放音效。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：参数取值为1或0，1表示启用默认点击音效，0表示禁用默认点击音效，默认值为1。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：表示此节点是否启用了默认的点击音效。参数取值为1或0，1表示启用默认点击音效，0表示禁用默认点击音效。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32</b>：参数取值为1或0，1表示启用默认点击音效，0表示禁用默认点击音效，默认值为1。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32</b>：表示此节点是否启用了默认的点击音效。参数取值为1或0，1表示启用默认点击音效，0表示禁用默认点击音效。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 24
      */
@@ -2326,10 +2435,16 @@ typedef enum {
     /**
      * @brief 定义组件被悬停时的效果。该属性可根据需要通过API进行设置、重置和获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：组件在悬停状态下的悬停效果。参数类型为{@link ArkUI_HoverEffect}。默认值为ARKUI_HOVER_EFFECT_AUTO。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：组件在悬停状态下的悬停效果。参数类型为{@link ArkUI_HoverEffect}。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32</b>：组件在悬停状态下的悬停效果。参数类型为{@link ArkUI_HoverEffect}。默认值为ARKUI_HOVER_EFFECT_AUTO。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32</b>：组件在悬停状态下的悬停效果。参数类型为{@link ArkUI_HoverEffect}。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 23
      */
@@ -2338,16 +2453,22 @@ typedef enum {
     /**
      * @brief 将容器设置为具有特定标识符的焦点组，支持属性设置、属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.string</b>：焦点作用域标识符。
-     * <br><b>.value[0].i32</b>：该作用域是否为焦点组，默认值为0。取值范围为1或0。1表示设置为焦点组，0表示组件未被设置为焦点组。
-     * <br><b>.value[1].i32</b>：箭头键是否可以将焦点从焦点组内部移至外部，仅当isGroup为true时有效，默认值为1。取值范围为1或0。1表示箭头键可以将焦点从焦点组内部移至外部，
-     * 0表示箭头键无法将焦点从焦点组内部移至外部。
-     * <br>**返回：**
-     * <br><b>.string</b>：焦点作用域标识符。
-     * <br><b>.value[0].i32</b>：该作用域是否为焦点组，默认值为0。取值范围为1或0。1表示设置为焦点组，0表示组件未被设置为焦点组。
-     * <br><b>.value[1].i32</b>：箭头键是否可以将焦点从焦点组内部移至外部，仅当isGroup为true时有效，默认值为1。取值范围为1或0。1表示箭头键可以将焦点从焦点组内部移至外部，
-     * 0表示箭头键无法将焦点从焦点组内部移至外部。
+     * **参数：**
+     * <ul>
+     * <li>.string</b>：焦点作用域标识符。</li>
+     * <li>.value[0].i32</b>：该作用域是否为焦点组，默认值为0。取值范围为1或0。1表示设置为焦点组，0表示组件未被设置为焦点组。</li>
+     * <li>.value[1].i32</b>：箭头键是否可以将焦点从焦点组内部移至外部，仅当isGroup为true时有效，默认值为1。取值范围为1或0。1表示箭头键可以将焦点从焦点组内部移至外部，
+     * 0表示箭头键无法将焦点从焦点组内部移至外部。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.string</b>：焦点作用域标识符。</li>
+     * <li>.value[0].i32</b>：该作用域是否为焦点组，默认值为0。取值范围为1或0。1表示设置为焦点组，0表示组件未被设置为焦点组。</li>
+     * <li>.value[1].i32</b>：箭头键是否可以将焦点从焦点组内部移至外部，仅当isGroup为true时有效，默认值为1。取值范围为1或0。1表示箭头键可以将焦点从焦点组内部移至外部，
+     * 0表示箭头键无法将焦点从焦点组内部移至外部。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 23
      */
@@ -2356,12 +2477,18 @@ typedef enum {
     /**
      * @brief 设置组件在特定焦点作用域内的焦点优先级，支持属性设置、属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.string</b>：焦点作用域标识符。
-     * <br><b>.value[0].i32</b>：焦点作用域内获焦优先级。参数类型为{@link ArkUI_FocusPriority}。默认值为ARKUI_FOCUS_PRIORITY_AUTO。
-     * <br>**返回：**
-     * <br><b>.string</b>：焦点作用域标识符。
-     * <br><b>.value[0].i32</b>：焦点作用域优先级。参数类型为{@link ArkUI_FocusPriority}。
+     * **参数：**
+     * <ul>
+     * <li>.string</b>：焦点作用域标识符。</li>
+     * <li>.value[0].i32</b>：焦点作用域内获焦优先级。参数类型为{@link ArkUI_FocusPriority}。默认值为ARKUI_FOCUS_PRIORITY_AUTO。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.string</b>：焦点作用域标识符。</li>
+     * <li>.value[0].i32</b>：焦点作用域优先级。参数类型为{@link ArkUI_FocusPriority}。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 23
      */
@@ -2370,10 +2497,16 @@ typedef enum {
     /**
      * @brief 设置点击事件的距离阈值，支持属性设置、属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].f32</b>：点击事件移动阈值。取值范围(0, +∞)。默认值为+∞，单位vp。
-     * <br>**返回：**
-     * <br><b>.value[0].f32</b>：点击事件移动阈值。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32</b>：点击事件移动阈值。取值范围(0, +∞)。默认值为+∞，单位vp。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32</b>：点击事件移动阈值。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 23
      */
@@ -2384,22 +2517,28 @@ typedef enum {
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**说明：**
      * <br>设置时data数据大小无数量限制，均可以设置成功，但仅支持获取到20个。获取到的data数组顺序与设置顺序可能存在差异。
-     * <br>**参数：**
-     * <br><b>.data[0].i32</b>：适用于此响应区域的事件工具类型。参数类型为{@link ArkUI_ResponseRegionSupportedTool}。默认值：
-     * ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL。
-     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的x轴坐标，默认值：0.0，单位为vp。
-     * <br><b>.data[2].f32</b>：触摸点相对于组件左上角的y轴坐标，默认值：0.0，单位为vp。
-     * <br><b>.data[3].f32</b>：触摸热区的宽度，默认值：100.0，单位为百分比。
-     * <br><b>.data[4].f32</b>：触摸热区的高度，默认值：100.0，单位为百分比。
-     * <br><b>.data[5...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
-     * <br>**返回：**
-     * <br><b>.data[0].i32</b>：适用于此响应区域的事件工具类型。参数类型为{@link ArkUI_ResponseRegionSupportedTool}。默认值：
-     * ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL。
-     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的x轴坐标，默认值：0.0，单位为vp。
-     * <br><b>.data[2].f32</b>：触摸点相对于组件左上角的y轴坐标，默认值：0.0，单位为vp。
-     * <br><b>.data[3].f32</b>：触摸热区的宽度，默认值：100.0，单位为百分比。
-     * <br><b>.data[4].f32</b>：触摸热区的高度，默认值：100.0，单位为百分比。
-     * <br><b>.data[5...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
+     * **参数：**
+     * <ul>
+     * <li>.data[0].i32</b>：适用于此响应区域的事件工具类型。参数类型为{@link ArkUI_ResponseRegionSupportedTool}。默认值：</li>
+     * <li>ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL。</li>
+     * <li>.data[1].f32</b>：触摸点相对于组件左上角的x轴坐标，默认值：0.0，单位为vp。</li>
+     * <li>.data[2].f32</b>：触摸点相对于组件左上角的y轴坐标，默认值：0.0，单位为vp。</li>
+     * <li>.data[3].f32</b>：触摸热区的宽度，默认值：100.0，单位为百分比。</li>
+     * <li>.data[4].f32</b>：触摸热区的高度，默认值：100.0，单位为百分比。</li>
+     * <li>.data[5...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.data[0].i32</b>：适用于此响应区域的事件工具类型。参数类型为{@link ArkUI_ResponseRegionSupportedTool}。默认值：</li>
+     * <li>ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL。</li>
+     * <li>.data[1].f32</b>：触摸点相对于组件左上角的x轴坐标，默认值：0.0，单位为vp。</li>
+     * <li>.data[2].f32</b>：触摸点相对于组件左上角的y轴坐标，默认值：0.0，单位为vp。</li>
+     * <li>.data[3].f32</b>：触摸热区的宽度，默认值：100.0，单位为百分比。</li>
+     * <li>.data[4].f32</b>：触摸热区的高度，默认值：100.0，单位为百分比。</li>
+     * <li>.data[5...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 23
      */
@@ -2408,10 +2547,16 @@ typedef enum {
     /**
      * @brief 定义独占事件属性，该属性可根据需要通过API进行设置、重置和获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：取值范围为1或0。1表示设置组件独占，0表示组件未设置独占属性。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：取值范围为1或0。1表示设置组件独占，0表示组件未设置独占属性。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32</b>：取值范围为1或0。1表示设置组件独占，0表示组件未设置独占属性。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32</b>：取值范围为1或0。1表示设置组件独占，0表示组件未设置独占属性。</li>
+     * </ul>
+     *
+     * @ingroup Interaction [交互属性]
      *
      * @since 23
      */
@@ -12168,7 +12313,10 @@ typedef enum {
     /**
      * @brief Defines the gesture event type.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_UIInputEvent}.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_TOUCH_EVENT = 0,
 
@@ -12179,6 +12327,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_EVENT_ON_APPEAR,
     /**
@@ -12188,6 +12338,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_EVENT_ON_DISAPPEAR,
 
@@ -12199,28 +12351,31 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      *  {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains 12 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: original width of the target element, in vp.
-     * The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: original height of the target element, in vp.
-     * The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: original X coordinate of the target element's upper left corner
-     * relative to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: original Y coordinate of the target element's upper left corner
-     * relative to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: original X coordinate of the target element's upper left corner
-     * relative to the page's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: original Y coordinate of the target element's upper left corner
-     * relative to the page's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: new width of the target element, in vp. The value is a number. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: new height of the target element, in vp. The value is a number. \n
-     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: new X coordinate of the target element's upper left corner relative
-     * to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[9].f32</b>: new Y coordinate of the target element's upper left corner relative
-     * to the parent element's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[10].f32</b>: new X coordinate of the target element's upper left corner relative
-     * to the page's, in vp. The value type is number. \n
-     * <b>ArkUI_NodeComponentEvent.data[11].f32</b>: new Y coordinate of the target element's upper left corner relative
-     * to the page's, in vp. The value type is number. \n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].f32</b>: original width of the target element, in vp.
+     * The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].f32</b>: original height of the target element, in vp.
+     * The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[2].f32</b>: original X coordinate of the target element's upper left corner
+     * relative to the parent element's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[3].f32</b>: original Y coordinate of the target element's upper left corner
+     * relative to the parent element's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[4].f32</b>: original X coordinate of the target element's upper left corner
+     * relative to the page's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[5].f32</b>: original Y coordinate of the target element's upper left corner
+     * relative to the page's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[6].f32</b>: new width of the target element, in vp. The value is a number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[7].f32</b>: new height of the target element, in vp. The value is a number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[8].f32</b>: new X coordinate of the target element's upper left corner relative
+     * to the parent element's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[9].f32</b>: new Y coordinate of the target element's upper left corner relative
+     * to the parent element's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[10].f32</b>: new X coordinate of the target element's upper left corner relative
+     * to the page's, in vp. The value type is number.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[11].f32</b>: new Y coordinate of the target element's upper left corner relative
+     * to the page's, in vp. The value type is number.</li>
+     * </ul>
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_EVENT_ON_AREA_CHANGE,
     /**
@@ -12230,6 +12385,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_ON_FOCUS,
     /**
@@ -12239,6 +12396,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_ON_BLUR,
     /**
@@ -12248,22 +12407,25 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains 12 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: X coordinate of the click relative to the upper left corner of the
-     * clicked component's original area, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: Y coordinate of the click relative to the upper left corner of the
-     * clicked component's original area, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: event timestamp. It is the interval between the time when the event
-     * is triggered and the time when the system starts, in microseconds. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: event input device. The value <b>1</b> indicates the mouse,
-     * <b>2</b> indicates the touchscreen, and <b>4</b> indicates the key. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: X coordinate of the click relative to the upper left corner of the
-     * application window, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: Y coordinate of the click relative to the upper left corner of the
-     * application window, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: X coordinate of the click relative to the upper left corner of the
-     * application screen, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: Y coordinate of the click relative to the upper left corner of the
-     * application screen, in vp. \n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].f32</b>: X coordinate of the click relative to the upper left corner of the
+     * clicked component's original area, in vp.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].f32</b>: Y coordinate of the click relative to the upper left corner of the
+     * clicked component's original area, in vp.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[2].f32</b>: event timestamp. It is the interval between the time when the event
+     * is triggered and the time when the system starts, in microseconds.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[3].i32</b>: event input device. The value <b>1</b> indicates the mouse,</li>
+     * <li><b>2</b> indicates the touchscreen, and <b>4</b> indicates the key.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[4].f32</b>: X coordinate of the click relative to the upper left corner of the
+     * application window, in vp.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[5].f32</b>: Y coordinate of the click relative to the upper left corner of the
+     * application window, in vp.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[6].f32</b>: X coordinate of the click relative to the upper left corner of the
+     * application screen, in vp.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[7].f32</b>: Y coordinate of the click relative to the upper left corner of the
+     * application screen, in vp.</li>
+     * </ul>
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_ON_CLICK,
     /**
@@ -12272,6 +12434,8 @@ typedef enum {
      * This event is triggered when the component is touched. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_ON_TOUCH_INTERCEPT,
     /**
@@ -12283,11 +12447,14 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
      * changes compared to the previous one. The value <b>1</b> indicates an increase, and <b>0</b> indicates a
-     * decrease. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area when this
-     * callback is invoked. \n
+     * decrease.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area when this
+     * callback is invoked.</li>
+     * </ul>
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_EVENT_ON_VISIBLE_AREA_CHANGE,
     /**
@@ -12297,9 +12464,12 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether the mouse pointer is hovered over the component.
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether the mouse pointer is hovered over the component.
      * The value <b>1</b> indicates that the mouse pointer is hovered over the component, and <b>0</b> indicates that
-     * the mouse pointer is moved away from the component. \n
+     * the mouse pointer is moved away from the component.</li>
+     * </ul>
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_ON_HOVER,
     /**
@@ -12309,6 +12479,8 @@ typedef enum {
      * within the component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_ON_MOUSE,
     /**
@@ -12318,6 +12490,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_EVENT_ON_ATTACH,
     /**
@@ -12327,6 +12501,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Interaction Event [交互事件]
      */
     NODE_EVENT_ON_DETACH,
 
@@ -12351,7 +12527,10 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: corresponds to {@link ArkUI_PreDragStatus}. \n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: corresponds to {@link ArkUI_PreDragStatus}.</li>
+     * </ul>
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_PRE_DRAG = 14,
     /**
@@ -12360,6 +12539,8 @@ typedef enum {
      * A drag operation is recognized only when the dragged item is moved far enough. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_DRAG_START = 15,
     /**
@@ -12368,6 +12549,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_DRAG_ENTER = 16,
     /**
@@ -12376,6 +12559,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_DRAG_MOVE = 17,
     /**
@@ -12384,6 +12569,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_DRAG_LEAVE = 18,
     /**
@@ -12393,6 +12580,8 @@ typedef enum {
      * The current component refers to the component that listens for this event. \n
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_DROP = 19,
     /**
@@ -12402,6 +12591,8 @@ typedef enum {
      * A drag operation ends when the dragged item is released.
      * When the event callback occurs, the {@link ArkUI_DragEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Drag Event [拖拽事件]
      */
     NODE_ON_DRAG_END = 20,
     /**
@@ -12411,6 +12602,8 @@ typedef enum {
      * device. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      * 
      * @since 14
      */
@@ -12425,6 +12618,8 @@ typedef enum {
      * device. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      * 
      * @since 14
      */
@@ -12435,6 +12630,8 @@ typedef enum {
      * The event callback is triggered by interactions with a joystick and a focused component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      * 
      * @since 15
      */
@@ -12447,6 +12644,8 @@ typedef enum {
      * children. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      * 
      * @since 15
      */
@@ -12457,6 +12656,8 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
+     *
+     * @ingroup Interaction Event [交互事件]
      * 
      * @since 17
      */
@@ -12468,6 +12669,8 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}.  \n
      *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 18
      */
     NODE_ON_CLICK_EVENT = 26,
@@ -12476,6 +12679,9 @@ typedef enum {
      * @brief 定义鼠标指针移至组件上方或远离组件时触发的事件。 \n
      * 当鼠标指针移到组件上方或远离组件时触发该事件。 \n
      * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合类型为{@link ArkUI_UIInputEvent}。 \n
+
+     *
+     * @ingroup Interaction Event [交互事件]
      *
      * @since 17
      */
@@ -12490,11 +12696,15 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
      * changes compared to the previous one. The value <b>1</b> indicates an increase, and <b>0</b> indicates
-     * a decrease. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area
-     * when this callback is invoked. \n
+     * a decrease.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area
+     * when this callback is invoked.</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event [交互事件]
      *
      * @since 17
      */
@@ -12507,21 +12717,27 @@ typedef enum {
      * within the component. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_UIInputEvent} object. \n
+     *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 15
     */
     NODE_ON_HOVER_MOVE = 29,
 
     /**
-     * @brief Defines the size change event.
+     * @brief 定义尺寸变化事件，当组件尺寸发生变化时会触发该事件。
      *
-     * The event will be triggered when the component size changes.
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. 
-     * {@link ArkUI_NodeComponentEvent} contains four parameters:
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: the width of the old rectangle.
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: the height of the old rectangle.
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the width of the new rectangle.
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: the height of the new rectangle.
+     * <br>事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * <br>{@link ArkUI_NodeComponentEvent}中包含四个参数：
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32：尺寸组件变化前的宽度。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32：尺寸组件变化前的高度。</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32：尺寸组件变化后的宽度。</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32：尺寸组件变化后的高度。</li>
+     * </ul>
+     *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 21
      */
     NODE_ON_SIZE_CHANGE = 30,
@@ -12538,6 +12754,8 @@ typedef enum {
      * And the {@link ArkUI_CoastingAxisEvent} object can be obtained from the {@link ArkUI_UIInputEvent}
      * object through {@link OH_ArkUI_UIInputEvent_GetCoastingAxisEvent}. \n
      *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 22
      */
     NODE_ON_COASTING_AXIS_EVENT = 31,
@@ -12548,6 +12766,9 @@ typedef enum {
      * The event is triggered when the component is touched. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_TouchTestInfo} object. \n
+     *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 22
     */
     NODE_ON_CHILD_TOUCH_TEST = 32,
@@ -12557,6 +12778,9 @@ typedef enum {
      * This event is triggered when the crown is rotated. \n
      * When the event callback occurs, the {@link ArkUI_UIInputEvent} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 24
     */
     NODE_ON_DIGITAL_CROWN = 33,
@@ -12609,6 +12833,9 @@ typedef enum {
      * 
      * When the event callback occurs, the {@link ArkUI_GestureCollectInterceptInfo} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
+     *
+     * @ingroup Interaction Event [交互事件]
+     *
      * @since 26.0.0
      */
     NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,
