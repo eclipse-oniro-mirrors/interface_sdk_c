@@ -139,6 +139,90 @@ extern "C" {
 #define OH_TRAFFICFILTER_PROTO_ICMPV6        58
 
 /**
+ * @brief TCP SYN flag
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_SYN        0x01
+
+/**
+ * @brief TCP ACK flag
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_ACK        0x02
+
+/**
+ * @brief TCP FIN flag
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_FIN        0x04
+
+/**
+ * @brief TCP RST flag
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_RST        0x08
+
+/**
+ * @brief TCP PSH flag
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_PSH        0x10
+
+/**
+ * @brief TCP URG flag
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_URG        0x20
+
+/**
+ * @brief Bitmask covering all TCP flags (SYN, ACK, FIN, RST, PSH, URG)
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_ALL        0x3F
+
+/**
+ * @brief No TCP flags set
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_TCP_FLAG_NONE       0x00
+
+/**
+ * @brief Any connection state (wildcard)
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_CT_STATE_ANY         0x00
+
+/**
+ * @brief New connection state
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_CT_STATE_NEW         0x01
+
+/**
+ * @brief Established connection state
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_CT_STATE_ESTABLISHED 0x02
+
+/**
+ * @brief Related connection state (e.g., FTP data connection)
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_CT_STATE_RELATED     0x04
+
+/**
+ * @brief Invalid connection state
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_CT_STATE_INVALID     0x08
+
+/**
+ * @brief Untracked connection state
+ * @since 26.1.0
+ */
+#define OH_TRAFFICFILTER_CT_STATE_UNTRACKED   0x10
+
+/**
  * @brief Traffic filter and redirection error codes
  * @since 26.0.0
  */
