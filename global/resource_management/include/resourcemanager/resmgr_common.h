@@ -16,14 +16,28 @@
  * @addtogroup resourcemanager
  * @{
  *
- * @brief Provides the c interface to obtain resources, and relies on librawfile.z.so when used.
+ * @brief Through the `resourcemanager` module, you can obtain application resources or system resources by resource ID
+ * or resource name at the Native layer, enabling resource adaptation for multilingual, multi-device, and multi-screen-
+ * density scenarios. Specifically:
+ * <br>- Obtaining basic type resources: Obtain basic type resources such as color values (in ARGB format), integers,
+ * floating-point numbers, and boolean values.
+ * <br>- Obtaining string resources: Obtain plain strings, formatted strings (supporting %d, %s, and %f placeholders),
+ * string arrays, and plural strings.
+ * <br>- Obtaining media resources: Obtain raw binary data or Base64 encoding of media resources.
+ * <br>- Resource overlay: Dynamically load and remove overlay resources at runtime to implement theme switching or
+ * resource overlay.
+ * <br>This module depends on the `rawfile` module. You must first obtain a **NativeResourceManager** object through
+ * the `rawfile` module.
  *
  * @since 12
  */
 /**
  * @file resmgr_common.h
  *
- * @brief Provides the enum types and structures for resource manager APIs.
+ * @brief Provides the enumeration and structure definitions required by the `resourcemanager` module.
+ * <br>This header file defines enumerations such as error codes, screen orientations, color modes, device types, and
+ * screen densities, as well as the device configuration structure, providing data type support for the resource
+ * retrieval functions in `ohresmgr.h`.
  *
  * @syscap SystemCapability.Global.ResourceManager
  * @library libohresmgr.so
@@ -74,15 +88,15 @@ typedef enum ResourceManager_ErrorCode {
      */
     ERROR_CODE_RES_PATH_INVALID = 9001005,
     /**
-     * Resource referenced cyclically.
+     * Circular reference exists in the resource.
      */
     ERROR_CODE_RES_REF_TOO_MUCH = 9001006,
     /**
-     * Failed to format the resource obtained based on the specified resource ID.
+     * Failed to format the resource obtained based on the resource ID.
      */
     ERROR_CODE_RES_ID_FORMAT_ERROR = 9001007,
     /**
-     * Failed to format the resource obtained based on the specified resource name.
+     * Failed to format the resource obtained based on the resource name.
      */
     ERROR_CODE_RES_NAME_FORMAT_ERROR = 9001008,
     /**
@@ -106,11 +120,11 @@ typedef enum ResourceManager_ErrorCode {
  */
 typedef enum ResourceManager_Direction {
     /**
-     * Vertical direction.
+     * Portrait orientation.
      */
     DIRECTION_VERTICAL = 0,
     /**
-     * Horizontal direction.
+     * Landscape orientation.
      */
     DIRECTION_HORIZONTAL = 1,
 } ResourceManager_Direction;
@@ -138,37 +152,37 @@ typedef enum ResourceManager_ColorMode {
  */
 typedef enum ResourceManager_DeviceType {
     /**
-     * Smartphone
+     * Smartphone.
      */
     DEVICE_TYPE_PHONE = 0X00,
     /**
-     * Tablet
+     * Tablet.
      */
     DEVICE_TYPE_TABLET = 0x01,
     /**
-     * Automobile
+     * Car head unit.
      */
     DEVICE_TYPE_CAR = 0x02,
     /**
-     * Computer
+     * PC.
      */
     DEVICE_TYPE_PC = 0x03,
     /**
-     * TV.
+     * Smart screen.
      */
     DEVICE_TYPE_TV = 0x04,
     /**
-     * Wearable
+     * Wearable.
      */
     DEVICE_TYPE_WEARABLE = 0x06,
     /**
-     * 2-in-1 device
+     * 2-in-1 device.
      */
     DEVICE_TYPE_2IN1 = 0x07,
 } ResourceManager_DeviceType;
 
 /**
- * @brief Enumerates screen density types.
+ * @brief Enumerates the screen density types.
  *
  * @since 12
  */
@@ -200,7 +214,7 @@ typedef enum ScreenDensity {
 } ScreenDensity;
 
 /**
- * @brief Enumerates device states.
+ * @brief Structure of the device status.
  *
  * @since 12
  */
@@ -210,7 +224,7 @@ typedef struct ResourceManager_Configuration {
      */
     ResourceManager_Direction direction;
     /**
-     * Locale, for example, zh-Hans-CN.
+     * Language, script, country or region, for example, `zh_Hans_CN`.
      */
     char* locale;
     /**
@@ -233,7 +247,9 @@ typedef struct ResourceManager_Configuration {
      * Mobile network code (MNC).
      */
     uint32_t mnc;
-    /** Reserved attributes. */
+    /**
+     * Reserved attributes.
+     */
     uint32_t reserved[20];
 } ResourceManager_Configuration;
 #ifdef __cplusplus
