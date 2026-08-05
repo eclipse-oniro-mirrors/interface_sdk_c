@@ -223,7 +223,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBlurStyleOptionRadius(ArkUI_RenderBlurStyleO
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 26.0.0
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBackgroundBlurOption(ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
+int32_t OH_ArkUI_RenderNodeUtils_SetBackgroundBlurOption(
+    ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
 
 /**
  * @brief 为渲染节点重置背景模糊样式。重置后无背景模糊样式。
@@ -250,7 +251,8 @@ int32_t OH_ArkUI_RenderNodeUtils_ResetBackgroundBlurOption(ArkUI_RenderNodeHandl
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 26.0.0
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetForegroundBlurOption(ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
+int32_t OH_ArkUI_RenderNodeUtils_SetForegroundBlurOption(
+    ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
 
 /**
  * @brief 为渲染节点重置前景模糊样式。重置后无前景模糊样式。
@@ -502,7 +504,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetPreviousSibling(ArkUI_RenderNodeHandle node,
  *     <br>{@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} 目标节点是从一个FrameNode获取的。从API version 22开始支持。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetChildren(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle** children, int32_t* count);
+int32_t OH_ArkUI_RenderNodeUtils_GetChildren(
+    ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle** children, int32_t* count);
 
 /**
  * @brief 获取指定渲染节点的子渲染节点数量。
@@ -1145,7 +1148,8 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBorderColor(ArkUI_RenderNodeHandle node, Ark
  *     <br>{@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} 目标节点是从一个FrameNode获取的。从API version 22开始支持。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBorderRadius(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption* borderRadius);
+int32_t OH_ArkUI_RenderNodeUtils_SetBorderRadius(
+    ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption* borderRadius);
 
 /**
  * @brief 获取渲染节点的边框角半径。
@@ -1160,7 +1164,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBorderRadius(ArkUI_RenderNodeHandle node, Ar
  *     <br>{@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} 目标节点是从一个FrameNode获取的。从API version 22开始支持。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetBorderRadius(ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption** borderRadius);
+int32_t OH_ArkUI_RenderNodeUtils_GetBorderRadius(
+    ArkUI_RenderNodeHandle node, ArkUI_NodeBorderRadiusOption** borderRadius);
 
 /**
  * @brief 使用遮罩配置为渲染节点应用遮罩。
@@ -1230,7 +1235,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetMarkNodeGroup(ArkUI_RenderNodeHandle node, b
  *     <br>{@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} 目标节点是从一个FrameNode获取的。从API version 22开始支持。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetBounds(ArkUI_RenderNodeHandle node, int32_t x, int32_t y, int32_t width, int32_t height);
+int32_t OH_ArkUI_RenderNodeUtils_SetBounds(
+    ArkUI_RenderNodeHandle node, int32_t x, int32_t y, int32_t width, int32_t height);
 
 /**
  * @brief 获取渲染节点的边界。
@@ -1251,7 +1257,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetBounds(ArkUI_RenderNodeHandle node, int32_t 
  *     <br>{@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} 目标节点是从一个FrameNode获取的。从API version 22开始支持。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetBounds(ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y, int32_t* width, int32_t* height);
+int32_t OH_ArkUI_RenderNodeUtils_GetBounds(
+    ArkUI_RenderNodeHandle node, int32_t* x, int32_t* y, int32_t* width, int32_t* height);
 
 /**
  * @brief 为渲染节点设置绘制区域，该绘制区域主要用于超出边界导致的绘制问题，建议根据实际绘制范围设置大小。
@@ -1282,7 +1289,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetDrawRegion(ArkUI_RenderNodeHandle node, floa
  *     <br>{@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} 目标节点是从一个FrameNode获取的。从API version 22开始支持。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(ArkUI_RenderNodeHandle node, ArkUI_RenderContentModifierHandle modifier);
+int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(
+    ArkUI_RenderNodeHandle node, ArkUI_RenderContentModifierHandle modifier);
 
 /**
  * @brief 创建内容修改器。
@@ -1311,7 +1319,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeContentModifier(ArkUI_RenderContentModifier
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(ArkUI_RenderContentModifierHandle modifier, ArkUI_FloatPropertyHandle property);
+int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_FloatPropertyHandle property);
 
 /**
  * @brief 为目标内容修改器附加二维向量属性。
@@ -1324,7 +1333,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachFloatProperty(ArkUI_RenderContentModifier
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_AttachVector2Property(ArkUI_RenderContentModifierHandle modifier, ArkUI_Vector2PropertyHandle property);
+int32_t OH_ArkUI_RenderNodeUtils_AttachVector2Property(
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_Vector2PropertyHandle property);
 
 /**
  * @brief 为目标内容修改器附加颜色属性。
@@ -1337,7 +1347,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachVector2Property(ArkUI_RenderContentModifi
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_AttachColorProperty(ArkUI_RenderContentModifierHandle modifier, ArkUI_ColorPropertyHandle property);
+int32_t OH_ArkUI_RenderNodeUtils_AttachColorProperty(
+    ArkUI_RenderContentModifierHandle modifier, ArkUI_ColorPropertyHandle property);
 
 /**
  * @brief 为目标内容修改器附加可动画的浮点属性。
@@ -1533,7 +1544,8 @@ ArkUI_FloatAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateFloatAnimatab
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetFloatAnimatablePropertyValue(ArkUI_FloatAnimatablePropertyHandle property, float value);
+int32_t OH_ArkUI_RenderNodeUtils_SetFloatAnimatablePropertyValue(
+    ArkUI_FloatAnimatablePropertyHandle property, float value);
 
 /**
  * @brief 获取可动画的浮点属性的值。
@@ -1546,7 +1558,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetFloatAnimatablePropertyValue(ArkUI_FloatAnim
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetFloatAnimatablePropertyValue(ArkUI_FloatAnimatablePropertyHandle property, float* value);
+int32_t OH_ArkUI_RenderNodeUtils_GetFloatAnimatablePropertyValue(
+    ArkUI_FloatAnimatablePropertyHandle property, float* value);
 
 /**
  * @brief 释放可动画的浮点属性。
@@ -1578,7 +1591,8 @@ ArkUI_Vector2AnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Anim
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetVector2AnimatablePropertyValue(ArkUI_Vector2AnimatablePropertyHandle property, float x, float y);
+int32_t OH_ArkUI_RenderNodeUtils_SetVector2AnimatablePropertyValue(
+    ArkUI_Vector2AnimatablePropertyHandle property, float x, float y);
 
 /**
  * @brief 获取可动画的二维向量属性的值。
@@ -1592,7 +1606,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetVector2AnimatablePropertyValue(ArkUI_Vector2
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetVector2AnimatablePropertyValue(ArkUI_Vector2AnimatablePropertyHandle property, float* x, float* y);
+int32_t OH_ArkUI_RenderNodeUtils_GetVector2AnimatablePropertyValue(
+    ArkUI_Vector2AnimatablePropertyHandle property, float* x, float* y);
 
 /**
  * @brief 释放可动画的二维向量属性。
@@ -1622,7 +1637,8 @@ ArkUI_ColorAnimatablePropertyHandle OH_ArkUI_RenderNodeUtils_CreateColorAnimatab
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetColorAnimatablePropertyValue(ArkUI_ColorAnimatablePropertyHandle property, uint32_t value);
+int32_t OH_ArkUI_RenderNodeUtils_SetColorAnimatablePropertyValue(
+    ArkUI_ColorAnimatablePropertyHandle property, uint32_t value);
 
 /**
  * @brief 获取可动画的颜色属性的值。
@@ -1635,7 +1651,8 @@ int32_t OH_ArkUI_RenderNodeUtils_SetColorAnimatablePropertyValue(ArkUI_ColorAnim
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_GetColorAnimatablePropertyValue(ArkUI_ColorAnimatablePropertyHandle property, uint32_t* value);
+int32_t OH_ArkUI_RenderNodeUtils_GetColorAnimatablePropertyValue(
+    ArkUI_ColorAnimatablePropertyHandle property, uint32_t* value);
 
 /**
  * @brief 释放可动画的颜色属性。
@@ -1657,7 +1674,9 @@ void OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(ArkUI_ColorAnimatab
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化失败。
  * @since 20
  */
-int32_t OH_ArkUI_RenderNodeUtils_SetContentModifierOnDraw(ArkUI_RenderContentModifierHandle modifier, void* userData, void (*callback)(ArkUI_DrawContext* context, void* userData));
+int32_t OH_ArkUI_RenderNodeUtils_SetContentModifierOnDraw(
+    ArkUI_RenderContentModifierHandle modifier, void* userData,
+    void (*callback)(ArkUI_DrawContext* context, void* userData));
 
 /**
  * @brief 创建矩形形状。
@@ -1708,7 +1727,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderStyleOption(ArkUI_NodeBorderStyle
  * @param direction 边缘的方向。
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetNodeBorderStyleOptionEdgeStyle(ArkUI_NodeBorderStyleOption* option, ArkUI_BorderStyle edgeStyle, ArkUI_EdgeDirection direction);
+void OH_ArkUI_RenderNodeUtils_SetNodeBorderStyleOptionEdgeStyle(
+    ArkUI_NodeBorderStyleOption* option, ArkUI_BorderStyle edgeStyle, ArkUI_EdgeDirection direction);
 
 /**
  * @brief 创建节点边框宽度。
@@ -1735,7 +1755,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderWidthOption(ArkUI_NodeBorderWidth
  * @param direction 边缘的方向。
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetNodeBorderWidthOptionEdgeWidth(ArkUI_NodeBorderWidthOption* option, float edgeWidth, ArkUI_EdgeDirection direction);
+void OH_ArkUI_RenderNodeUtils_SetNodeBorderWidthOptionEdgeWidth(
+    ArkUI_NodeBorderWidthOption* option, float edgeWidth, ArkUI_EdgeDirection direction);
 
 /**
  * @brief 创建节点边框颜色。
@@ -1761,7 +1782,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderColorOption(ArkUI_NodeBorderColor
  * @param direction 边缘的方向。
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetNodeBorderColorOptionEdgeColor(ArkUI_NodeBorderColorOption* option, uint32_t edgeColor, ArkUI_EdgeDirection direction);
+void OH_ArkUI_RenderNodeUtils_SetNodeBorderColorOptionEdgeColor(
+    ArkUI_NodeBorderColorOption* option, uint32_t edgeColor, ArkUI_EdgeDirection direction);
 
 /**
  * @brief 创建节点边框半径。
@@ -1786,7 +1808,8 @@ void OH_ArkUI_RenderNodeUtils_DisposeNodeBorderRadiusOption(ArkUI_NodeBorderRadi
  * @param direction 边缘的方向。
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetNodeBorderRadiusOptionCornerRadius(ArkUI_NodeBorderRadiusOption* option, uint32_t cornerRadius, ArkUI_CornerDirection direction);
+void OH_ArkUI_RenderNodeUtils_SetNodeBorderRadiusOptionCornerRadius(
+    ArkUI_NodeBorderRadiusOption* option, uint32_t cornerRadius, ArkUI_CornerDirection direction);
 
 /**
  * @brief 创建圆形形状。
@@ -1864,7 +1887,8 @@ void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(
  * @param direction 角的方向。
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionCornerXY(ArkUI_RoundRectShapeOption* option, float x, float y, ArkUI_CornerDirection direction);
+void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionCornerXY(
+    ArkUI_RoundRectShapeOption* option, float x, float y, ArkUI_CornerDirection direction);
 
 /**
  * @brief 创建自定义绘制路径。
@@ -1898,7 +1922,8 @@ void OH_ArkUI_RenderNodeUtils_SetCommandPathOptionCommands(ArkUI_CommandPathOpti
  * @return 指向渲染节点遮罩的指针。
  * @since 20
  */
-ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRectShape(ArkUI_RectShapeOption* shape);
+ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRectShape(
+    ArkUI_RectShapeOption* shape);
 
 /**
  * @brief 从圆角矩形形状创建遮罩。
@@ -1907,7 +1932,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @return 指向渲染节点遮罩的指针。
  * @since 20
  */
-ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRoundRectShape(ArkUI_RoundRectShapeOption* shape);
+ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRoundRectShape(
+    ArkUI_RoundRectShapeOption* shape);
 
 /**
  * @brief 从圆形形状创建遮罩。
@@ -1916,7 +1942,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @return 指向渲染节点遮罩的指针。
  * @since 20
  */
-ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromCircleShape(ArkUI_CircleShapeOption* shape);
+ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromCircleShape(
+    ArkUI_CircleShapeOption* shape);
 
 /**
  * @brief 从椭圆形形状创建遮罩。
@@ -1925,7 +1952,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @return 指向渲染节点遮罩的指针。
  * @since 20
  */
-ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromOvalShape(ArkUI_RectShapeOption* shape);
+ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromOvalShape(
+    ArkUI_RectShapeOption* shape);
 
 /**
  * @brief 从自定义绘制路径创建遮罩。
@@ -1934,7 +1962,8 @@ ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionF
  * @return 指向渲染节点遮罩的指针。
  * @since 20
  */
-ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromCommandPath(ArkUI_CommandPathOption* path);
+ArkUI_RenderNodeMaskOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromCommandPath(
+    ArkUI_CommandPathOption* path);
 
 /**
  * @brief 释放渲染节点遮罩。
@@ -1960,7 +1989,8 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeM
  * @param strokeColor 遮罩的描边颜色。
  * @since 20
  */
-void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(ArkUI_RenderNodeMaskOption* mask, uint32_t strokeColor);
+void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
+    ArkUI_RenderNodeMaskOption* mask, uint32_t strokeColor);
 
 /**
  * @brief 设置渲染节点遮罩的描边宽度。以边框路径为中心进行相应宽度的绘制。
@@ -1979,7 +2009,8 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNod
  * @return 指向渲染节点裁剪的指针。
  * @since 20
  */
-ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRectShape(ArkUI_RectShapeOption* shape);
+ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRectShape(
+    ArkUI_RectShapeOption* shape);
 
 /**
  * @brief 从圆角矩形形状创建裁剪。
@@ -1988,7 +2019,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @return 指向渲染节点裁剪的指针。
  * @since 20
  */
-ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRoundRectShape(ArkUI_RoundRectShapeOption* shape);
+ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRoundRectShape(
+    ArkUI_RoundRectShapeOption* shape);
 
 /**
  * @brief 从圆形形状创建裁剪。
@@ -1997,7 +2029,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @return 指向渲染节点裁剪的指针。
  * @since 20
  */
-ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromCircleShape(ArkUI_CircleShapeOption* shape);
+ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromCircleShape(
+    ArkUI_CircleShapeOption* shape);
 
 /**
  * @brief 从椭圆形形状创建裁剪。
@@ -2006,7 +2039,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @return 指向渲染节点裁剪的指针。
  * @since 20
  */
-ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromOvalShape(ArkUI_RectShapeOption* shape);
+ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromOvalShape(
+    ArkUI_RectShapeOption* shape);
 
 /**
  * @brief 从自定义绘制路径创建裁剪。
@@ -2015,7 +2049,8 @@ ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionF
  * @return 指向渲染节点裁剪的指针。
  * @since 20
  */
-ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromCommandPath(ArkUI_CommandPathOption* path);
+ArkUI_RenderNodeClipOption* OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromCommandPath(
+    ArkUI_CommandPathOption* path);
 
 /**
  * @brief 释放渲染节点裁剪。

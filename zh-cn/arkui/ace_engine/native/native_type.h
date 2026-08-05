@@ -277,9 +277,10 @@ typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo;
 
 /**
- * @brief 定义ArkUI_ActiveChildrenInfo结构体，用于保存内部活跃状态为true的FrameNode子节点信
- 息，支持查询子节点数量和按下标获取子节点。
- 该结构体实例由OH_ArkUI_NodeUtils_GetActiveChildrenInfo生成，使用完毕后必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
+ * @brief 定义ArkUI_ActiveChildrenInfo结构体，用于保存内部活跃状态为true的
+ * FrameNode子节点信息，支持查询子节点数量和按下标获取子节点。
+ * 该结构体实例由OH_ArkUI_NodeUtils_GetActiveChildrenInfo生成，使用完毕后
+ * 必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
  *
  * @since 14
  */
