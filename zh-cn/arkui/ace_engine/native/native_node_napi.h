@@ -345,7 +345,7 @@ int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData
  *     <br>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} 回调函数无效。
  * @since 20
  */
-int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData, 
+int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
     void (*callback)(uint64_t nanoTimeLeft, uint32_t frameCount, void* userData));
 
 /**
