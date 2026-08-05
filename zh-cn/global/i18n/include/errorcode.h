@@ -24,7 +24,7 @@
 /**
  * @file errorcode.h
  *
- * @brief i18n错误码。
+ * @brief 提供国际化接口返回的错误码。
  *
  * @library libohi18n.so
  * @kit LocalizationKit
