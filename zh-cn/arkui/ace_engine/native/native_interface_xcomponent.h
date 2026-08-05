@@ -58,9 +58,15 @@ extern "C" {
 #define OH_NATIVE_XCOMPONENT_OBJ ("__NATIVE_XCOMPONENT_OBJ__")
 #define OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER 10
 
-/** ArkUI XComponent的id最大长度。 */
+/**
+ * ArkUI XComponent的id最大长度。
+ * @since 8
+ */
 const uint32_t OH_XCOMPONENT_ID_LEN_MAX = 128;
-/** 触摸事件中的可识别的触摸点个数最大值。 */
+/**
+ * 触摸事件中的可识别的触摸点个数最大值。
+ * @since 8
+ */
 const uint32_t OH_MAX_TOUCH_POINTS_NUMBER = 10;
 
 /**
@@ -70,11 +76,20 @@ const uint32_t OH_MAX_TOUCH_POINTS_NUMBER = 10;
  * @version 1.0
  */
 enum {
-    /** 成功结果。 */
+    /**
+     * 成功结果。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0,
-    /** 失败结果。 */
+    /**
+     * 失败结果。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_RESULT_FAILED = -1,
-    /** 无效参数。 */
+    /**
+     * 无效参数。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2,
 };
 
@@ -84,15 +99,30 @@ enum {
  * @since 18
  */
 typedef enum {
-    /** 图像AI分析完成。 */
+    /**
+     * 图像AI分析完成。
+     * @since 18
+     */
     ARKUI_XCOMPONENT_AI_ANALYSIS_FINISHED = 0,
-    /** 图像AI分析已禁用。 */
+    /**
+     * 图像AI分析已禁用。
+     * @since 18
+     */
     ARKUI_XCOMPONENT_AI_ANALYSIS_DISABLED = 110000,
-    /** 设备不支持图像AI分析。 */
+    /**
+     * 设备不支持图像AI分析。
+     * @since 18
+     */
     ARKUI_XCOMPONENT_AI_ANALYSIS_UNSUPPORTED = 110001,
-    /** 图像AI分析进行中。 */
+    /**
+     * 图像AI分析进行中。
+     * @since 18
+     */
     ARKUI_XCOMPONENT_AI_ANALYSIS_ONGOING = 110002,
-    /** 图像AI分析停止。 */
+    /**
+     * 图像AI分析停止。
+     * @since 18
+     */
     ARKUI_XCOMPONENT_AI_ANALYSIS_STOPPED = 110003,
 } ArkUI_XComponent_ImageAnalyzerState;
 
@@ -101,15 +131,30 @@ typedef enum {
  * @since 8
  */
 typedef enum {
-    /** 手指按下时触发触摸事件。 */
+    /**
+     * 手指按下时触发触摸事件。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_DOWN = 0,
-    /** 手指抬起时触发触摸事件。 */
+    /**
+     * 手指抬起时触发触摸事件。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_UP,
-    /** 手指按下状态下在屏幕上移动时触发触摸事件。 */
+    /**
+     * 手指按下状态下在屏幕上移动时触发触摸事件。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_MOVE,
-    /** 触摸事件取消时触发事件。 */
+    /**
+     * 触摸事件取消时触发事件。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_CANCEL,
-    /** 无效的触摸类型。 */
+    /**
+     * 无效的触摸类型。
+     * @since 8
+     */
     OH_NATIVEXCOMPONENT_UNKNOWN,
 } OH_NativeXComponent_TouchEventType;
 
@@ -120,23 +165,50 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-    /** 未识别工具类型。 */
+    /**
+     * 未识别工具类型。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN = 0,
-    /** 表示用手指。 */
+    /**
+     * 表示用手指。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_FINGER,
-    /** 表示用触笔。 */
+    /**
+     * 表示用触笔。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_PEN,
-    /** 表示用橡皮擦。 */
+    /**
+     * 表示用橡皮擦。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_RUBBER,
-    /** 表示用画笔。 */
+    /**
+     * 表示用画笔。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_BRUSH,
-    /** 表示用铅笔。 */
+    /**
+     * 表示用铅笔。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_PENCIL,
-    /** 表示用喷枪。 */
+    /**
+     * 表示用喷枪。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_AIRBRUSH,
-    /** 表示用鼠标。 */
+    /**
+     * 表示用鼠标。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_MOUSE,
-    /** 表示用透镜。 */
+    /**
+     * 表示用透镜。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_TOOL_TYPE_LENS,
 } OH_NativeXComponent_TouchPointToolType;
 
@@ -147,15 +219,30 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-    /** 未知的输入源类型。 */
+    /**
+     * 未知的输入源类型。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN = 0,
-    /** 表示输入源生成鼠标多点触摸事件。 */
+    /**
+     * 表示输入源生成鼠标多点触摸事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE,
-    /** 表示输入源生成一个触摸屏多点触摸事件。 */
+    /**
+     * 表示输入源生成一个触摸屏多点触摸事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN,
-    /** 表示输入源生成一个触摸板多点触摸事件。 */
+    /**
+     * 表示输入源生成一个触摸板多点触摸事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD,
-    /** 表示输入源生成一个操纵杆多点触摸事件。 */
+    /**
+     * 表示输入源生成一个操纵杆多点触摸事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK,
     /**
      * @brief 表示输入源生成一个键盘事件。
@@ -175,11 +262,20 @@ typedef enum {
 typedef enum {
     /** 无效鼠标事件。*/
     OH_NATIVEXCOMPONENT_MOUSE_NONE = 0,
-    /** 鼠标按键按下时触发鼠标事件。 */
+    /**
+     * 鼠标按键按下时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_MOUSE_PRESS,
-    /** 鼠标按键松开时触发鼠标事件。 */
+    /**
+     * 鼠标按键松开时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_MOUSE_RELEASE,
-    /** 鼠标在屏幕上移动时触发鼠标事件。 */
+    /**
+     * 鼠标在屏幕上移动时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_MOUSE_MOVE,
     /** 鼠标按键被取消时触发鼠标事件。
      * @since 18
@@ -198,17 +294,35 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-    /** 鼠标无按键操作时触发鼠标事件。 */
+    /**
+     * 鼠标无按键操作时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_NONE_BUTTON = 0,
-    /** 按下鼠标左键时触发鼠标事件。 */
+    /**
+     * 按下鼠标左键时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_LEFT_BUTTON = 0x01,
-    /** 按下鼠标右键时触发鼠标事件。 */
+    /**
+     * 按下鼠标右键时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_RIGHT_BUTTON = 0x02,
-    /** 按下鼠标中键时触发鼠标事件。 */
+    /**
+     * 按下鼠标中键时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_MIDDLE_BUTTON = 0x04,
-    /** 按下鼠标左侧后退键时触发鼠标事件。 */
+    /**
+     * 按下鼠标左侧后退键时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_BACK_BUTTON = 0x08,
-    /** 按下鼠标左侧前进键时触发鼠标事件。 */
+    /**
+     * 按下鼠标左侧前进键时触发鼠标事件。
+     * @since 9
+     */
     OH_NATIVEXCOMPONENT_FORWARD_BUTTON = 0x10,
 } OH_NativeXComponent_MouseEventButton;
 
@@ -219,25 +333,55 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-    /** 未知的触摸事件的源工具。 */
+    /**
+     * 未知的触摸事件的源工具。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_UNKNOWN = 0,
-    /** 表示触摸事件的源工具是手指。 */
+    /**
+     * 表示触摸事件的源工具是手指。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_FINGER = 1,
-    /** 表示触摸事件的源工具是触笔。 */
+    /**
+     * 表示触摸事件的源工具是触笔。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_PEN = 2,
-    /** 表示触摸事件的源工具是橡皮擦。 */
+    /**
+     * 表示触摸事件的源工具是橡皮擦。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_RUBBER = 3,
-    /** 表示触摸事件的源工具是笔刷。 */
+    /**
+     * 表示触摸事件的源工具是笔刷。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_BRUSH = 4,
-    /** 表示触摸事件的源工具是铅笔。 */
+    /**
+     * 表示触摸事件的源工具是铅笔。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_PENCIL = 5,
-    /** 表示触摸事件的源工具是喷枪。 */
+    /**
+     * 表示触摸事件的源工具是喷枪。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_AIRBRUSH = 6,
-    /** 表示触摸事件的源工具是鼠标。 */
+    /**
+     * 表示触摸事件的源工具是鼠标。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_MOUSE = 7,
-    /** 表示触摸事件的源工具是透镜。 */
+    /**
+     * 表示触摸事件的源工具是透镜。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_LENS = 8,
-    /** 表示触摸事件的源工具是触摸板。 */
+    /**
+     * 表示触摸事件的源工具是触摸板。
+     * @since 10
+     */
     OH_NATIVEXCOMPONENT_SOURCETOOL_TOUCHPAD = 9,
 } OH_NativeXComponent_TouchEvent_SourceTool;
 
@@ -248,29 +392,65 @@ typedef enum {
  * @version 1.0
  */
 typedef struct {
-    /** 手指的唯一标识符。 */
+    /**
+     * 手指的唯一标识符。
+     * @since 10
+     */
     int32_t id;
-    /** 触摸点相对于XComponent所在应用窗口左上角的x坐标。 */
+    /**
+     * 触摸点相对于XComponent所在应用窗口左上角的x坐标。
+     * @since 10
+     */
     float screenX;
-    /** 触摸点相对于XComponent所在应用窗口左上角的y坐标。 */
+    /**
+     * 触摸点相对于XComponent所在应用窗口左上角的y坐标。
+     * @since 10
+     */
     float screenY;
-    /** 触摸点相对于XComponent组件左边缘的x坐标。 */
+    /**
+     * 触摸点相对于XComponent组件左边缘的x坐标。
+     * @since 10
+     */
     float x;
-    /** 触摸点相对于XComponent组件上边缘的y坐标。 */
+    /**
+     * 触摸点相对于XComponent组件上边缘的y坐标。
+     * @since 10
+     */
     float y;
-    /** 触摸事件的触摸类型。 */
+    /**
+     * 触摸事件的触摸类型。
+     * @since 10
+     */
     OH_NativeXComponent_TouchEventType type;
-    /** 指垫和屏幕之间的接触面积。 */
+    /**
+     * 指垫和屏幕之间的接触面积。
+     * @since 10
+     */
     double size;
-    /** 当前触摸事件的压力。 */
+    /**
+     * 当前触摸事件的压力。
+     * @since 10
+     */
     float force;
-    /** 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 */
+    /**
+     * 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
+     * @since 10
+     */
     int64_t timeStamp;
-    /** 平面X-Y上的投影与当前触摸事件的Z轴之间的角度。 */
+    /**
+     * 平面X-Y上的投影与当前触摸事件的Z轴之间的角度。
+     * @since 10
+     */
     float titlX;
-    /** 当前触摸事件在平面Y-Z和轴Z上的投影之间的角度。 */
+    /**
+     * 当前触摸事件在平面Y-Z和轴Z上的投影之间的角度。
+     * @since 10
+     */
     float titlY;
-    /** 当前触摸事件的源工具。 */
+    /**
+     * 当前触摸事件的源工具。
+     * @since 10
+     */
     OH_NativeXComponent_TouchEvent_SourceTool sourceTool;
 } OH_NativeXComponent_HistoricalPoint;
 
@@ -281,25 +461,55 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    /** 手指的唯一标识符。 */
+    /**
+     * 手指的唯一标识符。
+     * @since 8
+     */
     int32_t id;
-    /** 触摸点相对于XComponent所在应用窗口左上角的x坐标。 */
+    /**
+     * 触摸点相对于XComponent所在应用窗口左上角的x坐标。
+     * @since 8
+     */
     float screenX;
-    /** 触摸点相对于XComponent所在应用窗口左上角的y坐标。 */
+    /**
+     * 触摸点相对于XComponent所在应用窗口左上角的y坐标。
+     * @since 8
+     */
     float screenY;
-    /** 触摸点相对于XComponent组件左边缘的x坐标。 */
+    /**
+     * 触摸点相对于XComponent组件左边缘的x坐标。
+     * @since 8
+     */
     float x;
-    /** 触摸点相对于XComponent组件上边缘的y坐标。 */
+    /**
+     * 触摸点相对于XComponent组件上边缘的y坐标。
+     * @since 8
+     */
     float y;
-    /** 触摸事件的触摸类型。 */
+    /**
+     * 触摸事件的触摸类型。
+     * @since 8
+     */
     OH_NativeXComponent_TouchEventType type;
-    /** 指垫和屏幕之间的接触面积。 */
+    /**
+     * 指垫和屏幕之间的接触面积。
+     * @since 8
+     */
     double size;
-    /** 当前触摸事件的压力。 */
+    /**
+     * 当前触摸事件的压力。
+     * @since 8
+     */
     float force;
-    /** 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 */
+    /**
+     * 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
+     * @since 8
+     */
     int64_t timeStamp;
-    /** 当前点是否被按下，按下时为true，离开时为false。 */
+    /**
+     * 当前点是否被按下，按下时为true，离开时为false。
+     * @since 8
+     */
     bool isPressed;
 } OH_NativeXComponent_TouchPoint;
 
@@ -310,29 +520,62 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    /** 手指的唯一标识符。 */
+    /**
+     * 手指的唯一标识符。
+     * @since 8
+     */
     int32_t id;
-    /** 触摸点相对于XComponent所在应用窗口左上角的x坐标。 */
+    /**
+     * 触摸点相对于XComponent所在应用窗口左上角的x坐标。
+     * @since 8
+     */
     float screenX;
-    /** 触摸点相对于XComponent所在应用窗口左上角的y坐标。 */
+    /**
+     * 触摸点相对于XComponent所在应用窗口左上角的y坐标。
+     * @since 8
+     */
     float screenY;
-    /** 触摸点相对于XComponent组件左边缘的x坐标。 */
+    /**
+     * 触摸点相对于XComponent组件左边缘的x坐标。
+     * @since 8
+     */
     float x;
-    /** 触摸点相对于XComponent组件上边缘的y坐标。 */
+    /**
+     * 触摸点相对于XComponent组件上边缘的y坐标。
+     * @since 8
+     */
     float y;
-    /** 触摸事件的触摸类型。 */
+    /**
+     * 触摸事件的触摸类型。
+     * @since 8
+     */
     OH_NativeXComponent_TouchEventType type;
-    /** 指垫和屏幕之间的接触面积。 */
+    /**
+     * 指垫和屏幕之间的接触面积。
+     * @since 8
+     */
     double size;
-    /** 当前触摸事件的压力。 */
+    /**
+     * 当前触摸事件的压力。
+     * @since 8
+     */
     float force;
-    /** 产生当前触摸事件的设备的ID。 */
+    /**
+     * 产生当前触摸事件的设备的ID。
+     * @since 8
+     */
     int64_t deviceId;
-    /** 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 */
+    /**
+     * 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
+     * @since 8
+     */
     int64_t timeStamp;
     /** 当前触摸点的数组。OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER的介绍请参考[宏定义](capi-native-interface-xcomponent-h.md#宏定义)。*/
     OH_NativeXComponent_TouchPoint touchPoints[OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER];
-    /** 当前触摸点的数量，值为1时为单指触摸，大于1时为多指触摸。 */
+    /**
+     * 当前触摸点的数量，值为1时为单指触摸，大于1时为多指触摸。
+     * @since 8
+     */
     uint32_t numPoints;
 } OH_NativeXComponent_TouchEvent;
 
@@ -343,19 +586,40 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    /** 鼠标触点相对于当前组件左上角的x轴坐标。单位：vp。 */
+    /**
+     * 鼠标触点相对于当前组件左上角的x轴坐标。单位：vp。
+     * @since 9
+     */
     float x;
-    /** 鼠标触点相对于当前组件左上角的y轴坐标。单位：vp。 */
+    /**
+     * 鼠标触点相对于当前组件左上角的y轴坐标。单位：vp。
+     * @since 9
+     */
     float y;
-    /** 鼠标触点相对于XComponent所在应用屏幕左上角的x轴坐标。单位：vp。 */
+    /**
+     * 鼠标触点相对于XComponent所在应用屏幕左上角的x轴坐标。单位：vp。
+     * @since 9
+     */
     float screenX;
-    /** 鼠标触点相对于XComponent所在应用屏幕左上角的y轴坐标。单位：vp。 */
+    /**
+     * 鼠标触点相对于XComponent所在应用屏幕左上角的y轴坐标。单位：vp。
+     * @since 9
+     */
     float screenY;
-    /** 当前鼠标事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 */
+    /**
+     * 当前鼠标事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。
+     * @since 9
+     */
     int64_t timestamp;
-    /** 当前鼠标事件动作。 */
+    /**
+     * 当前鼠标事件动作。
+     * @since 9
+     */
     OH_NativeXComponent_MouseEventAction action;
-    /** 鼠标事件按键。 */
+    /**
+     * 鼠标事件按键。
+     * @since 9
+     */
     OH_NativeXComponent_MouseEventButton button;
 } OH_NativeXComponent_MouseEvent;
 
@@ -460,11 +724,20 @@ typedef struct OH_NativeXComponent_KeyEvent OH_NativeXComponent_KeyEvent;
  * @version 1.0
  */
 typedef struct {
-    /** 期望帧率范围最小值。单位为帧/秒。 */
+    /**
+     * 期望帧率范围最小值。单位为帧/秒。
+     * @since 11
+     */
     int32_t min;
-    /** 期望帧率范围最大值。单位为帧/秒。 */
+    /**
+     * 期望帧率范围最大值。单位为帧/秒。
+     * @since 11
+     */
     int32_t max;
-    /** 期望帧率。单位为帧/秒。 */
+    /**
+     * 期望帧率。单位为帧/秒。
+     * @since 11
+     */
     int32_t expected;
 } OH_NativeXComponent_ExpectedRateRange;
 
