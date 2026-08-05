@@ -548,7 +548,7 @@ typedef void (*OH_AVPlayerOnInfoCallback)(OH_AVPlayer *player, AVPlayerOnInfoTyp
     void *userData);
 
 /**
- * @brief 在API version 9以上的版本发生错误时调用。
+ * @brief 在API version 11以上的版本发生错误时调用。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param errorCode 错误码。
