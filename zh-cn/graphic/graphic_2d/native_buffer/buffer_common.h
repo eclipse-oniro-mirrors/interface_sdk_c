@@ -17,9 +17,9 @@
  * @addtogroup OH_NativeBuffer
  * @{
  *
- * @brief 提供NativeBuffer模块的公共类型定义。
+ * @brief 提供NativeBuffer功能，通过提供的接口，可以实现共享内存的申请、使用、属性查询、释放等操作。
  *
- * @since 12
+ * @since 9
  * @version 1.0
  */
 
@@ -183,9 +183,9 @@ typedef enum OH_NativeBuffer_MetadataType {
  * @version 1.0
  */
 typedef struct OH_NativeBuffer_ColorXY {
-    /** 颜色X坐标 */
+    /** 基色X坐标 */
     float x;
-    /** 颜色Y坐标 */
+    /** 基色Y坐标 */
     float y;
 } OH_NativeBuffer_ColorXY;
 
@@ -205,9 +205,9 @@ typedef struct OH_NativeBuffer_Smpte2086 {
     OH_NativeBuffer_ColorXY displayPrimaryBlue;
     /** 白点 */
     OH_NativeBuffer_ColorXY whitePoint;
-    /** 最大亮度 */
+    /** 最大的光亮度 */
     float maxLuminance;
-    /** 最小亮度 */
+    /** 最小的光亮度 */
     float minLuminance;
 } OH_NativeBuffer_Smpte2086;
 
@@ -221,7 +221,7 @@ typedef struct OH_NativeBuffer_Smpte2086 {
 typedef struct OH_NativeBuffer_Cta861 {
     /** 最大内容亮度水平 */
     float maxContentLightLevel;
-    /** 最大帧平均亮度水平 */
+    /** 最大的帧平均亮度水平 */
     float maxFrameAverageLightLevel;
 } OH_NativeBuffer_Cta861;
 
@@ -290,149 +290,149 @@ typedef enum OH_NativeBuffer_MetadataKey {
  */
 typedef enum OH_NativeBuffer_Format {
     /**
-     * CLUT8 format
+     * CLUT8格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_CLUT8 = 0,
     /**
-     * CLUT1 format
+     * CLUT1格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_CLUT1,
     /**
-     * CLUT4 format
+     * CLUT4格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_CLUT4,
-    NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3,               /// < RGB565 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_5658,                 /// < RGBA5658 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_4444,                 /// < RGBX4444 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_4444,                 /// < RGBA4444 format */
-    NATIVEBUFFER_PIXEL_FMT_RGB_444,                   /// < RGB444 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_5551,                 /// < RGBX5551 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_5551,                 /// < RGBA5551 format */
-    NATIVEBUFFER_PIXEL_FMT_RGB_555,                   /// < RGB555 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_8888,                 /// < RGBX8888 format */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_8888,                 /// < RGBA8888 format */
-    NATIVEBUFFER_PIXEL_FMT_RGB_888,                   /// < RGB888 format */
-    NATIVEBUFFER_PIXEL_FMT_BGR_565,                   /// < BGR565 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_4444,                 /// < BGRX4444 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_4444,                 /// < BGRA4444 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_5551,                 /// < BGRX5551 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_5551,                 /// < BGRA5551 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_8888,                 /// < BGRX8888 format */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_8888,                 /// < BGRA8888 format */
+    NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3,               /// < RGB565格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_5658,                 /// < RGBA5658格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_4444,                 /// < RGBX4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_4444,                 /// < RGBA4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_444,                   /// < RGB444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_5551,                 /// < RGBX5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_5551,                 /// < RGBA5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_555,                   /// < RGB555格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_8888,                 /// < RGBX8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_8888,                 /// < RGBA8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_888,                   /// < RGB888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGR_565,                   /// < BGR565格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_4444,                 /// < BGRX4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_4444,                 /// < BGRA4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_5551,                 /// < BGRX5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_5551,                 /// < BGRA5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_8888,                 /// < BGRX8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_8888,                 /// < BGRA8888格式。 */
     /**
-     * YUV422 interleaved format
+     * YUV422 interleaved 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YUV_422_I,
     /**
-     * YCBCR422 semi-plannar format
+     * YCBCR422 semi-planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP,
     /**
-     * YCRCB422 semi-plannar format
+     * YCRCB422 semi-planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP,
     /**
-     * YCBCR420 semi-plannar format
+     * YCBCR420 semi-planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP,
     /**
-     * YCRCB420 semi-plannar format
+     * YCRCB420 semi-planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP,
     /**
-     * YCBCR422 plannar format
+     * YCBCR422 planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P,
     /**
-     * YCRCB422 plannar format
+     * YCRCB422 planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P,
     /**
-     * YCBCR420 plannar format
+     * YCBCR420 planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P,
     /**
-     * YCRCB420 plannar format
+     * YCRCB420 planar 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P,
     /**
-     * YUYV422 packed format
+     * YUYV422 packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YUYV_422_PKG,
     /**
-     * UYVY422 packed format
+     * UYVY422 packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_UYVY_422_PKG,
     /**
-     * YVYU422 packed format
+     * YVYU422 packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YVYU_422_PKG,
     /**
-     * VYUY422 packed format
+     * VYUY422 packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_VYUY_422_PKG,
     /**
-     * RGBA_1010102 packed format
+     * RGBA_1010102 packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_RGBA_1010102,
     /**
-     * YCBCR420 semi-planar 10bit packed format
+     * YCBCR420 semi-planar 10bit packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_P010,
     /**
-     * YCRCB420 semi-planar 10bit packed format
+     * YCRCB420 semi-planar 10bit packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_P010,
     /**
-     * Raw 10bit packed format
+     * Raw 10bit packed 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_RAW10,
     /**
-     * BLOB format
+     * BLOB格式。
      * @since 15
      */
     NATIVEBUFFER_PIXEL_FMT_BLOB,
     /**
-     * RGBA16 float format
+     * RGBA16 float格式。
      * @since 15
      */
     NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT,
     /**
-     * Y8 format
+     * Y8格式。
      * @since 20
      */
     NATIVEBUFFER_PIXEL_FMT_Y8 = 40,
     /**
-     * Y16 format
+     * Y16格式。
      * @since 20
      */
     NATIVEBUFFER_PIXEL_FMT_Y16 = 41,
     /**
-     * vender mask format
+     * vender mask 格式。
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_VENDER_MASK = 0X7FFF0000,
-    NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF          /// < Invalid pixel format */
+    NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF          /// < 无效格式 */
 } OH_NativeBuffer_Format;
 
 /**

@@ -49,7 +49,7 @@ extern "C" {
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
- * @brief 提供OHIPCParcel结构体声明，用于进程间通信。
+ * @brief 提供对IPC序列化对象的访问功能。
  *
  * @since 12
  * @version 1.0
@@ -332,7 +332,7 @@ typedef enum {
 } OHHDRMetadataKey;
 
 /**
- * @brief Defines the HDR metadata.
+ * @brief HDR元数据结构体定义。
  * @since 9
  * @deprecated since 10
  */
@@ -342,42 +342,42 @@ typedef struct {
 } OHHDRMetaData;
 
 /**
- * @brief Defines the ExtData Handle
+ * @brief 扩展数据句柄结构体定义。
  * @since 9
  * @deprecated since 10
  */
 typedef struct OHExtDataHandle {
-    /**< Handle fd, -1 if not supported */
+    /**< 句柄 Fd，-1代表不支持 */
     int32_t fd;
-    /**< the number of reserved integer value */
+    /**< Reserve数组的个数 */
     uint32_t reserveInts;
-    /**< the reserved data */
+    /**< Reserve数组 */
     int32_t reserve[0];
 } OHExtDataHandle;
 
 /**
- * @brief Indicates the source type of surface.
+ * @brief 本地窗口内容来源类型枚举。
  * @since 12
  */
 typedef enum {
     /*
-     * the default source type of surface.
+     * 窗口内容默认来源。
      */
     OH_SURFACE_SOURCE_DEFAULT = 0,
     /*
-     * the surface is created by ui.
+     * 窗口内容来自于UI。
      */
     OH_SURFACE_SOURCE_UI,
     /*
-     * the surface is created by game.
+     * 窗口内容来自于游戏。
      */
     OH_SURFACE_SOURCE_GAME,
     /*
-     * the surface is created by camera.
+     * 窗口内容来自于相机。
      */
     OH_SURFACE_SOURCE_CAMERA,
     /*
-     * the surface is created by video.
+     * 窗口内容来自于视频。
      */
     OH_SURFACE_SOURCE_VIDEO,
 } OHSurfaceSource;
