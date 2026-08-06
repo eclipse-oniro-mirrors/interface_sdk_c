@@ -337,11 +337,13 @@ bool OH_VideoProcessing_IsAutoEffectSupported(uint32_t type);
  * Records the mapping of type, enable, and name in the internal map.
  * This should be called before {@link OH_VideoProcessing_SetAutoEffectParam}.
  *
- * @param type Use VIDEO_PROCESSING_TYPE_AUTO_EFFECT to specify the processing type.
+ * @param type Use VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR to specify the processing type.
  * @param enable Whether to enable auto effect for this name.
- * @param name The name identifier for the auto effect configuration.
+ * @param name The xcomponent id name identifier for the auto effect configuration.
  * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if name is null.
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if name is null or type is not VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR. \n
+ * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if OH_VideoProcessing_UseAutoEffect
+ * has already been called with the same name.
  * @since 27
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool enable, const char* name);
@@ -358,8 +360,9 @@ VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool e
  * enable with key {@link VIDEO_AUTOEFFECT_ENABLE} and
  * {@link OH_AVFormat_SetFloatValue} to set strength with key {@link VIDEO_AUTOEFFECT_AISR_STRENGTH}.
  * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if name is null or param is null. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_INSTANCE} if no VPE instance found for the name.
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if name is null or type is not VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR. \n
+ * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if no VPE instance found for the name. \n
+ * {@link VIDEO_PROCESSING_ERROR_UNKNOWN} if inner error happened.
  * @since 27
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_SetAutoEffectParam(uint32_t type, const char* name,
