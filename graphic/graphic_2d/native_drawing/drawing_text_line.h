@@ -54,7 +54,7 @@ extern "C" {
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object.
- * @return Pointer to the {@link OH_Drawing_Array} object.
+ * @return Pointer to the text line array {@link OH_Drawing_Array}. <br>Returns NULL when typography is NULL.
  * @since 18
  */
 OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typography);
@@ -70,8 +70,9 @@ OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typog
 void OH_Drawing_DestroyTextLines(OH_Drawing_Array* lines);
 
 /**
- * @brief Releases the memory occupied by a text line object. This is applicable only to text line objects that have
- * requested memory on their own and not to a particular text line object within a text line array.
+ * @brief Releases the memory of a single text line object. Only the memory of a text line object that is independently
+ * allocated can be released. The memory of a text line object obtained from a line array through
+ * {@link OH_Drawing_GetTextLineByIndex} cannot be released.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
@@ -86,7 +87,8 @@ void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param lines Pointer to the {@link OH_Drawing_Array} object.
  * @param index Index of the text line array.
- * @return Returns a pointer to the {@link OH_Drawing_TextLine} object at the specified index.
+ * @return Pointer to the {@link OH_Drawing_TextLine} text line object at the specified index. <br>Returns NULL if
+ *     lines is NULL or the index is out of bounds.
  * @since 18
  */
 OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size_t index);
@@ -115,12 +117,13 @@ double OH_Drawing_TextLineGetGlyphCount(OH_Drawing_TextLine* line);
 void OH_Drawing_TextLineGetTextRange(OH_Drawing_TextLine* line, size_t* start, size_t* end);
 
 /**
- * @brief Obtains the array of glyph runs in a text line object.
+ * @brief Obtains the array of text rendering units {@link OH_Drawing_Run} in the text line object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @return Returns a pointer to the {@link OH_Drawing_Array} array, which holds multiple {@link OH_Drawing_Run} objects.
- *      Release this pointer by calling {@link OH_Drawing_DestroyRuns} when this object is no longer needed.
+ * @return Pointer to the {@link OH_Drawing_Array} array of text rendering units {@link OH_Drawing_Run}. When the
+ *     {@link OH_Drawing_Array} is no longer needed, please use the {@link OH_Drawing_DestroyRuns} API to release the
+ *     pointer of the object.
  * @since 18
  * @version 1.0
  */
@@ -142,7 +145,8 @@ void OH_Drawing_DestroyRuns(OH_Drawing_Array* runs);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param runs Pointer to the {@link OH_Drawing_Array} array, which holds multiple {@link OH_Drawing_Run} objects.
  * @param index Index of the glyph run array.
- * @return Returns a pointer to the {@link OH_Drawing_Run} object at the specified index.
+ * @return Pointer to the text rendering unit object {@link OH_Drawing_Run} at the specified index. <br>NULL is
+ *     returned if runs is NULL or the index is out of bounds.
  * @since 18
  */
 OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index);
@@ -152,7 +156,7 @@ OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @param canvas Pointer to the target canvas {@link OH_Drawing_Canvas}.
+ * @param canvas Pointer to the target canvas for drawing, which is an {@link OH_Drawing_Canvas}.
  * @param x Horizontal coordinate of the upper left corner, in px.
  * @param y Vertical coordinate of the upper left corner, in px.
  * @since 18
@@ -161,15 +165,19 @@ OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index);
 void OH_Drawing_TextLinePaint(OH_Drawing_TextLine* line, OH_Drawing_Canvas* canvas, double x, double y);
 
 /**
- * @brief Creates a truncated text line object.
+ * @brief Creates a truncated text line object. Truncates the original text line based on the specified width,
+ * truncation type, and truncation mark string, inserts the specified mark string at the truncation position, and
+ * generates and returns a new independent text line object. The original text is not affected.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @param width Line width after truncation.
+ * @param width Width of the truncated line, in physical pixels (px).
  * @param mode Truncation type. The value is an enumerated value of {@link OH_Drawing_EllipsisModal}. Currently, only **
  *     ELLIPSIS_MODAL_HEAD** and **ELLIPSIS_MODAL_TAIL** are supported.
  * @param ellipsis Pointer to the string used to mark a truncation.
- * @return Returns a pointer to the {@link OH_Drawing_TextLine} object of the truncated text line.
+ * @return Pointer to the truncated text line object {@link OH_Drawing_TextLine}. <br>NULL is returned when line or
+ *     ellipsis is NULL. <br>Please use {@link OH_Drawing_DestroyTextLine} to release the object's memory when it is no
+ *     longer needed.
  * @since 18
  * @version 1.0
  */
@@ -177,18 +185,19 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine(OH_Drawing_TextLine*
     const char* ellipsis);
 
 /**
- * @brief Obtains the typographic boundary of a text line object. The typographic boundary is related to the font and
- * font size used for typography, but not the characters within the text.
- * For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary
- * encompasses the spaces at the beginning and end. Similarly, the strings "j" and "E" have identical typographic
- * boundaries, which are independent of the characters themselves.
+ * @brief Obtains the typographic bounds of the text line object. The typographic bounds of a text line are related to
+ * the typographic font and typographic font size, and are independent of the characters themselves.
+ * <br>For example, for the string " a b ", where there is one space before the 'a' character and one space after the '
+ * b' character, the typographic bounds include the bounds of the leading and trailing spaces. For example, for the
+ * string "j" or "E", the typographic bounds are the same, i.e., independent of the characters themselves.
+ * <br>The text height can be calculated using height = ascent + descent + leading.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param line Pointer to the {@link OH_Drawing_TextLine} object. height = ascent + descent + leading.
- * @param ascent Pointer to the ascent of the text line object.
- * @param descent Pointer to the descent of the text line object.
- * @param leading Pointer to the leading of the text line object.
- * @return Returns the total width of the layout boundary.
+ * @param line Pointer to the text line object {@link OH_Drawing_TextLine}.
+ * @param ascent Pointer to the ascent height of the text line object. The unit is physical pixel.
+ * @param descent Pointer to the descent height of the text line object. The unit is physical pixel.
+ * @param leading Pointer to the leading of the text line object. The unit is physical pixel.
+ * @return Total width of the typographic bounds, in physical pixels.
  * @since 18
  * @version 1.0
  */
@@ -196,17 +205,20 @@ double OH_Drawing_TextLineGetTypographicBounds(OH_Drawing_TextLine* line, double
     double* leading);
 
 /**
- * @brief Obtains the image boundary of a text line object. The image boundary, equivalent to a visual boundary, is
- * related to the font, font size, and characters.
- * For example, for the string " a b " (which has a space before "a" and a space after "b"), only "a b" are visible to
- * users, and therefore the image boundary does not include these spaces at the beginning and end.
- * For the strings "j" and "E", their image boundaries are different. Specifically, the width of the boundary for "j"
- * is narrower than that for "E", and the height of the boundary for "j" is taller than that for "E".
+ * @brief Obtains the image bounds of the text line object. The image bounds of a text line are related to the
+ * typographic font, typographic font size, and the characters themselves, and are equivalent to the visual bounds.
+ * <br>For example, for the string " a b ", where there is one space before the 'a' character and one space after the '
+ * b' character, the user can only see "a b" on the UI, and the image bounds are the bounds excluding the leading and
+ * trailing spaces.
+ * <br>For example, for the string "j" or "E", the visual bounds are different, i.e., related to the characters
+ * themselves. The visual bounds width of the string "j" is smaller than that of the string "E", and the visual bounds
+ * height of the string "j" is greater than that of the string "E".
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @return Returns the pointer to {@link OH_Drawing_Rect} of the text line object. Release this pointer by calling
- *     {@link OH_Drawing_RectDestroy} when this object is no longer needed.
+ * @return Pointer to the image bounds {@link OH_Drawing_Rect} of the text line object. <br>Returns NULL when the
+ *     passed-in line is NULL. <br>When the {@link OH_Drawing_Rect} is no longer needed, please use the
+ *     {@link OH_Drawing_RectDestroy} API to release the pointer of the object.
  * @since 18
  * @version 1.0
  */
@@ -217,18 +229,18 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @return Returns the pointer to the width of the spaces.
+ * @return Width of the trailing whitespace characters of the text line object, in physical pixels (px).
  * @since 18
  * @version 1.0
  */
 double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line);
 
 /**
- * @brief Obtains the index of a character at the specified position in a text line object.
+ * @brief Obtains the string index at the specified position in the text line object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @param point Pointer to the index specified, which is an {@link OH_Drawing_Point} object.
+ * @param point Pointer to the position {@link OH_Drawing_Point} where the index is to be found.
  * @return Returns the index of the character. For example, for the string "abc", the index of "a" is 0, the index of "
  *     b" is 1, and the index of "c" is 2. If the specified position is at "a", then **0** is returned.
  * @since 18
@@ -241,7 +253,7 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, 
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
  * @param index Index of the character.
- * @return Returns the offset.
+ * @return Offset at the specified string index, in physical pixels (px).
  * @since 18
  */
 double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index);
@@ -279,14 +291,13 @@ void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Pointer to the {@link OH_Drawing_TextLine} object.
- * @param alignmentFactor Alignment factor, which determines how text is aligned. A value less than or equal to 0.0
- *     means that the text is left-aligned; a value between 0.0 and 0.5 means that the text is slightly left-aligned;
- *     the value 0.5 means that the text is centered; a value between 0.5 and 1 means that the text is slightly right-
- *     aligned; a value greater than or equal to 1.0 means that the text is right-aligned.
- * @param alignmentWidth Alignment width, that is, the offset of the lower right corner of the text line object
- *     relative to the start position. If the specified alignment width is less than the actual width of the text line
- *     object, **0** is returned.
- * @return Returns the offset obtained.
+ * @param alignmentFactor Alignment factor. A value less than or equal to 0.0 indicates left alignment, greater than 0.
+ *     0 and less than 0.5 indicates left-biased alignment, 0.5 indicates center alignment, greater than 0.5 and less
+ *     than 1.0 indicates right-biased alignment, and greater than or equal to 1.0 indicates right alignment.
+ * @param alignmentWidth Alignment width, i.e., the offset of the bottom-right corner of the text line object relative
+ *     to the starting position after final offset, in physical pixels (px). If the specified alignment width is less
+ *     than the actual width of the text line object, 0 is returned.
+ * @return Calculated offset required for alignment. The unit is physical pixel (px).
  * @since 18
  * @version 1.0
  */

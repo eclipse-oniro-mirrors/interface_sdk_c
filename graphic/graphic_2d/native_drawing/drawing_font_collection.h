@@ -28,7 +28,10 @@
 /**
  * @file drawing_font_collection.h
  *
- * @brief This file declares the functions related to the font collection in the drawing module.
+ * @brief Defines functions related to font collections in the drawing module, which are used to manage font resources
+ * required for text typography. It supports creating independent or shareable font collection objects to meet text
+ * typography requirements in different scenarios. Through font collection objects, you can implement custom font
+ * loading, system font management, font cache cleanup, and other functions.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -49,7 +52,11 @@ extern "C" {
  * @brief Creates an {@link OH_Drawing_FontCollection} object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Returns the pointer to the <b>OH_Drawing_FontCollection</b> object created.
+ * @return Pointer to the created font collection object. The font collection pointer object created by this function
+ *     can only be used by one {@link OH_Drawing_TypographyCreate} object and does not support shared use among
+ *     multiple OH_Drawing_TypographyCreate objects. To share the same OH_Drawing_FontCollection among multiple
+ *     OH_Drawing_TypographyCreate objects, use the {@link OH_Drawing_CreateSharedFontCollection} function to create
+ *     the OH_Drawing_FontCollection object.
  * @since 8
  * @version 1.0
  */
@@ -78,10 +85,12 @@ void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection)
 void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCollection);
 
 /**
- * @brief Disables the system fonts.
+ * @brief Disables system fonts. After disabling, the font collection object can only use registered custom fonts for
+ * text rendering.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
+ * @param fontCollection Pointer to the font collection object {@link OH_Drawing_FontCollection} for which system fonts
+ *     are to be disabled.
  * @since 12
  * @version 1.0
  */
@@ -91,7 +100,8 @@ void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontC
  * @brief Creates a shareable {@link OH_Drawing_FontCollection} object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Returns the pointer to the <b>OH_Drawing_FontCollection</b> object created.
+ * @return Pointer to the created font collection object, which can be used by multiple
+ *     {@link OH_Drawing_TypographyCreate} objects.
  * @since 12
  * @version 1.0
  */
@@ -109,11 +119,12 @@ OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
 void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection* fontCollection);
 
 /**
- * @brief Obtains the global {@link OH_Drawing_FontCollection} object, which can be used to sense the theme font
- * information. Do not release the object.
+ * @brief Obtains the global font collection object {@link OH_Drawing_FontCollection}, which can be used to obtain
+ * theme font information. This object is prohibited from being released.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Return the pointer to the <b>OH_Drawing_FontCollection</b> global instance.
+ * @return Pointer to the global font collection object, which can be used by multiple
+ *     {@link OH_Drawing_TypographyCreate} objects and is prohibited from being released.
  * @since 14
  * @version 1.0
  */
