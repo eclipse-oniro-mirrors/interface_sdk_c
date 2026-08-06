@@ -112,6 +112,11 @@ typedef enum {
      * Invalid window ID.
      */
     INVAILD_WINDOW_ID = 1000,
+    /**
+     * Invalid window ID.
+     * @since 26.0.0
+     */
+    INVALID_WINDOW_ID = INVAILD_WINDOW_ID,
 
     /**
      * Service error.

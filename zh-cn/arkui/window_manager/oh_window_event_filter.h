@@ -17,7 +17,7 @@
  * @addtogroup WindowManager
  * @{
  *
- * @brief Provides  abilities of windowManager on the native side, such as key event
+ * @brief Provides abilities of WindowManager on the native side, such as key event.
  * filtration.
  *
  * @since 12
@@ -46,8 +46,9 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a function for filtering multimodal key events
- * @param keyEvent multimodal keyEvent
+ * @brief 定义多模按键的过滤函数。
+ * @param keyEvent 多模按键事件，具体可见{@link Input_KeyEvent}，事件定义在oh_input_manager中。
+ * @return 返回是否过滤该事件。返回true窗口不再往下分发，返回false表示不拦截。
  * @since 12
  */
 typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
@@ -55,9 +56,15 @@ typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 /**
  * @brief 注册按键事件的过滤函数。
  *
- * @param windowId 需要过滤按键事件的窗口ID。
+ * @param windowId 窗口ID。
  * @param keyEventFilter 多模按键的过滤函数。
- * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示参数windowId无效。</li>
+ *     <li>返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数keyEventFilter无效。</li>
+ *     <li>返回SERVICE_ERROR，表示窗口管理服务异常。</li>
+ *     </ul>
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId,
@@ -66,15 +73,21 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
 /**
  * @brief 取消注册窗口的按键事件过滤函数。
  *
- * @param windowId 需要取消过滤按键事件的窗口ID。
- * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
+ * @param windowId 窗口ID。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示参数windowId无效。</li>
+ *     <li>返回SERVICE_ERROR，表示窗口管理服务异常。</li>
+ *     </ul>
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId);
 
 /**
- * @brief Defines a function for filtering multimodal mouse events
- * @param mouseEvent multimodal mouseEvent
+ * @brief 定义多模鼠标事件的过滤函数。
+ * @param mouseEvent 多模鼠标事件，具体可见{@link Input_MouseEvent}，事件定义在oh_input_manager中。
+ * @return 返回是否过滤该事件。true表示过滤该事件，不会继续往下分发；false表示不过滤不拦截此事件，将会继续分发。
  * @since 15
  */
 typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseEvent);
@@ -82,9 +95,15 @@ typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseE
 /**
  * @brief 注册鼠标事件的过滤函数。
  *
- * @param windowId 需要过滤鼠标事件的窗口ID。
+ * @param windowId 窗口ID。
  * @param mouseEventFilter 多模鼠标事件的过滤函数。
- * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示参数windowId无效。</li>
+ *     <li>返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数mouseEventFilter无效。</li>
+ *     <li>返回SERVICE_ERROR，表示窗口管理服务异常。</li>
+ *     </ul>
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,
@@ -93,15 +112,21 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 /**
  * @brief 取消注册窗口的鼠标事件过滤函数。
  *
- * @param windowId 需要取消过滤鼠标事件的窗口ID。
- * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
+ * @param windowId 窗口ID。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示参数windowId无效。</li>
+ *     <li>返回SERVICE_ERROR，表示窗口管理服务异常。</li>
+ *     </ul>
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId);
 
 /**
- * @brief Defines a function for filtering multimodal touch events
- * @param touchEvent multimodal touchEvent
+ * @brief 定义多模触摸事件的过滤函数。
+ * @param touchEvent 多模触摸事件，具体可见{@link Input_TouchEvent}，事件定义在oh_input_manager中。
+ * @return 返回是否过滤该事件。true表示过滤该事件，不会继续往下分发；false表示不过滤不拦截此事件，将会继续分发。
  * @since 15
  */
 typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchEvent);
@@ -109,9 +134,15 @@ typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchE
 /**
  * @brief 注册触摸事件的过滤函数。
  *
- * @param windowId 需要过滤触摸事件的窗口ID。
+ * @param windowId 窗口ID。
  * @param touchEventFilter 多模触摸事件的过滤函数。
- * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示参数windowId无效。</li>
+ *     <li>返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数touchEventFilter无效。</li>
+ *     <li>返回SERVICE_ERROR，表示窗口管理服务异常。</li>
+ *     </ul>
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,
@@ -120,11 +151,65 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
 /**
  * @brief 取消注册窗口的触摸事件过滤函数。
  *
- * @param windowId 需要取消过滤触摸事件的窗口ID。
- * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
+ * @param windowId 窗口ID。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示参数windowId无效。</li>
+ *     <li>返回SERVICE_ERROR，表示窗口管理服务异常。</li>
+ *     </ul>
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId);
+
+/**
+ * @brief 获取指定窗口注册的多模按键事件过滤函数。
+ *
+ * @param windowId 窗口ID。
+ * @param outKeyEventFilter 返回已注册的多模按键事件过滤函数指针。如果窗口没有注册过滤器，*outKeyEventFilter将返回NULL。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示入参windowId无效。</li>
+ *     <li>返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示入参outKeyEventFilter为NULL。</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+WindowManager_ErrorCode OH_NativeWindowManager_GetKeyEventFilter(int32_t windowId,
+    OH_NativeWindowManager_KeyEventFilter* outKeyEventFilter);
+
+/**
+ * @brief 获取指定窗口注册的多模鼠标事件过滤函数。
+ *
+ * @param windowId 窗口ID。
+ * @param outMouseEventFilter 返回已注册的多模鼠标事件过滤函数指针。如果窗口没有注册过滤器，*outMouseEventFilter将返回NULL。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示入参windowId无效。</li>
+ *     <li>返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示入参outMouseEventFilter为NULL。</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+WindowManager_ErrorCode OH_NativeWindowManager_GetMouseEventFilter(int32_t windowId,
+    OH_NativeWindowManager_MouseEventFilter* outMouseEventFilter);
+
+/**
+ * @brief 获取指定窗口注册的多模触摸事件过滤函数。
+ *
+ * @param windowId 窗口ID。
+ * @param outTouchEventFilter 返回已注册的多模触摸事件过滤函数指针。如果窗口没有注册过滤器，*outTouchEventFilter将返回NULL。
+ * @return 函数返回的执行结果。
+ *     <ul>
+ *     <li>返回OK，表示接口调用成功。</li>
+ *     <li>返回INVALID_WINDOW_ID，表示入参windowId无效。</li>
+ *     <li>返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示入参outTouchEventFilter为NULL。</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+WindowManager_ErrorCode OH_NativeWindowManager_GetTouchEventFilter(int32_t windowId,
+    OH_NativeWindowManager_TouchEventFilter* outTouchEventFilter);
+
 #ifdef __cplusplus
 }
 #endif
