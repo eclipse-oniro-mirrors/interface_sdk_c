@@ -341,9 +341,10 @@ bool OH_VideoProcessing_IsAutoEffectSupported(uint32_t type);
  * @param enable Whether to enable auto effect for this name.
  * @param name The xcomponent id name identifier for the auto effect configuration.
  * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if name is null or type is not VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR. \n
- * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if OH_VideoProcessing_UseAutoEffect
- * has already been called with the same name.
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if type is not {@link VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR}
+ * or name is null. \n
+ * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
+ * returns false for the type, or the same name has already been registered by calling this function.
  * @since 27
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool enable, const char* name);
@@ -360,9 +361,12 @@ VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool e
  * enable with key {@link VIDEO_AUTOEFFECT_ENABLE} and
  * {@link OH_AVFormat_SetFloatValue} to set strength with key {@link VIDEO_AUTOEFFECT_AISR_STRENGTH}.
  * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if name is null or type is not VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR. \n
- * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if no VPE instance found for the name. \n
- * {@link VIDEO_PROCESSING_ERROR_UNKNOWN} if inner error happened.
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if type is not {@link VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR},
+ * name is null, or strength in param is less than 0 or greater than 1. \n
+ * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
+ * returns false for the type, or name does not match any registered name, or the VPE instance has not been
+ * created or {@link OH_VideoProcessing_UseAutoEffect} has not been called for the name. \n
+ * {@link VIDEO_PROCESSING_ERROR_UNKNOWN} if an internal algorithm error occurs.
  * @since 27
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_SetAutoEffectParam(uint32_t type, const char* name,
