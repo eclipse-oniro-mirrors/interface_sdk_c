@@ -17,7 +17,12 @@
  * @addtogroup effectKit
  * @{
  *
- * @brief Provides basic image processing capabilities, including brightness adjustment, blurring, and grayscale conversion of the current image. It is suitable for scenarios where image filter effects need to be quickly implemented within an app, such as image editing, photo beautification, and camera filters. This helps developers quickly implement image effect processing without focusing on the underlying algorithm implementation, reducing development complexity.
+ * @brief Provides basic image processing capabilities, including brightness adjustment,
+ * blurring, and grayscale conversion of the current image. It is suitable for scenarios
+ * where image filter effects need to be quickly implemented within an app, such as
+ * image editing, photo beautification, and camera filters. This helps developers
+ * quickly implement image effect processing without focusing on the underlying
+ * algorithm implementation, reducing development complexity.
  *
  * @since 12
  */
@@ -25,7 +30,9 @@
 /**
  * @file effect_types.h
  *
- * @brief Declares the data types for filter effects, used to define the matrices, status codes, and tile modes for filter effects, and supports scenarios such as creating custom filter effects and processing image shader tiling.
+ * @brief Declares the data types for filter effects, used to define the matrices,
+ * status codes, and tile modes for filter effects, and supports scenarios such as
+ * creating custom filter effects and processing image shader tiling.
  * @kit ArkGraphics2D
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
@@ -87,7 +94,9 @@ typedef enum {
     EFFECT_BAD_PARAMETER = 401,
     /** The operation is not supported. Check the API usage. */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
-    /** An unidentified error occurred. Possible causes include abnormal system resources or improper API calling. Check the API call parameters and system resource status first. */
+    /** An unidentified error occurred. Possible causes include abnormal system resources
+     *  or improper API calling. Check the API call parameters and system resource
+     *  status first. */
     EFFECT_UNKNOWN_ERROR = 7600901,
 } EffectErrorCode;
 
@@ -97,13 +106,23 @@ typedef enum {
  * @since 14
  */
 typedef enum {
-    /** Clamp mode. If the shader effect exceeds its original bounds, the remaining area is filled with the edge color of the shader. Applicable to scenarios requiring a smooth transition to a solid color background. */
+    /** Clamp mode. If the shader effect exceeds its original bounds, the remaining area
+     *  is filled with the edge color of the shader. Applicable to scenarios requiring
+     *  a smooth transition to a solid color background. */
     CLAMP = 0,
-    /** Repeat mode. Repeats the shader effect in both horizontal and vertical directions. Applicable to scenarios requiring seamless tiled textures, such as background pattern filling. */
+    /** Repeat mode. Repeats the shader effect in both horizontal and vertical directions.
+     *  Applicable to scenarios requiring seamless tiled textures, such as background
+     *  pattern filling. */
     REPEAT,
-    /** Mirror mode. Repeats the shader effect in both horizontal and vertical directions, alternating mirrored images so that adjacent images always join seamlessly. Applicable to scenarios requiring continuity while avoiding abrupt repeating edges, such as gradient backgrounds. */
+    /** Mirror mode. Repeats the shader effect in both horizontal and vertical directions,
+     *  alternating mirrored images so that adjacent images always join seamlessly.
+     *  Applicable to scenarios requiring continuity while avoiding abrupt repeating
+     *  edges, such as gradient backgrounds. */
     MIRROR,
-    /** Decal mode. Renders the shader effect only within its original bounds. Applicable to scenarios requiring precise control over shader boundaries, where areas outside the bounds remain transparent or retain the original content. */
+    /** Decal mode. Renders the shader effect only within its original bounds.
+     *  Applicable to scenarios requiring precise control over shader boundaries,
+     *  where areas outside the bounds remain transparent or retain the original
+     *  content. */
     DECAL,
 } EffectTileMode;
 

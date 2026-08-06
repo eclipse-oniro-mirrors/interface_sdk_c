@@ -17,7 +17,9 @@
  * @addtogroup effectKit
  * @{
  *
- * @brief 提供处理图像的基础能力，支持亮度调节、模糊化、灰度转换等效果。适用于需要在应用内快速实现图像滤镜效果的场景，如图像编辑、照片美化和相机滤镜等，开发者无需关注底层算法实现即可快速完成图像效果处理功能，降低开发复杂度。
+ * @brief 提供处理图像的基础能力，支持亮度调节、模糊化、灰度转换等效果。
+ * 适用于需要在应用内快速实现图像滤镜效果的场景，如图像编辑、照片美化和相机滤镜等，
+ * 开发者无需关注底层算法实现即可快速完成图像效果处理功能，降低开发复杂度。
  *
  * @since 12
  */
@@ -78,7 +80,8 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
  * @brief 创建一个毛玻璃滤镜效果，并添加到滤镜效果链中。
  *
  * @param filter [in] 滤镜指针，需要通过OH_Filter_CreateEffect创建并添加滤镜效果。不能为NULL。
- * @param radius [in] 毛玻璃效果的模糊半径，取值范围为[0, +∞)，单位为像素。值为0时不产生模糊效果；值越大，模糊效果越强；值越小，模糊效果越弱。
+ * @param radius [in] 毛玻璃效果的模糊半径，取值范围为[0, +∞)，单位为像素。
+ *     值为0时不产生模糊效果；值越大，模糊效果越强；值越小，模糊效果越弱。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功则返回EFFECT_SUCCESS。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或radius小于0时，返回EFFECT_BAD_PARAMETER。</li>
@@ -92,8 +95,10 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
  * @brief 创建一个毛玻璃滤镜效果，并添加到滤镜效果链中，支持选择着色器效果平铺模式。
  *
  * @param filter [in] 滤镜指针，需要通过OH_Filter_CreateEffect创建并添加滤镜效果。不能为NULL。
- * @param radius [in] 毛玻璃效果的模糊半径，取值范围为[0, +∞)，单位为像素。参数值为0时不产生模糊效果。值越大模糊效果越强。
- * @param tileMode [in] 着色器效果平铺模式，不同模式决定图像边缘区域的不同处理方式，支持可选的具体模式可见{@link EffectTileMode}枚举。
+ * @param radius [in] 毛玻璃效果的模糊半径，取值范围为[0, +∞)，单位为像素。
+ *     参数值为0时不产生模糊效果。值越大模糊效果越强。
+ * @param tileMode [in] 着色器效果平铺模式，不同模式决定图像边缘区域的不同处理方式，
+ *     支持可选的具体模式可见{@link EffectTileMode}枚举。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功则返回EFFECT_SUCCESS。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或radius小于0时，返回EFFECT_BAD_PARAMETER。</li>
@@ -109,7 +114,8 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
  * @param brightness [in] 提亮效果的亮度值，取值范围为[0, 1]。取值为0时图像保持不变，取值为1时图像全白。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功则返回EFFECT_SUCCESS。</li>
- *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或brightness超出[0,1]时，返回EFFECT_BAD_PARAMETER。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或
+ *         brightness超出[0,1]时，返回EFFECT_BAD_PARAMETER。</li>
  *         </ul>
  * @since 12
  * @version 1.0
