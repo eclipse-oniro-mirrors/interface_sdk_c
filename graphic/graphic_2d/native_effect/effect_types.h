@@ -65,7 +65,12 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @version 1.0
  */
 struct OH_Filter_ColorMatrix {
-    /** Custom color matrix. The value is a 5 x 4 array. */
+    /** Custom color matrix used to implement image color transformation effects. The array contains 20 float elements,
+     *  stored in row-major order, forming a 4x5 matrix.
+     *  The first 4 columns correspond to the transformation coefficients of the R, G, B, and A channels,
+     *  and the 5th column is the constant offset value. It is recommended that the element values be within [-1, 1].
+     *  Values outside this range may cause color values to overflow or produce unexpected effects.
+     */
     float val[20];
 };
 
