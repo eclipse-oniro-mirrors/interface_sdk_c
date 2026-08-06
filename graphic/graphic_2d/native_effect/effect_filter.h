@@ -143,7 +143,7 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
  * @brief Creates a custom effect through a matrix and adds it to a filter effect chain, applicable to scenarios that require specific color transformation effects (such as color correction, hue adjustment, or color temperature adjustment).
  *
  * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
- * @param matrix [in] Custom matrix used to create the filter. Cannot be NULL.
+ * @param matrix [in] Custom {@link OH_Filter_ColorMatrix} used to create the filter. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter or matrix is NULL.</li>
