@@ -19,7 +19,7 @@
  *
  * @brief Provides the copy and paste support for the system Pasteboard.
  * You can use the APIs of this module to operate the Pasteboard content of the plain text, HTML,
- * URI, Want, pixel map, and other types.
+ * URI, PixelMap, and other types.
  *
  * @since 13
  */
@@ -35,11 +35,14 @@
  *
  * @since 13
  */
+
 #ifndef OH_PASTEBOARD_H
 #define OH_PASTEBOARD_H
+
 #include <inttypes.h>
 #include <stdbool.h>
 #include "database/udmf/udmf.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -86,7 +89,6 @@ typedef enum Pasteboard_NotifyType {
      *
      */
     NOTIFY_LOCAL_DATA_CHANGE = 1,
-
     /**
      * @brief The pasteboard data of a non-local device on the network is changed.
      *
@@ -105,7 +107,6 @@ typedef enum Pasteboard_FileConflictOptions {
      *
      */
     PASTEBOARD_OVERWRITE = 0,
-
     /**
      * @brief Skips the file if there is a file with the same name in the destination directory.
      *
@@ -124,7 +125,6 @@ typedef enum Pasteboard_ProgressIndicator {
      *
      */
     PASTEBOARD_NONE = 0,
-
     /**
      * @brief The system default progress indicator is used.
      *

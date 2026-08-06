@@ -17,9 +17,7 @@
  * @addtogroup Pasteboard
  * @{
  *
- * @brief Provides the copy and paste support for the system Pasteboard.
- * You can use the APIs of this module to operate the Pasteboard content of the plain text, HTML,
- * URI, Want, pixel map, and other types.
+ * @brief 系统剪贴板支持复制和粘贴多种类型的数据。可以使用此模块接口操作纯文本、HTML、URI、PixelMap等多种类型的数据。
  *
  * @since 13
  */
@@ -27,7 +25,7 @@
 /**
  * @file oh_pasteboard_err_code.h
  *
- * @brief Declaration error code information.
+ * @brief 声明剪贴板框架错误码信息。剪贴板错误码用于标识剪贴板操作过程中的执行结果，开发者可通过错误码判断操作是否成功以及失败的具体原因。
  *
  * @kit BasicServicesKit
  * @library libpasteboard.so
@@ -44,52 +42,52 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
+ * @brief 剪贴板错误码枚举，用于标识剪贴板操作的执行结果，开发者可通过错误码判断操作是否成功以及失败的具体原因。
  *
  * @since 13
  */
 typedef enum PASTEBOARD_ErrCode {
     /**
-     * @error The operation is successful.
+     * @error 执行成功。
      */
     ERR_OK = 0,
     /**
-     * @error Permission verification failed.
+     * @error 权限校验失败。
      */
     ERR_PERMISSION_ERROR = 201,
     /**
-     * @error Invalid parameter is detected.
+     * @error 非法参数。
      */
     ERR_INVALID_PARAMETER = 401,
     /**
-     * @error The capability is not supported.
+     * @error 设备能力不支持。
      */
     ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * @error Inner error.
+     * @error 内部错误。
      */
     ERR_INNER_ERROR = 12900000,
     /**
-     * @error Another copy is in progress.
+     * @error 系统忙。
      */
     ERR_BUSY = 12900003,
     /**
-     * @error Copy file failed.
+     * @error 文件拷贝失败。
      * @since 15
      */
     ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007,
     /**
-     * @error Failed to start progress.
+     * @error 拉起进度显示失败。
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008,
     /**
-     * @error Progress exits abnormally.
+     * @error 进度显示异常。
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009,
     /**
-     * @error Get Data failed.
+     * @error 获取剪贴板数据失败。
      * @since 15
      */
     ERR_PASTEBOARD_GET_DATA_FAILED = 12900010
