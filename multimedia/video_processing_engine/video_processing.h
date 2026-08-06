@@ -321,6 +321,50 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnState(VideoProcessing
 VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnNewOutputBuffer(VideoProcessing_Callback* callback,
     OH_VideoProcessingCallback_OnNewOutputBuffer onNewOutputBuffer);
 
+/**
+ * @brief Query if the atuoeffect is supported.
+ *
+ * @param type The autoeffect type to query.
+ * @return <b>true</b> if the autoeffect is supported. \n
+ * <b>false</b> if the autoeffect is not supported.
+ * @since 27
+ */
+bool OH_VideoProcessing_IsAutoEffectSupported(uint32_t type);
+
+/**
+ * @brief Register auto effect usage for a specific name.
+ *
+ * Records the mapping of type, enable, and name in the internal map.
+ * This should be called before {@link OH_VideoProcessing_SetAutoEffectParam}.
+ *
+ * @param type Use VIDEO_PROCESSING_TYPE_AUTO_EFFECT to specify the processing type.
+ * @param enable Whether to enable auto effect for this name.
+ * @param name The name identifier for the auto effect configuration.
+ * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if name is null.
+ * @since 27
+ */
+VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool enable, const char* name);
+
+/**
+ * @brief Set auto effect parameter for a specific name.
+ *
+ * Find the VPE instance associated with the name and set its enabled state and strength value.
+ * The param contains enable (bool, stored as int32) and strength (float) key-value pairs.
+ *
+ * @param type Use VIDEO_PROCESSING_TYPE_AUTO_EFFECT to specify the processing type.
+ * @param name The name identifier for the auto effect configuration.
+ * @param param The parameter containing enable and strength. Use {@link OH_AVFormat_SetIntValue} to set
+ * enable with key {@link VIDEO_AUTOEFFECT_ENABLE} and
+ * {@link OH_AVFormat_SetFloatValue} to set strength with key {@link VIDEO_AUTOEFFECT_AISR_STRENGTH}.
+ * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_PARAMETER} if name is null or param is null. \n
+ * {@link VIDEO_PROCESSING_ERROR_INVALID_INSTANCE} if no VPE instance found for the name.
+ * @since 27
+ */
+VideoProcessing_ErrorCode OH_VideoProcessing_SetAutoEffectParam(uint32_t type, const char* name,
+    const OH_AVFormat* param);
+
 #ifdef __cplusplus
 }
 #endif
