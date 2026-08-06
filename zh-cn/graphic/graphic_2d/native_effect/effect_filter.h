@@ -28,7 +28,7 @@
  * @brief 声明滤镜效果的接口。支持创建和管理多种滤镜效果，包括毛玻璃模糊、亮度调节、灰度转换、颜色反转等，
  * 支持通过自定义矩阵实现丰富的图像处理效果，适用于图像编辑、照片美化、视觉特效等场景。
  *
- * 必须成对调用OH_Filter_CreateEffect和OH_Filter_Release，确保资源正确释放。
+ * 必须成对调用{@link OH_Filter_CreateEffect}和{@link OH_Filter_Release}，确保资源正确释放。
  * 本文件接口均不支持多线程调用。
  *
  * @kit ArkGraphics2D
