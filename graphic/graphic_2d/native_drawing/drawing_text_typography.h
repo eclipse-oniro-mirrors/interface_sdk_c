@@ -219,7 +219,7 @@ typedef enum OH_Drawing_TextDecoration {
 } OH_Drawing_TextDecoration;
 
 /**
- * @brief Enumerates the font styles.
+ * @brief Font styles, including non-italic, italic, and oblique.
  *
  * @since 8
  * @version 1.0
@@ -279,7 +279,7 @@ typedef enum {
     ALIGNMENT_CENTER_OF_ROW_BOX,
 
     /**
-     * Follows the vertical alignment mode of the text.
+     * Follows the text vertical alignment.
      * @since 20
      */
     ALIGNMENT_FOLLOW_PARAGRAPH
@@ -435,8 +435,8 @@ typedef enum {
     WORD_BREAK_TYPE_BREAK_WORD = 2,
 
     /**
-     * Uses a hyphen (-) to break a word at the end of each line. If adding a hyphen is not possible, it will behave
-     * the same as **WORD_BREAK_TYPE_BREAK_WORD**.
+     * Attempts to break words at the end of each line by inserting a hyphen ("-"). If a hyphen cannot be added, the
+     * behavior is the same as `WORD_BREAK_TYPE_BREAK_WORD`.
      * @since 18
      */
     WORD_BREAK_TYPE_BREAK_HYPHEN = 3
@@ -450,32 +450,32 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Tight style.
+     * Tight style. The text box height closely fits the text content boundary.
      */
     RECT_HEIGHT_STYLE_TIGHT,
 
     /**
-     * Maximum style.
+     * Max style. The text box height takes the maximum height among all lines.
      */
     RECT_HEIGHT_STYLE_MAX,
 
     /**
-     * Middle style that includes the line spacing.
+     * Include line spacing middle style. The text box height includes the middle portion of the line spacing.
      */
     RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE,
 
     /**
-     * Top style that includes the line spacing.
+     * Include line spacing top style. The text box height includes the top portion of the line spacing.
      */
     RECT_HEIGHT_STYLE_INCLUDELINESPACETOP,
 
     /**
-     * Bottom style that includes the line spacing.
+     * Include line spacing bottom style. The text box height includes the bottom portion of the line spacing.
      */
     RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM,
 
     /**
-     * Structure style.
+     * Struct style. The Strut Style determines the text box height.
      */
     RECT_HEIGHT_STYLE_STRUCT
 } OH_Drawing_RectHeightStyle;
@@ -488,18 +488,18 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Tight style.
+     * Tight style. The text box height closely fits the text content boundary.
      */
     RECT_WIDTH_STYLE_TIGHT,
 
     /**
-     * Maximum style.
+     * Max style. The text box height takes the maximum height among all lines.
      */
     RECT_WIDTH_STYLE_MAX
 } OH_Drawing_RectWidthStyle;
 
 /**
- * @brief Enumerates the error codes that may be used during the obtaining of system font configurations.
+ * @brief Enumerates the error codes for the system font configuration information list.
  *
  * @since 12
  * @version 1.0
@@ -556,8 +556,8 @@ typedef struct OH_Drawing_FontFallbackInfo {
  */
 typedef struct OH_Drawing_FontFallbackGroup {
     /**
-     * Pointer to the name of the group corresponding to the font fallback group. If null is passed in, all fonts in
-     * the font fallback group can be used.
+     * Name of the font set corresponding to the fallback font group. If the value is empty, all fonts in the fallback
+     * font set list can be used.
      */
     char* groupName;
     /**
@@ -565,7 +565,7 @@ typedef struct OH_Drawing_FontFallbackGroup {
      */
     size_t fallbackInfoSize;
     /**
-     * Pointer to the set of font fallbacks.
+     * List of fallback font sets.
      */
     OH_Drawing_FontFallbackInfo* fallbackInfoSet;
 } OH_Drawing_FontFallbackGroup;
@@ -599,8 +599,8 @@ typedef struct OH_Drawing_FontAliasInfo {
      */
     char* familyName;
     /**
-     * Font weight. If the value is greater than 0, only the fonts with the specified weight in the font family are
-     * contained. If the value is 0, all the fonts in the font family are contained.
+     * Font weight value. If the value is greater than 0, the font family contains only the font with the specified
+     * weight. If the value is 0, the font family contains all fonts.
      */
     int weight;
 } OH_Drawing_FontAliasInfo;
@@ -707,7 +707,7 @@ typedef struct OH_Drawing_FontDescriptor {
      */
     int italic;
     /**
-     * Whether the system font is monospaced. **true** means yes; **false** otherwise.
+     * Whether the system font is monospace. The value true means the font is monospace, and false means the opposite.
      */
     bool monoSpace;
     /**
@@ -918,8 +918,7 @@ typedef enum OH_Drawing_TextStyleAttributeId {
     /**
      * Maximum line height.<br>If line height scaling is enabled, the maximum line height takes effect only when **
      * FontHeight** (which can be obtained from {@link OH_Drawing_TextStyleGetFontHeight}) is greater than 0.<br>The
-     * value is the positive part of a single-precision floating point number. By default, it equals the maximum
-     * possible value for such a number.
+     * value is the positive part of a single-precision floating point number.
      */
     TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
 
@@ -953,7 +952,7 @@ typedef enum OH_Drawing_TextStyleAttributeId {
  *
  * @since 21
  */
-typedef enum OH_Drawing_LineHeightStyle {
+typedef enum OH_Drawing_LineHeightStyle{
     /**
      * Uses the font size as the scaling base.<br>Formula for calculating the line height: **FontSize** x **FontHeight**
      * .<br>**FontSize** can be obtained from the {@link OH_Drawing_TextStyleGetFontSize} API.<br>**FontHeight** can be
@@ -980,8 +979,7 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     /**
      * Maximum line height.<br>If line height scaling is enabled, the maximum line height takes effect only when **
      * FontHeight** (which can be obtained from {@link OH_Drawing_TextStyleGetFontHeight}) is greater than 0.<br>The
-     * value is the positive part of a single-precision floating point number. By default, it equals the maximum
-     * possible value for such a number.
+     * value is the positive part of a single-precision floating point number.
      */
     TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
 
@@ -1011,22 +1009,21 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
 
     /**
-     * Sets whether to use punctuation compression at the beginning of a line in text layout.<br>**NOTE**<br>1. The
-     * font file must support the ss08 feature in {@link OH_Drawing_FontFeature}. Otherwise, compression cannot be
-     * performed.<br>2. Only the punctuations within the punctuation compression range at the beginning of a line are
-     * in the scope of this feature.
+     * Whether to enable line-start punctuation compression during text typography.<br>**NOTE**<br>1. The font file
+     * must support the "ss08" feature in {@link OH_Drawing_FontFeature}; otherwise, compression cannot be applied.<br>
+     * 2. Only punctuation within the line-start punctuation compression range is affected by this feature.
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION = 5,
 
     /**
-     * Sets whether to enable the built-in padding of the font during text typography.
+     * Whether to enable the internal padding of the font during text typography.
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_INCLUDE_FONT_PADDING = 6,
 
     /**
-     * Sets whether to enable the line spacing rollback mechanism during text typography.
+     * Whether to enable the line spacing fallback mechanism during text typography.
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_FALLBACK_LINE_SPACING = 7,
@@ -1061,7 +1058,7 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
- * @brief Enumerates typography attribute.
+ * @brief Enumerates the typography attributes.
  *
  * @since 26.0.0
  */
@@ -1072,34 +1069,39 @@ typedef enum OH_Drawing_TypographyAttributeId {
      * The default value is false.
      * @since 26.0.0
      */
-    TYPOGRAPHY_ATTR_B_FORCE_REUSE_RASTER_RESULT = 0,
+    TYPOGRAPHY_ATTR_B_FORCE_REUSE_RASTER_RESULT = 0
 } OH_Drawing_TypographyAttributeId;
 
 /**
- * @brief Gets the bool type property's value from the typography.
+ * @brief Obtains a bool-type typography attribute.
  *
- * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
- * @param id Indicates the attribute id.
- * @param value Indicates the return value of the interface.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if the typography or value is nullptr.
- *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
+ * @param typography Pointer to the typography object {@link OH_Drawing_Typography}, which is obtained from
+ *     {@link OH_Drawing_CreateTypography}.
+ * @param id Typography style attribute ID.
+ * @param value Pointer to the bool-type attribute. Used as an output parameter.
+ * @return Result code.
+ *     <br>Returns OH_DRAWING_SUCCESS, indicating that the execution is successful.
+ *     <br>Returns OH_DRAWING_ERROR_INCORRECT_PARAMETER, indicating that the typography or value parameter is a null
+ *     pointer.
+ *     <br>Returns OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH, indicating that the attribute ID passed in does not match
+ *     the called function.
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyAttributeBool(const OH_Drawing_Typography* typography,
     OH_Drawing_TypographyAttributeId id, bool* value);
 
 /**
- * @brief Sets bool value to the typography attribute.
+ * @brief Sets a bool-type typography attribute.
  *
- * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
- * @param id Indicates the attribute id.
- * @param value Indicates the value to set.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if the typography is nullptr.
- *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
+ * @param typography Pointer to the typography object {@link OH_Drawing_Typography}, which is obtained from
+ *     {@link OH_Drawing_CreateTypography}.
+ * @param id Typography attribute ID, which specifies the bool-type attribute to set.
+ * @param value Bool value to set.
+ * @return Result code.
+ *     <br>Returns OH_DRAWING_SUCCESS, indicating that the execution is successful.
+ *     <br>Returns OH_DRAWING_ERROR_INCORRECT_PARAMETER, indicating that the typography parameter is a null pointer.
+ *     <br>Returns OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH, indicating that the attribute ID passed in does not match
+ *     the called function.
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyAttributeBool(OH_Drawing_Typography* typography,
@@ -1289,8 +1291,8 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDoubleArray(OH_Drawin
  * @param arrayLength Length of the floating-point array. It is used as an output parameter.
  * @return Returns the execution result.
  *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
- *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **style** or **arrayValue** is a null pointer or
- *      **arrayLength** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **style** or **arrayValue** is a null pointer or **
+ *     arrayLength** is 0.
  *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 26.0.0
  */
@@ -1305,17 +1307,17 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDoubleArray(const OH_
  */
 typedef enum OH_Drawing_TextBadgeType {
     /**
-     * Disables the superscript and subscript.
+     * Disable superscript or subscript.
      */
     TEXT_BADGE_NONE,
 
     /**
-     * Enables the superscript.
+     * Enable superscript.
      */
     TEXT_SUPERSCRIPT,
 
     /**
-     * Enables the subscript.
+     * Enable subscript.
      */
     TEXT_SUBSCRIPT
 } OH_Drawing_TextBadgeType;
@@ -1346,7 +1348,7 @@ typedef enum OH_Drawing_TextVerticalAlignment {
      * Top aligned.
      */
     TEXT_VERTICAL_ALIGNMENT_TOP
-} OH_Drawing_TextVerticalAlignment;
+} OH_Drawing_TextVerticalAlignment; 
 
 /**
  * @brief This struct describes a font style.
@@ -1399,7 +1401,7 @@ typedef struct {
      */
     OH_Drawing_FontWeight weight;
     /**
-     * Font style used for calculating the strut.
+     * Font style used when calculating the strut.
      */
     OH_Drawing_FontStyle style;
     /**
@@ -1437,7 +1439,7 @@ typedef struct {
 } OH_Drawing_StrutStyle;
 
 /**
- * @brief Defines the text rect struct.
+ * @brief Defines a text rectangle structure.
  *
  * @since 24
  */
@@ -1504,14 +1506,15 @@ void OH_Drawing_SetTypographyTextAlign(OH_Drawing_TypographyStyle* style, int al
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param lineNumber Maximum number of lines.
+ * @param lineNumber Max lines, which is an integer. If 0 or a negative number is passed, no text is displayed.
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextMaxLines(OH_Drawing_TypographyStyle* style, int lineNumber);
 
 /**
- * @brief Creates an **OH_Drawing_TextStyle** object.
+ * @brief Creates a pointer to an **OH_Drawing_TextStyle** object. When the {@link OH_Drawing_TextStyle} is no longer
+ * needed, use {@link OH_Drawing_DestroyTextStyle} to release the pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Pointer to the created {@link OH_Drawing_TextStyle} object.
@@ -1537,7 +1540,7 @@ void OH_Drawing_DestroyTextStyle(OH_Drawing_TextStyle* style);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param color Color.
+ * @param color Text color in ARGB format. For example, an input parameter of 0xFFFF0000 indicates opaque red.
  * @since 8
  * @version 1.0
  */
@@ -1549,16 +1552,18 @@ void OH_Drawing_SetTextStyleColor(OH_Drawing_TextStyle* style, uint32_t color);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param fontSize Font size to set.
+ * @param fontSize Font size, in physical pixels (px).
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSize);
 
 /**
- * @brief Sets the font weight for a text style. Currently, only the default system font supports font weight
- * adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the
- * weight is greater than or equal to semi-bold, it might result in a fake bold effect.
+ * @brief Sets the font weight. Before <!--RP1-->OpenHarmony 6.1<!--RP1End-->, only variable fonts in system fonts
+ * support font weight adjustment. Starting from <!--RP1-->OpenHarmony 6.1<!--RP1End-->, both system fonts and variable
+ * fonts in third-party registered fonts support font weight adjustment. For non-variable fonts, the font weight does
+ * not change when the weight value is set to less than semi-bold, and a pseudo-bold effect may be triggered when the
+ * weight value is set to semi-bold or greater.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
@@ -1633,7 +1638,8 @@ void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decor
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param color Color.
+ * @param color Color of the decoration line, in ARGB format. For example, 0xFFFF0000 indicates opaque red. If this API
+ *     is not called or color is set to 0, the decoration line color follows the text color.
  * @since 8
  * @version 1.0
  */
@@ -1671,7 +1677,8 @@ void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle* style,
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param fontStyle Font style. For details about the available options, see {@link OH_Drawing_FontStyle}.
+ * @param fontStyle Font style. The value **1** indicates italic, **2** indicates oblique, and **0** or other values
+ *     indicate non-italic. For details, see the {@link OH_Drawing_FontStyle} enum.
  * @since 8
  * @version 1.0
  */
@@ -1683,9 +1690,9 @@ void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param locale Pointer to the locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified
- *     Chinese, and **'zh-Hant'** indicates Traditional Chinese. If it is not specified, the default locale is **'zh-
- *     Hans'**.
+ * @param locale Language type. The data type is a pointer to char. The format follows the BCP 47 language tag standard.
+ *     For example, 'en' represents English, 'zh-Hans' represents Simplified Chinese, and 'zh-Hant' represents
+ *     Traditional Chinese. If not specified, the default locale is 'zh-Hans'.
  * @since 8
  * @version 1.0
  */
@@ -1885,12 +1892,14 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography(OH_Drawing_TypographyCreate* 
 void OH_Drawing_DestroyTypography(OH_Drawing_Typography* typography);
 
 /**
- * @brief Lays out the typography.
+ * @brief Performs layout calculation on the typography object and wraps text based on the specified maximum width.
+ * After this API is called, the properties of the typography object can be correctly obtained.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param maxWidth Maximum text width.
+ * @param maxWidth Maximum width of a single line in text typography, in physical pixels (px). The value must be
+ *     greater than 0.
  * @since 8
  * @version 1.0
  */
@@ -1904,8 +1913,12 @@ void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWi
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
  * @param canvas Pointer to the **OH_Drawing_Canvas** object, which is obtained from {@link OH_Drawing_CanvasCreate}.
- * @param positionX X coordinate.
- * @param positionY Y coordinate.
+ * @param positionX Horizontal coordinate of the starting position for text drawing (that is, the x-coordinate of the
+ *     upper left corner of the text area), in physical pixels (px). The upper left corner of the canvas serves as the
+ *     coordinate origin, with the positive direction to the right.
+ * @param positionY Vertical coordinate of the starting position for text drawing (that is, the y-coordinate of the
+ *     upper left corner of the text area), in physical pixels (px). The upper left corner of the canvas serves as the
+ *     coordinate origin, with the positive direction downward.
  * @since 8
  * @version 1.0
  */
@@ -1913,18 +1926,19 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
     double positionX, double positionY);
 
 /**
- * @brief Draws text along a path. To prevent text overlap caused by the text width exceeding the layout width, you are
- * advised to use {@link OH_Drawing_SetTypographyTextMaxLines} to limit the text to a single line.
+ * @brief Draws text along a specified path. This API must be called after {@link OH_Drawing_TypographyLayout} is
+ * called and takes effect. It is recommended to use {@link OH_Drawing_SetTypographyTextMaxLines} to set the maximum
+ * number of lines to 1 to avoid overlapping issues caused by text width exceeding the typography width.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
  * @param canvas Pointer to the **OH_Drawing_Canvas** object, which is obtained from {@link OH_Drawing_CanvasCreate}.
  * @param path Pointer to the **OH_Drawing_Path** object, which is obtained from {@link OH_Drawing_PathCreate}.
- * @param hOffset Horizontal offset of the text along the path (X axis). A positive number indicates that the text is
- *     moved forward, and a negative number indicates that the text is moved backward.
- * @param vOffset Vertical offset of the text along the path (Y axis). A positive number indicates that the text is
- *     moved downward, and a negative number indicates that the text is moved upward.
+ * @param hOffset Horizontal offset, in physical pixels (px). The horizontal offset of the text along the path (X-axis),
+ *     positive to the right and negative to the left.
+ * @param vOffset Vertical offset, in physical pixels (px). The vertical offset of the text along the path (Y-axis),
+ *     positive downward and negative upward.
  * @since 12
  * @version 1.0
  */
@@ -1941,7 +1955,7 @@ void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Draw
  *     contained. Pointer to array object {@link OH_Drawing_Array}.
  *     <br>Releases the memory through {@link OH_Drawing_ReleaseArrayBuffer}.
  * @param fitStrRangeArrayLen As an output parameter, it indicates the size of the contained string array.
- * @return Returns the OH_Drawing_RectSize object, indicating the actual rectangle of the paragraph text.
+ * @return Actual text size after layout, including width and height information.
  * @since 24
  */
 OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(OH_Drawing_Typography* typography,
@@ -1966,7 +1980,9 @@ OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_
  *     <br>Array of text lines, which is obtained through {@link OH_Drawing_TypographyGetTextLines}.
  *     <br>Array of string indexes, which is obtained through {@link OH_Drawing_GetRunStringIndices}.
  *     <br>Array of rectangles, which is obtained through {@link OH_Drawing_RectCreateArray}.
- *     <br>Array of font descriptors, which is obtained through {@link OH_Drawing_GetFontFullDescriptorsFromStream} or {
+ *     <br>Array of font descriptors, which is obtained through {@link OH_Drawing_GetFontFullDescriptorsFromStream} or
+ *     {@link OH_Drawing_GetFontFullDescriptorsFromPath}.
+ *     <br>Array of text ranges, which is obtained through {@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}.
  * @link OH_Drawing_GetFontFullDescriptorsFromPath}.
  *     <br>Array of text ranges, which is obtained through {@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}.
  * @return Returns the execution result.
@@ -1983,7 +1999,7 @@ OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Maximum width.
+ * @return Maximum width, in physical pixels (px).
  * @since 9
  * @version 1.1
  */
@@ -1996,7 +2012,7 @@ double OH_Drawing_TypographyGetMaxWidth(OH_Drawing_Typography* typography);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Height.
+ * @return Returns the height, in physical pixels (px).
  * @since 9
  * @version 1.1
  */
@@ -2010,7 +2026,7 @@ double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography* typography);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Width of the longest line.
+ * @return Longest line width, in physical pixels (px).
  * @since 9
  * @version 1.1
  */
@@ -2024,7 +2040,7 @@ double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography* typography);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Width of the longest line, including its indentation, in px.
+ * @return Returns the width of the longest line (including the current line indent), in physical pixels (px).
  * @since 13
  * @version 1.1
  */
@@ -2037,7 +2053,7 @@ double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography* typo
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Minimum intrinsic width.
+ * @return Minimum intrinsic width, in physical pixels (px).
  * @since 9
  * @version 1.1
  */
@@ -2050,31 +2066,33 @@ double OH_Drawing_TypographyGetMinIntrinsicWidth(OH_Drawing_Typography* typograp
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Maximum intrinsic width.
+ * @return Maximum intrinsic width, in physical pixels (px).
  * @since 9
  * @version 1.1
  */
 double OH_Drawing_TypographyGetMaxIntrinsicWidth(OH_Drawing_Typography* typography);
 
 /**
- * @brief Obtains the alphabetic baseline in a typography object.
+ * @brief Obtains the alphabetic baseline position of the typography object. This API must be called after
+ * {@link OH_Drawing_TypographyLayout} is called.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Alphabetic baseline.
+ * @return Alphabetic baseline, in physical pixels (px).
  * @since 9
  * @version 1.1
  */
 double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typography);
 
 /**
- * @brief Obtains the ideographic baseline in a typography object.
+ * @brief Obtains the ideographic baseline position of the typography object. This API must be called after
+ * {@link OH_Drawing_TypographyLayout} is called.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @return Ideographic baseline.
+ * @return Returns the ideographic baseline, in physical pixel px.
  * @since 9
  * @version 1.1
  */
@@ -2114,8 +2132,10 @@ bool OH_Drawing_TypographyDidExceedMaxLines(OH_Drawing_Typography* typography);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param start Start position.
- * @param end End position.
+ * @param start Start position. The value ranges from 0 to the text length, counted in UTF-16 code units. Must be less
+ *     than end; otherwise, an empty result is returned.
+ * @param end End position. The value ranges from 0 to the text length, counted in UTF-16 code units. If the value
+ *     exceeds the text length, the text length is used. If the value is 0, an empty result is returned.
  * @param heightStyle Height style. For details about the available options, see {@link OH_Drawing_RectHeightStyle}.
  * @param widthStyle Width style. For details about the available options, see {@link OH_Drawing_RectWidthStyle}.
  * @return Text box in the specified range. For details, see {@link OH_Drawing_TextBox}.
@@ -2145,7 +2165,9 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders(OH_Drawing_Typo
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox Pointer to the **OH_Drawing_TextBox** object, which is obtained from
  *     {@link OH_Drawing_TypographyGetRectsForRange} or {@link OH_Drawing_TypographyGetRectsForPlaceholders}.
- * @param index Index of the text box.
+ * @param index Index of the text box. The value ranges from 0 to the number of text boxes minus 1. The number of text
+ *     boxes can be obtained through {@link OH_Drawing_GetSizeOfTextBox}. 0.0 is returned when the index is out of
+ *     range.
  * @return Left position.
  * @since 11
  * @version 1.0
@@ -2158,7 +2180,9 @@ float OH_Drawing_GetLeftFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox Pointer to the **OH_Drawing_TextBox** object, which is obtained from
  *     {@link OH_Drawing_TypographyGetRectsForRange} or {@link OH_Drawing_TypographyGetRectsForPlaceholders}.
- * @param index Index of the text box.
+ * @param index Index of the text box. The value ranges from 0 to the number of text boxes minus 1. The number of text
+ *     boxes can be obtained through {@link OH_Drawing_GetSizeOfTextBox}. 0.0 is returned when the value is out of
+ *     range.
  * @return Right position.
  * @since 11
  * @version 1.0
@@ -2171,7 +2195,9 @@ float OH_Drawing_GetRightFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox Pointer to the **OH_Drawing_TextBox** object, which is obtained from
  *     {@link OH_Drawing_TypographyGetRectsForRange} or {@link OH_Drawing_TypographyGetRectsForPlaceholders}.
- * @param index Index of the text box.
+ * @param index Index of the text box. The value ranges from 0 to the number of text boxes minus 1. The number of text
+ *     boxes can be obtained through {@link OH_Drawing_GetSizeOfTextBox}. 0.0 is returned when the value is out of
+ *     range.
  * @return Top position.
  * @since 11
  * @version 1.0
@@ -2184,7 +2210,9 @@ float OH_Drawing_GetTopFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox Pointer to the **OH_Drawing_TextBox** object, which is obtained from
  *     {@link OH_Drawing_TypographyGetRectsForRange} or {@link OH_Drawing_TypographyGetRectsForPlaceholders}.
- * @param index Index of the text box.
+ * @param index Index of the text box. The value ranges from 0 to the number of text boxes minus 1. The number of text
+ *     boxes can be obtained through {@link OH_Drawing_GetSizeOfTextBox}. 0.0 is returned when the value is out of
+ *     range.
  * @return Bottom position.
  * @since 11
  * @version 1.0
@@ -2197,7 +2225,8 @@ float OH_Drawing_GetBottomFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox Pointer to the {@link OH_Drawing_TextBox} object, which is obtained from
  *     {@link OH_Drawing_TypographyGetRectsForRange} or {@link OH_Drawing_TypographyGetRectsForPlaceholders}.
- * @param index Index of the text box.
+ * @param index Index of the text box. The value ranges from 0 to the number of text boxes minus 1. The number of text
+ *     boxes can be obtained through {@link OH_Drawing_GetSizeOfTextBox}. If the index is out of range, 0 is returned.
  * @return Text direction.
  * @since 11
  * @version 1.0
@@ -2234,14 +2263,15 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
     double dx, double dy);
 
 /**
- * @brief Obtains the position and affinity of the glyph cluster to which the glyph at the given coordinates belongs.
- * The glyph cluster is a container that holds one or more glyphs.
+ * @brief Obtains the index position and affinity of the character cluster to which the text at the coordinate belongs.
+ * A character cluster refers to a group of one or more characters. When the {@link OH_Drawing_PositionAndAffinity} is
+ * no longer needed, use {@link OH_Drawing_DestroyPositionAndAffinity} to release the pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param dx X coordinate.
- * @param dy Y coordinate.
+ * @param dx X coordinate of the cursor, in px.
+ * @param dy Y coordinate of the cursor, in px.
  * @return {@link OH_Drawing_PositionAndAffinity} struct that holds the position and affinity of the glyph cluster.
  * @since 11
  * @version 1.0
@@ -2253,8 +2283,7 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
  * @brief Obtains the position attribute of an **OH_Drawing_PositionAndAffinity** object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param positionAndAffinity Pointer to the **OH_Drawing_PositionAndAffinity** object, which is obtained from
- *     {@link OH_Drawing_TypographyGetGlyphPositionAtCoordinate} or
+ * @param positionAndAffinity Pointer to the OH_Drawing_PositionAndAffinity object, obtained by
  *     {@link OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster}.
  * @return Position attribute.
  * @since 11
@@ -2267,8 +2296,7 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffin
  * whether the font is close to the front text or rear text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param positionAndAffinity Pointer to the **OH_Drawing_PositionAndAffinity** object, which is obtained from
- *     {@link OH_Drawing_TypographyGetGlyphPositionAtCoordinate} or
+ * @param positionAndAffinity Pointer to the OH_Drawing_PositionAndAffinity object, obtained by
  *     {@link OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster}.
  * @return Affinity attribute.
  * @since 11
@@ -2277,12 +2305,14 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffin
 int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity);
 
 /**
- * @brief Obtains the word boundary in a typography object.
+ * @brief Obtains the word boundary in the typography object. When the {@link OH_Drawing_Range} is no longer needed,
+ * use {@link OH_Drawing_ReleaseRangeBuffer} to release the pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param offset Index of the word.
+ * @param offset Word index. The value ranges from 0 to n-1, where n is the text length. If the value is out of range,
+ *     the default value is returned or an exception is thrown.
  * @return {@link OH_Drawing_Range} struct that holds the word boundary.
  * @since 11
  * @version 1.0
@@ -2358,7 +2388,8 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param letterSpacing Letter spacing.
+ * @param letterSpacing Letter spacing value. A positive value increases the spacing, a negative value decreases it.
+ *     The default value is **0**, in px.
  * @since 11
  * @version 1.0
  */
@@ -2370,7 +2401,8 @@ void OH_Drawing_SetTextStyleLetterSpacing(OH_Drawing_TextStyle* style, double le
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param wordSpacing Letter spacing.
+ * @param wordSpacing Spacing size. A positive value increases the spacing, and a negative value decreases the spacing.
+ *     The default value is **0**, in px.
  * @since 11
  * @version 1.0
  */
@@ -2459,8 +2491,9 @@ void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param lineNumber Target line.
- * @return Obtains the height of a given line.
+ * @param lineNumber Index of the line number to obtain, starting from 0, with a maximum value of
+ *     {@link OH_Drawing_TypographyGetLineCount} - 1. 0.0 is returned when the index is out of range.
+ * @return Line height of the specified line, in physical pixels (px).
  * @since 11
  * @version 1.0
  */
@@ -2473,8 +2506,9 @@ double OH_Drawing_TypographyGetLineHeight(OH_Drawing_Typography* typography, int
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param lineNumber Target line.
- * @return Obtains the width of a given line.
+ * @param lineNumber Index of the line to obtain, starting from 0. The maximum value is
+ *     {@link OH_Drawing_TypographyGetLineCount} - 1. Returns 0.0 when the index is out of range.
+ * @return Width of the specified line, in physical pixels (px).
  * @since 11
  * @version 1.0
  */
@@ -2500,7 +2534,9 @@ OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange(OH_Drawing_Typography* t
     int lineNumber, bool includeSpaces);
 
 /**
- * @brief Creates an **OH_Drawing_FontDescriptor** object to describe the detailed information about a system font.
+ * @brief Constructs a font descriptor object for describing detailed information about a system font. When the
+ * {@link OH_Drawing_FontDescriptor} is no longer needed, use {@link OH_Drawing_DestroyFontDescriptor} to release the
+ * pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Pointer to the created {@link OH_Drawing_FontDescriptor} object.
@@ -2521,7 +2557,8 @@ OH_Drawing_FontDescriptor* OH_Drawing_CreateFontDescriptor(void);
 void OH_Drawing_DestroyFontDescriptor(OH_Drawing_FontDescriptor* descriptor);
 
 /**
- * @brief Creates an **OH_Drawing_FontParser** object to parse a system font.
+ * @brief Constructs a font parser object for parsing system fonts. When the {@link OH_Drawing_FontParser} is no longer
+ * needed, use {@link OH_Drawing_DestroyFontParser} to release the pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Pointer to the created {@link OH_Drawing_FontParser} object.
@@ -2542,7 +2579,9 @@ OH_Drawing_FontParser* OH_Drawing_CreateFontParser(void);
 void OH_Drawing_DestroyFontParser(OH_Drawing_FontParser* parser);
 
 /**
- * @brief Obtains the list of system fonts. This function can be used only on 2-in-1 devices and phones.
+ * @brief Obtains the list of system font names. When the list is no longer needed, use
+ * {@link OH_Drawing_DestroySystemFontList} to release the memory. This API is supported only on phones and PC/2-in-1
+ * devices.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontParser Pointer to the {@link OH_Drawing_FontParser} object, which is obtained from
@@ -2566,14 +2605,16 @@ char** OH_Drawing_FontParserGetSystemFontList(OH_Drawing_FontParser* fontParser,
 void OH_Drawing_DestroySystemFontList(char** fontList, size_t num);
 
 /**
- * @brief Obtains the descriptor of a system font based on the font name.
+ * @brief Obtains the information about a system font based on the given system font name. This API is supported only
+ * on phones and PC/2-in-1 devices.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontParser Pointer to the {@link OH_Drawing_FontParser} object, which is obtained from
  *     {@link OH_Drawing_CreateFontParser}.
- * @param name Pointer to the system font name.
- * @return Font descriptor object. Release this pointer by calling {@link OH_Drawing_DestroyFontParser} when this
- *     object is no longer needed.
+ * @param name Name of the system font. For details about valid system font names, see
+ *     {@link OH_Drawing_FontParserGetSystemFontList}.
+ * @return Pointer to the system font descriptor object. When no longer needed, use
+ *     {@link OH_Drawing_DestroyFontDescriptor} to release the pointer.
  * @since 12
  * @version 1.0
  */
@@ -2617,15 +2658,15 @@ size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics* lineMetrics);
 void OH_Drawing_DestroyLineMetrics(OH_Drawing_LineMetrics* lineMetrics);
 
 /**
- * @brief Obtains the metrics of the given line in a typography object. For details, see the
- * {@link OH_Drawing_LineMetr} struct. This function must be called after {@link OH_Drawing_TypographyLayout} is called.
+ * @brief Obtains the position information of a specified line in the typography object. For details, see the
+ * {@link OH_Drawing_LineMetrics} struct. This API must be called after {@link OH_Drawing_TypographyLayout} is called.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param lineNumber Line No.
- * @param lineMetric Pointer to the {@link OH_Drawing_LineMetrics} object, which is obtained from
- *     {@link OH_Drawing_LineMetrics}.
+ * @param lineNumber Index of the line to obtain, starting from 0 and up to {@link OH_Drawing_TypographyGetLineCount} -
+ *     1. Returns false when the index is out of range.
+ * @param lineMetric Pointer to the line metrics object {@link OH_Drawing_LineMetrics}, used as an output parameter.
  * @return Whether the metrics of the given line is obtained. **true** means yes; **false** otherwise.
  * @since 12
  * @version 1.0
@@ -2651,20 +2692,25 @@ void OH_Drawing_SetTypographyTextEllipsis(OH_Drawing_TypographyStyle* style, con
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param locale Pointer to the locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified
- *     Chinese, and **'zh-Hant'** indicates Traditional Chinese.
+ * @param locale Locale. The data type is a pointer to char. The format follows the BCP 47 language tag standard, for
+ *     example, 'en' for English, 'zh-Hans' for Simplified Chinese, and 'zh-Hant' for Traditional Chinese. If not
+ *     specified, the default locale is 'zh-Hans'.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextLocale(OH_Drawing_TypographyStyle* style, const char* locale);
 
 /**
- * @brief Sets the text split ratio.
+ * @brief Sets the text division ratio, which is used to determine the cursor position within a glyph when tapping to
+ * locate a character.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param textSplitRatio Text split ratio.
+ * @param textSplitRatio Text split ratio. The value range is [0, 1], and the default value is 0.5. When mapping click
+ *     coordinates to character positions, this is the threshold within a glyph for determining whether the position
+ *     belongs to the current character or the next character. A larger value favors the current character, and a
+ *     smaller value favors the next character.
  * @since 12
  * @version 1.0
  */
@@ -2703,7 +2749,8 @@ int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @return Returns **true** if that the maximum number of lines is limited; returns **false** otherwise.
+ * @return Whether the text has a maximum line limit. The value **true** means there is no maximum line limit, and **
+ *     false** means there is a maximum line limit.
  * @since 12
  * @version 1.0
  */
@@ -2758,10 +2805,12 @@ bool OH_Drawing_TextStyleGetFontMetrics(OH_Drawing_Typography* typography,
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param lineNumber Row No.
+ * @param lineNumber Index of the line number to obtain, starting from 0 and up to
+ *     {@link OH_Drawing_TypographyGetLineCount} - 1. Returns false when out of range.
  * @param oneLine Whether to obtain the metrics of the entire line. The value **true** means to obtain the metrics of
  *     the entire line, and **false** means to obtain the metrics of the first character in the line.
- * @param includeWhitespace Whether the text width includes the whitespace. **true** means yes; **false** otherwise.
+ * @param includeWhitespace Whether the text width includes whitespace. The value true means whitespace is included,
+ *     and false means whitespace is not included.
  * @param drawingLineMetrics Pointer to the {@link OH_Drawing_LineMetrics} object, which is obtained from
  *     {@link OH_Drawing_LineMetrics}.
  * @return Returns **true** if the metrics of the given line or the metrics of the first character in the given line is
@@ -2773,9 +2822,11 @@ bool OH_Drawing_TypographyGetLineInfo(OH_Drawing_Typography* typography, int lin
     bool includeWhitespace, OH_Drawing_LineMetrics* drawingLineMetrics);
 
 /**
- * @brief Sets the default font weight for a typography style. Currently, only the default system font supports font
- * weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness.
- * If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.
+ * @brief Sets the default font weight of the typography style. Before <!--RP1-->OpenHarmony 6.1<!--RP1End-->, only
+ * variable fonts in system fonts support font weight adjustment. Starting from <!--RP1-->OpenHarmony 6.1<!--RP1End-->,
+ * both system fonts and variable fonts in third-party registered fonts support font weight adjustment. For non-
+ * variable fonts, the font weight does not change when the weight value is set to less than semi-bold, and a pseudo-
+ * bold effect may be triggered when the weight value is set to semi-bold or greater.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
@@ -2791,9 +2842,10 @@ void OH_Drawing_SetTypographyTextFontWeight(OH_Drawing_TypographyStyle* style, i
  * @brief Sets the default font style for a typography style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param fontStyle Font style. For details about the available options, see {@link OH_Drawing_FontStyle}.
+ * @param fontStyle Font style. The value **1** indicates italic, and **0** or other values indicate non-italic. For
+ *     details about the available options, see {@link OH_Drawing_FontStyle}.
  * @since 12
  * @version 1.0
  */
@@ -2815,21 +2867,22 @@ void OH_Drawing_SetTypographyTextFontFamily(OH_Drawing_TypographyStyle* style, c
  * @brief Sets the font size for text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style {@link OH_Drawing_TypographyStyle}, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param fontSize Font size, which must be greater than 0.
+ * @param fontSize Font size (greater than 0), in px.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextFontSize(OH_Drawing_TypographyStyle* style, double fontSize);
 
 /**
- * @brief Sets the font height for text.
+ * @brief Sets the font height for text typography as a multiple of the current font size.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param fontHeight Font height.
+ * @param fontHeight Font height, which is a multiple of the current font size. If the value is less than 0, it is
+ *     treated as 0.
  * @since 12
  * @version 1.0
  */
@@ -2841,7 +2894,7 @@ void OH_Drawing_SetTypographyTextFontHeight(OH_Drawing_TypographyStyle* style, d
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param halfLeading Whether to enable half leading. The value **true** means to enable half lading, and **false**
+ * @param halfLeading Whether to enable half leading. The value **true** means to enable half leading, and **false**
  *     means the opposite.
  * @since 12
  * @version 1.0
@@ -2852,7 +2905,7 @@ void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, 
  * @brief Sets whether to enable the text line style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param useLineStyle Whether to enable the line style. The value **true** means to enable the line style, and **false*
  *     * means the opposite.
@@ -2862,9 +2915,11 @@ void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, 
 void OH_Drawing_SetTypographyTextUseLineStyle(OH_Drawing_TypographyStyle* style, bool useLineStyle);
 
 /**
- * @brief Sets the text font weight of the strut style in a typography style. Currently, only the default system font
- * supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in
- * stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.
+ * @brief Sets the font weight of the text style in the strut style of the typography style. Before <!--RP1-->
+ * OpenHarmony 6.1<!--RP1End-->, only variable fonts in system fonts support font weight adjustment. Starting from <!--
+ * RP1-->OpenHarmony 6.1<!--RP1End-->, both system fonts and variable fonts in third-party registered fonts support
+ * font weight adjustment. For non-variable fonts, the font weight does not change when the weight value is set to less
+ * than semi-bold, and a pseudo-bold effect may be triggered when the weight value is set to semi-bold or greater.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
@@ -2879,7 +2934,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle*
  * @brief Sets the font style of the strut style in a typography style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param fontStyle Font style. For details about the available options, see {@link OH_Drawing_FontStyle}.
  * @since 12
@@ -2888,13 +2943,13 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle*
 void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle);
 
 /**
- * @brief Sets the font families for a text line style.
+ * @brief Sets the font family of the line style for text typography.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to a typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param fontFamiliesNumber Number of font families.
- * @param fontFamilies Pointer to the font families.
+ * @param fontFamiliesNumber Number of font family names. Negative values are not allowed.
+ * @param fontFamilies Pointer to an array of font family types.
  * @since 12
  * @version 1.0
  */
@@ -2905,21 +2960,21 @@ void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyl
  * @brief Sets the font size for a text line style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param lineStyleFontSize Font size, which must be greater than 0.
+ * @param lineStyleFontSize Font size (greater than 0), in physical pixels (px).
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextLineStyleFontSize(OH_Drawing_TypographyStyle* style, double lineStyleFontSize);
 
 /**
- * @brief Sets the font height for a text line style.
+ * @brief Sets the font height of the line style for text typography as a multiple of the current font size.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param lineStyleFontHeight Font height.
+ * @param lineStyleFontHeight Font height. The value must be greater than 0.
  * @since 12
  * @version 1.0
  */
@@ -2929,7 +2984,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontHeight(OH_Drawing_TypographyStyle*
  * @brief Sets whether to enable half leading for a text line style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param lineStyleHalfLeading Whether the half leading takes effect. **true** means yes; **false** otherwise.
  * @since 12
@@ -2941,9 +2996,10 @@ void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle
  * @brief Sets the spacing scale factor for a text line style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param spacingScale Spacing ratio.
+ * @param spacingScale Line style spacing scale for scaling line spacing. A value greater than 1.0 increases the line
+ *     spacing, a value less than 1.0 decreases it, and 1.0 indicates the original spacing.
  * @since 12
  * @version 1.0
  */
@@ -2953,7 +3009,7 @@ void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyl
  * @brief Sets whether to enable the text line style only.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param lineStyleOnly Whether to enable the line style only. **true** means yes; **false** otherwise.
  * @since 12
@@ -2962,21 +3018,21 @@ void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyl
 void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style, bool lineStyleOnly);
 
 /**
- * @brief Creates an **OH_Drawing_TextShadow** object. Release this pointer by calling
- * {@link OH_Drawing_DestroyTextShadow} when this object is no longer needed.
+ * @brief Creates a pointer to a text shadow object. When the {@link OH_Drawing_TextShadow} is no longer needed, use
+ * {@link OH_Drawing_DestroyTextShadow} to release the pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Pointer to the **OH_Drawing_TextShadow** object created.
+ * @return Pointer to the created text shadow object.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void);
 
 /**
- * @brief Destroys an **OH_Drawing_TextShadow** object and reclaims the memory occupied by the object.
+ * @brief Releases the memory occupied by the text shadow object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shadow Pointer to the {@link OH_Drawing_TextShadow} object, which is obtained from
+ * @param shadow Pointer to the text shadow object {@link OH_Drawing_TextShadow}, obtained by
  *     {@link OH_Drawing_CreateTextShadow}.
  * @since 12
  * @version 1.0
@@ -2984,37 +3040,37 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void);
 void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow);
 
 /**
- * @brief Obtains a text shadow container. Release this pointer by calling {@link OH_Drawing_DestroyTextShadows} when
- * this object is no longer needed.
+ * @brief Obtains the text shadow container. When the {@link OH_Drawing_TextShadow} is no longer needed, use
+ * {@link OH_Drawing_DestroyTextShadows} to release the pointer to the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @return Pointer to the {@link OH_Drawing_TextShadow} object.
+ * @return Pointer to the text shadow container {@link OH_Drawing_TextShadow}.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style);
 
 /**
- * @brief Obtains the size of a text shadow container.
+ * @brief Obtains the size of the text shadow container.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @return Size of a text shadow container.
+ * @return Size of the text shadow container.
  * @since 12
  * @version 1.0
  */
 int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style);
 
 /**
- * @brief Adds a shadow to a text shadow container.
+ * @brief Adds a text shadow element to the text shadow container.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param shadow Pointer to the {@link OH_Drawing_TextShadow} object, which is obtained from
+ * @param shadow Pointer to the text shadow object {@link OH_Drawing_TextShadow}, created by
  *     {@link OH_Drawing_CreateTextShadow}.
  * @since 12
  * @version 1.0
@@ -3022,7 +3078,7 @@ int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style);
 void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow);
 
 /**
- * @brief Clears all shadows in a text shadow container.
+ * @brief Clears all elements in the text shadow container.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
@@ -3033,13 +3089,14 @@ void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing
 void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style);
 
 /**
- * @brief Obtains a shadow with a given index in a text shadow container.
+ * @brief Obtains the element at the specified index in the text shadow container.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param index Index.
- * @return Pointer to the {@link OH_Drawing_TextShadow} object.
+ * @param index Subscript index, ranging from 0 to the number of shadows minus 1. The number of shadows can be obtained
+ *     via {@link OH_Drawing_TextStyleGetShadowCount}.
+ * @return Pointer to the text shadow object {@link OH_Drawing_TextShadow}.
  * @since 12
  * @version 1.0
  */
@@ -3066,18 +3123,19 @@ void OH_Drawing_TypographySetIndents(OH_Drawing_Typography* typography, int inde
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
- * @param index Index.
- * @return Indents.
+ * @param index Subscript index of the indentation value. Returns 0.0 if index is less than 0. Returns the last
+ *     indentation value if index is greater than or equal to the number of indentation values.
+ * @return Value of the element corresponding to the index.
  * @since 12
  * @version 1.0
  */
 float OH_Drawing_TypographyGetIndentsWithIndex(OH_Drawing_Typography* typography, int index);
 
 /**
- * @brief Reclaims the memory occupied by the vector consisting of the **OH_Drawing_TextShadow** objects.
+ * @brief Releases the memory occupied by the vector composed of **OH_Drawing_TextShadow** objects.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shadow Pointer to the {@link OH_Drawing_TextShadow} object, which is obtained from
+ * @param shadow Pointer to the text shadow object {@link OH_Drawing_TextShadow}, obtained by
  *     {@link OH_Drawing_CreateTextShadow}.
  * @since 12
  * @version 1.0
@@ -3131,11 +3189,12 @@ void OH_Drawing_TextStyleSetBackgroundRect(OH_Drawing_TextStyle* style,
     const OH_Drawing_RectStyle_Info* rectStyleInfo, int styleId);
 
 /**
- * @brief Add symbols in creating typography.
+ * @brief Adds the symbol to use in the typography creation process.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param handler Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
- * @param symbol Indicates the symbol to set.
+ * @param handler Pointer to the {@link OH_Drawing_TypographyCreate} object, which is obtained from
+ *     {@link OH_Drawing_CreateTypographyHandler}.
+ * @param symbol Symbol value. For details, see the Unicode value in the {@link HarmonyOS Symbol library}.
  * @since 12
  * @version 1.0
  */
@@ -3238,7 +3297,8 @@ void OH_Drawing_TextStyleClearFontFeature(OH_Drawing_TextStyle* style);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param lineShift Baseline drift of the text style.
+ * @param lineShift Baseline offset of the text. A positive value shifts upward, and a negative value shifts downward,
+ *     in px.
  * @since 12
  * @version 1.0
  */
@@ -3317,13 +3377,13 @@ OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle(OH_Drawing_TextStyle* styl
 OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline(OH_Drawing_TextStyle* style);
 
 /**
- * @brief Obtains the font families of a text style.
+ * @brief Obtains the font family name list.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
  * @param num Pointer to the number of font families.
- * @return Font families.
+ * @return Pointer to the obtained font family name list.
  * @since 12
  * @version 1.0
  */
@@ -3428,15 +3488,14 @@ void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style
 const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style);
 
 /**
- * @brief Sets whether to use superscript or subscript in text layout. If this API is not called, the feature is
- * disabled by default.
+ * @brief Sets whether to enable superscript or subscript for text typography. If this API is not called, superscript
+ * and subscript are disabled by default.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @param textBadgeType Sets whether to use superscript or subscript in text layout. **TEXT_SUPERSCRIPT** indicates
- *     that superscript is enabled, and **TEXT_SUBSCRIPT** indicates that subscript is enabled. The default value is **
- *     TEXT_BADGE_NONE**, indicating that neither superscript nor subscript is enabled.
+ * @param textBadgeType Whether to enable superscript or subscript in text typography. TEXT_SUPERSCRIPT enables
+ *     superscript, TEXT_SUBSCRIPT enables subscript, and the default value TEXT_BADGE_NONE disables both.
  * @since 20
  */
 void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType);
@@ -3460,7 +3519,7 @@ void OH_Drawing_SetTextStyleFontStyleStruct(OH_Drawing_TextStyle* drawingTextSty
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingTextStyle Pointer to the {@link OH_Drawing_TextStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
- * @return Font style, including the font weight, width, and slant.
+ * @return Returns the obtained font style object.
  * @since 12
  * @version 1.0
  */
@@ -3485,7 +3544,7 @@ void OH_Drawing_SetTypographyStyleFontStyleStruct(OH_Drawing_TypographyStyle* dr
  * typography style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingStyle Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param drawingStyle Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @return Font style, including the font weight, width, and slant.
  * @since 12
@@ -3512,7 +3571,7 @@ bool OH_Drawing_TextStyleIsEqual(const OH_Drawing_TextStyle* style, const OH_Dra
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Pointer to the first text style.
  * @param comparedStyle Pointer to the first text style.
- * @return Returns **true** if the two are equal; returns **false** otherwise.
+ * @return true if the font style attributes of the two text style objects are equal; false otherwise.
  * @since 12
  * @version 1.0
  */
@@ -3572,7 +3631,7 @@ OH_Drawing_TextAlign OH_Drawing_TypographyStyleGetEffectiveAlignment(OH_Drawing_
  * readability and appearance of small-sized text when rendering it.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @return Whether to enable font hinting for a typography style. **true**: enabled; **false**: disabled.
  * @since 12
@@ -3607,7 +3666,7 @@ void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontC
  * @brief Sets the strut style for a typography style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param strutstyle Pointer to the {@link OH_Drawing_StrutStyle} object, which is obtained from
  *     {@link OH_Drawing_TypographyStyleGetStrutStyle}.
@@ -3631,7 +3690,7 @@ void OH_Drawing_TypographyStyleDestroyStrutStyle(OH_Drawing_StrutStyle* strutsty
  * @brief Obtains the strut style of a typography style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @return Pointer to the {@link OH_Drawing_StrutStyle} object.
  * @since 12
@@ -3655,7 +3714,7 @@ bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_
  * and appearance of small-sized text when rendering it.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param hintsEnabled Whether to enable font hinting. **true**: enabled; **false**: disabled.
  * @since 12
@@ -3724,7 +3783,7 @@ int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typ
  *     {@link OH_Drawing_CreateTypography}.
  * @param from Reserved field, which is not used.
  * @param to Reserved field, which is not used.
- * @param fontSize New font size.
+ * @param fontSize Updated font size. The value must be greater than 0, in px.
  * @since 12
  * @version 1.0
  */
@@ -3854,10 +3913,10 @@ OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle(OH_Drawing_T
 char** OH_Drawing_TypographyTextlineStyleGetFontFamilies(OH_Drawing_TypographyStyle* style, size_t* num);
 
 /**
- * @brief Reclaims the memory occupied by the font families.
+ * @brief Releases the memory occupied by the font family name list.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontFamilies Double pointer to the font families.
+ * @param fontFamilies Pointer to the font families.
  * @param fontFamiliesNum Number of font families.
  * @since 12
  * @version 1.0
@@ -3987,10 +4046,10 @@ size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style);
 char* OH_Drawing_TypographyGetTextEllipsis(OH_Drawing_TypographyStyle* style);
 
 /**
- * @brief Reclaims the memory occupied by the text ellipsis names.
+ * @brief Releases the memory occupied by the ellipsis text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param ellipsis Pointer to the text ellipsis names.
+ * @param ellipsis Pointer to the ellipsis text.
  * @since 12
  * @version 1.0
  */
@@ -4020,16 +4079,15 @@ bool OH_Drawing_TypographyStyleEquals(OH_Drawing_TypographyStyle* from, OH_Drawi
 void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox);
 
 /**
- * @brief Sets a text shadow.
+ * @brief Sets the parameters of the text shadow object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shadow Pointer to the {@link OH_Drawing_TextShadow} object, which is obtained from
+ * @param shadow Pointer to the text shadow object {@link OH_Drawing_TextShadow}, obtained by
  *     {@link OH_Drawing_CreateTextShadow}.
- * @param color Color of the text shadow. For example, if the input parameter is 0xAABBCCDD, AA indicates opacity, BB
- *     indicates the value of the red component, CC indicates the value of the green component, and DD indicates the
- *     value of the blue component.
- * @param offset Pointer to the {@link OH_Drawing_Point} object, which is the offset of the text shadow relative to the
- *     text.
+ * @param color Color of the text shadow. For example, if the input parameter is 0xAABBCCDD, AA represents the alpha
+ *     value, BB represents the red component, CC represents the green component, and DD represents the blue component.
+ * @param offset Pointer to the coordinate point object {@link OH_Drawing_Point}, which indicates the offset of the
+ *     text shadow relative to the current text.
  * @param blurRadius Blur radius. The value is a floating point number and has no unit. The value **0.0** means that
  *     there is no blur effect.
  * @since 12
@@ -4091,7 +4149,7 @@ float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
  * the tab does not take effect. When the tab location is less than 1.0, the tab is replaced with a space.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object.
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}.
  * @param tab Pointer to an **OH_Drawing_TextTab** object.
  * @since 18
  * @version 1.0
@@ -4113,9 +4171,10 @@ size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
  * @brief Sets whether to include the trailing spaces in alignment calculations during text typography.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
- * @param trailingSpaceOptimized Boolean value indicating whether to optimize whitespace at the end of each line
- *     for text typography to set.
+ * @param style Pointer to the typography style object {@link OH_Drawing_TypographyStyle}.
+ * @param trailingSpaceOptimized Whether trailing spaces participate in alignment calculation during text typography.
+ *     The value true means trailing spaces do not participate in calculation, and false means they do. The default
+ *     value is false. It is recommended to set this parameter to true for center-aligned text.
  * @since 20
  * @version 1.0
  */
@@ -4138,16 +4197,16 @@ void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* han
     size_t byteLength, OH_Drawing_TextEncoding textEncodingType);
 
 /**
- * @brief Sets whether to enable automatic spacing during text typography.
- * <br>This feature is disabled by default. If enabled, automatic spacing applies between CJK (Chinese, Japanese, and
- * Korean) and Western characters (Latin, Cyrillic, and Greek), between CJK and digits, between CJK and copyright
- * symbols, between copyright symbols and digits, and between copyright symbols and Western characters.
+ * @brief Sets whether to enable auto spacing for text typography.
+ * <br>Auto spacing is disabled by default. Once enabled, the spacing between CJK (Chinese, Japanese, and Korean
+ * characters) and Western characters (Latin, Cyrillic, and Greek letters), CJK and digits, CJK and copyright symbols,
+ * copyright symbols and digits, and copyright symbols and Western characters is automatically adjusted.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
+ * @param style Pointer to an {@link OH_Drawing_TypographyStyle} object, obtained by
  *     {@link OH_Drawing_CreateTypographyStyle}.
- * @param enableAutoSpace Sets whether to enable automatic spacing during text typography. **true** means enabled; **
- *     false** (default) means disabled.
+ * @param enableAutoSpace Whether to enable automatic spacing in text typography. The value `true` means to enable
+ *     automatic spacing, and `false` means the opposite. The default value is `false`.
  * @since 20
  */
 void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle* style, bool enableAutoSpace);

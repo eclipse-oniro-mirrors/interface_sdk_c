@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License"),
@@ -15,19 +14,6 @@
  */
 
 /**
- * @file drawing_text_global.h
- *
- * @brief This file declares the functions related to global text information, for example, setting the high contrast
- * mode for text rendering.
- *
- * @kit ArkGraphics2D
- * @library libnative_drawing.so
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 20
- * @version 1.0
- */
-
-/**
  * @addtogroup Drawing
  * @{
  *
@@ -35,6 +21,18 @@
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  *
+ * @since 20
+ * @version 1.0
+ */
+
+/**
+ * @file drawing_text_global.h
+ *
+ * @brief 提供文本全局信息的相关接口，如设置文本渲染高对比度模式、未定义字型的呈现方式等。
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 20
  * @version 1.0
  */
@@ -53,18 +51,16 @@ extern "C" {
  * @version 1.0
  */
 typedef enum {
-    /**
+/**
      * 跟随系统设置中的高对比度文字配置。
      */
     TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST,
-
     /**
-     * 关闭APP的文本渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。
+     * 关闭应用的文本渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。
      */
     TEXT_APP_DISABLE_HIGH_CONTRAST,
-
     /**
-     * 开启APP的文本渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。
+     * 开启应用的文本渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。
      */
     TEXT_APP_ENABLE_HIGH_CONTRAST
 } OH_Drawing_TextHighContrast;
@@ -76,12 +72,11 @@ typedef enum {
  * @since 20
  */
 typedef enum {
-    /**
+/**
      * 使用字体文件中定义的默认字形（可能是空框、空白或自定义符号等）。
      */
     TEXT_NO_GLYPH_USE_DEFAULT = 0,
-
-    /**
+/**
      * 始终使用豆腐块显示缺失的字形。
      */
     TEXT_NO_GLYPH_USE_TOFU = 1
@@ -89,6 +84,9 @@ typedef enum {
 
 /**
  * @brief 设置文本渲染高对比度模式。
+ * <br>该接口设置后整个进程都会生效，进程内所有页面共用相同模式。
+ * <br>可通过调用此接口设置文本渲染高对比度模式，也可通过系统设置界面中高对比度文字配置开关进行开启/关闭。使用此接口设置文本渲染高对比度的优先级高于系统设置。
+ * <br>该接口针对应用的文字自绘制场景不生效。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param action 表示文本渲染高对比度模式，为{@link OH_Drawing_TextHighContrast}类型的枚举值。
@@ -97,7 +95,7 @@ typedef enum {
 void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action);
 
 /**
- * @brief 控制未定义字形的呈现方式，影响此后渲染的所有文本。
+ * @brief 设置未定义字形的呈现方式，调用此接口后影响本进程后续渲染的所有文本。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param undefinedGlyphDisplay 表示显示未定义字形的方式，为{@link OH_Drawing_TextUndefinedGlyphDisplay}类型的枚举值。
