@@ -164,9 +164,9 @@ typedef bool (*OH_AudioAccessoryInputStream_GetLatencyCallback)(
  *     frames captured since the most recent successful start of this input
  *     stream.
  * @param timestamp [out] Returns the capture timestamp corresponding to the frame
- *     position reported through {@p framePosition}. The timestamp must use the
+ *     position reported through framePosition. The timestamp must use the
  *     {@link CLOCK_MONOTONIC} time base and is expressed in nanoseconds. It represents
- *     the monotonic clock time at which the frame identified by {@p framePosition} was captured.
+ *     the monotonic clock time at which the frame identified by framePosition was captured.
  * @return <ul>
  *         <li>`true` if the frame position is obtained successfully.</li>
  *         <li>`false` otherwise.</li>
