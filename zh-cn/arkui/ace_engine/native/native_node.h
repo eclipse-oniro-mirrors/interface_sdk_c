@@ -8920,7 +8920,7 @@ typedef enum {
      * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
     /**
@@ -8937,7 +8937,7 @@ typedef enum {
      * <li>.value[0].f32 滚动条宽度，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_BAR_WIDTH,
     /**
@@ -8954,7 +8954,7 @@ typedef enum {
      * <li>.data[0].u32 滚动条颜色，0xargb类型。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_BAR_COLOR,
     /**
@@ -8971,7 +8971,7 @@ typedef enum {
      * <li>.value[0].i32 滚动方向，数据类型{@link ArkUI_ScrollDirection}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_SCROLL_DIRECTION,
     /**
@@ -8993,7 +8993,7 @@ typedef enum {
      * <li>.value[2].i32 边缘效果生效的方向，参数类型{@link ArkUI_EffectEdge}。该参数从API version 18开始支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_EDGE_EFFECT,
     /**
@@ -9011,7 +9011,7 @@ typedef enum {
      * <li>.value[0].i32 是否支持滚动手势。1：支持滚动手势，0：不支持滚动手势。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_ENABLE_SCROLL_INTERACTION,
     /**
@@ -9029,7 +9029,7 @@ typedef enum {
      * <li>.value[0].f32 摩擦系数。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_FRICTION,
     /**
@@ -9057,7 +9057,7 @@ typedef enum {
      * <li>.value[3...].f32 Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量，单位：vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_SNAP,
 
@@ -9077,7 +9077,7 @@ typedef enum {
      * <li>.value[1].i32 可滚动组件往起始端滚动时的嵌套滚动，参数类型{@link ArkUI_ScrollNestedMode}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_NESTED_SCROLL,
     /**
@@ -9101,7 +9101,7 @@ typedef enum {
      * <li>.value[1].f32 垂直滑动偏移，单位为vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_OFFSET,
 
@@ -9119,7 +9119,7 @@ typedef enum {
      * <li>.value[0].i32 容器是否位于边缘。-1表示未处于边缘；处于边缘状态时，返回值为{@link ArkUI_ScrollEdge}枚举值，表示具体边缘位置。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_EDGE,
 
@@ -9137,7 +9137,7 @@ typedef enum {
      * <li>.value[0].i32 是否支持滑动翻页。0：不支持滑动翻页，1：支持滑动翻页。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_ENABLE_PAGING,
 
@@ -9151,7 +9151,7 @@ typedef enum {
      * <li>.value[1]?.i32 是否开启翻页动画效果。1有动画，0无动画。默认值：0。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_PAGE,
 
@@ -9165,7 +9165,7 @@ typedef enum {
      * <li>.value[1].f32 垂直方向滚动距离，单位：vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_SCROLL_BY,
 
@@ -9178,8 +9178,8 @@ typedef enum {
      * <li>.value[0].f32 惯性滚动的初始速度，单位：vp/s。值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 13
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_FLING,
 
@@ -9199,8 +9199,8 @@ typedef enum {
      * <li>.value[1].f32 边缘渐隐效果长度。单位：vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 14
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_FADING_EDGE,
 
@@ -9215,8 +9215,8 @@ typedef enum {
      * <li>NODE_MARGIN或NODE_BORDER_WIDTH在单位vp转换成单位px时会进行像素取整，返回值根据取整后的值计算。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 14
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_SIZE,
 
@@ -9234,8 +9234,8 @@ typedef enum {
      * <li>.value[0].f32 内容起始端偏移量，单位vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_CONTENT_START_OFFSET,
 
@@ -9253,8 +9253,8 @@ typedef enum {
      * <li>.value[0].f32 内容末尾端偏移量，单位vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_CONTENT_END_OFFSET,
 
@@ -9272,8 +9272,8 @@ typedef enum {
      * <li>.value[0].f32 Fling动效开始时的最大初始速度，单位：vp/s。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 18
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_FLING_SPEED_LIMIT = 1002019,
 
@@ -9293,8 +9293,8 @@ typedef enum {
      * <li>.value[0].i32 内容裁剪模式，参数类型{@link ArkUI_ContentClipMode}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 18
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_CLIP_CONTENT = 1002020,
 
@@ -9312,8 +9312,8 @@ typedef enum {
      * <li>.value[0].i32 是否回到顶部。1表示回到顶部，0表示保持当前位置不变。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
@@ -9333,8 +9333,8 @@ typedef enum {
      * <li>.value[1].f32 滚动条末尾边距，单位：vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BAR_MARGIN = 1002022,
 
@@ -9352,8 +9352,8 @@ typedef enum {
      * <li>.value[0].f32 获取内容最大缩放比例。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_MAX_ZOOM_SCALE = 1002023,
 
@@ -9372,8 +9372,8 @@ typedef enum {
      * <li>.value[0].f32 获取内容最小缩放比例。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_MIN_ZOOM_SCALE = 1002024,
 
@@ -9391,8 +9391,8 @@ typedef enum {
      * <li>.value[0].f32 获取内容缩放比例。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ZOOM_SCALE = 1002025,
 
@@ -9410,8 +9410,8 @@ typedef enum {
      * <li>.value[0].i32 是否支持过缩放回弹效果，0：不支持，1：支持。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
@@ -9429,8 +9429,8 @@ typedef enum {
      * <li>.value[0].i32 是否支持鼠标左键按下拖动滚动，0：不支持鼠标左键按下拖动滚动，1：支持鼠标左键按下拖动滚动。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
 
@@ -9449,8 +9449,8 @@ typedef enum {
      * <li>.value[0].i32 是否自动调整边距，0：自动调整边距，1：不自动调整边距。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_AUTO_ADJUST_MARGIN = 1002028,
 
@@ -9468,8 +9468,8 @@ typedef enum {
      * <li>.value[0].f32 滚动条滑轨高度，单位：vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BAR_HEIGHT = 1002029,
 
@@ -9487,7 +9487,7 @@ typedef enum {
      * <li>.value[0].i32 List组件排列方向，数据类型{@link ArkUI_Axis}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
     /**
@@ -9505,7 +9505,7 @@ typedef enum {
      * <li>.value[0].i32 配合ListItemGroup组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。数据类型{@link ArkUI_StickyStyle}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_STICKY,
     /**
@@ -9522,7 +9522,7 @@ typedef enum {
      * <li>.value[0].f32 子组件主轴方向的间隔。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_SPACE,
     /**
@@ -9539,7 +9539,7 @@ typedef enum {
      * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_NODE_ADAPTER,
 
@@ -9561,7 +9561,7 @@ typedef enum {
      * <li>.value[2].i32 List最大缓存数量。该参数从API version 22开始支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_CACHED_COUNT,
 
@@ -9578,7 +9578,7 @@ typedef enum {
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。该参数从API version 15开始支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_SCROLL_TO_INDEX,
     /**
@@ -9596,7 +9596,7 @@ typedef enum {
      * <li>.value[0].i32 交叉轴方向的布局方式。参数类型{@link ArkUI_ListItemAlign}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_ALIGN_LIST_ITEM,
 
@@ -9614,7 +9614,7 @@ typedef enum {
      * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_CHILDREN_MAIN_SIZE = 1003007,
 
@@ -9632,7 +9632,7 @@ typedef enum {
      * <li>.value[0].i32 当前List初次加载时视口起始位置显示的item的索引值。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_INITIAL_INDEX = 1003008,
     /**
@@ -9655,7 +9655,7 @@ typedef enum {
      * <li>.value[3].f32 分割线距离列表侧边结束端的距离，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_DIVIDER = 1003009,
 
@@ -9672,8 +9672,8 @@ typedef enum {
      * </li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_TO_INDEX_IN_GROUP = 1003010,
 
@@ -9698,8 +9698,8 @@ typedef enum {
      * <li>.value[3].f32 列间距或行间距，单位vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_LANES = 1003011,
 
@@ -9718,8 +9718,8 @@ typedef enum {
      * <li>.value[0].i32 List组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_SNAP_ALIGN = 1003012,
 
@@ -9737,8 +9737,8 @@ typedef enum {
      * <li>.value[0].i32 List显示区域外插入或删除数据是否保持可见内容位置不变。0表示不保持可见内容位置，1表示保持可见内容位置，默认值为0。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION = 1003013,
 
@@ -9756,8 +9756,8 @@ typedef enum {
      * <li>.value[0].i32 设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局，默认值为0。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 19
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_STACK_FROM_END = 1003014,
     
@@ -9775,8 +9775,8 @@ typedef enum {
      * <li>.value[0].i32 List组件走焦换行模式，参数类型{@link ArkUI_FocusWrapMode}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_FOCUS_WRAP_MODE = 1003015,
 
@@ -9794,8 +9794,8 @@ typedef enum {
      * <li>.value[0].i32 List组件是否同步加载子节点。0：分帧加载，1：同步加载。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SYNC_LOAD = 1003016,
 
@@ -9814,8 +9814,8 @@ typedef enum {
      * <li>.value[0].i32 List组件限位滚动动画速度，数据类型{@link ArkUI_ScrollSnapAnimationSpeed}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_SNAP_ANIMATION_SPEED = 1003017,
 
@@ -9835,8 +9835,8 @@ typedef enum {
      * <li>.value[1].f32 列间距，单位vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
@@ -9854,8 +9854,8 @@ typedef enum {
      * <li>.value[0].i32 List组件是否支持空分支。0：不支持，1：支持。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
 
@@ -9873,8 +9873,8 @@ typedef enum {
      * <li>.value[0].i32 系统返回键生效时是否收起ListItem的划出组件。0：不收起，1：收起。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
@@ -9892,8 +9892,8 @@ typedef enum {
      * <li>.value[0].i32 List组件是否启用编辑模式。0：未启用，1：已启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ENABLE_EDIT_MODE = 1003021,
 
@@ -9913,8 +9913,8 @@ typedef enum {
      * <li>.value[1].i32 List组件是否启用双指滑动多选。0：未启用，1：已启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_EDIT_MODE_OPTIONS = 1003022,
 
@@ -10478,7 +10478,7 @@ typedef enum {
      * <li>.object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object.</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_ITEM_SWIPE_ACTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
@@ -10496,7 +10496,7 @@ typedef enum {
      * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ListItemGroup头部组件。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM_GROUP,
     /**
@@ -10513,7 +10513,7 @@ typedef enum {
      * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ListItemGroup尾部组件。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_ITEM_GROUP_SET_FOOTER,
     /**
@@ -10536,7 +10536,7 @@ typedef enum {
      * <li>.value[3].f32 分割线距离列表侧边结束端的距离，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_ITEM_GROUP_SET_DIVIDER,
 
@@ -10554,7 +10554,7 @@ typedef enum {
      * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_LIST_ITEM_GROUP_CHILDREN_MAIN_SIZE = 1005003,
 
@@ -10572,8 +10572,8 @@ typedef enum {
      * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 15
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ITEM_GROUP_NODE_ADAPTER = 1005004,
 
@@ -10732,7 +10732,7 @@ typedef enum {
      * <li>.value[0].i32 参数值为1或者0，1表示正在刷新，0表示不在刷新。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
@@ -10744,7 +10744,7 @@ typedef enum {
      * <li>.object 参数类型{@link ArkUI_NodeHandle}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_REFRESH_CONTENT,
     /**
@@ -10761,7 +10761,7 @@ typedef enum {
      * <li>.value[0].f32 下拉跟手系数，取值范围：[0, 1]。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
     /**
@@ -10778,7 +10778,7 @@ typedef enum {
      * <li>.value[0].f32 下拉偏移量，单位vp， 默认值：64vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_REFRESH_OFFSET = 1009003,
     /**
@@ -10795,7 +10795,7 @@ typedef enum {
      * <li>.value[0].i32 是否触发刷新，1为触发刷新，0为不触发刷新。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_REFRESH_PULL_TO_REFRESH = 1009004,
     /**
@@ -10812,8 +10812,8 @@ typedef enum {
      * <li>.value[0].f32 最大下拉距离，单位：vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
     /**
@@ -10830,8 +10830,8 @@ typedef enum {
      * <li>.value[0].i32 上划是否取消刷新。0为上划不取消刷新，1为上划取消刷新。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_PULL_UP_TO_CANCEL_REFRESH = 1009006,
 
@@ -10849,7 +10849,7 @@ typedef enum {
      * <li>.value[0].i32 主轴方向，参数类型{@link ArkUI_FlexDirection}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_LAYOUT_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
 
@@ -10869,7 +10869,7 @@ typedef enum {
      * <li>.string 布局列的数量。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_COLUMN_TEMPLATE,
 
@@ -10889,7 +10889,7 @@ typedef enum {
      * <li>.string 布局行的数量。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_ROW_TEMPLATE,
 
@@ -10907,7 +10907,7 @@ typedef enum {
      * <li>.value[0].f32 列与列的间距，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_COLUMN_GAP,
 
@@ -10925,7 +10925,7 @@ typedef enum {
      * <li>.value[0].f32 行与行的间距，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_ROW_GAP,
 
@@ -10944,7 +10944,7 @@ typedef enum {
      * <li>.object 返回值格式为{@link ArkUI_WaterFlowSectionOption}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_SECTION_OPTION,
 
@@ -10962,7 +10962,7 @@ typedef enum {
      * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_NODE_ADAPTER,
 
@@ -10982,7 +10982,7 @@ typedef enum {
      * <li>.value[1].i32 是否显示缓存节点，0：不显示，1：显示。该参数从API version 16开始支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_CACHED_COUNT,
 
@@ -10995,7 +10995,7 @@ typedef enum {
      * <li>.object 参数类型{@link ArkUI_NodeHandle}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_FOOTER,
 
@@ -11012,7 +11012,7 @@ typedef enum {
      * <li>.value[3]?.f32 滑动到目标元素后的额外偏移量，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。该参数从API version 23开始支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_SCROLL_TO_INDEX,
 
@@ -11036,7 +11036,7 @@ typedef enum {
      * <li>.value[3].f32 最大高度，单位：vp。使用-1表示不设置。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE,
 
@@ -11055,8 +11055,8 @@ typedef enum {
      * <li>.value[0].i32 布局模式，参数类型{@link ArkUI_WaterFlowLayoutMode}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 18
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_LAYOUT_MODE,
 
@@ -11074,8 +11074,8 @@ typedef enum {
      * <li>.value[0].i32 WaterFlow组件是否同步加载子节点。0：分帧加载，1：同步加载。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_SYNC_LOAD = 1010012,
 
@@ -11093,8 +11093,8 @@ typedef enum {
      * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1010013,
 
@@ -11121,8 +11121,8 @@ typedef enum {
      * 或通过{@link NODE_WATER_FLOW_LAYOUT_MODE}设置为{@link ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW}
      * 布局模式时，设置0或1时空分支后的FlowItem都会显示。
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
@@ -11174,7 +11174,7 @@ typedef enum {
      * <li>.string 布局列的数量。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_GRID_COLUMN_TEMPLATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
 
@@ -11194,7 +11194,7 @@ typedef enum {
      * <li>.string 布局行的数量。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_GRID_ROW_TEMPLATE,
 
@@ -11212,7 +11212,7 @@ typedef enum {
      * <li>.value[0].f32 列与列的间距，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_GRID_COLUMN_GAP,
 
@@ -11230,7 +11230,7 @@ typedef enum {
      * <li>.value[0].f32 行与行的间距，单位vp。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_GRID_ROW_GAP,
 
@@ -11248,7 +11248,7 @@ typedef enum {
      * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_GRID_NODE_ADAPTER,
 
@@ -11268,7 +11268,7 @@ typedef enum {
      * <li>.value[1].i32 是否显示缓存节点，0：不显示，1：显示。该参数从API版本26.0.0开始支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      */
     NODE_GRID_CACHED_COUNT,
 
@@ -11286,8 +11286,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件走焦换行模式，参数类型{@link ArkUI_FocusWrapMode}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_FOCUS_WRAP_MODE = 1013006,
 
@@ -11305,8 +11305,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件是否同步加载子节点。0：分帧加载，1：同步加载。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 20
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_SYNC_LOAD = 1013007,
 
@@ -11325,8 +11325,8 @@ typedef enum {
      * <li>.value[0].i32 Grid中GridItem的对齐方式，参数类型{@link ArkUI_GridItemAlignment}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ALIGN_ITEMS = 1013008,
 
@@ -11344,8 +11344,8 @@ typedef enum {
      * <li>.object 返回值格式为{@link ArkUI_GridLayoutOptions}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_LAYOUT_OPTIONS = 1013009,
 
@@ -11363,8 +11363,8 @@ typedef enum {
      * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1013010,
 
@@ -11382,8 +11382,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_EDIT_MODE = 1013011,
 
@@ -11403,8 +11403,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_DRAG_ANIMATION = 1013012,
 
@@ -11423,8 +11423,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件是否启用鼠标框选。0：不启用，1：启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_MULTI_SELECTABLE = 1013013,
 
@@ -11441,8 +11441,8 @@ typedef enum {
      * <li>.value[3]?.f32 滑动到目标元素后的额外偏移量，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_SCROLL_TO_INDEX = 1013014,
 
@@ -11460,8 +11460,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件是否支持空分支。0：不支持，1：支持。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
 
@@ -11479,8 +11479,8 @@ typedef enum {
      * <li>.value[0].i32 Grid组件是否启用编辑模式。0：未启用，1：已启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ENABLE_EDIT_MODE = 1013016,
 
@@ -11500,8 +11500,8 @@ typedef enum {
      * <li>.value[1].i32 Grid组件是否启用双指滑动多选。0：未启用，1：已启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_EDIT_MODE_OPTIONS = 1013017,
 
@@ -11519,8 +11519,8 @@ typedef enum {
      * <li>.value[0].i32 GridItem样式，参数类型{@link ArkUI_GridItemStyle}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 22
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ITEM_STYLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
 
@@ -11538,8 +11538,8 @@ typedef enum {
      * <li>.value[0].i32 GridItem是否可以被鼠标框选。0：不可以，1：可以。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ITEM_SELECTABLE = 1014001,
 
@@ -11557,8 +11557,8 @@ typedef enum {
      * <li>.value[0].i32 GridItem选中状态。0：未选中，1：已选中。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 23
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ITEM_SELECTED = 1014002,
 
@@ -11708,8 +11708,8 @@ typedef enum {
      * <li>.value[0].i32 表冠灵敏度类型，数据类型{@link ArkUI_CrownSensitivity}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_DIGITAL_CROWN_SENSITIVITY = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
 
@@ -11727,8 +11727,8 @@ typedef enum {
      * <li>.value[0].f32 子组件主轴方向的间隔，单位：vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_SPACE = 1019001,
 
@@ -11746,8 +11746,8 @@ typedef enum {
      * <li>.value[0].i32 缓存数量。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_CACHED_COUNT = 1019002,
 
@@ -11764,8 +11764,8 @@ typedef enum {
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_SCROLL_TO_INDEX = 1019003,
 
@@ -11783,8 +11783,8 @@ typedef enum {
      * <li>.value[0].i32 是否启用链式联动动效。0：不启用，1：启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_CHAIN_ANIMATION = 1019004,
 
@@ -11801,8 +11801,8 @@ typedef enum {
      * 对ArcList组件子项主轴尺寸数组进行大小调整。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_CHILDREN_MAIN_SIZE = 1019005,
 
@@ -11820,8 +11820,8 @@ typedef enum {
      * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ArcList头部组件。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_SET_HEADER = 1019006,
 
@@ -11840,8 +11840,8 @@ typedef enum {
      * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_SCROLL_BAR = 1019007,
 
@@ -11859,8 +11859,8 @@ typedef enum {
      * <li>.data[0].u32 滚动条颜色，0xargb类型。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_SCROLL_BAR_COLOR = 1019008,
 
@@ -11878,8 +11878,8 @@ typedef enum {
      * <li>.value[0].f32 滚动条宽度，单位vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_SCROLL_BAR_WIDTH = 1019009,
 
@@ -11897,8 +11897,8 @@ typedef enum {
      * <li>.value[0].i32 是否支持滚动手势。1：支持滚动手势，0：不支持滚动手势。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_ENABLE_SCROLL_INTERACTION = 1019010,
 
@@ -11918,8 +11918,8 @@ typedef enum {
      * <li>.value[1].f32 边缘渐隐效果长度。单位：vp。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_FADING_EDGE = 1019011,
 
@@ -11937,8 +11937,8 @@ typedef enum {
      * <li>.value[0].f32 摩擦系数。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_FRICTION = 1019012,
 
@@ -11956,8 +11956,8 @@ typedef enum {
      * <li>.value[0].f32 Fling动效开始时的最大初始速度，单位：vp/s。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_FLING_SPEED_LIMIT = 1019013,
 
@@ -11975,8 +11975,8 @@ typedef enum {
      * <li>.value[0].i32 是否启用自动缩放。0：不启用，1：启用。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_ITEM_AUTO_SCALE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST_ITEM,
 
@@ -11993,8 +11993,8 @@ typedef enum {
      * 设置ListItemSwipeActionItem左侧（垂直布局）或上方（横向布局）内容。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_LIST_ITEM_SWIPE_ACTION = 1020001,
 
@@ -12012,8 +12012,8 @@ typedef enum {
      * <li>.object 使用{@link ArkUI_NodeHandle}对象作为滚动条绑定的可滚动组件。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_SCROLL_BAR_BIND_SCROLLABLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SCROLL_BAR,
 
@@ -12031,8 +12031,8 @@ typedef enum {
      * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}。</li>
      * </ul>
      *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
-     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_ARC_SCROLL_BAR_DISPLAY_MODE = 1021001,
 
