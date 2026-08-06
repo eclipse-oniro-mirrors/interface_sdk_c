@@ -25,7 +25,7 @@
 /**
  * @file effect_types.h
  *
- * @brief This file declares the data types of the image effect filter.
+ * @brief Declares the data types for filter effects, used to define the matrices, status codes, and tile modes for filter effects, and supports scenarios such as creating custom filter effects and processing image shader tiling.
  * @kit ArkGraphics2D
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a struct for a filter used to generate a filter PixelMap.
+ * @brief Defines a filter struct used with EffectKit module APIs to implement filter effect processing.
  *
  * @since 12
  * @version 1.0
@@ -51,7 +51,7 @@ extern "C" {
 typedef struct OH_Filter OH_Filter;
 
 /**
- * @brief Defines a pixel map defined by the image framework.
+ * @brief Declares a pixel map object defined by the image framework.
  *
  * @since 12
  * @version 1.0
@@ -59,7 +59,7 @@ typedef struct OH_Filter OH_Filter;
 typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
- * @brief Describes a matrix used to create an effect filter.
+ * @brief Defines a 4x5 matrix for creating a filter effect, with elements of floating-point numbers.
  *
  * @since 12
  * @version 1.0
@@ -70,19 +70,19 @@ struct OH_Filter_ColorMatrix {
 };
 
 /**
- * @brief Enumerates the status codes that may be used by the effect filter.
+ * @brief Enumerates the status codes of the filter effect. These status codes are returned when filter effect APIs are used. Developers should determine the operation result based on the returned status code and handle it accordingly. For the usage instructions of the status codes for specific APIs, see the corresponding API documentation.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** Operation successful. */
+    /** The operation is successful. */
     EFFECT_SUCCESS = 0,
-    /** Invalid parameter. */
+    /** Invalid parameter. Check the parameter type and range. */
     EFFECT_BAD_PARAMETER = 401,
-    /** Unsupported operation. */
+    /** The operation is not supported. Check the API usage. */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
-    /** Unknown error. */
+    /** An unidentified error occurred. Possible causes include abnormal system resources or improper API calling. Check the API call parameters and system resource status first. */
     EFFECT_UNKNOWN_ERROR = 7600901,
 } EffectErrorCode;
 
@@ -92,13 +92,13 @@ typedef enum {
  * @since 14
  */
 typedef enum {
-    /** Replicates the edge color if the shader effect draws outside of its original boundary. */
+    /** Clamp mode. If the shader effect exceeds its original bounds, the remaining area is filled with the edge color of the shader. Applicable to scenarios requiring a smooth transition to a solid color background. */
     CLAMP = 0,
-    /** Repeats the shader effect in both horizontal and vertical directions. */
+    /** Repeat mode. Repeats the shader effect in both horizontal and vertical directions. Applicable to scenarios requiring seamless tiled textures, such as background pattern filling. */
     REPEAT,
-    /** Repeats the shader effect in both horizontal and vertical directions, alternating mirror images. */
+    /** Mirror mode. Repeats the shader effect in both horizontal and vertical directions, alternating mirrored images so that adjacent images always join seamlessly. Applicable to scenarios requiring continuity while avoiding abrupt repeating edges, such as gradient backgrounds. */
     MIRROR,
-    /** Renders the shader effect only within the original boundary. */
+    /** Decal mode. Renders the shader effect only within its original bounds. Applicable to scenarios requiring precise control over shader boundaries, where areas outside the bounds remain transparent or retain the original content. */
     DECAL,
 } EffectTileMode;
 
