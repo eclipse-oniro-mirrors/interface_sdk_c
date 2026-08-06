@@ -43,8 +43,8 @@ extern "C" {
 /**
  * @brief Creates an **OH_Filter** object to apply various filter effects (such as blur, brightening, or grayscale) to an image, applicable to scenarios such as image editing, album apps, and video processing.
  *
- * @param pixelmap [in] The pixelmap object used as the source image for filter effect processing.
- * @param filter [out] Double pointer used to receive the filter.
+ * @param pixelmap [in] The pixelmap object used as the source image for filter effect processing. Cannot be NULL.
+ * @param filter [out] Double pointer used to receive the filter. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if pixelmap or filter is NULL.</li>
@@ -58,7 +58,7 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
 /**
  * @brief Releases an **OH_Filter** object.
  *
- * @param filter [in] Pointer to the filter.
+ * @param filter [in] Pointer to the filter. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
@@ -71,7 +71,7 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
 /**
  * @brief Creates a frosted glass filter effect and adds it to a filter effect chain.
  *
- * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect.
+ * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
  * @param radius [in] Blur radius of the frosted glass effect. Value range: [0, +∞), in pixels. A value of 0 produces no blur effect; larger values produce stronger blur effects.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
@@ -85,7 +85,7 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
 /**
  * @brief Creates a frosted glass filter effect and adds it to a filter effect chain. It supports selecting the shader effect tile mode.
  *
- * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect.
+ * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
  * @param radius [in] Blur radius of the frosted glass effect. Value range: [0, +∞), in pixels. No blur effect is produced when the parameter value is 0. The larger the value, the stronger the blur effect.
  * @param tileMode [in] Shader effect tile mode. Different modes determine different processing methods for image edge areas.
  * @return <ul>
@@ -99,7 +99,7 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
 /**
  * @brief Creates a brightening effect and adds it to a filter effect chain.
  *
- * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect.
+ * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
  * @param brightness [in] Brightness value of the brightening effect. Value range: [0, 1]. The image remains unchanged when the value is 0, and becomes completely white when the value is 1.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
@@ -113,7 +113,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
 /**
  * @brief Creates a grayscale effect and adds it to a filter effect chain.
  *
- * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect.
+ * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
@@ -126,7 +126,7 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
 /**
  * @brief Creates an inverted color effect and adds it to a filter effect chain.
  *
- * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect.
+ * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
@@ -139,8 +139,8 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
 /**
  * @brief Creates a custom effect through a matrix and adds it to a filter effect chain, applicable to scenarios that require specific color transformation effects (such as color correction, hue adjustment, or color temperature adjustment).
  *
- * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect.
- * @param matrix [in] Custom matrix used to create the filter.
+ * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
+ * @param matrix [in] Custom matrix used to create the filter. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter or matrix is NULL.</li>
@@ -153,8 +153,8 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
 /**
  * @brief Obtains the bitmap generated by the filter.
  *
- * @param filter [in] Filter pointer used to create a bitmap, which needs to be created through OH_Filter_CreateEffect.
- * @param pixelmap [out] Double pointer used to receive the PixelMap.
+ * @param filter [in] Filter pointer used to create a bitmap, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
+ * @param pixelmap [out] Double pointer used to receive the PixelMap. Cannot be NULL.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter or pixelmap is NULL.</li>
