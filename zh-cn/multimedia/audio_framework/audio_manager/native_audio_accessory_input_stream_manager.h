@@ -66,8 +66,8 @@ extern "C" {
  * @param stream 新创建的输入流引用。使用此句柄通过Register...Callback注册回调。
  * @param streamInfo 正在打开的流的音频流信息指针。此参数描述请求的流格式，
  *     配件可使用此信息配置数据通路。
- * @return true：流被接受。\n
- *         false：流被拒绝。
+ * @return true：流打开成功。\n
+ *         false：流打开失败。
  * @see OH_AudioAccessoryInputStreamManager_RegisterStartCallback
  * @since 26.0.0
  */
@@ -129,7 +129,7 @@ typedef bool (*OH_AudioAccessoryInputStream_ReleaseCallback)(
  * @param accessory 拥有该流的音频配件。
  * @param stream 输入流引用。
  * @param latency 输出参数，返回时延值，单位为毫秒。
- * @return true：成功获取时延。\n
+ * @return true：获取时延成功。\n
  *         false：获取时延失败。
  * @since 26.0.0
  */
@@ -149,7 +149,7 @@ typedef bool (*OH_AudioAccessoryInputStream_GetLatencyCallback)(
  * @param timestamp 输出参数，返回与{@p framePosition}对应的采集时间戳。
  *     时间戳必须使用{@link CLOCK_MONOTONIC}时间基准，以纳秒为单位，
  *     表示{@p framePosition}所标识帧被采集时的单调时钟时间。
- * @return true：成功获取帧位置。\n
+ * @return true：获取帧位置成功。\n
  *         false：获取帧位置失败。
  * @since 26.0.0
  */
@@ -266,7 +266,7 @@ OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterFramePositionC
  * @brief 向音频配件输入流写入音频数据。\n
  *
  * 此接口为阻塞接口。调用后，函数将阻塞直到整帧数据写入成功或发生错误。
- * 每次调用必须写入恰好20ms的音频数据。调用方必须确保dataSize与当前流配置下
+ * 每次调用必须写入完整20ms的音频数据。调用方必须确保dataSize与当前流配置下
  * 20ms对应的字节数一致。如果dataSize不匹配20ms的音频数据，
  * 本函数返回{@link AUDIOCOMMON_RESULT_ERROR_FRAME_LENGTH_MISMATCH}。
  * 调用方必须以20ms的节奏调用此函数，即每次调用提交20ms音频数据，
