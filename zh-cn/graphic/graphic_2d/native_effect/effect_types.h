@@ -29,7 +29,6 @@
  * @brief 声明滤镜效果的数据类型，用于定义滤镜效果的矩阵、状态码和平铺模式等，
  * 支持创建自定义滤镜效果、处理图像着色器平铺等场景。
  *
- * 本文档定义的状态码类型用于相关接口的状态返回，具体接口的状态码使用说明请参见对应接口文档。
  * @kit ArkGraphics2D
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
@@ -77,8 +76,7 @@ struct OH_Filter_ColorMatrix {
 };
 
 /**
- * @brief 定义滤镜效果的状态码。这些状态码在使用滤镜效果相关接口时返回，
- * 开发者应根据返回的状态码判断操作结果并进行相应处理。具体接口的状态码使用说明请参见对应接口文档。
+ * @brief 定义滤镜效果的状态码。
  *
  * @since 12
  * @version 1.0

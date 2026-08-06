@@ -70,7 +70,7 @@ struct OH_Filter_ColorMatrix {
 };
 
 /**
- * @brief Enumerates the status codes of the filter effect. These status codes are returned when filter effect APIs are used. Developers should determine the operation result based on the returned status code and handle it accordingly. For the usage instructions of the status codes for specific APIs, see the corresponding API documentation.
+ * @brief Enumerates the status codes of the filter effect.
  *
  * @since 12
  * @version 1.0
