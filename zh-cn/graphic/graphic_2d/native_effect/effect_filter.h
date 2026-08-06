@@ -93,7 +93,7 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
  *
  * @param filter [in] 滤镜指针，需要通过OH_Filter_CreateEffect创建并添加滤镜效果。不能为NULL。
  * @param radius [in] 毛玻璃效果的模糊半径，取值范围为[0, +∞)，单位为像素。参数值为0时不产生模糊效果。值越大模糊效果越强。
- * @param tileMode [in] 着色器效果平铺模式，不同模式决定图像边缘区域的不同处理方式。
+ * @param tileMode [in] 着色器效果平铺模式，支持可选的具体模式可见{@link EffectTileMode}枚举。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功则返回EFFECT_SUCCESS。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或radius小于0时，返回EFFECT_BAD_PARAMETER。</li>

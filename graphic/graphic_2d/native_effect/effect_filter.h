@@ -87,7 +87,7 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
  *
  * @param filter [in] Filter pointer, which needs to be created through OH_Filter_CreateEffect. Cannot be NULL.
  * @param radius [in] Blur radius of the frosted glass effect. Value range: [0, +∞), in pixels. No blur effect is produced when the parameter value is 0. The larger the value, the stronger the blur effect.
- * @param tileMode [in] Shader effect tile mode. Different modes determine different processing methods for image edge areas.
+ * @param tileMode [in] Shader effect tile mode. For details about the available options, see {@link EffectTileMode}.
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is a null pointer or radius is less than 0.</li>
