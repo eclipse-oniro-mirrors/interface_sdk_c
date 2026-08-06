@@ -17,7 +17,9 @@
  * @addtogroup OHAudio
  * @{
  *
- * @brief Provide the definition of the C interface for the audio module.
+ * @brief 提供音频模块C接口定义。
+ *
+ * @syscap SystemCapability.Multimedia.Audio.Core
  *
  * @since 12
  * @version 1.0
@@ -26,12 +28,14 @@
 /**
  * @file native_audio_common.h
  *
- * @brief 声明音频公共基础数据结构。
- * <br>定义音频接口的公共返回值的类型。
+ * @brief 声明音频公共基础数据结构。\n
+ *
+ * 定义音频接口的公共返回值的类型。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
  * @kit AudioKit
+ * @include <ohaudio/native_audio_common.h>
  * @since 12
  * @version 1.0
  */
@@ -47,73 +51,77 @@ extern "C" {
 
 /**
  * @brief 音频错误码。
- *
- * @since 12
  */
 typedef enum {
     /**
-     * @error
-     * 操作成功。
+     * @brief 操作成功。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_SUCCESS = 0,
 
     /**
-     * @error
-     * 调用者没有请求权限。
+     * @brief 权限缺失。
      *
      * @since 26.0.0
      */
     AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED = 201,
 
     /**
-     * @error
-     * 入参错误。
+     * @brief 入参错误。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101,
 
     /**
-     * @error
-     * 无内存。
+     * @brief 内存不足。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_NO_MEMORY = 6800102,
 
     /**
-     * @error
-     * 非法状态。
+     * @brief 非法状态。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE = 6800103,
 
     /**
-     * @error
-     * 操作不支持。
+     * @brief 操作不支持。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED = 6800104,
 
     /**
-     * @error
-     * 操作超时。
+     * @brief 操作超时。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,
 
     /**
-     * @error
-     * 达到系统可支持的最大数量。
+     * @brief 输入音频数据与所需帧长度不匹配。
+     *
+     * @since 26.0.0
+     */
+    AUDIOCOMMON_RESULT_ERROR_FRAME_LENGTH_MISMATCH = 6800106,
+
+    /**
+     * @brief 达到系统可支持的最大数量。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_STREAM_LIMIT = 6800201,
 
     /**
-     * @error
-     * 系统通用错误。
+     * @brief 系统通用错误。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301,
-
-    /**
-     * @error
-     * 输入的音频数据不匹配请求的帧长。
-     *
-     * @since 26.0.0
-     */
-    AUDIOCOMMON_RESULT_ERROR_FRAME_LENGTH_MISMATCH = 6800106
 } OH_AudioCommon_Result;
 
 /**
@@ -123,68 +131,71 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 默认音频场景。
+     * @brief 默认音频场景。
+     *
      * @since 12
      */
     AUDIO_SCENE_DEFAULT = 0,
 
     /**
-     * 响铃场景。
+     * @brief 响铃场景。
+     *
      * @since 12
      */
     AUDIO_SCENE_RINGING = 1,
 
     /**
-     * 电话场景。
+     * @brief 电话场景。
+     *
      * @since 12
      */
     AUDIO_SCENE_PHONE_CALL = 2,
 
     /**
-     * 语音聊天场景。
+     * @brief 语音聊天场景。
+     *
      * @since 12
      */
-    AUDIO_SCENE_VOICE_CHAT = 3
+    AUDIO_SCENE_VOICE_CHAT = 3,
 } OH_AudioScene;
 
 /**
- * @brief 定义铃音模式。
+ * @brief 定义铃声模式。
+ *
+ * <b>设备行为差异：<\b> 当该接口在无振动器件设备中被设置为振动模式时，将不会产生振动效果。
  *
  * @since 20
  */
 typedef enum {
     /**
-     * 静音模式。
-     * @since 20
+     * @brief 静音模式。
      */
     AUDIO_RINGER_MODE_SILENT = 0,
     /**
-     * 振动模式。
-     * @since 20
+     * @brief 振动模式。
      */
     AUDIO_RINGER_MODE_VIBRATE = 1,
     /**
-     * 响铃模式。
-     * @since 20
+     * @brief 响铃模式。
      */
-    AUDIO_RINGER_MODE_NORMAL = 2
+    AUDIO_RINGER_MODE_NORMAL = 2,
 } OH_AudioRingerMode;
 
 /**
- * @brief 枚举降噪模式。
+ * @brief 定义录音降噪模式。
  *
  * @since 26.0.0
  */
 typedef enum {
     /**
-     * @brief 保真模式，无降噪功能。
+     * @brief 保真模式，无降噪。
      *
      * @since 26.0.0
      */
     AUDIO_NOISE_REDUCTION_MODE_FIDELITY = 0,
 
     /**
-     * @brief 纯人声模式，强降噪。
+     * @brief 人声模式，强降噪。
      *
      * @since 26.0.0
      */
@@ -195,7 +206,7 @@ typedef enum {
      *
      * @since 26.0.0
      */
-    AUDIO_NOISE_REDUCTION_MODE_STANDARD = 2
+    AUDIO_NOISE_REDUCTION_MODE_STANDARD = 2,
 } OH_AudioNoiseReductionMode;
 
 #ifdef __cplusplus

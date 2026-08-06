@@ -14,10 +14,12 @@
  */
 
 /**
- * @addtogroup AudioAccessoryManager
+ * @addtogroup OHAudio
  * @{
  *
- * @brief Provide audio accessory manager C interface.
+ * @brief 提供音频模块C接口定义。
+ *
+ * @syscap SystemCapability.Multimedia.Audio.Core
  *
  * @since 26.0.0
  */
@@ -25,11 +27,14 @@
 /**
  * @file native_audio_accessory_manager.h
  *
- * @brief Declare audio accessory manager related interfaces.
+ * @brief 声明音频配件管理器相关接口。\n
+ *
+ * 该文件接口用于管理音频配件的创建、连接、断开和销毁等功能。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
  * @kit AudioKit
+ * @include <ohaudio/native_audio_accessory_manager.h>
  * @since 26.0.0
  */
 
@@ -44,84 +49,64 @@ extern "C" {
 #endif
 
 /**
- * @brief 配件降噪模式切换回调。
+ * @brief 音频配件降噪模式变更回调函数。
  *
- * <b>When Called:</b>当系统请求更改噪音时
- * 附件上的还原模式。此回调可以在任何时候调用
- * 连接附件后。
+ * <b>触发时机：</b>当系统请求更改配件的降噪模式时触发。
+ * 此回调可以在配件连接后的任意时间被调用。
  *
  * @param accessory 音频配件。
- * @param mode 要在附件上设置的降噪模式。
- * @return <ul>
- * <li>`true`如果请求的模式处理成功</li>
- * <li>`false`否则。</li>
- * </ul>
+ * @param mode 要在配件上设置的降噪模式。
+ * @return true：请求的模式处理成功。\n
+ *         false：请求的模式处理失败。
  * @since 26.0.0
  */
 typedef bool (*OH_AudioAccessory_SetNoiseReductionCallback)(
     OH_AudioAccessory *accessory, OH_AudioNoiseReductionMode mode);
 
 /**
- * @brief 获取音频配件管理器实例。
+ * @brief 获取音频配件管理器实例。\n
  *
- * @param outManager 【out】返回指向管理器句柄的指针。
- * 注意句柄由系统管理，不能释放
- * 被调用者调用，否则可能会出现异常。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果管理器为空。</li>
- * </ul>
+ * @param outManager 返回管理器句柄指针。该句柄由系统管理，调用方不得释放，否则可能导致异常。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数outManager为空。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
     OH_AudioAccessoryManager **outManager);
 
 /**
- * @brief 创建输入音频配件实例并注册其能力。
+ * @brief 创建输入音频配件实例并注册其能力。\n
  *
- * 该函数只创建音频附件实例。它不会创造
- * 任何输入流。
+ * 此函数仅创建音频配件实例，不会立即创建任何输入流。\n
  *
- * 框架会对附件名称、制造商、
- * modelNumber和macAddress字段。调用方可以释放这些缓冲区
- * 在此函数返回后。
- * 该框架还执行streamProperties数组的深拷贝
- * 的能力。调用者可以在此函数返回后释放此数组。
+ * 框架会对accessoryName、manufacturer、modelNumber和macAddress字段进行深拷贝，
+ * 调用方可在此函数返回后释放这些缓冲区。
+ * 框架也会对capabilities中的streamProperties数组进行深拷贝，
+ * 调用方可在此函数返回后释放该数组。\n
  *
- * 成功后，框架会分配一个{@link OH_AudioAccessory}句柄，
- * 通过辅助指针返回。
+ * 成功时，框架分配{@link OH_AudioAccessory}句柄并通过accessory指针返回。\n
  *
- * 输入流是由框架懒创建的，当应用程序
- * 实际上是从这个附件开始录制的。当时，框架
- * 创建一个新的{@link OH_AudioAccessoryInputStream}句柄并调用
- * 开流。回调接收新创建的流句柄
- * 和请求的流信息，并且是调用者必须注册的位置
- * 所需的流回调。
+ * 输入流由框架延迟创建，当应用实际开始从该配件录音时，框架会创建新的
+ * {@link OH_AudioAccessoryInputStream}句柄并调用打开输入流回调。
+ * 回调接收新创建的流句柄和请求的流信息，调用方必须在回调中注册必需的流回调。\n
  *
- * 流句柄由框架管理，不能由
- * 调用者。流一直有效，直到框架调用
- * 该流的{@链接OH_AudioAccessoryInputStream_ReleaseCallback}。之后
- * release回调返回，则流句柄无效，不能
- * 被再次使用。在一个辅助句柄的生命周期内，输入流
- * 可以多次创建和释放。
+ * 流句柄由框架管理，调用方不得释放。流在框架调用
+ * {@link OH_AudioAccessoryInputStream_ReleaseCallback}之前保持有效。
+ * 释放回调返回后，流句柄变为无效，不得继续使用。
+ * 在一个配件句柄的生命周期内，输入流可能被创建和释放多次。
  *
- * @param manager 【in】音频附件管理器指针。
- * @param info 【in】附件基本信息指针。不能为空。
- * @param capabilities 【in】指向附件功能的指针。不能为空。
- * @param openInputStream 【in】当框架打开输入流时调用的回调。
- * 不能为空。只有当框架创建时，才会调用回调
- * 此附件的流，而不是在调用此函数时。
- * @param outOwnedAccessory 【out】返回创建的辅助句柄。
- * @release Call {@link OH_AudioAccessoryManager_Disconnected} to disconnect
- *     the accessory first if it has been connected, and then call
- *     {@link OH_AudioAccessoryManager_Destroy} to destroy the accessory handle.
- *     After a successful destroy, the accessory handle becomes invalid and must
- *     not be used again.
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * <li>如果任何参数为null，则{@link AudioCOMMON_RESULT_ERROR_INVALID_PARAM}。</li>
- * 如果管理器未初始化，则为<li>{@link AudioCOMMON_RESULT_ERROR_ILAL_STATE}。</li>
- * </ul>
+ * @param manager 音频配件管理器指针。
+ * @param info 配件基本信息指针，不可为空。
+ * @param capabilities 配件能力指针，不可为空。
+ * @param openInputStream 框架打开输入流时调用的回调函数，不可为空。
+ *     此回调仅在框架为该配件创建流时调用，而非在调用此函数时调用。
+ * @param outOwnedAccessory 返回创建的配件句柄。
+ * @release 若配件已连接，需先调用{@link OH_AudioAccessoryManager_Disconnected}断开配件，
+ *     再调用{@link OH_AudioAccessoryManager_Destroy}销毁配件句柄。
+ *     销毁成功后，配件句柄变为无效，不得继续使用。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：任意参数为空。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：管理器未初始化。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(
@@ -132,29 +117,27 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(
     OH_AudioAccessory **outOwnedAccessory);
 
 /**
- * @brief 设置音频附件的关联MAC地址列表。
+ * @brief 设置音频配件的关联MAC地址列表。\n
  *
- * 此接口替换现有的关联MAC地址列表
- * 链接到附件实例。它设计用于多发射机
- * 场景（例如，1对2、1对4系统），其中连接的组
- * 发射器可能会动态更改。在创建附件后调用此选项
- * 以报告与主MAC关联的所有当前活动的发送器。
- * 如果更换变送器或断开变送器，请使用
- * 更新列表以覆盖先前的状态。在活动期间安全呼叫
- * 录制会话。
+ * 此接口替换与配件实例关联的现有MAC地址列表，用于多发射器场景（如1对2、1对4系统），
+ * 其中连接的发射器组可能动态变化。在配件创建后调用此接口报告与主MAC关联的当前所有活动发射器。
+ * 如果发射器被替换或断开连接，使用更新后的列表再次调用此接口以覆盖之前的状态。
+ * 在活跃录音会话期间可安全调用此接口。
  *
  * @param manager 音频配件管理器指针。
- * @param accessory 指向附件句柄的指针。
- * @param macAddresses 要关联的MAC地址数组。
- * <b>Can be null if count is 0</b>，表示所有关联的MAC地址。
- * 应清除（例如，当所有辅助变送器断开时）。
- * 如果不为null，框架将对这些字符串执行深拷贝。
- * @param count 数组中的MAC地址数。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * 如果参数无效，则<li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}。</li>
- * <li>{@link AudioCOMMON_RESULT_ERROR_ILA_STATE}如果未创建配件。</li>
- * </ul>
+ * @param accessory 配件句柄指针。
+ * @param macAddresses 要关联的MAC地址数组。\n
+ *     <b>当count为0时可以为空</b>，表示清除所有关联的MAC地址（例如所有辅助发射器断开连接时）。
+ *     如果不为空，框架会对这些字符串进行深拷贝。
+ *     每个元素必须符合以下规则：\n
+ *     - 必须是以冒号分隔的十六进制表示的NUL终止ASCII字符串，例如"00:11:22:33:44:55"。
+ *       接受大写和小写十六进制数字（A-F / a-f）。\n
+ *     - 必须为非空、非零长度字符串。\n
+ *     - 同一数组中的重复地址将被忽略，仅每个唯一地址的首次出现生效。
+ * @param count MAC地址数组中的元素数量。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数无效。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：配件未创建。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_SetAssociatedMacAddresses(
@@ -164,24 +147,20 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_SetAssociatedMacAddresses(
     uint32_t count);
 
 /**
- * @brief 注册音频配件降噪能力。
+ * @brief 注册音频配件的降噪能力。\n
  *
- * 框架对支持的Modes数组和其他
- * 能力结构中的字段。调用方可以释放该能力
- * 结构，并在此函数返回后返回支持的Modes数组。
+ * 框架会对supportedModes数组及能力结构体中的其他字段进行深拷贝，
+ * 调用方可在此函数返回后释放能力结构体和supportedModes数组。
  *
  * @param manager 音频配件管理器指针。
- * @param accessory CreateInput创建的辅助句柄指针。
- * @param capability 降噪能力指针。不能为空。
- * @param onNoiseReduction 框架时调用的回调
- * 请求更改降噪模式。如果附件，则可能为空
- * 不支持动态模式切换。如果提供，则回调必须
- * 成功时返回`true`，失败时返回`false`。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * 如果参数无效，则<li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}。</li>
- * <li>{@link AudioCOMMON_RESULT_ERROR_ILA_STATE}如果未创建配件。</li>
- * </ul>
+ * @param accessory 通过CreateInput创建的配件句柄指针。
+ * @param capability 降噪能力指针，不可为空。
+ * @param onNoiseReduction 框架请求降噪模式变更时调用的回调函数。
+ *     如果配件不支持动态模式切换，可以为空。
+ *     如果提供，回调必须在成功时返回true，失败时返回false。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数无效。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：配件未创建。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_RegisterNoiseReductionCapability(
@@ -191,24 +170,19 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_RegisterNoiseReductionCapability(
     OH_AudioAccessory_SetNoiseReductionCallback onNoiseReduction);
 
 /**
- * @brief 设置音频附件的降噪模式。
+ * @brief 设置音频配件的降噪模式。\n
  *
- * 该功能允许附件服务主动同步
- * 当前降噪模式为框架。它通常用于
- * 通过其他手段(例如，硬件按钮或
- * )，确保框架与附件保持同步更新
- * 实际状态。
+ * 此函数允许配件服务主动将当前降噪模式同步给框架，
+ * 通常在通过其他方式（如硬件按钮或配套应用）更改模式时使用，
+ * 确保框架保持与配件实际状态的同步。
  *
  * @param manager 音频配件管理器指针。
- * @param accessory 指向附件句柄的指针。
- * @param mode 要设置的降噪模式。一定是模式之一
- * 通过RegisterNoiseReduceCapability注册。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * 如果参数无效，则<li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}。</li>
- * <li>{@link AudioCOMMON_RESULT_ERROR_ILAL_STATE}如果未连接配件。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED}如果该模式不受支持。</li>
- * </ul>
+ * @param accessory 配件句柄指针。
+ * @param mode 要设置的降噪模式。必须是通过RegisterNoiseReductionCapability注册的模式之一。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数无效。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：配件未连接。\n
+ *         AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED：不支持该模式。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_SetNoiseReductionMode(
@@ -217,27 +191,21 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_SetNoiseReductionMode(
     OH_AudioNoiseReductionMode mode);
 
 /**
- * @brief 将音频配件连接到音频框架。
+ * @brief 将音频配件连接到音频框架。\n
  *
- * 在调用此函数之前，必须注册所有必需的能力。
+ * 调用此函数前，必须注册所有必需的能力。\n
  *
- * <b>Recommendation:</b>建议第三方音频配件
- * 优先考虑与智慧生活APP的集成。这确保了一致的
- * 设备发现和连接的用户体验，允许附件
- * 服务，避免直接进行权限管理。
+ * <b>建议：</b>建议第三方音频配件优先与智慧生活应用集成，
+ * 以确保设备发现和连接用户体验的一致性，使配件服务无需直接管理权限。
  *
  * @permission ohos.permission.MANAGE_AUDIO_ACCESSORY
  * @param manager 音频配件管理器指针。
- * @param accessory 指向要连接的附件句柄的指针。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * <li>{@link AudioCommon_RESULT_ERROR_PERATION_DENIED}如果调用者没有
- * 需要权限。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果附件为空。</li>
- * <li>{@link AudioCOMMON_RESULT_ERROR_ILAL_STATE}如果功能未注册或
- * 配件已连接。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果音频服务器进程已死。</li>
- * </ul>
+ * @param accessory 要连接的配件句柄指针。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED：调用方没有所需权限。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为空。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：能力未注册或配件已连接。\n
+ *         AUDIOCOMMON_RESULT_ERROR_SYSTEM：音频服务进程死亡。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_Connected(
@@ -245,19 +213,16 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_Connected(
     OH_AudioAccessory *accessory);
 
 /**
- * @brief 断开音频附件与音频框架的连接。
+ * @brief 将音频配件从音频框架断开连接。
  *
  * @permission ohos.permission.MANAGE_AUDIO_ACCESSORY
  * @param manager 音频配件管理器指针。
- * @param accessory 指针类型，指向要断开连接的附件句柄。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * <li>{@link AudioCommon_RESULT_ERROR_PERATION_DENIED}如果调用者没有
- * 需要权限。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果附件为空。</li>
- * <li>{@link AudioCOMMON_RESULT_ERROR_ILAL_STATE}如果未连接配件。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果音频服务器进程已死。</li>
- * </ul>
+ * @param accessory 要断开连接的配件句柄指针。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED：调用方没有所需权限。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为空。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：配件未连接。\n
+ *         AUDIOCOMMON_RESULT_ERROR_SYSTEM：音频服务进程死亡。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_Disconnected(
@@ -265,17 +230,15 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_Disconnected(
     OH_AudioAccessory *accessory);
 
 /**
- * @brief 销毁音频附件实例。
+ * @brief 销毁音频配件实例。\n
  *
- * 销毁前必须断开附件。
+ * 销毁前必须先断开配件连接。
  *
- * @param manager 【in】音频附件管理器指针。
- * @param accessory 【in】指向要销毁的辅助句柄的指针。
- * @return <ul>
- * <li>如果执行成功，则返回</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果附件为空。</li>
- * 如果配件仍处于连接状态，则显示<li>{@link AudioCOMMON_RESULT_ERROR_ILAL_STATE}。</li>
- * </ul>
+ * @param manager 音频配件管理器指针。
+ * @param accessory 要销毁的配件句柄指针。
+ * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为空。\n
+ *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：配件仍处于连接状态。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_Destroy(
