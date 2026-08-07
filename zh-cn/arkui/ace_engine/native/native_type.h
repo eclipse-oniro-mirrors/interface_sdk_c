@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,7 @@
 
 #include <stdint.h>
 
+#include "common_type.h"
 #include "drawable_descriptor.h"
 #include "node_attributes/slider.h"
 #include "node_attributes/checkbox.h"
@@ -59,48 +60,11 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the ArkUI native component object.
- *
- * @since 12
- */
-struct ArkUI_Node;
-
-/**
- * @brief 定义ArkUI_NodeContent在Native侧的实例对象指针，用于在Native接口中引用和传递NodeContent实例。
- *
- * @since 12
- */
-typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
-
-/**
  * @brief Defines the custom dialog box controller of ArkUI on the native side.
  *
  * @since 12
  */
 struct ArkUI_NativeDialog;
-
-/**
- * @brief Sets the size constraints of a component during component layout.
- *
- * @since 12
- */
-typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
-
-/**
- * @brief 定义组件绘制上下文的结构体类型，用于在自定义组件绘制过程中提供绘制上下文信息，
- * 可获取用于绘制的 Canvas 指针和可绘制区域大小。
- *
- * @since 12
- */
-typedef struct ArkUI_DrawContext ArkUI_DrawContext;
-
-/**
- * @brief 定义 ArkUI Native 组件实例对象指针，用于在 ArkUI Native 接口中标识和传递组件实例，
- * 例如创建、挂载、移除或销毁组件节点。
- *
- * @since 12
- */
-typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
  * @brief Defines the pointer to the custom dialog box controller of ArkUI on the native side.
@@ -225,20 +189,6 @@ typedef struct ArkUI_ListItemSwipeActionItem ArkUI_ListItemSwipeActionItem;
  * @since 12
  */
 typedef struct ArkUI_ListItemSwipeActionOption ArkUI_ListItemSwipeActionOption;
-
-/**
- * @brief Defines the ArkUI native context object.
- *
- * @since 12
- */
-struct ArkUI_Context;
-
-/**
-  * @brief Defines the pointer to the context instance object pointer definition of ArkUI on the native side.
-  *
-  * @since 12
-  */
-typedef struct ArkUI_Context* ArkUI_ContextHandle;
 
 /**
  * @brief Defines the navigation indicator style for the swiper.
@@ -385,32 +335,6 @@ typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
  * @since 23
  */
 typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
-
-/**
- * @brief 事件回调类型，用于定义回调函数及其用户自定义数据。
- * 使用该类型的接口触发回调时，会调用callback，并将userData作为参数传入。
- *
- * @since 12
- */
-typedef struct {
-    /** Custom type, data of a user-defined type that is passed as a parameter during callbacks. */
-    void* userData;
-    /** 事件触发时执行的回调函数，调用时会传入userData指向的用户自定义数据。 */
-    void (*callback)(void* userData);
-} ArkUI_ContextCallback;
-/**
- * @brief ArkUI 在 Native 侧使用的数字类型，用于通过统一类型承载浮点、有符号整型和无符号整型数值。
- *
- * @since 12
- */
-typedef union {
-    /** Floating-point type, used to store a floating-point value. */
-    float f32;
-    /** Signed integer, used to store a signed integer value. */
-    int32_t i32;
-    /** Unsigned integer, used to store an unsigned integer value. */
-    uint32_t u32;
-} ArkUI_NumberValue;
 
 /**
  * @brief Enumerates the alignment modes.
@@ -1564,46 +1488,6 @@ typedef enum {
      *  the existing content on the canvas. */
     BLEND_APPLY_TYPE_OFFSCREEN,
 } ArkUI_BlendApplyType;
-
-/**
- * @brief Defines a mask area.
- *
- * @since 12
- */
-typedef struct {
-    /** X coordinate of the mask area. */
-    float x;
-    /** Y coordinate of the mask area. */
-    float y;
-    /** Width of the mask area. */
-    float width;
-    /** Height of the mask area. */
-    float height;
-} ArkUI_Rect;
-
-/**
- * @brief Describes the width and height of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Width, in px. */
-    int32_t width;
-    /** Height, in px. */
-    int32_t height;
-} ArkUI_IntSize;
-
-/**
- * @brief Describes the position of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Horizontal coordinate, in px. */
-    int32_t x;
-    /** Vertical coordinate, in px. */
-    int32_t y;
-} ArkUI_IntOffset;
 
 /**
  * @brief Enumerates the animation onFinish callback types.
