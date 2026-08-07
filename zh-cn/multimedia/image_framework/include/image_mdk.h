@@ -122,7 +122,7 @@ struct OhosImageRect {
 };
 
 /**
- * @brief 定义图像组成信息。
+ * @brief 定义图像组件信息。
  *
  * @since 10
  * @version 2.0

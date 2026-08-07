@@ -291,7 +291,7 @@ Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative* rec
 /** 
  * 注销{@link OH_ImageReceiver_ImageArriveCallback}回调。 
  * @param receiver 处理回调的OH_ImageReceiverNative对象。
- * @param callback 要注册的OH_ImageReceiver_ImageArriveCallback回调。
+ * @param callback 要注销的OH_ImageReceiver_ImageArriveCallback回调。
  * @return IMAGE_SUCCESS：操作成功。
  *     <br>IMAGE_RECEIVER_INVALID_PARAMETER：参数错误，receiver或callback未注册。
  * @since 20
