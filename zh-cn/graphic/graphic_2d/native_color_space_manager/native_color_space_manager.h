@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief 提供OH_NativeColorSpaceManager结构体声明。
+ * @brief  提供OH_NativeColorSpaceManager结构体声明。
  *
  * @since 13
  */
