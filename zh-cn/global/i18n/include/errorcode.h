@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,14 +17,14 @@
  * @addtogroup i18n
  * @{
  *
- * @brief Provides internationalization APIs for application localization, and relies on libohi18n.z.so when used.
+ * @brief 为应用提供国际化能力，依赖libohi18n.z.so。
  * @since 22
  */
 
 /**
  * @file errorcode.h
  *
- * @brief Provides the error codes returned by internationalization APIs.
+ * @brief 提供国际化接口返回的错误码。
  *
  * @library libohi18n.so
  * @kit LocalizationKit
@@ -40,17 +40,17 @@ extern "C" {
 #endif
 
 /**
- * @brief error codes of i18n
+ * @brief i18n错误码
  * @since 22
  */
 typedef enum I18n_ErrorCode {
-    /** @error Success*/
+    /** @error 成功*/
     SUCCESS = 0,
 
-    /** @error Invalid input parameter */
+    /** @error 当接口传入非法的参数值时，系统会产生此错误码。 */
     ERROR_INVALID_PARAMETER = 8900001,
 
-    /** @error Unexpected error, such as memory error. */
+    /** @error 预期之外的错误，例如内存错误 */
     UNEXPECTED_ERROR = 8900050,
 } I18n_ErrorCode;
 
