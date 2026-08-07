@@ -25,11 +25,11 @@
 /**
  * @file node_scroll.h
  *
- * @brief Provides shared scroll-related enum definitions for <b>NativeNode</b> APIs.
+ * @brief 提供滚动方向、边缘效果、滚动条状态、内容裁剪、嵌套滚动、滚动状态和滚动来源等枚举，用于配置和监听Scroll组件及相关可滚动组件的行为。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
- * @kit ArkUIKit
+ * @kit ArkUI
  * @since 12
  */
 
@@ -64,7 +64,7 @@ typedef enum {
     /** 不显示。 */
     ARKUI_BAR_STATE_OFF = 0,
 
-    /** 按需显示。 */
+    /** 按需显示（在触摸时显示滚动条，2秒后自动消失）。 */
     ARKUI_BAR_STATE_AUTO = 1,
 
     /** 常驻显示。 */
@@ -85,7 +85,7 @@ typedef enum {
 } ArkUI_EffectEdge;
 
 /**
- * @brief 定义Scroll组件排列方向枚举值。
+ * @brief 定义{@link Scroll}组件排列方向枚举值。
  *
  * @since 12
  */
@@ -100,8 +100,7 @@ typedef enum {
     ARKUI_SCROLL_DIRECTION_NONE = 3,
 
     /**
-     * 自由滚动。
-     *
+     * 自由滚动，支持竖直和水平方向滚动，仅在Scroll组件中可用。
      * @since 20
      */
     ARKUI_SCROLL_DIRECTION_FREE = 4
@@ -127,12 +126,12 @@ typedef enum {
 } ArkUI_ScrollSnapAlign;
 
 /**
- * @brief 定义列表限位滚动动画速度。
+ * @brief 列表限位滚动动画速度。
  *
  * @since 22
  */
 typedef enum {
-    /** 限位滚动动画速度快。*/
+    /** 限位滚动动画速度正常。 */
     ARKUI_SCROLL_SNAP_ANIMATION_NORMAL = 0,
 
     /** 限位滚动动画速度慢。*/
@@ -225,7 +224,7 @@ typedef enum {
     /** 尾部对齐。指定item尾部与容器尾部对齐。*/
     ARKUI_SCROLL_ALIGNMENT_END,
 
-    /** 自动对齐。若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于容器,使指定item完全处于显示区。*/
+    /** 自动对齐。若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于容器，使指定item完全处于显示区。 */
     ARKUI_SCROLL_ALIGNMENT_AUTO
 } ArkUI_ScrollAlignment;
 
