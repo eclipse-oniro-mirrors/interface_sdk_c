@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +14,6 @@
  */
 
 /**
- * @file drawing_text_declaration.h
- *
- * @brief Provides declarations of data structures related to 2D text drawing.
- *
- * @kit ArkGraphics2D
- * @library libnative_drawing.so
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 8
- * @version 1.0
- */
-
-/**
  * @addtogroup Drawing
  * @{
  *
@@ -37,8 +24,22 @@
  * @since 8
  * @version 1.0
  */
+
+/**
+ * @file drawing_text_declaration.h
+ *
+ * @brief 提供2D绘制文本相关的数据结构声明。
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 8
+ * @version 1.0
+ */
+
 #ifndef C_INCLUDE_DRAWING_TEXT_DECLARATION_H
 #define C_INCLUDE_DRAWING_TEXT_DECLARATION_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -100,7 +101,7 @@ typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate;
 typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 
 /**
- * @brief 用于接收字体的位置和亲和性。
+ * @brief 用于接收文本的位置和光标的亲和性。
  *
  * @since 11
  * @version 1.0
@@ -108,7 +109,7 @@ typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 
 /**
- * @brief 用于接收字体的起始位置和结束位置。
+ * @brief 用于接收文本的起始位置和结束位置。
  *
  * @since 11
  * @version 1.0
@@ -116,7 +117,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 typedef struct OH_Drawing_Range OH_Drawing_Range;
 
 /**
- * @brief 用来解析系统字体文件。
+ * @brief 用于解析系统字体文件。
  *
  * @since 12
  * @version 1.0
@@ -156,7 +157,7 @@ typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 typedef struct OH_Drawing_Run OH_Drawing_Run;
 
 /**
- * @brief 用于描述字体的详细信息，即字体描述符。
+ * @brief 用于描述字体的详细信息。
  *
  * @since 22
  */
@@ -178,6 +179,5 @@ typedef struct OH_Drawing_FontVariationInstance OH_Drawing_FontVariationInstance
 #ifdef __cplusplus
 }
 #endif
-
 /** @} */
 #endif
