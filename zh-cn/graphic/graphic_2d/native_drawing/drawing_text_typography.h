@@ -14,18 +14,6 @@
  */
 
 /**
- * @file drawing_text_typography.h
- *
- * @brief This file declares the functions related to typography in the drawing module.
- *
- * @kit ArkGraphics2D
- * @library libnative_drawing.so
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 8
- * @version 1.0
- */
-
-/**
  * @addtogroup Drawing
  * @{
  *
@@ -36,6 +24,19 @@
  * @since 8
  * @version 1.0
  */
+
+/**
+ * @file drawing_text_typography.h
+ *
+ * @brief 定义绘制模块中排版相关的函数。
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 8
+ * @version 1.0
+ */
+
 #ifndef C_INCLUDE_DRAWING_TEXT_TYPOGRAPHY_H
 #define C_INCLUDE_DRAWING_TEXT_TYPOGRAPHY_H
 #ifdef __cplusplus
@@ -62,11 +63,11 @@ extern "C" {
  * @version 1.0
  */
 typedef enum OH_Drawing_TextDirection {
-/**
+    /**
      * 方向：从右到左。
      */
     TEXT_DIRECTION_RTL,
-/**
+    /**
      * 方向：从左到右。
      */
     TEXT_DIRECTION_LTR
@@ -79,28 +80,28 @@ typedef enum OH_Drawing_TextDirection {
  * @version 1.0
  */
 typedef enum OH_Drawing_TextAlign {
-/**
+    /**
      * 左对齐。
      */
     TEXT_ALIGN_LEFT,
-/**
+    /**
      * 右对齐。
      */
     TEXT_ALIGN_RIGHT,
-/**
+    /**
      * 居中对齐。
      */
     TEXT_ALIGN_CENTER,
-/**
+    /**
      * 两端对齐，即紧靠左和右边缘，中间单词空隙由空格填充，最后一行除外。
      */
     TEXT_ALIGN_JUSTIFY,
-/**
+    /**
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时，TEXT_ALIGN_START和TEXT_ALIGN_LEFT相同；<br>类似地，
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时，TEXT_ALIGN_START和TEXT_ALIGN_RIGHT相同。
      */
     TEXT_ALIGN_START,
-/**
+    /**
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时，TEXT_ALIGN_END和TEXT_ALIGN_RIGHT相同；<br>类似地，
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时，TEXT_ALIGN_END和TEXT_ALIGN_LEFT相同。
      */
@@ -114,39 +115,39 @@ typedef enum OH_Drawing_TextAlign {
  * @version 1.0
  */
 typedef enum OH_Drawing_FontWeight {
-/**
+    /**
      * 字重为thin。
      */
     FONT_WEIGHT_100,
-/**
+    /**
      * 字重为extra-light。
      */
     FONT_WEIGHT_200,
-/**
+    /**
      * 字重为light。
      */
     FONT_WEIGHT_300,
-/**
+    /**
      * 字重为normal/regular。
      */
     FONT_WEIGHT_400,
-/**
+    /**
      * 字重为medium。
      */
     FONT_WEIGHT_500,
-/**
+    /**
      * 字重为semi-bold。
      */
     FONT_WEIGHT_600,
-/**
+    /**
      * 字重为bold。
      */
     FONT_WEIGHT_700,
-/**
+    /**
      * 字重为extra-bold。
      */
     FONT_WEIGHT_800,
-/**
+    /**
      * 字重为black。
      */
     FONT_WEIGHT_900
@@ -159,11 +160,11 @@ typedef enum OH_Drawing_FontWeight {
  * @version 1.0
  */
 typedef enum OH_Drawing_TextBaseline {
-/**
+    /**
      * 用于表音文字，基线在中间偏下的位置。
      */
     TEXT_BASELINE_ALPHABETIC,
-/**
+    /**
      * 用于表意文字，基线位于底部。
      */
     TEXT_BASELINE_IDEOGRAPHIC
@@ -176,19 +177,19 @@ typedef enum OH_Drawing_TextBaseline {
  * @version 1.0
  */
 typedef enum OH_Drawing_TextDecoration {
-/**
+    /**
      * 无装饰。
      */
     TEXT_DECORATION_NONE = 0x0,
-/**
+    /**
      * 下划线。
      */
     TEXT_DECORATION_UNDERLINE = 0x1,
-/**
+    /**
      * 上划线。
      */
     TEXT_DECORATION_OVERLINE = 0x2,
-/**
+    /**
      * 删除线。
      */
     TEXT_DECORATION_LINE_THROUGH = 0x4
@@ -201,15 +202,15 @@ typedef enum OH_Drawing_TextDecoration {
  * @version 1.0
  */
 typedef enum OH_Drawing_FontStyle {
-/**
+    /**
      * 非斜体。
      */
     FONT_STYLE_NORMAL,
-/**
+    /**
      * 斜体。
      */
     FONT_STYLE_ITALIC,
-/**
+    /**
      * 倾斜字体。
      */
     FONT_STYLE_OBLIQUE
@@ -222,27 +223,27 @@ typedef enum OH_Drawing_FontStyle {
  * @version 1.0
  */
 typedef enum {
-/**
+    /**
      * 偏移于基线对齐。
      */
     ALIGNMENT_OFFSET_AT_BASELINE,
-/**
+    /**
      * 高于基线对齐。
      */
     ALIGNMENT_ABOVE_BASELINE,
-/**
+    /**
      * 低于基线对齐。
      */
     ALIGNMENT_BELOW_BASELINE,
-/**
+    /**
      * 行框顶部对齐。
      */
     ALIGNMENT_TOP_OF_ROW_BOX,
-/**
+    /**
      * 行框底部对齐。
      */
     ALIGNMENT_BOTTOM_OF_ROW_BOX,
-/**
+    /**
      * 行框中心对齐。
      */
     ALIGNMENT_CENTER_OF_ROW_BOX,
@@ -290,23 +291,23 @@ typedef struct {
  * @version 1.0
  */
 typedef enum {
-/**
+    /**
      * 实心样式。
      */
     TEXT_DECORATION_STYLE_SOLID,
-/**
+    /**
      * 双重样式。
      */
     TEXT_DECORATION_STYLE_DOUBLE,
-/**
+    /**
      * 圆点样式。
      */
     TEXT_DECORATION_STYLE_DOTTED,
-/**
+    /**
      * 虚线样式。
      */
     TEXT_DECORATION_STYLE_DASHED,
-/**
+    /**
      * 波浪样式。
      */
     TEXT_DECORATION_STYLE_WAVY
@@ -354,15 +355,15 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-/**
+    /**
      * 贪心策略，换行时尽可能填满每一行。
      */
     BREAK_STRATEGY_GREEDY = 0,
-/**
+    /**
      * 高质量策略，换行时优先考虑文本的连续性。
      */
     BREAK_STRATEGY_HIGH_QUALITY = 1,
-/**
+    /**
      * 平衡策略，换行时在单词边界换行。
      */
     BREAK_STRATEGY_BALANCED = 2
@@ -375,15 +376,15 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-/**
+    /**
      * 常规方式。
      */
     WORD_BREAK_TYPE_NORMAL = 0,
-/**
+    /**
      * 全部中断方式。
      */
     WORD_BREAK_TYPE_BREAK_ALL = 1,
-/**
+    /**
      * 单词中断方式。
      */
     WORD_BREAK_TYPE_BREAK_WORD = 2,
@@ -458,23 +459,23 @@ typedef enum {
  * @version 1.0
  */
 typedef enum OH_Drawing_FontConfigInfoErrorCode {
-/**
+    /**
      * 获取系统字体配置信息列表成功。
      */
     SUCCESS_FONT_CONFIG_INFO = 0,
-/**
+    /**
      * 未知错误。
      */
     ERROR_FONT_CONFIG_INFO_UNKNOWN = 1,
-/**
+    /**
      * 解析系统配置文件失败。
      */
     ERROR_FONT_CONFIG_INFO_PARSE_FILE = 2,
-/**
+    /**
      * 申请内存失败。
      */
     ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY = 3,
-/**
+    /**
      * 拷贝字符串数据失败。
      */
     ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA = 4
@@ -751,39 +752,39 @@ typedef enum OH_Drawing_TextHeightBehavior {
  * @version 1.0
  */
 typedef enum OH_Drawing_TextStyleType {
-/**
+    /**
      * 无文本样式。
      */
     TEXT_STYLE_NONE,
-/**
+    /**
      * 所有文本样式。
      */
     TEXT_STYLE_ALL_ATTRIBUTES,
-/**
+    /**
      * 字体样式。
      */
     TEXT_STYLE_FONT,
-/**
+    /**
      * 文本前景样式。
      */
     TEXT_STYLE_FOREGROUND,
-/**
+    /**
      * 文本背景样式。
      */
     TEXT_STYLE_BACKGROUND,
-/**
+    /**
      * 文本阴影样式。
      */
     TEXT_STYLE_SHADOW,
-/**
+    /**
      * 文本装饰样式。
      */
     TEXT_STYLE_DECORATIONS,
-/**
+    /**
      * 文本字符间距样式。
      */
     TEXT_STYLE_LETTER_SPACING,
-/**
+    /**
      * 文本单词间距样式。
      */
     TEXT_STYLE_WORD_SPACING
@@ -796,39 +797,39 @@ typedef enum OH_Drawing_TextStyleType {
  * @version 1.0
  */
 typedef enum OH_Drawing_FontWidth {
-/**
+    /**
      * 表示超窄的字宽。
      */
     FONT_WIDTH_ULTRA_CONDENSED = 1,
-/**
+    /**
      * 表示特窄的字宽。
      */
     FONT_WIDTH_EXTRA_CONDENSED = 2,
-/**
+    /**
      * 表示窄的字宽。
      */
     FONT_WIDTH_CONDENSED = 3,
-/**
+    /**
      * 表示半窄的字宽。
      */
     FONT_WIDTH_SEMI_CONDENSED = 4,
-/**
+    /**
      * 表示常规的字宽。
      */
     FONT_WIDTH_NORMAL = 5,
-/**
+    /**
      * 表示半宽的字宽。
      */
     FONT_WIDTH_SEMI_EXPANDED = 6,
-/**
+    /**
      * 表示宽的字宽。
      */
     FONT_WIDTH_EXPANDED = 7,
-/**
+    /**
      * 表示特宽的字宽。
      */
     FONT_WIDTH_EXTRA_EXPANDED = 8,
-/**
+    /**
      * 表示超宽的字宽。
      */
     FONT_WIDTH_ULTRA_EXPANDED = 9
@@ -856,7 +857,7 @@ typedef enum OH_Drawing_TextStyleAttributeId {
      * 行高缩放基数样式。具体行高缩放基数样式可见{@link OH_Drawing_LineHeightStyle}。
      */
     TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 2,
-/**
+    /**
      * 字宽。
      */
     TEXT_STYLE_ATTR_I_FONT_WIDTH = 3,
@@ -873,7 +874,7 @@ typedef enum OH_Drawing_TextStyleAttributeId {
  *
  * @since 21
  */
-typedef enum OH_Drawing_LineHeightStyle{
+typedef enum OH_Drawing_LineHeightStyle {
     /**
      * 以字号大小作为缩放基数。<br>行高计算公式：FontSize * FontHeight。<br>FontSize可由{@link OH_Drawing_TextStyleGetFontSize}接口获取。<br>
      * FontHeight可由{@link OH_Drawing_TextStyleGetFontHeight}接口获取。
@@ -916,7 +917,7 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
      * 行高缩放基数样式。具体行高缩放基数样式可见{@link OH_Drawing_LineHeightStyle}。
      */
     TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3,
-/**
+    /**
      * 字宽。
      */
     TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
@@ -1224,23 +1225,23 @@ typedef enum OH_Drawing_TextBadgeType {
  * @version 1.0
  */
 typedef enum OH_Drawing_TextVerticalAlignment {
-/**
+    /**
      * 偏移于基线对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_BASELINE,
-/**
+    /**
      * 底部对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_BOTTOM,
-/**
+    /**
      * 居中对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_CENTER,
-/**
+    /**
      * 顶部对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_TOP
-} OH_Drawing_TextVerticalAlignment; 
+} OH_Drawing_TextVerticalAlignment;
 
 /**
  * @brief 定义字体样式信息的结构体。
@@ -1253,7 +1254,7 @@ typedef struct OH_Drawing_FontStyleStruct {
      * 字体字重。
      */
     OH_Drawing_FontWeight weight;
-/**
+    /**
      * 字宽。
      */
     OH_Drawing_FontWidth width;

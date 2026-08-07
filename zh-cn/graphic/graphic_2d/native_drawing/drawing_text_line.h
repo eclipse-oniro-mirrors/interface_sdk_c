@@ -242,7 +242,7 @@ double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int
  * @brief 用户自定义的回调函数。将文本行对象中每个字符的偏移量、索引值作为参数传递给用户自定义的回调函数。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param offset 文本行对象中每个字符的偏移量。
+ * @param offset 文本行对象中每个字符的偏移量，单位为物理像素px。
  * @param index 文本行对象中每个字符的索引值。
  * @param leadingEdge 光标是否位于字符的前缘。true表示位于字符前缘，即偏移量不包含该字符宽度，false表示位于字符后缘，即偏移量包含该字符宽度。
  * @return 表示是否停止调用该回调函数。true表示停止调用该回调函数，false表示继续调用该回调函数。

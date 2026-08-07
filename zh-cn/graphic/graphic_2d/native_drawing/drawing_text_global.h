@@ -51,7 +51,7 @@ extern "C" {
  * @version 1.0
  */
 typedef enum {
-/**
+    /**
      * 跟随系统设置中的高对比度文字配置。
      */
     TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST,
@@ -72,11 +72,11 @@ typedef enum {
  * @since 20
  */
 typedef enum {
-/**
+    /**
      * 使用字体文件中定义的默认字形（可能是空框、空白或自定义符号等）。
      */
     TEXT_NO_GLYPH_USE_DEFAULT = 0,
-/**
+    /**
      * 始终使用豆腐块显示缺失的字形。
      */
     TEXT_NO_GLYPH_USE_TOFU = 1

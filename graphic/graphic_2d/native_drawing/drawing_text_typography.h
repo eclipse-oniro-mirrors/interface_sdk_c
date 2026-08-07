@@ -952,7 +952,7 @@ typedef enum OH_Drawing_TextStyleAttributeId {
  *
  * @since 21
  */
-typedef enum OH_Drawing_LineHeightStyle{
+typedef enum OH_Drawing_LineHeightStyle {
     /**
      * Uses the font size as the scaling base.<br>Formula for calculating the line height: **FontSize** x **FontHeight**
      * .<br>**FontSize** can be obtained from the {@link OH_Drawing_TextStyleGetFontSize} API.<br>**FontHeight** can be
@@ -1069,7 +1069,7 @@ typedef enum OH_Drawing_TypographyAttributeId {
      * The default value is false.
      * @since 26.0.0
      */
-    TYPOGRAPHY_ATTR_B_FORCE_REUSE_RASTER_RESULT = 0
+    TYPOGRAPHY_ATTR_B_FORCE_REUSE_RASTER_RESULT = 0,
 } OH_Drawing_TypographyAttributeId;
 
 /**
@@ -1348,7 +1348,7 @@ typedef enum OH_Drawing_TextVerticalAlignment {
      * Top aligned.
      */
     TEXT_VERTICAL_ALIGNMENT_TOP
-} OH_Drawing_TextVerticalAlignment; 
+} OH_Drawing_TextVerticalAlignment;
 
 /**
  * @brief This struct describes a font style.
