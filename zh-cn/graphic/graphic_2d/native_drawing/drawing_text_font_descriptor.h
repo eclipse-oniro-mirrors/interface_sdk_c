@@ -53,11 +53,11 @@ extern "C" {
  * @since 14
  */
 typedef enum {
-/**
+    /**
      * 所有字体类型。
      */
     ALL = 1 << 0,
-/**
+    /**
      * 系统字体类型。
      */
     GENERIC = 1 << 1,
@@ -65,7 +65,7 @@ typedef enum {
      * 风格字体类型。
      */
     STYLISH = 1 << 2,
-/**
+    /**
      * 用户已安装字体类型。
      */
     INSTALLED = 1 << 3,
@@ -103,15 +103,15 @@ typedef enum {
      * 子字体家族的名称，{@link OH_Drawing_String}类型。
      */
     FULL_DESCRIPTOR_ATTR_S_SUB_FAMILY_NAME = 4,
-/**
+    /**
      * 字体的字重，int类型。
      */
     FULL_DESCRIPTOR_ATTR_I_WEIGHT = 5,
-/**
+    /**
      * 字体的宽窄风格属性，int类型。
      */
     FULL_DESCRIPTOR_ATTR_I_WIDTH = 6,
-/**
+    /**
      * 字体是否倾斜，int类型。1表示字体倾斜，0表示字体非倾斜。
      */
     FULL_DESCRIPTOR_ATTR_I_ITALIC = 7,
@@ -119,67 +119,67 @@ typedef enum {
      * 字体是否等宽，bool类型。true表示字体等宽，false表示字体非等宽。
      */
     FULL_DESCRIPTOR_ATTR_B_MONO = 8,
-/**
+    /**
      * 字体是否支持符号字体，bool类型。true表示支持符号字体，false表示不支持符号字体。
      */
     FULL_DESCRIPTOR_ATTR_B_SYMBOLIC = 9,
     /**
-    * 根据系统语言配置提取字体唯一标识的名称。
+     * 根据系统语言配置提取字体唯一标识的名称。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_POSTSCRIPT_NAME = 10,
     /**
-    * 根据系统语言配置提取字体全名。
+     * 根据系统语言配置提取字体全名。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_FULL_NAME = 11,
     /**
-    * 根据系统语言配置提取字体家族名称。
+     * 根据系统语言配置提取字体家族名称。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_FAMILY_NAME = 12,
     /**
-    * 根据系统语言配置提取子字体家族名称。
+     * 根据系统语言配置提取子字体家族名称。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_SUB_FAMILY_NAME = 13,
     /**
-    * 字体版本。
+     * 字体版本。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_VERSION = 14,
     /**
-    * 字体制造商信息。
+     * 字体制造商信息。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_MANUFACTURE = 15,
     /**
-    * 字体版权信息。
+     * 字体版权信息。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_COPYRIGHT = 16,
     /**
-    * 字体商标信息。
+     * 字体商标信息。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_TRADEMARK = 17,
     /**
-    * 字体许可证信息。
+     * 字体许可证信息。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LICENSE = 18,
     /**
-    * 字体可变轴数组。
+     * 字体可变轴数组。
      * @since 24
      */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_AXIS = 19,
     /**
-    * 字体可变实例数组。
+     * 字体可变实例数组。
      * @since 24
      */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_INSTANCE = 20,
     /**
-    * 字体索引。
+     * 字体索引。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_I_INDEX = 21
@@ -191,31 +191,31 @@ typedef enum {
  * @since 24
  */
 typedef enum {
-/**
+    /**
      * 字体可变轴的关键字标识。
      */
     FONT_VARIATION_AXIS_ATTR_S_KEY = 0,
-/**
+    /**
      * 字体可变轴的最小值。
      */
     FONT_VARIATION_AXIS_ATTR_D_MIN_VALUE = 1,
-/**
+    /**
      * 字体可变轴的最大值。
      */
     FONT_VARIATION_AXIS_ATTR_D_MAX_VALUE = 2,
-/**
+    /**
      * 字体可变轴的默认值。
      */
     FONT_VARIATION_AXIS_ATTR_D_DEFAULT_VALUE = 3,
-/**
+    /**
      * 字体可变轴的标志位。值为0时表示该轴对用户可见，值为1时表示该轴应隐藏。
      */
     FONT_VARIATION_AXIS_ATTR_I_FLAGS = 4,
-/**
+    /**
      * 字体可变轴的英文名称。
      */
     FONT_VARIATION_AXIS_ATTR_S_NAME = 5,
-/**
+    /**
      * 字体可变轴的本地化名称。
      */
     FONT_VARIATION_AXIS_ATTR_S_LOCAL_NAME = 6
@@ -227,11 +227,11 @@ typedef enum {
  * @since 24
  */
 typedef enum {
-/**
+    /**
      * 字体可变实例的英文名称。
      */
     FONT_VARIATION_INSTANCE_ATTR_S_NAME = 0,
-/**
+    /**
      * 字体可变实例的本地化名称。
      */
     FONT_VARIATION_INSTANCE_ATTR_S_LOCAL_NAME = 1
@@ -438,8 +438,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Draw
 /**
  * @brief 获取{@link OH_Drawing_String}类型字体描述符的属性。
  *
- * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *     <b>OH_Drawing_String</b> structure when it is no longer needed.
+ * @note 如果不再需要OH_Drawing_String，调用方需要手动释放OH_Drawing_String结构体内部的strData成员。
  *
  * @param descriptor 指向字体描述符对象{@link OH_Drawing_FontFullDescriptor}的指针。
  * @param id 字体描述符属性id。从{@link OH_Drawing_FontFullDescriptorAttributeId}中可获取字体描述符属性。
@@ -518,8 +517,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_Font
 /**
  * @brief 获取{@link OH_Drawing_String}类型字体可变轴的属性。
  *
- * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *     <b>OH_Drawing_String</b> structure when it is no longer needed.
+ * @note 如果不再需要OH_Drawing_String，调用方需要手动释放OH_Drawing_String结构体内部的strData成员。
  *
  * @param variationAxis 指向字体可变轴对象{@link OH_Drawing_FontVariationAxis}的指针。
  * @param id 字体可变轴属性id。从{@link OH_Drawing_FontVariationAxisAttributeId}中可获取字体可变轴的属性。
@@ -555,8 +553,7 @@ void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* fontVariaAxisInst
 /**
  * @brief 获取{@link OH_Drawing_String}类型字体可变实例的属性。
  *
- * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *     <b>OH_Drawing_String</b> structure when it is no longer needed.
+ * @note 如果不再需要OH_Drawing_String，调用方需要手动释放OH_Drawing_String结构体内部的strData成员。
  *
  * @param variationInstance 指向字体可变实例对象{@link OH_Drawing_FontVariationInstance}的指针。
  * @param id 字体可变实例属性id。从{@link OH_Drawing_FontVariationInstanceAttributeId}中可获取字体可变实例属性。
