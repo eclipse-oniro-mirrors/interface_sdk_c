@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,15 +17,15 @@
  * @addtogroup NOTIFICATION
  * @{
  *
- * @brief Provides the definition of the C interface for the notification service.
+ * @brief Defines APIs for notification services.
  *
  * @since 13
  */
 /**
  * @file notification.h
  *
- * @brief Declares the APIs of notification service.
- *
+ * @brief Defines APIs for notification services.
+ * 
  * @library libohnotification.so
  * @kit NotificationKit
  * @syscap SystemCapability.Notification.Notification
@@ -43,10 +43,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Checks whether this application is allowed to publish notifications.
+ * @brief Checks whether the notification of the specified application is enabled.
  *
- * @return true  - This application is allowed to publish notifications.
- *         false - This application is not allowed to publish notifications.
+ * @return true  - Notification is enabled for the specified application.
+ *         false - Notification is not enabled for the specified application.
  * @since 13
  */
 bool OH_Notification_IsNotificationEnabled(void);
