@@ -58,8 +58,8 @@ typedef enum {
     /** API related to animations. For details, see the struct definition in <arkui/native_animate.h>.*/
     ARKUI_NATIVE_ANIMATE,
     /**
-     * API related to supported multi thread UI components.
-     * For details, see the struct definition in <arkui/native_node.h>.
+     * API related to multi-threaded UI components. For details, see the {@link struct} definition in
+     * {@link native_node.h}.
      * @since 22
      */
     ARKUI_MULTI_THREAD_NATIVE_NODE,
