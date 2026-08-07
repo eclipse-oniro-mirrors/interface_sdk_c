@@ -43,14 +43,14 @@ extern "C" {
 #endif
 
 /**
- * @brief  提供OH_NativeColorSpaceManager结构体声明。
+ * @brief 提供OH_NativeColorSpaceManager结构体声明。
  *
  * @since 13
  */
 typedef struct OH_NativeColorSpaceManager OH_NativeColorSpaceManager;
 
 /**
- * @brief Defines an enum for the color space names.
+ * @brief 色彩空间枚举。
  *
  * @since 13
  */
@@ -64,15 +64,15 @@ typedef enum {
      */
     ADOBE_RGB = 1,
     /**
-     * 表示基于SMPTE RP 431-2-2007和IEC 61966-2.1：1999的色彩空间。
+     * 表示基于SMPTE RP 431-2-2007和IEC 61966-2.1:1999的色彩空间。
      */
     DCI_P3 = 2,
     /**
-     * 表示基于SMPTE RP 431-2-2007和IEC 61966-2.1：1999的色彩空间。
+     * 表示基于SMPTE RP 431-2-2007和IEC 61966-2.1:1999的色彩空间。
      */
     DISPLAY_P3 = 3,
     /**
-     * 表示基于IEC 61966-2.1：1999的标准红绿蓝（SRGB）色彩空间。
+     * 表示基于IEC 61966-2.1:1999的标准红绿蓝（SRGB）色彩空间。
      */
     SRGB = 4,
     /**
@@ -176,12 +176,12 @@ typedef enum {
      */
     DISPLAY_P3_PQ = P3_PQ,
     /**
-     * 表示色彩原色为BT2020，传输特性为LOG，色彩范围为Full的色彩空间。
+     * 表示色彩原色为BT2020，传输特性为PRIV_LOG，色彩范围为Full的色彩空间。
      * @since 26.0.0
      */
     BT2020_LOG_FULL = 27,
     /**
-     * 表示色彩原色为BT2020，传输特性为LOG，色彩范围为LIMIT的色彩空间。
+     * 表示色彩原色为BT2020，传输特性为PRIV_LOG，色彩范围为LIMIT的色彩空间。
      * @since 26.0.0
      */
     BT2020_LOG_LIMIT = 28,
@@ -192,7 +192,7 @@ typedef enum {
 } ColorSpaceName;
 
 /**
- * @brief 提供色彩原色结构体声明
+ * @brief 提供色彩原色结构体声明，用于存储色彩空间的红绿蓝三原色和白点的坐标信息。
  *
  * @since 13
  */
@@ -237,30 +237,30 @@ typedef struct {
  * @since 13
  */
 typedef struct {
-    /** 表示白点坐标数组。 */
+    /** Indicates white point return array */
     float arr[2];
 } WhitePointArray;
 
 /**
- * @brief 通过colorSpaceName创建OH_NativeColorSpaceManager实例。\n
- * 每次调用此函数时，都会创建一个新的OH_NativeColorSpaceManager实例。
+ * @brief 通过colorSpaceName创建OH_NativeColorSpaceManager实例。
+ * <br>每次调用此函数时，都会创建一个新的OH_NativeColorSpaceManager实例。
  *
- * @param colorSpaceName 表示创建OH_NativeColorSpaceManager的色彩空间名称。
- * @return 返回一个指向OH_NativeColorSpaceManager实例的指针。内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。
+ * @param colorSpaceName 表示创建{@link OH_NativeColorSpaceManager}的色彩空间名称。
+ * @return 返回一个指向{@link OH_NativeColorSpaceManager}实例的指针。内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。
  * @since 13
  * @version 1.0
  */
 OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpaceName colorSpaceName);
 
 /**
- * @brief 通过原色和伽马值创建OH_NativeColorSpaceManager实例。\n
- * 每次调用此函数时，都会创建一个新的OH_NativeColorSpaceManager实例。
+ * @brief 通过原色和伽马值创建OH_NativeColorSpaceManager实例。
+ * <br>每次调用此函数时，都会创建一个新的OH_NativeColorSpaceManager实例。
  *
- * @param primaries 表示创建OH_NativeColorSpaceManager的色彩原色。
- * @param gamma 表示创建OH_NativeColorSpaceManager的伽马值，伽马值为一个浮点数，用于校正亮度范围。\n
- * 伽马值通常为正值，负值会使弱光区域更亮，强光区域变暗，伽马值为0.0表示线性色彩空间。
- * @return 返回一个指向OH_NativeColorSpaceManager实例的指针。
- * 内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。
+ * @param primaries 表示创建{@link OH_NativeColorSpaceManager}的色彩原色。
+ * @param gamma 表示创建{@link OH_NativeColorSpaceManager}的伽马值，伽马值为一个浮点数，用于校正亮度范围。
+ *     <br>伽马值通常为正值，负值会使弱光区域更亮，强光区域变暗，伽马值为1.0表示线性色彩空间。
+ * @return 返回一个指向{@link OH_NativeColorSpaceManager}实例的指针。
+ *     <br>内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。
  * @since 13
  * @version 1.0
  */
@@ -268,7 +268,7 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromPrimariesAndGam
     ColorSpacePrimaries primaries, float gamma);
 
 /**
- * @brief 销毁OH_NativeColorSpaceManager实例。
+ * @brief 销毁OH_NativeColorSpaceManager实例。当不再需要OH_NativeColorSpaceManager实例时，需要调用此函数进行销毁以释放内存。
  *
  * @param nativeColorSpaceManager 表示指向OH_NativeColorSpaceManager实例的指针。
  * @since 13
@@ -280,7 +280,8 @@ void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorS
  * @brief 获取色彩空间名称。
  *
  * @param nativeColorSpaceManager 表示指向OH_NativeColorSpaceManager实例的指针。
- * @return 返回色彩空间枚举{@link ColorSpaceName}对应的值。其中，当返回值为0时，表示接口操作失败。
+ * @return 返回色彩空间枚举{@link ColorSpaceName}对应的值。其中，当返回值为0时，表示接口操作失败。可能的失败原因：nativeColorSpaceManager参数为空指针。处理建议：
+ *     检查参数是否为有效指针。
  * @since 13
  * @version 1.0
  */
@@ -291,7 +292,7 @@ int OH_NativeColorSpaceManager_GetColorSpaceName(
  * @brief 获取白点。
  *
  * @param nativeColorSpaceManager 表示指向OH_NativeColorSpaceManager实例的指针。
- * @return 返回值为float数组，返回值为<0.0, 0.0>表示接口操作失败，其余返回值表示操作成功。
+ * @return 返回值为float数组，返回值为<0.0, 0.0>表示接口操作失败，其余返回值表示操作成功。可能的失败原因：nativeColorSpaceManager参数为空指针。处理建议：检查参数是否为有效指针。
  * @since 13
  * @version 1.0
  */
@@ -302,7 +303,7 @@ WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(
  * @brief 获取伽马值。
  *
  * @param nativeColorSpaceManager 表示指向OH_NativeColorSpaceManager实例的指针。
- * @return 返回值为float类型，返回值为0.0表示接口操作失败，其余返回值表示操作成功。
+ * @return 返回值为float类型，返回值为0.0表示接口操作失败，其余返回值表示操作成功。可能的失败原因：nativeColorSpaceManager参数为空指针。处理建议：检查参数是否为有效指针。
  * @since 13
  * @version 1.0
  */
