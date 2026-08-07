@@ -177,28 +177,28 @@ typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState;
 typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 
 /**
- * @brief Define the information of the Custom Property class for custom properties.
+ * @brief Defines custom property information.
  *
  * @since 14
  */
 typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 
 /**
- * @brief Define the information of the HostWindowInfo class for window properties.
+ * @brief Defines host window information.
  *
  * @since 15
  */
 typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo;
 
 /**
- * @brief Define ActiveChildenInfo class information.
+ * @brief Defines active child node information.
  *
  * @since 14
  */
 typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 
 /**
- * @brief The cross-language option.
+ * @brief Defines a cross-language configuration option.
  *
  * @since 15
  */
@@ -545,16 +545,23 @@ typedef enum {
 } ArkUI_HoverModeAreaType;
 
 /**
- * @brief Enumerates the expand modes.
+ * @brief Enumerates the expansion mode of child nodes.
  *
  * @since 15
  */
 typedef enum {
-    /** Not expand. */
+    /**
+     * Child nodes are not expanded.
+     */
     ARKUI_NOT_EXPAND = 0,
-    /** Expand. */
+    /**
+     * Child nodes are expanded immediately upon rendering.
+     */
     ARKUI_EXPAND = 1,
-    /** Lazy expand. Expand the children of node if needed. */
+    /**
+     * Lazy expansion, indicating that child nodes are only expanded when needed. For details about the node expansion
+     * conditions, see {@link LazyForEach: Lazy Data Loading}.
+     */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
 
@@ -577,20 +584,30 @@ typedef enum {
 } ArkUI_EdgeDirection;
 
 /**
- * @brief Enumerates the corner direction.
+ * @brief Enumerates corner directions.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner direction. */
+    /**
+     * All four corners.
+     */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner direction. */
+    /**
+     * Upper left corner.
+     */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner direction. */
+    /**
+     * Upper right corner.
+     */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner direction. */
+    /**
+     * Lower left corner.
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner direction. */
+    /**
+     * Lower right corner.
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
 
@@ -1298,62 +1315,62 @@ void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const 
 const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
 
 /**
- * @brief Destroy the instance of Customs Property.
+ * @brief Destroys an {@link ArkUI_CustomProperty} instance.
  *
- * @param handle The instance of Customs Property to be destroyed.
+ * @param handle Pointer to the instance to be destroyed.
  * @since 14
  */
 void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get custom attribute value information.
+ * @brief Obtains the value of a custom property object.
  *
- * @param handle Custom attribute object pointer.
- * @return Customize the value information within the attribute structure.
+ * @param handle Pointer to the custom property object.
+ * @return Pointer to the value of a custom property object.
  * @since 14
  */
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get window name from HostWindowInfo.
+ * @brief Obtains the window name in an {@link ArkUI_HostWindowInfo} object.
  *
- * @param info HostWindowInfo object pointer.
- * @return Window name in HostWindowInfo.
+ * @param info Pointer to the **HostWindowInfo** object.
+ * @return Pointer to the window name in the {@link ArkUI_HostWindowInfo} object.
  * @since 15
  */
 const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy the instance of HostWindowInfo.
+ * @brief Destroys an {@link ArkUI_HostWindowInfo} object.
  *
- * @param info Instance of HostWindowInfo to be destroyed.
+ * @param info Pointer to the {@link ArkUI_HostWindowInfo} object to be destroyed.
  * @since 15
  */
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy ActiveChildenInfo instance.
+ * @brief Destroys an {@link ArkUI_ActiveChildrenInfo} instance.
  *
- * @param handle ActiveChild instance to be destroyed.
+ * @param handle Pointer to the {@link ArkUI_ActiveChildrenInfo} instance to be destroyed.
  * @since 14
  */
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
+ * @brief Obtains the child node at the specified index in an {@link ArkUI_ActiveChildrenInfo} instance.
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @param index The index of child nodes.
- * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
+ * @param handle Pointer to the {@link ArkUI_ActiveChildrenInfo} instance from which the information is to be obtained.
+ * @param index Index of the target child node.
+ * @return Handle to the child node at the specified index, or nullptr if an error occurs.
  * @since 14
  */
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
+ * @brief Obtains the number of nodes in an {@link ArkUI_ActiveChildrenInfo} instance.
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @return Number of child nodes. Default value: 0.
+ * @param handle Pointer to the {@link ArkUI_ActiveChildrenInfo} instance from which the information is to be obtained.
+ * @return Number of child nodes. The default value is **0**.
  * @since 14
  */
 int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
@@ -1367,28 +1384,29 @@ int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
 ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
 
 /**
- * @brief Destroy the cross-language option instance.
+ * @brief Destroys an instance of the cross-language configuration option.
  *
- * @param option The cross-language option instance.
+ * @param option Pointer to the cross-language configuration option instance to be destroyed.
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Enable the attribute setting in the cross-language option.
+ * @brief Sets whether cross-language attribute setting is allowed in the configuration option.
  *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
+ * @param option Pointer to the cross-language configuration option instance.
+ * @param enabled Whether cross-language attribute setting is allowed. true means that cross-language attribute
+ *     setting is allowed, and **false** means the opposite. The default value is **false**.
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
 
 /**
- * @brief Get the attribute setting enable of the cross-language option.
+ * @brief Checks whether cross-language attribute setting is allowed in the configuration option.
  *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
+ * @param option Pointer to the cross-language configuration option instance.
+ * @return Whether cross-language attribute setting is allowed. true means that cross-language attribute setting is
+ *     allowed, and **false** means the opposite.
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
