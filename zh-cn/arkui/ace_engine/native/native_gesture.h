@@ -1095,12 +1095,6 @@ ArkUI_ErrorCode OH_ArkUI_LongPressGesture_SetAllowableMovement(
  */
 ArkUI_ErrorCode OH_ArkUI_GestureCollectInterceptInfo_GetResponseRecognizers(
     const ArkUI_GestureCollectInterceptInfo* info, ArkUI_GestureRecognizerHandleArray* array, int32_t* size);
-/**
- * @brief Defines information about gesture collection interception.
- *
- * @since 26.0.0
- */
-typedef struct ArkUI_GestureCollectInterceptInfo ArkUI_GestureCollectInterceptInfo;
 
 /**
  * @brief 从手势收集拦截信息中获取触摸识别器句柄。
@@ -1179,7 +1173,7 @@ typedef struct {
     *
      * @param countNum 识别的连续点击次数，取值范围为大于0的整数。当设置的值小于1时，会被转化为默认值1。
      * @param fingersNum 触发点击的手指数，最小为1指，最大为10指。当设置小于1的值时，按照最小值1处理；当设置大于10的值时，按照最大值10处理。
-     * @return Returns the pointer to the created gesture.
+     * @return 返回创建的长按手势指针，可用于后续绑定节点、注册回调或管理长按手势识别。
      */
     ArkUI_GestureRecognizer* (*createTapGesture)(int32_t countNum, int32_t fingersNum);
 
@@ -1192,7 +1186,7 @@ typedef struct {
     *     <br>true：连续触发；false：不连续触发。
      * @param durationNum 触发长按的最短时间，单位为毫秒（ms），有效值大于0。当传入的值小于等于0时，按照默认值500ms处理。当组件默认支持可拖拽时，长按触发时间小于500ms时长按事件优先拖拽事件响应；
     *     长按触发时间大于等于500ms时，拖拽事件优先长按事件响应。
-     * @return Returns the pointer to the created gesture.
+     * @return 返回创建的敲击手势指针，可用于后续绑定节点、注册回调或管理敲击手势识别。
      */
     ArkUI_GestureRecognizer* (*createLongPressGesture)(int32_t fingersNum, bool repeatResult, int32_t durationNum);
 
@@ -1206,28 +1200,28 @@ typedef struct {
      *     GESTURE_DIRECTION_VERTICAL适用于只识别垂直滑动的场景，GESTURE_DIRECTION_LEFT/RIGHT/UP/DOWN适用于只识别单一方向滑动的场景，
      *     GESTURE_DIRECTION_ALL适用于任意方向均可触发的场景，GESTURE_DIRECTION_NONE表示任何方向都不触发手势事件。
      * @param distanceNum 用于指定触发滑动手势事件的最小拖动距离，取值范围(0, +∞)，单位为px。当设定的值小于等于0时，按默认值5px处理。
-     * @return Pointer to the created gesture.
+     * @return 返回创建的滑动手势指针，可用于后续绑定节点、注册回调或管理滑动手势识别。
      */
     ArkUI_GestureRecognizer* (*createPanGesture)(
         int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum);
 
     /**
      * @brief 创建捏合手势。创建成功后返回的手势识别器可通过addGestureToNode()添加到节点；不再使用时，调用dispose()释放资源，释放后不得继续使用该手势识别器。如需先解除节点绑定，可在dispose()
-    * 前调用removeGestureFromNode()。
-    *
+     * 前调用removeGestureFromNode()。
+     *
      * @param fingersNum 触发捏合的最少手指数，最小为2指，最大为5指。超出取值范围时按照默认值2处理。
      * @param distanceNum 最小识别距离，取值范围(0, +∞)，单位为px。当设置识别距离的值小于等于0时，会被转化为默认值5px处理。
-     * @return Returns the pointer to the created gesture.
+     * @return 返回创建的捏合手势指针，可用于后续绑定节点、注册回调或管理捏合手势识别。
      */
     ArkUI_GestureRecognizer* (*createPinchGesture)(int32_t fingersNum, double distanceNum);
 
     /**
      * @brief 创建旋转手势。创建成功后返回的手势识别器可通过addGestureToNode()添加到节点；不再使用时，调用dispose()释放资源，释放后不得继续使用该手势识别器。如需先解除节点绑定，可在dispose()
-    * 前调用removeGestureFromNode()。
-    *
+     * 前调用removeGestureFromNode()。
+     *
      * @param fingersNum 触发旋转的最少手指数，最小为2指，最大为5指。超出取值范围时按照默认值2处理。
      * @param angleNum 触发旋转手势的最小改变度数，取值范围(0, 360]，单位为deg。默认值：1deg。当传入的值小于等于0或大于360时，会被转化为默认值1。
-     * @return Returns the pointer to the created gesture.
+     * @return 返回创建的旋转手势指针，可用于后续绑定节点、注册回调或管理旋转手势识别。
      */
     ArkUI_GestureRecognizer* (*createRotationGesture)(int32_t fingersNum, double angleNum);
 
@@ -1240,108 +1234,112 @@ typedef struct {
      *     GESTURE_DIRECTION_VERTICAL适用于垂直快滑场景，GESTURE_DIRECTION_LEFT/RIGHT/UP/DOWN适用于只识别指定单一方向快滑的场景，
      *     GESTURE_DIRECTION_ALL适用于任意方向快滑均可触发的场景，GESTURE_DIRECTION_NONE表示任何方向都不触发手势事件。
      * @param speedNum 识别滑动的最小速度，取值范围(0, +∞)，单位px/s。当设置滑动速度的值小于等于0时，会被转化为默认值100px/s。
-     * @return Returns the pointer to the created gesture.
+     * @return 返回创建的快滑手势指针，可用于后续绑定节点、注册回调或管理快滑手势识别。
      */
     ArkUI_GestureRecognizer* (*createSwipeGesture)(
         int32_t fingersNum, ArkUI_GestureDirectionMask directions, double speedNum);
 
     /**
      * @brief 创建手势组。创建成功后，可调用addChildGesture()向该手势组添加子手势，再通过addGestureToNode()将手势组绑定到节点；不再使用时可按需调用removeChildGesture()
-    * 移除子手势，并调用dispose()释放资源，释放后不得继续使用该手势识别器。如需先解除节点绑定，可在dispose()前调用removeGestureFromNode()。
-    *
+     * 移除子手势，并调用dispose()释放资源，释放后不得继续使用该手势识别器。如需先解除节点绑定，可在dispose()前调用removeGestureFromNode()。
+     *
      * @param gestureMode 手势组模式。SEQUENTIAL_GROUP适用于需要按注册顺序依次识别多个手势的场景；PARALLEL_GROUP适用于多个手势需要同时识别且互不影响的场景；
-    *     EXCLUSIVE_GROUP适用于多个手势同时竞争、任一手势识别成功后结束其他识别的互斥场景。
-     * @return Returns the pointer to the created gesture group.
+     *     EXCLUSIVE_GROUP适用于多个手势同时竞争、任一手势识别成功后结束其他识别的互斥场景。
+     * @return 返回创建的手势组指针，可用于后续添加、移除或组合管理子手势。
      */
     ArkUI_GestureRecognizer* (*createGroupGesture)(ArkUI_GroupGestureMode gestureMode);
 
     /**
      * @brief 销毁通过createTapGesture()、createLongPressGesture()、createPanGesture()、createPinchGesture()、
-    * createRotationGesture()、createSwipeGesture()、createGroupGesture()或createTapGestureWithDistanceThreshold()创建的手势，
-    * 释放资源。若手势已通过addGestureToNode()添加到节点，建议先调用removeGestureFromNode()解除节点绑定后再调用dispose()；调用dispose()后不得继续使用该手势指针。
-    *
-     * @param recognizer Pointer to the gesture to be disposed of.
+     * createRotationGesture()、createSwipeGesture()、createGroupGesture()或createTapGestureWithDistanceThreshold()创建的手势，
+     * 释放资源。若手势已通过addGestureToNode()添加到节点，建议先调用removeGestureFromNode()解除节点绑定后再调用dispose()；调用dispose()后不得继续使用该手势指针。
+     *
+     * @param recognizer 需要销毁的手势的指针。
      */
     void (*dispose)(ArkUI_GestureRecognizer* recognizer);
 
     /**
-     * @brief Adds a gesture to a gesture group.
+     * @brief 向通过createGroupGesture()创建的手势组中增加子手势。需要先创建手势组和子手势，再调用addChildGesture()建立关联；添加后，子手势将参与该手势组的识别流程。
+     * 不再需要该子手势参与手势组识别时，可调用removeChildGesture()解除关联。
      *
-     * @param group Pointer to the target gesture group.
-     * @param child Pointer to the target gesture.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs, for example, attempting to
-     *     add a gesture to an object that is not a gesture group.
+     * @param group 需要被关联子手势的手势组。
+     * @param child 需要添加到手势组中的子手势识别器指针。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。比如添加手势到非手势组对象内。
      */
     int32_t (*addChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child);
 
     /**
-     * @brief Removes a gesture from a gesture group.
+     * @brief 从手势组中删除已通过addChildGesture()添加的子手势。调用后，该子手势不再作为该手势组的子手势参与手势组识别。
      *
-     * @param group Pointer to the target gesture group.
-     * @param child Pointer to the target gesture.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param group 需要被删除子手势的手势组。
+     * @param child 需要从手势组中删除的子手势识别器指针。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。
      */
     int32_t (*removeChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child);
 
     /**
-     * @brief Registers a callback for gestures.
+     * @brief 创建手势关联回调方法，用于需要监听手势触发、更新或结束等事件并执行业务处理的场景。需要先通过createTapGesture()、createLongPressGesture()等接口创建手势识别器，
+     * 再调用setGestureEventTarget()设置事件回调，然后通过addGestureToNode()将手势绑定到节点。建议在addGestureToNode()之前调用setGestureEventTarget()，
+     * 以确保手势绑定到节点后即可响应事件。
      *
-     * @param recognizer Pointer to a gesture recognizer.
-     * @param actionTypeMask Gesture event types. Multiple callbacks can be registered at once, with the callback event
-     *     types distinguished in the callbacks. Example: actionTypeMask = GESTURE_EVENT_ACTION_ACCEPT \|
+     * @param recognizer 需要被绑定回调事件的各类手势指针。
+     * @param actionTypeMask 需要响应的手势事件类型集合，一次性可以注册多个事件类型，在回调中区分回调事件类型。例：actionTypeMask = GESTURE_EVENT_ACTION_ACCEPT \|
      *     GESTURE_EVENT_ACTION_UPDATE;
-     * @param extraParams Context passed in the **targetReceiver** callback.
-     * @param targetReceiver Callback to register for processing the gesture event types. **event** indicates the
-     *     gesture callback data.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param extraParams targetReceiver回调时传入的上下文数据，当需要在回调中访问自定义业务数据时传入对应数据指针。
+     * @param targetReceiver 手势事件回调函数，签名为void (\*targetReceiver)(ArkUI_GestureEvent* event, void* extraParams)，
+     *     用于处理已注册手势类型的事件。其中event为手势回调数据，extraParams为注册时传入的上下文数据，无返回值。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。
      */
     int32_t (*setGestureEventTarget)(
         ArkUI_GestureRecognizer* recognizer, ArkUI_GestureEventActionTypeMask actionTypeMask, void* extraParams,
         void (*targetReceiver)(ArkUI_GestureEvent* event, void* extraParams));
 
     /**
-     * @brief Adds a gesture to a UI component.
+     * @brief 将通过createTapGesture()、createLongPressGesture()等接口创建的手势添加到UI组件。应先创建手势识别器，再调用addGestureToNode()绑定到节点；
+     * 不再需要节点响应该手势时，调用removeGestureFromNode()解除绑定，释放资源时再调用dispose()。
      *
-     * @param node Pointer to the ArkUI component node to which you want to add the gesture.
-     * @param recognizer Gesture to be added to the UI component.
-     * @param mode Mode of the gesture.
-     * @param mask Gesture masking mode.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 需要被绑定手势的ArkUI组件节点指针。
+     * @param recognizer 绑定此节点的手势识别器。
+     * @param mode 手势优先级模式，用于设置该手势添加到节点后的响应优先级和与其他手势的竞争关系。
+     * @param mask 手势屏蔽模式，用于控制该手势添加到节点后与其他手势之间的屏蔽或透传关系。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。
      */
     int32_t (*addGestureToNode)(
         ArkUI_NodeHandle node, ArkUI_GestureRecognizer* recognizer, ArkUI_GesturePriority mode,
         ArkUI_GestureMask mask);
 
     /**
-     * @brief Removes a gesture from a node.
+     * @brief 从节点中移除已通过addGestureToNode()添加的手势。调用后，该节点不再响应该手势；如需释放该手势资源，建议先调用removeGestureFromNode()解除节点绑定，再调用dispose()。
      *
-     * @param node Pointer to the node from which you want to remove the gesture.
-     * @param recognizer Gesture to be removed.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 需要被移除手势的节点指针。
+     * @param recognizer 需要被移除的手势识别器。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。
      */
     int32_t (*removeGestureFromNode)(ArkUI_NodeHandle node, ArkUI_GestureRecognizer* recognizer);
 
     /**
-     * @brief Sets a gesture interruption callback for a node.
+     * @brief 设置节点手势打断回调，用于需要根据业务条件决定手势是否继续识别的场景，例如处理父子节点手势冲突或动态控制手势响应时使用。该打断回调作用于通过addGestureToNode()添加到节点的手势及组件内置手势，
+     * 在手势识别过程中会触发打断回调，开发者可根据业务条件决定手势是否继续识别。
      *
-     * @param node Pointer to the ArkUI node for which you want to set a gesture interruption callback.
-     * @param interrupter Indicates the gesture interruption callback to set.
-     *     <b>info</b> indicates the gesture interruption data. If <b>interrupter</b> returns
-     *     <b>GESTURE_INTERRUPT_RESULT_CONTINUE</b>, the gesture recognition process continues. If it returns
-     *     <b>GESTURE_INTERRUPT_RESULT_REJECT</b>, the gesture recognition process is paused.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 需要被设置手势打断回调的ArkUI节点指针。
+     * @param interrupter 打断回调，info返回手势打断数据。
+     *     interrupter返回GESTURE_INTERRUPT_RESULT_CONTINUE，手势正常进行；返回GESTURE_INTERRUPT_RESULT_REJECT，手势打断。
+     *     设置此参数为nullptr时将取消注册回调函数。<br>**说明：** 该事件中断回调注册后，后续在单次手势处理流程中都会存在。即使在单次事件处理流程中使用
+     *     setGestureInterrupterToNode接口将手势打断回调重置为nullptr，或者使用{@link dispose}接口使即将被触发的手势销毁，该回调在满足触发条件后仍会
+     *     响应。如果在该回调中使用到的对象，在回调触发前已被释放，需要确保该对象在回调触发时仍然有效，例如在使用前检查对象是否已被释放，或延长对象生命周期至回调触发之后。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。
      */
     int32_t (*setGestureInterrupterToNode)(
         ArkUI_NodeHandle node, ArkUI_GestureInterruptResult (*interrupter)(ArkUI_GestureInterruptInfo* info));
@@ -1350,21 +1348,22 @@ typedef struct {
      * @brief 获取手势类别。
     *
      * @param recognizer 手势指针。
-     * @return Returns the gesture type.
+     * @return 返回手势识别器的手势类型。
      */
     ArkUI_GestureRecognizerType (*getGestureType)(ArkUI_GestureRecognizer* recognizer);
 
     /**
-     * @brief Sets the callback function for the parallel internal gesture event.
+     * @brief 设置并行内部手势事件回调，用于需要让组件内部手势与外部自定义手势并行识别的场景。需要先通过createTapGesture()等接口创建自定义手势识别器，
+     * 再通过addGestureToNode()将手势绑定到节点，然后调用setInnerGestureParallelTo()设置并行内部手势事件回调。
+     * 回调函数parallelInnerGesture返回的手势识别器应为通过create系列方法创建的自定义手势识别器，用于与组件内部手势并行识别。
      *
-     * @param node Pointer to the ArkUI node for which you want to set the callback of the parallel internal gesture
-     *     event.
-     * @param userData Custom data.
-     * @param parallelInnerGesture Parallel internal gesture event. **event** returns the data of the parallel internal
-     *     gesture event. **parallelInnerGesture** returns the pointer to the gesture recognizer that requires parallel
-     *     recognition.
-     * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 需要被设置并行内部手势事件回调的ArkUI节点指针。
+     * @param userData 用户自定义数据，设置后会作为并行内部手势事件回调的上下文数据透传，供开发者在处理回调时使用。当不需要传递额外上下文时可传入nullptr。
+     * @param parallelInnerGesture 并行内部手势事件回调函数，签名为ArkUI_GestureRecognizer* (\*parallelInnerGesture)(
+     *     ArkUI_ParallelInnerGestureEvent* event)，用于根据并行内部手势事件数据返回需要与内部手势并行识别的手势识别器指针。其中event为并行内部手势事件数据，
+     *     返回值为需要并行的手势识别器指针。
+     * @return {@link ARKUI_ERROR_CODE_NO_ERROR} - 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} - 参数错误。
      */
     int32_t (*setInnerGestureParallelTo)(
         ArkUI_NodeHandle node, void* userData, ArkUI_GestureRecognizer* (*parallelInnerGesture)(
@@ -1378,7 +1377,7 @@ typedef struct {
      * @param countNum 识别的连续点击次数，取值范围为大于0的整数。当设置的值小于1时，会被转化为默认值1。
      * @param fingersNum 触发点击的手指数，最小为1指，最大为10指。当设置小于1的值时，按照最小值1处理；当设置大于10的值时，按照最大值10处理。
      * @param distanceThreshold 手指允许的移动距离范围，取值范围(0, +∞)，单位为vp。当设置的值小于等于0时，会被转化为默认值无穷大。
-     * @return Returns the pointer to the created gesture.
+     * @return 返回创建的带移动范围限制的敲击手势指针，可用于后续绑定节点、注册回调或管理敲击手势识别。
      */
     ArkUI_GestureRecognizer* (*createTapGestureWithDistanceThreshold)(
         int32_t countNum, int32_t fingersNum, double distanceThreshold);
@@ -1398,21 +1397,21 @@ typedef struct {
     ArkUI_NativeGestureAPI_1* gestureApi1;
 
     /**
-     * @brief Sets the callback for gesture interruption events.
-     *
-     * @param node Pointer to the ArkUI node for which you want to set a gesture interruption callback.
-     * @param userData Pointer to user-defined data.
-     * @param interrupter Gesture interruption callback to set. <b>info</b> indicates the gesture interruption data.
-     *     If <b>interrupter</b> returns <b>GESTURE_INTERRUPT_RESULT_CONTINUE</b>, the gesture recognition process
-     *     proceeds
-     *     properly. If it returns <b>GESTURE_INTERRUPT_RESULT_REJECT</b>, the gesture recognition process is paused.
-     * @return Error code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     */
-    int32_t (*setGestureInterrupterToNode)(
-        ArkUI_NodeHandle node, void* userData, ArkUI_GestureInterruptResult (*interrupter)(
-            ArkUI_GestureInterruptInfo* info));
+    * @brief 设置手势打断事件的回调函数，适用于需要在手势识别过程中根据当前交互状态决定手势继续响应或打断的场景。
+    *
+    * @param node 需要设置手势打断回调函数的ArkUI节点句柄。
+    * @param userData 开发者自定义数据，供手势打断回调函数关联上下文使用；无需关联上下文时可传入nullptr，此时回调函数中无法获取自定义上下文数据。传入非空指针时，需确保数据在回调函数触发期间仍可安全访问。
+    * @param interrupter 手势打断回调函数，info提供手势打断数据。
+    *     interrupter返回GESTURE_INTERRUPT_RESULT_CONTINUE时手势正常进行；返回GESTURE_INTERRUPT_RESULT_REJECT时手势打断。
+    *     设置此参数为nullptr时将取消注册回调函数。<br>**说明：** 该手势打断回调函数注册后，后续在单次手势处理流程中都会存在。即使在同一次手势处理流程中将回调函数重置为nullptr，
+    *     或者使用{@link dispose}销毁即将触发的手势，该回调函数在满足触发条件后仍会响应。如回调函数中引用的对象可能在触发前被释放，
+    *     需确保该对象在回调函数触发期间仍可安全访问。
+    * @return 错误码。
+    *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+    *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数错误。
+    */
+    int32_t (*setGestureInterrupterToNode)(ArkUI_NodeHandle node, void* userData,
+        ArkUI_GestureInterruptResult (*interrupter)(ArkUI_GestureInterruptInfo* info));
 } ArkUI_NativeGestureAPI_2;
 
 /**
@@ -1430,14 +1429,14 @@ typedef struct {
     ArkUI_NativeGestureAPI_2* gestureApi2;
 
     /**
-     * @brief Sets the callback function for a parallel gesture event.
+     * @brief 设置并行手势事件的回调函数。触发回调时，开发者可从事件提供的冲突手势识别器中返回一个需要与当前手势并行识别的对象。此接口适用于开发者自定义手势与响应链上其他组件手势需要并行处理的场景。
      *
-     * @param node Pointer to the ArkUI node for which you want to set a parallel gesture event callback.
-     * @param userData Pointer to the user-defined data. The caller must ensure the security of the data lifecycle.
-     * @param parallelGesture Parallel gesture event. event returns the data of the parallel gesture event. \n
-     *     ParallelGesture returns the pointer to the gesture recognizer that needs parallel recognition.
-     * @return {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 待设置并行手势事件回调函数的ArkUI节点句柄。
+     * @param userData 自定义数据，在并行手势事件回调函数中传递开发者自定义上下文信息。不需要关联上下文时可传入nullptr；传入非空指针时，开发者需要确保数据的生命周期安全，
+     *     若数据在回调过程中被释放可能导致回调执行异常。
+     * @param parallelGesture 并行手势事件的回调函数。event为并行手势事件对象，包含触发该回调时的手势事件信息；parallelGesture返回需要并行识别的手势识别器指针。
+     * @return 返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示成功。
+     *     <br>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示参数错误。
      * @since 26.0.0
      */
     ArkUI_ErrorCode (*setGestureParallelTo)(
