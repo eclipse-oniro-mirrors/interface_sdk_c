@@ -185,13 +185,13 @@ typedef enum {
      */
     DISPLAY_P3_PQ = P3_PQ,
     /**
-     * Color space with the color primaries of BT.2020, the transfer characteristics of PRIV_LOG, and the color range of
+     * Color space with the color primaries of BT2020, the transfer characteristics of PRIV_LOG, and the color range of
      * Full.
      * @since 26.0.0
      */
     BT2020_LOG_FULL = 27,
     /**
-     * Color space with the color primaries of BT.2020, the transfer characteristics of PRIV_LOG, and the color range of
+     * Color space with the color primaries of BT2020, the transfer characteristics of PRIV_LOG, and the color range of
      * LIMIT.
      * @since 26.0.0
      */
@@ -260,7 +260,7 @@ typedef struct {
  *
  * @param colorSpaceName Color space name of the created {@link OH_NativeColorSpaceManager} instance.
  * @return Returns a pointer to the {@link OH_NativeColorSpaceManager} instance. If the memory is insufficient, the **
- * OH_NativeColorSpaceManager** instance fails to be created.
+ *     OH_NativeColorSpaceManager** instance fails to be created.
  * @since 13
  * @version 1.0
  */
@@ -297,8 +297,9 @@ void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorS
  * @brief Obtains the color space name.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
- * @return Returns the color space name, which is defined in {@link ColorSpaceName}. The return value **0** means that
- * the function call fails.
+ * @return Value corresponding to the color space enum {@link ColorSpaceName}. A return value of 0 indicates that the
+ *     API operation failed. Possible failure cause: the nativeColorSpaceManager parameter is a null pointer.
+ *     Suggestion: check whether the parameter is a valid pointer.
  * @since 13
  * @version 1.0
  */
@@ -309,7 +310,9 @@ int OH_NativeColorSpaceManager_GetColorSpaceName(
  * @brief Obtains the white points.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
- * @return Returns a float array of white points. The value **<0.0, 0.0>** means that the function call fails.
+ * @return Return value is a float array. Return value <0.0, 0.0> indicates that the API operation failed, and other
+ *     return values indicate that the operation is successful. Possible failure cause: The nativeColorSpaceManager
+ *     parameter is a null pointer. Suggestion: Check whether the parameter is a valid pointer.
  * @since 13
  * @version 1.0
  */
@@ -320,7 +323,9 @@ WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(
  * @brief Obtains the gamma value.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
- * @return Returns a float value. The value **0.0** means that the function call fails.
+ * @return Value of the float type. 0.0 indicates that the API operation failed, and other return values indicate
+ *     success. Possible failure cause: The nativeColorSpaceManager parameter is a null pointer. Suggestion: Check
+ *     whether the parameter is a valid pointer.
  * @since 13
  * @version 1.0
  */
