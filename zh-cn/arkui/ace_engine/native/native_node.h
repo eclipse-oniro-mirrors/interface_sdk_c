@@ -163,6 +163,21 @@ typedef enum {
      * @since 23
      */
     ARKUI_NODE_PICKER = 1018,
+    /**
+     * ArcList容器。
+     * @since 26.0.0
+     */
+    ARKUI_NODE_ARC_LIST = 1019,
+    /**
+     * ArcListItem容器。
+     * @since 26.0.0
+     */
+    ARKUI_NODE_ARC_LIST_ITEM = 1020,
+    /**
+     * ArcScrollBar容器。
+     * @since 26.0.0
+     */
+    ARKUI_NODE_ARC_SCROLL_BAR = 1021,
 } ArkUI_NodeType;
 
 /**
@@ -7425,806 +7440,1016 @@ typedef enum {
     NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_STACK,
 
     /**
-     * @brief Defines the scrollbar status. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滚动条状态，支持属性设置，属性重置和属性获取接口。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}. The default value is
-     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO</b> for the <b>List</b>, <b>Grid</b>, and <b>Scroll</b> components, and
-     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF</b> for the <b>WaterFlow</b> component. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}，
+     * List、Grid、Scroll组件默认值为{@link ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO}，
+     * WaterFlow组件默认值为{@link ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
     /**
-     * @brief Defines the width of the scrollbar. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置滚动条的宽度，支持属性设置，属性重置和属性获取接口。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the scrollbar, in vp. The default value is <b>4</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the scrollbar, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条宽度，单位vp，默认值4。 取值范围：[0, +∞)。设置为小于0的值时，按默认值处理，儿童智能表则恢复至默认值5vp。设置为0时，不显示滚动条。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条宽度，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BAR_WIDTH,
     /**
-     * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置滚动条的颜色，支持属性设置，属性重置和属性获取接口。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .data[0].u32: color of the scrollbar, in 0xARGB format. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .data[0].u32: color of the scrollbar, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32 滚动条颜色，0xargb类型。儿童智能表的默认值颜色：0xffffffff，表示白色（100%不透明度）。其他设备默认值：0x66182431，表示深蓝灰色（40%不透明度）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32 滚动条颜色，0xargb类型。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BAR_COLOR,
     /**
-     * @brief Defines the scroll direction. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滚动方向，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: scroll direction. The parameter type is {@link ArkUI_ScrollDirection}.
-     * The default value is <b>ARKUI_SCROLL_DIRECTION_VERTICAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: scroll direction. The parameter type is {@link ArkUI_ScrollDirection}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动方向，数据类型{@link ArkUI_ScrollDirection}，默认值{@link ARKUI_SCROLL_DIRECTION_VERTICAL}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动方向，数据类型{@link ArkUI_ScrollDirection}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_SCROLL_DIRECTION,
     /**
-     * @brief Defines the effect used at the edges of the component when the boundary of the scrollable content is
-     * reached. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置边缘滑动效果，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: effect used at the edges of the component when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EdgeEffect}. The default value is <b>ARKUI_EDGE_EFFECT_NONE</b>.\n
-     * .value[1]?.i32: whether to enable the scroll effect when the component content size is smaller than the
-     * component itself. Optional. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the
-     * opposite. The default value for the List/Grid/WaterFlow component is <b>0</b>, and the default value for the
-     * Scroll component is <b>1</b>. \n
-     * .value[2]?.i32: direction in which the effect takes effect. The parameter type is {@link ArkUI_EffectEdge}.
-     * The default value is <b>ARKUI_EFFECT_EDGE_START | ARKUI_EFFECT_EDGE_END</b>. This parameter is supported since
-     * API version 16. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: effect used at the edges of the component when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EdgeEffect}. \n
-     * .value[1].i32: whether to enable the scroll effect when the component content size is smaller than the component
-     * itself. Optional. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the opposite. \n
-     * .value[2].i32: edge for which the effect takes effect when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EffectEdge}. This parameter is supported since API version 16. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 边缘滑动效果，参数类型{@link ArkUI_EdgeEffect}，Grid、Scroll、WaterFlow组件默认值为{@link ARKUI_EDGE_EFFECT_NONE}，
+     * List组件默认值为{@link ARKUI_EDGE_EFFECT_SPRING}。</li>
+     * <li>.value[1]?.i32 可选值，组件内容大小小于组件自身时，设置是否开启滑动效果，开启为1，关闭为0，List、Grid、WaterFlow组件默认值为0，Scroll组件默认值为1。</li>
+     * <li>.value[2]?.i32 边缘效果生效的方向，参数类型{@link ArkUI_EffectEdge}，默认值{@link ARKUI_EFFECT_EDGE_START} | {@link ARKUI_EFFECT_EDGE_END}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 边缘滑动效果，参数类型{@link ArkUI_EdgeEffect}。</li>
+     * <li>.value[1].i32 组件内容大小小于组件自身时，设置是否开启滑动效果，开启为1，关闭为0。</li>
+     * <li>.value[2].i32 边缘效果生效的方向，参数类型{@link ArkUI_EffectEdge}。该参数从API version 18开始支持。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_EDGE_EFFECT,
     /**
-     * @brief Defines whether to support scroll gestures. When this attribute is set to <b>false</b>, scrolling by
-     * finger or mouse is not supported, but the scroll controller API is not affected.
+     * @brief 设置是否支持滚动手势，当设置为0时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+     * List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll gestures. The default value is <b>true</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to support scroll gestures. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持滚动手势，默认值1。1：支持滚动手势，0：不支持滚动手势。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持滚动手势。1：支持滚动手势，0：不支持滚动手势。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ENABLE_SCROLL_INTERACTION,
     /**
-     * @brief Defines the friction coefficient. It applies only to gestures in the scrolling area, and it affects only
-     * indirectly the scroll chaining during the inertial scrolling process.
+     * @brief 设置摩擦系数，手动滑动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。
+     * List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: friction coefficient. The default value is <b>0.6</b> for non-wearable devices and <b>0.9</b>
-     * for wearable devices. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: friction coefficient.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 摩擦系数，默认值：非可穿戴设备为0.6，可穿戴设备为0.9。取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 摩擦系数。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_FRICTION,
     /**
-     * @brief Defines the scroll snapping mode. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Scroll组件的限位滚动模式，支持属性设置，属性重置和属性获取接口。如果同时设置了滑动翻页和限位滚动，则限位滚动优先生效，滑动翻页不生效。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode for the scroll snap position. The parameter type is {@link ArkUI_ScrollSnapAlign}.
-     * The default value is <b>ARKUI_SCROLL_SNAP_ALIGN_NONE</b>.\n
-     * .value[1].i32: whether to enable the snap to start feature. When scroll snapping is defined for the
-     * <b><Scroll></b> component, setting this attribute to <b>false</b> enables the component to scroll between the
-     * start edge and the first snap point. The default value is <b>true</b>. It is valid only when there are multiple
-     * snap points.\n
-     * .value[2].i32: Whether to enable the snap to end feature. When scroll snapping is defined for the
-     * <b><Scroll></b> component, setting this attribute to <b>false</b> enables the component to scroll between the
-     * end edge and the last snap point. The default value is <b>true</b>. It is valid only when there are multiple
-     * snap points.\n
-     * .value[3...].f32: snap points for the <b><Scroll></b> component. Each snap point defines the offset from an
-     * edge to which the <b><Scroll></b> component can scroll.  \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode for the scroll snap position. The parameter type is {@link ArkUI_ScrollSnapAlign}.\n
-     * .value[1].i32: whether to enable the snap to start feature. When scroll snapping is defined for the
-     * <b><Scroll></b> component, setting this attribute to <b>false</b> enables the component to scroll between the
-     * start edge and the first snap point.\n
-     * .value[2].i32: Whether to enable the snap to end feature. When scroll snapping is defined for the
-     * <b><Scroll></b> component, setting this attribute to <b>false</b> enables the component to scroll between the
-     * end edge and the last snap point.\n
-     * .value[3...].f32: snap points for the <b><Scroll></b> component. Each snap point defines the offset from an edge
-     * to which the <b><Scroll></b> component can scroll. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Scroll组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}，默认值{@link ARKUI_SCROLL_SNAP_ALIGN_NONE}。
+     * </li>
+     * <li>.value[1].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在开头和第一页间自由滑动，设置为0（false）后，允许Scroll在开头和第一页间自由滑动，
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * <li>.value[2].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在最后一页和末尾间自由滑动，设置为0（false）后，允许Scroll在最后一页和末尾间自由滑动，
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * <li>.value[3...].f32 Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量，单位：vp。可以1个或多个。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Scroll组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}。</li>
+     * <li>.value[1].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在开头和第一页间自由滑动，设置为0（false）后，允许Scroll在开头和第一页间自由滑动，
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * <li>.value[2].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在最后一页和末尾间自由滑动，设置为0（false）后，允许Scroll在最后一页和末尾间自由滑动，
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * <li>.value[3...].f32 Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量，单位：vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_SNAP,
 
     /**
-     * @brief Defines the nested scrolling options. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置嵌套滚动选项，支持属性设置，属性重置和属性获取。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: nested scrolling option when the component scrolls forward.
-     * The parameter type is {@link ArkUI_ScrollNestedMode}. \n
-     * .value[1].i32: nested scrolling option when the component scrolls backward.
-     * The parameter type is {@link ArkUI_ScrollNestedMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: nested scrolling option when the component scrolls forward.
-     * The parameter type is {@link ArkUI_ScrollNestedMode}. \n
-     * .value[1].i32: nested scrolling option when the component scrolls backward.
-     * The parameter type is {@link ArkUI_ScrollNestedMode}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 可滚动组件往末尾端滚动时的嵌套滚动，参数类型{@link ArkUI_ScrollNestedMode}。</li>
+     * <li>.value[1].i32 可滚动组件往起始端滚动时的嵌套滚动，参数类型{@link ArkUI_ScrollNestedMode}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 可滚动组件往末尾端滚动时的嵌套滚动，参数类型{@link ArkUI_ScrollNestedMode}。</li>
+     * <li>.value[1].i32 可滚动组件往起始端滚动时的嵌套滚动，参数类型{@link ArkUI_ScrollNestedMode}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_NESTED_SCROLL,
     /**
-     * @brief Defines the specified position to scroll to. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置Scroll组件滑动到指定位置，支持属性设置，属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: horizontal scrolling offset, in vp. \n
-     * .value[1].f32: vertical scrolling offset, in vp. \n
-     * .value[2]?.i32: scrolling duration, in milliseconds. Optional. \n
-     * .value[3]?.i32: scrolling curve. Optional. The parameter type is {@link ArkUI_AnimationCurve}.
-     *                 The default value is <b>ARKUI_CURVE_EASE</b>. \n
-     * .value[4]?.i32: whether to enable the default spring animation. Optional.
-     *                 The default value <b>0</b> means not to enable the default spring animation. \n
-     * .value[5]?.i32: whether to convert the scroll animation to an overshoot animation when the boundary is reached.
-     *                 Optional. \n
-     * .value[6]?.i32: whether the component can stop at an overscrolled position.
-     *                 This parameter is supported since API version 20. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: horizontal scrolling offset, in vp. \n
-     * .value[1].f32: vertical scrolling offset, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 水平滑动偏移，单位为vp。取值范围：[0, +∞)，设置为小于0的值时按0处理。值为0时滚动到起始位置，值大于0时滚动到指定偏移位置。</li>
+     * <li>.value[1].f32 垂直滑动偏移，单位为vp。取值范围：[0, +∞)，设置为小于0的值时按0处理。值为0时滚动到起始位置，值大于0时滚动到指定偏移位置。</li>
+     * <li>.value[2]?.i32 可选值，滚动时长，单位为毫秒，默认值1000。滚动时长大于0或使能默认弹簧动效时，滚动带动画效果。</li>
+     * <li>.value[3]?.i32 可选值，滚动曲线，参数类型{@link ArkUI_AnimationCurve}。默认值为{@link ARKUI_CURVE_EASE}。</li>
+     * <li>.value[4]?.i32 可选值，是否使能默认弹簧动效，默认值为0不使能。</li>
+     * <li>.value[5]?.i32 可选值，设置动画滚动到边界是否转换为越界回弹动画，默认值为0不转换越界回弹动画。</li>
+     * <li>.value[6]?.i32 可选值，设置滚动是否可以停留在越界位置，默认值为0不停留在越界位置。该参数从API version 20开始支持。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 水平滑动偏移，单位为vp。</li>
+     * <li>.value[1].f32 垂直滑动偏移，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_OFFSET,
 
     /**
-     * @brief Defines the edge position to scroll to. This attribute can be set and obtained as required through APIs.
+     * @brief 设置Scroll组件滚动到容器边缘位置，支持属性设置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: edge position to scroll to. The parameter type is {@link ArkUI_ScrollEdge}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the container at the edge position. The value <b>-1</b> means that the container is not
-     * at the edge position. If the container is at the edge position, the parameter type is {@link ArkUI_ScrollEdge}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 容器边缘位置，参数类型{@link ArkUI_ScrollEdge}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 容器是否位于边缘。-1表示未处于边缘；处于边缘状态时，返回值为{@link ArkUI_ScrollEdge}枚举值，表示具体边缘位置。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_EDGE,
 
     /**
-     * @brief Defines whether to enable the swipe-to-turn-pages feature. This attribute can be set, reset, and obtained
-     * as required through APIs.
+     * @brief 设置是否支持滑动翻页，支持属性设置，属性重置和属性获取接口。如果同时设置了滑动翻页enablePaging和限位滚动scrollSnap，则scrollSnap优先生效，enablePaging不生效。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * If both <b>enablePaging</b> and <b>scrollSnap</b> are set, <b>scrollSnap</b> takes effect, but
-     * <b>enablePaging</b> does not. \n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the swipe-to-turn-pages feature. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the swipe-to-turn-pages feature. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持滑动翻页，默认值0。0：不支持滑动翻页，1：支持滑动翻页。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持滑动翻页。0：不支持滑动翻页，1：支持滑动翻页。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ENABLE_PAGING,
 
     /**
-     * @brief Scroll to the next or previous page.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 Indicates whether to scroll to next page. Value 0 indicates scroll to next page and value 1
-     * indicates scroll to previous page. \n
-     * .value[1]?.i32 Indicates whether to enable animation. Value 1 indicates enable and 0 indicates disable. \n
+     * @brief 滚动到下一页或者上一页。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 翻页方向。0表示向下翻页，1表示向上翻页。</li>
+     * <li>.value[1]?.i32 是否开启翻页动画效果。1有动画，0无动画。默认值：0。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_PAGE,
 
     /**
-     * @brief Scroll a specified distance.
-     * List/Scroll/WaterFlow support since API version 12, Grid support since API version 26.0.0.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32：Horizontal scrolling distance in vp; \n
-     * .value[1].f32: Vertical scrolling distance in vp; \n
+     * @brief 滑动指定距离。从API version 12开始List/Scroll/WaterFlow组件支持滑动指定距离，从API版本26.0.0开始Grid组件支持滑动指定距离。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 水平方向滚动距离，单位：vp。</li>
+     * <li>.value[1].f32 垂直方向滚动距离，单位：vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BY,
 
     /**
-     * @brief Performs inertial scrolling based on the initial velocity passed in.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: Initial velocity of inertial scrolling. Unit: vp/s. If the value specified is 0, it is
-     * considered as invalid, and the scrolling for this instance will not take effect. If the value is positive,
-     * the scroll will move downward; if the value is negative, the scroll will move upward. \n
+     * @brief 滚动类组件按传入的初始速度进行惯性滚动。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 惯性滚动的初始速度，单位：vp/s。值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。</li>
+     * </ul>
      *
      * @since 13
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_FLING,
 
     /**
-    * @brief Sets the fading effect for the edges of scrollable components.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-    * .value[0].i32: whether to enable the fading effect on edges. The value 0 means to disable the fading effect,
-    * and 1 means to enable it.
-    * .value[1]?.f32: length of the fading effect on edges, in vp. Default value: 32.
-    *
-    * Format of the return value {@link ArkUI_AttributeItem}:
-    * .value[0].i32: whether the fading effect on edges is enabled. The value 0 means that the fading effect is
-    * disabled, and 1 means that it is enabled.
-    * .value[1].f32: length of the fading effect on edges, in vp.
-    *
-    * @since 14
-    */
+     * @brief 设置滚动类组件边缘渐隐效果。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否使能边缘渐隐效果。0表示关闭边缘效果，1表示开启边缘效果，默认值0。</li>
+     * <li>.value[1]?.f32 边缘渐隐效果长度。单位：vp，默认值：32。 取值范围：值必须大于等于0。仅在开启边缘渐隐效果时生效。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否使能边缘渐隐效果。0表示关闭边缘效果，1表示开启边缘效果。</li>
+     * <li>.value[1].f32 边缘渐隐效果长度。单位：vp。</li>
+     * </ul>
+     *
+     * @since 14
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_SCROLL_FADING_EDGE,
 
     /**
-     * @brief Obtains the total size of all child components when fully expanded in the scrollable component.
+     * @brief 获取滚动类组件所有子组件全展开尺寸。
+     * 作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: total width of all child components when fully expanded in the scrollable component.
-     *                The default unit is vp. \n
-     * .value[1].f32: total height of all child components when fully expanded in the scrollable component.
-     *                The default unit is vp. \n
-     * When <b>NODE_PADDING</b>, <b>NODE_MARGIN</b>, or <b>NODE_BORDER_WIDTH</b> is set, the values are rounded to the
-     * nearest pixel when being converted from vp to px.
-     * The returned values are calculated based on these rounded pixel values. \n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动类组件所有子组件全展开的宽度，默认单位为vp。</li>
+     * <li>.value[1].f32 滚动类组件所有子组件全展开的高度，默认单位为vp。 设置NODE_PADDING、NODE_MARGIN或NODE_BORDER_WIDTH后，NODE_PADDING、
+     * NODE_MARGIN或NODE_BORDER_WIDTH在单位vp转换成单位px时会进行像素取整，返回值根据取整后的值计算。</li>
+     * </ul>
      *
      * @since 14
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_SIZE,
 
     /**
-     * @brief Sets the offset from the start of the scrollable components content.
+     * @brief 设置滚动类组件内容起始端偏移量。List组件从API version 15开始支持，Grid/Scroll/WaterFlow从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: offset from the start of the content, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: offset from the start of the content, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 内容起始端偏移量，单位vp。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 内容起始端偏移量，单位vp。</li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_CONTENT_START_OFFSET,
 
     /**
-     * @brief Sets the offset from the end of the scrollable components content.
+     * @brief 设置滚动类组件内容末尾端偏移量。List组件从API version 15开始支持，Grid/Scroll/WaterFlow从API version 22开始支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: offset from the end of the content, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: offset from the end of the content, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 内容末尾端偏移量，单位vp。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 内容末尾端偏移量，单位vp。</li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_CONTENT_END_OFFSET,
 
     /**
-     * @brief Defines the maximum starting fling speed of the scrollable when the fling animation starts.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 限制跟手滑动结束后，Fling动效开始时的最大初始速度。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: maximum starting fling speed, Unit: vp/s \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: maximum starting fling speed, Unit: vp/s \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 Fling动效开始时的最大初始速度，单位：vp/s。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 Fling动效开始时的最大初始速度，单位：vp/s。</li>
+     * </ul>
      *
      * @since 18
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_FLING_SPEED_LIMIT = 1002019,
 
     /**
-     * @brief Defines the clip mode of the scrollable.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滚动容器的内容层裁剪区域。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: clip content mode. The parameter type is {@link ArkUI_ContentClipMode}. The default value is
-     * <b>ARKUI_CONTENT_CLIP_MODE_BOUNDARY</b> for the <b>Grid</b> and <b>Scroll</b> components, and
-     * <b>ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY</b> for the <b>List</b> and <b>WaterFlow</b> components. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 内容裁剪模式，参数类型{@link ArkUI_ContentClipMode}。
+     * Grid、Scroll组件默认值为{@link ARKUI_CONTENT_CLIP_MODE_BOUNDARY}，
+     * List、WaterFlow组件默认值为{@link ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 内容裁剪模式，参数类型{@link ArkUI_ContentClipMode}。</li>
+     * </ul>
      *
      * @since 18
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_CLIP_CONTENT = 1002020,
 
     /**
-     * @brief Defines whether the scrollable scrolls back to top when status bar is clicked.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滚动容器是否在点击状态栏时回到顶部。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked.
-     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0</b>
-     * for API versions earlier than 18. For API version 18 and later, the default value is <b>0</b> for the
-     * horizontal scroll direction and <b>1</b> for the vertical scroll direction. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否回到顶部，1表示回到顶部，0表示保持当前位置不变，默认值：API version 18之前：0。API version 18及以后：滚动方向是水平方向时为0，是垂直方向时为1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否回到顶部。1表示回到顶部，0表示保持当前位置不变。</li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
     /**
-     * @brief Defines the margin of the scrollbar.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滚动条的边距，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start margin of the scrollbar, in vp. The default value is <b>0</b>. \n
-     * .value[1].f32: end margin of the scrollbar, in vp. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start margin of the scrollbar, in vp. \n
-     * .value[1].f32: end margin of the scrollbar, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 设置滚动条起始边距，儿童智能表默认值为42，其他设备默认值为0，单位：vp。</li>
+     * <li>.value[1].f32 设置滚动条末尾边距，默认值为0，单位：vp。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条起始边距，单位：vp。</li>
+     * <li>.value[1].f32 滚动条末尾边距，单位：vp。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_BAR_MARGIN = 1002022,
 
     /**
-     * @brief Sets the maximum zoom scale for scrollable content.
+     * @brief 设置滚动内容最大缩放比例。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum zoom scale to set. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current maximum zoom scale. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 设置内容最大缩放比例。默认值：1 取值范围：(0, +∞)，小于或等于0时按默认值1处理。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 获取内容最大缩放比例。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_MAX_ZOOM_SCALE = 1002023,
 
     /**
-     * @brief Sets the minimum zoom scale for scrollable content.
+     * @brief 设置滚动内容最小缩放比例。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum zoom scale to set. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current minimum zoom scale. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 设置内容最小缩放比例，默认值：1 取值范围：(0, NODE_SCROLL_MAX_ZOOM_SCALE]，小于或等于0时按默认值1处理，
+     * 大于NODE_SCROLL_MAX_ZOOM_SCALE时按NODE_SCROLL_MAX_ZOOM_SCALE处理。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 获取内容最小缩放比例。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_MIN_ZOOM_SCALE = 1002024,
 
     /**
-     * @brief Sets the zoom scale for scrollable content.
+     * @brief 设置滚动内容缩放比例。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: zoom scale to set. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current zoom scale. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 设置内容缩放比例，默认值：1 取值范围：(0, +∞)，小于或等于0时按默认值1处理。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 获取内容缩放比例。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ZOOM_SCALE = 1002025,
 
     /**
-     * @brief Sets whether to enable the zoom bounce effect when the scaling exceeds the limits.
+     * @brief 设置是否支持过缩放回弹效果。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the zoom bounce effect when the scaling exceeds the limits.
-     * The value <b>1</b> means to enable the effect, and <b>0</b> means the opposite. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the zoom bounce effect when the scaling exceeds the limits.
-     * The value <b>1</b> means to enable the effect, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持过缩放回弹效果，0：不支持，1：支持。默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持过缩放回弹效果，0：不支持，1：支持。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
     /**
-     * @brief Sets whether dragging scrolling with the left mouse button pressed is supported.
+     * @brief 设置是否支持鼠标左键按下拖动滚动，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no; <b>1</b>: yes. Default value: <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no; <b>1</b>: yes. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持鼠标左键按下拖动滚动，0：不支持鼠标左键按下拖动滚动，1：支持鼠标左键按下拖动滚动。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持鼠标左键按下拖动滚动，0：不支持鼠标左键按下拖动滚动，1：支持鼠标左键按下拖动滚动。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
 
     /**
-     * @brief Sets whether to automatically adjust the margin of the scrollbar to avoid the component's <b>NODE_PADDING</b>, <b>NODE_SCROLL_CONTENT_START_OFFSET</b>, and <b>NODE_SCROLL_CONTENT_END_OFFSET</b> areas.
+     * @brief 设置滚动条是否自动调整边距以避让组件NODE_PADDING、NODE_SCROLL_CONTENT_START_OFFSET或NODE_SCROLL_CONTENT_END_OFFSET的区域，支持属性设置，
+     * 属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute\n
-     * .value[0].i32: whether to automatically adjust the margin of the scrollbar. <b>0</b>: yes; <b>1</b>: no. Default value: <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to automatically adjust the margin of the scrollbar. <b>0</b>: yes; <b>1</b>: no. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否自动调整边距，0：自动调整边距，1：不自动调整边距。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否自动调整边距，0：自动调整边距，1：不自动调整边距。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_SCROLL_AUTO_ADJUST_MARGIN = 1002028,
 
     /**
-     * @brief Sets the direction in which the list items are arranged.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滚动条滑轨高度。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: direction in which the list items are arranged. The parameter type is {@link ArkUI_Axis}.
-     * The default value is <b>ARKUI_AXIS_VERTICAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: direction in which the list items are arranged. The parameter type is {@link ArkUI_Axis}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条滑轨高度，单位：vp。默认值：自适应滚动组件高度。 取值范围：[0, +∞)。设置为小于0时使用默认值，儿童智能表则恢复至默认值37vp。设置为0时不显示滚动条。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条滑轨高度，单位：vp。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_SCROLL_BAR_HEIGHT = 1002029,
+
+    /**
+     * @brief 设置List组件排列方向。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件排列方向，数据类型{@link ArkUI_Axis}，默认值ARKUI_AXIS_VERTICAL。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件排列方向，数据类型{@link ArkUI_Axis}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
     /**
-     * @brief Defines whether to pin the header to the top or the footer to the bottom in the <b><ListItemGroup></b>
-     * component. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 配合ListItemGroup组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to pin the header to the top or the footer to the bottom in the <b><ListItemGroup></b>
-     * component. It is used together with the <b><ListItemGroup></b> component. The parameter type is
-     * {@link ArkUI_StickyStyle}. The default value is <b>ARKUI_STICKY_STYLE_NONE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to pin the header to the top or the footer to the bottom in the <b><ListItemGroup></b>
-     * component. It is used together with the <b><ListItemGroup></b> component. The parameter type is
-     * {@link ArkUI_StickyStyle}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 配合ListItemGroup组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。数据类型{@link ArkUI_StickyStyle}，
+     * 默认值ARKUI_STICKY_STYLE_NONE。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 配合ListItemGroup组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。数据类型{@link ArkUI_StickyStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_STICKY,
     /**
-     * @brief Defines the spacing between list items. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置列表项间距，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: spacing between list items along the main axis. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: spacing between list items along the main axis. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 子组件主轴方向的间隔，单位vp，默认值0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 子组件主轴方向的间隔。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SPACE,
     /**
-    * @brief Defines the list adapter. The attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .object: {@link ArkUI_NodeAdapter} object as the adapter. \n
-    */
+     * @brief List组件适配器，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeAdapter}对象作为适配器。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_LIST_NODE_ADAPTER,
 
     /**
-     * @brief list组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。 
+     * @brief List组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].i32：配合List组件Adapter使用，设置adapter中的缓存数量\n
-     * .value[1]?.i32：是否显示缓存节点，0：不显示，1：显示，默认值：0。该参数从API version 15开始支持。 \n
-     * .value[2]?.i32：设置List最大缓存数量，默认值与第一个参数相同。该参数从API version 22开始支持。 \n
-     * \n
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].f32：adapter中的缓存数量。\n
-     *  .value[1].i32：是否显示缓存节点，0：不显示，1：显示。该参数从API version 15开始支持。 \n
-     * .value[2].i32：List最大缓存数量。该参数从API version 22开始支持。 \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 配合List组件Adapter使用，设置adapter中的缓存数量。</li>
+     * <li>.value[1]?.i32 是否显示缓存节点，0：不显示，1：显示，默认值：0。该参数从API version 15开始支持。</li>
+     * <li>.value[2]?.i32 设置List最大缓存数量，默认值与第一个参数相同。该参数从API version 22开始支持。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 adapter中的缓存数量。</li>
+     * <li>.value[1].i32 是否显示缓存节点，0：不显示，1：显示。该参数从API version 15开始支持。</li>
+     * <li>.value[2].i32 List最大缓存数量。该参数从API version 22开始支持。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_CACHED_COUNT,
 
     /**
-     * @brief Scroll to the specified index.
-     * 
-     * When activating the smooth animation, all items passed through will be loaded and layout calculated, which can
-     * lead to performance issues when loading a large number of items.\n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32：The index value of the target element to be slid to in the current container.\n
-     * .value[1]?.i32：Set whether there is an action when sliding to the index value of a list item in the list, where
-     * 1 indicates an action and 0 indicates no action. Default value: 0.\n
-     * .value[2]?.i32：Specify the alignment of the sliding element with the current container,The parameter type is
-     * {@link ArkUI_ScrollAlignment}, default value is ARKUI_SCROLL_ALIGNMENT_START. \n
-     * .value[3]?.f32: extra offset, in vp. The default value is <b>0</b>.
-     * This parameter is supported since API version 15. \n
+     * @brief 滑动到指定index。开启平滑滚动动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 要滑动到的目标元素在当前容器中的索引值。传入-1时，指滑动到当前容器的最后一个元素。</li>
+     * <li>.value[1]?.i32 设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
+     * <li>.value[2]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}，默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}。
+     * </li>
+     * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。该参数从API version 15开始支持。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_TO_INDEX,
     /**
-     * @brief Sets the alignment mode of list items along the cross axis when the cross-axis width of the list is
-     * greater than the cross-axis width of list items multiplied by the value of lanes.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置List交叉轴方向宽度大于ListItem交叉轴宽度乘以布局数量时，ListItem在List交叉轴方向的布局方式。List垂直滚动时，布局数量为列数；List水平滚动时，布局数量为行数。支持属性设置、
+     * 属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode of list items along the cross axis.
-     * The parameter type is {@link ArkUI_ListItemAlignment}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode of list items along the cross axis.
-     * The parameter type is {@link ArkUI_ListItemAlignment}. \n
-    */
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 交叉轴方向的布局方式。参数类型{@link ArkUI_ListItemAlign}。默认值：ARKUI_LIST_ITEM_ALIGNMENT_START。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 交叉轴方向的布局方式。参数类型{@link ArkUI_ListItemAlign}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_LIST_ALIGN_LIST_ITEM,
 
     /**
-     * @brief Set the default spindle size for the List subcomponent.
+     * @brief 设置List子组件默认主轴尺寸。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_CHILDREN_MAIN_SIZE = 1003007,
 
     /**
-     * @brief Set the index value of the item displayed at the start of the viewport
-     * when the current List is first loaded.This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置当前List初次加载时视口起始位置显示的item的索引值，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: index value of the item displayed at
-     * the start of the viewport when the current List is loaded for the first time. Default value: 0.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: index value of the item displayed at
-     * the start of the viewport when the current List is loaded for the first time. Default value: 0.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 当前List初次加载时视口起始位置显示的item的索引值。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 当前List初次加载时视口起始位置显示的item的索引值。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_INITIAL_INDEX = 1003008,
     /**
-     * @brief sets the ListItem splitter style. By default, there is no splitter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置ListItem分割线样式，默认无分割线，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} Format: \n
-     *.value[0].u32: divider color, type 0xargb; \n
-     *.value[1].f32: dividing line width; \n
-     *.value[2].f32: the distance between the divider and the beginning of the side of the list, unit vp; \n
-     *.value[3].f32: the distance between the divider and the end of the side of the list (unit: vp). \n
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     *.value[0].u32: divider color, type 0xargb; \n
-     *.value[1].f32: dividing line width; \n
-     *.value[2].f32: the distance between the divider and the beginning of the side of the list, unit vp; \n
-     *.value[3].f32: the distance between the divider and the end of the side of the list (unit: vp). \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32 分割线颜色，0xargb类型，默认值为0x08000000。</li>
+     * <li>.value[1].f32 分割线宽，默认值：0，单位vp。</li>
+     * <li>.value[2].f32 分割线距离列表侧边起始端的距离，默认值：0，单位vp。</li>
+     * <li>.value[3].f32 分割线距离列表侧边结束端的距离，默认值：0，单位vp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32 分割线颜色，0xargb类型。</li>
+     * <li>.value[1].f32 分割线宽，单位vp。</li>
+     * <li>.value[2].f32 分割线距离列表侧边起始端的距离，单位vp。</li>
+     * <li>.value[3].f32 分割线距离列表侧边结束端的距离，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_DIVIDER = 1003009,
 
     /**
-     * @brief Scrolls to the item with the specified index in the specified list item group.
+     * @brief 滑动到指定ListItemGroup中指定index。开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
-     * When <b>smooth</b> is set to <b>true</b>, all passed items are loaded and counted in layout calculation.
-     * This may result in performance issues if a large number of items are involved. \n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: index of the target list item group in the current list. \n
-     *.value[1].i32: index of the target list item in the list item group. \n
-     * .value[2]?.i32: whether to enable the smooth animation for scrolling to the item with the specified index.
-     * The value <b>1</b> means to enable the animation, and <b>0</b> means the opposite.
-     * The default value is <b>0</b>. \n
-     * .value[3]?.i32: how the item to scroll to is aligned with the container. The parameter type is
-     * {@link ArkUI_ScrollAlignment}. The default value is <b>ARKUI_SCROLL_ALIGNMENT_START</b>. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 要滑动到的目标ListItemGroup在当前List中的索引值。</li>
+     * <li>.value[1].i32 要滑动到的目标ListItem在ListItemGroup中的索引值。</li>
+     * <li>.value[2]?.i32 设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
+     * <li>.value[3]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}。默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}。
+     * </li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_TO_INDEX_IN_GROUP = 1003010,
 
     /**
-     * @brief Sets the number of lanes in the list.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置List列数（List垂直滚动时表示列数，水平滚动时表示行数），支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: number of lanes in the list. If the maximum and minimum lane widths are set, setting the number
-     * of lanes will not take effect. \n
-     * .value[1]?.f32: minimum lane width, in vp. \n
-     * .value[2]?.f32: maximum column width, in vp. \n
-     * .value[3]?.f32: lane spacing, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: number of lanes in the list. \n
-     * .value[1].f32: minimum lane width, in vp. \n
-     * .value[2].f32: maximum column width, in vp. \n
-     * .value[3].f32: lane spacing, in vp. \n \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32 List布局列数或行数，List垂直滚动时表示列数，水平滚动时表示行数；如果同时设置了最小、最大列宽或行高，则设置列数或行数不生效；默认值：1，取值范围：[1, +∞)，
+     * 设置异常值时使用默认值。</li>
+     * <li>.value[1]?.f32 最小列宽或行高，单位vp，默认值：-1（未设置）。</li>
+     * <li>.value[2]?.f32 最大列宽或行高，单位vp，默认值：-1（未设置）。</li>
+     * <li>.value[3]?.f32 列间距或行间距，默认值：0，单位vp。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32 当前List布局列数或行数，List垂直滚动时表示列数，水平滚动时表示行数。</li>
+     * <li>.value[1].f32 最小列宽或行高，单位vp。</li>
+     * <li>.value[2].f32 最大列宽或行高，单位vp。</li>
+     * <li>.value[3].f32 列间距或行间距，单位vp。</li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_LANES = 1003011,
 
     /**
-     * @brief Sets the list snap alignment mode.
+     * @brief 设置List限位对齐模式。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode for the list snap position. The parameter type is {@link ArkUI_ScrollSnapAlign}.
-     * The default value is <b>ARKUI_SCROLL_SNAP_ALIGN_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     *.value[0].i32: alignment mode for the list snap position. The parameter type is {@link ArkUI_ScrollSnapAlign}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}，默认值{@link ARKUI_SCROLL_SNAP_ALIGN_NONE}。
+     * </li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}。</li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_SNAP_ALIGN = 1003012,
 
     /**
-     * @brief Sets whether to maintain the visible content's position when data is inserted or deleted outside the
-     * display area of the <b>List</b> component.
+     * @brief 设置List显示区域外插入或删除数据是否保持可见内容位置不变。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside the
-     * display area of the <b>List</b> component. The value <b>0</b> means not to maintain the visible content's
-     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside the
-     * display area of the <b>List</b> component. The value <b>0</b> means not to maintain the visible content's
-     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List显示区域外插入或删除数据是否保持可见内容位置不变。0表示不保持可见内容位置，1表示保持可见内容位置，默认值为0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List显示区域外插入或删除数据是否保持可见内容位置不变。0表示不保持可见内容位置，1表示保持可见内容位置，默认值为0。</li>
+     * </ul>
      *
      * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION = 1003013,
 
     /**
-     * @brief Sets whether the <b>List</b> component starts layout from the end.
+     * @brief 设置List从末尾开始布局。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the <b>List</b> component starts layout from the end. The value <b>0</b> means layout
-     * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the <b>List</b> component starts layout from the end. The value <b>0</b> means layout
-     * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局，默认值为0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局，默认值为0。</li>
+     * </ul>
      *
      * @since 19
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_STACK_FROM_END = 1003014,
     
     /**
-     * @brief Defines the focus wrap mode for the <b>List</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief List组件走焦换行模式，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: focus wrap mode of the <b>List</b> component.
-     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: focus wrap mode of the <b>List</b> component.
-     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件走焦换行模式，参数取值为{@link ArkUI_FocusWrapMode}下的枚举，默认值为ARKUI_FOCUS_WRAP_MODE_DEFAULT。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件走焦换行模式，参数类型{@link ArkUI_FocusWrapMode}。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_FOCUS_WRAP_MODE = 1003015,
 
     /**
-     * @brief Defines whether the <b>List</b> component loads child nodes synchronously.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief List组件是否同步加载子节点，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
-     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
-     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否同步加载子节点。0：分帧加载，1：同步加载，默认值为1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否同步加载子节点。0：分帧加载，1：同步加载。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SYNC_LOAD = 1003016,
 
     /**
-     * @brief Defines the scroll snap animation speed for the <b>List</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief List组件限位滚动动画速度，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     *.value[0].i32: scroll snap animation speed for the <b>List</b> component.
-     * The parameter type is {@link ArkUI_ScrollSnapAnimationSpeed}.
-     * Default value: <b>ARKUI_SCROLL_SNAP_ANIMATION_NORMAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     *.value[0].i32: scroll snap animation speed for the <b>List</b> component.
-     * The parameter type is {@link ArkUI_ScrollSnapAnimationSpeed}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件限位滚动动画速度，数据类型{@link ArkUI_ScrollSnapAnimationSpeed}。默认值：
+     * ARKUI_SCROLL_SNAP_ANIMATION_NORMAL。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件限位滚动动画速度，数据类型{@link ArkUI_ScrollSnapAnimationSpeed}。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SCROLL_SNAP_ANIMATION_SPEED = 1003017,
 
     /**
-     * @brief List组件的响应式列数布局策略，支持属性设置，属性重置和属性获取接口。 
+     * @brief List组件的响应式列数布局策略，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-
-     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
-
-     * .value[1]?.f32：列间距，单位vp，默认值：0
-
-     * 
-
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-
-     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
-
-     * .value[1].f32：列间距，单位vp。
-
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
+     * <li>.value[1]?.f32 列间距，单位vp。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
+     * <li>.value[1].f32 列间距，单位vp。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
     /**
-     * @brief <b>List</b>容器是否支持懒加载空分支渲染。
-     * 该属性可以通过API根据需要设置、重置和获取。在懒加载模式下启用时，
-     * <b>List</b>中的空分支（没有内容的项）将被渲染并设置为宽度0和高度0。
-     * 这可能会影响整体布局和滚动行为。这通常用于数据源可能存在间隙或需要维护特定布局位置的场景。
-     * 设置属性{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].i32：懒加载模式下是否支持空分支渲染。
-     * <b>0</b>：禁用空分支支持。空分支不会被渲染。<b>1</b>：启用空分支支持。
-     * 空分支将被渲染为占位符项。默认值：<b>0</b>.\n
-     * \n
-     * 属性获取{@link ArkUI_AttributeItem}的格式为：\n
-     * .value[0].i32：是否启用空分支渲染。<b>0</b>：关闭。<b>1</b>：启用。\n
+     * @brief 设置当前List组件是否支持在LazyForEach或Repeat中使用if/else渲染控制语法生成不包含任何子组件的空分支节点。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否支持空分支。0：不支持，1：支持。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否支持空分支。0：不支持，1：支持。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
 
     /**
-     * @brief 设置List组件的返回键行为。支持属性设置、重置、获取接口。
+     * @brief 设置List组件的系统返回键行为，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * {@link ArkUI_AttributeItem}设置属性的参数格式如下：
-     * .value[0].i32：单击后退按钮时是否折叠滚动菜单。0：不支持，1：支持。默认值：1。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 系统返回键生效时是否收起ListItem的划出组件。0：不收起，1：收起。默认值：1</li>
+     * </ul>
      *
-     * {@link ArkUI_AttributeItem}获取属性的参数格式如下：
-     * .value[0].i32：单击返回按钮时是否收起划出菜单。0：不支持，1：支持。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 系统返回键生效时是否收起ListItem的划出组件。0：不收起，1：收起。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
     /**
-     * @brief List组件是否使能编辑模式。设置为1（可编辑）时，默认显示复选框，
-     * 且在编辑模式内支持单指滑动多选。
-     * 编辑模式状态变更时，会触发{@link NODE_LIST_ON_EDIT_MODE_CHANGE}事件回调。
-     * 状态变更途径有两种：
-     * 1. 直接设置本属性。
-     * 2. 在{@link NODE_LIST_EDIT_MODE_OPTIONS}启用双指滑动多选且注册了
-     * {@link NODE_LIST_ON_EDIT_MODE_CHANGE}回调时，通过双指滑动手势触发。
-     * 支持属性设置，属性重置和属性获取接口。
+     * @brief 设置List组件是否启用编辑模式。进入编辑模式后，默认显示复选框，并支持手指滑动多选。支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：List组件是否使能编辑模式。0：不可编辑，1：可以编辑。默认值：0
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否启用编辑模式。0：不启用，1：启用。默认值：0。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：List组件是否使能编辑模式。0：不可编辑，1：可以编辑。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否启用编辑模式。0：未启用，1：已启用。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ENABLE_EDIT_MODE = 1003021,
 
     /**
-     * @brief List组件编辑模式选项配置。
-     * 支持属性设置，属性重置和属性获取接口。
+     * @brief 设置List组件的编辑模式选项，支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：List组件是否使用默认多选样式， 使用默认多选样式时，List进入编辑模式后会显示复选框。
-     * 0：不使用默认样式，1：使用默认样式。默认值：1
-     * .value[1].i32：List组件是否启用双指滑动多选，该参数在注册{@link NODE_LIST_ON_EDIT_MODE_CHANGE}事件回调后生效。
-     * 0：使用双指划动手势不能让List组件进入编辑模式，但通过其他方式进入编辑模式后，编辑模式内的单指滑动多选不受影响。
-     * 1：使用双指划动手势能让List组件从非编辑模式进入编辑模式并执行划动多选。默认值：1
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否使用默认多选样式。0：不使用，1：使用。默认值：1。</li>
+     * <li>.value[1].i32 List组件是否启用双指滑动多选。0：不启用，1：启用。默认值：1。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：List组件是否使用默认多选样式。0：不使用默认样式，1：使用默认样式。
-     * .value[1].i32：List组件是否启用双指滑动多选。0：不启用，1：启用。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 List组件是否使用默认多选样式。0：不使用，1：使用。</li>
+     * <li>.value[1].i32 List组件是否启用双指滑动多选。0：未启用，1：已启用。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_EDIT_MODE_OPTIONS = 1003022,
 
@@ -8623,81 +8848,113 @@ typedef enum {
      * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
      * property acquisition interfaces.
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format: \n
-     * .object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object. \n
-     * \n
-     * The return value of the attribute acquisition method {@link ArkUI_AttributeItem} format: \n
-     * .object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object.</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ITEM_SWIPE_ACTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
     /**
-     * @brief Defines the header of the list item group.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置 ListItemGroup 头部组件，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: {@link ArkUI_NodeHandle} object to be used as the header of the list item group. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: {@link ArkUI_NodeHandle} object to be used as the header of the list item group. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ListItemGroup头部组件。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ListItemGroup头部组件。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM_GROUP,
     /**
-     * @brief Defines the footer of the list item group. This attribute can be set, reset, and obtained as
-     * required through APIs.
+     * @brief 设置 ListItemGroup 尾部组件，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: {@link ArkUI_NodeHandle} object to be used as the footer of the list item group. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: {@link ArkUI_NodeHandle} object to be used as the footer of the list item group. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ListItemGroup尾部组件。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ListItemGroup尾部组件。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ITEM_GROUP_SET_FOOTER,
     /**
-     * @brief Defines the style of the divider for the list items. This attribute can be set, reset, and obtained
-     * as required through APIs.
+     * @brief 设置ListItem分割线样式，默认无分割线，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the divider, in 0xARGB format.\n
-     * .value[1].f32: stroke width of the divider, in vp.\n
-     * .value[2].f32: distance between the divider and the start of the list, in vp.\n
-     * .value[3].f32: distance between the divider and the end of the list, in vp.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the divider, in 0xARGB format.\n
-     * .value[1].f32: stroke width of the divider, in vp.\n
-     * .value[2].f32: distance between the divider and the start of the list, in vp.\n
-     * .value[3].f32: distance between the divider and the end of the list, in vp.\n \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32 颜色，0xargb类型，默认值为0x08000000。</li>
+     * <li>.value[1].f32 分割线宽，默认值：0，单位vp。</li>
+     * <li>.value[2].f32 分割线距离列表侧边起始端的距离，默认值：0，单位vp。</li>
+     * <li>.value[3].f32 分割线距离列表侧边结束端的距离，默认值：0，单位vp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32 颜色，0xargb类型。</li>
+     * <li>.value[1].f32 分割线宽，单位vp。</li>
+     * <li>.value[2].f32 分割线距离列表侧边起始端的距离，单位vp。</li>
+     * <li>.value[3].f32 分割线距离列表侧边结束端的距离，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ITEM_GROUP_SET_DIVIDER,
 
     /**
-     * @brief Set the default spindle size for the ListItem Group subcomponent.
+     * @brief 设置ListItemGroup子组件默认主轴尺寸。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_LIST_ITEM_GROUP_CHILDREN_MAIN_SIZE = 1005003,
 
     /**
-    * @brief Defines the list item group adapter.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .object: {@link ArkUI_NodeAdapter} object as the adapter. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .object: {@link ArkUI_NodeAdapter} object. \n
-    *
-    * @since 15
-    */
+     * @brief ListItemGroup组件适配器，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeAdapter}对象作为适配器。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
+     * </ul>
+     *
+     * @since 15
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_LIST_ITEM_GROUP_NODE_ADAPTER = 1005004,
 
     /**
@@ -8827,316 +9084,410 @@ typedef enum {
     NODE_FLEX_SPACE,
 
     /**
-     * @brief Sets whether the component is being refreshed.
-     * This attribute can be set and obtained as required through APIs.
+     * @brief 设置组件是否正在刷新，支持属性设置，属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is 1 or 0.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 参数值为1或者0，1表示正在刷新，0表示不在刷新。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 参数值为1或者0，1表示正在刷新，0表示不在刷新。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
-     * @brief Sets the custom content in the pull-down area.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置下拉区域的自定义内容，支持属性设置和重置。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The parameter type is {@Link ArkUI_NodeHandle}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数类型{@link ArkUI_NodeHandle}。</li>
+     * </ul>
      *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_CONTENT,
     /**
-     * @brief Set the pull-down hand coefficient.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置下拉跟手系数，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32：Pull-down hand coefficient, valid value between 0 and 1.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32：Pull-down hand coefficient, valid value between 0 and 1.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 下拉跟手系数，取值范围：[0, 1]。设置小于0或大于1的值时，属性设置失败。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 下拉跟手系数，取值范围：[0, 1]。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
     /**
-     * @brief Sets the pull-down offset that initiates a refresh.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置触发刷新的下拉偏移量，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: pull-down offset, in vp. The default value is <b>64vp</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: pull-down offset, in vp. The default value is <b>64vp</b>.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 下拉偏移量，单位vp， 默认值：64vp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 下拉偏移量，单位vp， 默认值：64vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_OFFSET = 1009003,
     /**
-     * @brief Sets whether to initiate a refresh when the pull-down distance exceeds the value of <b>refreshOffset</b>.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置当下拉距离超过refreshOffset时是否触发刷新，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to initiate a refresh. The value <b>true</b> means to initiate a refresh, and
-     * <b>false</b> means the opposite.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to initiate a refresh. The value <b>1</b> means to initiate a refresh, and
-     * <b>0</b> means the opposite.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否触发刷新。支持取值为0或1，其中1为触发刷新，0为不触发刷新。默认值：1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否触发刷新，1为触发刷新，0为不触发刷新。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_PULL_TO_REFRESH = 1009004,
     /**
-     * @brief Sets the maximum pull-down distance for refreshing.
-     * This attribute can be set, reset, and obtained through the API as required.
+     * @brief 设置刷新的最大下拉距离。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum pull-down distance, in vp.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum pull-down distance, in vp.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 最大下拉距离，单位：vp。取值范围：[0, +∞)，设置小于0的值时按0处理。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 最大下拉距离，单位：vp。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
     /**
-     * @brief  设置上划是否取消刷新。支持属性设置，属性重置和属性获取。
+     * @brief 设置上划是否取消刷新。支持属性设置，属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     *  属性设置方法{@link ArkUI_AttributeItem}的参数格式：\n
-     *  .value[0].i32：上划是否取消刷新。0为上划不取消刷新，1为上划取消刷新。默认值：1。
-     *  \n
-     *  属性获取方法返回值{@link ArkUI_AttributeItem}的格式：\n
-     *  .value[0].i32：上划是否取消刷新。0为上划不取消刷新，1为上划取消刷新。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 上划是否取消刷新。支持取值为0或1，其中0为上划不取消刷新，1为上划取消刷新。默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 上划是否取消刷新。0为上划不取消刷新，1为上划取消刷新。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_REFRESH_PULL_UP_TO_CANCEL_REFRESH = 1009006,
 
     /**
-     * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义瀑布流组件布局主轴方向，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: main axis direction. The parameter type is {@Link ArkUI_FlexDirection}.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: main axis direction. The parameter type is {@Link ArkUI_FlexDirection}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 主轴方向，参数类型{@link ArkUI_FlexDirection}。默认值{@link ARKUI_FLEX_DIRECTION_COLUMN}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 主轴方向，参数类型{@link ArkUI_FlexDirection}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_LAYOUT_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
 
     /**
-     * @brief Sets the number of columns in the water flow layout. If this parameter is not set, one column is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three columns, with the first column taking up 1/4 of the parent
-     * component's full width, the second column 1/4, and the third column 2/4.
-     * You can use <b>columnsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of
-     * columns based on the specified column width <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief 设置当前瀑布流组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。
+     * 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，
+     * track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: number of columns in the layout.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: number of columns in the layout.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局列的数量。默认值：'1fr'。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局列的数量。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_COLUMN_TEMPLATE,
 
     /**
-     * @brief Sets the number of rows in the water flow layout. If this parameter is not set, one row is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three rows, with the first row taking up 1/4 of the parent
-     * component's full height, the second row 1/4, and the third row 2/4.
-     * You can use <b>rowsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of rows
-     * based on the specified row height <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief 设置当前瀑布流组件布局行的数量，不设置时默认1行，支持属性设置、重置和获取。例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。
+     * 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，
+     * 支持的单位包括px、vp、%或有效数字，默认单位为vp。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: number of rows in the layout. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: number of rows in the layout. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局行的数量。默认值：'1fr'。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局行的数量。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_ROW_TEMPLATE,
 
     /**
-     * @brief Sets the gap between columns.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置列与列的间距，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: gap between columns, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: gap between columns, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 列与列的间距，默认值：0，单位vp。取值范围：[0, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 列与列的间距，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_COLUMN_GAP,
 
     /**
-     * @brief Sets the gap between rows.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置行与行的间距，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: gap between lines, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: gap between lines, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 行与行的间距，默认值：0，单位vp。取值范围：[0, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 行与行的间距，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_ROW_GAP,
 
     /**
-     * @brief Defines the water flow section configuration.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置FlowItem分组配置信息，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: An index calculated from 0 is converted to an integer,
-     * indicating that you want to start changing the position of the group.
-     * .object: {@ArkUI_WaterFlowSectionOption} object.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: {@ArkUI_WaterFlowSectionOption} object.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置。</li>
+     * <li>.object 参数格式为{@link ArkUI_WaterFlowSectionOption}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 返回值格式为{@link ArkUI_WaterFlowSectionOption}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_SECTION_OPTION,
 
     /**
-    * @brief Defines the water flow adapter. The attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .object: {@link ArkUI_NodeAdapter} object as the adapter. \n
-    */
+     * @brief WaterFlow组件适配器，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeAdapter}对象作为适配器。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_WATER_FLOW_NODE_ADAPTER,
 
     /**
-    * @brief Sets the number of cached items in the water flow adapter.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * value[0].i32：number of cached items in the water flow adapter. \n
-    * .value[1]?.i32：whether to the cached items will be displayed, 0: not displayed, 1: displayed, default value: 0.
-    * This parameter is supported since API version 16. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of cached items in the water flow adapter. \n
-    * .value[1].i32: whether to the cached items will be displayed, 0: not displayed, 1: displayed, default value: 0.
-    * This parameter is supported since API version 16. \n
-    */
+     * @brief WaterFlow组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 配合WaterFlow组件Adapter使用，设置adapter中的缓存数量。</li>
+     * <li>.value[1]?.i32 是否显示缓存节点，0：不显示，1：显示，默认值：0。该参数从API version 16开始支持。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 adapter中的缓存数量。</li>
+     * <li>.value[1].i32 是否显示缓存节点，0：不显示，1：显示。该参数从API version 16开始支持。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_WATER_FLOW_CACHED_COUNT,
 
     /**
-     * @brief Set the custom display component at the end of the waterfall flow component.
+     * @brief 设置瀑布流组件末尾的自定义显示组件。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
-     * Attribute setting method {@link ArkUI_AttributeItem} parameter format: \n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数类型{@link ArkUI_NodeHandle}。</li>
+     * </ul>
      *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_FOOTER,
 
     /**
-     * @brief Scroll to the specified index.
+     * @brief 滑动到指定index。开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
-     * When activating the smooth animation, all items passed through will be loaded and layout calculated, which can
-     * lead to performance issues when loading a large number of items.\n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The index value of the target element to be slid to in the current container.\n
-     * .value[1].i32: Set whether there is an action when sliding to the index value of a list item in the list, where
-     * 1 indicates an action and 0 indicates no action. This parameter is optional, default value is 0.\n
-     * .value[2].i32: Specify the alignment of the sliding element with the current container, The parameter type is
-     * {@link ArkUI_ScrollAlignment}. This parameter is optional, default value is </b>ARKUI_SCROLL_ALIGNMENT_START</b>. \n
-     * .value[3].f32: Extra offset after scrolling to a specified index, in vp. This parameter is optional, the default
-     * value is <b>0</b>.
-     * If value[3] is positive, it will offset further towards the bottom.
-     * If value[3] is negative, it will offset further towards the top.
-     * This parameter is supported since API version 23. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 要滑动到的目标元素在当前容器中的索引值。</li>
+     * <li>.value[1]?.i32 设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
+     * <li>.value[2]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}。默认值为：{@link ARKUI_SCROLL_ALIGNMENT_START}
+     * 。</li>
+     * <li>.value[3]?.f32 滑动到目标元素后的额外偏移量，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。该参数从API version 23开始支持。</li>
+     * </ul>
      *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_SCROLL_TO_INDEX,
 
     /**
-     * @brief Defines the size constraints to apply to water flow items.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置当前瀑布流子组件的约束尺寸属性，约束子组件尺寸范围，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum width, in vp.\n
-     * .value[1].f32: maximum width, in vp.\n
-     * .value[2].f32: minimum height, in vp.\n
-     * .value[3].f32: maximum height, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum width, in vp.\n
-     * .value[1].f32: maximum width, in vp.\n
-     * .value[2].f32: minimum height, in vp.\n
-     * .value[3].f32: maximum height, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 最小宽度，单位：vp。使用-1表示不设置。</li>
+     * <li>.value[1].f32 最大宽度，单位：vp。使用-1表示不设置。</li>
+     * <li>.value[2].f32 最小高度，单位：vp。使用-1表示不设置。</li>
+     * <li>.value[3].f32 最大高度，单位：vp。使用-1表示不设置。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 最小宽度，单位：vp。使用-1表示不设置。</li>
+     * <li>.value[1].f32 最大宽度，单位：vp。使用-1表示不设置。</li>
+     * <li>.value[2].f32 最小高度，单位：vp。使用-1表示不设置。</li>
+     * <li>.value[3].f32 最大高度，单位：vp。使用-1表示不设置。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE,
 
     /**
-     * @brief Defines the layout mode of the <b><WaterFlow></b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义瀑布流组件布局模式，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: waterflow layout mode. The parameter type is {@Link ArkUI_WaterFlowLayoutMode}.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: waterflow layout mode. The parameter type is {@Link ArkUI_WaterFlowLayoutMode}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 布局模式，参数类型{@link ArkUI_WaterFlowLayoutMode}，
+     * 默认值：{@link ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 布局模式，参数类型{@link ArkUI_WaterFlowLayoutMode}。</li>
+     * </ul>
+     *
      * @since 18
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_LAYOUT_MODE,
 
     /**
-     * @brief Defines whether the <b>WaterFlow</b> component loads child nodes synchronously.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief WaterFlow组件是否同步加载子节点，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
-     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
-     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 WaterFlow组件是否同步加载子节点。0：分帧加载，1：同步加载。默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 WaterFlow组件是否同步加载子节点。0：分帧加载，1：同步加载。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_SYNC_LOAD = 1010012,
 
     /**
-     * @brief Specifies the responsive column layout policy for the <b>WaterFlow</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief WaterFlow组件的响应式列数布局策略，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1010013,
 
     /**
-     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>WaterFlow</b> container.
-     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode, 
-     * empty branches (items without content) in the <b>WaterFlow</b> will be rendered and set to width 0 and height 0, 
-     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
-     * data source may have gaps or when maintaining specific layout positions is required.
+     * @brief 设置当前WaterFlow组件是否支持在LazyForEach或Repeat中使用if/else渲染控制语法生成不包含任何子组件的空分支节点。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * > **说明：**
+     * >
+     * > 当通过{@link NODE_WATER_FLOW_SECTION_OPTION}设置了{@link ArkUI_WaterFlowSectionOption}分组，
+     * > 或通过{@link NODE_WATER_FLOW_LAYOUT_MODE}设置为{@link ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW}
+     * > 布局模式时，设置0或1时空分支后的FlowItem都会显示。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support empty branch rendering in lazy loading mode.
-     * <b>0</b>: Disable empty branch support. Empty branches will not be rendered. <b>1</b>: Enable empty branch support. 
-     * Empty branches will be rendered as placeholder items. Default value: <b>0</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 WaterFlow组件是否支持空分支。0：不支持，1：支持。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 WaterFlow组件是否支持空分支。0：不支持，1：支持。</li>
+     * </ul>
+     *
+     * 当通过{@link NODE_WATER_FLOW_SECTION_OPTION}设置了{@link ArkUI_WaterFlowSectionOption}分组，
+     * 或通过{@link NODE_WATER_FLOW_LAYOUT_MODE}设置为{@link ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW}
+     * 布局模式时，设置0或1时空分支后的FlowItem都会显示。
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
@@ -9167,324 +9518,406 @@ typedef enum {
     NODE_RELATIVE_CONTAINER_BARRIER,
 
     /**
-     * @brief Sets the number of columns in the grid layout. If this parameter is not set, one column is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three columns, with the first column taking up 1/4 of the parent
-     * component's full width, the second column 1/4, and the third column 2/4.
-     * You can use <b>columnsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of
-     * columns based on the specified column width <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief 设置当前Grid组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。
+     * 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，
+     * track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: number of columns in the layout.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: number of columns in the layout.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局列的数量。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局列的数量。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_COLUMN_TEMPLATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
 
     /**
-     * @brief Sets the number of rows in the grid layout. If this parameter is not set, one row is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three rows, with the first row taking up 1/4 of the parent
-     * component's full height, the second row 1/4, and the third row 2/4.
-     * You can use <b>rowsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of rows
-     * based on the specified row height <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief 设置当前Grid布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。
+     * 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，
+     * 支持的单位包括px、vp、%或有效数字，默认单位为vp。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: number of rows in the layout. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: number of rows in the layout. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局行的数量。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string 布局行的数量。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ROW_TEMPLATE,
 
     /**
-     * @brief Sets the gap between columns. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置列与列的间距，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: gap between columns, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: gap between columns, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 列与列的间距，默认值：0，单位vp。取值范围：[0, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 列与列的间距，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_COLUMN_GAP,
 
     /**
-     * @brief Sets the gap between rows. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置行与行的间距，支持属性设置、重置和获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: gap between lines, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: gap between lines, in vp.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 行与行的间距，默认值：0，单位vp。取值范围：[0, +∞)。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 行与行的间距，单位vp。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ROW_GAP,
 
     /**
-    * @brief Defines the grid adapter. The attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .object: {@link ArkUI_NodeAdapter} object as the adapter. \n
-    */
+     * @brief Grid组件适配器，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeAdapter}对象作为适配器。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 返回值格式为{@link ArkUI_NodeAdapter}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
     NODE_GRID_NODE_ADAPTER,
 
     /**
-     * @brief 设置网格适配器中缓存项的数量。
-     * 该属性可以通过API根据需要设置、重置和获取。
+     * @brief Grid组件适配器缓存数量，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
-     * 设置属性{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].i32：网格适配器中缓存的项数。\n
-     * .value[1].i32：是否显示缓存节点。0表示不显示，1表示显示。
-     * 可选参数，默认值为0。此参数从API版本26.0.0开始支持。\n
-     * \n
-     * 返回值{@link ArkUI_AttributeItem}的格式为：\n
-     * .value[0].i32：网格适配器中缓存的项数。\n
-     * .value[1].i32：是否显示缓存节点。0表示不显示，1表示显示。
-     * 此参数从API版本26.0.0开始支持。\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 配合Grid组件适配器使用，设置{@link ArkUI_NodeAdapter}的缓存数量。</li>
+     * <li>.value[1].i32 是否显示缓存节点，0：不显示缓存节点，1：显示缓存节点。可选参数，默认值：0。从API版本26.0.0开始支持。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件适配器的缓存数量。</li>
+     * <li>.value[1].i32 是否显示缓存节点，0：不显示，1：显示。该参数从API版本26.0.0开始支持。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_CACHED_COUNT,
 
     /**
-     * @brief Defines the focus wrap mode for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Grid组件走焦换行模式，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
-     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
-     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件走焦换行模式，参数取值为{@link ArkUI_FocusWrapMode}下的枚举，默认值为ARKUI_FOCUS_WRAP_MODE_DEFAULT。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件走焦换行模式，参数类型{@link ArkUI_FocusWrapMode}。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_FOCUS_WRAP_MODE = 1013006,
 
     /**
-     * @brief Defines whether the <b>Grid</b> component loads child nodes synchronously.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Grid组件是否同步加载子节点，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
-     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
-     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否同步加载子节点。0：分帧加载，1：同步加载。默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否同步加载子节点。0：分帧加载，1：同步加载。</li>
+     * </ul>
      *
      * @since 20
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_SYNC_LOAD = 1013007,
 
     /**
      * @brief 设置Grid中GridItem的对齐方式，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid中GridItem的对齐方式，参数类型{@link ArkUI_GridItemAlignment}。默认值：GRID_ITEM_ALIGNMENT_DEFAULT。
-
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid中GridItem的对齐方式，参数类型{@link ArkUI_GridItemAlignment}。
-
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid中GridItem的对齐方式，参数取值为{@link ArkUI_GridItemAlignment}下的枚举，
+     * 默认值为ARKUI_GRID_ITEM_ALIGNMENT_DEFAULT。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid中GridItem的对齐方式，参数类型{@link ArkUI_GridItemAlignment}。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ALIGN_ITEMS = 1013008,
 
     /**
      * @brief 设置Grid布局选项，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法{@link ArkUI_AttributeItem}参数格式：
-     * .object：参数格式为{@link ArkUI_GridLayoutOptions}。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数格式为{@link ArkUI_GridLayoutOptions}。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .object：返回值格式为{@link ArkUI_GridLayoutOptions}。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 返回值格式为{@link ArkUI_GridLayoutOptions}。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_LAYOUT_OPTIONS = 1013009,
 
     /**
      * @brief Grid组件的响应式列数布局策略，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     *  属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
+     * </ul>
      *
-     *  属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1013010,
 
     /**
-     * @brief Grid组件是否进入编辑模式，进入编辑模式可以通过NODE_GRID_ON_ITEM_DRAG_START事件拖拽GridItem。支持属性设置，属性重置和属性获取接口。
+     * @brief Grid组件是否进入编辑模式。进入编辑模式后，可以通过NODE_GRID_ON_ITEM_DRAG_START事件拖拽GridItem。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。默认值：0
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。默认值：0。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_EDIT_MODE = 1013011,
 
     /**
      * @brief Grid组件是否启用GridItem拖拽动画。支持属性设置，属性重置和属性获取接口。
-     * 仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。
+     * 仅在滚动模式下（只设置NODE_GRID_ROW_TEMPLATE、NODE_GRID_COLUMN_TEMPLATE其中一个）支持动画。
      * 仅在大小规则的Grid中支持拖拽动画，跨行或跨列场景不支持。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。默认值：0
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。默认值：0。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_DRAG_ANIMATION = 1013012,
 
     /**
-     * @brief 指定是否在<b>Grid</b>容器中启用基于鼠标的多选。这个属性可以通过API根据需要设置、重置和获取。
-     * 启用后在Grid范围内鼠标框选会触发GridItem的NODE_GRID_ITEM_EVENT_ON_SELECT事件。
+     * @brief Grid组件是否启用鼠标框选。支持属性设置，属性重置和属性获取接口。
+     * 启用后在Grid范围内鼠标框选会触发GridItem的[NODE_GRID_ITEM_ON_SELECT](./capi-native-node-h.md#arkui_nodeeventtype)事件。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 设置属性{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].i32：是否启用鼠标多选。
-     * <b>0</b>：关闭鼠标多选功能。<b>1</b>：启用基于鼠标的多选。默认值：
-     * <b>0</b>.\n \n返回值{@link ArkUI_AttributeItem}格式：\n .value[0].i32是否启用
-     * 基于鼠标的多选。<b>0</b>：关闭鼠标多选功能。<b>1</b>：启用基于鼠标的
-     * 多选.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否启用鼠标框选。0：不启用，1：启用。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否启用鼠标框选。0：不启用，1：启用。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_MULTI_SELECTABLE = 1013013,
 
     /**
      * @brief 滑动到指定index。
+     * 开启动效时，会对经过的所有子组件进行加载和布局计算，当大量加载子组件时会导致性能问题。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      *
-     * 开启动效时，会对经过的所有子组件进行加载和布局计算，当大量加载子组件时会导致性能问题。\n
-     * \n
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].i32：要滑动到的目标元素在当前容器中的索引值。\n
-     * .value[1].i32：设置滑动到目标元素时是否有动效，1表示有动效，0表示没有动效。该参数是可选的，默认值：0。\n
-     * .value[2].i32：指定滑动到的目标元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}, 该参数是可选的，默认值：ARKUI_SCROLL_ALIGNMENT_AUTO。\n
-     * .value[3].f32：滑动到目标元素后的额外偏移量，该参数是可选的，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 要滑动到的目标元素在当前容器中的索引值。</li>
+     * <li>.value[1]?.i32 设置滑动到目标元素时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
+     * <li>.value[2]?.i32 指定滑动到的目标元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}。默认值：ARKUI_SCROLL_ALIGNMENT_AUTO。</li>
+     * <li>.value[3]?.f32 滑动到目标元素后的额外偏移量，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_SCROLL_TO_INDEX = 1013014,
 
     /**
-     * @brief <b>Grid</b>容器是否支持懒加载空分支渲染。
-     * 该属性可以通过API根据需要设置、重置和获取。在懒加载模式下启用时，
-     * <b>Grid</b>中的空分支（没有内容的项）将被渲染并设置为宽度0和高度0。
-     * 这可能会影响整体布局和滚动行为。这通常用于数据源可能存在间隙或需要维护特定布局位置的场景。
+     * @brief 设置当前Grid组件是否支持在LazyForEach或Repeat中使用if/else渲染控制语法生成不包含任何子组件的空分支节点。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 设置属性{@link ArkUI_AttributeItem}格式：\n
-     * .value[0].i32：懒加载模式下是否支持空分支渲染。
-     * <b>0</b>：禁用空分支支持。空分支不会被渲染。<b>1</b>：启用空分支支持。
-     * 空分支将被渲染为占位符项。默认值：<b>0</b>.\n
-     * \n
-     * 返回值{@link ArkUI_AttributeItem}的格式为：\n
-     * .value[0].i32：是否启用空分支渲染。<b>0</b>：关闭。<b>1</b>：启用。\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否支持空分支。0：不支持，1：支持。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否支持空分支。0：不支持，1：支持。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
 
     /**
-     * @brief Grid组件是否使能编辑模式。设置为1（可编辑）时，默认显示复选框，
-     * 且在编辑模式内支持单指滑动多选。
-     * 该属性为编辑模式的主开关，其他编辑相关属性（如{@link NODE_GRID_EDIT_MODE_OPTIONS}）
-     * 仅在本属性为1时生效。
-     * 编辑模式状态变更时，会触发{@link NODE_GRID_ON_EDIT_MODE_CHANGE}事件回调。
-     * 状态变更途径有两种：
-     * 1. 直接设置本属性。
-     * 2. 在{@link NODE_GRID_EDIT_MODE_OPTIONS}启用双指滑动多选且注册了
-     * {@link NODE_GRID_ON_EDIT_MODE_CHANGE}回调时，通过双指滑动手势触发。
-     * 支持属性设置，属性重置和属性获取接口。
+     * @brief 设置Grid组件是否启用编辑模式。进入编辑模式后，默认显示复选框，并支持手指滑动多选。支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否使能编辑模式。0：不可编辑，1：可以编辑。默认值：0
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否启用编辑模式。0：不启用，1：启用。默认值：0。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否使能编辑模式。0：不可编辑，1：可以编辑。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否启用编辑模式。0：未启用，1：已启用。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ENABLE_EDIT_MODE = 1013016,
 
     /**
-     * @brief Grid组件编辑模式选项配置。
-     * 支持属性设置，属性重置和属性获取接口。
+     * @brief 设置Grid组件的编辑模式选项，支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否使用默认多选样式， 使用默认多选样式时，Grid进入编辑模式后会显示复选框。
-     * 0：不使用默认样式，1：使用默认样式。默认值：1
-     * .value[1].i32：Grid组件是否启用双指滑动多选，该参数在注册{@link NODE_GRID_ON_EDIT_MODE_CHANGE}事件回调后生效。
-     * 0：使用双指划动手势不能让Grid组件进入编辑模式，但通过其他方式进入编辑模式后，编辑模式内的单指滑动多选不受影响。
-     * 1：使用双指划动手势能让Grid组件从非编辑模式进入编辑模式并执行划动多选。默认值：1
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否使用默认多选样式。0：不使用，1：使用。默认值：1。</li>
+     * <li>.value[1].i32 Grid组件是否启用双指滑动多选。0：不启用，1：启用。默认值：1。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：Grid组件是否使用默认多选样式。0：不使用默认样式，1：使用默认样式。
-     * .value[1].i32：Grid组件是否启用双指滑动多选。0：不启用，1：启用。
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 Grid组件是否使用默认多选样式。0：不使用，1：使用。</li>
+     * <li>.value[1].i32 Grid组件是否启用双指滑动多选。0：未启用，1：已启用。</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_EDIT_MODE_OPTIONS = 1013017,
 
     /**
-     * @brief Sets the style of the <b>GridItem</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置GridItem样式，支持属性设置，属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}. \n
-     * The default value is <b>GRID_ITEM_STYLE_NONE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 GridItem样式，参数取值为{@link ArkUI_GridItemStyle}下的枚举，默认值为ARKUI_GRID_ITEM_STYLE_NONE。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 GridItem样式，参数类型{@link ArkUI_GridItemStyle}。</li>
+     * </ul>
      *
      * @since 22
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ITEM_STYLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
 
     /**
      * @brief 设置GridItem是否可以被鼠标框选。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：GridItem是否可以被鼠标框选。0：不可以，1：可以。默认值：1
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 GridItem是否可以被鼠标框选。0：不可以，1：可以。默认值：1。</li>
+     * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-     * .value[0].i32：GridItem是否可以被鼠标框选。0：不可以，1：可以。
-
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 GridItem是否可以被鼠标框选。0：不可以，1：可以。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ITEM_SELECTABLE = 1014001,
 
     /**
      * @brief 设置GridItem选中状态。支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
-     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
-
-     * .value[0].i32：GridItem选中状态。0：未选中，1：已选中。默认值：0
-
-     * 
-
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
-
-     * .value[0].i32：GridItem选中状态。0：未选中，1：已选中。
-
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 GridItem选中状态。0：未选中，1：已选中。默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 GridItem选中状态。0：未选中，1：已选中。</li>
+     * </ul>
      *
      * @since 23
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
      */
     NODE_GRID_ITEM_SELECTED = 1014002,
 
@@ -9620,6 +10053,348 @@ typedef enum {
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
+    /**
+     * @brief 设置ArcList组件表冠灵敏度，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 表冠灵敏度类型，数据类型{@link ArkUI_CrownSensitivity}，默认值为{@link ARKUI_CROWN_SENSITIVITY_MEDIUM}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 表冠灵敏度类型，数据类型{@link ArkUI_CrownSensitivity}。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_DIGITAL_CROWN_SENSITIVITY = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
+
+    /**
+     * @brief 设置ArcList子组件主轴方向的间隔，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 子组件主轴方向的间隔，单位为vp，默认值0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 子组件主轴方向的间隔，单位：vp。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_SPACE = 1019001,
+
+    /**
+     * @brief 设置ArcList组件缓存数量，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 缓存数量。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 缓存数量。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_CACHED_COUNT = 1019002,
+
+    /**
+     * @brief 滑动到指定索引值对应的列表项。开启动效时，会对经过的所有列表项进行加载和布局计算，当大量加载列表项时会导致性能问题。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 要滑动到的目标元素在当前容器中的索引值。传入-1时，指滑动到当前容器的最后一个元素。</li>
+     * <li>.value[1]?.i32 设置滑动到指定索引值对应的列表项时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
+     * <li>.value[2]?.i32 指定滑动到的列表项与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}，默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}
+     * 。</li>
+     * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_SCROLL_TO_INDEX = 1019003,
+
+    /**
+     * @brief 设置ArcList是否启用链式联动动效，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否启用链式联动动效，0：不启用，1：启用，默认值：0。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否启用链式联动动效。0：不启用，1：启用。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_CHAIN_ANIMATION = 1019004,
+
+    /**
+     * @brief 设置ArcList子组件默认主轴尺寸，支持属性设置和属性重置接口。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数格式为{@link ArkUI_ListChildrenMainSize}。
+     * 定义ArcList的所有子项主轴尺寸信息的结构体。
+     * 通过{@link OH_ArkUI_ListChildrenMainSizeOption_Create}接口来创建，
+     * 并且可以使用{@link OH_ArkUI_ListChildrenMainSizeOption_Splice}方法
+     * 对ArcList组件子项主轴尺寸数组进行大小调整。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_CHILDREN_MAIN_SIZE = 1019005,
+
+    /**
+     * @brief 设置ArcList头部组件，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ArcList头部组件。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为ArcList头部组件。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_SET_HEADER = 1019006,
+
+    /**
+     * @brief 设置ArcList组件的滚动条状态，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}，默认值为{@link ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO}。
+     * </li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_SCROLL_BAR = 1019007,
+
+    /**
+     * @brief 设置ArcList组件滚动条的颜色，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32 滚动条颜色，0xargb类型。默认值：0x66182431。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32 滚动条颜色，0xargb类型。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_SCROLL_BAR_COLOR = 1019008,
+
+    /**
+     * @brief 设置ArcList组件滚动条的宽度，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条宽度，单位vp，默认值4。 取值范围：[0, +∞)。设置为小于0的值时，按默认值处理。设置为0时，不显示滚动条。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 滚动条宽度，单位vp。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_SCROLL_BAR_WIDTH = 1019009,
+
+    /**
+     * @brief 设置ArcList是否支持滚动手势，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持滚动手势，默认值1。1：支持滚动手势，0：不支持滚动手势。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否支持滚动手势。1：支持滚动手势，0：不支持滚动手势。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_ENABLE_SCROLL_INTERACTION = 1019010,
+
+    /**
+     * @brief 设置ArcList边缘渐隐效果，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否使能边缘渐隐效果。0表示关闭边缘效果，1表示开启边缘效果。默认值：0。</li>
+     * <li>.value[1]?.f32 边缘渐隐效果长度。单位：vp，默认值：32。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否使能边缘渐隐效果。0表示关闭边缘效果，1表示开启边缘效果。</li>
+     * <li>.value[1].f32 边缘渐隐效果长度。单位：vp。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_FADING_EDGE = 1019011,
+
+    /**
+     * @brief 设置ArcList摩擦系数，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 摩擦系数，默认值：0.8。取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 摩擦系数。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_FRICTION = 1019012,
+
+    /**
+     * @brief 设置ArcList限制Fling动效最大初始速度，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 Fling动效开始时的最大初始速度，单位：vp/s。默认值：9000。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32 Fling动效开始时的最大初始速度，单位：vp/s。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_FLING_SPEED_LIMIT = 1019013,
+
+    /**
+     * @brief 设置ArcListItem是否启用自动缩放，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否启用自动缩放，0：不启用，1：启用，默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 是否启用自动缩放。0：不启用，1：启用。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_ITEM_AUTO_SCALE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST_ITEM,
+
+    /**
+     * @brief 设置ArcListItem的划出组件，支持属性设置和属性重置接口。
+     * 作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_ListItemSwipeActionOption}对象构造。
+     * 定义ArcListItem的划出组件信息的结构体。
+     * 通过{@link OH_ArkUI_ListItemSwipeActionOption_Create}接口来创建，
+     * 并且可以使用{@link OH_ArkUI_ListItemSwipeActionOption_SetStart}方法
+     * 设置ListItemSwipeActionItem左侧（垂直布局）或上方（横向布局）内容。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_LIST_ITEM_SWIPE_ACTION = 1020001,
+
+    /**
+     * @brief 设置ArcScrollBar绑定的可滚动组件，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为滚动条绑定的可滚动组件。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 使用{@link ArkUI_NodeHandle}对象作为滚动条绑定的可滚动组件。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_SCROLL_BAR_BIND_SCROLLABLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SCROLL_BAR,
+
+    /**
+     * @brief 设置ArcScrollBar滚动条状态，支持属性设置，属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}，默认值为ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 滚动条状态，数据类型{@link ArkUI_ScrollBarDisplayMode}。</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     * @ingroup Scrollable Container Component Attribute[滚动容器类组件相关属性]
+     */
+    NODE_ARC_SCROLL_BAR_DISPLAY_MODE = 1021001,
+
     /**
      * @brief 设置Picker容器可见选项的数量，语义与ArkTS侧UIPickerComponent的displayedItemCount一致。
      * 未设置时，可见选项为7行。Picker为立体滚轮样式时，除选中项外的选项会按角度旋转，实际可视高度会小于选项行高；若增大可见行数或行高，请相应增大容器高度，详见UIPickerComponent。
