@@ -17,11 +17,10 @@
  * @addtogroup FFRT
  * @{
  *
- * @brief Provides Function Flow Runtime (FFRT) C APIs.
+ * @brief 提供Function Flow Runtime（FFRT）C接口。
  *
- * FFRT is a task-based concurrent runtime library that automatically schedules
- * tasks according to their dependencies, eliminating the need for manual
- * thread management.
+ * FFRT是一种基于任务的并发运行时库，根据任务依赖关系自动调度任务，
+ * 开发者无需手动管理线程。
  *
  * @since 10
  */
@@ -29,7 +28,7 @@
 /**
  * @file sleep.h
  *
- * @brief Declares the {@link ffrt_usleep} and {@link ffrt_yield} interfaces in C.
+ * @brief 声明{@link ffrt_usleep}和{@link ffrt_yield}的C接口。
  *
  * @library libffrt.z.so
  * @kit FunctionFlowRuntimeKit
@@ -44,18 +43,18 @@
 #include "type_def.h"
 
 /**
- * @brief Suspends the calling thread for a given duration.
+ * @brief 将调用线程挂起指定的时长。
  *
- * If `usec` exceeds the maximum supported value, it is clamped to that maximum.
+ * 若`usec`超过支持的最大值则按最大值截断。
  *
- * @param usec Indicates the duration that the calling thread is suspended, in microseconds.
- * @return `ffrt_success`. The function does not fail.
+ * @param usec 调用线程被挂起的时长，单位是微秒。
+ * @return `ffrt_success`。该函数不会失败。
  * @since 10
  */
 FFRT_C_API int ffrt_usleep(uint64_t usec);
 
 /**
- * @brief Passes control to other tasks so that they can be executed.
+ * @brief 将控制权让出给其他任务，使其有机会被执行。
  *
  * @since 10
  */
