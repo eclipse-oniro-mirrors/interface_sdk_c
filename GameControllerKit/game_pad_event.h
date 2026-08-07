@@ -102,6 +102,14 @@ typedef enum GamePad_Button_ActionType {
  * @brief Defines gamepad button events.
  *
  * @since 21
+ * @see {@link OH_GamePad_ButtonEvent_GetDeviceId} obtains the device ID from a button event.
+ * @see {@link OH_GamePad_ButtonEvent_GetButtonAction} obtains the button action type from a button event.
+ * @see {@link OH_GamePad_ButtonEvent_GetButtonCode} obtains the button code from a button event.
+ * @see {@link OH_GamePad_ButtonEvent_GetButtonCodeName} obtains the button name from a button event.
+ * @see {@link OH_GamePad_ButtonEvent_GetActionTime} obtains the action time from a button event.
+ * @see {@link OH_GamePad_PressedButtons_GetCount} obtains the number of pressed buttons from a button event.
+ * @see {@link OH_GamePad_PressedButtons_GetButtonInfo} obtains the button information at a specified index from
+ *     a button event.
  */
 typedef struct GamePad_ButtonEvent GamePad_ButtonEvent;
 
@@ -109,6 +117,17 @@ typedef struct GamePad_ButtonEvent GamePad_ButtonEvent;
  * @brief Defines gamepad axis events.
  *
  * @since 21
+ * @see {@link OH_GamePad_AxisEvent_GetDeviceId} obtains the device ID from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetAxisSourceType} obtains the source type of an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetXAxisValue} obtains the X-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetYAxisValue} obtains the Y-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetZAxisValue} obtains the Z-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetRZAxisValue} obtains the RZ-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetHatXAxisValue} obtains the HatX-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetHatYAxisValue} obtains the HatY-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetBrakeAxisValue} obtains the Brake-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetGasAxisValue} obtains the Gas-axis value from an axis event.
+ * @see {@link OH_GamePad_AxisEvent_GetActionTime} obtains the action time from an axis event.
  */
 typedef struct GamePad_AxisEvent GamePad_AxisEvent;
 
@@ -116,6 +135,8 @@ typedef struct GamePad_AxisEvent GamePad_AxisEvent;
  * @brief Defines pressed buttons.
  *
  * @since 21
+ * @see {@link OH_GamePad_PressedButton_GetButtonCode} obtains the button code from a pressed button.
+ * @see {@link OH_GamePad_PressedButton_GetButtonCodeName} obtains the button name from a pressed button.
  */
 typedef struct GamePad_PressedButton GamePad_PressedButton;
 
@@ -209,6 +230,7 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad
  *     buttonEvent** is null, or **index** is less than 0 or greater than or equal to the total number of keys,
  *     {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_DestroyPressedButton} destroys a pressed button instance.
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct GamePad_ButtonEvent* buttonEvent,
                                                                  const int32_t index,

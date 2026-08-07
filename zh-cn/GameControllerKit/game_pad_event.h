@@ -102,6 +102,13 @@ typedef enum GamePad_Button_ActionType {
  * @brief 定义手柄按键事件。
  *
  * @since 21
+ * @see {@link OH_GamePad_ButtonEvent_GetDeviceId} 获取设备 ID。
+ * @see {@link OH_GamePad_ButtonEvent_GetButtonAction} 获取按键操作类型。
+ * @see {@link OH_GamePad_ButtonEvent_GetButtonCode} 获取按键代码。
+ * @see {@link OH_GamePad_ButtonEvent_GetButtonCodeName} 获取按键名称。
+ * @see {@link OH_GamePad_ButtonEvent_GetActionTime} 获取操作时间。
+ * @see {@link OH_GamePad_PressedButtons_GetCount} 获取已按下按键的数量。
+ * @see {@link OH_GamePad_PressedButtons_GetButtonInfo} 获取指定索引的按键信息。
  */
 typedef struct GamePad_ButtonEvent GamePad_ButtonEvent;
 
@@ -109,6 +116,17 @@ typedef struct GamePad_ButtonEvent GamePad_ButtonEvent;
  * @brief 定义手柄轴事件。
  *
  * @since 21
+ * @see {@link OH_GamePad_AxisEvent_GetDeviceId} 获取设备 ID。
+ * @see {@link OH_GamePad_AxisEvent_GetAxisSourceType} 获取轴事件来源类型。
+ * @see {@link OH_GamePad_AxisEvent_GetXAxisValue} 获取X轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetYAxisValue} 获取Y轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetZAxisValue} 获取Z轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetRZAxisValue} 获取RZ轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetHatXAxisValue} 获取HatX轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetHatYAxisValue} 获取HatY轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetBrakeAxisValue} 获取Brake轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetGasAxisValue} 获取Gas轴值。
+ * @see {@link OH_GamePad_AxisEvent_GetActionTime} 获取操作时间。
  */
 typedef struct GamePad_AxisEvent GamePad_AxisEvent;
 
@@ -116,6 +134,8 @@ typedef struct GamePad_AxisEvent GamePad_AxisEvent;
  * @brief 定义手柄按下的按键。
  *
  * @since 21
+ * @see {@link OH_GamePad_PressedButton_GetButtonCode} 获取按键代码。
+ * @see {@link OH_GamePad_PressedButton_GetButtonCodeName} 获取按键名称。
  */
 typedef struct GamePad_PressedButton GamePad_PressedButton;
 
@@ -204,6 +224,7 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数buttonEvent为null，或index小于0或大于等于按键总数，返回
  *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_DestroyPressedButton} 销毁按下的按键实例。
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct GamePad_ButtonEvent* buttonEvent,
                                                                  const int32_t index,

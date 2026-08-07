@@ -46,6 +46,8 @@ extern "C" {
  * @brief 定义{@link OH_GameDevice_GetAllDeviceInfos}接口的调用结果。
  *
  * @since 21
+ * @see {@link OH_GameDevice_AllDeviceInfos_GetCount} 获取设备数量。
+ * @see {@link OH_GameDevice_AllDeviceInfos_GetDeviceInfo} 获取指定索引的设备信息。
  */
 typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
 
@@ -57,6 +59,7 @@ typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
  *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li>     <li>如果查询多模输入中所有设备信息失败，返回
  *     {@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_DestroyAllDeviceInfos} 销毁所有设备信息实例。
  */
 GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
 
@@ -67,6 +70,7 @@ GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInf
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数deviceMonitorCallback为null，返回
  *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_UnregisterDeviceMonitor} 取消注册设备状态变化事件的监听回调。
  */
 GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
     GameDevice_DeviceMonitorCallback deviceMonitorCallback);
