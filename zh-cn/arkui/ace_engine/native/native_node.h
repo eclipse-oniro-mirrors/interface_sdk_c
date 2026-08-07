@@ -8981,9 +8981,9 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32 边缘滑动效果，参数类型{@link ArkUI_EdgeEffect}，Grid、Scroll、WaterFlow组件默认值为{@link ARKUI_EDGE_EFFECT_NONE}，
-     * <li>List组件默认值为{@link ARKUI_EDGE_EFFECT_SPRING}。</li>
+     * List组件默认值为{@link ARKUI_EDGE_EFFECT_SPRING}。</li>
      * <li>.value[1]?.i32 可选值，组件内容大小小于组件自身时，设置是否开启滑动效果，开启为1，关闭为0，List、Grid、WaterFlow组件默认值为0，Scroll组件默认值为1。</li>
-     * <li>.value[2]?.i32 边缘效果生效的方向，参数类型{@link ArkUI_EffectEdge}，默认值{@link ARKUI_EFFECT_EDGE_START}  \</li>
+     * <li>.value[2]?.i32 边缘效果生效的方向，参数类型{@link ArkUI_EffectEdge}，默认值{@link ARKUI_EFFECT_EDGE_START} | {@link ARKUI_EFFECT_EDGE_END}。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -9041,9 +9041,9 @@ typedef enum {
      * <li>.value[0].i32 Scroll组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}，默认值{@link ARKUI_SCROLL_SNAP_ALIGN_NONE}。
      * </li>
      * <li>.value[1].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在开头和第一页间自由滑动，设置为0（false）后，允许Scroll在开头和第一页间自由滑动，
-     * <li>默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
      * <li>.value[2].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在最后一页和末尾间自由滑动，设置为0（false）后，允许Scroll在最后一页和末尾间自由滑动，
-     * <li>默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
      * <li>.value[3...].f32 Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量，单位：vp。可以1个或多个。</li>
      * </ul>
      *
@@ -9051,9 +9051,9 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32 Scroll组件限位滚动时的对齐方式，数据类型{@link ArkUI_ScrollSnapAlign}。</li>
      * <li>.value[1].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在开头和第一页间自由滑动，设置为0（false）后，允许Scroll在开头和第一页间自由滑动，
-     * <li>默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
      * <li>.value[2].i32 在Scroll组件限位滚动模式下，该参数设置为1（true）后，不允许Scroll在最后一页和末尾间自由滑动，设置为0（false）后，允许Scroll在最后一页和末尾间自由滑动，
-     * <li>默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
+     * 默认值1（true）。该参数仅在限位点为2个及以上时生效。</li>
      * <li>.value[3...].f32 Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量，单位：vp。</li>
      * </ul>
      *
@@ -9212,7 +9212,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32 滚动类组件所有子组件全展开的宽度，默认单位为vp。</li>
      * <li>.value[1].f32 滚动类组件所有子组件全展开的高度，默认单位为vp。 设置NODE_PADDING、NODE_MARGIN或NODE_BORDER_WIDTH后，NODE_PADDING、
-     * <li>NODE_MARGIN或NODE_BORDER_WIDTH在单位vp转换成单位px时会进行像素取整，返回值根据取整后的值计算。</li>
+     * NODE_MARGIN或NODE_BORDER_WIDTH在单位vp转换成单位px时会进行像素取整，返回值根据取整后的值计算。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
@@ -9364,7 +9364,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].f32 设置内容最小缩放比例，默认值：1 取值范围：(0, NODE_SCROLL_MAX_ZOOM_SCALE]，小于或等于0时按默认值1处理，
-     * <li>大于NODE_SCROLL_MAX_ZOOM_SCALE时按NODE_SCROLL_MAX_ZOOM_SCALE处理。</li>
+     * 大于NODE_SCROLL_MAX_ZOOM_SCALE时按NODE_SCROLL_MAX_ZOOM_SCALE处理。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -9497,7 +9497,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32 配合ListItemGroup组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。数据类型{@link ArkUI_StickyStyle}，
-     * <li>默认值ARKUI_STICKY_STYLE_NONE。</li>
+     * 默认值ARKUI_STICKY_STYLE_NONE。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -9684,7 +9684,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].u32 List布局列数或行数，List垂直滚动时表示列数，水平滚动时表示行数；如果同时设置了最小、最大列宽或行高，则设置列数或行数不生效；默认值：1，取值范围：[1, +∞)，
-     * <li>设置异常值时使用默认值。</li>
+     * 设置异常值时使用默认值。</li>
      * <li>.value[1]?.f32 最小列宽或行高，单位vp，默认值：-1（未设置）。</li>
      * <li>.value[2]?.f32 最大列宽或行高，单位vp，默认值：-1（未设置）。</li>
      * <li>.value[3]?.f32 列间距或行间距，默认值：0，单位vp。</li>
@@ -9806,7 +9806,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32 List组件限位滚动动画速度，数据类型{@link ArkUI_ScrollSnapAnimationSpeed}。默认值：
-     * <li>ARKUI_SCROLL_SNAP_ANIMATION_NORMAL。</li>
+     * ARKUI_SCROLL_SNAP_ANIMATION_NORMAL。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -11008,7 +11008,7 @@ typedef enum {
      * <li>.value[0].i32 要滑动到的目标元素在当前容器中的索引值。</li>
      * <li>.value[1]?.i32 设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
      * <li>.value[2]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}。默认值为：{@link ARKUI_SCROLL_ALIGNMENT_START}
-     * <li>。</li>
+     * 。</li>
      * <li>.value[3]?.f32 滑动到目标元素后的额外偏移量，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。该参数从API version 23开始支持。</li>
      * </ul>
      *
@@ -11317,7 +11317,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32 Grid中GridItem的对齐方式，参数取值为{@link ArkUI_GridItemAlignment}下的枚举，
-     * <li>默认值为ARKUI_GRID_ITEM_ALIGNMENT_DEFAULT。</li>
+     * 默认值为ARKUI_GRID_ITEM_ALIGNMENT_DEFAULT。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -11760,7 +11760,7 @@ typedef enum {
      * <li>.value[0].i32 要滑动到的目标元素在当前容器中的索引值。传入-1时，指滑动到当前容器的最后一个元素。</li>
      * <li>.value[1]?.i32 设置滑动到指定索引值对应的列表项时是否有动效，1表示有动效，0表示没有动效。默认值：0。</li>
      * <li>.value[2]?.i32 指定滑动到的列表项与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}，默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}
-     * <li>。</li>
+     * 。</li>
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。</li>
      * </ul>
      *
