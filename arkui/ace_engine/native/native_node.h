@@ -10255,6 +10255,33 @@ typedef enum {
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
+    /**
+     * @brief Sets the total number of visible items.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: number of visible items. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: number of visible items. \n
+     *
+     * @since 26.0.0
+     */
+    NODE_PICKER_DISPLAYED_ITEM_COUNT = 1018004,
+
+    /**
+     * @brief Sets the height of each item.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].f32: the height of each item, in vp. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].f32: the height of each item, in vp. \n
+     *
+     * @since 26.0.0
+     */
+    NODE_PICKER_ITEM_HEIGHT = 1018005,
 
     /**
      * @brief Sets the digital crown sensitivity of the ArcList component. This attribute can be set, reset, and obtained as
@@ -10519,34 +10546,6 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_ARC_SCROLL_BAR_DISPLAY_MODE = 1021001,
-
-    /**
-     * @brief Sets the total number of visible items.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: number of visible items. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: number of visible items. \n
-     *
-     * @since 26.0.0
-     */
-    NODE_PICKER_DISPLAYED_ITEM_COUNT = 1018004,
-
-    /**
-     * @brief Sets the height of each item.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: the height of each item, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: the height of each item, in vp. \n
-     *
-     * @since 26.0.0
-     */
-    NODE_PICKER_ITEM_HEIGHT = 1018005,
 } ArkUI_NodeAttributeType;
 
 /**
