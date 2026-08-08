@@ -9386,74 +9386,104 @@ typedef enum {
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable loop playback. The value <b>1</b> means to enable loop playback, and <b>0</b>
-     * means the opposite. The default value is <b>1/b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable loop playback. The value <b>1</b> means to enable loop playback, and <b>0</b>
-     * means the opposite. The default value is <b>1</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable loop playback. The value <b>1</b> means to enable loop playback, and
+     * <b>0</b> means the opposite. The default value is <b>1</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable loop playback. The value <b>1</b> means to enable loop playback, and
+     * <b>0</b> means the opposite. The default value is <b>1</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_LOOP = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SWIPER,
     /**
      * @brief Defines whether to enable automatic playback for child component switching in the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable automatic playback for child component switching. The value <b>1</b>
-     * means to enable automatic playback, and <b>0</b> means the opposite. The default value is <b>0</b>. \n
-     * \n
-     * .value[1]?.i32: whether to stop automatic playback when the user touches the screen. The value <b>1</b> means
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable automatic playback for child component switching. The value <b>1</b>
+     * means to enable automatic playback, and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
+     * <li>.value[1]?.i32: whether to stop automatic playback when the user touches the screen. The value <b>1</b> means
      * to stop automatic playback, and <b>0</b> means the opposite. The default value is <b>1</b>. This parameter is
-     * supported since API version 16. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable automatic playback for child component switching. The value <b>1</b> means
-     * to enable automatic playback, and <b>0</b> means the opposite. The default value is <b>0</b>. \n
-     * .value[1].i32: whether to stop automatic playback when the user touches the screen. The value <b>1</b> means to
-     * stop automatic playback, and <b>0</b> means the opposite. This parameter is supported since API version 16. \n
+     * supported since API version 16.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable automatic playback for child component switching. The value <b>1</b> means
+     * to enable automatic playback, and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
+     * <li>.value[1].i32: whether to stop automatic playback when the user touches the screen. The value <b>1</b> means
+     * to stop automatic playback, and <b>0</b> means the opposite. This parameter is supported since API version 16.
+     * </li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_AUTO_PLAY,
     /**
      * @brief Defines whether to enable the navigation point indicator for the swiper. This attribute can be set,
      * reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the navigation point indicator. The value <b>1</b> means to enable the
-     * navigation point indicator, and <b>0</b> means the opposite. The default value is <b>1</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the navigation point indicator. The value <b>1</b> means to enable the
-     * navigation point indicator, and <b>0</b> means the opposite. The default value is <b>1</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable the navigation point indicator. The value <b>1</b> means to enable the
+     * navigation point indicator, and <b>0</b> means the opposite. The default value is <b>1</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable the navigation point indicator. The value <b>1</b> means to enable the
+     * navigation point indicator, and <b>0</b> means the opposite. The default value is <b>1</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_SHOW_INDICATOR,
     /**
      * @brief Defines the interval for automatic playback. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: interval for automatic playback, in milliseconds. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: interval for automatic playback, in milliseconds. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: interval for automatic playback, in milliseconds.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: interval for automatic playback, in milliseconds.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_INTERVAL,
     /**
      * @brief Defines whether vertical swiping is used for the swiper. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether vertical swiping is used. The value <b>1</b> means that vertical swiping is used, and
-     * <b>0</b> means the opposite. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether vertical swiping is used. The value <b>1</b> means that vertical swiping is used, and
-     * <b>0</b> means the opposite. The default value is <b>0</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether vertical swiping is used. The value <b>1</b> means that vertical swiping is used, and
+     * <b>0</b> means the opposite. The default value is <b>0</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether vertical swiping is used. The value <b>1</b> means that vertical swiping is used, and
+     * <b>0</b> means the opposite. The default value is <b>0</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_VERTICAL,
 
@@ -9461,14 +9491,20 @@ typedef enum {
      * @brief Defines the duration of the animation for switching child components. This attribute can be set, reset,
      * and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: duration of the animation for switching child components, in milliseconds. The default value is
-     * <b>400</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: duration of the animation for switching child components, in milliseconds. The default value is
-     * <b>400</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: duration of the animation for switching child components, in milliseconds. The default value
+     * is <b>400</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: duration of the animation for switching child components, in milliseconds. The default value
+     * is <b>400</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_DURATION,
 
@@ -9476,14 +9512,20 @@ typedef enum {
      * @brief Defines the animation curve for the swiper. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: animation curve. The parameter type is {@link ArkUI_AnimationCurve}.
-     * The default value is <b>ARKUI_CURVE_LINEAR</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: animation curve. The parameter type is {@link ArkUI_AnimationCurve}.
-     * The default value is <b>ARKUI_CURVE_LINEAR</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: animation curve. The parameter type is {@link ArkUI_AnimationCurve}.
+     * The default value is <b>ARKUI_CURVE_LINEAR</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: animation curve. The parameter type is {@link ArkUI_AnimationCurve}.
+     * The default value is <b>ARKUI_CURVE_LINEAR</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_CURVE,
 
@@ -9491,12 +9533,18 @@ typedef enum {
      * @brief Defines the spacing between child components in the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: spacing between child components. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: spacing between child components. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: spacing between child components.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: spacing between child components.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_ITEM_SPACE,
 
@@ -9504,15 +9552,21 @@ typedef enum {
      * @brief Defines the index of the child component currently displayed in the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: index value of the child component. \n
-     * .value[1]?.i32: animation mode, the parameter type is {@link ArkUI_SwiperAnimationMode}. \n
-     * The default value is ARKUI_SWIPER_NO_ANIMATION. This parameter is valid only for the current call. \n
-     * This parameter is supported since API version 15. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: index value of the child component. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: index value of the child component.</li>
+     * <li>.value[1]?.i32: animation mode, the parameter type is {@link ArkUI_SwiperAnimationMode}.
+     * The default value is ARKUI_SWIPER_NO_ANIMATION. This parameter is valid only for the current call.
+     * This parameter is supported since API version 15.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: index value of the child component.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_INDEX,
 
@@ -9520,18 +9574,24 @@ typedef enum {
     * @brief Defines the number of elements to display per page.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: number of elements to display per page. \n
-    * .value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
-    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 19. \n
-    * .string?: this parameter can only be set to 'auto'. When 'auto' is set, the value[] parameters are ignored.
-    * This parameter is supported since API version 19. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of elements to display per page. \n
-    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 19. \n
-    * .string: 'auto' or empty string.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+    * <ul>
+    * <li>.value[0].i32: number of elements to display per page.</li>
+    * <li>.value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
+    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 19.</li>
+    * <li>.string?: this parameter can only be set to 'auto'. When 'auto' is set, the value[] parameters are ignored.
+    * This parameter is supported since API version 19.</li>
+    * </ul>
     *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**
+    * <ul>
+    * <li>.value[0].i32: number of elements to display per page.</li>
+    * <li>.value[1].i32: whether to turn pages by group. This parameter is supported since API version 19.</li>
+    * <li>.string: 'auto' or empty string.</li>
+    * </ul>
+    *
+    * @ingroup Navigation Related Components[导航类组件]
+    * @since 12
     */
     NODE_SWIPER_DISPLAY_COUNT,
 
@@ -9539,14 +9599,20 @@ typedef enum {
      * @brief Defines whether to disable the swipe feature.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to disable the swipe feature. The value <b>1</b> means to disable
-     * the swipe feature, and <b>0</b> means the opposite. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to disable the swipe feature. The value <b>1</b> means to disable the swipe
-     * feature, and <b>0</b> means the opposite. The default value is <b>0</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to disable the swipe feature. The value <b>1</b> means to disable
+     * the swipe feature, and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to disable the swipe feature. The value <b>1</b> means to disable the swipe
+     * feature, and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_DISABLE_SWIPE,
 
@@ -9554,20 +9620,26 @@ typedef enum {
     * @brief Defines whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
-    * The parameter type is {@link ArkUI_SwiperArrow}.\n
-    * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
-    * .?object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 19. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
-    * The parameter type is {@link ArkUI_SwiperArrow}.\n
-    * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
-    * .object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 19. \n
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+    * <ul>
+    * <li>.value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
+    * The parameter type is {@link ArkUI_SwiperArrow}.
+    * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>.</li>
+    * <li>.?object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}.
+    * This parameter is supported since API version 19.</li>
+    * </ul>
     *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**
+    * <ul>
+    * <li>.value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
+    * The parameter type is {@link ArkUI_SwiperArrow}.
+    * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>.</li>
+    * <li>.object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}.
+    * This parameter is supported since API version 19.</li>
+    * </ul>
+    *
+    * @ingroup Navigation Related Components[导航类组件]
+    @since 12
     */
     NODE_SWIPER_SHOW_DISPLAY_ARROW,
 
@@ -9575,26 +9647,34 @@ typedef enum {
      * @brief Defines the effect used at the edges of the swiper when the boundary of the scrollable content is reached.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: effect used at the edges of the swiper when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EdgeEffect}.\n
-     * The default value is <b>ARKUI_EDGE_EFFECT_SPRING</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: effect used at the edges of the swiper when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EdgeEffect}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: effect used at the edges of the swiper when the boundary of the scrollable content is reached.
+     * The parameter type is {@link ArkUI_EdgeEffect}.
+     * The default value is <b>ARKUI_EDGE_EFFECT_SPRING</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: effect used at the edges of the swiper when the boundary of the scrollable content is reached.
+     * The parameter type is {@link ArkUI_EdgeEffect}.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_EDGE_EFFECT_MODE,
 
     /**
-    * @brief Swiper组件适配器，支持属性设置，属性重置和属性获取接口。适用场景：当Swiper需要动态加载或复用子组件时使用适配器，如数据量较大的列表轮播、无限循环轮播等场景。
+    * @brief Defines the swiper adapter. The attribute can be set, reset, and obtained as required through APIs.
     *
-    * 属性设置方法参数{@link ArkUI_AttributeItem}格式：\n
-    * .object：使用{@link ArkUI_NodeAdapter}对象作为适配器。建议配合NODE_SWIPER_CACHED_COUNT使用以提升性能。\n
-    * \n
-    * 属性获取方法返回值{@link ArkUI_AttributeItem}格式： \n
-    * .object：返回值格式为{@link ArkUI_NodeAdapter}。 \n
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+    * <ul>
+    * <li>.object: {@link ArkUI_NodeAdapter} object as the adapter.</li>
+    * </ul>
+    *
+    * @ingroup Navigation Related Components[导航类组件]
+    * @since 12
     */
     NODE_SWIPER_NODE_ADAPTER,
 
@@ -9602,23 +9682,32 @@ typedef enum {
     * @brief Sets the number of cached items in the swiper adapter.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: number of cached items in the swiper adapter. \n
-    * .value[1]?.i32: whether the cached items will be displayed. \n
-    * The value <b>0</b> indicates that cached items will not be displayed, \n
-    * and <b>1</b> indicates that cached items will be displayed. The default value is <b>0</b>. \n
-    * This parameter is supported from API version 19. \n
-    * .value[2]?.i32: whether the cachedCount is independent of group calculation. \n
-    * The value <b>1</b> indicates that cachedCount is calculated by actual child component count,\n
-    * and is independent of displayCount group calculation.\n
-    * The value <b>0</b> indicates that, when NODE_SWIPER_DISPLAY_COUNT is enabled to turn pages by group,\n
-    * cachedCount is calculated by group.The default value is <b>0</b>. \n
-    * This parameter is supported from API version 24. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of cached items in the swiper adapter. \n
-    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 19. \n
-    * .value[2].i32: whether the cachedCount is independent of group calculation. This parameter is supported from API version 24. \n
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+    * <ul>
+    * <li>.value[0].i32: number of cached items in the swiper adapter.</li>
+    * <li>.value[1]?.i32: whether the cached items will be displayed.
+    * The value <b>0</b> indicates that cached items will not be displayed,
+    * and <b>1</b> indicates that cached items will be displayed. The default value is <b>0</b>.
+    * This parameter is supported from API version 19.</li>
+    * <li>.value[2]?.i32: whether the cachedCount is independent of group calculation.
+    * The value <b>1</b> indicates that cachedCount is calculated by actual child component count,
+    * and is independent of displayCount group calculation.
+    * The value <b>0</b> indicates that, when NODE_SWIPER_DISPLAY_COUNT is enabled to turn pages by group,
+    * cachedCount is calculated by group.The default value is <b>0</b>.
+    * This parameter is supported from API version 24.</li>
+    * </ul>
+    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**
+    * <ul>
+    * <li>.value[0].i32: number of cached items in the swiper adapter.</li>
+    * <li>.value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 19.
+    * </li>
+    * <li>.value[2].i32: whether the cachedCount is independent of group calculation.
+    * This parameter is supported from API version 24.</li>
+    * </ul>
+    *
+    * @ingroup Navigation Related Components[导航类组件] 
+    * @since 12
     */
     NODE_SWIPER_CACHED_COUNT,
 
@@ -9626,14 +9715,22 @@ typedef enum {
      * @brief Defines the front margin of the wiper.
      * The attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: the front margin. The unit is vp. The default value is <b>0.0</b>\n
-     * .value[1]?.i32: whether to ignore blanks, the default value is 0.
-     * The value <b>1</b> means to ignore blank areas, and <b>0</b> means the opposite. \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: the front margin, the unit is vp. \n
-     * .value[1].i32: whether to ignore blank areas. The value <b>1</b> means to ignore blank areas, and <b>0</b> means
-     * the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: the front margin. The unit is vp. The default value is <b>0.0</b></li>
+     * <li>.value[1]?.i32: whether to ignore blanks, the default value is 0.
+     * The value <b>1</b> means to ignore blank areas, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: the front margin, the unit is vp.</li>
+     * <li>.value[1].i32: whether to ignore blank areas. The value <b>1</b> means to ignore blank areas, and <b>0</b>
+     * means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_PREV_MARGIN,
 
@@ -9641,14 +9738,22 @@ typedef enum {
      * @brief Defines the back margin of the wiper.
      * The attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: the back margin. The unit is vp. The default value is <b>0.0</b>\n
-     * .value[1]?.i32: whether to ignore blanks, the default value is 0.
-     * The value <b>1</b> means to ignore blank areas, and <b>0</b> means the opposite. \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: the back margin, the unit is vp. \n
-     * .value[1].i32: whether to ignore blank areas. The value <b>1</b> means to ignore blank areas, and <b>0</b> means
-     * the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: the back margin. The unit is vp. The default value is <b>0.0</b></li>
+     * <li>.value[1]?.i32: whether to ignore blanks, the default value is 0.
+     * The value <b>1</b> means to ignore blank areas, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: the back margin, the unit is vp.</li>
+     * <li>.value[1].i32: whether to ignore blank areas. The value <b>1</b> means to ignore blank areas, and <b>0</b>
+     * means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_NEXT_MARGIN,
 
@@ -9656,67 +9761,99 @@ typedef enum {
     * @brief Defines the navigation indicator type of the swiper.
     * The attribute can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.\n
-    * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+    * <ul>
+    * <li>.value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.</li>
+    * <li>.object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
-    * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.\n
-    * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
-    * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
-    * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
+    * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>.
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19.</li>
+    * </ul>
     *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**
+    * <ul>
+    * <li>.value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.</li>
+    * <li>.object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type
+    * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
+    * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>.
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19.</li>
+    * </ul>
+    *
+    * @ingroup Navigation Related Components[导航类组件]
+    * @since 12
     */
     NODE_SWIPER_INDICATOR,
 
     /**
      * @brief Set the nested scrolling mode for the Swiper component and parent component.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32：Nested scrolling patterns for Swiper components and parent components. The parameter type is
-     * {@link ArkUI_SwiperNestedScrollMode} \n
-     * The default value is <b>ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY<b> \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32：Nested scrolling patterns for Swiper components and parent components. The parameter type is
-     * {@link ArkUI_SwiperNestedScrollMode} \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32：Nested scrolling patterns for Swiper components and parent components. The parameter type is
+     * {@link ArkUI_SwiperNestedScrollMode}
+     * The default value is <b>ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY</b></li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32：Nested scrolling patterns for Swiper components and parent components. The parameter type is
+     * {@link ArkUI_SwiperNestedScrollMode}</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_NESTED_SCROLL,
 
     /**
      * @brief Set the switcher component to flip to the specified page.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32：Specify the index value of the page in Swiper.\n
-     * .value[1]?.i32：Set whether there is an animation effect when flipping to the specified page. 1 indicates active
-     * effect, 0 indicates no active effect, default value is 0。\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32：Specify the index value of the page in Swiper.</li>
+     * <li>.value[1]?.i32：Set whether there is an animation effect when flipping to the specified page. 1 indicates
+     * active effect, 0 indicates no active effect, default value is 0。</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_SWIPE_TO_INDEX,
 
     /**
     * @brief Set to disable component navigation point interaction function。
     *
-    * Property setting method parameter {@link ArkUI-AttributeItem} format: \n
-    * .value[0].i32：Set to disable the interaction function of component navigation points. When set to true, it
-    * indicates that the navigation points are interactive. The default value is true. \n
-    * The return value of the attribute acquisition method is in the format of {@ link ArkUI-AttributeItem}： \n
-    * .value[0].i32：Set to disable component navigation point interaction. \n
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+    * <ul>
+    * <li>.value[0].i32：Set to disable the interaction function of component navigation points. When set to true, it
+    * indicates that the navigation points are interactive. The default value is true.</li>
+    * </ul>
+    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**
+    * <ul>
+    * <li>.value[0].i32：Set to disable component navigation point interaction.</li>
+    * </ul>
+    *
+    * @ingroup Navigation Related Components[导航类组件]
+    * @since 12
     */
     NODE_SWIPER_INDICATOR_INTERACTIVE,
 
     /**
      * @brief Sets the page flipping mode using the mouse wheel.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: page flipping mode using the mouse wheel. The parameter type is {@link ArkUI_PageFlipMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_PageFlipMode}:\n
-     * .value[0].i32: page flipping mode using the mouse wheel. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: page flipping mode using the mouse wheel. The parameter type is {@link ArkUI_PageFlipMode}.
+     * </li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_PageFlipMode}:**
+     * <ul>
+     * <li>.value[0].i32: page flipping mode using the mouse wheel.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 15
      */
     NODE_SWIPER_PAGE_FLIP_MODE,
@@ -9725,15 +9862,20 @@ typedef enum {
      * @brief Defines the minimum main axis size of child element for swiper to works out the display count.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum main axis size of the child element, Unit: vp. \n
-     * .value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
-     * and <b>1</b> means to turn pages by group. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum main axis size of the child element, Unit: vp. \n
-     * .value[1].i32: whether to turn pages by group. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: minimum main axis size of the child element, Unit: vp.</li>
+     * <li>.value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
+     * and <b>1</b> means to turn pages by group. The default value is <b>0</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: minimum main axis size of the child element, Unit: vp.</li>
+     * <li>.value[1].i32: whether to turn pages by group.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 19
      */
     NODE_SWIPER_AUTO_FILL,
@@ -9742,16 +9884,21 @@ typedef enum {
      * @brief Sets whether to maintain the visible content's position when data is inserted or deleted outside
      * the display area of the <b>Swiper</b> component.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
      * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
-     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
-     * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
-     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
+     * position, and <b>1</b> means the opposite. The default value is <b>0</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
+     * position, and <b>1</b> means the opposite. The default value is <b>0</b>.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 20
      */
     NODE_SWIPER_MAINTAIN_VISIBLE_CONTENT_POSITION = 1001023,
@@ -9760,18 +9907,23 @@ typedef enum {
      * @brief Specifies the responsive column layout policy for the <b>Swiper</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1]?.i32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
-     * and <b>1</b> means to paginate by groups of child elements displayed within the viewport.
-     * The default value is <b>0</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1].i32: whether to paginate by group. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}.</li>
+     * <li>.value[1]?.i32: whether to paginate by group. The value <b>0</b> means to paginate by individual child
+     * elements, and <b>1</b> means to paginate by groups of child elements displayed within the viewport.
+     * The default value is <b>0</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}.</li>
+     * <li>.value[1].i32: whether to paginate by group.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 22
      */
     NODE_SWIPER_ITEMFILLPOLICY = 1001024,
@@ -12861,8 +13013,13 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently displayed element. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SWIPER,
 
@@ -12871,14 +13028,19 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains five parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently displayed element. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index of the target element to switch to. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: offset of the currently displayed element relative to the
-     * start position of the swiper along the main axis. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: offset of the target element relative to the start position
-     * of the swiper along the main axis. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: hands-off velocity. \n
+     * **{@link ArkUI_NodeComponentEvent} contains five parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: index of the target element to switch to.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: offset of the currently displayed element relative to the
+     * start position of the swiper along the main axis.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32: offset of the target element relative to the start position
+     * of the swiper along the main axis.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32: hands-off velocity.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_EVENT_ON_ANIMATION_START,
 
@@ -12887,10 +13049,15 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently displayed element. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: offset of the currently displayed element relative to the
-     * start position of the swiper along the main axis. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: offset of the currently displayed element relative to the
+     * start position of the swiper along the main axis.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_EVENT_ON_ANIMATION_END,
 
@@ -12900,10 +13067,15 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently displayed element. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: offset of the currently displayed element relative to the
-     * start position of the swiper along the main axis. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: offset of the currently displayed element relative to the
+     * start position of the swiper along the main axis.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_EVENT_ON_GESTURE_SWIPE,
 
@@ -12923,13 +13095,18 @@ typedef enum {
      * A callback is triggered for all pages in the group. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains four parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b> : indicates the index of the Swiper component, \n
-     * which is consistent with the index change in the onChange event. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b> : The index of a page in the window. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b> : The proportion of page movement relative to \n
-     * the start position of the Swiper spindle (selectedIndex corresponds to the start position of the page). \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b> : The length of the page in the axis direction. \n
+     * **{@link ArkUI_NodeComponentEvent} contains four parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: indicates the index of the Swiper component,
+     * which is consistent with the index change in the onChange event.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: The index of a page in the window.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: The proportion of page movement relative to
+     * the start position of the Swiper spindle (selectedIndex corresponds to the start position of the page).</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32: The length of the page in the axis direction.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
+     * @since 12
      */
     NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL,
 
@@ -12943,9 +13120,12 @@ typedef enum {
      * <b>NODE_SWIPER_SWIPE_TO_INDEX</b>. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently selected element. \n
-     * 
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently selected element.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 18
      */
     NODE_SWIPER_EVENT_ON_SELECTED = 1001005,
@@ -12960,9 +13140,12 @@ typedef enum {
      * <b>NODE_SWIPER_SWIPE_TO_INDEX</b>. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index of the element becomes unselected. \n
-     * 
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: the index of the element becomes unselected.</li>
+     * </ul>
+     *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 18
      */
     NODE_SWIPER_EVENT_ON_UNSELECTED = 1001006,
@@ -12972,13 +13155,16 @@ typedef enum {
      * Instructions: Before page scrolling, the </b>ContentWillScrollCallback</b> callback is invoked. \n \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: the index value of the child page that will display. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the sliding offset of each frame.
+     * **{@link ArkUI_NodeComponentEvent} contains three parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: the index value of the current child page.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: the index value of the child page that will display.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: the sliding offset of each frame.
      * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
-     * slide forward(e.g. from index=0 to index=1). \n
+     * slide forward(e.g. from index=0 to index=1).</li>
+     * </ul>
      *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 15
      */
     NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
@@ -12989,10 +13175,13 @@ typedef enum {
      * during the animation phase after the user lifts their finger, or upon stopping of scrolling.
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: current scroll state. The parameter type is
-     * {@link ArkUI_ScrollState}. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.</li>
+     * </ul>
      *
+     * @ingroup Navigation Related Components[导航类组件]
      * @since 20
      */
     NODE_SWIPER_EVENT_ON_SCROLL_STATE_CHANGED = 1001008,
