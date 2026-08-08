@@ -25,7 +25,8 @@
 /**
  * @file drawing_color.h
  *
- * @brief This file declares the functions related to the color in the drawing module.
+ * @brief 文件中定义了与颜色相关的功能函数。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -46,11 +47,11 @@ extern "C" {
 /**
  * @brief 用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量。
  *
- * @param alpha 描述透明度的变量, 变量范围是0x00~0xFF。
- * @param red 描述红色的变量, 变量范围是0x00~0xFF。
- * @param green 描述绿色的变量, 变量范围是0x00~0xFF。
- * @param blue 描述蓝色的变量, 变量范围是0x00~0xFF。
- * @return 函数返回一个描述颜色的32位（ARGB）变量。
+ * @param alpha 描述透明度的变量，变量范围是0x00~0xFF。超出范围时取低8位有效。
+ * @param red 描述红色的变量，变量范围是0x00~0xFF。超出范围时取低8位有效。
+ * @param green 描述绿色的变量，变量范围是0x00~0xFF。超出范围时取低8位有效。
+ * @param blue 描述蓝色的变量，变量范围是0x00~0xFF。超出范围时取低8位有效。
+ * @return 返回一个描述颜色的32位（ARGB）变量。
  * @since 8
  * @version 1.0
  */
