@@ -321,12 +321,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
  *      <li>**ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED**:
  *      The application does not support clone or multi-instance mode.</li>
  *      <li>**ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY**: The multi-instance key is invalid.</li>
- *      <li>**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: The number of instances has reached the upper
- *      limit.</li>
- *      <li>**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: The application does not support multi-instance
- *      mode.</li>
- *      <li>**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: Setting **APP_INSTANCE_KEY** is not
- *      supported. For details, see **AbilityRuntime_ErrorCode**.</li></ul>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: The number of instances has reached the upper limit.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: The application does not support multi-instance mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: Setting **APP_INSTANCE_KEY** is not supported.
+ *      For details, see **AbilityRuntime_ErrorCode**.</li></ul>
  * @since 17
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,
@@ -410,8 +408,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLogFileDir(
  *
  * @return Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
  * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if targetPageName is null or windowId is invalid.
- * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs, such as failed to access dependency
- *          module.
+ * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} 
+ *           if internal error occurs, such as failed to access dependency module.
  * @since 23
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextNotifyPageChanged(
