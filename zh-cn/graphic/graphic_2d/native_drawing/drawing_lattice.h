@@ -52,17 +52,20 @@ extern "C" {
  */
 typedef enum {
     /**
-     * 将图像绘制到矩形网格中。
+     * @brief 将图像绘制到矩形网格中。
+     *
      * @since 23
      */
     DEFAULT,
     /**
-     * 将矩形网格设置为透明的。
+     * @brief 将矩形网格设置为透明的。
+     *
      * @since 23
      */
     TRANSPARENT,
     /**
-     * 将矩形网格对象中fColors数组的颜色绘制到矩形网格中。
+     * @brief 将矩形网格对象中fColors数组的颜色绘制到矩形网格中。
+     *
      * @since 23
      */
     FIXED_COLOR,

@@ -363,32 +363,38 @@ typedef struct OH_Drawing_Surface OH_Drawing_Surface;
  */
 typedef enum {
     /**
-     * 未知格式。
+     * @brief 未知格式。
+     *
      * @since 8
      */
     COLOR_FORMAT_UNKNOWN,
     /**
-     * 每个像素用一个8位的量表示，8个比特位表示透明度。
+     * @brief 每个像素用一个8位的量表示，8个比特位表示透明度。
+     *
      * @since 8
      */
     COLOR_FORMAT_ALPHA_8,
     /**
-     * 每个像素用一个16位的量表示，高位到低位依次是5个比特位表示红，6个比特位表示绿，5个比特位表示蓝。
+     * @brief 每个像素用一个16位的量表示，高位到低位依次是5个比特位表示红，6个比特位表示绿，5个比特位表示蓝。
+     *
      * @since 8
      */
     COLOR_FORMAT_RGB_565,
     /**
-     * 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝。
+     * @brief 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝。
+     *
      * @since 8
      */
     COLOR_FORMAT_ARGB_4444,
     /**
-     * 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示透明度，8个比特位表示红，8个比特位表示绿，8个比特位表示蓝。
+     * @brief 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示透明度，8个比特位表示红，8个比特位表示绿，8个比特位表示蓝。
+     *
      * @since 8
      */
     COLOR_FORMAT_RGBA_8888,
     /**
-     * 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示蓝，8个比特位表示绿，8个比特位表示红，8个比特位表示透明度。
+     * @brief 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示蓝，8个比特位表示绿，8个比特位表示红，8个比特位表示透明度。
+     *
      * @since 8
      */
     COLOR_FORMAT_BGRA_8888
@@ -402,22 +408,26 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 未知格式。
+     * @brief 未知格式。
+     *
      * @since 8
      */
     ALPHA_FORMAT_UNKNOWN,
     /**
-     * 位图无透明度。
+     * @brief 位图无透明度。
+     *
      * @since 8
      */
     ALPHA_FORMAT_OPAQUE,
     /**
-     * 每个像素的颜色组件已预先乘以透明度分量。
+     * @brief 每个像素的颜色组件已预先乘以透明度分量。
+     *
      * @since 8
      */
     ALPHA_FORMAT_PREMUL,
     /**
-     * 每个像素的颜色组件未预先乘以透明度分量。
+     * @brief 每个像素的颜色组件未预先乘以透明度分量。
+     *
      * @since 8
      */
     ALPHA_FORMAT_UNPREMUL
@@ -441,147 +451,176 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 清除模式，r = 0。
+     * @brief 清除模式，r = 0。
+     *
      * @since 11
      */
     BLEND_MODE_CLEAR,
     /**
-     * r = s（result的4个通道，都等于source的4个通道，即结果等于源。）
+     * @brief r = s（result的4个通道，都等于source的4个通道，即结果等于源。）
+     *
      * @since 11
      */
     BLEND_MODE_SRC,
     /**
-     * r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。）
+     * @brief r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。）
+     *
      * @since 11
      */
     BLEND_MODE_DST,
     /**
-     * r = s + (1 - sa) * d。
+     * @brief r = s + (1 - sa) * d。
+     *
      * @since 11
      */
     BLEND_MODE_SRC_OVER,
     /**
-     * r = d + (1 - da) * s。
+     * @brief r = d + (1 - da) * s。
+     *
      * @since 11
      */
     BLEND_MODE_DST_OVER,
     /**
-     * r = s * da。
+     * @brief r = s * da。
+     *
      * @since 11
      */
     BLEND_MODE_SRC_IN,
     /**
-     * r = d * sa。
+     * @brief r = d * sa。
+     *
      * @since 11
      */
     BLEND_MODE_DST_IN,
     /**
-     * r = s * (1 - da)。
+     * @brief r = s * (1 - da)。
+     *
      * @since 11
      */
     BLEND_MODE_SRC_OUT,
     /**
-     * r = d * (1 - sa)。
+     * @brief r = d * (1 - sa)。
+     *
      * @since 11
      */
     BLEND_MODE_DST_OUT,
     /**
-     * r = s * da + d * (1 - sa)。
+     * @brief r = s * da + d * (1 - sa)。
+     *
      * @since 11
      */
     BLEND_MODE_SRC_ATOP,
     /**
-     * r = d * sa + s * (1 - da)。
+     * @brief r = d * sa + s * (1 - da)。
+     *
      * @since 11
      */
     BLEND_MODE_DST_ATOP,
     /**
-     * r = s * (1 - da) + d * (1 - sa)。
+     * @brief r = s * (1 - da) + d * (1 - sa)。
+     *
      * @since 11
      */
     BLEND_MODE_XOR,
     /**
-     * r = min(s + d, 1)。
+     * @brief r = min(s + d, 1)。
+     *
      * @since 11
      */
     BLEND_MODE_PLUS,
     /**
-     * r = s * d。
+     * @brief r = s * d。
+     *
      * @since 11
      */
     BLEND_MODE_MODULATE,
     /**
-     * 滤色模式，r = s + d - s * d。
+     * @brief 滤色模式，r = s + d - s * d。
+     *
      * @since 11
      */
     BLEND_MODE_SCREEN,
     /**
-     * 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度。
+     * @brief 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度。
+     *
      * @since 11
      */
     BLEND_MODE_OVERLAY,
     /**
-     * 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d。
+     * @brief 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d。
+     *
      * @since 11
      */
     BLEND_MODE_DARKEN,
     /**
-     * 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d。
+     * @brief 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d。
+     *
      * @since 11
      */
     BLEND_MODE_LIGHTEN,
     /**
-     * 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素。
+     * @brief 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素。
+     *
      * @since 11
      */
     BLEND_MODE_COLOR_DODGE,
     /**
-     * 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素。
+     * @brief 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素。
+     *
      * @since 11
      */
     BLEND_MODE_COLOR_BURN,
     /**
-     * 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式。
+     * @brief 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式。
+     *
      * @since 11
      */
     BLEND_MODE_HARD_LIGHT,
     /**
-     * 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素。
+     * @brief 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素。
+     *
      * @since 11
      */
     BLEND_MODE_SOFT_LIGHT,
     /**
-     * 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d。
+     * @brief 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d。
+     *
      * @since 11
      */
     BLEND_MODE_DIFFERENCE,
     /**
-     * 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d。
+     * @brief 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d。
+     *
      * @since 11
      */
     BLEND_MODE_EXCLUSION,
     /**
-     * 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d。
+     * @brief 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d。
+     *
      * @since 11
      */
     BLEND_MODE_MULTIPLY,
     /**
-     * 色相模式，使用源像素的色相，目标像素的饱和度和亮度。
+     * @brief 色相模式，使用源像素的色相，目标像素的饱和度和亮度。
+     *
      * @since 11
      */
     BLEND_MODE_HUE,
     /**
-     * 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度。
+     * @brief 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度。
+     *
      * @since 11
      */
     BLEND_MODE_SATURATION,
     /**
-     * 颜色模式，使用源像素的色相和饱和度，目标像素的亮度。
+     * @brief 颜色模式，使用源像素的色相和饱和度，目标像素的亮度。
+     *
      * @since 11
      */
     BLEND_MODE_COLOR,
     /**
-     * 亮度模式，使用源像素的亮度，目标像素的色相和饱和度。
+     * @brief 亮度模式，使用源像素的亮度，目标像素的色相和饱和度。
+     *
      * @since 11
      */
     BLEND_MODE_LUMINOSITY,
@@ -595,22 +634,26 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 单字节，表示UTF-8或ASCII。
+     * @brief 单字节，表示UTF-8或ASCII。
+     *
      * @since 12
      */
     TEXT_ENCODING_UTF8,
     /**
-     * 双字节，表示大部分Unicode。
+     * @brief 双字节，表示大部分Unicode。
+     *
      * @since 12
      */
     TEXT_ENCODING_UTF16,
     /**
-     * 四字节，表示所有Unicode。
+     * @brief 四字节，表示所有Unicode。
+     *
      * @since 12
      */
     TEXT_ENCODING_UTF32,
     /**
-     * 双字节，表示字形索引。
+     * @brief 双字节，表示字形索引。
+     *
      * @since 12
      */
     TEXT_ENCODING_GLYPH_ID,

@@ -62,22 +62,26 @@ OH_Drawing_Font* OH_Drawing_FontCreate(void);
  */
 typedef enum {
     /**
-     * 不修改字型轮廓。
+     * @brief 不修改字型轮廓。
+     *
      * @since 12
      */
     FONT_HINTING_NONE,
     /**
-     * 最小限度修改字型轮廓以改善对比度。
+     * @brief 最小限度修改字型轮廓以改善对比度。
+     *
      * @since 12
      */
     FONT_HINTING_SLIGHT,
     /**
-     * 修改字型轮廓以提高对比度。
+     * @brief 修改字型轮廓以提高对比度。
+     *
      * @since 12
      */
     FONT_HINTING_NORMAL,
     /**
-     * 修改字型轮廓以获得最大对比度。
+     * @brief 修改字型轮廓以获得最大对比度。
+     *
      * @since 12
      */
     FONT_HINTING_FULL,
@@ -91,17 +95,20 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 无抗锯齿处理。
+     * @brief 无抗锯齿处理。
+     *
      * @since 12
      */
     FONT_EDGING_ALIAS,
     /**
-     * 使用抗锯齿来平滑字型边缘。
+     * @brief 使用抗锯齿来平滑字型边缘。
+     *
      * @since 12
      */
     FONT_EDGING_ANTI_ALIAS,
     /**
-     * 使用次像素级别的抗锯齿来平滑字型边缘，可以获得更加平滑的字型渲染效果。
+     * @brief 使用次像素级别的抗锯齿来平滑字型边缘，可以获得更加平滑的字型渲染效果。
+     *
      * @since 12
      */
     FONT_EDGING_SUBPIXEL_ANTI_ALIAS,
