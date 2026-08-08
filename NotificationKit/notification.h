@@ -17,14 +17,15 @@
  * @addtogroup NOTIFICATION
  * @{
  *
- * @brief Provides the definition of the C interface for the notification service.
+ * @brief The **Notification** module provides the notification services for applications,
+ * including querying the enabling status of the application's notification.
  *
  * @since 13
  */
 /**
  * @file notification.h
  *
- * @brief Declares the APIs of notification service.
+ * @brief Defines APIs for notification services.
  *
  * @library libohnotification.so
  * @kit NotificationKit
@@ -43,10 +44,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Checks whether this application is allowed to publish notifications.
+ * @brief Checks whether the notification of the specified application is enabled.
  *
- * @return true  - This application is allowed to publish notifications.
- *         false - This application is not allowed to publish notifications.
+ * @return true  - Notification is enabled for the specified application.
+ *         false - Notification is not enabled for the specified application.
  * @since 13
  */
 bool OH_Notification_IsNotificationEnabled(void);
