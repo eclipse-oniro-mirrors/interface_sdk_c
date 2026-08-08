@@ -25,7 +25,9 @@
 /**
  * @file drawing_point.h
  *
- * @brief This file declares the functions related to the coordinate point in the drawing module.
+ * @brief 文件中定义了与坐标点相关的功能函数，支持创建、获取、设置、取反、偏移及销毁坐标点对象等操作，
+ * 便于在2D图形绘制中对坐标点进行管理与变换。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -45,82 +47,82 @@ extern "C" {
 #endif
 
 /**
- * @brief 用于创建一个坐标点对象。
+ * @brief 创建一个坐标点对象。当此坐标点对象不再需要时，必须调用{@link OH_Drawing_PointDestroy}销毁并回收内存。
  *
- * @param x X轴坐标。
- * @param y Y轴坐标。
- * @return 函数会返回一个指针，指针指向创建的坐标点对象。
+ * @param x 表示坐标点的x轴坐标，单位为物理像素px。
+ * @param y 表示坐标点的y轴坐标，单位为物理像素px。
+ * @return 函数返回指向创建的坐标点对象的指针。
  * @since 11
  * @version 1.0
  */
 OH_Drawing_Point* OH_Drawing_PointCreate(float x, float y);
 
 /**
- * @brief 用于获取点的x轴坐标。
+ * @brief 获取坐标点的x轴坐标值。
  *
  * @param point 指向坐标点对象{@link OH_Drawing_Point}的指针。
- * @param x 表示点的x轴坐标。
+ * @param x 输出参数，用于接收坐标点的x轴坐标值，单位为物理像素px。
  * @return 函数返回执行错误码。
- * 返回OH_DRAWING_SUCCESS，表示执行成功。
- * 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point或者x为空。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point或者x为空。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointGetX(const OH_Drawing_Point* point, float* x);
 
 /**
- * @brief 用于获取点的y轴坐标。
+ * @brief 获取坐标点的y轴坐标值。
  *
  * @param point 指向坐标点对象{@link OH_Drawing_Point}的指针。
- * @param y 表示点的y轴坐标。
+ * @param y 输出参数，用于接收坐标点的y轴坐标值，单位为物理像素px。
  * @return 函数返回执行错误码。
- * 返回OH_DRAWING_SUCCESS，表示执行成功。
- * 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point或者y为空。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point或者y为空。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* y);
 
 /**
- * @brief 用于设置点的x轴和y轴坐标。
+ * @brief 设置坐标点的x轴和y轴坐标。
  *
  * @param point 指向坐标点对象{@link OH_Drawing_Point}的指针。
- * @param x 表示点的x轴坐标。
- * @param y 表示点的y轴坐标。
+ * @param x 表示坐标点的x轴坐标，单位为物理像素px。
+ * @param y 表示坐标点的y轴坐标，单位为物理像素px。
  * @return 函数返回执行错误码。
- * 返回OH_DRAWING_SUCCESS，表示执行成功。
- * 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point为空。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point为空。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float y);
 
 /**
- * @brief 对point对象的坐标取反。
+ * @brief 对坐标点的x轴和y轴坐标取反。
  *
- * @param point 需要被操作的point对象指针。
- * @return 返回错误码。
- *  操作成功时，返回 {@link OH_DRAWING_SUCCESS}.
- *  Point对象指针为空时，返回 {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}
+ * @param point 指向坐标点对象{@link OH_Drawing_Point}的指针。
+ * @return 函数返回执行错误码。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数point为空。
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointNegate(OH_Drawing_Point* point);
 
 /**
- * @brief 对point对象的坐标分别偏移dx、dy。
+ * @brief 将坐标点沿x轴和y轴方向偏移指定距离。
  *
- * @param point 表示被操作的point对象指针。
- * @param dx 表示x轴方向的偏移量，单位为像素。
- * @param dy 表示y轴方向的偏移量，单位为像素。
- * @return 返回错误码。
- *  操作成功时，返回{@link OH_DRAWING_SUCCESS}.
- *  Point对象指针为空时，返回 {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}
+ * @param point 指向坐标点对象{@link OH_Drawing_Point}的指针。
+ * @param dx 表示在x轴上的偏移量，单位为物理像素px。正数表示往x轴正方向平移，负数表示往x轴负方向平移。
+ * @param dy 表示在y轴上的偏移量，单位为物理像素px。正数表示往y轴正方向平移，负数表示往y轴负方向平移。
+ * @return 函数返回执行错误码。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数point为空。
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointOffset(OH_Drawing_Point* point, float dx, float dy);
 
 /**
- * @brief 用于销毁坐标点对象并回收该对象占有的内存。
+ * @brief 销毁坐标点对象并回收该对象占用的内存。需在{@link OH_Drawing_PointCreate}创建对象后且该对象不再使用时调用。
  *
  * @param point 指向坐标点对象的指针。
  * @since 11
