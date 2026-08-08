@@ -17,7 +17,7 @@
  * @addtogroup Telephony
  * @{
  *
- * @brief Defines C APIs for cellular data module.
+ * @brief 为电话蜂窝数据定义C接口。
  *
  * @since 13
  */
@@ -25,7 +25,7 @@
 /**
  * @file telephony_data.h
  *
- * @brief Defines C APIs for cellular data module.
+ * @brief 为电话蜂窝数据定义C接口。
  *
  * @kit TelephonyKit
  * @syscap SystemCapability.Telephony.CellularData
@@ -43,10 +43,9 @@ extern "C" {
 #endif
 
 /**
- * @brief Obtains the default SIM card used for mobile data.
+ * @brief 获取默认移动数据的SIM卡接口。
  *
- * @return Default SIM card used for mobile data. The value **0** indicates card slot 1, and the value **1** indicates
- *     card slot 2.
+ * @return 默认移动数据的SIM卡接口 (0 表示卡槽1, 1 表示卡槽2)。
  * @syscap SystemCapability.Telephony.CellularData
  * @since 13
  */
