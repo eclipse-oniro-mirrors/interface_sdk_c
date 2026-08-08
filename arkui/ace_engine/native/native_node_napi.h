@@ -388,10 +388,10 @@ int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData
 ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env);
 
 /**
- * @brief Notify the specified env environment is invalid. Cannot be called on
- *        the non-UI thread. Checking for non-UI thread calls will abort.
+ * @brief Notifies that the specified context environment has been destroyed. This function must not be called from a
+ * non-UI thread; otherwise, the program will actively abort.
  *
- * @param env napi environment pointer.
+ * @param env Pointer to the Node-API environment.
  * @since 20
  */
 void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
@@ -412,7 +412,7 @@ void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
  *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
  * @since 20
  */
- int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
+int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
     void (*callback)(uint64_t nanoTimeLeft, uint32_t frameCount, void* userData));
 
 /**
