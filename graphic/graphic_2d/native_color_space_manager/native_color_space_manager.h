@@ -185,14 +185,14 @@ typedef enum {
      */
     DISPLAY_P3_PQ = P3_PQ,
     /**
-     * Color space with the color primaries of BT.2020, the transfer characteristics of private log,
-     * and the color range of FULL.
+     * Color space with the color primaries of BT2020, the transfer characteristics of PRIV_LOG, and the color range of
+     * Full.
      * @since 26.0.0
      */
     BT2020_LOG_FULL = 27,
     /**
-     * Color space with the color primaries of BT.2020, the transfer characteristics of private log,
-     * and the color range of LIMIT.
+     * Color space with the color primaries of BT2020, the transfer characteristics of PRIV_LOG, and the color range of
+     * LIMIT.
      * @since 26.0.0
      */
     BT2020_LOG_LIMIT = 28,
@@ -203,7 +203,8 @@ typedef enum {
 } ColorSpaceName;
 
 /**
- * @brief Describes the color space primaries.
+ * @brief Provides the declaration for the color primary structure, which is used to store the coordinates of the red,
+ * green, and blue primary colors and white point in the color space.
  *
  * @since 13
  */
@@ -243,8 +244,8 @@ typedef struct {
 } ColorSpacePrimaries;
 
 /**
- * @brief This struct describes a white point array. Each white point indicates the coordinates of white in the active
- * color space.
+ * @brief Provides a white point array structure. The white point is the coordinate that represents white in the
+ * current color space.
  *
  * @since 13
  */
@@ -255,11 +256,11 @@ typedef struct {
 
 /**
  * @brief Creates an **OH_NativeColorSpaceManager** instance based on a color space name.
- * A new **OH_NativeColorSpaceManager** instance is created each time this function is called.
+ * <br>A new **OH_NativeColorSpaceManager** instance is created each time this function is called.
  *
  * @param colorSpaceName Color space name of the created {@link OH_NativeColorSpaceManager} instance.
  * @return Returns a pointer to the {@link OH_NativeColorSpaceManager} instance. If the memory is insufficient, the **
- * OH_NativeColorSpaceManager** instance fails to be created.
+ *     OH_NativeColorSpaceManager** instance fails to be created.
  * @since 13
  * @version 1.0
  */
@@ -267,15 +268,15 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpace
 
 /**
  * @brief Creates an **OH_NativeColorSpaceManager** instance based on the color primaries and gamma value.
- * A new **OH_NativeColorSpaceManager** instance is created each time this function is called.
+ * <br>A new **OH_NativeColorSpaceManager** instance is created each time this function is called.
  *
  * @param primaries Primary color of the created {@link OH_NativeColorSpaceManager} instance.
  * @param gamma Gamma value of the created {@link OH_NativeColorSpaceManager} instance. The gamma value is a floating
- * point number used to correct the brightness range.
- * Generally, the gamma value is positive. A negative value results in increased brightness in low-light areas and
- * decreased brightness in high-light areas. The value **0** indicates a linear color space.
+ *     point number used to correct the brightness range.
+ *     <br>Gamma values are usually positive. Negative values brighten dark areas and dim bright areas. A gamma value
+ *     of **1.0** represents a linear color space.
  * @return Returns a pointer to the {@link OH_NativeColorSpaceManager} instance.
- * If the memory is insufficient, the **OH_NativeColorSpaceManager** instance fails to be created.
+ *     <br>If the memory is insufficient, the **OH_NativeColorSpaceManager** instance fails to be created.
  * @since 13
  * @version 1.0
  */
@@ -283,7 +284,8 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromPrimariesAndGam
     ColorSpacePrimaries primaries, float gamma);
 
 /**
- * @brief Destroys an **OH_NativeColorSpaceManager** instance.
+ * @brief Destroys an **OH_NativeColorSpaceManager** instance. When the OH_NativeColorSpaceManager instance is no
+ * longer needed, you need to call this function to destroy the instance to release the memory.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
  * @since 13
@@ -295,8 +297,9 @@ void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorS
  * @brief Obtains the color space name.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
- * @return Returns the color space name, which is defined in {@link ColorSpaceName}. The return value **0** means that
- * the function call fails.
+ * @return Value corresponding to the color space enum {@link ColorSpaceName}. A return value of 0 indicates that the
+ *     API operation failed. Possible failure cause: the nativeColorSpaceManager parameter is a null pointer.
+ *     Suggestion: check whether the parameter is a valid pointer.
  * @since 13
  * @version 1.0
  */
@@ -307,7 +310,9 @@ int OH_NativeColorSpaceManager_GetColorSpaceName(
  * @brief Obtains the white points.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
- * @return Returns a float array of white points. The value **<0.0, 0.0>** means that the function call fails.
+ * @return Return value is a float array. Return value <0.0, 0.0> indicates that the API operation failed, and other
+ *     return values indicate that the operation is successful. Possible failure cause: The nativeColorSpaceManager
+ *     parameter is a null pointer. Suggestion: Check whether the parameter is a valid pointer.
  * @since 13
  * @version 1.0
  */
@@ -318,7 +323,9 @@ WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(
  * @brief Obtains the gamma value.
  *
  * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
- * @return Returns a float value. The value **0.0** means that the function call fails.
+ * @return Value of the float type. 0.0 indicates that the API operation failed, and other return values indicate
+ *     success. Possible failure cause: The nativeColorSpaceManager parameter is a null pointer. Suggestion: Check
+ *     whether the parameter is a valid pointer.
  * @since 13
  * @version 1.0
  */
