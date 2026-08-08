@@ -25,7 +25,8 @@
 /**
  * @file drawing_filter.h
  *
- * @brief This file declares the functions related to the filter in the drawing module.
+ * @brief 声明与绘图模块中的滤波器对象相关的函数。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -54,8 +55,8 @@ OH_Drawing_Filter* OH_Drawing_FilterCreate(void);
 
 /**
  * @brief 为滤波器对象设置图像滤波器对象。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param filter 指示指向滤波器对象{@link OH_Drawing_Filter}的指针。
  * @param imageFilter 指示指向图像滤波器{@link OH_Drawing_ImageFilter}对象的指针，为NULL表示清空滤波器对象中的图像滤波器效果。
@@ -66,8 +67,8 @@ void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_Image
 
 /**
  * @brief 为滤波器对象设置蒙版滤波器对象。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param filter 指示指向滤波器对象{@link OH_Drawing_Filter}的指针。
  * @param maskFilter 指示指向蒙版滤波器对象{@link OH_Drawing_MaskFilter}的指针，为NULL表示清空滤波器对象中的蒙版滤波器效果。
@@ -78,8 +79,8 @@ void OH_Drawing_FilterSetMaskFilter(OH_Drawing_Filter* filter, OH_Drawing_MaskFi
 
 /**
  * @brief 为滤波器对象设置颜色滤波器对象。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param filter 指示指向滤波器对象{@link OH_Drawing_Filter}的指针。
  * @param colorFilter 指示指向颜色滤波器对象{@link OH_Drawing_ColorFilter}的指针，为NULL表示清空滤波器对象中的颜色滤波器效果。
@@ -90,8 +91,8 @@ void OH_Drawing_FilterSetColorFilter(OH_Drawing_Filter* filter, OH_Drawing_Color
 
 /**
  * @brief 从滤波器对象获取颜色滤波器对象。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * filter、colorFilter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>filter、colorFilter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param filter 指示指向滤波器对象{@link OH_Drawing_Filter}的指针。
  * @param colorFilter 指示指向颜色滤波器对象{@link OH_Drawing_ColorFilter}的指针。
