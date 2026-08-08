@@ -25,7 +25,9 @@
 /**
  * @file drawing_pixel_map.h
  *
- * @brief This file declares the functions related to the pixel map in the drawing module.
+ * @brief 声明与绘图模块中的像素图对象相关的函数。支持从图像框架定义的像素图对象中获取本模块定义的像素图对象，
+ * 支持解除两者之间的关系。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -60,29 +62,33 @@ typedef struct NativePixelMap_ NativePixelMap_;
 typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
- * @brief 从图像框架定义的像素图对象中获取本模块定义的像素图对象。对象使用完毕后，需调用{@link OH_Drawing_PixelMapDissolve}解除关系，否则会引发内存泄露问题。
+ * @brief 从图像框架定义的像素图对象中获取本模块定义的像素图对象。对象使用完毕后，
+ * 调用{@link OH_Drawing_PixelMapDissolve}解除关系，否则会引发内存泄漏问题。
  *
  * @param nativePixelMap 指向图像框架定义的像素图对象{@link NativePixelMap_}的指针。
- * @return 函数会返回一个指向本模块定义的像素图对象{@link OH_Drawing_PixelMap}的指针。如果对象返回NULL，表示创建失败；可能的原因是NativePixelMap_为NULL。
+ * @return 返回一个指向本模块定义的像素图对象{@link OH_Drawing_PixelMap}的指针。如果返回NULL，表示获取失败；
+ * 原因是参数nativePixelMap为NULL。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* nativePixelMap);
 
 /**
- * @brief 从图像框架定义的像素图对象中获取本模块定义的像素图对象。对象使用完毕后，需调用{@link OH_Drawing_PixelMapDissolve}解除关系，否则会引发内存泄露问题。
+ * @brief 从图像框架定义的像素图对象中获取本模块定义的像素图对象。对象使用完毕后，
+ * 调用{@link OH_Drawing_PixelMapDissolve}解除关系，否则会引发内存泄漏问题。
  *
  * @param pixelmapNative 指向图像框架定义的像素图对象{@link OH_PixelmapNative}的指针。
- * @return 函数会返回一个指向本模块定义的像素图对象{@link OH_Drawing_PixelMap}的指针。如果对象返回NULL，表示创建失败；可能的原因是OH_PixelmapNative为NULL。
+ * @return 返回一个指向本模块定义的像素图对象{@link OH_Drawing_PixelMap}的指针。如果返回NULL，表示获取失败；
+ * 原因是参数pixelmapNative为NULL。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNative* pixelmapNative);
 
 /**
- * @brief 解除本模块定义的像素图对象和图像框架定义的像素图对象之间的关系，该关系通过调用 {@link OH_Drawing_PixelMapGetFromNativePixelMap} 或
- * {@link OH_Drawing_PixelMapGetFromOhPixelMapNative}
- * 建立。
+ * @brief 解除本模块定义的像素图对象和图像框架定义的像素图对象之间的关系。
+ * 必须先调用{@link OH_Drawing_PixelMapGetFromNativePixelMap}或
+ * {@link OH_Drawing_PixelMapGetFromOhPixelMapNative}获取像素图对象并建立关联关系后，才能调用本方法解除该关系。
  *
  * @param pixelMap 指向像素图对象{@link OH_Drawing_PixelMap}的指针。
  * @since 12

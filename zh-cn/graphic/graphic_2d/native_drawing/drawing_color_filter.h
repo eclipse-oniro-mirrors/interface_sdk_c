@@ -25,7 +25,9 @@
 /**
  * @file drawing_color_filter.h
  *
- * @brief This file declares the functions related to the color filter in the drawing module.
+ * @brief 声明与绘图模块中的颜色滤波器对象相关的函数。支持创建混合模式、组合、矩阵、伽马转换、
+ * 亮度和光照等多种颜色滤波器效果，适用于图像渲染中的色彩调整与特效处理场景。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -44,10 +46,10 @@ extern "C" {
 #endif
 
 /**
- * @brief 创建具有混合模式的颜色滤波器。
+ * @brief 创建具有混合模式的颜色滤波器，适用于需要按指定混合模式将源色与目标色合成的场景。
  *
  * @param color 表示颜色，是一个32位（ARGB）变量。
- * @param blendMode 表示混合模式。支持可选的混合模式具体可见{@link OH_Drawing_BlendMode}枚举。
+ * @param blendMode 表示混合模式。支持的混合模式详见{@link OH_Drawing_BlendMode}枚举。
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 11
  * @version 1.0
@@ -55,12 +57,13 @@ extern "C" {
 OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH_Drawing_BlendMode blendMode);
 
 /**
- * @brief 将两个颜色滤波器合成一个新的颜色滤波器。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * outerColorFilter、innerColorFilter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * @brief 将两个颜色滤波器合成一个新的颜色滤波器。合成时先应用innerColorFilter进行滤波，再应用outerColorFilter进行滤波。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>outerColorFilter、innerColorFilter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * 请检查并确保传入的outerColorFilter和innerColorFilter为有效的颜色滤波器对象指针。
  *
- * @param outerColorFilter 指向颜色滤波器对象一的指针。
- * @param innerColorFilter 指向颜色滤波器对象二的指针。
+ * @param outerColorFilter 指向颜色滤波器中外部颜色滤波器对象的指针。
+ * @param innerColorFilter 指向颜色滤波器中内部颜色滤波器对象的指针。
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 11
  * @version 1.0
@@ -69,9 +72,9 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilt
     OH_Drawing_ColorFilter* innerColorFilter);
 
 /**
- * @brief 创建具有5x4颜色矩阵的颜色滤波器。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * @brief 创建具有4x5颜色矩阵的颜色滤波器，适用于需要自定义颜色变换的场景。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。请检查并确保传入的matrix为有效的浮点数组指针。
  *
  * @param matrix 表示矩阵，以长度为20的浮点数组表示。
  * @return 返回创建的颜色滤波器对象的指针。
@@ -82,6 +85,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix(const float matrix[20
 
 /**
  * @brief 创建一个从线性颜色空间转换到SRGB颜色空间的颜色滤波器。
+ * 该接口与OH_Drawing_ColorFilterCreateSrgbGammaToLinear互为逆操作。
  *
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 11
@@ -90,7 +94,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix(const float matrix[20
 OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma(void);
 
 /**
- * @brief 创建颜色滤波器将RGB颜色通道应用于SRGB的伽玛曲线。
+ * @brief 创建一个从SRGB颜色空间转换到线性颜色空间的颜色滤波器。
+ * 该接口与OH_Drawing_ColorFilterCreateLinearToSrgbGamma互为逆操作。
  *
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 11
@@ -99,7 +104,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma(void);
 OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateSrgbGammaToLinear(void);
 
 /**
- * @brief 创建一个颜色滤波器将其输入的亮度值乘以透明度通道，并将红色、绿色和蓝色通道设置为零。
+ * @brief 创建一个颜色滤波器，将其输入的亮度值乘以透明度通道的值，并将红色、绿色和蓝色通道设置为零。
  *
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 11
@@ -110,8 +115,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void);
 /**
  * @brief 创建一个光照颜色滤波器，此滤波器会将RGB通道的颜色值乘以一种颜色值并加上另一种颜色值，计算结果会被限制在0到255范围内。
  *
- * @param mulColor 用来乘法运算的颜色值。
- * @param addColor 用来加法运算的颜色值。
+ * @param mulColor 用于乘法运算的颜色值，是一个32位（ARGB）变量。
+ * @param addColor 用于加法运算的颜色值，是一个32位（ARGB）变量。
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 20
  * @version 1.0
