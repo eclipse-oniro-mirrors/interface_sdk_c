@@ -1018,7 +1018,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
  * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
  * @since 20
  */
-int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen);
+int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData* unifiedData, char* key, unsigned int keyLen);
 
 /**
  * @brief 对统一数据管理框架数据库中的统一数据对象{@link OH_UdmfData}数据进行数据更改。
