@@ -17,15 +17,14 @@
  * @addtogroup NOTIFICATION
  * @{
  *
- * @brief The **Notification** module provides the notification services for applications,
- * including querying the enabling status of the application's notification.
+ * @brief Notification向应用提供通知服务的能力，包括查询当前应用通知的使能状态等。
  *
  * @since 13
  */
 /**
  * @file notification.h
  *
- * @brief Defines APIs for notification services.
+ * @brief 定义通知服务API接口。
  *
  * @library libohnotification.so
  * @kit NotificationKit
@@ -44,10 +43,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Checks whether the notification of the specified application is enabled.
+ * @brief 查询当前应用通知使能状态。
  *
- * @return true  - Notification is enabled for the specified application.
- *         false - Notification is not enabled for the specified application.
+ * @return true  - 表示当前应用已使能通知。
+ *         false - 表示当前应用未使能通知。
  * @since 13
  */
 bool OH_Notification_IsNotificationEnabled(void);
