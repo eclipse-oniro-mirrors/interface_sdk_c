@@ -220,6 +220,11 @@ typedef enum {
      */
     IMAGE_BAD_PARAMETER = 401,
     /**
+     * @error 权限校验失败。非系统应用调用系统接口。
+     * @since 26.1.0
+     */
+    OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION = 202,
+    /**
      * 不支持的MIME类型。
      */
     IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,
@@ -275,6 +280,11 @@ typedef enum {
      * @since 22
      */
     IMAGE_UNSUPPORTED_DATA_FORMAT = 7600207,
+    /**
+     * @error 图像分解失败。
+     * @since 26.1.0
+     */
+    OH_IMAGE_ERROR_DECOMPOSE_FAILED = 7600208,
     /**
      * 申请内存失败。
      */
