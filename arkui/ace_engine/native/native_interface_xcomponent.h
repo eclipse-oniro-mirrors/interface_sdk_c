@@ -106,7 +106,7 @@ typedef enum {
      * AI analyzer is stopped.
      * @since 18
      */
-    ARKUI_XCOMPONENT_AI_ANALYSIS_STOPPED = 110003
+    ARKUI_XCOMPONENT_AI_ANALYSIS_STOPPED = 110003,
 } ArkUI_XComponent_ImageAnalyzerState;
 
 /**
@@ -140,7 +140,7 @@ typedef enum {
      * Invalid touch type.
      * @since 8
      */
-    OH_NATIVEXCOMPONENT_UNKNOWN
+    OH_NATIVEXCOMPONENT_UNKNOWN,
 } OH_NativeXComponent_TouchEventType;
 
 /**
@@ -194,7 +194,7 @@ typedef enum {
      * Lens.
      * @since 9
      */
-    OH_NATIVEXCOMPONENT_TOOL_TYPE_LENS
+    OH_NATIVEXCOMPONENT_TOOL_TYPE_LENS,
 } OH_NativeXComponent_TouchPointToolType;
 
 /**
@@ -235,7 +235,7 @@ typedef enum {
      * @since 10
      * @version 1.0
      */
-    OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD
+    OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD,
 } OH_NativeXComponent_EventSourceType;
 
 /**
@@ -258,7 +258,7 @@ typedef enum {
      * rendering environment, unfinished mouse events are marked as canceled.
      * @since 18
      */
-    OH_NATIVEXCOMPONENT_MOUSE_CANCEL
+    OH_NATIVEXCOMPONENT_MOUSE_CANCEL,
 } OH_NativeXComponent_MouseEventAction;
 
 /**
@@ -273,7 +273,7 @@ typedef enum {
     OH_NATIVEXCOMPONENT_RIGHT_BUTTON = 0x02,
     OH_NATIVEXCOMPONENT_MIDDLE_BUTTON = 0x04,
     OH_NATIVEXCOMPONENT_BACK_BUTTON = 0x08,
-    OH_NATIVEXCOMPONENT_FORWARD_BUTTON = 0x10
+    OH_NATIVEXCOMPONENT_FORWARD_BUTTON = 0x10,
 } OH_NativeXComponent_MouseEventButton;
 
 /**
@@ -292,7 +292,7 @@ typedef enum {
     OH_NATIVEXCOMPONENT_SOURCETOOL_AIRBRUSH = 6,
     OH_NATIVEXCOMPONENT_SOURCETOOL_MOUSE = 7,
     OH_NATIVEXCOMPONENT_SOURCETOOL_LENS = 8,
-    OH_NATIVEXCOMPONENT_SOURCETOOL_TOUCHPAD = 9
+    OH_NATIVEXCOMPONENT_SOURCETOOL_TOUCHPAD = 9,
 } OH_NativeXComponent_TouchEvent_SourceTool;
 
 /**
