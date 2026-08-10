@@ -35,7 +35,6 @@
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
  * @kit AudioKit
- * @include <ohaudio/native_audio_common.h>
  * @since 12
  * @version 1.0
  */
@@ -169,14 +168,20 @@ typedef enum {
 typedef enum {
     /**
      * @brief 静音模式。
+     *
+     * @since 20
      */
     AUDIO_RINGER_MODE_SILENT = 0,
     /**
      * @brief 振动模式。
+     *
+     * @since 20
      */
     AUDIO_RINGER_MODE_VIBRATE = 1,
     /**
      * @brief 响铃模式。
+     *
+     * @since 20
      */
     AUDIO_RINGER_MODE_NORMAL = 2,
 } OH_AudioRingerMode;

@@ -155,9 +155,9 @@ typedef bool (*OH_AudioAccessoryInputStream_GetLatencyCallback)(
  * @param accessory [in] 拥有该流的音频配件（外部音频设备，如大疆 Mic 2）。
  * @param stream [in] 输入流引用。
  * @param framePosition [out] 输出参数，返回自该输入流最近一次成功启动以来累计采集的音频帧数。
- * @param timestamp [out] 输出参数，返回与{@p framePosition}对应的采集时间戳。
+ * @param timestamp [out] 输出参数，返回与framePosition对应的采集时间戳。
  *     时间戳必须使用{@link CLOCK_MONOTONIC}时间基准，以纳秒为单位，
- *     表示{@p framePosition}所标识帧被采集时的单调时钟时间。
+ *     表示framePosition所标识帧被采集时的单调时钟时间。
  * @return <ul>
  *         <li>true：获取帧位置成功。</li>
  *         <li>false：获取帧位置失败。</li>
