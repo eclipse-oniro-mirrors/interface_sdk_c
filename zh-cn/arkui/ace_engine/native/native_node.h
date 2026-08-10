@@ -14237,7 +14237,7 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32
  */
 typedef struct {
     /**
-     * 结构体版本，当前使用的ArkUI_NativeNodeAPI_1结构体的版本编号，由系统提供，开发者无需修改。
+     * @brief 结构体版本，当前使用的ArkUI_NativeNodeAPI_1结构体的版本编号，由系统提供，开发者无需修改。
      *
      * @since 12
      */
@@ -14247,7 +14247,7 @@ typedef struct {
      * @brief 基于{@link ArkUI_NodeType}生成对应的组件并返回组件对象指针。
      *
      * @param type 创建指定类型的UI组件节点。
-     * @return 返回创建完成的组件对象指针，如果创建失败返回NULL。需要开发者自行管理返回的组件对象指针的生命周期，否则有可能导致Use After Free等进程崩溃或内存泄漏问题。
+     * @return 返回创建完成的组件操作指针，如果创建失败返回NULL。需要开发者自行管理返回的组件对象指针的生命周期，否则有可能导致Use After Free等进程崩溃或内存泄漏问题。
      * @since 12
      */
     ArkUI_NodeHandle (*createNode)(ArkUI_NodeType type);
@@ -14336,9 +14336,7 @@ typedef struct {
     /**
      * @brief 属性设置函数，不建议在非主线程上调用。\n
      *
-     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。\n
-     * 例如：{@link ArkUI_NodeAttributeType}中的\n
-     * NODE_TEXT_CONTENT_WITH_STYLED_STRING。
+     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。例如：{@link ArkUI_NodeAttributeType}中的NODE_TEXT_CONTENT_WITH_STYLED_STRING。
      *
      * @param node 需要设置属性的节点对象。
      * @param attribute 需要设置的属性类型。
@@ -14354,9 +14352,7 @@ typedef struct {
     int32_t (*setAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute, const ArkUI_AttributeItem* item);
 
     /**
-     * @brief 属性获取函数。
-     *
-     * 该接口返回的指针是ArkUI框架内部的缓冲区指针，不需要开发者主动调用delete释放内存，但是需要在该函数下一次被调用前使用，否则可能会被其他值所覆盖。
+     * @brief 属性获取函数。该接口返回的指针是ArkUI框架内部的缓冲区指针，不需要开发者主动调用delete释放内存，但是需要在该函数下一次被调用前使用，否则可能会被其他值所覆盖。
      *
      * @param node 需要获取属性的节点对象。
      * @param attribute 需要获取的属性类型。
@@ -14707,7 +14703,7 @@ typedef struct {
     /**
      * @brief 从父组件上卸载所有子节点。
      *
-     * @param parent 父节点指针。
+     * @param parent 目标节点对象。
      * @return 错误码。
      *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
      *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
