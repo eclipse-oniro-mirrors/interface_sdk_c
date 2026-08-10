@@ -173,7 +173,7 @@ typedef enum {
 } ArkUI_DragStatus;
 
 /**
- * @brief 拖拽事件。
+ * @brief 拖拽事件，用于表示ArkUI组件拖拽过程中的事件信息。开发者可通过以下头文件中的拖拽事件接口获取拖拽状态和事件数据；拖拽事件绑定流程请参见{@link 绑定拖拽事件}。
  *
  * @since 12
  */

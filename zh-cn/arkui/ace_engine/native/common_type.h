@@ -43,8 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief 定义 ArkUI Native 组件实例对象指针，用于在 ArkUI Native 接口中标识和传递组件实例，
- * 例如创建、挂载、移除或销毁组件节点。
+ * @brief 定义 ArkUI Native 组件实例对象指针，用于在 ArkUI Native 接口中标识和传递组件实例，例如创建、挂载、移除或销毁组件节点。
  *
  * @since 12
  */
@@ -65,8 +64,7 @@ typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
 typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
 
 /**
- * @brief 定义组件绘制上下文的结构体类型，用于在自定义组件绘制过程中提供绘制上下文信息，
- * 可获取用于绘制的 Canvas 指针和可绘制区域大小。
+ * @brief 定义组件绘制上下文的结构体类型，用于在自定义组件绘制过程中提供绘制上下文信息，可获取用于绘制的 Canvas 指针和可绘制区域大小。
  *
  * @since 12
  */
@@ -87,8 +85,7 @@ typedef struct ArkUI_Context* ArkUI_ContextHandle;
 typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
 
 /**
- * @brief 事件回调类型，用于定义回调函数及其用户自定义数据。
- * 使用该类型的接口触发回调时，会调用callback，并将userData作为参数传入。
+ * @brief 事件回调类型，用于定义回调函数及其用户自定义数据。使用该类型的接口触发回调时，会调用callback，并将userData作为参数传入。
  *
  * @since 12
  */
