@@ -113,7 +113,7 @@ typedef bool (*OH_AudioAccessoryInputStream_StopCallback)(
  * 此回调返回后，流句柄不再有效，不得继续使用。
  *
  * @param accessory 拥有该流的音频配件。
- * @param stream 已释放的输入流引用。
+ * @param stream 已释放的输入流（录音/采集流）引用。
  * @return true：释放事件处理成功。\n
  *         false：释放事件处理失败。
  * @since 26.0.0
@@ -141,9 +141,9 @@ typedef bool (*OH_AudioAccessoryInputStream_GetLatencyCallback)(
 /**
  * @brief 查询输入流当前帧位置的回调函数。
  *
- * <b>触发时机：</b>当框架需要获取配件流上报的当前采集位置时触发。
+ * <b>触发时机：</b>当框架需要获取该音频配件（外部音频设备，如大疆 Mic 2）上的输入流上报的当前采集位置时触发。
  *
- * @param accessory 拥有该流的音频配件。
+ * @param accessory 拥有该流的音频配件（外部音频设备，如大疆 Mic 2）。
  * @param stream 输入流引用。
  * @param framePosition 输出参数，返回自该输入流最近一次成功启动以来累计采集的音频帧数。
  * @param timestamp 输出参数，返回与{@p framePosition}对应的采集时间戳。
@@ -165,7 +165,7 @@ typedef bool (*OH_AudioAccessoryInputStream_GetFramePositionCallback)(
  * 此函数必须在{@link OH_AudioAccessory_OpenInputStreamCallback}执行期间调用。
  * 在其他任何时间调用此函数将返回{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}。
  *
- * <b>要求：</b>此回调为必需回调。如果未注册，框架将拒绝流创建并触发清理。
+ * <b>要求：</b>此回调必须注册。如果未注册，音频框架将拒绝流创建并触发清理。
  *
  * @param stream 输入流句柄指针。
  * @param callback 回调函数指针，不可为空。
@@ -181,12 +181,10 @@ OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterStartCallback(
 /**
  * @brief 注册输入流停止事件回调函数。\n
  *
- * <b>关键约束：注册时机限制</b>\n
- *
  * 此函数必须在{@link OH_AudioAccessory_OpenInputStreamCallback}执行期间调用。
  * 在其他任何时间调用此函数将返回{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}。
  *
- * <b>要求：</b>此回调为必需回调。如果未注册，框架将拒绝流创建并触发清理。
+ * <b>要求：</b>此回调必须注册。如果未注册，音频框架将拒绝流创建并触发清理。
  *
  * @param stream 输入流句柄指针。
  * @param callback 回调函数指针，不可为空。
@@ -202,12 +200,10 @@ OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterStopCallback(
 /**
  * @brief 注册输入流释放事件回调函数。\n
  *
- * <b>关键约束：注册时机限制</b>\n
- *
  * 此函数必须在{@link OH_AudioAccessory_OpenInputStreamCallback}执行期间调用。
  * 在其他任何时间调用此函数将返回{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}。
  *
- * <b>要求：</b>此回调为必需回调。如果未注册，框架将拒绝流创建并触发清理。
+ * <b>要求：</b>此回调必须注册。如果未注册，音频框架将拒绝流创建并触发清理。
  *
  * @param stream 输入流句柄指针。
  * @param callback 回调函数指针，不可为空。
@@ -228,7 +224,7 @@ OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterReleaseCallbac
  * 此函数必须在{@link OH_AudioAccessory_OpenInputStreamCallback}执行期间调用。
  * 在其他任何时间调用此函数将返回{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}。
  *
- * <b>要求：</b>此回调为必需回调。如果未注册，框架将拒绝流创建并触发清理。
+ * <b>要求：</b>此回调必须注册。如果未注册，音频框架将拒绝流创建并触发清理。
  *
  * @param stream 输入流句柄指针。
  * @param callback 回调函数指针，不可为空。
@@ -249,7 +245,7 @@ OH_AudioCommon_Result OH_AudioAccessoryInputStreamManager_RegisterLatencyCallbac
  * 此函数必须在{@link OH_AudioAccessory_OpenInputStreamCallback}执行期间调用。
  * 在其他任何时间调用此函数将返回{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}。
  *
- * <b>要求：</b>此回调为必需回调。如果未注册，框架将拒绝流创建并触发清理。
+ * <b>要求：</b>此回调必须注册。如果未注册，音频框架将拒绝流创建并触发清理。
  *
  * @param stream 输入流句柄指针。
  * @param callback 回调函数指针，不可为空。

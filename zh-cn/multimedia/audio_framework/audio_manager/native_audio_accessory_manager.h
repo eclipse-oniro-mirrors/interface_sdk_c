@@ -63,7 +63,7 @@ typedef bool (*OH_AudioAccessory_SetNoiseReductionCallback)(
  *
  * @param outManager 指向OH_AudioAccessoryManager指针的地址。该指针地址由系统管理，调用方不得释放，否则可能导致使用异常。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
- *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数outManager为nullptr。
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数outManager为NULL。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
@@ -78,9 +78,9 @@ OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
  * 在一个音频配件的生命周期内，输入流可能被创建和释放多次。
  *
  * @param manager 指向通过{@link OH_AudioManager_GetAccessoryManager}获取的音频配件管理器实例。
- * @param info 指向配件基本信息的指针，不可为nullptr。
- * @param capabilities 指向配件能力的指针，不可为nullptr。
- * @param openInputStream 音频配件打开输入流的回调函数，不可为nullptr。
+ * @param info 指向配件基本信息的指针，不可为NULL。
+ * @param capabilities 指向配件能力的指针，不可为NULL。
+ * @param openInputStream 音频配件打开输入流的回调函数，不可为NULL。
  *     此回调仅在应用请求从该音频配件采集音频时调用，而非在调用此函数时调用。
  * @param outOwnedAccessory 指向OH_AudioAccessory指针的地址，用于接收创建好的音频配件实例。
  * @release 若该配件已连接，需先调用{@link OH_AudioAccessoryManager_Disconnected}断开配件，
@@ -88,10 +88,10 @@ OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
  *     销毁成功后，配件句柄变为无效，不得继续使用。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
  *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：\n
- *                                                        1. 参数info为nullptr；\n
- *                                                        2. 参数capabilities为nullptr；\n
- *                                                        3. 参数onOpenInputStream为nullptr。\n
- *                                                        4. 参数outOwnedAccessory为nullptr。\n
+ *                                                        1. 参数info为NULL；\n
+ *                                                        2. 参数capabilities为NULL；\n
+ *                                                        3. 参数onOpenInputStream为NULL。\n
+ *                                                        4. 参数outOwnedAccessory为NULL。\n
  *                                                        5. 参数info信息未全部填写；\n
  *                                                        6. 参数capabilities信息未全部填写。\n
  *                                                        7. 参数outOwnedAccessory已通过{@link OH_AudioAccessoryManager_CreateInput}创建。\n
@@ -110,13 +110,15 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(
  *
  * 此函数适用于多配件组合场景（如二合一、四合一），支持动态管理配件组合：\n
  * - 初始化：配件创建后，调用此接口设置初始副配件列表。\n
- * - 动态更新：配件替换或断开连接时，调用此接口覆盖旧的MAC列表\n
+ * - 动态更新：副配件替换或断开连接时，调用此接口覆盖旧的MAC列表\n
  * - 线程安全：录音期间可安全调用。\n
+ * - 限制：此接口仅用于更新副配件MAC地址列表，不用于更新主配件MAC地址。
+ *   主配件断开连接或主配件MAC地址变化时，应先断开并销毁原有配件句柄，再使用新的主配件信息重新创建配件实例。\n
  *
  * @param manager 指向通过{@link OH_AudioManager_GetAccessoryManager}获取的音频配件管理器实例。
  * @param accessory 指向主配件句柄的指针。
  * @param macAddresses 副配件MAC地址数组。\n
- *     <b>当count为0时可以为空</b>，表示清除主配件的副配件MAC列表（例如所有副配件断开连接时）。
+ *     <b>当count为0时可以为空</b>，表示清除副配件MAC列表（例如所有副配件断开连接时）。
  *     每个元素必须符合以下规则：\n
  *     - 必须是以冒号分隔的十六进制表示的NUL终止ASCII字符串，例如"00:11:22:33:44:55"。
  *       接受大写和小写十六进制数字（A-F / a-f）。\n
@@ -125,8 +127,8 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(
  * @param count MAC地址数组中的元素数量。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
  *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：\n
- *                                                        1. 参数manager为nullptr或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化；\n
- *                                                        2. 参数accessory为nullptr；\n
+ *                                                        1. 参数manager为NULL或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化；\n
+ *                                                        2. 参数accessory为NULL；\n
  *                                                        3. macAddresses传入的个数与count不一致；\n
  *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：参数accessory未通过{@link OH_AudioAccessoryManager_CreateInput}创建。
  * @since 26.0.0
@@ -142,15 +144,15 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_SetAssociatedMacAddresses(
  *
  * @param manager 指向通过{@link OH_AudioManager_GetAccessoryManager}获取的音频配件管理器实例。
  * @param accessory 指向通过{@link OH_AudioAccessoryManager_CreateInput}获取的音频配件实例。
- * @param capability 指向降噪能力的指针，不可为nullptr。
+ * @param capability 指向降噪能力的指针，不可为NULL。
  * @param onNoiseReduction 音频配件的降噪模式发生变更时调用的回调函数。
- *     如果配件不支持动态模式切换，可以为nullptr。
+ *     如果配件不支持动态模式切换，可以为NULL。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
  *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：\n
- *                                                        1. 参数manager为nullptr或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化；\n
- *                                                        2. 参数accessory为nullptr；\n
- *                                                        3. 参数capability为nullptr；\n
- *                                                        4. 参数capability中的supportedModes为nullptr或supportedModeCount为0；\n
+ *                                                        1. 参数manager为NULL或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化；\n
+ *                                                        2. 参数accessory为NULL；\n
+ *                                                        3. 参数capability为NULL；\n
+ *                                                        4. 参数capability中的supportedModes为NULL或supportedModeCount为0；\n
  *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：参数accessory未通过{@link OH_AudioAccessoryManager_CreateInput}创建。
  * @since 26.0.0
  */
@@ -163,15 +165,15 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_RegisterNoiseReductionCapability(
 /**
  * @brief 设置音频配件的降噪模式。\n
  *
- * 此函数允许配件服务主动将当前降噪模式设置到系统，
+ * 此函数由配件关联的服务或应用来调用，它更新配件当前降噪模式到系统，
  * 通常在通过其他方式（如硬件按钮或配套应用）更改降噪模式时使用，
- * 以确保系统保持与配件实际降噪模式的同步。
+ * 以确保系统侧的降噪模式与配件实际降噪模式保持一致。
  *
  * @param manager 指向通过{@link OH_AudioManager_GetAccessoryManager}获取的音频配件管理器实例。
  * @param accessory 指向通过{@link OH_AudioAccessoryManager_CreateInput}获取的音频配件实例。
  * @param mode 要设置的降噪模式。必须是通过RegisterNoiseReductionCapability注册的模式之一。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
- *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为nullptr；\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为NULL；\n
  *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：\n
  *                                                        1. 参数accessory未通过{@link OH_AudioAccessoryManager_CreateInput}创建。\n
  *                                                        2. 参数accessory未通过{@link OH_AudioAccessoryManager_Connected}连接。\n
@@ -189,8 +191,8 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_SetNoiseReductionMode(
  * 调用此函数前，必须通过{@link OH_AudioManager_GetAccessoryManager}获取的音频配件管理器实例，
  * 并通过{@link OH_AudioAccessoryManager_CreateInput}创建accessory实例。
  *
- * <b>建议：</b>建议第三方音频配件优先接入智慧生活应用，
- * 以保障设备发现与连接体验的一致性，并免除配件服务对权限的直接管理。
+ * <b>建议：</b>建议音频配件管理程序优先接入智慧生活应用，为用户提供设备发现与连接体验的一致性；
+ * 若以独立音频配件管理应用方式，需要申请ACL权限ohos.permission.MANAGE_AUDIO_ACCESSORY
  *
  * @permission ohos.permission.MANAGE_AUDIO_ACCESSORY
  * @param manager 指向通过{@link OH_AudioManager_GetAccessoryManager}获取的音频配件管理器实例。
@@ -198,8 +200,8 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_SetNoiseReductionMode(
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
  *         AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED：调用方没有ohos.permission.MANAGE_AUDIO_ACCESSORY权限。\n
  *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：。\n
- *                                                        1. 参数manager为nullptr或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化。\n
- *                                                        2. 参数accessory为nullptr。\n
+ *                                                        1. 参数manager为NULL或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化。\n
+ *                                                        2. 参数accessory为NULL。\n
  *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：
  *                                                        1. 参数accessory未通过{@link OH_AudioAccessoryManager_CreateInput}创建。\n
  *                                                        2. 参数accessory已通过{@link OH_AudioAccessoryManager_Connected}连接。\n
@@ -218,7 +220,7 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_Connected(
  * @param accessory 指向通过{@link OH_AudioAccessoryManager_CreateInput}获取的音频配件实例。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
  *         AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED：调用方没有ohos.permission.MANAGE_AUDIO_ACCESSORY权限。\n
- *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为nullptr。\n
+ *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数accessory为NULL。\n
  *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：参数accessory未通过{@link OH_AudioAccessoryManager_Connected}连接。\n
  *         AUDIOCOMMON_RESULT_ERROR_SYSTEM：音频服务进程死亡。
  * @since 26.0.0
@@ -236,8 +238,8 @@ OH_AudioCommon_Result OH_AudioAccessoryManager_Disconnected(
  * @param accessory 指向通过{@link OH_AudioAccessoryManager_CreateInput}获取的音频配件实例。
  * @return AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。\n
  *         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
- *                                                        1. 参数manager为nullptr或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化。\n
- *                                                        2. 参数accessory为nullptr。\n
+ *                                                        1. 参数manager为NULL或参数manager未通过{@link OH_AudioManager_GetAccessoryManager}进行初始化。\n
+ *                                                        2. 参数accessory为NULL。\n
  *         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：参数accessory未通过{@link OH_AudioAccessoryManager_Disconnected}断开连接。
  * @since 26.0.0
  */
