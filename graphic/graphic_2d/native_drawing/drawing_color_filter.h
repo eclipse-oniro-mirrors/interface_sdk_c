@@ -38,7 +38,6 @@
 #define C_INCLUDE_DRAWING_COLOR_FILTER_H
 
 #include "drawing_types.h"
-#include "drawing_error_code.h"
 
 #ifdef __cplusplus
 extern "C" {
