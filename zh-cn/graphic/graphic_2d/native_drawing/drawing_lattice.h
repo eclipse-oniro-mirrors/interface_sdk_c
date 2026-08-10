@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 8
  */
@@ -72,10 +74,10 @@ typedef enum {
 } OH_Drawing_LatticeRectType;
 
 /**
- * @brief 用于销毁由{@link OH_Drawing_LatticeCreate()}创建的矩形网格对象并回收该对象占用的内存。
- * 与{@link OH_Drawing_LatticeCreate()}配对使用。
+ * @brief 用于销毁由{@link OH_Drawing_LatticeCreate}创建的矩形网格对象并回收该对象占用的内存。
+ * 与{@link OH_Drawing_LatticeCreate}配对使用。
  *
- * @param lattice 指向由{@link OH_Drawing_LatticeCreate()}创建的矩形网格对象{@link OH_Drawing_Lattice}的指针。
+ * @param lattice 指向由{@link OH_Drawing_LatticeCreate}创建的矩形网格对象{@link OH_Drawing_Lattice}的指针。
  * @return 函数返回执行结果。
  *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
  *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示lattice是空指针。
