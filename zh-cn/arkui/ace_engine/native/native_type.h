@@ -2231,52 +2231,74 @@ typedef enum {
 } ArkUI_HoverModeAreaType;
 
 /**
- * @brief Enumerates the expand modes.
+ * @brief 定义子节点展开模式枚举值。
  *
  * @since 15
  */
 typedef enum {
-    /** Not expand. */
+    /** 不展开。 */
     ARKUI_NOT_EXPAND = 0,
-    /** Expand. */
+    /** 展开。 */
     ARKUI_EXPAND = 1,
-    /** Lazy expand. Expand the children of node if needed. */
+    /**
+     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考{@link LazyForEach：数据懒加载}。
+     */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
 
 /**
- * @brief Enumerates the edge direction.
+ * @brief 定义矩形边方向。
  *
  * @since 20
  */
 typedef enum {
-    /** Set all edge direction. */
+    /**
+     * 设置四个方向的内容。
+     */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** Set left edge direction. */
+    /**
+     * 设置左侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** Set right edge direction. */
+    /**
+     * 设置右侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** Set top edge direction. */
+    /**
+     * 设置上侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** Set bottom edge direction. */
+    /**
+     * 设置下侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
- 
+
 /**
- * @brief Enumerates the corner direction.
+ * @brief 定义角度方向。
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner direction. */
+    /**
+     * 设置四个角度方向的内容。
+     */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner direction. */
+    /**
+     * 设置左上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner direction. */
+    /**
+     * 设置右上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner direction. */
+    /**
+     * 设置左下侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner direction. */
+    /**
+     * 设置右下侧方向容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
 
@@ -4579,63 +4601,63 @@ const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief 销毁{@link OH_ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
+ * @brief 销毁{@link ArkUI_ActiveChildrenInfo}实例。
  *
- * @param handle ActiveChild instance to be destroyed.
+ * @param handle 要销毁的{@link ArkUI_ActiveChildrenInfo}实例。
  * @since 14
  */
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @param index The index of child nodes.
- * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
+ * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
+ * @param index 子节点的下标。
+ * @return 下标对应的子节点指针，异常时返回nullptr。
  * @since 14
  */
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的节点数量。
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @return Number of child nodes. Default value: 0.
+ * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
+ * @return 子节点数量，默认值0.
  * @since 14
  */
 int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Create a cross-language option instance.
+ * @brief 创建跨语言配置项实例。
  *
- * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @return 返回跨语言实例。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。
  * @since 15
  */
 ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
 
 /**
- * @brief Destroy the cross-language option instance.
+ * @brief 销毁跨语言配置项实例。
  *
- * @param option The cross-language option instance.
+ * @param option 要销毁的跨语言配置项实例。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Enable the attribute setting in the cross-language option.
+ * @brief 设置配置项中是否允许跨语言修改属性。
  *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
+ * @param option 跨语言配置项实例。
+ * @param enabled 是否允许跨语言修改属性。true表示允许跨语言修改属性，false表示不允许跨语言修改属性，默认值：false。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
 
 /**
- * @brief Get the attribute setting enable of the cross-language option.
+ * @brief 获取配置项中是否允许跨语言修改属性。
  *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
+ * @param option 跨语言配置项实例。
+ * @return 是否允许跨语言修改属性。true表示允许跨语言修改属性，
+ *     false表示不允许跨语言修改属性。
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
@@ -7185,7 +7207,7 @@ typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
 /**
  * @brief Create an object of ArkUI_Matrix4ScaleOptions.
  *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
- *        are 1, and the default values for centerX, centerY are 0. 
+ *        are 1, and the default values for centerX, centerY are 0.
  *
  * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
  * @since 24
@@ -7201,12 +7223,12 @@ ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
 void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
 
 /**
- * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions. 
+ * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
  *
  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
  * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. 
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
@@ -7742,7 +7764,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, con
 /**
  * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
  *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
- * 
+ *
  * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
  *               It must not be null.
  * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
@@ -7782,31 +7804,32 @@ typedef enum {
     OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED = 0,
     /**
      * Enable, which means that when the option is applied to the node, the node's tree operating status will be enabled.
+     *
      * @since 26.0.0
      */
     OH_ARKUI_TREE_OPERATING_STATUS_ENABLE = 1,
     /**
      * Disable, which means that when the option is applied to the node, the node's tree operating status will be disabled.
+     *
      * @since 26.0.0
      */
     OH_ARKUI_TREE_OPERATING_STATUS_DISABLE = 2,
 } OH_ArkUI_CrossLanguageOperatingStatus;
 
 /**
- * @brief Sets the tree operating status for the cross-language option.
+ * @brief 设置跨语言配置项的节点树操作状态。
  *
- * @param option The cross-language option.
- * @param status The tree operating status to be set for the cross-language option.
- * Default value: OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED.
+ * @param option 跨语言配置项实例。
+ * @param status 需要设置的节点树操作状态。默认值：OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED。
  * @since 26.0.0
  */
 void OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus(ArkUI_CrossLanguageOption* option, OH_ArkUI_CrossLanguageOperatingStatus status);
 
 /**
- * @brief Gets the tree operating status of the cross-language option.
+ * @brief 获取跨语言配置项的节点树操作状态。
  *
- * @param option The cross-language option.
- * @return Return the tree operating status of the cross-language option.
+ * @param option 跨语言配置项实例。
+ * @return 跨语言配置项的节点树操作状态。
  * @since 26.0.0
  */
 OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus(ArkUI_CrossLanguageOption* option);
