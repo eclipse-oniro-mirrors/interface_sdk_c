@@ -161,19 +161,26 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationName(
 ArkUI_ErrorCode OH_ArkUI_GetNavStackLength(ArkUI_NodeHandle node, int32_t* length);
 
 /**
- * @brief 根据给定索引值，获取当前节点所在的Navigation栈中的页面名称。索引值从0开始计数，0为栈底。
+ * @brief Based on the given index value, obtain the page name of the corresponding position
+ *        in the navigation stack where the node is located.
+ *        Index values are counted from 0, with 0 being the bottom of the stack.
  *
- * @param node 指定的节点。
- * @param index 被查询NavDestination在栈中的索引。
- * @param buffer 缓冲区，被查询页面的名称写入该内存区域。
- * @param bufferSize 缓冲区大小。
- * @param writeLength 在返回{@link ARKUI_ERROR_CODE_NO_ERROR}时表示实际写入到缓冲区的字符串长度。
- *     <br>在返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示可以容纳目标的最小缓冲区大小。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_NODE_INDEX_INVALID} index为非法值。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败，可能因为当前节点未挂载在页面下。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 给定的buffer size小于可以容纳目标的最小缓冲区大小。
+ * @param node The node.
+ * @param index The index of the NavDestination in the stack is queried.
+ * @param buffer The buffer to which NavDestination index writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_NODE_INDEX_INVALID} if index is an invalid value.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in Navigation.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetNavDestinationNameByIndex(
@@ -211,84 +218,96 @@ ArkUI_ErrorCode OH_ArkUI_GetNavDestinationId(
 ArkUI_ErrorCode OH_ArkUI_GetNavDestinationState(ArkUI_NodeHandle node, ArkUI_NavDestinationState* state);
 
 /**
- * @brief 获取当前节点所在的NavDestination组件在页面栈的索引。
+ * @brief Obtain the index of the NavDestination component on the Navigation stack where the node is located.
  *
- * @param node 指定的节点。
- * @param index 索引值，从0开始计数。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败，可能因为当前节点未挂载在页面下。
+ * @param node The node.
+ * @param index Index value, counted from 0.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node or index is null.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in Navigation.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetNavDestinationIndex(ArkUI_NodeHandle node, int32_t* index);
 
 /**
- * @brief 获取当前节点所在的NavDestination组件的参数。
+ * @brief Obtain the parameters of the NavDestination component where the node is located.
  *
- * @param node 指定的节点。
- * @return 参数对象。如返回为空，则说明参数不存在或指定的节点为空。
+ * @param node The node.
+ * @return The parameters.
+ *         If a null pointer is returned, it may be because the node is empty or the parameters does not exist.
  * @since 12
  */
 napi_value OH_ArkUI_GetNavDestinationParam(ArkUI_NodeHandle node);
 
 /**
- * @brief 获取当前节点所在{@link Router}页面栈中的索引。
+ * @brief Obtain the index of the page where the node resides in the Router page stack.
  *
- * @param node 指定的节点。
- * @param index 索引值，从1开始计数。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 指定的节点或传递的索引异常。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败，可能因为当前节点未挂载在页面下。
+ * @param node The node.
+ * @param index Index value, counted from 1.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node or index is null.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in RouterPage.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex(ArkUI_NodeHandle node, int32_t* index);
 
 /**
- * @brief 获取当前节点所在Router页面的名称。
+ * @brief Obtain the name of the page where the node is located.
  *
- * @param node 指定的节点。
- * @param buffer 缓冲区，页面名称写入该内存区域。
- * @param bufferSize 缓冲区大小。
- * @param writeLength 在返回{@link ARKUI_ERROR_CODE_NO_ERROR}时表示实际写入到缓冲区的字符串长度。
- *     <br>在返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示可以容纳目标的最小缓冲区大小。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 给定的buffer size小于可以容纳目标的最小缓冲区大小。
+ * @param node The node.
+ * @param buffer The buffer to which page name writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in RouterPage.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageName(
     ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief 获取当前节点所在Router页面的路径。
+ * @brief Obtain the path of the page where the node is located.
  *
- * @param node 指定的节点。
- * @param buffer 缓冲区，页面路径写入该内存区域。
- * @param bufferSize 缓冲区大小。
- * @param writeLength 在返回{@link ARKUI_ERROR_CODE_NO_ERROR}时表示实际写入到缓冲区的字符串长度。
- *     <br>在返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示可以容纳目标的最小缓冲区大小。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 给定的buffer size小于可以容纳目标的最小缓冲区大小。
+ * @param node The node.
+ * @param buffer The buffer to which page path writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in RouterPage.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPagePath(
     ArkUI_NodeHandle node, char* buffer, int32_t bufferSize, int32_t* writeLength);
 /**
- * @brief 获取当前节点所在Router页面的状态。
+ * @brief Obtain the state of the page where the node is located.
  *
- * @param node 指定的节点。
- * @param state Router页面的状态值写回该参数中。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败。
+ * @param node The node.
+ * @param state The state value of the page is written back to this parameter.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node or state is null.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in RouterPage.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageState(ArkUI_NodeHandle node, ArkUI_RouterPageState* state);
@@ -367,20 +386,6 @@ ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env);
  * @since 20
  */
 void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
-
-/**
- * @brief 启用或禁用事件直通。事件直通表示在事件分发过程中，不经过{@link 重采样}直接下发给组件。
- *
- * @param uiContext {@link UIContext}对象，用以绑定实例。
- * @param enabled 启用或禁用事件直通。true表示启用事件直通，false表示禁用事件直通。
- * @param type 指定启用或禁用事件直通的原始输入事件类型{@link ArkUI_RawInputEventType}。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} UIContext对象无效。
- * @since 26.0.0
- */
-ArkUI_ErrorCode OH_ArkUI_EnableEventPassthrough(ArkUI_ContextHandle uiContext, bool enabled,
-    ArkUI_RawInputEventType type);
 
 #ifdef __cplusplus
 };
