@@ -199,7 +199,7 @@ typedef enum {
      * <li>.value[0].f32：宽度数值，单位为vp。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_WIDTH = 0,
     /**
@@ -214,7 +214,7 @@ typedef enum {
      * <li>.value[0].f32：高度数值，单位为vp。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_HEIGHT,
     /**
@@ -277,7 +277,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_PADDING,
     /**
@@ -325,7 +325,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_MARGIN,
     /**
@@ -452,7 +452,7 @@ typedef enum {
      * <li>.value[0].i32： 对齐方式，数据类型{@link ArkUI_Alignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_ALIGNMENT,
     /**
@@ -490,7 +490,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_BORDER_WIDTH,
     /**
@@ -517,7 +517,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_BORDER_RADIUS,
     /**
@@ -544,7 +544,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_BORDER_COLOR,
     /**
@@ -571,7 +571,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_BORDER_STYLE,
     /**
@@ -733,7 +733,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_POSITION,
     /**
@@ -1263,7 +1263,7 @@ typedef enum {
      * <li>.value[0].i32：容器元素内主轴方向上的布局类型，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_DIRECTION,
     /**
@@ -1285,7 +1285,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_CONSTRAINT_SIZE,
     /**
@@ -1366,7 +1366,7 @@ typedef enum {
      * <li>.value[1].f32 y轴方向的偏移值, 单位为vp。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_OFFSET,
     /**
@@ -1383,7 +1383,7 @@ typedef enum {
      * <li>.value[1].f32 锚点y坐标值, 单位为vp。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_MARK_ANCHOR,
 
@@ -1422,7 +1422,7 @@ typedef enum {
      * <li>.object：相对容器中子组件的对齐规则，参数类型为{@link ArkUI_AlignmentRuleOption}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_ALIGN_RULES,
     /**
@@ -1437,7 +1437,7 @@ typedef enum {
      * <li>.value[0].i32：子组件在父容器交叉轴的对齐格式类型，参数类型{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_AUTO。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_ALIGN_SELF,
     /**
@@ -1452,7 +1452,7 @@ typedef enum {
      * <li>.value[0].f32：父容器的剩余空间所占比例。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_FLEX_GROW,
     /**
@@ -1467,7 +1467,7 @@ typedef enum {
      * <li>.value[0].f32：父容器压缩尺寸分配给此属性所在组件的比例数值。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_FLEX_SHRINK,
     /**
@@ -1482,7 +1482,7 @@ typedef enum {
      * <li>.value[0].f32：组件在父容器主轴方向上的基准尺寸。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_FLEX_BASIS,
     /**
@@ -1580,7 +1580,7 @@ typedef enum {
      * <li>.value[0].f32：组件的宽高比，width/height的比值。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_ASPECT_RATIO,
     /**
@@ -1595,7 +1595,7 @@ typedef enum {
      * <li>.value[0].u32：子组件占主轴尺寸的权重。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_LAYOUT_WEIGHT,
     /**
@@ -1611,7 +1611,7 @@ typedef enum {
      * <li>.value[0].u32：子组件在父容器中的显示优先级。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_DISPLAY_PRIORITY,
     /**
@@ -1643,7 +1643,7 @@ typedef enum {
      * <li>.value[0].f32：宽度数值，单位为百分比。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_WIDTH_PERCENT,
     /**
@@ -1658,7 +1658,7 @@ typedef enum {
      * <li>.value[0].f32：高度数值，单位为百分比。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_HEIGHT_PERCENT,
     /**
@@ -1685,7 +1685,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_PADDING_PERCENT,
     /**
@@ -1712,7 +1712,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_MARGIN_PERCENT,
 
@@ -1757,7 +1757,7 @@ typedef enum {
      * <li>.value[0].i32：链的方向。枚举{@link ArkUI_Axis}。</li>
      * <li>.value[1].i32：链的样式。枚举{@link ArkUI_RelativeLayoutChainStyle}。</li>
      * </ul>
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_RELATIVE_LAYOUT_CHAIN_MODE,
 
@@ -1809,7 +1809,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_SIZE,
 
@@ -1885,7 +1885,7 @@ typedef enum {
      * <li>.value[3].i32：组件高度，单位为px。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_LAYOUT_RECT,
 
@@ -1929,7 +1929,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_BORDER_WIDTH_PERCENT = 85,
     /**
@@ -1956,7 +1956,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_BORDER_RADIUS_PERCENT = 86,
 
@@ -2038,7 +2038,7 @@ typedef enum {
      * <li>.value[1].u32：扩展安全区域的方向。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_EXPAND_SAFE_AREA = 92,
 
@@ -2281,7 +2281,7 @@ typedef enum {
      * <li>.value[0].i32：组件宽度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 21
      */
     NODE_WIDTH_LAYOUTPOLICY = 105,
@@ -2298,7 +2298,7 @@ typedef enum {
      * <li>.value[0].i32：组件高度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 21
      */
     NODE_HEIGHT_LAYOUTPOLICY = 106,
@@ -2315,7 +2315,7 @@ typedef enum {
      * <li>.object：组件相对容器内容区边界的位置；参数类型为{@link ArkUI_PositionEdges}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 21
      */
     NODE_POSITION_EDGES = 107,
@@ -2343,7 +2343,7 @@ typedef enum {
      * <li>.object：组件的像素取整策略；参数类型为{@link ArkUI_PixelRoundPolicy}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 21
      */
     NODE_PIXEL_ROUND = 109,
@@ -2526,7 +2526,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_CHAIN_WEIGHT = 118,
@@ -2546,7 +2546,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_IGNORE_LAYOUT_SAFE_AREA = 119,
@@ -2570,7 +2570,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_DASH_WIDTH = 120,
@@ -2594,7 +2594,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_DASH_GAP = 121,
@@ -2611,7 +2611,7 @@ typedef enum {
      * <li>.value[0].i32：Stack容器中子组件的对齐规则。参数类型为{@link ArkUI_LocalizedAlignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_LAYOUT_GRAVITY = 122,
@@ -2628,7 +2628,7 @@ typedef enum {
      * <li>.value[0].i32：组件绘制圆角的模式。参数类型为{@link ArkUI_RenderStrategy}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_BORDER_RADIUS_TYPE = 123,
@@ -8364,7 +8364,7 @@ typedef enum {
      * <li>.value[0].i32： 子组件在Stack容器中的对齐方式，数据类型{@link ArkUI_Alignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_STACK,
 
@@ -10053,7 +10053,7 @@ typedef enum {
      * <li>.value[0].i32：Column子组件在Column容器中水平方向上的对齐方式，数据类型{@link ArkUI_HorizontalAlignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_COLUMN_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_COLUMN,
     /**
@@ -10068,7 +10068,7 @@ typedef enum {
      * <li>.value[0].i32：子组件在Column容器中垂直方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_COLUMN_JUSTIFY_CONTENT,
 
@@ -10084,7 +10084,7 @@ typedef enum {
      * <li>.value[0].f32：Column或Row容器中子组件之间的间距，单位vp。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_LINEAR_LAYOUT_SPACE,
@@ -10101,7 +10101,7 @@ typedef enum {
      * <li>.value[0].i32：Column或Row容器中主轴方向的子组件排列是否反向。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_LINEAR_LAYOUT_REVERSE,
@@ -10118,7 +10118,7 @@ typedef enum {
      * <li>.value[0].i32：子组件在Row容器中垂直方向上的对齐方式，数据类型{@link ArkUI_VerticalAlignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_ROW_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ROW,
     /**
@@ -10133,7 +10133,7 @@ typedef enum {
      * <li>.value[0].i32：子组件在Row容器中水平方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_ROW_JUSTIFY_CONTENT,
 
@@ -10158,7 +10158,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_FLEX_OPTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_FLEX,
 
@@ -10177,7 +10177,7 @@ typedef enum {
      * </ul>
      *
      * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      * @since 23
      */
     NODE_FLEX_SPACE,
@@ -10602,7 +10602,7 @@ typedef enum {
      * <li>.object: RelativeContaine容器内的辅助线。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_RELATIVE_CONTAINER_GUIDE_LINE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RELATIVE_CONTAINER,
 
@@ -10618,7 +10618,7 @@ typedef enum {
      * <li>.object: RelativeContaine容器内的屏障。</li>
      * </ul>
      *
-     * @ingroup Layout
+     * @ingroup Layout[布局]
      */
     NODE_RELATIVE_CONTAINER_BARRIER,
 
