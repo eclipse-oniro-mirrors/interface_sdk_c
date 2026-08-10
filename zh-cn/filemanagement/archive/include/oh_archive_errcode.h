@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +16,7 @@
 /**
  * @addtogroup Archive
  *
- * @brief 提供压缩解压模块错误码的声明。
+ * @brief 提供文件压缩及解压、数据的流式压缩及解压、缓冲区压缩及解压的能力。
  * @{
  * @since 26.0.0
  */
@@ -24,8 +24,9 @@
 /**
  * @file oh_archive_errcode.h
  *
- * @brief Declares the error codes of Archive module.
+ * @brief 提供压缩解压模块错误码的声明。
  * @kit CoreFileKit
+ * @include <filemanagement/archive/oh_archive_errcode.h>
  * @library liboharchive.so
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 26.0.0
@@ -37,7 +38,7 @@
 extern "C" {
 #endif
 /**
- * @brief Error codes for the Archive.
+ * @brief 压缩解压模块错误码。
  * @since 26.0.0
  */
 typedef enum {
