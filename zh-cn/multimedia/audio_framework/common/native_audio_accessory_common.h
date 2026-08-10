@@ -34,7 +34,6 @@
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
  * @kit AudioKit
- * @include <ohaudio/native_audio_accessory_common.h>
  * @since 26.0.0
  */
 

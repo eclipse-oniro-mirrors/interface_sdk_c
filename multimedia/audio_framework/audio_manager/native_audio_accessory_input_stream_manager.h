@@ -70,8 +70,8 @@ extern "C" {
  *         <li>`true` if the stream is accepted.</li>
  *         <li>`false` otherwise.</li>
  *         </ul>
- * @see OH_AudioAccessoryInputStreamManager_RegisterStartCallback
  * @since 26.0.0
+ * @see OH_AudioAccessoryInputStreamManager_RegisterStartCallback
  */
 typedef bool (*OH_AudioAccessory_OpenInputStreamCallback)(
     OH_AudioAccessory *accessory,
