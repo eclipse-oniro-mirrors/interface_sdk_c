@@ -8126,103 +8126,137 @@ typedef enum {
     NODE_RADIO_GROUP,
 
     /**
-     * @brief Set the image frames for the image animator. Dynamic updates is not supported.
+     * @brief Defines the image frames for the image animator. Dynamic updates are not supported.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
-     * \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
      *
-    */
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
+     *
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
     /**
-     * @brief Set the playback status of the animation for the image animator.
+     * @brief Defines the playback status of the animation for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus},
-     * and the default value is ARKUI_ANIMATION_STATUS_INITIAL.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is
+     * {@link ArkUI_AnimationStatus}. The default value is <b>ARKUI_ANIMATION_STATUS_INITIAL</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus}.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
     /**
-     * @brief Set the playback duration for the image animator. When the duration is 0, no image is played.
+     * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
      * The value change takes effect only at the beginning of the next cycle.
      * When a separate duration is set in images, the setting of this attribute is invalid.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback duration, the unit is ms and the default value is 1000.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms. The default value is 1000.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback duration, the unit is ms.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
     /**
-     * @brief Set the playback direction for the image animator.
+     * @brief Defines the playback direction for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
     /**
-     * @brief Set whether the image size is the same as the component size.
+     * @brief Defines whether the image size is the same as the component size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * In this case, the width, height, top, and left attributes of the image are invalid.
-     * 0 indicates the image size is customized.
-     * The width, height, top, and left attributes of each image must be set separately.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. In this case, the width, height, top, and left
+     * attributes of the image are invalid. <b>0</b> indicates that the image size is customized. The width,
+     * height, top, and left attributes of each image must be set separately.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * 0 indicates the image size is customized.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
     /**
-     * @brief Set the status before and after execution of the animation in the current playback direction.
+     * @brief Defines the status before and after execution of the animation in the current playback direction.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode} and the default value is ARKUI_ANIMATION_FILL_MODE_FORWARDS.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}. The default value is
+     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode}.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
     /**
-     * @brief Set the number of times that the animation is played.
+     * @brief Defines the number of times that the animation is played.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
     /**
