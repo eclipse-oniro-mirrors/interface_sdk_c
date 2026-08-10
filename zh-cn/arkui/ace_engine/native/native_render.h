@@ -1436,7 +1436,7 @@ int32_t OH_ArkUI_RenderNodeUtils_GetFloatPropertyValue(ArkUI_FloatPropertyHandle
 void OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(ArkUI_FloatPropertyHandle property);
 
 /**
- * @brief Creates a 二维向量属性。
+ * @brief 创建二维向量属性。
  *
  * @param x 属性的X坐标值。
  * @param y 属性的Y坐标值。
@@ -1446,7 +1446,7 @@ void OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(ArkUI_FloatPropertyHandle pro
 ArkUI_Vector2PropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Property(float x, float y);
 
 /**
- * @brief Sets the value of the 二维向量属性。
+ * @brief 设置二维向量属性的值。
  *
  * @param property 二维向量属性。
  * @param x 属性的X坐标值。
@@ -1460,7 +1460,7 @@ ArkUI_Vector2PropertyHandle OH_ArkUI_RenderNodeUtils_CreateVector2Property(float
 int32_t OH_ArkUI_RenderNodeUtils_SetVector2PropertyValue(ArkUI_Vector2PropertyHandle property, float x, float y);
 
 /**
- * @brief Obtains the value of the 二维向量属性。
+ * @brief 获取二维向量属性的值。
  *
  * @param property 二维向量属性。
  * @param x 用于接收属性X坐标值的指针。
@@ -1474,7 +1474,7 @@ int32_t OH_ArkUI_RenderNodeUtils_SetVector2PropertyValue(ArkUI_Vector2PropertyHa
 int32_t OH_ArkUI_RenderNodeUtils_GetVector2PropertyValue(ArkUI_Vector2PropertyHandle property, float* x, float* y);
 
 /**
- * @brief Disposes of the 二维向量属性。
+ * @brief 释放二维向量属性。
  *
  * @param property 二维向量属性。
  * @since 20
@@ -2120,7 +2120,7 @@ void OH_ArkUI_RenderNodeUtils_SetRectShapeOptionValue(
  */
 ArkUI_ErrorCode OH_ArkUI_RenderNodeUtils_InsertRenderNodeAt(
     ArkUI_NodeHandle node, ArkUI_RenderNodeHandle child, int32_t position);
-
+    
 /**
  * @brief 获取指定父节点的子渲染节点数量。
  *
