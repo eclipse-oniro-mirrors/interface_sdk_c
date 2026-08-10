@@ -4659,8 +4659,7 @@ void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
  * @brief 设置配置项中是否允许跨语言修改属性。
  *
  * @param option 跨语言配置项实例。
- * @param enabled 是否允许跨语言修改属性。true表示允许跨语言修改属性，
- *     false表示不允许跨语言修改属性，默认值：false。
+ * @param enabled 是否允许跨语言修改属性。true表示允许跨语言修改属性，false表示不允许跨语言修改属性，默认值：false。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
@@ -7220,7 +7219,7 @@ typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
 /**
  * @brief Create an object of ArkUI_Matrix4ScaleOptions.
  *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
- *        are 1, and the default values for centerX, centerY are 0. 
+ *        are 1, and the default values for centerX, centerY are 0.
  *
  * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
  * @since 24
@@ -7236,12 +7235,12 @@ ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
 void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
 
 /**
- * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions. 
+ * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
  *
  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
  * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. 
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
@@ -7777,7 +7776,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, con
 /**
  * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
  *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
- * 
+ *
  * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
  *               It must not be null.
  * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
@@ -7817,11 +7816,13 @@ typedef enum {
     OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED = 0,
     /**
      * Enable, which means that when the option is applied to the node, the node's tree operating status will be enabled.
+     *
      * @since 26.0.0
      */
     OH_ARKUI_TREE_OPERATING_STATUS_ENABLE = 1,
     /**
      * Disable, which means that when the option is applied to the node, the node's tree operating status will be disabled.
+     *
      * @since 26.0.0
      */
     OH_ARKUI_TREE_OPERATING_STATUS_DISABLE = 2,
