@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 12
  * @version 1.0
@@ -43,6 +45,7 @@
 #define C_INCLUDE_DRAWING_PATH_EFFECT_H
 
 #include "drawing_types.h"
+#include "drawing_error_code.h"
 
 #ifdef __cplusplus
 extern "C" {

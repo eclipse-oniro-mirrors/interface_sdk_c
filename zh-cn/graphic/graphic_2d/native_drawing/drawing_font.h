@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 11
  * @version 1.0
@@ -595,62 +597,74 @@ void OH_Drawing_FontDestroy(OH_Drawing_Font* font);
  */
 typedef struct OH_Drawing_Font_Metrics {
     /**
-     * 指示哪些度量是有效的。
+     * @brief 指示哪些度量是有效的。
+     *
      * @since 12
      */
     uint32_t flags;
     /**
-     * 字符最高点到基线的最大距离。
+     * @brief 字符最高点到基线的最大距离。
+     *
      * @since 12
      */
     float top;
     /**
-     * 字符最高点到基线的推荐距离。
+     * @brief 字符最高点到基线的推荐距离。
+     *
      * @since 12
      */
     float ascent;
     /**
-     * 字符最低点到基线的推荐距离。
+     * @brief 字符最低点到基线的推荐距离。
+     *
      * @since 12
      */
     float descent;
     /**
-     * 字符最低点到基线的最大距离。
+     * @brief 字符最低点到基线的最大距离。
+     *
      * @since 12
      */
     float bottom;
     /**
-     * 行间距。
+     * @brief 行间距。
+     *
      * @since 12
      */
     float leading;
     /**
-     * 平均字符宽度，如果未知则为零。
+     * @brief 平均字符宽度，如果未知则为零。
+     *
      * @since 12
      */
     float avgCharWidth;
     /**
-     * 最大字符宽度，如果未知则为零。
+     * @brief 最大字符宽度，如果未知则为零。
+     *
      * @since 12
      */
     float maxCharWidth;
     /**
-     * 任何字形边界框原点左侧的最大范围，通常为负值；不推荐使用可变字体。
+     * @brief 任何字形边界框原点左侧的最大范围，通常为负值；不推荐使用可变字体。
+     *
      * @since 12
      */
     float xMin;
     /**
-     * 任何字形边界框原点右侧的最大范围，通常为负值；不推荐使用可变字体。
+     * @brief 任何字形边界框原点右侧的最大范围，通常为负值；不推荐使用可变字体。
+     *
      * @since 12
      */
     float xMax;
     /**
-     * 小写字母的高度，如果未知则为零，通常为负数。
+     * @brief 小写字母的高度，如果未知则为零，通常为负数。
+     *
      * @since 12
      */
     float xHeight;
     /**
-     * 大写字母的高度，如果未知则为零，通常为负数。
+     * @brief 大写字母的高度，如果未知则为零，通常为负数。
+     *
      * @since 12
      */
     float capHeight;
@@ -661,17 +675,20 @@ typedef struct OH_Drawing_Font_Metrics {
      */
     float underlineThickness;
     /**
-     * 表示下划线的位置，即从基线到文字下方笔画顶部的垂直距离，通常为正值。
+     * @brief 表示下划线的位置，即从基线到文字下方笔画顶部的垂直距离，通常为正值。
+     *
      * @since 12
      */
     float underlinePosition;
     /**
-     * 删除线粗细。
+     * @brief 删除线粗细。
+     *
      * @since 12
      */
     float strikeoutThickness;
     /**
-     * 表示删除线的位置，即从基线到文字上方笔画底部的垂直距离，通常为负值。
+     * @brief 表示删除线的位置，即从基线到文字上方笔画底部的垂直距离，通常为负值。
+     *
      * @since 12
      */
     float strikeoutPosition;
