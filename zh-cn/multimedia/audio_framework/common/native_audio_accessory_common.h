@@ -17,7 +17,9 @@
  * @addtogroup OHAudio
  * @{
  *
- * @brief Provide common types for audio accessory device C interface.
+ * @brief 提供音频模块C接口定义。
+ *
+ * @syscap SystemCapability.Multimedia.Audio.Core
  *
  * @since 26.0.0
  */
@@ -25,7 +27,9 @@
 /**
  * @file native_audio_accessory_common.h
  *
- * @brief Declare common types for external audio accessory device interfaces.
+ * @brief 声明外部音频配件设备接口的公共数据结构。\n
+ *
+ * 定义音频配件接口的公共类型。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -46,99 +50,105 @@ extern "C" {
 #endif
 
 /**
- * @brief 声明音频附件管理器。
+ * @brief 声明音频配件管理器。
+ *
+ * 用于管理音频配件相关功能。
  *
  * @since 26.0.0
  */
 typedef struct OH_AudioAccessoryManager OH_AudioAccessoryManager;
 
 /**
- * @brief 声明音频附件。
+ * @brief 声明音频配件。
+ *
+ * 用于表示一个音频配件设备实例。
  *
  * @since 26.0.0
  */
 typedef struct OH_AudioAccessory OH_AudioAccessory;
 
 /**
- * @brief 声明音频附件输入流。
+ * @brief 声明音频配件输入流。
+ *
+ * 用于表示音频配件的输入音频流。
  *
  * @since 26.0.0
  */
 typedef struct OH_AudioAccessoryInputStream OH_AudioAccessoryInputStream;
 
 /**
- * @brief 枚举音频附件连接类型。
+ * @brief 枚举音频配件连接类型。
  *
  * @since 26.0.0
  */
 typedef enum {
     /**
-     * @brief 蓝牙SPP（信号处理插件）连接。 */
+     * @brief 蓝牙SPP（串行端口协议）连接。
+     *
      * @since 26.0.0
      */
-    AUDIO_ACCESSORY_TYPE_BT_SPP = 1
+    AUDIO_ACCESSORY_TYPE_BT_SPP = 1,
 } OH_AudioAccessoryType;
 
 /**
- * @brief 定义音频附件基本信息。
+ * @brief 定义音频配件的基本信息。\n
  *
- * <b>Version Control:</b>调用方必须将structSize设置为sizeof(OH_AudioAccessoryInfo)
- * 在将此结构传递给框架之前。
+ * <b>版本控制：</b>调用方在将此结构体传递给框架之前，必须将structSize设置为sizeof(OH_AudioAccessoryInfo)。
  *
  * @since 26.0.0
  */
 typedef struct {
     /**
-     * @brief 此结构的大小（以字节为单位）。
-     * 必须由调用者初始化（例如，info.structSize = sizeof(OH_AudioAccessoryInfo）)。
-     * 框架使用它来确定使用的是哪个版本的结构。
+     * @brief 结构体大小，单位为字节。\n
+     * 调用方必须初始化此字段（例如：info.structSize = sizeof(OH_AudioAccessoryInfo)）。
+     * 框架通过此字段判断所使用的结构体版本。
      *
      * @since 26.0.0
      */
     uint32_t structSize;
 
     /**
-     * @brief UX显示的附件名称，如“DJI Mic 2”。
-     * 框架会对该字段执行深拷贝。
+     * @brief 配件名称，用于UX展示，如"DJI Mic 2"。\n
+     * 框架会对此字段进行深拷贝。
      *
      * @since 26.0.0
      */
     const char *accessoryName;
 
     /**
-     * @brief 制造商名称，如“DJI”。
-     * 框架会对该字段执行深拷贝。
+     * @brief 制造商名称，如"DJI"。\n
+     * 框架会对此字段进行深拷贝。
      *
      * @since 26.0.0
      */
     const char *manufacturer;
 
     /**
-     * @brief 型号，如“CP236”。
-     * 框架会对该字段执行深拷贝。
+     * @brief 型号编号，如"CP236"。\n
+     * 框架会对此字段进行深拷贝。
      *
      * @since 26.0.0
      */
     const char *modelNumber;
 
     /**
-     * @brief 配件的MAC地址，如“00:11:22:33:44:55”。
-     * 框架会对该字段执行深拷贝。
+     * @brief 配件MAC地址，如"00:11:22:33:44:55"。\n
+     * 框架会对此字段进行深拷贝。
      *
      * @since 26.0.0
      */
     const char *macAddress;
 
     /**
-     * @brief 附件连接类型。
+     * @brief 配件连接类型。
      *
      * @since 26.0.0
      */
     OH_AudioAccessoryType type;
 
     /**
-     * @brief 配件是否为单向音频设备。
-     * true：单向设备，false：双向设备。
+     * @brief 标识配件是否为单向音频设备。\n
+     * true：单向设备；false：双向设备。
      *
      * @since 26.0.0
      */
@@ -146,16 +156,15 @@ typedef struct {
 } OH_AudioAccessoryInfo;
 
 /**
- * @brief 定义音频配件的降噪能力。
+ * @brief 定义音频配件的降噪能力。\n
  *
  * @since 26.0.0
  */
 typedef struct {
     /**
-     * @brief 此结构的大小（以字节为单位）。
-     * 必须由调用者初始化
-     * （例如，info.structSize=sizeof(OH_AudioAccessoryNoiseReduceCapability）)。
-     * 框架使用它来确定使用的是哪个版本的结构。
+     * @brief 结构体大小，单位为字节。\n
+     * 调用方必须初始化此字段（例如：info.structSize = sizeof(OH_AudioAccessoryNoiseReductionCapability)）。
+     * 框架通过此字段判断所使用的结构体版本。
      *
      * @since 26.0.0
      */
@@ -168,15 +177,15 @@ typedef struct {
     const OH_AudioNoiseReductionMode *supportedModes;
 
     /**
-     * @brief 支持的降噪模式个数。
+     * @brief 支持的降噪模式数量。
      *
      * @since 26.0.0
      */
     uint32_t supportedModeCount;
 
     /**
-     * @brief 设备当前的降噪模式。
-     * 这表示功能注册时的初始状态。
+     * @brief 设备当前降噪模式。\n
+     * 表示注册能力时的初始状态。
      *
      * @since 26.0.0
      */
@@ -184,33 +193,32 @@ typedef struct {
 } OH_AudioAccessoryNoiseReductionCapability;
 
 /**
- * @brief 定义音频配件的能力。
+ * @brief 定义音频配件的能力。\n
  *
- * <b>Version Control:</b>调用方必须将structSize设置为sizeof(OH_AudioAccessoryCapability)。
+ * <b>版本控制：</b>调用方必须将structSize设置为sizeof(OH_AudioAccessoryCapabilities)。
  *
  * @since 26.0.0
  */
 typedef struct {
     /**
-     * @brief 此结构的大小（以字节为单位）。
-     * 必须由调用者初始化（例如，caps.structSize=sizeof(OH_AudioAccessoryCapability）)。
+     * @brief 结构体大小，单位为字节。\n
+     * 调用方必须初始化此字段（例如：caps.structSize = sizeof(OH_AudioAccessoryCapabilities)）。
      *
      * @since 26.0.0
      */
     uint32_t structSize;
 
     /**
-     * @brief 支持的流配置数组。
-     * 每个条目代表一个有效的采样速率组合，
-     * 格式和通道数。
-     * 框架执行此数组的深拷贝。
+     * @brief 支持的音频流配置数组。\n
+     * 每个条目表示采样率、采样格式和声道数的有效组合。
+     * 框架会对此数组进行深拷贝。
      *
      * @since 26.0.0
      */
     const OH_AudioStreamInfo *streamProperties;
 
     /**
-     * @brief 支持的码流配置个数。
+     * @brief 支持的音频流配置数量。
      *
      * @since 26.0.0
      */
