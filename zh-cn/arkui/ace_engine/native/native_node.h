@@ -14266,10 +14266,10 @@ typedef struct {
      * @param parent 父节点指针。
      * @param child 子节点指针。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
-     *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*addChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
@@ -14280,10 +14280,10 @@ typedef struct {
      * @param parent 父节点指针。
      * @param child 子节点指针。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
-     *         {@link ARKUI_ERROR_CODE_ADAPTER_EXIST} NodeAdapter已经存在。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_ADAPTER_EXIST} NodeAdapter已经存在。
      * @since 12
      */
     int32_t (*removeChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
@@ -14295,10 +14295,10 @@ typedef struct {
      * @param child 子节点指针。
      * @param sibling 前一个兄弟节点指针，如果为空则插入位置在最后面。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
-     *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*insertChildAfter)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
@@ -14310,10 +14310,10 @@ typedef struct {
      * @param child 子节点指针。
      * @param sibling 后一个兄弟节点指针，如果为空则插入位置在最后面。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
-     *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*insertChildBefore)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
@@ -14325,10 +14325,10 @@ typedef struct {
      * @param child 子节点指针。
      * @param position 插入位置，取值范围为[-2147483648, 2147483647]，如果插入位置为负数或者不存在，则默认插入位置在最后面。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
-     *         {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*insertChildAt)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position);
@@ -14344,11 +14344,11 @@ typedef struct {
      * @param attribute 需要设置的属性类型。
      * @param item 需要设置的属性值。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该属性。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
-     *         {@link ARKUI_ERROR_CODE_ADAPTER_EXIST} NodeAdapter已经存在。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该属性。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_ADAPTER_EXIST} NodeAdapter已经存在。
      * @since 12
      */
     int32_t (*setAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute, const ArkUI_AttributeItem* item);
@@ -14371,10 +14371,10 @@ typedef struct {
      * @param node 需要重置属性的节点对象。
      * @param attribute 需要重置的属性类型。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该属性。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该属性。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
      * @since 12
      */
     int32_t (*resetAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute);
@@ -14387,10 +14387,10 @@ typedef struct {
      * @param targetId 自定义事件ID，当事件触发时在回调参数{@link ArkUI_NodeEvent} 中携带回来。
      * @param userData 自定义事件参数，当事件触发时在回调参数{@link ArkUI_NodeEvent} 中携带回来。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
-     *         {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
+     *         <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
      * @since 12
      */
     int32_t (*registerNodeEvent)(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
@@ -14499,9 +14499,9 @@ typedef struct {
      * @param targetId 自定义事件ID，当事件触发时在回调参数{@link ArkUI_NodeCustomEvent} 中携带回来。
      * @param userData 自定义事件参数，当事件触发时在回调参数{@link ArkUI_NodeCustomEvent} 中携带回来。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
      * @since 12
      */
     int32_t (*registerNodeCustomEvent)(
@@ -14543,8 +14543,8 @@ typedef struct {
      * @param width 设置的宽。
      * @param height 设置的高。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setMeasuredSize)(ArkUI_NodeHandle node, int32_t width, int32_t height);
@@ -14556,8 +14556,8 @@ typedef struct {
      * @param positionX x轴坐标。
      * @param positionY y轴坐标。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setLayoutPosition)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
@@ -14586,8 +14586,8 @@ typedef struct {
      * @param node 目标节点对象。
      * @param Constraint 约束尺寸。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*measureNode)(ArkUI_NodeHandle node, ArkUI_LayoutConstraint* Constraint);
@@ -14599,8 +14599,8 @@ typedef struct {
      * @param positionX x轴坐标。
      * @param positionY y轴坐标。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*layoutNode)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
@@ -14615,8 +14615,8 @@ typedef struct {
      * @param node 用于添加组件事件回调函数的对象。
      * @param eventReceiver 组件事件回调函数。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*addNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
@@ -14627,8 +14627,8 @@ typedef struct {
      * @param node 用于删除组件事件回调函数的对象。
      * @param eventReceiver 待删除的组件事件回调函数。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*removeNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
@@ -14643,8 +14643,8 @@ typedef struct {
      * @param node 用于添加组件自定义事件回调函数的对象。
      * @param eventReceiver 组件自定义事件回调函数。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*addNodeCustomEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeCustomEvent* event));
@@ -14655,8 +14655,8 @@ typedef struct {
      * @param node 用于删除组件自定义事件回调函数的对象。
      * @param eventReceiver 待删除的组件自定义事件回调函数。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*removeNodeCustomEventReceiver)(ArkUI_NodeHandle node,
@@ -14668,8 +14668,8 @@ typedef struct {
      * @param node 用于保存自定义数据的组件。
      * @param userData 要保存的自定义数据。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setUserData)(ArkUI_NodeHandle node, void* userData);
@@ -14689,8 +14689,8 @@ typedef struct {
      * @param node 用于指定单位的组件。
      * @param unit 单位类型{@link ArkUI_LengthMetricUnit}，默认为 ARKUI_LENGTH_METRIC_UNIT_DEFAULT。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setLengthMetricUnit)(ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit);
@@ -14709,8 +14709,8 @@ typedef struct {
      *
      * @param parent 父节点指针。
      * @return 错误码。
-     *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*removeAllChildren)(ArkUI_NodeHandle parent);
@@ -15068,8 +15068,8 @@ void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* 
  * @param name 自定义属性的名称。
  * @param handle 获取的对应key参数名称的自定义属性的结构体。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 14
  */
 int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* name, ArkUI_CustomProperty** handle);
@@ -15090,8 +15090,8 @@ ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
  * @param head 传入需要获取的节点。
  * @param handle 对应head节点子节点信息的结构体。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 14
  */
 int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_ActiveChildrenInfo** handle);
@@ -15129,10 +15129,10 @@ int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
  * @param node 目标节点对象。
  * @param info 窗口信息。使用{@link OH_ArkUI_HostWindowInfo_Destroy}释放内存。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} 节点未挂载到节点树上。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *         <br>{@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} 节点未挂载到节点树上。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
@@ -15270,8 +15270,8 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontSty
  * @param id 目标节点的id。
  * @param node 目标节点的指针。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
@@ -15488,10 +15488,10 @@ ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t 
  * @param userData 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。
  * @param callback 开发者自定义回调函数。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
- *         {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} UIContext对象无效。
- *         {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} 回调函数无效。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *         <br>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} UIContext对象无效。
+ *         <br>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} 回调函数无效。
  * @since 20
  */
 int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData));
@@ -15515,9 +15515,9 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
  * @param node ArkUI节点指针。
  * @param uniqueId 目标节点的uniqueId。组件标识ID只读，且进程内唯一，若该节点存在，返回该节点的uniqueId值；否则返回-1。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 方法参数错误。
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 方法参数错误。
+ *         <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
  * @since 20
  */
 int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
@@ -15692,8 +15692,8 @@ int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node);
  * @param asyncUITask 在非UI线程执行的函数。
  * @param onFinish asyncUITask执行完成后，在UI线程执行的函数。可以传入空指针。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或asyncUITask为空指针。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或asyncUITask为空指针。
  * @since 22
  */
 int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
@@ -15707,8 +15707,8 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
  * @param taskData 开发者自定义数据指针，作为task的入参。可以传入空指针。
  * @param task 在UI线程执行的函数。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或task为空指针。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或task为空指针。
  * @since 22
  */
 int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
@@ -15766,8 +15766,8 @@ int32_t OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent(ArkUI_N
  * @param taskData 开发者自定义数据指针，作为task的入参。可以传入空指针。
  * @param task 在UI线程执行的函数。
  * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或task为空指针。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或task为空指针。
  * @since 22
  */
 int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
@@ -15855,11 +15855,11 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
  *
  * @param context UI实例对象指针。\n
  * @param rootNode 目标根节点的句柄。如果上下文对应的页面没有根节点，则所指向的值将被设置为null。
- * @return 错误码。\n
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。\n
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。\n
- *         {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 实例异常。\n
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。\n
+ * @return 错误码。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *         <br>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 实例异常。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 24
  */
 int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(
