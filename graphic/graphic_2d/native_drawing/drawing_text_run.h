@@ -47,16 +47,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief Obtains an array of character indices of glyphs within a specified range of a run, where the indices are
  * offsets relative to the entire paragraph.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param start Start position in the run. If a negative number is passed, a null pointer is returned.
- * @param length Length of the range in the run. If the length is **0**, the array of all character indices in the run
- *     is obtained. If the length is less than 0, a null pointer is returned.
+ * @param start Start position specified within the rendering unit. The value range is [0, glyphCount-1], where
+ *     glyphCount is the glyph count of the rendering unit. The method returns a null pointer when passing a negative
+ *     number or a value that exceeds the glyph count of the rendering unit.
+ * @param length Length specified within the rendering unit. When length is 0, the method obtains the character index
+ *     array of all characters in the rendering unit. When length is less than 0, the method returns a null pointer.
+ *     When start+length exceeds the actual range of the rendering unit, the method obtains valid data up to the end of
+ *     the rendering unit.
  * @return Returns the character index array of the glyph. Call {@link OH_Drawing_DestroyRunStringIndices} to release
  *     this pointer when the object is no longer needed.
  * @since 18
@@ -68,7 +71,9 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t st
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param stringIndices Pointer to a character index array.
- * @param index Index of the character index array.
+ * @param index Subscript of the character index array for the rendering unit glyphs. The value range is [0,
+ *     arrayLength-1], where arrayLength is the number of elements in the stringIndices array. 0 is returned when the
+ *     value exceeds this range.
  * @return Returns the character indices.
  * @since 18
  */
@@ -88,8 +93,11 @@ void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param location Start position of the range in the run, which is an offset relative to the entire paragraph.
- * @param length Length of the range.
+ * @param location Start position of the character range of the rendering unit glyph, which is an offset relative to
+ *     the whole paragraph. This is an output parameter. The caller must provide a valid pointer to receive the return
+ *     value.
+ * @param length Length of the character range of the rendering unit. This is an output parameter. The caller must
+ *     provide a valid pointer to receive the return value.
  * @since 18
  */
 void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint64_t* length);
@@ -100,10 +108,10 @@ void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint6
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param ascent Distance from the top of the tallest character to the baseline in the run.
- * @param descent Distance from the bottom of the lowest character to the baseline in the run.
- * @param leading Vertical space between lines in the run.
- * @return Returns the layout width of the run.
+ * @param ascent Pointer to the distance from the highest character in the rendering unit to the baseline, in px.
+ * @param descent Pointer to the distance from the lowest character in the rendering unit to the baseline, in px.
+ * @param leading Pointer to the line spacing of the rendering unit, in px.
+ * @return Typographic width of the rendering unit, in px.
  * @since 18
  */
 float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, float* descent, float* leading);
@@ -114,8 +122,8 @@ float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, flo
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param canvas Pointer to an {@link OH_Drawing_Canvas} object.
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param x X coordinate of the run.
- * @param y Y coordinate of the run.
+ * @param x X coordinate of the rendering unit, in px.
+ * @param y Y coordinate of the rendering unit, in px.
  * @since 18
  */
 void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double x, double y);
@@ -146,9 +154,12 @@ void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param start Start position in the run. If a negative number is passed, a null pointer is returned.
- * @param length Length of the range in the run. If the length is **0**, all character indices of the run are obtained.
- *     If the length is less than 0, a null pointer is returned.
+ * @param start Start position specified within the rendering unit. The value range is [0, glyphCount-1], where
+ *     glyphCount is the number of glyphs in the rendering unit. When a negative number is passed or the value exceeds
+ *     the number of glyphs in the rendering unit, the method returns a null pointer.
+ * @param length Length specified within the rendering unit. When length is 0, all glyphs of the rendering unit are
+ *     obtained. When length is less than 0, the method returns a null pointer. When start+length exceeds the actual
+ *     range of the rendering unit, valid data up to the end of the rendering unit is obtained.
  * @return Returns the pointer to an {@link OH_Drawing_Array} object of a glyph array in a run. Call
  *     {@link OH_Drawing_DestroyRunGlyphs} to release this pointer when the object is no longer needed.
  * @since 18
@@ -160,8 +171,9 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, in
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param glyphs Pointer to the glyph array, which is an {@link OH_Drawing_Array} object.
- * @param index Index of the glyph array.
- * @return Returns the individual glyphs.
+ * @param index Subscript of the rendering unit glyph array. The value range is [0, arrayLength-1], where arrayLength
+ *     is the number of elements in the glyphs array. 0 is returned when the value exceeds this range.
+ * @return Glyph ID of a single glyph in the rendering unit.
  * @since 18
  * @version 1.0
  */
@@ -181,9 +193,12 @@ void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param start Start position in the run. If a negative number is passed, a null pointer is returned.
- * @param length Length of the range in the run. If the length is **0**, all character indices of the run are obtained.
- *     If the length is less than 0, a null pointer is returned.
+ * @param start Start position specified within the rendering unit. The value range is [0, glyphCount-1], where
+ *     glyphCount is the glyph count of the rendering unit. The method returns a null pointer when a negative number is
+ *     passed or when the value exceeds the glyph count of the rendering unit.
+ * @param length Length specified within the rendering unit. When length is 0, all glyph positions of the rendering
+ *     unit are obtained. The method returns a null pointer when length is less than 0. When start+length exceeds the
+ *     actual range of the rendering unit, valid data up to the end of the rendering unit is obtained.
  * @return Returns the pointer to an {@link OH_Drawing_Array} object of a glyph position array in a run. Call
  *     {@link OH_Drawing_DestroyRunPositions} to release this pointer when the object is no longer needed.
  * @since 18
@@ -195,7 +210,9 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start,
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param positions Pointer to the glyph position array, which is an {@link OH_Drawing_Array} object.
- * @param index Index of the glyph position array in the run.
+ * @param index Subscript of the rendering unit glyph position array. The value range is [0, arrayLength-1], where
+ *     arrayLength is the number of elements in the positions array. The method returns null pointer when the value
+ *     exceeds the range.
  * @return Returns the pointer to an {@link OH_Drawing_Point} object, which holds the positions of individual glyphs in
  *     the run.
  * @since 18
@@ -250,9 +267,11 @@ OH_Drawing_TextDirection OH_Drawing_GetRunTextDirection(OH_Drawing_Run* run);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Pointer to an {@link OH_Drawing_Run} object.
- * @param start Start position in the run. If a negative number is passed, a null pointer is returned.
- * @param length Length of the range in the run. If the length is **0**, all glyph advances from the start to the end
- *     of the run are obtained. If the length is less than 0, a null pointer is returned.
+ * @param start Start position specified within the rendering unit. The value range is [0, glyphCount-1], where
+ *     glyphCount is the glyph count of the rendering unit. If the passed value exceeds the glyph count of the
+ *     rendering unit, the method returns null pointer.
+ * @param length Length specified within the rendering unit. When length is 0, obtains the widths of all glyphs from
+ *     start to the end of the rendering unit.
  * @return Returns the pointer to an {@link OH_Drawing_Array} object of a glyph advance array in a run. Call
  *     {@link OH_Drawing_DestroyRunGlyphAdvances} to release this pointer when the object is no longer needed.
  * @since 20
@@ -264,7 +283,9 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t s
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param advances Pointer to the glyph advance array, which is an {@link OH_Drawing_Array} object.
- * @param index Index of the glyph advance array in a run.
+ * @param index Subscript of the rendering unit glyph width array. The value range is [0, arrayLength-1], where
+ *     arrayLength is the number of elements in the advances array. A null pointer is returned when the value exceeds
+ *     the range.
  * @return Returns the pointer to an {@link OH_Drawing_Point} object, which holds the advance of individual glyphs in
  *     the run. **x** indicates the advance, and **y** is a reserved field and defaults to **0**.
  * @since 20

@@ -14,18 +14,6 @@
  */
 
 /**
- * @file drawing_text_typography.h
- *
- * @brief This file declares the functions related to typography in the drawing module.
- *
- * @kit ArkGraphics2D
- * @library libnative_drawing.so
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 8
- * @version 1.0
- */
-
-/**
  * @addtogroup Drawing
  * @{
  *
@@ -36,6 +24,19 @@
  * @since 8
  * @version 1.0
  */
+
+/**
+ * @file drawing_text_typography.h
+ *
+ * @brief 定义绘制模块中排版相关的函数。
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 8
+ * @version 1.0
+ */
+
 #ifndef C_INCLUDE_DRAWING_TEXT_TYPOGRAPHY_H
 #define C_INCLUDE_DRAWING_TEXT_TYPOGRAPHY_H
 #ifdef __cplusplus
@@ -66,7 +67,6 @@ typedef enum OH_Drawing_TextDirection {
      * 方向：从右到左。
      */
     TEXT_DIRECTION_RTL,
-
     /**
      * 方向：从左到右。
      */
@@ -84,28 +84,23 @@ typedef enum OH_Drawing_TextAlign {
      * 左对齐。
      */
     TEXT_ALIGN_LEFT,
-
     /**
      * 右对齐。
      */
     TEXT_ALIGN_RIGHT,
-
     /**
      * 居中对齐。
      */
     TEXT_ALIGN_CENTER,
-
     /**
      * 两端对齐，即紧靠左和右边缘，中间单词空隙由空格填充，最后一行除外。
      */
     TEXT_ALIGN_JUSTIFY,
-
     /**
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时，TEXT_ALIGN_START和TEXT_ALIGN_LEFT相同；<br>类似地，
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时，TEXT_ALIGN_START和TEXT_ALIGN_RIGHT相同。
      */
     TEXT_ALIGN_START,
-
     /**
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时，TEXT_ALIGN_END和TEXT_ALIGN_RIGHT相同；<br>类似地，
      * 当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时，TEXT_ALIGN_END和TEXT_ALIGN_LEFT相同。
@@ -124,42 +119,34 @@ typedef enum OH_Drawing_FontWeight {
      * 字重为thin。
      */
     FONT_WEIGHT_100,
-
     /**
      * 字重为extra-light。
      */
     FONT_WEIGHT_200,
-
     /**
      * 字重为light。
      */
     FONT_WEIGHT_300,
-
     /**
      * 字重为normal/regular。
      */
     FONT_WEIGHT_400,
-
     /**
      * 字重为medium。
      */
     FONT_WEIGHT_500,
-
     /**
      * 字重为semi-bold。
      */
     FONT_WEIGHT_600,
-
     /**
      * 字重为bold。
      */
     FONT_WEIGHT_700,
-
     /**
      * 字重为extra-bold。
      */
     FONT_WEIGHT_800,
-
     /**
      * 字重为black。
      */
@@ -177,7 +164,6 @@ typedef enum OH_Drawing_TextBaseline {
      * 用于表音文字，基线在中间偏下的位置。
      */
     TEXT_BASELINE_ALPHABETIC,
-
     /**
      * 用于表意文字，基线位于底部。
      */
@@ -195,17 +181,14 @@ typedef enum OH_Drawing_TextDecoration {
      * 无装饰。
      */
     TEXT_DECORATION_NONE = 0x0,
-
     /**
      * 下划线。
      */
     TEXT_DECORATION_UNDERLINE = 0x1,
-
     /**
      * 上划线。
      */
     TEXT_DECORATION_OVERLINE = 0x2,
-
     /**
      * 删除线。
      */
@@ -213,7 +196,7 @@ typedef enum OH_Drawing_TextDecoration {
 } OH_Drawing_TextDecoration;
 
 /**
- * @brief 区分字体是否为斜体。
+ * @brief 字体样式，包括非斜体、斜体和倾斜字体。
  *
  * @since 8
  * @version 1.0
@@ -223,12 +206,10 @@ typedef enum OH_Drawing_FontStyle {
      * 非斜体。
      */
     FONT_STYLE_NORMAL,
-
     /**
      * 斜体。
      */
     FONT_STYLE_ITALIC,
-
     /**
      * 倾斜字体。
      */
@@ -246,27 +227,22 @@ typedef enum {
      * 偏移于基线对齐。
      */
     ALIGNMENT_OFFSET_AT_BASELINE,
-
     /**
      * 高于基线对齐。
      */
     ALIGNMENT_ABOVE_BASELINE,
-
     /**
      * 低于基线对齐。
      */
     ALIGNMENT_BELOW_BASELINE,
-
     /**
      * 行框顶部对齐。
      */
     ALIGNMENT_TOP_OF_ROW_BOX,
-
     /**
      * 行框底部对齐。
      */
     ALIGNMENT_BOTTOM_OF_ROW_BOX,
-
     /**
      * 行框中心对齐。
      */
@@ -280,30 +256,30 @@ typedef enum {
 } OH_Drawing_PlaceholderVerticalAlignment;
 
 /**
- * @brief This struct describes the placeholder that acts as a span.
+ * @brief 用于描述占位符跨度的结构体。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct {
     /**
-     * Width of a placeholder.
+     * 占位符宽度。
      */
     double width;
     /**
-     * Height of a placeholder.
+     * 占位符高度。
      */
     double height;
     /**
-     * Alignment mode of a placeholder.
+     * 占位符对齐方式。
      */
     OH_Drawing_PlaceholderVerticalAlignment alignment;
     /**
-     * Baseline of a placeholder.
+     * 占位符基线。
      */
     OH_Drawing_TextBaseline baseline;
     /**
-     * Baseline offset of a placeholder.
+     * 占位符基线偏移。
      */
     double baselineOffset;
 } OH_Drawing_PlaceholderSpan;
@@ -319,22 +295,18 @@ typedef enum {
      * 实心样式。
      */
     TEXT_DECORATION_STYLE_SOLID,
-
     /**
      * 双重样式。
      */
     TEXT_DECORATION_STYLE_DOUBLE,
-
     /**
      * 圆点样式。
      */
     TEXT_DECORATION_STYLE_DOTTED,
-
     /**
      * 虚线样式。
      */
     TEXT_DECORATION_STYLE_DASHED,
-
     /**
      * 波浪样式。
      */
@@ -349,21 +321,17 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Header ellipsis mode, that is, the ellipsis appears at the beginning of a line. This enumerated value is valid
-     * only when the maximum number of text lines is set to **1** by calling
-     * {@link OH_Drawing_SetTypographyTextMaxLines}.
+     * 头部省略号模式，即省略号位置出现在行首。该枚举值仅在使用{@link OH_Drawing_SetTypographyTextMaxLines}接口设置文本最大行数为1时有效。
      */
     ELLIPSIS_MODAL_HEAD = 0,
 
     /**
-     * Middle ellipsis mode, that is, the ellipsis appears in the middle of a line. This enumerated value is valid only
-     * when the maximum number of text lines is set to **1** by calling {@link OH_Drawing_SetTypographyTextMaxLines}.
+     * 中部省略号模式，即省略号位置出现在行的中间。该枚举值仅在使用{@link OH_Drawing_SetTypographyTextMaxLines}接口设置文本最大行数为1时有效。
      */
     ELLIPSIS_MODAL_MIDDLE = 1,
 
     /**
-     * End ellipsis mode, that is, the ellipsis appears at the end of a line. This enumerated value is valid when the
-     * maximum number of text lines is set to any value by calling {@link OH_Drawing_SetTypographyTextMaxLines}.
+     * 尾部省略号模式，即省略号位置出现在行的尾部。该枚举值在使用{@link OH_Drawing_SetTypographyTextMaxLines}接口设置文本最大行数为任何值时均有效。
      */
     ELLIPSIS_MODAL_TAIL = 2,
 
@@ -391,12 +359,10 @@ typedef enum {
      * 贪心策略，换行时尽可能填满每一行。
      */
     BREAK_STRATEGY_GREEDY = 0,
-
     /**
      * 高质量策略，换行时优先考虑文本的连续性。
      */
     BREAK_STRATEGY_HIGH_QUALITY = 1,
-
     /**
      * 平衡策略，换行时在单词边界换行。
      */
@@ -414,19 +380,17 @@ typedef enum {
      * 常规方式。
      */
     WORD_BREAK_TYPE_NORMAL = 0,
-
     /**
      * 全部中断方式。
      */
     WORD_BREAK_TYPE_BREAK_ALL = 1,
-
     /**
      * 单词中断方式。
      */
     WORD_BREAK_TYPE_BREAK_WORD = 2,
 
     /**
-     * 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟`WORD_BREAK_TYPE_BREAK_WORD`保持一致。
+     * 每行末尾单词尝试通过连字符"-"进行断行，若无法添加连字符"-"，则跟`WORD_BREAK_TYPE_BREAK_WORD`保持一致。
      * @since 18
      */
     WORD_BREAK_TYPE_BREAK_HYPHEN = 3
@@ -440,32 +404,32 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 紧密样式。
+     * 紧密样式，文本框高度紧贴文本内容边界。
      */
     RECT_HEIGHT_STYLE_TIGHT,
 
     /**
-     * 最大样式。
+     * 最大样式，文本框高度取所有行中的最大高度。
      */
     RECT_HEIGHT_STYLE_MAX,
 
     /**
-     * 包含行间距中间样式。
+     * 包含行间距中间样式，文本框高度包含行间距的中间部分。
      */
     RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE,
 
     /**
-     * 包含行间距顶部样式。
+     * 包含行间距顶部样式，文本框高度包含行间距的顶部部分。
      */
     RECT_HEIGHT_STYLE_INCLUDELINESPACETOP,
 
     /**
-     * 包含行间距底部样式。
+     * 包含行间距底部样式，文本框高度包含行间距的底部部分。
      */
     RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM,
 
     /**
-     * 结构样式。
+     * 结构样式，使用支柱样式（StrutStyle）决定文本框高度。
      */
     RECT_HEIGHT_STYLE_STRUCT
 } OH_Drawing_RectHeightStyle;
@@ -478,18 +442,18 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 紧密样式。
+     * 紧密样式，文本框高度紧贴文本内容边界。
      */
     RECT_WIDTH_STYLE_TIGHT,
 
     /**
-     * 最大样式。
+     * 最大样式，文本框高度取所有行中的最大高度。
      */
     RECT_WIDTH_STYLE_MAX
 } OH_Drawing_RectWidthStyle;
 
 /**
- * @brief 获取系统字体配置信息列表结果枚举。
+ * @brief 系统字体配置信息列表错误码枚举。
  *
  * @since 12
  * @version 1.0
@@ -499,22 +463,18 @@ typedef enum OH_Drawing_FontConfigInfoErrorCode {
      * 获取系统字体配置信息列表成功。
      */
     SUCCESS_FONT_CONFIG_INFO = 0,
-
     /**
      * 未知错误。
      */
     ERROR_FONT_CONFIG_INFO_UNKNOWN = 1,
-
     /**
      * 解析系统配置文件失败。
      */
     ERROR_FONT_CONFIG_INFO_PARSE_FILE = 2,
-
     /**
      * 申请内存失败。
      */
     ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY = 3,
-
     /**
      * 拷贝字符串数据失败。
      */
@@ -522,241 +482,237 @@ typedef enum OH_Drawing_FontConfigInfoErrorCode {
 } OH_Drawing_FontConfigInfoErrorCode;
 
 /**
- * @brief This struct describes the information about a font fallback.
+ * @brief 备用字体信息结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontFallbackInfo {
     /**
-     * Pointer to the language supported by the font fallback. The language format is bcp47.
+     * 字体集所支持的语言类型，语言格式为bcp47。
      */
     char* language;
     /**
-     * Pointer to the name of a font family.
+     * 字体家族名。
      */
     char* familyName;
 } OH_Drawing_FontFallbackInfo;
 
 /**
- * @brief This struct describes the information about a font fallback group.
+ * @brief 备用字体集信息结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontFallbackGroup {
     /**
-     * Pointer to the name of the group corresponding to the font fallback group. If null is passed in, all fonts in
-     * the font fallback group can be used.
+     * 备用字体集所对应的字体集名称，如果值为空，表示可以使用备用字体集列表中所有的字体。
      */
     char* groupName;
     /**
-     * Number of font fallbacks.
+     * 备用字体集数量。
      */
     size_t fallbackInfoSize;
     /**
-     * Pointer to the set of font fallbacks.
+     * 备用字体集列表。
      */
     OH_Drawing_FontFallbackInfo* fallbackInfoSet;
 } OH_Drawing_FontFallbackGroup;
 
 /**
- * @brief This struct describes the information about a font weight mapping.
+ * @brief 字重映射信息结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontAdjustInfo {
     /**
-     * Original font weight.
+     * 字体原本的字重值。
      */
     int weight;
     /**
-     * Font weight displayed in the application.
+     * 字体在应用中显示的字重值。
      */
     int to;
 } OH_Drawing_FontAdjustInfo;
 
 /**
- * @brief This struct describes the information about a font alias.
+ * @brief 别名字体信息结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontAliasInfo {
     /**
-     * Pointer to the name of a font family.
+     * 字体家族名。
      */
     char* familyName;
     /**
-     * Font weight. If the value is greater than 0, only the fonts with the specified weight in the font family are
-     * contained. If the value is 0, all the fonts in the font family are contained.
+     * 字体字重值，当字重值大于0时，表示此字体集只包含所指定字重的字体，当字重值等于0时，表示此字体集包含所有字体。
      */
     int weight;
 } OH_Drawing_FontAliasInfo;
 
 /**
- * @brief This struct describes the information about generic fonts supported by the system.
+ * @brief 系统所支持的通用字体集信息结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontGenericInfo {
     /**
-     * Pointer to the name of a font family.
+     * 字体家族名。
      */
     char* familyName;
     /**
-     * Number of font aliases.
+     * 别名字体列表的数量。
      */
     size_t aliasInfoSize;
     /**
-     * Number of font weight mappings.
+     * 字重映射列表的数量。
      */
     size_t adjustInfoSize;
     /**
-     * Pointer to a set of font aliases.
+     * 别名字体列表。
      */
     OH_Drawing_FontAliasInfo* aliasInfoSet;
     /**
-     * Pointer to a set of font weight mappings.
+     * 字重映射列表。
      */
     OH_Drawing_FontAdjustInfo* adjustInfoSet;
 } OH_Drawing_FontGenericInfo;
 
 /**
- * @brief This struct describes the information about a system font configuration.
+ * @brief 系统字体配置信息结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontConfigInfo {
     /**
-     * Number of system font file paths.
+     * 系统字体文件路径数量。
      */
     size_t fontDirSize;
     /**
-     * Number of generic fonts.
+     * 通用字体集列表数量。
      */
     size_t fontGenericInfoSize;
     /**
-     * Number of font fallbacks.
+     * 备用字体集数量。
      */
     size_t fallbackGroupSize;
     /**
-     * Double pointer to the system font file paths.
+     * 系统字体文件路径列表。
      */
     char** fontDirSet;
     /**
-     * Pointer to a set of generic fonts.
+     * 通用字体集列表。
      */
     OH_Drawing_FontGenericInfo* fontGenericInfoSet;
     /**
-     * Pointer to a set of font fallbacks.
+     * 备用字体集列表。
      */
     OH_Drawing_FontFallbackGroup* fallbackGroupSet;
 } OH_Drawing_FontConfigInfo;
 
 /**
- * @brief This struct describes the detailed information about a system font.
+ * @brief 描述系统字体详细信息的结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontDescriptor {
     /**
-     * File path of the system font.
+     * 系统字体的文件路径。
      */
     char* path;
     /**
-     * PostScript name that uniquely identifies the system font.
+     * 唯一标识字体的名称。
      */
     char* postScriptName;
     /**
-     * Full name of the system font.
+     * 系统字体的名称。
      */
     char* fullName;
     /**
-     * Family of the system font.
+     * 系统字体的字体家族。
      */
     char* fontFamily;
     /**
-     * Subfamily of the system font.
+     * 系统字体的子字体家族。
      */
     char* fontSubfamily;
     /**
-     * Weight of the system font.
+     * 系统字体的粗细程度。
      */
     int weight;
     /**
-     * Width of the system font.
+     * 系统字体的宽窄风格属性。
      */
     int width;
     /**
-     * Slope of the system font.
+     * 系统字体倾斜度。
      */
     int italic;
     /**
-     * Whether the system font is monospaced. **true** means yes; **false** otherwise.
+     * 系统字体是否等宽。true表示字体等宽，false表示字体非等宽。
      */
     bool monoSpace;
     /**
-     * Whether the system font supports symbols. **true** means yes; **false** otherwise.
+     * 系统字体是否支持符号字体。true表示支持符号字体，false表示不支持符号字体。
      */
     bool symbolic;
 } OH_Drawing_FontDescriptor;
 
 /**
- * @brief This struct describes the measurement information about a line of text.
+ * @brief 文字行位置信息。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_LineMetrics {
     /**
-     * Height of a character above the baseline, after taking the absolute value.
+     * 文字相对于基线以上取绝对值后的高度。
      */
     double ascender;
     /**
-     * Height of a character below the baseline, after taking the absolute value.
+     * 文字相对于基线以下取绝对值后的高度。
      */
     double descender;
     /**
-     * Height of an uppercase letter above the baseline.
+     * 大写字母的高度。
      */
     double capHeight;
     /**
-     * Height of a lowercase letter, specifically the lowercase x, not including ascenders and descenders.
+     * 小写字母的高度。
      */
     double xHeight;
     /**
-     * Horizontal space taken up by a character.
+     * 文字宽度。
      */
     double width;
     /**
-     * Line height.
+     * 行高。
      */
     double height;
     /**
-     * Distance from the left edge of the leftmost character to the left edge of the container. For left alignment, the
-     * value is 0. For right alignment, the value is the container width minus the text width.
+     * 文字左端到容器左端距离，左对齐为0，右对齐为容器宽度减去行文字宽度。
      */
     double x;
     /**
-     * Height from the top edge of the character to the top of the container. The first line is 0, and the second line
-     * is the height of the first line.
+     * 文字上端到容器上端高度，第一行为0，第二行为第一行高度。
      */
     double y;
     /**
-     * Index of the first character in the line.
+     * 行起始位置字符索引。
      */
     size_t startIndex;
     /**
-     * Index of the last character in the line.
+     * 行结束位置字符索引。
      */
     size_t endIndex;
     /**
-     * Measurement information of the first character.
+     * 第一个字的度量信息。
      */
     OH_Drawing_Font_Metrics firstCharMetrics;
 } OH_Drawing_LineMetrics;
@@ -769,26 +725,22 @@ typedef struct OH_Drawing_LineMetrics {
  */
 typedef enum OH_Drawing_TextHeightBehavior {
     /**
-     * Enables the height set by calling {@link OH_Drawing_SetTextStyleFontHeight} for the top of the first line and
-     * the bottom of the last line in a paragraph.
+     * 段落中第一行顶部和段落中最后一行底部{@link OH_Drawing_SetTextStyleFontHeight}设置的高度生效。
      */
     TEXT_HEIGHT_ALL = 0x0,
 
     /**
-     * Disables the height set by calling {@link OH_Drawing_SetTextStyleFontHeight} for the top of the first line in a
-     * paragraph.
+     * 禁止段落中第一行顶部{@link OH_Drawing_SetTextStyleFontHeight}设置的高度生效。
      */
     TEXT_HEIGHT_DISABLE_FIRST_ASCENT = 0x1,
 
     /**
-     * Disables the height set by calling {@link OH_Drawing_SetTextStyleFontHeight} for the bottom of the last line in
-     * a paragraph.
+     * 禁止段落中最后一行底部{@link OH_Drawing_SetTextStyleFontHeight}设置的高度生效。
      */
     TEXT_HEIGHT_DISABLE_LAST_ASCENT = 0x2,
 
     /**
-     * Disables the height set by calling {@link OH_Drawing_SetTextStyleFontHeight} for both the top of the first line
-     * and the bottom of the last line in a paragraph.
+     * 禁止段落中第一行顶部和段落中最后一行底部{@link OH_Drawing_SetTextStyleFontHeight}设置的高度生效。
      */
     TEXT_HEIGHT_DISABLE_ALL = 0x1 | 0x2
 } OH_Drawing_TextHeightBehavior;
@@ -804,42 +756,34 @@ typedef enum OH_Drawing_TextStyleType {
      * 无文本样式。
      */
     TEXT_STYLE_NONE,
-
     /**
      * 所有文本样式。
      */
     TEXT_STYLE_ALL_ATTRIBUTES,
-
     /**
      * 字体样式。
      */
     TEXT_STYLE_FONT,
-
     /**
      * 文本前景样式。
      */
     TEXT_STYLE_FOREGROUND,
-
     /**
      * 文本背景样式。
      */
     TEXT_STYLE_BACKGROUND,
-
     /**
      * 文本阴影样式。
      */
     TEXT_STYLE_SHADOW,
-
     /**
      * 文本装饰样式。
      */
     TEXT_STYLE_DECORATIONS,
-
     /**
      * 文本字符间距样式。
      */
     TEXT_STYLE_LETTER_SPACING,
-
     /**
      * 文本单词间距样式。
      */
@@ -857,42 +801,34 @@ typedef enum OH_Drawing_FontWidth {
      * 表示超窄的字宽。
      */
     FONT_WIDTH_ULTRA_CONDENSED = 1,
-
     /**
      * 表示特窄的字宽。
      */
     FONT_WIDTH_EXTRA_CONDENSED = 2,
-
     /**
      * 表示窄的字宽。
      */
     FONT_WIDTH_CONDENSED = 3,
-
     /**
      * 表示半窄的字宽。
      */
     FONT_WIDTH_SEMI_CONDENSED = 4,
-
     /**
      * 表示常规的字宽。
      */
     FONT_WIDTH_NORMAL = 5,
-
     /**
      * 表示半宽的字宽。
      */
     FONT_WIDTH_SEMI_EXPANDED = 6,
-
     /**
      * 表示宽的字宽。
      */
     FONT_WIDTH_EXPANDED = 7,
-
     /**
      * 表示特宽的字宽。
      */
     FONT_WIDTH_EXTRA_EXPANDED = 8,
-
     /**
      * 表示超宽的字宽。
      */
@@ -906,25 +842,21 @@ typedef enum OH_Drawing_FontWidth {
  */
 typedef enum OH_Drawing_TextStyleAttributeId {
     /**
-     * Maximum line height.<br>If line height scaling is enabled, the maximum line height takes effect only when **
-     * FontHeight** (which can be obtained from {@link OH_Drawing_TextStyleGetFontHeight}) is greater than 0.<br>The
-     * value is the positive part of a single-precision floating point number. By default, it equals the maximum
-     * possible value for such a number.
+     * 行高上限。<br>若同时开启行高缩放，当FontHeight（可由{@link OH_Drawing_TextStyleGetFontHeight}接口获取）大于0时行高上限才生效。<br>取值范围为单精度浮点数正数部分，
+     * 默认值为单精度浮点数上限。
      */
     TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
 
     /**
-     * Minimum line height.<br>If line height scaling is enabled, the minimum line height takes effect only when **
-     * FontHeight** (which can be obtained from {@link OH_Drawing_TextStyleGetFontHeight}) is greater than 0.<br>The
-     * value is the non-negative part of a single-precision floating point number. The default value is **0**.
+     * 行高下限。<br>若同时开启行高缩放，当FontHeight（可由{@link OH_Drawing_TextStyleGetFontHeight}接口获取）大于0时行高下限才生效。<br>取值范围为单精度浮点数非负部分，
+     * 默认值为0。
      */
     TEXT_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1,
 
     /**
-     * Scaling base style of the line height. For details, see {@link OH_Drawing_LineHeightStyle}.
+     * 行高缩放基数样式。具体行高缩放基数样式可见{@link OH_Drawing_LineHeightStyle}。
      */
     TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 2,
-
     /**
      * 字宽。
      */
@@ -944,16 +876,14 @@ typedef enum OH_Drawing_TextStyleAttributeId {
  */
 typedef enum OH_Drawing_LineHeightStyle {
     /**
-     * Uses the font size as the scaling base.<br>Formula for calculating the line height: **FontSize** x **FontHeight**
-     * .<br>**FontSize** can be obtained from the {@link OH_Drawing_TextStyleGetFontSize} API.<br>**FontHeight** can be
-     * obtained from the {@link OH_Drawing_TextStyleGetFontHeight} API.
+     * 以字号大小作为缩放基数。<br>行高计算公式：FontSize * FontHeight。<br>FontSize可由{@link OH_Drawing_TextStyleGetFontSize}接口获取。<br>
+     * FontHeight可由{@link OH_Drawing_TextStyleGetFontHeight}接口获取。
      */
     TEXT_LINE_HEIGHT_BY_FONT_SIZE = 0,
 
     /**
-     * Uses the font height as the scaling base.<br>Formula for calculating the line height: font height x **FontHeight*
-     * *.<br>The font height is obtained after the text is shaped using the font file.<br>**FontHeight** can be
-     * obtained from the {@link OH_Drawing_TextStyleGetFontHeight} API.
+     * 以字形高度作为缩放基数。<br>行高计算公式：字形高度 * FontHeight。<br>字形高度由文本经过字体文件塑形得到。<br>FontHeight（可由
+     * {@link OH_Drawing_TextStyleGetFontHeight}获取）。
      */
     TEXT_LINE_HEIGHT_BY_FONT_HEIGHT = 1
 } OH_Drawing_LineHeightStyle;
@@ -966,53 +896,47 @@ typedef enum OH_Drawing_LineHeightStyle {
  */
 typedef enum OH_Drawing_TypographyStyleAttributeId {
     /**
-     * Maximum line height.<br>If line height scaling is enabled, the maximum line height takes effect only when **
-     * FontHeight** (which can be obtained from {@link OH_Drawing_TextStyleGetFontHeight}) is greater than 0.<br>The
-     * value is the positive part of a single-precision floating point number. By default, it equals the maximum
-     * possible value for such a number.
+     * 行高上限。<br>若同时开启行高缩放，当FontHeight（可由{@link OH_Drawing_TextStyleGetFontHeight}接口获取）大于0时行高上限才生效。<br>取值范围为单精度浮点数正数部分，
+     * 默认值为单精度浮点数上限。
      */
     TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
 
     /**
-     * Minimum line height.<br>If line height scaling is enabled, the minimum line height takes effect only when **
-     * FontHeight** (which can be obtained from {@link OH_Drawing_TextStyleGetFontHeight}) is greater than 0.<br>The
-     * value is the non-negative part of a single-precision floating point number. The default value is **0**.
+     * 行高下限。<br>若同时开启行高缩放，当FontHeight（可由{@link OH_Drawing_TextStyleGetFontHeight}接口获取）大于0时行高下限才生效。<br>取值范围为单精度浮点数非负部分，
+     * 默认值为0。
      */
     TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1,
 
     /**
-     * Interline spacing.<br>**lineSpacing** is not restricted by the maximum and minimum line heights.<br>By default,
-     * line spacing is added to the last line.<br>You can set **textHeightBehavior** to **DISABLE_LAST_ASCENT** in
-     * {@link OH_Drawing_TypographyTextSetHeightBehavior} to disable the line spacing of the last line.<br>The default
-     * value is **0**.
+     * 行间距。<br>lineSpacing不受行高上下限的限制。<br>尾行默认添加行间距。<br>可通过{@link OH_Drawing_TypographyTextSetHeightBehavior}
+     * 接口设置textHeightBehavior为DISABLE_LAST_ASCENT禁用尾行行间距。<br>默认值为0。
      */
     TYPOGRAPHY_STYLE_ATTR_D_LINE_SPACING = 2,
 
     /**
-     * Scaling base style of the line height. For details, see {@link OH_Drawing_LineHeightStyle}.
+     * 行高缩放基数样式。具体行高缩放基数样式可见{@link OH_Drawing_LineHeightStyle}。
      */
     TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3,
-
     /**
      * 字宽。
      */
     TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
 
     /**
-     * 设置文本排版时是否使能行首标点压缩。<br>**说明：**<br>1. 需要字体文件支持{@link OH_Drawing_FontFeature}中的"ss08"特性，否则无法压缩。<br>2.
+     * 设置文本排版时是否启用行首标点压缩。<br>**说明：**<br>1. 需要字体文件支持{@link OH_Drawing_FontFeature}中的"ss08"特性，否则无法压缩。<br>2.
      * 在行首标点压缩范围内的标点才在本特性作用范围内。
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION = 5,
 
     /**
-     * 设置文本排版时是否使能字体内部的padding。
+     * 设置文本排版时是否启用字体内部的padding。
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_INCLUDE_FONT_PADDING = 6,
 
     /**
-     * 设置文本排版时是否使能行间距回退机制。
+     * 设置文本排版时是否启用行间距回退机制。
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_FALLBACK_LINE_SPACING = 7,
@@ -1043,45 +967,43 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
- * @brief 枚举排版属性。
+ * @brief 排版属性枚举。
  *
  * @since 26.0.0
  */
 typedef enum OH_Drawing_TypographyAttributeId {
     /**
- * 是否强制复用栅格化结果。
- * True表示强制复用光栅化结果。False表示允许更新光栅化结果。
- * 默认值为false。
- * @since 26.0.0
- */
+     * 是否强制复用光栅化结果。设置后，在下次调用{@link OH_Drawing_TypographyPaint}绘制时生效。<br>true表示强制复用光栅化结果，false表示允许更新光栅化结果，默认值为false。
+     * @since 26.0.0
+     */
     TYPOGRAPHY_ATTR_B_FORCE_REUSE_RASTER_RESULT = 0
 } OH_Drawing_TypographyAttributeId;
 
 /**
- * @brief 从排版中获取bool类型属性的值。
+ * @brief 获取bool类型排版的属性。
  *
- * @param typography 指向<b>OH_Drawing_Typography</b>对象的指针。
- * @param id 属性id。
- * @param value 接口的返回值。
- * @return 返回错误码。
- * 如果操作成功，则返回{@link OH_DRAWING_SUCCESS}。
- * 如果类型或值为nullptr，则返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}。
- * 如果无法识别或支持属性ID，则返回{@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH}。
+ * @param typography 指向排版对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
+ * @param id 排版样式属性id。
+ * @param value 指向bool类型属性的指针。作为出参使用。
+ * @return 函数返回执行结果。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数typography或value为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyAttributeBool(const OH_Drawing_Typography* typography,
     OH_Drawing_TypographyAttributeId id, bool* value);
 
 /**
- * @brief 将bool值设置为排版属性。
+ * @brief 设置bool类型的排版属性。
  *
- * @param typography 指向<b>OH_Drawing_Typography</b>对象的指针。
- * @param id 属性id。
- * @param value 表示要设置的值。
- * @return 返回错误码。
- * 如果操作成功，则返回{@link OH_DRAWING_SUCCESS}。
- * 如果排版为空，则返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}。
- * 如果无法识别或支持属性ID，则返回{@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH}。
+ * @param typography 指向排版对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
+ * @param id 排版属性id，指定要设置的bool类型属性。
+ * @param value 要设置的bool值。
+ * @return 函数返回执行结果。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数typography为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyAttributeBool(OH_Drawing_Typography* typography,
@@ -1097,7 +1019,7 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyAttributeBool(OH_Drawing_Typography
  *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
  *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
  *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
- *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示属性id对应的值超出了允许的范围。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入属性超出业务范围。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
@@ -1159,7 +1081,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* s
  *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
  *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
  *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
- *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示属性id对应的值超出了允许的范围。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入属性超出业务范围。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
@@ -1281,17 +1203,17 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDoubleArray(const OH_
  */
 typedef enum OH_Drawing_TextBadgeType {
     /**
-     * 不使能上标或下标。
+     * 不启用上标或下标。
      */
     TEXT_BADGE_NONE,
 
     /**
-     * 使能上标。
+     * 启用上标。
      */
     TEXT_SUPERSCRIPT,
 
     /**
-     * 使能下标。
+     * 启用下标。
      */
     TEXT_SUBSCRIPT
 } OH_Drawing_TextBadgeType;
@@ -1307,17 +1229,14 @@ typedef enum OH_Drawing_TextVerticalAlignment {
      * 偏移于基线对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_BASELINE,
-
     /**
      * 底部对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_BOTTOM,
-
     /**
      * 居中对齐。
      */
     TEXT_VERTICAL_ALIGNMENT_CENTER,
-
     /**
      * 顶部对齐。
      */
@@ -1325,14 +1244,14 @@ typedef enum OH_Drawing_TextVerticalAlignment {
 } OH_Drawing_TextVerticalAlignment;
 
 /**
- * @brief This struct describes a font style.
+ * @brief 定义字体样式信息的结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_FontStyleStruct {
     /**
-     * Font weight.
+     * 字体字重。
      */
     OH_Drawing_FontWeight weight;
     /**
@@ -1340,90 +1259,89 @@ typedef struct OH_Drawing_FontStyleStruct {
      */
     OH_Drawing_FontWidth width;
     /**
-     * Font slant.
+     * 字体斜体。
      */
     OH_Drawing_FontStyle slant;
 } OH_Drawing_FontStyleStruct;
 
 /**
- * @brief This struct describes a font feature.
+ * @brief 描述文本字体特征结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct {
     /**
-     * Tag of the font feature.
+     * 字体特征的标签。
      */
     char* tag;
     /**
-     * Value of the font feature.
+     * 字体特征的值。
      */
     int value;
 } OH_Drawing_FontFeature;
 
 /**
- * @brief This struct describes a strut style. The strut style determines the line spacing, baseline alignment mode,
- * and other properties related to the line height when drawing text.
+ * @brief 用于描述支柱样式的结构体。支柱样式用于控制绘制文本时行之间的间距、基线对齐方式以及其他与行高相关的属性。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct {
     /**
-     * Font weight used for calculating the strut.
+     * 计算支柱时使用的字体粗细。
      */
     OH_Drawing_FontWeight weight;
     /**
-     * Font style used for calculating the strut.
+     * 计算支柱时使用的字体样式。
      */
     OH_Drawing_FontStyle style;
     /**
-     * Size of the ascent plus descent in the logical pixels.
+     * 逻辑像素中的上升加下降的大小。
      */
     double size;
     /**
-     * Scale factor of the line height.
+     * 行高缩放系数。
      */
     double heightScale;
     /**
-     * Whether to enable height override. **true**: enabled; **false**: disabled.
+     * 是否启用高度覆盖。true表示启用，false表示不启用。
      */
     bool heightOverride;
     /**
-     * Whether to enable half leading. **true**: enabled; **false**: disabled.
+     * 半行距是否启用。true表示启用，false表示不启用。
      */
     bool halfLeading;
     /**
-     * Custom leading to be applied to the strut.
+     * 以自定义行距应用于支柱的行距。
      */
     double leading;
     /**
-     * Whether to forcibly use the strut height for all rows. **true** means yes; **false** otherwise.
+     * 是否所有行都将使用支柱的高度。true表示使用，false表示不使用。
      */
     bool forceStrutHeight;
     /**
-     * Number of font families.
+     * 字体家族的数量。
      */
     size_t familiesSize;
     /**
-     * Double pointer to the font families used for calculating the strut.
+     * 计算支柱时使用的字体名称。
      */
     char** families;
 } OH_Drawing_StrutStyle;
 
 /**
- * @brief 文本框结构体
+ * @brief 定义文本矩形结构体。
  *
  * @since 24
  */
 typedef struct OH_Drawing_RectSize {
     /**
-     * Rectangle width.
+     * 矩形宽度。
      */
     double width;
     /**
-     * Rectangle height.
+     * 矩形高度。
      */
     double height;
 } OH_Drawing_RectSize;
@@ -1476,14 +1394,15 @@ void OH_Drawing_SetTypographyTextAlign(OH_Drawing_TypographyStyle* style, int al
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param lineNumber 最大行数。
+ * @param lineNumber 最大行数，整数。传入0或负数时不显示文字。
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextMaxLines(OH_Drawing_TypographyStyle* style, int lineNumber);
 
 /**
- * @brief 创建指向OH_Drawing_TextStyle对象的指针。
+ * @brief 创建指向OH_Drawing_TextStyle对象的指针。不再需要{@link OH_Drawing_TextStyle}时，请使用{@link OH_Drawing_DestroyTextStyle}
+ * 接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return 指向创建的{@link OH_Drawing_TextStyle}对象的指针。
@@ -1507,7 +1426,7 @@ void OH_Drawing_DestroyTextStyle(OH_Drawing_TextStyle* style);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向{@link OH_Drawing_TextStyle}对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param color 颜色。
+ * @param color 文本颜色，使用ARGB格式，例如入参为0xFFFF0000表示不透明红色。
  * @since 8
  * @version 1.0
  */
@@ -1518,14 +1437,15 @@ void OH_Drawing_SetTextStyleColor(OH_Drawing_TextStyle* style, uint32_t color);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向{@link OH_Drawing_TextStyle}对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param fontSize 字号。
+ * @param fontSize 字号，单位为物理像素px。
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSize);
 
 /**
- * @brief 设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
+ * @brief 设置字重。在<!--RP1-->OpenHarmony 6.1<!--RP1End-->之前，仅系统字体中的可变字体支持字重调节；从<!--RP1-->OpenHarmony 6.1<!--RP1End-->开始，
+ * 系统字体与三方注册字体中的可变字体均支持字重调节。非可变字体设置字重值小于semi-bold时字体粗细无变化，设置字重值大于等于semi-bold时可能会触发伪加粗效果。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
@@ -1587,7 +1507,7 @@ void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decor
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param color 颜色。
+ * @param color 装饰线颜色，使用ARGB格式，例如入参为0xFFFF0000表示不透明红色。如果不调用该接口或者设置color为0时，装饰线颜色跟随文本颜色。
  * @since 8
  * @version 1.0
  */
@@ -1622,7 +1542,7 @@ void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle* style,
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param fontStyle 设置字体样式，设置1为斜体，设置0或其它为非斜体，具体可见{@link OH_Drawing_FontStyle}枚举。
+ * @param fontStyle 设置字体样式，设置1为斜体，设置2为倾斜字体，设置0或其它为非斜体，具体可见{@link OH_Drawing_FontStyle}枚举。
  * @since 8
  * @version 1.0
  */
@@ -1633,7 +1553,7 @@ void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param locale 语言类型，数据类型为指向char的指针，如'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。未指定时默认locale为'zh-Hans'。
+ * @param locale 语言类型，数据类型为指向char的指针。格式参考BCP 47语言标签标准，如'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。未指定时默认locale为'zh-Hans'。
  * @since 8
  * @version 1.0
  */
@@ -1807,11 +1727,11 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography(OH_Drawing_TypographyCreate* 
 void OH_Drawing_DestroyTypography(OH_Drawing_Typography* typography);
 
 /**
- * @brief 排版布局。
+ * @brief 对排版对象进行布局计算，根据指定的最大宽度对文本进行换行。调用该接口后，排版对象的各项属性才可被正确获取。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向排版对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param maxWidth 文本最大宽度。
+ * @param maxWidth 文本排版的单行最大宽度，单位为物理像素px。取值应大于0。
  * @since 8
  * @version 1.0
  */
@@ -1823,8 +1743,8 @@ void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWi
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
  * @param canvas 指向OH_Drawing_Canvas对象的指针，由{@link OH_Drawing_CanvasCreate}获取。
- * @param positionX x坐标。
- * @param positionY y坐标。
+ * @param positionX 文本绘制起始位置的水平坐标（即文本区域左上角的x坐标），单位为物理像素px。以画布左上角为坐标原点，向右为正方向。
+ * @param positionY 文本绘制起始位置的垂直坐标（即文本区域左上角的y坐标），单位为物理像素px。以画布左上角为坐标原点，向下为正方向。
  * @since 8
  * @version 1.0
  */
@@ -1832,14 +1752,15 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
     double positionX, double positionY);
 
 /**
- * @brief 沿指定路径绘制文本。建议搭配{@link OH_Drawing_SetTypographyTextMaxLines}接口设置最大行为1行，避免因文本宽度超过排版宽度出现跨行重叠问题。
+ * @brief 沿指定路径绘制文本，该接口需要在{@link OH_Drawing_TypographyLayout}接口调用并生效之后调用。建议搭配
+ * {@link OH_Drawing_SetTypographyTextMaxLines}接口设置最大行为1行，避免因文本宽度超过排版宽度出现跨行重叠问题。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
  * @param canvas 指向OH_Drawing_Canvas对象的指针，由{@link OH_Drawing_CanvasCreate}获取。
  * @param path 指向OH_Drawing_Path对象的指针，由{@link OH_Drawing_PathCreate}获取。
- * @param hOffset 水平偏移量，文本沿路径的水平偏移（X 轴），向前为正，向后为负。
- * @param vOffset 垂直偏移量，文本沿路径的垂直偏移（Y 轴），向下为正，向上为负。
+ * @param hOffset 水平偏移量，单位为物理像素px。文本沿路径的水平偏移（X 轴），向右为正，向左为负。
+ * @param vOffset 垂直偏移量，单位为物理像素px。文本沿路径的垂直偏移（Y 轴），向下为正，向上为负。
  * @since 12
  * @version 1.0
  */
@@ -1854,7 +1775,7 @@ void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Draw
  * @param fitStrRangeArr 作为出参，包含实际容纳的段落文本的字符范围。指向数组对象{@link OH_Drawing_Array}的指针。
  *     <br>通过{@link OH_Drawing_ReleaseArrayBuffer}释放内存。
  * @param fitStrRangeArrayLen 作为出参，容纳的字符串数组的大小。
- * @return 返回OH_Drawing_RectSize对象，表示段落文本的实际矩形。
+ * @return 返回布局后的实际文本尺寸，包含宽度和高度信息。
  * @since 24
  */
 OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(OH_Drawing_Typography* typography,
@@ -1896,7 +1817,7 @@ OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回最大宽度。
+ * @return 返回最大宽度，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
@@ -1907,7 +1828,7 @@ double OH_Drawing_TypographyGetMaxWidth(OH_Drawing_Typography* typography);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回高度。
+ * @return 返回高度，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
@@ -1918,7 +1839,7 @@ double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography* typography);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回最长行的宽度。
+ * @return 返回最长行的宽度，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
@@ -1929,7 +1850,7 @@ double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography* typography);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向{@link OH_Drawing_Typography}对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回最长行的宽度（该宽度包含当前行缩进的宽度），单位：物理像素px。
+ * @return 返回最长行的宽度（该宽度包含当前行缩进的宽度），单位为物理像素px。
  * @since 13
  * @version 1.1
  */
@@ -1940,7 +1861,7 @@ double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography* typo
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回最小固有宽度。
+ * @return 返回最小固有宽度，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
@@ -1951,29 +1872,29 @@ double OH_Drawing_TypographyGetMinIntrinsicWidth(OH_Drawing_Typography* typograp
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回最大固有宽度。
+ * @return 返回最大固有宽度，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
 double OH_Drawing_TypographyGetMaxIntrinsicWidth(OH_Drawing_Typography* typography);
 
 /**
- * @brief 获取排版样式字母文字基线。
+ * @brief 获取排版对象的字母基线位置，该接口需要在{@link OH_Drawing_TypographyLayout}接口调用之后调用。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回字母文字基线。
+ * @return 返回字母文字基线，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
 double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typography);
 
 /**
- * @brief 获取排版样式表意文字基线。
+ * @brief 获取排版对象的表意文字基线位置，该接口需要在{@link OH_Drawing_TypographyLayout}接口调用之后调用。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @return 返回表意文字基线。
+ * @return 返回表意文字基线，单位为物理像素px。
  * @since 9
  * @version 1.1
  */
@@ -2008,8 +1929,8 @@ bool OH_Drawing_TypographyDidExceedMaxLines(OH_Drawing_Typography* typography);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param start 设置开始位置。
- * @param end 设置结束位置。
+ * @param start 开始位置，取值范围为[0, 文本长度]，按UTF-16代码单元计数。需小于end，否则返回空。
+ * @param end 结束位置，取值范围为[0, 文本长度]，按UTF-16代码单元计数。超出文本长度时按文本长度处理；为0时返回空。
  * @param heightStyle 设置高度样式，支持可选的高度样式具体可见{@link OH_Drawing_RectHeightStyle}枚举。
  * @param widthStyle 设置宽度样式，支持可选的宽度样式具体可见{@link OH_Drawing_RectWidthStyle}枚举。
  * @return 返回指定范围内的文本框，具体可见{@link OH_Drawing_TextBox}结构体。
@@ -2037,8 +1958,8 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders(OH_Drawing_Typo
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox 指向OH_Drawing_TextBox对象的指针，由{@link OH_Drawing_TypographyGetRectsForRange}或
  *     {@link OH_Drawing_TypographyGetRectsForPlaceholders}获取。
- * @param index 文本框的索引。
- * @return 返回文本框左侧位置。
+ * @param index 文本框的索引，取值范围为[0, 文本框数量-1]，文本框数量可通过{@link OH_Drawing_GetSizeOfTextBox}获取。超出范围时返回0.0。
+ * @return 返回文本框左侧位置，单位为物理像素px。
  * @since 11
  * @version 1.0
  */
@@ -2050,8 +1971,8 @@ float OH_Drawing_GetLeftFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox 指向OH_Drawing_TextBox对象的指针，由{@link OH_Drawing_TypographyGetRectsForRange}或
  *     {@link OH_Drawing_TypographyGetRectsForPlaceholders}获取。
- * @param index 文本框的索引。
- * @return 返回文本框右侧位置。
+ * @param index 文本框的索引，取值范围为[0, 文本框数量-1]，文本框数量可通过{@link OH_Drawing_GetSizeOfTextBox}获取。超出范围时返回0.0。
+ * @return 返回文本框右侧位置，单位为物理像素px。
  * @since 11
  * @version 1.0
  */
@@ -2063,8 +1984,8 @@ float OH_Drawing_GetRightFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox 指向OH_Drawing_TextBox对象的指针，由{@link OH_Drawing_TypographyGetRectsForRange}或
  *     {@link OH_Drawing_TypographyGetRectsForPlaceholders}获取。
- * @param index 文本框的索引。
- * @return 返回文本框顶部位置。
+ * @param index 文本框的索引，取值范围为[0, 文本框数量-1]，文本框数量可通过{@link OH_Drawing_GetSizeOfTextBox}获取。超出范围时返回0.0。
+ * @return 返回文本框顶部位置，单位为物理像素px。
  * @since 11
  * @version 1.0
  */
@@ -2076,8 +1997,8 @@ float OH_Drawing_GetTopFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox 指向OH_Drawing_TextBox对象的指针，由{@link OH_Drawing_TypographyGetRectsForRange}或
  *     {@link OH_Drawing_TypographyGetRectsForPlaceholders}获取。
- * @param index 文本框的索引。
- * @return 返回文本框底部位置。
+ * @param index 文本框的索引，取值范围为[0, 文本框数量-1]，文本框数量可通过{@link OH_Drawing_GetSizeOfTextBox}获取。超出范围时返回0.0。
+ * @return 返回文本框底部位置，单位为物理像素px。
  * @since 11
  * @version 1.0
  */
@@ -2089,15 +2010,15 @@ float OH_Drawing_GetBottomFromTextBox(OH_Drawing_TextBox* textbox, int index);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textbox 指向{@link OH_Drawing_TextBox}对象的指针，由{@link OH_Drawing_TypographyGetRectsForRange}或
  *     {@link OH_Drawing_TypographyGetRectsForPlaceholders}获取。
- * @param index 文本框的索引。
- * @return 返回文本框方向。
+ * @param index 文本框的索引，取值范围为[0, 文本框数量-1]，文本框数量可通过{@link OH_Drawing_GetSizeOfTextBox}获取。超出范围时返回0。
+ * @return 返回文本框方向，1表示LTR，0表示RTL或入参异常。
  * @since 11
  * @version 1.0
  */
 int OH_Drawing_GetTextDirectionFromTextBox(OH_Drawing_TextBox* textbox, int index);
 
 /**
- * @brief 获取文本框数量大小。
+ * @brief 获取文本框的数量。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param textBox 指向OH_Drawing_TextBox对象的指针，由{@link OH_Drawing_TypographyGetRectsForRange}或
@@ -2125,12 +2046,13 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
     double dx, double dy);
 
 /**
- * @brief 获取坐标处文本所属字符簇的索引位置和亲和性，字符簇指一个或多个字符组成的整体。
+ * @brief 获取坐标处文本所属字符簇的索引位置和亲和性，字符簇指一个或多个字符组成的整体。不再需要{@link OH_Drawing_PositionAndAffinity}时，请使用
+ * {@link OH_Drawing_DestroyPositionAndAffinity}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param dx 光标的x坐标。
- * @param dy 光标的y坐标。
+ * @param dx 光标的x坐标，单位为px。
+ * @param dy 光标的y坐标，单位为px。
  * @return 返回坐标处指定类型字体的索引位置和亲和性，返回类型为{@link OH_Drawing_PositionAndAffinity}结构体。
  * @since 11
  * @version 1.0
@@ -2158,18 +2080,18 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffin
  * @param positionAndAffinity 指向OH_Drawing_PositionAndAffinity对象的指针，由
  *     {@link OH_Drawing_TypographyGetGlyphPositionAtCoordinate}或
  *     {@link OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster}获取。
- * @return 返回OH_Drawing_PositionAndAffinity对象的亲和性。
+ * @return 返回OH_Drawing_PositionAndAffinity对象的亲和性，1表示亲和后方文字，0表示亲和前方文字或入参异常。
  * @since 11
  * @version 1.0
  */
 int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity);
 
 /**
- * @brief 获取排版对象中单词的边界。
+ * @brief 获取排版对象中单词的边界。不再需要{@link OH_Drawing_Range}时，请使用{@link OH_Drawing_ReleaseRangeBuffer}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param offset 单词索引。
+ * @param offset 单词索引，取值范围为[0, n-1]，n为文本长度。超出范围时返回默认值或抛出异常。
  * @return 返回单词边界，返回类型为{@link OH_Drawing_Range}结构体。
  * @since 11
  * @version 1.0
@@ -2236,7 +2158,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param letterSpacing 间距大小。
+ * @param letterSpacing 间距大小，正值增大间距，负值减小间距，默认值为0，单位为px。
  * @since 11
  * @version 1.0
  */
@@ -2247,7 +2169,7 @@ void OH_Drawing_SetTextStyleLetterSpacing(OH_Drawing_TextStyle* style, double le
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param wordSpacing 间距大小。
+ * @param wordSpacing 间距大小，正值增大间距，负值减小间距，默认值为0，单位为px。
  * @since 11
  * @version 1.0
  */
@@ -2328,8 +2250,8 @@ void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param lineNumber 要指定的行数。
- * @return 返回指定行的行高。
+ * @param lineNumber 要获取行号的索引，从0开始，最大为{@link OH_Drawing_TypographyGetLineCount} - 1。超出范围时返回0.0。
+ * @return 返回指定行的行高，单位为物理像素px。
  * @since 11
  * @version 1.0
  */
@@ -2340,8 +2262,8 @@ double OH_Drawing_TypographyGetLineHeight(OH_Drawing_Typography* typography, int
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param lineNumber 要指定的行数。
- * @return 返回指定行的行宽。
+ * @param lineNumber 要获取行号的索引，从0开始，最大为{@link OH_Drawing_TypographyGetLineCount} - 1。超出范围时返回0.0。
+ * @return 返回指定行的行宽，单位为物理像素px。
  * @since 11
  * @version 1.0
  */
@@ -2363,7 +2285,8 @@ OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange(OH_Drawing_Typography* t
     int lineNumber, bool includeSpaces);
 
 /**
- * @brief 构造字体描述对象，用于描述系统字体详细信息。
+ * @brief 构造字体描述对象，用于描述系统字体详细信息。不再需要{@link OH_Drawing_FontDescriptor}时，请使用{@link OH_Drawing_DestroyFontDescriptor}
+ * 接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return 返回指向已创建的字体描述对象{@link OH_Drawing_FontDescriptor}的指针。
@@ -2383,7 +2306,7 @@ OH_Drawing_FontDescriptor* OH_Drawing_CreateFontDescriptor(void);
 void OH_Drawing_DestroyFontDescriptor(OH_Drawing_FontDescriptor* descriptor);
 
 /**
- * @brief 构造字体解析对象，用于解析系统字体。
+ * @brief 构造字体解析对象，用于解析系统字体。不再需要{@link OH_Drawing_FontParser}时，请使用{@link OH_Drawing_DestroyFontParser}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return 返回指向已创建的字体解析对象{@link OH_Drawing_FontParser}的指针。
@@ -2403,7 +2326,7 @@ OH_Drawing_FontParser* OH_Drawing_CreateFontParser(void);
 void OH_Drawing_DestroyFontParser(OH_Drawing_FontParser* parser);
 
 /**
- * @brief 获取系统字体名称列表，此接口仅在2in1、phone设备上可用。
+ * @brief 获取系统字体名称列表。不再需要该列表时，请使用{@link OH_Drawing_DestroySystemFontList}释放内存。此接口仅在Phone、PC/2in1设备上支持。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontParser 指向字体解析对象{@link OH_Drawing_FontParser}的指针，由{@link OH_Drawing_CreateFontParser}获取。
@@ -2426,12 +2349,12 @@ char** OH_Drawing_FontParserGetSystemFontList(OH_Drawing_FontParser* fontParser,
 void OH_Drawing_DestroySystemFontList(char** fontList, size_t num);
 
 /**
- * @brief 根据传入的系统字体名称获取系统字体的相关信息。
+ * @brief 根据传入的系统字体名称获取系统字体的相关信息。此接口仅在Phone、PC/2in1设备上支持。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontParser 指向字体解析对象{@link OH_Drawing_FontParser}的指针，由{@link OH_Drawing_CreateFontParser}获取。
- * @param name 系统字体名。
- * @return 返回系统字体描述对象，不再需要时，请使用{@link OH_Drawing_DestroyFontParser}释放该对象指针。
+ * @param name 系统字体名，有效的系统字体名称可通过{@link OH_Drawing_FontParserGetSystemFontList}接口获取。
+ * @return 返回系统字体描述对象，不再需要时，请使用{@link OH_Drawing_DestroyFontDescriptor}释放该对象指针。
  * @since 12
  * @version 1.0
  */
@@ -2471,12 +2394,12 @@ size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics* lineMetrics);
 void OH_Drawing_DestroyLineMetrics(OH_Drawing_LineMetrics* lineMetrics);
 
 /**
- * @brief 获取排版对象的指定行位置信息，具体参见{@link OH_Drawing_LineMetr}结构体，该接口需要在{@link OH_Drawing_TypographyLayout}接口调用之后调用。
+ * @brief 获取排版对象的指定行位置信息，具体参见{@link OH_Drawing_LineMetrics}结构体，该接口需要在{@link OH_Drawing_TypographyLayout}接口调用之后调用。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向文本对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param lineNumber 要获取的行数。
- * @param lineMetric 指向行位置信息对象{@link OH_Drawing_LineMetrics}的指针，由{@link OH_Drawing_LineMetrics}获取。
+ * @param lineNumber 要获取行号的索引，从0开始，最大为{@link OH_Drawing_TypographyGetLineCount} - 1。超出范围时返回false。
+ * @param lineMetric 指向行位置信息对象{@link OH_Drawing_LineMetrics}的指针，作为出参使用。
  * @return 行位置信息对象是否成功获取。true表示成功获取，false表示未成功获取。
  * @since 12
  * @version 1.0
@@ -2500,18 +2423,18 @@ void OH_Drawing_SetTypographyTextEllipsis(OH_Drawing_TypographyStyle* style, con
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param locale 语言环境，数据类型为指向char的指针，如'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。
+ * @param locale 语言环境，数据类型为指向char的指针。格式参考BCP 47语言标签标准，如'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。未指定时默认locale为'zh-Hans'。
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextLocale(OH_Drawing_TypographyStyle* style, const char* locale);
 
 /**
- * @brief 设置文本划分比率。
+ * @brief 设置文本划分比率，用于点击定位字符时，确定光标在一个字形内的归属位置。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param textSplitRatio 文本划分比率。
+ * @param textSplitRatio 文本划分比率，取值范围为[0, 1]，默认值为0.5。用于点击坐标映射到字符位置时，在一个字形内决定归到当前字符还是下一字符的划分阈值；值越大越偏向当前字符，值越小越偏向下一字符。
  * @since 12
  * @version 1.0
  */
@@ -2546,7 +2469,7 @@ int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本风格{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @return 返回文本是否有最大行数限制，true表示有最大行数限制，false表示无最大行数限制。
+ * @return 返回文本是否有最大行数限制，true表示无最大行数限制，false表示有最大行数限制。
  * @since 12
  * @version 1.0
  */
@@ -2593,9 +2516,9 @@ bool OH_Drawing_TextStyleGetFontMetrics(OH_Drawing_Typography* typography,
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向文本对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param lineNumber 行号。
+ * @param lineNumber 要获取行号的索引，从0开始，最大为{@link OH_Drawing_TypographyGetLineCount} - 1。超出范围时返回false。
  * @param oneLine true为获取整行的位置信息，false为获取第一个字符的位置信息。
- * @param includeWhitespace 文字宽度是否包含空白符。true表示不包含空白符，false表示包含空白符。
+ * @param includeWhitespace 文字宽度是否包含空白符。true表示包含空白符，false表示不包含空白符。
  * @param drawingLineMetrics 指向行位置信息对象{@link OH_Drawing_LineMetrics}的指针，由{@link OH_Drawing_LineMetrics}获取。
  * @return 指定行的行位置信息或第一个字符的位置信息是否成功获取，true表示成功获取，false表示未成功获取。
  * @since 12
@@ -2605,7 +2528,8 @@ bool OH_Drawing_TypographyGetLineInfo(OH_Drawing_Typography* typography, int lin
     bool includeWhitespace, OH_Drawing_LineMetrics* drawingLineMetrics);
 
 /**
- * @brief 设置排版样式默认字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
+ * @brief 设置排版样式默认字重。在<!--RP1-->OpenHarmony 6.1<!--RP1End-->之前，仅系统字体中的可变字体支持字重调节；从<!--RP1-->OpenHarmony 6.1<!--RP1End-->
+ * 开始，系统字体与三方注册字体中的可变字体均支持字重调节。非可变字体设置字重值小于semi-bold时字体粗细无变化，设置字重值大于等于semi-bold时可能会触发伪加粗效果。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
@@ -2620,7 +2544,7 @@ void OH_Drawing_SetTypographyTextFontWeight(OH_Drawing_TypographyStyle* style, i
  * @brief 设置排版样式默认的字体样式。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param fontStyle 设置字体样式，设置1为斜体，设置0或其它为非斜体，具体可见{@link OH_Drawing_FontStyle}枚举。
  * @since 12
  * @version 1.0
@@ -2643,18 +2567,18 @@ void OH_Drawing_SetTypographyTextFontFamily(OH_Drawing_TypographyStyle* style, c
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param fontSize 字号（大于0）。
+ * @param fontSize 字号（大于0），单位为px。
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextFontSize(OH_Drawing_TypographyStyle* style, double fontSize);
 
 /**
- * @brief 设置文本排版字体高度。
+ * @brief 设置文本排版字体高度，按当前字体大小的倍数进行设置。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param fontHeight 字体高度。
+ * @param fontHeight 字体高度, 当前字体大小的倍数。取值小于0时按0处理。
  * @since 12
  * @version 1.0
  */
@@ -2675,7 +2599,7 @@ void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, 
  * @brief 设置文本排版是否启用行样式。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param useLineStyle 设置行样式是否启用，true表示启用，false表示不启用。
  * @since 12
  * @version 1.0
@@ -2683,7 +2607,8 @@ void OH_Drawing_SetTypographyTextHalfLeading(OH_Drawing_TypographyStyle* style, 
 void OH_Drawing_SetTypographyTextUseLineStyle(OH_Drawing_TypographyStyle* style, bool useLineStyle);
 
 /**
- * @brief 设置排版样式中支柱样式的文本样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
+ * @brief 设置排版样式中支柱样式的文本样式字重。在<!--RP1-->OpenHarmony 6.1<!--RP1End-->之前，仅系统字体中的可变字体支持字重调节；从<!--RP1-->OpenHarmony 6.1<!--
+ * RP1End-->开始，系统字体与三方注册字体中的可变字体均支持字重调节。非可变字体设置字重值小于semi-bold时字体粗细无变化，设置字重值大于等于semi-bold时可能会触发伪加粗效果。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
@@ -2698,7 +2623,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle*
  * @brief 设置文本排版样式中支柱样式的字体样式。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param fontStyle 设置字体样式，设置1为斜体，设置0或其它为非斜体，具体可见{@link OH_Drawing_FontStyle}枚举。
  * @since 12
  * @version 1.0
@@ -2706,12 +2631,12 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle*
 void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle);
 
 /**
- * @brief 设置文本排版行样式字体类型。
+ * @brief 设置文本排版行样式字体家族。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param fontFamiliesNumber 字体名称数量。
- * @param fontFamilies 指向字体类型的指针。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param fontFamiliesNumber 字体名称数量，禁止填入负数。
+ * @param fontFamilies 指向字体家族类型数组的指针。
  * @since 12
  * @version 1.0
  */
@@ -2722,19 +2647,19 @@ void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyl
  * @brief 设置文本排版行样式字号。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param lineStyleFontSize 字号（大于0）。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param lineStyleFontSize 字号（大于0），单位为物理像素px。
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextLineStyleFontSize(OH_Drawing_TypographyStyle* style, double lineStyleFontSize);
 
 /**
- * @brief 设置文本排版行样式字体高度。
+ * @brief 设置文本排版行样式字体高度，按当前字体大小的倍数进行设置。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param lineStyleFontHeight 字体高度。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param lineStyleFontHeight 字体高度，取值应大于0。
  * @since 12
  * @version 1.0
  */
@@ -2744,7 +2669,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontHeight(OH_Drawing_TypographyStyle*
  * @brief 设置文本排版行样式是否为一半行间距。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param lineStyleHalfLeading 设置一半行间距是否生效。true表示生效，false表示不生效。
  * @since 12
  * @version 1.0
@@ -2755,8 +2680,8 @@ void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle
  * @brief 设置文本排版行样式间距比例。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param spacingScale 间距比例。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param spacingScale 行样式间距比例，用于缩放行间距，值大于1.0增大行间距，值小于1.0减小行间距,1.0表示原始间距。
  * @since 12
  * @version 1.0
  */
@@ -2766,7 +2691,7 @@ void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyl
  * @brief 设置文本排版是否仅启用行样式。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param lineStyleOnly 设置仅启用行样式是否生效。true表示生效，false表示不生效。
  * @since 12
  * @version 1.0
@@ -2774,60 +2699,60 @@ void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyl
 void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style, bool lineStyleOnly);
 
 /**
- * @brief 创建指向字体阴影对象的指针。不再需要{@link OH_Drawing_TextShadow}时，请使用{@link OH_Drawing_DestroyTextShadow}接口释放该对象的指针。
+ * @brief 创建指向文本阴影对象的指针。不再需要{@link OH_Drawing_TextShadow}时，请使用{@link OH_Drawing_DestroyTextShadow}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return 指向创建的字体阴影对象。
+ * @return 指向创建的文本阴影对象。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void);
 
 /**
- * @brief 释放被字体阴影对象占据的内存。
+ * @brief 释放被文本阴影对象占据的内存。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shadow 指向字体阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
+ * @param shadow 指向文本阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow);
 
 /**
- * @brief 获取字体阴影容器。不再需要{@link OH_Drawing_TextShadow}时，请使用{@link OH_Drawing_DestroyTextShadows}接口释放该对象的指针。
+ * @brief 获取文本阴影容器。不再需要{@link OH_Drawing_TextShadow}时，请使用{@link OH_Drawing_DestroyTextShadows}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @return 返回指向字体阴影容器{@link OH_Drawing_TextShadow}的指针。
+ * @return 返回指向文本阴影容器{@link OH_Drawing_TextShadow}的指针。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style);
 
 /**
- * @brief 获取字体阴影容器的大小。
+ * @brief 获取文本阴影容器的大小。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @return int 返回字体阴影容器的大小。
+ * @return 返回文本阴影容器的大小。
  * @since 12
  * @version 1.0
  */
 int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style);
 
 /**
- * @brief 字体阴影容器中添加字体阴影元素。
+ * @brief 文本阴影容器中添加文本阴影元素。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param shadow 指向字体阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
+ * @param shadow 指向文本阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow);
 
 /**
- * @brief 清除字体阴影容器中的所有元素。
+ * @brief 清除文本阴影容器中的所有元素。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
@@ -2837,12 +2762,12 @@ void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing
 void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style);
 
 /**
- * @brief 根据下标获取字体阴影容器中的元素。
+ * @brief 根据下标获取文本阴影容器中的元素。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param index 下标索引。
- * @return 返回指向字体阴影对象{@link OH_Drawing_TextShadow}的指针。
+ * @param index 下标索引，取值范围为[0, 阴影数量-1]，阴影数量可通过{@link OH_Drawing_TextStyleGetShadowCount}获取。
+ * @return 返回指向文本阴影对象{@link OH_Drawing_TextShadow}的指针。
  * @since 12
  * @version 1.0
  */
@@ -2865,18 +2790,18 @@ void OH_Drawing_TypographySetIndents(OH_Drawing_Typography* typography, int inde
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 指向文本对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
- * @param index 下标索引。
- * @return float 返回索引对应的元素值。
+ * @param index 缩进值的下标索引。index小于0时返回0.0。index大于等于缩进值数量时返回最后一个缩进值。
+ * @return 返回索引对应的元素值。
  * @since 12
  * @version 1.0
  */
 float OH_Drawing_TypographyGetIndentsWithIndex(OH_Drawing_Typography* typography, int index);
 
 /**
- * @brief 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。
+ * @brief 释放由被文本阴影对象OH_Drawing_TextShadow构成的vector占据的内存。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shadow 指向字体阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
+ * @param shadow 指向文本阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
  * @since 12
  * @version 1.0
  */
@@ -3013,7 +2938,7 @@ void OH_Drawing_TextStyleClearFontFeature(OH_Drawing_TextStyle* style);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param lineShift 文本的基线偏移。
+ * @param lineShift 文本的基线偏移量，正值向上偏移，负值向下偏移，单位为px。
  * @since 12
  * @version 1.0
  */
@@ -3024,7 +2949,7 @@ void OH_Drawing_TextStyleSetBaselineShift(OH_Drawing_TextStyle* style, double li
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @return 基线偏移的值。
+ * @return 基线偏移的值，单位为物理像素px。
  * @since 12
  * @version 1.0
  */
@@ -3086,12 +3011,12 @@ OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle(OH_Drawing_TextStyle* styl
 OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline(OH_Drawing_TextStyle* style);
 
 /**
- * @brief 获取字体类型名称列表。
+ * @brief 获取字体家族名称列表。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式对象{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
  * @param num 指向字体名称数量的指针。
- * @return 返回获取到的字体类型列表。
+ * @return 返回获取到的字体家族名称列表。
  * @since 12
  * @version 1.0
  */
@@ -3187,11 +3112,11 @@ void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style
 const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style);
 
 /**
- * @brief 设置文本排版时是否使能上标或下标。未调用此接口时，默认不使能。
+ * @brief 设置文本排版时是否启用上标或下标。未调用此接口时，默认不启用。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 表示指向{@link OH_Drawing_TextStyle}对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @param textBadgeType 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。
+ * @param textBadgeType 设置文本排版时是否启用上标或下标。TEXT_SUPERSCRIPT表示启用上标，TEXT_SUBSCRIPT表示启用下标，默认值为TEXT_BADGE_NONE表示不启用。
  * @since 20
  */
 void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType);
@@ -3213,7 +3138,7 @@ void OH_Drawing_SetTextStyleFontStyleStruct(OH_Drawing_TextStyle* drawingTextSty
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingTextStyle 指向文本样式对象{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
- * @return 返回获取到的字体样式对象，包括字体字重、字体宽度和字体斜度信息。
+ * @return 返回获取到的字体样式对象。
  * @since 12
  * @version 1.0
  */
@@ -3235,7 +3160,7 @@ void OH_Drawing_SetTypographyStyleFontStyleStruct(OH_Drawing_TypographyStyle* dr
  * @brief 获取排版样式中默认文本样式的字体样式，包括字体字重、字体宽度和字体斜度。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingStyle 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param drawingStyle 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @return 返回获取到的字体样式对象，包括字体字重、字体宽度和字体斜度信息。
  * @since 12
  * @version 1.0
@@ -3260,7 +3185,7 @@ bool OH_Drawing_TextStyleIsEqual(const OH_Drawing_TextStyle* style, const OH_Dra
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 比较的文本样式对象。
  * @param comparedStyle 比较的文本样式对象。
- * @return 返回两个文本样式对象的字体样式属性是否相等的结果。
+ * @return 返回两个文本样式对象的字体样式属性是否相等的结果。true表示字体样式属性相等，false表示不相等。
  * @since 12
  * @version 1.0
  */
@@ -3316,8 +3241,8 @@ OH_Drawing_TextAlign OH_Drawing_TypographyStyleGetEffectiveAlignment(OH_Drawing_
  * @brief 获取文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @return 返回文本是否启用字体提示。true表示启用，false表示不启用。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @return 返回文本是否启用字形轮廓自动调整。true表示启用，false表示不启用。
  * @since 12
  * @version 1.0
  */
@@ -3348,7 +3273,7 @@ void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontC
  * @brief 设置文本支柱样式。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param strutstyle 指向支柱样式对象{@link OH_Drawing_StrutStyle}的指针，由{@link OH_Drawing_TypographyStyleGetStrutStyle}获取。
  * @since 12
  * @version 1.0
@@ -3369,7 +3294,7 @@ void OH_Drawing_TypographyStyleDestroyStrutStyle(OH_Drawing_StrutStyle* strutsty
  * @brief 获取文本支柱样式。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @return 返回指向支柱样式对象{@link OH_Drawing_StrutStyle}的指针。
  * @since 12
  * @version 1.0
@@ -3391,8 +3316,8 @@ bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_
  * @brief 设置文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param hintsEnabled 是否启用字体提示。true表示启用，false表示不启用。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param hintsEnabled 是否启用字形轮廓自动调整。true表示启用，false表示不启用。
  * @since 12
  * @version 1.0
  */
@@ -3451,7 +3376,7 @@ int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typ
  * @param typography 表示指向排版对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
  * @param from 保留字段，暂未使用。
  * @param to 保留字段，暂未使用。
- * @param fontSize 表示更新后的字体大小。
+ * @param fontSize 表示更新后的字体大小，取值需大于0，单位为px。
  * @since 12
  * @version 1.0
  */
@@ -3564,10 +3489,10 @@ OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle(OH_Drawing_T
 char** OH_Drawing_TypographyTextlineStyleGetFontFamilies(OH_Drawing_TypographyStyle* style, size_t* num);
 
 /**
- * @brief 释放字体类型占用的内存。
+ * @brief 释放字体家族名称列表占用的内存。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontFamilies 表示指向字体类型的指针。
+ * @param fontFamilies 表示指向字体家族的指针。
  * @param fontFamiliesNum 字体名称的数量。
  * @since 12
  * @version 1.0
@@ -3678,17 +3603,17 @@ size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 表示指向{@link OH_Drawing_TypographyStyle}对象的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @return 返回设置的省略号文本。
+ * @return 返回设置的省略号文本，不再需要时，使用{@link OH_Drawing_TypographyDestroyEllipsis}释放文本占用内存。
  * @since 12
  * @version 1.0
  */
 char* OH_Drawing_TypographyGetTextEllipsis(OH_Drawing_TypographyStyle* style);
 
 /**
- * @brief 释放省略号名称列表占用的内存。
+ * @brief 释放省略号文本占用的内存。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param ellipsis 表示指向省略号名称列表的指针。
+ * @param ellipsis 表示指向省略号文本的指针。
  * @since 12
  * @version 1.0
  */
@@ -3717,12 +3642,12 @@ bool OH_Drawing_TypographyStyleEquals(OH_Drawing_TypographyStyle* from, OH_Drawi
 void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox);
 
 /**
- * @brief 设置字体阴影对象的参数。
+ * @brief 设置文本阴影对象的参数。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shadow 指向字体阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
- * @param color 字体阴影的颜色，例如入参为0xAABBCCDD，AA代表透明度，BB代表红色分量的值，CC代表绿色分量的值，DD代表蓝色分量的值。
- * @param offset 指向坐标点对象{@link OH_Drawing_Point}的指针，字体阴影基于当前文本的偏移位置。
+ * @param shadow 指向文本阴影对象{@link OH_Drawing_TextShadow}的指针，由{@link OH_Drawing_CreateTextShadow}获取。
+ * @param color 文本阴影的颜色，例如入参为0xAABBCCDD，AA代表透明度，BB代表红色分量的值，CC代表绿色分量的值，DD代表蓝色分量的值。
+ * @param offset 指向坐标点对象{@link OH_Drawing_Point}的指针，文本阴影基于当前文本的偏移位置。
  * @param blurRadius 模糊半径，浮点数，没有单位，值为0.0时表示没有模糊效果。
  * @since 12
  * @version 1.0
@@ -3768,7 +3693,7 @@ OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param tab 指向文本制表符对象的指针。
- * @return 返回文本制表符对象的位置。
+ * @return 返回文本制表符对象的位置，单位为物理像素px。
  * @since 18
  * @version 1.0
  */
@@ -3778,7 +3703,7 @@ float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
  * @brief 设置文本制表符对齐方式及位置。当设置了文本对齐方式或者省略号风格时制表符不生效，当制表符位置小于1.0时为替换成空格的效果。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针。
+ * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针。
  * @param tab 指向文本制表符对象的指针。
  * @since 18
  * @version 1.0
@@ -3800,9 +3725,8 @@ size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
  * @brief 设置文本排版时行尾空格是否参与对齐计算。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
- * @param trailingSpaceOptimized Boolean value indicating whether to optimize whitespace at the end of each line
- *     for text typography to set.
+ * @param style 指向文本风格对象{@link OH_Drawing_TypographyStyle}的指针。
+ * @param trailingSpaceOptimized 设置文本排版时行尾空格是否参与对齐计算。true表示行尾空格不参与计算，false表示行尾空格参与计算，默认值为false。文本居中对齐场景下推荐设置为true。
  * @since 20
  * @version 1.0
  */
@@ -3824,12 +3748,12 @@ void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* han
     size_t byteLength, OH_Drawing_TextEncoding textEncodingType);
 
 /**
- * @brief 设置文本排版时是否使能自动间距。
- * <br>默认不使能自动间距，一旦使能则会自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。
+ * @brief 设置文本排版时是否启用自动间距。
+ * <br>默认不启用自动间距，一旦启用则会自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 表示指向{@link OH_Drawing_TypographyStyle}对象的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
- * @param enableAutoSpace 设置文本排版时是否使能自动间距。true表示使能自动间距，false表示不使能自动间距，默认值为false。
+ * @param enableAutoSpace 设置文本排版时是否启用自动间距。true表示启用自动间距，false表示不启用自动间距，默认值为false。
  * @since 20
  */
 void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle* style, bool enableAutoSpace);

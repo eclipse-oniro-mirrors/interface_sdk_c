@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,19 +14,6 @@
  */
 
 /**
- * @file drawing_font_mgr.h
- *
- * @brief This file declares the functions related to font management in the drawing module. The functions can be used
- * to load fonts and match available fonts in the system.
- *
- * @kit ArkGraphics2D
- * @library libnative_drawing.so
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 12
- * @version 1.0
- */
-
-/**
  * @addtogroup Drawing
  * @{
  *
@@ -38,11 +24,27 @@
  * @since 12
  * @version 1.0
  */
+
+/**
+ * @file drawing_font_mgr.h
+ *
+ * @brief 文件中定义了与系统字体管理相关的功能函数，用于匹配与获取系统中预置的字体。OH_Drawing_FontMgr（字体管理器）管理系统中预置的字体家族，每个字体家族对应一个字体样式集
+ * {@link OH_Drawing_FontStyleSet}，每个样式集中包含多个字型对象{@link OH_Drawing_Typeface}。
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 12
+ * @version 1.0
+ */
+
 #ifndef C_INCLUDE_DRAWING_FONT_MGR_H
 #define C_INCLUDE_DRAWING_FONT_MGR_H
+
 #include "drawing_types.h"
 #include "drawing_text_typography.h"
 #include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -79,12 +81,12 @@ void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr);
 int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr);
 
 /**
- * @brief 由索引值获取字体家族名称。
+ * @brief 由索引值获取字体家族名称。不再需要返回的名称时，请使用{@link OH_Drawing_FontMgrDestroyFamilyName}释放该名称占用的内存。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingFontMgr 指向字体管理对象{@link OH_Drawing_FontMgr}的指针，由{@link OH_Drawing_FontMgrCreate}获取。
- * @param index 用于获取对应字体家族名称的索引值。
- * @return 返回索引值对应的字体家族名称，不再需要时，请使用{@link OH_Drawing_FontMgrDestroyFamilyName}释放该对象指针。
+ * @param index 用于获取对应字体家族名称的索引值，取值范围为[0, OH_Drawing_FontMgrGetFamilyCount() - 1]。
+ * @return 返回索引值对应的字体家族名称，不再需要时，请使用{@link OH_Drawing_FontMgrDestroyFamilyName}释放该名称占用的内存。
  * @since 12
  * @version 1.0
  */
@@ -101,11 +103,11 @@ char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int in
 void OH_Drawing_FontMgrDestroyFamilyName(char* familyName);
 
 /**
- * @brief 由字体管理对象构造字体样式集对象。
+ * @brief 由字体管理对象创建字体样式集对象。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingFontMgr 指向字体管理对象{@link OH_Drawing_FontMgr}的指针，由{@link OH_Drawing_FontMgrCreate}获取。
- * @param index 用于从字体管理对象获取字体样式集对象的索引值。
+ * @param index 用于从字体管理对象获取字体样式集对象的索引值，取值范围为[0, OH_Drawing_FontMgrGetFamilyCount() - 1]。
  * @return 返回指向已创建的字体样式集对象{@link OH_Drawing_FontStyleSet}的指针。
  * @since 12
  * @version 1.0
@@ -123,25 +125,26 @@ OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr
 void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontStyleSet);
 
 /**
- * @brief 由指定的字体家族名称，获取字体样式集对象。
+ * @brief 由指定的字体家族名称，获取字体样式集对象，不再需要该对象时，请使用{@link OH_Drawing_FontMgrDestroyFontStyleSet}释放该对象。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingFontMgr 指向字体管理对象{@link OH_Drawing_FontMgr}的指针，由{@link OH_Drawing_FontMgrCreate}获取。
  * @param familyName 指定的字体家族名称。
  * @return 返回对应的字体样式集对象{@link OH_Drawing_FontStyleSet}，不再需要时，请使用{@link OH_Drawing_FontMgrDestroyFontStyleSet}释放该对象指针。
+ *     如果匹配失败会返回NULL。
  * @since 12
  * @version 1.0
  */
 OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName);
 
 /**
- * @brief 根据指定的字体样式信息和字体家族名称，获取字型对象。
+ * @brief 根据指定的字体样式信息和字体家族名称，获取字型对象，不再需要该对象时，使用{@link OH_Drawing_TypefaceDestroy}释放该对象。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingFontMgr 指向字体管理对象{@link OH_Drawing_FontMgr}的指针，由{@link OH_Drawing_FontMgrCreate}获取。
  * @param familyName 指定的字体家族名称。
  * @param fontStyle 字体样式对象，包括字体字重、字体宽度和字体斜度信息。
- * @return 返回对应的字体样式的字型对象{@link OH_Drawing_Typeface}，不再需要时，请使用{@link OH_Drawing_TypefaceDestroy}释放该对象指针。
+ * @return 返回对应的字体样式的字型对象{@link OH_Drawing_Typeface}，不再需要时，请使用{@link OH_Drawing_TypefaceDestroy}释放该对象指针。如果匹配失败会返回NULL。
  * @since 12
  * @version 1.0
  */
@@ -149,16 +152,16 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* draw
     const char* familyName, OH_Drawing_FontStyleStruct fontStyle);
 
 /**
- * @brief 为指定字符获取字型对象，仅在传入字体管理对象中无法找到传入UTF8字符值对应的字型对象时返回空指针。
+ * @brief 为指定字符获取字型对象，仅在传入字体管理对象中无法找到传入UTF-8字符值对应的字型对象时返回NULL。不再需要该对象时，使用{@link OH_Drawing_TypefaceDestroy}释放该对象。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingFontMgr 指向字体管理对象{@link OH_Drawing_FontMgr}的指针，由{@link OH_Drawing_FontMgrCreate}获取。
  * @param familyName 指定的字体家族名称。
  * @param fontStyle 字体样式对象，包括字体字重、字体宽度和字体斜度信息。
  * @param bcp47 用来指示character语言编码数组，是ISO 639、15924和3166-1语言编码的组合。
- * @param bcp47Count 参数bcp47数组大小。
- * @param character 待匹配的UTF8字符值。
- * @return 返回对应的字型对象{@link OH_Drawing_Typeface}。
+ * @param bcp47Count 参数bcp47数组大小，需与bcp47数组的实际元素个数一致。
+ * @param character 待匹配的UTF-8字符值。
+ * @return 返回对应的字型对象{@link OH_Drawing_Typeface}，未匹配到字型时返回NULL。
  * @since 12
  * @version 1.0
  */
@@ -167,12 +170,12 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_Font
     const char* bcp47[], int bcp47Count, int32_t character);
 
 /**
- * @brief 为指定索引获取字型对象。
+ * @brief 为指定索引获取字型对象。不再需要该对象时，使用{@link OH_Drawing_TypefaceDestroy}释放该对象。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontStyleSet 指向字体样式集对象{@link OH_Drawing_FontStyleSet}的指针。
- * @param index 指定的字型对象的索引。
- * @return 如果成功，返回对应的字型对象{@link OH_Drawing_Typeface}; 如果失败，返回nullptr。
+ * @param index 指定的字型对象的索引，取值范围[0, OH_Drawing_FontStyleSetCount() - 1]。
+ * @return 如果成功，返回对应的字型对象{@link OH_Drawing_Typeface}; 如果失败，返回NULL。
  * @since 12
  * @version 1.0
  */
@@ -183,7 +186,7 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleS
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontStyleSet 指向字体样式集对象{@link OH_Drawing_FontStyleSet}的指针。
- * @param index 指定的字体样式的索引。
+ * @param index 指定的字体样式的索引，取值范围[0, OH_Drawing_FontStyleSetCount() - 1]。
  * @param styleName 指定字体样式名称的字符串，会申请内存，不再需要时，请使用{@link OH_Drawing_FontStyleSetFreeStyleName}释放该对象指针。
  * @return 返回对应的字体样式。
  * @since 12
@@ -203,12 +206,12 @@ OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleS
 void OH_Drawing_FontStyleSetFreeStyleName(char** styleName);
 
 /**
- * @brief 获取最接近字体样式的字型对象。
+ * @brief 获取最接近字体样式（字重、字宽和倾斜度）的字型对象。不再需要该对象时，使用{@link OH_Drawing_TypefaceDestroy}释放该对象。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontStyleSet 指向字体样式集对象{@link OH_Drawing_FontStyleSet}的指针。
  * @param fontStyleStruct 字体样式对象，包括字体字重、字体宽度和字体斜度信息。
- * @return 返回对应的字型对象{@link OH_Drawing_Typeface}。
+ * @return 返回对应的字型对象{@link OH_Drawing_Typeface}，匹配失败时返回NULL。
  * @since 12
  * @version 1.0
  */
@@ -225,9 +228,9 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* 
  * @version 1.0
  */
 int OH_Drawing_FontStyleSetCount(OH_Drawing_FontStyleSet* fontStyleSet);
+
 #ifdef __cplusplus
 }
 #endif
-
 /** @} */
 #endif
