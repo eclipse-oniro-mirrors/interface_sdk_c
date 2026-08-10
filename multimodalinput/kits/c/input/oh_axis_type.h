@@ -52,33 +52,33 @@ typedef enum InputEvent_AxisType {
      * Unknown axis type, which is usually used as the initial value.
      * @since 12
      */
-    AXIS_TYPE_UNKNOWN,
+    AXIS_TYPE_UNKNOWN = 0,
 
     /**
      * Vertical scroll axis. When you scroll the mouse wheel or slide with one or two fingers on the touchpad, the
      * status of the vertical scroll axis changes.
      * @since 12
      */
-    AXIS_TYPE_SCROLL_VERTICAL,
+    AXIS_TYPE_SCROLL_VERTICAL = 1,
 
     /**
      * Horizontal scroll axis. When you scroll the mouse wheel or slide with two fingers on the touchpad, the status of
      * the horizontal scroll axis changes.
      * @since 12
      */
-    AXIS_TYPE_SCROLL_HORIZONTAL,
+    AXIS_TYPE_SCROLL_HORIZONTAL = 2,
 
     /**
      * Pinch axis, which is used to describe a two-finger pinch gesture on the touchpad.
      * @since 12
      */
-    AXIS_TYPE_PINCH,
+    AXIS_TYPE_PINCH = 3,
 
     /**
      * Rotation axis, which is used to describe a two-finger rotation gesture on the touchpad.
      * @since 12
      */
-    AXIS_TYPE_ROTATE
+    AXIS_TYPE_ROTATE = 4
 } InputEvent_AxisType;
 
 /**
@@ -120,19 +120,19 @@ typedef enum InputEvent_AxisAction {
      * The axis event begins.
      * @since 12
      */
-    AXIS_ACTION_BEGIN,
+    AXIS_ACTION_BEGIN = 1,
 
     /**
      * The axis event is updated.
      * @since 12
      */
-    AXIS_ACTION_UPDATE,
+    AXIS_ACTION_UPDATE = 2,
 
     /**
      * The axis event ends.
      * @since 12
      */
-    AXIS_ACTION_END
+    AXIS_ACTION_END = 3
 } InputEvent_AxisAction;
 
 #ifdef __cplusplus

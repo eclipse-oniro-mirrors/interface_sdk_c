@@ -513,6 +513,7 @@ typedef enum Input_TouchEventToolType {
 /**
  * @brief Defines the callback used to return hotkey events.
  *
+ * @param hotkey Hotkey object.
  * @since 14
  */
 typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
