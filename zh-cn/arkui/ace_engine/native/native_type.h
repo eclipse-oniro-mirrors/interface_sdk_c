@@ -2264,53 +2264,53 @@ typedef enum {
  * @since 20
  */
 typedef enum {
-    /** 
-     * 设置四个方向的内容。 
+    /**
+     * 设置四个方向的内容。
      */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** 
-     * 设置左侧方向内容。 
+    /**
+     * 设置左侧方向内容。
      */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** 
-     * 设置右侧方向内容。 
-     * */
+    /**
+     * 设置右侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** 
-     * 设置上侧方向内容。 
-     * */
+    /**
+     * 设置上侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** 
-     * 设置下侧方向内容。 
-     * */
+    /**
+     * 设置下侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
- 
+
 /**
  * @brief 定义角度方向。
  *
  * @since 20
  */
 typedef enum {
-    /** 
+    /**
      * 设置四个角度方向的内容。
-     *  */
+     */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** 
-     * 设置左上侧方向内容。 
-     * */
+    /**
+     * 设置左上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** 
-     * 设置右上侧方向内容。 
-     * */
+    /**
+     * 设置右上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** 
+    /**
      * 设置左下侧方向内容。
-     *  */
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** 
-     * 设置右下侧方向容。 
-     * */
+    /**
+     * 设置右下侧方向容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
 
