@@ -84,6 +84,12 @@ typedef enum GameDevice_DeviceType {
  * @brief Defines the device information.
  *
  * @since 21
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceId} obtains the device ID from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetName} obtains the device name from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetProduct} obtains the product information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetVersion} obtains the version information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetPhysicalAddress} obtains the physical address from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceType} obtains the device type from the device information.
  */
 typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
 
@@ -91,6 +97,10 @@ typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
  * @brief Defines device status change events.
  *
  * @since 21
+ * @see {@link OH_GameDevice_DeviceEvent_GetChangedType} obtains the status change type from a device status
+ *     change event.
+ * @see {@link OH_GameDevice_DeviceEvent_GetDeviceInfo} obtains the device information from a device status
+ *     change event.
  */
 typedef struct GameDevice_DeviceEvent GameDevice_DeviceEvent;
 
@@ -124,6 +134,7 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
  * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
  *     deviceEvent** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_DestroyDeviceInfo} destroys a device information instance.
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
     const struct GameDevice_DeviceEvent* deviceEvent,

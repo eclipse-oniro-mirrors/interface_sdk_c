@@ -84,6 +84,12 @@ typedef enum GameDevice_DeviceType {
  * @brief 定义设备信息。
  *
  * @since 21
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceId} 获取设备 ID。
+ * @see {@link OH_GameDevice_DeviceInfo_GetName} 获取设备名称。
+ * @see {@link OH_GameDevice_DeviceInfo_GetProduct} 获取产品信息。
+ * @see {@link OH_GameDevice_DeviceInfo_GetVersion} 获取版本信息。
+ * @see {@link OH_GameDevice_DeviceInfo_GetPhysicalAddress} 获取物理地址。
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceType} 获取设备类型。
  */
 typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
 
@@ -91,6 +97,8 @@ typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
  * @brief 定义设备状态变化事件。
  *
  * @since 21
+ * @see {@link OH_GameDevice_DeviceEvent_GetChangedType} 获取设备状态变化类型。
+ * @see {@link OH_GameDevice_DeviceEvent_GetDeviceInfo} 获取设备信息。
  */
 typedef struct GameDevice_DeviceEvent GameDevice_DeviceEvent;
 
@@ -100,7 +108,7 @@ typedef struct GameDevice_DeviceEvent GameDevice_DeviceEvent;
  * @param deviceEvent 输入参数。设备状态变化事件{@link GameDevice_DeviceEvent}。
  * @since 21
  */
-typedef void(* GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceEvent* deviceEvent);
+typedef void (*GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceEvent* deviceEvent);
 
 /**
  * @brief 从设备状态变化事件中获取状态变化类型。
@@ -123,6 +131,7 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数deviceEvent为null，返回
  *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_DestroyDeviceInfo} 销毁设备信息实例。
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
     const struct GameDevice_DeviceEvent* deviceEvent,

@@ -46,6 +46,8 @@ extern "C" {
  * @brief Defines the result returned by {@link OH_GameDevice_GetAllDeviceInfos}.
  *
  * @since 21
+ * @see {@link OH_GameDevice_AllDeviceInfos_GetCount} obtains the number of devices.
+ * @see {@link OH_GameDevice_AllDeviceInfos_GetDeviceInfo} obtains the device information at the specified index.
  */
 typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
 
@@ -59,6 +61,7 @@ typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
  *     all device information in multimodal input fails, {@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR} is returned.
  *     </li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_DestroyAllDeviceInfos} destroys all device information instances.
  */
 GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
 
@@ -69,6 +72,7 @@ GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInf
  * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
  *     deviceMonitorCallback** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_UnregisterDeviceMonitor} unregisters the callback for device status change events.
  */
 GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
     GameDevice_DeviceMonitorCallback deviceMonitorCallback);
