@@ -993,5 +993,4 @@ ArkUI_ErrorCode OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext
 #endif
 
 #endif // ARKUI_NATIVE_DRAG_AND_DROP_H
-
 /** @} */
