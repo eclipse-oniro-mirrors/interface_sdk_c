@@ -27,11 +27,9 @@
  *
  * @brief XComponent组件的枚举类型定义。
  *
- * @sample [xcomponent_sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
- * @include <arkui/xcomponent.h>
  * @since 12
  */
 #ifndef ARKUI_XCOMPONENT_H
@@ -47,9 +45,15 @@ extern "C" {
  * @since 12
  */
 typedef enum {
-    /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。*/
+    /**
+     * 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。
+     * @since 12
+     */
     ARKUI_XCOMPONENT_TYPE_SURFACE = 0,
-    /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。*/
+    /**
+     * 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。
+     * @since 12
+     */
     ARKUI_XCOMPONENT_TYPE_TEXTURE = 2,
 } ArkUI_XComponentType;
 

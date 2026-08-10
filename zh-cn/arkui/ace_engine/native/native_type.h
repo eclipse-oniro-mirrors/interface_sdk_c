@@ -385,11 +385,9 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The custom content of EGL/OpenGL ES and media data is displayed individually on the screen. */
+    /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。 */
     ARKUI_XCOMPONENT_TYPE_SURFACE = 0,
-    /** The custom content of EGL/OpenGL ES and media data is grouped and displayed together with content
-      * of the component.
-      */
+    /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。*/
     ARKUI_XCOMPONENT_TYPE_TEXTURE = 2,
 } ArkUI_XComponentType;
 
@@ -820,13 +818,13 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Whether the component can be identified by the accessibility service is dependent on the component. */
+    /** 根据组件不同会转换为"enabled"或者"disabled"。 */
     ARKUI_ACCESSIBILITY_MODE_AUTO = 0,
-    /** The component can be identified by the accessibility service. */
+    /** 当前组件可被无障碍辅助服务所识别。*/
     ARKUI_ACCESSIBILITY_MODE_ENABLED,
-    /** The component cannot be identified by the accessibility service. */
+    /** 当前组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED,
-    /** The component and all its child components cannot be identified by the accessibility service. */
+    /** 当前组件及其所有子组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS,
 } ArkUI_AccessibilityMode;
 

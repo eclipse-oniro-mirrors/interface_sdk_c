@@ -88,7 +88,7 @@ typedef enum {
     ARKUI_NODE_PROGRESS = 10,
     /** Check box. */
     ARKUI_NODE_CHECKBOX = 11,
-    /** XComponent. */
+    /** SURFACE类型XComponent。 */
     ARKUI_NODE_XCOMPONENT = 12,
     /** 日期选择器组件。 */
     ARKUI_NODE_DATE_PICKER = 13,
@@ -104,7 +104,7 @@ typedef enum {
     ARKUI_NODE_RADIO = 18,
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
-    /** XComponent of type TEXTURE.
+    /** TEXTURE类型XComponent。
      *  @since 18
      */
     ARKUI_NODE_XCOMPONENT_TEXTURE,
@@ -150,7 +150,7 @@ typedef enum {
     /** Custom span. */
     ARKUI_NODE_CUSTOM_SPAN,
     /**
-     * EmbeddedComponent.
+     * 同应用进程嵌入式组件。
      * @since 20
      */
     ARKUI_NODE_EMBEDDED_COMPONENT,
@@ -2647,7 +2647,7 @@ typedef enum {
     NODE_INSPECTOR_LABEL = 126,
 
     /**
-     * @brief 定义无障碍的下一焦点ID，用于无障碍处理时查找下一个焦点组件。支持属性设置，属性重置和属性获取。
+     * @brief 无障碍下一焦点ID属性，支持属性设置，属性重置和属性获取。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>

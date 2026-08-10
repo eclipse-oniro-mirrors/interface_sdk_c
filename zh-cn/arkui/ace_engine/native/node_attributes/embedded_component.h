@@ -25,7 +25,9 @@
 /**
  * @file embedded_component.h
  *
- * @brief EmbeddedComponent组件相关的结构体和方法定义。
+ * @brief 声明EmbeddedComponent组件选项（ArkUI_EmbeddedComponentOption）相关的结构体和方法。\n
+ * 开发者可通过这些方法创建、销毁组件选项对象，
+ * 并为EmbeddedComponent组件设置运行异常回调（onError）和正常退出回调（onTerminated）。
  *
  * @sample [embedded_component_sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/UIExtensionAndAccessibility)
  * @library libace_ndk.z.so
@@ -54,7 +56,8 @@ extern "C" {
 typedef struct AbilityBase_Want AbilityBase_Want;
 
 /**
- * @brief 为EmbeddedComponent定义参数EmbeddedComponentOption。
+ * @brief 为EmbeddedComponent定义配置参数ArkUIS_EmbeddedComponentOption，用于创建或配置EmbeddedComponent时设置该组件的配置选项，
+ * 适用于需要在页面中嵌入并管理其他组件的嵌入式UI开发场景。
  *
  * @since 20
  */
@@ -77,7 +80,7 @@ ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create();
 void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option);
 
 /**
- * @brief 设置EmbeddedComponent组件的onError回调。
+ * @brief 设置EmbeddedComponent组件的{@link onError}回调。
  * EmbeddedComponent组件在运行过程中发生异常时触发本回调。
  *
  * @param option EmbeddedComponent组件选项的对象的指针。
@@ -91,7 +94,7 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(
     ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, const char* name, const char* message));
 
 /**
- * @brief 设置EmbeddedComponent组件的onTerminated回调。
+ * @brief 设置EmbeddedComponent组件的{@link onTerminated}回调。
  * EmbeddedComponent组件正常退出时触发本回调。
  *
  * @param option EmbeddedComponent组件选项的对象的指针。
