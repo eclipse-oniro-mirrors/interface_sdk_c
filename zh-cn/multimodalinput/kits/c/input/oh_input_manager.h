@@ -505,6 +505,7 @@ typedef enum Input_TouchEventToolType {
 /**
  * @brief 回调函数，用于回调快捷键事件。
  *
+ * @param hotkey hotkey 快捷键对象的实例。
  * @since 14
  */
 typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
