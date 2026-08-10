@@ -61,8 +61,9 @@ typedef enum {
      * 多线程UI组件相关接口类型，详见{@link native_node.h}中的{@link 结构体}类型定义。
      * @since 22
      */
-    ARKUI_MULTI_THREAD_NATIVE_NODE
+    ARKUI_MULTI_THREAD_NATIVE_NODE,
 } ArkUI_NativeAPIVariantKind;
+
 /**
  * @brief Obtains the native API set of a specified type.
  *
