@@ -1033,7 +1033,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
  * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
  * @since 20
  */
-int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen);
+int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData* unifiedData, char* key, unsigned int keyLen);
 
 /**
  * @brief Update {@link OH_UdmfData} data to database with options.
