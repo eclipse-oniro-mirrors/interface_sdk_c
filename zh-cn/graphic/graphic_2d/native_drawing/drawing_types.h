@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 8
  * @version 1.0
@@ -145,12 +147,10 @@ typedef struct OH_Drawing_ColorSpace OH_Drawing_ColorSpace;
 typedef struct {
     /**
      * x轴坐标。
-     * @since 12
      */
     float x;
     /**
      * y轴坐标。
-     * @since 12
      */
     float y;
 } OH_Drawing_Point2D;
@@ -171,17 +171,20 @@ typedef OH_Drawing_Point2D OH_Drawing_Corner_Radii;
  */
 typedef struct {
     /**
-     * x轴坐标。
+     * @brief x轴坐标。
+     *
      * @since 12
      */
     float x;
     /**
-     * y轴坐标。
+     * @brief y轴坐标。
+     *
      * @since 12
      */
     float y;
     /**
-     * z轴坐标。
+     * @brief z轴坐标。
+     *
      * @since 12
      */
     float z;
@@ -707,27 +710,32 @@ typedef struct OH_Drawing_Array OH_Drawing_Array;
  */
 typedef struct {
     /**
-     * 矩形框的颜色。
+     * @brief 矩形框的颜色。
+     *
      * @since 12
      */
     uint32_t color;
     /**
-     * 矩形框的左上半径。
+     * @brief 矩形框的左上半径。
+     *
      * @since 12
      */
     double leftTopRadius;
     /**
-     * 矩形框的右上半径。
+     * @brief 矩形框的右上半径。
+     *
      * @since 12
      */
     double rightTopRadius;
     /**
-     * 矩形框的右下半径。
+     * @brief 矩形框的右下半径。
+     *
      * @since 12
      */
     double rightBottomRadius;
     /**
-     * 矩形框的左下半径。
+     * @brief 矩形框的左下半径。
+     *
      * @since 12
      */
     double leftBottomRadius;
@@ -740,22 +748,26 @@ typedef struct {
  */
 typedef struct {
     /**
-     * 宽度，单位为像素。
+     * @brief 宽度，单位为像素。
+     *
      * @since 12
      */
     int32_t width;
     /**
-     * 高度，单位为像素。
+     * @brief 高度，单位为像素。
+     *
      * @since 12
      */
     int32_t height;
     /**
-     * 颜色类型{@link OH_Drawing_ColorFormat}。
+     * @brief 颜色类型{@link OH_Drawing_ColorFormat}。
+     *
      * @since 12
      */
     OH_Drawing_ColorFormat colorType;
     /**
-     * 透明度类型{@link OH_Drawing_AlphaFormat}。
+     * @brief 透明度类型{@link OH_Drawing_AlphaFormat}。
+     *
      * @since 12
      */
     OH_Drawing_AlphaFormat alphaType;
@@ -769,12 +781,14 @@ typedef struct {
  */
 typedef struct {
     /**
-     * 指向包含UTF-16编码的字节数组的指针。
+     * @brief 指向包含UTF-16编码的字节数组的指针。
+     *
      * @since 14
      */
     uint8_t* strData;
     /**
-     * `strData`指向的字符串的实际长度，单位为字节。
+     * @brief `strData`指向的字符串的实际长度，单位为字节。
+     *
      * @since 14
      */
     uint32_t strLen;

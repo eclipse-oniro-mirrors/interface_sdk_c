@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 12
  * @version 1.0
@@ -40,6 +42,7 @@
 #define C_INCLUDE_DRAWING_MEMORY_STREAM_H
 
 #include "drawing_types.h"
+#include "drawing_error_code.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,7 +51,7 @@ extern "C" {
 /**
  * @brief 创建一个内存流对象，用于将内存中的数据封装为流，可作为数据源供图形处理接口（如图像解码）等后续绘制接口使用。
  * 创建的内存流对象使用完毕后，需要调用
- * {@link OH_Drawing_MemoryStreamDestroy()}销毁并回收内存。
+ * {@link OH_Drawing_MemoryStreamDestroy}销毁并回收内存。
  * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
  * <br>data为NULL或者length等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
@@ -65,7 +68,7 @@ extern "C" {
 OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate(const void* data, size_t length, bool copyData);
 
 /**
- * @brief 销毁由{@link OH_Drawing_MemoryStreamCreate()}创建的内存流对象并回收该对象占用的内存。
+ * @brief 销毁由{@link OH_Drawing_MemoryStreamCreate}创建的内存流对象并回收该对象占用的内存。
  * 销毁后不应再访问内存流对象。
  *
  * @param memoryStream 指向内存流对象{@link OH_Drawing_MemoryStream}的指针。
