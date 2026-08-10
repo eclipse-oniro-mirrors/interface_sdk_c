@@ -3141,7 +3141,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(
 typedef struct ArkUI_TextLayoutManager ArkUI_TextLayoutManager;
 
 /**
- * @brief 枚举ArkUI文本布局查询接口支持的文本编码类型。
+ * @brief 文本布局查询接口支持的文本编码类型。
  *
  * @since 26.0.0
  */
@@ -3246,8 +3246,7 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate(
     ArkUI_TextLayoutManager* layoutManager, double dx, double dy, OH_Drawing_PositionAndAffinity** outPos);
 
 /**
- * @brief 获取距离指定坐标最近的字符的位置信息。与OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate的区别：
- *        此方法返回字符级别的位置信息，适用于文本编辑、光标定位等基于字符编码的场景；而GetGlyphPositionAtCoordinate返回字形级别的位置信息，适用于渲染相关的精确定位场景。
+ * @brief 根据指定编码类型，获取距离指定坐标最近的字符位置信息。
  *
  * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
  * @param dx 相对于控件的x坐标，单位为px。
@@ -3284,12 +3283,10 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(
     OH_Drawing_Range** outGlyphRange, OH_Drawing_Range** outActualCharRange);
 
 /**
- * @brief 获取由指定字符索引范围所生成的字形索引范围以及实际的字符索引范围。
- *        例如文本为"世界Hello"，其中文本"世"的字形索引范围为[0, 1]，一个汉字占三个字符，所以其对应的字符索引范围为[0, 3]。
- *        如果指定的字符索引范围是[0, 1]，但无法解析出三分之一个汉字，所以实际的字符索引范围是[0, 3]。
- *        outGlyphRange、outActualCharRange返回的{@link OH_Drawing_Range}对象在使用完成后，
- *        需通过{@link OH_Drawing_ReleaseRangeBuffer}释放。
+ * @brief 根据指定编码类型和文本字符范围，获取字形范围以及实际的字符范围。
  *
+ * @note outGlyphRange、outActualCharRange返回的{@link OH_Drawing_Range}对象在使用完成后，需通过 \n
+ *       {@link OH_Drawing_ReleaseRangeBuffer}释放。
  * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
  * @param charRange 指向{@link OH_Drawing_Range}对象的指针，表示字符索引范围。
  * @param encoding 字符索引范围使用的编码类型。
@@ -3326,13 +3323,10 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange(
     OH_Drawing_Range** outCharRange, OH_Drawing_Range** outActualGlyphRange);
 
 /**
- * @brief 获取由指定字形索引范围所生成的字符索引范围以及实际的字形索引范围。 \n
- *        例如文本为"世界Hello"，其字形索引范围为[0, 7]，一个汉字占三个字符，所以其对应的字符 \n
- *        索引范围为[0, 11]。 \n
- *        如果指定的索引范围是[0, 11]，但字形一共只有7个，所以实际的字形索引范围是[0, 7]。 \n
- *        outCharRange、outActualGlyphRange返回的{@link OH_Drawing_Range}对象在使用完成后，需通过 \n
- *        {@link OH_Drawing_ReleaseRangeBuffer}释放。
+ * @brief 根据指定编码类型和文本字形范围，获取字符范围以及实际的字形范围。
  *
+ * @note outCharRange、outActualGlyphRange返回的{@link OH_Drawing_Range}对象在使用完成后，需通过 \n
+ *       {@link OH_Drawing_ReleaseRangeBuffer}释放。
  * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
  * @param glyphRange 指向{@link OH_Drawing_Range}对象的指针，表示字形索引范围。
  * @param encoding 字符索引范围使用的编码类型。
