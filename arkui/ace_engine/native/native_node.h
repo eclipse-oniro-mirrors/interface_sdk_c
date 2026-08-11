@@ -7706,65 +7706,85 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
      * <li>.string?: depending on the shape. Optional.</li> \n
+     * <ul>
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
      * </ul>
-     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
      * There are five types:\n
-     * 1. Rectangle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[2].f32: width of the rectangle.\n
-     * .value[3].f32: height of the rectangle.\n
-     * .value[4].f32: width of the rounded corner of the rectangle.\n
-     * .value[5].f32: height of the rounded corner of the rectangle.\n
-     * 2. Circle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[2].f32: width of the circle.\n
-     * .value[3].f32: height of the circle.\n
-     * 3.Ellipse:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[2].f32: width of the ellipse.\n
-     * .value[3].f32: height of the ellipse;\n
-     * 4. Path:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
-     * .value[2].f32: width of the path.\n
-     * .value[3].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * **1. Rectangle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
+     * <li>.value[2].f32: width of the rectangle.</li>\n
+     * <li>.value[3].f32: height of the rectangle.</li>\n
+     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
+     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
+     * </ul>
+     * **2. Circle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
+     * <li>.value[2].f32: width of the circle.</li>\n
+     * <li>.value[3].f32: height of the circle.</li>\n
+     * </ul>
+     * **3.Ellipse:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
+     * <li>.value[2].f32: width of the ellipse.</li>\n
+     * <li>.value[3].f32: height of the ellipse.</li>\n
+     * </ul>
+     * **4. Path:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
+     * <li>.value[2].f32: width of the path.</li>\n
+     * <li>.value[3].f32: height of the path.</li>\n
+     * <li>.string: command for drawing the path.</li>\n
+     * <ul>
+     * </ul>
      * \n
      * **Format of the return value {@link ArkUI_AttributeItem}:**\n
      * <ul>
      * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
      * <li>.string?: depending on the shape. Optional.</li> \n
+     * <ul>
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
+     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
      * </ul>
-     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
-     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
       * There are five types:\n
-     * 1. Rectangle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[2].f32: width of the rectangle.\n
-     * .value[3].f32: height of the rectangle.\n
-     * .value[4].f32: width of the rounded corner of the rectangle.\n
-     * .value[5].f32: height of the rounded corner of the rectangle.\n
-     * 2. Circle:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[2].f32: width of the circle.\n
-     * .value[3].f32: height of the circle.\n
-     * 3.Ellipse:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[2].f32: width of the ellipse.\n
-     * .value[3].f32: height of the ellipse;\n
-     * 4. Path:\n
-     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
-     * .value[2].f32: width of the path.\n
-     * .value[3].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * **1. Rectangle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
+     * <li>.value[2].f32: width of the rectangle.</li>\n
+     * <li>.value[3].f32: height of the rectangle.</li>\n
+     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
+     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
+     * </ul>
+     * **2. Circle:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
+     * <li>.value[2].f32: width of the circle.</li>\n
+     * <li>.value[3].f32: height of the circle.</li>\n
+     * </ul>
+     * **3.Ellipse:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
+     * <li>.value[2].f32: width of the ellipse.</li>\n
+     * <li>.value[3].f32: height of the ellipse.</li>\n
+     * </ul>
+     * **4. Path:**\n
+     * <ul>
+     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
+     * <li>.value[2].f32: width of the path.</li>\n
+     * <li>.value[3].f32: height of the path.</li>\n
+     * <li>.string: command for drawing the path.</li>\n
+     * </ul>
+     * </ul>
      *
      * @ingroup Slider
      */
@@ -13756,12 +13776,14 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * <b>ArkUI_StringAsyncEvent.pStr contains two parameters</b>
+     * <b>ArkUI_StringAsyncEvent.pStr</b>
      * Name: The names of the selected checkboxes;
-     * Status:
-     * 0: All checkboxes are selected.
-     * 1: Some checkboxes are selected.
-     * 2: No checkboxes are selected. \n
+     * **Status:**
+     * <ul>
+     * <li>0: All checkboxes are selected.</li>
+     * <li>1: Some checkboxes are selected.</li>
+     * <li>2: No checkboxes are selected.</li> \n
+     * </ul>
      *
      * @ingroup CheckboxGroup
      * @since 15
