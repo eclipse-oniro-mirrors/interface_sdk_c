@@ -18,8 +18,7 @@
  * @addtogroup HuksExternalCryptoTypeApi
  * @{
  *
- * @brief Defines the macros, enumerated values, data structures,
- *    used by OpenHarmony Universal KeyStore (HUKS) APIs.
+ * @brief 定义通用密钥库（HUKS）针对外部密钥管理扩展使用的宏、枚举值和数据结构。
  *
  * @since 22
  * @version 1.0
@@ -28,12 +27,12 @@
 /**
  * @file native_huks_external_crypto_type.h
  *
- * @brief 定义面向外部密钥管理扩展的结构体与枚举类型。
+ * @brief 定义面向外部密钥管理扩展的结构体、枚举类型与宏定义。
  *
  * @library libhuks_external_crypto.z.so
  * @syscap SystemCapability.Security.Huks.CryptoExtension
  *
- *     include "huks/include/native_huks_type.h"
+ * @include <huks/native_huks_external_crypto_type.h>
  * @kit UniversalKeystoreKit
  * @since 22
  * @version 1.0
@@ -114,7 +113,7 @@ typedef struct OH_Huks_ExternalCryptoParam {
 } OH_Huks_ExternalCryptoParam;
 
 /**
- * @brief 定义外部加密参数集合的结构。
+ * @brief 定义外部加密参数集合的结构体。
  *
  * @since 22
  */
@@ -209,7 +208,7 @@ typedef enum OH_Huks_ExternalPinAuthState {
     OH_HUKS_EXT_CRYPTO_PIN_AUTH_SUCCEEDED = 1,
 
     /**
-     * @brief PIN码被锁。
+     * @brief PIN码被锁定。
      *
      * @since 22
      */

@@ -17,8 +17,7 @@
  * @addtogroup HuksTypeApi
  * @{
  *
- * @brief Defines the macros, enumerated values, data structures,
- *    and error codes used by OpenHarmony Universal KeyStore (HUKS) APIs.
+ * @brief 定义通用密钥库（HUKS）类型的头文件，声明各种宏、枚举、数据结构、错误码等。
  *
  * @since 9
  * @version 1.0
@@ -27,11 +26,12 @@
 /**
  * @file native_huks_type.h
  *
- * @brief 提供huks中的枚举变量、结构体定义与宏定义。
+ * @brief 提供通用密钥库（Universal KeyStore，HUKS）中的枚举变量、结构体定义、宏定义与错误码。
  *
  * @library libhuks_ndk.z.so
  * @syscap SystemCapability.Security.Huks.Core
  *
+ * @include <huks/native_huks_type.h>
  * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0
@@ -182,7 +182,7 @@ extern "C" {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyPurpose {
+typedef enum OH_Huks_KeyPurpose {
     /**
      * 表示密钥用于对明文进行加密操作。
      */
@@ -212,14 +212,14 @@ enum OH_Huks_KeyPurpose {
      */
     OH_HUKS_KEY_PURPOSE_UNWRAP = 64,
     /**
-     * 表示密钥用于生成mac消息验证码。
+     * 表示密钥用于生成MAC消息验证码。
      */
     OH_HUKS_KEY_PURPOSE_MAC = 128,
     /**
      * 表示密钥用于进行密钥协商。
      */
     OH_HUKS_KEY_PURPOSE_AGREE = 256,
-};
+} OH_Huks_KeyPurpose;
 
 /**
  * @brief 摘要算法类型。
@@ -227,7 +227,7 @@ enum OH_Huks_KeyPurpose {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyDigest {
+typedef enum OH_Huks_KeyDigest {
     /**
      * 无摘要算法。
      */
@@ -260,7 +260,7 @@ enum OH_Huks_KeyDigest {
      * SHA512摘要算法。
      */
     OH_HUKS_DIGEST_SHA512 = 14,
-};
+} OH_Huks_KeyDigest;
 
 /**
  * @brief 填充算法类型。
@@ -268,7 +268,7 @@ enum OH_Huks_KeyDigest {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyPadding {
+typedef enum OH_Huks_KeyPadding {
     /**
      * 不使用填充算法。
      */
@@ -293,15 +293,15 @@ enum OH_Huks_KeyPadding {
      * 使用PKCS7填充算法。
      */
     OH_HUKS_PADDING_PKCS7 = 5,
-    /** ISO IEC 9796-2
+    /** 使用ISO IEC 9796-2填充算法。
      * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9796_2 = 6,
-    /** ISO IEC 9797-1
+    /** 使用ISO IEC 9797-1填充算法。
      * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9797_1 = 7,
-};
+} OH_Huks_KeyPadding;
 
 /**
  * @brief 加密模式。
@@ -309,7 +309,7 @@ enum OH_Huks_KeyPadding {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_CipherMode {
+typedef enum OH_Huks_CipherMode {
     /**
      * 使用ECB模式。
      */
@@ -339,7 +339,7 @@ enum OH_Huks_CipherMode {
      * 使用GCM模式。
      */
     OH_HUKS_MODE_GCM = 32,
-};
+} OH_Huks_CipherMode;
 
 /**
  * @brief 算法密钥长度。
@@ -347,7 +347,7 @@ enum OH_Huks_CipherMode {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeySize {
+typedef enum OH_Huks_KeySize {
     /**
      * 使用RSA算法的密钥长度为512bit。
      */
@@ -449,7 +449,7 @@ enum OH_Huks_KeySize {
      * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_192 = 192,
-};
+} OH_Huks_KeySize;
 
 /**
  * @brief 密钥使用的算法。
@@ -457,7 +457,7 @@ enum OH_Huks_KeySize {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyAlg {
+typedef enum OH_Huks_KeyAlg {
     /**
      * 使用RSA算法。
      */
@@ -519,57 +519,61 @@ enum OH_Huks_KeyAlg {
     OH_HUKS_ALG_SM4 = 152,
 
     /**
-     *  DES.
+     * 使用DES算法。
      * @since 18
      */
     OH_HUKS_ALG_DES = 160,
     /**
-     *  3DES.
+     * 使用3DES算法。
      * @since 18
      */
     OH_HUKS_ALG_3DES = 161,
     /**
-     *  CMAC.
+     * 使用CMAC算法。
      * @since 18
      */
     OH_HUKS_ALG_CMAC = 162,
-};
+} OH_Huks_KeyAlg;
 
 /**
  * @brief 密文导入所需的算法套件类型。
+ * <br>OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING对应的密钥材料格式。
+ *  | x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
+ *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
+ *  |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
+ *  |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
+ *  |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+ *
+ * <br>OH_HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING对应的密钥材料格式。
+ *  |  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
+ *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
+ *  |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
+ *  |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
+ *  |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+ *
+ * <br>OH_HUKS_UNWRAP_SUITE_SM2_SM4_ECB_NOPADDING对应的密钥材料格式。
+ *  |      kek_SM4_enc_length     (4 Byte) |      EN_SM4_key     | importkey_enc_length (4 Byte) | importkey_enc
  *
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_AlgSuite {
+typedef enum OH_Huks_AlgSuite {
     /**
-     *  密文导入密钥材料格式（Length-Value格式）采用X25519密钥协商同时采用AES-256-GCM加解密。
-     *  | x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
-     *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    |
-     *  |   agreekey_aead_tag_len     (4 Byte) |  agreekey_aead_tag  |
-     *  |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
-     *  |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
-     *  |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+     * 密文导入密钥材料格式（Length-Value格式）采用X25519密钥协商同时采用AES-256-GCM加解密。具体材料格式见上方枚举描述。
      */
     OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING = 1,
 
     /**
-     * 密文导入密钥材料格式（Length-Value格式）采用ECDH-p256密钥协商同时采用AES-256-GCM加解密。
-     *  |  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
-     *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    |
-     *  |   agreekey_aead_tag_len     (4 Byte) | agreekey_aead_tag   |
-     *  |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
-     *  |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
-     *  |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+     * 密文导入密钥材料格式（Length-Value格式）采用ECDH-p256密钥协商同时采用AES-256-GCM加解密。具体材料格式见上方枚举描述。
      */
     OH_HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING = 2,
     /**
-     * 密文导入密钥材料格式（Length-Value格式）使用临时SM4密钥加密导入密钥，使用已导入HUKS的SM2密钥加密SM4密钥。
+     * @brief 密文导入密钥材料格式（Length-Value格式）使用临时SM4密钥加密导入密钥，使用已导入HUKS的SM2密钥加密SM4密钥。具体材料格式见上方枚举描述。
      * 
      * @since 23
      */
     OH_HUKS_UNWRAP_SUITE_SM2_SM4_ECB_NOPADDING = 5,
-};
+} OH_Huks_AlgSuite;
 
 /**
  * @brief 生成的密钥类型。
@@ -577,7 +581,7 @@ enum OH_Huks_AlgSuite {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyGenerateType {
+typedef enum OH_Huks_KeyGenerateType {
     /**
      * 默认生成的密钥。
      */
@@ -590,7 +594,7 @@ enum OH_Huks_KeyGenerateType {
      * 协商生成的密钥。
      */
     OH_HUKS_KEY_GENERATE_TYPE_AGREE = 2,
-};
+} OH_Huks_KeyGenerateType;
 
 /**
  * @brief 密钥的产生方式。
@@ -598,7 +602,7 @@ enum OH_Huks_KeyGenerateType {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyFlag {
+typedef enum OH_Huks_KeyFlag {
     /**
      * 通过导入公钥接口导入的密钥。
      */
@@ -615,7 +619,7 @@ enum OH_Huks_KeyFlag {
      * 通过生成密钥派生接口生成的密钥。
      */
     OH_HUKS_KEY_FLAG_DERIVE_KEY = 4,
-};
+} OH_Huks_KeyFlag;
 
 /**
  * @brief 密钥的存储方式。
@@ -623,7 +627,7 @@ enum OH_Huks_KeyFlag {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_KeyStorageType {
+typedef enum OH_Huks_KeyStorageType {
     /**
      * 通过接口返回给业务。
      */
@@ -640,7 +644,7 @@ enum OH_Huks_KeyStorageType {
      * 在进行密钥派生或协商时，结果密钥可以返回给业务。
      */
     OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED = 3,
-};
+} OH_Huks_KeyStorageType;
 
 /**
  * @brief 导入密钥的类型，默认为导入公钥，导入对称密钥时不需要该字段。
@@ -648,7 +652,7 @@ enum OH_Huks_KeyStorageType {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_ImportKeyType {
+typedef enum OH_Huks_ImportKeyType {
     /**
      * 导入的密钥类型为公钥。
      */
@@ -661,15 +665,15 @@ enum OH_Huks_ImportKeyType {
      * 导入的密钥类型为公私钥对。
      */
     OH_HUKS_KEY_TYPE_KEY_PAIR = 2,
-};
+} OH_Huks_ImportKeyType;
 
 /**
  * @brief PSS填充模式下盐值长度类型。
- * 
+ *
  * @since 10
  * @version 1.0
  */
-enum OH_Huks_RsaPssSaltLenType {
+typedef enum OH_Huks_RsaPssSaltLenType {
     /**
      * 以摘要长度设置盐值长度。
      */
@@ -678,7 +682,7 @@ enum OH_Huks_RsaPssSaltLenType {
      * 以最大长度设置盐值长度。
      */
     OH_HUKS_RSA_PSS_SALT_LEN_MAX = 1,
-};
+} OH_Huks_RsaPssSaltLenType;
 
 /**
  * @brief 错误码。
@@ -686,7 +690,7 @@ enum OH_Huks_RsaPssSaltLenType {
  * @since 9
  * @version 1.0
  */
-enum  OH_Huks_ErrCode {
+typedef enum OH_Huks_ErrCode {
     /**
      * 成功。
      */
@@ -784,42 +788,42 @@ enum  OH_Huks_ErrCode {
     OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018,
 
     /**
-     * 该项实体已存在
+     * 该项实体已存在。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_ITEM_EXISTS = 12000019,
 
     /**
-     * 提供者或Ukey内部执行失败。
+     * 提供者或UKey内部执行失败。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_EXTERNAL_MODULE = 12000020,
 
     /**
-     * Pin码被锁定
+     * PIN码被锁定
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_LOCKED = 12000021,
 
     /**
-     * Pin码错误。
+     * PIN码错误。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_INCORRECT = 12000022,
 
     /**
-     * Pin码未认证通过。
+     * PIN码未认证通过。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_NO_AUTH = 12000023,
 
     /**
-     * 提供者或Ukey中的资源正在被使用。
+     * 提供者或UKey中的资源正在被使用。
      *
      * @since 22
      */
@@ -831,7 +835,7 @@ enum  OH_Huks_ErrCode {
      * @since 22
      */
     OH_HUKS_ERR_CODE_EXCEED_LIMIT = 12000025,
-};
+} OH_Huks_ErrCode;
 
 /**
  * @brief 参数集中参数的类型。
@@ -841,7 +845,7 @@ enum  OH_Huks_ErrCode {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_TagType {
+typedef enum OH_Huks_TagType {
     /**
      * 非法的Tag类型。
      */
@@ -851,11 +855,11 @@ enum OH_Huks_TagType {
      */
     OH_HUKS_TAG_TYPE_INT = 1 << 28,
     /**
-     * 该Tag的数据类型为uin32_t类型。
+     * 该Tag的数据类型为uint32_t类型。
      */
     OH_HUKS_TAG_TYPE_UINT = 2 << 28,
     /**
-     * 该Tag的数据类型为uin64_t类型。
+     * 该Tag的数据类型为uint64_t类型。
      */
     OH_HUKS_TAG_TYPE_ULONG = 3 << 28,
     /**
@@ -866,7 +870,7 @@ enum OH_Huks_TagType {
      * 该Tag的数据类型为{@link OH_Huks_Blob}类型。
      */
     OH_HUKS_TAG_TYPE_BYTES = 5 << 28,
-};
+} OH_Huks_TagType;
 
 /**
  * @brief 密钥访问控制中的用户认证类型。
@@ -874,7 +878,7 @@ enum OH_Huks_TagType {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_UserAuthType {
+typedef enum OH_Huks_UserAuthType {
     /**
      * 用户认证类型为指纹。
      */
@@ -893,7 +897,7 @@ enum OH_Huks_UserAuthType {
      * @since 20
      */
     OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 << 5,
-};
+} OH_Huks_UserAuthType;
 
 /**
  * @brief 安全访问控制类型，表示密钥失效的原则。
@@ -901,7 +905,7 @@ enum OH_Huks_UserAuthType {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_AuthAccessType {
+typedef enum OH_Huks_AuthAccessType {
     /**
      * 安全访问控制类型为清除密码后密钥无效。
      */
@@ -916,14 +920,14 @@ enum OH_Huks_AuthAccessType {
      * @since 11
      */
     OH_HUKS_AUTH_ACCESS_ALWAYS_VALID = 1 << 2,
-};
+} OH_Huks_AuthAccessType;
 
 /**
  * @brief 表示生成或导入密钥时，指定该密钥的存储安全等级。
  *
  * @since 11
  */
-enum OH_Huks_AuthStorageLevel {
+typedef enum OH_Huks_AuthStorageLevel {
     /**
      * 表示密钥仅在开机后可访问。
      * @since 11
@@ -939,7 +943,7 @@ enum OH_Huks_AuthStorageLevel {
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_ECE = 2,
-};
+} OH_Huks_AuthStorageLevel;
 
 /**
  * @brief 密钥访问控制中的用户认证模式。
@@ -947,7 +951,7 @@ enum OH_Huks_AuthStorageLevel {
  * @since 12
  * @version 1.0
  */
-enum OH_Huks_UserAuthMode {
+typedef enum OH_Huks_UserAuthMode {
     /**
      * 本地认证模式。
      * @since 12
@@ -958,7 +962,7 @@ enum OH_Huks_UserAuthMode {
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_COAUTH = 1,
-};
+} OH_Huks_UserAuthMode;
 
 /**
  * @brief 密钥使用时生成challenge的类型。
@@ -968,7 +972,7 @@ enum OH_Huks_UserAuthMode {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_ChallengeType {
+typedef enum OH_Huks_ChallengeType {
     /**
      * challenge为普通类型，默认32字节。
      */
@@ -981,7 +985,7 @@ enum OH_Huks_ChallengeType {
      * 免challenge类型。
      */
     OH_HUKS_CHALLENGE_TYPE_NONE = 2,
-};
+} OH_Huks_ChallengeType;
 
 /**
  * @brief challenge类型为用户自定义类型时，生成的challenge有效长度仅为8字节连续的数据，且仅支持4种位置。
@@ -989,7 +993,7 @@ enum OH_Huks_ChallengeType {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_ChallengePosition {
+typedef enum OH_Huks_ChallengePosition {
     /**
      * 0~7字节为当前密钥的有效challenge。
      */
@@ -997,16 +1001,16 @@ enum OH_Huks_ChallengePosition {
     /**
      * 8~15字节为当前密钥的有效challenge。
      */
-    OH_HUKS_CHALLENGE_POS_1,
+    OH_HUKS_CHALLENGE_POS_1 = 1,
     /**
      * 16~23字节为当前密钥的有效challenge。
      */
-    OH_HUKS_CHALLENGE_POS_2,
+    OH_HUKS_CHALLENGE_POS_2 = 2,
     /**
      * 24~31字节为当前密钥的有效challenge。
      */
-    OH_HUKS_CHALLENGE_POS_3,
-};
+    OH_HUKS_CHALLENGE_POS_3 = 3,
+} OH_Huks_ChallengePosition;
 
 /**
  * @brief 生成或导入密钥时，指定该密钥的安全签名类型。
@@ -1014,14 +1018,13 @@ enum OH_Huks_ChallengePosition {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_SecureSignType {
+typedef enum OH_Huks_SecureSignType {
     /**
-     * 签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，
-     * 对待签名的数据添加认证信息后进行签名。
+     * 签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。
      * 注意：携带的认证信息包含身份信息，开发者需在其隐私声明中对此身份信息的使用目的、存留策略和销毁方式进行说明。
      */
     OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1,
-};
+} OH_Huks_SecureSignType;
 
 /**
  * @brief 密钥类型。
@@ -1030,13 +1033,13 @@ enum OH_Huks_SecureSignType {
  */
 typedef enum OH_Huks_KeyClassType {
     /**
-     * 默认类型，指定密钥存储在HUKS中。
+     * @brief 默认类型，指定密钥存储在HUKS中。
      *
      * @since 22
      */
     OH_HUKS_KEY_CLASS_DEFAULT = 0,
     /**
-     * 密钥存储在外部加密提供者中。
+     * @brief 密钥存储在外部加密提供者中。
      *
      * @since 22
      */
@@ -1047,14 +1050,14 @@ typedef enum OH_Huks_KeyClassType {
  * 生成或导入密钥时，指定该密钥的封装类型。
  * @since 20
  */
-enum OH_Huks_KeyWrapType {
+typedef enum OH_Huks_KeyWrapType {
     /**
      * 硬件唯一密钥的封装类型。
      *
      * @since 20
      */
     OH_HUKS_KEY_WRAP_TYPE_HUK_BASED = 2,
-};
+} OH_Huks_KeyWrapType;
 
 /**
  * @brief 参数集所用的TAG值枚举。
@@ -1069,29 +1072,29 @@ enum OH_Huks_KeyWrapType {
  * @since 9
  * @version 1.0
  */
-enum OH_Huks_Tag {
+typedef enum OH_Huks_Tag {
     /**
-     * 算法类型。
+     * 算法类型，类型可在枚举{@link OH_Huks_KeyAlg}中选择。
      */
     OH_HUKS_TAG_ALGORITHM = OH_HUKS_TAG_TYPE_UINT | 1,
     /**
-     * 密钥用途。
+     * 密钥用途，类型可在枚举{@link OH_Huks_KeyPurpose}中选择。
      */
     OH_HUKS_TAG_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 2,
     /**
-     * 密钥长度。
+     * 密钥长度，长度可在枚举{@link OH_Huks_KeySize}中选择，单位：Bit。
      */
     OH_HUKS_TAG_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 3,
     /**
-     * 摘要算法。
+     * 摘要算法，类型可在枚举{@link OH_Huks_KeyDigest}中选择。
      */
     OH_HUKS_TAG_DIGEST = OH_HUKS_TAG_TYPE_UINT | 4,
     /**
-     * 填充算法。
+     * 填充算法，类型可在枚举{@link OH_Huks_KeyPadding}中选择。
      */
     OH_HUKS_TAG_PADDING = OH_HUKS_TAG_TYPE_UINT | 5,
     /**
-     * 加密模式。
+     * 加密模式，类型可在枚举{@link OH_Huks_CipherMode}中选择。
      */
     OH_HUKS_TAG_BLOCK_MODE = OH_HUKS_TAG_TYPE_UINT | 6,
     /**
@@ -1164,7 +1167,7 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 29,
     /**
-     * RSA算法，填充模式为PSS时的盐值长度类型。
+     * RSA算法，填充模式为PSS时的盐值长度类型，类型可在枚举{@link OH_Huks_RsaPssSaltLenType}中选择。
      */
     OH_HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = OH_HUKS_TAG_TYPE_UINT | 30,
 
@@ -1181,7 +1184,7 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_NO_AUTH_REQUIRED = OH_HUKS_TAG_TYPE_BOOL | 303,
     /**
-     * 表示密钥访问控制中用户认证类型。
+     * 表示密钥访问控制中用户认证类型，类型可在枚举{@link OH_Huks_UserAuthType}中选择。
      */
     OH_HUKS_TAG_USER_AUTH_TYPE = OH_HUKS_TAG_TYPE_UINT | 304,
     /**
@@ -1205,8 +1208,7 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_CHALLENGE_TYPE = OH_HUKS_TAG_TYPE_UINT | 309,
     /**
-     * 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据的位置，
-     * 类型可在枚举{@link OH_Huks_ChallengePosition}中选择。
+     * 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据的位置，类型可在枚举{@link OH_Huks_ChallengePosition}中选择。
      */
     OH_HUKS_TAG_CHALLENGE_POS = OH_HUKS_TAG_TYPE_UINT | 310,
 
@@ -1311,8 +1313,7 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT | 1011,
     /**
-     * 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。
-     * True表示只有在密码设置时才能生成和使用密钥。
+     * 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br> true表示只有在密码设置时才能生成和使用密钥。false表示不需要设置锁屏密码即能生成和使用密钥。
      *
      * @since 11
      */
@@ -1336,7 +1337,7 @@ enum OH_Huks_Tag {
      * 非对称密钥私钥数据。
      */
     OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20003,
-};
+} OH_Huks_Tag;
 
 /**
  * @brief 表示状态返回数据，包括返回码和消息。
@@ -1344,7 +1345,7 @@ enum OH_Huks_Tag {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Result {
+typedef struct OH_Huks_Result {
     /**
      * 状态返回码，参考{@link OH_Huks_ErrCode}。
      */
@@ -1357,7 +1358,7 @@ struct OH_Huks_Result {
      * 其他返回数据。
      */
     uint8_t *data;
-};
+} OH_Huks_Result;
 
 /**
  * @brief 定义存放数据的结构体类型。
@@ -1365,7 +1366,7 @@ struct OH_Huks_Result {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Blob {
+typedef struct OH_Huks_Blob {
     /**
      * 数据大小。
      */
@@ -1374,7 +1375,7 @@ struct OH_Huks_Blob {
      * 指向数据内存的指针。
      */
     uint8_t *data;
-};
+} OH_Huks_Blob;
 
 /**
  * @brief 定义参数集中的参数结构体类型。
@@ -1382,7 +1383,7 @@ struct OH_Huks_Blob {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_Param {
+typedef struct OH_Huks_Param {
     /**
      * 标签值。
      */
@@ -1410,7 +1411,7 @@ struct OH_Huks_Param {
          */
         struct OH_Huks_Blob blob;
     };
-};
+} OH_Huks_Param;
 
 /**
  * @brief 定义参数集的结构体类型。
@@ -1418,7 +1419,7 @@ struct OH_Huks_Param {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_ParamSet {
+typedef struct OH_Huks_ParamSet {
     /**
      * 参数集的内存大小。
      */
@@ -1431,7 +1432,7 @@ struct OH_Huks_ParamSet {
      * 参数数组。
      */
     struct OH_Huks_Param params[];
-};
+} OH_Huks_ParamSet;
 
 /**
  * @brief 定义证书链的结构体类型。
@@ -1439,7 +1440,7 @@ struct OH_Huks_ParamSet {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_CertChain {
+typedef struct OH_Huks_CertChain {
     /**
      * 指向证书数据的指针。
      */
@@ -1448,7 +1449,7 @@ struct OH_Huks_CertChain {
      * 证书数量。
      */
     uint32_t certsCount;
-};
+} OH_Huks_CertChain;
 
 /**
  * @brief 定义密钥信息的结构体类型。
@@ -1456,7 +1457,7 @@ struct OH_Huks_CertChain {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_KeyInfo {
+typedef struct OH_Huks_KeyInfo {
     /**
      * 密钥认证时的别名。
      */
@@ -1465,7 +1466,7 @@ struct OH_Huks_KeyInfo {
      * 指向密钥参数集的指针。
      */
     struct OH_Huks_ParamSet *paramSet;
-};
+} OH_Huks_KeyInfo;
 
 /**
  * @brief 定义公钥信息的结构体类型。
@@ -1473,86 +1474,86 @@ struct OH_Huks_KeyInfo {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_PubKeyInfo {
+typedef struct OH_Huks_PubKeyInfo {
     /**
      * 公钥的算法类型。
      */
     enum OH_Huks_KeyAlg keyAlg;
     /**
-     * 公钥的长度。
+     * 公钥的长度，单位：Bit。
      */
     uint32_t keySize;
     /**
-     * n或X值的长度。
+     * n或X值的长度，单位：Byte。
      */
     uint32_t nOrXSize;
     /**
-     * e或Y值的长度。
+     * e或Y值的长度，单位：Byte。
      */
     uint32_t eOrYSize;
     /**
-     * 占位符大小。
+     * 占位符的大小，用于对齐内存或为未来的算法扩展提供预留空间，单位：Byte。
      */
     uint32_t placeHolder;
-};
+} OH_Huks_PubKeyInfo;
 
 /**
- * @brief 定义Rsa密钥的结构体类型。
+ * @brief 定义RSA密钥的结构体类型。
  *
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_KeyMaterialRsa {
+typedef struct OH_Huks_KeyMaterialRsa {
     /**
      * 密钥的算法类型。
      */
     enum OH_Huks_KeyAlg keyAlg;
     /**
-     * 密钥的长度。
+     * 密钥的长度，单位：Bit。
      */
     uint32_t keySize;
     /**
-     * n值的长度。
+     * n值的长度，单位：Byte。
      */
     uint32_t nSize;
     /**
-     * e值的长度。
+     * e值的长度，单位：Byte。
      */
     uint32_t eSize;
     /**
-     * d值的长度。
+     * d值的长度，单位：Byte。
      */
     uint32_t dSize;
-};
+} OH_Huks_KeyMaterialRsa;
 
 /**
- * @brief 定义Ecc密钥的结构体类型。
+ * @brief 定义ECC密钥的结构体类型。
  *
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_KeyMaterialEcc {
+typedef struct OH_Huks_KeyMaterialEcc {
     /**
      * 密钥的算法类型。
      */
     enum OH_Huks_KeyAlg keyAlg;
     /**
-     * 密钥的长度。
+     * 密钥的长度，单位：Bit。
      */
     uint32_t keySize;
     /**
-     * x值的长度。
+     * x值的长度，单位：Byte。
      */
     uint32_t xSize;
     /**
-     * y值的长度。
+     * y值的长度，单位：Byte。
      */
     uint32_t ySize;
     /**
-     * z值的长度。
+     * z值的长度，对应私钥d的数据大小，单位：Byte。
      */
     uint32_t zSize;
-};
+} OH_Huks_KeyMaterialEcc;
 
 /**
  * @brief 定义DSA密钥的结构体类型。
@@ -1560,36 +1561,36 @@ struct OH_Huks_KeyMaterialEcc {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_KeyMaterialDsa {
+typedef struct OH_Huks_KeyMaterialDsa {
     /**
      * 密钥的算法类型。
      */
     enum OH_Huks_KeyAlg keyAlg;
     /**
-     * 密钥的长度。
+     * 密钥的长度，单位：Bit。
      */
     uint32_t keySize;
     /**
-     * x值的长度。
+     * x值的长度，单位：Byte。
      */
     uint32_t xSize;
     /**
-     * y值的长度。
+     * y值的长度，单位：Byte。
      */
     uint32_t ySize;
     /**
-     * p值的长度。
+     * p值的长度，单位：Byte。
      */
     uint32_t pSize;
     /**
-     * q值的长度。
+     * q值的长度，单位：Byte。
      */
     uint32_t qSize;
     /**
-     * g值的长度。
+     * g值的长度，单位：Byte。
      */
     uint32_t gSize;
-};
+} OH_Huks_KeyMaterialDsa;
 
 /**
  * @brief 定义DH密钥的结构体类型。
@@ -1597,28 +1598,28 @@ struct OH_Huks_KeyMaterialDsa {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_KeyMaterialDh {
+typedef struct OH_Huks_KeyMaterialDh {
     /**
      * 密钥的算法类型。
      */
     enum OH_Huks_KeyAlg keyAlg;
     /**
-     * DH密钥的长度。
+     * DH密钥的长度，单位：Bit。
      */
     uint32_t keySize;
     /**
-     * 公钥的长度。
+     * 公钥的长度，单位：Byte。
      */
     uint32_t pubKeySize;
     /**
-     * 私钥的长度。
+     * 私钥的长度，单位：Byte。
      */
     uint32_t priKeySize;
     /**
-     * 保留。
+     * 保留字段。
      */
     uint32_t reserved;
-};
+} OH_Huks_KeyMaterialDh;
 
 /**
  * @brief 定义25519类型密钥的结构体类型。
@@ -1626,28 +1627,28 @@ struct OH_Huks_KeyMaterialDh {
  * @since 9
  * @version 1.0
  */
-struct OH_Huks_KeyMaterial25519 {
+typedef struct OH_Huks_KeyMaterial25519 {
     /**
      * 密钥的算法类型。
      */
     enum OH_Huks_KeyAlg keyAlg;
     /**
-     * 25519类型密钥的长度。
+     * 25519类型密钥的长度，单位：Bit。
      */
     uint32_t keySize;
     /**
-     * 公钥的长度。
+     * 公钥的长度，单位：Byte。
      */
     uint32_t pubKeySize;
     /**
-     * 私钥的长度。
+     * 私钥的长度，单位：Byte。
      */
     uint32_t priKeySize;
     /**
-     * 保留。
+     * 保留字段。
      */
     uint32_t reserved;
-};
+} OH_Huks_KeyMaterial25519;
 
 /**
  * @brief 定义密钥别名集的结构体类型。
@@ -1655,7 +1656,7 @@ struct OH_Huks_KeyMaterial25519 {
  * @since 20
  * @version 1.0
  */
-struct OH_Huks_KeyAliasSet {
+typedef struct OH_Huks_KeyAliasSet {
     /**
      * 密钥别名集个数。
      */
@@ -1664,7 +1665,7 @@ struct OH_Huks_KeyAliasSet {
      * 指向密钥别名集数据的指针。
      */
     struct OH_Huks_Blob *aliases;
-};
+} OH_Huks_KeyAliasSet;
 
 #ifdef __cplusplus
 }
