@@ -379,14 +379,14 @@ typedef enum {
 } ArkUI_ImageRepeat;
 
 /**
- * @brief Enumerates the types of the <b><XComponent></b> component.
+ * @brief 定义XComponent类枚举类型。
  *
  * @since 12
  */
 typedef enum {
     /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。 */
     ARKUI_XCOMPONENT_TYPE_SURFACE = 0,
-    /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。*/
+    /** 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。 */
     ARKUI_XCOMPONENT_TYPE_TEXTURE = 2,
 } ArkUI_XComponentType;
 
@@ -812,14 +812,14 @@ typedef enum {
 } ArkUI_SwiperAnimationMode;
 
 /**
- * @brief Enumerates the accessibility modes.
+ * @brief 定义无障碍辅助服务模式。
  *
  * @since 12
  */
 typedef enum {
     /** 根据组件不同会转换为"enabled"或者"disabled"。 */
     ARKUI_ACCESSIBILITY_MODE_AUTO = 0,
-    /** 当前组件可被无障碍辅助服务所识别。*/
+    /** 当前组件可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_ENABLED,
     /** 当前组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED,

@@ -56,7 +56,7 @@ extern "C" {
 typedef struct AbilityBase_Want AbilityBase_Want;
 
 /**
- * @brief 为EmbeddedComponent定义配置参数ArkUIS_EmbeddedComponentOption，用于创建或配置EmbeddedComponent时设置该组件的配置选项，
+ * @brief 为EmbeddedComponent定义配置参数ArkUI_EmbeddedComponentOption，用于在创建或配置EmbeddedComponent时设置该组件的配置选项，
  * 适用于需要在页面中嵌入并管理其他组件的嵌入式UI开发场景。
  *
  * @since 20
