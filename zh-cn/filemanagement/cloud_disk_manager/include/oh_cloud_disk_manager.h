@@ -36,8 +36,9 @@
 #ifndef FILEMANAGEMENT_KIT_OH_CLOUD_DISK_MANAGER_NDK_H
 #define FILEMANAGEMENT_KIT_OH_CLOUD_DISK_MANAGER_NDK_H
 
-#include <cstddef>
-#include <cstdint>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
 #include "cloud_disk_error_code.h"
 
@@ -132,6 +133,12 @@ typedef enum CloudDisk_OperationType {
      * @since 21
      */
     SYNC_FOLDER_INVALID = 5,
+    /**
+     * @brief 修改内容后关闭文件。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_CLOSE_MODIFY = 6
 } CloudDisk_OperationType;
 
 /**
@@ -439,6 +446,28 @@ typedef struct CloudDisk_SyncFolder {
 } CloudDisk_SyncFolder;
 
 /**
+ * @brief 占位符文件的元数据信息。
+ * @since 26.1.0
+ */
+typedef struct OH_CloudDisk_PlaceholderInfo {
+    /**
+     * @brief 占位符文件的逻辑大小，以字节为单位，反映云文件的实际大小。
+     * @since 26.1.0
+     */
+    uint64_t logicalSize;
+    /**
+     * @brief 占位文件的创建时间，对应文件在云端创建的实际时间。
+     * @since 26.1.0
+     */
+    uint64_t atimeMs;
+    /**
+     * @brief 占位文件的修改时间，反映云侧文件的实际修改时间。
+     * @since 26.1.0
+     */
+    uint64_t mtimeMs;
+} OH_CloudDisk_PlaceholderInfo;
+
+/**
  * @brief 应用注册一个回调函数，用于获取同步根路径下文件的变更。
  *
  * @param syncFolderPath 表示同步根路径，参考：{@link CloudDisk_PathInfo}。
@@ -567,6 +596,60 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolders(CloudDisk_SyncFolder **syncFolde
  */
 CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
+
+/**
+ * @brief 在已注册的同步文件夹中创建占位符。
+ *
+ * @param syncFolderPath 已注册同步根路径。
+ * @param relativePathInfo 同步根内相对路径。
+ * @param placeholderInfo 占位符文件元数据信息。
+ * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
+ * <br>否则返回{@link CloudDisk_ErrorCode}。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                   const CloudDisk_PathInfo relativePathInfo,
+                                                   const OH_CloudDisk_PlaceholderInfo placeholderInfo);
+
+/**
+ * @brief 检查同步根中的文件是否为占位符文件。
+ *
+ * @param syncFolderPath 已注册同步根路径。
+ * @param relativePathInfo 同步根内相对路径。
+ * @param isPlaceholder 输出参数。仅当返回值为{@link CLOUD_DISK_OK}时有效。
+ * 如果文件是占位符文件，则返回true；否则返回false。错误时设置为false。
+ * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
+ * <br>否则返回{@link CloudDisk_ErrorCode}。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_IsPlaceholderFile(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                   const CloudDisk_PathInfo relativePathInfo,
+                                                   bool *isPlaceholder);
+
+/**
+ * @brief 将占位符文件转换为0字节普通文件。
+ *
+ * @param syncFolderPath 已注册同步根路径。
+ * @param relativePathInfo 同步根内相对路径。
+ * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
+ * <br>否则返回{@link CloudDisk_ErrorCode}。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_ConvertPlaceholderToFile(const CloudDisk_SyncFolderPath syncFolderPath,
+    const CloudDisk_PathInfo relativePathInfo);
+
+/**
+ * @brief 更新文件元数据（支持占位符和普通文件）。
+ *
+ * @param syncFolderPath 已注册同步根路径。
+ * @param relativePathInfo 同步根内相对路径。
+ * @param placeholderInfo 占位符文件元数据信息。
+ * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
+ * <br>否则返回{@link CloudDisk_ErrorCode}。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
+    const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo);
 #ifdef __cplusplus
 };
 #endif
