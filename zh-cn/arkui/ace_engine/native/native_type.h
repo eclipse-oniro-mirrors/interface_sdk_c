@@ -2232,13 +2232,13 @@ typedef enum {
  * @since 15
  */
 typedef enum {
-    /** 
+    /**
      * 不展开。
-    */
+     */
     ARKUI_NOT_EXPAND = 0,
-    /** 
-     * 展开。 
-    */
+    /**
+     * 展开。
+     */
     ARKUI_EXPAND = 1,
     /**
      * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考 {@link LazyForEach：数据懒加载}。
