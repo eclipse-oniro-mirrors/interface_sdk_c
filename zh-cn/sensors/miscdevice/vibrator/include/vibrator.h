@@ -1,0 +1,84 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @addtogroup Vibrator
+ * @{
+ *
+ * @brief Provides APIs for vibrator services to access the vibrator driver.
+ * @since 11
+ */
+
+/**
+ * @file vibrator.h
+ * @brief 为您提供标准的开放API，用于控制马达振动的启停。支持简单持续振动和自定义振动序列两种模式。适用于闹钟、通知提醒、游戏反馈等场景，帮助开发者实现精准的振动控制，提升用户交互体验。
+ *
+ * @kit SensorServiceKit
+ * @library libohvibrator.z.so
+ * @syscap SystemCapability.Sensors.MiscDevice
+ * @since 11
+ */
+
+#ifndef VIBRATOR_H
+#define VIBRATOR_H
+
+#include "vibrator_type.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * @brief 控制马达在指定时间内持续振动。调用成功后，马达立即开始振动，持续指定时间后自动停止。适用于需要固定时长振动的场景，如闹钟、计时提醒、游戏反馈、消息提醒等。
+ *
+ * @param duration 振动时长，单位：毫秒。用于控制马达振动的持续时间。取值范围[1, 60000]。
+ * @param attribute 振动属性，用于配置振动的强度、模式等特性。请参考{@link Vibrator_Attribute}。
+ * @return 如果操作成功，则返回0；否则返回 {@link Vibrator_ErrorCode} 中的错误码。
+ * @permission ohos.permission.VIBRATE
+ *
+ * @since 11
+ */
+int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute);
+
+/**
+ * @brief 播放自定义振动序列。调用成功后，系统按照自定义振动序列的配置播放振动效果。适用于通知提醒、游戏、触觉反馈等需要复杂振动模式的场景，帮助实现个性化振动体验，增强用户沉浸感。
+ *
+ * @param fileDescription 自定义振动效果文件描述符，用于指定包含振动序列数据的文件位置和范围。通过设置文件句柄、偏移地址和长度，可以播放自定义的振动效果。详细信息请参阅
+ *     {@link Vibrator_FileDescription}。
+ * @param vibrateAttribute 振动属性，用于控制自定义振动效果的强度、频率等特性。请参阅 {@link Vibrator_Attribute}。
+ * @return 如果操作成功，则返回0；否则返回 {@link Vibrator_ErrorCode} 中的错误码。常见错误码包括：参数错误时请检查fileDescription和vibrateAttribute参数是否合法；
+ *     设备不支持振动功能时请检查设备能力。详细错误码说明请参考 {@link Vibrator_ErrorCode}。
+ * @permission ohos.permission.VIBRATE
+ *
+ * @since 11
+ */
+int32_t OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription,
+    Vibrator_Attribute vibrateAttribute);
+
+/**
+ * @brief 停止马达振动。调用成功后，立即停止当前正在进行的持续振动或自定义振动序列播放。适用于需要立即结束振动的场景，如用户取消操作、应用切换或系统通知消除，帮助优化用户体验和设备功耗。
+ *
+ * @permission ohos.permission.VIBRATE
+ * @return 如果操作成功，则返回0；否则返回 {@link Vibrator_ErrorCode} 中的错误码。有关错误码的可能原因和解决措施，请参考下方错误码表。
+ * @permission ohos.permission.VIBRATE
+ *
+ * @since 11
+ */
+int32_t OH_Vibrator_Cancel();
+#ifdef __cplusplus
+}
+#endif
+/** @} */
+#endif // endif VIBRATOR_H
