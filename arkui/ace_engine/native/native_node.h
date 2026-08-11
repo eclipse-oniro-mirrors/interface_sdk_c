@@ -14405,114 +14405,6 @@ typedef enum {
     NODE_LIST_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
     /**
-     * @brief Defines the event triggered when a child component enters or leaves the ArcList display area.
-     *
-     * Conditions for triggering the event:\n
-     * This event is triggered once when the list is initialized and when the index value of the first or last child
-     * component in the ArcList display area changes.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} contains 3 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index value of the first child component in the ArcList display area.\n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index value of the last child component in the ArcList display area.\n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index value of the child component in the middle position of the
-     * ArcList display area.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
-
-    /**
-     * @brief Defines the event triggered when the ArcList component reaches the start position.
-     *
-     * Conditions for triggering the event:\n
-     * 1. This event is triggered when the component reaches the start position.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_REACH_START = 1019001,
-
-    /**
-     * @brief Defines the event triggered when the ArcList component reaches the end position.
-     *
-     * Conditions for triggering the event:\n
-     * 1. This event is triggered when the component reaches the end position.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_REACH_END = 1019002,
-
-    /**
-     * @brief Defines the event triggered when the ArcList component starts scrolling.
-     *
-     * Conditions for triggering the event:\n
-     * 1. This event is triggered when the scrolling component starts scrolling.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_SCROLL_START = 1019003,
-
-    /**
-     * @brief Defines the event triggered when the ArcList component stops scrolling.
-     *
-     * Conditions for triggering the event:\n
-     * 1. This event is triggered when the scrolling component triggers scrolling and then stops.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_SCROLL_STOP = 1019004,
-
-    /**
-     * @brief Defines the event triggered before the ArcList component scrolls.
-     *
-     * Conditions for triggering the event:\n
-     * 1. This event is triggered when the scrolling component triggers scrolling.\n
-     * 2. Called through the scroll controller API.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} contains 3 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: distance of this scrolling. The offset is positive when the
-     * content scrolls up and is negative when the content scrolls down. Unit: vp.\n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is {@link
-     * ArkUI_ScrollState}.\n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: current scroll source. The parameter type is
-     * {@link ArkUI_ScrollSource}.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_WILL_SCROLL = 1019005,
-
-    /**
-     * @brief Defines the event triggered when the ArcList component scrolls.
-     *
-     * Conditions for triggering the event:\n
-     * 1. This event is triggered when the scrolling component triggers scrolling.\n
-     * 2. Called through the scroll controller API.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} contains 2 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: distance of each frame scrolling. The offset is positive when the
-     * content scrolls up and is negative when the content scrolls down. Unit: vp.\n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is {@link
-     * ArkUI_ScrollState}.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_DID_SCROLL = 1019006,
-
-    /**
      * @brief Event triggered when the refresh state of the **ARKUI_NODE_REFRESH** object changes. When the event
      * callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}.
      * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
@@ -14833,6 +14725,114 @@ typedef enum {
       * @since 23
       */
     NODE_PICKER_EVENT_ON_SCROLL_STOP = 1018001,
+
+    /**
+     * @brief Defines the event triggered when a child component enters or leaves the ArcList display area.
+     *
+     * Conditions for triggering the event:\n
+     * This event is triggered once when the list is initialized and when the index value of the first or last child
+     * component in the ArcList display area changes.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} contains 3 parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index value of the first child component in the ArcList display area.\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index value of the last child component in the ArcList display area.\n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index value of the child component in the middle position of the
+     * ArcList display area.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
+
+    /**
+     * @brief Defines the event triggered when the ArcList component reaches the start position.
+     *
+     * Conditions for triggering the event:\n
+     * 1. This event is triggered when the component reaches the start position.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_REACH_START = 1019001,
+
+    /**
+     * @brief Defines the event triggered when the ArcList component reaches the end position.
+     *
+     * Conditions for triggering the event:\n
+     * 1. This event is triggered when the component reaches the end position.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_REACH_END = 1019002,
+
+    /**
+     * @brief Defines the event triggered when the ArcList component starts scrolling.
+     *
+     * Conditions for triggering the event:\n
+     * 1. This event is triggered when the scrolling component starts scrolling.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_SCROLL_START = 1019003,
+
+    /**
+     * @brief Defines the event triggered when the ArcList component stops scrolling.
+     *
+     * Conditions for triggering the event:\n
+     * 1. This event is triggered when the scrolling component triggers scrolling and then stops.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_SCROLL_STOP = 1019004,
+
+    /**
+     * @brief Defines the event triggered before the ArcList component scrolls.
+     *
+     * Conditions for triggering the event:\n
+     * 1. This event is triggered when the scrolling component triggers scrolling.\n
+     * 2. Called through the scroll controller API.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} contains 3 parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: distance of this scrolling. The offset is positive when the
+     * content scrolls up and is negative when the content scrolls down. Unit: vp.\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is {@link
+     * ArkUI_ScrollState}.\n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_WILL_SCROLL = 1019005,
+
+    /**
+     * @brief Defines the event triggered when the ArcList component scrolls.
+     *
+     * Conditions for triggering the event:\n
+     * 1. This event is triggered when the scrolling component triggers scrolling.\n
+     * 2. Called through the scroll controller API.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} contains 2 parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: distance of each frame scrolling. The offset is positive when the
+     * content scrolls up and is negative when the content scrolls down. Unit: vp.\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is {@link
+     * ArkUI_ScrollState}.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_DID_SCROLL = 1019006,
 } ArkUI_NodeEventType;
 
 /**
