@@ -11964,12 +11964,16 @@ typedef enum {
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
-    /**
+/**
      * @brief Sets the total number of visible items.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
      * .value[0].i32: number of visible items. \n
+     * Valid input range: <b>[2, 9]</b>. Default count: <b>7</b>. For a valid even value in <b>[2, 9]</b>, the stored
+     * count is the next odd number, capped at <b>9</b>. If the value is outside <b>[2, 9]</b>,
+     * or the attribute item has no numeric entry (<b>size</b> is <b>0</b>), {@code setAttribute}
+     * returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} and the visible item count is set to the default <b>7</b>.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: number of visible items. \n
@@ -11984,6 +11988,9 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
      * .value[0].f32: the height of each item, in vp. \n
+     * Valid input range: <b>[40, 64]</b> vp. Default height: <b>40</b> vp. If the value is outside <b>[40, 64]</b>,
+     * or the attribute item has no numeric entry (<b>size</b> is <b>0</b>), {@code setAttribute} returns
+     * {@link ARKUI_ERROR_CODE_PARAM_INVALID} and the item height is set to the default <b>40</b> vp.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: the height of each item, in vp. \n
@@ -13037,10 +13044,13 @@ typedef enum {
      * This event is triggered when an error occurs during image loading. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>error code:\n
-     * 401: The image could not be obtained because the image path is invalid. \n
-     * 103101: The image format is not supported. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: error code.<br><b>401</b>: The image could not be obtained because
+     * the image path is invalid.<br><b>103101</b>: The image format is not supported.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_ERROR,
     /**
@@ -13050,17 +13060,23 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_SVG_PLAY_FINISH,
     /**
-     * @brief Defines image download process event.
+     * @brief Defines the image download progress event.
      *
      * This event is triggered when downloading webpage images from page components.\n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].u32</b>: the num of bytes downloaded. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].u32</b>: the total number of bytes to download. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].u32: number of bytes downloaded.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].u32: total number of bytes to download.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
@@ -13765,49 +13781,54 @@ typedef enum {
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
 
     /**
-     * @brief Defines the event callback function triggered when the animation starts to play.
+     * @brief Defines the event triggered when the animation starts to play.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_START = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_ANIMATOR,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is paused.
+     * @brief Defines the event triggered when the animation playback is paused.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE = 19001,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is repeated.
+     * @brief Defines the event triggered when the animation playback is repeated.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_REPEAT = 19002,
     /**
-     * @brief Defines the event callback function when the animation playback returns to the initial state.
+     * @brief Defines the event triggered when the animation playback returns to the initial state.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_CANCEL = 19003,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is complete or stopped.
+     * @brief Defines the event triggered when the animation playback is complete or stopped.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
     
     /**
