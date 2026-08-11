@@ -2239,7 +2239,7 @@ typedef enum {
      */
     ARKUI_EXPAND = 1,
     /**
-     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考 {@link LazyForEach：数据懒加载}。
+     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考{@link LazyForEach：数据懒加载}。
      */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
@@ -4599,7 +4599,7 @@ const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief 销毁{@link ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
+ * @brief 销毁{@link OH_ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
  *
  * @param handle 要销毁的{@link ArkUI_ActiveChildrenInfo}实例。
  * @since 14
@@ -4607,7 +4607,7 @@ void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
+ * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
  *
  * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
  * @param index 子节点的下标。
