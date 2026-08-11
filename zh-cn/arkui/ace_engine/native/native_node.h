@@ -1768,7 +1768,8 @@ typedef enum {
       * The id can be changed and the binding relationship re-established.
       * The same ID can only be bound to two components and they are in/out roles of different types.
       * Multiple components cannot be bound to the same id. \n
-     * @ingroup Animate [动效属性]
+      * 
+      * @ingroup Animate [动效属性]
       */
     NODE_GEOMETRY_TRANSITION,
 
@@ -3873,7 +3874,6 @@ typedef enum {
      * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_SPAN,
-
     /**
      * @brief 图片基于文本的对齐方式属性，支持属性设置、属性重置和属性获取接口。
      *
@@ -3890,7 +3890,6 @@ typedef enum {
      * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT,
-
     /**
      * @brief imageSpan组件占位图地址属性，支持属性设置、属性重置和属性获取接口。
      *
@@ -3910,7 +3909,6 @@ typedef enum {
      * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_ALT,
-
     /**
      * @brief imageSpan组件的基线偏移量属性，支持属性设置、属性重置和属性获取接口。偏移量数值为正数时向上偏移，负数时向下偏移，默认值0，单位为fp。 \n
      * 适用于图文混排时调整图片与文本的相对位置，实现精确的排版对齐效果。
@@ -3994,7 +3992,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
-
     /**
      * @brief Defines how the image is resized to fit its container.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4014,7 +4011,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_FIT,
-
     /**
      * @brief Defines the interpolation effect of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4034,7 +4030,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_INTERPOLATION,
-
     /**
      * @brief Defines how the image is repeated.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4052,7 +4047,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_REPEAT,
-
     /**
      * @brief Defines the color filter of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4074,7 +4068,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_COLOR_FILTER,
-
     /**
      * @brief Defines the auto resize attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -4091,7 +4084,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_AUTO_RESIZE,
-
     /**
      * @brief Defines the placeholder image source.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4111,7 +4103,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_ALT,
-
     /**
      * @brief Defines whether the image is draggable.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4129,7 +4120,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_DRAGGABLE,
-
     /**
      * @brief Defines the image rendering mode. This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4146,7 +4136,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_RENDER_MODE,
-
     /**
      * @brief Defines whether the image display size follows the image source size.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4164,7 +4153,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_FIT_ORIGINAL_SIZE,
-
     /**
      * @brief Defines the fill color of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4184,10 +4172,23 @@ typedef enum {
     NODE_IMAGE_FILL_COLOR,
 
     /**
-     * @brief 图片拉伸时，支持通过设置边框大小或者使用矩阵方格对象调整其大小，1）设置边框大小可以设置left/top/right/bottom宽度，2）设置矩阵方格对象：该对象是通过图形侧的接口创建，并将对象地址传入。
-     * 接口调用时需要保证设置和获取的参数类型是相同的。
+     * @brief Resize the image when stretching it with array or a lattice object.
+     * The parameter types for setting and getting should be the same.
      *
-     * @ingroup Image [图片]
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: width of the left edge. The unit is vp. \n
+     * .value[1].f32: width of the top edge. The unit is vp. \n
+     * .value[2].f32: width of the right edge. The unit is vp. \n
+     * .value[3].f32: width of the bottom edge. The unit is vp. \n
+     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: width of the left edge. The unit is vp. \n
+     * .value[1].f32: width of the top edge. The unit is vp. \n
+     * .value[2].f32: width of the right edge. The unit is vp. \n
+     * .value[3].f32: width of the bottom edge. The unit is vp. \n
+     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
+     *
      */
     NODE_IMAGE_RESIZABLE,
 
@@ -14427,11 +14428,16 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_N
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32_t id);
-
 /**
- * @brief ArkUI提供的Native侧Node类型接口集合。
+ * @brief Declares a collection of native node APIs provided by ArkUI.
  *
- * Node模块相关接口需要在主线程上调用。
+ * The APIs related to the native node must be called in the main thread.
+ *
+ * @version 1
+ * @since 12
+ */
+/**
+ * @brief ArkUI提供的Native侧Node类型接口集合。Node模块相关接口需要在主线程上调用。
  *
  * @version 1
  * @since 12
@@ -14603,12 +14609,9 @@ typedef struct {
     void (*unregisterNodeEvent)(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
 
     /**
-     * @brief 注册事件回调统一入口函数。
-     *
-     * ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventReceiver函数回调给开发者。\n
-     * 重复调用时会覆盖前一次注册的函数。\n
-     * 避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。\n
-     * 如果需要和组件实例绑定，可以使用addNodeEventReceiver函数接口。\n
+     * @brief 注册事件回调统一入口函数。ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventReceiver函数回调给开发者。
+     * <br>重复调用时会覆盖前一次注册的函数。 避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。
+     * <br>如果需要和组件实例绑定，可以使用addNodeEventReceiver函数接口。
      *
      * @param eventReceiver 事件回调统一入口函数。
      * @since 12
@@ -14623,9 +14626,7 @@ typedef struct {
     void (*unregisterNodeEventReceiver)();
 
     /**
-     * @brief 强制标记当前节点，使其重新执行测量、布局或者绘制的区域。
-     *
-     * 系统属性设置更新场景下，ArkUI框架会自动标记节点并重新执行测量，布局或者绘制，不需要开发者主动调用该函数。
+     * @brief 强制标记当前节点，使其重新执行测量、布局或者绘制的区域。系统属性设置更新场景下，ArkUI框架会自动标记节点并重新执行测量，布局或者绘制，不需要开发者主动调用该函数。
      *
      * @param node 需要标记重新执行测量、布局或者绘制的节点对象。
      * @param dirtyFlag 重新执行测量、布局或者绘制的类型。
@@ -14689,7 +14690,7 @@ typedef struct {
     ArkUI_NodeHandle (*getNextSibling)(ArkUI_NodeHandle node);
 
     /**
-     * @brief 注册自定义节点事件函数。事件触发时通过registerNodeCustomEventReceiver注册的自定义事件入口函数返回。
+     * @brief 注册自定义节点事件函数。事件触发时通过注册的自定义事件入口函数返回。
      *
      * @param node 需要注册事件的节点对象。
      * @param eventType 需要注册的事件类型。
@@ -14714,12 +14715,10 @@ typedef struct {
     void (*unregisterNodeCustomEvent)(ArkUI_NodeHandle node, ArkUI_NodeCustomEventType eventType);
 
     /**
-     * @brief 注册自定义节点事件回调统一入口函数。
-     *
-     * ArkUI框架会统一收集过程中产生的自定义组件事件并通过注册的registerNodeCustomEventReceiver函数回调给开发者。\n
-     * 重复调用时会覆盖前一次注册的函数。\n
-     * 避免直接保存{@link ArkUI_NodeCustomEvent}对象指针，数据会在回调结束后销毁。\n
-     * 如果需要和组件实例绑定，可以使用addNodeCustomEventReceiver函数接口。\n
+     * @brief 注册自定义节点事件回调统一入口函数。ArkUI框架会统一收集过程中产生的自定义组件事件并通过注册的函数回调给开发者。
+     * <br>重复调用时会覆盖前一次注册的函数。
+     * <br>避免直接保存{@link ArkUI_NodeCustomEvent}对象指针，数据会在回调结束后销毁。
+     * <br>如果需要和组件实例绑定，可以使用addNodeCustomEventReceiver函数接口。
      *
      * @param eventReceiver 事件回调统一入口函数。
      * @since 12
@@ -14728,6 +14727,7 @@ typedef struct {
 
     /**
      * @brief 反注册自定义节点事件回调统一入口函数。
+     * 
      * @since 12
      *
      */
@@ -14747,7 +14747,7 @@ typedef struct {
     int32_t (*setMeasuredSize)(ArkUI_NodeHandle node, int32_t width, int32_t height);
 
     /**
-     * @brief 在布局回调函数中设置组件的位置。该接口优先级低于{@link ArkUI_NodeAttributeType}中的NODE_POSITION。
+     * @brief 在布局回调函数中设置组件的位置。该接口优先级低于ArkUI_NodeAttributeType中的@{link NODE_POSITION}。
      *
      * @param node 目标节点对象。
      * @param positionX x轴坐标。
@@ -14803,14 +14803,12 @@ typedef struct {
     int32_t (*layoutNode)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
 
     /**
-     * @brief 在组件上添加组件事件回调函数，用于接收该组件产生的组件事件。
-     *
-     * 不同于registerNodeEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。\n
-     * 该函数添加的监听回调函数触发时机会先于registerNodeEventReceiver注册的全局回调函数。\n
-     * 避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。\n
+     * @brief 在组件上添加组件事件回调函数，用于接收该组件产生的组件事件。不同于registerNodeEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。
+     * <br>该函数添加的监听回调函数触发时机会先于registerNodeEventReceiver注册的全局回调函数。
+     * <br>避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。
      *
      * @param node 用于添加组件事件回调函数的对象。
-     * @param eventReceiver 组件事件回调函数。
+     * @param eventReceiver 待添加的组件事件回调函数。
      * @return 错误码。
      *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
      *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -14831,11 +14829,9 @@ typedef struct {
     int32_t (*removeNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
     /**
-     * @brief 在组件上添加自定义事件回调函数，用于接收该组件产生的自定义事件（如布局事件，绘制事件）。
-     *
-     * 不同于registerNodeCustomEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。\n
-     * 该函数添加的监听回调函数触发时机会先于registerNodeCustomEventReceiver注册的全局回调函数。\n
-     * 避免直接保存ArkUI_NodeCustomEvent对象指针，数据会在回调结束后销毁。\n
+     * @brief 在组件上添加自定义事件回调函数，用于接收该组件产生的自定义事件（如布局事件，绘制事件）。不同于registerNodeCustomEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。
+     * <br>该函数添加的监听回调函数触发时机会先于registerNodeCustomEventReceiver注册的全局回调函数。
+     * <br>避免直接保存ArkUI_NodeCustomEvent对象指针，数据会在回调结束后销毁。
      *
      * @param node 用于添加组件自定义事件回调函数的对象。
      * @param eventReceiver 组件自定义事件回调函数。
@@ -14893,23 +14889,23 @@ typedef struct {
     int32_t (*setLengthMetricUnit)(ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit);
 
     /**
-     * @brief 获取父节点。
-     *
-     * @param node 目标节点对象。
-     * @return 返回组件的指针，如果没有返回NULL。
-     * @since 12
-     */
+      * @brief 获取父节点。
+      *
+      * @param node 目标节点对象。
+      * @return 返回组件的指针，如果没有返回NULL。
+      * @since 12
+      */
     ArkUI_NodeHandle (*getParent)(ArkUI_NodeHandle node);
 
     /**
-     * @brief 从父组件上卸载所有子节点。
-     *
-     * @param parent 目标节点对象。
-     * @return 错误码。
-     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
-     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
-     * @since 12
-     */
+    * @brief 从父组件上卸载所有子节点。
+    *
+    * @param parent 目标节点对象。
+    * @return 错误码。
+    *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+    *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+    * @since 12
+    */
     int32_t (*removeAllChildren)(ArkUI_NodeHandle parent);
 } ArkUI_NativeNodeAPI_1;
 
