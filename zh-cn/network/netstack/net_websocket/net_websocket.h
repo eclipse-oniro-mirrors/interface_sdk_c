@@ -24,7 +24,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the websocket client module.
+ * @brief 提供WebSocket客户端模块的接口。
 
  * @since 11
  * @version 1.0
@@ -33,7 +33,7 @@
 /**
  * @file net_websocket.h
  *
- * @brief Defines the APIs for the websocket client module.
+ * @brief 定义WebSocket客户端模块的接口。
  *
  * @library libnet_websocket.so
  * @kit NetworkKit
@@ -48,13 +48,13 @@
 extern "C" {
 #endif
 /**
- * @brief Constructor used to create a WebSocket client.
+ * @brief WebSocket客户端的构造函数。
  *
- * @param onOpen Callback invoked when the WebSocket client receives an **open** message.
- * @param onMessage Callback invoked when the WebSocket client receives a **Message** message.
- * @param onError Callback invoked when the WebSocket client receives an **error** message.
- * @param onclose Callback invoked when the WebSocket client receives a **close** message.
- * @return Pointer to the WebSocket client if the operation is successful; **NULL** otherwise.
+ * @param onOpen 客户端定义的建立连接消息的回调函数。
+ * @param onMessage 客户端定义的接收消息的回调函数。
+ * @param onError 客户端定义的错误消息的回调函数。
+ * @param onclose 客户端定义的关闭消息的回调函数。
+ * @return 成功返回客户端指针，失败返回为NULL。
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
  * @version 1.0
@@ -62,25 +62,23 @@ extern "C" {
 struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage,
                                                  WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose);
 /**
- * @brief Adds the header information to the client request.
+ * @brief 将header头信息添加到client客户端request中。
  *
- * @param client Pointer to the WebSocket client.
- * @param header Header information.
- * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see **
- *     OH_Websocket_ErrCode**.
+ * @param client 客户端指针。
+ * @param header Header头信息。
+ * @return 返回值为0表示执行成功，返回值不为0表示失败。返回值详细信息可以查看OH_Websocket_ErrCode。
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
  * @version 1.0
  */
 int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Header header);
 /**
- * @brief Connects the WebSocket client to the server.
+ * @brief 客户端连接服务端。
  *
- * @param client Pointer to the WebSocket client.
- * @param url IP address for the WebSocket client to connect to the server.
- * @param options Optional parameters for connection establishment.
- * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see **
- *     OH_Websocket_ErrCode**.
+ * @param client 客户端指针。
+ * @param url 客户端要连接到服务端的地址。
+ * @param options 发起连接的可选参数。
+ * @return 返回值为0表示执行成功，返回值不为0表示失败。返回值详细信息可以查看OH_Websocket_ErrCode。
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
@@ -88,13 +86,12 @@ int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Head
  */
 int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct WebSocket_RequestOptions options);
 /**
- * @brief Sends data from the WebSocket client to the server.
+ * @brief 客户端向服务端发送数据。
  *
- * @param client WebSocket client.
- * @param data Data sent by the WebSocket client.
- * @param length Length of the data sent by the WebSocket client.
- * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see **
- *     OH_Websocket_ErrCode**.
+ * @param client 客户端。
+ * @param data Data sent by the 客户端。
+ * @param length Length of the data sent by the 客户端。
+ * @return 返回值为0表示执行成功，返回值不为0表示失败。返回值详细信息可以查看OH_Websocket_ErrCode。
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
@@ -102,12 +99,11 @@ int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct
  */
 int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length);
 /**
- * @brief Closes the connection on the WebSocket client.
+ * @brief Closes the connection on the 客户端。
  *
- * @param client WebSocket client.
- * @param options Optional parameters for connection closure.
- * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see **
- *     OH_Websocket_ErrCode**.
+ * @param client 客户端。
+ * @param options 发起关闭连接的可选参数。
+ * @return 返回值为0表示执行成功，返回值不为0表示失败。返回值详细信息可以查看OH_Websocket_ErrCode。
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
@@ -115,11 +111,10 @@ int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length)
  */
 int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOption options);
 /**
- * @brief Destroys the WebSocket client and releases the context and resources of the WebSocket connection. Usage:
+ * @brief 释放WebSocket连接上下文和资源。使用方式如下：
  *
- * @param client WebSocket client.
- * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see **
- *     OH_Websocket_ErrCode**.
+ * @param client 客户端。
+ * @return 返回值为0表示执行成功，返回值不为0表示失败。返回值详细信息可以查看OH_Websocket_ErrCode。
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 11

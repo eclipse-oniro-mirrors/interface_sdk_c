@@ -25,7 +25,7 @@
 
 /**
  * @file net_http.h
- * @brief Defines the APIs for http.
+ * @brief Defines the APIs of the HTTP request module.
  *
  * @library libnet_http.so
  * @kit NetworkKit
@@ -114,7 +114,7 @@ void OH_Http_DestroyHeaderEntries(Http_HeaderEntry **headerEntry);
  * @since 20
  */
 Http_Request *OH_Http_CreateRequest(const char *url);
- 
+
 /**
  * @brief Initiates an HTTP request.
  *
@@ -127,7 +127,7 @@ Http_Request *OH_Http_CreateRequest(const char *url);
  * @since 20
  */
 int OH_Http_Request(Http_Request *request, Http_ResponseCallback callback, Http_EventsHandler handler);
- 
+
 /**
  * @brief Destroy the HTTP request.
  *
@@ -136,6 +136,7 @@ int OH_Http_Request(Http_Request *request, Http_ResponseCallback callback, Http_
  * @since 20
  */
 void OH_Http_Destroy(struct Http_Request **request);
+
 #ifdef __cplusplus
 }
 #endif

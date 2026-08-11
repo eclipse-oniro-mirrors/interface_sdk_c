@@ -20,7 +20,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the SSL/TLS certificate chain verification module.
+ * @brief 提供SSL/TLS证书链校验模块的C接口。
  *
  * @since 11
  * @version 1.0
@@ -28,7 +28,7 @@
 
 /**
  * @file net_ssl_c_type.h
- * @brief Defines the data structures for the C APIs of the SSL/TLS certificate chain verification module.
+ * @brief 定义SSL/TLS证书链校验模块的C接口需要的数据结构。
  *
  * @library libnet_ssl.so
  * @kit NetworkKit
