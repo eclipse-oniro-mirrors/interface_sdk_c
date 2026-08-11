@@ -3988,7 +3988,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
 
@@ -4008,7 +4008,7 @@ typedef enum {
      * {@link ArkUI_ObjectFit}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_FIT,
 
@@ -4028,7 +4028,7 @@ typedef enum {
      * {@link ArkUI_ImageInterpolation}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_INTERPOLATION,
 
@@ -4046,7 +4046,7 @@ typedef enum {
      * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_REPEAT,
 
@@ -4068,7 +4068,7 @@ typedef enum {
      * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_COLOR_FILTER,
 
@@ -4085,7 +4085,7 @@ typedef enum {
      * <li>.value[0].i32: whether to resize the image source.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_AUTO_RESIZE,
 
@@ -4105,7 +4105,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_ALT,
 
@@ -4123,7 +4123,7 @@ typedef enum {
      * <li>.value[0].i32: whether the image is draggable.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_DRAGGABLE,
 
@@ -4140,7 +4140,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_RENDER_MODE,
 
@@ -4158,7 +4158,7 @@ typedef enum {
      * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_FIT_ORIGINAL_SIZE,
 
@@ -4176,7 +4176,7 @@ typedef enum {
      * <li>.value[0].u32: fill color, in 0xARGB format.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_FILL_COLOR,
 
@@ -4184,7 +4184,7 @@ typedef enum {
      * @brief 图片拉伸时，支持通过设置边框大小或者使用矩阵方格对象调整其大小，1）设置边框大小可以设置left/top/right/bottom宽度，2）设置矩阵方格对象：该对象是通过图形侧的接口创建，并将对象地址传入。
      * 接口调用时需要保证设置和获取的参数类型是相同的。
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      */
     NODE_IMAGE_RESIZABLE,
 
@@ -4237,12 +4237,17 @@ typedef enum {
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to follows the text direction.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to follows the text direction.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
+     *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
@@ -4275,7 +4280,7 @@ typedef enum {
      * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
@@ -4338,7 +4343,7 @@ typedef enum {
      * <li>.value[0].i32: enable switch.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_SUPPORT_SVG2 = 4021,
@@ -4353,6 +4358,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
      *
+     * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
@@ -4373,7 +4379,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      * @since 22
      */
     NODE_IMAGE_ALT_PLACEHOLDER = 4023,
@@ -4394,7 +4400,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @ingroup Image
+     * @ingroup Image [图片]
      * @since 22
      */
     NODE_IMAGE_ALT_ERROR = 4024,
@@ -7914,7 +7920,7 @@ typedef enum {
      * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
 
@@ -7933,7 +7939,7 @@ typedef enum {
      * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
 
@@ -7953,7 +7959,7 @@ typedef enum {
      * <li>.value[0].i32: playback duration, in ms.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
 
@@ -7973,7 +7979,7 @@ typedef enum {
      * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
 
@@ -7995,7 +8001,7 @@ typedef enum {
      * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
 
@@ -8016,7 +8022,7 @@ typedef enum {
      * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
 
@@ -8034,7 +8040,7 @@ typedef enum {
      * <li>.value[0].i32: number of times that the animation is played.</li>
      * </ul>
      *
-     * @ingroup ImageAnimator
+     * @ingroup Image [图片]Animator
      */
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
