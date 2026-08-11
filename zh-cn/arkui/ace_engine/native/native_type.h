@@ -4565,41 +4565,41 @@ void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const 
 const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
 
 /**
- * @brief Destroy the instance of Customs Property.
+ * @brief 销毁{@link ArkUI_CustomProperty}实例。
  *
- * @param handle The instance of Customs Property to be destroyed.
+ * @param handle 要销毁的实例。
  * @since 14
  */
 void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get custom attribute value information.
+ * @brief 获取自定义属性对象的value信息。
  *
- * @param handle Custom attribute object pointer.
- * @return Customize the value information within the attribute structure.
+ * @param handle 自定义属性对象指针。
+ * @return 自定义属性对象的value信息。
  * @since 14
  */
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get window name from HostWindowInfo.
+ * @brief 获取{@link ArkUI_HostWindowInfo}对象中的窗口名称。
  *
- * @param info HostWindowInfo object pointer.
- * @return Window name in HostWindowInfo.
+ * @param info HostWindowInfo对象。
+ * @return {@link ArkUI_HostWindowInfo}对象中的窗口名称。
  * @since 15
  */
 const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy the instance of HostWindowInfo.
+ * @brief 销毁{@link ArkUI_HostWindowInfo}对象。
  *
- * @param info Instance of HostWindowInfo to be destroyed.
+ * @param info 要销毁的{@link ArkUI_HostWindowInfo}对象。
  * @since 15
  */
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief 销毁{@link ArkUI_ActiveChildrenInfo}实例。
+ * @brief 销毁{@link ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
  *
  * @param handle 要销毁的{@link ArkUI_ActiveChildrenInfo}实例。
  * @since 14
@@ -4617,7 +4617,7 @@ void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的节点数量。
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
  *
  * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
  * @return 子节点数量，默认值0.
