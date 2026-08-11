@@ -16,7 +16,7 @@
  * @addtogroup BackgroundProcessManager
  * @{
  *
- * @brief BackgroundProcessManager provides APIs.
+ * @brief 提供后台子进程调度策略管控C接口。
  *
  * @since 17
  */
