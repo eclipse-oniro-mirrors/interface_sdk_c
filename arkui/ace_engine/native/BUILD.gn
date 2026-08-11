@@ -84,6 +84,7 @@ if (!is_arkui_x) {
       "arkui/node_attributes/picker.h",
       "arkui/node_attributes/grid.h",
       "arkui/node_attributes/list.h",
+      "arkui/node_attributes/list_item.h",
       "arkui/node_attributes/scroll.h",
       "arkui/node_attributes/swiper.h",
       "arkui/node_attributes/common_attributes.h",
