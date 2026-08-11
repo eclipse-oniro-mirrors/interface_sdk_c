@@ -313,18 +313,22 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPagePath(
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageState(ArkUI_NodeHandle node, ArkUI_RouterPageState* state);
 
 /**
- * @brief 获取当前节点所在Router页面的ID。
+ * @brief Obtain the ID of the page where the node is located.
  *
- * @param node 指定的节点。
- * @param buffer 缓冲区，页面ID写入该内存区域。
- * @param bufferSize 缓冲区大小。
- * @param writeLength 在返回{@link ARKUI_ERROR_CODE_NO_ERROR}时表示实际写入到缓冲区的字符串长度。
- *     <br>在返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示可以容纳目标的最小缓冲区大小。
- * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_GET_INFO_FAILED} 查询信息失败。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 数据大小超过指定的缓冲区大小。
+ * @param node The node.
+ * @param buffer The buffer to which page ID writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
+ *         this may be because the node is not in RouterPage.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 12
  */
 ArkUI_ErrorCode OH_ArkUI_GetRouterPageId(
