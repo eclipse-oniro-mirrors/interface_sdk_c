@@ -379,7 +379,7 @@ typedef enum {
 } ArkUI_ImageRepeat;
 
 /**
- * @brief 定义XComponent类枚举类型。
+ * @brief 定义XComponent类枚举值。
  *
  * @since 12
  */
@@ -4607,7 +4607,7 @@ void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
  *
  * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
  * @param index 子节点的下标。
@@ -4617,7 +4617,7 @@ void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
+ * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
  *
  * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
  * @return 子节点数量，默认值0.
