@@ -15249,8 +15249,6 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32
  * @brief Provides a collection of native-side Node type APIs provided by ArkUI. APIs related to the Node module must
  * be called on the main thread.
  *
- * The APIs related to the native node must be called in the main thread.
- *
  * @version 1
  * @since 12
  */
@@ -15883,7 +15881,7 @@ int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(
 
 /**
  * @brief Defines the node content event type.
- * 
+ *
  * @since 12
  */
 typedef enum {
@@ -16353,7 +16351,6 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
  * 
  * This API forces immediate node updates within the current frame, ensuring that rendering effects are applied
  * synchronously.
- * 
  * 
  * @param node Node whose attributes are to be updated.
  * @return Result code.
