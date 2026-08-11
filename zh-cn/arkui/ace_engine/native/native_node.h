@@ -4189,46 +4189,46 @@ typedef enum {
     NODE_IMAGE_RESIZABLE,
 
     /**
-     * @brief 定义Image是否同步加载
-     * 这个属性包含设置，重置，获取接口
+     * @brief Defines the synchronous image loading attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * @ingroup Image
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to load the image synchronously. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to load the image synchronously. \n
+     *
      * @since 20
      */
     NODE_IMAGE_SYNC_LOAD = 4012,
 
     /**
-     * @brief 定义图片的解码尺寸属性。支持属性设置，属性重置和属性获取接口。
+     * @brief Defines the image decoding size attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * 属性设置方法参数ArkUI_AttributeItem格式：
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: width of the image decoding, in px.\n
+     * .value[1].i32: height of the image decoding, in px.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: width of the image decoding, in px.\n
+     * .value[1].i32: height of the image decoding, in px.\n
      *
-     * .value[0].i32 表示图片解码的宽，单位px。
-     *
-     * .value[1].i32 表示图片解码的高，单位px。
-     *
-     * 属性获取方法返回值ArkUI_AttributeItem格式：
-     *
-     * .value[0].i32 表示图片解码的宽，单位px。
-     *
-     * .value[1].i32 表示图片解码的高，单位px。
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
 
     /**
-     * @brief 支持使用浮点数实现仿射图像变换。
-     * 该属性可以通过API根据需要设置、重置和获取。
-     * set和get的参数类型应该是相同的。
+     * @brief Support the implementation of affine image transformations using floating-point numbers.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     * The parameter types for setting and getting should be the same.
      *
-     * 设置属性{@link ArkUI_AttributeItem}格式：\n
-     * .value[0....f32表示16个浮点数。\n
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0...15].f32: 16 floating-point numbers.\n
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0...15].f32: 16 floating-point numbers.\n
      *
-     * 返回值{@link ArkUI_AttributeItem}的格式为：\n
-     * .value[0....f32表示16个浮点数。\n
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_IMAGE_MATRIX = 4014,
@@ -4237,33 +4237,26 @@ typedef enum {
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether the image follows the text direction.</li>
-     * </ul>
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to follows the text direction.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to follows the text direction.\n
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether the image follows the text direction.</li>
-     * </ul>
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
 
     /**
-     * @brief 定义图片复制粘贴属性。支持属性设置，属性重置和属性获取接口。
+     * @brief Defines the image copy attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * 属性设置方法参数ArkUI_AttributeItem格式：
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: copy option {@link ArkUI_CopyOptions.\n
      *
-     * .value[0].i32：复制粘贴方式ArkUI_CopyOptions，默认值为ARKUI_COPY_OPTIONS_NONE；
-     *
-     * 属性获取方法返回值ArkUI_AttributeItem格式：
-     *
-     * .value[0].i32：复制粘贴方式ArkUI_CopyOptions。
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_COPY_OPTION = 4016,
@@ -4288,51 +4281,45 @@ typedef enum {
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
 
     /**
-     * @brief 定义图片显示动态范围属性。支持属性设置，属性重置和属性获取接口。
+     * @brief Defines the image dynamic display range attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * 属性设置方法参数ArkUI_AttributeItem格式：
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.
+     * The default value is <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode.\n
      *
-     * .value[0].i32：动态范围类型ArkUI_DynamicRangeMode，默认值为
-     *
-     * ARKUI_DYNAMIC_RANGE_MODE_STANDARD；
-     *
-     * 属性获取方法返回值ArkUI_AttributeItem格式：
-     *
-     * .value[0].i32：动态范围类型ArkUI_DynamicRangeMode。
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018,
 
     /**
-     * @brief 定义图片显示动态范围的亮度属性。支持属性设置，属性重置和属性获取接口。
+     * @brief Defines the image dynamic display brightness attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * 属性设置方法参数ArkUI_AttributeItem格式：
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: hdr brightness. value range [0, 1]\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: hdr brightness. value range [0, 1]\n
      *
-     * .value[0].f32：动态范围亮度，值的范围[0, 1]。
-     *
-     * 属性获取方法返回值ArkUI_AttributeItem格式：
-     *
-     * .value[0].f32：动态范围亮度，值的范围[0, 1]。
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_HDR_BRIGHTNESS = 4019,
 
     /**
-     * @brief 定义图片显示方向属性。支持属性设置，属性重置和属性获取接口。
+     * @brief Defines the image display direction attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * 属性设置方法参数ArkUI_AttributeItem格式：
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: orientation {@link ArkUI_Orientation}.
+     * The default value is <b>ARKUI_ORIENTATION_UP</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: orientation {@link ArkUI_Orientation.\n
      *
-     * .value[0].i32：动态范围类型ArkUI_Orientation，默认值为ARKUI_ORIENTATION_UP；
-     *
-     * 属性获取方法返回值ArkUI_AttributeItem格式：
-     *
-     * .value[0].i32：动态范围类型ArkUI_Orientation。
-     *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
@@ -4366,7 +4353,6 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
      *
-     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
@@ -4414,9 +4400,15 @@ typedef enum {
     NODE_IMAGE_ALT_ERROR = 4024,
 
     /**
-     * @brief 通过开关配置图片边缘抗锯齿使能；true-开启抗锯齿，false-不开启，默认不开启抗锯齿。
+     * @brief Configure image edge anti-aliasing via an enable switch.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * @ingroup Image
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: enable switch,the default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: enable switch.\n
+     *
      * @since 23
      */
     NODE_IMAGE_ANTIALIASED = 4025,
