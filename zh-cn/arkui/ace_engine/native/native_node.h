@@ -3622,7 +3622,7 @@ typedef enum {
      * @since 26.0.0
      *
      */
- 	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
+    NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
 
     /**
      * @brief 文本行首标点压缩开关，支持属性设置、属性重置和属性获取接口。适用于中文排版场景，压缩行首标点以提升排版美观度和阅读体验。
@@ -3927,6 +3927,7 @@ typedef enum {
      *
      * @ingroup Text Display[文本显示]
      * @since 13
+     *
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
 
@@ -3950,6 +3951,7 @@ typedef enum {
      *
      * @ingroup Text Display[文本显示]
      * @since 22
+     *
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
 
@@ -3969,6 +3971,7 @@ typedef enum {
      *
      * @ingroup Text Display[文本显示]
      * @since 22
+     *
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
 
