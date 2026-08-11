@@ -5454,11 +5454,8 @@ typedef enum {
      * .string: default text content. \n
      * \n
      * **Format of the return value {@link ArkUI_AttributeItem}:**\n
-     * <ul>
-     * <li>.string: default text content.</li> \n
-     * </ul>
-     * 
-     * @ingroup Button[按钮]
+     * .string: default text content. \n
+     *
      */
     NODE_TEXT_AREA_TEXT,
     /**
