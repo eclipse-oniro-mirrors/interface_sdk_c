@@ -2241,7 +2241,7 @@ typedef enum {
     */
     ARKUI_EXPAND = 1,
     /**
-     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考{@link LazyForEach：数据懒加载}。
+     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考 {@link LazyForEach：数据懒加载}。
      */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
