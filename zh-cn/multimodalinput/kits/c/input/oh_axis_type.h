@@ -31,7 +31,7 @@
  *
  * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @library liboh_input.so
+ * @library libohinput.so
  * @since 12
  */
 
