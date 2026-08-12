@@ -14871,10 +14871,10 @@ typedef struct {
     int32_t (*removeNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
     /**
-     * @brief 在组件上添加自定义事件回调函数，用于接收该组件产生的自定义事件（如布局事件，绘制事件）。不同于registerNodeCustomEventReceiver的全局注册函数，
-     * 该函数允许在同一个组件上添加多个事件接收器。
+     * @brief 在组件上添加自定义事件回调函数，用于接受该组件产生的自定义事件（如布局事件，绘制事件）。不同于registerNodeCustomEventReceiver的全局注册函数，
+     * 该函数允许在同一个组件上添加多个事件接受器。
      * <br>该函数添加的监听回调函数触发时机会先于registerNodeCustomEventReceiver注册的全局回调函数。
-     * <br>避免直接保存@{link ArkUI_NodeCustomEvent}对象指针，数据会在回调结束后销毁。
+     * <br>避免直接保存{@link ArkUI_NodeCustomEvent}对象指针，数据会在回调结束后销毁。
      *
      * @param node 用于添加组件自定义事件回调函数的对象。
      * @param eventReceiver 组件自定义事件回调函数。
@@ -15321,7 +15321,7 @@ int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* 
 ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
 
 /**
- * @brief 获取内部活跃状态为true的FrameNode子节点，并生成ArkUI_ActiveChildrenInfo实例。Span将不会被计入子节点统计。
+ * @brief 获取内部活跃状态为true的FrameNode子节点，并生成ArkUI_ActiveChildrenInfo实例。Span不会被计入子节点统计。
  获取成功后，可查询子节点数量并按下标读取子节点；实例使用完毕后必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
  *
  * @param head 传入需要获取的节点。
