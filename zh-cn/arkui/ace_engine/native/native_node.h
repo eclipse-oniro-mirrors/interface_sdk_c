@@ -1768,7 +1768,7 @@ typedef enum {
       * The id can be changed and the binding relationship re-established.
       * The same ID can only be bound to two components and they are in/out roles of different types.
       * Multiple components cannot be bound to the same id. \n
-      * 
+      *
       * @ingroup Animate [动效属性]
       */
     NODE_GEOMETRY_TRANSITION,
@@ -3952,7 +3952,6 @@ typedef enum {
      *
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
-
     /**
      * @brief 通过启用SVG新解析能力开关设置SVG解析功能支持的范围，支持属性设置、属性重置和属性获取接口。ImageSpan组件创建后，不支持动态修改该属性的值。
      *
@@ -3972,7 +3971,6 @@ typedef enum {
      *
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
-
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4170,7 +4168,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_FILL_COLOR,
-
     /**
      * @brief Defines how the image is resized when stretched using an array or a lattice object.
      * The parameter types for setting and getting should be the same.
@@ -4196,7 +4193,6 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_RESIZABLE,
-
     /**
      * @brief Defines the synchronous image loading attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4215,7 +4211,6 @@ typedef enum {
      * @since 20
      */
     NODE_IMAGE_SYNC_LOAD = 4012,
-
     /**
      * @brief Defines the image decoding size attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4236,7 +4231,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
-
     /**
      * @brief Support the implementation of affine image transformations using floating-point numbers.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4256,7 +4250,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_IMAGE_MATRIX = 4014,
-
     /**
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4275,7 +4268,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
-
     /**
      * @brief Defines the image copy attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4295,7 +4287,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_COPY_OPTION = 4016,
-
     /**
      * @brief Defines the image AI analysis enable attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4314,7 +4305,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
-
     /**
      * @brief Defines the image dynamic display range attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4334,7 +4324,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018,
-
     /**
      * @brief Defines the image dynamic display brightness attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4353,7 +4342,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_HDR_BRIGHTNESS = 4019,
-
     /**
      * @brief Defines the image display direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4372,7 +4360,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
-
     /**
      * @brief Defines the range of SVG parsing capabilities supported through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4391,7 +4378,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_SUPPORT_SVG2 = 4021,
-
     /**
      * @brief Defines the animation effect for the image content transformation.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4410,7 +4396,6 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
-
     /**
      * @brief Defines the placeholder image during loading process.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4431,7 +4416,6 @@ typedef enum {
      * @since 22
      */
     NODE_IMAGE_ALT_PLACEHOLDER = 4023,
-
     /**
      * @brief Defines the placeholder image when loading fails.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4452,7 +4436,6 @@ typedef enum {
      * @since 22
      */
     NODE_IMAGE_ALT_ERROR = 4024,
-
     /**
      * @brief Defines image edge anti-aliasing through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -7993,7 +7976,6 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
-
     /**
      * @brief Defines the playback status of the animation for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8012,7 +7994,6 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
-
     /**
      * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
      * The value change takes effect only at the beginning of the next cycle.
@@ -8032,7 +8013,6 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
-
     /**
      * @brief Defines the playback direction for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8052,7 +8032,6 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
-
     /**
      * @brief Defines whether the image size is the same as the component size.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8074,7 +8053,6 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
-
     /**
      * @brief Defines the status before and after execution of the animation in the current playback direction.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8095,7 +8073,6 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
-
     /**
      * @brief Defines the number of times that the animation is played.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -14503,7 +14480,7 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32
  * @version 1
  * @since 12
  */
-/**
+ /**
  * @brief ArkUI提供的Native侧Node类型接口集合。Node模块相关接口需要在主线程上调用。
  *
  * @version 1
@@ -14608,9 +14585,9 @@ typedef struct {
     int32_t (*insertChildAt)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position);
 
     /**
-     * @brief 属性设置函数，不建议在非主线程上调用。\n
+     * @brief 属性设置函数，不建议在非主线程上调用。
      *
-     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。例如：{@link ArkUI_NodeAttributeType}中的NODE_TEXT_CONTENT_WITH_STYLED_STRING。
+     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。例如：[ArkUI_NodeAttributeType](capi-native-node-h.md#arkui_nodeattributetype)中的NODE_TEXT_CONTENT_WITH_STYLED_STRING。
      *
      * @param node 需要设置属性的节点对象。
      * @param attribute 需要设置的属性类型。
@@ -14677,8 +14654,8 @@ typedef struct {
 
     /**
      * @brief 注册事件回调统一入口函数。ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventReceiver函数回调给开发者。
-     * <br>重复调用时会覆盖前一次注册的函数。 避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。
-     * <br>如果需要和组件实例绑定，可以使用addNodeEventReceiver函数接口。
+     * <br>重复调用时会覆盖前一次注册的函数。 避免直接保存{@link ArkUI_NodeEvent}对象指针，数据会在回调结束后销毁。
+     * <br>如果需要和组件实例绑定，可以使用{@link addNodeEventReceiver}函数接口。
      *
      * @param eventReceiver 事件回调统一入口函数。
      * @since 12
@@ -14688,7 +14665,6 @@ typedef struct {
     /**
      * @brief 反注册事件回调统一入口函数。
      * @since 12
-     *
      */
     void (*unregisterNodeEventReceiver)();
 
@@ -14794,9 +14770,8 @@ typedef struct {
 
     /**
      * @brief 反注册自定义节点事件回调统一入口函数。
-     * 
-     * @since 12
      *
+     * @since 12
      */
     void (*unregisterNodeCustomEventReceiver)();
 
@@ -14814,7 +14789,7 @@ typedef struct {
     int32_t (*setMeasuredSize)(ArkUI_NodeHandle node, int32_t width, int32_t height);
 
     /**
-     * @brief 在布局回调函数中设置组件的位置。该接口优先级低于ArkUI_NodeAttributeType中的@{link NODE_POSITION}。
+     * @brief 在布局回调函数中设置组件的位置。该接口优先级低于ArkUI_NodeAttributeType中的{@link NODE_POSITION}。
      *
      * @param node 目标节点对象。
      * @param positionX x轴坐标。
@@ -14896,9 +14871,10 @@ typedef struct {
     int32_t (*removeNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
     /**
-     * @brief 在组件上添加自定义事件回调函数，用于接收该组件产生的自定义事件（如布局事件，绘制事件）。不同于registerNodeCustomEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。
+     * @brief 在组件上添加自定义事件回调函数，用于接收该组件产生的自定义事件（如布局事件，绘制事件）。不同于registerNodeCustomEventReceiver的全局注册函数，
+     * 该函数允许在同一个组件上添加多个事件接收器。
      * <br>该函数添加的监听回调函数触发时机会先于registerNodeCustomEventReceiver注册的全局回调函数。
-     * <br>避免直接保存ArkUI_NodeCustomEvent对象指针，数据会在回调结束后销毁。
+     * <br>避免直接保存@{link ArkUI_NodeCustomEvent}对象指针，数据会在回调结束后销毁。
      *
      * @param node 用于添加组件自定义事件回调函数的对象。
      * @param eventReceiver 组件自定义事件回调函数。
@@ -15323,7 +15299,7 @@ void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* nam
 void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name);
 
 /**
- * @brief 获取组件的自定义属性的值。
+ * @brief 获取组件的自定义属性，并通过handle返回ArkUI_CustomProperty实例。
  *
  * @param node ArkUI_NodeHandle指针。
  * @param name 自定义属性的名称。
@@ -15345,8 +15321,8 @@ int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* 
 ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
 
 /**
- * @brief 获取某个节点所有活跃的子节点。Span将不会被计入子节点的统计中。
- *        在LazyForEach场景中，推荐使用{@link OH_ArkUI_NodeUtils_GetChildWithExpandMode}接口进行遍历。
+ * @brief 获取内部活跃状态为true的FrameNode子节点，并生成ArkUI_ActiveChildrenInfo实例。Span将不会被计入子节点统计。
+ 获取成功后，可查询子节点数量并按下标读取子节点；实例使用完毕后必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
  *
  * @param head 传入需要获取的节点。
  * @param handle 对应head节点子节点信息的结构体。
@@ -15392,12 +15368,12 @@ int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
- *     <br>{@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} 节点未挂载到节点树上。
+ *     <br>{@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE}
+ *     节点未挂载到节点树上。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
- 
+
 /**
  * @brief 获取目标节点在树上的第一个子节点的下标。
  *
@@ -15728,11 +15704,11 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
 
 /**
- * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
+ * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：{@link 在NDK中保证多实例场景功能正常}。
  *
  * @param uiContext 表示目标UI上下文的指针。
  * @param userData 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。
- * @param callback 开发者自定义回调函数。
+ * @param callback The custom function.
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
@@ -15745,7 +15721,7 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 /**
  * @brief 通过uniqueId获取节点。
  *
- * @param uniqueId 目标节点的uniqueid。
+ * @param uniqueId 目标节点的uniqueId。
  * @param node 目标节点的指针。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -15931,7 +15907,7 @@ int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node);
 
 /**
  * @brief 将asyncUITask函数提交至ArkUI框架提供的非UI线程中执行，asyncUITask函数执行完毕后，在UI线程调用onFinish函数。
- *        适用于多线程创建UI组件的场景，开发者可使用此接口在非UI线程创建UI组件，随后在UI线程将创建完成的组件挂载至主树上。
+ * 适用于多线程创建UI组件的场景，开发者可使用此接口在非UI线程创建UI组件，随后在UI线程将创建完成的组件挂载至主树上。
  *
  * @param context UI实例对象指针。
  * @param asyncUITaskData 开发者自定义数据指针，作为asyncUITask和onFinish的入参。可以传入空指针。
@@ -15947,7 +15923,6 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
 
 /**
  * @brief 将task函数提交至UI线程中执行。
- *        适用于多线程创建UI组件的场景，当开发者在自建的线程中创建UI组件时，可以使用此接口将创建完成的组件挂载到UI线程的主树上。
  *
  * @param context UI实例对象指针。
  * @param taskData 开发者自定义数据指针，作为task的入参。可以传入空指针。
@@ -16005,8 +15980,8 @@ int32_t OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent(ArkUI_N
 
 /**
  * @brief 将task函数提交至UI线程中执行，调用此接口的线程将阻塞，直至task函数执行完成。在UI线程调用此接口等同于同步调用task函数。
- *        适用于多线程创建UI组件的场景，当开发者在多线程创建组件过程中需要调用仅支持UI线程的函数时，使用此接口返回UI线程调用函数，调用完成后继续多线程创建组件。
- *        当UI线程负载较高时，调用此接口的非UI线程可能长时间阻塞，影响多线程创建UI组件的性能，不建议频繁使用。
+ * 适用于多线程创建UI组件的场景，当开发者在多线程创建组件过程中需要调用仅支持UI线程的函数时，使用此接口返回UI线程调用函数，调用
+ * 完成后继续多线程创建组件。当UI线程负载较高时，调用此接口的非UI线程可能长时间阻塞，影响多线程创建UI组件的性能，不建议频繁使用。
  *
  * @param context UI实例对象指针。
  * @param taskData 开发者自定义数据指针，作为task的入参。可以传入空指针。
@@ -16099,7 +16074,7 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
 /**
  * @brief 获取指定实例的页面的根节点。
  *
- * @param context UI实例对象指针。\n
+ * @param context UI实例对象指针。
  * @param rootNode 目标根节点的句柄。如果上下文对应的页面没有根节点，则所指向的值将被设置为null。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
