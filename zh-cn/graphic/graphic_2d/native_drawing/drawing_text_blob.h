@@ -132,7 +132,7 @@ void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect
 uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob* textBlob);
 
 /**
- * @brief 结构体用于描述一块内存，描述文字和位置信息。
+ * @brief 结构体用于描述一块内存，该内存用于存储文字和位置信息。
  *
  * @since 11
  * @version 1.0
