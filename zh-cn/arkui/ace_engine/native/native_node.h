@@ -8252,7 +8252,7 @@ typedef enum {
      * <br>**参数：**
      * <br>.object：文本实体识别配置，设置后可指定需要识别的文本实体类型（如电话号码、邮箱、链接等）及识别后的交互行为。仅在启用文本实体识别功能(
      * NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR设置为1)后传入此参数以自定义识别类型，不传入时使用系统默认识别配置。参数类型{@link ArkUI_TextDataDetectorConfig}。
-     * 
+     *
      * @since 24
      */
     NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG,
@@ -8496,7 +8496,7 @@ typedef enum {
      * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。当需要自定义选中文本拖拽时的预览效果时传入此参数，不传入时使用系统默认拖拽预览样式。
      * <br>**返回：**
      * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
-     * 
+     *
      * @since 24
      */
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
@@ -8508,7 +8508,7 @@ typedef enum {
      * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用，默认值为0。
      * <br>**返回：**
      * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用。
-     * 
+     *
      * @since 24
      */
     NODE_TEXT_EDITOR_SINGLE_LINE,
@@ -9424,7 +9424,7 @@ typedef enum {
      * @since 19
      */
     NODE_LIST_STACK_FROM_END = 1003014,
-    
+
     /**
      * @brief List组件走焦换行模式，支持属性设置，属性重置和属性获取接口。
      * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
@@ -12196,7 +12196,7 @@ typedef enum {
 
     /**
      * @brief Defines the hover event.
-     * 
+     *
      * The event is triggered when the pointer is hovered by a pen device.
      * within the component. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
@@ -12246,7 +12246,7 @@ typedef enum {
 
     /**
      * @brief Defines the pre-touch test of sub component in touch events. Called to specify how to perform the touch test on the children of this component.
-     * 
+     *
      * The event is triggered when the component is touched. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_TouchTestInfo} object. \n
@@ -12271,7 +12271,7 @@ typedef enum {
 
     /**
      * @brief Defines the event is triggered when the <b>ARKUI_NODE_CUSTOM</b> content is scrolled.
-     * 
+     *
      * The event is triggered when the component's content is scrolled. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_NodeComponentEvent}. \n
@@ -12284,7 +12284,7 @@ typedef enum {
 
     /**
      * @brief Defines the event is triggered when the <b>ARKUI_NODE_STACK</b> content is scrolled.
-     * 
+     *
      * The event is triggered when the component's content is scrolled. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_NodeComponentEvent}. \n
@@ -12314,7 +12314,7 @@ typedef enum {
      * @brief This callback is invoked when the events and gestures on this node and
      * higher-priority nodes are collected. \n
      * This callback is used to intervene in the collection result of events and gestures. \n
-     * 
+     *
      * When the event callback occurs, the {@link ArkUI_GestureCollectInterceptInfo} object can be obtained from the
      * {@link ArkUI_NodeEvent} object. \n
      *
@@ -12639,7 +12639,7 @@ typedef enum {
      * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
      * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
      * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
-     * 
+     *
      * @since 20
      */
     NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
@@ -13084,7 +13084,7 @@ typedef enum {
      *
     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
-    
+
     /**
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
@@ -13152,7 +13152,7 @@ typedef enum {
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
      * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：输入法的回车键类型{@link ArkUI_EnterKeyType}。
-     * 
+     *
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_SUBMIT,
@@ -13314,7 +13314,7 @@ typedef enum {
 
     /**
      * @brief Defines the event triggered when the selected index of the <b>ARKUI_NODE_SWIPER</b> changed.
-     * 
+     *
      * This event is triggered under the following scenarios: \n
      * 1. When the page switching animation starts after the user lifts their finger after swiping and the swipe meets
      * the threshold for page turning. \n
@@ -13334,7 +13334,7 @@ typedef enum {
 
     /**
      * @brief Defines the event triggered when the selected index of the <b>ARKUI_NODE_SWIPER</b> changed.
-     * 
+     *
      * This event is triggered under the following scenarios: \n
      * 1. When the page switching animation starts after the user lifts their finger after swiping and the swipe meets
      * the threshold for page turning. \n
@@ -13539,7 +13539,7 @@ typedef enum {
      * 定义Scroll组件缩放回调。
      * 触发该事件的条件：Scroll组件缩放每帧完成时触发。
      * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
-     * {@link ArkUI_NodeComponentEvent}中包含1个参数: 
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数:
      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: 当前缩放比例。
      *
      * @since 20
@@ -13548,9 +13548,9 @@ typedef enum {
 
     /**
      * @brief 定义Scroll组件缩放开始回调。
-     * 触发该事件的条件：Scroll组件缩放开始时触发。 
+     * 触发该事件的条件：Scroll组件缩放开始时触发。
 
-     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。 
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
 
      * {@link ArkUI_NodeComponentEvent}中不包含参数。
 
@@ -14042,7 +14042,7 @@ ArkUI_NodeComponentEvent* OH_ArkUI_NodeEvent_GetNodeComponentEvent(ArkUI_NodeEve
 
 /**
  * @brief Obtains the string data in a component event.
- * 
+ *
  * @param event Indicates the pointer to the component event.
  * @return Returns the pointer to the string data.
  * @since 12
@@ -14803,9 +14803,9 @@ typedef struct {
     int32_t (*layoutNode)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
 
     /**
-     * @brief 在组件上添加组件事件回调函数，用于接收该组件产生的组件事件。不同于registerNodeEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。
+     * @brief 在组件上添加组件事件回调函数，用于接受该组件产生的组件事件。不同于registerNodeEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接受器。
      * <br>该函数添加的监听回调函数触发时机会先于registerNodeEventReceiver注册的全局回调函数。
-     * <br>避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。
+     * <br>避免直接保存{@link ArkUI_NodeEvent} 对象指针，数据会在回调结束后销毁。
      *
      * @param node 用于添加组件事件回调函数的对象。
      * @param eventReceiver 待添加的组件事件回调函数。
@@ -15017,7 +15017,7 @@ int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(
 
 /**
  * @brief Defines the node content event type.
- * 
+ *
  * @since 12
  */
 typedef enum {
@@ -15143,6 +15143,7 @@ int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_N
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position);
+
 
 /**
  * @brief 获取组件布局区域的大小。
@@ -15486,7 +15487,7 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
 
 /**
  * @brief 在当前帧触发节点属性更新。
- * 
+ *
  * 当前节点的属性在构建阶段后被修改，这些改动不会立即生效，而是延迟到下一帧统一处理。
  * 此功能强制当前帧内即时节点更新，确保同步应用渲染效果。
  *
@@ -15550,7 +15551,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
  */
 int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
     void* userData, void (*onDrawCompleted)(void* userData));
-    
+
 /**
  * @brief Unregisters the layout completed callback for node.
  *
@@ -15690,14 +15691,14 @@ ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t 
 int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData));
 
 /**
- * @brief Get the node handle by uniqueId.
+ * @brief 通过uniqueId获取节点。
  *
- * @param uniqueId The uniqueId of the target node handle.
- * @param node The handle of target node handle.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @param uniqueId 目标节点的uniqueid。
+ * @param node 目标节点的指针。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 方法参数错误。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
  * @since 20
  */
 int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkUI_NodeHandle* node);
@@ -15923,7 +15924,7 @@ int32_t OH_ArkUI_NativeModule_AtomicServiceMenuBarSetVisible(ArkUI_ContextHandle
  *
  * This function can be called for a valid {@link ArkUI_NodeHandle} node at any time. \n
  * The newly registered callback will replace the previously registered callback for this event and will take effect from the next frame. \n
- * 
+ *
  * When the callback is no longer needed, call {@link OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent} to unregister it. \n
  * Otherwise, the callback will be automatically unregistered when the node is released.
  *
@@ -16055,8 +16056,7 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 24
  */
-int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(
-    ArkUI_ContextHandle context, ArkUI_NodeHandle* rootNode);
+int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(ArkUI_ContextHandle context, ArkUI_NodeHandle* rootNode);
 
 /**
  * @brief Obtains the <b>ArkUI_GestureCollectInterceptInfo</b> object from a specified <b>ArkUI_NodeEvent</b> object.
