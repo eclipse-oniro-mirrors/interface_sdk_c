@@ -322,55 +322,50 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnNewOutputBuffer(Video
     OH_VideoProcessingCallback_OnNewOutputBuffer onNewOutputBuffer);
 
 /**
- * @brief Query if the atuoeffect is supported.
+ * @brief Query if the autoeffect is supported.
  *
- * @param type The autoeffect type to query.
- * @return <b>true</b> if the autoeffect is supported. \n
- * <b>false</b> if the autoeffect is not supported.
- * @since 27
+ * @param type [in] The autoeffect type to query.
+ * @return <ul><li><b>true</b> if the autoeffect is supported.</li>
+ *     <li><b>false</b> if the autoeffect is not supported.</li></ul>
+ * @since 26.1.0
  */
 bool OH_VideoProcessing_IsAutoEffectSupported(uint32_t type);
-
+ 
 /**
- * @brief Register auto effect usage for a specific name.
+ * @brief Specifies whether the type effect is required in the XComponent named name that will be created.
  *
- * Records the mapping of type, enable, and name in the internal map.
+ * Records the mapping between type, enable, and name in the internal map.
  * This should be called before {@link OH_VideoProcessing_SetAutoEffectParam}.
- *
- * @param type Use VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR to specify the processing type.
- * @param enable Whether to enable auto effect for this name.
- * @param name The xcomponent id name identifier for the auto effect configuration.
- * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if type is not {@link VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR}
- * or name is null. \n
- * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
- * returns false for the type, or the same name has already been registered by calling this function.
- * @since 27
+ * @param type [in] Specify AutoEffect to use.
+ * @param enable [in] Enable or disable the type effect in the XComponent named name to be created later.
+ * @param name [in] Specifies the name of an XComponent. If the current application has multiple XComponents with
+ *     the same name, this parameter takes effect only on the first active XComponent.
+ * @return <ul><li>{@link VIDEO_PROCESSING_SUCCESS} if the operation is successful.</li>
+ *     <li>{@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if type is not {@link VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR}
+ *     or name is null.</li>
+ *     <li>{@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
+ *     returns false for the type, or the same name has already been registered by calling this function.</li></ul>
+ * @since 26.1.0
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool enable, const char* name);
-
+VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool enable, const char *name);
+ 
 /**
- * @brief Set auto effect parameter for a specific name.
- *
- * Find the VPE instance associated with the name and set its enabled state and strength value.
- * The param contains enable (bool, stored as int32) and strength (float) key-value pairs.
- *
- * @param type Use VIDEO_PROCESSING_TYPE_AUTO_EFFECT to specify the processing type.
- * @param name The name identifier for the auto effect configuration.
- * @param param The parameter containing enable and strength. Use {@link OH_AVFormat_SetIntValue} to set
- * enable with key {@link VIDEO_AUTOEFFECT_ENABLE} and
- * {@link OH_AVFormat_SetFloatValue} to set strength with key {@link VIDEO_AUTOEFFECT_AISR_STRENGTH}.
- * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n
- * {@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if type is not {@link VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR},
- * name is null, or strength in param is less than 0 or greater than 1. \n
- * {@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
- * returns false for the type, or name does not match any registered name, or the VPE instance has not been
- * created or {@link OH_VideoProcessing_UseAutoEffect} has not been called for the name. \n
- * {@link VIDEO_PROCESSING_ERROR_UNKNOWN} if an internal algorithm error occurs.
- * @since 27
+ * @brief Sets parameters for the automatic effect associated with the XComponent. 
+ * Currently, the AutoEffect only takes effect on the last invoked XComponent.
+ * @param type [in] Specify AutoEffect to use.
+ * @param name [in] Specifies the name of an XComponent. If the current application has multiple XComponents
+ *     with the same name, this parameter takes effect only on the first active XComponent.
+ * @param param [in] The parameter according to the type see video_processing_type.h.
+ * @return <ul><li>{@link VIDEO_PROCESSING_SUCCESS} if the operation is successful.</li>
+ *     <li>{@link VIDEO_PROCESSING_ERROR_INVALID_VALUE} if the name is nullptr or the param value is invalid.</li>
+ *     <li>{@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
+ *     returns false for the type, or name does not match any registered name, or the VPE instance has not been
+ *     created or {@link OH_VideoProcessing_UseAutoEffect} has not been called for the name.</li>
+ *     <li>{@link VIDEO_PROCESSING_ERROR_UNKNOWN} if an internal algorithm error occurs.</li></ul>
+ * @since 26.1.0
  */
-VideoProcessing_ErrorCode OH_VideoProcessing_SetAutoEffectParam(uint32_t type, const char* name,
-    const OH_AVFormat* param);
+VideoProcessing_ErrorCode OH_VideoProcessing_SetAutoEffectParam(uint32_t type, const char *name,
+    const OH_AVFormat *param);
 
 #ifdef __cplusplus
 }
