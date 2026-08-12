@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @brief 获取动态照片的uri。
- * 
+ *
  * @param movingPhoto {@link OH_MovingPhoto}实例。
  * @param uri 动态照片的uri。
  * @return MEDIA_LIBRARY_OK：方法调用成功。
@@ -57,7 +57,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_GetUri(OH_MovingPhoto* movingPhoto, const 
 
 /**
  * @brief 同时请求动态照片的图片内容和视频内容，并写入参数指定的对应的uri中。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param movingPhoto {@link OH_MovingPhoto}实例。
  * @param imageUri 用于保存图像数据的目标文件uri。
@@ -76,7 +76,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUris(OH_MovingPhoto* mov
 
 /**
  * @brief 请求指定资源类型的动态照片内容，并写入参数指定的uri中。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param movingPhoto {@link OH_MovingPhoto}实例。
  * @param resourceType 指定的资源类型{@link MediaLibrary_ResourceType}。
@@ -95,7 +95,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUri(OH_MovingPhoto* movi
 
 /**
  * @brief 请求指定资源类型的动态照片内容，以ArrayBuffer的形式返回。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param movingPhoto {@link OH_MovingPhoto}实例。
  * @param resourceType 指定的资源类型{@link MediaLibrary_ResourceType}。
@@ -115,7 +115,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithBuffer(OH_MovingPhoto* m
 
 /**
  * @brief Release {@link OH_MovingPhoto}实例。
- * 
+ *
  * @param movingPhoto 要释放的{@link OH_MovingPhoto}实例。
  * @return MEDIA_LIBRARY_OK：方法调用成功。
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：

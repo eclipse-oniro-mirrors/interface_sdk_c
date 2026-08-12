@@ -48,14 +48,14 @@ extern "C" {
 
 /**
  * @brief 定义UUID最大长度。这个常量定义了UUID字符串的最大长度。
- * 
+ *
  * @since 12
  */
 static const int32_t UUID_STR_MAX_LENGTH = 37;
 
 /**
  * @brief Maximum length of a request ID.
- * 
+ *
  * @since 12
  */
 static const int32_t UUID_STR_MAX_LENGTH = 37;
@@ -100,46 +100,46 @@ typedef struct MediaLibrary_RequestId {
 
 /**
  * @brief 媒体库错误代码的枚举。
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_ErrorCode {
-/**
+    /**
      * 媒体库结果正常。
      */
     MEDIA_LIBRARY_OK = 0,
 
-/**
+    /**
      * 权限被拒绝。
      */
     MEDIA_LIBRARY_PERMISSION_DENIED = 201,
 
-/**
+    /**
      * 强制参数未指定，参数类型不正确或参数验证失败。
      */
     MEDIA_LIBRARY_PARAMETER_ERROR = 401,
 
-/**
+    /**
      * 文件不存在。
      */
     MEDIA_LIBRARY_NO_SUCH_FILE = 23800101,
 
-/**
+    /**
      * 显示名称无效。
      */
     MEDIA_LIBRARY_INVALID_DISPLAY_NAME = 23800102,
 
-/**
+    /**
      * 资产uri无效。
      */
     MEDIA_LIBRARY_INVALID_ASSET_URI = 23800103,
 
-/**
+    /**
      * PhotoKey无效。
      */
     MEDIA_LIBRARY_INVALID_PHOTO_KEY = 23800104,
 
-/**
+    /**
      * 不支持该操作。
      */
     MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED = 23800201,
@@ -179,7 +179,7 @@ typedef struct MediaLibrary_RequestOptions {
 
 /**
  * @brief 媒体类型的枚举。
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaType {
@@ -191,7 +191,7 @@ typedef enum MediaLibrary_MediaType {
 
 /**
  * @brief 媒体资源子类型的枚举。
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaSubType {
@@ -205,7 +205,7 @@ typedef enum MediaLibrary_MediaSubType {
 
 /**
  * @brief 资源类型的枚举。
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_ResourceType {
@@ -217,7 +217,7 @@ typedef enum MediaLibrary_ResourceType {
 
 /**
  * @brief 图像文件类型的枚举。
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_ImageFileType {
@@ -225,13 +225,13 @@ typedef enum MediaLibrary_ImageFileType {
     MEDIA_LIBRARY_IMAGE_JPEG = 1,
     /**
      * @brief MPEG.
-     * 
+     *
      * @since 19
      */
     MEDIA_LIBRARY_FILE_VIDEO = 3,
     /**
      * @brief HEIF.
-     * 
+     *
      * @since 23
      */
     MEDIA_LIBRARY_IMAGE_HEIF = 2
@@ -255,7 +255,7 @@ typedef enum MediaLibrary_MediaQuality {
 
 /**
  * @brief 媒体内容类型的枚举。
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaContentType {
@@ -267,7 +267,7 @@ typedef enum MediaLibrary_MediaContentType {
 
 /**
  * @brief 当所请求的媒体资源准备完成时会触发回调。
- * 
+ *
  * @param result 请求资源处理的结果。
  * @param requestId 请求Id。
  * @since 12
@@ -276,7 +276,7 @@ typedef void (*OH_MediaLibrary_OnDataPrepared)(int32_t result, MediaLibrary_Requ
 
 /**
  * @brief 当请求的图像源准备就绪时会触发回调。
- * 
+ *
  * @param result 处理所请求资源的结果{@link MediaLibrary_ErrorCode}。
  * @param requestId 请求的{@link MediaLibrary_RequestId}。
  * @param mediaQuality 请求源的{@link MediaLibrary_MediaQuality}。
@@ -290,7 +290,7 @@ typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode resul
 
 /**
  * @brief 当请求的动态照片准备就绪时会触发回调。
- * 
+ *
  * @param result 处理所请求资源的结果{@link MediaLibrary_ErrorCode}。
  * @param requestId 请求的{@link MediaLibrary_RequestId}。
  * @param mediaQuality 请求资源的{@link MediaLibrary_MediaQuality}。
@@ -304,7 +304,7 @@ typedef void (*OH_MediaLibrary_OnMovingPhotoDataPrepared)(MediaLibrary_ErrorCode
 
 /**
  * @brief 当请求的图像源准备就绪时调用此函数。如果系统中存在图像缓冲区，则会返回一个图片对象，从而减少编码时间。
- * 
+ *
  * @param result 处理所请求资源的结果。
  * @param requestId 请求资源的MediaLibrary_RequestId。
  * @param mediaQuality 请求资源的MediaLibrary_MediaQuality。

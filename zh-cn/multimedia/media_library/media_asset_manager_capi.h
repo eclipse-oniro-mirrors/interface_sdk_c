@@ -44,7 +44,7 @@ extern "C" {
 
 /**
  * @brief 创建一个媒体资产管理器。
- * 
+ *
  * @return 返回一个指向OH_MediaAssetManager实例的指针。
  * @since 12
  */
@@ -52,7 +52,7 @@ OH_MediaAssetManager* OH_MediaAssetManager_Create(void);
 
 /**
  * @brief 请求具有目标路径的图像资源。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager 指向OH_MediaAssetManager实例的指针。
  * @param uri 请求的图像资源的uri。
@@ -67,7 +67,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
 
 /**
  * @brief 请求具有目标路径的视频资源。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager 指向OH_MediaAssetManager实例的指针。
  * @param uri 请求的视频资源的uri。
@@ -82,7 +82,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
 
 /**
  * @brief 通过请求Id取消请求。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager 指向OH_MediaAssetManager实例的指针。
  * @param requestId 待取消的请求Id。
@@ -93,7 +93,7 @@ bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const Med
 
 /**
  * @brief 根据不同的策略模式请求动态照片资源。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager {@link OH_MediaAssetManager}实例指针。
  * @param mediaAsset 要请求的媒体文件对象的{@link OH_MediaAsset}实例。
@@ -116,7 +116,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
 
 /**
  * @brief 根据不同的策略模式请求图像资源。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager {@link OH_MediaAssetManager}实例指针。
  * @param mediaAsset 要请求的媒体文件对象的{@link OH_MediaAsset}实例。
@@ -139,7 +139,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* m
 
 /**
  * @brief 根据不同的策略模式请求图像资源。
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager OH_MediaAssetManager的实例指针。
  * @param mediaAsset 要请求的媒体文件对象的OH_MediaAsset实例。
@@ -158,7 +158,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_QuickRequestImage(OH_MediaAssetManag
 
 /**
  * @brief 释放{@link OH_MediaAssetManager}实例。
- * 
+ *
  * @param manager 要释放的{@link OH_MediaAssetManager}实例。
  * @return MEDIA_LIBRARY_OK：方法调用成功。
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：
