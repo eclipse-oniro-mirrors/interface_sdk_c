@@ -101,16 +101,6 @@ extern const int32_t VIDEO_PROCESSING_TYPE_METADATA_GENERATION;
 extern const int32_t VIDEO_PROCESSING_TYPE_DETAIL_ENHANCER;
 
 /**
- * @brief Used to define video aisr autoeffect in xcomponent.
- *
- * Use {@link OH_VideoProcessing_IsAutoEffectSupported} to query if aisr autoeffect is supported.
- *
- * @see OH_VideoProcessing_IsAutoEffectSupported
- * @since 27
- */
-extern const int32_t VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR;
-
-/**
  * @brief The key is used to specify the quality level for video detail enhancement.
  *
  * See {@link VideoDetailEnhancer_QualityLevel} for its values.
@@ -134,26 +124,6 @@ extern const char* VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL;
  * @since 22
  */
 extern const char* VIDEO_METADATA_GENERATOR_STYLE_CONTROL;
-
-/**
- * @brief The key is used to specify the enable state for auto effect.
- *
- * Use {@link OH_AVFormat_SetIntValue} to set the enable value (0 for false, 1 for true) into AVFormat parameter.
- * Use {@link OH_VideoProcessing_SetAutoEffectParam} to set the parameter into video processing instance.
- *
- * @since 27
- */
-extern const char* VIDEO_AUTOEFFECT_ENABLE;
-
-/**
- * @brief The key is used to specify the strength value for auto effect detail enhancement.
- *
- * Use {@link OH_AVFormat_SetFloatValue} to set the strength value into AVFormat parameter.
- * Use {@link OH_VideoProcessing_SetAutoEffectParam} to set the parameter into video processing instance.
- *
- * @since 27
- */
-extern const char* VIDEO_AUTOEFFECT_AISR_STRENGTH;
 
 /**
  * @brief Video color space information structure of querying if video color space conversion is supported.
@@ -328,6 +298,34 @@ typedef void (*OH_VideoProcessingCallback_OnState)(OH_VideoProcessing* videoProc
  */
 typedef void (*OH_VideoProcessingCallback_OnNewOutputBuffer)(OH_VideoProcessing* videoProcessor, uint32_t index,
     void* userData);
+
+/**
+ * @brief Used to define video aisr autoeffect in XComponent.
+ *
+ * Use {@link OH_VideoProcessing_IsAutoEffectSupported} to query if aisr autoeffect is supported.
+ * @since 26.1.0
+ */
+extern const int32_t VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR;
+ 
+/**
+ * @brief Sets the key value for enabling or disabling AutoEffect.
+ *
+ * Use {@link OH_AVFormat_SetIntValue} to set the enable value (0 is false, 1 is true) to the AVFormat parameter.
+ * Use {@link OH_VideoProcessing_SetAutoEffectParam} to set the parameters to the video processing instance.
+ * @since 26.1.0
+ */
+extern const char *VIDEO_AUTOEFFECT_ENABLE;
+	 
+/**
+ * @brief Sets the AISR strength.
+ *
+ * Use {@link OH_AVFormat_SetFloatValue} to set the strength value to the AVFormat parameter.
+ * When the value is in the range [0.0, 1.0], the larger the value, the better the image quality,
+ * If this parameter is set to a value less than 0, the image quality enhancement is adaptive.
+ * Use {@link OH_VideoProcessing_SetAutoEffectParam} to set the parameters of the video processing instance.
+ * @since 26.1.0
+ */
+extern const char *VIDEO_AUTOEFFECT_AISR_STRENGTH;
 
 #ifdef __cplusplus
 }
