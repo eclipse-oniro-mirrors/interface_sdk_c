@@ -39,7 +39,6 @@
 #ifndef OHOS_CONTENT_EMBED_EXTENSION_H
 #define OHOS_CONTENT_EMBED_EXTENSION_H
 
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include "content_embed_common.h"
