@@ -3141,6 +3141,27 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(
 typedef struct ArkUI_TextLayoutManager ArkUI_TextLayoutManager;
 
 /**
+ * @brief 文本布局查询接口支持的文本编码类型。
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * UTF-8编码。字符位置或字符范围按UTF-8字节偏移量计算。
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_TEXT_ENCODING_UTF8 = 0,
+
+    /**
+     * UTF-16编码。字符位置或字符范围按UTF-16 code unit偏移量计算。
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_TEXT_ENCODING_UTF16 = 1
+} OH_ArkUI_TextEncoding;
+
+/**
  * @brief 释放文本布局管理器对象占用的内存。
  *
  * @param layoutManager 指向ArkUI_TextLayoutManager对象的指针。
@@ -3225,6 +3246,23 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate(
     ArkUI_TextLayoutManager* layoutManager, double dx, double dy, OH_Drawing_PositionAndAffinity** outPos);
 
 /**
+ * @brief 根据指定编码类型，获取距离指定坐标最近的字符位置信息。
+ *
+ * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
+ * @param dx 相对于控件的x坐标，单位为px。
+ * @param dy 相对于控件的y坐标，单位为px。
+ * @param encoding 字符索引范围使用的编码类型。
+ * @param outPos 指向{@link OH_Drawing_PositionAndAffinity}对象的二级指针。
+ * @return 返回结果。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinateWithEncoding(
+    ArkUI_TextLayoutManager* layoutManager, double dx, double dy, OH_ArkUI_TextEncoding encoding,
+    OH_Drawing_PositionAndAffinity** outPos);
+
+/**
  * @brief 获取由指定字符索引范围所生成的字形索引范围以及实际的字符索引范围。
  *        例如文本为"世界Hello"，其中文本"世"的字形索引范围为[0, 1]，一个汉字占三个字符，所以其对应的字符索引范围为[0, 3]。
  *        如果指定的字符索引范围是[0, 1]，但无法解析出三分之一个汉字，所以实际的字符索引范围是[0, 3]。
@@ -3242,6 +3280,25 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate(
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(
     ArkUI_TextLayoutManager* layoutManager, OH_Drawing_Range* charRange,
+    OH_Drawing_Range** outGlyphRange, OH_Drawing_Range** outActualCharRange);
+
+/**
+ * @brief 根据指定编码类型和文本字符范围，获取字形范围以及实际的字符范围。
+ *
+ * @note outGlyphRange、outActualCharRange返回的{@link OH_Drawing_Range}对象在使用完成后，需通过 \n
+ *       {@link OH_Drawing_ReleaseRangeBuffer}释放。
+ * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
+ * @param charRange 指向{@link OH_Drawing_Range}对象的指针，表示字符索引范围。
+ * @param encoding 字符索引范围使用的编码类型。
+ * @param outGlyphRange 指向{@link OH_Drawing_Range}对象的指针，表示字形索引范围。
+ * @param outActualCharRange 指向{@link OH_Drawing_Range}对象的二级指针，表示字符索引范围。
+ * @return 返回结果。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRangeWithEncoding(
+    ArkUI_TextLayoutManager* layoutManager, OH_Drawing_Range* charRange, OH_ArkUI_TextEncoding encoding,
     OH_Drawing_Range** outGlyphRange, OH_Drawing_Range** outActualCharRange);
 
 /**
@@ -3263,6 +3320,25 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange(
     ArkUI_TextLayoutManager* layoutManager, OH_Drawing_Range* glyphRange,
+    OH_Drawing_Range** outCharRange, OH_Drawing_Range** outActualGlyphRange);
+
+/**
+ * @brief 根据指定编码类型和文本字形范围，获取字符范围以及实际的字形范围。
+ *
+ * @note outCharRange、outActualGlyphRange返回的{@link OH_Drawing_Range}对象在使用完成后，需通过 \n
+ *       {@link OH_Drawing_ReleaseRangeBuffer}释放。
+ * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
+ * @param glyphRange 指向{@link OH_Drawing_Range}对象的指针，表示字形索引范围。
+ * @param encoding 字符索引范围使用的编码类型。
+ * @param outCharRange 指向{@link OH_Drawing_Range}对象的二级指针，表示字符索引范围。
+ * @param outActualGlyphRange 指向{@link OH_Drawing_Range}对象的二级指针，表示实际的字形索引范围。
+ * @return 返回结果。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRangeWithEncoding(
+    ArkUI_TextLayoutManager* layoutManager, OH_Drawing_Range* glyphRange, OH_ArkUI_TextEncoding encoding,
     OH_Drawing_Range** outCharRange, OH_Drawing_Range** outActualGlyphRange);
 
 /**
