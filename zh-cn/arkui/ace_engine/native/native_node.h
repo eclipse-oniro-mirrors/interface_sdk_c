@@ -2168,7 +2168,7 @@ typedef enum {
      * @since 14
      */
     NODE_TAB_STOP = 98,
-    
+
     /**
      * @brief Defines the backdrop blur attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -2673,7 +2673,7 @@ typedef enum {
      * @since 23
      */
     NODE_BORDER_RADIUS_TYPE = 123,
-    
+
     /**
      * @brief Defines the inspector label attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -3318,7 +3318,7 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_LINE_COUNT = 1031,
- 
+
     /**
      * @brief 设置文本排版时是否优化每行结尾的空格，支持属性设置、属性重置和属性获取接口。适用于优化文本排版效果，如去除结尾多余空格以实现更好的文本对齐。
      *
@@ -3725,7 +3725,7 @@ typedef enum {
 
     /**
      * @brief Used to set the selected drag preview style.
-     * 
+     *
      * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
      * .object: selected drag preview style configuration.\n
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
@@ -3733,7 +3733,7 @@ typedef enum {
      * Format of the return value {@link Arkui_AttributeItem}:\n
      * .object: selected drag preview style configuration.\n
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     *
      * @since 23
      */
     NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE = 1053,
@@ -4435,7 +4435,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
@@ -4452,7 +4452,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: color of the circular slider, in 0xARGB format.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_SWITCH_POINT_COLOR,
@@ -4468,7 +4468,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: whether to enable the toggle.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_VALUE,
@@ -4486,7 +4486,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_UNSELECTED_COLOR,
@@ -4941,7 +4941,7 @@ typedef enum {
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
      * @brief Obtains the number of lines of the edited text.
-     * 
+     *
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of lines of the edited text. \n
      *
@@ -5207,12 +5207,12 @@ typedef enum {
     /**
      * @brief Used to set or get the text content base controller.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n 
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * 
+     *
      * @since 23
      */
     NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE = 7041,
@@ -5220,7 +5220,7 @@ typedef enum {
     /**
      * @brief Defines the ellipsis position.
      * This attribute can be set, reset, and obtained as required through APIs.
-     * 
+     *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
      * is ARKUI_ELLIPSIS_MODE_END. \n
@@ -5351,7 +5351,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
      *
-     * @since 24  
+     * @since 24
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -5695,7 +5695,7 @@ typedef enum {
     NODE_TEXT_AREA_CONTENT_RECT,
     /**
      * @brief Obtains the number of lines of the edited text.
-     * 
+     *
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of lines of the edited text. \n
      *
@@ -5918,7 +5918,7 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_MIN_LINES = 8029,
- 
+
     /**
      * @brief 设置支持滚动时节点的最大行数。支持属性设置、属性重置和属性获取接口。
      *
@@ -6025,7 +6025,7 @@ typedef enum {
     /**
      * @brief Used to set or get the text content base controller.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n 
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
@@ -6165,11 +6165,11 @@ typedef enum {
      * @brief Used to set the selected drag preview style.
      *
      * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration. 
+     * .object: selected drag preview style configuration.
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
      * \n
      * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration. 
+     * .object: selected drag preview style configuration.
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
      *
      * @since 23
@@ -6185,7 +6185,7 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * 
+     *
      * @since 24
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
@@ -6278,7 +6278,7 @@ typedef enum {
      * <ul>
      * <li>.string: default text content.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Button[按钮]
      */
     NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_BUTTON,
@@ -6297,7 +6297,7 @@ typedef enum {
      * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
      * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Button[按钮]
      */
     NODE_BUTTON_TYPE,
@@ -6314,7 +6314,7 @@ typedef enum {
     * <ul>
     * <li>.value[0].f32: minimum font scale, in fp.</li>
     * </ul>
-    * 
+    *
     * @ingroup Button[按钮]
     * @since 18
     */
@@ -6332,7 +6332,7 @@ typedef enum {
     * <ul>
     * <li>.value[0].f32: maximum font scale, in fp.</li>
     * </ul>
-    * 
+    *
     * @ingroup Button[按钮]
     * @since 18
     */
@@ -6434,7 +6434,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
@@ -6452,7 +6452,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_SELECT_COLOR,
@@ -6470,7 +6470,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_UNSELECT_COLOR,
@@ -6492,7 +6492,7 @@ typedef enum {
      * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
      * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_MARK,
@@ -6510,7 +6510,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
      * </ul>
-     * 
+     *
      * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_SHAPE,
@@ -6528,7 +6528,7 @@ typedef enum {
      * <ul>
      * <li>.string: component name.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Checkbox[复选框]
      * @since 15
      */
@@ -7418,7 +7418,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
@@ -7436,7 +7436,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_TRACK_COLOR,
@@ -7454,7 +7454,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_SELECTED_COLOR,
@@ -7474,7 +7474,7 @@ typedef enum {
      * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
      * and <b>0</b> (default value) means the opposite.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_SHOW_STEPS,
@@ -7583,7 +7583,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: current value.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_VALUE,
@@ -7601,7 +7601,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: minimum value.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_MIN_VALUE,
@@ -7619,7 +7619,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: maximum value.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_MAX_VALUE,
@@ -7636,7 +7636,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: step. The value range is [0.01, 100].</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_STEP,
@@ -7655,7 +7655,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: whether the slider moves horizontally or vertically.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_DIRECTION,
@@ -7675,7 +7675,7 @@ typedef enum {
      * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
      * reversed, and <b>0</b> means the opposite.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_REVERSE,
@@ -7693,7 +7693,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li>
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_STYLE,
@@ -7734,7 +7734,7 @@ typedef enum {
      * When enabling haptic feedback, you need to add "ohos.permission.VIBRATE" in the
      * requestPermissions field of the module.json5 file to enable vibration permission.</li>\n
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      * @since 18
      */
@@ -7790,7 +7790,7 @@ typedef enum {
      * <li>stops: stop positions of the color stops.</li> \n
      * <li>size: number of colors.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      * @since 21
      */
@@ -7817,7 +7817,7 @@ typedef enum {
      * <li>stops: stop positions of the color stops.</li> \n
      * <li>size: number of colors.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      * @since 21
      */
@@ -7844,7 +7844,7 @@ typedef enum {
      * <li>stops: stop positions of the color stops.</li> \n
      * <li>size: number of colors.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      * @since 21
      */
@@ -7861,7 +7861,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: selection status of an option button.</li>
      * </ul>
-     * 
+     *
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_CHECKED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
@@ -7886,7 +7886,7 @@ typedef enum {
      * <li>.value[2]. u32: color of the internal round pie in the enabled state. \n
      * The type is 0xARGB, and the default value is 0xFFFFFFF.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_STYLE,
@@ -7903,7 +7903,7 @@ typedef enum {
      * <ul>
      * <li>.string: radio value.</li>\n
      * </ul>
-     * 
+     *
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_VALUE,
@@ -7920,7 +7920,7 @@ typedef enum {
      * <ul>
      * <li>.string: name of the group to which the current option box belongs.</li>\n
      * </ul>
-     * 
+     *
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_GROUP,
@@ -8078,7 +8078,7 @@ typedef enum {
      * <ul>
      * <li>.string: component name.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
@@ -8098,7 +8098,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
@@ -8118,7 +8118,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
@@ -8136,7 +8136,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
      * </ul>
-     * 
+     *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
@@ -8159,7 +8159,7 @@ typedef enum {
      * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
      * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
@@ -8178,7 +8178,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
      * </ul>
-     * 
+     *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
      */
@@ -12450,7 +12450,7 @@ typedef enum {
      * <ul>
      * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.</li>
      * </ul>
-     * 
+     *
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
@@ -12931,7 +12931,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b><b>1</b>: selected; <b>0</b>: not selected.\n
-     * 
+     *
      * @ingroup Checkbox[复选框]
      */
     NODE_CHECKBOX_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
@@ -13021,7 +13021,7 @@ typedef enum {
      * <li><b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value.</li> \n
      * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.</li>\n
      * </ul>
-     * 
+     *
      * @ingroup Slider[滑动条]
      */
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
@@ -13034,7 +13034,7 @@ typedef enum {
      * <ul>
      * <li>ArkUI_NodeComponentEvent.data[0].i32: option button status.</li> \n
      * </ul>
-     * 
+     *
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,

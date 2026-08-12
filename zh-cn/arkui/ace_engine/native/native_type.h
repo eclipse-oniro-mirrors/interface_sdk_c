@@ -379,7 +379,7 @@ typedef enum {
 } ArkUI_ImageRepeat;
 
 /**
- * @brief 定义XComponent类枚举值。
+ * @brief 定义XComponent类型枚举值。
  *
  * @since 12
  */
