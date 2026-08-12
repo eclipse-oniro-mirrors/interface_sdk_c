@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @brief 发起应用资产或相册的更改请求。
- * 
+ *
  * @permission ohos.permission.WRITE_IMAGEVIDEO
  * @param changeRequest 变更请求实例。
  * @return MEDIA_LIBRARY_OK：方法调用成功。

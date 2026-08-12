@@ -41,7 +41,7 @@ extern "C" {
 
 /**
  * @brief 创建{@link OH_MediaAssetChangeRequest}实例。
- * 
+ *
  * @param mediaAsset {@link OH_MediaAsset}实例。
  * @return MEDIA_LIBRARY_OK：方法调用成功。
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：
@@ -55,7 +55,7 @@ OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* med
 
 /**
  * @brief 通过文件uri添加资源。
- * 
+ *
  * @param changeRequest {@link OH_MediaAssetChangeRequest}实例。
  * @param resourceType 要添加的资源的{@link MediaLibrary_ResourceType}。
  * @param fileUri 文件uri。
@@ -74,7 +74,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithUri(OH_MediaAss
 
 /**
  * @brief 通过ArrayBuffer数据添加资源。
- * 
+ *
  * @param changeRequest {@link OH_MediaAssetChangeRequest}实例。
  * @param resourceType 要添加的资源的类型。
  * @param buffer 要添加的数据缓冲区。
@@ -93,7 +93,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithBuffer(OH_Media
 
 /**
  * @brief 获取临时文件写句柄。
- * 
+ *
  * @permission ohos.permission.WRITE_IMAGEVIDEO
  * @param changeRequest {@link OH_MediaAssetChangeRequest}实例。
  * @param fd 临时文件写句柄。
@@ -135,7 +135,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_SaveCameraPhoto(OH_MediaAssetC
 
 /**
  * @brief 丢弃相机拍摄的照片资源。
- * 
+ *
  * @param changeRequest {@link OH_MediaAssetChangeRequest}实例。
  * @return MEDIA_LIBRARY_OK：方法调用成功。
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：
@@ -150,7 +150,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_DiscardCameraPhoto(OH_MediaAss
 
 /**
  * @brief 释放{@link OH_MediaAssetChangeRequest}实例。
- * 
+ *
  * @param changeRequest {@link OH_MediaAssetChangeRequest}实例。
  * @return MEDIA_LIBRARY_OK：方法调用成功。
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：
