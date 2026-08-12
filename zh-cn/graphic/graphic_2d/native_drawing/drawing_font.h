@@ -757,6 +757,24 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
     OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path);
 
 /**
+ * @brief 获取文字轮廓路径，支持字体回退。
+ *
+ * @param font 指示字型对象{@link OH_Drawing_Font}的指针。
+ * @param text 指示要获取轮廓路径的文本字符串。
+ * @param byteLength 指示要获取对应文本路径的字节长度，如果此字节长度大于text字符串的字节长度，会发生未定义行为。
+ * @param encoding 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引。
+ * @param x 指示文本在绘图区域内以原点为起始位置的X坐标。
+ * @param y 指示文本在绘图区域内以原点为起始位置的Y坐标。
+ * @param path 返回获取到的文字轮廓路径对象，作为出参使用。
+ * @return 函数返回执行结果。
+ *     <br>如果操作成功，则返回OH_DRAWING_SUCCESS。
+ *     <br>如果font、text或path中的任何一个为空指针，或者byteLength为0，则返回OH_DRAWING_ERROR_INCORRECT_PARAMETER。
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_FontGetTextPathWithFallback(const OH_Drawing_Font *font, const void *text,
+    size_t byteLength, OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path *path);
+
+/**
  * @brief 用于创建一个字体特征容器对象。
  *
  * @return 函数会返回一个指针，指向创建的字体特征容器对象OH_Drawing_FontFeatures。

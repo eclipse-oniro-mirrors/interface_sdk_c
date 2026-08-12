@@ -79,7 +79,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilt
  * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
  * <br>matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。请检查并确保传入的matrix为有效的浮点数组指针。
  *
- * @param matrix 表示矩阵，以长度为20的浮点数组表示。
+ * @param matrix 表示4x5颜色矩阵，用于对图像的颜色通道进行线性变换。
  * @return 返回创建的颜色滤波器对象的指针。
  * @since 11
  * @version 1.0
