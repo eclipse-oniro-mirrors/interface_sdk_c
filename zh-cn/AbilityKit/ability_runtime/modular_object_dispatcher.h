@@ -492,11 +492,15 @@ typedef struct {
  * - 结构体（STRUCT）、枚举（ENUM）、远端通信对象（IPC_REMOTE_PROXY、IPC_REMOTE_STUB）类型：释放u.idlType字符串（由strdup分配）。
  * <br>释放规则：
  * - 当TypeInfo从函数返回（如{@link OH_AbilityRuntime_TypeDescriptor_GetMethodReturnType}、
- * {@link OH_AbilityRuntime_TypeDescriptor_GetMethodParamType}、{@link OH_AbilityRuntime_TypeDescriptor_GetStructFieldType}、
- * {@link OH_AbilityRuntime_ModObjDispatcher_ArrayGetElementType}、{@link OH_AbilityRuntime_ModObjDispatcher_VectorGetElementType}、
- * {@link OH_AbilityRuntime_ModObjDispatcher_SetGetElementType}、{@link OH_AbilityRuntime_ModObjDispatcher_MapGetValueType}）时，
+ * {@link OH_AbilityRuntime_TypeDescriptor_GetMethodParamType}、
+ * {@link OH_AbilityRuntime_TypeDescriptor_GetStructFieldType}、
+ * {@link OH_AbilityRuntime_ModObjDispatcher_ArrayGetElementType}、
+ * {@link OH_AbilityRuntime_ModObjDispatcher_VectorGetElementType}、
+ * {@link OH_AbilityRuntime_ModObjDispatcher_SetGetElementType}、
+ * {@link OH_AbilityRuntime_ModObjDispatcher_MapGetValueType}）时，
  * 函数执行深拷贝，调用方获得返回TypeInfo的所有权，必须调用此接口释放资源。
- * - 当TypeInfo被传入函数（如{@link OH_AbilityRuntime_ModObjDispatcher_ArrayCreate}、{@link OH_AbilityRuntime_ModObjDispatcher_VectorCreate}、
+ * - 当TypeInfo被传入函数（如{@link OH_AbilityRuntime_ModObjDispatcher_ArrayCreate}、
+ * {@link OH_AbilityRuntime_ModObjDispatcher_VectorCreate}、
  * {@link OH_AbilityRuntime_ModObjDispatcher_SetCreate}、{@link OH_AbilityRuntime_ModObjDispatcher_MapCreate}）时，
  * 函数执行深拷贝，调用方保留原始TypeInfo的所有权，需自行调用此接口释放原始TypeInfo持有的资源。
  * - 简单类型（布尔、整数、浮点数、空值等）不持有堆资源，无需调用此接口释放。
