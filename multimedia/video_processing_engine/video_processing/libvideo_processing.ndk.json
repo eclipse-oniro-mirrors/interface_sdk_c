@@ -76,18 +76,6 @@
         "name": "OH_VideoProcessingCallback_BindOnNewOutputBuffer"
     },
     {
-        "first_introduced": "27",
-        "name": "OH_VideoProcessing_IsAutoEffectSupported"
-    },
-    {
-        "first_introduced": "27",
-        "name": "OH_VideoProcessing_UseAutoEffect"
-    },
-    {
-        "first_introduced": "27",
-        "name": "OH_VideoProcessing_SetAutoEffectParam"
-    },
-    {
         "first_introduced": "12",
         "name": "VIDEO_PROCESSING_TYPE_COLOR_SPACE_CONVERSION",
         "type": "variable"
@@ -113,17 +101,29 @@
         "type": "variable"
     },
     {
-        "first_introduced": "27",
+        "first_introduced": "26.1.0",
+        "name": "OH_VideoProcessing_IsAutoEffectSupported"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_VideoProcessing_UseAutoEffect"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_VideoProcessing_SetAutoEffectParam"
+    },
+    {
+        "first_introduced": "26.1.0",
         "name": "VIDEO_PROCESSING_TYPE_AUTOEFFECT_AISR",
         "type": "variable"
     },
     {
-        "first_introduced": "27",
+        "first_introduced": "26.1.0",
         "name": "VIDEO_AUTOEFFECT_ENABLE",
         "type": "variable"
     },
     {
-        "first_introduced": "27",
+        "first_introduced": "26.1.0",
         "name": "VIDEO_AUTOEFFECT_AISR_STRENGTH",
         "type": "variable"
     }
