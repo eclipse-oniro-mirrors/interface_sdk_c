@@ -17,7 +17,7 @@
  * @addtogroup Web
  * @{
  *
- * @brief Provides APIs to use javascript proxy and run javascript code.
+ * @brief 提供ArkWeb Native API的核心入口，支持JavaScript执行与代理注入。
  * @since 11
  */
 /**
@@ -159,7 +159,8 @@ typedef enum {
     ARKWEB_EVERGREEN = 99999
 } ArkWebEngineVersion;
 
-/** @brief 在当前显示页面的环境下，加载并异步执行一段JavaScript代码。此函数应在主线程中调用。**使用场景**：需要在Native层动态修改页面内容、获取页面运行时信息、与页面JavaScript交互时使用，
+/**
+ * @brief 在当前显示页面的环境下，加载并异步执行一段JavaScript代码。此函数应在主线程中调用。**使用场景**：需要在Native层动态修改页面内容、获取页面运行时信息、与页面JavaScript交互时使用，
  * 例如获取表单数据、执行自定义脚本等。
  *
  * @param webTag Web组件的名称。
@@ -170,7 +171,8 @@ typedef enum {
  */
 void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback);
 
-/** @brief 注册对象及函数名称列表，用于向Web页面注入Native对象，实现应用侧与前端页面的双向通信。用于Web页面调用Native功能、Native代码控制Web页面行为、混合应用中的跨层交互等场景。
+/**
+ * @brief 注册对象及函数名称列表，用于向Web页面注入Native对象，实现应用侧与前端页面的双向通信。用于Web页面调用Native功能、Native代码控制Web页面行为、混合应用中的跨层交互等场景。
  *
  * @param webTag Web组件的名称。
  * @param objName 注入对象的名称。
@@ -184,7 +186,8 @@ void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, Nativ
 void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* objName, const char** methodList,
     NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh);
 
-/** @brief 删除已注册的对象及其下的回调函数，用于清理不再需要的JavaScript注入对象。典型使用场景：页面销毁时清理注入对象、功能模块卸载时移除对应的Native接口、防止内存泄漏等场景。
+/**
+ * @brief 删除已注册的对象及其下的回调函数，用于清理不再需要的JavaScript注入对象。典型使用场景：页面销毁时清理注入对象、功能模块卸载时移除对应的Native接口、防止内存泄漏等场景。
  *
  * @param webTag Web组件的名称。
  * @param objName 注入对象的名称。
@@ -193,7 +196,8 @@ void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* obj
  */
 void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName);
 
-/** @brief 设置对象可注册时的回调函数。需要在JavaScript代理对象成功注册后执行特定逻辑时使用，例如注册成功后通知页面或记录日志。
+/**
+ * @brief 设置对象可注册时的回调函数。需要在JavaScript代理对象成功注册后执行特定逻辑时使用，例如注册成功后通知页面或记录日志。
  *
  * @param webTag Web组件的名称。
  * @param callback 对象可注册时的回调函数。
@@ -202,7 +206,8 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* o
  */
 void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeArkWeb_OnValidCallback callback);
 
-/** @brief 获取已注册的对象可注册时的回调函数。
+/**
+ * @brief 获取已注册的对象可注册时的回调函数。
  *
  * @param webTag Web组件的名称。
  * @return 已注册的对象可注册时的回调函数。如果未设置由参数webTag指定的有效回调函数，则将返回空指针。
@@ -211,7 +216,9 @@ void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeA
  */
 NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(const char* webTag);
 
-/** @brief Registers Web组件销毁时的回调函数。
+/**
+ * @brief 设置Web组件销毁时的回调函数。典型使用场景：需要在Web组件销毁时释放资源、清理状态或执行收尾操作时使用，例如释放JavaScript代理对象、取消网络请求、关闭文件句柄等。
+ *
  * @param webTag Web组件的名称。
  * @param callback Web组件销毁时的回调函数。
  * @syscap SystemCapability.Web.Webview.Core
@@ -219,7 +226,8 @@ NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(con
  */
 void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCallback callback);
 
-/** @brief 获取已注册的Web组件销毁时的回调函数。
+/**
+ * @brief 获取已注册的Web组件销毁时的回调函数。
  *
  * @param webTag Web组件的名称。
  * @return 返回已注册的Web组件销毁时的回调函数。如果未设置由参数webTag指定的销毁回调函数，则将返回空指针。
@@ -268,20 +276,6 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
     const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission);
 
 /**
- * @brief 获取页面首屏加载预测信息（详细说明见{@link ArkWeb_BlanklessInfo}），并开始本次加载过渡帧生成，应用根据此信息确定是否需要启用无白屏加载。必须与
- * {@link OH_NativeArkWeb_SetBlanklessLoadingWithKey}接口配套使用，并且必须在触发加载页面的接口之前调用。需在WebViewController与Web组件绑定后才能使用。
- *
- * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
- * @param webTag Web组件名称。
- * @param key 唯一标识本页面的key值。
- *     <br>合法取值范围：非空，长度不超过2048个字符。
- *     <br>设置非法值时不生效。
- * @return 页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，应用需根据此信息来决策是否启用无白屏加载插帧。
- * @since 20
- */
-ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key);
-
-/**
  * @brief 设置无白屏加载是否启用。本接口必须与OH_NativeArkWeb_GetBlanklessInfoWithKey接口配套使用。
  *
  * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
@@ -311,6 +305,20 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
  * @since 20
  */
 void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size);
+
+/**
+ * @brief 获取页面首屏加载预测信息（详细说明见{@link ArkWeb_BlanklessInfo}），并开始本次加载过渡帧生成，应用根据此信息确定是否需要启用无白屏加载。必须与
+ * {@link OH_NativeArkWeb_SetBlanklessLoadingWithKey}接口配套使用，并且必须在触发加载页面的接口之前调用。需在WebViewController与Web组件绑定后才能使用。
+ *
+ * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
+ * @param webTag Web组件名称。
+ * @param key 唯一标识本页面的key值。
+ *     <br>合法取值范围：非空，长度不超过2048个字符。
+ *     <br>设置非法值时不生效。
+ * @return 页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，应用需根据此信息来决策是否启用无白屏加载插帧。
+ * @since 20
+ */
+ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key);
 
 /**
  * @brief 设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。典型使用场景：根据应用内存占用情况调整缓存大小、优化存储空间使用、
@@ -353,8 +361,8 @@ void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callb
 /**
  * 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考{@link 约束与限制}）。需要根据应用兼容性需求选择特定内核版本时使用，例如应用依赖某些旧版本内核的特性，或需要在新版本系统上保持兼容性，
  * 可以指定使用特定的遗留内核版本。<br>该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
- * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb kernel version. 
- *        For details, see {@link ArkWebEngineVersion}.
+ * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb内核版本。
+ *     详细说明见 {@link ArkWebEngineVersion}.
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
@@ -365,32 +373,21 @@ void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVers
  * @since 20
  */
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
+
 /**
  * 设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；
  * 应用只需要使用CookieManager而暂时不需要Web组件渲染等。该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
- * @param { bool } lazy - Controls whether to delay the initialization of the web engine.
+ * @param { bool } lazy - 是否延后初始化ArkWeb内核，true：延后，false：不延后。
  * @since 22
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
+
 /**
  * 判断应用所使用ArkWeb内核是否是常青内核，即系统的最新内核。
  * @return 返回当前应用所使用内核是否为常青内核。true表示是常青内核，false表示不是常青内核。
  * @since 23
  */
 bool OH_NativeArkWeb_IsActiveWebEngineEvergreen();
-
-/**
- * @brief 异步获取指定URL对应的cookies。在不初始化CookieManager接口的情况下，此接口将在UI线程上自动执行。
- *
- * @param url 指定cookie所属的URL。建议填写完整的URL。
- * @param incognito true表示获取隐私模式下webview的内存cookie, false表示获取非隐私模式下的cookie。
- * @param includeHttpOnly true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。
- * @param includePartitionedCookies true表示第一方partitioned cookies也将包含在cookieValue中，false表示不包含。
- * @param callback 获取cookies完成后执行该回调。
- * @since 26.0.0
- */
-void OH_ArkWebCookieManager_FetchCookieAsync(const char* url, bool incognito, bool includeHttpOnly,
-    bool includePartitionedCookies, OH_ArkWeb_OnCookieFetchCallback callback);
 
 /**
  * @brief 获取指定URL对应的cookies。如果要在非UI线程中使用此接口，则需要先使用{@link OH_ArkWeb_GetNativeAPI}初始化CookieManager接口。
@@ -412,6 +409,19 @@ void OH_ArkWebCookieManager_FetchCookieAsync(const char* url, bool incognito, bo
  */
 ArkWeb_ErrorCode OH_ArkWebCookieManager_FetchCookieSync(const char* url, bool incognito, bool includeHttpOnly,
     bool includePartitionedCookies, char** cookieValue);
+
+/**
+ * @brief 异步获取指定URL对应的cookies。在不初始化CookieManager接口的情况下，此接口将在UI线程上自动执行。
+ *
+ * @param url 指定cookie所属的URL。建议填写完整的URL。
+ * @param incognito true表示获取隐私模式下webview的内存cookie, false表示获取非隐私模式下的cookie。
+ * @param includeHttpOnly true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。
+ * @param includePartitionedCookies true表示第一方partitioned cookies也将包含在cookieValue中，false表示不包含。
+ * @param callback 获取cookies完成后执行该回调。
+ * @since 26.0.0
+ */
+void OH_ArkWebCookieManager_FetchCookieAsync(const char* url, bool incognito, bool includeHttpOnly,
+    bool includePartitionedCookies, OH_ArkWeb_OnCookieFetchCallback callback);
 
 #ifdef __cplusplus
 };

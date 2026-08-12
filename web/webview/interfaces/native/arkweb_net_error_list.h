@@ -23,7 +23,11 @@
 /**
  * @file arkweb_net_error_list.h
  *
- * @brief Declares the APIs for the ArkWeb net errors.
+ * @brief Declares the ArkWeb network protocol stack error codes. This enumeration defines various error types that may
+ * occur in the ArkWeb network protocol stack, covering error scenarios in network connections, SSL/TLS, certificate
+ * verification, HTTP/2, QUIC, caching, and other aspects. Developers can use these error codes to quickly identify the
+ * cause of network request failures, facilitating troubleshooting and error handling.
+ *
  * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
@@ -101,7 +105,7 @@ typedef enum ArkWeb_NetError {
      * @error There were not enough resources to complete the operation.
      */
     ARKWEB_ERR_INSUFFICIENT_RESOURCES = -12,
-    
+
     /**
      * @error Memory allocation failed.
      */
@@ -142,7 +146,7 @@ typedef enum ArkWeb_NetError {
      * @error The client chose to block the request.
      */
     ARKWEB_ERR_BLOCKED_BY_CLIENT = -20,
-    
+
     /**
      * @error The network changed.
      */
@@ -158,7 +162,7 @@ typedef enum ArkWeb_NetError {
      * @error The socket is already connected.
      */
     ARKWEB_ERR_SOCKET_CONNECTED = -23,
-    
+
     /**
      * @error The upload failed because the upload stream needed to be re-read, due to a
      *        retry or a redirect, but the upload stream doesn't support that operation.
@@ -170,7 +174,7 @@ typedef enum ArkWeb_NetError {
      *        been shut down.
      */
     ARKWEB_ERR_CONTEXT_SHUT_DOWN = -26,
-    
+
     /**
      * @error The request failed because the response was delivered along with requirements
      *        which are not met ('X-Frame-Options' and 'Content-Security-Policy' ancestor
@@ -183,7 +187,7 @@ typedef enum ArkWeb_NetError {
      *        requests.
      */
     ARKWEB_ERR_CLEARTEXT_NOT_PERMITTED = -29,
-    
+
     /**
      * @error The request was blocked by a Content Security Policy.
      */
@@ -213,7 +217,7 @@ typedef enum ArkWeb_NetError {
      * @error A connection attempt was refused.
      */
     ARKWEB_ERR_CONNECTION_REFUSED = -102,
-    
+
     /**
      * @error A connection timed out as a result of not receiving an ACK for data sent.
      *        This can include a FIN packet that did not get ACK'd.
@@ -396,7 +400,7 @@ typedef enum ArkWeb_NetError {
      * @error The request throttler module cancelled this request to avoid DDOS.
      */
     ARKWEB_ERR_TEMPORARILY_THROTTLED = -139,
- 
+
     /**
      * @error A request to create an SSL tunnel connection through the HTTPS proxy
      *        received a 302 (temporary redirect, response.  The response body might
@@ -459,13 +463,13 @@ typedef enum ArkWeb_NetError {
      *        ServerKeyExchange, or validate a Finished message.
      */
     ARKWEB_ERR_SSL_DECRYPT_ERROR_ALERT = -153,
-    
+
     /**
      * @error There are too many pending WebSocketJob instances, so the new job was not
      *        pushed to the queue.
      */
     ARKWEB_ERR_WS_THROTTLE_QUEUE_TOO_LARGE = -154,
-        
+
     /**
      * @error The SSL server certificate changed in a renegotiation.
      */
@@ -715,7 +719,7 @@ typedef enum ArkWeb_NetError {
      *        a too-small RSA key).
      */
     ARKWEB_ERR_CERT_WEAK_KEY = -211,
-    
+
     /**
      * @error The certificate claimed DNS names that are in violation of name constraints.
      */
@@ -783,7 +787,7 @@ typedef enum ArkWeb_NetError {
      *        to file:// is considered unsafe).
      */
     ARKWEB_ERR_UNSAFE_REDIRECT = -311,
-    
+
     /**
      * @error Attempting to load an URL with an unsafe port number.
      */
@@ -819,7 +823,7 @@ typedef enum ArkWeb_NetError {
      * @error The headers section of the response is too large.
      */
     ARKWEB_ERR_RESPONSE_HEADERS_TOO_BIG = -325,
-    
+
     /**
      * @error The evaluation of the PAC script failed.
      */
@@ -977,7 +981,7 @@ typedef enum ArkWeb_NetError {
      * @error The HTTP headers were truncated by an EOF.
      */
     ARKWEB_ERR_RESPONSE_HEADERS_TRUNCATED = -357,
- 
+
     /**
      * @error The QUIC crypto handshake failed.  This means that the server was unable
      *        to read any requests sent, so they may be resent.
@@ -1355,7 +1359,7 @@ typedef enum ArkWeb_NetError {
      *            operation for policy reasons.
      */
     ARKWEB_ERR_DNS_SERVER_FAILED = -802,
- 
+
     /**
      * @error DNS transaction timed out.
      */
