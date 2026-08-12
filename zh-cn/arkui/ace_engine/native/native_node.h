@@ -5453,7 +5453,7 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .string: default text content. \n
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: default text content. \n
      *
      */
