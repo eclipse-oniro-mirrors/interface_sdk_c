@@ -23,10 +23,8 @@
  */
 /**
  * @file native_mediakeysystem.h
- * @brief The file declares the MediaKeySystem APIs for DRM operations.
- * The APIs can be used to check the support for a DRM solution, create a media key session, obtain and set
- * configurations, obtain DRM metrics, obtain the content protection level, generate media key system requests, process
- * responses to media key system requests, listen for events, and manage offline media keys.
+ * @brief 定义Drm MediaKeySystem API。提供以下功能：
+ * 查询是否支持特定的drm、创建媒体密钥会话、获取和设置配置、获取统计信息、获取内容保护级别、生成提供请求、处理提供响应、事件监听、获取内容防护级别、管理离线媒体密钥等。
  * 
  * @library libnative_drm.z.so
  * @syscap SystemCapability.Multimedia.Drm.Core
@@ -48,12 +46,14 @@ extern "C" {
 #endif
 
 /**
- * @brief Call back will be invoked when event triggers.
- * @param eventType Event type.
- * @param info Event info gotten from media key system.
- * @param infoLen Event info len.
- * @param extra Extra info gotten from media key system.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @brief MediaKeySystem事件触发时将调用的回调函数，不返回MediaKeySystem实例，适用于单个MediaKeySystem场景。
+ * 
+ * @param eventType 事件类型。
+ * @param info 事件信息。
+ * @param infoLen 事件信息长度。
+ * @param extra 增量信息。
+ * @return DRM_ERR_OK：执行成功。
+ * DRM_ERR_INVALID_VAL：输入参数无效。
  * @since 11
  * @version 1.0
  */
@@ -61,13 +61,15 @@ typedef  Drm_ErrCode (*MediaKeySystem_Callback)(DRM_EventType eventType, uint8_t
     int32_t infoLen, char *extra);
 
 /**
- * @brief Call back will be invoked when event triggers.
- * @param mediaKeySystem MediaKeySystem instance.
- * @param eventType Event type.
- * @param info Event info gotten from media key system.
- * @param infoLen Event info len.
- * @param extra Extra info gotten from media key system.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @brief MediaKeySystem事件触发时将调用的回调函数，返回MediaKeySystem实例，适用于多个MediaKeySystem场景。
+ * 
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param eventType 事件类型。
+ * @param info 事件信息。
+ * @param infoLen 事件信息长度。
+ * @param extra 增量信息。
+ * @return DRM_ERR_OK：执行成功。
+ * DRM_ERR_INVALID_VAL：输入参数无效。
  * @since 12
  * @version 1.0
  */
@@ -101,34 +103,31 @@ Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_Med
 Drm_ErrCode  OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *descs, uint32_t *count);
 
 /**
- * @brief Checks whether the device supports the specified DRM solution.
+ * @brief 查询设备是否支持对应的DRM解决方案。
  * 
- * @param name Pointer to the DRM solution name.
- * @return Check result for the support of the DRM solution. **true** if supported, **false** otherwise.
+ * @param name 输入参数，DRM解决方案名称。可通过{@link OH_MediaKeySystem_GetMediaKeySystems}接口获取设备支持的DRM解决方案名称。示例："com.clearplay.drm"。
+ * @return 返回是否支持指定的DRM解决方案。true表示支持，false表示不支持。
  * @since 11
  * @version 1.0
  */
 bool OH_MediaKeySystem_IsSupported(const char *name);
 /**
- * @brief Checks whether the device supports the combination of the DRM solution and MIME type.
+ * @brief 查询设备是否支持对应的DRM解决方案名称及媒体类型。可通过{@link OH_MediaKeySystem_IsSupported}接口先确认name参数对应的DRM解决方案是否是设备支持的。
  * 
- * @param name Pointer to the DRM solution name.
- * @param mimeType Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
- * video/avc and video/hev.
- * @return Check result for the support of the combination. **true** if supported, **false** otherwise.
+ * @param name 输入参数，DRM解决方案名称。可通过{@link OH_MediaKeySystem_GetMediaKeySystems}接口获取设备支持的DRM解决方案名称。
+ * @param mimeType 输入参数，媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hevc。
+ * @return 表示是否支持指定的DRM解决方案及媒体类型。当name和mimeType都支持时返回true，否则返回false。当name或mimeType参数为空或无效时返回false。
  * @since 11
  * @version 1.0
  */
 bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType);
 /**
- * @brief Checks whether the device supports the combination of the DRM solution, MIME type, and content protection
- * level.
+ * @brief 查询设备是否支持对应的DRM解决方案、媒体类型、内容保护级别。可通过{@link OH_MediaKeySystem_IsSupported2}接口先判断mimeType是否支持。
  * 
- * @param name Pointer to the DRM solution name.
- * @param mimeType Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
- * video/avc and video/hev.
- * @param contentProtectionLevel Content protection level.
- * @return Check result for the support of the combination. **true** if supported, **false** otherwise.
+ * @param name 输入参数，DRM解决方案名称。可通过{@link OH_MediaKeySystem_GetMediaKeySystems}接口获取设备支持的DRM解决方案名称。
+ * @param mimeType 输入参数，媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hevc。
+ * @param contentProtectionLevel 输入参数，内容保护级别。
+ * @return 表示是否支持指定的DRM解决方案、媒体类型以及内容保护级别。当name、mimeType和contentProtectionLevel都支持时返回true，否则返回false。
  * @since 11
  * @version 1.0
  */
