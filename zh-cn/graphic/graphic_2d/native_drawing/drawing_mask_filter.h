@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 11
  * @version 1.0
@@ -25,7 +27,8 @@
 /**
  * @file drawing_mask_filter.h
  *
- * @brief This file declares the functions related to the mask filter in the drawing module.
+ * @brief 声明与绘图模块中的对象相关的函数。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -55,7 +58,7 @@ typedef enum {
      */
     NORMAL,
     /**
-     * 内部实体，外部模糊。
+     * 内部实心，外部模糊。
      */
     SOLID,
     /**
@@ -69,11 +72,13 @@ typedef enum {
 } OH_Drawing_BlurType;
 
 /**
- * @brief 创建具有模糊效果的蒙版滤波器。
+ * @brief 创建具有模糊效果的蒙版滤波器。常用于为图形、文本等绘制内容添加模糊视觉效果。创建的蒙版滤波器对象使用完毕后，
+ * 必须调用{@link OH_Drawing_MaskFilterDestroy}销毁并释放内存。
  *
- * @param blurType 表示模糊类型。
- * @param sigma 表示要应用的高斯模糊的标准偏差。必须大于0。
- * @param respectCTM 表示模糊标准差值被CTM（当前变换矩阵）修改，默认为真。true表示模糊标准差值受CTM影响，false表示模糊标准差值固定，不受CTM影响。
+ * @param blurType 表示模糊类型，用于指定蒙版滤波器的模糊操作方式。
+ * @param sigma 表示要应用的高斯模糊的标准差，单位为px。必须大于0。
+ * @param respectCTM 表示模糊标准差值是否受CTM（当前变换矩阵）影响。传入true表示受CTM影响，传入false表示不受CTM影响，
+ * 标准差值固定。
  * @return 返回创建的蒙版滤波器对象的指针。
  * @since 11
  * @version 1.0
