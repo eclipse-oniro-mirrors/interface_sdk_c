@@ -15052,528 +15052,491 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_N
 int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32_t id);
 
 /**
- * @brief Declares a collection of native node APIs provided by ArkUI.
+ * @brief ArkUI提供的Native侧Node类型接口集合。
  *
- * The APIs related to the native node must be called in the main thread.
+ * Node模块相关接口需要在主线程上调用。
  *
  * @version 1
  * @since 12
  */
 typedef struct {
     /**
-     * @brief Struct version.
+     * 结构体版本，当前使用的ArkUI_NativeNodeAPI_1结构体的版本编号，由系统提供，开发者无需修改。
      *
      * @since 12
      */
     int32_t version;
 
     /**
-     * @brief Creates a component based on {@link ArkUI_NodeType} and returns the pointer to the created component.
+     * @brief 基于{@link ArkUI_NodeType}生成对应的组件并返回组件对象指针。
      *
-     * @param type Indicates the type of component to create.
-     * @return Returns the pointer to the created component. If the component fails to be created, NULL is returned.
+     * @param type 创建指定类型的UI组件节点。
+     * @return 返回创建完成的组件对象指针，如果创建失败返回NULL。需要开发者自行管理返回的组件对象指针的生命周期，否则有可能导致Use After Free等进程崩溃或内存泄漏问题。
      * @since 12
      */
     ArkUI_NodeHandle (*createNode)(ArkUI_NodeType type);
 
     /**
-     * @brief Destroys the component to which the specified pointer points.
+     * @brief 销毁组件指针指向的组件对象。在非主线程调用时需要注意待销毁组件对象的生命周期，生命周期管理不当有可能导致应用崩溃，因此不建议在非主线程上调用本接口。
      *
-     * @param node Indicates the pointer.
+     * @param node 组件指针对象。
      * @since 12
      */
     void (*disposeNode)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Adds a component to a parent node.
+     * @brief 将组件挂载到某个父节点之下。本接口属于节点操作接口，不建议在非主线程上调用。
      *
-     * @param parent Indicates the pointer to the parent node.
-     * @param child Indicates the pointer to the child node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed on
-     *             BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
-     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. Add since api 22.
+     * @param parent 父节点指针。
+     * @param child 子节点指针。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *     <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*addChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
 
     /**
-     * @brief Removes a component from its parent node.
+     * @brief 将组件从父节点中移除。本接口属于节点操作接口，不建议在非主线程上调用。
      *
-     * @param parent Indicates the pointer to the parent node.
-     * @param child Indicates the pointer to the child node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed
-     * on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     * @param parent 父节点指针。
+     * @param child 子节点指针。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *     <br>{@link ARKUI_ERROR_CODE_ADAPTER_EXIST} NodeAdapter已经存在。
      * @since 12
      */
     int32_t (*removeChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
 
     /**
-     * @brief Inserts a component to a parent node after the specified <b>sibling</b> node.
+     * @brief 将组件挂载到某个父节点之下，挂载位置在<b>sibling</b>节点之后。本接口属于节点操作接口，不建议在非主线程上调用。
      *
-     * @param parent Indicates the pointer to the parent node.
-     * @param child Indicates the pointer to the child node.
-     * @param sibling Indicates the pointer to the sibling node after which the target node is to be inserted.
-     * If the value is null, the node is inserted at the start of the parent node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed on BuilderNode generated
-     *             nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
-     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. Add since api 22.
+     * @param parent 父节点指针。
+     * @param child 子节点指针。
+     * @param sibling 前一个兄弟节点指针，如果为空则插入位置在最后面。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *     <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*insertChildAfter)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
 
     /**
-     * @brief Inserts a component to a parent node before the specified <b>sibling</b> node.
+     * @brief 将组件挂载到某个父节点之下，挂载位置在<b>sibling</b>节点之前。本接口属于节点操作接口，不建议在非主线程上调用。
      *
-     * @param parent Indicates the pointer to the parent node.
-     * @param child Indicates the pointer to the child node.
-     * @param sibling Indicates the pointer to the sibling node before which the target node is to be inserted.
-     * If the value is null, the node is inserted at the end of the parent node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed on BuilderNode generated
-     *             nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
-     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. Add since api 22.
+     * @param parent 父节点指针。
+     * @param child 子节点指针。
+     * @param sibling 后一个兄弟节点指针，如果为空则插入位置在最后面。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *     <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*insertChildBefore)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
 
     /**
-     * @brief Inserts a component to the specified position in a parent node.
+     * @brief 将组件挂载到某个父节点之下，挂载位置由<b>position</b>指定。本接口属于节点操作接口，不建议在非主线程上调用。
      *
-     * @param parent Indicates the pointer to the parent node.
-     * @param child Indicates the pointer to the child node.
-     * @param position Indicates the position to which the target child node is to be inserted. If the value is a
-     * negative number or invalid, the node is inserted at the end of the parent node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed on BuilderNode generated
-     *             nodes: setting or resetting attributes, setting events, or adding or editing subnodes.
-     *         Returns {@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} if the child node has already been adopted. Add since api 22.
+     * @param parent 父节点指针。
+     * @param child 子节点指针。
+     * @param position 插入位置，取值范围为[-2147483648, 2147483647]，如果插入位置为负数或者不存在，则默认插入位置在最后面。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *     <br>{@link ARKUI_ERROR_CODE_NODE_IS_ADOPTED} 节点已被接纳为附属节点。从API version 22开始支持。
      * @since 12
      */
     int32_t (*insertChildAt)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position);
 
     /**
-     * @brief Sets the attribute of a node.
+     * @brief 属性设置函数，不建议在非主线程上调用。\n
      *
-     * @param node Indicates the node whose attribute needs to be set.
-     * @param attribute Indicates the type of attribute to set.
-     * @param value Indicates the attribute value.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
-     *         of the native API was not found.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed
-     *         on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。\n
+     * 例如：{@link ArkUI_NodeAttributeType}中的\n
+     * NODE_TEXT_CONTENT_WITH_STYLED_STRING。
+     *
+     * @param node 需要设置属性的节点对象。
+     * @param attribute 需要设置的属性类型。
+     * @param item 需要设置的属性值。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该属性。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
+     *     <br>{@link ARKUI_ERROR_CODE_ADAPTER_EXIST} NodeAdapter已经存在。
      * @since 12
      */
     int32_t (*setAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute, const ArkUI_AttributeItem* item);
 
     /**
-     * @brief Obtains an attribute.
+     * @brief 属性获取函数。
      *
-     * The pointer returned by this API is an internal buffer pointer of the ArkUI framework. As such, you do not need
-     * to call <b>delete</b> to release the memory. However, the pointer must be used before this API is called next
-     * time. Otherwise, the pointer may be overwritten by other values.
-     * @param node Indicates the node whose attribute needs to be obtained.
-     * @param attribute Indicates the type of attribute to obtain.
-     * @return Returns the attribute value. If the operation fails, a null pointer is returned.
+     * 该接口返回的指针是ArkUI框架内部的缓冲区指针，不需要开发者主动调用delete释放内存，但是需要在该函数下一次被调用前使用，否则可能会被其他值所覆盖。
+     *
+     * @param node 需要获取属性的节点对象。
+     * @param attribute 需要获取的属性类型。
+     * @return 当前属性类型的属性值，失败返回空指针。
      * @since 12
      */
     const ArkUI_AttributeItem* (*getAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute);
 
     /**
-     * @brief Resets an attribute.
+     * @brief 重置属性函数，不建议在非主线程上调用。
      *
-     * @param node Indicates the node whose attribute needs to be reset.
-     * @param attribute Indicates the type of attribute to reset.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
-     *         of the native API was not found.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed
-     *         on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     * @param node 需要重置属性的节点对象。
+     * @param attribute 需要重置的属性类型。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该属性。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
      * @since 12
      */
     int32_t (*resetAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute);
 
     /**
-     * @brief Registers an event for the specified node.
+     * @brief 注册节点事件函数。
      *
-     * When the component is being displayed, this API must be called in the main thread.
-     *
-     * @param node Indicates the target node.
-     * @param eventType Indicates the type of event to register.
-     * @param targetId Indicates the custom event ID, which is passed in the callback of {@link ArkUI_NodeEvent}
-     * when the event is triggered.
-     * @param userData Indicates the custom event parameter, which is passed in the callback of {@link ArkUI_NodeEvent}
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
-     *         of the native API was not found.
-     *         Returns {@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} if the following operations are not allowed
-     *         on BuilderNode generated nodes:
-     *         setting or resetting attributes, setting events, or adding or editing subnodes.
+     * @param node 需要注册事件的节点对象。
+     * @param eventType 需要注册的事件类型。
+     * @param targetId 自定义事件ID，当事件触发时在回调参数{@link ArkUI_NodeEvent} 中携带回来。
+     * @param userData 自定义事件参数，当事件触发时在回调参数{@link ArkUI_NodeEvent} 中携带回来。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
+     *     <br>{@link ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED} 不支持对ArkTS创建的节点执行对应的操作。
      * @since 12
      */
     int32_t (*registerNodeEvent)(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
         int32_t targetId, void* userData);
 
     /**
-     * @brief Unregisters an event for the specified node.
+     * @brief 反注册节点事件函数。
      *
-     * When the component is being displayed, this API must be called in the main thread.
-     *
-     * @param node Indicates the target node.
-     * @param eventType Indicates the type of event to unregister.
+     * @param node 需要反注册事件的节点对象。
+     * @param eventType 需要反注册的事件类型。
      * @since 12
      */
     void (*unregisterNodeEvent)(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
 
     /**
-     * @brief Registers an event receiver.
+     * @brief 注册事件回调统一入口函数。
      *
-     * The ArkUI framework collects component events generated during the process and calls back the events through
-     * the registered event receiver. \n
-     * A new call to this API will overwrite the previously registered event receiver. \n
-     * Do not directly save the <b>ArkUI_NodeEvent</b> object pointer. The data will be destroyed after the
-     * callback is complete. \n
-     * To bind with a component instance, you can use the <b>addNodeEventReceiver</b> function. \n
+     * ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventReceiver函数回调给开发者。\n
+     * 重复调用时会覆盖前一次注册的函数。\n
+     * 避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。\n
+     * 如果需要和组件实例绑定，可以使用addNodeEventReceiver函数接口。\n
      *
-     * @param eventReceiver Indicates the event receiver to register.
+     * @param eventReceiver 事件回调统一入口函数。
      * @since 12
      */
     void (*registerNodeEventReceiver)(void (*eventReceiver)(ArkUI_NodeEvent* event));
 
     /**
-     * @brief Unregisters the event receiver.
-     *
+     * @brief 反注册事件回调统一入口函数。
      * @since 12
+     *
      */
     void (*unregisterNodeEventReceiver)();
 
     /**
-     * @brief Forcibly marks the current node that needs to be measured, laid out, or rendered again.
+     * @brief 强制标记当前节点，使其重新执行测量、布局或者绘制的区域。
      *
-     * Regarding updates to system attributes, the ArkUI framework automatically marks the dirty area and performs
-     * measuring, layout, or rendering again. In this case, you do not need to call this API.
-     * @param node Indicates the node for which you want to mark as dirty area.
-     * @param dirtyFlag Indicates type of dirty area.
+     * 系统属性设置更新场景下，ArkUI框架会自动标记节点并重新执行测量，布局或者绘制，不需要开发者主动调用该函数。
+     *
+     * @param node 需要标记重新执行测量、布局或者绘制的节点对象。
+     * @param dirtyFlag 重新执行测量、布局或者绘制的类型。
      * @since 12
      */
     void (*markDirty)(ArkUI_NodeHandle node, ArkUI_NodeDirtyFlag dirtyFlag);
 
     /**
-     * @brief Obtains the number of subnodes.
+     * @brief 获取子节点的个数。
      *
-     * @param node Indicates the target node.
-     * @return the number of subnodes. If not, returns 0.
+     * @param node 目标节点对象。
+     * @return 子节点的个数, 如果没有返回0。
      * @since 12
      */
     uint32_t (*getTotalChildCount)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Obtains a subnode.
+     * @brief 获取子节点。
      *
-     * @param node Indicates the target node.
-     * @param position Indicates the position of the subnode.
-     * @return Returns the pointer to the subnode if the subnode exists; returns <b>NULL</b> otherwise.
+     * @param node 目标节点对象。
+     * @param position 子组件的位置。
+     * @return 返回组件的指针，如果没有返回NULL。
      * @since 12
      */
     ArkUI_NodeHandle (*getChildAt)(ArkUI_NodeHandle node, int32_t position);
 
     /**
-     * @brief Obtains the first subnode.
+     * @brief 获取第一个子节点。
      *
-     * @param node Indicates the target node.
-     * @return Returns the pointer to the subnode if the subnode exists; returns <b>NULL</b> otherwise.
+     * @param node 目标节点对象。
+     * @return 返回组件的指针，如果没有返回NULL。
      * @since 12
      */
     ArkUI_NodeHandle (*getFirstChild)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Obtains the last subnode.
+     * @brief 获取最后一个子节点。
      *
-     * @param node Indicates the target node.
-     * @return Returns the pointer to the subnode if the subnode exists; returns <b>NULL</b> otherwise.
+     * @param node 目标节点对象。
+     * @return 返回组件的指针，如果没有返回NULL。
      * @since 12
      */
     ArkUI_NodeHandle (*getLastChild)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Obtains the previous sibling node.
+     * @brief 获取上一个兄弟节点。
      *
-     * @param node Indicates the target node.
-     * @return Returns the pointer to the subnode if the subnode exists; returns <b>NULL</b> otherwise.
+     * @param node 目标节点对象。
+     * @return 返回组件的指针，如果没有返回NULL。
      * @since 12
      */
     ArkUI_NodeHandle (*getPreviousSibling)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Obtains the next sibling node.
+     * @brief 获取下一个兄弟节点。
      *
-     * @param node Indicates the target node.
-     * @return Returns the pointer to the subnode if the subnode exists; returns <b>NULL</b> otherwise.
+     * @param node 目标节点对象。
+     * @return 返回组件的指针，如果没有返回NULL。
      * @since 12
      */
     ArkUI_NodeHandle (*getNextSibling)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Registers a custom event for a node. When the event is triggered, the value is returned through the entry
-     * point function registered by <b>registerNodeCustomEventReceiver</b>.
+     * @brief 注册自定义节点事件函数。事件触发时通过registerNodeCustomEventReceiver注册的自定义事件入口函数返回。
      *
-     * @param node Indicates the target node.
-     * @param eventType Indicates the type of event to register.
-     * @param targetId Indicates the custom event ID, which is passed in the callback of {@link ArkUI_NodeCustomEvent}
-     * when the event is triggered.
-     * @param userData Indicates the custom event parameter, which is passed in the callback of
-     * {@link ArkUI_NodeCustomEvent} when the event is triggered.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
-     *         of the native API was not found.
+     * @param node 需要注册事件的节点对象。
+     * @param eventType 需要注册的事件类型。
+     * @param targetId 自定义事件ID，当事件触发时在回调参数{@link ArkUI_NodeCustomEvent} 中携带回来。
+     * @param userData 自定义事件参数，当事件触发时在回调参数{@link ArkUI_NodeCustomEvent} 中携带回来。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     *     <br>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 组件不支持该事件。
      * @since 12
      */
     int32_t (*registerNodeCustomEvent)(
         ArkUI_NodeHandle node, ArkUI_NodeCustomEventType eventType, int32_t targetId, void* userData);
 
     /**
-     * @brief Unregisters a custom event for a node.
+     * @brief 反注册自定义节点事件函数。
      *
-     * @param node Indicates the target node.
-     * @param eventType Indicates the type of event to unregister.
+     * @param node 需要反注册事件的节点对象。
+     * @param eventType 需要反注册的事件类型。
      * @since 12
      */
     void (*unregisterNodeCustomEvent)(ArkUI_NodeHandle node, ArkUI_NodeCustomEventType eventType);
 
     /**
-     * @brief Registers a unified entry point function for custom node event callbacks.
+     * @brief 注册自定义节点事件回调统一入口函数。
      *
-     * The ArkUI framework collects custom component events generated during the process and calls back the events
-     * through the registered <b>registerNodeCustomEventReceiver</b>. \n
-     * A new call to this API will overwrite the previously registered event receiver.
-     * Do not directly save the <b>ArkUI_NodeCustomEvent</b> object pointer.
-     * The data will be destroyed after the callback is complete. \n
-     * To bind with a component instance, you can use the <b>addNodeCustomEventReceiver</b> function. \n
+     * ArkUI框架会统一收集过程中产生的自定义组件事件并通过注册的registerNodeCustomEventReceiver函数回调给开发者。\n
+     * 重复调用时会覆盖前一次注册的函数。\n
+     * 避免直接保存{@link ArkUI_NodeCustomEvent}对象指针，数据会在回调结束后销毁。\n
+     * 如果需要和组件实例绑定，可以使用addNodeCustomEventReceiver函数接口。\n
      *
-     * @param eventReceiver Indicates the event receiver to register.
+     * @param eventReceiver 事件回调统一入口函数。
      * @since 12
      */
     void (*registerNodeCustomEventReceiver)(void (*eventReceiver)(ArkUI_NodeCustomEvent* event));
 
     /**
-     * @brief Unregisters the unified entry point function for custom node event callbacks.
-     *
+     * @brief 反注册自定义节点事件回调统一入口函数。
      * @since 12
+     *
      */
     void (*unregisterNodeCustomEventReceiver)();
 
     /**
-     * @brief Sets the width and height for a component after the measurement.
+     * @brief 在测算回调函数中设置组件的测算完成后的宽和高。
      *
-     * @param node Indicates the target node.
-     * @param width Indicates the width.
-     * @param height Indicates the height.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 目标节点对象。
+     * @param width 设置的宽。
+     * @param height 设置的高。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setMeasuredSize)(ArkUI_NodeHandle node, int32_t width, int32_t height);
 
     /**
-     * @brief Sets the position for a component.
+     * @brief 在布局回调函数中设置组件的位置。该接口优先级低于{@link ArkUI_NodeAttributeType}中的NODE_POSITION。
      *
-     * @param node Indicates the target node.
-     * @param positionX Indicates the X coordinate.
-     * @param positionY Indicates the Y coordinate.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 目标节点对象。
+     * @param positionX x轴坐标。
+     * @param positionY y轴坐标。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setLayoutPosition)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
 
     /**
-     * @brief Obtains the width and height of a component after measurement.
+     * @brief 获取组件测算完成后的宽高尺寸。
      *
-     * @param node Indicates the target node.
-     * @return Returns the width and height of the component.
+     * @param node 目标节点对象。
+     * @return ArkUI_IntSize 组件的宽高。
      * @since 12
      */
     ArkUI_IntSize (*getMeasuredSize)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Obtains the position of a component after the layout is complete.
+     * @brief 获取组件布局完成后该节点相对于父节点的偏移，单位为px。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
      *
-     * @param node Indicates the target node.
-     * @return Returns the position of the component.
+     * @param node 目标节点对象。
+     * @return ArkUI_IntOffset 组件的位置。
      * @since 12
      */
     ArkUI_IntOffset (*getLayoutPosition)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Measures a node. You can use the <b>getMeasuredSize</b> API to obtain the size after the measurement.
+     * @brief 对目标组件进行测算，可以通过getMeasuredSize接口获取测算后的大小。
      *
-     * @param node Indicates the target node.
-     * @param Constraint Indicates the size constraint.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 目标节点对象。
+     * @param Constraint 约束尺寸。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*measureNode)(ArkUI_NodeHandle node, ArkUI_LayoutConstraint* Constraint);
 
     /**
-     * @brief Lays outs a component and passes the expected position of the component relative to its parent component.
+     * @brief 对目标组件进行布局并传递该组件相对父组件的期望位置。
      *
-     * When the component is being displayed, this API must be called in the main thread.
-     *
-     * @param node Indicates the target node.
-     * @param positionX Indicates the X coordinate.
-     * @param positionY Indicates the Y coordinate.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 目标节点对象。
+     * @param positionX x轴坐标。
+     * @param positionY y轴坐标。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*layoutNode)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
 
     /**
-     * @brief Adds a component event callback function to a component to receive component events generated
-     * by the component.
+     * @brief 在组件上添加组件事件回调函数，用于接收该组件产生的组件事件。
      *
-     * Unlike the global registration function <b>registerNodeEventReceiver</b>, this API allows multiple event
-     * receivers to be added to the same component. \n
-     * The callback added by this API is triggered before the global callback registered by
-     * <b>registerNodeEventReceiver</b>. \n
-     * Do not directly save the <b>ArkUI_NodeEvent</b> object pointer.
-     * The data will be destroyed after the callback is complete. \n
+     * 不同于registerNodeEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。\n
+     * 该函数添加的监听回调函数触发时机会先于registerNodeEventReceiver注册的全局回调函数。\n
+     * 避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。\n
      *
-     * @param node Indicates the component for which you want to add the event callback function.
-     * @param eventReceiver Indicates the component event callback function to add.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 用于添加组件事件回调函数的对象。
+     * @param eventReceiver 组件事件回调函数。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*addNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
     /**
-     * @brief Removes the registered component event callback function from a component.
+     * @brief 在组件上删除注册的组件事件回调函数。
      *
-     * @param node Indicates the component from which you want to remove the event callback function.
-     * @param eventReceiver Indicates the component event callback function to remove.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 用于删除组件事件回调函数的对象。
+     * @param eventReceiver 待删除的组件事件回调函数。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*removeNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
     /**
-     * @brief Adds a custom event callback function to a component to receive custom events
-     * (such as layout and drawing events) generated by the component.
+     * @brief 在组件上添加自定义事件回调函数，用于接收该组件产生的自定义事件（如布局事件，绘制事件）。
      *
-     * Unlike the global registration function <b>registerNodeCustomEventReceiver</b>, this API allows
-     * multiple event receivers to be added to the same component. \n
-     * The callback added by this API is triggered before the global callback registered by
-     * <b>registerNodeCustomEventReceiver</b>. \n
-     * Do not directly save the <b>ArkUI_NodeCustomEvent</b> object pointer.
-     * The data will be destroyed after the callback is complete. \n
+     * 不同于registerNodeCustomEventReceiver的全局注册函数，该函数允许在同一个组件上添加多个事件接收器。\n
+     * 该函数添加的监听回调函数触发时机会先于registerNodeCustomEventReceiver注册的全局回调函数。\n
+     * 避免直接保存ArkUI_NodeCustomEvent对象指针，数据会在回调结束后销毁。\n
      *
-     * @param node Indicates the component for which you want to add the custom event callback function.
-     * @param eventReceiver Indicates the custom event callback function to add.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 用于添加组件自定义事件回调函数的对象。
+     * @param eventReceiver 组件自定义事件回调函数。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*addNodeCustomEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeCustomEvent* event));
 
     /**
-     * @brief Removes a registered custom event callback function from a component.
+     * @brief 在组件上删除注册的自定义事件回调函数。
      *
-     * @param node Indicates the component from which you want to remove the custom event callback function.
-     * @param eventReceiver Indicates the custom event callback function to remove.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 用于删除组件自定义事件回调函数的对象。
+     * @param eventReceiver 待删除的组件自定义事件回调函数。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*removeNodeCustomEventReceiver)(ArkUI_NodeHandle node,
         void (*eventReceiver)(ArkUI_NodeCustomEvent* event));
 
     /**
-     * @brief Saves custom data on the specified component.
+     * @brief 在组件上保存自定义数据。
      *
-     * @param node Indicates the component on which the custom data will be saved.
-     * @param userData Indicates the custom data to be saved.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 用于保存自定义数据的组件。
+     * @param userData 要保存的自定义数据。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setUserData)(ArkUI_NodeHandle node, void* userData);
 
     /**
-     * @brief Obtains the custom data saved on the specified component.
+     * @brief 获取在组件上保存的自定义数据。
      *
-     * @param node Indicates the target component.
-     * @return Returns the custom data.
+     * @param node 保存了自定义数据的组件。
+     * @return 自定义数据。
      * @since 12
      */
     void* (*getUserData)(ArkUI_NodeHandle node);
 
     /**
-     * @brief Sets the unit for a component.
+     * @brief 指定组件的单位。
      *
-     * @param node Indicates the component for which you want to set the unit.
-     * @param unit Indicates the unit, which is an enumerated value of {@link ArkUI_LengthMetricUnit}.
-     * The default value is <b>ARKUI_LENGTH_METRIC_UNIT_DEFAULT</b>.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @param node 用于指定单位的组件。
+     * @param unit 单位类型{@link ArkUI_LengthMetricUnit}，默认为 ARKUI_LENGTH_METRIC_UNIT_DEFAULT。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
      * @since 12
      */
     int32_t (*setLengthMetricUnit)(ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit);
 
     /**
-      * @brief Get the parent node.
-      *
-      * @param node target node object.
-      * @return Returns the pointer of the component, if not return NULL
-      * @since 12
-      */
+     * @brief 获取父节点。
+     *
+     * @param node 目标节点对象。
+     * @return 返回组件的指针，如果没有返回NULL。
+     * @since 12
+     */
     ArkUI_NodeHandle (*getParent)(ArkUI_NodeHandle node);
 
     /**
-    * @brief Uninstall all child nodes from the parent component.
-    *
-    * @param parent target node object.
-    * @return Returns the error code.
-    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-    * @since 12
-    */
+     * @brief 从父组件上卸载所有子节点。
+     *
+     * @param parent 父节点指针。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     * @since 12
+     */
     int32_t (*removeAllChildren)(ArkUI_NodeHandle parent);
 } ArkUI_NativeNodeAPI_1;
 
@@ -15904,97 +15867,96 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle nod
 int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
 
 /**
- * @brief Add the custom property of the component. This interface only works on the main thread.
+ * @brief 设置组件的自定义属性。该接口仅在主线程生效。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param name The name of the custom property. Passing null pointers is not allowed.
- * @param value The value of the custom property. Passing null pointers is not allowed.
+ * @param node ArkUI_NodeHandle指针。
+ * @param name 自定义属性的名称。不允许传入空指针。
+ * @param value 对应key参数名称的自定义属性的值。不允许传入空指针。
  * @since 13
  */
 void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* name, const char* value);
 
 /**
- * @brief Remove the custom property of the component.
+ * @brief 移除组件已设置的自定义属性。
  *
- * @param node ArkUI_NodeHandle pointer.
- * @param name The name of the custom property.
+ * @param node ArkUI_NodeHandle指针。
+ * @param name 自定义属性的名称。
  * @since 13
  */
 void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name);
 
 /**
- * @brief 获取组件的自定义属性，并通过handle返回ArkUI_CustomProperty实例。
+ * @brief 获取组件的自定义属性的值。
  *
- * @param node ArkUI-NodeHandle pointer.
- * @param name The name of the custom attribute.
- * @param handle The structure of the custom attribute corresponding to the key parameter name obtained.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param node ArkUI_NodeHandle指针。
+ * @param name 自定义属性的名称。
+ * @param handle 获取的对应key参数名称的自定义属性的结构体。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 14
  */
 int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* name, ArkUI_CustomProperty** handle);
 
 /**
- * @brief Get the parent node to obtain the component nodes created by ArkTs.
+ * @brief 获取父节点，可获取由ArkTs创建的组件节点。
  *
- * @param node Target node object.
- * @return Return the pointer of the component.
+ * @param node 目标节点对象。
+ * @return 组件的指针，如果没有返回NULL。
  * @since 14
  */
 ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
 
 /**
- * @brief 获取内部活跃状态为true的FrameNode子节点，并生成ArkUI_ActiveChildrenInfo实例。Span不会被计入子节点统计。
- 获取成功后，可查询子节点数量并按下标读取子节点；实例使用完毕后必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
+ * @brief 获取某个节点所有活跃的子节点。Span将不会被计入子节点的统计中。
+ *        在LazyForEach场景中，推荐使用{@link OH_ArkUI_NodeUtils_GetChildWithExpandMode}接口进行遍历。
  *
- * @param head Pass in the node that needs to be obtained.
- * @param handle The structure corresponding to the sub node information of the head node.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param head 传入需要获取的节点。
+ * @param handle 对应head节点子节点信息的结构体。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 14
  */
 int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo(ArkUI_NodeHandle head, ArkUI_ActiveChildrenInfo** handle);
 
 /**
- * @brief Retrieve the root node of the current page.
+ * @brief 获取当前页面的根节点。
  *
- * @param node Target node object.
- * @return Return the pointer of the component.
+ * @param node 目标节点对象。
+ * @return 根节点的指针，如果没有返回NULL。
  * @since 14
  */
 ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetCurrentPageRootNode(ArkUI_NodeHandle node);
 
 /**
- * @brief Retrieve whether the component is labeled by C-API.
+ * @brief 获取组件是否由C-API创建的标签。
  *
- * @param node Target node object.
- * @return Return whether the node is a Tag created by C-API,
- *         true represents created by C-API, false represents not created by C-API.
+ * @param node 目标节点对象。
+ * @return 节点是否由C-API创建的Tag，true代表由C-API创建，false代表非C-API创建。
  * @since 14
  */
 bool OH_ArkUI_NodeUtils_IsCreatedByNDK(ArkUI_NodeHandle node);
 
 /**
- * @brief Get the type of node.
+ * @brief 获取节点的类型。
  *
- * @param node Target node object.
- * @return Return the type of the node.
- *         For specific open types, refer to {@link ArkUI_NodeType}. For unopened nodes, return -1.
+ * @param node 目标节点对象。
+ * @return 节点的类型，具体已开放类型参考{@link ArkUI_NodeType}，未开放结点返回-1。
  * @since 14
  */
 int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
 
 /**
- * @brief Get info of the window to which the node belongs.
+ * @brief 获取节点所属的窗口信息。
  *
- * @param node Target node object.
- * @param info Window info. Use {@link OH_ArkUI_HostWindowInfo_Destroy} to release memory.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node is not mounted.
+ * @param node 目标节点对象。
+ * @param info 窗口信息。使用{@link OH_ArkUI_HostWindowInfo_Destroy}释放内存。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *     <br>{@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} 节点未挂载到节点树上。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
@@ -16127,13 +16089,13 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyle
 float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event);
 
 /**
- * @brief Get the node handle by id.
+ * @brief 根据用户id获取目标节点。
  *
- * @param id The id of the target node handle.
- * @param node The handle of target node handle.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @param id 目标节点的id。
+ * @param node 目标节点的指针。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
@@ -16329,16 +16291,16 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
 
 /**
- * @brief Run a custom function inside the UIContext scope.
+ * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
  *
- * @param uiContext Indicates the pointer to a UI instance.
- * @param userData Indicates the pointer to the custom data.
- * @param callback The custom function.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- *         Returns {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the uiContext is invalid.
- *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
+ * @param uiContext 表示目标UI上下文的指针。
+ * @param userData 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。
+ * @param callback 开发者自定义回调函数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *     <br>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} UIContext对象无效。
+ *     <br>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} 回调函数无效。
  * @since 20
  */
 int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData));
@@ -16357,14 +16319,14 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkUI_NodeHandle* node);
 
 /**
- * @brief Get the uniqueId of the target node handle.
+ * @brief 获取目标节点的uniqueId。
  *
- * @param node The ArkUI-NodeHandle pointer.
- * @param uniqueId The uniqueId of the target node handle, default value is -1.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @param node ArkUI节点指针。
+ * @param uniqueId 目标节点的uniqueId。组件标识ID只读，且进程内唯一，若该节点存在，返回该节点的uniqueId值；否则返回-1。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 方法参数错误。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
  * @since 20
  */
 int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
@@ -16531,29 +16493,31 @@ int32_t OH_ArkUI_NativeModule_ConvertPositionFromWindow(ArkUI_NodeHandle targetN
 int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node);
 
 /**
- * @brief Post UI task to background threads.
+ * @brief 将asyncUITask函数提交至ArkUI框架提供的非UI线程中执行，asyncUITask函数执行完毕后，在UI线程调用onFinish函数。
+ *        适用于多线程创建UI组件的场景，开发者可使用此接口在非UI线程创建UI组件，随后在UI线程将创建完成的组件挂载至主树上。
  *
- * @param context UIContext pointer of the page where the UI task located.
- * @param asyncUITaskData Parameter of asyncUITask and onFinish.
- * @param asyncUITask Function executed by a background thread.
- * @param onFinish Function executed by UI thread after async UI task is executed.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or asyncUITask is nullptr.
+ * @param context UI实例对象指针。
+ * @param asyncUITaskData 开发者自定义数据指针，作为asyncUITask和onFinish的入参。可以传入空指针。
+ * @param asyncUITask 在非UI线程执行的函数。
+ * @param onFinish asyncUITask执行完成后，在UI线程执行的函数。可以传入空指针。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或asyncUITask为空指针。
  * @since 22
  */
 int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
     void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData));
 
 /**
- * @brief Post UI task to UI thread.
+ * @brief 将task函数提交至UI线程中执行。
+ *        适用于多线程创建UI组件的场景，当开发者在自建的线程中创建UI组件时，可以使用此接口将创建完成的组件挂载到UI线程的主树上。
  *
- * @param context UIContext pointer of the page where the UI task located.
- * @param taskData Parameter of task.
- * @param task Function executed by UI thread.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
+ * @param context UI实例对象指针。
+ * @param taskData 开发者自定义数据指针，作为task的入参。可以传入空指针。
+ * @param task 在UI线程执行的函数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或task为空指针。
  * @since 22
  */
 int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
@@ -16603,14 +16567,16 @@ int32_t OH_ArkUI_NativeModule_RegisterCommonAreaApproximateChangeEvent(ArkUI_Nod
 int32_t OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent(ArkUI_NodeHandle node);
 
 /**
- * @brief Post UI task to UI thread and wait until UI task finished.
+ * @brief 将task函数提交至UI线程中执行，调用此接口的线程将阻塞，直至task函数执行完成。在UI线程调用此接口等同于同步调用task函数。
+ *        适用于多线程创建UI组件的场景，当开发者在多线程创建组件过程中需要调用仅支持UI线程的函数时，使用此接口返回UI线程调用函数，调用完成后继续多线程创建组件。
+ *        当UI线程负载较高时，调用此接口的非UI线程可能长时间阻塞，影响多线程创建UI组件的性能，不建议频繁使用。
  *
- * @param context UIContext pointer of the page where the UI task located.
- * @param taskData Parameter of task.
- * @param task Function executed by UI thread.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
+ * @param context UI实例对象指针。
+ * @param taskData 开发者自定义数据指针，作为task的入参。可以传入空指针。
+ * @param task 在UI线程执行的函数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context对象无效或task为空指针。
  * @since 22
  */
 int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
@@ -16727,16 +16693,15 @@ int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_ArcSwiper_FinishAnimation(ArkUI_NodeHandle node);
 
 /**
- * @brief Get the root node handle of the corresponding page of the Context.
+ * @brief 获取指定实例的页面的根节点。
  *
- * @param context A UIContext pointer.
- * @param rootNode The handle of target root node handle. If the context's corresponding
- *     page has no root node, the pointed-to value will be set to null.
- * @return Error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the uiContext is invalid.
+ * @param context UI实例对象指针。\n
+ * @param rootNode 目标根节点的句柄。如果上下文对应的页面没有根节点，则所指向的值将被设置为null。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ *     <br>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 实例异常。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 24
  */
 int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(

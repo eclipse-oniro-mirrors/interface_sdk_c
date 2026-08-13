@@ -41,11 +41,12 @@
 
 #include "common_type.h"
 #include "drawable_descriptor.h"
+
+#include "node_attributes/common_attributes.h"
 #include "node_attributes/slider.h"
 #include "node_attributes/checkbox.h"
 #include "node_attributes/button.h"
 
-#include "node_attributes/common_attributes.h"
 #include "node_attributes/text_area.h"
 #include "node_attributes/text.h"
 #include "node_attributes/text_input.h"
@@ -270,7 +271,7 @@ typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 
 /**
- * @brief Define the information of the HostWindowInfo class for window properties.
+ * @brief 定义窗口属性的 HostWindowInfo 类信息。
  *
  * @since 15
  */
@@ -1693,225 +1694,260 @@ typedef enum {
 } ArkUI_ListItemSwipeEdgeEffect;
 
 /**
- * @brief Define error code enumeration values.
+ * @brief 定义错误码枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** @error No errors. */
+    /**
+     * 无错误。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_NO_ERROR = 0,
-    /** @error Parameter error. */
+    /**
+     * 参数错误。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_PARAM_INVALID = 401,
     /**
-     * @error CAPI init error.
+     * 接口初始化错误。
      * @since 18
      */
     ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500,
     /**
-     * @error Internal error occurs, such as failure occurs because of the internal environment error,
-     * or operation failed because of the internal execution failed.
+     * 出现内部错误，例如内部环境错误导致失败，或者由于内部执行失败导致操作失败。
      * @since 15
      */
     ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
     /**
-     * @error The XComponent is in invalid state.
-     * @since 19
+     * 当前XComponent状态异常，方法调用失败。错误码的详细介绍请参见{@link XComponent组件错误码}。
+     * @since 18
      */
     ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,
-    /** @error The component does not support specific properties or events. */
+    /**
+     * 组件不支持特定的属性或者事件。错误码的详细介绍请参见{@link 交互事件错误码}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
-    /** @error The corresponding operation does not support nodes created by ArkTS. */
+    /**
+     * 不支持对ArkTS创建的节点执行对应的操作。错误码的详细介绍请参见{@link 106103 对应的操作不支持ArkTS创建的节点}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103,
-    /** @error The lazy loading adapter is not bound to the component. */
+    /**
+     * 懒加载适配器未绑定到组件上。错误码的详细介绍请参见{@link 106104 适配器未绑定}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104,
-    /** @error The adapter already exists. */
+    /**
+     * 适配器已存在。错误码的详细介绍请参见{@link 106105 适配器已存在}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105,
-    /** @error The corresponding node already has a child node and cannot add an adapter. */
+    /**
+     * 对应节点已存在子节点，无法添加适配器。错误码的详细介绍请参见{@link 106106 子节点已存在}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106,
-    /** The parameter length in the parameter event exceeds the limit. */
+    /**
+     * 组件事件中参数长度超限。错误码的详细介绍请参见{@link 106107 参数下标越界}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,
-    /** The data does not exist in the component event. */
+    /**
+     * 组件事件中不存在该数据。错误码的详细介绍请参见{@link 106108 数据不存在}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108,
-    /** The component event does not support return values. */
+    /**
+     * 组件事件不支持返回值。错误码的详细介绍请参见{@link 106109 不支持返回值}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109,
     /**
-     * @error The event type is not supported by the node.
+     * 暂不支持该事件类型。错误码的详细介绍请参见{@link 106110 暂不支持该事件类型}。
      * @since 21
      */
     ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE = 106110,
-    /** The index value is invalid. */
+    /**
+     * 传入的索引值非法。
+     * 错误码的详细介绍请参见{@link 106200 传入的索引值非法}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200,
-    /**  Failed to query route navigation information. */
+    /**
+     * 查询路由导航信息失败。
+     * 错误码的详细介绍请参见{@link 106201 查询路由导航信息失败}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,
-    /** The buffer size is not large enough. */
+    /**
+     * 传入的buffer size异常（数据过大）。
+     * 错误码的详细介绍请参见{@link 106202 传入的buffer size异常}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202,
     /**
-     * @error The node is not on main tree.
+     * 传入的节点未挂载到组件树上。错误码的详细介绍请参见{@link 106203 传入的节点未挂载到组件树上}。
      * @since 15
      */
     ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,
     /**
-     * @error The node is running on invalid thread.
+     * 不支持在非UI线程操作传入的节点。错误码的详细介绍请参见{@link 106204 不支持在非UI线程操作传入的节点}。
      * @since 22
      */
     ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD = 106204,
     /**
-     * @error Force dark config is invalid.
+     * 反色能力入参错误。错误码的详细介绍请参见{@link 106205 反色能力入参错误}。
      * @since 20
      */
     ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID = 106205,
     /**
-     * @error The node has already been adopted.
+     * 节点已被接纳为附属节点。错误码的详细介绍请参见{@link 106206 节点已被接纳为附属节点}。
      * @since 22
      */
     ARKUI_ERROR_CODE_NODE_IS_ADOPTED = 106206,
     /**
-     * @error This node already has a parent node.
+     * 被接纳的节点已有父节点。错误码的详细介绍请参见{@link 106207 被接纳的附属节点已有父节点}。
      * @since 22
      */
     ARKUI_ERROR_CODE_NODE_HAS_PARENT = 106207,
     /**
-     * @error The node cannot be adopted.
+     * 节点无法被接纳为附属节点。错误码的详细介绍请参见{@link 106208 节点无法被接纳为附属节点}。
      * @since 22
      */
     ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED = 106208,
     /**
-     * @error The node cannot adopt children.
+     * 节点无法接纳其他节点。错误码的详细介绍请参见{@link 106209 节点无法接纳其他节点}。
      * @since 22
      */
     ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO = 106209,
     /**
-     * @error This child node is not adopted by the parent node.
+     * 节点不是被目标节点接纳的附属节点。错误码的详细介绍请参见{@link 106210 节点不是被目标节点接纳的附属节点}。
      * @since 22
      */
     ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
     /**
-     * @error The node type is not custom node.
+     * 当前节点不是自定义节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      * @since 20
      */
     ARKUI_ERROR_CODE_NOT_CUSTOM_NODE = 106401,
     /**
-     * @error Node already has children.
+     * 当前节点已存在子节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      * @since 20
      */
     ARKUI_ERROR_CODE_CHILD_EXISTED = 106402,
     /**
-     * @error RenderNode parent is existed.
+     * 当前渲染节点存在父组件。错误码的详细介绍请参见{@link 渲染节点错误码}。
      * @since 20
      */
     ARKUI_ERROR_CODE_RENDER_PARENT_EXISTED = 106403,
     /**
-     * @error RenderNode child is not exist.
+     * 未找到对应的渲染子节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      * @since 20
      */
     ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST = 106404,
     /**
-     * @error Param is out of range.
+     * 参数值超出范围。错误码的详细介绍请参见{@link 渲染节点错误码}。
      * @since 20
      */
     ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE = 106405,
     /**
-     * @error The RenderNode is obtained from a FrameNode.
+     * 当前渲染节点从{@link FrameNode}中获取。错误码的详细介绍请参见{@link 106406 当前渲染节点从FrameNode中获取}。
      * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE = 106406,
     /**
-     * @error The RenderNode is obtained from a FrameNode,
-     * and its corresponding FrameNode is no longer in the adopted state.
+     * 当前渲染节点从{@link FrameNode}中获取且该{@link FrameNode}已被取消接纳为附属节点或销毁。错误码的详细介绍请参见
+     * {@link 106407 当前渲染节点从FrameNode中获取且该FrameNode已被取消接纳为附属节点或销毁}。
      * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE = 106407,
     /**
-     * @error The node is not adopted.
+     * 当前节点不处于被接纳状态。错误码的详细介绍请参见{@link 106408 当前节点不处于被接纳状态}。
      * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
-     * @error The node requesting focus is not focusable.
+     * 当前节点无法获得焦点。错误码的详细介绍请参见{@link 150001 节点无法获得焦点}。
      * @since 15
      */
     ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001,
     /**
-     * @error The node requesting focus has unfocusable ancestor.
+     * 当前节点对应的祖先节点中存在无法获焦节点。错误码的详细介绍请参见{@link 150002 祖先节点无法获得焦点}。
      * @since 15
      */
     ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,
     /**
-     * @error The node requesting focus does not exists.
+     * 当前节点不存在。错误码的详细介绍请参见{@link 150003 节点不存在}。
      * @since 15
      */
     ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003,
     /**
-     * @error The snapshot taking is timeout.
+     * 截图超时。错误码的详细介绍请参见{@link 截图错误码}。
      * @since 15
      */
     ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002,
     /**
-     * @error The provided color space or dynamic range mode is not supported. For details about the error codes,
-     * see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
+     * 截图选项不支持的色彩空间或动态范围模式。错误码的详细介绍请参见{@link 截图错误码}。
      * @since 23
      */
     ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED = 160003,
     /**
-     * @error The isAuto parameter of the color space or dynamic range mode is set to true for offscreen node snapshot.
-     * For details about the error codes, see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
+     * 离屏节点截图不支持色彩空间或动态范围模式的isAuto参数设置为true。错误码的详细介绍请参见{@link 截图错误码}。
      * @since 23
      */
     ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED = 160004,
-    /** The component is not a scroll container. */
+    /**
+     * 非滚动类容器。错误码的详细介绍请参见{@link 交互事件错误码}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
-    /** The buffer is not large enough. */
+    /**
+     * 存储区大小不足。错误码的详细介绍请参见{@link 交互事件错误码}。
+     * @since 12
+     */
     ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002,
     /**
-     * @error The event is not a clone event.
+     * 该事件不是克隆事件。错误码的详细介绍请参见{@link 交互事件错误码}。
      * @since 15
      */
     ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003,
     /**
-     * @error The component status is abnormal.
+     * 组件状态异常。错误码的详细介绍请参见{@link 交互事件错误码}。
      * @since 15
      */
     ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004,
     /**
-     * @error No component hit to respond to the event.
+     * 未命中可响应事件的组件。错误码的详细介绍请参见{@link 交互事件错误码}。
      * @since 15
      */
     ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005,
     /**
-     * @error Input event type not supported.
+     * 接口不支持此输入事件类型。
      * @since 20
      */
     ARKUI_ERROR_INPUT_EVENT_TYPE_NOT_SUPPORTED = 180006,
     /**
-     * @error invalid styled string.
+     * 无效的属性字符串。错误码的详细介绍请参见{@link 属性字符串错误码}。
      * @since 14
      */
     ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
     /**
-     * @error The gesture recognizer type is not supported.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
-    /**
-     * @error The uiContext is invalid.
+     * 无效的UIContext对象。错误码的详细介绍请参见{@link UI上下文错误码}。
      * @since 18
      */
     ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001,
     /**
-     * @error The callback function is invalid.
+     * 无效的回调函数。错误码的详细介绍请参见{@link UI上下文错误码}。
      * @since 18
      */
     ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
     /**
-     * @error operation is not allowed for current drag drop pharse.
+     * 当前阶段不允许该操作。错误码的详细介绍请参见{@link 拖拽事件错误码}。
      * @since 19
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
-    /**
-     * @error Parameter error.
-     * @since 21
-     */
-    ARKUI_ERROR_CODE_PARAM_ERROR = 100023,
 } ArkUI_ErrorCode;
 
 /**
@@ -2197,52 +2233,74 @@ typedef enum {
 } ArkUI_HoverModeAreaType;
 
 /**
- * @brief Enumerates the expand modes.
+ * @brief 定义子节点展开模式枚举值。
  *
  * @since 15
  */
 typedef enum {
-    /** Not expand. */
+    /** 不展开。 */
     ARKUI_NOT_EXPAND = 0,
-    /** Expand. */
+    /** 展开。 */
     ARKUI_EXPAND = 1,
-    /** Lazy expand. Expand the children of node if needed. */
+    /**
+     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考{@link LazyForEach：数据懒加载}。
+     */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
 
 /**
- * @brief Enumerates the edge direction.
+ * @brief 定义矩形边方向。
  *
  * @since 20
  */
 typedef enum {
-    /** Set all edge direction. */
+    /**
+     * 设置四个方向的内容。
+     */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** Set left edge direction. */
+    /**
+     * 设置左侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** Set right edge direction. */
+    /**
+     * 设置右侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** Set top edge direction. */
+    /**
+     * 设置上侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** Set bottom edge direction. */
+    /**
+     * 设置下侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
- 
+
 /**
- * @brief Enumerates the corner direction.
+ * @brief 定义角度方向。
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner direction. */
+    /**
+     * 设置四个角度方向的内容。
+     */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner direction. */
+    /**
+     * 设置左上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner direction. */
+    /**
+     * 设置右上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner direction. */
+    /**
+     * 设置左下侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner direction. */
+    /**
+     * 设置右下侧方向容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
 
@@ -4545,63 +4603,63 @@ const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief 销毁{@link OH_ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
+ * @brief 销毁{@link ArkUI_ActiveChildrenInfo}实例。
  *
- * @param handle ActiveChild instance to be destroyed.
+ * @param handle 要销毁的{@link ArkUI_ActiveChildrenInfo}实例。
  * @since 14
  */
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @param index The index of child nodes.
- * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
+ * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
+ * @param index 子节点的下标。
+ * @return 下标对应的子节点指针，异常时返回nullptr。
  * @since 14
  */
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的节点数量。
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @return Number of child nodes. Default value: 0.
+ * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
+ * @return 子节点数量，默认值0.
  * @since 14
  */
 int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Create a cross-language option instance.
+ * @brief 创建跨语言配置项实例。
  *
- * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @return 返回跨语言实例。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。
  * @since 15
  */
 ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
 
 /**
- * @brief Destroy the cross-language option instance.
+ * @brief 销毁跨语言配置项实例。
  *
- * @param option The cross-language option instance.
+ * @param option 要销毁的跨语言配置项实例。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Enable the attribute setting in the cross-language option.
+ * @brief 设置配置项中是否允许跨语言修改属性。
  *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
+ * @param option 跨语言配置项实例。
+ * @param enabled 是否允许跨语言修改属性。true表示允许跨语言修改属性，false表示不允许跨语言修改属性，默认值：false。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
 
 /**
- * @brief Get the attribute setting enable of the cross-language option.
+ * @brief 获取配置项中是否允许跨语言修改属性。
  *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
+ * @param option 跨语言配置项实例。
+ * @return 是否允许跨语言修改属性。true表示允许跨语言修改属性，
+ *     false表示不允许跨语言修改属性。
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
@@ -7151,7 +7209,7 @@ typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
 /**
  * @brief Create an object of ArkUI_Matrix4ScaleOptions.
  *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
- *        are 1, and the default values for centerX, centerY are 0. 
+ *        are 1, and the default values for centerX, centerY are 0.
  *
  * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
  * @since 24
@@ -7167,12 +7225,12 @@ ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
 void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
 
 /**
- * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions. 
+ * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
  *
  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
  * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. 
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
@@ -7708,7 +7766,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, con
 /**
  * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
  *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
- * 
+ *
  * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
  *               It must not be null.
  * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
@@ -7761,20 +7819,19 @@ typedef enum {
 } OH_ArkUI_CrossLanguageOperatingStatus;
 
 /**
- * @brief Sets the tree operating status for the cross-language option.
+ * @brief 设置跨语言配置项的节点树操作状态。
  *
- * @param option The cross-language option.
- * @param status The tree operating status to be set for the cross-language option.
- * Default value: OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED.
+ * @param option 跨语言配置项实例。
+ * @param status 需要设置的节点树操作状态。默认值：OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED。
  * @since 26.0.0
  */
 void OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus(ArkUI_CrossLanguageOption* option, OH_ArkUI_CrossLanguageOperatingStatus status);
 
 /**
- * @brief Gets the tree operating status of the cross-language option.
+ * @brief 获取跨语言配置项的节点树操作状态。
  *
- * @param option The cross-language option.
- * @return Return the tree operating status of the cross-language option.
+ * @param option 跨语言配置项实例。
+ * @return 跨语言配置项的节点树操作状态。
  * @since 26.0.0
  */
 OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus(ArkUI_CrossLanguageOption* option);
