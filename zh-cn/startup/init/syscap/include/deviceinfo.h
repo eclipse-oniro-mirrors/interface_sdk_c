@@ -201,7 +201,7 @@ int OH_GetSdkApiVersion(void);
 /**
  * @brief 获取首个版本系统软件API版本。指设备首次发布时所支持的系统软件API版本。
  *
- * @return 首个版本系统软件API版本。指设备首次发布时所支持的系统软件API版本，取值范围为整数。 
+ * @return 首个版本系统软件API版本。指设备首次发布时所支持的系统软件API版本，取值范围为整数。
  *         常见的取值包括：3等。
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
