@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Result codes.
+ * @brief 错误码类型枚举。
  *
  * @since 13
  */
@@ -64,7 +64,7 @@ typedef enum {
 } Telephony_RadioResult;
 
 /**
- * @brief Network registration status of the device.
+ * @brief 设备的网络注册状态类型。
  *
  * @since 13
  */
@@ -80,7 +80,7 @@ typedef enum {
 } Telephony_RegState;
 
 /**
- * @brief RAT type of the device.
+ * @brief 设备的无线接入技术类型。
  *
  * @since 13
  */
@@ -114,7 +114,7 @@ typedef enum {
 } Telephony_RadioTechnology;
 
 /**
- * @brief NSA network registration status of the device.
+ * @brief 设备的NSA网络注册状态类型。
  *
  * @since 13
  */
@@ -134,28 +134,28 @@ typedef enum {
 } Telephony_NsaState;
 
 /**
- * @brief Defines network status information.
+ * @brief 网络状态信息。
  *
  * @since 13
  */
 typedef struct {
-    /* Long carrier name of the registered network */
+/* Long carrier name of the registered network */
     char longOperatorName_[TELEPHONY_MAX_OPERATOR_LEN];
-    /* Short carrier name of the registered network */
+/* Short carrier name of the registered network */
     char shortOperatorName_[TELEPHONY_MAX_OPERATOR_LEN];
-    /* PLMN code of the registered network */
+/* PLMN code of the registered network */
     char plmnNumeric_[TELEPHONY_MAX_PLMN_NUMERIC_LEN];
-    /* Whether in roaming */
+/* Whether in roaming */
     bool isRoaming_;
-    /* Network registration status */
+/* Network registration status */
     Telephony_RegState regState_;
-    /* Radio technology. */
+/* Radio technology. */
     Telephony_RadioTechnology cfgTech_;
-    /* NSA state */
+/* NSA state */
     Telephony_NsaState nsaState_;
-    /* Whether Carrier Aggregation(CA) is active */
+/* Whether Carrier Aggregation(CA) is active */
     bool isCaActive_;
-    /* Whether in emergency call only */
+/* Whether in emergency call only */
     bool isEmergency_;
 } Telephony_NetworkState;
 

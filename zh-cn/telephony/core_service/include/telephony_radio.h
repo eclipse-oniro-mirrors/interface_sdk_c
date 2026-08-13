@@ -35,16 +35,16 @@
 extern "C" {
 #endif
 /**
- * @brief Obtains the network status.
+ * @brief 获取网络状态。
  *
- * @param state Structure of the network status information received by the user.
- * @return Result code. For details, see {@link Telephony_RadioResult}.
- *     <br>{@link TEL_RADIO_SUCCESS}: Operation succeeded.
- *     <br>{@link TEL_RADIO_PERMISSION_DENIED}: Permission denied.
- *     <br>{@link TEL_RADIO_ERR_MARSHALLING_FAILED}: Marshalling failed.
- *     <br>{@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED}: Telephony service connection failed.
- *     <br>{@link TEL_RADIO_ERR_OPERATION_FAILED}: Telephony service operation failed.
- *     <br>{@link TEL_RADIO_ERR_INVALID_PARAM}: Invalid parameter.
+ * @param state 用户接收网络状态信息的结构体。
+ * @return 结果定义在 {@link Telephony_RadioResult}。
+ *     <br>{@link TEL_RADIO_SUCCESS} 成功。
+ *     <br>{@link TEL_RADIO_PERMISSION_DENIED} 权限错误。
+ *     <br>{@link TEL_RADIO_ERR_MARSHALLING_FAILED} 编组错误。
+ *     <br>{@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED} 连接电话服务错误。
+ *     <br>{@link TEL_RADIO_ERR_OPERATION_FAILED} 操作电话服务错误。
+ *     <br>{@link TEL_RADIO_ERR_INVALID_PARAM} 参数错误。
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Telephony.CoreService
  * @since 13
@@ -52,17 +52,17 @@ extern "C" {
 Telephony_RadioResult OH_Telephony_GetNetworkState(Telephony_NetworkState *state);
 
 /**
- * @brief Obtains the network status of the SIM card in the specified slot.
+ * @brief 获取给定卡槽ID的网络状态。
  *
- * @param slotId Card slot ID.
- * @param state Structure of the network status information received by the user.
- * @return Result code. For details, see {@link Telephony_RadioResult}.
- *     <br>{@link TEL_RADIO_SUCCESS}: Operation succeeded.
- *     <br>{@link TEL_RADIO_PERMISSION_DENIED}: Permission denied.
- *     <br>{@link TEL_RADIO_ERR_MARSHALLING_FAILED}: Marshalling failed.
- *     <br>{@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED}: Telephony service connection failed.
- *     <br>{@link TEL_RADIO_ERR_OPERATION_FAILED}: Telephony service operation failed.
- *     <br>{@link TEL_RADIO_ERR_INVALID_PARAM}: Invalid parameter.
+ * @param slotId 卡槽ID。
+ * @param state 用户接收网络状态信息的结构体。
+ * @return 结果定义在 {@link Telephony_RadioResult}。
+ *     <br>{@link TEL_RADIO_SUCCESS} 成功。
+ *     <br>{@link TEL_RADIO_PERMISSION_DENIED} 权限错误。
+ *     <br>{@link TEL_RADIO_ERR_MARSHALLING_FAILED} 编组错误。
+ *     <br>{@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED} 连接电话服务错误。
+ *     <br>{@link TEL_RADIO_ERR_OPERATION_FAILED} 操作电话服务错误。
+ *     <br>{@link TEL_RADIO_ERR_INVALID_PARAM} 参数错误。
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Telephony.CoreService
  * @since 13
