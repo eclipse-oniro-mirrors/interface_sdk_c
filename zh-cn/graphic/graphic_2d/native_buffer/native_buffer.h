@@ -208,6 +208,10 @@ void OH_NativeBuffer_GetConfig(OH_NativeBuffer *buffer, OH_NativeBuffer_Config* 
 
 /**
  * @brief 将OH_NativeBuffer对应的ION内存映射到进程空间。\n
+ * 需注意调用该接口的OH_NativeBuffer的usage必须带有CPU_READ属性，否则可能导致稳定性问题。\n
+ * 通过OH_NativeBuffer_Alloc申请的OH_NativeBuffer，需保证参数config.usage带有NATIVEBUFFER_USAGE_CPU_READ。\n
+ * 通过OH_NativeBuffer_FromNativeWindowBuffer转换来的OH_NativeBuffer，需保证原OH_NativeWindowBuffer申请前，\n
+ * 通过OH_NativeWindow_NativeWindowHandleOpt接口设置的USAGE带有NATIVEBUFFER_USAGE_CPU_READ。
  * 本接口需要与OH_NativeBuffer_Unmap接口配合使用。\n
  * 本接口为非线程安全类型接口。\n
  *
