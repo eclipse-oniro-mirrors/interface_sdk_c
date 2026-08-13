@@ -18,7 +18,6 @@
  * @{
  *
  * @brief Provides APIs for Core.
- *
  * @since 11
  */
 
@@ -28,6 +27,7 @@
  * @brief The file declares the functions related to the speaker layout during recording and playback.
  *
  * @kit AVCodecKit
+ * @include <multimedia/native_audio_channel_layout.h>
  * @library NA
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11
@@ -45,7 +45,7 @@ extern "C" {
 /**
  * @brief Enumerates the audio channels.
  *
- * Each channel is mapped to a variable of int64_t.
+ * Each channel is mapped to a variable of uint64_t.
  *
  * @since 11
  */
@@ -265,32 +265,64 @@ typedef enum OH_AudioChannelSet {
  * @brief Ambisonic attribute set.
  *
  * A set of 64-bit integers indicate the ambisonic attributes.
- * @syscap SystemCapability.Multimedia.Media.Core
+ *
  * @since 11
  */
 typedef enum OH_AmbAttributeSet {
-    /** Ambisonic attribute: order 1 */
+    /**
+     * Ambisonic attribute: order 1.
+     *
+     * @since 11
+     */
     AMB_ORD_1 = 1ULL << 0U,
 
-    /** Ambisonic attribute: order 2 */
+    /**
+     * Ambisonic attribute: order 2.
+     *
+     * @since 11
+     */
     AMB_ORD_2 = 2ULL << 0U,
 
-    /** Ambisonic attribute: order 3 */
+    /**
+     * Ambisonic attribute: order 3.
+     *
+     * @since 11
+     */
     AMB_ORD_3 = 3ULL << 0U,
 
-    /** Ambisonic attribute: ACN Component Ordering */
+    /**
+     * Ambisonic attribute: ACN Component Ordering.
+     *
+     * @since 11
+     */
     AMB_COM_ACN = 0ULL << 8U,
 
-    /** Ambisonic attribute: FUMA Component Ordering */
+    /**
+     * Ambisonic attribute: FUMA Component Ordering.
+     *
+     * @since 11
+     */
     AMB_COM_FUMA = 1ULL << 8U,
 
-    /** Ambisonic attribute: N3D Normalization */
+    /**
+     * Ambisonic attribute: N3D Normalization.
+     *
+     * @since 11
+     */
     AMB_NOR_N3D = 0ULL << 12U,
 
-    /** Ambisonic attribute: SN3D Normalization */
+    /**
+     * Ambisonic attribute: SN3D Normalization.
+     *
+     * @since 11
+     */
     AMB_NOR_SN3D = 1ULL << 12U,
 
-    /** Channel layout: Ambisonic mode */
+    /**
+     * Channel layout: Ambisonic mode.
+     *
+     * @since 11
+     */
     AMB_MODE = 1ULL << 44U
 } OH_AmbAttributeSet;
 

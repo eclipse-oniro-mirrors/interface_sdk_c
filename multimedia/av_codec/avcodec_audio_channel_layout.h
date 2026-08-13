@@ -20,7 +20,6 @@
  * @brief The CodecBase module provides variables, properties, and functions
  * for audio and video muxer, demuxer, and basic encoding and decoding functions.
  *
- * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
 
@@ -30,6 +29,7 @@
  * @brief Audio AudioChannel Layout
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/avcodec_audio_channel_layout.h>
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the audio channels. Each channel is mapped to a variable of int64.
+ * @brief Enumerates the audio channels. Each channel is mapped to a variable of uint64_t.
  *
  * @deprecated since 11
  * @useinstead OH_AudioChannelSet
