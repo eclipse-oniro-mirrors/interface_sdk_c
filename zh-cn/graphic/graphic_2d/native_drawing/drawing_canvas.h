@@ -84,10 +84,10 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void);
 /**
  * @brief 用于将一个像素图对象绑定到画布中，使得画布绘制的内容输出到像素图中（即CPU渲染）。绑定像素图对象后的画布为非录制类型画布。
  * <br>像素图对象应该在调用{@link OH_Drawing_CanvasDestroy}销毁画布对象之后，
- * 再调用{@link native_darwing/drawing_pixel_map.h#OH_Drawing_PixelMapDissolve}解除绑定。
+ * 再调用{@link drawing_pixel_map.h#OH_Drawing_PixelMapDissolve}解除绑定。
  *
  * @param pixelMap 指向像素图{@link OH_Drawing_PixelMap}的指针。
- * 像素图对象应该在销毁画布对象之后调用{@link native_darwing/drawing_pixel_map.h#OH_Drawing_PixelMapDissolve}解除绑定。
+ * 像素图对象应该在销毁画布对象之后调用{@link drawing_pixel_map.h#OH_Drawing_PixelMapDissolve}解除绑定。
  * @return 函数会返回一个指针，指针指向创建的画布对象{@link OH_Drawing_Canvas}，如果对象返回为NULL，则创建失败，原因可能是可用内存不足或者像素图对象为空。
  * @since 20
  * @version 1.0
@@ -806,7 +806,7 @@ int32_t OH_Drawing_CanvasGetHeight(OH_Drawing_Canvas* canvas);
  * <br>canvas、rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针。
- * @param rect 指向矩形对象{@link OH_Drawing_Rect}的指针，开发者可调用{@link native_drawing/drawing_rect.h#OH_Drawing_RectCreate}接口创建。
+ * @param rect 指向矩形对象{@link OH_Drawing_Rect}的指针，开发者可调用{@link drawing_rect.h#OH_Drawing_RectCreate}接口创建。
  * @since 12
  * @version 1.0
  */
@@ -819,7 +819,7 @@ void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_R
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针。
  * @param matrix 指向矩阵对象{@link OH_Drawing_Matrix}的指针，
- * 开发者可调用{@link native_drawing/drawing_matrix.h#OH_Drawing_MatrixCreate}接口创建。
+ * 开发者可调用{@link drawing_matrix.h#OH_Drawing_MatrixCreate}接口创建。
  * @since 12
  * @version 1.0
  */
@@ -906,7 +906,7 @@ void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color);
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针。
  * @param matrix 指向矩阵对象{@link OH_Drawing_Matrix}的指针，
- * 开发者可调用{@link native_drawing/drawing_matrix.h#OH_Drawing_MatrixCreate}接口创建。
+ * 开发者可调用{@link drawing_matrix.h#OH_Drawing_MatrixCreate}接口创建。
  * @since 12
  * @version 1.0
  */
@@ -1091,7 +1091,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, O
 
 /**
  * @brief 用于绘制录制指令对象，支持嵌套。
- * <br>本接口支持{@link native_drawing/drawing_record_cmd.h#OH_Drawing_RecordCmdUtilsBeginRecording}接口生成的画布对象作为入参，嵌套调用。
+ * <br>本接口支持{@link drawing_record_cmd.h#OH_Drawing_RecordCmdUtilsBeginRecording}接口生成的画布对象作为入参，嵌套调用。
  * 不建议多层嵌套，会影响性能。
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针，仅支持录制类型画布。

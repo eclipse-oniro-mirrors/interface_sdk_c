@@ -30,6 +30,12 @@
  *
  * @brief 文件中定义了与自定义路径相关的功能函数，能够高效构建复杂几何路径、支持SVG数据交换实现跨平台兼容，
  * 并通过配对创建与销毁机制保障内存安全。主要支持以下能力：
+ * <ul>
+ * <li>路径的创建、拷贝与销毁。</li>
+ * <li>添加线段、弧线、贝塞尔曲线、圆锥曲线、矩形、椭圆、圆形、多边形等几何图形。</li>
+ * <li>路径的矩阵变换、偏移、合并与闭合等操作。</li>
+ * <li>路径长度、边界、包含关系等查询和测量能力。</li>
+ * </ul>
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -626,6 +632,11 @@ OH_Drawing_ErrorCode OH_Drawing_PathConvertToSvgString(const OH_Drawing_Path* pa
  * @brief 获取路径的点数据。
  * <br>在路径（path）图元中，点数据以数值序列的形式存在，与verb指令一一对应，用来精确指定绘图操作的几何坐标位置。
  * <br>点数据的主要类型包括如下：
+ * <ul>
+ * <li>终点坐标：{@link OH_Drawing_PathMoveTo}、{@link OH_Drawing_PathLineTo}等指令配合，定义线段或移动的目标位置。</li>
+ * <li>控制点坐标：与曲线指令配合，用于定义贝塞尔曲线的形状（如三阶贝塞尔曲线需要两个控制点和一个终点）。</li>
+ * <li>闭合点：通常不单独提供坐标，由{@link OH_Drawing_PathClose}指令隐式使用路径起点。</li>
+ * </ul>
  *
  * @param path 指向{@link OH_Drawing_Path}对象的指针。
  * @param points 作为出参使用，表示路径的点数据数组。开发者需要分配和释放对应的内存。
@@ -642,6 +653,11 @@ OH_Drawing_ErrorCode OH_Drawing_PathGetPointData(
 /**
  * @brief 获取路径的指令数据(verb)。在路径（path）图元中，指令数据verb用于描述路径构造过程中的基本绘图动作。
  * <br>指令数据以枚举的形式存在，每个取值对应一种几何操作类型，例如：
+ * <ul>
+ * <li>{@link OH_Drawing_PathMoveTo}：将当前绘图点移至指定坐标，不产生线段。</li>
+ * <li>{@link OH_Drawing_PathLineTo}：从当前点向指定点绘制直线段。</li>
+ * <li>{@link OH_Drawing_PathQuadTo}：从当前点向指定点绘制二阶贝塞尔曲线。</li>
+ * </ul>
  *
  * @param path 指向{@link OH_Drawing_Path}对象的指针。
  * @param verbs 作为出参使用，表示路径的指令数据数组。开发者需要分配和释放对应的内存。
@@ -660,6 +676,11 @@ OH_Drawing_ErrorCode OH_Drawing_PathGetVerbData(const OH_Drawing_Path* path, OH_
  * <br>路径的圆锥曲线权重数据用于描述路径中圆锥曲线的权重信息。
  * <br>在路径（path）图元中，圆锥曲线数据采用有理贝塞尔曲线（Rational Bézier Curve）形式表示，
  * 其中每个控制点附带一个权重值（weight）。权重属于曲线定义的几何参数，作用如下：
+ * <ul>
+ * <li>形状调控：权重值越大，曲线越靠近对应控制点；权重为1时退化为标准贝塞尔曲线；权重为0时该控制点不起作用。</li>
+ * <li>精确表示圆锥曲线：通过组合权重与二次贝塞尔曲线，可以精确表示圆弧、椭圆弧、抛物线等圆锥曲线段，无需使用分段逼近或专用椭圆弧指令。</li>
+ * <li>数据组织：权重通常以数组形式与点数据并列，按顺序对应每个控制点，与相应的指令verb（如{@link OH_Drawing_PathConicTo}）配合使用。</li>
+ * </ul>
  *
  * @param path 指向{@link OH_Drawing_Path}对象的指针。
  * @param conicWeights 作为出参使用，表示路径的圆锥曲线权重数据数组。开发者需要分配和释放对应的内存。
