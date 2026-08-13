@@ -88,7 +88,7 @@ typedef enum {
     ARKUI_NODE_PROGRESS = 10,
     /** Check box. */
     ARKUI_NODE_CHECKBOX = 11,
-    /** XComponent. */
+    /** SURFACE类型XComponent。 */
     ARKUI_NODE_XCOMPONENT = 12,
     /** 日期选择器组件。 */
     ARKUI_NODE_DATE_PICKER = 13,
@@ -104,7 +104,7 @@ typedef enum {
     ARKUI_NODE_RADIO = 18,
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
-    /** XComponent of type TEXTURE.
+    /** TEXTURE类型XComponent。
      *  @since 18
      */
     ARKUI_NODE_XCOMPONENT_TEXTURE,
@@ -117,11 +117,6 @@ typedef enum {
      * @since 24
      */
     ARKUI_NODE_TEXT_EDITOR = 22,
-    /**
-     * ArcAlphabetIndexer.
-     * @since 26.1.0
-     */
-    ARKUI_NODE_ARC_ALPHABET_INDEXER = 23,
     /** Stack container. */
     ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM,
     /** Swiper. */
@@ -155,7 +150,7 @@ typedef enum {
     /** Custom span. */
     ARKUI_NODE_CUSTOM_SPAN,
     /**
-     * EmbeddedComponent.
+     * 同应用进程嵌入式组件。
      * @since 20
      */
     ARKUI_NODE_EMBEDDED_COMPONENT,
@@ -184,11 +179,6 @@ typedef enum {
      * @since 26.0.0
      */
     ARKUI_NODE_ARC_SCROLL_BAR = 1021,
-    /**
-     * ArcSwiper.
-     * @since 26.1.0
-     */
-    ARKUI_NODE_ARC_SWIPER = 1022,
 } ArkUI_NodeType;
 
 /**
@@ -1778,8 +1768,7 @@ typedef enum {
       * The id can be changed and the binding relationship re-established.
       * The same ID can only be bound to two components and they are in/out roles of different types.
       * Multiple components cannot be bound to the same id. \n
-      *
-      * @ingroup Animate [动效属性]
+     * @ingroup Animate [动效属性]
       */
     NODE_GEOMETRY_TRANSITION,
 
@@ -2698,7 +2687,7 @@ typedef enum {
     NODE_INSPECTOR_LABEL = 126,
 
     /**
-     * @brief 定义无障碍的下一焦点ID，用于无障碍处理时查找下一个焦点组件。支持属性设置，属性重置和属性获取。
+     * @brief 无障碍下一焦点ID属性，支持属性设置，属性重置和属性获取。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -3868,7 +3857,6 @@ typedef enum {
     NODE_SPAN_FONT_WEIGHT = 2004,
     /**
      * @brief imageSpan组件图片地址属性，支持属性设置、属性重置和属性获取接口。
-     *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.string：表示imageSpan的图片地址。</li>
@@ -3885,6 +3873,7 @@ typedef enum {
      * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_SPAN,
+
     /**
      * @brief 图片基于文本的对齐方式属性，支持属性设置、属性重置和属性获取接口。
      *
@@ -3901,6 +3890,7 @@ typedef enum {
      * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT,
+
     /**
      * @brief imageSpan组件占位图地址属性，支持属性设置、属性重置和属性获取接口。
      *
@@ -3920,6 +3910,7 @@ typedef enum {
      * @ingroup Text Display[文本显示]
      */
     NODE_IMAGE_SPAN_ALT,
+
     /**
      * @brief imageSpan组件的基线偏移量属性，支持属性设置、属性重置和属性获取接口。偏移量数值为正数时向上偏移，负数时向下偏移，默认值0，单位为fp。 \n
      * 适用于图文混排时调整图片与文本的相对位置，实现精确的排版对齐效果。
@@ -3936,7 +3927,6 @@ typedef enum {
      *
      * @ingroup Text Display[文本显示]
      * @since 13
-     *
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
 
@@ -3960,9 +3950,9 @@ typedef enum {
      *
      * @ingroup Text Display[文本显示]
      * @since 22
-     *
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
+
     /**
      * @brief 通过启用SVG新解析能力开关设置SVG解析功能支持的范围，支持属性设置、属性重置和属性获取接口。ImageSpan组件创建后，不支持动态修改该属性的值。
      *
@@ -3979,9 +3969,9 @@ typedef enum {
      *
      * @ingroup Text Display[文本显示]
      * @since 22
-     *
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
+
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4001,6 +3991,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
+
     /**
      * @brief Defines how the image is resized to fit its container.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4020,6 +4011,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_FIT,
+
     /**
      * @brief Defines the interpolation effect of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4039,6 +4031,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_INTERPOLATION,
+
     /**
      * @brief Defines how the image is repeated.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4056,6 +4049,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_OBJECT_REPEAT,
+
     /**
      * @brief Defines the color filter of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4077,6 +4071,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_COLOR_FILTER,
+
     /**
      * @brief Defines the auto resize attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -4093,6 +4088,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_AUTO_RESIZE,
+
     /**
      * @brief Defines the placeholder image source.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4112,6 +4108,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_ALT,
+
     /**
      * @brief Defines whether the image is draggable.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4129,6 +4126,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_DRAGGABLE,
+
     /**
      * @brief Defines the image rendering mode. This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4145,6 +4143,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_RENDER_MODE,
+
     /**
      * @brief Defines whether the image display size follows the image source size.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4162,6 +4161,7 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_FIT_ORIGINAL_SIZE,
+
     /**
      * @brief Defines the fill color of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4179,88 +4179,60 @@ typedef enum {
      * @ingroup Image [图片]
      */
     NODE_IMAGE_FILL_COLOR,
+
     /**
-     * @brief Defines how the image is resized when stretched using an array or a lattice object.
-     * The parameter types for setting and getting should be the same.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].f32: width of the left edge, in vp.</li>
-     * <li>.value[1].f32: width of the top edge, in vp.</li>
-     * <li>.value[2].f32: width of the right edge, in vp.</li>
-     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
-     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].f32: width of the left edge, in vp.</li>
-     * <li>.value[1].f32: width of the top edge, in vp.</li>
-     * <li>.value[2].f32: width of the right edge, in vp.</li>
-     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
-     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
-     * </ul>
+     * @brief 图片拉伸时，支持通过设置边框大小或者使用矩阵方格对象调整其大小，1）设置边框大小可以设置left/top/right/bottom宽度，2）设置矩阵方格对象：该对象是通过图形侧的接口创建，并将对象地址传入。
+     * 接口调用时需要保证设置和获取的参数类型是相同的。
      *
      * @ingroup Image [图片]
      */
     NODE_IMAGE_RESIZABLE,
+
     /**
-     * @brief Defines the synchronous image loading attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to load the image synchronously.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to load the image synchronously.</li>
-     * </ul>
+     * @brief 定义Image是否同步加载
+     * 这个属性包含设置，重置，获取接口
      *
      * @ingroup Image [图片]
      * @since 20
      */
     NODE_IMAGE_SYNC_LOAD = 4012,
+
     /**
-     * @brief Defines the image decoding size attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义图片的解码尺寸属性。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: width of the decoded image, in px.</li>
-     * <li>.value[1].i32: height of the decoded image, in px.</li>
-     * </ul>
+     * 属性设置方法参数ArkUI_AttributeItem格式：
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: width of the decoded image, in px.</li>
-     * <li>.value[1].i32: height of the decoded image, in px.</li>
-     * </ul>
+     * .value[0].i32 表示图片解码的宽，单位px。
+     *
+     * .value[1].i32 表示图片解码的高，单位px。
+     *
+     * 属性获取方法返回值ArkUI_AttributeItem格式：
+     *
+     * .value[0].i32 表示图片解码的宽，单位px。
+     *
+     * .value[1].i32 表示图片解码的高，单位px。
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
+
     /**
-     * @brief Support the implementation of affine image transformations using floating-point numbers.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * The parameter types for setting and getting should be the same.
+     * @brief 支持使用浮点数实现仿射图像变换。
+     * 该属性可以通过API根据需要设置、重置和获取。
+     * set和get的参数类型应该是相同的。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
-     * </ul>
+     * 设置属性{@link ArkUI_AttributeItem}格式：\n
+     * .value[0....f32表示16个浮点数。\n
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
-     * </ul>
+     * 返回值{@link ArkUI_AttributeItem}的格式为：\n
+     * .value[0....f32表示16个浮点数。\n
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_IMAGE_MATRIX = 4014,
+
     /**
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4279,25 +4251,23 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
+
     /**
-     * @brief Defines the image copy attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义图片复制粘贴属性。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is
-     * <b>ARKUI_COPY_OPTIONS_NONE</b>.</li>
-     * </ul>
+     * 属性设置方法参数ArkUI_AttributeItem格式：
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
-     * </ul>
+     * .value[0].i32：复制粘贴方式ArkUI_CopyOptions，默认值为ARKUI_COPY_OPTIONS_NONE；
+     *
+     * 属性获取方法返回值ArkUI_AttributeItem格式：
+     *
+     * .value[0].i32：复制粘贴方式ArkUI_CopyOptions。
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_COPY_OPTION = 4016,
+
     /**
      * @brief Defines the image AI analysis enable attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4316,61 +4286,57 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
+
     /**
-     * @brief Defines the image dynamic display range attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义图片显示动态范围属性。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}. The default value is
-     * <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.</li>
-     * </ul>
+     * 属性设置方法参数ArkUI_AttributeItem格式：
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.</li>
-     * </ul>
+     * .value[0].i32：动态范围类型ArkUI_DynamicRangeMode，默认值为
+     *
+     * ARKUI_DYNAMIC_RANGE_MODE_STANDARD；
+     *
+     * 属性获取方法返回值ArkUI_AttributeItem格式：
+     *
+     * .value[0].i32：动态范围类型ArkUI_DynamicRangeMode。
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018,
+
     /**
-     * @brief Defines the image dynamic display brightness attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义图片显示动态范围的亮度属性。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
-     * </ul>
+     * 属性设置方法参数ArkUI_AttributeItem格式：
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
-     * </ul>
+     * .value[0].f32：动态范围亮度，值的范围[0, 1]。
+     *
+     * 属性获取方法返回值ArkUI_AttributeItem格式：
+     *
+     * .value[0].f32：动态范围亮度，值的范围[0, 1]。
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_HDR_BRIGHTNESS = 4019,
+
     /**
-     * @brief Defines the image display direction attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义图片显示方向属性。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}. The default value is <b>ARKUI_ORIENTATION_UP</b>.</li>
-     * </ul>
+     * 属性设置方法参数ArkUI_AttributeItem格式：
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}.</li>
-     * </ul>
+     * .value[0].i32：动态范围类型ArkUI_Orientation，默认值为ARKUI_ORIENTATION_UP；
+     *
+     * 属性获取方法返回值ArkUI_AttributeItem格式：
+     *
+     * .value[0].i32：动态范围类型ArkUI_Orientation。
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
+
     /**
      * @brief Defines the range of SVG parsing capabilities supported through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4388,25 +4354,23 @@ typedef enum {
      * @ingroup Image [图片]
      * @since 21
      */
-    NODE_IMAGE_SUPPORT_SVG2 = 4021, 
+    NODE_IMAGE_SUPPORT_SVG2 = 4021,
+
     /**
-     * @brief Defines the animation effect for the image content transformation.
+     * @brief Set the animation effect for the image content transformation.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
-     * </ul>
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
      *
      * @ingroup Image [图片]
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
+
     /**
      * @brief Defines the placeholder image during loading process.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4427,6 +4391,7 @@ typedef enum {
      * @since 22
      */
     NODE_IMAGE_ALT_PLACEHOLDER = 4023,
+
     /**
      * @brief Defines the placeholder image when loading fails.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4447,19 +4412,9 @@ typedef enum {
      * @since 22
      */
     NODE_IMAGE_ALT_ERROR = 4024,
+
     /**
-     * @brief Defines image edge anti-aliasing through an enable switch.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: enable switch. The default value is <b>false</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: enable switch.</li>
-     * </ul>
+     * @brief 通过开关配置图片边缘抗锯齿使能；true-开启抗锯齿，false-不开启，默认不开启抗锯齿。
      *
      * @ingroup Image [图片]
      * @since 23
@@ -5500,9 +5455,12 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .string: default text content. \n
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
+     * 
+     * @ingroup Button[按钮]
      */
     NODE_TEXT_AREA_TEXT,
     /**
@@ -7529,85 +7487,65 @@ typedef enum {
      * <ul>
      * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
      * <li>.string?: depending on the shape. Optional.</li> \n
-     * <ul>
-     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
-     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
      * </ul>
+     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
+     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
      * There are five types:\n
-     * **1. Rectangle:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
-     * <li>.value[2].f32: width of the rectangle.</li>\n
-     * <li>.value[3].f32: height of the rectangle.</li>\n
-     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
-     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
-     * </ul>
-     * **2. Circle:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
-     * <li>.value[2].f32: width of the circle.</li>\n
-     * <li>.value[3].f32: height of the circle.</li>\n
-     * </ul>
-     * **3.Ellipse:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
-     * <li>.value[2].f32: width of the ellipse.</li>\n
-     * <li>.value[3].f32: height of the ellipse.</li>\n
-     * </ul>
-     * **4. Path:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
-     * <li>.value[2].f32: width of the path.</li>\n
-     * <li>.value[3].f32: height of the path.</li>\n
-     * <li>.string: command for drawing the path.</li>\n
-     * <ul>
-     * </ul>
+     * 1. Rectangle:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
+     * .value[2].f32: width of the rectangle.\n
+     * .value[3].f32: height of the rectangle.\n
+     * .value[4].f32: width of the rounded corner of the rectangle.\n
+     * .value[5].f32: height of the rounded corner of the rectangle.\n
+     * 2. Circle:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
+     * .value[2].f32: width of the circle.\n
+     * .value[3].f32: height of the circle.\n
+     * 3.Ellipse:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
+     * .value[2].f32: width of the ellipse.\n
+     * .value[3].f32: height of the ellipse;\n
+     * 4. Path:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
+     * .value[2].f32: width of the path.\n
+     * .value[3].f32: height of the path.\n
+     * .string: command for drawing the path.\n
      * \n
      * **Format of the return value {@link ArkUI_AttributeItem}:**\n
      * <ul>
      * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
      * <li>.string?: depending on the shape. Optional.</li> \n
-     * <ul>
-     * <li>ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png.</li> \n
-     * <li>ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider.</li> \n
      * </ul>
+     * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
+     * ARKUI_SLIDER_BLOCK_STYLE_SHAPE: custom shape of the slider. \n
       * There are five types:\n
-     * **1. Rectangle:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.</li>\n
-     * <li>.value[2].f32: width of the rectangle.</li>\n
-     * <li>.value[3].f32: height of the rectangle.</li>\n
-     * <li>.value[4].f32: width of the rounded corner of the rectangle.</li>\n
-     * <li>.value[5].f32: height of the rounded corner of the rectangle.</li>\n
-     * </ul>
-     * **2. Circle:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.</li>\n
-     * <li>.value[2].f32: width of the circle.</li>\n
-     * <li>.value[3].f32: height of the circle.</li>\n
-     * </ul>
-     * **3.Ellipse:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.</li>\n
-     * <li>.value[2].f32: width of the ellipse.</li>\n
-     * <li>.value[3].f32: height of the ellipse.</li>\n
-     * </ul>
-     * **4. Path:**\n
-     * <ul>
-     * <li>.value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
-     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.</li>\n
-     * <li>.value[2].f32: width of the path.</li>\n
-     * <li>.value[3].f32: height of the path.</li>\n
-     * <li>.string: command for drawing the path.</li>\n
-     * </ul>
-     * </ul>
+     * 1. Rectangle:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_RECTANGLE</b> for the rectangle shape.\n
+     * .value[2].f32: width of the rectangle.\n
+     * .value[3].f32: height of the rectangle.\n
+     * .value[4].f32: width of the rounded corner of the rectangle.\n
+     * .value[5].f32: height of the rounded corner of the rectangle.\n
+     * 2. Circle:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_CIRCLE</b> for the circle shape.\n
+     * .value[2].f32: width of the circle.\n
+     * .value[3].f32: height of the circle.\n
+     * 3.Ellipse:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_ELLIPSE</b> for the ellipse shape.\n
+     * .value[2].f32: width of the ellipse.\n
+     * .value[3].f32: height of the ellipse;\n
+     * 4. Path:\n
+     * .value[1].i32: type of shape. The parameter type is {@link ArkUI_ShapeType}.
+     * The value is <b>ARKUI_SHAPE_TYPE_PATH</b> for the path shape.\n
+     * .value[2].f32: width of the path.\n
+     * .value[3].f32: height of the path.\n
+     * .string: command for drawing the path.\n
      *
      * @ingroup Slider[滑动条]
      */
@@ -7987,6 +7925,7 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
+
     /**
      * @brief Defines the playback status of the animation for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8005,6 +7944,7 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
+
     /**
      * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
      * The value change takes effect only at the beginning of the next cycle.
@@ -8024,6 +7964,7 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
+
     /**
      * @brief Defines the playback direction for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8043,6 +7984,7 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
+
     /**
      * @brief Defines whether the image size is the same as the component size.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8064,6 +8006,7 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
+
     /**
      * @brief Defines the status before and after execution of the animation in the current playback direction.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8084,6 +8027,7 @@ typedef enum {
      * @ingroup ImageAnimator [图片帧动画]
      */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
+
     /**
      * @brief Defines the number of times that the animation is played.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -8587,305 +8531,6 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
-
-    /**
-     * @brief Defines the index string array.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.object: array of the alphabet index. the type is string array.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.object: array of the alphabet index. the type is string array.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_ARRAY = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_ALPHABET_INDEXER,
-
-    /**
-     * @brief Defines the index item text color in normal state.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].u32: color of the text,  in 0xARGB format, and the default value is 0x99182431.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].u32: color of the text,  in 0xARGB format.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_COLOR,
-
-    /**
-     * @brief Defines the index item text color in selected state.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].u32: color of the text,  in 0xARGB format, and the default value is 0xFF007DFF.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].u32: color of the text,  in 0xARGB format.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_SELECTED_COLOR,
-
-    /**
-     * @brief Defines the pop-up window text color.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].u32: color of the text,  in 0xARGB format, and the default value is 0xFF007DFF.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].u32: color of the text,  in 0xARGB format.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_POPUP_COLOR,
-
-    /**
-     * @brief Defines the index item background color in selected state.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].u32: color of the background,  in 0xARGB format, and the default value is 0xFF1F71FF.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].u32: color of the background,  in 0xARGB format.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_SELECTED_BACKGROUND_COLOR,
-
-    /**
-     * @brief Defines the pop-up window background color.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].u32: color of the background,  in 0xARGB format, and the default value is 0xD8404040.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].u32: color of the background,  in 0xARGB format.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_POPUP_BACKGROUND_COLOR,
-
-    /**
-     * @brief Defines whether to use a pop-up window.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to use a pop-up. The value <b>0</b> means not to use a pop-up,
-     * and <b>1</b> means to use a pop-up. The default value is <b>0</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to use a pop-up.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_USE_POPUP,
-
-    /**
-     * @brief Defines the font style of the selected index.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.string: font family. Use commas (,) to separate multiple fonts. Optional.
-     * The default value is <b>"HarmonyOS Sans"</b>.</li>
-     * <li>.value[0].f32: font size, in fp. Optional. The default value is <b>13</b>.</li>
-     * <li>.value[1].i32: font weight. Optional. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_W500</b>.</li>
-     * <li>.value[2].i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.string: font family. Use commas (,) to separate multiple fonts.</li>
-     * <li>.value[0].f32: font size, in fp.</li>
-     * <li>.value[1].i32: font weight. The parameter type is {@link ArkUI_FontWeight}.</li>
-     * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_SELECTED_FONT,
-
-    /**
-     * @brief Defines the font style of the pop-up window.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.string: font family. Use commas (,) to separate multiple fonts. Optional.
-     * The default value is <b>"HarmonyOS Sans"</b>.</li>
-     * <li>.value[0].f32: font size, in fp. Optional. The default value is <b>19</b>.</li>
-     * <li>.value[1].i32: font weight. Optional. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_W500</b>.</li>
-     * <li>.value[2].i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.string: font family. Use commas (,) to separate multiple fonts.</li>
-     * <li>.value[0].f32: font size, in fp.</li>
-     * <li>.value[1].i32: font weight. The parameter type is {@link ArkUI_FontWeight}.</li>
-     * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_POPUP_FONT,
-
-    /**
-     * @brief Defines the default font style.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.string: font family. Use commas (,) to separate multiple fonts. Optional.
-     * The default value is <b>"HarmonyOS Sans"</b>.</li>
-     * <li>.value[0].f32: font size, in fp. Optional. The default value is <b>13</b>.</li>
-     * <li>.value[1].i32: font weight. Optional. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_W500</b>.</li>
-     * <li>.value[2].i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.string: font family. Use commas (,) to separate multiple fonts.</li>
-     * <li>.value[0].f32: font size, in fp.</li>
-     * <li>.value[1].i32: font weight. The parameter type is {@link ArkUI_FontWeight}.</li>
-     * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_FONT,
-
-    /**
-     * @brief Defines the letter index bar letter area size.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].f32: the letter area is a circle, set the diameter of the circle, in vp.
-     * The default value is <b>24</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].f32: the letter area is a circle, set the diameter of the circle, in vp.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_ITEM_SIZE,
-
-    /**
-     * @brief Defines the selected index.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: the selected index. The default value is <b>0</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: the selected index.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_SELECTED,
-
-    /**
-     * @brief Defines whether to collapse the characters when the indexer bar is not enough to display all characters.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to collapse the characters when the indexer bar is not enough to display all
-     * characters.The value <b>1</b> means to automatically collapses the characters, and <b>0</b> means the opposite.
-     * The default value is <b>1</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to collapse the characters when the indexer bar is not enough to display all
-     * characters.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_AUTO_COLLAPSE,
-
-    /**
-     * @brief Defines the background blur style of the pop-up window.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: blur style of the pop-up window. The value is an enum of {@link ArkUI_BlurStyle}.
-     * The default value is <b>ARKUI_BLUR_STYLE_NONE</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: blur style of the pop-up window.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_POPUP_BACKGROUND_BLUR_STYLE,
 
     /**
      * @brief 设置子组件在Stack容器中的对齐方式，支持属性设置，属性重置和属性获取接口。
@@ -12075,186 +11720,6 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_PICKER_ITEM_HEIGHT = 1018005,
-
-    /**
-     * @brief Defines the index of the child component currently displayed in the ArcSwiper.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: index value of the child component. The default value is <b>0</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: index value of the child component.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SWIPER,
-
-    /**
-     * @brief Defines the indicator type of the ArcSwiper.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to show indicator. The value <b>1</b> means to show indicator,
-     * and <b>0</b> means the opposite. The default value is <b>1</b>.</li>
-     * <li>.value[1].i32: direction of the ArcSwiper indicator. The parameter type is {@link OH_ArkUI_ArcDirection}.
-     * The default value is <b>OH_ARKUI_ARCDIRECTION_SIX_CLOCK_DIRECTION</b>. Optional.</li>
-     * <li>.value[2].u32: color of the unselected points, in 0xARGB format,
-     * and the default value is <b>0xA9FFFFFF</b>. Optional.</li>
-     * <li>.value[3].u32: color of the selected point, in 0xARGB format,
-     * and the default value is <b>0xFF5EA1FF</b>. Optional.</li>
-     * <li>.value[4].u32: background color of the ArcSwiper indicator after long pressed, in 0xARGB format,
-     * and the default value is <b>0xFF5EA1FF</b>. Optional.</li>
-     * <li>.object: gradient color for the mask. Optional.
-     * Array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.
-     * colors: colors of the color stops.
-     * stops: stop positions of the color stops.
-     * size: number of colors.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to show indicator.</li>
-     * <li>.value[1].i32: direction of the ArcSwiper indicator.</li>
-     * <li>.value[2].u32: color of the unselected points.</li>
-     * <li>.value[3].u32: color of the selected point.</li>
-     * <li>.value[4].u32: background color of the ArcSwiper indicator after long pressed.</li>
-     * <li>.object: gradient color for the mask.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     *
-     */
-    NODE_ARC_SWIPER_INDICATOR,
-
-    /**
-     * @brief Defines the animation duration.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: the animation duration, in ms. The default value is <b>400</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: the animation duration.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_DURATION,
-
-    /**
-     * @brief Defines whether to display vertically.
-     * The attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to display vertically. The value <b>1</b> means to display vertically,
-     * and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to display vertically.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_VERTICAL,
-
-    /**
-     * @brief Defines whether to disable the swipe feature.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to disable the swipe feature. The value <b>1</b> means to disable
-     * the swipe feature, and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to disable the swipe feature.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_DISABLE_SWIPE,
-
-    /**
-     * @brief Defines the sensitivity of rotating crown.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: the sensitivity of rotating crown. The parameter type is {@link ArkUI_CrownSensitivity}.
-     * The default value is <b>ARKUI_CROWN_SENSITIVITY_MEDIUM</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: the sensitivity of rotating crown.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_DIGITAL_CROWN_SENSITIVITY,
-
-    /**
-     * @brief Defines the effect used at the edges of the ArcSwiper when the boundary of the scrollable content is reached.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: effect used at the edges of the swiper when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EdgeEffect}.
-     * The default value is <b>ARKUI_EDGE_EFFECT_SPRING</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: effect used at the edges of the swiper when the boundary of the scrollable content is reached.
-     * The parameter type is {@link ArkUI_EdgeEffect}.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_EFFECT_MODE,
-
-    /**
-     * @brief Defines whether to disable the transition animation.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: whether to disable the transition animation. The value <b>1</b> means to disable
-     * the transition animation, and <b>0</b> means the opposite. The default value is <b>0</b>.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: whether to disable the transition animation.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_DISABLE_TRANSITION_ANIMATION,
 } ArkUI_NodeAttributeType;
 
 /**
@@ -12909,23 +12374,19 @@ typedef enum {
      * This event is triggered when an image is successfully loaded or decoded. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains nine parameters:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: loading status. The value <b>0</b> indicates that the image is
-     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully.</li>
-     * <li>ArkUI_NodeComponentEvent.data[1].f32: width of the image, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[2].f32: height of the image, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[3].f32: width of the component, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[4].f32: height of the component, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[5].f32: offset of the rendered content relative to the component on the
-     * x-axis, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[6].f32: offset of the rendered content relative to the component on the
-     * y-axis, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[7].f32: actual rendered width of the image, in px.</li>
-     * <li>ArkUI_NodeComponentEvent.data[8].f32: actual rendered height of the image, in px.</li>
-     * </ul>
-     *
-     * @ingroup Image [图片]
+     * {@link ArkUI_NodeComponentEvent} contains nine parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: loading status. The value <b>0</b> indicates that the image is
+     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: width of the image, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: height of the image, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: width of the component, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: height of the component, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: offset of the rendered content relative to the component on the
+     * x-axis, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: offset of the rendered content relative to the component on the
+     * y-axis, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: actual rendered width of the image, in px. \n
+     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: actual rendered height of the image, in px. \n
      */
     NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
@@ -12934,13 +12395,10 @@ typedef enum {
      * This event is triggered when an error occurs during image loading. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: error code.<br><b>401</b>: The image could not be obtained because
-     * the image path is invalid.<br><b>103101</b>: The image format is not supported.</li>
-     * </ul>
-     *
-     * @ingroup Image [图片]
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>error code:\n
+     * 401: The image could not be obtained because the image path is invalid. \n
+     * 103101: The image format is not supported. \n
      */
     NODE_IMAGE_ON_ERROR,
     /**
@@ -12950,23 +12408,17 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
-     *
-     * @ingroup Image [图片]
      */
     NODE_IMAGE_ON_SVG_PLAY_FINISH,
     /**
-     * @brief Defines the image download progress event.
+     * @brief Defines image download process event.
      *
      * This event is triggered when downloading webpage images from page components.\n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].u32: number of bytes downloaded.</li>
-     * <li>ArkUI_NodeComponentEvent.data[1].u32: total number of bytes to download.</li>
-     * </ul>
-     *
-     * @ingroup Image [图片]
+     * {@link ArkUI_NodeComponentEvent} contains two parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].u32</b>: the num of bytes downloaded. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].u32</b>: the total number of bytes to download. \n
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
@@ -13569,54 +13021,49 @@ typedef enum {
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
 
     /**
-     * @brief Defines the event triggered when the animation starts to play.
+     * @brief Defines the event callback function triggered when the animation starts to play.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
      *
-     * @ingroup ImageAnimator [图片帧动画]
-     */
+    */
     NODE_IMAGE_ANIMATOR_EVENT_ON_START = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_ANIMATOR,
     /**
-     * @brief Defines the event triggered when the animation playback is paused.
+     * @brief Defines the event callback function triggered when the animation playback is paused.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
      *
-     * @ingroup ImageAnimator [图片帧动画]
-     */
+    */
     NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE = 19001,
     /**
-     * @brief Defines the event triggered when the animation playback is repeated.
+     * @brief Defines the event callback function triggered when the animation playback is repeated.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
      *
-     * @ingroup ImageAnimator [图片帧动画]
-     */
+    */
     NODE_IMAGE_ANIMATOR_EVENT_ON_REPEAT = 19002,
     /**
-     * @brief Defines the event triggered when the animation playback returns to the initial state.
+     * @brief Defines the event callback function when the animation playback returns to the initial state.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
      *
-     * @ingroup ImageAnimator [图片帧动画]
-     */
+    */
     NODE_IMAGE_ANIMATOR_EVENT_ON_CANCEL = 19003,
     /**
-     * @brief Defines the event triggered when the animation playback is complete or stopped.
+     * @brief Defines the event callback function triggered when the animation playback is complete or stopped.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
      *
-     * @ingroup ImageAnimator [图片帧动画]
-     */
+    */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
     
     /**
@@ -13625,14 +13072,12 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>
+     * <b>ArkUI_StringAsyncEvent.pStr contains two parameters</b>
      * Name: The names of the selected checkboxes;
-     * **Status:**
-     * <ul>
-     * <li>0: All checkboxes are selected.</li>
-     * <li>1: Some checkboxes are selected.</li>
-     * <li>2: No checkboxes are selected.</li> \n
-     * </ul>
+     * Status:
+     * 0: All checkboxes are selected.
+     * 1: Some checkboxes are selected.
+     * 2: No checkboxes are selected. \n
      *
      * @ingroup CheckboxGroup[复选框群组]
      * @since 15
@@ -13742,22 +13187,6 @@ typedef enum {
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_DID_CHANGE,
-
-    /**
-     * @brief Defines the event triggered when the index of the currently displayed element of this
-     * <b>ARKUI_NODE_ARC_ALPHABET_INDEXER</b> instance changes.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_ALPHABET_INDEXER_EVENT_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_ALPHABET_INDEXER,
 
     /**
      * @brief Defines the event triggered when the index of the currently displayed element of this
@@ -14540,78 +13969,6 @@ typedef enum {
      * @since 23
      */
     NODE_PICKER_EVENT_ON_SCROLL_STOP = 1018001,
-
-    /**
-     * @brief Defines the event triggered when the index of the currently displayed element of this
-     * <b>ARKUI_NODE_ARC_SWIPER</b> instance changes.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SWIPER,
-
-    /**
-     * @brief Defines the event triggered when the switching animation of this <b>ARKUI_NODE_ARC_SWIPER</b> instance starts.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains five parameters:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
-     * <li>ArkUI_NodeComponentEvent.data[1].i32: index of the target element to switch to.</li>
-     * <li>ArkUI_NodeComponentEvent.data[2].f32: offset of the currently displayed element relative to the
-     * start position of the swiper along the main axis.</li>
-     * <li>ArkUI_NodeComponentEvent.data[3].f32: offset of the target element relative to the start position
-     * of the swiper along the main axis.</li>
-     * <li>ArkUI_NodeComponentEvent.data[4].f32: hand-off velocity.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_EVENT_ON_ANIMATION_START,
-
-    /**
-     * @brief Defines the event triggered when the switching animation of this <b>ARKUI_NODE_ARC_SWIPER</b> instance ends.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
-     * <li>ArkUI_NodeComponentEvent.data[1].f32: offset of the currently displayed element relative to the
-     * start position of the swiper along the main axis.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_EVENT_ON_ANIMATION_END,
-
-    /**
-     * @brief Defines the event triggered on a frame-by-frame basis when the page is turned by a swipe in this
-     * <b>ARKUI_NODE_ARC_SWIPER</b> instance.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
-     * <ul>
-     * <li>ArkUI_NodeComponentEvent.data[0].i32: index of the currently displayed element.</li>
-     * <li>ArkUI_NodeComponentEvent.data[1].f32: offset of the currently displayed element relative to the
-     * start position of the swiper along the main axis.</li>
-     * </ul>
-     *
-     * @ingroup Navigation Related Components[导航类组件]
-     * @since 26.1.0
-     */
-    NODE_ARC_SWIPER_EVENT_ON_GESTURE_SWIPE,
 } ArkUI_NodeEventType;
 
 /**
@@ -15061,7 +14418,7 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32
  */
 typedef struct {
     /**
-     * 结构体版本，当前使用的ArkUI_NativeNodeAPI_1结构体的版本编号，由系统提供，开发者无需修改。
+     * @brief 结构体版本，当前使用的ArkUI_NativeNodeAPI_1结构体的版本编号，由系统提供，开发者无需修改。
      *
      * @since 12
      */
@@ -15071,7 +14428,7 @@ typedef struct {
      * @brief 基于{@link ArkUI_NodeType}生成对应的组件并返回组件对象指针。
      *
      * @param type 创建指定类型的UI组件节点。
-     * @return 返回创建完成的组件对象指针，如果创建失败返回NULL。需要开发者自行管理返回的组件对象指针的生命周期，否则有可能导致Use After Free等进程崩溃或内存泄漏问题。
+     * @return 返回创建完成的组件操作指针，如果创建失败返回NULL。需要开发者自行管理返回的组件对象指针的生命周期，否则有可能导致Use After Free等进程崩溃或内存泄漏问题。
      * @since 12
      */
     ArkUI_NodeHandle (*createNode)(ArkUI_NodeType type);
@@ -15160,9 +14517,7 @@ typedef struct {
     /**
      * @brief 属性设置函数，不建议在非主线程上调用。\n
      *
-     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。\n
-     * 例如：{@link ArkUI_NodeAttributeType}中的\n
-     * NODE_TEXT_CONTENT_WITH_STYLED_STRING。
+     * 在实际业务场景下，如果组件设置的属性包含由开发者申请的堆内存，需确保组件不再使用后再调用对应释放接口。例如：{@link ArkUI_NodeAttributeType}中的NODE_TEXT_CONTENT_WITH_STYLED_STRING。
      *
      * @param node 需要设置属性的节点对象。
      * @param attribute 需要设置的属性类型。
@@ -15178,9 +14533,7 @@ typedef struct {
     int32_t (*setAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute, const ArkUI_AttributeItem* item);
 
     /**
-     * @brief 属性获取函数。
-     *
-     * 该接口返回的指针是ArkUI框架内部的缓冲区指针，不需要开发者主动调用delete释放内存，但是需要在该函数下一次被调用前使用，否则可能会被其他值所覆盖。
+     * @brief 属性获取函数。该接口返回的指针是ArkUI框架内部的缓冲区指针，不需要开发者主动调用delete释放内存，但是需要在该函数下一次被调用前使用，否则可能会被其他值所覆盖。
      *
      * @param node 需要获取属性的节点对象。
      * @param attribute 需要获取的属性类型。
@@ -15531,7 +14884,7 @@ typedef struct {
     /**
      * @brief 从父组件上卸载所有子节点。
      *
-     * @param parent 父节点指针。
+     * @param parent 目标节点对象。
      * @return 错误码。
      *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
      *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -16205,6 +15558,21 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
 /**
+ * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
+ * tree or is not rendered yet.
+ * Note: the pixelmap should be released through OH_PixelmapNative_Release when it's not used any more.
+ *
+ * @param node Indicates the target node.
+ * @param snapshotOptions the given configuration for taking snapshot, can be null for using default.
+ * @param pixelmap Pixelmap pointer created by system, it's the out result.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the snapshot taking failed will null pixelmap returned.
+ *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot taking is timeout.
+ * @since 15
+ */
+/**
  * @brief Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered,
  * the snapshot operation will fail. When the <b>Pixelmap</b> object created is no longer in use, it should be released
  * by calling {@link OH_PixelmapNative_Release}.
@@ -16225,7 +15593,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *         dynamic range mode is not supported.
  *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED} if the isAuto parameter of the color
  *         space or dynamic range mode is set to true for offscreen node snapshot.
- * @since 15
+ * @since 23
  */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);
@@ -16658,39 +16026,6 @@ int32_t OH_ArkUI_Swiper_ShowPrevious(ArkUI_NodeHandle node);
  * @since 23
  */
 int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
-
-/**
- * @brief Show the previous page of the ArcSwiper node.
- *
- * @param node ArkUI_NodeHandle pointer.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
- */
-int32_t OH_ArkUI_ArcSwiper_ShowPrevious(ArkUI_NodeHandle node);
-
-/**
- * @brief Show the next page of the ArcSwiper node.
- *
- * @param node ArkUI_NodeHandle pointer.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
- */
-int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
-
-/**
- * @brief Stop the animation executed by the ArcSwiper node.
- *
- * @param node ArkUI_NodeHandle pointer.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
- */
-int32_t OH_ArkUI_ArcSwiper_FinishAnimation(ArkUI_NodeHandle node);
 
 /**
  * @brief 获取指定实例的页面的根节点。

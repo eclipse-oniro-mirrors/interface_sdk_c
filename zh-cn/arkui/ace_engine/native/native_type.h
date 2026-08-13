@@ -46,7 +46,6 @@
 #include "node_attributes/slider.h"
 #include "node_attributes/checkbox.h"
 #include "node_attributes/button.h"
-
 #include "node_attributes/text_area.h"
 #include "node_attributes/text.h"
 #include "node_attributes/text_input.h"
@@ -271,7 +270,7 @@ typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 
 /**
- * @brief 定义窗口属性的 HostWindowInfo 类信息。
+ * @brief 定义窗口属性的HostWindowInfo类信息。
  *
  * @since 15
  */
@@ -1701,12 +1700,10 @@ typedef enum {
 typedef enum {
     /**
      * 无错误。
-     * @since 12
      */
     ARKUI_ERROR_CODE_NO_ERROR = 0,
     /**
      * 参数错误。
-     * @since 12
      */
     ARKUI_ERROR_CODE_PARAM_INVALID = 401,
     /**
@@ -1720,48 +1717,45 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
     /**
+     * 参数错误。错误码的详细介绍请参见{@link 100023 参数错误}。
+     * @since 21
+     */
+    ARKUI_ERROR_CODE_PARAM_ERROR = 100023,
+    /**
      * 当前XComponent状态异常，方法调用失败。错误码的详细介绍请参见{@link XComponent组件错误码}。
      * @since 18
      */
     ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,
     /**
      * 组件不支持特定的属性或者事件。错误码的详细介绍请参见{@link 交互事件错误码}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
     /**
      * 不支持对ArkTS创建的节点执行对应的操作。错误码的详细介绍请参见{@link 106103 对应的操作不支持ArkTS创建的节点}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103,
     /**
      * 懒加载适配器未绑定到组件上。错误码的详细介绍请参见{@link 106104 适配器未绑定}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104,
     /**
      * 适配器已存在。错误码的详细介绍请参见{@link 106105 适配器已存在}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105,
     /**
      * 对应节点已存在子节点，无法添加适配器。错误码的详细介绍请参见{@link 106106 子节点已存在}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106,
     /**
      * 组件事件中参数长度超限。错误码的详细介绍请参见{@link 106107 参数下标越界}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,
     /**
      * 组件事件中不存在该数据。错误码的详细介绍请参见{@link 106108 数据不存在}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108,
     /**
      * 组件事件不支持返回值。错误码的详细介绍请参见{@link 106109 不支持返回值}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109,
     /**
@@ -1772,19 +1766,16 @@ typedef enum {
     /**
      * 传入的索引值非法。
      * 错误码的详细介绍请参见{@link 106200 传入的索引值非法}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200,
     /**
      * 查询路由导航信息失败。
      * 错误码的详细介绍请参见{@link 106201 查询路由导航信息失败}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,
     /**
      * 传入的buffer size异常（数据过大）。
      * 错误码的详细介绍请参见{@link 106202 传入的buffer size异常}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202,
     /**
@@ -1900,12 +1891,10 @@ typedef enum {
     ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED = 160004,
     /**
      * 非滚动类容器。错误码的详细介绍请参见{@link 交互事件错误码}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
     /**
      * 存储区大小不足。错误码的详细介绍请参见{@link 交互事件错误码}。
-     * @since 12
      */
     ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002,
     /**
@@ -1943,6 +1932,11 @@ typedef enum {
      * @since 18
      */
     ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
+    /**
+     * 不支持手势识别器类型。错误码的详细介绍请参见{@link 交互事件错误码}。
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
     /**
      * 当前阶段不允许该操作。错误码的详细介绍请参见{@link 拖拽事件错误码}。
      * @since 19
@@ -2238,9 +2232,13 @@ typedef enum {
  * @since 15
  */
 typedef enum {
-    /** 不展开。 */
+    /**
+     * 不展开。
+     */
     ARKUI_NOT_EXPAND = 0,
-    /** 展开。 */
+    /**
+     * 展开。
+     */
     ARKUI_EXPAND = 1,
     /**
      * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考{@link LazyForEach：数据懒加载}。
@@ -2459,7 +2457,7 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
 
-/**
+ /**
    * @brief 定义ArkUI中选择操作的配置选项，适用于应用内需要进行选择交互的场景，为开发者提供选择行为的定制能力。
    *
    * @since 23
@@ -4569,41 +4567,41 @@ void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const 
 const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
 
 /**
- * @brief Destroy the instance of Customs Property.
+ * @brief 销毁{@link ArkUI_CustomProperty}实例。
  *
- * @param handle The instance of Customs Property to be destroyed.
+ * @param handle 要销毁的实例。
  * @since 14
  */
 void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get custom attribute value information.
+ * @brief 获取自定义属性对象的value信息。
  *
- * @param handle Custom attribute object pointer.
- * @return Customize the value information within the attribute structure.
+ * @param handle 自定义属性对象指针。
+ * @return 自定义属性对象的value信息。
  * @since 14
  */
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get window name from HostWindowInfo.
+ * @brief 获取{@link ArkUI_HostWindowInfo}对象中的窗口名称。
  *
- * @param info HostWindowInfo object pointer.
- * @return Window name in HostWindowInfo.
+ * @param info HostWindowInfo对象。
+ * @return {@link ArkUI_HostWindowInfo}对象中的窗口名称。
  * @since 15
  */
 const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy the instance of HostWindowInfo.
+ * @brief 销毁{@link ArkUI_HostWindowInfo}对象。
  *
- * @param info Instance of HostWindowInfo to be destroyed.
+ * @param info 要销毁的{@link ArkUI_HostWindowInfo}对象。
  * @since 15
  */
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief 销毁{@link ArkUI_ActiveChildrenInfo}实例。
+ * @brief 销毁{@link OH_ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
  *
  * @param handle 要销毁的{@link ArkUI_ActiveChildrenInfo}实例。
  * @since 14
@@ -4611,7 +4609,7 @@ void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
+ * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
  *
  * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
  * @param index 子节点的下标。
@@ -4621,7 +4619,7 @@ void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的节点数量。
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
  *
  * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
  * @return 子节点数量，默认值0.
@@ -4658,8 +4656,7 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  * @brief 获取配置项中是否允许跨语言修改属性。
  *
  * @param option 跨语言配置项实例。
- * @return 是否允许跨语言修改属性。true表示允许跨语言修改属性，
- *     false表示不允许跨语言修改属性。
+ * @return 是否允许跨语言修改属性。true表示允许跨语言修改属性，false表示不允许跨语言修改属性。
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
@@ -7819,19 +7816,20 @@ typedef enum {
 } OH_ArkUI_CrossLanguageOperatingStatus;
 
 /**
- * @brief 设置跨语言配置项的节点树操作状态。
+ * @brief Sets the tree operating status for the cross-language option.
  *
- * @param option 跨语言配置项实例。
- * @param status 需要设置的节点树操作状态。默认值：OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED。
+ * @param option The cross-language option.
+ * @param status The tree operating status to be set for the cross-language option.
+ * Default value: OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED.
  * @since 26.0.0
  */
 void OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus(ArkUI_CrossLanguageOption* option, OH_ArkUI_CrossLanguageOperatingStatus status);
 
 /**
- * @brief 获取跨语言配置项的节点树操作状态。
+ * @brief Gets the tree operating status of the cross-language option.
  *
- * @param option 跨语言配置项实例。
- * @return 跨语言配置项的节点树操作状态。
+ * @param option The cross-language option.
+ * @return Return the tree operating status of the cross-language option.
  * @since 26.0.0
  */
 OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus(ArkUI_CrossLanguageOption* option);
