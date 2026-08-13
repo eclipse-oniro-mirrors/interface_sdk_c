@@ -38,6 +38,7 @@
 #ifndef OH_INPUT_MANAGER_H
 #define OH_INPUT_MANAGER_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #include "oh_axis_type.h"
@@ -94,13 +95,13 @@ typedef enum Input_KeyEventAction {
     KEY_ACTION_CANCEL = 0,
 
     /**
-     * Key press.
-     */
+* Key press.
+*/
     KEY_ACTION_DOWN = 1,
 
     /**
-     * Key release.
-     */
+* Key release.
+*/
     KEY_ACTION_UP = 2
 } Input_KeyEventAction;
 
@@ -513,6 +514,7 @@ typedef enum Input_TouchEventToolType {
 /**
  * @brief Defines the callback used to return hotkey events.
  *
+ * @param hotkey Hotkey object.
  * @since 14
  */
 typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
@@ -1030,7 +1032,8 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
  * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Mouse action.  Returns -1 if mouseEvent is NULL. For details, see {@link Input_MouseEventAction}.
+ * @return Mouse action. Returns -1 if mouseEvent is NULL. 
+ *     For details, see {@link Input_MouseEventAction}.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
