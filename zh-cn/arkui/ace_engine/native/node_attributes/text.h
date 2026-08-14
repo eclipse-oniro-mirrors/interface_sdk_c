@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "../error_code.h"
 #include "text_common.h"
 
 #ifdef __cplusplus
@@ -497,6 +498,67 @@ void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,
  * @since 24
  */
 OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_FontConfigs* option);
+
+/**
+ * @brief 定义文本行间距选项。
+ *
+ * @since 26.0.0
+ */
+typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_LineSpacingOptions;
+
+/**
+ * @brief 创建文本行间距选项对象。使用完毕后需要调用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy}销毁对象。
+ *
+ * @return 返回指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
+ * @release OH_ArkUI_NativeModule_LineSpacingOptions_Destroy {return}
+ * @since 26.0.0
+ */
+OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptions_Create();
+
+/**
+ * @brief 销毁文本行间距选项对象。
+ *
+ * @param options [in] 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
+ * @since 26.0.0
+ */
+void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_LineSpacingOptions *options);
+
+/**
+ * @brief 设置文本行间距选项的onlyBetweenLines参数。
+ * 当设置为true时，行间距仅在行之间应用，首行上方和尾行下方无额外的行间距。
+ * 当设置为false时，首行上方和尾行下方也会存在行间距。
+ *
+ * @param options [in] 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
+ * @param onlyBetweenLines [in] 行间距是否仅在行之间应用。
+ *                         true表示仅在行之间应用行间距，false表示首行上方和尾行下方也会存在行间距。
+ *                         默认值为false。
+ * @return 结果码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示操作成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 表示options参数为空。</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
+    OH_ArkUI_NativeModule_LineSpacingOptions *options, bool onlyBetweenLines);
+
+/**
+ * @brief 获取文本行间距选项的onlyBetweenLines参数。
+ *
+ * @param options [in] 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
+ * @param onlyBetweenLines [out] 输出参数，指向bool变量的指针，用于接收值。
+ *                         true表示仅在行之间应用行间距，false表示首行上方和尾行下方也会存在行间距。
+ *                         默认值为false。
+ * @return 结果码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示操作成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 表示任意参数为空。</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines(
+    const OH_ArkUI_NativeModule_LineSpacingOptions *options, bool *onlyBetweenLines);
+
 #ifdef __cplusplus
 }
 #endif
