@@ -1089,16 +1089,22 @@ typedef enum {
 } ArkUI_ClipType;
 
 /**
- * @brief Defines the gradient color stop structure.
+ * @brief 定义渐变色结构，用于配置组件的渐变效果，支持通过颜色数组与位置数组组合定义多种渐变样式。
  *
  * @since 12
  */
 typedef struct {
-    /** Color array. */
+    /**
+     * 颜色数组，与stops数组按索引一一对应，每个颜色对应一个渐变位置，数组长度必须与size一致。
+     */
     const uint32_t* colors;
-    /** Position array. */
+    /**
+     * 位置数组，与colors数组成对对应，取值范围为0.0~1.0，表示渐变色的位置偏移，数组长度必须与size一致。设置小于0的值时，自动修正为0。
+     */
     float* stops;
-    /** Length array. */
+    /**
+     * 数组长度，必须与colors和stops数组的实际元素个数一致，设置前需先确定colors和stops数组的实际元素个数。
+     */
     int size;
 } ArkUI_ColorStop;
 
