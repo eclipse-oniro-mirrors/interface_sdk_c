@@ -26,7 +26,7 @@
 /**
  * @file neural_network_runtime.h
  *
- * @brief Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by 
+ * @brief Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by
  *        Neural Network Runtime to construct models. 
  * 
  * Note: Currently, the APIs of Neural Network Runtime do not support multi-thread calling. \n
