@@ -92,7 +92,7 @@ typedef enum {
     /**
      * Maximum value for a custom error code.
      */
-    OH_IPC_USER_ERROR_CODE_MAX = 1909999,
+    OH_IPC_USER_ERROR_CODE_MAX = 1909999
 } OH_IPC_ErrorCode;
 
 /** @} */
