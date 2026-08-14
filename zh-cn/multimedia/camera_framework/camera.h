@@ -1364,7 +1364,7 @@ typedef struct Camera_SmoothZoomInfo {
  */
 typedef struct Camera_CaptureStartInfo {
     /**
-     * 捕获id。
+     * 拍照id。
      */
     int32_t captureId;
 
