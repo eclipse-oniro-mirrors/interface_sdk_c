@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "../error_code.h"
 #include "text_common.h"
 
 #ifdef __cplusplus
@@ -478,6 +479,68 @@ void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,
  * @since 24
  */
 OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_FontConfigs* option);
+
+/**
+ * @brief Defines the line spacing options for text.
+ *
+ * @since 26.0.0
+ */
+typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_LineSpacingOptions;
+
+/**
+ * @brief Creates a line spacing options object for text. When the object is no longer used,
+ * call {@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy} to destroy it.
+ *
+ * @return Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
+ * @release OH_ArkUI_NativeModule_LineSpacingOptions_Destroy {return}
+ * @since 26.0.0
+ */
+OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptions_Create();
+
+/**
+ * @brief Destroys the line spacing options object.
+ *
+ * @param options [in] Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
+ * @since 26.0.0
+ */
+void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_LineSpacingOptions *options);
+
+/**
+ * @brief Sets the onlyBetweenLines parameter for the line spacing options.
+ * When set to true, line spacing is only applied between lines, not for the first and last lines.
+ * When set to false, line spacing is applied uniformly to all lines.
+ *
+ * @param options [in] Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
+ * @param onlyBetweenLines [in] Whether line spacing is only applied between lines.
+ *                         True means only between lines, false means uniformly to all lines.
+ *                         The default value is false.
+ * @return Result code.
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if the options parameter is null.</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
+    OH_ArkUI_NativeModule_LineSpacingOptions *options, bool onlyBetweenLines);
+
+/**
+ * @brief Gets the onlyBetweenLines parameter from the line spacing options.
+ *
+ * @param options [in] Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
+ * @param onlyBetweenLines [out] Output parameter. Pointer to a bool variable to receive the value.
+ *                         True means only between lines, false means uniformly to all lines.
+ *                         The default value is false.
+ * @return Result code.
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if any parameter is null.</li>
+ *     </ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines(
+    const OH_ArkUI_NativeModule_LineSpacingOptions *options, bool *onlyBetweenLines);
+
 #ifdef __cplusplus
 }
 #endif
