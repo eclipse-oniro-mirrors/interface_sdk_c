@@ -1192,7 +1192,7 @@ typedef enum {
     OH_NN_OPS_SQUARED_DIFFERENCE = 34,
 
     /**
-     * 去除axis中，长度为1的维度。支持int8量化输入假设input的shape为[2，1，1，2，2]，axis为[0,1]， 
+     * 去除axis中， 长度为1的维度。 支持int8量化输入假设input的shape为[2，1，1，2，2]， axis为[0,1]，
      * 则output的shape为[2，1，2，2]。第0维到第一维之间，长度为0的维度被去除。
      *
      * 输入：\n
@@ -1510,8 +1510,8 @@ typedef enum {
      *
      * 输入：\n
      *
-     *  input,n维输入张量，n<8。 
-     *  axis,一维张量，指定计算逻辑与的维度，axis中每个元素的取值范围为[-n，n)。 
+     *  input, n维输入张量，n<8。
+     *  axis, 一维张量， 指定计算逻辑与的维度， axis中每个元素的取值范围为[-n，n)。
      *
      * 参数：\n
      *
@@ -1613,7 +1613,7 @@ typedef enum {
      * 高斯误差线性单元激活函数。output=0.5∗input∗(1+tanh(input/2))，不支持int量化输入。
      *
      * 输入：\n
-     * input,一个n维输入张量。 
+     * input,一个n维输入张量。
      *
      * 参数：\n
      *
@@ -3206,7 +3206,8 @@ typedef struct OH_NN_UInt32Array {
  * @version 1.0
  */
 typedef struct OH_NN_QuantParam {
-    /** 指定numBits、scale和zeroPoint数组的长度。在per-layer量化的场景下，quantCount通常指定为1，即一个张量所有通道共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。 
+    /** 指定numBits、scale和zeroPoint数组的长度。在per-layer量化的场景下，quantCount通常指定为1，
+     * 即一个张量所有通道共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。
      */
     uint32_t quantCount;
     /** 量化位数。 */
@@ -3236,7 +3237,8 @@ typedef struct OH_NN_Tensor {
     const int32_t *dimensions;
     /** 指定张量的量化信息，数据类型要求为{@link OH_NN_QuantParam}。 */
     const OH_NN_QuantParam *quantParam;
-    /** 指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为{@link OH_NN_TENSOR}；当张量用作算子参数，则要求从{@link OH_NN_TensorType}中选择除{@link OH_NN_TENSOR}以外的枚举值。 
+    /** 指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为{@link OH_NN_TENSOR}；
+     * 当张量用作算子参数，则要求从{@link OH_NN_TensorType}中选择除{@link OH_NN_TENSOR}以外的枚举值。
      */
     OH_NN_TensorType type;
 } OH_NN_Tensor;
