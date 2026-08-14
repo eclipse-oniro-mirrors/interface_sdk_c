@@ -17,7 +17,7 @@
  * @addtogroup Sensor
  * @{
  *
- * @brief Provides APIs to define common sensor attributes.
+ * @brief 提供用于定义通用传感器属性的API。
  *
  * @since 11
  */
@@ -294,7 +294,7 @@ int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorTyp
  * @brief 获取传感器数据的时间戳。
  *
  * @param sensorEvent 指向传感器数据信息的指针。
- * @param timestamp 指向时间戳的指针，单位：ns（纳秒），表示传感器数据采集的时间。
+ * @param timestamp 指向时间戳的指针，单位：ns（纳秒），表示传感器数据采集的时间，表示系统启动运行至今的纳秒数。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示时间戳已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -311,29 +311,31 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
 int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy);
 
 /**
- * @brief 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下所示：
- * <br>| 传感器类型 | 数据元素及描述 |
- * <br>| SENSOR_TYPE_ACCELEROMETER | data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位：m/s² |
- * <br>| SENSOR_TYPE_GYROSCOPE | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位：rad/s（弧度/秒） |
- * <br>| SENSOR_TYPE_AMBIENT_LIGHT | data[0]表示环境光强度，单位：lux（勒克斯）；从API version 12开始，data[1]表示色温，单位：K（开尔文）；
+ * @brief 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下表所示：
+ *
+ * | 传感器类型 | 数据元素及描述 |
+ * | --- | --- |
+ * | SENSOR_TYPE_ACCELEROMETER | data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位：m/s² |
+ * | SENSOR_TYPE_GYROSCOPE | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位：rad/s（弧度/秒） |
+ * | SENSOR_TYPE_AMBIENT_LIGHT | data[0]表示环境光强度，单位：lux（勒克斯）；从API version 12开始，data[1]表示色温，单位：K（开尔文）；
  * data[2]表示红外亮度，单位：cd/m²（坎德拉每平方米） |
- * <br>| SENSOR_TYPE_MAGNETIC_FIELD | data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位：μT（微特斯拉） |
- * <br>| SENSOR_TYPE_BAROMETER | data[0]表示气压值，单位：hPa（百帕） |
- * <br>| SENSOR_TYPE_HALL | data[0]表示皮套吸合状态，0表示打开，大于0表示吸附 |
- * <br>| SENSOR_TYPE_PROXIMITY | data[0]表示接近状态，0表示接近，大于0表示远离 |
- * <br>| SENSOR_TYPE_ORIENTATION | data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位：°（度） |
- * <br>| SENSOR_TYPE_GRAVITY | data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位：m/s² |
- * <br>| SENSOR_TYPE_ROTATION_VECTOR | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量元素 |
- * <br>| SENSOR_TYPE_PEDOMETER_DETECTION | data[0]表示步数检测状态，1表示检测到了步数变化 |
- * <br>| SENSOR_TYPE_PEDOMETER | data[0]表示步数 |
- * <br>| SENSOR_TYPE_HEART_RATE | data[0]表示心率数值 |
- * <br>| SENSOR_TYPE_LINEAR_ACCELERATION | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位：m/s² |
- * <br>| SENSOR_TYPE_GAME_ROTATION_VECTOR | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；
+ * | SENSOR_TYPE_MAGNETIC_FIELD | data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位：μT（微特斯拉） |
+ * | SENSOR_TYPE_BAROMETER | data[0]表示气压值，单位：hPa（百帕） |
+ * | SENSOR_TYPE_HALL | data[0]表示皮套吸合状态，0表示打开，大于0表示吸附 |
+ * | SENSOR_TYPE_PROXIMITY | data[0]表示接近状态，0表示接近，大于0表示远离 |
+ * | SENSOR_TYPE_ORIENTATION | data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位：°（度） |
+ * | SENSOR_TYPE_GRAVITY | data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位：m/s² |
+ * | SENSOR_TYPE_ROTATION_VECTOR | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量元素 |
+ * | SENSOR_TYPE_PEDOMETER_DETECTION | data[0]表示步数检测状态，1表示检测到了步数变化 |
+ * | SENSOR_TYPE_PEDOMETER | data[0]表示步数 |
+ * | SENSOR_TYPE_HEART_RATE | data[0]表示心率数值 |
+ * | SENSOR_TYPE_LINEAR_ACCELERATION | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位：m/s² |
+ * | SENSOR_TYPE_GAME_ROTATION_VECTOR | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；
  * data[3]表示旋转向量 |
  *
- * @param sensorEvent - 指向传感器数据信息的指针。
- * @param data - 出参，传感器数据数组指针。数据格式依赖传感器类型，具体格式参考函数描述。
- * @param length - 出参，数据数组的长度，表示data数组中有效数据的个数。
+ * @param sensorEvent 指向传感器数据信息的指针。
+ * @param data 出参，传感器数据数组指针。数据格式依赖传感器类型，具体格式参考函数描述。
+ * @param length 出参，数据数组的长度，表示data数组中有效数据的个数。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器数据已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -386,8 +388,8 @@ int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *
 int32_t OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType);
 
 /**
- * @brief 定义传感器订阅属性结构体，用于指定传感器订阅的相关参数，包括订阅的传感器类型、采样间隔等。该属性适用于传感器数据订阅场景，帮助开发者根据业务需求配置订阅方式，提供灵活的传感器数据获取能力。
- * 该属性用于指定传感器订阅的具体参数，如采样率、数据上报间隔等，用于配置传感器的数据采集和上报行为。用于运动健康应用中的步数和心率数据订阅，环境监测应用中的温湿度数据实时采集，设备控制应用中的状态变化监听等。
+ * @brief 定义传感器订阅属性结构体，用于指定传感器订阅的相关参数，包括传感器类型、采样率、数据上报间隔等。该属性适用于传感器数据订阅场景，帮助开发者根据业务需求配置订阅方式，提供灵活的传感器数据获取能力。
+ * 可用于运动健康应用中的步数和心率数据订阅，环境监测应用中的温湿度数据实时采集，设备控制应用中的状态变化监听等。
  *
  * @since 11
  */

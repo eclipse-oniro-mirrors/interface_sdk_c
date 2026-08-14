@@ -17,7 +17,7 @@
  * @addtogroup Vibrator
  * @{
  *
- * @brief Provides the enums, structs, and error codes used in the vibrator APIs.
+ * @brief 提供振动API中使用的枚举、结构体和错误码。
  * @since 11
  */
 
