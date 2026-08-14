@@ -1032,7 +1032,7 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
  * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Mouse action. Returns -1 if mouseEvent is NULL. 
+ * @return Mouse action. Returns -1 if mouseEvent is NULL.
  *     For details, see {@link Input_MouseEventAction}.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
