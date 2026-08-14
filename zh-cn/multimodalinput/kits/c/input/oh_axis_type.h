@@ -52,31 +52,31 @@ typedef enum InputEvent_AxisType {
      * 未知轴类型，通常作为初始值。
      * @since 12
      */
-    AXIS_TYPE_UNKNOWN,
+    AXIS_TYPE_UNKNOWN = 0,
 
     /**
      * 垂直滚动轴，当您滚动鼠标滚轮或在触控板上进行单指或双指滑动时，垂直滚动轴的状态改变。
      * @since 12
      */
-    AXIS_TYPE_SCROLL_VERTICAL,
+    AXIS_TYPE_SCROLL_VERTICAL = 1,
 
     /**
      * 水平滚动轴，当您滚动鼠标滚轮或在触控板上进行双指滑动时，水平滚动轴的状态发生变化。
      * @since 12
      */
-    AXIS_TYPE_SCROLL_HORIZONTAL,
+    AXIS_TYPE_SCROLL_HORIZONTAL = 2,
 
     /**
      * 捏合轴，用于描述触控板上的双指捏合手势。
      * @since 12
      */
-    AXIS_TYPE_PINCH,
+    AXIS_TYPE_PINCH = 3,
 
     /**
      * 旋转轴，用于描述触控板上的双指旋转手势。
      * @since 12
      */
-    AXIS_TYPE_ROTATE
+    AXIS_TYPE_ROTATE = 4
 } InputEvent_AxisType;
 
 /**
@@ -116,19 +116,19 @@ typedef enum InputEvent_AxisAction {
      * 轴事件开始。
      * @since 12
      */
-    AXIS_ACTION_BEGIN,
+    AXIS_ACTION_BEGIN = 1,
 
     /**
      * 轴事件更新。
      * @since 12
      */
-    AXIS_ACTION_UPDATE,
+    AXIS_ACTION_UPDATE = 2,
 
     /**
      * 轴事件结束。
      * @since 12
      */
-    AXIS_ACTION_END
+    AXIS_ACTION_END = 3
 } InputEvent_AxisAction;
 
 #ifdef __cplusplus
