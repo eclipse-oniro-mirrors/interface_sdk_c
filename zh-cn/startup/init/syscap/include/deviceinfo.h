@@ -48,9 +48,9 @@ extern "C" {
 #endif
 
 /**
- * @brief 获取设备类型。
+ * @brief 获取设备类型。返回预定义的设备类型字符串。
  *
- * @return 可能的值包括：
+ * @return 返回设备类型字符串。可能的值包括：
  *    <br>• "phone"
  *    <br>• "default"（设备类型无法识别时的默认返回值）
  *    <br>• "wearable"
