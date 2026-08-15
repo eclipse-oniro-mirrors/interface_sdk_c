@@ -3199,7 +3199,7 @@ typedef struct OH_NN_UInt32Array {
  * 其中s和z是量化参数，在{@link OH_NN_QuantParam}中通过scale和zeroPoint保存，r是浮点数，q是量化后的结果，
  * q_min是量化结果的下界，q_max是量化结果的上界，计算方式如下：
  * clamp函数定义如下：
- * 
+ *
  * @deprecated since 11
  * @useinstead {@link NN_QuantParam}
  * @since 9
