@@ -483,7 +483,7 @@ OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_F
 /**
  * @brief Defines the line spacing options for text.
  *
- * @since 26.0.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_LineSpacingOptions;
 
@@ -493,7 +493,7 @@ typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_Li
  *
  * @return Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
  * @release OH_ArkUI_NativeModule_LineSpacingOptions_Destroy {return}
- * @since 26.0.0
+ * @since 26.1.0
  */
 OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptions_Create();
 
@@ -501,7 +501,7 @@ OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptio
  * @brief Destroys the line spacing options object.
  *
  * @param options [in] Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
- * @since 26.0.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_LineSpacingOptions *options);
 
@@ -519,7 +519,7 @@ void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_Line
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if the options parameter is null.</li>
  *     </ul>
- * @since 26.0.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
     OH_ArkUI_NativeModule_LineSpacingOptions *options, bool onlyBetweenLines);
@@ -536,7 +536,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if any parameter is null.</li>
  *     </ul>
- * @since 26.0.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines(
     const OH_ArkUI_NativeModule_LineSpacingOptions *options, bool *onlyBetweenLines);
