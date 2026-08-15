@@ -17,8 +17,7 @@
  * @addtogroup Sensor
  * @{
  *
- * @brief Provides APIs to use common sensor features. For example, you can call the APIs to obtain sensor information
- * and subscribe to or unsubscribe from sensor data.
+ * @brief 提供API以使用常见的传感器功能。例如，您可以调用API来获取传感器信息，并订阅或取消订阅传感器数据。
  * @since 11
  */
 
@@ -47,10 +46,10 @@ extern "C" {
  *     {@link Sensor_Info}。该参数不应为NULL。
  * @param count 输出参数，指向设备上传感器数量的指针。调用者传入指向uint32_t变量的指针即可，调用后count指向的变量会被设置为传感器的数量。该参数不应为NULL。
  * @return 返回{@link Sensor_Result}枚举值。主要枚举值如下：
- *     <br>SENSOR_SUCCESS：操作成功，表示成功获取传感器信息。
- *     <br>{@link SENSOR_PARAMETER_ERROR}：参数检查失败。例如，传入的infos或count参数为NULL指针。
- *     <br>{@link SENSOR_SERVICE_EXCEPTION}：传感器服务异常。例如，传感器服务未启动或发生内部错误。
- *     <br>其他可能的错误代码请参考{@link Sensor_Result}。
+ *     SENSOR_SUCCESS：操作成功，表示成功获取传感器信息。
+ *     {@link SENSOR_PARAMETER_ERROR}：参数检查失败。例如，传入的infos或count参数为NULL指针。
+ *     {@link SENSOR_SERVICE_EXCEPTION}：传感器服务异常。例如，传感器服务未启动或发生内部错误。
+ *     其他可能的错误代码请参考{@link Sensor_Result}。
  * @since 11
  */
 Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count);
@@ -69,11 +68,11 @@ Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count);
  * @param subscriber 输入参数，指向订阅者信息的指针，该信息包含回调函数，用于报告传感器数据。调用者在调用本函数前必须先设置好回调函数，系统会按照订阅属性中指定的频率调用该回调函数。在取消订阅前，回调函数应保持有效，
  *     不应被修改或释放。请参考{@link Sensor_Subscriber}。该参数不应为NULL。注意：回调函数在传感器服务线程中执行，不应在回调中进行耗时操作或阻塞调用，否则可能影响传感器数据报告的实时性。
  * @return 返回{@link Sensor_Result}枚举值。主要枚举值如下：
- *     <br>SENSOR_SUCCESS：操作成功，表示成功订阅传感器数据。
- *     <br>{@link SENSOR_PERMISSION_DENIED}：权限验证失败。缺少订阅传感器所需权限时返回此错误，请参考函数描述部分了解不同传感器所需的权限，并按照要求申请相应权限后再试。
- *     <br>{@link SENSOR_PARAMETER_ERROR}：参数检查失败。例如，传入的id、attribute或subscriber参数为NULL指针。
- *     <br>{@link SENSOR_SERVICE_EXCEPTION}：传感器服务异常。例如，传感器服务未启动或发生内部错误。
- *     <br>其他可能的错误代码请参考{@link Sensor_Result}。
+ *     SENSOR_SUCCESS：操作成功，表示成功订阅传感器数据。
+ *     {@link SENSOR_PERMISSION_DENIED}：权限验证失败。缺少订阅传感器所需权限时返回此错误，请参考函数描述部分了解不同传感器所需的权限，并按照要求申请相应权限后再试。
+ *     {@link SENSOR_PARAMETER_ERROR}：参数检查失败。例如，传入的id、attribute或subscriber参数为NULL指针。
+ *     {@link SENSOR_SERVICE_EXCEPTION}：传感器服务异常。例如，传感器服务未启动或发生内部错误。
+ *     其他可能的错误代码请参考{@link Sensor_Result}。
  * @permission ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.ACTIVITY_MOTION or
  *     ohos.permission.READ_HEALTH_DATA
  * @since 11
@@ -92,11 +91,11 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id,
  * @param subscriber 输入参数，指向订阅者信息的指针，该信息包含回调函数，用于报告传感器数据。这个subscriber必须与之前调用OH_Sensor_Subscribe时使用的subscriber一致，
  *     用于唯一标识订阅者，否则可能返回SENSOR_PARAMETER_ERROR。取消订阅成功后，回调函数将不再被调用。请参考{@link Sensor_Subscriber}。该参数不应为NULL。
  * @return 返回{@link Sensor_Result}枚举值。主要枚举值如下：
- *     <br>SENSOR_SUCCESS：操作成功，表示成功取消订阅传感器数据。
- *     <br>{@link SENSOR_PERMISSION_DENIED}：权限验证失败。缺少取消订阅传感器所需权限时返回此错误，请参考函数描述部分了解不同传感器所需的权限，并按照要求申请相应权限后再试。
- *     <br>{@link SENSOR_PARAMETER_ERROR}：参数检查失败。例如，传入的id或subscriber参数为NULL指针。
- *     <br>{@link SENSOR_SERVICE_EXCEPTION}：传感器服务异常。例如，传感器服务未启动或发生内部错误。
- *     <br>其他可能的错误代码请参考{@link Sensor_Result}。
+ *     SENSOR_SUCCESS：操作成功，表示成功取消订阅传感器数据。
+ *     {@link SENSOR_PERMISSION_DENIED}：权限验证失败。缺少取消订阅传感器所需权限时返回此错误，请参考函数描述部分了解不同传感器所需的权限，并按照要求申请相应权限后再试。
+ *     {@link SENSOR_PARAMETER_ERROR}：参数检查失败。例如，传入的id或subscriber参数为NULL指针。
+ *     {@link SENSOR_SERVICE_EXCEPTION}：传感器服务异常。例如，传感器服务未启动或发生内部错误。
+ *     其他可能的错误代码请参考{@link Sensor_Result}。
  * @permission ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.ACTIVITY_MOTION or
  *     ohos.permission.READ_HEALTH_DATA
  *

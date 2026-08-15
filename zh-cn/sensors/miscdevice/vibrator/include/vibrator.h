@@ -17,7 +17,7 @@
  * @addtogroup Vibrator
  * @{
  *
- * @brief Provides APIs for vibrator services to access the vibrator driver.
+ * @brief 为振动服务提供访问振动驱动的API接口。
  * @since 11
  */
 
@@ -51,6 +51,8 @@ extern "C" {
  * @permission ohos.permission.VIBRATE
  *
  * @since 11
+ * @see {@link OH_Vibrator_Cancel} 停止当前正在进行的振动。
+ * @see {@link OH_Vibrator_PlayVibrationCustom} 播放自定义振动序列。
  */
 int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute);
 
@@ -65,6 +67,7 @@ int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute
  * @permission ohos.permission.VIBRATE
  *
  * @since 11
+ * @see {@link OH_Vibrator_Cancel} 停止当前正在进行的振动。
  */
 int32_t OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription,
     Vibrator_Attribute vibrateAttribute);
