@@ -38,6 +38,8 @@
  * @version 1.0
  */
 
+#include <stdbool.h>
+
 #include "net_ssl_c_type.h"
 
 #ifdef __cplusplus
