@@ -17,13 +17,14 @@
  * @addtogroup Vibrator
  * @{
  *
- * @brief Provides APIs for vibrator services to access the vibrator driver.
+ * @brief 为振动服务提供访问振动驱动的API接口。
  * @since 11
  */
 
 /**
  * @file vibrator.h
- * @brief 为您提供标准的开放API，用于控制马达振动的启停。支持简单持续振动和自定义振动序列两种模式。适用于闹钟、通知提醒、游戏反馈等场景，帮助开发者实现精准的振动控制，提升用户交互体验。
+ * @brief 为您提供标准的开放API，用于控制马达振动的启停。支持简单持续振动和自定义振动序列两种模式。其中，简单持续振动适用于固定时长的单一振动场景，如闹钟、计时提醒等，只需指定振动时长即可实现；
+ * 自定义振动序列适用于需要复杂振动模式的场景，如通知提醒、游戏反馈等，通过定义振动序列文件可实现丰富的触觉效果。帮助开发者实现精准的振动控制，提升用户交互体验。
  *
  * @kit SensorServiceKit
  * @library libohvibrator.z.so
@@ -43,12 +44,15 @@ extern "C" {
 /**
  * @brief 控制马达在指定时间内持续振动。调用成功后，马达立即开始振动，持续指定时间后自动停止。适用于需要固定时长振动的场景，如闹钟、计时提醒、游戏反馈、消息提醒等。
  *
- * @param duration 振动时长，单位：毫秒。用于控制马达振动的持续时间。取值范围[1, 60000]。
+ * @param duration 振动时长，单位：ms（毫秒）。用于控制马达振动的持续时间。取值范围[1, 60000]。
  * @param attribute 振动属性，用于配置振动的强度、模式等特性。请参考{@link Vibrator_Attribute}。
- * @return 如果操作成功，则返回0；否则返回 {@link Vibrator_ErrorCode} 中的错误码。
+ * @return 如果操作成功，则返回0；否则返回 {@link Vibrator_ErrorCode} 中的错误码。常见错误码：PERMISSION_DENIED（201，权限校验失败）、
+ *     PARAMETER_ERROR（401，参数检查失败）、UNSUPPORTED（801，设备不支持）。
  * @permission ohos.permission.VIBRATE
  *
  * @since 11
+ * @see {@link OH_Vibrator_Cancel} 停止当前正在进行的振动。
+ * @see {@link OH_Vibrator_PlayVibrationCustom} 播放自定义振动序列。
  */
 int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute);
 
@@ -63,6 +67,7 @@ int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute
  * @permission ohos.permission.VIBRATE
  *
  * @since 11
+ * @see {@link OH_Vibrator_Cancel} 停止当前正在进行的振动。
  */
 int32_t OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription,
     Vibrator_Attribute vibrateAttribute);

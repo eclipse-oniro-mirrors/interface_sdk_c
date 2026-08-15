@@ -17,7 +17,7 @@
  * @addtogroup Sensor
  * @{
  *
- * @brief Provides APIs to define common sensor attributes.
+ * @brief 提供用于定义通用传感器属性的API。
  *
  * @since 11
  */
@@ -52,77 +52,77 @@ extern "C" {
  */
 typedef enum Sensor_Type {
     /**
-     * 加速度传感器。
+     * @brief 加速度传感器。
      * @since 11
      */
     SENSOR_TYPE_ACCELEROMETER = 1,
     /**
-     * 陀螺仪传感器。
+     * @brief 陀螺仪传感器。
      * @since 11
      */
     SENSOR_TYPE_GYROSCOPE = 2,
     /**
-     * 环境光传感器。
+     * @brief 环境光传感器。
      * @since 11
      */
     SENSOR_TYPE_AMBIENT_LIGHT = 5,
     /**
-     * 地磁传感器。
+     * @brief 地磁传感器。
      * @since 11
      */
     SENSOR_TYPE_MAGNETIC_FIELD = 6,
     /**
-     * 气压传感器。
+     * @brief 气压传感器。
      * @since 11
      */
     SENSOR_TYPE_BAROMETER = 8,
     /**
-     * 霍尔传感器。
+     * @brief 霍尔传感器。
      * @since 11
      */
     SENSOR_TYPE_HALL = 10,
     /**
-     * 接近光传感器。
+     * @brief 接近光传感器。
      * @since 11
      */
     SENSOR_TYPE_PROXIMITY = 12,
     /**
-     * 方向传感器。
+     * @brief 方向传感器。
      * @since 11
      */
     SENSOR_TYPE_ORIENTATION = 256,
     /**
-     * 重力传感器。
+     * @brief 重力传感器。
      * @since 11
      */
     SENSOR_TYPE_GRAVITY = 257,
     /**
-     * 线性加速度传感器。
+     * @brief 线性加速度传感器。
      * @since 13
      */
     SENSOR_TYPE_LINEAR_ACCELERATION = 258,
     /**
-     * 旋转矢量传感器。
+     * @brief 旋转矢量传感器。
      * @since 11
      */
     SENSOR_TYPE_ROTATION_VECTOR = 259,
     /**
-     * 游戏旋转矢量传感器。
+     * @brief 游戏旋转矢量传感器。
      * @since 13
      */
     SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,
     /**
-     * 计步器检测传感器。
+     * @brief 计步器检测传感器。
      * @since 11
      */
     SENSOR_TYPE_PEDOMETER_DETECTION = 265,
     /**
-     * 计步器传感器。
+     * @brief 计步器传感器。
      * @since 11
      */
     SENSOR_TYPE_PEDOMETER = 266,
     /**
-     * 心率传感器。
+     * @brief 心率传感器。
      * @since 11
      */
     SENSOR_TYPE_HEART_RATE = 278,
@@ -135,22 +135,22 @@ typedef enum Sensor_Type {
  */
 typedef enum Sensor_Result {
     /**
-     * 操作成功。
+     * @brief 操作成功。
 	 * @since 11
      */
     SENSOR_SUCCESS = 0,
     /**
-     * 权限验证失败。可能原因：应用缺少必要的传感器权限、权限申请被拒绝、权限级别不足等。解决措施：请检查应用配置文件中是否已申请所需的传感器权限，确保在运行时正确请求和获取权限。
+     * @brief 权限验证失败。可能原因：应用缺少必要的传感器权限、权限申请被拒绝、权限级别不足等。解决措施：请检查应用配置文件中是否已申请所需的传感器权限，确保在运行时正确请求和获取权限。
 	 * @since 11
      */
     SENSOR_PERMISSION_DENIED = 201,
     /**
-     * 参数检查失败。可能原因：参数为空、参数超出有效范围、参数类型不匹配、缺少必填参数等。解决措施：请根据具体函数的参数说明，检查传入的参数是否完整、符合类型要求、在有效范围内，并修正参数值。
+     * @brief 参数检查失败。可能原因：参数为空、参数超出有效范围、参数类型不匹配、缺少必填参数等。解决措施：请根据具体函数的参数说明，检查传入的参数是否完整、符合类型要求、在有效范围内，并修正参数值。
 	 * @since 11
      */
     SENSOR_PARAMETER_ERROR = 401,
     /**
-     * 传感器服务异常。可能原因：传感器服务未启动、传感器服务崩溃、设备不支持指定传感器、系统资源不足等。解决措施：请检查设备是否支持所需传感器，确保系统资源充足，必要时重启设备或重新初始化传感器服务。
+     * @brief 传感器服务异常。可能原因：传感器服务未启动、传感器服务崩溃、设备不支持指定传感器、系统资源不足等。解决措施：请检查设备是否支持所需传感器，确保系统资源充足，必要时重启设备或重新初始化传感器服务。
 	 * @since 11
      */
     SENSOR_SERVICE_EXCEPTION = 14500101,
@@ -163,22 +163,22 @@ typedef enum Sensor_Result {
  */
 typedef enum Sensor_Accuracy {
     /**
-     * 传感器数据不可靠。有可能传感器不与设备接触而进行测量。
+     * @brief 传感器数据不可靠。有可能传感器不与设备接触而进行测量。
      * @since 11
      */
     SENSOR_ACCURACY_UNRELIABLE = 0,
     /**
-     * 传感器数据精度较低。数据在使用前必须根据环境进行校准。
+     * @brief 传感器数据精度较低。数据在使用前必须根据环境进行校准。
 	 * @since 11
      */
     SENSOR_ACCURACY_LOW = 1,
     /**
-     * 传感器数据处于中等精度水平。建议用户在使用前根据实际环境进行数据校准。
+     * @brief 传感器数据处于中等精度水平。建议用户在使用前根据实际环境进行数据校准。
 	 * @since 11
      */
     SENSOR_ACCURACY_MEDIUM = 2,
     /**
-     * 传感器数据具有很高的精度。数据可以直接使用。
+     * @brief 传感器数据具有很高的精度。数据可以直接使用。
 	 * @since 11
      */
     SENSOR_ACCURACY_HIGH = 3
@@ -193,7 +193,7 @@ typedef struct Sensor_Info Sensor_Info;
 
 /**
  * @brief 用给定的数字创建一个实例数组，请参考{@link Sensor_Info}。创建成功后，返回指向count个Sensor_Info实例的指针数组。
- * <br>调用此方法创建的实例数组，在使用完毕后必须调用OH_Sensor_DestroyInfos()销毁并回收内存，否则会导致资源泄漏。
+ * <br>调用此函数创建的实例数组，在使用完毕后必须调用OH_Sensor_DestroyInfos()销毁并回收内存，否则会导致资源泄漏。
  *
  * @param count 要创建的实例的数量，请参考 {@link Sensor_Info}。
  * @return 如果操作成功，返回指向{@link Sensor_Info}实例数组的双指针，数组中包含count个Sensor_Info实例，用于存储传感器信息；否则返回<b>NULL</b>。
@@ -216,7 +216,7 @@ int32_t OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count);
  *
  * @param sensor 指向传感器信息的指针。
  * @param sensorName 指向传感器名称的指针。
- * @param length 指向长度的指针，以字节为单位。调用前应设置为缓冲区大小，调用后返回实际名称长度。
+ * @param length 指向长度的指针，单位：B（字节）。调用前应设置为缓冲区大小，调用后返回实际名称长度。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器名称已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -227,7 +227,7 @@ int32_t OH_SensorInfo_GetName(Sensor_Info* sensor, char *sensorName, uint32_t *l
  *
  * @param sensor 指向传感器信息的指针。
  * @param vendorName 指向厂商名称的指针。
- * @param length 指向长度的指针，以字节为单位。调用前应设置为缓冲区大小，调用后返回实际厂商名称长度。
+ * @param length 指向长度的指针，单位：B（字节）。调用前应设置为缓冲区大小，调用后返回实际厂商名称长度。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器厂商名称已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -254,20 +254,20 @@ int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType);
 int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution);
 
 /**
- * @brief 获取传感器的最小数据上报间隔。获取成功后，minSamplingInterval参数中会填充传感器的最小数据上报间隔值，单位为纳秒。
+ * @brief 获取传感器的最小数据上报间隔。获取成功后，minSamplingInterval参数中会填充传感器的最小数据上报间隔值，单位：ns（纳秒）。
  *
  * @param sensor 指向传感器信息的指针。
- * @param minSamplingInterval 指向最小数据报告间隔的指针，以纳秒为单位。该值表示传感器支持的最快数据上报间隔，小于该值的设置可能导致数据丢失或性能下降。
+ * @param minSamplingInterval 指向最小数据报告间隔的指针，单位：ns（纳秒）。该值表示传感器支持的最快数据上报间隔，小于该值的设置可能导致数据丢失或性能下降。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示最小数据上报间隔已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
 int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSamplingInterval);
 
 /**
- * @brief 获取传感器的最大数据上报间隔。获取成功后，maxSamplingInterval参数中会填充传感器的最大数据上报间隔值，单位为纳秒。
+ * @brief 获取传感器的最大数据上报间隔。获取成功后，maxSamplingInterval参数中会填充传感器的最大数据上报间隔值，单位：ns（纳秒）。
  *
  * @param sensor 指向传感器信息的指针。
- * @param maxSamplingInterval 指向最大数据报告间隔的指针，以纳秒为单位。该值表示传感器支持的最慢数据上报间隔，大于该值的设置可能导致数据更新不及时。
+ * @param maxSamplingInterval 指向最大数据报告间隔的指针，单位：ns（纳秒）。该值表示传感器支持的最慢数据上报间隔，大于该值的设置可能导致数据更新不及时。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示最大数据上报间隔已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -294,7 +294,7 @@ int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorTyp
  * @brief 获取传感器数据的时间戳。
  *
  * @param sensorEvent 指向传感器数据信息的指针。
- * @param timestamp 指向时间戳的指针，单位为纳秒，表示传感器数据采集的时间。
+ * @param timestamp 指向时间戳的指针，单位：ns（纳秒），表示传感器数据采集的时间，表示系统启动运行至今的纳秒数。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示时间戳已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -304,33 +304,38 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
  * @brief 获取传感器数据的精度。
  *
  * @param sensorEvent 指向传感器数据信息的指针。
- * @param accuracy 指向精度的指针。
+ * @param accuracy 指向传感器数据精度级别的指针。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器数据精度已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
 int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy);
 
 /**
- * @brief 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下所示：
- * SENSOR_TYPE_ACCELEROMETER: data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s²。
- * SENSOR_TYPE_GYROSCOPE: data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s。
- * SENSOR_TYPE_AMBIENT_LIGHT: data[0]表示环境光强度，单位勒克斯；从API版本12开始，data[1]表示色温，单位为开尔文；data[2]表示红外亮度，单位cd/m²。
- * SENSOR_TYPE_MAGNETIC_FIELD: data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉。
- * SENSOR_TYPE_BAROMETER：data[0]表示气压值，单位hPa。
- * SENSOR_TYPE_HALL: data[0]表示皮套吸合状态，0表示打开，大于0表示吸附。
- * SENSOR_TYPE_PROXIMITY：data[0]表示接近状态，0表示接近，大于0表示远离。
- * SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度。
- * SENSOR_TYPE_GRAVITY：data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s²。
- * SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度；data[3]表示旋转向量元素。
- * SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示步数检测状态，1表示检测到了步数变化。
- * SENSOR_TYPE_PEDOMETER:data[0]表示步数。
- * SENSOR_TYPE_HEART_RATE：data[0]表示心率数值。
- * SENSOR_TYPE_LINEAR_ACCELERATION：从API版本13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位为m/s²。
- * SENSOR_TYPE_GAME_ROTATION_VECTOR：从API版本13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位为度；data[3]表示旋转向量。
+ * @brief 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下表所示：
  *
- * @param sensorEvent - 传感器数据信息。
- * @param data - 出参，传感器数据数组指针。数据格式依赖传感器类型，具体格式参考函数描述。
- * @param length - 出参，数据数组的长度，表示data数组中有效数据的个数。
+ * | 传感器类型 | 数据元素及描述 |
+ * | --- | --- |
+ * | SENSOR_TYPE_ACCELEROMETER | data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位：m/s² |
+ * | SENSOR_TYPE_GYROSCOPE | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位：rad/s（弧度/秒） |
+ * | SENSOR_TYPE_AMBIENT_LIGHT | data[0]表示环境光强度，单位：lux（勒克斯）；从API version 12开始，data[1]表示色温，单位：K（开尔文）；
+ * data[2]表示红外亮度，单位：cd/m²（坎德拉每平方米） |
+ * | SENSOR_TYPE_MAGNETIC_FIELD | data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位：μT（微特斯拉） |
+ * | SENSOR_TYPE_BAROMETER | data[0]表示气压值，单位：hPa（百帕） |
+ * | SENSOR_TYPE_HALL | data[0]表示皮套吸合状态，0表示打开，大于0表示吸附 |
+ * | SENSOR_TYPE_PROXIMITY | data[0]表示接近状态，0表示接近，大于0表示远离 |
+ * | SENSOR_TYPE_ORIENTATION | data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位：°（度） |
+ * | SENSOR_TYPE_GRAVITY | data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位：m/s² |
+ * | SENSOR_TYPE_ROTATION_VECTOR | data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；data[3]表示旋转向量元素 |
+ * | SENSOR_TYPE_PEDOMETER_DETECTION | data[0]表示步数检测状态，1表示检测到了步数变化 |
+ * | SENSOR_TYPE_PEDOMETER | data[0]表示步数 |
+ * | SENSOR_TYPE_HEART_RATE | data[0]表示心率数值 |
+ * | SENSOR_TYPE_LINEAR_ACCELERATION | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的线性加速度，单位：m/s² |
+ * | SENSOR_TYPE_GAME_ROTATION_VECTOR | 从API version 13开始支持。data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位：°（度）；
+ * data[3]表示旋转向量 |
+ *
+ * @param sensorEvent 指向传感器数据信息的指针。
+ * @param data 出参，传感器数据数组指针。数据格式依赖传感器类型，具体格式参考函数描述。
+ * @param length 出参，数据数组的长度，表示data数组中有效数据的个数。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器数据已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -346,7 +351,7 @@ typedef struct Sensor_SubscriptionId Sensor_SubscriptionId;
 
 /**
  * @brief 创建一个{@link Sensor_SubscriptionId}实例。
- * <br>调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionId()销毁并回收内存，否则会导致资源泄漏。
+ * <br>调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionId()销毁并回收内存，否则会导致资源泄漏。
  *
  * @return 如果操作成功，返回指向{@link Sensor_SubscriptionId}实例的指针，该实例可用于标识传感器订阅；否则返回<b>NULL</b>。
  * @since 11
@@ -383,8 +388,8 @@ int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *
 int32_t OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType);
 
 /**
- * @brief 定义传感器订阅属性结构体，用于指定传感器订阅的相关参数，包括订阅的传感器类型、采样间隔等。该属性适用于传感器数据订阅场景，帮助开发者根据业务需求配置订阅方式，提供灵活的传感器数据获取能力。
- * 该属性用于指定传感器订阅的具体参数，如采样率、数据上报间隔等，用于配置传感器的数据采集和上报行为。用于运动健康应用中的步数和心率数据订阅，环境监测应用中的温湿度数据实时采集，设备控制应用中的状态变化监听等。
+ * @brief 定义传感器订阅属性结构体，用于指定传感器订阅的相关参数，包括传感器类型、采样率、数据上报间隔等。该属性适用于传感器数据订阅场景，帮助开发者根据业务需求配置订阅方式，提供灵活的传感器数据获取能力。
+ * 可用于运动健康应用中的步数和心率数据订阅，环境监测应用中的温湿度数据实时采集，设备控制应用中的状态变化监听等。
  *
  * @since 11
  */
@@ -392,7 +397,7 @@ typedef struct Sensor_SubscriptionAttribute Sensor_SubscriptionAttribute;
 
 /**
  * @brief 创建{@link Sensor_SubscriptionAttribute}实例。
- * <br>调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionAttribute()销毁并回收内存，否则会导致资源泄漏。
+ * <br>调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriptionAttribute()销毁并回收内存，否则会导致资源泄漏。
  *
  * @return 如果操作成功，返回指向{@link Sensor_SubscriptionAttribute}实例的指针，该实例可用于配置传感器订阅属性；否则返回<b>NULL</b>。
  * @since 11
@@ -412,7 +417,7 @@ int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *att
  * @brief 设置传感器数据报告间隔。调用成功后，订阅属性的采样间隔被设置为指定的samplingInterval值，后续传感器数据上报将按照此间隔进行。
  *
  * @param attribute 指向传感器订阅属性的指针。
- * @param samplingInterval 要设置的数据报告间隔，以纳秒为单位。该值决定了传感器数据上报的频率，值越小上报频率越高，过小可能导致系统性能压力，需根据传感器类型选择合适范围。
+ * @param samplingInterval 要设置的数据报告间隔，单位：ns（纳秒）。该值决定了传感器数据上报的频率，值越小上报频率越高，过小可能导致系统性能压力，需根据传感器类型选择合适范围。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器数据报告间隔已成功设置；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -423,7 +428,7 @@ int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAt
  * @brief 获取传感器数据报告间隔。
  *
  * @param attribute 指向传感器订阅属性的指针。
- * @param samplingInterval 指向数据报告间隔的指针，以纳秒为单位。该值为当前设置的传感器数据上报间隔，可用于判断数据上报的频率，一般范围需参考传感器具体要求。
+ * @param samplingInterval 指向数据报告间隔的指针，单位：ns（纳秒）。该值为当前设置的传感器数据上报间隔，可用于判断数据上报的频率，一般范围需参考传感器具体要求。
  * @return 返回操作结果，如果成功返回<b>SENSOR_SUCCESS</b>，表示传感器数据报告间隔已成功获取；否则返回{@link Sensor_Result}中定义的错误代码。
  * @since 11
  */
@@ -447,7 +452,7 @@ typedef struct Sensor_Subscriber Sensor_Subscriber;
 
 /**
  * @brief 创建一个{@link Sensor_Subscriber}实例。
- * <br>调用此方法创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriber()销毁并回收内存，否则会导致资源泄漏。
+ * <br>调用此函数创建的实例，在使用完毕后必须调用OH_Sensor_DestroySubscriber()销毁并回收内存，否则会导致资源泄漏。
  *
  * @return 如果操作成功，返回指向{@link Sensor_Subscriber}实例的指针，该实例可用于订阅传感器数据；否则返回<b>NULL</b>。
  * @since 11
