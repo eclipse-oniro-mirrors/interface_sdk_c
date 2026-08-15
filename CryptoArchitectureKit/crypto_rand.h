@@ -24,6 +24,7 @@
  * @file crypto_rand.h
  * @brief Defines the random number generator interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_rand.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

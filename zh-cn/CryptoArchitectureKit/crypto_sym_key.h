@@ -24,6 +24,7 @@
  * @file crypto_sym_key.h
  * @brief 定义对称密钥接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_sym_key.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12
