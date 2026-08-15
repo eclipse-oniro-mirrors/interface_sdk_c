@@ -25,6 +25,7 @@
  * @file crypto_mac.h
  * @brief Defines the message authentication code interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_mac.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

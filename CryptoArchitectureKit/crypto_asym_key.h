@@ -24,6 +24,7 @@
  * @file crypto_asym_key.h
  * @brief Defines the asymmetric key interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_asym_key.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12
