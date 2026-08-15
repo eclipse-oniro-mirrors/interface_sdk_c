@@ -16,7 +16,11 @@
  * @addtogroup DeviceInfo
  * @{
  *
- * @brief Provides APIs for querying terminal device information.
+ * @brief 提供查询终端设备信息的API。
+ * 该模块提供了获取设备类型、制造商、品牌、型号、版本信息等设备基础信息的能力，
+ * 适用于需要根据设备特性进行适配、统计设备信息或进行设备管理的场景。
+ * 这些API通过读取系统属性获取设备信息，返回值为指向常量字符串的指针。
+ * 该指针指向系统内部存储的数据，调用者无需释放内存。
  *
  * @since 10
  */
@@ -263,9 +267,9 @@ const char *OH_GetBuildTime(void);
 const char *OH_GetBuildRootHash(void);
 
 /**
- * @brief 获取ISV发行系统版本名称。独立软件供应商（ISV）可以使用自己定义的系统名称。
+ * @brief 获取ISV发行版系统名称。独立软件供应商（ISV）可以使用自定义的系统名称。
  *
- * @return ISV发行系统版本名称。
+ * @return ISV发行版系统名称。
  *     <br>如果没有指定ISV，它将返回一个空字符串。
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
