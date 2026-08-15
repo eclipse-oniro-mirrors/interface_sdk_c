@@ -2859,7 +2859,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>?.object：可选。指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于设置行间距选项。
-     *     从API version 26.0.0开始支持。
+     *     从API version 26.1.0开始支持。
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Create}创建对象，
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy}销毁对象。</li>
      * </ul>
@@ -2868,7 +2868,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。</li>
      * <li>.object：指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于获取行间距选项。
-     *     从API version 26.0.0开始支持。</li>
+     *     从API version 26.1.0开始支持。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]

@@ -2915,7 +2915,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
      * <li>?.object: Optional. Pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing
-     * options. Available since API version 26.0.0.
+     * options. Available since API version 26.1.0.
      * Use {@link OH_ArkUI_NativeModule_LineSpacingOptions_Create} to create and
      * {@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy} to destroy the object.</li>
      * </ul>
@@ -2924,7 +2924,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
      * <li>.object: pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing options.
-     * Available since API version 26.0.0.</li>
+     * Available since API version 26.1.0.</li>
      * </ul>
      *
      * @ingroup Text Display
