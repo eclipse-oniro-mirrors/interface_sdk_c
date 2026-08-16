@@ -1273,25 +1273,25 @@ typedef struct Camera_CaptureEndInfo {
  */
 typedef struct Camera_Rect {
     /**
-     * 矩形左上角的X坐标。<br>取值范围：[0, 预览流宽度]，例如对于1920*1440的预览流，取值范围为[0,1920]。
+     * @brief 矩形左上角的X坐标。<br>取值范围：[0, 预览流宽度]，例如对于1920*1440的预览流，取值范围为[0,1920]。
      * @since 11
      */
     int32_t topLeftX;
 
     /**
-     * 矩形左上角的Y坐标。<br>取值范围：[0, 预览流高度]，例如对于 1920*1440 的预览流，取值范围为[0,1440]。
+     * @brief 矩形左上角的Y坐标。<br>取值范围：[0, 预览流高度]，例如对于 1920*1440 的预览流，取值范围为[0,1440]。
      * @since 11
      */
     int32_t topLeftY;
 
     /**
-     * 矩形宽度。<br>该值不超过坐标系X轴的上限，即topLeftX的最大值。
+     * @brief 矩形宽度。<br>该值不超过坐标系X轴的上限，即topLeftX的最大值。
      * @since 11
      */
     int32_t width;
 
     /**
-     * 矩形高度。<br>该值不超过坐标系Y轴的上限，即topLeftY的最大值。
+     * @brief 矩形高度。<br>该值不超过坐标系Y轴的上限，即topLeftY的最大值。
      * @since 11
      */
     int32_t height;
