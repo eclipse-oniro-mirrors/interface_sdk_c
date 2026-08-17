@@ -24,6 +24,7 @@
  * @file crypto_asym_cipher.h
  * @brief Defines the asymmetric cipher interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_asym_cipher.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

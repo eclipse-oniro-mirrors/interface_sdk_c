@@ -24,6 +24,7 @@
  * @file crypto_mac.h
  * @brief 定义消息认证码接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_mac.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20
