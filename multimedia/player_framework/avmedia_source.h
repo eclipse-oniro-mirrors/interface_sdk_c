@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup AVMediaSource
+ * @addtogroup avmedia_source
  * @{
  *
  * @brief Defines APIs for AVMediaSource.
