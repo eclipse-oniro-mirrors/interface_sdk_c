@@ -30,7 +30,7 @@
  *
  * Neural Network Runtime的接口目前均不支持多线程并发调用。\n
  *
- * include "neural_network_runtime/neural_network_runtime_type.h"
+ * include "neural_network_runtime/neural_network_runtime.h"
  * @library libneural_network_runtime.so
  * @kit NeuralNetworkRuntimeKit
  * @syscap SystemCapability.AI.NeuralNetworkRuntime

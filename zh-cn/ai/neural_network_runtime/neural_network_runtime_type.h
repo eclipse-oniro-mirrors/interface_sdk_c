@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup NeuralNeworkRuntime
+ * @addtogroup NeuralNetworkRuntime
  * @{
  *
  * @brief 提供Neural Network Runtime加速模型推理的相关接口。
@@ -28,6 +28,7 @@
  *
  * @brief Neural Network Runtime定义的结构体和枚举值。
  *
+ * include "neural_network_runtime/neural_network_runtime_type.h"
  * @library libneural_network_runtime.so
  * @kit NeuralNetworkRuntimeKit
  * @syscap SystemCapability.AI.NeuralNetworkRuntime
@@ -99,7 +100,7 @@ typedef struct NN_TensorDesc NN_TensorDesc;
 typedef struct NN_Tensor NN_Tensor;
 
 /**
- * @brief Defines the hardware performance mode.
+ * @brief 硬件的性能模式。
  *
  * @since 9
  * @version 1.0
@@ -118,7 +119,7 @@ typedef enum {
 } OH_NN_PerformanceMode;
 
 /**
- * @brief Defines the model inference task priority.
+ * @brief 模型推理任务优先级
  *
  * @since 9
  * @version 1.0
@@ -135,7 +136,7 @@ typedef enum {
 } OH_NN_Priority;
 
 /**
- * @brief Defines error codes.
+ * @brief Neural Network Runtime 定义的错误码类型。
  *
  * @since 9
  * @version 2.0
@@ -147,11 +148,7 @@ typedef enum {
     OH_NN_FAILED = 1,
     /** 非法参数。 */
     OH_NN_INVALID_PARAMETER = 2,
-    /**
-     * 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。
-     *
-     * @since 9
-     */
+    /** 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。 */
     OH_NN_MEMORY_ERROR = 3,
     /** 非法操作。 */
     OH_NN_OPERATION_FORBIDDEN = 4,
@@ -163,7 +160,6 @@ typedef enum {
      * 硬件发生错误，错误可能包含：HDL服务崩溃。
      * @deprecated since 11
      * @useinstead {@link OH_NN_UNAVAILABLE_DEVICE}
-     * @since 11
      */
     OH_NN_UNAVALIDABLE_DEVICE = 7,
     /** 非法路径。 */
@@ -225,7 +221,7 @@ typedef void (*NN_OnRunDone)(void *userData, OH_NN_ReturnCode errCode, void *out
 typedef void (*NN_OnServiceDied)(void *userData);
 
 /**
- * @brief Defines activation function types in the fusion operator.
+ * @brief Neural Network Runtime 融合算子中激活函数的类型。
  *
  * @since 9
  * @version 1.0
@@ -240,7 +236,7 @@ typedef enum : int8_t {
 } OH_NN_FuseType;
 
 /**
- * @brief Defines the layout type of tensor data.
+ * @brief ；张量数据的排布类型。
  *
  * @since 9
  * @version 2.0
@@ -259,7 +255,7 @@ typedef enum {
 } OH_NN_Format;
 
 /**
- * @brief Defines device types.
+ * @brief Neural Network Runtime 支持的设备类型
  *
  * @since 9
  * @version 1.0
@@ -272,11 +268,11 @@ typedef enum {
     /** GPU设备。 */
     OH_NN_GPU = 2,
     /** 专用硬件加速器。 */
-    OH_NN_ACCELERATOR = 3
+    OH_NN_ACCELERATOR = 3，
 } OH_NN_DeviceType;
 
 /**
- * @brief Defines tensor data types.
+ * @brief Neural Network Runtime 支持的数据类型。
  *
  * @since 9
  * @version 1.0
@@ -311,7 +307,7 @@ typedef enum {
 } OH_NN_DataType;
 
 /**
- * @brief Defines operator types.
+ * @brief Neural Network Runtime 支持算子的类型。
  *
  * @since 9
  * @version 2.0
@@ -2596,15 +2592,12 @@ typedef enum {
 } OH_NN_OperationType;
 
 /**
- * @brief Enumerates the tensor data types.
+ * @brief 张量的类型。 \n
  *
- * Tensors are usually used to set the input, output, and operator parameters of a model. When a tensor is used
- * as the input or output of a model (or operator), set the tensor type to {@link OH_NN_TENSOR}.
- * When the tensor is used as an operator parameter, select an enumerated value other than {@link OH_NN_TENSOR}
- * as the tensor type. Assume that the <b>pad</b> parameter of the {@link OH_NN_OPS_CONV2D} operator is being set.
- * You need to set the <b>type</b> attribute of the {@link OH_NN_Tensor} instance to {@link OH_NN_CONV2D_PAD}.
- * The settings of other operator parameters are similar. The enumerated values are named
- * in the format OH_NN_{<i>Operator name</i>}_{<i>Attribute name</i>}.
+ * 张量通常用于设置模型的输入、输出和算子参数。作为模型（或算子）的输入和输出时，需要将张量类型设置为{@link OH_NN_TENSOR}；
+ * 当张量作为算子参数时，需要选择除{@link OH_NN_TENSOR}以外合适的枚举值，作为张量的类型。\n
+ * 假设正在设置{@link OH_NN_OPS_CONV2D}算子的pad参数，则需要将{@link OH_NN_Tensor}实例的type属性设置为
+ * {@link OH_NN_PAD}。其他算子参数的设置以此类推，枚举值的命名遵守 OH_NN_{算子名词}_{属性名} 的格式。
  *
  * @since 9
  * @version 2.0
