@@ -32,7 +32,7 @@
  * API version 11 版本之前即支持使用，各版本均可正常使用。
  * Neural Network Core的接口目前均不支持多线程并发调用。
  *
- * include "neural_network_runtime/neural_network_runtime_type.h"
+ * include "neural_network_runtime/neural_network_core.h"
  * @library libneural_network_core.so
  * @kit NeuralNetworkRuntimeKit
  * @syscap SystemCapability.AI.NeuralNetworkRuntime
