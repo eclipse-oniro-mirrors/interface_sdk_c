@@ -16,7 +16,7 @@
  * @addtogroup AVRecorder
  * @{
  *
- * @brief Provides APIs of request capability for Recorder.
+ * @brief 提供录制的请求能力接口。
  *
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
@@ -87,7 +87,7 @@ OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRec
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @param window 指向OHNativeWindow实例的指针。
  * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：输入的recorder为nullptr。
+ * AV_ERR_INVALID_VAL：输入的recorder为nullptr，或*window不为空。
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window);

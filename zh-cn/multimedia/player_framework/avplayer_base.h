@@ -16,7 +16,7 @@
  * @addtogroup AVPlayer
  * @{
  *
- * @brief Provides APIs of Playback capability for Media Source.
+ * @brief 提供媒体源的播放能力接口。
  *
  * @Syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
@@ -94,7 +94,7 @@ typedef enum AVPlayerSeekMode {
     /* sync to keyframes after the time point. */
     AV_SEEK_NEXT_SYNC = 0,
     /* sync to keyframes before the time point. */
-    AV_SEEK_PREVIOUS_SYNC,
+    AV_SEEK_PREVIOUS_SYNC = 1,
     /**
      * @brief 同步到距离指定时间点最近的帧。
      * 
@@ -116,45 +116,45 @@ typedef enum AVPlayerSeekMode {
  */
 typedef enum AVPlaybackSpeed {
     /* Video playback at 0.75x normal speed */
-    AV_SPEED_FORWARD_0_75_X,
+    AV_SPEED_FORWARD_0_75_X = 0,
     /* Video playback at normal speed */
-    AV_SPEED_FORWARD_1_00_X,
+    AV_SPEED_FORWARD_1_00_X = 1,
     /* Video playback at 1.25x normal speed */
-    AV_SPEED_FORWARD_1_25_X,
+    AV_SPEED_FORWARD_1_25_X = 2,
     /* Video playback at 1.75x normal speed */
-    AV_SPEED_FORWARD_1_75_X,
+    AV_SPEED_FORWARD_1_75_X = 3,
     /* Video playback at 2.0x normal speed */
-    AV_SPEED_FORWARD_2_00_X,
+    AV_SPEED_FORWARD_2_00_X = 4,
     /**
      * @brief 0.5倍速播放。
      * 
      * @since 12
      */
-    AV_SPEED_FORWARD_0_50_X,
+    AV_SPEED_FORWARD_0_50_X = 5,
     /**
      * @brief 1.5倍速播放。
      * 
      * @since 12
      */
-    AV_SPEED_FORWARD_1_50_X,
+    AV_SPEED_FORWARD_1_50_X = 6,
     /**
      * @brief 3.0倍速播放。
      * 
      * @since 13
     */
-    AV_SPEED_FORWARD_3_00_X,
+    AV_SPEED_FORWARD_3_00_X = 7,
     /**
      * @brief 0.25倍速播放。
      * 
      * @since 13
     */
-    AV_SPEED_FORWARD_0_25_X,
+    AV_SPEED_FORWARD_0_25_X = 8,
     /**
      * @brief 0.125倍速播放。
      * 
      * @since 13
     */
-    AV_SPEED_FORWARD_0_125_X,
+    AV_SPEED_FORWARD_0_125_X = 9,
 } AVPlaybackSpeed;
 
 /**
@@ -272,17 +272,17 @@ typedef enum AVPlayerTrackSwitchMode {
 } AVPlayerTrackSwitchMode;
 
 /**
- * @brief Result of Video output.
+ * @brief 视频输出的结果。
  * @since 26.0.0
  */
 typedef enum OH_VideoOutputResult {
     /**
-     * @brief Output one decoded video frame.
+     * @brief 输出一个已解码的视频帧。
      * @since 26.0.0
      */
     OH_VIDEO_OUTPUT_OK = 0,
     /**
-     * @brief No frame ready to render.
+     * @brief 无帧可渲染。
      * @since 26.0.0
      */
     OH_VIDEO_OUTPUT_NO_IMAGE = 1,
@@ -548,7 +548,7 @@ typedef void (*OH_AVPlayerOnInfoCallback)(OH_AVPlayer *player, AVPlayerOnInfoTyp
     void *userData);
 
 /**
- * @brief 在API version 9以上的版本发生错误时调用。
+ * @brief 在API version 11以上的版本发生错误时调用。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param errorCode 错误码。

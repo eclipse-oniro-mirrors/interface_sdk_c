@@ -16,7 +16,7 @@
  * @addtogroup AVScreenCapture
  * @{
  *
- * @brief Provides APIs of request capability for Screen Capture.
+ * @brief 提供屏幕录制的请求能力接口。
  * @since 10
  */
 /**
@@ -440,22 +440,22 @@ typedef enum OH_AVScreenCaptureStateCode {
     /* ScreenCapture stopped by user switches */
     OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10,
     /**
-     * @brief Screen capture paused by user
+     * @brief 用户暂停屏幕录制。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_PAUSED_BY_USER = 11,
     /**
-     * @brief Screen capture resumed by user
+     * @brief 用户恢复屏幕录制。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_RESUMED_BY_USER = 12,
     /**
-     * @brief Screen capture paused by app
+     * @brief 应用暂停屏幕录制。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_PAUSED_BY_APP = 13,
     /**
-     * @brief Screen capture resumed by app
+     * @brief 应用恢复屏幕录制。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_RESUMED_BY_APP = 14,

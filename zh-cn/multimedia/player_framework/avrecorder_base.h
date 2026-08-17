@@ -16,7 +16,7 @@
  * @addtogroup AVRecorder
  * @{
  *
- * @brief Provides APIs of request capability for Recorder.
+ * @brief 提供录制的请求能力接口。
  *
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
