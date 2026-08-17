@@ -17,7 +17,7 @@
  * @addtogroup Web
  * @{
  *
- * @brief Provide the definition of the C interface for the native ArkWeb.
+ * @brief 提供ArkWeb在Native侧的公共类型定义。
  * @since 12
  */
 /**
@@ -184,7 +184,9 @@ typedef void (*ArkWeb_OnMessageEventHandler)(
     const char* webTag, const ArkWeb_WebMessagePortPtr port, const ArkWeb_WebMessagePtr message, void* userData);
 
 /**
- * @brief Defines the javascript object.
+ * @brief ArkWeb_JavaScriptObject结构体用于向Web页面注入JavaScript代码并获取执行结果。适用于需要从原生应用主动调用Web页面中的JavaScript函数、
+ * 读取Web页面状态或调用Web页面API的场景，可简化Web与原生应用间的数据交互流程。开发者可通过该结构体指定待注入的JavaScript脚本内容及长度，
+ * 注册执行完成回调，并通过userData传递自定义上下文数据，实现Web与原生应用之间的数据交互。
  *
  * @since 12
  */
@@ -336,7 +338,7 @@ typedef struct {
      * 使用场景：例如实现跨上下文消息通道，支持iframe与主页面、Web与Worker之间的数据传递。
      *
      * @param webTag Web组件名称。
-     * @param size The quantity of message ports.
+     * @param size 出参，端口数量。
      */
     ArkWeb_WebMessagePortPtr* (*createWebMessagePorts)(const char* webTag, size_t* size);
 
@@ -344,21 +346,22 @@ typedef struct {
      * @brief 销毁端口。该方法会关闭端口连接，释放相关系统资源，停止消息传输。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。使用场景：例如通信结束、组件生命周期结束时释放端口资源以避免泄漏。
      *
      * @param ports Post Message端口结构体指针数组。
-     * @param size The quantity of message ports.
+     * @param size 端口数量，必须等于ports数组中的端口数量。
      */
     void (*destroyWebMessagePorts)(ArkWeb_WebMessagePortPtr** ports, size_t size);
 
     /**
-     * @brief Post message ports to main frame.
+     * @brief 将端口发送到HTML主页面。该方法通过消息传递机制将Post Message端口传递给指定的HTML页面，建立跨域通信通道。需在UI线程中调用
+     * OH_ArkWeb_GetNativeAPI方法获取该接口。使用场景：例如在主页面与iframe之间建立双向消息通道、跨框架推送消息等。
      *
-     * @param webTag The name of the web component.
-     * @param name Name of the message to be sent.
-     * @param size The quantity of message ports.
-     * @param url Indicates the URI for receiving the message.
-     * @return Post web message result code.
-     *         {@link ARKWEB_SUCCESS} post web message success.
-     *         {@link ARKWEB_INVALID_PARAM} the parameter verification fails.
-     *         {@link ARKWEB_INIT_ERROR} no web associated with this webTag.
+     * @param webTag Web组件名称。需要与已绑定的Web组件匹配，否则会返回ARKWEB_INIT_ERROR。
+     * @param name 发送给HTML的消息名称。
+     * @param size 端口数量。
+     * @param url 接收到消息的页面url。
+     * @return 返回值错误码。
+     *         {@link ARKWEB_SUCCESS} 执行成功。
+     *         {@link ARKWEB_INVALID_PARAM} 参数无效。
+     *         {@link ARKWEB_INIT_ERROR} 初始化失败，没有找到与webTag绑定的Web组件。
      */
     ArkWeb_ErrorCode (*postWebMessage)(
         const char* webTag, const char* name, ArkWeb_WebMessagePortPtr* webMessagePorts, size_t size, const char* url);
@@ -374,12 +377,13 @@ typedef struct {
     const char* (*getLastJavascriptProxyCallingFrameUrl)();
 
     /**
-     * @brief Register the JavaScript object and method list, the method is callback function that has a return value.
+     * @brief 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该对象的同步方法可以带返回值。该方法通过同步桥接机制实现JavaScript与Native的双向数据传递和同步调用。
+     * 与registerJavaScriptProxy相比，此方法增加了permission参数用于配置JSBridge的权限限制，适用于需要权限控制或同步获取返回值的场景。
+     * 需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。使用场景：例如需要在JS调用Native时同步获取返回结果的业务场景。
      *
-     * @param webTag The name of the web component.
-     * @param proxyObject The JavaScript object to register, the object has callback functions with return value.
-     * @param permission The JSON string, which defaults to null, is used to configure the permission control for
-     * JSBridge, allowing for the definition of URL whitelists at the object and method levels.
+     * @param webTag Web组件名称。
+     * @param proxyObject 要注册的代理对象，该对象将被注入到window对象中，并可通过JavaScript调用其同步方法，且方法可返回执行结果。
+     * @param permission JSON格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。
      *
      * @since 18
      */
@@ -387,12 +391,13 @@ typedef struct {
         const char* permission);
 
     /**
-     * @brief Register the JavaScript object and async method list.
+     * @brief 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法通过
+     * 消息队列机制实现异步调用，避免阻塞主线程。与registerAsyncJavaScriptProxy相比，此方法增加了permission参数用于配置JSBridge的权限限制，适用于需要权限控制的异步操作场景。
+
      *
-     * @param webTag The name of the web component.
-     * @param proxyObject The JavaScript object to register.
-     * @param permission The JSON string, which defaults to null, is used to configure the permission control
-     * for JSBridge, allowing for the definition of URL whitelists at the object and method levels.
+     * @param webTag Web组件名称。
+     * @param proxyObject 注册的对象。
+     * @param permission JSON格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。
      *
      * @since 18
      */
@@ -444,15 +449,32 @@ typedef struct {
      */
     size_t size;
     /**
-     * @brief Post message to HTML.
+     * @brief 发送消息到HTML。在Native代码向Web页面传递数据、指令或配置信息时使用，例如表单数据同步、控制指令下发等。
      *
-     * @param webMessagePort The ArkWeb_WebMessagePort.
-     * @param webTag The name of the web component.
-     * @param webMessage The ArkWeb_WebMessage to send.
-     * @return Post message result code.
-     *         {@link ARKWEB_SUCCESS} post message success.
-     *         {@link ARKWEB_INVALID_PARAM} the parameter verification fails.
-     *         {@link ARKWEB_INIT_ERROR} no web associated with this webTag.
+     * @param webMessagePort Post Message端口结构体指针。
+     * @param webTag Web组件名称，用于标识要操作的Web组件。必须是与Web组件绑定的唯一标识符，如果未找到与webTag绑定的Web组件将返回初始化失败错误。
+     * @param webMessage 需要发送的消息。
+     * @return Result code.
+     *     <br>{@link ARKWEB_SUCCESS} 执行成功。
+     *     <br>{@link ARKWEB_INVALID_PARAM} 参数无效。
+     *
+     *     <br>**可能原因：**
+     *     <br>- webMessagePort或webMessage参数为空。
+     *     <br>- 参数类型不正确。
+     *
+     *     <br>**解决措施：**
+     *     <br>- 检查参数是否为空指针。
+     *     <br>- 确认参数类型是否符合接口要求。
+     *
+     *     <br>{@link ARKWEB_INIT_ERROR}: 初始化失败，没有找到与webTag绑定的Web组件。
+     *
+     *     <br>**可能原因：**
+     *     <br>- Web组件未正确初始化。
+     *     <br>- webTag参数与实际Web组件名称不匹配。
+     *
+     *     <br>**解决措施：**
+     *     <br>- 确认Web组件已完成初始化。
+     *     <br>- 检查webTag参数是否与Web组件名称一致。
      */
     ArkWeb_ErrorCode (*postMessage)(
         const ArkWeb_WebMessagePortPtr webMessagePort, const char* webTag, const ArkWeb_WebMessagePtr webMessage);
@@ -460,16 +482,16 @@ typedef struct {
      * @brief 关闭消息端口。
      *
      * @param webMessagePort Post Message端口结构体指针。
-     * @param webTag The name of the web component.
+     * @param webTag Name of the **Web** component.
      */
     void (*close)(const ArkWeb_WebMessagePortPtr webMessagePort, const char* webTag);
     /**
-     * @brief Set a callback to receive message from HTML.
+     * @brief 设置接收HTML消息的回调。在需要接收和处理来自Web页面的消息、请求或事件通知时使用。例如接收用户输入、状态更新通知等。
      *
-     * @param webMessagePort The ArkWeb_WebMessagePort.
-     * @param webTag The name of the web component.
-     * @param messageEventHandler The handler to receive message from HTML.
-     * @param userData The data set by user.
+     * @param webMessagePort Post Message端口结构体指针。
+     * @param webTag Web组件名称。
+     * @param messageEventHandler 处理消息的回调。
+     * @param userData 用户自定义数据，将在触发回调时传递给messageEventHandler回调函数。可用于携带上下文信息或额外的业务数据，由应用自行管理其生命周期。
      */
     void (*setMessageEventHandler)(const ArkWeb_WebMessagePortPtr webMessagePort, const char* webTag,
         ArkWeb_OnMessageEventHandler messageEventHandler, void* userData);
@@ -488,40 +510,47 @@ typedef struct {
      */
     size_t size;
     /**
-     *  @brief 创建消息。用于在Native代码与HTML页面之间进行postMessage通信前，创建待发送的消息对象。调用createWebMessage()后，必须在使用完毕后调用destroyWebMessage()
+     * @brief 创建消息。用于在Native代码与HTML页面之间进行postMessage通信前，创建待发送的消息对象。调用createWebMessage()后，必须在使用完毕后调用destroyWebMessage()
      * 释放消息资源，未调用destroyWebMessage()会导致消息资源泄漏，影响系统内存管理。
      *
-     *  @return The created ArkWeb_WebMessage, destroy it through
-     *  destroyWebMessage after it is no longer used.
+     *  @return 创建的消息结构体指针。
      */
     ArkWeb_WebMessagePtr (*createWebMessage)();
     /**
-     *  @brief 销毁消息，并释放消息对象占用的内存。必须与createWebMessage()成对使用，在使用完消息后调用此方法释放资源。调用后webMessage指针将变为无效，不应再被使用。
+     * @brief 销毁消息，并释放消息对象占用的内存。必须与createWebMessage()成对使用，在使用完消息后调用此方法释放资源。调用后webMessage指针将变为无效，不应再被使用。
      *
+     * @param webMessage 要销毁的消息的指针。
      */
     void (*destroyWebMessage)(ArkWeb_WebMessagePtr* webMessage);
     /**
      *  @brief 设置消息类型。
      *
+     * @param webMessage 消息结构体指针。
+     * @param 消息的类型。
      */
     void (*setType)(ArkWeb_WebMessagePtr webMessage, ArkWeb_WebMessageType type);
     /**
-     *  @brief 获取消息类型。用于区分不同类型的通信消息，如文本消息、JSON消息、二进制消息等。
+     * @brief 获取消息类型。用于区分不同类型的通信消息，如文本消息、JSON消息、二进制消息等。
      *
+     * @param webMessage 消息结构体指针。
+     * @return ArkWeb_WebMessage枚举值。
      */
     ArkWeb_WebMessageType (*getType)(ArkWeb_WebMessagePtr webMessage);
     /**
-     *  @brief 设置数据。用于设置消息的具体内容，支持从Native代码向HTML页面传递文本、JSON或二进制数据。
+     * @brief 设置数据。用于设置消息的具体内容，支持从Native代码向HTML页面传递文本、JSON或二进制数据。
      *
+     * @param webMessage 消息结构体指针。
+     * @param data 数据指针。由调用方负责内存管理，函数内部不释放该内存，数据所有权不转移。
+     * @param dataLength 数据长度。
      */
     void (*setData)(ArkWeb_WebMessagePtr webMessage, void* data, size_t dataLength);
     /**
-     *  @brief 获取数据。用于获取消息的具体内容，支持从HTML页面接收文本、JSON或二进制数据并在Native代码中处理。必须先调用setData()设置数据，然后才能调用getData()获取数据；
+     * @brief 获取数据。用于获取消息的具体内容，支持从HTML页面接收文本、JSON或二进制数据并在Native代码中处理。必须先调用setData()设置数据，然后才能调用getData()获取数据；
      * 如果未调用setData()就调用getData()，将返回NULL，且dataLength为0。
      *
-     *  @param webMessage 消息结构体指针。
-     *  @param dataLength 出参，数据长度。
-     *  @return The data of ArkWeb_WebMessage.
+     * @param webMessage 消息结构体指针。
+     * @param dataLength 出参，数据长度。
+     * @return 指向消息数据的指针，数据长度由dataLength出参返回。返回指针的生命周期与消息对象绑定，消息销毁后指针失效，调用方不应释放该内存。
      */
     void* (*getData)(ArkWeb_WebMessagePtr webMessage, size_t* dataLength);
 } ArkWeb_WebMessageAPI;
@@ -540,32 +569,35 @@ typedef struct {
     size_t size;
 
     /**
-     * @brief Obtains the cookie value corresponding to a specified URL.
+     * @brief 获取指定URL对应的cookie值。用于用户登录状态维护、会话管理、个性化配置读取等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
      *
-     * @param url URL to which the cookie to be obtained belongs. A complete URL is recommended.
-     * @param incognito True indicates that the memory cookies of the webview in privacy mode are obtained,
-     *                  and false indicates that cookies in non-privacy mode are obtained.
-     * @param includeHttpOnly If true HTTP-only cookies will also be included in the cookieValue.
-     * @param cookieValue Get the cookie value corresponding to the URL.
-     * @return Fetch cookie result code.
-     *         {@link ARKWEB_SUCCESS} fetch cookie success.
-     *         {@link ARKWEB_INVALID_URL} invalid url.
-     *         {@link ARKWEB_INVALID_PARAM} cookieValue is nullptr.
+     * @param url 要获取的cookie所属的URL，建议使用完整的URL。
+     * @param incognito true表示获取隐私模式下WebView的内存cookie（应用退出后自动清除），false表示获取非隐私模式下的cookie（持久化存储）。
+     * @param includeHttpOnly true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。
+     *     **说明：** 读取HTTP-Only cookie应确保符合安全合规要求。
+     * @param cookieValue 输出参数，用于获取与URL对应的cookie值。内存由函数内部分配，调用方需在使用完毕后释放。返回值为字符串格式，包含所有匹配的cookie项，格式为name=value，
+     *     其中name和value分别为cookie的名称和值。
+     * @return 返回值错误码。
+     *     <br>{@link ARKWEB_SUCCESS}: 获取cookie成功。
+     *     <br>{@link ARKWEB_INVALID_URL}: 无效的URL。可能原因：URL格式不正确、URL为空或不符合规范。
+     *     <br>{@link ARKWEB_INVALID_PARAM}: cookieValue参数无效。
      */
     ArkWeb_ErrorCode (*fetchCookieSync)(const char* url, bool incognito, bool includeHttpOnly, char** cookieValue);
 
     /**
-     * @brief Sets the cookie value for a specified URL.
+     * @brief 设置指定URL的cookie值。用于保存用户偏好设置、维持登录状态、会话信息保存等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
      *
-     * @param url Specifies the URL to which the cookie belongs. A complete URL is recommended.
-     * @param cookieValue The value of the cookie to be set.
-     * @param incognito True indicates that cookies of the corresponding URL are set in privacy mode,
-     *                  and false indicates that cookies of the corresponding URL are set in non-privacy mode.
-     * @param includeHttpOnly If true, HTTP-only cookies can also be overwritten.
-     * @return Config cookie result code.
-     *         {@link ARKWEB_SUCCESS} config cookie success.
-     *         {@link ARKWEB_INVALID_URL} invalid url.
-     *         {@link ARKWEB_INVALID_COOKIE_VALUE} invalid cookie value.
+     * @param url 指定cookie所属的URL，建议填写完整的URL。
+     * @param cookieValue 要设置的cookie的值。格式为name=value，其中name和value分别为cookie的名称和值。
+     * @param incognito true表示在隐私模式下设置对应URL的cookie（应用退出后自动清除），false表示以非隐私模式设置对应URL的cookie（持久化存储）。
+     * @param includeHttpOnly 是否包含或覆盖标记为HTTP-Only属性的cookie。如果为true，则标记为HTTP-Only属性的cookie也可以被包含在结果中或被覆盖；如果为false，
+     *     则仅处理非HTTP-Only属性的cookie。
+     *     **说明：** 覆盖HTTP-Only cookie可能影响安全性，请确保符合业务安全要求。
+     *
+     * @return 返回值错误码。
+     *     <br>{@link ARKWEB_SUCCESS}: 设置cookie成功。
+     *     <br>{@link ARKWEB_INVALID_URL}: 无效的URL。可能原因：URL格式不正确、URL为空或不符合规范。
+     *     <br>{@link ARKWEB_INVALID_COOKIE_VALUE}: cookieValue参数无效。
      */
     ArkWeb_ErrorCode (*configCookieSync)(const char* url,
         const char* cookieValue, bool incognito, bool includeHttpOnly);
@@ -583,8 +615,7 @@ typedef struct {
      * @brief 清除所有cookies（包括持久化cookies和会话cookies）。用于用户退出登录、清除隐私数据、重置用户状态等场景。若仅需清除会话cookies，建议使用
      * {@link clearSessionCookiesSync}。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
      *
-     * @param incognito True indicates that all memory cookies of the webview are cleared in privacy mode,
-     *                  and false indicates that persistent cookies in non-privacy mode are cleared.
+     * @param incognito true表示清除隐私模式下的所有cookies，false表示清除非隐私模式下的所有cookies。
      */
     void (*clearAllCookiesSync)(bool incognito);
 
@@ -616,14 +647,13 @@ typedef struct {
      * @param type JavaScript值的类型。
      * @param data JavaScript值的数据缓冲区。应按type对应的类型提供数据，内存由调用方管理并确保在返回前有效，对于无需数据的类型可传nullptr。
      * @param dataLength JavaScript值的数据缓冲区所指向的字节数。应与data所指向缓冲区长度一致，当data为nullptr时，该值应设为0。
-     * @return ArkWeb_JavaScriptValuePtr created by ArkWeb, the memory of ArkWeb_JavaScriptValue
-     * is managed by ArkWeb itself.
+     * @return 创建出来的JavaScript值。当输入参数无效或内存分配失败时，返回NULL。
      */
     ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType type, void* data, size_t dataLength);
 } ArkWeb_JavaScriptValueAPI;
 
 /**
- * @brief Check whether the member variables of the current struct exist.
+ * @brief 检查结构体中是否存在该成员变量。
  *
  * @since 12
  */
@@ -631,7 +661,7 @@ typedef struct {
     ((intptr_t) & ((s)->f) - (intptr_t)(s) + sizeof((s)->f) <= *(size_t *)(s))
 
 /**
- * @brief Return false if the struct member does not exist, otherwise true.
+ * @brief 当前结构体存在该成员变量则返回false，否则返回true。
  *
  * @since 12
  */

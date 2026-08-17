@@ -83,7 +83,7 @@ typedef enum {
      */
     ARKWEB_NATIVE_COOKIE_MANAGER,
     /**
-     * @brief API type related to ArkWeb JavaScript value.
+     * @brief JavaScriptValue相关API类型。
      *
      * @since 18
      */
@@ -98,7 +98,6 @@ typedef enum {
  *     <br>返回值使用说明：返回的指针由系统管理，无需开发者手动释放；多次调用相同参数可能返回同一指针；返回的Native API结构体在Web组件生命周期内有效；使用时请确保线程安全。
  * @return 根据传入的API类型，返回对应的Native API结构体指针，结构体第一个成员为当前结构体的大小，可用于访问Controller、Component、CookieManager等具体的Native API功能。
  *     若传入的API类型在当前系统版本不支持（如ARKWEB_NATIVE_JAVASCRIPT_VALUE在18以下版本不可用），则返回NULL。
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);

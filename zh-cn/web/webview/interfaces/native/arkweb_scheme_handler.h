@@ -17,7 +17,7 @@
  * @addtogroup Web
  * @{
  *
- * @brief Provides APIs to intercept the request from ArkWeb.
+ * @brief 提供ArkWeb中拦截和自定义网络请求的C API。
  * @since 12
  */
 /**
@@ -82,7 +82,8 @@ typedef enum ArkWeb_CustomSchemeOption {
     ARKWEB_SCHEME_OPTION_CORS_ENABLED = 1 << 4,
 
     /**
-     * 如果设置了ARKWEB_SCHEME_OPTION_CSP_BYPASSING，则该scheme可以绕过内容安全策略（CSP）检查。
+     * 如果设置了ARKWEB_SCHEME_OPTION_CSP_BYPASSING，则该scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置了ARKWEB_SCHEME_OPTION_STANDARD时，
+     * 此值不应被设置。
      */
     ARKWEB_SCHEME_OPTION_CSP_BYPASSING = 1 << 5,
 
@@ -169,7 +170,9 @@ typedef enum ArkWeb_ResourceType {
      */
     FAVICON = 12,
 
-    /** XMLHttpRequest. */
+    /**
+     * XMLHttpRequest。
+     */
     XHR = 13,
 
     /**
@@ -318,8 +321,8 @@ typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* h
  *     如果OH_ArkWebHttpBodyStream_IsEof的返回值为false，则开发者可以继续读取剩余的数据。
  * @since 20
  */
-typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStream *httpBodyStream,
-                                                       uint8_t *buffer,
+typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStream* httpBodyStream,
+                                                       uint8_t* buffer,
                                                        int bytesRead);
 
 /**
