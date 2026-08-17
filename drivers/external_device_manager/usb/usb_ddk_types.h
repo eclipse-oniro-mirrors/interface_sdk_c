@@ -17,21 +17,10 @@
  * @addtogroup UsbDdk
  * @{
  *
- * @brief Provides USB DDK types and declares the macros, enumerated variables, and
+ * @brief Provides USB DDK types and declares the macros, enumerated variables, and\n
  * data structures required by the USB DDK APIs.
  *
- * @syscap SystemCapability.Driver.USB.Extension
- * @since 10
- * @version 1.0
- */
-
-/**
- * @file usb_ddk_types.h
- *
- * @brief Provides the enumerated variables, structures, and macros used in USB DDK APIs.
- *
  * @kit DriverDevelopmentKit
- * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
@@ -468,7 +457,7 @@ typedef enum {
     /**
      * Transmission timeout. The value is **-7** before API version 16.
      */
-    USB_DDK_TIMEOUT = 27400004,
+    USB_DDK_TIMEOUT = 27400004
 } UsbDdkErrCode;
 
 /**
@@ -497,7 +486,6 @@ typedef struct Usb_DeviceArray {
  * @since 26.0.0
  */
 typedef struct Usb_NonRootHubArray {
-
     /**
      * Array of non-root hub device IDs. The non-root USB hub device ID is constructed by left-shifting the bus number
      * by 32 bits and adding the device address.
@@ -513,8 +501,6 @@ typedef struct Usb_NonRootHubArray {
 } Usb_NonRootHubArray;
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
-
 /** @} */
-
+#endif /* __cplusplus */
 #endif // USB_DDK_TYPES_H

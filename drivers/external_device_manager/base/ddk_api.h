@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef DDK_API_H
+#define DDK_API_H
 
 /**
  * @addtogroup Ddk
@@ -33,9 +35,6 @@
  * @syscap SystemCapability.Driver.DDK.Extension
  * @since 12
  */
-
-#ifndef DDK_API_H
-#define DDK_API_H
 
 #include <stdint.h>
 #include "ddk_types.h"
