@@ -26,6 +26,7 @@
  */
 /**
  * @file deviceinfo.h
+ * @include <deviceinfo.h>
  * @kit BasicServicesKit
  * @brief 声明用于查询终端设备信息的API。
  * 该模块提供了获取设备类型、制造商、品牌、型号、版本信息等设备基础信息的能力，
