@@ -17,7 +17,7 @@
  * @addtogroup Location
  * @{
  *
- * @brief Provide functions for querying the status of location switch, starting and stopping locating.
+ * @brief 提供查询位置开关状态、启动定位、停止定位的接口。
  *
  * @since 13
  */
