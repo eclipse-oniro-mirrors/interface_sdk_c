@@ -774,7 +774,7 @@ typedef enum {
      * @brief Defines the custom shadow effect. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: blur radius of the shadow, in vp.\n
+     * .value[0]?.f32: blur radius of the shadow, in px.\n
      * .value[1]?.i32: whether to enable the coloring strategy. The value <b>1</b> means to enable the coloring
      * strategy, and <b>0</b> (default value) means the opposite.\n
      * .value[2]?.f32: offset of the shadow along the x-axis, in px.\n
@@ -786,7 +786,7 @@ typedef enum {
      *
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: blur radius of the shadow, in vp.\n
+     * .value[0].f32: blur radius of the shadow, in px.\n
      * .value[1].i32: whether to enable the coloring strategy. \n
      * .value[2].f32: offset of the shadow along the x-axis, in px.\n
      * .value[3].f32: offset of the shadow along the y-axis, in px.\n
@@ -1396,7 +1396,7 @@ typedef enum {
      *
      * There are two formats of {@link ArkUI_AttributeItem} for setting the attribute value:\n
      * 1: .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * 2: .value[0].i32: color enum {@link ArkUI_ColoringStrategy}.\n
+     * 2: .value[0].i32: color enum {@link ArkUI_ColorStrategy}.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: color value, in 0xARGB format.\n
@@ -1925,7 +1925,7 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
      * .value[1]?.i32 Represents the dark and light mode used by the content blur effect,\n
-     * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
+     * with the {@link ArkUI_ColorMode} enumeration value.\n
      * .value[2]?.i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
      * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
@@ -1935,7 +1935,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
      * .value[1].i32 Represents the dark and light mode used by the content blur effect,\n
-     * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
+     * with the {@link ArkUI_ColorMode} enumeration value.\n
      * .value[2].i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
      * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
