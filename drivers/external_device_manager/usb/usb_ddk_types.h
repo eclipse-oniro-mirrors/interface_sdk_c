@@ -17,10 +17,21 @@
  * @addtogroup UsbDdk
  * @{
  *
- * @brief Provides USB DDK types and declares the macros, enumerated variables, and\n
+ * @brief Provides USB DDK types and declares the macros, enumerated variables, and
  * data structures required by the USB DDK APIs.
  *
+ * @syscap SystemCapability.Driver.USB.Extension
+ * @since 10
+ * @version 1.0
+ */
+
+/**
+ * @file usb_ddk_types.h
+ *
+ * @brief Provides the enumerated variables, structures, and macros used in USB DDK APIs.
+ *
  * @kit DriverDevelopmentKit
+ * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0

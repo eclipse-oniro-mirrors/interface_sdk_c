@@ -19,7 +19,18 @@
  *
  * @brief 提供USB DDK接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等，适用于需要与USB设备进行底层交互和数据通信的场景，帮助开发者实现高效的USB设备驱动开发。
  *
+ * @syscap SystemCapability.Driver.USB.Extension
+ * @since 10
+ * @version 1.0
+ */
+
+/**
+ * @file usb_ddk_types.h
+ *
+ * @brief 提供USB DDK中的枚举变量、结构体定义与宏定义。
+ *
  * @kit DriverDevelopmentKit
+ * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
@@ -350,8 +361,9 @@ typedef struct UsbDdkConfigDescriptor {
  * @version 1.0
  */
 typedef struct UsbRequestPipe {
-
+    /**
      * 接口操作句柄，用于标识USB设备上的接口，由{@link OH_Usb_ClaimInterface}接口获取。
+     */
     uint64_t interfaceHandle;
     /**
      * 超时时间，单位：毫秒。值为0表示等待直到操作完成；非0值表示在指定毫秒数内未完成则超时。
@@ -399,7 +411,7 @@ typedef struct UsbDeviceMemMap {
  * @version 1.0
  */
 typedef enum {
-/**
+    /**
      * 操作成功。
      */
     USB_DDK_SUCCESS = 0,

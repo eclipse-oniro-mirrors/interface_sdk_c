@@ -14,6 +14,17 @@
  */
 
 /**
+ * @addtogroup UsbDdk
+ * @{
+ *
+ * @brief 提供USB DDK接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等，适用于需要与USB设备进行底层交互和数据通信的场景，帮助开发者实现高效的USB设备驱动开发。
+ *
+ * @syscap SystemCapability.Driver.USB.Extension
+ * @since 10
+ * @version 1.0
+ */
+
+/**
  * @file usb_ddk_api.h
  *
  * @brief 声明用于主机侧访问设备的USB DDK接口，提供USB设备管理、配置和数据传输等功能，帮助开发者实现与USB设备的底层交互和数据通信。

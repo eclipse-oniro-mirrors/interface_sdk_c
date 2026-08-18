@@ -14,6 +14,18 @@
  */
 
 /**
+ * @addtogroup UsbDdk
+ * @{
+ *
+ * @brief Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous
+ * data transfer over USB pipes, and implement control transfer and interrupt transfer, etc.
+ *
+ * @syscap SystemCapability.Driver.USB.Extension
+ * @since 10
+ * @version 1.0
+ */
+
+/**
  * @file usb_ddk_api.h
  *
  * @brief Declares the USB DDK APIs used by the USB host to access USB devices.

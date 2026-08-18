@@ -71,7 +71,7 @@ typedef enum {
      * 非法参数。请检查参数是否符合要求。
      */
     SCSIPERIPHERAL_DDK_INVALID_PARAMETER = 401,
-/**
+    /**
      * 操作成功。
      */
     SCSIPERIPHERAL_DDK_SUCCESS = 31700000,

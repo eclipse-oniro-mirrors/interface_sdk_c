@@ -1096,5 +1096,6 @@ typedef struct Hid_RawDevInfo {
 } Hid_RawDevInfo;
 #ifdef __cplusplus
 }
-#endif
+/** @} */
+#endif /* __cplusplus */
 #endif // HID_DDK_TYPES_H
