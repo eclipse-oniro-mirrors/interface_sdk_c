@@ -28,6 +28,7 @@
  * @brief 提供访问系统剪贴板的接口、数据结构、枚举类型。支持剪贴板数据的读写、监听剪贴板内容变化、获取粘贴进度等功能。
  *
  * @kit BasicServicesKit
+ * @include <database/pasteboard/oh_pasteboard.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *
@@ -86,12 +87,12 @@ typedef enum Pasteboard_NotifyType {
  * @brief The pasteboard data of the local device is changed.
  *
  */
-NOTIFY_LOCAL_DATA_CHANGE = 1,
+ NOTIFY_LOCAL_DATA_CHANGE = 1,
 /**
  * @brief The pasteboard data of a non-local device on the network is changed.
  *
  */
-NOTIFY_REMOTE_DATA_CHANGE = 2
+ NOTIFY_REMOTE_DATA_CHANGE = 2
 } Pasteboard_NotifyType;
 
 /**
@@ -104,12 +105,12 @@ typedef enum Pasteboard_FileConflictOptions {
  * @brief Overwrites the file with the same name in the destination directory.
  *
  */
-PASTEBOARD_OVERWRITE = 0,
+ PASTEBOARD_OVERWRITE = 0,
 /**
  * @brief Skips the file if there is a file with the same name in the destination directory.
  *
  */
-PASTEBOARD_SKIP = 1
+ PASTEBOARD_SKIP = 1
 } Pasteboard_FileConflictOptions;
 
 /**
@@ -122,12 +123,12 @@ typedef enum Pasteboard_ProgressIndicator {
  * @brief The system default progress indicator is not used.
  *
  */
-PASTEBOARD_NONE = 0,
+ PASTEBOARD_NONE = 0,
 /**
  * @brief The system default progress indicator is used.
  *
  */
-PASTEBOARD_DEFAULT = 1
+ PASTEBOARD_DEFAULT = 1
 } Pasteboard_ProgressIndicator;
 
 /**
@@ -146,7 +147,7 @@ typedef struct Pasteboard_ProgressInfo Pasteboard_ProgressInfo;
 typedef void (*OH_Pasteboard_ProgressListener)(Pasteboard_ProgressInfo* progressInfo);
 
 /**
- * @brief 表示从剪贴板获取粘贴数据和进度时需要写入的参数。
+ * @brief 表示从剪贴板获取粘贴数据和进度时需要提供的参数。
  *
  * @since 15
  */
@@ -343,6 +344,9 @@ bool OH_Pasteboard_HasRemoteData(OH_Pasteboard* pasteboard);
  * @brief 获取剪贴板中的数据。调用此函数后，系统会读取剪贴板中的内容，返回统一数据对象{@link OH_UdmfData}实例的指针。开发者可以通过OH_UdmfData相关接口解析数据内容。获取到的数据对象需要开发者手动释放。
  * 由于获取剪贴板中数据的时延受数据量大小与网络环境的影响，调用此接口可能耗时较长，建议开发者在非UI线程调用。
  *
+ * 应用访问剪贴板内容需[申请访问剪贴板权限](docroot://basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
+ * [使用粘贴控件](docroot://security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
+ *
  * - 如果剪贴板为空或数据格式不支持，会返回nullptr。
  * - 返回的OH_UdmfData对象需要开发者调用{@link OH_UdmfData_Destroy}释放。
  * - 粘贴的数据量大时，建议使用{@link OH_Pasteboard_GetDataWithProgress}接口以获取进度信息。
@@ -509,12 +513,15 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  * @brief 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。调用此函数后，系统开始从系统剪贴板获取数据。如果剪贴板数据来自远端设备或包含大量文件，会通过{@link OH_Pasteboard_ProgressListener}
  * 回调函数上报进度。数据传输完成后，返回统一数据对象指针。整个过程可能耗时较长，建议在非UI线程调用。
  *
+ * 应用访问剪贴板内容需[申请访问剪贴板权限](docroot://basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
+ * [使用粘贴控件](docroot://security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
+ *
  * @permission ohos.permission.READ_PASTEBOARD
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
  * @param status 该参数是输出参数，表示执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * @return 执行成功时返回统一数据对象OH_UdmfData实例的指针。否则返回空指针。
- * @see OH_Pasteboard OH_PasteData PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
  * @since 15
  */
 OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params,

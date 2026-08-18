@@ -28,6 +28,7 @@
  * @brief 声明剪贴板框架错误码信息。剪贴板错误码用于标识剪贴板操作过程中的执行结果，开发者可通过错误码判断操作是否成功以及失败的具体原因。
  *
  * @kit BasicServicesKit
+ * @include <database/pasteboard/oh_pasteboard_err_code.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *
