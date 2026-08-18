@@ -51,28 +51,28 @@ extern "C" {
  */
 typedef enum Location_ResultCode {
     /**
-     * @error 操作成功。
+     * 操作成功。
      */
     LOCATION_SUCCESS = 0,
     /**
-     * @error 权限校验失败。
+     * 权限校验失败。
      */
     LOCATION_PERMISSION_DENIED = 201,
     /**
-     * @error 参数错误。
+     * 参数错误。
      * 可能原因：1.输入参数为空指针；2.参数数值超出定义范围。
      */
     LOCATION_INVALID_PARAM = 401,
     /**
-     * @error 该功能不支持。由于设备能力有限，无法调用该函数。
+     * 该功能不支持。由于设备能力有限，无法调用该函数。
      */
     LOCATION_NOT_SUPPORTED = 801,
     /**
-     * @error 位置服务不可用。
+     * 位置服务不可用。
      */
     LOCATION_SERVICE_UNAVAILABLE = 3301000,
     /**
-     * @error 位置开关处于关闭状态。
+     * 位置开关处于关闭状态。
      */
     LOCATION_SWITCH_OFF = 3301100
 } Location_ResultCode;
