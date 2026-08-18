@@ -267,8 +267,10 @@ int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
  * @since 18
  */
 int32_t OH_UsbSerial_FlushOutput(UsbSerial_Device *dev);
+
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
+#endif
 #endif // DDK_USB_SERIAL_API_H
 /** @} */
+

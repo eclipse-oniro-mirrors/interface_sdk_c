@@ -92,7 +92,7 @@ typedef enum {
     /**
      * 未找到设备。请检查参数和设备连接状态。
      */
-    USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006
+    USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006,
 } UsbSerial_DdkRetCode;
 
 /**
@@ -138,7 +138,7 @@ typedef enum {
     /**
      * 硬件流控。使用RTS/CTS信号线，适用于高速数据传输，可靠性高。
      */
-    USB_SERIAL_HARDWARE_FLOW_CONTROL = 2
+    USB_SERIAL_HARDWARE_FLOW_CONTROL = 2,
 } UsbSerial_FlowControl;
 
 /**
@@ -159,7 +159,7 @@ typedef enum {
     /**
      * 偶校验。适用于对数据完整性要求较高的场景。
      */
-    USB_SERIAL_PARITY_EVEN = 2
+    USB_SERIAL_PARITY_EVEN = 2,
 } UsbSerial_Parity;
 
 #ifdef __cplusplus
@@ -167,3 +167,4 @@ typedef enum {
 #endif
 #endif // DDK_USB_SERIAL_TYPES_H
 /** @} */
+

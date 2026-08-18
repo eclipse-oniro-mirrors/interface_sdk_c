@@ -307,23 +307,23 @@ void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
 int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
 
 /**
- * @brief 执行一个 USB 控制传输。传输的方向根据设置包的 bmRequestType 字段进行推断。
+ * @brief 执行USB控制传输，该接口为同步接口。
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param deviceID 与该设备通信的 ID
- * @param setupPacket 控制传输请求中设置包的配置参数
- * @param data 一个足够大小的数据缓冲区，其大小根据 bmRequestType 中的方向位来确定（根据传输方向用于输入或输出）。
- * @param timeout 此函数应在未收到响应的情况下等待超时（以毫秒为单位）才能放弃。对于无限超时，请使用值 0。
- * @return 成功时的实际传输字节数。
- * {@link USB_DDK_NO_PERM} 权限认证失败。
- * {@link USB_DDK_INVALID_OPERATION} DDK 服务未初始化。请先调用 OH_Usb_Init 完成初始化过程。
- * {@link USB_DDK_INVALID_PARAMETER} setupPacket 或 data 参数无效。
- * {@link USB_DDK_TIMEOUT} 若控制传输超时。
- * {@link USB_DDK_IO_FAILED} 控制传输请求 IO 异常。
+ * @param deviceID 设备ID，可通过{@link OH_Usb_GetDevices}获取，代表要进行通信的设备。
+ * @param setupPacket 控制传输请求的setup包配置参数，包含了传输方向、传输数据长度等信息。
+ * @param data 已申请好的缓冲区，用于存放输入或输出数据。缓冲区大小应与setup包中的wLength字段一致，且最大不超过1024，否则会被截断。
+ * @param timeout 超时时间（单位：毫秒），在未收到响应时等待的最大时间。设置为0表示无限制等待。
+ * @return 成功时返回实际传输的字节数（非负数）。
+ *     {@link USB_DDK_NO_PERM} 权限检查失败，请检查应用已获取了ohos.permission.ACCESS_DDK_USB权限。
+ *     {@link USB_DDK_INVALID_OPERATION} 连接USB DDK服务失败，请先调用{@link OH_Usb_Init}完成初始化。
+ *     {@link USB_DDK_INVALID_PARAMETER} setupPacket或data为空指针，请检查参数有效性。
+ *     {@link USB_DDK_TIMEOUT} 控制传输超时，请检查传输参数和设备状态。
+ *     {@link USB_DDK_IO_FAILED} 控制传输请求I/O异常，请检查参数和设备规格。
  * @since 26.0.0
  */
-int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket, uint8_t *data,
-    uint32_t timeout);
+int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket,
+    uint8_t *data, uint32_t timeout);
 
 /**
  * @brief 查询并返回非根集线器列表。请保证传入的指针参数是有效的，申请的非根集线器ID数组的大小建议不超过128，以避免过度占用内存。在使用完结构体之后，需释放成员内存，否则会造成资源泄漏。
