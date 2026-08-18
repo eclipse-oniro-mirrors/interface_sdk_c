@@ -476,17 +476,16 @@ typedef struct Usb_DeviceArray {
 
 /**
  * @brief 非根集线器数组，用于存放{@link OH_Usb_GetNonRootHubs}接口获取到的非根集线器设备ID数组和数量。开发者申请非根集线器ID数组，使用完结构体后需释放申请的内存，否则会造成资源泄漏。
- *
  * @since 26.0.0
  */
 typedef struct Usb_NonRootHubArray {
     /**
-     * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。 
+     * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
      * @since 26.0.0
      */
     uint64_t* nonRootHubIds;
     /**
-     * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。 
+     * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
      * @since 26.0.0
      */
     uint32_t num;
