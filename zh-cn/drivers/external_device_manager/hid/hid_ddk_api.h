@@ -33,8 +33,6 @@
  * 支持两种使用模式：一是虚拟HID设备的创建与事件注入，适用于模拟键盘、鼠标、触摸屏输入等场景；二是真实HID设备的访问与通信，支持打开、读写设备报告以及获取设备信息，适用于与HID设备进行数据交互的场景。
  *
  * @kit DriverDevelopmentKit
- * @library libhid.z.so
- * @syscap SystemCapability.Driver.HID.Extension
  * File to include: <hid/hid_ddk_api.h>
  * @since 11
  * @version 1.0
@@ -45,10 +43,10 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif
 
 /**
- * @brief 创建设备。适用于需要模拟虚拟HID输入设备的场景，如模拟键盘、鼠标等输入设备进行自动化测试。必须与{@link OH_Hid_DestroyDevice}成对使用。
+  * @brief 创建设备。适用于需要模拟虚拟HID输入设备的场景，如模拟键盘、鼠标等输入设备进行自动化测试。必须与{@link OH_Hid_DestroyDevice}成对使用。
   *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param hidDevice 创建设备需要的基本信息，包括设备名、厂商ID、产品ID等。
@@ -381,9 +379,10 @@ int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8
  * @since 18
  */
 int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t bufSize, uint32_t *bytesRead);
-/** @} */
+
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
+#endif
 
 #endif // HID_DDK_API_H
+/** @} */

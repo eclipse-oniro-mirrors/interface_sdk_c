@@ -41,7 +41,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif
 
 /**
  * @brief 初始化SCSI Peripheral DDK。必须在调用其他所有SCSI Peripheral DDK方法之前调用此方法。使用完毕后必须调用OH_ScsiPeripheral_Release释放资源，否则会导致资源泄漏。
@@ -316,6 +316,7 @@ int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseD
     ScsiPeripheral_BasicSenseInfo *senseInfo);
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
+#endif
 #endif // SCSI_PERIPHERAL_API_H
 /** @} */
+

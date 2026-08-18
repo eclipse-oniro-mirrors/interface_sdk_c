@@ -41,7 +41,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif
 
 /**
  * @brief 描述符格式感知数据的最小长度。
@@ -102,7 +102,7 @@ typedef enum {
     /**
      * 设备未找到。请确保传入的设备信息正确。
      */
-    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007
+    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007,
 } ScsiPeripheral_DdkErrCode;
 
 /**
@@ -142,7 +142,7 @@ typedef enum {
     /**
      * 任务已中止。
      */
-    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40
+    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40,
 } ScsiPeripheral_Status;
 
 /**
@@ -233,7 +233,6 @@ typedef struct ScsiPeripheral_Request {
      * 命令描述符块，应遵循SCSI命令规范，填充对应命令的标准描述符格式。
      */
     uint8_t commandDescriptorBlock[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN];
-
     /**
      * 命令描述符块的长度，应确保长度和实际命令匹配，最大不超过{@link SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN}。
      */
@@ -428,7 +427,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
  */
 typedef struct ScsiPeripheral_CapacityInfo {
     /**
-     * 逻辑块地址，用于指定读取容量的起始逻辑块位置。取值为0时获取设备整体容量信息。
+     * 返回的逻辑块地址，表示可寻址的最后一块逻辑块的编号，逻辑块总数为该值加1。
      */
     uint32_t lbAddress;
     /**
@@ -527,6 +526,7 @@ typedef struct ScsiPeripheral_VerifyRequest {
 } ScsiPeripheral_VerifyRequest;
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
+#endif
 #endif // SCSI_PERIPHERAL_TYPES_H
 /** @} */
+

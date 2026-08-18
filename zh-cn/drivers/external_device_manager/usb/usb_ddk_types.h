@@ -27,7 +27,7 @@
 /**
  * @file usb_ddk_types.h
  *
- * @brief 提供USB DDK中的枚举变量、结构体定义与宏定义。
+ * @brief 提供USB DDK中的枚举类型与结构体定义，包括USB设备描述、控制传输、请求管道等核心数据结构，帮助开发者便捷地进行驱动开发。
  *
  * @kit DriverDevelopmentKit
  * @library libusb_ndk.z.so
@@ -455,7 +455,7 @@ typedef enum {
     /**
      * 传输超时。请检查设备响应是否正常或适当增加超时时间，在API version 16之前值为-7。
      */
-    USB_DDK_TIMEOUT = 27400004
+    USB_DDK_TIMEOUT = 27400004,
 } UsbDdkErrCode;
 
 /**
@@ -481,13 +481,12 @@ typedef struct Usb_DeviceArray {
  */
 typedef struct Usb_NonRootHubArray {
     /**
-     * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
+     * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。 
      * @since 26.0.0
      */
     uint64_t* nonRootHubIds;
-
     /**
-     * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
+     * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。 
      * @since 26.0.0
      */
     uint32_t num;

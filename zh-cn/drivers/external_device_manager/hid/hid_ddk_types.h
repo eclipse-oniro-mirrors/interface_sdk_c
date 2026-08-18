@@ -44,7 +44,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif
 
 /**
  * @brief 表示HID事件信息结构体，包含事件类型、事件编码和事件值，用于描述输入设备的上报事件。在驱动开发场景中，该结构体用于传递和识别各类HID设备产生的事件。
@@ -942,7 +942,7 @@ typedef struct Hid_MscEventArray {
  */
 typedef struct Hid_EventProperties {
     /**
-     * 事件类型编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
+     * 事件类型属性编码数组，包含设备支持的事件类型集合，用于配置HID设备可触发的事件。
      */
     struct Hid_EventTypeArray hidEventTypes;
     /**
@@ -1095,8 +1095,9 @@ typedef struct Hid_RawDevInfo {
      */
     uint16_t product;
 } Hid_RawDevInfo;
+
 #ifdef __cplusplus
 }
-/** @} */
-#endif /* __cplusplus */
+#endif
 #endif // HID_DDK_TYPES_H
+/** @} */
