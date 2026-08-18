@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,21 +17,25 @@
  * @addtogroup input
  * @{
  *
- * @brief Provides the C interface in the multi-modal input domain.
+ * @brief Provides C APIs of the multimodal input module, supporting event processing for various input devices such as
+ *  touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
+ *  application interaction experience.
  *
  * @since 12
  */
 
 /**
- * @file oh_axis_type.h
  *
  * @brief Defines the device axis event struct and enumerates device axis events. The axis type defines the physical
- * behavior characteristics of an input device in different interaction scenarios. The system uses the axis type to
- * distinguish and transmit different gesture interaction information.
+ *  behavior characteristics of an input device in different interaction scenarios. The system uses the axis type to
+ *  distinguish and transmit different gesture interaction information.
+ *
+ * @file oh_axis_type.h
+ * @include <multimodalinput/oh_axis_type.h>
  *
  * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @library liboh_input.so
+ * @library libohinput.so
  * @since 12
  */
 
@@ -49,33 +53,35 @@ extern "C" {
  */
 typedef enum InputEvent_AxisType {
     /**
-     * Unknown axis type, which is usually used as the initial value.
+     * @brief Unknown axis type, which is usually used as the initial value.
      * @since 12
      */
     AXIS_TYPE_UNKNOWN = 0,
 
     /**
-     * Vertical scroll axis. When you scroll the mouse wheel or slide with one or two fingers on the touchpad, the
+     * @brief Vertical scroll axis. When you scroll the mouse wheel or slide with one or two fingers on the touchpad,
+     * the
      * status of the vertical scroll axis changes.
      * @since 12
      */
     AXIS_TYPE_SCROLL_VERTICAL = 1,
 
     /**
-     * Horizontal scroll axis. When you scroll the mouse wheel or slide with two fingers on the touchpad, the status of
+     * @brief Horizontal scroll axis. When you scroll the mouse wheel or slide with two fingers on the touchpad, the
+     * status of
      * the horizontal scroll axis changes.
      * @since 12
      */
     AXIS_TYPE_SCROLL_HORIZONTAL = 2,
 
     /**
-     * Pinch axis, which is used to describe a two-finger pinch gesture on the touchpad.
+     * @brief Pinch axis, which is used to describe a two-finger pinch gesture on the touchpad.
      * @since 12
      */
     AXIS_TYPE_PINCH = 3,
 
     /**
-     * Rotation axis, which is used to describe a two-finger rotation gesture on the touchpad.
+     * @brief Rotation axis, which is used to describe a two-finger rotation gesture on the touchpad.
      * @since 12
      */
     AXIS_TYPE_ROTATE = 4
@@ -111,25 +117,25 @@ typedef enum InputEvent_AxisEventType {
  */
 typedef enum InputEvent_AxisAction {
     /**
-     * The axis event is canceled.
+     * @brief The axis event is canceled.
      * @since 12
      */
     AXIS_ACTION_CANCEL = 0,
 
     /**
-     * The axis event begins.
+     * @brief The axis event begins.
      * @since 12
      */
     AXIS_ACTION_BEGIN = 1,
 
     /**
-     * The axis event is updated.
+     * @brief The axis event is updated.
      * @since 12
      */
     AXIS_ACTION_UPDATE = 2,
 
     /**
-     * The axis event ends.
+     * @brief The axis event ends.
      * @since 12
      */
     AXIS_ACTION_END = 3
@@ -139,5 +145,4 @@ typedef enum InputEvent_AxisAction {
 }
 #endif
 #endif
-
 /** @} */

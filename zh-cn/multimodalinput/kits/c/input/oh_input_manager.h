@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,27 +17,27 @@
  * @addtogroup input
  * @{
  *
- * @brief Provides the C interface in the multi-modal input domain.
+ * @brief 提供多模态输入域的C接口，支持触控、按键、鼠标等多种输入设备的事件处理，统一接入多设备，提升开发效率与应用交互体验。
  *
  * @since 12
  */
 
 /**
- * @file oh_input_manager.h
+ * @brief 提供输入事件注入、按键状态查询、设备热插拔监听、事件拦截、快捷键管理、鼠标光标管理、输入设备信息查询、注入权限管理等功能。
  *
- * @brief Provides functions such as input event injection, key state query, device hot swapping listener, event
- * interception, hotkey management, mouse cursor management, input device information query, and injection permission
- * management.
+ * @file oh_input_manager.h
+ * @include <multimodalinput/oh_input_manager.h>
  *
  * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @library liboh_input.so
+ * @library libohinput.so
  * @since 12
  */
 
 #ifndef OH_INPUT_MANAGER_H
 #define OH_INPUT_MANAGER_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #include "oh_axis_type.h"
@@ -57,27 +57,27 @@ struct OH_PixelmapNative;
  */
 typedef enum Input_KeyStateAction {
     /**
-     * 默认状态。
+     * @brief 默认状态。
      */
     KEY_DEFAULT = -1,
 
     /**
-     * 按键按下。
+     * @brief 按键按下。
      */
     KEY_PRESSED = 0,
 
     /**
-     * 按键抬起。
+     * @brief 按键抬起。
      */
     KEY_RELEASED = 1,
 
     /**
-     * 按键开关使能。
+     * @brief 按键开关使能。
      */
     KEY_SWITCH_ON = 2,
 
     /**
-     * 按键开关去使能。
+     * @brief 按键开关去使能。
      */
     KEY_SWITCH_OFF = 3
 } Input_KeyStateAction;
@@ -89,17 +89,17 @@ typedef enum Input_KeyStateAction {
  */
 typedef enum Input_KeyEventAction {
     /**
-     * 按键动作取消。
+     * @brief 按键动作取消。
      */
     KEY_ACTION_CANCEL = 0,
 
     /**
-     * 按键按下。
+     * @brief 按键按下。
      */
     KEY_ACTION_DOWN = 1,
 
     /**
-     * 按键抬起。
+     * @brief 按键抬起。
      */
     KEY_ACTION_UP = 2
 } Input_KeyEventAction;
@@ -111,37 +111,37 @@ typedef enum Input_KeyEventAction {
  */
 typedef enum Input_MouseEventAction {
     /**
-     * 取消鼠标动作。
+     * @brief 取消鼠标动作。
      */
     MOUSE_ACTION_CANCEL = 0,
 
     /**
-     * 移动鼠标。
+     * @brief 移动鼠标。
      */
     MOUSE_ACTION_MOVE = 1,
 
     /**
-     * 按下鼠标。
+     * @brief 按下鼠标。
      */
     MOUSE_ACTION_BUTTON_DOWN = 2,
 
     /**
-     * 抬起鼠标按键。
+     * @brief 抬起鼠标按键。
      */
     MOUSE_ACTION_BUTTON_UP = 3,
 
     /**
-     * 鼠标轴事件开始。
+     * @brief 鼠标轴事件开始。
      */
     MOUSE_ACTION_AXIS_BEGIN = 4,
 
     /**
-     * 更新鼠标轴事件。
+     * @brief 更新鼠标轴事件。
      */
     MOUSE_ACTION_AXIS_UPDATE = 5,
 
     /**
-     * 鼠标轴事件结束。
+     * @brief 鼠标轴事件结束。
      */
     MOUSE_ACTION_AXIS_END = 6
 } Input_MouseEventAction;
@@ -153,12 +153,12 @@ typedef enum Input_MouseEventAction {
  */
 typedef enum InputEvent_MouseAxis {
     /**
-     * 垂直滚动轴。
+     * @brief 垂直滚动轴。
      */
     MOUSE_AXIS_SCROLL_VERTICAL = 0,
 
     /**
-     * 水平滚动轴。
+     * @brief 水平滚动轴。
      */
     MOUSE_AXIS_SCROLL_HORIZONTAL = 1
 } InputEvent_MouseAxis;
@@ -170,32 +170,32 @@ typedef enum InputEvent_MouseAxis {
  */
 typedef enum Input_MouseEventButton {
     /**
-     * 无效按键。
+     * @brief 无效按键。
      */
     MOUSE_BUTTON_NONE = -1,
 
     /**
-     * 鼠标左键。
+     * @brief 鼠标左键。
      */
     MOUSE_BUTTON_LEFT = 0,
 
     /**
-     * 鼠标中间键。
+     * @brief 鼠标中间键。
      */
     MOUSE_BUTTON_MIDDLE = 1,
 
     /**
-     * 鼠标右键。
+     * @brief 鼠标右键。
      */
     MOUSE_BUTTON_RIGHT = 2,
 
     /**
-     * 鼠标前进键。
+     * @brief 鼠标前进键。
      */
     MOUSE_BUTTON_FORWARD = 3,
 
     /**
-     * 鼠标返回键。
+     * @brief 鼠标返回键。
      */
     MOUSE_BUTTON_BACK = 4
 } Input_MouseEventButton;
@@ -207,22 +207,22 @@ typedef enum Input_MouseEventButton {
  */
 typedef enum Input_TouchEventAction {
     /**
-     * 触屏取消。
+     * @brief 触屏取消。
      */
     TOUCH_ACTION_CANCEL = 0,
 
     /**
-     * 触屏按下。
+     * @brief 触屏按下。
      */
     TOUCH_ACTION_DOWN = 1,
 
     /**
-     * 触屏移动。
+     * @brief 触屏移动。
      */
     TOUCH_ACTION_MOVE = 2,
 
     /**
-     * 触屏抬起。
+     * @brief 触屏抬起。
      */
     TOUCH_ACTION_UP = 3
 } Input_TouchEventAction;
@@ -234,32 +234,32 @@ typedef enum Input_TouchEventAction {
  */
 typedef enum Input_KeyboardType {
     /**
-     * 表示无按键设备。
+     * @brief 表示无按键设备。
      */
     KEYBOARD_TYPE_NONE = 0,
 
     /**
-     * 表示未知按键设备。
+     * @brief 表示未知按键设备。
      */
     KEYBOARD_TYPE_UNKNOWN = 1,
 
     /**
-     * 表示全键盘设备。
+     * @brief 表示全键盘设备。
      */
     KEYBOARD_TYPE_ALPHABETIC = 2,
 
     /**
-     * 表示数字键盘设备。
+     * @brief 表示数字键盘设备。
      */
     KEYBOARD_TYPE_DIGITAL = 3,
 
     /**
-     * 表示手写笔设备。
+     * @brief 表示手写笔设备。
      */
     KEYBOARD_TYPE_STYLUS = 4,
 
     /**
-     * 表示遥控器设备。
+     * @brief 表示遥控器设备。
      */
     KEYBOARD_TYPE_REMOTE_CONTROL = 5
 } Input_KeyboardType;
@@ -271,17 +271,17 @@ typedef enum Input_KeyboardType {
  */
 typedef enum Input_InjectionStatus {
     /**
-     * 未授权。
+     * @brief 未授权。
      */
     UNAUTHORIZED = 0,
 
     /**
-     * 授权中。
+     * @brief 授权中。
      */
     AUTHORIZING = 1,
 
     /**
-     * 已授权。
+     * @brief 已授权。
      */
     AUTHORIZED = 2
 } Input_InjectionStatus;
@@ -293,26 +293,28 @@ typedef enum Input_InjectionStatus {
  */
 typedef enum InputEvent_SourceType {
     /**
-     * 表示输入源生成鼠标光标移动、按键按下和释放以及滚轮滚动的事件。
+     * @brief 表示输入源生成鼠标光标移动、按键按下和释放以及滚轮滚动的事件。
      * @since 12
      */
     SOURCE_TYPE_MOUSE = 1,
 
     /**
-     * 表示输入源产生触摸屏多点触屏输入事件。
+     * @brief 表示输入源产生触摸屏多点触屏输入事件。
      * @since 12
      */
     SOURCE_TYPE_TOUCHSCREEN = 2,
 
     /**
-     * 表示输入源产生触控板多点触屏输入事件。
+     * @brief 表示输入源产生触控板多点触屏输入事件。
      * @since 12
      */
     SOURCE_TYPE_TOUCHPAD = 3
 } InputEvent_SourceType;
 
 /**
- * @brief 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键状态。适用于快捷键处理、输入事件状态管理、按键状态检测等场景。
+ * @brief 定义按键信息，用于标识按键行为。例如，”Ctrl”按键信息包含键值和键状态。适用于快捷键处理、输入事件状态管理、按键状态检测等场景。
+ * @see {@link OH_Input_CreateKeyState} 创建按键状态的结构体对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的结构体对象。
+ * @see {@link OH_Input_DestroyKeyState} 销毁按键状态的枚举对象。
  *
  * @since 12
  */
@@ -320,36 +322,48 @@ typedef struct Input_KeyState Input_KeyState;
 
 /**
  * @brief 按键事件对象，用于表示用户按键操作产生的输入事件，包含按键码、按键状态等信息，可用于处理键盘输入和实现按键响应功能。
+ * @see {@link OH_Input_CreateKeyEvent} 创建按键事件对象。通过调用{@link OH_Input_DestroyKeyEvent}销毁按键事件对象。
+ * @see {@link OH_Input_DestroyKeyEvent} 销毁按键事件对象。
  *
  * @since 12
  */
 typedef struct Input_KeyEvent Input_KeyEvent;
 /**
  * @brief 鼠标事件对象，用于表示用户鼠标操作产生的输入事件，包含点击信息、坐标、点击动作事件等信息，可用于处理鼠标事件输入和实现鼠标事件响应的功能。
+ * @see {@link OH_Input_CreateMouseEvent} 创建鼠标事件对象。通过调用{@link OH_Input_DestroyMouseEvent}销毁鼠标事件对象。
+ * @see {@link OH_Input_DestroyMouseEvent} 销毁鼠标事件对象。
  *
  * @since 12
  */
 typedef struct Input_MouseEvent Input_MouseEvent;
 /**
  * @brief 触屏输入事件对象，用于表示触屏输入的详细信息，包括触摸点位置、触摸状态、时间戳等。
+ * @see {@link OH_Input_CreateTouchEvent} 创建触屏输入事件对象。通过调用{@link OH_Input_DestroyTouchEvent}销毁触屏输入事件对象。
+ * @see {@link OH_Input_DestroyTouchEvent} 	销毁触屏输入事件对象。
  *
  * @since 12
  */
 typedef struct Input_TouchEvent Input_TouchEvent;
 /**
  * @brief 轴事件对象。用于表示输入设备的轴事件数据，如游戏手柄的摇杆移动、鼠标滚轮滚动等场景。开发者可以通过轴事件获取输入设备的轴值变化，实现精细的输入控制，提升用户交互体验。
+ * @see {@link OH_Input_CreateAxisEvent} 创建轴事件对象。通过调用{@link OH_Input_DestroyAxisEvent}销毁轴事件对象。
+ * @see {@link OH_Input_DestroyAxisEvent} 销毁轴事件对象。
  *
  * @since 12
  */
 typedef struct Input_AxisEvent Input_AxisEvent;
 /**
  * @brief 定义快捷键结构体，用于描述快捷键的按键组合、触发条件和回调处理等设计逻辑，支持应用注册和管理自定义快捷键。
+ * @see {@link OH_Input_CreateHotkey} 创建快捷键对象。通过调用{@link OH_Input_DestroyHotkey}销毁快捷键对象。
+ * @see {@link OH_Input_DestroyHotkey} 销毁快捷键对象。
  *
  * @since 14
  */
 typedef struct Input_Hotkey Input_Hotkey;
 /**
  * @brief 定义鼠标光标信息，用于在输入系统中管理和控制鼠标光标的显示行为和外观属性。包括光标显示状态、光标样式、光标大小档位、光标颜色。
+ * @see {@link OH_Input_CursorInfo_Create} 创建鼠标光标信息对象。通过调用{@link OH_Input_CursorInfo_Destroy}销毁鼠标光标信息对象。
+ * @see {@link OH_Input_CursorInfo_Destroy} 销毁鼠标光标信息对象。
  *
  * @since 22
  */
@@ -362,86 +376,86 @@ typedef struct Input_CursorInfo Input_CursorInfo;
  */
 typedef enum Input_Result {
     /**
-     * 操作成功。
+     * @brief 操作成功。
      */
     INPUT_SUCCESS = 0,
 
     /**
-     * 权限验证失败。
+     * @brief 权限验证失败。
      */
     INPUT_PERMISSION_DENIED = 201,
 
     /**
-     * 非系统应用。
+     * @brief 非系统应用。
      */
     INPUT_NOT_SYSTEM_APPLICATION = 202,
 
     /**
-     * 参数检查失败。
+     * @brief 参数检查失败。
      */
     INPUT_PARAMETER_ERROR = 401,
 
     /**
-     * 表示不支持该功能。
+     * @brief 表示不支持该功能。
      */
     INPUT_DEVICE_NOT_SUPPORTED = 801,
 
     /**
-     * 服务异常。
+     * @brief 服务异常。
      */
     INPUT_SERVICE_EXCEPTION = 3800001,
 
     /**
-     * 应用创建拦截后，再次执行创建拦截的操作。
+     * @brief 应用创建拦截后，再次执行创建拦截的操作。
      */
     INPUT_REPEAT_INTERCEPTOR = 4200001,
     /**
-     * 已经被系统应用占用。。
+     * @brief 已经被系统应用占用。
      * @since 14
      */
     INPUT_OCCUPIED_BY_SYSTEM = 4200002,
     /**
-     * 已经被其他应用占用。。
+     * @brief 已经被其他应用占用。
      * @since 14
      */
     INPUT_OCCUPIED_BY_OTHER = 4200003,
     /**
-     * 未连接键盘设备。。
+     * @brief 未连接键盘设备。
      * @since 15
      */
     INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002,
     /**
-     * 正在授权中。。
+     * @brief 正在授权中。
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZING = 3900005,
     /**
-     * 重复请求。。
+     * @brief 重复请求。
      * @since 20
      */
     INPUT_INJECTION_OPERATION_FREQUENT = 3900006,
     /**
-     * 当前应用已经授权。。
+     * @brief 当前应用已经授权。
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZED = 3900007,
     /**
-     * 其它应用已经授权。。
+     * @brief 其它应用已经授权。
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008,
     /**
-     * 当前应用不是焦点应用。。
+     * @brief 当前应用不是焦点应用。
      * @since 20
      */
     INPUT_APP_NOT_FOCUSED = 3900009,
     /**
-     * 无鼠标类输入外设。。
+     * @brief 无鼠标类输入外设。
      * @since 20
      */
     INPUT_DEVICE_NO_POINTER = 3900010,
     /**
-     * 无效的窗口ID。。
+     * @brief 无效的窗口ID。
      * @since 22
      */
     INPUT_INVALID_WINDOWID = 26500001
@@ -454,49 +468,49 @@ typedef enum Input_Result {
  */
 typedef enum Input_TouchEventToolType {
     /**
-     * 表示手指。
+     * @brief 表示手指。
      * @since 24
      */
     TOOL_TYPE_FINGER = 0,
 
     /**
-     * 表示手写笔设备。
+     * @brief 表示手写笔设备。
      * @since 24
      */
     TOOL_TYPE_PEN = 1,
 
     /**
-     * 表示橡皮檫类设备。
+     * @brief 表示橡皮擦类设备。
      * @since 24
      */
     TOOL_TYPE_RUBBER = 2,
 
     /**
-     * 表示画笔类设备。
+     * @brief 表示画笔类设备。
      * @since 24
      */
     TOOL_TYPE_BRUSH = 3,
 
     /**
-     * 表示铅笔类设备。
+     * @brief 表示铅笔类设备。
      * @since 24
      */
     TOOL_TYPE_PENCIL = 4,
 
     /**
-     * 表示喷枪类设备。
+     * @brief 表示喷枪类设备。
      * @since 24
      */
     TOOL_TYPE_AIRBRUSH = 5,
 
     /**
-     * 表示鼠标设备。
+     * @brief 表示鼠标设备。
      * @since 24
      */
     TOOL_TYPE_MOUSE = 6,
 
     /**
-     * 透镜
+     * @brief 表示透镜类设备。
      * @since 24
      */
     TOOL_TYPE_LENS = 7
@@ -512,6 +526,8 @@ typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
 
 /**
  * @brief 输入设备信息，用于描述输入设备的基本信息和能力特征，包括设备类型、设备ID等属性。开发者可以通过此结构体获取和管理输入设备的详细信息，便于设备识别和配置管理。
+ * @see {@link OH_Input_CreateDeviceInfo} 创建输入设备信息的对象。通过调用{@link OH_Input_DestroyDeviceInfo}销毁输入设备信息的对象。
+ * @see {@link OH_Input_DestroyDeviceInfo} 销毁输入设备信息的对象。
  *
  * @since 13
  */
@@ -519,12 +535,16 @@ typedef struct Input_DeviceInfo Input_DeviceInfo;
 
 /**
  * @brief 自定义鼠标光标像素图资源。
+ * @see {@link OH_Input_CustomCursor_Create} 创建自定义鼠标光标资源对象。通过调用{@link OH_Input_CustomCursor_Destroy}销毁自定义鼠标光标资源对象。
+ * @see {@link OH_Input_CustomCursor_Destroy} 销毁自定义鼠标光标资源对象。
  *
  * @since 22
  */
 typedef struct Input_CustomCursor Input_CustomCursor;
 /**
  * @brief 自定义鼠标光标配置，用于定义和管理应用程序中鼠标光标的显示样式和交互行为。支持设置不同类型的光标样式（如默认、手形、文本输入等），为用户提供更直观的操作反馈，提升用户体验。
+ * @see {@link OH_Input_CursorConfig_Create} 创建自定义鼠标光标配置对象。通过调用{@link OH_Input_CursorConfig_Destroy}销毁自定义鼠标光标配置对象。
+ * @see {@link OH_Input_CursorConfig_Destroy} 销毁自定义鼠标光标配置对象。
  *
  * @since 22
  */
@@ -585,38 +605,42 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
 typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
 
 /**
- * @brief Defines the structure for the interceptor of event callbacks,
- * including mouseCallback, touchCallback, and axisCallback.
+ * @brief 拦截回调事件结构体，用于定义输入事件拦截所需的回调函数类型，支持拦截鼠标事件、触屏输入事件、按键事件和轴事件。
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
-    /** Defines a lifecycle callback for **mouseEvent**. */
+    /** @brief 鼠标事件的回调函数。 */
     Input_MouseEventCallback mouseCallback;
-    /** Defines a lifecycle callback for **touchEvent**. */
+    /** @brief 触屏输入事件的回调函数。 */
     Input_TouchEventCallback touchCallback;
-    /** Defines a lifecycle callback for **axisEvent**. */
+    /** @brief 轴事件的回调函数。 */
     Input_AxisEventCallback axisCallback;
 } Input_InterceptorEventCallback;
 
 /**
- * @brief Defines the struct for listening for device hot swapping. It is applicable to applications that need to
- * respond to input device connection and disconnection in real time, such as games and music players. By listening for
- * device hot swapping events, applications can update the input status in a timely manner, improving user experience
- * and avoiding exceptions caused by device disconnection.
+ * @brief 定义一个结构体用于监听设备热插拔，该功能适用于需要实时响应输入设备连接和断开场景的应用程序，如游戏、音乐播放器等。
+ * 通过监听设备热插拔事件，应用程序可以及时更新输入状态，提升用户体验，避免因设备断开导致的异常情况。
  *
  * @since 13
  */
 typedef struct Input_DeviceListener {
-    /** Callback for device addition events */
+    /**
+     * @brief 定义一个回调函数，用于接收设备热插事件。
+     */
     Input_DeviceAddedCallback deviceAddedCallback;
 
-    /** Callback for device removal events */
+    /**
+     * @brief 定义一个回调函数，用于接收设备热拔事件。
+     */
     Input_DeviceRemovedCallback deviceRemovedCallback;
 } Input_DeviceListener;
 
 /**
  * @brief 事件拦截选项，用于配置输入事件拦截的参数和规则，支持按键事件、鼠标事件、触屏事件和轴事件的拦截控制。
- *
+ * @see {@link OH_Input_AddKeyEventInterceptor} 添加按键事件的拦截，重复添加只有第一次生效。仅在应用获焦时拦截按键事件。
+ * @see {@link OH_Input_RemoveKeyEventInterceptor} 移除按键事件拦截。
+ * @see {@link OH_Input_AddInputEventInterceptor} 添加输入事件拦截，包括鼠标、触屏和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。
+ * @see {@link OH_Input_RemoveInputEventInterceptor} 移除输入事件拦截，包括鼠标、触屏和轴事件。
  * @since 12
  */
 typedef struct Input_InterceptorOptions Input_InterceptorOptions;
@@ -653,7 +677,7 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
  * @brief 设置按键状态对象的键值。
  *
  * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
- * @param keyCode 按键键值，具体请参考{@link KeyCode}。
+ * @param keyCode 按键键值，具体请参考{@link Input_KeyCode}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -704,9 +728,10 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
- * <br>从API version 22开始，如果注入了修饰键（KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_CTRL_LEFT、KEYCODE_CTRL_RIGHT、
- * KEYCODE_ALT_LEFT、KEYCODE_ALT_RIGHT、KEYCODE_SHIFT_LEFT、KEYCODE_SHIFT_RIGHT、KEYCODE_CAPS_LOCK、KEYCODE_SCROLL_LOCK、
- * KEYCODE_NUM_LOCK）的按压事件（KEY_ACTION_DOWN）时，请及时注入该按键的抬起事件（KEY_ACTION_UP），以避免该按键长时间处于按压状态。
+ * <br>从API version 22开始，如果注入了修饰键（KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_CTRL_LEFT、
+ * KEYCODE_CTRL_RIGHT、KEYCODE_ALT_LEFT、KEYCODE_ALT_RIGHT、KEYCODE_SHIFT_LEFT、KEYCODE_SHIFT_RIGHT、
+ * KEYCODE_CAPS_LOCK、KEYCODE_SCROLL_LOCK、KEYCODE_NUM_LOCK）的按压事件（KEY_ACTION_DOWN）时，请及时注入该按键的抬起事件
+ * （KEY_ACTION_UP），以避免该按键长时间处于按压状态。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
  *
  * @permission ohos.permission.CONTROL_DEVICE
@@ -717,6 +742,7 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  *     <br>若注入成功，返回{@link INPUT_SUCCESS}；
  *     <br>若缺少权限，返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若参数错误，返回{@link INPUT_PARAMETER_ERROR}。
+ * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
@@ -773,7 +799,7 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
  *
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param keyCode 按键键值，具体请参考{@link KeyCode}。
+ * @param keyCode 按键键值，具体请参考{@link Input_KeyCode}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -924,6 +950,7 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
  *     <br>{@link INPUT_PERMISSION_DENIED} 表示缺少权限。
+ * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
@@ -1073,7 +1100,7 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
  *
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位）,零表示没有滚动。
+ * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -1342,7 +1369,7 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
  *
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @return 返回触屏输入事件发生的时间。
+ * @return 返回触屏输入事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -1429,7 +1456,7 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
 int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent);
 
 /**
- * @brief 设置触屏输入事件的压力。如果未设置压力值，或者不在合法范围内，默认值是0.0。
+ * @brief 设置触屏输入事件的压力。如果未设置压力值，或设置的值不在[0.0, 1.0]范围内，默认值是0.0。
  *
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
@@ -1547,6 +1574,7 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  *     <br>INPUT_INJECTION_OPERATION_FREQUENT = 3900006 重复请求（当前应用连续申请授权弹窗成功，间隔时间不超过3秒）。
  *     <br>INPUT_INJECTION_AUTHORIZED = 3900007 当前应用已经授权。
  *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008   其它应用已经授权。
+ * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 20
  */
 Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
@@ -1683,7 +1711,7 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param axisType 轴类型，具体请参考{@link InputEvent_AxisType}。
- * @param axisValue 出参，返回轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位）,零表示没有滚动。
+ * @param axisValue 出参，返回轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @return 若获取轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者axisValue为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -2170,6 +2198,10 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
 
 /**
  * @brief 订阅快捷键事件。
+ * <br>**说明：**
+ * <br>订阅快捷键事件时，对于preKeys和finalKey有以下约束：
+ * <br>1. preKeys：修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 4]，无顺序要求。例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。
+ * <br>2. finalKey：被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见{@link Input_KeyCode}。例如，Ctrl+Shift+Esc中，Esc称为被修饰键。
  *
  * @param hotkey 指定要订阅的快捷键对象。
  * @param callback 回调函数，用于回调快捷键事件。
@@ -2446,7 +2478,7 @@ Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* v
  *
  * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param style Cursor style of the cursorInfo.
+ * @param style 鼠标光标信息的光标样式枚举，具体请参考{@link Input_PointerStyle}。
  * @return OH_Input_CursorInfo_GetStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
@@ -2481,16 +2513,14 @@ Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int3
 Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t* color);
 
 /**
- * @brief Obtains the mouse pointer information of the mouse event, including the pointer visible status, pointer style,
- * pointer size level, and pointer color.
+ * @brief 获取鼠标事件的鼠标光标信息，包括光标显示状态、光标样式、光标大小档位、光标颜色。
  *
- * @param mouseEvent Mouse event object. You can obtain the mouse event object from the callback of
- *     {@link OH_Input_AddMouseEventMonitor()} or {@link OH_Input_AddInputEventInterceptor()}.
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create()} to create a
- *     mouse pointer information object.
- * @return Return value of the **OH_Input_GetMouseEventCursorInfo** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @param mouseEvent 鼠标事件对象。可以通过{@link OH_Input_AddMouseEventMonitor}或者
+ *     {@link OH_Input_AddInputEventInterceptor}接口的回调函数中获取鼠标事件对象。
+ * @param cursorInfo 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
+ * @return OH_Input_GetMouseEventCursorInfo 函数返回值：
+ *     <br>{@link INPUT_SUCCESS} 表示操作成功；
+ *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
  * @since 22
  */
 Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mouseEvent, Input_CursorInfo* cursorInfo);
@@ -2501,11 +2531,14 @@ Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mou
  *
  * @param cursorInfo 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
  * @param pixelmap PixelMap位图对象，如果该参数非空且光标为应用自定义，则会返回光标的PixelMap位图对象，否则不返回PixelMap位图对象。首先通过
- *     {@link OH_PixelmapInitializationOptions_Create}接口创建OH_PixelmapInitializationOptions对象，然后调用
- *     {@link OH_PixelmapInitializationOptions_SetWidth}接口设置大于0的宽度，调用{@link OH_PixelmapInitializationOptions_SetHeight}
- *     接口设置大于0的高度，最后以该OH_PixelmapInitializationOptions对象作为入参调用{@link OH_PixelmapNative_CreateEmptyPixelmap}
+ *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_Create}接口创建OH_PixelmapInitializationOptions对象，然后调用
+ *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_SetWidth}接口设置大于0的宽度，调用
+ *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_SetHeight}接口设置大于0的高度，最后以该
+ *     OH_PixelmapInitializationOptions对象作为入参调用
+ *     {@link pixelmap_native.h#OH_PixelmapNative_CreateEmptyPixelmap}
  *     接口创建PixelMap位图对象。
- *     <br>使用完需要先调用{@link OH_PixelmapNative_Release}接口释放PixelMap位图对象，然后调用{@link OH_PixelmapNative_Destroy}
+ *     <br>使用完需要先调用{@link pixelmap_native.h#OH_PixelmapNative_Release}接口释放PixelMap位图对象，然后调用
+ *     {@link pixelmap_native.h#OH_PixelmapNative_Destroy}
  *     接口销毁PixelMap位图对象。
  * @return OH_Input_GetCursorInfo 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
@@ -2538,7 +2571,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
  * @brief 获取指定窗口的鼠标光标样式。此接口仅支持获取本应用进程内窗口的鼠标光标样式。
  *
  * @param windowId 窗口ID。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。
- *     <br>仅支持传入当前窗口和全局窗口的ID，传入其他ID返回全局窗口的默认光标样式，当前窗口ID可以通过{@link getWindowProperties}获取。
+ *     <br>仅支持传入当前窗口和全局窗口的ID，传入其他ID返回全局窗口的默认光标样式，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
  * @param pointerStyle 鼠标光标样式，取值为{@link Input_PointerStyle}的枚举值。
  * @return OH_Input_GetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
@@ -2552,7 +2585,7 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  * @brief 设置指定窗口的鼠标光标样式。此接口仅支持设置本应用进程内窗口的鼠标光标样式。
  *
  * @param windowId 窗口ID。取值范围为大于等于0的整数。
- *     <br>仅支持传入当前窗口的光标样式，传入其他窗口ID本接口可以运行成功但设置不生效，当前窗口ID可以通过{@link getWindowProperties}获取。
+ *     <br>仅支持传入当前窗口的光标样式，传入其他窗口ID本接口可以运行成功但设置不生效，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
  * @param pointerStyle 鼠标光标样式，取值为{@link Input_PointerStyle}的枚举值。
  * @return OH_Input_SetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
@@ -2565,7 +2598,7 @@ Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
 /**
  * @brief 创建自定义鼠标光标资源对象。通过调用{@link OH_Input_CustomCursor_Destroy}销毁自定义鼠标光标资源对象。
  *
- * @param pixelMap {@link OH_PixelmapNative}自定义鼠标光标像素图。最小限制为资源图本身的最小限制。最大限制为256 x 256px。
+ * @param pixelMap {@link pixelmap_native.h#OH_PixelmapNative}自定义鼠标光标像素图。最小限制为资源图本身的最小限制。最大限制为256 x 256px。
  * @param anchorX 自定义鼠标光标焦点的水平坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的宽度最大值，单位为像素（px）。
  * @param anchorY 自定义鼠标光标焦点的垂直坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的高度最大值，单位为像素（px）。
  * @return {@link Input_CustomCursor}对象。操作成功时返回自定义鼠标光标资源对象的指针。异常时返回空指针。
@@ -2585,7 +2618,7 @@ void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
  * @brief 获取指定自定义鼠标光标资源的自定义鼠标光标像素图。
  *
  * @param customCursor 自定义鼠标光标资源{@link Input_CustomCursor}。
- * @param pixelMap {@link OH_PixelmapNative}自定义鼠标光标像素图。
+ * @param pixelMap {@link pixelmap_native.h#OH_PixelmapNative}自定义鼠标光标像素图。
  * @return OH_Input_CustomCursor_GetPixelMap 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2663,6 +2696,7 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  *     <br>{@link INPUT_PERMISSION_DENIED}表示权限校验失败。
  *     <br>{@link INPUT_PARAMETER_ERROR}表示参数检查失败（输入设备不存在，显示屏设备不存在，或者输入设备不是手写笔设备）。
  *     <br>{@link INPUT_SERVICE_EXCEPTION}表示服务异常，请重试。
+ * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
@@ -2671,5 +2705,4 @@ Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t di
 #endif
 
 #endif /* OH_INPUT_MANAGER_H */
-
 /** @} */
