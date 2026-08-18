@@ -229,9 +229,9 @@ typedef struct Location_Info Location_Info;
  * @brief 判断定位信息是否来自模拟位置功能。
  *
  * @param location - 指向位置信息结构体的指针。
- * 需要传入非空指针，该指针可以在 {@link Location_InfoCallback}中获取。
+ *     需要传入非空指针，该指针可以在{@link Location_InfoCallback}中获取。
  * @return 返回bool类型的结果，用于指示该位置是否来自模拟位置功能。
- * 如果值为 true，表示该位置来自模拟位置功能；如果值为false，表示该位置源自系统的真实定位结果。
+ *     如果值为 true，表示该位置来自模拟位置功能；如果值为false，表示该位置源自系统的真实定位结果。
  * @since 26.0.0
  */
 bool OH_LocationInfo_IsFromMock(Location_Info* location);
@@ -239,8 +239,8 @@ bool OH_LocationInfo_IsFromMock(Location_Info* location);
 /**
  * @brief 获取位置基本信息。
  *
- * @param location - 	指向位置信息结构体的指针。
- * 需要传入非空指针，该指针可以在{@link Location_InfoCallback}中获取。
+ * @param location - 指向位置信息结构体的指针。
+ *     需要传入非空指针，该指针可以在{@link Location_InfoCallback}中获取。
  * @return Return 返回位置基本信息结构体。详细定义请参考{@link Location_BasicInfo}
  * @since 13
  */
@@ -250,16 +250,15 @@ Location_BasicInfo OH_LocationInfo_GetBasicInfo(Location_Info* location);
  * @brief 获取位置信息中的附加信息。
  *
  * @param location - 指向位置信息结构体的指针。
- * 需要传入非空指针，该指针可以在 {@link Location_InfoCallback}中获取。
+ *     需要传入非空指针，该指针可以在 {@link Location_InfoCallback}中获取。
  * @param additionalInfo - char类型的非空指针；该变量用于保存附加信息字符串，该字符串是JSON格式。
- * 该指针和对应的内存由调用者创建，建议申请大于等于256字节的内存。
- * 如果传入空指针，会返回错误码。
+ *     该指针和对应的内存由调用者创建，建议申请大于等于256字节的内存。
+ *     如果传入空指针，会返回错误码。
  * @param length - 表示additionalInfo的内存大小。
- * @return 返回操作结果。\n
- *     详细定义参见 {@link Location_ResultCode}.\n
- *     {@link LOCAION_SUCCESS} 获取附加信息成功。\n
- *     {@link LOCATION_INVALID_PARAM} 1. 入参location或additionalInfo是空指针。\n
- *         2. 入参length太小，也就是additionalInfo指向的内存太小导致无法保存完整的附加信息字符串。\n
+ * @return 返回操作结果。详细定义参见{@link Location_ResultCode}。
+ *     {@link LOCAION_SUCCESS} 获取附加信息成功。
+ *     {@link LOCATION_INVALID_PARAM} 1. 入参location或additionalInfo是空指针。
+ *     2. 入参length太小，也就是additionalInfo指向的内存太小导致无法保存完整的附加信息字符串。
  * @since 13
  */
 Location_ResultCode OH_LocationInfo_GetAdditionalInfo(Location_Info* location,
@@ -272,11 +271,10 @@ Location_ResultCode OH_LocationInfo_GetAdditionalInfo(Location_Info* location,
 
 location实例的内存会在Location_InfoCallback结束时回收，请在此之前调用OH_LocationInfo_GetBasicInfo等接口获取位置信息。
 
- * @param location - 指向Location_Info {@link Location_Info} 实例的指针，携带最新的位置信息。\n
- * location实例的内存会在Location_InfoCallback{@link Location_InfoCallback}结束时回收，\n
- * 请在此之前调用OH_LocationInfo_GetBasicInfo{@link OH_LocationInfo_GetBasicInfo}等接口获取位置信息。\n
- * @param userData - 指向调用者数据结构或对象的指针，该参数是通过OH_LocationRequestConfig_SetCallback\n
- * {@link OH_LocationRequestConfig_SetCallback}传入的。\n
+ * @param location - 指向{@link Location_Info} 实例的指针，携带最新的位置信息。
+ *     location实例的内存会在{@link Location_InfoCallback}结束时回收，
+ *     请在此之前调用{@link OH_LocationInfo_GetBasicInfo}等接口获取位置信息。
+ * @param userData - 指向调用者数据结构或对象的指针，该参数是通过{@link OH_LocationRequestConfig_SetCallback}传入的。
  * @since 13
  */
 typedef void (*Location_InfoCallback)(Location_Info* location, void* userData);
@@ -290,8 +288,8 @@ typedef struct Location_RequestConfig Location_RequestConfig;
 /**
  * @brief 创建一个位置请求参数结构体实例。
  *
- * @return 返回指向Location_RequestConfig{@ link Location_RequestConfig}实例的指针。 \n
- * 如果返回NULL表示创建失败，可能的原因是应用地址空间满，导致空间分配不出来。 \n
+ * @return 返回指向{@link Location_RequestConfig}实例的指针。 
+ *     如果返回NULL表示创建失败，可能的原因是应用地址空间满，导致空间分配不出来。 
  * @since 13
  */
 Location_RequestConfig* OH_Location_CreateRequestConfig(void);
@@ -299,25 +297,25 @@ Location_RequestConfig* OH_Location_CreateRequestConfig(void);
 /**
  * @brief 销毁位置请求参数实例并回收内存。
  *
- * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
- * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
+ * @param requestConfig - 指向{@link Location_RequestConfig}实例的指针。
+ *     该实例是由{@link OH_Location_CreateRequestConfig}创建的。
  * @since 13
  */
 void OH_Location_DestroyRequestConfig(Location_RequestConfig* requestConfig);
 
 /**
- * @brief 设置位置请求参数中的用户活动场景。\n
- * 位置请求参数Location_RequestConfig{@link Location_RequestConfig}中以useScene优先。\n
- * 如果设置了useScene，则powerConsumptionScene参数无效。\n
- * 如果未设置useScene，设置了powerConsumptionScene则该参数生效。\n
- * 如果两个参数都未设置，则默认useScene为LOCATION_USE_SCENE_DAILY_LIFE_SERVICE{@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}，\n
- * powerConsumptionScene参数无效。\n
+ * @brief 设置位置请求参数中的用户活动场景。
+ *     位置请求参数{@link Location_RequestConfig}中以useScene优先。
+ *     如果设置了useScene，则powerConsumptionScene参数无效。
+ *     如果未设置useScene，设置了powerConsumptionScene则该参数生效。
+ *     如果两个参数都未设置，则默认useScene为{@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}，
+ *     powerConsumptionScene参数无效。
  *
- * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
- * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
- * @param useScene - 表示位置请求时的用户活动场景。\n
- * 默认值是LOCATION_USE_SCENE_DAILY_LIFE_SERVICE{@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}。\n.
- * 详细定义见Location_UseScene{@link Location_UseScene}。\n
+ * @param requestConfig - 指向{@link Location_RequestConfig}实例的指针。
+ *     该实例是由{@link OH_Location_CreateRequestConfig}创建的。
+ * @param useScene - 表示位置请求时的用户活动场景。
+ *     默认值是{@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}。
+ *     详细定义见{@link Location_UseScene}。
  * @since 13
  */
 void OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig,
@@ -326,11 +324,11 @@ void OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig,
 /**
  * @brief 设置位置请求参数中的功耗场景。
  *
- * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
- * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
- * @param powerConsumptionScene - 表示位置请求的功耗场景。\n
- * 默认值是LOCATION_LOW_POWER_CONSUMPTION{@link LOCATION_LOW_POWER_CONSUMPTION}。\n
- * 详细定义见Location_PowerConsumptionScene{@link Location_PowerConsumptionScene}。\n
+ * @param requestConfig - 指向{@link Location_RequestConfig}实例的指针。
+ *     该实例是由{@link OH_Location_CreateRequestConfig}创建的。
+ * @param powerConsumptionScene - 表示位置请求的功耗场景。
+ *     默认值是{@link LOCATION_LOW_POWER_CONSUMPTION}。
+ *     详细定义见{@link Location_PowerConsumptionScene}。
  * @since 13
  */
 void OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* requestConfig,
@@ -339,8 +337,8 @@ void OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* r
 /**
  * @brief 设置位置请求参数中的位置上报间隔。
  *
- * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
- * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
+ * @param requestConfig - 指向{@link Location_RequestConfig}实例的指针。
+ *     该实例是由{@link OH_Location_CreateRequestConfig}创建的。
  * @param interval - 表示位置上报时间间隔，单位是“秒”。取值范围为大于等于1，默认值为1。
  * @since 13
  */
@@ -350,10 +348,10 @@ void OH_LocationRequestConfig_SetInterval(Location_RequestConfig* requestConfig,
 /**
  * @brief 设置回调函数。
  *
- * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
- * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
- * @param callback - 指向回调函数的指针，该回调函数用于接收位置信息变化。\n
- * 详细定义请参考Location_InfoCallback{@link Location_InfoCallback}。\n
+ * @param requestConfig - 指向{@link Location_RequestConfig}实例的指针。
+ *     该实例是由{@link OH_Location_CreateRequestConfig}创建的。
+ * @param callback - 指向回调函数的指针，该回调函数用于接收位置信息变化。
+ *     详细定义请参考{@link Location_InfoCallback}。
  * @param userData - 指向调用者数据结构或对象的指针。这个指针会在回调函数执行时作为入参回传给调用者。
  * @since 13
  */
