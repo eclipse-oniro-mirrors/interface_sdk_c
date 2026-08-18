@@ -15,6 +15,7 @@
 
 /**
  * @addtogroup InputMethod
+ * @{
  *
  * @brief InputMethod模块提供C语言接口来使用输入法。"使用输入法"面向应用侧调用。
  *     <br>
