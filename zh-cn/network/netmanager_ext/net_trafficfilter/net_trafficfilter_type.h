@@ -808,26 +808,26 @@ typedef OH_TrafficFilter_PacketDecision (*OH_TrafficFilter_PacketCallback)(
  * @since 26.1.0
  */
 typedef enum OH_TrafficFilter_PacketCopyMode {
-     /**
-      * @brief 仅拷贝元数据（不拷贝报文数据）
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_META = 0,
-     /**
-      * @brief 仅拷贝报文头（由packetCopyLen指定）
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
-     /**
-      * @brief 拷贝整个报文
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
-     /**
-      * @brief 按指定最大长度拷贝报文
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
+    /**
+     * @brief 仅拷贝元数据（不拷贝报文数据）
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_META = 0,
+    /**
+     * @brief 仅拷贝报文头（由packetCopyLen指定）
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
+    /**
+     * @brief 拷贝整个报文
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
+    /**
+     * @brief 按指定最大长度拷贝报文
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
 } OH_TrafficFilter_PacketCopyMode;
 
 /**
@@ -848,33 +848,33 @@ typedef enum OH_TrafficFilter_PacketCopyMode {
  * @since 26.1.0
  */
 typedef struct OH_TrafficFilter_Config {
-     /**
-      * @brief 调用者必须将其设置为`sizeof(OH_TrafficFilter_Config)`。
-      * 调用者需要先零初始化结构体，然后设置此字段。
-      * 实现使用此值来确定有效数据范围，以实现二进制兼容。
-      * @since 26.1.0
-      */
-     uint32_t size;
-     /**
-      * @brief NFQueue报文拷贝模式，参见OH_TrafficFilter_PacketCopyMode
-      * @since 26.1.0
-      */
-     uint32_t packetCopyMode;
-     /**
-      * @brief NFQueue报文拷贝长度（字节），0xFFFF表示拷贝整个报文，较小的值仅拷贝报文头
-      * @since 26.1.0
-      */
-     uint32_t packetCopyLen;
-     /**
-      * @brief NFQueue最大队列长度（报文数量），0表示系统默认值（1024）
-      * @since 26.1.0
-      */
-     uint32_t nfqueueMaxlen;
-     /**
-      * @brief NFQueue队列标志，参见OH_TRAFFICFILTER_NFQUEUE_FLAG_*定义
-      * @since 26.1.0
-      */
-     uint32_t nfqueueFlags;
+    /**
+     * @brief 调用者必须将其设置为`sizeof(OH_TrafficFilter_Config)`。
+     * 调用者需要先零初始化结构体，然后设置此字段。
+     * 实现使用此值来确定有效数据范围，以实现二进制兼容。
+     * @since 26.1.0
+     */
+    uint32_t size;
+    /**
+     * @brief NFQueue报文拷贝模式，参见OH_TrafficFilter_PacketCopyMode
+     * @since 26.1.0
+     */
+    uint32_t packetCopyMode;
+    /**
+     * @brief NFQueue报文拷贝长度（字节），0xFFFF表示拷贝整个报文，较小的值仅拷贝报文头
+     * @since 26.1.0
+     */
+    uint32_t packetCopyLen;
+    /**
+     * @brief NFQueue最大队列长度（报文数量），0表示系统默认值（1024）
+     * @since 26.1.0
+     */
+    uint32_t nfqueueMaxlen;
+    /**
+     * @brief NFQueue队列标志，参见OH_TRAFFICFILTER_NFQUEUE_FLAG_*定义
+     * @since 26.1.0
+     */
+    uint32_t nfqueueFlags;
 } OH_TrafficFilter_Config;
 
 /**
@@ -970,87 +970,87 @@ typedef struct OH_TrafficFilter_ConntrackMatch {
  * @since 26.1.0
  */
 typedef struct OH_TrafficFilter_FilterRule {
-     /**
-      * @brief 调用者必须将其设置为`sizeof(OH_TrafficFilter_FilterRule)`。
-      * 调用者需要先零初始化结构体，然后设置此字段。
-      * 实现使用此值来确定有效数据范围，以实现二进制兼容。
-      * @since 26.1.0
-      */
-     uint32_t size;
-     /**
-      * @brief 优先级（数值越小优先级越高）
-      * @since 26.1.0
-      */
-     uint32_t priority;
-     /**
-      * @brief 钩子点
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_HookPoint hookPoint;
-     /**
-      * @brief 协议（0=任意，6=TCP，17=UDP）
-      * @since 26.1.0
-      */
-     uint8_t protocol;
-     /**
-      * @brief 源IP匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_IPMatch srcIp;
-     /**
-      * @brief 源端口匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_PortMatch srcPort;
-     /**
-      * @brief 目的IP匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_IPMatch dstIp;
-     /**
-      * @brief 目的端口匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_PortMatch dstPort;
-     /**
-      * @brief 入接口匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_InterfaceMatch inInterface;
-     /**
-      * @brief 出接口匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_InterfaceMatch outInterface;
-     /**
-      * @brief 应用UID范围起始值（包含）。有效范围：0到UINT32_MAX。
+    /**
+     * @brief 调用者必须将其设置为`sizeof(OH_TrafficFilter_FilterRule)`。
+     * 调用者需要先零初始化结构体，然后设置此字段。
+     * 实现使用此值来确定有效数据范围，以实现二进制兼容。
+     * @since 26.1.0
+     */
+    uint32_t size;
+    /**
+     * @brief 优先级（数值越小优先级越高）
+     * @since 26.1.0
+     */
+    uint32_t priority;
+    /**
+     * @brief 钩子点
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_HookPoint hookPoint;
+    /**
+     * @brief 协议（0=任意，6=TCP，17=UDP）
+     * @since 26.1.0
+     */
+    uint8_t protocol;
+    /**
+     * @brief 源IP匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_IPMatch srcIp;
+    /**
+     * @brief 源端口匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_PortMatch srcPort;
+    /**
+     * @brief 目的IP匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_IPMatch dstIp;
+    /**
+     * @brief 目的端口匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_PortMatch dstPort;
+    /**
+     * @brief 入接口匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_InterfaceMatch inInterface;
+    /**
+     * @brief 出接口匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_InterfaceMatch outInterface;
+    /**
+     * @brief 应用UID范围起始值（包含）。有效范围：0到UINT32_MAX。
      * 要匹配任意UID，将uidStart和uidEnd都设置为UINT32_MAX。
      * 如果uidStart > uidEnd，规则设置接口返回OH_TRAFFICFILTER_ERROR_INVALID_PARAM。
      * 零初始化后，uidStart=0且uidEnd=0，仅匹配UID 0。
-      * @since 26.1.0
-      */
-     uint32_t uidStart;
-     /**
-      * @brief 应用UID范围结束值（包含）。有效范围：0到UINT32_MAX。
+     * @since 26.1.0
+     */
+    uint32_t uidStart;
+    /**
+     * @brief 应用UID范围结束值（包含）。有效范围：0到UINT32_MAX。
      * 使用详情参见uidStart。
-      * @since 26.1.0
-      */
-     uint32_t uidEnd;
-     /**
-      * @brief MAC地址匹配条件（仅源MAC）
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_MACMatch macMatch;
-     /**
-      * @brief TCP标志匹配条件（仅对TCP协议有效）
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
-     /**
-      * @brief 连接跟踪匹配条件
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_ConntrackMatch conntrackMatch;
+     * @since 26.1.0
+     */
+    uint32_t uidEnd;
+    /**
+     * @brief MAC地址匹配条件（仅源MAC）
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_MACMatch macMatch;
+    /**
+     * @brief TCP标志匹配条件（仅对TCP协议有效）
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
+    /**
+     * @brief 连接跟踪匹配条件
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_ConntrackMatch conntrackMatch;
 } OH_TrafficFilter_FilterRule;
 
 /**
