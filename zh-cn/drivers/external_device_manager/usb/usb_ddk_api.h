@@ -322,7 +322,8 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
  *     {@link USB_DDK_IO_FAILED} 控制传输请求I/O异常，请检查参数和设备规格。
  * @since 26.0.0
  */
-int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket, uint8_t *data, uint32_t timeout);
+int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket,
+    uint8_t *data, uint32_t timeout);
 
 /**
  * @brief 查询并返回非根集线器列表。请保证传入的指针参数是有效的，申请的非根集线器ID数组的大小建议不超过128，以避免过度占用内存。在使用完结构体之后，需释放成员内存，否则会造成资源泄漏。
