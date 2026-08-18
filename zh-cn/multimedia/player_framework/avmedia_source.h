@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup avmedia_source
+ * @addtogroup AVMediaSource
  * @{
  *
  * @brief 定义AVMediaSource的接口。
@@ -27,6 +27,7 @@
  * 
  * @syscap SystemCapability.Multimedia.Media.Core
  * @kit MediaKit
+ * @include <multimedia/player_framework/avmedia_source.h>
  * @library libavmedia_source.so
  * @since 23
  */
@@ -222,7 +223,7 @@ OH_AVErrCode OH_AVMediaSource_Destroy(OH_AVMediaSource *source);
  * @brief 设置媒体MIME类型以处理扩展媒体源。
  * 
  * @param source 指向OH_AVMediaSource的指针。
- * @param mimetype 媒体源的MIME类型{@link AV_MimeTypes}。
+ * @param mimetype 媒体源的MIME类型。
  * @return 函数执行结果。
  * AV_ERR_OK：表示执行成功。
  * AV_ERR_INVALID_VAL：表示source或mimetype为空指针。
@@ -299,7 +300,7 @@ void OH_AVMediaSourceLoadingRequest_FinishLoading(
 /**
  * @brief 创建一个OH_AVMediaSourceLoader实例。成功时返回OH_AVMediaSourceLoader指针，失败时返回空指针。
  * 
- * @return OH_AVMediaSourceLoader pointer if success, else return NULL.
+ * @return 成功时返回OH_AVMediaSourceLoader指针，失败时返回空指针。
  * @since 23
  */
 OH_AVMediaSourceLoader *OH_AVMediaSourceLoader_Create(void);
@@ -330,12 +331,11 @@ OH_AVErrCode OH_AVMediaSource_SetMediaSourceLoader(OH_AVMediaSource *source, OH_
 /**
  * @brief 定义由服务端调用的SourceOpenCallback函数。客户端应处理传入的请求，并返回所打开资源的唯一句柄。
  * 客户端必须在处理完请求后立即返回句柄。
- * @param request Parameters for the resource open request,
- * including detailed information about the requested resource and the data push method.
- * @param userData The data set by user in OH_AVMediaSourceLoader_SetSourceOpenCallback
- * @return The handler of current resource open request, the handler for the request object is unique.
- *     A value greater than 0 means the request is successful.
- *     A value less than or equal to 0 means it fails.
+ * @param request 资源打开请求的参数，包含所请求资源的详细信息及数据推送方式。
+ * @param userData 用户在OH_AVMediaSourceLoader_SetSourceOpenCallback中设置的数据。
+ * @return 当前资源打开请求的句柄，该句柄对请求对象是唯一的。
+ *     大于0的值表示请求成功；
+ *     小于或等于0的值表示失败。
  * @since 23
  */
 typedef int64_t (*OH_AVMediaSourceLoaderOnSourceOpenedCallback)(OH_AVMediaSourceLoadingRequest *request,
@@ -348,7 +348,7 @@ typedef int64_t (*OH_AVMediaSourceLoaderOnSourceOpenedCallback)(OH_AVMediaSource
  * @param uuid 资源句柄的ID。
  * @param requestedOffset 当前媒体数据相对于资源起始位置的偏移量。
  * @param requestedLength 当前请求的数据长度。-1 表示已到达资源末尾，需通过{@link OH_AVMediaSourceLoadingRequest_FinishLoading}方法通知播放器推送结束。
- * @param userData The data set by user in OH_AVMediaSourceLoader_SetSourceReadCallback
+ * @param userData 用户在OH_AVMediaSourceLoader_SetSourceReadCallback中设置的数据。
  * @since 23
  */
 typedef void (*OH_AVMediaSourceLoaderOnSourceReadCallback)(int64_t uuid, int64_t requestedOffset,
@@ -358,7 +358,7 @@ typedef void (*OH_AVMediaSourceLoaderOnSourceReadCallback)(int64_t uuid, int64_t
  * @brief 定义由服务端调用的SourceCloseCallback函数。客户端应释放相关资源，并在处理完请求后立即返回。
  * 
  * @param uuid 资源句柄的ID。
- * @param userData The data set by user in OH_AVMediaSourceLoader_SetSourceCloseCallback
+ * @param userData 用户在OH_AVMediaSourceLoader_SetSourceCloseCallback中设置的数据。
  * @since 23
  */
 typedef void (*OH_AVMediaSourceLoaderOnSourceClosedCallback)(int64_t uuid, void *userData);
