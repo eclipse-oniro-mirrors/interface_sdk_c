@@ -15,18 +15,63 @@
 
 /**
  * @addtogroup InputMethod
- * @{
  *
- * @brief InputMethod模块提供方法来使用输入法和开发输入法。
+ * @brief InputMethod模块提供C语言接口来使用输入法。"使用输入法"面向应用侧调用。
+ *     <br>
+ *     <br>功能定位：该模块为应用侧开发者提供自绘输入框与输入法服务交互的完整C API，支持应用绑定/解绑输入法服务、向输入法发送请求
+ * 和通知、接收输入法的回调通知、配置输入框属性、管理光标和避让信息等核心功能。
+ *     <br>
+ *     <br>使用场景：适用于使用NDK开发自绘输入框的应用，需要与系统输入法服务进行交互的场景。典型流程为：应用创建TextEditorProxy
+ * （文本编辑器代理）和AttachOptions（绑定配置选项），通过Controller绑定输入法服务，绑定成功后通过InputMethodProxy（输入法代
+ * 理）与输入法交互，使用完毕后通过Controller解绑。
+ *     <br>
+ *     <br>使用后效果：绑定输入法后，应用可接收输入法的文本插入、删除、光标移动等回调通知，也可主动向输入法发送光标更新、选区变
+ * 更、私有命令等请求。解绑后，所有交互通道关闭，相关资源释放。
+ *     <br>
+ *     <br>生命周期管理：本模块遵循严格的创建/销毁配对原则和绑定/解绑配对原则：
+ *     <br>
+ *     <br>- 绑定/解绑配对：OH_InputMethodController_Attach必须与OH_InputMethodController_Detach配对调用，未解绑会导致输入法
+ * 资源泄漏。
+ *     <br>- 创建/销毁配对：所有Create函数创建的对象必须通过对应的Destroy函数销毁，否则会导致内存泄漏。
+ *     <br>- 调用顺序：先创建依赖对象（TextEditorProxy、AttachOptions），再执行Attach绑定，绑定成功后使用InputMethodProxy交
+ * 互，最后Detach解绑并销毁所有创建的对象。
+ *     <br>
+ *     <br>线程安全：本模块的API非线程安全，建议在主线程调用。TextEditorProxy的回调执行线程可通过
+ * OH_TextEditorProxy_SetCallbackInMainThread配置。
  *
+ *     <br>模块架构: 本模块由9个头文件组成，按职责分为四层：
+ *     <br>
+ *     <br>- 控制层：inputmethod_controller_capi.h —— 模块核心入口，提供绑定/解绑输入法服务的能力，是所有交互的起点和终点。
+ *     <br>- 交互层：inputmethod_text_editor_proxy_capi.h和inputmethod_inputmethod_proxy_capi.h —— 双向交互通道。
+ * TextEditorProxy是输入法→应用方向的回调注册通道，应用通过它接收输入法的文本插入、删除等通知；InputMethodProxy是应用→输入法方向
+ * 的请求发送通道，应用通过它向输入法发送光标更新、选区变更等通知。
+ *     <br>- 配置层：inputmethod_attach_options_capi.h、inputmethod_text_config_capi.h、inputmethod_cursor_info_capi.h、
+ * inputmethod_text_avoid_info_capi.h —— 各类配置和信息的承载对象，分别管理绑定选项、输入框配置、光标位置信息、避让区域信息。
+ *     <br>- 数据层：inputmethod_private_command_capi.h和inputmethod_types_capi.h —— 私有命令数据和公共类型定义（枚举、错误
+ * 码等）。
+ *     <br>
+ *     <br>典型调用流程：
+ *     <br>1. 通过inputmethod_text_editor_proxy_capi.h创建TextEditorProxy并注册回调。
+ *     <br>2. 通过inputmethod_attach_options_capi.h创建AttachOptions配置绑定选项。
+ *     <br>3. 通过inputmethod_controller_capi.h调用Attach绑定输入法，获取InputMethodProxy。
+ *     <br>4. 通过inputmethod_inputmethod_proxy_capi.h使用InputMethodProxy与输入法交互。
+ *     <br>5. 通过inputmethod_text_config_capi.h、inputmethod_cursor_info_capi.h等管理配置信息。
+ *     <br>6. 通过inputmethod_controller_capi.h调用Detach解绑。
+ *     <br>7. 销毁所有创建的对象。
+ *
+ * @library libohinputmethod.so
+ * @kit IMEKit
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
  * @since 12
  */
 
 /**
  * @file inputmethod_inputmethod_proxy_capi.h
  *
- * @brief 提供使用输入法的方法，可以向输入法应用发送请求和通知，适用于需要控制输入法显示、隐藏、配置变更通知等功能的应用开发场景。
+ * @brief 输入法代理的头文件，提供应用主动向输入法服务发送请求和通知的方法，包括显示/隐藏键盘、通知选区变更、通知光标更新、通知配
+ * 置变更、发送私有命令等。InputMethodProxy实例由OH_InputMethodController_Attach返回，不可自行创建，在Detach之前保持有效。
  *
+ * @include <inputmethod/inputmethod_inputmethod_proxy_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -45,8 +90,62 @@
 extern "C"{
 #endif /* __cplusplus */
 /**
- * @brief 应用与输入法服务之间的交互代理对象，应用可通过此对象调用输入法服务的相关接口，并接收输入法服务的事件回调。该结构体为不透明类型（opaque type），调用者不可直接访问其内部成员，
- * 仅可通过本模块提供的函数接口进行操作。
+ * @brief 应用与输入法服务之间的交互代理对象，应用可通过此对象调用输入法服务的相关接口，并接收输入法服务的事件回调。该结构体为不透
+ * 明类型（opaque type），调用者不可直接访问其内部成员，仅可通过本模块提供的函数接口进行操作。
+ *     <br>
+ *     <br>用途
+ *     <br>
+ *     <br>InputMethod_InputMethodProxy是应用端与输入法服务交互的核心代理对象，用于向输入法服务发送请求和通知。通过此代理对象，
+ * 应用可以控制键盘的显示与隐藏、通知编辑框的文本选区变化和配置变化、更新光标位置、以及发送私有命令数据。
+ *     <br>
+ *     <br>生命周期管理
+ *     <br>
+ *     <br>- 创建方式：由[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)函数创建并作为输出参数返回，调用者不可手动创建此对象。
+ *     <br>- 销毁方式：不可手动销毁。当调用[OH_InputMethodController_Detach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_detach)解除绑定后，InputMethod_InputMethodProxy对象将由系统自动释放并失效。
+ *     <br>- 有效性：InputMethod_InputMethodProxy仅在Attach与Detach之间有效。Detach后，所有通过此对象调用的函数将返回
+ * IME_ERR_DETACHED错误码，不可再使用。
+ *     <br>- 重复创建/销毁：不支持重复销毁。每次Attach会产生一个新的InputMethod_InputMethodProxy实例，对应的Detach会使其失效。
+ *     <br>
+ *     <br>使用注意事项
+ *     <br>
+ *     <br>- 调用任何InputMethod_InputMethodProxy相关函数前，必须确保已通过[OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)成功获取该对象，且尚未调用Detach。
+ *     <br>- inputMethodProxy指针不可为NULL，传入NULL指针将导致IME_ERR_NULL_POINTER错误码。示例：调用前未判空即调用函数时触
+ * 发，应在调用前判断指针是否为NULL，若为NULL则先通过Attach获取有效对象或终止调用。
+ *     <br>- Detach后不可再使用已获取的inputMethodProxy指针，所有操作将返回IME_ERR_DETACHED。示例：在Detach后调用任何接口时返
+ * 回该码，应检查生命周期状态，仅在Attach与Detach之间使用该对象，否则重新Attach。此对象为不透明类型，不可直接访问内部成员或进行内
+ * 存操作（如malloc/free）。
+ *     <br>- 非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象，如需多线程访问请自行加锁保护。
+ *     <br>
+ *     <br>相关函数：
+ *     <br>
+ *     <br>以下为可通过InputMethod_InputMethodProxy对象调用的操作函数：
+ *     <br>
+ *     <br>| 函数 | 描述 |
+ *     <br>| -- | -- |
+ *     <br>| [OH_InputMethodProxy_ShowKeyboard](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_showkeyboard) | 显示键盘。 |
+ *     <br>| [OH_InputMethodProxy_ShowTextInput](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_showtextinput) | 显示文本输入框。 |
+ *     <br>| [OH_InputMethodProxy_HideKeyboard](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_hidekeyboard) | 隐藏键盘。 |
+ *     <br>| [OH_InputMethodProxy_NotifySelectionChange](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_notifyselectionchange) | 通知文本框选区变化。 |
+ *     <br>| [OH_InputMethodProxy_NotifyConfigurationChange](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_notifyconfigurationchange) | 通知输入框配置变化。 |
+ *     <br>| [OH_InputMethodProxy_NotifyCursorUpdate](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_notifycursorupdate) | 通知光标位置变化。 |
+ *     <br>| [OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.
+ * md#oh_inputmethodproxy_sendprivatecommand) | 发送私有数据命令。 |
+ *     <br>
+ *     <br>关联关系:
+ *     <br>- 与TextEditorProxy的关系：[InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md)负责
+ * 接收输入法应用的请求和通知，InputMethod_InputMethodProxy负责向输入法服务发送请求和通知。两者在Attach时同时建立关联，构成双向
+ * 通信通道。
+ *     <br>- 与AttachOptions的关系：[InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md)在Attach时
+ * 传入，用于配置绑定选项（如是否显示键盘、请求键盘原因等），Attach成功后生成InputMethod_InputMethodProxy实例。
  *
  * @since 12
  */
@@ -54,10 +153,27 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
 
 /**
  * @brief 显示键盘。调用此函数后，系统将请求输入法应用弹出软键盘界面，用于文本输入。
+ *     <br>
+ *     <br>使用场景：当应用需要主动拉起键盘以便用户进行文本输入时调用此函数，例如编辑框获得焦点后需要显示键盘的场景。
+ *     <br>
+ *     <br>使用后效果：调用成功后，输入法应用将弹出软键盘界面；调用失败后，返回对应的错误码，需根据错误码进行处理。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)创建输出，不可手动销毁。当调用[OH_InputMethodController_Detach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_detach)解除绑定后，inputMethodProxy将失效，此后再调用此
+ * 函数将返回IME_ERR_DETACHED错误码。
+ *     <br>
+ *     <br>调用顺序：OH_InputMethodController_Attach → OH_InputMethodProxy_ShowKeyboard →
+ *  OH_InputMethodProxy_HideKeyboard → OH_InputMethodController_Detach
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象，如需多线程访问请自行加锁保护。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效，
- *     不可再用于调用任何InputMethodProxy相关函数。
+ * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该指针不
+ * 可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效，不可再用于调用任何InputMethodProxy相关函数。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，键盘已请求显示。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误，可能是客户端内部异常。
@@ -70,12 +186,29 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
 InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
 /**
  * @brief 显示文本输入框。与ShowKeyboard不同，此接口可通过AttachOptions指定请求键盘输入的原因，系统根据原因决定是否弹出键盘。
+ *     <br>
+ *     <br>使用场景：当应用需要在特定场景下（如主动切换输入框、恢复输入等）请求显示文本输入界面时调用此函数，特别适用于需要携带
+ * RequestKeyboardReason的场景。
+ *     <br>
+ *     <br>使用后效果：调用成功后，系统将根据options中的RequestKeyboardReason决定是否弹出键盘并激活文本输入；调用失败后，返回对
+ * 应的错误码。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。options参数需先通过
+ * [OH_AttachOptions_Create](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_create)创建。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)创建输出，不可手动销毁。Detach后失效。options的生命周期由调用者管理，使用完毕后需调用
+ * [OH_AttachOptions_Destroy](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_destroy)销毁。
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
+ * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
  * @param options 输入指针，表示指向{@link InputMethod_AttachOptions}实例的指针，用于获取配置选项。该指针不可为NULL，
- *     若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。此接口中只需关注{@link InputMethod_RequestKeyboardReason}属性，表示请求键盘输入的原因。
- *     AttachOptions中的ShowKeyboard属性在此接口中始终为true，无需额外关注。
+ *     若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。此接口中只需关注{@link InputMethod_RequestKeyboardReason}属性，表示请
+ * 求键盘输入的原因。AttachOptions中的ShowKeyboard属性在此接口中始终为true，无需额外关注。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
@@ -89,9 +222,22 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
     InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_AttachOptions *options);
 /**
  * @brief 隐藏键盘。调用此函数后，系统将请求输入法应用关闭软键盘界面。
+ *     <br>
+ *     <br>使用场景：当应用需要主动收起键盘时调用此函数，例如编辑框失去焦点、用户完成输入后需要隐藏键盘的场景。
+ *     <br>
+ *     <br>使用后效果：调用成功后，输入法应用将收起软键盘界面；调用失败后，返回对应的错误码。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)创建输出，不可手动销毁。Detach后失效，再调用此函数将返回IME_ERR_DETACHED。
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
+ * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，键盘已请求隐藏。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
@@ -104,17 +250,40 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
 InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
 
 /**
- * @brief 通知文本框选区变化。当输入框内文本内容、光标位置或选中文本发生变化时，通过此接口将变更信息通知给输入法应用，使输入法能够感知编辑框的文本状态。
+ * @brief 通知文本框选区变化。当输入框内文本内容、光标位置或选中文本发生变化时，通过此接口将变更信息通知给输入法应用，使输入法能够
+ * 感知编辑框的文本状态。
+ *     <br>
+ *     <br>使用场景：当编辑框中的文本内容被修改、光标位置发生移动、或用户选中文本发生变化时调用此函数，确保输入法应用与编辑框的文
+ * 本状态保持同步。
+ *     <br>
+ *     <br>使用后效果：调用成功后，输入法应用将接收到选区变更信息，并据此更新输入法内部状态（如候选词、联想等）；调用失败后，返回
+ * 对应的错误码。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)创建输出，不可手动销毁。Detach后失效。
+ *     <br>
+ *     <br>内存管理：text参数为输入指针，由调用者分配内存，函数内部仅读取该数据，不会修改或释放。调用者负责text数组内存的生命周期
+ * 管理。
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
+ * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
  * @param text The whole input text.
- * @param length 输入参数，text参数的字符数量（单位：char16_t字符个数）。取值范围：大于0且不超过8192。超过8192将返回IME_ERR_PARAMCHECK错误码。
- * @param start 输入参数，所选文本的起始位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于0且小于等于end。取值原则：start应小于等于end，且不超过text的实际长度。
- * @param end 输入参数，所选文本的结束位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于start且小于等于text的实际长度。取值原则：当无选中文本时，start与end相等，表示光标位置。
+ * @param length 输入参数，text参数的字符数量（单位：char16_t字符个数）。取值范围：大于0且不超过8192。超过8192将返回
+ * IME_ERR_PARAMCHECK错误码。
+ * @param start 输入参数，所选文本的起始位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于0且小于等于end。取值原则：start
+ * 应小于等于end，且不超过text的实际长度。
+ * @param end 输入参数，所选文本的结束位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于start且小于等于text的实际长度。取
+ * 值原则：当无选中文本时，start与end相等，表示光标位置。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是length超过8K限制、start/end范围不合法等，请检查参数值是否在有效范围内。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是length超过8K限制、start/end范围不合法等，请检查参数值是否在有效范围
+ * 内。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
@@ -126,14 +295,30 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
     InputMethod_InputMethodProxy *inputMethodProxy, char16_t text[], size_t length, int start, int end);
 
 /**
- * @brief 通知输入框配置变化。当编辑框的回车键类型或输入类型发生变化时，通过此接口将新的配置信息通知给输入法应用，使输入法能够调整键盘布局和输入行为。
+ * @brief 通知输入框配置变化。当编辑框的回车键类型或输入类型发生变化时，通过此接口将新的配置信息通知给输入法应用，使输入法能够调整
+ * 键盘布局和输入行为。
+ *     <br>
+ *     <br>使用场景：当编辑框的输入类型（如从文本模式切换为数字模式）或回车键类型（如从"完成"切换为"搜索"）发生变化时调用此函数。
+ *     <br>
+ *     <br>使用后效果：调用成功后，输入法应用将根据新的配置调整键盘布局和回车键显示；调用失败后，返回对应的错误码。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)创建输出，不可手动销毁。Detach后失效。
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param enterKey 输入参数，回车键类型。取值范围：{@link InputMethod_EnterKeyType}枚举值，如IME_ENTER_KEY_UNSPECIFIED、IME_ENTER_KEY_GO、
- *     IME_ENTER_KEY_SEARCH等。使用后效果：输入法将据此调整回车键的显示标签和功能。
- * @param textType 输入参数，输入框类型。取值范围：{@link InputMethod_TextInputType}枚举值，如IME_TEXT_INPUT_TYPE_UNSPECIFIED、
- *     IME_TEXT_INPUT_TYPE_TEXT、IME_TEXT_INPUT_TYPE_NUMBER等。使用后效果：输入法将据此切换键盘布局（如数字键盘、文本键盘等）。
+ *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
+ * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ * @param enterKey 输入参数，回车键类型。取值范围：{@link InputMethod_EnterKeyType}枚举值，如IME_ENTER_KEY_UNSPECIFIED、
+ * IME_ENTER_KEY_GO、IME_ENTER_KEY_SEARCH等。使用后效果：输入法将据此调整回车键的显示标签和功能。
+ * @param textType 输入参数，输入框类型。取值范围：{@link InputMethod_TextInputType}枚举值，如
+ * IME_TEXT_INPUT_TYPE_UNSPECIFIED、
+ *     IME_TEXT_INPUT_TYPE_TEXT、IME_TEXT_INPUT_TYPE_NUMBER等。使用后效果：输入法将据此切换键盘布局（如数字键盘、文本键盘
+ * 等）。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
  *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是enterKey或textType值不合法，请检查枚举值是否在有效范围内。
@@ -148,13 +333,30 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_
     InputMethod_EnterKeyType enterKey, InputMethod_TextInputType textType);
 
 /**
- * @brief 通知光标位置变化。当编辑框中光标位置发生变化时，通过此接口将新的光标信息通知给输入法应用，使输入法能够根据光标位置调整候选词窗口的显示位置。
+ * @brief 通知光标位置变化。当编辑框中光标位置发生变化时，通过此接口将新的光标信息通知给输入法应用，使输入法能够根据光标位置调整候
+ * 选词窗口的显示位置。
+ *     <br>
+ *     <br>使用场景：当编辑框中光标位置发生移动时调用此函数，例如用户点击编辑框中不同位置、代码主动移动光标等场景。
+ *     <br>
+ *     <br>使用后效果：调用成功后，输入法应用将接收到新的光标信息，并据此调整候选词窗口的定位；调用失败后，返回对应的错误码。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例。cursorInfo需先通过[OH_CursorInfo_Create]
+ * (capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_create)创建并设置相关属性。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由Attach创建输出，不可手动销毁，Detach后失效。cursorInfo的生命周期由调用者管理，使用完
+ * 毕后需调用[OH_CursorInfo_Destroy](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_destroy)销毁。
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param cursorInfo 输入指针，指向{@link InputMethod_CursorInfo}实例的指针，表示光标信息。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。
- *     cursorInfo由调用者通过{@link OH_CursorInfo_Create}创建，函数仅读取其内部数据，不会修改或释放。使用完毕后调用者需调用{@link OH_CursorInfo_Destroy}
- *     释放cursorInfo。
+ *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。
+ * Detach后该指针失效。
+ * @param cursorInfo 输入指针，指向{@link InputMethod_CursorInfo}实例的指针，表示光标信息。该指针不可为NULL，若传入NULL指针将
+ * 返回IME_ERR_NULL_POINTER错误码。
+ *     cursorInfo由调用者通过[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)创建，函数仅读取其内部数据，不会修改或释放。使用完毕后调用者需调用
+ * {@link OH_CursorInfo_Destroy}释放cursorInfo。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
  *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是cursorInfo内部数据不合法，请检查光标信息参数。
@@ -170,10 +372,32 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
 
 /**
  * @brief 发送私有数据命令。应用通过此接口向输入法应用发送自定义的私有命令数据，用于实现应用与输入法之间的私有通信协议。
+ *     <br>
+ *     <br>使用场景：当应用需要向输入法应用传递自定义的私有数据（如业务特定的指令、配置参数等）时调用此函数，适用于应用与输入法之
+ * 间有私有通信协议的场景。
+ *     <br>
+ *     <br>使用后效果：调用成功后，输入法应用将通过[OH_TextEditorProxy_ReceivePrivateCommandFunc]
+ * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_receiveprivatecommandfunc)回调接收到私有命令数据；调用
+ * 失败后，返回对应的错误码。
+ *     <br>
+ *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。
+ *     <br>
+ *     <br>生命周期管理：inputMethodProxy由Attach创建输出，不可手动销毁，Detach后失效。privateCommand数组中每个元素的生命周期
+ * 由调用者管理，使用完毕后需调用[OH_PrivateCommand_Destroy](capi-inputmethod-private-command-capi-h.
+ * md#oh_privatecommand_destroy)逐个销毁。
+ *     <br>
+ *     <br>性能建议：privateCommand数组最多包含5个命令对象（size最大为5），超出此限制将返回IME_ERR_PARAMCHECK。单个命令对象最大
+ * 大小为32KB，超出限制可能导致数据传输失败。
+ *     <br>
+ *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param privateCommand The private commands, which is defined in {@link InputMethod_PrivateCommand}. Max size 32KB.
+ *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
+ * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ * @param privateCommand 输入指针，私有命令数组，每个元素为指向InputMethod_PrivateCommand实例的指针。由调用者创建并分配内存，
+ * 函数仅读取数据。该指针不可为NULL。单个命令对象最大大小为32KB（包含key和value的总大小），超出可能导致传输失败。数组最大长度为5
+ * （即size参数最大为5）。
  * @param size 输入参数，私有命令数组的元素个数。取值范围：大于0且不超过5。超过5将返回IME_ERR_PARAMCHECK错误码。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，私有命令已发送。
