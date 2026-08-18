@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,21 +17,21 @@
  * @addtogroup input
  * @{
  *
- * @brief Provides the C interface in the multi-modal input domain.
+ * @brief 提供多模态输入域的C接口，支持触控、按键、鼠标等多种输入设备的事件处理，统一接入多设备，提升开发效率与应用交互体验。
  *
  * @since 12
  */
 
 /**
- * @file oh_axis_type.h
  *
- * @brief Defines the device axis event struct and enumerates device axis events. The axis type defines the physical
- * behavior characteristics of an input device in different interaction scenarios. The system uses the axis type to
- * distinguish and transmit different gesture interaction information.
+ * @brief 输入设备的轴事件结构和枚举，轴类型定义了输入设备在不同交互场景下的物理行为特征，系统通过轴类型来区分和传递不同的手势交互信息。
+ *
+ * @file oh_axis_type.h
+ * @include <multimodalinput/oh_axis_type.h>
  *
  * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @library liboh_input.so
+ * @library libohinput.so
  * @since 12
  */
 
@@ -49,31 +49,31 @@ extern "C" {
  */
 typedef enum InputEvent_AxisType {
     /**
-     * 未知轴类型，通常作为初始值。
+     * @brief 未知轴类型，通常作为初始值。
      * @since 12
      */
     AXIS_TYPE_UNKNOWN = 0,
 
     /**
-     * 垂直滚动轴，当您滚动鼠标滚轮或在触控板上进行单指或双指滑动时，垂直滚动轴的状态改变。
+     * @brief 垂直滚动轴，当您滚动鼠标滚轮或在触控板上进行单指或双指滑动时，垂直滚动轴的状态改变。
      * @since 12
      */
     AXIS_TYPE_SCROLL_VERTICAL = 1,
 
     /**
-     * 水平滚动轴，当您滚动鼠标滚轮或在触控板上进行双指滑动时，水平滚动轴的状态发生变化。
+     * @brief 水平滚动轴，当您滚动鼠标滚轮或在触控板上进行双指滑动时，水平滚动轴的状态发生变化。
      * @since 12
      */
     AXIS_TYPE_SCROLL_HORIZONTAL = 2,
 
     /**
-     * 捏合轴，用于描述触控板上的双指捏合手势。
+     * @brief 捏合轴，用于描述触控板上的双指捏合手势。
      * @since 12
      */
     AXIS_TYPE_PINCH = 3,
 
     /**
-     * 旋转轴，用于描述触控板上的双指旋转手势。
+     * @brief 旋转轴，用于描述触控板上的双指旋转手势。
      * @since 12
      */
     AXIS_TYPE_ROTATE = 4
@@ -107,25 +107,25 @@ typedef enum InputEvent_AxisEventType {
  */
 typedef enum InputEvent_AxisAction {
     /**
-     * 轴事件取消。
+     * @brief 轴事件取消。
      * @since 12
      */
     AXIS_ACTION_CANCEL = 0,
 
     /**
-     * 轴事件开始。
+     * @brief 轴事件开始。
      * @since 12
      */
     AXIS_ACTION_BEGIN = 1,
 
     /**
-     * 轴事件更新。
+     * @brief 轴事件更新。
      * @since 12
      */
     AXIS_ACTION_UPDATE = 2,
 
     /**
-     * 轴事件结束。
+     * @brief 轴事件结束。
      * @since 12
      */
     AXIS_ACTION_END = 3
@@ -135,5 +135,4 @@ typedef enum InputEvent_AxisAction {
 }
 #endif
 #endif
-
 /** @} */
