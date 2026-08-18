@@ -49,7 +49,7 @@ extern "C" {
 #endif
 
 /**
- * @brief 提供OH_NativeColorSpaceManager结构体声明。
+ * @brief 声明色域管理对象，提供获取色域基础属性的能力。
  *
  * @since 20
  */

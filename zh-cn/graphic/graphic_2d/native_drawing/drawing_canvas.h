@@ -84,10 +84,10 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void);
 /**
  * @brief 用于将一个像素图对象绑定到画布中，使得画布绘制的内容输出到像素图中（即CPU渲染）。绑定像素图对象后的画布为非录制类型画布。
  * <br>像素图对象应该在调用{@link OH_Drawing_CanvasDestroy}销毁画布对象之后，
- * 再调用{@link OH_Drawing_PixelMapDissolve}解除绑定。
+ * 再调用{@link drawing_pixel_map.h#OH_Drawing_PixelMapDissolve}解除绑定。
  *
  * @param pixelMap 指向像素图{@link OH_Drawing_PixelMap}的指针。
- * 像素图对象应该在销毁画布对象之后调用{@link OH_Drawing_PixelMapDissolve}解除绑定。
+ * 像素图对象应该在销毁画布对象之后调用{@link drawing_pixel_map.h#OH_Drawing_PixelMapDissolve}解除绑定。
  * @return 函数会返回一个指针，指针指向创建的画布对象{@link OH_Drawing_Canvas}，如果对象返回为NULL，则创建失败，原因可能是可用内存不足或者像素图对象为空。
  * @since 20
  * @version 1.0
@@ -610,6 +610,36 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacterWithFeatures(OH_Drawing
 void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_TextBlob* textBlob, float x, float y);
 
 /**
+ * @brief 绘制具有指定字体的字形数组。如果字形计数小于或等于0，则不绘制任何内容。
+ *
+ * @param canvas 指向OH_Drawing_Canvas对象的指针。
+ * @param glyphIds 字形ID的数组。
+ * @param glyphIdCount 字形ID数组的大小，需小于等于数组真实大小，且需大于等于glyphIdOffset与glyphCount之和，超过数组长度无法校验，会导致绘制异常或卡顿。
+ * @param glyphIdOffset 在字形ID数组绘制前要跳过的元素数量。
+ *     <br>若glyphCount为n，跳过长度为m，则有效glyphIds数组范围为[glyphIds[m], glyphIds[m+n])的部分。
+ * @param positions 位置数组。
+ * @param positionCount 位置数组的大小，需小于等于数组真实大小，且需大于等于positionOffset与glyphCount之和，超过数组长度无法校验，会导致绘制异常或卡顿。
+ * @param positionOffset 在位置数组绘制之前要跳过的元素数量。
+ *     <br>若glyphCount为n，跳过长度为m，则有效positions数组范围为[positions[m], positions[m+n])的部分。
+ * @param glyphCount 要绘制的字形的数量。如果数量小于或等于0，则不绘制任何内容并返回错误码OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+ *     <br>如果glyphCount与glyphIdOffset的和，或者glyphCount与positionOffset的和大于0x7FFFFFFF，则该计算结果按0x7FFFFFFF处理。
+ * @param font 指向字型对象{@link OH_Drawing_Font}的指针。
+ * @return 返回OH_DRAWING_SUCCESS表示操作成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，可能原因：canvas、glyphIds、positions和font中的任何一个为NULL。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，可能原因如下：
+ *     <br>- glyphIdOffset或positionOffset小于0；
+ *     <br>- glyphIdCount小于glyphIdOffset + glyphCount；
+ *     <br>- positionCount小于positionOffset + glyphCount；
+ *     <br>- glyphIdOffset小于0；
+ *     <br>- positionOffset小于0；
+ *     <br>- glyphCount小于或等于0。
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawGlyphs(const OH_Drawing_Canvas *canvas, const int *glyphIds,
+    int glyphIdCount, int glyphIdOffset, const OH_Drawing_Point2D *positions, int positionCount,
+    int positionOffset, int glyphCount, const OH_Drawing_Font *font);
+
+/**
  * @brief 画布裁剪方式的枚举集合。
  *
  * @since 11
@@ -776,7 +806,7 @@ int32_t OH_Drawing_CanvasGetHeight(OH_Drawing_Canvas* canvas);
  * <br>canvas、rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针。
- * @param rect 指向矩形对象{@link OH_Drawing_Rect}的指针，开发者可调用{@link OH_Drawing_RectCreate}接口创建。
+ * @param rect 指向矩形对象{@link OH_Drawing_Rect}的指针，开发者可调用{@link drawing_rect.h#OH_Drawing_RectCreate}接口创建。
  * @since 12
  * @version 1.0
  */
@@ -788,7 +818,8 @@ void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_R
  * <br>canvas、matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针。
- * @param matrix 指向矩阵对象{@link OH_Drawing_Matrix}的指针，开发者可调用{@link OH_Drawing_MatrixCreate}接口创建。
+ * @param matrix 指向矩阵对象{@link OH_Drawing_Matrix}的指针，
+ * 开发者可调用{@link drawing_matrix.h#OH_Drawing_MatrixCreate}接口创建。
  * @since 12
  * @version 1.0
  */
@@ -874,7 +905,8 @@ void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color);
  * <br>canvas、matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针。
- * @param matrix 指向矩阵对象{@link OH_Drawing_Matrix}的指针，开发者可调用{@link OH_Drawing_MatrixCreate}接口创建。
+ * @param matrix 指向矩阵对象{@link OH_Drawing_Matrix}的指针，
+ * 开发者可调用{@link drawing_matrix.h#OH_Drawing_MatrixCreate}接口创建。
  * @since 12
  * @version 1.0
  */
@@ -1059,8 +1091,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, O
 
 /**
  * @brief 用于绘制录制指令对象，支持嵌套。
- * <br>本接口支持{@link OH_Drawing_RecordCmdUtilsBeginRecording}接口生成的画布对象作为入参，嵌套调用。不建议多层嵌套，
- * 会影响性能。
+ * <br>本接口支持{@link drawing_record_cmd.h#OH_Drawing_RecordCmdUtilsBeginRecording}接口生成的画布对象作为入参，嵌套调用。
+ * 不建议多层嵌套，会影响性能。
  *
  * @param canvas 指向画布对象{@link OH_Drawing_Canvas}的指针，仅支持录制类型画布。
  * @param recordCmd 指向录制指令对象{@link OH_Drawing_RecordCmd}的指针。

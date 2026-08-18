@@ -81,7 +81,7 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t 
  *
  * @param text 指向文本的指针。
  * @param byteLength 文本的字节长度。
- * @param point2D 二维点OH_Drawing_Point2D数组首地址，数组个数由{@link OH_Drawing_FontCountText}的计算结果决定。
+ * @param point2D 二维点OH_Drawing_Point2D数组首地址，数组个数由{@link drawing_font.h#OH_Drawing_FontCountText}的计算结果决定。
  * @param font 指向字体对象OH_Drawing_Font的指针。
  * @param textEncoding 文本编码类型OH_Drawing_TextEncoding。
  * @return 函数返回一个指针，指针指向创建的文本对象OH_Drawing_TextBlob。
@@ -132,7 +132,7 @@ void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect
 uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob* textBlob);
 
 /**
- * @brief 结构体用于描述一块内存，描述文字和位置信息。
+ * @brief 结构体用于描述一块内存，该内存用于存储文字和位置信息。
  *
  * @since 11
  * @version 1.0
