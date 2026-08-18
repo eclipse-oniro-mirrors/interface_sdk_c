@@ -25,7 +25,7 @@
 /**
  * @file native_gesture.h
  *
- * @brief Provides type definitions for <b>NativeGesture</b> APIs.
+ * @brief Declares the APIs of **NativeGesture**.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -52,14 +52,14 @@ extern "C" {
 typedef struct ArkUI_GestureRecognizer ArkUI_GestureRecognizer;
 
 /**
- * @brief Defines the gesture interruption information.
+ * @brief Defines gesture interruption information.
  *
  * @since 12
  */
 typedef struct ArkUI_GestureInterruptInfo ArkUI_GestureInterruptInfo;
 
 /**
- * @brief Defines the gesture event.
+ * @brief Defines a gesture event.
  *
  * @since 12
  */
@@ -71,23 +71,30 @@ typedef struct ArkUI_GestureEvent ArkUI_GestureEvent;
  * @since 12
  */
 typedef enum {
-    /** Triggered. */
+    /**
+     * Triggered.
+     */
     GESTURE_EVENT_ACTION_ACCEPT = 0x01,
 
-    /** Updated. */
+    /**
+     * Updated.
+     */
     GESTURE_EVENT_ACTION_UPDATE = 0x02,
 
-    /** Ended. */
+    /**
+     * Ended.
+     */
     GESTURE_EVENT_ACTION_END = 0x04,
 
-    /** Canceled. */
+    /**
+     * Canceled.
+     */
     GESTURE_EVENT_ACTION_CANCEL = 0x08,
 } ArkUI_GestureEventActionType;
 
 /**
- * @brief Defines a set of gesture event types.
- *
- * Example: ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;\n
+ * @brief Defines a set of gesture event types. Example: ArkUI_GestureEventActionTypeMask actions =
+ * GESTURE_EVENT_ACTION_ACCEPT \| GESTURE_EVENT_ACTION_UPDATE
  *
  * @since 12
  */
@@ -99,13 +106,19 @@ typedef uint32_t ArkUI_GestureEventActionTypeMask;
  * @since 12
  */
 typedef enum {
-    /** Normal. */
+    /**
+     * Normal.
+     */
     NORMAL = 0,
 
-    /** High-priority. */
+    /**
+     * High priority.
+     */
     PRIORITY = 1,
 
-    /** Parallel. */
+    /**
+     * Parallel.
+     */
     PARALLEL = 2,
 } ArkUI_GesturePriority;
 
@@ -115,17 +128,23 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Sequential recognition. Gestures are recognized in the registration sequence until all gestures are recognized
-     * successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.
-     * Only the last gesture in the gesture group can respond to the end event. */
+    /**
+     * Sequential recognition. Gestures are recognized in the registration sequence until all gestures are recognized
+     * successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized. Only the
+     * last gesture in the gesture group can respond to the end event.
+     */
     SEQUENTIAL_GROUP = 0,
 
-    /** Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized.
-      * The recognition result of each gesture does not affect each other. */
+    /**
+     * Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The
+     * recognition result of each gesture does not affect each other.
+     */
     PARALLEL_GROUP = 1,
 
-    /** Exclusive recognition. Registered gestures are identified concurrently.
-      * If one gesture is successfully recognized, gesture recognition ends. */
+    /**
+     * Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully
+     * recognized, gesture recognition ends.
+     */
     EXCLUSIVE_GROUP = 2,
 } ArkUI_GroupGestureMode;
 
@@ -135,36 +154,51 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** All directions. */
+    /**
+     * All directions.
+     */
     GESTURE_DIRECTION_ALL = 0b1111,
 
-    /** Horizontal direction. */
+    /**
+     * Horizontal direction.
+     */
     GESTURE_DIRECTION_HORIZONTAL = 0b0011,
 
-    /** Vertical direction. */
+    /**
+     * Vertical direction.
+     */
     GESTURE_DIRECTION_VERTICAL = 0b1100,
 
-    /** Leftward. */
+    /**
+     * Leftward.
+     */
     GESTURE_DIRECTION_LEFT = 0b0001,
 
-    /** Rightward. */
+    /**
+     * Rightward.
+     */
     GESTURE_DIRECTION_RIGHT = 0b0010,
 
-    /** Upward. */
+    /**
+     * Upward.
+     */
     GESTURE_DIRECTION_UP = 0b0100,
 
-    /** Downward. */
+    /**
+     * Downward.
+     */
     GESTURE_DIRECTION_DOWN = 0b1000,
 
-    /** None. */
+    /**
+     * None.
+     */
     GESTURE_DIRECTION_NONE = 0,
 } ArkUI_GestureDirection;
 
 /**
  * @brief Defines a set of gesture directions.
- *
- * Example: ArkUI_GestureDirectionMask directions = GESTURE_DIRECTION_LEFT | GESTURE_DIRECTION_RIGHT \n
- * This example indicates that the leftward and rightward directions are supported. \n
+ * <br>Example: ArkUI_GestureDirectionMask directions = GESTURE_DIRECTION_LEFT \| GESTURE_DIRECTION_RIGHT
+ * <br>This example indicates that the leftward and rightward directions are supported.
  *
  * @since 12
  */
@@ -176,99 +210,70 @@ typedef uint32_t ArkUI_GestureDirectionMask;
  * @since 12
  */
 typedef enum {
-    /** The gestures of child components are enabled and recognized based on the default gesture recognition sequence.*/
+    /**
+     * The gestures of child components are enabled and recognized based on the default gesture recognition sequence.
+     */
     NORMAL_GESTURE_MASK = 0,
 
-    /** The gestures of child components are disabled, including the built-in gestures. */
+    /**
+     * The gestures of child components are disabled, including the built-in gestures.
+     */
     IGNORE_INTERNAL_GESTURE_MASK,
 } ArkUI_GestureMask;
 
 /**
- * @brief Enumerates gesture types.
+ * @brief Enumerates gesture recognizer types.
  *
  * @since 12
  */
 typedef enum {
-    /** Tap. */
+    /**
+     * Tap.
+     */
     TAP_GESTURE = 0,
 
-    /** Long press. */
+    /**
+     * Long press.
+     */
     LONG_PRESS_GESTURE,
 
-    /** Pan. */
+    /**
+     * Pan.
+     */
     PAN_GESTURE,
 
-    /** Pinch. */
+    /**
+     * Pinch.
+     */
     PINCH_GESTURE,
 
-    /** Rotate. */
+    /**
+     * Rotate.
+     */
     ROTATION_GESTURE,
 
-    /** Swipe. */
+    /**
+     * Swipe.
+     */
     SWIPE_GESTURE,
 
-    /** A group of gestures. */
+    /**
+     * A group of gestures.
+     */
     GROUP_GESTURE,
 
     /**
-     * The click gesture registed through onClick.
-     *
+     * Click gesture registered with **onClick**.
      * @since 20
      */
     CLICK_GESTURE,
 
     /**
-     * Drag gesture used for drag and drop.
-     *
+     * Drag-and-drop gesture.
      * @since 20
      */
     DRAG_DROP,
 } ArkUI_GestureRecognizerType;
-
-/**
- * @brief Defines the intervention types for gesture and event collection.
- *
- * @since 26.0.0
- */
-typedef enum {
-    /**
-     * @brief Continues the normal gesture and event collection process. No intervention is performed.
-     * @since 26.0.0
-     */
-    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_CONTINUE = 0,
-
-    /**
-     * @brief Discards all pending low-priority gestures and events. \n
-     * The gestures of the left sibling component and ancestor nodes (parent nodes and above) are discarded. \n
-     * Only the gestures already collected on the current node and higher-priority nodes are retained.
-     * @since 26.0.0
-     */
-    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_LOWER = 1,
-
-    /**
-     * @brief Discards all collected high-priority gestures and events. \n
-     * The gestures of the right sibling component and the current node are discarded. \n
-     * Continues processing the collection flow for lower-priority gestures (left sibling and ancestor nodes).
-     * @since 26.0.0
-     */
-    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_HIGHER = 2,
-
-    /**
-     * @brief Discards the gestures and events of the current node. \n
-     * The gestures and events of the current node are excluded from the gesture tree. \n
-     * The gestures of the sibling components (left and right) and the ancestor node are still collected.
-     * @since 26.0.0
-     */
-    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_SELF = 3,
-
-    /**
-     * @brief Discards the gestures and events to be collected from the left sibling component. \n
-     * The gestures and events of the current node and the right sibling component are retained. \n
-     * Continues the collection flow for the parent and ancestor nodes.
-     * @since 26.0.0
-     */
-    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_LOWER_PRIORITY_SIBLINGS = 4,
-} OH_ArkUI_GestureCollectIntervention;
 
 /**
  * @brief Enumerates gesture interruption results.
@@ -276,10 +281,14 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The gesture recognition process continues. */
+    /**
+     * The gesture recognition process continues.
+     */
     GESTURE_INTERRUPT_RESULT_CONTINUE = 0,
 
-    /** The gesture recognition process is paused. */
+    /**
+     * The gesture recognition process is paused.
+     */
     GESTURE_INTERRUPT_RESULT_REJECT,
 } ArkUI_GestureInterruptResult;
 
@@ -289,24 +298,87 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Ready. */
+    /**
+     * Ready.
+     */
     ARKUI_GESTURE_RECOGNIZER_STATE_READY = 0,
 
-    /** Detecting. */
+    /**
+     * Detecting.
+     */
     ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING = 1,
 
-    /** Pending. */
+    /**
+     * Pending.
+     */
     ARKUI_GESTURE_RECOGNIZER_STATE_PENDING = 2,
 
-    /** Blocked. */
+    /**
+     * Blocked.
+     */
     ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED = 3,
 
-    /** Successful. */
+    /**
+     * Successful.
+     */
     ARKUI_GESTURE_RECOGNIZER_STATE_SUCCESSFUL = 4,
 
-    /** Failed. */
+    /**
+     * Failed.
+     */
     ARKUI_GESTURE_RECOGNIZER_STATE_FAILED = 5,
 } ArkUI_GestureRecognizerState;
+
+/**
+ * @brief Defines the intervention types for gesture and event collection.
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * @brief Continues the normal gesture and event collection flow. No intervention is performed.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_CONTINUE = 0,
+
+    /**
+     * @brief Discards all low-priority gestures and events to be collected.
+     * <br>The gestures of the left sibling node and ancestor nodes (parent nodes and above) are discarded.
+     * <br>Only the gestures already collected on the current node and higher-priority nodes are retained.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_LOWER = 1,
+
+    /**
+     * @brief Discards all collected high-priority gestures and events.
+     * <br>The gestures of the right sibling node and the current node are discarded.
+     * <br>Continues processing the collection flow for lower-priority gestures (left sibling and ancestor nodes).
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_HIGHER = 2,
+
+    /**
+     * @brief Discards the gestures and events of the current node.
+     * <br>The gestures and events of the current node are excluded from the gesture tree.
+     * <br>The gestures of the sibling nodes (left and right) and the ancestor nodes are still collected.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_SELF = 3,
+
+    /**
+     * @brief Discards the gestures and events to be collected from the left sibling node.
+     * <br>The gestures and events of the current node and the collected gestures and events of the right sibling node
+     * are retained.
+     * <br>Continues processing the collection flow for the parent and ancestor nodes.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_GESTURE_COLLECT_INTERVENTION_DISCARD_LOWER_PRIORITY_SIBLINGS = 4,
+} OH_ArkUI_GestureCollectIntervention;
 
 /**
  * @brief Defines the gesture recognizer handle.
@@ -323,7 +395,7 @@ typedef ArkUI_GestureRecognizer* ArkUI_GestureRecognizerHandle;
 typedef ArkUI_GestureRecognizerHandle* ArkUI_GestureRecognizerHandleArray;
 
 /**
- * @brief Defines a <b>GestureEventTargetInfo</b> object that provides information about a gesture event target.
+ * @brief Defines gesture event target information.
  *
  * @since 12
  */
@@ -337,8 +409,8 @@ typedef struct ArkUI_GestureEventTargetInfo ArkUI_GestureEventTargetInfo;
 typedef struct ArkUI_ParallelInnerGestureEvent ArkUI_ParallelInnerGestureEvent;
 
 /**
- * @brief Defines the parallel gesture event. \n
- * used for the callback {@link setGestureParallelTo} of the parallel gesture event.
+ * @brief Defines a parallel gesture event. This struct is used by the callback function {@link setGestureParallelTo}
+ * for the parallel gesture event.
  *
  * @since 26.0.0
  */
@@ -368,621 +440,632 @@ typedef ArkUI_TouchRecognizerHandle* ArkUI_TouchRecognizerHandleArray;
 /**
  * @brief Defines a callback function for notifying gesture recognizer destruction.
  *
- * @param recognizer Indicates the pointer to a gesture recognizer.
- * @param userData Indicates the custom data.
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param userData Pointer to user-defined data.
  * @since 12
  */
 typedef void (*ArkUI_GestureRecognizerDisposeNotifyCallback)(ArkUI_GestureRecognizer* recognizer, void* userData);
 
 /**
-* @brief Checks whether a gesture is a built-in gesture of the component.
-*
-* @param event Indicates the pointer to the gesture interruption information.
-* @return Returns <b>true</b> if the gesture is a built-in gesture; returns <b>false</b> otherwise.
+ * @brief Checks whether a gesture is a built-in gesture of the component.
+ *
+ * @param event Indicates the pointer to the gesture interruption information.
+ * @return Returns <b>true</b> if the gesture is a built-in gesture; returns <b>false</b> otherwise.
 
-* @since 12
-*/
+ * @since 12
+ */
 bool OH_ArkUI_GestureInterruptInfo_GetSystemFlag(const ArkUI_GestureInterruptInfo* event);
 
 /**
-* @brief Obtains the pointer to interrupted gesture recognizer.
-*
-* @param event Indicates the pointer to the gesture interruption information.
-* @return Returns the pointer to interrupted gesture recognizer.
-* @since 12
-*/
+ * @brief Obtains the pointer to the interrupted gesture recognizer.
+ *
+ * @param event Pointer to the gesture interruption callback event.
+ * @return Pointer to the interrupted gesture recognizer.
+ * @since 12
+ */
 ArkUI_GestureRecognizer* OH_ArkUI_GestureInterruptInfo_GetRecognizer(const ArkUI_GestureInterruptInfo* event);
 
 /**
-* @brief Obtains the pointer to the interrupted gesture event.
-*
-* @param event Indicates the pointer to the gesture interruption information.
-* @return Returns the pointer to the interrupted gesture event.
-* @since 12
-*/
+ * @brief Obtains the pointer to the interrupted gesture event.
+ *
+ * @param event Pointer to the gesture interruption callback event.
+ * @return Pointer to the interrupted gesture event.
+ * @since 12
+ */
 ArkUI_GestureEvent* OH_ArkUI_GestureInterruptInfo_GetGestureEvent(const ArkUI_GestureInterruptInfo* event);
 
 /**
-* @brief Obtains the type of the system gesture to trigger.
-*
-* @param event Indicates the pointer to the gesture interruption information.
-* @return Returns the type of the system gesture to trigger. If the gesture to trigger is not a system gesture,
-*         <b>-1</b> is returned.
-* @since 12
-*/
+ * @brief Obtains the type of the system built-in gesture to trigger.
+ *
+ * @param event Pointer to the gesture interruption callback event.
+ * @return Type of the system built-in gesture to trigger. The value is defined in {@link ArkUI_GestureRecognizerType}.
+ *     If the triggered gesture is not a built-in gesture, **-1** is returned.
+ * @since 12
+ */
 int32_t OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(const ArkUI_GestureInterruptInfo* event);
 
 /**
-* @brief Get the touch recognizer handles from the gesture interrupt info.
-*
-* @param info Indicates the pointer to a gesture interrupt info.
-* @param recognizers Indicates the pointer to an array of touch recognizer handles.
-* @param size Indicates the size of recognizers.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 15
-*/
+ * @brief Obtains touch recognizers from gesture interruption information.
+ *
+ * @param info Pointer to the gesture interruption information.
+ * @param recognizers Pointer to the touch recognizer handle array.
+ * @param size Pointer to the size of the touch recognizer array.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
 int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInterruptInfo* info,
     ArkUI_TouchRecognizerHandleArray* recognizers, int32_t* size);
 
 /**
-* @brief Get component object of the specific touch recognizer.
-*
-* @param recognizer Indicates the pointer to the TouchRecognizer.
-* @return Get component object of the specific touch recognizer.
-* @since 15
-*/
+ * @brief Obtains the component handle corresponding to a touch recognizer.
+ *
+ * @param recognizer Handle to the touch recognizer.
+ * @return Component handle corresponding to the touch recognizer.
+ * @since 15
+ */
 ArkUI_NodeHandle OH_ArkUI_TouchRecognizer_GetNodeHandle(const ArkUI_TouchRecognizerHandle recognizer);
 
 /**
-* @brief Send touch-cancel event to the touch recognizer in a gesture interruption callback.
-*
-* @param recognizer Indicates the touch recognizer handle.
-* @param info Indicates the pointer to a gesture interrupt info.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 15
-*/
+ * @brief Sends a cancel touch event to a touch recognizer in a gesture interruption callback.
+ *
+ * @param recognizer Handle to the touch recognizer.
+ * @param info Pointer to the gesture interruption information.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
 int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo* info);
 
 /**
-* @brief Obtains the gesture event type.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the gesture event type.
-* @since 12
-*/
+ * @brief Obtains the gesture event type.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Type of the gesture event.
+ * @since 12
+ */
 ArkUI_GestureEventActionType OH_ArkUI_GestureEvent_GetActionType(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains gesture input.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the pointer to the input event of the gesture event.
-* @since 12
-*/
+ * @brief Obtains gesture input.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Pointer to the input event of the gesture event.
+ * @since 12
+ */
 const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the number of times that a long press gesture is triggered periodically.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the number of times that the long press gesture is triggered periodically.
-* @since 12
-*/
+ * @brief Checks whether the event is a repeated trigger event.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Whether the event is a repeated trigger event. The value **1** means that the event is a repeated trigger
+ *     event, and **0** means the opposite.
+ * @since 12
+ */
 int32_t OH_ArkUI_LongPress_GetRepeatCount(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the velocity of a pan gesture along the main axis.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the velocity of the pan gesture along the main axis, in px/s.
-*         The value is the square root of the sum of the squares of the velocity on the x-axis and y-axis.
-* @since 12
-*/
+ * @brief Obtains the velocity of a pan gesture along the main axis.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Velocity of the pan gesture along the main axis, in px/s. The value is the square root of the sum of the
+ *     squares of the velocity on the x-axis and y-axis.
+ * @since 12
+ */
 float OH_ArkUI_PanGesture_GetVelocity(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the velocity of a pan gesture along the x-axis.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the velocity of the pan gesture along the x-axis, in px/s.
-* @since 12
-*/
+ * @brief Obtains the velocity of a pan gesture along the x-axis.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Velocity of the pan gesture along the x-axis, in px/s.
+ * @since 12
+ */
 float OH_ArkUI_PanGesture_GetVelocityX(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the velocity of a pan gesture along the y-axis.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the velocity of the pan gesture along the y-axis, in px/s.
-* @since 12
-*/
+ * @brief Obtains the velocity of a pan gesture along the y-axis.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Velocity of the pan gesture along the y-axis, in px/s.
+ * @since 12
+ */
 float OH_ArkUI_PanGesture_GetVelocityY(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the relative offset of a pan gesture along the x-axis.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the relative offset of the gesture along the x-axis, in px.
-* @since 12
-*/
+ * @brief Obtains the relative offset of a pan gesture along the x-axis.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Relative offset of the gesture along the x-axis, in px.
+ * @since 12
+ */
 float OH_ArkUI_PanGesture_GetOffsetX(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the relative offset of a pan gesture along the y-axis.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the relative offset of the gesture along the y-axis, in px.
-* @since 12
-*/
+ * @brief Obtains the relative offset of a pan gesture along the y-axis.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Relative offset of the gesture along the y-axis, in px.
+ * @since 12
+ */
 float OH_ArkUI_PanGesture_GetOffsetY(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the angle information of the swipe gesture.
-*
-* After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line.
-* As the fingers swipe, the line between the fingers rotates. \n
-* Based on the coordinates of the initial line's and current line's end points, the arc tangent function is used to
-* calculate the respective included angle of the points relative to the horizontal direction \n
-* by using the following formula: Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1). \n
-* The initial line is used as the coordinate system. Values from 0 to 180 degrees represent clockwise rotation,
-* while values from –180 to 0 degrees represent counterclockwise rotation. \n
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the angle of the swipe gesture, which is the result obtained based on the aforementioned formula.
-* @since 12
-*/
+ * @brief Angle of the swipe gesture, that is, the angle between the instantaneous direction of finger sliding and the
+ * positive horizontal direction. The unit is deg.
+ * With the positive horizontal direction as the reference, when the sliding direction is on the clockwise side of the
+ * positive horizontal direction, the angle ranges from 0 to 180 degrees; when on the counterclockwise side, the angle
+ * ranges from 0 to –180 degrees.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Angle of the swipe gesture, which is the result obtained based on the aforementioned formula.
+ * The unit is deg.
+ * @since 12
+ */
 float OH_ArkUI_SwipeGesture_GetAngle(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the average velocity of all fingers used in the swipe gesture.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the average velocity of all fingers used in the swipe gesture, in px/s.
-* @since 12
-*/
+ * @brief Obtains the average velocity of all fingers used in the swipe gesture.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Average velocity of all fingers used in the swipe gesture, in px/s.
+ * @since 12
+ */
 float OH_ArkUI_SwipeGesture_GetVelocity(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the angle information of a rotation gesture.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the rotation angle.
-* @since 12
-*/
+ * @brief Obtains the angle information of a rotation gesture.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Rotation angle. The unit is deg.
+ * @since 12
+ */
 float OH_ArkUI_RotationGesture_GetAngle(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the scale ratio of a pinch gesture.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the scale ratio.
-* @since 12
-*/
+ * @brief Obtains the scale ratio of a pinch gesture.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Scale factor.
+ * @since 12
+ */
 float OH_ArkUI_PinchGesture_GetScale(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the X coordinate of the center of the pinch gesture, in vp,
-* relative to the upper left corner of the current component.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the X coordinate of the center of the pinch gesture, in vp,
-* relative to the upper left corner of the current component.
-* @since 12
-*/
+ * @brief Obtains the x-coordinate of the center of the pinch gesture, in vp, relative to the upper left corner of the
+ * current component.
+ *
+ * @param event Pointer to the gesture event.
+ * @return X-coordinate of the center of the pinch gesture, in px, relative to the upper left corner of the current
+ *     component.
+ * @since 12
+ */
 float OH_ArkUI_PinchGesture_GetCenterX(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains the Y coordinate of the center of the pinch gesture, in vp,
-* relative to the upper left corner of the current component.
-*
-* @param event Indicates the pointer to the gesture event.
-* @return Returns the Y coordinate of the center of the pinch gesture, in vp,
-* relative to the upper left corner of the current component.
-* @since 12
-*/
+ * @brief Obtains the y-coordinate of the center of the pinch gesture, in vp, relative to the upper left corner of the
+ * current component.
+ *
+ * @param event Pointer to the gesture event.
+ * @return Y-coordinate of the center of the pinch gesture, in px, relative to the upper left corner of the current
+ *     component.
+ * @since 12
+ */
 float OH_ArkUI_PinchGesture_GetCenterY(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Get the ARKUI component bound to the gesture.
-*
-* @param event gesture event.
-* @return ARKUI component bound to the gesture.If Null is returned, it means event is an invalid value.
-* @since 12
-*/
+ * @brief Obtains the ArkUI component to which the gesture is bound.
+ *
+ * @param event Pointer to the gesture event.
+ * @return ArkUI component to which the gesture is bound. Returns **NULL** if the event is invalid.
+ * @since 12
+ */
 ArkUI_NodeHandle OH_ArkUI_GestureEvent_GetNode(const ArkUI_GestureEvent* event);
 
 /**
-* @brief Obtains information about a gesture response chain.
-*
-* @param event Indicates the pointer to the gesture interruption information.
-* @param responseChain Indicates the pointer to an array of gesture recognizers on the response chain.
-* @param count Indicates the pointer to the number of gesture recognizers on the response chain.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Obtains information about a gesture response chain.
+ *
+ * @param event Pointer to the gesture interruption callback event.
+ * @param responseChain Pointer to an array of gesture recognizer handles on the response chain.
+ * @param count Pointer to the number of gesture recognizer handles on the response chain.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_GetResponseRecognizersFromInterruptInfo(const ArkUI_GestureInterruptInfo* event,
     ArkUI_GestureRecognizerHandleArray* responseChain, int32_t* count);
 
 /**
-* @brief Sets the enabled state of a gesture recognizer.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param enabled Indicates the enabled state.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Sets the enabled state of a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param enabled Enabled state. The value **true** means that the gesture recognizer is enabled, and **false** means
+ *     the opposite.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_SetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer, bool enabled);
 
 /**
-* @brief Sets whether to enable strict finger count checking. If this feature is enabled and the actual number of touch
-*        fingers does not match the set number, the gesture recognition fails.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param limitFingerCount Indicates whether to enable strict finger count checking.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-* @since 15
-*/
+ * @brief Sets whether to enable strict finger count checking. If this feature is enabled and the actual number of touch
+ * fingers does not match the set number, the gesture recognition fails.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param limitFingerCount Whether to enable strict finger count checking.
+ *     <br>**true**: Enforce the exact number of fingers touching the screen.
+ *     <br>**false**: Do not enforce the exact number of fingers touching the screen.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
 int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount(ArkUI_GestureRecognizer* recognizer, bool limitFingerCount);
 
 /**
-* @brief Obtains the enabled state of a gesture recognizer.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @return Returns <b>true</b> if the gesture recognizer is enabled.
-*         Returns <b>false</b> if the gesture recognizer is disabled.
-* @since 12
-*/
+ * @brief Obtains the enabled state of a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @return **true**: enabled.
+ *     <br>**false**: disabled.
+ * @since 12
+ */
 bool OH_ArkUI_GetGestureRecognizerEnabled(ArkUI_GestureRecognizer* recognizer);
 
 /**
-* @brief Obtains the state of a gesture recognizer.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param state Indicates the pointer to the state of the gesture recognizer.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Obtains the state of a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param state Pointer to the state of the gesture recognizer.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_GetGestureRecognizerState(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureRecognizerState* state);
 
 /**
-* @brief Obtains the information about a gesture event target.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param info Indicates the information about a gesture event target.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Obtains the information about a gesture event target.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param info Double pointer to the information about a gesture event target.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_GetGestureEventTargetInfo(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureEventTargetInfo** info);
 
 /**
-* @brief Obtains whether this scroll container is scrolled to the top.
-*
-* @param info Indicates the information about a gesture event target.
-* @param ret Indicates whether the scroll container is scrolled to the top.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-*         Returns {@link ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER} if the component is not a scroll container.
-* @since 12
-*/
+ * @brief Obtains whether this scrollable container component is scrolled to the top.
+ *
+ * @param info Pointer to the information about a gesture event target.
+ * @param ret Pointer to the **ret** parameter indicating whether this scrollable container component is scrolled to the
+ *     top. The value **true** means that the component is scrolled to the top, and **false** means the opposite.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER} if the component is not a scrollable container.
+ * @since 12
+ */
 int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(ArkUI_GestureEventTargetInfo* info, bool* ret);
 
 /**
-* @brief Obtains whether this scroll container is scrolled to the bottom.
-*
-* @param info Indicates the information about a gesture event target.
-* @param ret Indicates whether the scroll container is scrolled to the bottom.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-*         Returns {@link ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER} if the component is not a scroll container.
-* @since 12
-*/
+ * @brief Obtains whether this scrollable container component is scrolled to the bottom.
+ *
+ * @param info Pointer to the information about a gesture event target.
+ * @param ret Pointer to the **ret** parameter indicating whether this scrollable container component is scrolled to the
+ *     bottom. The value **true** means that the component is scrolled to the bottom, and **false** means the opposite.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER} if the component is not a scrollable container.
+ * @since 12
+ */
 int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(ArkUI_GestureEventTargetInfo* info, bool* ret);
 
 /**
-* @brief Obtains the direction of a pan gesture.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param directionMask Indicates the pan direction.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Obtains the direction of a pan gesture.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param directionMask Pointer to the pan direction.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_GetPanGestureDirectionMask(ArkUI_GestureRecognizer* recognizer,
     ArkUI_GestureDirectionMask* directionMask);
 
 /**
-* @brief Obtains whether a gesture is a built-in gesture.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @return Returns <b>true</b> if the gesture is a built-in gesture; returns <b>false</b> otherwise.
-* @since 12
-*/
+ * @brief Obtains whether a gesture is a built-in gesture.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @return **true**: built-in gesture.
+ *     <br>**false**: non-built-in gesture.
+ * @since 12
+ */
 bool OH_ArkUI_IsBuiltInGesture(ArkUI_GestureRecognizer* recognizer);
 
 /**
-* @brief Obtains the tag of a gesture recognizer.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param buffer Indicates the buffer.
-* @param bufferSize Indicates the buffer size.
-* @param result Indicates the length of the string to be written to the buffer.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-*         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the buffer is not large enough.
-* @since 12
-*/
+ * @brief Obtains the tag of a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param buffer Pointer to the output buffer.
+ * @param bufferSize Size of the output buffer.
+ * @param result Pointer to the length of the copied string.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the buffer is not large enough.
+ * @since 12
+ */
 int32_t OH_ArkUI_GetGestureTag(ArkUI_GestureRecognizer* recognizer, char* buffer, int32_t bufferSize, int32_t* result);
 
 /**
-* @brief Obtains the ID of the component linked to a gesture recognizer.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param nodeId Indicates the component ID.
-* @param size Indicates the buffer size.
-* @param result Indicates the length of the string to be written to the buffer.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-*         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the buffer is not large enough.
-* @since 12
-*/
+ * @brief Obtains the ID of the component linked to a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param nodeId Pointer to the component ID.
+ * @param size Size of the output buffer.
+ * @param result Pointer to the length of the copied string.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the buffer is not large enough.
+ * @since 12
+ */
 int32_t OH_ArkUI_GetGestureBindNodeId(ArkUI_GestureRecognizer* recognizer, char* nodeId, int32_t size,
     int32_t* result);
 
 /**
-* @brief Obtains whether a gesture recognizer is valid.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @return Returns <b>true</b> if the gesture recognizer is valid.
-*         Returns <b>false</b> if the gesture recognizer is invalid.
-* @since 12
-*/
+ * @brief Obtains whether a gesture recognizer is valid.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @return **true**: The gesture recognizer is valid.
+ *     <br>**false**: The gesture recognizer is invalid.
+ * @since 12
+ */
 bool OH_ArkUI_IsGestureRecognizerValid(ArkUI_GestureRecognizer* recognizer);
 
 /**
-* @brief Obtains custom data in the parallel internal gesture event.
-*
-* @param event Indicates the pointer to a parallel internal gesture event.
-* @return Returns the pointer to custom data.
-* @since 12
-*/
+ * @brief Obtains custom data in the parallel built-in gesture event.
+ *
+ * @param event Pointer to the parallel built-in gesture event.
+ * @return Pointer to user-defined data.
+ * @since 12
+ */
 void* OH_ArkUI_ParallelInnerGestureEvent_GetUserData(ArkUI_ParallelInnerGestureEvent* event);
 
 /**
-* @brief Obtains the current gesture recognizer in a parallel internal gesture event.
-*
-* @param event Indicates the pointer to a parallel internal gesture event.
-* @return Returns the pointer to the current gesture recognizer.
-* @since 12
-*/
+ * @brief Obtains the current gesture recognizer in a parallel built-in gesture event.
+ *
+ * @param event Pointer to the parallel built-in gesture event.
+ * @return Pointer to the current gesture recognizer.
+ * @since 12
+ */
 ArkUI_GestureRecognizer* OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer(
     ArkUI_ParallelInnerGestureEvent* event);
 
 /**
-* @brief Obtains the conflicting gesture recognizers in a parallel internal gesture event.
-*
-* @param event Indicates the pointer to a parallel internal gesture event.
-* @param array Indicates the pointer to the array of conflicting gesture recognizers.
-* @param size Indicates the size of the array of conflicting gesture recognizers.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Obtains the conflicting gesture recognizers in a parallel built-in gesture event.
+ *
+ * @param event Pointer to the parallel built-in gesture event.
+ * @param array Pointer to the array of conflicting gesture recognizers.
+ * @param size Pointer to the size of the array of conflicting gesture recognizers.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers(ArkUI_ParallelInnerGestureEvent* event,
     ArkUI_GestureRecognizerHandleArray* array, int32_t* size);
 
 /**
-* @brief Sets a callback function for notifying gesture recognizer destruction.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param callback Indicates the callback function for notifying gesture recognizer destruction.
-* @param userData Indicates the custom data.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-* @since 12
-*/
+ * @brief Sets a callback function for notifying gesture recognizer destruction.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param callback Callback function for notifying gesture recognizer destruction.
+ * @param userData Pointer to user-defined data.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
 int32_t OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify(ArkUI_GestureRecognizer* recognizer,
     ArkUI_GestureRecognizerDisposeNotifyCallback callback, void* userData);
 
 /**
-* @brief Obtains the swipe direction of a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param directMask Swipe direction of the gesture recognizer.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-* @since 18
-*/
+ * @brief Obtains the swipe direction of a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param directMask Pointer to the swipe direction of the gesture recognizer.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_DirectMask(
     ArkUI_GestureRecognizer* recognizer, ArkUI_GestureDirectionMask* directMask);
 
 /**
-* @brief Obtains the number of fingers used by a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param finger Number of fingers used by the gesture recognizer.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-* @since 18
-*/
+ * @brief Obtains the number of fingers used by a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param finger Pointer to the number of fingers used by the gesture recognizer.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer, int* finger);
 
 /**
-* @brief Checks whether a gesture recognizer has a finger count limit.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param isLimited Whether the gesture recognizer has a finger count limit.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-* @since 18
-*/
+ * @brief Checks whether a gesture recognizer has a finger count limit.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param isLimited Pointer to the parameter indicating whether the gesture recognizer has a finger count limit.
+ * **true** indicates that the gesture recognizer has a finger count limit.
+ * **false** indicates that the gesture recognizer does not have a finger count limit.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recognizer, bool* isLimited);
 
 /**
-* @brief Checks whether a gesture recognizer supports repeated event callbacks.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param isRepeat Whether the gesture recognizer supports repeated event callbacks.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
-* supported.
-* @since 18
-*/
+ * @brief Checks whether a gesture recognizer continuously triggers event callbacks.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param isRepeat Pointer to the parameter indicating whether the gesture recognizer continuously triggers event
+ *     callbacks. The value **true** means to continuously trigger event callbacks, and false means the opposite.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, bool* isRepeat);
 
 /**
-* @brief Obtains the allowed movement distance range for a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param distance Allowed movement distance range of the gesture recognizer.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
-* supported.
-* @since 18
-*/
+ * @brief Obtains the allowed movement distance range for a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param distance Pointer to the allowed movement distance range of the gesture recognizer. The unit is px.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, double* distance);
 
 /**
-* @brief Obtains the minimum swipe speed recognized by a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param speed Minimum swipe speed recognized by a gesture recognizer.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
-* supported.
-* @since 18
-*/
+ * @brief Obtains the minimum swipe speed recognized by a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param speed Pointer to the minimum swipe speed recognized by the gesture recognizer. The unit is px/s.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, double* speed);
 
 /**
-* @brief Obtains the minimum duration required to trigger a long press by a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param duration Minimum duration for a long press.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
-* supported.
-* @since 18
-*/
+ * @brief Obtains the minimum duration required to trigger a long press by a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param duration Pointer to the minimum duration for a long press. The unit is ms.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, int* duration);
 
 /**
-* @brief Obtains the minimum angle change required for a rotation gesture to be recognized by a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param angle Minimum angle change.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
-* supported.
-* @since 18
-*/
+ * @brief Obtains the minimum angle change required for a rotation gesture to be recognized by a gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param angle Pointer to the minimum angle change. The unit is deg.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, double* angle);
 
 /**
-* @brief Obtains the movement threshold for gestures to be recognized by a gesture recognizer.
-*
-* @param recognizer Pointer to a gesture recognizer.
-* @param distanceThresHold Movement threshold.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
-* supported.
-* @since 18
-*/
+ * @brief Obtains the movement threshold distance for gesture recognition.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param distanceThresHold Movement threshold.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 18
+ */
 int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* recognizer, double* distanceThreshold);
 
 /**
- * @brief Sets the maximum moving distance for gestures to be recognized by a long press gesture recognizer.
+ * @brief Obtains the maximum movement distance allowed for gesture recognition by the long press gesture recognizer.
  *
- * @param recognizer Indicates the pointer to a gesture recognizer.
- * @param allowableMovement Indicates maximum moving distance.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is
- *                 not supported.
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param allowableMovement Pointer to the maximum movement distance allowed for gesture recognition by the long press
+ *     gesture recognizer.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
  * @since 22
  */
-ArkUI_ErrorCode OH_ArkUI_LongPressGesture_SetAllowableMovement(
-    ArkUI_GestureRecognizer* recognizer, double allowableMovement);
+ArkUI_ErrorCode OH_ArkUI_LongPressGesture_GetAllowableMovement(ArkUI_GestureRecognizer* recognizer,
+    double* allowableMovement);
 
 /**
- * @brief Obtains the maximum moving distance for gestures to be recognized by a long press gesture recognizer.
+ * @brief Sets the minimum sliding distance threshold mapping for gesture recognition.
  *
- * @param recognizer Pointer to a gesture recognizer.
- * @param allowableMovement Indicates maximum moving distance.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
- * supported.
- * @since 22
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param size Size of the array of minimum sliding distance thresholds.
+ * @param toolTypeArray Pointer to the array of tool types for which thresholds are set. If a value other than
+ *     {@link UI_INPUT_EVENT_TOOL_TYPE}_XXX is set, the setting does not take effect.
+ * @param distanceArray Pointer to the array of minimum sliding distances. The unit is px.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 19
  */
-ArkUI_ErrorCode OH_ArkUI_LongPressGesture_GetAllowableMovement(
-    ArkUI_GestureRecognizer* recognizer, double* allowableMovement);
-
-/**
-* @brief Sets the minimum movement distance thresholds for gestures to be recognized by a gesture recognizer.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param size Size of the array of minimum movement distance thresholds.
-* @param toolTypeArray Pointer to the array of tool types for which thresholds are set.
-* @param distanceArray Pointer to the array of minimum movement distances, in px.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is
-*                 not supported.
-* @since 19
-*/
 ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(
     ArkUI_GestureRecognizer* recognizer, int size, int* toolTypeArray, double* distanceArray);
 
 /**
-* @brief Obtains the movement threshold for gestures to be recognized by a gesture recognizer for a specific tool type.
-*
-* @param recognizer Indicates the pointer to a gesture recognizer.
-* @param toolType Tool type for which you want to obtain the threshold.
-* @param distance Gesture movement threshold of the gesture recognizer, in px.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-*         Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is
-*                 not supported.
-* @since 19
-*/
+ * @brief Obtains the movement distance threshold for gesture recognition for a specific input device type. This API
+ * only returns values for device types previously set using **OH_ArkUI_PanGesture_SetDistanceMap**. The default
+ * movement distance threshold can be obtained by querying the {@link UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN} type. Other
+ * types that have not been set are not returned.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param toolType Tool type for which you want to obtain the threshold.
+ * @param distance Pointer to the movement distance threshold of the gesture recognizer. The unit is px.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 19
+ */
 ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(
     ArkUI_GestureRecognizer* recognizer, int toolType, double* distance);
 
 /**
- * @brief Registers a callback that is executed after all gesture recognizers are collected.
- * When the user begins touching the screen, the system performs hit testing and collects gesture recognizers
- * based on the touch location. Subsequently, before processing any move events, the component can use this API
- * to determine the gesture recognizers that will participate in and compete for recognition.
+ * @brief Registers a callback that is executed after all gesture recognizers are collected. When the user begins
+ * touching the screen, the system performs hit testing and collects gesture recognizers based on the touch location.
+ * Subsequently, before processing any move events, the component can use this API to determine the gesture recognizers
+ * that will participate in and compete for recognition.
  *
  * @param node Handle to the node on which the callback is to be set.
- * @param userData Custom data.
+ * @param userData Pointer to user-defined data.
  * @param touchTestDone Callback for completion of gesture recognizer collection.
- *                      - event: Basic information of the gesture.
- *                      - recognizers: Array of gesture recognizers.
- *                      - count: Number of gesture recognizers.
+ *     - event: Basic information of the gesture.
+ *     - recognizers: Array of gesture recognizers.
+ *     - count: Number of gesture recognizers.
  * @return Result code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(
@@ -997,413 +1080,394 @@ ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(
 );
 
 /**
- * @brief Defines the gesture APIs.
+ * @brief Obtains the custom data from a gesture interruption event.
  *
- * @since 12
- */
-typedef struct {
-    /** The struct version is 1. */
-    int32_t version;
-
-    /**
-    * @brief Creates a tap gesture.
-    *
-    *        1. This API is used to trigger a tap gesture with one, two, or more taps. \n
-    *        2. If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms. \n
-    *        3. If the distance between the last tapped position and the current tapped position exceeds 60 vp,
-    *           gesture recognition fails. \n
-    *        4. If the value is greater than 1, the tap gesture will fail to be recognized when the number of fingers
-    *           touching the screen within 300 ms of the first finger touch is less than the required number, \n
-    *           or when the number of fingers lifted from the screen within 300 ms of the first finger's being lifted
-    *           is less than the required number. \n
-    *        5. When the number of fingers touching the screen exceeds the set value, the gesture can be recognized. \n
-    *
-    * @param countNum Indicates the number of consecutive taps. If the value is less than 1 or is not set,
-    *        the default value <b>1</b> is used.
-    * @param fingersNum Indicates the number of fingers required to trigger a tap. The value ranges
-    *        from 1 to 10. If the value is less than 1 or is not set, the default value <b>1</b> is used.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createTapGesture)(int32_t countNum, int32_t fingersNum);
-
-    /**
-    * @brief Creates a long press gesture.
-    *
-    *        1. This API is used to trigger a long press gesture, which requires one or more fingers with a minimum
-    *           The value ranges 500 ms hold-down time. \n
-    *        2. In components that support drag actions by default, such as <b><Text></b>, <b><TextInput></b>,
-    *           <b><TextArea></b>, <b><Hyperlink></b>, <b><Image></b>, and <b>RichEditor></b>, the long press gesture \n
-    *           may conflict with the drag action. If this occurs, they are handled as follows: \n
-    *           If the minimum duration of the long press gesture is less than 500 ms, the long press gesture receives
-    *           a higher response priority than the drag action. \n
-    *           If the minimum duration of the long press gesture is greater than or equal to 500 ms,
-    *           the drag action receives a higher response priority than the long press gesture. \n
-    *        3. If a finger moves more than 15 px after being pressed, the gesture recognition fails. \n
-    *
-    * @param fingersNum Indicates the minimum number of fingers to trigger a long press gesture.
-    *        The value ranges from 1 to 10.
-    * @param repeatResult Indicates whether to continuously trigger the event callback.
-    * @param durationNum Indicates the minimum hold-down time, in ms.
-    *        If the value is less than or equal to 0, the default value <b>500</b> is used.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createLongPressGesture)(int32_t fingersNum, bool repeatResult, int32_t durationNum);
-
-    /**
-    * @brief Creates a pan gesture.
-    *
-    *        1. This API is used to trigger a pan gesture when the movement distance of a finger on the screen exceeds
-    *           the minimum value. \n
-    *        2. If a pan gesture and a tab swipe occur at the same time, set <b>distanceNum</b> to <b>1</b>
-    *           so that the gesture can be more easily recognized. \n
-    *
-    * @param fingersNum Indicates the minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.
-    *        If the value is less than 1 or is not set, the default value <b>1</b> is used.
-    * @param directions Indicates the pan direction. The value supports the AND (&amp;) and OR (\|) operations.
-    * @param distanceNum Indicates the minimum pan distance to trigger the gesture, in vp. If this parameter is
-    *        set to a value less than or equal to 0, the default value <b>5</b> is used.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createPanGesture)(
-        int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum);
-
-    /**
-    * @brief Creates a pinch gesture.
-    *
-    *        1. This API is used to trigger a pinch gesture, which requires two to five fingers with a minimum 5 vp
-    *           distance between the fingers. \n
-    *        2. While more fingers than the minimum number can be pressed to trigger the gesture, only the first
-    *           fingers of the minimum number participate in gesture calculation. \n
-    *
-    * @param fingersNum Indicates the minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.
-    *        Default value: <b>2</b>
-    * @param distanceNum Indicates the minimum recognition distance, in px. If this parameter is set to a value less
-    *        than or equal to 0, the default value <b>5</b> is used.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createPinchGesture)(int32_t fingersNum, double distanceNum);
-
-    /**
-    * @brief Creates a rotation gesture.
-    *
-    *        1. This API is used to trigger a rotation gesture, which requires two to five fingers with a
-    *           minimum 1-degree rotation angle. \n
-    *        2. While more fingers than the minimum number can be pressed to trigger the gesture, only the first
-    *           two fingers participate in gesture calculation. \n
-    *
-    * @param fingersNum Indicates the minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.
-    *        Default value: <b>2</b>
-    * @param angleNum Indicates the minimum degree that can trigger the rotation gesture. Default value: <b>1</b>
-    *        If this parameter is set to a value less than or equal to 0 or greater than 360,
-    *        the default value <b>1</b> is used.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createRotationGesture)(int32_t fingersNum, double angleNum);
-
-    /**
-    * @brief Creates a swipe gesture.
-    *
-    *        This API is used to implement a swipe gesture, which can be recognized when the swipe speed is 100
-    *        vp/s or higher. \n
-    *
-    * @param fingersNum Indicates the minimum number of fingers to trigger a swipe gesture.
-    *        The value ranges from 1 to 10.
-    * @param directions Indicates the swipe direction.
-    * @param speedNum Indicates the minimum speed of the swipe gesture, in px/s.
-    *        If this parameter is set to a value less than or equal to 0, the default value <b>100</b> is used.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createSwipeGesture)(
-        int32_t fingersNum, ArkUI_GestureDirectionMask directions, double speedNum);
-
-    /**
-    * @brief Creates a gesture group.
-    *
-    * @param gestureMode Indicates the gesture group mode.
-    * @return Returns the pointer to the created gesture group.
-    */
-    ArkUI_GestureRecognizer* (*createGroupGesture)(ArkUI_GroupGestureMode gestureMode);
-
-    /**
-    * @brief Disposes a gesture to release resources.
-    *
-    * @param recognizer Indicates the pointer to the gesture to dispose.
-    */
-    void (*dispose)(ArkUI_GestureRecognizer* recognizer);
-
-    /**
-    * @brief Adds a gesture to a gesture group.
-    *
-    * @param group Indicates the pointer to the gesture group.
-    * @param child Indicates the gesture to be added to the gesture group.
-    * @return Returns <b>0</b> if success.
-    *         Returns <b>401</b> if a parameter exception occurs. Returns 401 if a parameter exception occurs.
-    */
-    int32_t (*addChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child);
-
-    /**
-    * @brief Removes a gesture to a gesture group.
-    *
-    * @param group Indicates the pointer to the gesture group.
-    * @param child Indicates the gesture to be removed to the gesture group.
-    * @return Returns <b>0</b> if success.
-    *         Returns <b>401</b> if a parameter exception occurs.
-    */
-    int32_t (*removeChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child);
-
-    /**
-    * @brief Registers a callback for gestures.
-    *
-    * @param recognizer Indicates the pointer to the gesture recognizer.
-    * @param actionTypeMask Indicates the set of gesture event types. Multiple callbacks can be registered at once,
-    *        with the callback event types distinguished in the callbacks.
-    *        Example: actionTypeMask = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
-    * @param extraParams Indicates the context passed in the <b>targetReceiver</b> callback.
-    * @param targetReceiver Indicates the callback to register for processing the gesture event types.
-    *        <b>event</b> indicates the gesture callback data.
-    * @return Returns <b>0</b> if success.
-    *         Returns <b>401</b> if a parameter exception occurs.
-    */
-    int32_t (*setGestureEventTarget)(
-        ArkUI_GestureRecognizer* recognizer, ArkUI_GestureEventActionTypeMask actionTypeMask, void* extraParams,
-        void (*targetReceiver)(ArkUI_GestureEvent* event, void* extraParams));
-
-    /**
-    * @brief Adds a gesture to a UI component.
-    *
-    * @param node Indicates the UI component to which you want to add the gesture.
-    * @param recognizer Indicates the gesture to be added to the UI component.
-    * @param mode Indicates the gesture event mode. Available options are <b>NORMAL_GESTURE</b>,
-    *        <b>PARALLEL_GESTURE</b>, and <b>PRIORITY_GESTURE</b>.
-    * @param mask Indicates the gesture masking mode.
-    * @return Returns <b>0</b> if success.
-    *         Returns <b>401</b> if a parameter exception occurs.
-    */
-    int32_t (*addGestureToNode)(
-        ArkUI_NodeHandle node, ArkUI_GestureRecognizer* recognizer, ArkUI_GesturePriority mode, ArkUI_GestureMask mask);
-
-    /**
-    * @brief Removes a gesture from a node.
-    *
-    * @param node Indicates the node from which you want to remove the gesture.
-    * @param recognizer Indicates the gesture to be removed.
-    * @return Returns <b>0</b> if success.
-    * Returns <b>401</b> if a parameter exception occurs.
-    */
-    int32_t (*removeGestureFromNode)(ArkUI_NodeHandle node, ArkUI_GestureRecognizer* recognizer);
-
-    /**
-    * @brief Sets a gesture interruption callback for a node.
-    *
-    * @param node Indicates the node for which you want to set a gesture interruption callback.
-    * @param interrupter Indicates the gesture interruption callback to set.
-    *        <b>info</b> indicates the gesture interruption data. If <b>interrupter</b> returns
-    *        <b>GESTURE_INTERRUPT_RESULT_CONTINUE</b>, the gesture recognition process continues. If it returns
-    *        <b>GESTURE_INTERRUPT_RESULT_REJECT</b>, the gesture recognition process is paused.
-    * @return Returns <b>0</b> if success.
-    * Returns <b>401</b> if a parameter exception occurs.
-    */
-    int32_t (*setGestureInterrupterToNode)(
-        ArkUI_NodeHandle node, ArkUI_GestureInterruptResult (*interrupter)(ArkUI_GestureInterruptInfo* info));
-
-    /**
-    * @brief Obtains the type of a gesture.
-    *
-    * @param recognizer Indicates the pointer to the gesture.
-    * @return Returns the gesture type.
-    */
-    ArkUI_GestureRecognizerType (*getGestureType)(ArkUI_GestureRecognizer* recognizer);
-
-    /**
-    * @brief Sets the callback function for a parallel internal gesture event.
-    *
-    * @param node Indicates the ArkUI node for which the callback of a parallel internal gesture event is to be set.
-    * @param userData Indicates the custom data.
-    * @param parallelInnerGesture Indicates the parallel internal gesture event. <b>event</b> returns the data of the
-    *        parallel internal gesture event; <b>parallelInnerGesture</b> returns the pointer to the gesture recognizer
-    *        that requires parallel recognition.
-    * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-    */
-    int32_t (*setInnerGestureParallelTo)(
-        ArkUI_NodeHandle node, void* userData, ArkUI_GestureRecognizer* (*parallelInnerGesture)(
-            ArkUI_ParallelInnerGestureEvent* event));
-
-    /**
-    * @brief Creates a tap gesture that is subject to distance restrictions.
-    *
-    *        1. This API is used to trigger a tap gesture with one, two, or more taps. \n
-    *        2. If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms. \n
-    *        3. If the distance between the last tapped position and the current tapped position exceeds 60 vp,
-    *           gesture recognition fails. \n
-    *        4. If the value is greater than 1, the tap gesture will fail to be recognized when the number of fingers
-    *           touching the screen within 300 ms of the first finger touch is less than the required number,
-    *           or when the number of fingers lifted from the screen within 300 ms of the first finger's being lifted
-    *           is less than the required number. \n
-    *        5. When the number of fingers touching the screen exceeds the set value, the gesture can be recognized. \n
-    *        6. If the finger moves beyond the preset distance limit, gesture recognition fails. \n
-    *
-    * @param countNum Indicates the number of consecutive taps. If the value is less than 1 or is not set, the default
-    *        value <b>1</b> is used.
-    * @param fingersNum Indicates the number of fingers required to trigger a tap. The value ranges from 1 to 10.
-    *        If the value is less than 1 or is not set, the default value <b>1</b> is used.
-    * @param distanceThreshold Indicates the allowed moving distance of a finger.
-    *        If the value is less than 0 or is not set, it will be converted to the default value of infinity.
-    * @return Returns the pointer to the created gesture.
-    */
-    ArkUI_GestureRecognizer* (*createTapGestureWithDistanceThreshold)(
-        int32_t countNum, int32_t fingersNum, double distanceThreshold);
-} ArkUI_NativeGestureAPI_1;
-
-/**
- * @brief Defines the gesture APIs.
- *
+ * @param event Pointer to the gesture interruption information.
+ * @return Pointer to user-defined data.
  * @since 18
  */
-typedef struct {
-    /**
-     * @brief Pointer to the <b>ArkUI_NativeGestureAPI_1</b> struct.
-     */
-    ArkUI_NativeGestureAPI_1* gestureApi1;
-
-    /**
-    * @brief Sets the callback for gesture interruption events.
-    *
-    * @param node Node for which you want to set a gesture interruption callback.
-    * @param userData Custom data.
-    * @param interrupter Gesture interruption callback to set. <b>info</b> indicates the gesture interruption data.
-    * If <b>interrupter</b> returns <b>GESTURE_INTERRUPT_RESULT_CONTINUE</b>, the gesture recognition process proceeds
-    * properly. If it returns <b>GESTURE_INTERRUPT_RESULT_REJECT</b>, the gesture recognition process is paused.
-    * @return Returns <b>0</b> if success.
-    *         Returns <b>401</b> if a parameter error occurs.
-    */
-    int32_t (*setGestureInterrupterToNode)(ArkUI_NodeHandle node, void* userData,
-        ArkUI_GestureInterruptResult (*interrupter)(ArkUI_GestureInterruptInfo* info));
-} ArkUI_NativeGestureAPI_2;
-
-/**
- * @brief Defines the gesture module API set.
- *
- * @since 26.0.0
- */
-typedef struct {
-    /**
-     * @brief Pointer to the {@link ArkUI_NativeGestureAPI_2} struct.
-     *
-     * @since 26.0.0
-     */
-    ArkUI_NativeGestureAPI_2* gestureApi2;
-
-    /**
-     * @brief Sets the callback for parallel gesture events.
-     *
-     * @param node ArkUI node pointer for which the parallel gesture event callback needs to be set.
-     * @param userData Custom data.
-     * @param parallelGesture Parallel gesture event. event returns the data of the parallel gesture event. \n
-     * ParallelGesture returns the pointer to the gesture recognizer that needs parallel recognition.
-     * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if successful. \n
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     *
-     * @since 26.0.0
-     */
-    ArkUI_ErrorCode (*setGestureParallelTo)(
-        ArkUI_NodeHandle node, void* userData, ArkUI_GestureRecognizer* (*parallelGesture)(
-            ArkUI_ParallelGestureEvent* event));
-} ArkUI_NativeGestureAPI_3;
-
-/**
-* @brief Obtains the custom data from a gesture interruption event.
-*
-* @param event Pointer to the gesture interruption information.
-* @return Returns the pointer to the custom data.
-* @since 18
-*/
 void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event);
 
 /**
  * @brief Prevents a gesture recognizer from participating in the current gesture recognition before all fingers are
- * lifted.
- * If the system has already determined the result of the gesture recognizer (regardless of success or failure),
- * calling this API will be ineffective.
+ * lifted. If the system has already determined the result of the gesture recognizer (regardless of success or failure),
+ *  calling this API will be ineffective.
  *
- * @param recognizer Pointer to a gesture recognizer.
+ * @param recognizer Pointer to the gesture recognizer instance.
  * @return Result code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* recognizer);
 
 /**
- * @brief Obtains the gesture recognizer from the gesture collection interception information.
+ * @brief Sets the maximum movement distance allowed for gesture recognition by the long press gesture recognizer.
+ *
+ * @param recognizer Pointer to the gesture recognizer instance.
+ * @param allowableMovement Maximum movement distance allowed for gesture recognition by the long press gesture
+ *     recognizer.
+ *     <br>The unit is px.
+ *     <br>Value range: (0, +∞). If the value is less than or equal to 0, the default value **15** is used.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED} if the gesture recognizer type is not
+ *     supported.
+ * @since 22
+ */
+ArkUI_ErrorCode OH_ArkUI_LongPressGesture_SetAllowableMovement(
+    ArkUI_GestureRecognizer* recognizer, double allowableMovement);
+
+/**
+ * @brief Obtains gesture recognizer handles from gesture collection interception information.
  *
  * @param info Pointer to the gesture collection interception information.
- * @param array Pointer to the gesture recognizer array.
- * @param size Size of the gesture recognizer array.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param array Pointer to the gesture recognizer handle array.
+ * @param size Pointer to the size of the gesture recognizer handle array.
+ * @return {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_GestureCollectInterceptInfo_GetResponseRecognizers(
     const ArkUI_GestureCollectInterceptInfo* info, ArkUI_GestureRecognizerHandleArray* array, int32_t* size);
 
 /**
- * @brief Obtains the handle to touch recognizer from the gesture collection interception information.
+ * @brief Obtains touch recognizer handles from gesture collection interception information.
  *
  * @param info Pointer to the gesture collection interception information.
- * @param recognizers Pointer to the array of handles to touch recognizers.
- * @param size Size of the recognizers array.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param recognizers Pointer to the touch recognizer handle array.
+ * @param size Pointer to the size of the touch recognizer handle array.
+ * @return {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_GestureCollectInterceptInfo_GetTouchRecognizers(const ArkUI_GestureCollectInterceptInfo* info,
     ArkUI_TouchRecognizerHandleArray* recognizers, int32_t* size);
 
 /**
- * @brief Sets the gesture collection intervention mode.
+ * @brief Sets the intervention mode for gesture collection.
+ *
  * @param info Pointer to the gesture collection interception information.
- * @param intervention Gesture collection intervention mode, which is of
- *        type {@link OH_ArkUI_GestureCollectIntervention}.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param intervention Gesture collection intervention mode, which is of the
+ *     {@link OH_ArkUI_GestureCollectIntervention} type.
+ * @return {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 26.0.0
-*/
+ */
 ArkUI_ErrorCode OH_ArkUI_GestureCollectInterceptInfo_SetGestureCollectIntervention(
     ArkUI_GestureCollectInterceptInfo* info, OH_ArkUI_GestureCollectIntervention intervention);
 
 /**
- * @brief Obtains the unique ID of the component linked to a gesture recognizer.
+ * @brief Obtains the unique ID of the component bound to a gesture recognizer.
  *
  * @param recognizer Pointer to the gesture recognizer.
- * @param uniqueId Unique ID of the component linked to a gesture recognizer.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param uniqueId Pointer to the unique ID of the component bound to the gesture recognizer.
+ * @return {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_GetGestureBindNodeUniqueId(const ArkUI_GestureRecognizer* recognizer, int32_t* uniqueId);
 
 /**
- * @brief Checks whether the node linked to the gesture is a child node of the passed component.
+ * @brief Checks whether the node bound to the touch recognizer is a descendant node of the passed component.
  *
- * @param recognizer Handle to the touch recognizer.
+ * @param recognizer Touch recognizer handle.
  * @param uniqueId Unique ID of the component.
- * @return Returns <b>true</b> if the node linked to the gesture is a child node of the passed component.
- *         Returns <b>false</b> otherwise.
+ * @return **true** if the node bound to the touch recognizer is a descendant node of the passed component; **false**
+ *     otherwise.
  * @since 26.0.0
  */
 bool OH_ArkUI_TouchRecognizer_IsHostBelongsTo(const ArkUI_TouchRecognizerHandle recognizer, int32_t uniqueId);
 
 /**
- * @brief Checks whether the node linked to the gesture is a child node of the passed component.
+ * @brief Checks whether the node bound to the gesture recognizer is a descendant node of the passed component.
  *
  * @param recognizer Pointer to the gesture recognizer.
  * @param uniqueId Unique ID of the component.
- * @return Returns <b>true</b> if the node linked to the gesture is a child node of the passed component.
- *         Returns <b>false</b> otherwise.
+ * @return **true** if the node bound to the gesture recognizer is a descendant node of the passed component; **false**
+ *     otherwise.
  * @since 26.0.0
  */
 bool OH_ArkUI_GestureRecognizer_IsHostBelongsTo(const ArkUI_GestureRecognizer* recognizer, int32_t uniqueId);
+
+/**
+ * @brief Defines the gesture APIs.
+ *
+ * @since 12
+ */
+typedef struct {
+    /**
+     * The struct version is 1.
+     */
+    int32_t version;
+
+    /**
+     * @brief Creates a tap gesture.
+     *
+     * @param countNum Number of consecutive taps. If the value is less than 1 or is not set, the default value **1** is
+     *     used.
+     * @param fingersNum Number of fingers required to trigger the tap gesture. The value ranges from 1 to 10. If the
+     *     value is less than 1 or is not set, the default value **1** is used.
+     * @return Returns the pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createTapGesture)(int32_t countNum, int32_t fingersNum);
+
+    /**
+     * @brief Creates a long press gesture.
+     *
+     * @param fingersNum Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. If
+     *     the value is out of the range, the default value **1** is used.
+     * @param repeatResult Whether to continuously trigger the event callback.
+     *     <br>The value **true** means to continuously trigger event callbacks, and **false** means the opposite.
+     * @param durationNum Minimum hold-down time, in ms. If the value is less than or equal to 0, the default value **
+     *     500** is used.
+     * @return Returns the pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createLongPressGesture)(int32_t fingersNum, bool repeatResult, int32_t durationNum);
+
+    /**
+     * @brief Creates a swipe gesture.
+     *
+     * @param fingersNum Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10. If the value
+     *     is less than 1 or is not set, the default value **1** is used.
+     * @param directions Pan direction. The value supports the AND (&) and OR (\|) operations.
+     * @param distanceNum Minimum pan distance to trigger the gesture, in px. If this parameter is set to a value less
+     *     than or equal to 0, the default value **5px** is used.
+     * @return Pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createPanGesture)(
+        int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum);
+
+    /**
+     * @brief Creates a pinch gesture.
+     *
+     * @param fingersNum Minimum number of fingers required to trigger the pinch gesture. The value ranges from 2 to 5.
+     *     If the value is out of the range, the default value **2** is used.
+     * @param distanceNum Minimum recognition distance, in px. If this parameter is set to a value less than or equal to
+     *     0, the default value **5px** is used.
+     * @return Returns the pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createPinchGesture)(int32_t fingersNum, double distanceNum);
+
+    /**
+     * @brief Creates a rotation gesture.
+     *
+     * @param fingersNum Minimum number of fingers required to trigger the rotation gesture. The value ranges from 2 to
+     *     5. If the value is out of the range, the default value **2** is used.
+     * @param angleNum Minimum angle change required to trigger the rotation gesture, in degrees (deg). The default
+     *     value is **1**. If this parameter is set to a value less than or equal to 0 or greater than 360, the default
+     *     value **1** is used.
+     * @return Returns the pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createRotationGesture)(int32_t fingersNum, double angleNum);
+
+    /**
+     * @brief Creates a swipe gesture.This API is used to implement a swipe gesture, which can be recognized when the
+     * swipe speed (px/s) is higher than that specified by **speedNum**.
+     *
+     * @param fingersNum Minimum number of fingers required to trigger the swipe gesture. The value ranges from 1 to 10.
+     * @param directions Directions in which the swipe gesture can be recognized.
+     * @param speedNum Minimum speed required to recognize the swipe gesture, in px/s. If this parameter is set to a
+     *     value less than or equal to 0, the default value **100px/s** is used.
+     * @return Returns the pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createSwipeGesture)(
+        int32_t fingersNum, ArkUI_GestureDirectionMask directions, double speedNum);
+
+    /**
+     * @brief Creates a gesture group.
+     *
+     * @param gestureMode Gesture group mode.
+     * @return Returns the pointer to the created gesture group.
+     */
+    ArkUI_GestureRecognizer* (*createGroupGesture)(ArkUI_GroupGestureMode gestureMode);
+
+    /**
+     * @brief Disposes of a gesture to release resources.
+     *
+     * @param recognizer Pointer to the gesture to be disposed of.
+     */
+    void (*dispose)(ArkUI_GestureRecognizer* recognizer);
+
+    /**
+     * @brief Adds a gesture to a gesture group.
+     *
+     * @param group Pointer to the target gesture group.
+     * @param child Pointer to the target gesture.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs, for example, attempting to
+     *     add a gesture to an object that is not a gesture group.
+     */
+    int32_t (*addChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child);
+
+    /**
+     * @brief Removes a gesture from a gesture group.
+     *
+     * @param group Pointer to the target gesture group.
+     * @param child Pointer to the target gesture.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*removeChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child);
+
+    /**
+     * @brief Registers a callback for gestures.
+     *
+     * @param recognizer Pointer to a gesture recognizer.
+     * @param actionTypeMask Gesture event types. Multiple callbacks can be registered at once, with the callback event
+     *     types distinguished in the callbacks. Example: actionTypeMask = GESTURE_EVENT_ACTION_ACCEPT \|
+     *     GESTURE_EVENT_ACTION_UPDATE;
+     * @param extraParams Context passed in the **targetReceiver** callback.
+     * @param targetReceiver Callback to register for processing the gesture event types. **event** indicates the
+     *     gesture callback data.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*setGestureEventTarget)(
+        ArkUI_GestureRecognizer* recognizer, ArkUI_GestureEventActionTypeMask actionTypeMask, void* extraParams,
+        void (*targetReceiver)(ArkUI_GestureEvent* event, void* extraParams));
+
+    /**
+     * @brief Adds a gesture to a UI component.
+     *
+     * @param node Pointer to the ArkUI component node to which you want to add the gesture.
+     * @param recognizer Gesture to be added to the UI component.
+     * @param mode Mode of the gesture.
+     * @param mask Gesture masking mode.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*addGestureToNode)(
+        ArkUI_NodeHandle node, ArkUI_GestureRecognizer* recognizer, ArkUI_GesturePriority mode, ArkUI_GestureMask mask);
+
+    /**
+     * @brief Removes a gesture from a node.
+     *
+     * @param node Pointer to the node from which you want to remove the gesture.
+     * @param recognizer Gesture to be removed.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*removeGestureFromNode)(ArkUI_NodeHandle node, ArkUI_GestureRecognizer* recognizer);
+
+    /**
+     * @brief Sets a gesture interruption callback for a node.
+     *
+     * @param node Pointer to the ArkUI node for which you want to set a gesture interruption callback.
+     * @param interrupter Indicates the gesture interruption callback to set.
+     *     <b>info</b> indicates the gesture interruption data. If <b>interrupter</b> returns
+     *     <b>GESTURE_INTERRUPT_RESULT_CONTINUE</b>, the gesture recognition process continues. If it returns
+     *     <b>GESTURE_INTERRUPT_RESULT_REJECT</b>, the gesture recognition process is paused.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*setGestureInterrupterToNode)(
+        ArkUI_NodeHandle node, ArkUI_GestureInterruptResult (*interrupter)(ArkUI_GestureInterruptInfo* info));
+
+    /**
+     * @brief Obtains the type of a gesture.
+     *
+     * @param recognizer Pointer to the gesture.
+     * @return Returns the gesture type.
+     */
+    ArkUI_GestureRecognizerType (*getGestureType)(ArkUI_GestureRecognizer* recognizer);
+
+    /**
+     * @brief Sets the callback function for the parallel internal gesture event.
+     *
+     * @param node Pointer to the ArkUI node for which you want to set the callback of the parallel internal gesture
+     *     event.
+     * @param userData Custom data.
+     * @param parallelInnerGesture Parallel internal gesture event. **event** returns the data of the parallel internal
+     *     gesture event. **parallelInnerGesture** returns the pointer to the gesture recognizer that requires parallel
+     *     recognition.
+     * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*setInnerGestureParallelTo)(
+        ArkUI_NodeHandle node, void* userData, ArkUI_GestureRecognizer* (*parallelInnerGesture)(
+            ArkUI_ParallelInnerGestureEvent* event));
+
+    /**
+     * @brief Creates a tap gesture that is subject to distance restrictions.
+     *
+     * @param countNum Number of consecutive taps. If the value is less than 1 or is not set, the default value **1** is
+     *     used.
+     * @param fingersNum Number of fingers required to trigger the tap gesture. The value ranges from 1 to 10. If the
+     *     value is less than 1 or is not set, the default value **1** is used.
+     * @param distanceThreshold Allowed moving distance of a finger. If the value is less than 0 or is not set, it will
+     *     be converted to the default value of infinity.
+     * @return Returns the pointer to the created gesture.
+     */
+    ArkUI_GestureRecognizer* (*createTapGestureWithDistanceThreshold)(
+        int32_t countNum, int32_t fingersNum, double distanceThreshold);
+} ArkUI_NativeGestureAPI_1;
+
+/**
+ * @brief Defines a collection of gesture APIs.
+ *
+ * @since 18
+ */
+typedef struct {
+    /**
+     * @brief Pointer to the **ArkUI_NativeGestureAPI_1** struct.
+     *
+     */
+    ArkUI_NativeGestureAPI_1* gestureApi1;
+
+    /**
+     * @brief Sets the callback for gesture interruption events.
+     *
+     * @param node Pointer to the ArkUI node for which you want to set a gesture interruption callback.
+     * @param userData Pointer to user-defined data.
+     * @param interrupter Gesture interruption callback to set. <b>info</b> indicates the gesture interruption data.
+     *     If <b>interrupter</b> returns <b>GESTURE_INTERRUPT_RESULT_CONTINUE</b>, the gesture recognition process
+     *     proceeds
+     *     properly. If it returns <b>GESTURE_INTERRUPT_RESULT_REJECT</b>, the gesture recognition process is paused.
+     * @return Error code.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     */
+    int32_t (*setGestureInterrupterToNode)(ArkUI_NodeHandle node, void* userData,
+        ArkUI_GestureInterruptResult (*interrupter)(ArkUI_GestureInterruptInfo* info));
+} ArkUI_NativeGestureAPI_2;
+
+/**
+ * @brief Defines a collection of gesture APIs, including gesture APIs in the {@link ArkUI_NativeGestureAPI_1} and
+ * {@link ArkUI_NativeGestureAPI_2} structs and new gesture APIs.
+ *
+ * @since 26.0.0
+ */
+typedef struct {
+    /**
+     * @brief Pointer to the **ArkUI_NativeGestureAPI_2** struct.
+     *
+     * @since 26.0.0
+     */
+    ArkUI_NativeGestureAPI_2* gestureApi2;
+
+    /**
+     * @brief Sets the callback function for a parallel gesture event.
+     *
+     * @param node Pointer to the ArkUI node for which you want to set a parallel gesture event callback.
+     * @param userData Pointer to the user-defined data. The caller must ensure the security of the data lifecycle.
+     * @param parallelGesture Parallel gesture event. event returns the data of the parallel gesture event. \n
+     *     ParallelGesture returns the pointer to the gesture recognizer that needs parallel recognition.
+     * @return {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @since 26.0.0
+     */
+    ArkUI_ErrorCode (*setGestureParallelTo)(
+        ArkUI_NodeHandle node, void* userData, ArkUI_GestureRecognizer* (*parallelGesture)(
+            ArkUI_ParallelGestureEvent* event));
+} ArkUI_NativeGestureAPI_3;
 
 #ifdef __cplusplus
 };
