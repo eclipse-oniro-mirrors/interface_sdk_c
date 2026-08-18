@@ -84,12 +84,12 @@ extern "C" {
  */
 typedef enum Pasteboard_NotifyType {
 /**
- * @brief The pasteboard data of the local device is changed.
+ * @brief 本地设备剪贴板数据变更。
  *
  */
  NOTIFY_LOCAL_DATA_CHANGE = 1,
 /**
- * @brief The pasteboard data of a non-local device on the network is changed.
+ * @brief 组网内的非本地设备剪贴板数据变更。
  *
  */
  NOTIFY_REMOTE_DATA_CHANGE = 2
@@ -102,12 +102,12 @@ typedef enum Pasteboard_NotifyType {
  */
 typedef enum Pasteboard_FileConflictOptions {
 /**
- * @brief Overwrites the file with the same name in the destination directory.
+ * @brief 目标路径存在同文件名时覆盖。
  *
  */
  PASTEBOARD_OVERWRITE = 0,
 /**
- * @brief Skips the file if there is a file with the same name in the destination directory.
+ * @brief 目标路径存在同文件名时跳过。
  *
  */
  PASTEBOARD_SKIP = 1
@@ -120,12 +120,12 @@ typedef enum Pasteboard_FileConflictOptions {
  */
 typedef enum Pasteboard_ProgressIndicator {
 /**
- * @brief The system default progress indicator is not used.
+ * @brief 不采用系统默认进度显示。
  *
  */
  PASTEBOARD_NONE = 0,
 /**
- * @brief The system default progress indicator is used.
+ * @brief 采用系统默认进度显示。
  *
  */
  PASTEBOARD_DEFAULT = 1
