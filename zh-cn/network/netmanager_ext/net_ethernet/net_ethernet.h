@@ -17,14 +17,14 @@
  * @addtogroup netmanager_ext
  * @{
  *
- * @brief Provides C APIs for the ethernet module.
+ * @brief 为以太网网卡模块提供C接口。
  *
  * @since 26.0.0
  */
 
 /**
  * @file net_ethernet.h
- * @brief Provides C APIs for the Ethernet NIC module.
+ * @brief 为以太网网卡模块提供C接口。
  *
  * @library libnet_ethernet.so
  * @kit NetworkKit
@@ -45,28 +45,26 @@ extern "C" {
 #endif
 
 /**
- * @brief Obtains the MAC address list of Ethernet NICs.
+ * @brief 获取以太网网卡MAC地址列表。
  *
  * @permission ohos.permission.GET_ETHERNET_LOCAL_MAC
- * @param macAddrList Pointer to the MAC address list of NICs.
- * @return **0**: Success.
- *     <br>**201**: Missing permissions.
- *     <br>**2200001**: Parameter error. **2200002**: Service connection failure.
- *     <br>**2201005**: Device information does not exist.
+ * @param macAddrList 以太网网卡MAC地址列表。
+ * @return 0 - 成功。 201 - 缺少权限。
+ *     <br>2200001 - 参数错误。 2200002 - 无法连接到服务。
+ *     <br>2201005 - 设备信息不存在。
  * @syscap SystemCapability.Communication.NetManager.Ethernet
  * @since 26.0.0
  */
 int32_t OH_Ethernet_GetMacAddress(Ethernet_MacAddrInfoList *macAddrList);
 
 /**
- * @brief Obtains the IP address list of Ethernet NICs.
+ * @brief 获取以太网网卡IP地址列表。
  *
  * @permission ohos.permission.GET_NETWORK_INFO
- * @param netAddrList Pointer to the IP address list of NICs.
- * @return **0**: Success.
- *     <br>**201**: Missing permissions.
- *     <br>**2200001**: Parameter error. **2200002**: Service connection failure.
- *     <br>**2201005**: Device information does not exist.
+ * @param netAddrList 以太网网卡IP地址列表。
+ * @return 0 - 成功。 201 - 缺少权限。
+ *     <br>2200001 - 参数错误。 2200002 - 无法连接到服务。
+ *     <br>2201005 - 设备信息不存在。
  * @syscap SystemCapability.Communication.NetManager.Ethernet
  * @since 26.0.0
  */
