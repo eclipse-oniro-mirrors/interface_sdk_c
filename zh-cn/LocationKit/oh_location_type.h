@@ -266,96 +266,95 @@ Location_ResultCode OH_LocationInfo_GetAdditionalInfo(Location_Info* location,
     char* additionalInfo, uint32_t length);
 
 /**
- * @brief Defines the callback function used to report location data.
+ * @brief 用于接收位置上报的回调函数。
  *
- * @param location - Pointer to the {@link Location_Info} instance. Carry the latest location information.\n
- * The memory of the location instance is recycled at the end of {@link Location_InfoCallback}.\n
- * Before that, call {@link OH_LocationInfo_GetBasicInfo} and other interfaces to obtain location information.\n
- * @param userData - Pointer to an application data structure, this parameter is passed in\n
- * through {@link OH_LocationRequestConfig_SetCallback}.\n
+指向Location_Info实例的指针，携带最新的位置信息。
+
+location实例的内存会在Location_InfoCallback结束时回收，请在此之前调用OH_LocationInfo_GetBasicInfo等接口获取位置信息。
+
+ * @param location - 指向Location_Info {@link Location_Info} 实例的指针，携带最新的位置信息。\n
+ * location实例的内存会在Location_InfoCallback{@link Location_InfoCallback}结束时回收，\n
+ * 请在此之前调用OH_LocationInfo_GetBasicInfo{@link OH_LocationInfo_GetBasicInfo}等接口获取位置信息。\n
+ * @param userData - 指向调用者数据结构或对象的指针，该参数是通过OH_LocationRequestConfig_SetCallback\n
+ * {@link OH_LocationRequestConfig_SetCallback}传入的。\n
  * @since 13
  */
 typedef void (*Location_InfoCallback)(Location_Info* location, void* userData);
 
 /**
- * @brief Define the structure of location request parameters.
+ * @brief 定义位置请求参数的结构体。
  * @since 13
  */
 typedef struct Location_RequestConfig Location_RequestConfig;
 
 /**
- * @brief Create a location request parameter structure instance.
+ * @brief 创建一个位置请求参数结构体实例。
  *
- * @return Return a pointer to the {@ link Location_RequestConfig} instance. \n
- * If NULL is returned, it indicates that the creation failed. \n
- * The possible reason is that the application address space is full,\n
- * resulting in the inability to allocate space. \n
+ * @return 返回指向Location_RequestConfig{@ link Location_RequestConfig}实例的指针。 \n
+ * 如果返回NULL表示创建失败，可能的原因是应用地址空间满，导致空间分配不出来。 \n
  * @since 13
  */
 Location_RequestConfig* OH_Location_CreateRequestConfig(void);
 
 /**
- * @brief Destroy the location request parameter instance and reclaim memory.
+ * @brief 销毁位置请求参数实例并回收内存。
  *
- * @param requestConfig - Pointer to {@link Location_RequestConfig} instance.\n
- * The instance was created by {@link OH_Location_CreateRequestConfig}.\n
+ * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
+ * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
  * @since 13
  */
 void OH_Location_DestroyRequestConfig(Location_RequestConfig* requestConfig);
 
 /**
- * @brief Set the use scenario in the location request parameter.\n
- * Prioritize useScene in the location request parameter {@link Location_RequestConfig}.\n
- * If useScene is set, powerConsumptionScene becomes invalid.\n
- * If useScene is not set and powerConsumptionScene is set, this parameter takes effect.\n
- * If both parameters are not set, the default useScene is\n
- * {@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE},\n
- * and the powerConsumptionCenario parameter is invalid.\n
+ * @brief 设置位置请求参数中的用户活动场景。\n
+ * 位置请求参数Location_RequestConfig{@link Location_RequestConfig}中以useScene优先。\n
+ * 如果设置了useScene，则powerConsumptionScene参数无效。\n
+ * 如果未设置useScene，设置了powerConsumptionScene则该参数生效。\n
+ * 如果两个参数都未设置，则默认useScene为LOCATION_USE_SCENE_DAILY_LIFE_SERVICE{@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}，\n
+ * powerConsumptionScene参数无效。\n
  *
- * @param requestConfig - Pointer to the {@link Location_RequestConfig} instance.\n
- * The instance was created by {@link OH_Location_CreateRequestConfig}.\n
- * @param useScene - Representing the use scenario during location requests.\n
- * The default value is {@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}\n.
-  * For a detailed definition, please refer to {@link Location_UseScene}.\n
+ * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
+ * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
+ * @param useScene - 表示位置请求时的用户活动场景。\n
+ * 默认值是LOCATION_USE_SCENE_DAILY_LIFE_SERVICE{@link LOCATION_USE_SCENE_DAILY_LIFE_SERVICE}。\n.
+ * 详细定义见Location_UseScene{@link Location_UseScene}。\n
  * @since 13
  */
 void OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig,
     Location_UseScene useScene);
 
 /**
- * @brief Set the power consumption scenario in the location request parameters.
+ * @brief 设置位置请求参数中的功耗场景。
  *
- * @param requestConfig - Pointer to the {@link Location_RequestConfig} instance.\n
- * The instance was created by {@link OH_Location_CreateRequestConfig}.\n
- * @param powerConsumptionScene - Represents the power consumption scenario for location requests.\n
- * The recognition value is {@link LOCATION_LOW_POWER_CONSUMPTION}.\n
- * For a detailed definition, please refer to {@link Location_PowerConsumptionScene}.\n
+ * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
+ * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
+ * @param powerConsumptionScene - 表示位置请求的功耗场景。\n
+ * 默认值是LOCATION_LOW_POWER_CONSUMPTION{@link LOCATION_LOW_POWER_CONSUMPTION}。\n
+ * 详细定义见Location_PowerConsumptionScene{@link Location_PowerConsumptionScene}。\n
  * @since 13
  */
 void OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* requestConfig,
     Location_PowerConsumptionScene powerConsumptionScene);
 
 /**
- * @brief Set the location reporting interval in the location request parameter.
+ * @brief 设置位置请求参数中的位置上报间隔。
  *
- * @param requestConfig - Pointer to the {@link Location_RequestConfig} instance.\n
- * The instance was created by {@link OH_Location_CreateRequestConfig}.\n
- * @param interval - Indicates the time interval for location reporting, in seconds.\n
- * The value is greater than or equal to 1. The default value is 1.\n
+ * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
+ * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
+ * @param interval - 表示位置上报时间间隔，单位是“秒”。取值范围为大于等于1，默认值为1。
  * @since 13
  */
 void OH_LocationRequestConfig_SetInterval(Location_RequestConfig* requestConfig,
     int interval);
 
 /**
- * @brief Set up a callback function for receiving location information.
+ * @brief 设置回调函数。
  *
- * @param requestConfig - Pointer to the {@link Location_RequestConfig} instance.\n
- * The instance was created by {@link OH_Location_CreateRequestConfig}.\n
- * @param callback - Pointer to the callback function for receiving the location.\n
- * For details, see {@link Location_InfoCallback}.\n
- * @param userData - Pointer to the application data structure, which will be\n
- * carried in the callback function.\n
+ * @param requestConfig - 指向Location_RequestConfig{@link Location_RequestConfig}实例的指针。\n
+ * 该实例是由OH_Location_CreateRequestConfig{@link OH_Location_CreateRequestConfig}创建的。\n
+ * @param callback - 指向回调函数的指针，该回调函数用于接收位置信息变化。\n
+ * 详细定义请参考Location_InfoCallback{@link Location_InfoCallback}。\n
+ * @param userData - 指向调用者数据结构或对象的指针。这个指针会在回调函数执行时作为入参回传给调用者。
  * @since 13
  */
 void OH_LocationRequestConfig_SetCallback(Location_RequestConfig* requestConfig,
