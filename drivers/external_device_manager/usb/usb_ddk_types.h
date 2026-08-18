@@ -468,7 +468,7 @@ typedef enum {
     /**
      * Transmission timeout. The value is **-7** before API version 16.
      */
-    USB_DDK_TIMEOUT = 27400004
+    USB_DDK_TIMEOUT = 27400004,
 } UsbDdkErrCode;
 
 /**
@@ -497,6 +497,7 @@ typedef struct Usb_DeviceArray {
  * @since 26.0.0
  */
 typedef struct Usb_NonRootHubArray {
+
     /**
      * Array of non-root hub device IDs. The non-root USB hub device ID is constructed by left-shifting the bus number
      * by 32 bits and adding the device address.
@@ -512,6 +513,8 @@ typedef struct Usb_NonRootHubArray {
 } Usb_NonRootHubArray;
 #ifdef __cplusplus
 }
-/** @} */
 #endif /* __cplusplus */
+
+/** @} */
+
 #endif // USB_DDK_TYPES_H

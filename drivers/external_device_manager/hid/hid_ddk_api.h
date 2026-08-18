@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef HID_DDK_API_H
-#define HID_DDK_API_H
 
 /**
  * @addtogroup HidDdk
@@ -38,6 +36,9 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef HID_DDK_API_H
+#define HID_DDK_API_H
 
 #include <stdint.h>
 #include "hid_ddk_types.h"
@@ -180,7 +181,7 @@ int32_t OH_Hid_Close(Hid_DeviceHandle **dev);
  *     {@link HID_DDK_SERVICE_ERROR}: Communication with the DDK server fails.
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  * @since 18
- */
+*/
 int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten);
 
 /**
@@ -204,7 +205,7 @@ int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_TIMEOUT}: The read operation times out.
  * @since 18
- */
+*/
 int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, int timeout, uint32_t *bytesRead);
 
 /**
@@ -228,7 +229,7 @@ int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSiz
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_TIMEOUT}: The read operation times out.
  * @since 18
- */
+*/
 int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint32_t *bytesRead);
 
 /**
@@ -246,7 +247,7 @@ int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint
  *     2. The value of **nonBlock** is not **1** or **0**.
  *     {@link HID_DDK_SERVICE_ERROR}: Communication with the DDK server fails.
  * @since 18
- */
+*/
 int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
 
 /**
@@ -264,7 +265,7 @@ int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
 
 /**
@@ -286,7 +287,7 @@ int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
 
 /**
@@ -308,7 +309,7 @@ int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
 
 /**
@@ -330,7 +331,7 @@ int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bu
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize);
 
 /**
@@ -352,7 +353,7 @@ int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buf
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, const uint8_t *data, uint32_t length);
 
 /**
@@ -375,7 +376,7 @@ int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, cons
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t bufSize);
 
 /**
@@ -398,7 +399,7 @@ int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8
  *     {@link HID_DDK_IO_ERROR}: The I/O operation fails.
  *     {@link HID_DDK_INVALID_OPERATION}: This operation is not supported.
  * @since 18
- */
+*/
 int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t bufSize, uint32_t *bytesRead);
 /** @} */
 #ifdef __cplusplus

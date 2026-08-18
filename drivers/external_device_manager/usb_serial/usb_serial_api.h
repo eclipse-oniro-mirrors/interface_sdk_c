@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,7 +17,7 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
+ * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
  * data structures required by the USB SERIAL DDK APIs.
  *
  * @since 18

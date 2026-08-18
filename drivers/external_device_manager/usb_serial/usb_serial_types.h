@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,7 +17,7 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
+ * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
  * data structures required by the USB SERIAL DDK APIs.
  *
  * @since 18
@@ -93,7 +93,7 @@ typedef enum {
     /**
      * Device not found.
      */
-    USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006
+    USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006,
 } UsbSerial_DdkRetCode;
 
 /**
@@ -137,7 +137,7 @@ typedef enum {
     /**
      * Hardware flow control.
      */
-    USB_SERIAL_HARDWARE_FLOW_CONTROL = 2
+    USB_SERIAL_HARDWARE_FLOW_CONTROL = 2,
 } UsbSerial_FlowControl;
 
 /**
@@ -157,11 +157,11 @@ typedef enum {
     /**
      * Even parity.
      */
-    USB_SERIAL_PARITY_EVEN = 2
+    USB_SERIAL_PARITY_EVEN = 2,
 } UsbSerial_Parity;
 
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 #endif // DDK_USB_SERIAL_TYPES_H
 /** @} */

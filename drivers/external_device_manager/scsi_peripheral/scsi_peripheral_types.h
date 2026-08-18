@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -36,6 +36,7 @@
 #ifndef SCSI_PERIPHERAL_TYPES_H
 #define SCSI_PERIPHERAL_TYPES_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -102,7 +103,7 @@ typedef enum {
     /**
      * Device not found.
      */
-    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007
+    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007,
 } ScsiPeripheral_DdkErrCode;
 
 /**
@@ -142,7 +143,7 @@ typedef enum {
     /**
      * Task aborted.
      */
-    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40
+    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40,
 } ScsiPeripheral_Status;
 
 /**
