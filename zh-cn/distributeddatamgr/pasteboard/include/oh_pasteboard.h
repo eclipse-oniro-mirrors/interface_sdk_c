@@ -83,16 +83,16 @@ extern "C" {
  * @since 13
  */
 typedef enum Pasteboard_NotifyType {
-/**
- * @brief 本地设备剪贴板数据变更。
- *
- */
- NOTIFY_LOCAL_DATA_CHANGE = 1,
-/**
- * @brief 组网内的非本地设备剪贴板数据变更。
- *
- */
- NOTIFY_REMOTE_DATA_CHANGE = 2
+    /**
+     * @brief 本地设备剪贴板数据变更。
+     *
+     */
+    NOTIFY_LOCAL_DATA_CHANGE = 1,
+    /**
+     * @brief 组网内的非本地设备剪贴板数据变更。
+     *
+     */
+    NOTIFY_REMOTE_DATA_CHANGE = 2
 } Pasteboard_NotifyType;
 
 /**
@@ -101,16 +101,16 @@ typedef enum Pasteboard_NotifyType {
  * @since 15
  */
 typedef enum Pasteboard_FileConflictOptions {
-/**
- * @brief 目标路径存在同文件名时覆盖。
- *
- */
- PASTEBOARD_OVERWRITE = 0,
-/**
- * @brief 目标路径存在同文件名时跳过。
- *
- */
- PASTEBOARD_SKIP = 1
+    /**
+     * @brief 目标路径存在同文件名时覆盖。
+     *
+     */
+    PASTEBOARD_OVERWRITE = 0,
+    /**
+     * @brief 目标路径存在同文件名时跳过。
+     *
+     */
+    PASTEBOARD_SKIP = 1
 } Pasteboard_FileConflictOptions;
 
 /**
@@ -119,16 +119,16 @@ typedef enum Pasteboard_FileConflictOptions {
  * @since 15
  */
 typedef enum Pasteboard_ProgressIndicator {
-/**
- * @brief 不采用系统默认进度显示。
- *
- */
- PASTEBOARD_NONE = 0,
-/**
- * @brief 采用系统默认进度显示。
- *
- */
- PASTEBOARD_DEFAULT = 1
+    /**
+     * @brief 不采用系统默认进度显示。
+     *
+     */
+    PASTEBOARD_NONE = 0,
+    /**
+     * @brief 采用系统默认进度显示。
+     *
+     */
+    PASTEBOARD_DEFAULT = 1
 } Pasteboard_ProgressIndicator;
 
 /**
