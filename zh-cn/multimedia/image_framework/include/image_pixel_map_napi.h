@@ -19,7 +19,6 @@
  *
  * @brief 提供image接口的访问。
  *
- * @Syscap SystemCapability.Multimedia.Image.Core
  * @since 8
  * @version 1.0
  */
@@ -29,15 +28,20 @@
  *
  * @brief 声明可以锁定并访问pixelmap数据的方法，声明解锁的方法。
  *
+ * @library libpixelmap_ndk.z.so
  * @kit ImageKit
- * @include <multimedia/image_framework/image_pixel_map_napi.h>
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 8
  * @version 1.0
  */
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXEL_MAP_NAPI_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXEL_MAP_NAPI_H_
-#include <stdint>
+#ifdef __cplusplus
+#include <cstdint>
+#else
+#include <stdint.h>
+#endif
 #include "napi/native_api.h"
 namespace OHOS {
 namespace Media {
@@ -94,20 +98,20 @@ struct OhosPixelMapInfo {
     /** 图片的高，用pixels表示。 */
     uint32_t height;
     /**
-      * @brief 图片在内存中，每行所占的字节数。\n
+      * @brief 图片在内存中，每行所占的字节数。<br>
       * DMA内存为图片的宽 \* 每个像素字节数 + 每行末尾填充字节数；其他内存为图片的宽 \* 每个像素字节数。
       */
     uint32_t rowSize;
     /**
-      * @brief Pixel的格式，取值范围：\n
-      * 0：未知格式。\n
-      * 2：格式为RGB_565。\n
-      * 3：格式为RGBA_8888。\n
-      * 4：格式为BGRA_8888。\n
-      * 5：格式为RGB_888。\n
-      * 6：格式为ALPHA_8。\n
-      * 7：格式为RGBA_F16。\n
-      * 8：格式为NV21。\n
+      * @brief Pixel的格式，取值范围：<br>
+      * 0：未知格式。<br>
+      * 2：格式为RGB_565。<br>
+      * 3：格式为RGBA_8888。<br>
+      * 4：格式为BGRA_8888。<br>
+      * 5：格式为RGB_888。<br>
+      * 6：格式为ALPHA_8。<br>
+      * 7：格式为RGBA_F16。<br>
+      * 8：格式为NV21。<br>
       * 9：格式为NV12。
       */
     int32_t pixelFormat;
@@ -137,8 +141,8 @@ enum {
  * @param env napi的环境指针。
  * @param value 应用层的PixelMap对象。
  * @param info 用于保存信息的指针对象。
- * @return 错误码：\n
- * OHOS_IMAGE_RESULT_SUCCESS：操作成功。\n
+ * @return 错误码：<br>
+ * OHOS_IMAGE_RESULT_SUCCESS：操作成功。<br>
  * OHOS_IMAGE_RESULT_BAD_PARAMETER：操作失败。
  * @since 8
  * @version 1.0
@@ -146,7 +150,7 @@ enum {
 int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info);
 
 /**
- * @brief 获取PixelMap对象数据的内存地址，并锁定该内存。\n
+ * @brief 获取PixelMap对象数据的内存地址，并锁定该内存。<br>
  *
  * 函数执行成功后，\*addrPtr就是获取的待访问的内存地址。访问操作完成后，必须要使用{@link OH_UnAccessPixels}来释放锁，否则的话资源无法被释放。
  * 待解锁后，内存地址就不可以再被访问和操作。
@@ -155,8 +159,8 @@ int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info);
  * @param env napi的环境指针。
  * @param value 应用层的PixelMap对象。
  * @param addrPtr 用于指向的内存地址的双指针对象。
- * @return 错误码：\n
- * OHOS_IMAGE_RESULT_SUCCESS：操作成功。\n
+ * @return 错误码：<br>
+ * OHOS_IMAGE_RESULT_SUCCESS：操作成功。<br>
  * OHOS_IMAGE_RESULT_BAD_PARAMETER：操作失败。
  * @since 8
  * @version 1.0
@@ -169,8 +173,8 @@ int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr);
  * @deprecated since 10
  * @param env napi的环境指针。
  * @param value 应用层的PixelMap对象。
- * @return 错误码：\n
- * OHOS_IMAGE_RESULT_SUCCESS：操作成功。\n
+ * @return 错误码：<br>
+ * OHOS_IMAGE_RESULT_SUCCESS：操作成功。<br>
  * OHOS_IMAGE_RESULT_BAD_PARAMETER：操作失败。
  * @since 8
  * @version 1.0
