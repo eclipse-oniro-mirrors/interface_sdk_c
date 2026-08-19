@@ -27,7 +27,7 @@
  * The APIs can be used to generate media key requests, process responses to media key requests, listen for events,
  * obtain content protection levels, check media key status, and remove media keys.
  * 
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
