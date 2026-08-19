@@ -17,7 +17,7 @@
  * @addtogroup SyscapNdk
  * @{
  *
- * @brief Provides APIs for querying system capabilities.
+ * @brief 提供用于查询系统能力的API。
  *
  * @since 8
  */
