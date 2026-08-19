@@ -17,9 +17,9 @@
  * @addtogroup Image_NativeModule
  * @{
  *
- * @brief 提供图片处理的相关能力，包括图片编解码、从Native层获取图片数据等。\n
+ * @brief 提供图片处理的相关能力，包括图片编解码、从Native层获取图片数据等。
+ * <br>使用该模块的接口，无需通过JS接口导入，可直接使用NDK完成功能开发。
  *
- * 使用该模块的接口，无需通过JS接口导入，可直接使用NDK完成功能开发。
  * @since 12
  */
 
@@ -32,13 +32,15 @@
  *
  * @library libpixelmap.so
  * @kit ImageKit
- * @include <multimedia/image_framework/image/pixelmap_native.h>
- * @Syscap SystemCapability.Multimedia.Image.Core
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXELMAP_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXELMAP_NATIVE_H_
+
+#include <stdbool.h>
+
 #include "image_common.h"
 #include "napi/native_api.h"
 
@@ -47,9 +49,11 @@ extern "C" {
 #endif
 
 /**
- * @brief OH_PixelmapNative结构体是Native层封装的图像解码后无压缩的位图格式结构体。
- * <br>创建OH_PixelmapNative使用{@link OH_PixelmapNative_CreatePixelmap}函数，默认采用BGRA_8888格式处理数据。
- * <br>释放OH_PixelmapNative对象使用{@link OH_PixelmapNative_Release}函数。
+ * @brief OH_PixelmapNative是Native层封装的图像解码后无压缩的位图格式结构体，支持像素数据读写、不透明度设置、缩放、平移、旋转、
+ * 翻转、裁剪等操作，适用于需要在Native层对Pixelmap进行像素级处理与变换的场景。
+ * <br>创建OH_PixelmapNative需要使用{@link OH_PixelmapNative_CreatePixelmap}系列函数，该函数在未指定源像素格式时，
+ * 会默认按BGRA_8888格式解析源像素数据。使用完毕后，必须调用{@link OH_PixelmapNative_Release}函数释放资源，两者需配对使用，
+ * 否则会导致内存泄漏。
  *
  * @since 12
  */
@@ -409,7 +413,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_Initializati
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param width 图片的宽，单位：像素（px）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options或width为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_InitializationOptions *options,
@@ -421,7 +425,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_Initializa
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param width 图片的宽，单位：像素（px）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_InitializationOptions *options,
@@ -433,7 +437,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param height 图片的高，单位：像素（px）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options或者height为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_InitializationOptions *options,
@@ -445,7 +449,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_Initializ
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param height 图片的高，单位：像素（px）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_InitializationOptions *options,
@@ -457,7 +461,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_Initializ
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param pixelFormat 像素格式{@link PIXEL_FORMAT}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options或者pixelFormat为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_InitializationOptions *options,
@@ -469,7 +473,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param pixelFormat 像素格式{@link PIXEL_FORMAT}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_InitializationOptions *options,
@@ -481,7 +485,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_Init
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param srcpixelFormat 像素格式{@link PIXEL_FORMAT}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options或者srcpixelFormat为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options,
@@ -493,7 +497,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param srcpixelFormat 源像素格式{@link PIXEL_FORMAT}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options,
@@ -535,7 +539,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param alphaType 透明度类型{@link PIXELMAP_ALPHA_TYPE}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options或者alphaType为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_InitializationOptions *options,
@@ -547,7 +551,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param alphaType 透明度类型{@link PIXELMAP_ALPHA_TYPE}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_InitializationOptions *options,
@@ -582,7 +586,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_Initial
  *
  * @param options 被释放的OH_Pixelmap_InitializationOptions指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数options为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_InitializationOptions *options);
@@ -592,7 +596,6 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_Initializat
  * 是否为HDR等信息，适用于在Native层查询Pixelmap属性的场景。
  * <br>创建OH_Pixelmap_ImageInfo对象使用{@link OH_PixelmapImageInfo_Create}函数，
  * 使用完成后需调用{@link OH_PixelmapImageInfo_Release}函数释放资源，两者需配对使用，否则会导致内存泄漏。
- * <br>OH_Pixelmap_ImageInfo结构体内容和操作方式如下：
  *
  * @since 12
  */
@@ -615,7 +618,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info);
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param width 图片宽，单位：像素（px）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info或者width为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint32_t *width);
@@ -626,7 +629,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint3
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param height 图片高，单位：像素（px）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info或者height为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint32_t *height);
@@ -648,7 +651,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, i
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param rowStride 跨距，内存中每行像素所占的空间。单位：字节（Byte）。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info或者rowStride为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, uint32_t *rowStride);
@@ -659,7 +662,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param pixelFormat 像素格式{@link PIXEL_FORMAT}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info或者pixelFormat为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat);
@@ -670,7 +673,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info,
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param alphaType 透明度类型{@link PIXELMAP_ALPHA_TYPE}。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info或者alphaType为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, int32_t *alphaType);
@@ -681,7 +684,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, i
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param isHdr 表示是否为高动态范围（HDR）的信息。true表示是高动态范围的信息，false表示不是高动态范围的信息。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数校验错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info或者isHdr为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info, bool *isHdr);
@@ -691,7 +694,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info
  *
  * @param info 被释放的OH_Pixelmap_ImageInfo指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：参数info为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info);
@@ -708,7 +711,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info);
  * @param pixelmap 被创建的OH_PixelmapNative对象指针。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_UNSUPPORTED_OPERATION：操作不支持。
+ *     <br>IMAGE_UNSUPPORTED_OPERATION：1. 参数data或options为空；2. 参数options无效导致创建pixelmap失败。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLength,
@@ -1218,7 +1221,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaType(OH_PixelmapNative *srcPixelma
  *     转换后的像素数据将写入此Pixelmap。
  * @param isPremul 转换方向，true为非预乘转预乘，false为预乘转非预乘。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：1. 参数srcpixelmap或dstpixelmap为空；2. 参数srcpixelmap或dstpixelmap所持有的inner pixelmap为空。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap,
@@ -1230,7 +1233,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
  * @param options 创建图像的初始化属性。
  * @param pixelmap 被创建的OH_PixelmapNative对象指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：1. 参数options为空或者无效的options导致创建pixelmap失败；2. 参数options无效导致创建pixelmap失败。
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_InitializationOptions *options,
