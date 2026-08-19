@@ -46,8 +46,8 @@ extern "C" {
 #endif
 
 /**
-  * @brief 创建设备。适用于需要模拟虚拟HID输入设备的场景，如模拟键盘、鼠标等输入设备进行自动化测试。必须与{@link OH_Hid_DestroyDevice}成对使用。
-  *
+ * @brief 创建设备。适用于需要模拟虚拟HID输入设备的场景，如模拟键盘、鼠标等输入设备进行自动化测试。必须与{@link OH_Hid_DestroyDevice}成对使用。
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param hidDevice 创建设备需要的基本信息，包括设备名、厂商ID、产品ID等。
  * @param hidEventProperties 创建的设备关注的事件，包括事件类型、按键事件属性、绝对坐标事件属性、相对坐标事件属性等。
