@@ -26,6 +26,7 @@
 /**
  * @file oh_predicates.h
  *
+ * @include database/rdb/oh_predicates.h
  * @brief 表示关系型数据库（RDB）的谓词。
  *
  * @kit ArkData

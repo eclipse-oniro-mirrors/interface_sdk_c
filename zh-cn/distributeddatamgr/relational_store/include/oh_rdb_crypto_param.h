@@ -26,6 +26,7 @@
 /**
  * @file oh_rdb_crypto_param.h
  *
+ * @include database/rdb/oh_rdb_crypto_param.h
  * @brief 提供与关系型数据库加密参数相关的函数和枚举。
  *
  * @kit ArkData
@@ -146,7 +147,7 @@ int OH_Rdb_DestroyCryptoParam(OH_Rdb_CryptoParam *param);
  * @brief 设置{@link OH_Rdb_CryptoParam}对象的密钥数据。
  *
  * @param param 表示指向{@link OH_Rdb_CryptoParam}实例的指针。
- * @param key 表示指向数组数据的指针。
+ * @param key 表示指向密钥数据的指针。
  * @param length 表示密钥数组的大小。
  * @return 返回操作是否成功，出错时返回对应的错误码。
  *     <br>RDB_OK 表示成功。

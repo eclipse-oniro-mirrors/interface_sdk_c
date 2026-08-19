@@ -26,6 +26,7 @@
 /**
  * @file relational_store_error_code.h
  *
+ * @include database/rdb/relational_store_error_code.h
  * @brief 声明关系型数据库（RDB）的错误码信息。
  *
  * @kit ArkData
@@ -82,7 +83,7 @@ typedef enum OH_Rdb_ErrCode {
     RDB_E_INVALID_ARGS = (E_BASE + 1),
 
     /**
-     * @brief 更新只读数据库。
+     * @brief 无法更新只读数据库。
      *
      */
     RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2),
@@ -208,7 +209,7 @@ typedef enum OH_Rdb_ErrCode {
     RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23),
 
     /**
-     * @brief 结果集查询出错。
+     * @brief 跨线程使用结果集查询出错。
      *
      */
     RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),
@@ -365,7 +366,7 @@ typedef enum OH_Rdb_ErrCode {
     RDB_E_ALREADY_CLOSED = (E_BASE + 50),
 
     /**
-     * @brief 数据库无响应。
+     * @brief 数据库繁忙。
      *
      * @since 18
      */

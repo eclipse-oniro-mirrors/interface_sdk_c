@@ -26,6 +26,7 @@
 /**
  * @file oh_values_bucket.h
  *
+ * @include database/rdb/oh_values_bucket.h
  * @brief 用于存储键值对的类型。
  *
  * @kit ArkData
@@ -72,8 +73,8 @@ typedef struct OH_VBucket {
      * @brief 将char*值放入给定列名的OH_VBucket对象中。
      *
      * @param bucket 表示指向{@link OH_VBucket}实例的指针。
-     * @param field 表示列名。
-     * @param value 表示const char *类型的值。
+     * @param field 表示数据库表中的列名，不能为空指针。
+     * @param value 数据库表中指定列名对应的值。
      * @return 返回操作是否成功，出错时返回对应的错误码。
      *     <br>RDB_OK 表示成功。
      *     <br>RDB_E_INVALID_ARGS 表示无效参数。详细信息请参阅{@link OH_Rdb_ErrCode}。
@@ -86,7 +87,7 @@ typedef struct OH_VBucket {
      * @brief 将int64_t值放入给定列名的OH_VBucket对象中。
      *
      * @param bucket 表示指向{@link OH_VBucket}实例的指针。
-     * @param field 表示列名。
+     * @param field 表示数据库表中的列名，不能为空指针。
      * @param value 数据库表中指定列名对应的值。
      * @return 返回操作是否成功，出错时返回对应的错误码。
      *     <br>RDB_OK 表示成功。
@@ -100,7 +101,7 @@ typedef struct OH_VBucket {
      * @brief 将double值放入给定列名的OH_VBucket对象中。
      *
      * @param bucket 表示指向{@link OH_VBucket}实例的指针。
-     * @param field 表示列名。
+     * @param field 表示数据库表中的列名，不能为空指针。
      * @param value 数据库表中指定列名对应的值。
      * @return 返回操作是否成功，出错时返回对应的错误码。
      *     <br>RDB_OK 表示成功。
@@ -114,7 +115,7 @@ typedef struct OH_VBucket {
      * @brief 将const uint8_t *值放入给定列名的OH_VBucket对象中。
      *
      * @param bucket 表示指向{@link OH_VBucket}实例的指针。
-     * @param field 表示列名。
+     * @param field 表示数据库表中的列名，不能为空指针。
      * @param value 表示const uint8_t *类型的值。
      * @param size 表示value的长度。
      * @return 返回操作是否成功，出错时返回对应的错误码。
@@ -129,7 +130,7 @@ typedef struct OH_VBucket {
      * @brief 将NULL值放入给定列名的OH_VBucket对象中。
      *
      * @param bucket 表示指向{@link OH_VBucket}实例的指针。
-     * @param field 表示列名。
+     * @param field 表示数据库表中的列名，不能为空指针。
      * @return 返回操作是否成功，出错时返回对应的错误码。
      *     <br>RDB_OK 表示成功。
      *     <br>RDB_E_INVALID_ARGS 表示无效参数。详细信息请参阅{@link OH_Rdb_ErrCode}。
