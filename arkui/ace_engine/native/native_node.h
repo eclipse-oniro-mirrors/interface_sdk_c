@@ -11224,7 +11224,7 @@ typedef enum {
     NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
      * @brief Sets the custom content in the pull-down area.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * This attribute can be set and reset as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
