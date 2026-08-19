@@ -20,7 +20,7 @@
  * @addtogroup NetConnection
  * @{
  *
- * @brief Provides the data structures for the C APIs of the network connection module for network management.
+ * @brief 为网络管理数据网络连接模块提供C接口数据结构。
  *
  * @since 11
  * @version 1.0
@@ -28,7 +28,7 @@
 
 /**
  * @file net_connection_type.h
- * @brief Defines the data structures for the C APIs of the network connection module.
+ * @brief 定义网络管理数据网络连接模块的C接口数据结构。
  *
  * @library libnet_connection.so
  * @kit NetworkKit
