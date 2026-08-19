@@ -113,59 +113,58 @@ extern "C" {
  * 寸。可通过[OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_gettextavoidinfo)获
  * 取，返回双指针（函数内部分配内存）。
  *     <br>
- *     <br>相关函数：
- *     <br>
- *     <br>- 创建/销毁函数：
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextConfig_Create](capi-inputmethod-text-config-capi-h.md#oh_textconfig_create) | 创建一个新的
+ *     <br>相关函数：<br>
+ *     <br>- 创建/销毁函数：<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextConfig_Create](capi-inputmethod-text-config-capi-h.md#oh_textconfig_create) | 创建一个新的
  * InputMethod_TextConfig实例。 |
- *     <br>| [OH_TextConfig_Destroy](capi-inputmethod-text-config-capi-h.md#oh_textconfig_destroy) | 销毁一个
+ * | [OH_TextConfig_Destroy](capi-inputmethod-text-config-capi-h.md#oh_textconfig_destroy) | 销毁一个
  * InputMethod_TextConfig实例。 |
  *     <br>
- *     <br>- 设置函数（Set*）：
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextConfig_SetInputType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setinputtype) | 设置文本
+ *     <br>- 设置函数（Set*）：<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextConfig_SetInputType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setinputtype) | 设置文本
  * 配置信息中的输入框类型。 |
- *     <br>| [OH_TextConfig_SetEnterKeyType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setenterkeytype) | 设
+ * | [OH_TextConfig_SetEnterKeyType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setenterkeytype) | 设
  * 置文本配置信息中的回车键功能类型。 |
- *     <br>| [OH_TextConfig_SetPreviewTextSupport](capi-inputmethod-text-config-capi-h.
+ * | [OH_TextConfig_SetPreviewTextSupport](capi-inputmethod-text-config-capi-h.
  * md#oh_textconfig_setpreviewtextsupport) | 设置预上屏支持情况。 |
- *     <br>| [OH_TextConfig_SetSelection](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setselection) | 设置选中
+ * | [OH_TextConfig_SetSelection](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setselection) | 设置选中
  * 文本范围。 |
- *     <br>| [OH_TextConfig_SetWindowId](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setwindowid) | 设置所属窗口
+ * | [OH_TextConfig_SetWindowId](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setwindowid) | 设置所属窗口
  * 的窗口ID。 |
- *     <br>| [OH_TextConfig_SetPlaceholder](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setplaceholder) | 设置
+ * | [OH_TextConfig_SetPlaceholder](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setplaceholder) | 设置
  * 占位符文本信息。 |
- *     <br>| [OH_TextConfig_SetAbilityName](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setabilityname) | 设置
+ * | [OH_TextConfig_SetAbilityName](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setabilityname) | 设置
  * abilityName信息。 |
- *     <br>| [OH_TextConfig_SetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
+ * | [OH_TextConfig_SetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
  * md#oh_textconfig_setconsumekeyevents) | 将编辑框是否具有完整处理字母、字符、功能等按键的能力设
  * 置到文本配置信息中。<br/>**起始版本：** 26.0.0 |
  *     <br>
- *     <br>- 获取函数（Get*）：
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextConfig_GetInputType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getinputtype) | 获取输入
+ *     <br>- 获取函数（Get*）：<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextConfig_GetInputType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getinputtype) | 获取输入
  * 框类型。 |
- *     <br>| [OH_TextConfig_GetEnterKeyType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getenterkeytype) | 获
+ * | [OH_TextConfig_GetEnterKeyType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getenterkeytype) | 获
  * 取回车键功能类型。 |
- *     <br>| [OH_TextConfig_IsPreviewTextSupported](capi-inputmethod-text-config-capi-h.
+ * | [OH_TextConfig_IsPreviewTextSupported](capi-inputmethod-text-config-capi-h.
  * md#oh_textconfig_ispreviewtextsupported) | 获取是否支持预上屏。 |
- *     <br>| [OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getcursorinfo) | 获取光
+ * | [OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getcursorinfo) | 获取光
  * 标信息（双指针，函数内部分配内存）。 |
- *     <br>| [OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_gettextavoidinfo) |
+ * | [OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_gettextavoidinfo) |
  *  获取避让信息（双指针，函数内部分配内存）。 |
- *     <br>| [OH_TextConfig_GetSelection](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getselection) | 获取选区
+ * | [OH_TextConfig_GetSelection](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getselection) | 获取选区
  * 范围信息。 |
- *     <br>| [OH_TextConfig_GetWindowId](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getwindowid) | 获取所属窗口
+ * | [OH_TextConfig_GetWindowId](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getwindowid) | 获取所属窗口
  * 的窗口ID。 |
- *     <br>| [OH_TextConfig_GetPlaceholder](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getplaceholder) | 获取
+ * | [OH_TextConfig_GetPlaceholder](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getplaceholder) | 获取
  * 占位符文本信息。 |
- *     <br>| [OH_TextConfig_GetAbilityName](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getabilityname) | 获取
+ * | [OH_TextConfig_GetAbilityName](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getabilityname) | 获取
  * abilityName信息。 |
- *     <br>| [OH_TextConfig_GetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
+ * | [OH_TextConfig_GetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
  * md#oh_textconfig_getconsumekeyevents) | 获取文本配置中编辑框是否具有完整处理字母、字符、功能等按键的能力。<br/>**起始版本：** 26.0.0 |
  *
  * @since 12

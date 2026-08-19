@@ -114,17 +114,14 @@ extern "C"{
  * [OH_InputMethodProxy_NotifyCursorUpdate](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_notifycursorupdate)主动通知输入法最新的光标位置。
  *     <br>
- *     <br>相关函数：
- *     <br>| 函数 | 说明 |
- *     <br>| -- | -- |
- *     <br>| [OH_CursorInfo_Create](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_create) | 创建CursorInfo实例，需
+ *     <br>相关函数：<br>
+ * | 函数 | 说明 |
+ * | -- | -- |
+ * | [OH_CursorInfo_Create](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_create) | 创建CursorInfo实例，需
  * 传入left、top、width、height。 |
- *     <br>| [OH_CursorInfo_Destroy](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_destroy) | 销毁CursorInfo实
- * 例。 |
- *     <br>| [OH_CursorInfo_SetRect](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_setrect) | 设置光标的位置和尺
- * 寸。 |
- *     <br>| [OH_CursorInfo_GetRect](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_getrect) | 获取光标的位置和尺
- * 寸。 |
+ * | [OH_CursorInfo_Destroy](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_destroy) | 销毁CursorInfo实例。 |
+ * | [OH_CursorInfo_SetRect](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_setrect) | 设置光标的位置和尺寸。 |
+ * | [OH_CursorInfo_GetRect](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_getrect) | 获取光标的位置和尺寸。 |
  *     <br>
  *     <br>与其他结构体的关系：
  *     <br>- 与InputMethod_TextConfig的关系：CursorInfo是TextConfig的子属性。应用在[OH_TextEditorProxy_GetTextConfigFunc]
