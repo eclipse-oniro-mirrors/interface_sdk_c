@@ -118,46 +118,44 @@ extern "C" {
  * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_receiveprivatecommandfunc)回调中接收PrivateCommand实
  * 例数组，遍历数组解析每个实例的key和value。
  *     <br>
- *     <br>相关函数：
- *     <br>| 函数 | 说明 |
- *     <br>| --- | --- |
- *     <br>| [OH_PrivateCommand_Create](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_create) | 创建
+ *     <br>相关函数：<br>
+ * | 函数 | 说明 |
+ * | --- | --- |
+ * | [OH_PrivateCommand_Create](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_create) | 创建
  * InputMethod_PrivateCommand实例。|
- *     <br>| [OH_PrivateCommand_Destroy](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_destroy) | 销毁
+ * | [OH_PrivateCommand_Destroy](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_destroy) | 销毁
  * InputMethod_PrivateCommand实例。 |
- *     <br>| [OH_PrivateCommand_SetKey](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_setkey) | 设置key
- * 值。 |
- *     <br>| [OH_PrivateCommand_SetBoolValue](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_SetKey](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_setkey) | 设置key值。 |
+ * | [OH_PrivateCommand_SetBoolValue](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_setboolvalue) | 设置布尔类型value值。 |
- *     <br>| [OH_PrivateCommand_SetIntValue](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_SetIntValue](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_setintvalue) | 设置整数类型value值。 |
- *     <br>| [OH_PrivateCommand_SetStrValue](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_SetStrValue](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_setstrvalue) | 设置字符串类型value值。 |
- *     <br>| [OH_PrivateCommand_GetKey](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_getkey) | 获取key
- * 值。 |
- *     <br>| [OH_PrivateCommand_GetValueType](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_GetKey](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_getkey) | 获取key值。 |
+ * | [OH_PrivateCommand_GetValueType](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_getvaluetype) | 获取value的数据类型。 |
- *     <br>| [OH_PrivateCommand_GetBoolValue](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_GetBoolValue](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_getboolvalue) | 获取布尔类型value值。 |
- *     <br>| [OH_PrivateCommand_GetIntValue](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_GetIntValue](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_getintvalue) | 获取整数类型value值。 |
- *     <br>| [OH_PrivateCommand_GetStrValue](capi-inputmethod-private-command-capi-h.
+ * | [OH_PrivateCommand_GetStrValue](capi-inputmethod-private-command-capi-h.
  * md#oh_privatecommand_getstrvalue) | 获取字符串类型value值。 |
  *     <br>
- *     <br>相关接口：
- *     <br>| 接口 | 说明 |
- *     <br>| --- | --- |
- *     <br>| [OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.
+ *     <br>相关接口：<br>
+ * | 接口 | 说明 |
+ * | --- | --- |
+ * | [OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_sendprivatecommand) | 输入法应用向编辑框客户端发送私有指令，PrivateCommand实例数组作为参数传入。最
  * 多5个实例，数据总大小限制32KB。 |
- *     <br>| [OH_TextEditorProxy_ReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_ReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_receiveprivatecommandfunc) | 编辑框客户端接收私有指令的回调函数，PrivateCommand实例数组作为参数传
  * 入。回调返回后实例内存被释放。 |
  *     <br>
- *     <br>相关枚举：
- *     <br>| 枚举 | 说明 |
- *     <br>| --- | --- |
- *     <br>| [InputMethod_CommandValueType](capi-inputmethod-types-capi-h.md#
+ *     <br>相关枚举：<br>
+ * | 枚举 | 说明 |
+ * | --- | --- |
+ * | [InputMethod_CommandValueType](capi-inputmethod-types-capi-h.md#
  * inputmethod_commandvaluetype) | PrivateCommand中value的数据类型枚举（NONE/STRING/BOOL/INT32）。 |
  *
  * @since 12

@@ -104,28 +104,26 @@ extern "C" {
  * InputMethod_TextConfig将TextAvoidInfo传递给输入法框架。输入法框架在键盘弹起时读取避让信息，判断编辑框是否处于键盘遮挡区域，并
  * 触发相应的避让调整。该结构体也可由输入法应用读取，用于了解编辑框的屏幕位置以优化键盘布局。
  *     <br>
- *     <br>相关函数：
- *     <br>| 函数 | 说明 |
- *     <br>| --- | --- |
- *     <br>| [OH_TextAvoidInfo_Create](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_create) | 创建
+ *     <br>相关函数：<br>
+ * | 函数 | 说明 |
+ * | --- | --- |
+ * | [OH_TextAvoidInfo_Create](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_create) | 创建
  * InputMethod_TextAvoidInfo实例 |
- *     <br>| [OH_TextAvoidInfo_Destroy](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_destroy) | 销毁
+ * | [OH_TextAvoidInfo_Destroy](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_destroy) | 销毁
  * InputMethod_TextAvoidInfo实例 |
- *     <br>| [OH_TextAvoidInfo_SetPositionY](capi-inputmethod-text-avoid-info-capi-h.
+ * | [OH_TextAvoidInfo_SetPositionY](capi-inputmethod-text-avoid-info-capi-h.
  * md#oh_textavoidinfo_setpositiony) | 设置Y坐标值 |
- *     <br>| [OH_TextAvoidInfo_SetHeight](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_setheight) | 设置
- * 高度值 |
- *     <br>| [OH_TextAvoidInfo_GetPositionY](capi-inputmethod-text-avoid-info-capi-h.
+ * | [OH_TextAvoidInfo_SetHeight](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_setheight) | 设置高度值 |
+ * | [OH_TextAvoidInfo_GetPositionY](capi-inputmethod-text-avoid-info-capi-h.
  * md#oh_textavoidinfo_getpositiony) | 获取Y坐标值 |
- *     <br>| [OH_TextAvoidInfo_GetHeight](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_getheight) | 获取
- * 高度值 |
- *     <br>| [OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#
+ * | [OH_TextAvoidInfo_GetHeight](capi-inputmethod-text-avoid-info-capi-h.md#oh_textavoidinfo_getheight) | 获取高度值 |
+ * | [OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#
  * oh_textconfig_gettextavoidinfo) | 从TextConfig中获取TextAvoidInfo |
  *     <br>
- *     <br>相关结构体：
- *     <br>| 结构体 | 说明 |
- *     <br>| --- | --- |
- *     <br>| [InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md) | 文本输入框配置结构体，TextAvoidInfo作
+ *     <br>相关结构体：<br>
+ * | 结构体 | 说明 |
+ * | --- | --- |
+ * | [InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md) | 文本输入框配置结构体，TextAvoidInfo作
  * 为其子属性被包含 |
  *
  * @since 12

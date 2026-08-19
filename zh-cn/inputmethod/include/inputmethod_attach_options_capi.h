@@ -116,18 +116,18 @@ extern "C" {
  * 动拉起。
  *     <br>- requestKeyboardReason：适用于需要向系统说明触发输入法的场景原因，帮助系统选择合适的输入策略。
  *     <br>
- *     <br>相关函数：
- *     <br>| 函数 | 说明 |
- *     <br>| -- | -- |
- *     <br>| [OH_AttachOptions_Create](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_create) | 创建
+ *     <br>相关函数：<br>
+ * | 函数 | 说明 |
+ * | -- | -- |
+ * | [OH_AttachOptions_Create](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_create) | 创建
  * AttachOptions实例。 |
- *     <br>| [OH_AttachOptions_CreateWithRequestKeyboardReason](capi-inputmethod-attach-options-capi-h.
+ * | [OH_AttachOptions_CreateWithRequestKeyboardReason](capi-inputmethod-attach-options-capi-h.
  * md#oh_attachoptions_createwithrequestkeyboardreason) | 创建AttachOptions实例并指定requestKeyboardReason。 |
- *     <br>| [OH_AttachOptions_Destroy](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_destroy) | 销毁
+ * | [OH_AttachOptions_Destroy](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_destroy) | 销毁
  * AttachOptions实例。 |
- *     <br>| [OH_AttachOptions_IsShowKeyboard](capi-inputmethod-attach-options-capi-h.
+ * | [OH_AttachOptions_IsShowKeyboard](capi-inputmethod-attach-options-capi-h.
  * md#oh_attachoptions_isshowkeyboard) | 获取showKeyboard值。 |
- *     <br>| [OH_AttachOptions_GetRequestKeyboardReason](capi-inputmethod-attach-options-capi-h.
+ * | [OH_AttachOptions_GetRequestKeyboardReason](capi-inputmethod-attach-options-capi-h.
  * md#oh_attachoptions_getrequestkeyboardreason) | 获取requestKeyboardReason值。 |
  *     <br>
  *     <br>与其他结构体的关系：

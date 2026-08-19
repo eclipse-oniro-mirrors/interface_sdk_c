@@ -122,23 +122,22 @@ extern "C"{
  *     <br>
  *     <br>相关函数：
  *     <br>
- *     <br>以下为可通过InputMethod_InputMethodProxy对象调用的操作函数：
- *     <br>
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_InputMethodProxy_ShowKeyboard](capi-inputmethod-inputmethod-proxy-capi-h.
+ *     <br>以下为可通过InputMethod_InputMethodProxy对象调用的操作函数：<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_InputMethodProxy_ShowKeyboard](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_showkeyboard) | 显示键盘。 |
- *     <br>| [OH_InputMethodProxy_ShowTextInput](capi-inputmethod-inputmethod-proxy-capi-h.
+ * | [OH_InputMethodProxy_ShowTextInput](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_showtextinput) | 显示文本输入框。 |
- *     <br>| [OH_InputMethodProxy_HideKeyboard](capi-inputmethod-inputmethod-proxy-capi-h.
+ * | [OH_InputMethodProxy_HideKeyboard](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_hidekeyboard) | 隐藏键盘。 |
- *     <br>| [OH_InputMethodProxy_NotifySelectionChange](capi-inputmethod-inputmethod-proxy-capi-h.
+ * | [OH_InputMethodProxy_NotifySelectionChange](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_notifyselectionchange) | 通知文本框选区变化。 |
- *     <br>| [OH_InputMethodProxy_NotifyConfigurationChange](capi-inputmethod-inputmethod-proxy-capi-h.
+ * | [OH_InputMethodProxy_NotifyConfigurationChange](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_notifyconfigurationchange) | 通知输入框配置变化。 |
- *     <br>| [OH_InputMethodProxy_NotifyCursorUpdate](capi-inputmethod-inputmethod-proxy-capi-h.
+ * | [OH_InputMethodProxy_NotifyCursorUpdate](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_notifycursorupdate) | 通知光标位置变化。 |
- *     <br>| [OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.
+ * | [OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.
  * md#oh_inputmethodproxy_sendprivatecommand) | 发送私有数据命令。 |
  *     <br>
  *     <br>关联关系:

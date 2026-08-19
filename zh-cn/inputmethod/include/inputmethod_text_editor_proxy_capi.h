@@ -137,86 +137,86 @@ extern "C" {
  *     <br>
  *     <br>相关函数：
  *     <br>
- *     <br>- 创建/销毁函数
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextEditorProxy_Create](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_create) | 创建
+ *     <br>- 创建/销毁函数<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextEditorProxy_Create](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_create) | 创建
  * 一个新的InputMethod_TextEditorProxy实例。 |
- *     <br>| [OH_TextEditorProxy_Destroy](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_destroy) | 销
+ * | [OH_TextEditorProxy_Destroy](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_destroy) | 销
  * 毁一个InputMethod_TextEditorProxy实例。 |
  *     <br>
- *     <br>- 回调设置函数（Set*Func，须在Attach前调用）
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextEditorProxy_SetGetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ *     <br>- 回调设置函数（Set*Func，须在Attach前调用）<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextEditorProxy_SetGetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setgettextconfigfunc) | 设置GetTextConfigFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetInsertTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetInsertTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setinserttextfunc) | 设置InsertTextFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetDeleteForwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetDeleteForwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setdeleteforwardfunc) | 设置DeleteForwardFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetDeleteBackwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetDeleteBackwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setdeletebackwardfunc) | 设置DeleteBackwardFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetSendKeyboardStatusFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetSendKeyboardStatusFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setsendkeyboardstatusfunc) | 设置SendKeyboardStatusFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetSendEnterKeyFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetSendEnterKeyFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setsendenterkeyfunc) | 设置SendEnterKeyFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetMoveCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetMoveCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setmovecursorfunc) | 设置MoveCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetHandleSetSelectionFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetHandleSetSelectionFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_sethandlesetselectionfunc) | 设置HandleSetSelectionFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetHandleExtendActionFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetHandleExtendActionFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_sethandleextendactionfunc) | 设置HandleExtendActionFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetGetLeftTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetGetLeftTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setgetlefttextofcursorfunc) | 设置GetLeftTextOfCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetGetRightTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetGetRightTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setgetrighttextofcursorfunc) | 设置GetRightTextOfCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetGetTextIndexAtCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetGetTextIndexAtCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setgettextindexatcursorfunc) | 设置GetTextIndexAtCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setreceiveprivatecommandfunc) | 设置ReceivePrivateCommandFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetSetPreviewTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetSetPreviewTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setsetpreviewtextfunc) | 设置SetPreviewTextFunc回调。 |
- *     <br>| [OH_TextEditorProxy_SetFinishTextPreviewFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_SetFinishTextPreviewFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setfinishtextpreviewfunc) | 设置FinishTextPreviewFunc回调。 |
  *     <br>
- *     <br>- 回调获取函数（Get*Func）
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextEditorProxy_GetGetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ *     <br>- 回调获取函数（Get*Func）<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextEditorProxy_GetGetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getgettextconfigfunc) | 获取已注册的GetTextConfigFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetInsertTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetInsertTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getinserttextfunc) | 获取已注册的InsertTextFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetDeleteForwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetDeleteForwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getdeleteforwardfunc) | 获取已注册的DeleteForwardFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetDeleteBackwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetDeleteBackwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getdeletebackwardfunc) | 获取已注册的DeleteBackwardFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetSendKeyboardStatusFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetSendKeyboardStatusFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getsendkeyboardstatusfunc) | 获取已注册的SendKeyboardStatusFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetSendEnterKeyFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetSendEnterKeyFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getsendenterkeyfunc) | 获取已注册的SendEnterKeyFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetMoveCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetMoveCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getmovecursorfunc) | 获取已注册的MoveCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetHandleSetSelectionFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetHandleSetSelectionFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_gethandlesetselectionfunc) | 获取已注册的HandleSetSelectionFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetHandleExtendActionFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetHandleExtendActionFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_gethandleextendactionfunc) | 获取已注册的HandleExtendActionFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetGetLeftTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetGetLeftTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getgetlefttextofcursorfunc) | 获取已注册的GetLeftTextOfCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetGetRightTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetGetRightTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getgetrighttextofcursorfunc) | 获取已注册的GetRightTextOfCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetGetTextIndexAtCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetGetTextIndexAtCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getgettextindexatcursorfunc) | 获取已注册的GetTextIndexAtCursorFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getreceiveprivatecommandfunc) | 获取已注册的ReceivePrivateCommandFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetSetPreviewTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetSetPreviewTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getsetpreviewtextfunc) | 获取已注册的SetPreviewTextFunc回调。 |
- *     <br>| [OH_TextEditorProxy_GetFinishTextPreviewFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ * | [OH_TextEditorProxy_GetFinishTextPreviewFunc](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_getfinishtextpreviewfunc) | 获取已注册的FinishTextPreviewFunc回调。 |
  *     <br>
- *     <br>线程配置函数：
- *     <br>| 函数 | 描述 |
- *     <br>| -- | -- |
- *     <br>| [OH_TextEditorProxy_SetCallbackInMainThread](capi-inputmethod-text-editor-proxy-capi-h.
+ *     <br>- 线程配置函数：<br>
+ * | 函数 | 描述 |
+ * | -- | -- |
+ * | [OH_TextEditorProxy_SetCallbackInMainThread](capi-inputmethod-text-editor-proxy-capi-h.
  * md#oh_texteditorproxy_setcallbackinmainthread) | 配置回调函数的执行线程策略。 |
  *     <br>
  *     <br>关联关系：
