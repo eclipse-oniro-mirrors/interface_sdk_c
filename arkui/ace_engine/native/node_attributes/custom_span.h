@@ -111,7 +111,7 @@ void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
  * @brief Sets the width for a custom span.
  *
  * @param metrics Indicates the pointer to a <b>CustomSpanMetrics</b> instance.
- * @param width Indicates the width, in px. The width should be greater than 0.
+ * @param width Indicates the width, in vp. The width should be greater than 0.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -124,7 +124,7 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, fl
  * @brief Sets the height for a custom span.
  *
  * @param metrics Indicates the pointer to a <b>CustomSpanMetrics</b> instance.
- * @param width Indicates the height, in px. The width should be greater than 0.
+ * @param height Indicates the height, in vp. The height should be greater than 0.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
