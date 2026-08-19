@@ -26,6 +26,7 @@
 /**
  * @file relational_store.h
  *
+ * @include database/rdb/relational_store.h
  * @brief 提供管理关系数据库（RDB）方法的接口，未标注支持向量数据库的接口仅支持关系型数据库。
  *
  * @kit ArkData
@@ -154,7 +155,7 @@ typedef struct {
 #pragma pack()
 
 /**
- * @brief 表示数据库类型。
+ * @brief 表示数据库实例。
  *
  * @since 10
  */
@@ -411,7 +412,7 @@ int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
  *
  * @param config 指向{@link OH_Rdb_ConfigV2}实例的指针。
  *     <br>指示与此RDB存储相关的数据库的配置。
- * @param isPersistent 指示数据库是否需要持久性。
+ * @param isPersistent 指示数据库是否需要持久化。
  * @return 返回操作是否成功，出错时返回对应的错误码。
  *     <br>RDB_OK 表示成功。
  *     <br>RDB_E_INVALID_ARGS 表示无效参数。详细信息请参阅{@link OH_Rdb_ErrCode}。
@@ -597,7 +598,7 @@ int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, 
  * <br>请确保在调用接口时遵守此限制，以避免因参数数量过多而导致错误。
  *
  * @param store 指向{@link OH_Rdb_Store}实例的指针。
- * @param table 要设置的分布式数据库表表名。
+ * @param table 表示要插入数据的目标表名。
  * @param rows 表示要插入到表中的一组数据。
  * @param resolution 表示发生冲突时的解决策略。
  * @param changes 输出参数，表示插入成功的次数。

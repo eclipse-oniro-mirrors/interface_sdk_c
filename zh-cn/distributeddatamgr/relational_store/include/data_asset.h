@@ -26,6 +26,7 @@
 /**
  * @file data_asset.h
  *
+ * @include database/data/data_asset.h
  * @brief 提供资产类型数据结构。
  * <br>资产是指一种可以在数据管理中使用的数据结构，可以存储及查询一个文件的名称、绝对路径、相对路径、创建时间、修改时间、状态、占用空间等属性。
  *

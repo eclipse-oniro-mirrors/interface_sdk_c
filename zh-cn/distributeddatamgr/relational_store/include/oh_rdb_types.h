@@ -26,6 +26,7 @@
 /**
  * @file oh_rdb_types.h
  *
+ * @include database/rdb/oh_rdb_types.h
  * @brief 提供与数据值相关的类型定义。
  *
  * @kit ArkData
@@ -110,8 +111,8 @@ void OH_RDB_DestroyReturningContext(OH_RDB_ReturningContext *context);
  * @brief 设置结果集中返回的字段。
  *
  * @param context 指向{@link OH_RDB_ReturningContext}实例的指针。
- * @param fields 表示要返回的列名。
- * @param len 字段长度。
+ * @param fields 要返回的字段名。
+ * @param len 字段数量。
  * @return 返回执行结果。
  *     <br>执行成功返回RDB_OK。
  *     <br>输入参数无效返回RDB_E_INVALID_ARGS。
@@ -123,7 +124,7 @@ int OH_RDB_SetReturningFields(OH_RDB_ReturningContext *context, const char *cons
  * @brief 设置返回结果集的最大行数量。
  *
  * @param context 指向{@link OH_RDB_ReturningContext}实例的指针。
- * @param count 表示返回结果集的最大条目数。
+ * @param count 表示返回结果集的最大行数量。
  * @return 返回执行结果。
  *     <br>执行成功返回RDB_OK。
  *     <br>输入参数无效返回RDB_E_INVALID_ARGS。
