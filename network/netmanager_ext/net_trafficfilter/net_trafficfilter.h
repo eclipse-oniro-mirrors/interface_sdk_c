@@ -24,7 +24,11 @@
 
 /**
  * @file net_trafficfilter.h
- * @brief Defines the APIs for traffic filtering.
+ * @brief Declares the C APIs for network traffic filtering and redirection. This header file provides APIs for
+ * creating and destroying a packet controller, registering packet callbacks, adding and deleting filtering rules,
+ * creating and destroying a traffic redirector, and adding and deleting redirection rules.
+ * <br>It is applicable to scenarios where network packets need to be intercepted, filtered, and redirected at the
+ * system level.
  *
  * @library libnet_trafficfilter.so
  * @kit NetworkKit
@@ -43,32 +47,24 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates a traffic redirection instance
- * Creates a traffic redirection instance for transparent TCP traffic redirection to proxy server
- * Resource Management: You must call {@link OH_TrafficFilter_DestroyRedirector} to release resources.
- * If this function fails, no valid redirector is returned.
+ * @brief Creates a traffic redirection instance for redirecting TCP traffic to a proxy server.
+ * {@link OH_TrafficFilter_DestroyRedirector} must be called to release resources. If this function fails, no valid
+ * redirector is returned.
  *
- * @param group_id Redirection chain identifier.
- *     This is the logical grouping ID within the application.
- *     Multiple redirectors within the same application can use different group_id.
- *     The same group_id from different applications will be automatically isolated.
- *     The valid range is [{@link OH_TRAFFICFILTER_MIN_GROUP_ID}, {@link OH_TRAFFICFILTER_MAX_GROUP_ID}],
- *     including both boundaries. If group_id is outside this range, this function returns
+ * @param group_id Redirection link ID, which is a logical group ID within an app. Different **group_id** values can be
+ *     used for multiple redirectors within the same app. Redirectors with the same **group_id** in different apps are
+ *     automatically isolated. The value range is [{@link OH_TRAFFICFILTER_MIN_GROUP_ID},
+ *     {@link OH_TRAFFICFILTER_MAX_GROUP_ID}]. If the value is out of this range, the function returns
  *     {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}.
- * @param priority Priority.
- *     Determines execution order between different group_id chains. A smaller number executes first.
- *     Note: Redirector priority is higher than packet filter priority.
- *     The valid range is [{@link OH_TRAFFICFILTER_MIN_PRIORITY}, {@link OH_TRAFFICFILTER_MAX_PRIORITY}],
- *     including both boundaries. If priority is outside this range, this function returns
- *     {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}.
- *
- * @param redirector Output parameter, the redirection handle on success.
- * @return <ul><li>{@link OH_TRAFFICFILTER_OK} on success.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} if permission is denied.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_GROUP_ID_IN_USE} when group_id already exists.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if priority is invalid.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_NFQUEUE_ERROR} if NFQueue initialization fails.</li></ul>
- *
+ * @param priority Priority, which determines the execution order among links with different **group_id** values. A
+ *     smaller value indicates a higher priority. Note: The redirector priority is higher than the packet filter
+ *     priority. The value range is [{@link OH_TRAFFICFILTER_MIN_PRIORITY}, {@link OH_TRAFFICFILTER_MAX_PRIORITY}]. If
+ *     the value is out of range, the function returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}.
+ * @param redirector Output parameter, which is the redirection handle when the operation is successful.
+ * @return {@link OH_TRAFFICFILTER_OK}: Success.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED}: Missing permissions.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_GROUP_ID_IN_USE}: The **group_id** exists.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}: Parameter error.
  * @release TrafficFilter/OH_TrafficFilter_DestroyRedirector {redirector}
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
  * @since 26.0.0
@@ -80,16 +76,14 @@ int32_t OH_TrafficFilter_CreateRedirector(
 );
 
 /**
- * @brief Destroys a traffic redirection instance.
- * Destroys the redirection instance and releases related resources, including rules.
- * The handle becomes invalid after this call.
+ * @brief Destroys the redirection instance and releases related resources (including rules). The handle becomes
+ * invalid after the function is called.
  *
- * @param redirector OH_TrafficFilter_Redirector handle
- * @return <ul><li>{@link OH_TRAFFICFILTER_OK} on success.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} if permission is denied.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if redirector is NULL.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_NOT_FOUND} if the specified redirector handle is not found.</li></ul>
- *
+ * @param redirector Handle of **OH_TrafficFilter_Redirector**.
+ * @return {@link OH_TRAFFICFILTER_OK}: Success.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED}: Missing permissions.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}: The **redirector** value is **NULL**.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_NOT_FOUND}: The specified redirector handle is not found.
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
  * @since 26.0.0
  */
@@ -106,7 +100,6 @@ int32_t OH_TrafficFilter_DestroyRedirector(OH_TrafficFilter_Redirector* redirect
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} if permission is denied.</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if redirector or rule is NULL.</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_TOO_MANY_RULES} if too many rules added.</li></ul>
-
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
  * @since 26.0.0
  */
@@ -116,30 +109,28 @@ int32_t OH_TrafficFilter_AddRedirectRule(
 );
 
 /**
- * @brief Clear all redirection rule
+ * @brief Clears all redirection rules.
  *
- * @param redirector OH_TrafficFilter_Redirector handle
- * @return <ul><li>{@link OH_TRAFFICFILTER_OK} on success.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} if permission is denied.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if redirector is NULL.</li></ul>
- *
+ * @param redirector Handle of **OH_TrafficFilter_Redirector**.
+ * @return {@link OH_TRAFFICFILTER_OK}: Success.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED}: Missing permissions.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}: The **redirector** value is NULL.
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
  * @since 26.0.0
  */
 int32_t OH_TrafficFilter_ClearRedirectRule(OH_TrafficFilter_Redirector* redirector);
 
 /**
- * @brief Queries corresponding process information based on connection information
+ * @brief Queries the process information based on network connection. This function queries the process that starts
+ * the connection using the five-tuple connection information, including the source IP address, destination IP address,
+ * source port number, destination port number, and protocol type.
  *
- * Queries corresponding process information based on five-tuple information
- *
- * @param connection_info Input connection information
- * @param process_info Output process information
- * @return <ul><li>{@link OH_TRAFFICFILTER_OK} on success.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} if permission is denied.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if input parameters are invalid.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_NOT_FOUND} if process not found.</li></ul>
- *
+ * @param connection_info Input connection information.
+ * @param process_info Output process information.
+ * @return {@link OH_TRAFFICFILTER_OK}: Success.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED}: Missing permissions.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}: Invalid input parameter.
+ *     <br>{@link OH_TRAFFICFILTER_ERROR_NOT_FOUND}: Process not found.
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
  * @since 26.0.0
  */
