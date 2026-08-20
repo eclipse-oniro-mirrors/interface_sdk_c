@@ -28,7 +28,7 @@
  * configurations, obtain DRM metrics, obtain the content protection level, generate media key system requests, process
  * responses to media key system requests, listen for events, and manage offline media keys.
  * 
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0

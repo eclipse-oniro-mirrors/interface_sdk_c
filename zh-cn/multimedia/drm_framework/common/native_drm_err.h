@@ -16,16 +16,23 @@
  * @addtogroup Drm
  * @{
  *
- * @brief Provides APIs of Drm.
+ * @brief 提供数字版权保护能力的API。
+ *
+ * 开发者可根据开发需求，参考开发指南及样例：
+ *
+ * - [数字版权保护(C/C++)](docroot://media/drm/drm-c-dev-guide.md)
+ * - [基于AVCodec播放DRM节目(C/C++)](docroot://media/drm/drm-avcodec-integration.md)
+ *
  * @kit DrmKit
  * @since 11
  * @version 1.0
  */
 /**
  * @file native_drm_err.h
- * @brief 定义DRM错误码。
+ * @brief 定义DRM错误码，用于标识DRM模块在运行过程中可能出现的各种异常情况。开发者可基于错误码进行错误处理和问题定位，提高DRM应用的稳定性和可维护性，适用于需要处理DRM功能异常的场景。
  * 
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
+ * @include <multimedia/drm_framework/native_drm_err.h>
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
