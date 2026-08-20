@@ -56,7 +56,7 @@ typedef struct DDK_Ashmem {
     /**
      * 缓冲区地址。
      */
-    const uint8_t *address;
+    const uint8_t* address;
     /**
      * 缓冲区大小。
      */
