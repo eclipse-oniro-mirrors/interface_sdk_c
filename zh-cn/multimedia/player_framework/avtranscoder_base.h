@@ -28,6 +28,7 @@
  * @brief 定义了媒体AVTranscoder的结构体和枚举。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avtranscoder_base.h>
  * @library libavtranscoder.so
  * @syscap SystemCapability.Multimedia.Media.AVTranscoder
  * @since 20
@@ -44,14 +45,14 @@ extern "C" {
 #endif
 
 /**
- * @brief 初始化AVTranscoder。
+ * @brief 定义AVTranscoder结构体类型。
  * 
  * @since 20
  */
 typedef struct OH_AVTranscoder OH_AVTranscoder;
 
 /**
- * @brief 初始化AVTranscoder_Config。
+ * @brief 初始化OH_AVTranscoder_Config。
  * 
  * @since 20
  */
@@ -88,9 +89,9 @@ typedef enum OH_AVTranscoder_State {
 /**
  * @brief 转码过程的状态回调函数。
  * 
- * @param transcoder The pointer to an OH_AVTranscoder instance.
- * @param state Indicates the transcoder state. For details, see {@link OH_AVTranscoder_State}.
- * @param userData Pointer to user specific data.
+ * @param transcoder OH_AVTranscoder实例的指针。
+ * @param state 转码状态，详细说明请参见{@link OH_AVTranscoder_State}.
+ * @param userData 用户特定数据的指针。
  * @since 20
  */
 typedef void (*OH_AVTranscoder_OnStateChange)(OH_AVTranscoder *transcoder, OH_AVTranscoder_State state, void *userData);
@@ -98,27 +99,27 @@ typedef void (*OH_AVTranscoder_OnStateChange)(OH_AVTranscoder *transcoder, OH_AV
 /**
  * @brief 转码过程中错误事件的回调函数。
  * 
- * @param transcoder Pointer to an OH_AVTranscoder instance.
- * @param errorCode Error code.
- * {@link AV_ERR_NO_MEMORY} if memory is insufficient.
- * {@link AV_ERR_IO} if IO access failed.
- * {@link AV_ERR_INVALID_STATE} if current state does not support this operation.
- * {@link AV_ERR_UNSUPPORT} if unsupported function.
- * {@link AV_ERR_INVALID_VAL} if the parameter check failed.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
- * @param errorMsg Error message.
- * @param userData Pointer to user specific data.
+ * @param transcoder OH_AVTranscoder实例的指针。
+ * @param errorCode 错误码
+ * {@link AV_ERR_NO_MEMORY} 无内存，取值为1。
+ * {@link AV_ERR_OPERATE_NOT_PERMIT} 操作不允许，取值为2。
+ * {@link AV_ERR_INVALID_VAL} 参数检查失败，取值为3。
+ * {@link AV_ERR_IO} IO错误，取值为4。
+ * {@link AV_ERR_INVALID_STATE} 当前状态不支持此操作，取值为8。
+ * {@link AV_ERR_UNSUPPORT} 不支持的接口，取值为9。
+ * @param errorMsg 错误消息。
+ * @param userData 用户特定数据的指针。
  * @since 20
  */
 typedef void (*OH_AVTranscoder_OnError)(OH_AVTranscoder *transcoder, int32_t errorCode, const char *errorMsg,
     void *userData);
 
 /**
- * @brief 回调转码进度更新时调用。
+ * @brief 转码进度更新时的回调函数。
  * 
- * @param transcoder Pointer to an OH_AVTranscoder instance.
- * @param progress Transcoding progress, in percentage.
- * @param userData Pointer to user specific data.
+ * @param transcoder OH_AVTranscoder实例的指针。
+ * @param progress 转码百分比进度。
+ * @param userData 用户特定数据的指针。
  * @since 20
  */
 typedef void (*OH_AVTranscoder_OnProgressUpdate)(OH_AVTranscoder *transcoder, int32_t progress, void *userData);
