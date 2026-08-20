@@ -897,33 +897,33 @@ typedef enum OH_TrafficFilter_PacketCopyMode {
  * @since 26.1.0
  */
 typedef struct OH_TrafficFilter_Config {
-     /**
-      * @brief Must be set to `sizeof(OH_TrafficFilter_Config)` by the caller.
-      * The caller is required to zero-initialize the structure first, then set this field.
-      * The implementation uses this value to determine the valid data range for binary compatibility.
-      * @since 26.1.0
-      */
-     uint32_t size;
-     /**
-      * @brief NFQueue packet copy mode, see OH_TrafficFilter_PacketCopyMode
-      * @since 26.1.0
-      */
-     uint32_t packetCopyMode;
-     /**
-      * @brief NFQueue packet copy length in bytes, 0xFFFF means entire packet, smaller values copy only header
-      * @since 26.1.0
-      */
-     uint32_t packetCopyLen;
-     /**
-      * @brief NFQueue maximum queue length (number of packets), 0 means system default (1024)
-      * @since 26.1.0
-      */
-     uint32_t nfqueueMaxlen;
-     /**
-      * @brief NFQueue queue flags, see OH_TRAFFICFILTER_NFQUEUE_FLAG_* definitions
-      * @since 26.1.0
-      */
-     uint32_t nfqueueFlags;
+    /**
+     * @brief Must be set to `sizeof(OH_TrafficFilter_Config)` by the caller.
+     * The caller is required to zero-initialize the structure first, then set this field.
+     * The implementation uses this value to determine the valid data range for binary compatibility.
+     * @since 26.1.0
+     */
+    uint32_t size;
+    /**
+     * @brief NFQueue packet copy mode, see OH_TrafficFilter_PacketCopyMode
+     * @since 26.1.0
+     */
+    uint32_t packetCopyMode;
+    /**
+     * @brief NFQueue packet copy length in bytes, 0xFFFF means entire packet, smaller values copy only header
+     * @since 26.1.0
+     */
+    uint32_t packetCopyLen;
+    /**
+     * @brief NFQueue maximum queue length (number of packets), 0 means system default (1024)
+     * @since 26.1.0
+     */
+    uint32_t nfqueueMaxlen;
+    /**
+     * @brief NFQueue queue flags, see OH_TRAFFICFILTER_NFQUEUE_FLAG_* definitions
+     * @since 26.1.0
+     */
+    uint32_t nfqueueFlags;
 } OH_TrafficFilter_Config;
 
 /**
@@ -1089,7 +1089,7 @@ typedef struct OH_TrafficFilter_FilterRule {
      * @brief MAC address match condition (only source MAC)
      * @since 26.1.0
      */
-     OH_TrafficFilter_MACMatch macMatch;
+    OH_TrafficFilter_MACMatch macMatch;
     /**
      * @brief TCP flags match condition (valid only for TCP protocol)
      * @since 26.1.0
