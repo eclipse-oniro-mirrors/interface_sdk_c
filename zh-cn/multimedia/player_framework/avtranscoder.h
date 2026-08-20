@@ -136,7 +136,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
- * @param bitrate 输出音频的码率，单位为比特率（bps）。
+ * @param bitrate 输出音频的码率，单位为比特率（bps）。默认设置为48Kbps。
  * @return AV_ERR_OK：设置成功。
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。
  * @since 20
