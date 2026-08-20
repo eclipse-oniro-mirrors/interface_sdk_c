@@ -16,7 +16,7 @@
  * @addtogroup AVMetadataExtractor
  * @{
  *
- * @brief 提供媒体源的元数据能力接口。
+ * @brief 提供从媒体资源中获取元数据的API。
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
@@ -27,6 +27,7 @@
  * @brief 定义AVMetadataExtractor接口。使用其Native API从媒体资源中获取元数据。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avmetadata_extractor.h>
  * @library libavmetadata_extractor.so
  * @since 18
  */
@@ -189,7 +190,7 @@ typedef void (*OH_AVMetadataExtractor_OnFrameFetched)(OH_AVMetadataExtractor *ex
  * @brief 从视频源中异步提取多个指定时间点的图像。该函数必须在设置资源之后使用。
  * 
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
- * @param timesUs The times array expected to fetch picture from the video resource. The unit is microsecond(us).
+ * @param timesUs 从视频源提取图像时的时间点数组（单位：微秒）。
  * @param timesUsSize 输入时间点数组的长度。
  * @param seekMode 定义每个给定时间与关键帧之间关系的跳转选项，详见{@link OH_AVMedia_SeekMode}。
  * @param outputParam 图像的输出参数，例如图像的高度或者宽度。详见{@link OH_AVMetadataExtractor_OutputParam}。若该参数为空指针，则获取的帧使用视频原始尺寸。
@@ -211,7 +212,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFramesByTimes(OH_AVMetadataExtractor *e
 
 /**
  * @brief 取消所有由{@link OH_AVMetadataExtractor_FetchFramesByTimes}发起的批量获取图像操作。在{@link OH_AVMetadataExtractor_OnFrameFetched}
- * 回调中，挂起的获取操作被取消，并标记结果为已取消。
+ * 回调中，挂起的获取操作被取消，回调函数的code参数将返回表示取消的错误码。
  *  
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
  * @since 23
