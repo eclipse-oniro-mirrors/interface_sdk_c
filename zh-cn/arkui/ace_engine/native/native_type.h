@@ -54,6 +54,10 @@
 #include "node_attributes/image_span.h"
 #include "node_attributes/custom_span.h"
 #include "node_attributes/rich_editor.h"
+#include "node_attributes/grid.h"
+#include "node_attributes/list.h"
+#include "node_attributes/scroll.h"
+#include "node_attributes/water_flow.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -79,35 +83,6 @@ typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle;
  * @since 26.0.0
  */
 typedef struct ArkUI_GestureCollectInterceptInfo ArkUI_GestureCollectInterceptInfo;
-
-/**
- * @brief Defines the return value structure for the <b>onGetIrregularSizeByIndex</b> callback
- * in <b>Grid</b> layout options.
- *
- * @since 22
- */
-typedef struct {
-    /** Number of rows occupied by the <b>GridItem</b> component. */
-    uint32_t rowSpan;
-    /** Number of columns occupied by the <b>GridItem</b> component. */
-    uint32_t columnSpan;
-} ArkUI_GridItemSize;
-
-/**
- * @brief Defines the return value structure for the <b>onGetRectByIndex</b> callback in <b>Grid</b> layout options.
- *
- * @since 22
- */
-typedef struct {
-    /** Starting row position of the <b>GridItem</b> component. */
-    uint32_t rowStart;
-    /** Starting column position of the <b>GridItem</b> component. */
-    uint32_t columnStart;
-    /** Number of rows occupied by the <b>GridItem</b> component. */
-    uint32_t rowSpan;
-    /** Number of columns occupied by the <b>GridItem</b> component. */
-    uint32_t columnSpan;
-} ArkUI_GridItemRect;
 
 /**
  * @brief Enumerates the selected indicator type of picker.
@@ -161,20 +136,6 @@ typedef struct {
  * @since 23
  */
 typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
-
-/**
- * @brief Defines the <b>Grid</b> layout options.
- *
- * @since 22
- */
-typedef struct ArkUI_GridLayoutOptions ArkUI_GridLayoutOptions;
-
-/**
- * @brief Defines the water flow section configuration.
- *
- * @since 12
- */
-typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption;
 
 /**
  * @brief Define the configuration information of the Item within the ListitemSwipeActionOption method.
@@ -232,13 +193,6 @@ typedef struct ArkUI_GuidelineOption ArkUI_GuidelineOption;
   * @since 12
   */
 typedef struct ArkUI_BarrierOption ArkUI_BarrierOption;
-
-/**
- * @brief Define the ChildrenMainSize class information for a List.
- *
- * @since 12
-*/
-typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
 
 /**
  * @brief Defines the image frame.
@@ -477,48 +431,6 @@ typedef struct {
 } ARKUI_TextPickerCascadeRangeContent;
 
 /**
- * @brief Enumerates the effects used at the edges of the component when the boundary of the scrollable content is
- * reached.
- *
- * @since 12
- */
-typedef enum {
-    /** Spring effect. When at one of the edges, the component can move beyond the bounds based on the initial
-     *  speed or through touches, and produces a bounce effect when the user releases their finger. */
-    ARKUI_EDGE_EFFECT_SPRING = 0,
-    /** Fade effect. When at one of the edges, the component produces a fade effect. */
-    ARKUI_EDGE_EFFECT_FADE,
-    /** No effect after the scrollbar is moved to the edge. */
-    ARKUI_EDGE_EFFECT_NONE,
-} ArkUI_EdgeEffect;
-
-/**
- * @brief Enumerates the status of the scroll bar.
- *
- * @since 22
- */
-typedef enum {
-    /** Not displayed. */
-    ARKUI_BAR_STATE_OFF = 0,
-    /** On-demand display. */
-    ARKUI_BAR_STATE_AUTO = 1,
-    /** Resident display. */
-    ARKUI_BAR_STATE_ON = 2,
-} ArkUI_BarState;
-
-/**
- * @brief Enumerates the edges for which the effect takes effect when the boundary of the scrollable content is reached.
- *
- * @since 18
- */
-typedef enum {
-    /** Start edge. */
-    ARKUI_EFFECT_EDGE_START = 1,
-    /** End edge. */
-    ARKUI_EFFECT_EDGE_END = 2,
-} ArkUI_EffectEdge;
-
-/**
  * @brief Enumerates the focus wrap mode of components.
  *
  * @since 20
@@ -551,92 +463,6 @@ typedef enum {
 } ArkUI_ItemFillPolicy;
 
 /**
- * @brief Enumerates the grid item alignment modes.
- *
- * @since 22
- */
-typedef enum {
-    /** Use the default alignment mode of the grid. */
-    GRID_ITEM_ALIGNMENT_DEFAULT = 0,
-    /** Set the height of all grid items in a row to match the height of the tallest item in that row. */
-    GRID_ITEM_ALIGNMENT_STRETCH = 1,
-} ArkUI_GridItemAlignment;
-
-/**
- * @brief Enumerates styles of grid items.
- *
- * @since 22
- */
-typedef enum {
-    /** No style. */
-    GRID_ITEM_STYLE_NONE = 0,
-    /** Hover or press style. */
-    GRID_ITEM_STYLE_PLAIN = 1,
-} ArkUI_GridItemStyle;
-
-/**
- * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
- *
- * @since 12
- */
-typedef enum {
-    /** Only vertical scrolling is supported. */
-    ARKUI_SCROLL_DIRECTION_VERTICAL = 0,
-    /** Only horizontal scrolling is supported. */
-    ARKUI_SCROLL_DIRECTION_HORIZONTAL,
-    /** Scrolling is not allowed. */
-    ARKUI_SCROLL_DIRECTION_NONE = 3,
-    /**
-     * Free scrolling in both directions.
-     *
-     * @since 20
-     */
-    ARKUI_SCROLL_DIRECTION_FREE = 4,
-} ArkUI_ScrollDirection;
-
-/**
- * @brief Enumerates the alignment modes of list items when scrolling ends.
- *
- * @since 12
- */
-typedef enum {
-    /** No alignment. This is the default value. */
-    ARKUI_SCROLL_SNAP_ALIGN_NONE = 0,
-    /** The first item in the view is aligned at the start of the list. */
-    ARKUI_SCROLL_SNAP_ALIGN_START,
-    /** The middle items in the view are aligned in the center of the list. */
-    ARKUI_SCROLL_SNAP_ALIGN_CENTER,
-    /** The last item in the view is aligned at the end of the list. */
-    ARKUI_SCROLL_SNAP_ALIGN_END,
-} ArkUI_ScrollSnapAlign;
-
-/**
- * @brief Enumerates the scroll snap animation speeds for lists.
- *
- * @since 22
- */
-typedef enum {
-    /** Normal scroll snap animation speed. */
-    ARKUI_SCROLL_SNAP_ANIMATION_NORMAL = 0,
-    /** Slow scroll snap animation speed. */
-    ARKUI_SCROLL_SNAP_ANIMATION_SLOW = 1,
-} ArkUI_ScrollSnapAnimationSpeed;
-
-/**
- * @brief Enumerates the scrollbar display modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Hide. */
-    ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF = 0,
-    /** Display on demand (displays when the screen is touched and disappears after 2s). */
-    ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO,
-    /** Always display. */
-    ARKUI_SCROLL_BAR_DISPLAY_MODE_ON,
-} ArkUI_ScrollBarDisplayMode;
-
-/**
  * @brief Enumerates the scroll directions for the <b><List></b> component.
  *
  * @since 12
@@ -647,48 +473,6 @@ typedef enum {
     /** Only horizontal scrolling is supported. */
     ARKUI_AXIS_HORIZONTAL,
 } ArkUI_Axis;
-
-/**
- * @brief Enumerates the modes for pinning the header to the top or the footer to the bottom.
- *
- * @since 12
- */
-typedef enum {
-    /** In the list item group, the header is not pinned to the top, and the footer is not pinned to the bottom. */
-    ARKUI_STICKY_STYLE_NONE = 0,
-    /** In the list item group, the header is pinned to the top, and the footer is not pinned to the bottom. */
-    ARKUI_STICKY_STYLE_HEADER = 1,
-    /** In the list item group, the footer is pinned to the bottom, and the header is not pinned to the top. */
-    ARKUI_STICKY_STYLE_FOOTER = 2,
-    /** In the list item group, the footer is pinned to the bottom, and the header is pinned to the top. */
-    ARKUI_STICKY_STYLE_BOTH = 3,
-} ArkUI_StickyStyle;
-
-/**
- * @brief Enumerates the content clipping modes of scrollable components.
- *
- * @since 18
- */
-typedef enum {
-    /** clip by content */
-    ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY = 0,
-    /** clip by boundary */
-    ARKUI_CONTENT_CLIP_MODE_BOUNDARY,
-    /** clip by safe area padding */
-    ARKUI_CONTENT_CLIP_MODE_SAFE_AREA,
-} ArkUI_ContentClipMode;
-
-/**
- * @brief Enumerates the layout modes of the WaterFlow component.
- *
- * @since 18
- */
-typedef enum {
-    /** Layout items from top to viewport. */
-    ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN = 0,
-    /** Layout items in viewport. */
-    ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW,
-} ArkUI_WaterFlowLayoutMode;
 
 /**
  * @brief Enumerates the border styles.
@@ -828,79 +612,6 @@ typedef enum {
     /** The component and all its child components cannot be identified by the accessibility service. */
     ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS,
 } ArkUI_AccessibilityMode;
-
-/**
- * @brief Defines nested scrolling options.
- *
- * @since 12
- */
-typedef enum {
-    /** The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
-     * does not scroll when the component scrolling reaches the boundary. */
-    ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
-    /** The component scrolls first, and when it hits the boundary, the parent component scrolls.
-     *  When the parent component hits the boundary, its edge effect is displayed. If no edge
-     *  effect is specified for the parent component, the edge effect of the child component is displayed instead. */
-    ARKUI_SCROLL_NESTED_MODE_SELF_FIRST,
-    /** The parent component scrolls first, and when it hits the boundary, the component scrolls.
-     *  When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
-    ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST,
-    /** The component and its parent component scroll at the same time. When both the component and its parent component
-     *  hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
-    ARKUI_SCROLL_NESTED_MODE_PARALLEL,
-} ArkUI_ScrollNestedMode;
-
-/**
- * @brief Defines the edge to which the component scrolls.
- *
- * @since 12
- */
-typedef enum {
-    /** Top edge in the vertical direction. */
-    ARKUI_SCROLL_EDGE_TOP = 0,
-    /** Bottom edge in the vertical direction. */
-    ARKUI_SCROLL_EDGE_BOTTOM,
-    /** Start position in the horizontal direction. */
-    ARKUI_SCROLL_EDGE_START,
-    /** End position in the horizontal direction. */
-    ARKUI_SCROLL_EDGE_END,
-} ArkUI_ScrollEdge;
-
-/**
- * @brief Alignment when scrolling to specific items.
- *
- * @since 12
- */
-typedef enum {
-    /** Align the head. Align the head of the specified item with the head of the container.*/
-    ARKUI_SCROLL_ALIGNMENT_START = 0,
-    /** Center alignment. Align the axis direction of the specified item to the center of the container.*/
-    ARKUI_SCROLL_ALIGNMENT_CENTER,
-    /** Tail alignment. Align the tail of the specified item with the tail of the container.*/
-    ARKUI_SCROLL_ALIGNMENT_END,
-    /** Automatic alignment. If the specified item is completely in the display area, no adjustments will be made.
-     * Otherwise, according to the principle of the shortest sliding distance, align the head or tail of the specified
-     * item with the container, so that the specified item is completely in the display area.*/
-    ARKUI_SCROLL_ALIGNMENT_AUTO,
-} ArkUI_ScrollAlignment;
-
-/**
- * @brief Define the current scrolling state.
- *
- * @since 12
- */
-typedef enum {
-    /** Idle state. Trigger when using the method provided by the controller to control scrolling, and trigger when
-     * dragging the scroll bar to scroll.*/
-    ARKUI_SCROLL_STATE_IDLE = 0,
-    /** Scroll state. Triggered when dragging the container with fingers to scroll.*/
-    ARKUI_SCROLL_STATE_SCROLL,
-    /** Inertial rolling state. Triggered when inertia rolling and bouncing back to the edge are performed after
-     * releasing the hand quickly.*/
-    ARKUI_SCROLL_STATE_FLING,
-} ArkUI_ScrollState;
 
 /**
  * @brief Enumerates the animation playback modes.
@@ -1503,20 +1214,6 @@ typedef enum {
 } ArkUI_FinishCallbackType;
 
 /**
- * @brief Enumerates the alignment modes of items along the cross axis.
-  *
- * @since 12
- */
-typedef enum {
-    /** The list items are packed toward the start edge of the list container along the cross axis. */
-    ARKUI_LIST_ITEM_ALIGNMENT_START = 0,
-    /** The list items are centered in the list container along the cross axis. */
-    ARKUI_LIST_ITEM_ALIGNMENT_CENTER,
-    /** The list items are packed toward the end edge of the list container along the cross axis. */
-    ARKUI_LIST_ITEM_ALIGNMENT_END,
-} ArkUI_ListItemAlignment;
-
-/**
   * @brief defines the direction of the barrier line.
   *
   * @since 12
@@ -1546,22 +1243,6 @@ typedef enum {
     /** No gaps in subcomponents within the chain. */
     ARKUI_RELATIVE_LAYOUT_CHAIN_STYLE_PACKED,
 } ArkUI_RelativeLayoutChainStyle;
-
-/**
- * @brief Describes the margins of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Top margin, in vp. */
-    float top;
-    /** Right margin, in vp. */
-    float right;
-    /** Bottom margin, in vp. */
-    float bottom;
-    /** Left margin, in vp. */
-    float left;
-} ArkUI_Margin;
 
 /**
  * @brief Enumerates the component units.
@@ -2013,30 +1694,6 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
- * @brief Define the rolling source enumeration value.
- *
- * @since 12
- */
-typedef enum {
-    /** Finger drag. */
-    ARKUI_SCROLL_SOURCE_DRAG = 0,
-    /** Inertial roll after finger drag. */
-    ARKUI_SCROLL_SOURCE_FLING,
-    /** Execute the EdgeEffect.Spring edge effect when crossing the boundary.*/
-    ARKUI_SCROLL_SOURCE_EDGE_EFFECT,
-    /** Other user input other than dragging, such as mouse wheel, keyboard events, etc.*/
-    ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,
-    /** Drag the scroll bar.*/
-    ARKUI_SCROLL_SOURCE_SCROLL_BAR,
-    /** Inertia scrolling after dragging the scroll bar.*/
-    ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING,
-    /** The scroll controller causes unanimated scrolling.*/
-    ARKUI_SCROLL_SOURCE_SCROLLER,
-    /** The scroll controller causes the scroll to drive the painting.*/
-    ARKUI_SCROLL_SOURCE_ANIMATION,
-} ArkUI_ScrollSource;
-
-/**
  * @brief Define accessible action types.
  *
  * @since 12
@@ -2167,24 +1824,6 @@ typedef enum {
     /** Soft keyboard area. */
     ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 << 2,
 } ArkUI_SafeAreaType;
-
-/**
- * @brief Define an enum for the areas of the <b>ListItemGroup</b> component.
- *
- * @since 15
- */
-typedef enum {
-    /** Outside the area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0,
-    /** Area when the <b>ListItemGroup</b> component does not have the header, footer, or list item. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_NONE,
-    /** List item area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_ITEM,
-    /** Header area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_HEADER,
-    /** Footer area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER,
-} ArkUI_ListItemGroupArea;
 
 /**
  * @brief defines the enumerated value of the direction of the extended security zone.
@@ -2614,255 +2253,6 @@ void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context);
 * @since 12
 */
 ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context);
-
-/**
- * @brief Creates <b>Grid</b> layout options.
- *
- * @return <b>Grid</b> layout options created.
- * @since 22
- */
-ArkUI_GridLayoutOptions* OH_ArkUI_GridLayoutOptions_Create();
-
-/**
- * @brief Disposes of <b>Grid</b> layout options.
- *
- * @param option <b>Grid</b> layout options.
- * @since 22
- */
-void OH_ArkUI_GridLayoutOptions_Dispose(ArkUI_GridLayoutOptions* option);
-
-/**
- * @brief Sets the irregular grid item index array for the grid layout.
- *
- * @param option <b>Grid</b> layout options.
- * @param irregularIndexes Array of irregular grid item indexes.
- * @param size Size of the index array.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         If an error code is returned, it may be due to a failure in parameter validation;
- *         the parameter must not be null.
- * @since 22
- */
-int32_t OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(
-    ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t size);
-
-/**
- * @brief Obtains the irregular grid item index array for the grid layout.
- * When <b>OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback</b> is not set,
- * the grid item specified in <b>irregularIndexes</b> occupies an entire row of the grid that scrolls vertically or
- * an entire column of the grid that scrolls horizontally.
- *
- * @param option <b>Grid</b> layout options.
- * @param irregularIndexes Array of irregular grid item indexes.
- * @param size Size of the index array.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the provided buffer size is insufficient.
- *         If an error code is returned, it may be due to a failure in parameter validation;
- *         the parameter must not be null.
- * @since 22
- */
-int32_t OH_ArkUI_GridLayoutOptions_GetIrregularIndexes(
-    ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t* size);
-
-/**
- * @brief Registers a callback to obtain the row and column span for the grid item at the specified index.
- *
- * @param option <b>Grid</b> layout options.
- * @param userData Indicates the custom data.
- * @param callback Callback that returns the row and column span for the grid item at the specified index.
- *        itemIndex: grid item index, which must be within the range set by
- *        {@link OH_ArkUI_GridLayoutOptions_SetIrregularIndexes}.
- * @since 22
- */
-void OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback(
-    ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemSize (*callback)(int32_t itemIndex, void* userData));
-
-/**
- * @brief Registers a callback to obtain the starting row, starting column, row span,
- * and column span for the grid item at the specified index.
- *
- * @param option <b>Grid</b> layout options.
- * @param userData Indicates the custom data.
- * @param callback Callback that returns the starting row, starting column, row span,
- *        and column span for the grid item at the specified index.
- *        itemIndex: grid item index.
- * @since 22
- */
-void OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback(
-    ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemRect (*callback)(int32_t itemIndex, void* userData));
-
-/**
-* @brief Creates water flow section configuration.
-*
-* @return Returns the water flow section configuration.
-* @since 12
-*/
-ArkUI_WaterFlowSectionOption* OH_ArkUI_WaterFlowSectionOption_Create();
-
-/**
-* @brief Destroys the pointer to a water flow section configuration.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_Dispose(ArkUI_WaterFlowSectionOption* option);
-
-/**
-* @brief Sets the FlowItem block configuration information array length.
-*
-* @param option FlowItem Indicates the packet configuration.
-* @param size Array Length.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetSize(ArkUI_WaterFlowSectionOption* option, int32_t size);
-
-/**
-* @brief Gets the FlowItem grouping configuration information array length.
-*
-* @param option FlowItem Indicates the packet configuration.
-* @return Array size. If -1 is returned, the return fails.
-*         The possible cause of the failure is that the option parameter is abnormal, such as a null pointer.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetSize(ArkUI_WaterFlowSectionOption* option);
-
-/**
-* @brief Sets the number of items in a water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param itemCount Indicates the number of items in the water flow section.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetItemCount(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, int32_t itemCount);
-
-/**
-* @brief Obtains the number of items in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the number of items in the water flow section.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief The FlowItem grouping configuration information getsthe spindle size of
-* the specified Item based on flowItemIndex.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param callback Gets the spindle size of the specified Item based on index.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float(*callback)(int32_t itemIndex));
-
-/**
-* @brief The FlowItem grouping configuration information getsthe spindle size of
-* the specified Item based on flowItemIndex.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param userData FlowItem Custom data.
-* @param callback Gets the spindle size of the specified Item based on index.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData(
-    ArkUI_WaterFlowSectionOption* option, int32_t index, void* userData,
-    float (*callback)(int32_t itemIndex, void* userData));
-
-/**
-* @brief Sets the number of columns (in a vertical layout) or rows (in a horizontal layout) of a water flow.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param crossCount Indicates the number of columns or rows, depending on the layout direction.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetCrossCount(
-    ArkUI_WaterFlowSectionOption* option, int32_t index, int32_t crossCount);
-
-/**
-* @brief Obtains the number of columns (in a vertical layout) or rows (in a horizontal layout) in the water flow section
-* that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the number of columns or rows.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Sets the gap between columns in the specified water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param columnGap Indicates the gap between columns to set.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetColumnGap(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float columnGap);
-
-/**
-* @brief Obtains the gap between columns in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the gap between columns.
-* @since 12
-*/
-float OH_ArkUI_WaterFlowSectionOption_GetColumnGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Sets the gap between rows in the specified water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param rowGap Indicates the gap between rows to set.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetRowGap(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float rowGap);
-
-/**
-* @brief Obtains the gap between rows in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the gap between rows.
-* @since 12
-*/
-float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Sets the margins for the specified water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param marginTop Indicates the top margin of the water flow section.
-* @param marginRight Indicates the right margin of the water flow section.
-* @param marginBottom Indicates the bottom margin of the water flow section.
-* @param marginLeft Indicates the left margin of the water flow section.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index,
-    float marginTop, float marginRight, float marginBottom, float marginLeft);
-
-/**
-* @brief Obtains the margins of the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the margins.
-* @since 12
-*/
-ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index);
 
 /**
  * @brief Creates a navigation indicator.
@@ -4130,88 +3520,6 @@ void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeAct
  */
 void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_ListItemSwipeActionOption* option,
     void* userData, void (*callback)(float offset, void* userData));
-
-/**
- * @brief Create configuration items for the ListChildrenMainSize interface settings.
- *
- * @return ListChildrenMainSize configuration item instance.If the object returns a null pointer,
- *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
- * @since 12
-*/
-ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
-
-/**
-* @brief Destroy the ListChildrenMainSize instance.
-*
-* @param option The ListChildrenMainSize instance to be destroyed.
-* @since 12
-*/
-void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option);
-
-/**
- * @brief Set the default size of ChildrenMainSizeOption for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param defaultMainSize The default size of the ListItem under the List, measured in vp.
- * @return 0 represents success. If defaultMainSize is less than 0 or option is a null pointer, return 401.
- * @since 12
-*/
-int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(ArkUI_ListChildrenMainSize* option,
-    float defaultMainSize);
-
-/**
- * @brief Get the default size of ChildrenMainSizeOption for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @return The default size of the ListItem under the List is 0, measured in vp.
- *         When the option is a null pointer, it returns -1.
- * @since 12
-*/
-float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option);
-
-/**
- * @brief Reset the array size of ChildrenMainSizeOption for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param totalSize Array size.
- * @since 12
-*/
-void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize);
-
-/**
- * @brief Resize the ChildrenMainSizeOption array operation on the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param index To modify the starting position of the MainSize array.
- * @param deleteCount The number of MainSize arrays to be deleted starting from index.
- * @param addCount The number of MainSize arrays to be added starting from index.
- * @return 0 represents success. If the function parameter is abnormal, return 401.
- * @since 12
-*/
-int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(ArkUI_ListChildrenMainSize* option, int32_t index,
-    int32_t deleteCount, int32_t addCount);
-
-/**
- * @brief Update the value of the ChildrenMainSizeOption array in the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param index To modify the starting position of the MainSize array.
- * @param mainSize The actual modified value.
- * @return 0 represents success. If the function parameter is abnormal, return 401.
- * @since 12
-*/
-int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(ArkUI_ListChildrenMainSize* option,
-    int32_t index, float mainSize);
-
-/**
- * @brief Get the value of the ChildrenMainSizeOption array for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param index The index position of the value to be obtained.
- * @return The value of the specific position of the array. If the function parameter is abnormal, return -1.
- * @since 12
-*/
-float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);
 
 /**
  * @brief Create a image frame from the image path.
