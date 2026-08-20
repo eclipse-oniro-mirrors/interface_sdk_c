@@ -383,7 +383,7 @@ typedef enum {
      */
     HID_KEY_LEFT_SHIFT = 42,
     /**
-     * 键“”。
+     * 键“\”。
      */
     HID_KEY_BACKSLASH = 43,
     /**
@@ -797,14 +797,16 @@ typedef enum {
      */
     HID_REL_DIAL = 0x07,
     /**
-     * 滚轮。
+     * 垂直滚轮，表示鼠标垂直滚轮的滚动方向和距离，用于垂直方向的滚动操作。
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * 其他类型的绝对坐标轴，用于不适合归入上述分类的特殊轴类型。
+     * 其他类型的相对坐标事件，用于不适合归入上述分类的特殊相对坐标事件。
      */
     HID_REL_MISC = 0x09,
-    /* Reserved */
+    /*
+     * 预留。
+     */
     HID_REL_RESERVED = 0x0a,
     /**
      * 高分辨率滚轮，表示鼠标高分辨率滚轮的滚动方向和距离，提供比普通滚轮更高的分辨率和精度。
@@ -878,7 +880,7 @@ typedef struct Hid_KeyCodeArray {
      */
     Hid_KeyCode *hidKeyCode;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，不超过hidKeyCode数组的实际长度。
      */
     uint16_t length;
 } Hid_KeyCodeArray;
@@ -895,7 +897,7 @@ typedef struct Hid_AbsAxesArray {
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：0~65535。
      */
     uint16_t length;
 } Hid_AbsAxesArray;
@@ -912,7 +914,7 @@ typedef struct Hid_RelAxesArray {
      */
     Hid_RelAxes *hidRelAxes;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，不超过hidRelAxes数组的实际长度。
      */
     uint16_t length;
 } Hid_RelAxesArray;
@@ -929,7 +931,7 @@ typedef struct Hid_MscEventArray {
      */
     Hid_MscEvent *hidMscEvent;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，不超过hidMscEvent数组的实际长度。
      */
     uint16_t length;
 } Hid_MscEventArray;
@@ -1016,27 +1018,27 @@ typedef enum {
      */
     HID_DDK_TIMEOUT = 27300004,
     /**
-     * 初始化DDK失败或DDK未初始化。请检查系统服务状态，确保在调用API前先初始化DDK。
+     * @brief 初始化DDK失败或DDK未初始化。请检查系统服务状态，确保在调用API前先初始化DDK。
      * @since 18
      */
     HID_DDK_INIT_ERROR = 27300005,
     /**
-     * 服务通信过程中错误。可能原因：服务内部错误。请检查当前操作和设备状态。
+     * @brief 服务通信过程中错误。可能原因：服务内部错误。请检查当前操作和设备状态。
      * @since 18
      */
     HID_DDK_SERVICE_ERROR = 27300006,
     /**
-     * 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。请检查内存使用情况和相关参数。
+     * @brief 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。请检查内存使用情况和相关参数。
      * @since 18
      */
     HID_DDK_MEMORY_ERROR  = 27300007,
     /**
-     * I/O操作失败。请检查设备状态和传输参数。
+     * @brief I/O操作失败。请检查设备状态和传输参数。
      * @since 18
      */
     HID_DDK_IO_ERROR = 27300008,
     /**
-     * 设备未找到。可能原因：设备未连接或设备ID错误。请检查设备是否连接、设备ID是否正确。
+     * @brief 设备未找到。可能原因：设备未连接或设备ID错误。请检查设备是否连接、设备ID是否正确。
      * @since 18
      */
     HID_DDK_DEVICE_NOT_FOUND = 27300009
@@ -1083,11 +1085,11 @@ typedef enum {
  */
 typedef struct Hid_RawDevInfo {
     /**
-     * 总线类型，取值含义参考标准HID协议的总线类型定义。
+     * 总线类型，用于标识HID设备的物理连接方式。
      */
     uint32_t busType;
     /**
-     * 厂商ID。
+     * 供应商ID。
      */
     uint16_t vendor;
     /**

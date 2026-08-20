@@ -416,12 +416,12 @@ typedef enum {
      */
     USB_DDK_SUCCESS = 0,
     /**
-     * 操作失败。
+     * @brief 操作失败。
      * @deprecated since 16
      */
     USB_DDK_FAILED = -1,
     /**
-     * 没有权限。请检查确保应用已获取ohos.permission.ACCESS_DDK_USB权限。
+     * @brief 没有权限。请检查确保应用已获取ohos.permission.ACCESS_DDK_USB权限。
      * @since 14
      */
     USB_DDK_NO_PERM = 201,
@@ -434,12 +434,12 @@ typedef enum {
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /**
-     * 空指针异常，如传入的指针参数为空。请检查传入的指针参数是否有效。
+     * @brief 空指针异常，如传入的指针参数为空。请检查传入的指针参数是否有效。
      * @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
     /**
-     * 设备忙，如设备正在执行其他操作或设备资源被占用。请等待设备空闲后重试，或释放已占用的设备资源。
+     * @brief 设备忙，如设备正在执行其他操作或设备资源被占用。请等待设备空闲后重试，或释放已占用的设备资源。
      * @deprecated since 16
      */
     USB_DDK_DEVICE_BUSY = -6,
@@ -448,7 +448,7 @@ typedef enum {
      */
     USB_DDK_INVALID_OPERATION = 27400002,
     /**
-     * 设备I/O操作失败。请检查设备连接是否正常、设备是否支持该操作。
+     * @brief 设备I/O操作失败。请检查设备连接是否正常、设备是否支持该操作。
      * @since 14
      */
     USB_DDK_IO_FAILED = 27400003,
@@ -485,7 +485,7 @@ typedef struct Usb_NonRootHubArray {
      */
     uint64_t* nonRootHubIds;
     /**
-     * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
+     * @brief 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
      * @since 26.0.0
      */
     uint32_t num;

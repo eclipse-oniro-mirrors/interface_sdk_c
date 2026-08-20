@@ -32,8 +32,10 @@
  * @brief 声明主机侧访问输入设备的HID DDK（Driver Development Kit，驱动开发工具包）接口。该模块提供了创建、打开、读写HID设备的能力，支持设备管理和事件注入，
  * 支持两种使用模式：一是虚拟HID设备的创建与事件注入，适用于模拟键盘、鼠标、触摸屏输入等场景；二是真实HID设备的访问与通信，支持打开、读写设备报告以及获取设备信息，适用于与HID设备进行数据交互的场景。
  *
+ * @include <hid/hid_ddk_api.h>
+ * @library libhid.z.so
  * @kit DriverDevelopmentKit
- * File to include: <hid/hid_ddk_api.h>
+ * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
  * @version 1.0
  */
@@ -70,10 +72,9 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param deviceId 设备ID，必须是当前调用者通过{@link OH_Hid_CreateDevice}创建的设备，取值为非负数。
- * @param items List of events to sent. The event information includes the event type (<b>Hid_EventType</b>),
- *     event code (<b>Hid_SynEvent</b> for a synchronization event code, <b>Hid_KeyCode</b> for a key code,
- *     <b>Hid_AbsAxes</b> for an absolute coordinate code, <b>Hid_RelAxes</b> for a relative coordinate event,
- *     and <b>Hid_MscEvent</b> for other input event code), and value input by the device.
+ * @param items 发送的事件列表，事件包括类型（取值来源事件类型Hid_EventType）、编码（取值来源同步事件编码Hid_SynEvent、键值编码Hid_KeyCode、
+ * 绝对坐标编码Hid_AbsAxes、相对坐标编码Hid_RelAxes、其他类型的输入事件编码Hid_MscEvent）、值（根据实际设备输入决定）。
+ * 发送的事件将被注入到指定设备，模拟设备产生相应的输入行为
  * @param length 发送事件列表长度（一次发送事件个数），取值范围为[1, 7]。
  * @return {@link HID_DDK_SUCCESS} 调用接口成功。
  *     {@link HID_DDK_NO_PERM} 权限校验失败。请确保应用已声明ohos.permission.ACCESS_DDK_HID权限。
