@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @addtogroup netmanager_ext
  * @{
@@ -21,60 +21,60 @@
  *
  * @since 26.0.0
  */
- 
+
 /**
  * @file net_ethernet.h
- * @brief Defines the APIs for ethernet.
+ * @brief Provides C APIs for the Ethernet NIC module.
  *
  * @library libnet_ethernet.so
  * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetManager.Ethernet
  * @since 26.0.0
  */
- 
+
 #ifndef NET_ETHERNET_H
 #define NET_ETHERNET_H
- 
+
 #include <stdint.h>
 #include <string.h>
- 
+
 #include "net_ethernet_type.h"
- 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
- 
+
 /**
- * @brief Get the ethernet mac address list.
+ * @brief Obtains the MAC address list of Ethernet NICs.
+ *
  * @permission ohos.permission.GET_ETHERNET_LOCAL_MAC
- * @param macAddrList - The ethernet iface mac address list.
- * @return 0 - success.
- * 201 - Permission denied.
- * 2200001 - Invalid parameter value.
- * 2200002 - Operation failed. Cannot connect to service.
- * 2201005 - Device information does not exist.
+ * @param macAddrList Pointer to the MAC address list of NICs.
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
+ *     <br>**2200001**: Parameter error. **2200002**: Service connection failure.
+ *     <br>**2201005**: Device information does not exist.
  * @syscap SystemCapability.Communication.NetManager.Ethernet
  * @since 26.0.0
  */
 int32_t OH_Ethernet_GetMacAddress(Ethernet_MacAddrInfoList *macAddrList);
- 
+
 /**
- * @brief Get the ethernet ip address list.
+ * @brief Obtains the IP address list of Ethernet NICs.
+ *
  * @permission ohos.permission.GET_NETWORK_INFO
- * @param netAddrList - The ethernet iface ip address list.
- * @return 0 - success.
- * 201 - Permission denied.
- * 2200001 - Invalid parameter value.
- * 2200002 - Operation failed. Cannot connect to service.
- * 2201005 - Device information does not exist.
+ * @param netAddrList Pointer to the IP address list of NICs.
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
+ *     <br>**2200001**: Parameter error. **2200002**: Service connection failure.
+ *     <br>**2201005**: Device information does not exist.
  * @syscap SystemCapability.Communication.NetManager.Ethernet
  * @since 26.0.0
  */
 int32_t OH_Ethernet_GetNetAddress(Ethernet_NetAddrList *netAddrList);
- 
+
 #ifdef __cplusplus
 }
 #endif
 #endif // NET_ETHERNET_H
- 
+
 /** @} */
