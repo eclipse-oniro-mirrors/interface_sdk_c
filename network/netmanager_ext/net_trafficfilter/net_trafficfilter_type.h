@@ -857,26 +857,26 @@ typedef OH_TrafficFilter_PacketDecision (*OH_TrafficFilter_PacketCallback)(
  * @since 26.1.0
  */
 typedef enum OH_TrafficFilter_PacketCopyMode {
-     /**
-      * @brief Copy only metadata (no packet data)
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_META = 0,
-     /**
-      * @brief Copy packet header only (specified by packetCopyLen)
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
-     /**
-      * @brief Copy entire packet
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
-     /**
-      * @brief Copy packet with specified maximum length
-      * @since 26.1.0
-      */
-     OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
+    /**
+     * @brief Copy only metadata (no packet data)
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_META = 0,
+    /**
+     * @brief Copy packet header only (specified by packetCopyLen)
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
+    /**
+     * @brief Copy entire packet
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
+    /**
+     * @brief Copy packet with specified maximum length
+     * @since 26.1.0
+     */
+    OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
 } OH_TrafficFilter_PacketCopyMode;
 
 /**
@@ -1019,87 +1019,87 @@ typedef struct OH_TrafficFilter_ConntrackMatch {
  * @since 26.1.0
  */
 typedef struct OH_TrafficFilter_FilterRule {
-     /**
-      * @brief Must be set to `sizeof(OH_TrafficFilter_FilterRule)` by the caller.
-      * The caller is required to zero-initialize the structure first, then set this field.
-      * The implementation uses this value to determine the valid data range for binary compatibility.
-      * @since 26.1.0
-      */
-     uint32_t size;
-     /**
-      * @brief Priority (smaller number means higher priority)
-      * @since 26.1.0
-      */
-     uint32_t priority;
-     /**
-      * @brief Hook point
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_HookPoint hookPoint;
-     /**
-      * @brief Protocol (0=any, 6=TCP, 17=UDP)
-      * @since 26.1.0
-      */
-     uint8_t protocol;
-     /**
-      * @brief Source IP match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_IPMatch srcIp;
-     /**
-      * @brief Source port match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_PortMatch srcPort;
-     /**
-      * @brief Destination IP match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_IPMatch dstIp;
-     /**
-      * @brief Destination port match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_PortMatch dstPort;
-     /**
-      * @brief Incoming interface match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_InterfaceMatch inInterface;
-     /**
-      * @brief Outgoing interface match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_InterfaceMatch outInterface;
-     /**
-      * @brief Application UID range start (inclusive). Valid range: 0 to UINT32_MAX.
-      * To match any UID, set both uidStart and uidEnd to UINT32_MAX.
-      * If uidStart > uidEnd, the rule-setting API returns OH_TRAFFICFILTER_ERROR_INVALID_PARAM.
-      * After zero-initialization, uidStart=0 and uidEnd=0, which matches UID 0 only.
-      * @since 26.1.0
-      */
-     uint32_t uidStart;
-     /**
-      * @brief Application UID range end (inclusive). Valid range: 0 to UINT32_MAX.
-      * See uidStart for usage details.
-      * @since 26.1.0
-      */
-     uint32_t uidEnd;
-     /**
-      * @brief MAC address match condition (only source MAC)
-      * @since 26.1.0
-      */
+    /**
+     * @brief Must be set to `sizeof(OH_TrafficFilter_FilterRule)` by the caller.
+     * The caller is required to zero-initialize the structure first, then set this field.
+     * The implementation uses this value to determine the valid data range for binary compatibility.
+     * @since 26.1.0
+     */
+    uint32_t size;
+    /**
+     * @brief Priority (smaller number means higher priority)
+     * @since 26.1.0
+     */
+    uint32_t priority;
+    /**
+     * @brief Hook point
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_HookPoint hookPoint;
+    /**
+     * @brief Protocol (0=any, 6=TCP, 17=UDP)
+     * @since 26.1.0
+     */
+    uint8_t protocol;
+    /**
+     * @brief Source IP match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_IPMatch srcIp;
+    /**
+     * @brief Source port match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_PortMatch srcPort;
+    /**
+     * @brief Destination IP match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_IPMatch dstIp;
+    /**
+     * @brief Destination port match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_PortMatch dstPort;
+    /**
+     * @brief Incoming interface match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_InterfaceMatch inInterface;
+    /**
+     * @brief Outgoing interface match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_InterfaceMatch outInterface;
+    /**
+     * @brief Application UID range start (inclusive). Valid range: 0 to UINT32_MAX.
+     * To match any UID, set both uidStart and uidEnd to UINT32_MAX.
+     * If uidStart > uidEnd, the rule-setting API returns OH_TRAFFICFILTER_ERROR_INVALID_PARAM.
+     * After zero-initialization, uidStart=0 and uidEnd=0, which matches UID 0 only.
+     * @since 26.1.0
+     */
+    uint32_t uidStart;
+    /**
+     * @brief Application UID range end (inclusive). Valid range: 0 to UINT32_MAX.
+     * See uidStart for usage details.
+     * @since 26.1.0
+     */
+    uint32_t uidEnd;
+    /**
+     * @brief MAC address match condition (only source MAC)
+     * @since 26.1.0
+     */
      OH_TrafficFilter_MACMatch macMatch;
-     /**
-      * @brief TCP flags match condition (valid only for TCP protocol)
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
-     /**
-      * @brief Connection tracking match condition
-      * @since 26.1.0
-      */
-     OH_TrafficFilter_ConntrackMatch conntrackMatch;
+    /**
+     * @brief TCP flags match condition (valid only for TCP protocol)
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
+    /**
+     * @brief Connection tracking match condition
+     * @since 26.1.0
+     */
+    OH_TrafficFilter_ConntrackMatch conntrackMatch;
 } OH_TrafficFilter_FilterRule;
 
 /**
