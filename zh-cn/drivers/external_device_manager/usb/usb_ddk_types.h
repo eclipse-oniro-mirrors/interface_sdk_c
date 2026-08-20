@@ -280,7 +280,7 @@ typedef struct UsbDdkEndpointDescriptor {
     /**
      * 未做解析的描述符指针，包含特定于类或供应商的描述符。
      */
-    const uint8_t *extra;
+    const uint8_t* extra;
     /**
      * 未做解析的描述符长度。
      */
@@ -305,7 +305,7 @@ typedef struct UsbDdkInterfaceDescriptor {
     /**
      * 未做解析的描述符指针，包含特定于类或供应商的描述符。
      */
-    const uint8_t *extra;
+    const uint8_t* extra;
     /**
      * 未做解析的描述符长度。
      */
@@ -347,7 +347,7 @@ typedef struct UsbDdkConfigDescriptor {
     /**
      * 未做解析的描述符指针，包含特定于类或供应商的描述符。
      */
-    const uint8_t *extra;
+    const uint8_t* extra;
     /**
      * 未做解析的描述符长度。
      */

@@ -50,8 +50,8 @@ extern "C" {
  * @param size 共享内存对应的缓冲区大小（单位：字节），必须大于0，过大会导致内存占用过高，影响运行性能。
  * @param ashmem 用于输出创建的共享内存对象的指针。
  * @return {@link DDK_SUCCESS} 调用接口成功。共享内存已成功创建并初始化完成。
- *     {@link DDK_INVALID_PARAMETER} 入参name为空指针，size的大小为0或者入参ashmem是空指针。请检查传入的参数值。
- *     {@link DDK_FAILURE} 创建共享内存失败或者创建结构体DDK_Ashmem失败。请检查申请的内存大小和权限。
+ *     <br>{@link DDK_INVALID_PARAMETER} 入参name为空指针，size的大小为0或者入参ashmem是空指针。请检查传入的参数值。
+ *     <br>{@link DDK_FAILURE} 创建共享内存失败或者创建结构体DDK_Ashmem失败。请检查申请的内存大小和权限。
  * @since 12
  */
 DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem **ashmem);
@@ -62,9 +62,9 @@ DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem *
  * @param ashmem 要映射的共享内存描述符指针。
  * @param ashmemMapType 共享内存的保护权限值，取值请参考Ashmem保护权限的通用定义范围。
  * @return {@link DDK_SUCCESS} 调用接口成功。共享内存已映射到用户空间。
- *     {@link DDK_NULL_PTR} 入参ashmem为空指针。请检查传入的参数值。
- *     {@link DDK_FAILURE} 共享内存的文件描述符无效或未先创建共享内存。请检查共享内存是否已被创建、确保文件描述符未被关闭。
- *     {@link DDK_INVALID_OPERATION} 调用接口映射共享内存失败。可能原因包括映射状态异常或权限不足，请检查共享内存的映射状态和权限后重试。
+ *     <br>{@link DDK_NULL_PTR} 入参ashmem为空指针。请检查传入的参数值。
+ *     <br>{@link DDK_FAILURE} 共享内存的文件描述符无效或未先创建共享内存。请检查共享内存是否已被创建、确保文件描述符未被关闭。
+ *     <br>{@link DDK_INVALID_OPERATION} 调用接口映射共享内存失败。可能原因包括映射状态异常或权限不足，请检查共享内存的映射状态和权限后重试。
  * @since 12
  */
 DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
@@ -74,8 +74,8 @@ DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
  *
  * @param ashmem 要取消映射的共享内存描述符指针。
  * @return {@link DDK_SUCCESS} 调用接口成功。共享内存已成功从用户空间取消映射。
- *     {@link DDK_NULL_PTR} 入参ashmem为空指针。请检查传入的参数值。
- *     {@link DDK_FAILURE} 共享内存的文件描述符无效或未先执行映射。
+ *     <br>{@link DDK_NULL_PTR} 入参ashmem为空指针。请检查传入的参数值。
+ *     <br>{@link DDK_FAILURE} 共享内存的文件描述符无效或未先执行映射。
  * @since 12
  */
 DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
@@ -85,8 +85,8 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
  *
  * @param ashmem 要销毁的共享内存描述符指针。
  * @return {@link DDK_SUCCESS} 调用接口成功。共享内存已成功销毁释放。
- *     {@link DDK_NULL_PTR} 入参ashmem为空指针。请检查传入的参数值。
- *     {@link DDK_FAILURE} 共享内存的文件描述符无效。可能原因包括共享内存已被释放或多次销毁，请检查其状态。
+ *     <br>{@link DDK_NULL_PTR} 入参ashmem为空指针。请检查传入的参数值。
+ *     <br>{@link DDK_FAILURE} 共享内存的文件描述符无效。可能原因包括共享内存已被释放或多次销毁，请检查其状态。
  * @since 12
  */
 DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);
