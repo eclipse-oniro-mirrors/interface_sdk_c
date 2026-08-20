@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup avmetakeys
+ * @addtogroup AVMediaBase
  * @{
  *
  * @brief 定义音视频元数据键。
@@ -26,6 +26,7 @@
  * @brief 定义音视频元数据键。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avmetakeys.h>
  * @library libavmedia_base.so
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 23
