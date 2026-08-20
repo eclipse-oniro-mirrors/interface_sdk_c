@@ -27,6 +27,7 @@
  * @brief 定义AVMetadataExtractor常量。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avmetadata_extractor_base.h>
  * @library libavmetadata_extractor.so
  * @since 18
  */
@@ -49,17 +50,17 @@ extern "C" {
  */
 typedef enum OH_AVMetadataExtractor_FetchState {
     /**
-     * 提取操作失败。
+     * 帧提取操作失败。
      */
     OH_AVMETADATA_EXTRACTOR_FETCH_FAILED = 0,
 
     /**
-     * 提取操作成功。
+     * 帧提取操作成功。
      */
     OH_AVMETADATA_EXTRACTOR_FETCH_SUCCEEDED = 1,
 
     /**
-     * 提取操作被用户取消。
+     * 帧提取操作被用户取消。
      */
     OH_AVMETADATA_EXTRACTOR_FETCH_CANCELED = 2,
 } OH_AVMetadataExtractor_FetchState;
@@ -163,6 +164,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_GENRE = "genre";
 
 /**
  * @brief 获取媒体资源是否包含音频的关键字，对应值类型为int32_t。
+ * 取值原则：0表示不包含音频，1表示包含音频。
  * 
  * @since 18
  */
@@ -170,13 +172,14 @@ static const char* OH_AVMETADATA_EXTRACTOR_HAS_AUDIO = "hasAudio";
 
 /**
  * @brief 获取媒体资源是否包含视频的关键字，对应值类型为int32_t。
+ * 取值原则：0表示不包含视频，1表示包含视频。
  * 
  * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_HAS_VIDEO = "hasVideo";
 
 /**
- * @brief 获取媒体资源mime类型的关键字，对应值类型为const char*，例如：“video/mp4”、“audio/mp4”和“audio/amr wb”。
+ * @brief 获取媒体资源mime类型的关键字，对应值类型为const char*，例如：“video/mp4”、“audio/mp4”和“audio/amr-wb”。
  * 
  * @since 18
  */
