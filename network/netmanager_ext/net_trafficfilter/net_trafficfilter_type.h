@@ -24,7 +24,12 @@
 
 /**
  * @file net_trafficfilter_type.h
- * @brief Traffic filter and redirection subsystem - common types and error codes definition.
+ * @brief Declares the common types and error codes required for network traffic filtering and redirection. This header
+ * file defines the match condition structs (such as IP addresses, ports, and interfaces) used in traffic filtering and
+ * redirection, configuration structs (such as packet filter rules and redirection rules), and error codes returned by
+ * operations.
+ * <br>This header file is used to construct parameters and parse return values when APIs such as
+ * {@link OH_TrafficFilter_CreateRedirector} are called.
  *
  * @library libnet_trafficfilter.so
  * @kit NetworkKit
@@ -43,51 +48,51 @@ extern "C" {
 #endif
 
 /**
- * @brief Maximum length of IP address (compatible with IPv4 and IPv6)
+ * @brief Maximum length of the IP address byte array (compatible with both IPv4 and IPv6).
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_IP_ADDRLEN       16
 
 /**
- * @brief Maximum number of IPs supported in multi-IP matching
+ * @brief Maximum number of IP addresses supported for multi–IP address matching.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_MULTI_IP_COUNT  16
 
 /**
- * @brief Maximum number of ports supported in multi-port matching
+ * @brief Maximum number of ports supported for multi-port matching.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_MULTI_PORT_COUNT 64
 
 /**
- * @brief NFQueue packet copy mode: copy metadata only
+ * @brief NFQueue packet copy mode: copies only metadata.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_NFQUEUE_COPY_META   0
 
 /**
- * @brief NFQueue packet copy mode: copy entire packet
+ * @brief NFQueue packet copy mode: copies the entire packet.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_NFQUEUE_COPY_PACKET 0xFFFF
 
 /**
- * @brief Default NFQueue packet copy length in bytes
- * Set to 0xFFFF to copy the entire packet, smaller values (e.g., 128) copy only the packet header
+ * @brief Default length of the copied NFQueue packet, in bytes. If the value is **0xFFFF**, the entire packet is
+ * copied; if a smaller value, such as **128**, is used, only the packet header is copied.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_DEFAULT_COPY_LEN    0xFFFF
 
 /**
- * @brief Default NFQueue maximum queue length (number of packets)
+  * @brief Default maximum length of the NFQueue queue (number of packets).
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_DEFAULT_QUEUE_MAXLEN  1024
 
 /**
- * @brief NFQueue queue flag: FAIL-OPEN mode
- * When userspace process crashes, kernel automatically accepts packets to avoid network interruption
+ * @brief NFQueue queue flag: FAIL-OPEN mode. When a user-mode process crashes, the kernel automatically allows packets
+ * to pass to avoid network interruption.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_NFQUEUE_FLAG_FAIL_OPEN  0x1
@@ -99,37 +104,53 @@ extern "C" {
 #define OH_TRAFFICFILTER_MIN_PRIORITY        1
 
 /**
- * @brief Maximum priority value
+ * @brief Minimum priority.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_PRIORITY        10000
 
 /**
- * @brief Minimum Group ID value
+ * @brief Maximum priority.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MIN_GROUP_ID        1
 
 /**
- * @brief Maximum Group ID value
+ * @brief Minimum group ID value.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_GROUP_ID        65535
 
 /**
- * @brief Maximum length of interface name
+ * @brief Maximum group ID value.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_IFNAMSIZ            32
 
 /**
- * @brief Protocol type constants
+ * @brief Protocol constant: any protocol.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_PROTO_ANY           0
+/**
+ * @brief Protocol constant: TCP.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_TCP           6
+/**
+ * @brief Protocol constant: UDP.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_UDP           17
+/**
+ * @brief Protocol constant: ICMP.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_ICMP          1
+/**
+ * @brief Protocol constant: ICMPv6.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_ICMPV6        58
 
 /**
