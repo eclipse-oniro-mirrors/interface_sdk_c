@@ -28,6 +28,7 @@
  *
  * @brief 声明用于主机侧通过USB接口访问串口设备的USB Serial DDK接口，提供串口读写操作和参数配置的能力，适用于工业控制、嵌入式设备通信等需要通过USB访问串口设备的场景。
  *
+ * @include <usb_serial/usb_serial_api.h>
  * @kit DriverDevelopmentKit
  * @library libusb_serial_ndk.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension

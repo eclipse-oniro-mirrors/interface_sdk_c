@@ -27,6 +27,7 @@
  *
  * @brief 提供在SCSI Peripheral DDK（驱动开发工具包）API中使用的枚举变量、结构体和宏。
  *
+ * @include <scsi_peripheral/scsi_peripheral_types.h>
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
@@ -242,7 +243,7 @@ typedef struct ScsiPeripheral_Request {
      */
     int8_t dataTransferDirection;
     /**
-     * 数据传输的缓冲区。
+     * 数据传输缓冲区的指针。
      */
     ScsiPeripheral_DeviceMemMap *data;
     /**
@@ -309,7 +310,7 @@ typedef struct ScsiPeripheral_Response {
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
@@ -407,7 +408,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
      */
     uint32_t lbAddress;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
@@ -443,15 +444,15 @@ typedef struct ScsiPeripheral_CapacityInfo {
  */
 typedef struct ScsiPeripheral_RequestSenseRequest {
     /**
-     * Allocation length字段，用于指定请求发起者（通常是主机）为响应数据准备的缓冲区大小。单位：字节。
+     * Allocation length字段，指定了请求发起者（通常是主机）为响应数据准备的缓冲区大小，单位：字节。
      */
     uint8_t allocationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
-     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
      */
     uint8_t byte1;
     /**
@@ -500,7 +501,7 @@ typedef struct ScsiPeripheral_BasicSenseInfo {
  */
 typedef struct ScsiPeripheral_VerifyRequest {
     /**
-     * 逻辑块起始地址，用于指定SCSI外设读/写操作的起始逻辑块位置。
+     * 起始逻辑块地址。
      */
     uint32_t lbAddress;
     /**
@@ -508,15 +509,15 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint16_t verificationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
-     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
      */
     uint8_t byte1;
     /**
-     * SCSI命令描述符块（CDB）的第六个字节，根据命令类型包含不同的参数或标志信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第六个字节。
      */
     uint8_t byte6;
     /**

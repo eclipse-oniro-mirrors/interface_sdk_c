@@ -29,6 +29,7 @@
  *
  * @brief 提供基础DDK接口所使用的Base DDK类型、枚举值和数据结构。
  *
+ * @include <ddk/ddk_types.h>
  * @library libddk_base.z.so
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.DDK.Extension

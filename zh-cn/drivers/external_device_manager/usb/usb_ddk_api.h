@@ -127,7 +127,7 @@ int32_t OH_Usb_GetConfigDescriptor(
 void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
 
 /**
- * @brief 声明USB接口，申请USB接口的独占使用权。调用此方法声明接口后，在使用完毕后必须调用{@link OH_Usb_ReleaseInterface}释放接口，否则会导致接口资源无法释放。
+ * @brief 声明USB接口，申请USB接口的独占使用权。调用此方法声明接口后，在使用完毕后必须调用{@link OH_Usb_ReleaseInterface}释放接口。
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId 设备ID，可通过{@link OH_Usb_GetDevices}获取，代表要操作的设备。
