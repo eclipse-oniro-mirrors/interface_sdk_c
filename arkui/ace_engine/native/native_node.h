@@ -6912,12 +6912,12 @@ typedef enum {
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>value[0].i32: The parameter type is 1 or 0.</li>
+     * <li>.value[0].i32: The parameter type is 1 or 0.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>value[0].i32: The parameter type is 1 or 0.</li>
+     * <li>.value[0].i32: The parameter type is 1 or 0.</li>
      * </ul>
      *
      * @ingroup XComponent
