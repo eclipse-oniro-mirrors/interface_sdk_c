@@ -45,13 +45,61 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/**
+ * @brief Length of the netHandles array in the member variable of NetConn_NetHandleList.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_NET_SIZE 32
+
+/**
+ * @brief Length of the bearerTypes array in the NetConn_NetCapabilities member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_BEARER_TYPE_SIZE 32
+
+/**
+ * @brief Length of the netCaps array in the NetConn_NetCapabilities member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_CAP_SIZE 32
+
+/**
+ * @brief Length of the netAddrlist and dnsList arrays in the NetConn_ConnectionProperties member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_ADDR_SIZE 32
+
+/**
+ * @brief Length of the routeList array in the NetConn_ConnectionProperties member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_ROUTE_SIZE 64
+
+/**
+ * @brief Length of the exclusionList array in the NetConn_HttpProxy member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_EXCLUSION_SIZE 256
+
+/**
+ * @brief Length of the host array of the NetConn_HttpProxy member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_STR_LEN 256
+
+/**
+ * @brief Length of the rtts array in the NetConn_ProbeResultlnfo member variable.
+ *
+ * @since 20
+ */
 #define NETCONN_MAX_RTT_NUM 4
 
 /**
@@ -337,6 +385,7 @@ typedef struct NetConn_NetHandleList {
      */
     int32_t netHandleListSize;
 } NetConn_NetHandleList;
+
 /**
  * @brief Defines the pointer to the custom DNS resolver.
  *
@@ -351,10 +400,9 @@ typedef int (*OH_NetConn_CustomDnsResolver)(const char *host, const char *serv,
     const struct addrinfo *hint, struct addrinfo **res);
 
 /**
- * @brief Callback for application http proxy information changed.
+ * @brief Defines the callback invoked when the HTTP proxy information of the application changes.
  *
- * @param proxy Changed proxy information, which can be a null pointer.
- *
+ * @param proxy Proxy configuration information (probably a null pointer).
  * @since 12
  * @version 1.0
  */
@@ -398,6 +446,7 @@ typedef struct NetConn_NetSpecifier {
      */
     char *bearerPrivateIdentifier;
 } NetConn_NetSpecifier;
+
 /**
  * @brief Defines the callback invoked when the network is available.
  *
@@ -406,6 +455,7 @@ typedef struct NetConn_NetSpecifier {
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle);
+
 /**
  * @brief Defines the callback invoked when the network capabilities change.
  *
@@ -416,6 +466,7 @@ typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle);
  */
 typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle,
                                                  NetConn_NetCapabilities *netCapabilities);
+
 /**
  * @brief Defines the callback invoked when network connection properties change.
  *
@@ -426,6 +477,7 @@ typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle,
  */
 typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netHandle,
                                                          NetConn_ConnectionProperties *connConnetionProperties);
+
 /**
  * @brief Defines the callback invoked when the network is disconnected.
  *
@@ -434,6 +486,7 @@ typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netH
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle);
+
 /**
  * @brief Defines the callback invoked when the network is unavailable. This callback is triggered when the network is
  * not activated within the specified timeout interval. If the timeout interval is not set, this callback is not
@@ -454,6 +507,7 @@ typedef void (*OH_NetConn_NetUnavailable)(void);
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked);
+
 /**
  * @brief Defines a struct for the network status listener callback collection. All callback events must be registered;
  * those not requiring attention can be set to empty.

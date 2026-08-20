@@ -17,14 +17,14 @@
  * @addtogroup netmanager_ext
  * @{
  *
- * @brief Provides C APIs for the ethernet module.
+ * @brief 为以太网网卡模块提供C接口。
  *
  * @since 26.0.0
  */
 
 /**
  * @file net_ethernet_type.h
- * @brief Defines the data structures for the C APIs of the Ethernet NIC module.
+ * @brief 为以太网网卡模块C接口定义数据结构。
  *
  * @library libnet_ethernet.so
  * @kit NetworkKit
@@ -48,106 +48,105 @@ extern "C" {
 #define ETHERNET_MAX_STR_LEN 256
 
 /**
- * @brief Defines the MAC address of the Ethernet NIC.
+ * @brief 以太网网卡MAC地址信息。
  *
  * @since 26.0.0
  */
 typedef struct Ethernet_MacAddressInfo  {
     /**
-     * The ethernet iface name.
+     * 以太网网卡名称。
      * @since 26.0.0
      */
     char ifaceName[ETHERNET_MAX_STR_LEN];
     /**
-     * The character array of device Mac address.
+     * 以太网网卡MAC地址。
      * @since 26.0.0
      */
     char macAddr[ETHERNET_MAX_STR_LEN];
 } Ethernet_MacAddressInfo;
 
 /**
- * @brief Defines the MAC address list of Ethernet NICs.
+ * @brief 以太网网卡MAC地址信息列表。
  *
  * @since 26.0.0
  */
 typedef struct Ethernet_MacAddrInfoList  {
     /**
-     * The ethernet mac address list.
+     * 以太网网卡MAC地址列表。
      * @since 26.0.0
      */
     Ethernet_MacAddressInfo macInfoList[ETHERNET_MAX_NET_SIZE];
     /**
-     * Actual size of the **macInfoList** array.
+     * macInfoList数组的实际大小。
      * @since 26.0.0
      */
     int32_t macInfoListSize;
 } Ethernet_MacAddrInfoList;
 
 /**
- * @brief Defines a network address.
+ * @brief 网络地址。
  *
  * @since 26.0.0
  */
 typedef struct Ethernet_NetAddr {
     /**
-     * Network address family. IPv4 = 1, IPv6 = 2.
+     * 网络地址族。IPv4 = 1，IPv6 = 2。
      * @since 26.0.0
      */
     uint8_t family;
     /**
-     * Prefix length.
+     * 前缀长度。
      * @since 26.0.0
      */
     uint8_t prefixlen;
     /**
-     * Port number.
+     * 端口号。
      * @since 26.0.0
      */
     uint16_t port;
     /**
-     * IP address.
+     * IP地址。
      * @since 26.0.0
      */
     char address[ETHERNET_MAX_STR_LEN];
 } Ethernet_NetAddr;
 
 /**
- * @brief Defines the network address of the Ethernet NIC, including the Ethernet NIC name and the network address
- * information.
+ * @brief 以太网网卡网络地址信息，包含以太网网卡名称及网络地址信息。
  *
  * @since 26.0.0
  */
 typedef struct Ethernet_NetAddrInfo  {
     /**
-     * The ethernet iface name.
+     * 以太网网卡名称。
      * @since 26.0.0
      */
     char ifaceName[ETHERNET_MAX_STR_LEN];
     /**
-     * The network address.
+     * 网络地址。
      * @since 26.0.0
      */
     Ethernet_NetAddr netAddrInfo[ETHERNET_MAX_NET_SIZE];
     /**
-     * Actual size of the **netAddrInfo** array.
+     * 网络地址数组的实际大小。
      * @since 26.0.0
      */
     int32_t netAddrInfoSize;
 } Ethernet_NetAddrInfo;
 
 /**
- * @brief Defines the network address list of Ethernet NICs.
+ * @brief 以太网网卡网络地址列表。
  *
  * @since 26.0.0
  */
 typedef struct Ethernet_NetAddrList {
     /**
-     * The ethernet network address list.
+     * 以太网网络地址列表。
      * @since 26.0.0
      */
     Ethernet_NetAddrInfo netAddrList[ETHERNET_MAX_NET_SIZE];
     /**
-     * Actual size of **netAddrList**.
+     * netAddrList的实际大小。
      * @since 26.0.0
      */
     int32_t netAddrListSize;
