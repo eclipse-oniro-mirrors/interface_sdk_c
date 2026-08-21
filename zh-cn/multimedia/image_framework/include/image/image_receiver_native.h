@@ -298,6 +298,26 @@ Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative* rec
  */
 Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative* receiver, OH_ImageReceiver_ImageArriveCallback callback);
 
+/**
+ * @brief 设置OH_ImageReceiverNative对象的内存名称。
+ *
+ * 仅支持可见ASCII字符，空格、换行、制表符及其他控制字符将被过滤掉。
+ * 如果过滤后的结果完全由数字组成，将自动添加前缀"ImageReceiver:"。
+ * 过滤后的名称长度（包括结束符'\0'）不得超过256字节。
+ *
+ * @param receiver [in] 指向OH_ImageReceiverNative对象的指针，不能为NULL。
+ * @param name [in] 指向要设置的内存名称字符串的指针，不能为NULL。字符串必须以'\0'结尾。
+ * @param size [in] 名称字符串的字节大小，包括结束符'\0'。必须大于0。
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} 操作成功。</li>
+ *         <li>{@link IMAGE_RECEIVER_INVALID_PARAMETER} receiver或name为NULL，或size为0，
+ *             或name过滤后无可视字符，或过滤后大小超过256字节。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_ImageReceiverNative_SetMemoryName(const OH_ImageReceiverNative* receiver, const char *name,
+    uint32_t size);
+
 #ifdef __cplusplus
 };
 #endif
