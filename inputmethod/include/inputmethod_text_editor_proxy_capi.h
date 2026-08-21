@@ -24,8 +24,10 @@
 /**
  * @file inputmethod_text_editor_proxy_capi.h
  *
- * @brief Provides functions for getting requests and notifications from input method.
+ * @brief Provides a set of methods for the custom text box developed by the application to obtain
+ *  notifications and requests from the input method application.
  *
+ * @include <inputmethod/inputmethod_text_editor_proxy_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -55,8 +57,9 @@ typedef struct InputMethod_TextEditorProxy InputMethod_TextEditorProxy;
 /**
  * @brief Defines the function called when input method getting text config.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetGetTextConfigFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetGetTextConfigFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance.
@@ -70,8 +73,9 @@ typedef void (*OH_TextEditorProxy_GetTextConfigFunc)(
 /**
  * @brief Defines the function called when input method inserting text.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetInsertTextFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetInsertTextFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to the {@link InputMethod_TextEditorProxy} instance which will be set
@@ -86,8 +90,9 @@ typedef void (*OH_TextEditorProxy_InsertTextFunc)(
 /**
  * @brief Defines the function called when input method deleting text forward.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetDeleteForwardFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetDeleteForwardFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to the {@link InputMethod_TextEditorProxy} instance which will be set
@@ -99,8 +104,9 @@ typedef void (*OH_TextEditorProxy_DeleteForwardFunc)(InputMethod_TextEditorProxy
 /**
  * @brief Defines the function called when input method deleting text backward.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetDeleteForwardFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetDeleteBackwardFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to the {@link InputMethod_TextEditorProxy} instance which will be set
@@ -112,8 +118,9 @@ typedef void (*OH_TextEditorProxy_DeleteBackwardFunc)(InputMethod_TextEditorProx
 /**
  * @brief Called when input method notifying keyboard status.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetSendKeyboardStatusFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetSendKeyboardStatusFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -125,8 +132,9 @@ typedef void (*OH_TextEditorProxy_SendKeyboardStatusFunc)(
 /**
  * @brief Called when input method sending enter key.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetSendEnterKeyFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetSendEnterKeyFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)  to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -138,8 +146,9 @@ typedef void (*OH_TextEditorProxy_SendEnterKeyFunc)(
 /**
  * @brief Called when input method requesting to move cursor.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetMoveCursorFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetMoveCursorFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -151,8 +160,9 @@ typedef void (*OH_TextEditorProxy_MoveCursorFunc)(
 /**
  * @brief Called when input method requesting to set selection.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetHandleSetSelectionFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetHandleSetSelectionFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -165,8 +175,9 @@ typedef void (*OH_TextEditorProxy_HandleSetSelectionFunc)(
 /**
  * @brief Called when input method sending extend action.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetHandleExtendActionFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetHandleExtendActionFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -178,16 +189,17 @@ typedef void (*OH_TextEditorProxy_HandleExtendActionFunc)(
 /**
  * @brief Called when input method requesting to get left text of cursor.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetGetLeftTextOfCursorFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetGetLeftTextOfCursorFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
  * @param number Represents the number of characters to be get.
- * @param text Represents the left text of cursor, you need to assing this parameter. You can only access the memory
+ * @param text Represents the left text of cursor, you need to assign this parameter. You can only access the memory
  * when this callback is called. After this callback returns, the memory will be released and you should not access this
  * memory again.
- * @param length Represents the length of the left text of cursor, you need to assing this parameter.
+ * @param length Represents the length of the left text of cursor, you need to assign this parameter.
  * @since 12
  */
 typedef void (*OH_TextEditorProxy_GetLeftTextOfCursorFunc)(
@@ -195,13 +207,14 @@ typedef void (*OH_TextEditorProxy_GetLeftTextOfCursorFunc)(
 /**
  * @brief Called when input method requesting to get right text of cursor.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetGetRightTextOfCursorFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetGetRightTextOfCursorFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
  * @param number Represents the number of characters to be get.
- * @param text Represents the right text of cursor, you need to assing this parameter. You can only access the memory
+ * @param text Represents the right text of cursor, you need to assign this parameter. You can only access the memory
  * when this callback is called. After this callback returns, the memory will be released and you should not access this
  * memory again.
  * @param length Represents the length of the right text of cursor.
@@ -212,8 +225,9 @@ typedef void (*OH_TextEditorProxy_GetRightTextOfCursorFunc)(
 /**
  * @brief Called when input method requesting to get text index at cursor.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetGetTextIndexAtCursorFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetGetTextIndexAtCursorFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -224,8 +238,9 @@ typedef int32_t (*OH_TextEditorProxy_GetTextIndexAtCursorFunc)(InputMethod_TextE
 /**
  * @brief Called when input method sending private command.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetReceivePrivateCommandFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetReceivePrivateCommandFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -240,12 +255,13 @@ typedef int32_t (*OH_TextEditorProxy_ReceivePrivateCommandFunc)(
 /**
  * @brief Called when input method setting preview text.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetReceivePrivateCommandFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetSetPreviewTextFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
- * @param text Represents text to be previewd. You can only access the memory when this callback is called.
+ * @param text Represents text to be previewed. You can only access the memory when this callback is called.
  * After this callback returns, the memory will be released and you should not access this memory again.
  * @param length Length of preview text.
  * @param start Start position of preview text.
@@ -258,8 +274,9 @@ typedef int32_t (*OH_TextEditorProxy_SetPreviewTextFunc)(
 /**
  * @brief Called when input method finishing preview text.
  *
- * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through {@link
- * OH_TextEditorProxy_SetReceivePrivateCommandFunc}, and use {@link OH_InputMethodController_Attach} to complete the
+ * You need to implement this function, set it to {@link InputMethod_TextEditorProxy} through
+ * {@link OH_TextEditorProxy_SetFinishTextPreviewFunc}, and use [OH_InputMethodController_Attach]
+ * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) to complete the
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
@@ -711,14 +728,14 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc(
  * This interface only controls all callbacks in {@link InputMethod_TextEditorProxy} except
  * {@link OH_TextEditorProxy_GetTextConfigFunc}.
  * The execution thread of {@link OH_TextEditorProxy_GetTextConfigFunc} is determined by the thread that calls
- * {@link OH_InputMethodController_Attach} and is not affected by this interface.
+ * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
+ * md#oh_inputmethodcontroller_attach) and is not affected by this interface.
  *
  * @param proxy Pointer to the target {@link InputMethod_TextEditorProxy} instance.
- * @param isCallbackInMainThread Thread execution strategy
- *                              - true: The callback function is switched to the main thread for execution (to avoid
- * multi-thread concurrency)
- *                              - false: The callback function is executed in the IPC thread (there may be multi-thread
- * concurrency)
+ * @param isCallbackInMainThread Thread execution policy.
+ *  - **true**: The callback executes on the main thread to avoid multithreaded concurrency.
+ *  Do not perform time-consuming operations in the callback, as this may block the main thread.
+ *  - **false**: The callback executes on an IPC thread (which may result in multithreaded concurrency).
  * @return Execution result.
  *     {@link IME_ERR_OK} - Configuration succeeded.
  *     {@link IME_ERR_NULL_POINTER} - Returned when proxy is NULL.

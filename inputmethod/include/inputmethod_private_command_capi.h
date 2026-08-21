@@ -16,7 +16,7 @@
  * @addtogroup InputMethod
  * @{
  *
- * @brief InputMethod provides functions to use input methods and develop input methods.
+ * @brief InputMethod provides functions to use input methods.
  *
  * @since 12
  */
@@ -24,8 +24,9 @@
 /**
  * @file inputmethod_private_command_capi.h
  *
- * @brief Provides functions to manage private commands.
+ * @brief Provides methods for creating, destroying, reading, and writing private data objects.
  *
+ * @include <inputmethod/inputmethod_private_command_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -43,9 +44,7 @@
 extern "C" {
 #endif /* __cplusplus */
 /**
- * @brief Define the InputMethod_PrivateCommand structure type.
- *
- * The private command between text editor and input method.
+ * @brief Represents the private data exchanged between the text box and the input method application.
  *
  * @since 12
  */
@@ -55,7 +54,7 @@ typedef struct InputMethod_PrivateCommand InputMethod_PrivateCommand;
  * @brief Create a new {@link InputMethod_PrivateCommand} instance.
  *
  * @param key The key of the private command.
- * @param keyLength The length of the key.
+ * @param keyLength Key length. The total size of all private data and keys in a single operation cannot exceed 32 KB.
  * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_PrivateCommand}
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
@@ -75,9 +74,9 @@ void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command);
  * @param key Represents key value.
  * @param keyLength Represents key length.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *command, char key[], size_t keyLength);
@@ -87,9 +86,9 @@ InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *comma
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be set value.
  * @param value Represents bool data value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand *command, bool value);
@@ -99,9 +98,9 @@ InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand 
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be set value.
  * @param value Represents integer data value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *command, int32_t value);
@@ -112,9 +111,9 @@ InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *
  * @param value Represents string data value.
  * @param valueLength Represents the length of string data value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
@@ -124,12 +123,13 @@ InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
  * @brief Get key value from {@link InputMethod_PrivateCommand}.
  *
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param key Represents key value.
+ * @param key The lifespan of key is consistent with that of command.
+ *  You are advised to copy instead of directly saving the key address or writing key.
  * @param keyLength Represents key length.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetKey(
@@ -138,12 +138,12 @@ InputMethod_ErrorCode OH_PrivateCommand_GetKey(
  * @brief Get value type from {@link InputMethod_PrivateCommand}.
  *
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param type Represents a pointer to a {@link InputMethod_CommandValueType} instance. Indicates the data type of the
- * value.
+ * @param type Represents a pointer to a {@link InputMethod_CommandValueType} instance.
+ *  Indicates the data type of the value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
@@ -154,10 +154,10 @@ InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
  * @param value Represents bool data value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link IME_ERR_QUERY_FAILED} - query failed, no bool value in command.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>{@link IME_ERR_QUERY_FAILED} - query failed, no bool value in command.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand *command, bool *value);
@@ -167,10 +167,10 @@ InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand 
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
  * @param value Represents integer data value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link IME_ERR_QUERY_FAILED} - query failed, no integer value in command.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>{@link IME_ERR_QUERY_FAILED} - query failed, no integer value in command.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *command, int32_t *value);
@@ -179,12 +179,13 @@ InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *
  *
  * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
  * @param value Represents string data value.
- * @param valueLength Represents the length of string data value.
+ * @param valueLength The lifespan of value is consistent with that of command.
+ *  You are advised to copy instead of directly saving the value address or writing value.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link IME_ERR_QUERY_FAILED} - query failed, no string value in command.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>{@link IME_ERR_QUERY_FAILED} - query failed, no string value in command.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetStrValue(

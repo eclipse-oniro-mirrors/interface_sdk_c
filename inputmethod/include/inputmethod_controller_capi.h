@@ -16,7 +16,7 @@
  * @addtogroup InputMethod
  * @{
  *
- * @brief InputMethod provides functions to use input methods and develop input methods.
+ * @brief InputMethod provides functions to use input methods.
  *
  * @since 12
  */
@@ -24,8 +24,9 @@
 /**
  * @file inputmethod_controller_capi.h
  *
- * @brief Provides the functions for using input method.
+ * @brief Provides methods for binding and unbinding input methods.
  *
+ * @include <inputmethod/inputmethod_controller_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -47,20 +48,21 @@ extern "C" {
 /**
  * @brief Attach application to the input method service.
  *
- * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance.
- *     The caller needs to manage the lifecycle of textEditorProxy.
- *     If the call succeeds, caller cannot release textEditorProxy until the next attach or detach call.
+ * @param textEditorProxy Pointer to the {@link InputMethod_TextEditorProxy} instance.
+ *  The caller needs to manage the **textEditorProxy** lifecycle.
+ *  If the calling is successful, the caller cannot release **textEditorProxy** before the next binding or
+ *  unbinding call.
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance.
  *     The options when attaching input method.
  * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     Lifecycle is maintained until the next attach or detach call.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     {@link IME_ERR_IMCLIENT} - input method client error.
- *     {@link IME_ERR_IMMS} - input method manager service error.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
+ *     <br>{@link IME_ERR_IMMS} - input method manager service error.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProxy *textEditorProxy,
@@ -69,21 +71,22 @@ InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProx
 /**
  * @brief Attach application to the input method service.
  *
- * @param context UIContext pointer of the page where the attach will be performed.
- * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance.
- *     The caller needs to manage the lifecycle of textEditorProxy.
- *     If the call succeeds, caller cannot release textEditorProxy until the next attach or detach call.
+ * @param context Pointer to the [ArkUI_Context](../apis-arkui/capi-arkui-nativemodule-arkui-context.md) instance.
+ * @param textEditorProxy Pointer to the {@link InputMethod_TextEditorProxy} instance.
+ *  The caller needs to manage the **textEditorProxy** lifecycle.
+ *  If the calling is successful, the caller cannot release **textEditorProxy** before the next binding or
+ *  unbinding call.
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance.
  *     The options when attaching input method.
  * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     Lifecycle is maintained until the next attach or detach call.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     {@link IME_ERR_IMCLIENT} - input method client error.
- *     {@link IME_ERR_IMMS} - input method manager service error.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
+ *     <br>{@link IME_ERR_IMMS} - input method manager service error.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 23
  */
 InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_ContextHandle context,
@@ -96,11 +99,11 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_IMCLIENT} - input method client error.
- *     {@link IME_ERR_IMMS} - input method manager service error.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
+ *     <br>{@link IME_ERR_IMMS} - input method manager service error.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodProxy *inputMethodProxy);
