@@ -60,7 +60,7 @@ extern "C" {
  * @param infoLen 事件信息长度。
  * @param extra 增量信息。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数无效。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数无效。
  * @since 11
  * @version 1.0
  */
@@ -76,7 +76,7 @@ typedef  Drm_ErrCode (*MediaKeySystem_Callback)(DRM_EventType eventType, uint8_t
  * @param infoLen 事件信息长度。
  * @param extra 增量信息。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数无效。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数无效。
  * @since 12
  * @version 1.0
  */
@@ -88,7 +88,7 @@ typedef Drm_ErrCode (*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem
  * @param mediaKeySystem MediaKeySystem实例。
  * @param callback 回调函数。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
  * @since 12
  * @version 1.0
  */
@@ -99,11 +99,11 @@ Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_Med
  * @param descs DRM解决方案名称和唯一标识的列表。
  * @param count DRM解决方案名称和唯一标识的列表长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：
- * 输入参数descs为空指针。
- * 输入参数count为空指针。
- * 输入参数descs长度不足。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：
+ *     <br>输入参数descs为空指针。
+ *     <br>输入参数count为空指针。
+ *     <br>输入参数descs长度不足。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 12
  * @version 1.0
  */
@@ -146,13 +146,13 @@ bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,
  * @param name DRM解决方案名称。
  * @param mediaKeySystem MediaKeySystem实例。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：
- * 输入参数name为空指针。
- * 输入参数name长度为0。
- * 输入参数mediaKeySystem为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
- * DRM_ERR_SERVICE_DIED：服务死亡。
- * DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制（64个）。
+ *     <br>DRM_ERR_INVALID_VAL：
+ *     <br>输入参数name为空指针。
+ *     <br>输入参数name长度为0。
+ *     <br>输入参数mediaKeySystem为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_SERVICE_DIED：服务死亡。
+ *     <br>DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制（64个）。
  * @since 11
  * @version 1.0
  */
@@ -163,7 +163,7 @@ Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKey
  * @param configName 字符串类型配置属性名，不能为空，具体支持的属性名由设备上DRM解决方案决定。
  * @param value 字符串类型配置属性值，不能为空，具体支持的属性值由设备上DRM解决方案决定。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
  * @since 11
  * @version 1.0
  */
@@ -176,9 +176,9 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySys
  * @param value 字符串类型配置值，用于存储获取的配置属性值。该参数不能为空，具体支持的取值由设备上DRM解决方案决定。
  * @param valueLen 字符串类型配置值长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -191,9 +191,9 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySys
  * @param value 字符数组类型配置属性值，不能为空，具体支持的属性值由设备上DRM解决方案决定。
  * @param valueLen 字符数组类型配置属性值长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -206,9 +206,9 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKey
  * @param value 字符数组类型配置属性，用于存储获取的配置属性值。该参数不能为空，具体支持的取值由设备上DRM解决方案决定。
  * @param valueLen 字符数组类型配置属性长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，输入参数value为空指针，或valueLen为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，输入参数value为空指针，或valueLen为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -219,9 +219,9 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKey
  * @param mediaKeySystem MediaKeySystem实例。
  * @param statistics 度量记录。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数statistics为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数statistics为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -231,8 +231,8 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_
  * @param mediaKeySystem MediaKeySystem实例。
  * @param contentProtectionLevel 内容保护级别。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数contentProtectionLevel为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数contentProtectionLevel为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -243,7 +243,7 @@ Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *media
  * @param mediaKeySystem MediaKeySystem实例。
  * @param callback 回调函数。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
  * @since 11
  * @version 1.0
  */
@@ -256,11 +256,11 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKey
  * @param level 内容保护级别。可通过{@link OH_MediaKeySystem_GetMaxContentProtectionLevel}接口先获取设备支持的最大内容保护级别。
  * @param mediaKeySession MediaKeySession实例。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数level超出合理范围，或mediaKeySession为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
- * DRM_ERR_SERVICE_DIED：服务死亡。
- * DRM_ERR_MAX_SESSION_NUM_REACHED：当前MediaKeySystem已创建的MediaKeySession数量达到最大限制（64个）。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数level超出合理范围，或mediaKeySession为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_SERVICE_DIED：服务死亡。
+ *     <br>DRM_ERR_MAX_SESSION_NUM_REACHED：当前MediaKeySystem已创建的MediaKeySession数量达到最大限制（64个）。
  * @since 11
  * @version 1.0
  */
@@ -275,9 +275,9 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySyst
  * @param defaultUrl 设备DRM证书服务的URL。
  * @param defaultUrlLen 设备DRM证书服务的URL长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -290,8 +290,8 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeyS
  * @param response 设备DRM证书请求响应。
  * @param responseLen 设备DRM证书请求响应长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数response为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数response为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -303,9 +303,9 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeyS
  * @param mediaKeySystem MediaKeySystem实例。
  * @param offlineMediaKeyIds 离线媒体密钥的媒体密钥标识列表。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyIds为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyIds为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -319,8 +319,8 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySyst
  * @param offlineMediaKeyIdLen 离线媒体密钥标识长度。
  * @param status 媒体密钥状态。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -333,8 +333,8 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeyS
  * @param offlineMediaKeyId 离线媒体密钥标识。
  * @param offlineMediaKeyIdLen 离线媒体密钥标识长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyId为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyId为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -346,8 +346,8 @@ Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySyst
  * @param mediaKeySystem MediaKeySystem实例。
  * @param certStatus 设备DRM证书状态值。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数certStatus为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数certStatus为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -358,8 +358,8 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySyste
  * @brief 销毁MediaKeySystem实例。
  * @param mediaKeySystem MediaKeySystem实例。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */

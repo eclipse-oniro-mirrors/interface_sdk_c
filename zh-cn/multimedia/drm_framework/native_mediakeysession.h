@@ -72,7 +72,7 @@ typedef  Drm_ErrCode (*MediaKeySession_EventCallback)(DRM_EventType eventType, u
  * @param keysInfo 密钥信息。
  * @param newKeysAvailable 新密钥是否可用，true表示可用，false表示不可用。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：参数检查失败。
+ *     <br>DRM_ERR_INVALID_VAL：参数检查失败。
  * @since 11
  * @version 1.0
  */
@@ -117,7 +117,7 @@ typedef Drm_ErrCode (*OH_MediaKeySession_EventCallback)(MediaKeySession *mediaKe
  * @param keysInfo 密钥信息。
  * @param newKeysAvailable 新密钥是否可用，true表示可用，false表示不可用。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：参数检查失败。
+ *     <br>DRM_ERR_INVALID_VAL：参数检查失败。
  * @since 12
  * @version 1.0
  */
@@ -147,9 +147,9 @@ typedef struct OH_MediaKeySession_Callback {
  * @param info 媒体密钥请求信息。
  * @param mediaKeyRequest 媒体密钥请求。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数info为空指针，或输入参数mediaKeyRequest为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数info为空指针，或输入参数mediaKeyRequest为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -164,9 +164,9 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
  * @param offlineMediaKeyId 离线媒体密钥标识。
  * @param offlineMediaKeyIdLen 离线媒体密钥标识的长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -178,9 +178,9 @@ Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse(MediaKeySession *mediaKey
  * @param mediaKeySession 输入参数，必填，MediaKeySession实例。
  * @param mediaKeyStatus 输出参数，必填，媒体密钥状态。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数mediaKeyStatus为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数mediaKeyStatus为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -191,8 +191,8 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySess
  * @brief 清除当前会话的媒体密钥。
  * @param mediaKeySession MediaKeySession实例。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -206,9 +206,9 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySession);
  * @param releaseRequest 输出参数，离线媒体密钥释放请求。
  * @param releaseRequestLen 输出参数，离线媒体密钥释放请求长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误或设备上的DRM解决方案不支持离线媒体密钥释放，请查看日志详细信息。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误或设备上的DRM解决方案不支持离线媒体密钥释放，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -224,8 +224,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
  * @param releaseResponse 媒体密钥释放请求响应。
  * @param releaseResponseLen 媒体密钥释放请求响应长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误或设备上的DRM解决方案不支持离线媒体密钥释放，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误或设备上的DRM解决方案不支持离线媒体密钥释放，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -239,8 +239,8 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *me
  * @param offlineMediaKeyId 离线媒体密钥标识。
  * @param offlineMediaKeyIdLen 离线媒体密钥标识长度。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -252,8 +252,8 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKey
  * @param mediaKeySession MediaKeySession实例。
  * @param contentProtectionLevel 内容保护级别。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数contentProtectionLevel为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数contentProtectionLevel为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -266,8 +266,8 @@ Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaK
  * @param mimeType 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hevc。
  * @param status 安全解码模块状态。true表示需要安全解码模块，false表示不需要安全解码模块。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其他指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -279,7 +279,7 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *media
  * @param mediaKeySession MediaKeySession实例。
  * @param callback 输入参数，MediaKeySession的回调结构体。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数callback为空指针。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数callback为空指针。
  * @since 11
  * @version 1.0
  */
@@ -291,7 +291,7 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *media
  * @param mediaKeySession MediaKeySession实例。
  * @param callback 输入参数，MediaKeySession的回调结构体。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数callback为空指针。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或输入参数callback为空指针。
  * @since 12
  * @version 1.0
  */
@@ -302,8 +302,8 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,
  * @brief 销毁MediaKeySession实例。
  * @param mediaKeySession MediaKeySession实例。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效。
- * DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */

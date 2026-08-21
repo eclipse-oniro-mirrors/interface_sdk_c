@@ -53,6 +53,7 @@ extern "C" {
   *
   * @brief 监听事件类型。
   * 
+  * @syscap SystemCapability.Multimedia.Drm.Core
   * @since 11
   * @version 1.0
 */
@@ -353,7 +354,7 @@ typedef struct DRM_MediaKeyRequest {
 #define MAX_STATISTICS_BUFFER_LEN 256
 
 /**
- * @brief MediaKeySystem的度量信息。
+ * @brief MediaKeySystem的统计信息。
  * 
  * @since 11
  * @version 1.0
@@ -535,6 +536,7 @@ typedef struct DRM_MediaKeySystemInfo {
 /**
 * @brief 应用为从媒体源获取DRM信息而设置的回调函数。
 * 
+* @param mediaKeySystemInfo 输出参数，从媒体源获取的DRM信息，包含DRM内容保护系统的唯一标识和PSSH数据。
 * @since 11
 * @version 1.0
 */
