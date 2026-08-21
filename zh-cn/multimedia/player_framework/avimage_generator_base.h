@@ -27,7 +27,9 @@
  * @brief 定义AVImageGenerator的枚举。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avimage_generator_base.h>
  * @library libavimage_generator.so
+ * @syscap SystemCapability.Multimedia.Media.Core
  * @since 18
  */
 
@@ -41,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief 指定时间点与视频帧对应关系的枚举类型。
+ * @brief 指定查询视频帧时，时间点与帧对应关系选项的枚举类型。
  * 
  * @since 18
  */
