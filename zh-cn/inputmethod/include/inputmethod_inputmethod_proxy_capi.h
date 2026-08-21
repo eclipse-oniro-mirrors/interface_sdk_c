@@ -273,7 +273,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodPr
  * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
  * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param text The whole input text.
+ * @param text 输入指针，整个输入文本，采用UTF-16编码。由调用者分配内存，函数仅读取该数据。该指针不可为NULL。长度最大限制为
+ * 8K（8192个char16_t字符，对应16384字节），超出此限制将返回IME_ERR_PARAMCHECK。
  * @param length 输入参数，text参数的字符数量（单位：char16_t字符个数）。取值范围：大于0且不超过8192。超过8192将返回
  * IME_ERR_PARAMCHECK错误码。
  * @param start 输入参数，所选文本的起始位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于0且小于等于end。取值原则：start
