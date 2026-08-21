@@ -288,8 +288,8 @@ typedef struct Location_RequestConfig Location_RequestConfig;
 /**
  * @brief 创建一个位置请求参数结构体实例。
  *
- * @return 返回指向{@link Location_RequestConfig}实例的指针。 
- *     如果返回NULL表示创建失败，可能的原因是应用地址空间满，导致空间分配不出来。 
+ * @return 返回指向{@link Location_RequestConfig}实例的指针。
+ *     如果返回NULL表示创建失败，可能的原因是应用地址空间满，导致空间分配不出来。
  * @since 13
  */
 Location_RequestConfig* OH_Location_CreateRequestConfig(void);
