@@ -38,6 +38,7 @@
 #include <cstdint>
 #else
 #include <stdint.h>
+#include <stdbool.h>
 #endif
 
 #ifdef __cplusplus
@@ -241,6 +242,17 @@ typedef struct Location_BasicInfo {
  * @since 13
  */
 typedef struct Location_Info Location_Info;
+
+/**
+ * @brief Indicates whether the location was obtained from the mock location function.
+ *
+ * @param location - Pointer to the location information structure.
+ * A non‑null pointer is required. The pointer can be obtained via {@link Location_InfoCallback}.
+ * @return true if the location was obtained from the mock location function.
+ * Otherwise, the location originates from the system's real positioning result.
+ * @since 26.0.0
+ */
+bool OH_LocationInfo_IsFromMock(Location_Info* location);
 
 /**
  * @brief Obtain basic location information.
