@@ -430,6 +430,155 @@ void OH_HiDebug_PopAsyncContext(uint64_t ctx);
  */
 void OH_HiDebug_ReleaseAsyncContext(uint64_t ctx);
 
+/**
+ * @brief 资源采集配置结构体前向声明。
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_HiDebug_ProfilerOptions OH_HiDebug_ProfilerOptions;
+
+/**
+ * @brief Create Profiler Options.
+ *
+ * @return Pointer to the OH_HiDebug_ProfilerOptions structure.
+ * @release hidebug/OH_HiDebug_DestroyProfilerOptions {return}
+ * @since 26.1.0
+ */
+OH_HiDebug_ProfilerOptions *OH_HiDebug_CreateProfilerOptions(void);
+
+/**
+ * @brief 销毁Profiler配置。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @return 返回码。
+ * <ul><li>{@link HIDEBUG_SUCCESS}成功</li>
+ * <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *opts);
+
+/**
+ * @brief 设置异步调用最大嵌套深度。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param depth [in] 允许的最大异步嵌套深度。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH} 无效的最大异步嵌套深度。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
+
+/**
+ * @brief 设置异步任务函数的最大栈深。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param depth [in] 最大异步任务栈深。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH} 无效的最大异步任务栈深度。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
+
+/**
+ * @brief 设置采样间隔（单位：字节）。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param bytes [in] 采样间隔。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} 无效的采样间隔。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *opts, uint32_t bytes);
+
+/**
+ * @brief 设置统计时间间隔（单位：秒）。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param seconds [in] 统计时间间隔
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} 无效的统计间隔。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
+
+/**
+ * @brief 设置最大回栈深度。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param depth [in] 最大回栈深度。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} 无效的最大栈深度。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
+
+/**
+ * @brief 设置过滤大小。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param size [in] 过滤大小（单位：字节）。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} 无效的过滤大小。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uint32_t size);
+
+/**
+ * @brief 设置最大采集持续时间（单位：秒）。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param seconds [in] 最大采集持续时间（单位：秒）。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} 无效的最大持续时间。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
+
+/**
+ * @brief 根据指定资源类型和配置启动分配栈trace日志采集。
+ *
+ * @param type [in] 指定采集资源类型（OH_HiDebug_ResourceType）。
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions资源采集配置结构体的指针，该参数须为非空指针。
+ * @param callback [in] 接收采集结果的回调函数。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS}启动资源采集成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts或callback是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}资源采集最大持续时间参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}资源采集过滤大小参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}资源采集最大回栈深度参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}资源采集统计间隔参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}资源采集采样大小参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH}最大异步嵌套深度参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH}最大异步任务回栈栈深参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}资源类型参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}资源采集重复启动。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}资源采集进程数超出限制。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CONFLICT}资源采集与命令行工具或系统采集任务冲突。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}资源采集每日配额超出限制。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}系统CPU高负载，禁止采集。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}系统内存可用空间紧张，禁止采集。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}存储可用空间紧张，禁止采集。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}启动资源采集失败。</li></ul>
+ * @since 26.1.0
+ */
+HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType type,
+    OH_HiDebug_ProfilerOptions *opts, OH_HiDebug_ProfilingCallback callback);
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus
