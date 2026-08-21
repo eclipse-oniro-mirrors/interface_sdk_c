@@ -114,7 +114,7 @@ typedef struct Hid_Device {
     /**
      * 设备名称，最大长度128字符，不能为NULL。超出长度或为NULL时返回错误。
      */
-    const char *deviceName;
+    const char* deviceName;
     /**
      * 厂商ID。
      */
