@@ -718,5 +718,29 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AbilityRuntime_ModObjDispatcher_StructRelease"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_AcquireUIAbilityChildProcessInfos"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_GetChildProcessInfoByIndex"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_ChildProcessInfo_GetPid"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_ChildProcessInfo_GetParentPid"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_ChildProcessInfo_GetProcessName"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_ReleaseChildProcessInfos"
     }
 ]
