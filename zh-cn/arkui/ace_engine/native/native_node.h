@@ -15666,7 +15666,7 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
 
 /**
- * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
+ * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../../ui/ndk-scope-task.md)。
  *
  * @param uiContext 表示目标UI上下文的指针。
  * @param userData 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。
@@ -15749,7 +15749,7 @@ int32_t OH_ArkUI_NativeModule_AdoptChild(ArkUI_NodeHandle node, ArkUI_NodeHandle
 int32_t OH_ArkUI_NativeModule_RemoveAdoptedChild(ArkUI_NodeHandle node, ArkUI_NodeHandle child);
 
 /**
- * @brief 为组件和实例设置反色算法。详细介绍请参考：[利用反色能力快速适配深色模式](../../ui/ui-dark-light-color-adaptation.md#利用反色能力快速适配深色模式)。
+ * @brief 为组件和实例设置反色算法。详细介绍请参考：[利用反色能力快速适配深色模式](../../../ui/ui-dark-light-color-adaptation.md#利用反色能力快速适配深色模式)。
  *
  * @param uiContext UI实例对象指针。 \n
  *         如果该值为null，则该功能适用于整个应用进程。

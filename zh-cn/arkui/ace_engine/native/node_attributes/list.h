@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_list.h
+ * @file list.h
  *
  * @brief 定义List组件相关的枚举和接口。
  *
