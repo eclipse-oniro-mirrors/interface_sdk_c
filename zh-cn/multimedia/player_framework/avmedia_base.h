@@ -26,6 +26,9 @@
  * @brief 定义AVMedia的结构体和枚举类型。
  * 
  * @kit MediaKit
+ *
+ * @include <multimedia/player_framework/avmedia_base.h>
+ *
  * @library libavmedia_base.so
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 23
