@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_grid.h
+ * @file grid.h
  *
  * @brief 定义Grid组件相关的枚举和接口。
  *
