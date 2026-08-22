@@ -30,6 +30,9 @@
  *
  * @brief 声明用于构造屏幕录制对象的API。
  * 
+ * 支持录屏取码流和录屏存文件两种模式，可采集麦克风音频和内录音频数据，获取视频缓冲区数据，提供状态变更、数据处理、错误处理等回调机制，
+ * 支持Surface模式录屏、内容过滤、隐私保护、捕获策略配置、捕获区域设置与高亮、多屏幕录制等功能，适用于需要在应用内实现屏幕录制、屏幕共享或直播推流等场景。
+ * @include <multimedia/player_framework/native_avscreen_capture.h>
  * @library libnative_avscreen_capture.so
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @kit MediaKit
@@ -54,7 +57,7 @@ extern "C" {
  * @brief 实例化对象，创建OH_AVScreenCapture。
  * 可以通过调用{@link OH_AVScreenCapture_Release}释放实例。
  * 
- * @return 返回一个指向OH_AVScreenCapture实例的指针。
+ * @return 返回一个指向OH_AVScreenCapture实例的指针，用于后续的录屏操作、参数配置和回调设置。
  * @since 10
  */
 struct OH_AVScreenCapture *OH_AVScreenCapture_Create(void);

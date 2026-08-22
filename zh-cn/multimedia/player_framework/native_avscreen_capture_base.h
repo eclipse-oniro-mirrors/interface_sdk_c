@@ -582,6 +582,16 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData);
 
 /**
+ * @brief 当录屏事件开始时，将调用函数指针。使用前需将该回调注册到OH_AVScreenCapture实例中。应在录屏开始前完成注册。
+ * @param capture 指向OH_AVScreenCapture实例的指针。
+ * @param displayId 录屏屏幕的ID。用于标识用户选择的具体屏幕。
+ * @param userData 指向应用设置该回调处理方法时提供的自定义数据的指针。
+ *
+ * @since 15
+ */
+typedef void (*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData);
+
+/**
  * @brief 枚举，表示录屏内容变更事件。
  * 
  *
@@ -603,12 +613,15 @@ typedef enum OH_AVScreenCaptureContentChangedEvent_Enum {
 } OH_AVScreenCaptureContentChangedEvent;
 
 /**
- * @brief 当OH_AVScreenCapture实例操作期间录屏内容变化时，将调用函数指针。
+ * @brief 当OH_AVScreenCapture实例操作期间录屏内容变化时，将调用函数指针。使用前需将该回调注册到OH_AVScreenCapture实例中。
+ * 此回调通过event参数返回内容变更事件，具体事件值参见{@link OH_AVScreenCaptureContentChangedEvent}枚举。
  * 
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param event enum for content change event
- * @param area capture content rect position
- * @param userData Pointer to user specific data
+ * @param capture 指向OH_AVScreenCapture实例的指针。
+ * @param event 录屏内容变更事件，指示录屏内容的状态变化。
+ * OH_SCREEN_CAPTURE_CONTENT_HIDE表示录屏内容变为隐藏（如进入隐私界面）；OH_SCREEN_CAPTURE_CONTENT_VISIBLE表示录屏内容从隐藏变为可见；OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE表示录屏内容不可用（如窗口关闭）。
+ * 开发者应根据不同事件类型调整录屏状态。
+ * @param area 录屏内容可见时，对应位置信息；录屏内容隐藏或不可见时，该参数无效。
+ * @param userData 指向应用设置该回调处理方法时提供的自定义数据的指针。
  *
  * @since 20
  */
@@ -711,12 +724,13 @@ typedef struct OH_AVScreenCapture_CaptureStrategy OH_AVScreenCapture_CaptureStra
 typedef struct OH_AVScreenCapture_UserSelectionInfo OH_AVScreenCapture_UserSelectionInfo;
 
 /**
- * @brief 当用户在授权界面（选择界面）选择参数时，功能接口将参数返回给应用程序。
+ * @brief 当用户在授权界面（选择界面）选择参数时，系统通过该回调函数将用户选择的参数返回给应用程序。
  * 
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param selections The recording parameter information
- * selected by the user on the authorization interface
- * @param userData Pointer to user specific data
+ * 需要通过相关注册方法设置到OH_AVScreenCapture实例中。应在启动授权流程前完成注册以便接收用户选择结果。
+ * 
+ * @param capture 指向OH_AVScreenCapture实例的指针。
+ * @param selections 用户在授权界面选择的录制参数信息。
+ * @param userData 指向应用设置该回调处理方法时提供的自定义数据的指针。
  *
  * @since 20
  */
@@ -746,9 +760,9 @@ typedef struct OH_MultiDisplayCapability {
 /**
  * @brief 当{@link OH_AVScreenCapture}实例在运行过程中发生隐私保护事件时，函数指针将被调用。
  * 
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param privacyProtect Pointer to privacy protect info
- * @param userData Pointer to user specific data
+ * @param capture 指向OH_AVScreenCapture实例的指针。
+ * @param privacyProtect 隐私保护信息指针。指向包含隐私保护事件详细信息的结构体，用于处理录屏过程中的隐私保护回调事件。
+ * @param userData 指向应用设置该回调处理方法时提供的自定义数据的指针。
  * @since 24
  */
 typedef void (*OH_AVScreenCapture_OnPrivacyProtect)(OH_AVScreenCapture* capture,
