@@ -27,6 +27,7 @@
  * @brief 定义AVPlayer的结构体和枚举。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avplayer_base.h>
  * @library libavplayer.so
  * @since 11
  */
@@ -42,6 +43,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct AVPlayerCallback AVPlayerCallback;
 
 typedef struct OH_AVPlayer OH_AVPlayer;
 
@@ -91,9 +94,9 @@ typedef enum AVPlayerState {
  * @since 11
  */
 typedef enum AVPlayerSeekMode {
-    /* sync to keyframes after the time point. */
+    /* 在时间点之后同步至关键帧。 */
     AV_SEEK_NEXT_SYNC = 0,
-    /* sync to keyframes before the time point. */
+    /* 在时间点之前同步至关键帧。 */
     AV_SEEK_PREVIOUS_SYNC = 1,
     /**
      * @brief 同步到距离指定时间点最近的帧。
@@ -115,15 +118,15 @@ typedef enum AVPlayerSeekMode {
  * @since 11
  */
 typedef enum AVPlaybackSpeed {
-    /* Video playback at 0.75x normal speed */
+    /* 0.75倍速播放。 */
     AV_SPEED_FORWARD_0_75_X = 0,
-    /* Video playback at normal speed */
+    /* 正常播放。 */
     AV_SPEED_FORWARD_1_00_X = 1,
-    /* Video playback at 1.25x normal speed */
+    /* 1.25倍速播放。 */
     AV_SPEED_FORWARD_1_25_X = 2,
-    /* Video playback at 1.75x normal speed */
+    /* 1.75倍速播放。 */
     AV_SPEED_FORWARD_1_75_X = 3,
-    /* Video playback at 2.0x normal speed */
+    /* 2.0倍速播放。 */
     AV_SPEED_FORWARD_2_00_X = 4,
     /**
      * @brief 0.5倍速播放。
@@ -304,7 +307,7 @@ extern const char* OH_PLAYER_STATE;
 extern const char* OH_PLAYER_STATE_CHANGE_REASON;
 
 /**
- * @brief 获取音量的关键字，对应值类型是float。
+ * @brief 获取音量的关键字，对应值类型是float，取值范围[0.0，1.0]。
  * 
  * @since 12
  */
@@ -313,7 +316,7 @@ extern const char* OH_PLAYER_VOLUME;
 /**
  * @brief 获取比特率列表的关键字，对应值类型是uint8_t字节数组。通过该关键字获取信息时：
  * 需要先使用uint8_t类型指针变量保存比特率列表，使用size_t类型变量保存字节数组长度。
- * 然后分配若干个uint32_t类型的存储空间，接收将uint8_t字节数组转换为uint32_t类型比特率整数值。
+ * 然后分配若干个uint32_t类型的存储空间，接收将uint8_t字节数组转换为uint32_t类型比特率整数值，单位为bps。
  * 
  * @since 12
  */
@@ -432,13 +435,13 @@ extern const char* OH_PLAYER_MESSAGE_TYPE;
 extern const char* OH_PLAYER_IS_LIVE_STREAM;
 
 /**
- * Sei message key for payload type.
+ * SEI消息中表示负载类型的关键字。
  * @since 23
  */
 extern const char* OH_PLAYER_SEI_PAYLOAD_TYPE;
 
 /**
- * Sei message key for payload content.
+ * SEI消息中表示负载内容的关键字。
  * @since 23
  */
 extern const char* OH_PLAYER_SEI_PAYLOAD_CONTENT;
@@ -594,11 +597,11 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
 /**
  * @brief 包含了OH_AVPlayerOnInfo和OH_AVPlayerOnError回调函数指针的集合。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
  * 
- * @param onInfo Monitor OH_AVPlayer operation information, refer to {@link OH_AVPlayerOnInfo}
- * @param onError Monitor OH_AVPlayer operation errors, refer to {@link OH_AVPlayerOnError}
+ * @param onInfo 监控OH_AVPlayer运行信息，参见{@link OH_AVPlayerOnInfo}
+ * @param onError 监控OH_AVPlayer运行错误，参阅{@link OH_AVPlayerOnError}
  * @since 11
  * @deprecated since 12
- * @useinstead {@link OH_AVPlayerOnInfoCallback} {@link OH_AVPlayerOnErrorCallback}
+ * @useinstead {@link OH_AVPlayerOnInfoCallback}或{@link OH_AVPlayerOnErrorCallback}
  */
 typedef struct AVPlayerCallback {
     OH_AVPlayerOnInfo onInfo;
@@ -697,31 +700,36 @@ extern const char* OH_MEDIA_EVENT_INFO_STALLING_COUNT;
 extern const char* OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME;
 
 /**
- * Playback info key for server ip address.
+ * @brief 播放信息中表示服务器IP地址的关键字，对应值类型为字符串。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_SERVER_IP_ADDRESS;
 
 /**
- * Playback info key for downloading state.
+ * @brief 播放信息中表示当前是否处于下载状态的关键字，值类型为int32_t。值为1表示正在下载，0表示未下载。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_IS_DOWNLOADING;
 
 /**
- * Playback info key for buffer duration.
+ * @brief 播放信息中表示缓冲区时长的关键字，值类型为int32_t，单位为毫秒。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_BUFFER_DURATION;
 
 /**
- * Playback info key for download rate.
+ * @brief 播放信息中表示当前下载速率的关键字，对应值类型是int32_t，下载速率的单位为比特率（bps）。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_DOWNLOAD_RATE;
 
 /**
- * Playback info key for average download rate.
+ * @brief 播放信息中表示平均下载速率的关键字，对应值类型是int32_t，下载速率的单位为比特率（bps）。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_AVG_DOWNLOAD_RATE;

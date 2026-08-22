@@ -23,9 +23,10 @@
 /**
  * @file avplayer.h
  *
- * @brief 定义AVPlayer接口。使用AVPlayer提供的Native API播放媒体源。
+ * @brief 提供用于播放媒体源的接口。定义AVPlayer接口。使用AVPlayer提供的Native API播放媒体源。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avplayer.h>
  * @library libavplayer.so
  * @since 11
  */
@@ -48,7 +49,7 @@ extern "C" {
 #endif
 
 /**
- * @brief MediaKeySession类型。
+ * @brief 媒体密钥会话结构体，用于管理DRM（数字版权管理）的秘密会话。
  * 
  * @since 12
  */
@@ -116,9 +117,9 @@ OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t of
 /**
  * @brief 设置播放器的媒体源，该媒体源的数据由应用程序提供。
  * 
- * @param player Pointer to an OH_AVPlayer instance
- * @param datasrc Pointer to an OH_AVDataSourceExt instance
- * @param userData The handle passed in by the user is used to pass in the callback
+ * @param player 指向OH_AVPlayer实例的指针
+ * @param datasrc 指向OH_AVDataSourceExt实例的指针
+ * @param userData 用户传入的句柄用于传送回调
  * @return AV_ERR_OK：设置成功。
  * AV_ERR_INVALID_VAL：输入player为空指针，或者输入datasrc为空指针。
  * @since 21
@@ -231,7 +232,7 @@ OH_AVFormat *OH_AVPlayer_GetTrackDescription(OH_AVPlayer *player, uint32_t index
 
 /**
  * @brief 设置播放器的音量。
- * 可以在播放或暂停的过程中使用。0表示无声音，1为原始值。
+ * 可以在播放或暂停的过程中使用。0表示无声音，1为原始值，取值范围[0.0, 1.0]。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param leftVolume 要设置的左声道目标音量。
@@ -322,7 +323,7 @@ OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *
 OH_AVErrCode OH_AVPlayer_GetPlaybackRate(OH_AVPlayer *player, float *rate);
 
 /**
- * @brief 设置player音频流类型。
+ * @brief 设置player音频流类型。此接口仅可在AVPlayer处于idle或initialized状态时调用。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param streamUsage player音频流设置的类型。
@@ -563,7 +564,7 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  * 支持的状态：已准备/正在播放/已暂停/已完成。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
- * @param rate 播放速率，有效范围是0.125~4。
+ * @param rate 播放速率，在API版本26.0.0及以上的取值范围是[0.125, 8.0]，API版本26.0.0以下的取值范围是[0.125, 4.0]。小于1.0适合慢速播放（如学习、分析），1.0为正常速度，大于1.0适合快速浏览。
  * @return AV_ERR_OK：成功设置播放速率。
  * AV_ERR_OPERATE_NOT_PERMIT：如果在不支持的状态下调用或在直播期间调用。
  * AV_ERR_INVALID_VAL：输入player为空指针，或者速率超出范围。
@@ -645,8 +646,7 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackRange(OH_AVPlayer *player, int32_t mSecondsS
     bool closestRange);
 
 /**
- * Mute the media stream. This API can be called only when the AVPlayer is in the prepared, playing,
- * paused, or completed state.
+ * 静音媒体流。此接口仅可在AVPlayer处于prepared、playing、paused或completed状态时调用。
  * @param player 指向OH_AVPlayer实例的指针。
  * @param mediaType 指定的媒体类型，参见{@link native_avcodec_base.h}中的{@link OH_MediaType}。
  * @param muted true表示静音，false表示取消静音。
@@ -993,19 +993,18 @@ OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex
 
 /**
  * @brief 设置视频解码帧输出回调的方法。此接口仅在播放器处于空闲或已初始化状态时可调用。
- * @param player Pointer to an OH_AVPlayer instance.
- * @param window A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
- * @return Returns a pointer to an OH_AVPlayerVideoOutput instance, released by system when avplayer was
- *     reset or release. nullptr means failed.
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param window 指向OHNativeWindow实例的指针，请参见{@link OHNativeWindow}
+ * @return 返回指向OH_AVPlayerVideoOutput实例的指针，该实例在avplayer重置或释放时由系统释放。nullptr表示失败。
  * @since 26.0.0
  */
 OH_AVPlayerVideoOutput* OH_AVPlayer_SetVideoSideOutput(OH_AVPlayer *player, OHNativeWindow *window);
 
 /**
  * @brief 获取一个已解码视频帧的方法。此接口仅在播放器处于暂停或播放状态时可调用。
- * @param videoOutput Pointer to an OH_AVPlayerVideoOutput instance returned by OH_AVPlayer_SetVideoSideOutput.
- * @return Returns OH_VIDEO_OUTPUT_OK when got a frame.
- *         Returns OH_VIDEO_OUTPUT_NO_IMAGE when there is no frame ready to render.
+ * @param videoOutput 指向OH_AVPlayer_SetVideoSideOutput返回的OH_AVPlayer VideoOutput实例的指针。
+ * @return 获取帧时返回OH_VIDEO_OUTPUT_OK。
+ *         当没有准备渲染的帧时，返回OH_VIDEO_OUTPUT_NO_IMAGE。
  * @since 26.0.0
  */
 OH_VideoOutputResult OH_AVPlayerVideoOutput_GetNewestVideoSample(OH_AVPlayerVideoOutput *videoOutput);
