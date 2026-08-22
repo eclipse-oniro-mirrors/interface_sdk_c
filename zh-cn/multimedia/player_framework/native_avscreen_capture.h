@@ -65,17 +65,19 @@ struct OH_AVScreenCapture *OH_AVScreenCapture_Create(void);
 /**
  * @brief 初始化{@link OH_AVScreenCapture}相关参数，包括下发的音频麦克风采样相关参数（可选）、音频内录采样相关参数、视频分辨率相关参数。
  * 录屏存文件场景，应用需要保证视频编码参数、视频采样参数、音频编码参数、音频内录采样参数均合法，音频麦克风采样参数合法（可选）。
- * 录屏出码流场景，应用需要保证音频内录采样参数、视频采样参数至少一个合法，音频麦克风采样参数合法（可选）。
+ * 录屏取码流场景，应用需要保证音频内录采样参数、视频采样参数至少一个合法，音频麦克风采样参数合法（可选）。
  * 由于结构体变量在初始化时不会对成员进行初始化，应用必须根据使用场景正确设置各项参数。建议应用先将OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然后再根据录屏场景设置合法参数。
- * 音频采样参数结构体{@link OH_AudioCaptureInfo}，若audioSampleRate和audioChannels同时为0，则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，
- * 且不采集该类型的音频数据。
- * 视频采样参数结构体{@link OH_VideoCaptureInfo}，若videoFrameWidth和videoFrameHeight同时为0，则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。
+ * 音频采样参数结构体{@link OH_AudioCaptureInfo}，若audioSampleRate和audioChannels同时为0，则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，且不采集该类型的音频数据。
+ * 视频采样参数结构体{@link OH_VideoCaptureInfo}，若videoFrameWidth和videoFrameHeight同时为0，则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。需先调用OH_AVScreenCapture_Create()创建实例，然后调用此方法进行参数初始化。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param config 录屏初始化相关参数。
+ * 包含音频麦克风采样参数（可选）、音频内录采样参数、视频分辨率参数、视频编码参数、音频编码参数等。
+ * 根据录屏场景配置：存文件需保证视频、音频编码及采样参数合法；取码流需保证音频或视频采样参数至少一个合法。
+ * 应用需根据使用场景正确设置各项参数，建议先将结构体所有内存字节设置为0后再设置合法参数。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
- * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
- * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，初始化配置失败。
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。请检查capture参数是否为有效指针。
+ * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，初始化配置失败。请检查录屏初始化参数配置是否正确。
  * @since 10
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *capture,
@@ -83,16 +85,25 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 
 /**
  * @brief 开始录屏，采集原始码流。
- * 调用后可以通过回调的监听（{@link OH_AVScreenCapture_OnBufferAvailable}）来监听当前是否有码流的产生,通过回调的监听（{@link OH_AVScreenCapture_OnStateChange}
- * ）来监听启动状态。
- * 通过调用获取音频buffer（{@link OH_AVScreenCapture_AcquireAudioBuffer}）和视频buffer（{@link OH_AVScreenCapture_AcquireVideoBuffer}）
- * 的接口来获取录屏的原始码流。
  * 
- * @param capture Pointer to an OH_AVScreenCapture instance
+ * 调用后可执行以下操作：
+ * 
+ * 1. 通过{@link OH_AVScreenCapture_OnBufferAvailable}回调来监听当前是否有码流的产生。
+ * 
+ * 2. 通过{@link OH_AVScreenCapture_OnStateChange}回调监听启动状态。
+ * 
+ * 3. 调用{@link OH_AVScreenCapture_AcquireAudioBuffer}获取音频buffer。
+ * 
+ * 4. 调用{@link OH_AVScreenCapture_AcquireVideoBuffer}获取视频buffer从而获取录屏的原始码流。
+ * 
+ * 与{@link OH_AVScreenCapture_StartScreenRecording}和{@link OH_AVScreenCapture_StartScreenCaptureWithSurface}不同，本接口用于获取实时音视频原始码流数据，适用于需要对码流进行二次处理的场景；
+ * 而{@link OH_AVScreenCapture_StartScreenRecording}用于将录屏内容直接保存为文件，适用于仅需保存录屏的场景；{@link OH_AVScreenCapture_StartScreenCaptureWithSurface}使用Surface模式输出，适用于需要直接渲染或与其他组件共享数据的场景。
+ * 
+ * @param capture 指向OH_AVScreenCapture实例的指针。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
- * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
- * AV_SCREEN_CAPTURE_ERR_UNSUPPORT（API version 20新增）：设备不支持该操作。
- * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启动录屏失败。
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。请检查capture参数是否为有效指针。
+ * AV_SCREEN_CAPTURE_ERR_UNSUPPORT（API version 20新增）：设备不支持该操作。请检查设备是否支持录屏功能。
+ * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败（请申请相关隐私权限）或启动录屏失败。
  * @since 10
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVScreenCapture *capture);
@@ -102,20 +113,21 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVSc
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
- * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
- * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，结束录屏失败。
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。请检查参数是否为有效指针。
+ * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，结束录屏失败。请确保录屏已启动。
  * @since 10
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture(struct OH_AVScreenCapture *capture);
 
 /**
- * @brief 启动录屏，调用此接口，可保存录屏文件。
+ * @brief 启动录屏，调用此接口，可保存录屏文件。与OH_AVScreenCapture_StopScreenRecording配合使用。
+ * 录屏存文件场景需要再初始化时配置合法的视频编码参数、音频编码参数等，详见{@link OH_AVScreenCapture_Init}。
  * 
- * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param capture 指向OH_AVScreenCapture实例的指针。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
- * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
- * AV_SCREEN_CAPTURE_ERR_UNSUPPORT（API version 20新增）：设备不支持该操作。
- * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启用屏幕录制失败。
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。请检查参数是否为有效指针。
+ * AV_SCREEN_CAPTURE_ERR_UNSUPPORT（API version 20新增）：设备不支持该操作。请检查设备是否支持录屏功能。
+ * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启用屏幕录制失败，请检查隐私权限设置或录屏配置是否正确。
  * @since 10
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AVScreenCapture *capture);
@@ -125,8 +137,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AV
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
- * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
- * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，停止屏幕录制失败。
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。请检查参数是否为有效指针。
+ * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，停止屏幕录制失败。请确保录制已启动。
  * @since 10
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording(struct OH_AVScreenCapture *capture);
