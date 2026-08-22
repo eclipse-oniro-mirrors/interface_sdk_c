@@ -564,7 +564,7 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  * 支持的状态：已准备/正在播放/已暂停/已完成。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
- * @param rate 播放速率，在API版本26.0.0及以上的取值范围是[0.125, 8.0]，API版本26.0.0以下的取值范围是[0.125, 4.0]。小于1.0适合慢速播放（如学习、分析），1.0为正常速度，大于1.0适合快速浏览。
+ * @param rate 播放速率，在API版本26.0.0及以上的取值范围是[0.125, 8.0]，API版本26.0.0以下的取值范围是[0.125, 4.0]。
  * @return AV_ERR_OK：成功设置播放速率。
  * AV_ERR_OPERATE_NOT_PERMIT：如果在不支持的状态下调用或在直播期间调用。
  * AV_ERR_INVALID_VAL：输入player为空指针，或者速率超出范围。
