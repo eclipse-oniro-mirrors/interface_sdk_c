@@ -30,6 +30,7 @@
  * @brief Declaration error code information.
  *
  * @kit BasicServicesKit
+ * @include <database/pasteboard/oh_pasteboard_err_code.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *

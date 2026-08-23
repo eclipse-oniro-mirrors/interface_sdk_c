@@ -354,9 +354,6 @@ bool OH_Pasteboard_HasRemoteData(OH_Pasteboard* pasteboard);
  * @brief 获取剪贴板中的数据。调用此函数后，系统会读取剪贴板中的内容，返回统一数据对象{@link OH_UdmfData}实例的指针。开发者可以通过OH_UdmfData相关接口解析数据内容。获取到的数据对象需要开发者手动释放。
  * 由于获取剪贴板中数据的时延受数据量大小与网络环境的影响，调用此接口可能耗时较长，建议开发者在非UI线程调用。
  *
- * 应用使用自定义控件访问剪贴板内容需[申请访问剪贴板权限](docroot://basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
- * 应用[使用粘贴控件](docroot://security/AccessToken/pastebutton.md)访问剪贴板内容，无需申请权限。
- *
  * - 如果剪贴板为空或数据格式不支持，会返回nullptr。
  * - 返回的OH_UdmfData对象需要开发者调用{@link OH_UdmfData_Destroy}释放。
  * - 粘贴的数据量大时，建议使用{@link OH_Pasteboard_GetDataWithProgress}接口以获取进度信息。
@@ -530,9 +527,6 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
 /**
  * @brief 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。调用此函数后，系统开始从系统剪贴板获取数据。如果剪贴板数据来自远端设备或包含大量文件，会通过{@link OH_Pasteboard_ProgressListener}
  * 回调函数上报进度。数据传输完成后，返回统一数据对象指针。整个过程可能耗时较长，建议在非UI线程调用。
- *
- * 应用使用自定义控件访问剪贴板内容需[申请访问剪贴板权限](docroot://basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
- * 应用[使用粘贴控件](docroot://security/AccessToken/pastebutton.md)访问剪贴板内容，无需申请权限。
  *
  * @permission ohos.permission.READ_PASTEBOARD
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
