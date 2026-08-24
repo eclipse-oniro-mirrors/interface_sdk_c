@@ -17,7 +17,6 @@
  * @{
  *
  * @brief LowPowerVideoSink子模块提供低功耗视频输出的变量、属性和函数。
- * for lowpower video sink.
  *
  * @since 20
  */
@@ -28,7 +27,7 @@
  * 
  * @library liblowpower_avsink.so
  * @kit MediaKit
- * @include <multimedia/player_framework/lowpower_video_sink_base.h>
+ * @include <multimedia/player_framework/lowpower_video_sink.h>
  * @syscap SystemCapability.Multimedia.Media.LowPowerAVSink
  * @since 20
  */
@@ -244,7 +243,7 @@ OH_AVErrCode OH_LowPowerVideoSink_Destroy(OH_LowPowerVideoSink* sink);
  * @brief LowPowerVideoSink设置用于音画同步的OH_LowPowerAudioSink。
  * 
  * @param videoSink 指向OH_LowPowerVideoSink实例的指针。
- * @param audioSink Pointer to an OH_LowPowerAudioSink instance
+ * @param audioSink 指向OH_LowPowerAudioSink实例的指针。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
  * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
@@ -428,7 +427,7 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetEosListener(OH_LowPowerVideoSinkCal
 /**
  * @brief 获取当前播放的视频显示时间戳（pts）。
  * 
- * @param sink 指向OH_LowPowerVideoSink实例的指针。.
+ * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param pts 当前播放的pts。单位为微秒（μs）。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
