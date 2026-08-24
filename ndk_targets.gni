@@ -316,6 +316,9 @@ _ndk_lite_library_targets = [
   "//interface/sdk_c/ndk_lite_test:test_lite_no_syscap_header",
 ]
 
+_ndk_lite_base_libs =
+    [ "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite" ]
+
 _ndk_base_libs = [
   "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk",
   "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite",
@@ -369,7 +372,7 @@ all_ndk_targets_list =
     _ndk_library_targets + _ndk_base_libs + _ndk_sysroot_uapi + _ndk_cmake +
     _ndk_ninja + _ndk_tee_build_tool + _ndk_sysroot_lite_uapi
 
-all_lite_ndk_targets_list = _ndk_lite_library_targets + _ndk_base_libs + _ndk_sysroot_lite_uapi
+all_lite_ndk_targets_list = _ndk_lite_library_targets + _ndk_lite_base_libs + _ndk_sysroot_lite_uapi
 
 if (build_windows_ndk_target) {
   all_ndk_targets_list +=
