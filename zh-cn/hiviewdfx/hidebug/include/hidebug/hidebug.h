@@ -358,7 +358,7 @@ HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
  * @return 操作是否成功。
  * @since 26.0.0
  */
-typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag, bool mayReportToOEM,
+typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag,
                                            bool mayReportToOEM, const char* arg);
 
 /**
