@@ -3094,6 +3094,64 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttac
     bool* supportSvg);
 
 /**
+ * @brief 设置图片样式中的图片拉伸切片。
+ *
+ * @param imageAttachment [in] 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
+ * @param left [in] 左边缘宽度，单位为vp。取值范围：[0, +∞)。传入负数时使用默认值0。
+ * @param top [in] 上边缘宽度，单位为vp。取值范围：[0, +∞)。传入负数时使用默认值0。
+ * @param right [in] 右边缘宽度，单位为vp。取值范围：[0, +∞)。传入负数时使用默认值0。
+ * @param bottom [in] 下边缘宽度，单位为vp。取值范围：[0, +∞)。传入负数时使用默认值0。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachment* imageAttachment,
+    float left, float top, float right, float bottom);
+
+/**
+ * @brief 获取图片样式中的图片拉伸切片。
+ *
+ * @param imageAttachment [in] 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
+ * @param left [out] 输出参数，指向左边缘宽度的指针，单位为vp。取值范围[0, +∞)。
+ * @param top [out] 输出参数，指向上边缘宽度的指针，单位为vp。取值范围[0, +∞)。
+ * @param right [out] 输出参数，指向右边缘宽度的指针，单位为vp。取值范围[0, +∞)。
+ * @param bottom [out] 输出参数，指向下边缘宽度的指针，单位为vp。取值范围[0, +∞)。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageAttachment* imageAttachment,
+    float* left, float* top, float* right, float* bottom);
+
+/**
+ * @brief 设置图片样式中的图片拉伸栅格。
+ *
+ * @param imageAttachment [in] 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
+ * @param lattice [in] 图片拉伸栅格，类型为{@link OH_Drawing_Lattice}。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
+    OH_ArkUI_ImageAttachment* imageAttachment, const OH_Drawing_Lattice* lattice);
+
+/**
+ * @brief 获取图片样式中的图片拉伸栅格。
+ *
+ * @param imageAttachment [in] 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
+ * @param lattice [out] 输出参数，指向图片拉伸栅格的指针，类型为{@link OH_Drawing_Lattice}。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
+    const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);
+
+/**
  * @brief 获取文本变化信息中待被替换的原文本的范围。
  *
  * @param event 指向{@link OH_ArkUI_TextEditorChangeEvent}对象的指针。

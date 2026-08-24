@@ -3980,6 +3980,31 @@ typedef enum {
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
 
     /**
+     * @brief imageSpan组件图片拉伸时，支持通过设置边框大小或者使用矩阵方格对象调整其大小，支持属性设置、属性重置和属性获取接口。接口调用时需要保证设置和获取的参数类型是相同的。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：左边缘宽度，单位为vp。</li>
+     * <li>.value[1].f32：上边缘宽度，单位为vp。</li>
+     * <li>.value[2].f32：右边缘宽度，单位为vp。</li>
+     * <li>.value[3].f32：下边缘宽度，单位为vp。</li>
+     * <li>.object：参数类型为{@link OH_Drawing_Lattice}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：左边缘宽度，单位为vp。</li>
+     * <li>.value[1].f32：上边缘宽度，单位为vp。</li>
+     * <li>.value[2].f32：右边缘宽度，单位为vp。</li>
+     * <li>.value[3].f32：下边缘宽度，单位为vp。</li>
+     * <li>.object：参数类型为{@link OH_Drawing_Lattice}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.1.0
+     */
+    NODE_IMAGE_SPAN_RESIZABLE = 3006,
+    /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *

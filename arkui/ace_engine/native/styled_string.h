@@ -3239,6 +3239,69 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttac
     bool* supportSvg);
 
 /**
+ * @brief Sets the resizable image slice in the image style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param imageAttachment [in] Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param left [in] Width of the left edge, in vp.
+ * @param top [in] Width of the top edge, in vp.
+ * @param right [in] Width of the right edge, in vp.
+ * @param bottom [in] Width of the bottom edge, in vp.
+ * @return Returns the result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachment* imageAttachment,
+    float left, float top, float right, float bottom);
+
+/**
+ * @brief Obtains the resizable image slice in the image style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param imageAttachment [in] Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param left [out] Output parameter. Pointer to the width of the left edge, in vp.
+ * @param top [out] Output parameter. Pointer to the width of the top edge, in vp.
+ * @param right [out] Output parameter. Pointer to the width of the right edge, in vp.
+ * @param bottom [out] Output parameter. Pointer to the width of the bottom edge, in vp.
+ * @return Returns the result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageAttachment* imageAttachment,
+    float* left, float* top, float* right, float* bottom);
+
+/**
+ * @brief Sets the resizable image lattice in the image style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param imageAttachment [in] Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param lattice [in] Pointer to the image resizable lattice. The type is {@link OH_Drawing_Lattice}.
+ * @return Returns the result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
+    OH_ArkUI_ImageAttachment* imageAttachment, const OH_Drawing_Lattice* lattice);
+
+/**
+ * @brief Obtains the resizable image lattice in the image style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param imageAttachment [in] Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param lattice [out] Output parameter. Pointer to the image resizable lattice.
+ *     The type is {@link OH_Drawing_Lattice}.
+ * @return Returns the result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
+    const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);
+
+/**
  * @brief Obtains the range of the content to be replaced in the text change information.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
