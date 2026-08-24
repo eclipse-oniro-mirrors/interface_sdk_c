@@ -262,7 +262,8 @@ typedef enum DRM_CertificateStatus {
  */
 typedef struct DRM_MediaKeyRequestInfo {
     /**
-     * 媒体密钥类型，指定请求的密钥用途。取值为MEDIA_KEY_TYPE_ONLINE（在线）或MEDIA_KEY_TYPE_OFFLINE（离线）。
+     * 媒体密钥请求类型，指示请求的用途。常见类型包括DRM_MEDIA_KEY_REQUEST_TYPE_INITIAL（初始请求）、
+     * DRM_MEDIA_KEY_REQUEST_TYPE_RENEWAL（续期请求）等，具体类型由DRM解决方案决定。
      */
     DRM_MediaKeyType type;
     /**
@@ -354,7 +355,7 @@ typedef struct DRM_MediaKeyRequest {
 #define MAX_STATISTICS_BUFFER_LEN 256
 
 /**
- * @brief MediaKeySystem的统计信息。
+ * @brief MediaKeySystem的度量信息。
  * 
  * @since 11
  * @version 1.0
@@ -362,9 +363,11 @@ typedef struct DRM_MediaKeyRequest {
 typedef struct DRM_Statistics {
     /* 度量信息的数量，表示statisticsName和statisticsDescription数组中有效元素的个数。取值范围为[0, MAX_STATISTICS_COUNT]。 */
     uint32_t statisticsCount;
-    /* 度量信息名称数组，每行存储一个度量项的名称，具体名称由DRM解决方案定义。数组维度由MAX_STATISTICS_COUNT和MAX_STATISTICS_NAME_LEN宏定义。 */
+    /* 度量信息名称数组，每行存储一个度量项的名称，如"DecryptionOperations"（解密操作次数）、"KeySessions"（密钥会话数）等。
+       数组维度由MAX_STATISTICS_COUNT和MAX_STATISTICS_NAME_LEN宏定义。 */
     char statisticsName[MAX_STATISTICS_COUNT][MAX_STATISTICS_NAME_LEN];
-    /* 度量信息描述数组，每行存储对应statisticsName的度量值。数组维度由MAX_STATISTICS_COUNT和MAX_STATISTICS_BUFFER_LEN宏定义。 */
+    /* 度量信息描述数组，每行存储对应statisticsName的度量值。描述内容通常包含数值、百分比或其他格式的统计数据。
+       数组维度由MAX_STATISTICS_COUNT和MAX_STATISTICS_BUFFER_LEN宏定义。 */
     char statisticsDescription[MAX_STATISTICS_COUNT][MAX_STATISTICS_BUFFER_LEN];
 } DRM_Statistics;
 

@@ -49,14 +49,20 @@ extern "C" {
 #endif
 
 /**
- * @brief 媒体密钥会话结构体，用于管理DRM（数字版权管理）的秘密会话。
+ * @brief 媒体密钥会话结构体，用于管理DRM（数字版权管理）的密钥会话，提供密钥的获取、更新和释放等操作能力。
  * 
  * @since 12
  */
 typedef struct MediaKeySession MediaKeySession;
 /**
- * @brief DRM_MediaKeySystemInfo类型。
- * 
+ * @brief DRM_MediaKeySystemInfo类型，DRM媒体密钥系统信息结构体，用于存储和管理DRM媒体密钥系统相关信息。
+ *
+ * **使用场景：**
+ *
+ * - 在线视频播放时获取DRM系统信息。
+ * - 版权保护应用中查询媒体密钥系统状态。
+ * - DRM认证流程中传递密钥系统配置信息。
+ *
  * @since 12
  */
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
