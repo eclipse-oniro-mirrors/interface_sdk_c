@@ -596,7 +596,7 @@ typedef enum HiDebug_CrashObjType {
      * 4096-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
- } HiDebug_CrashObjType;
+} HiDebug_CrashObjType;
 
 /**
  * @brief Enumerates the resource profiling types.
