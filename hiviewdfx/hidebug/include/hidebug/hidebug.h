@@ -400,7 +400,8 @@ HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
  * @return Whether the operation is successful.
  * @since 26.0.0
  */
-typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag, bool mayReportToOEM, const char* arg);
+typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag,
+                                           bool mayReportToOEM, const char* arg);
 
 /**
  * @brief Registers a memory dump listener. When the memory usage of an application is high or the memory information
