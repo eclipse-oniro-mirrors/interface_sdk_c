@@ -44,8 +44,7 @@ extern "C" {
 #endif
 /**
  * @brief Checks whether a permission is granted to this application.
- * @param permission - Pointer to the permission to check. For details about the permission,
- *     see [the application permission list](docroot://security/AccessToken/app-permissions.md).
+ * @param permission - Pointer to the permission to check.
  * @return Returns true if the permission has been granted to the application. Returns false otherwise.
  * @since 12
  */
