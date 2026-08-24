@@ -8298,7 +8298,7 @@ typedef enum {
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
     /**
-      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。启用后，用户选中特殊文本实体时将弹出AI识别菜单，提供基于选中文本内容的智能识别和操作选项。
+      * @brief TextEditor组件的AI菜单开关，用于控制选中特殊文本实体时是否弹出AI识别菜单。该功能支持属性的设置、重置与获取，启用后可基于选中文本内容提供智能识别及操作选项。
       * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
       * <br>**参数：**
       * <br>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。
@@ -8349,7 +8349,7 @@ typedef enum {
      * @brief TextEditor组件内容最大行数，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围[0, +∞)。取值为0时按无穷大处理；设置为0、负数或未设置该属性时不限制行数。建议在需要固定显示高度的场景下设置该参数。
+     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围：(0, +∞)。设置为0、负数或未设置该属性时，取默认值UINT32_MAX，不限制行数。建议在需要固定显示高度的场景下设置该参数。
      * <br>**返回：**
      * <br>.value[0].i32：文本编辑器最大行数限制。
      *
@@ -8358,12 +8358,12 @@ typedef enum {
     NODE_TEXT_EDITOR_MAX_LINES,
 
     /**
-     * @brief TextEditor组件触觉反馈开关，启用后，在文本拖选等交互操作时将产生触觉反馈震动响应，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件触感反馈开关，启用后，在文本拖选等交互操作时将产生触感反馈震动响应，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否在文本编辑器中启用触觉反馈，0表示不启用，1表示启用，默认值为1。
+     * <br>.value[0].i32：是否在文本编辑器中启用触感反馈，0表示不启用，1表示启用，默认值为1。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用了触觉反馈，0表示不启用，1表示启用。
+     * <br>.value[0].i32：是否启用了触感反馈，0表示不启用，1表示启用。
      *
      * @since 24
      */
@@ -8503,10 +8503,10 @@ typedef enum {
 
     /**
      * @brief TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。
-     * 仅在[ArkUI_WordBreak](capi-text-common-h.md#arkui_wordbreak)属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。
+     * 仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。
+     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
      * <br>**返回：**
      * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。
      *
@@ -11770,7 +11770,7 @@ typedef struct {
 } ArkUI_TextChangeEvent;
 
 /**
- * @brief 定义TextEditor组件文本内容变化事件的结构体。
+ * @brief 定义TextEditor组件文本内容变化事件的结构体，用于在文本内容变化时通知用户，支持获取变化前后的内容等信息，适用于需要在文本内容变化前进行拦截或校验的场景，例如输入拦截、内容过滤、变更确认等。
  *
  * @since 24
  */

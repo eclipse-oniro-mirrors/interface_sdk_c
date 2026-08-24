@@ -186,32 +186,34 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor(
     uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor, size_t* resultSize);
 
 /**
- * @brief 定义属性字符串样式对象。\n
- *        可以通过{@link OH_ArkUI_SpanStyle_Create}接口创建对应的属性字符串样式对象。\n
- *        可以通过{@link OH_ArkUI_SpanStyle_Destroy}接口销毁属性字符串样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_SpanStyle_SetStart}和{@link OH_ArkUI_SpanStyle_SetLength}指定样式作用的范围。\n
- *        对象创建后通过OH_ArkUI_SpanStyle_SetXXXStyle系列接口设置生效的具体样式，例如通过{@link OH_ArkUI_SpanStyle_SetTextStyle}设置字体样式效果。
+ * @brief 定义属性字符串样式对象，用于对属性字符串中指定范围的文本设置样式效果，支持多种样式类型的灵活组合与精确范围指定，
+ * 适用于需要对同一属性字符串中不同片段分别应用不同样式以实现富文本效果的场景，例如聊天应用中不同消息片段使用不同颜色和字体大小、新闻阅读应用中对标题和正文分别设置不同样式、笔记应用中高亮标注关键内容等。\n
+ * 调用{@link OH_ArkUI_SpanStyle_Create}接口创建属性字符串样式对象。\n
+ * 调用{@link OH_ArkUI_SpanStyle_Destroy}接口销毁属性字符串样式对象。\n
+ * 对象创建后，需调用{@link OH_ArkUI_SpanStyle_SetStart}和{@link OH_ArkUI_SpanStyle_SetLength}指定样式作用的范围。\n
+ * 调用OH_ArkUI_SpanStyle_SetXXXStyle系列接口设置生效的具体样式，范围指定与样式设置需配合使用才能使样式在指定范围内生效。\n
+ * 例如调用{@link OH_ArkUI_SpanStyle_SetTextStyle}设置字体样式效果。配置完成的SpanStyle需添加到属性字符串中方可生效。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_SpanStyle OH_ArkUI_SpanStyle;
  
 /**
- * @brief 定义图片样式对象。\n
- *        可以通过{@link OH_ArkUI_ImageAttachment_Create}接口创建对应的图片样式对象。\n
- *        可以通过{@link OH_ArkUI_ImageAttachment_Destroy}接口销毁图片样式对象。\n
- *        对象创建后通过OH_ArkUI_ImageAttachment_SetXXX系列接口设置生效的具体样式，例如通过{@link OH_ArkUI_ImageAttachment_SetPixelMap}设置图片源。
+ * @brief 定义图片对象，用于在属性字符串中嵌入图片内容。图片作为属性字符串的组成部分，通过设置图片源及样式属性后，可附加到属性字符串中实现图文混排。\n
+ * 调用{@link OH_ArkUI_ImageAttachment_Create}接口创建图片样式对象。\n
+ * 调用{@link OH_ArkUI_ImageAttachment_Destroy}接口销毁图片样式对象。\n
+ * 对象创建后，调用OH_ArkUI_ImageAttachment_SetXXX系列接口设置样式属性。例如调用{@link OH_ArkUI_ImageAttachment_SetPixelMap}设置图片源。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_ImageAttachment OH_ArkUI_ImageAttachment;
  
 /**
- * @brief 定义自定义绘制Span。\n
- *        可以通过{@link OH_ArkUI_CustomSpan_Create}接口创建对应的自定义绘制Span对象。\n
- *        可以通过{@link OH_ArkUI_CustomSpan_Destroy}接口销毁自定义绘制Span对象。\n
- *        对象创建后通过{@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback}和
- *          {@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback}接口注册绘制回调函数。
+ * @brief 定义自定义绘制Span，用于在属性字符串中实现自定义测量和绘制能力。自定义绘制Span通过测量回调确定其占位大小，通过绘制回调在对应区域内绘制自定义内容，从而将自定义图形元素嵌入到富文本中。\n
+ * 调用{@link OH_ArkUI_CustomSpan_Create}接口创建自定义绘制Span对象。\n
+ * 对象创建后，调用{@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback}接口注册测量回调函数。\n
+ * 调用{@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback}接口注册绘制回调函数。\n
+ * 调用{@link OH_ArkUI_CustomSpan_Destroy}接口销毁自定义绘制Span对象。
  *
  * @since 24
  */
@@ -639,11 +641,11 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_AppendStyledString(
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InvalidateCustomSpan(const ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief 定义文本字体样式。\n
- *        可以通过{@link OH_ArkUI_TextStyle_Create}接口创建对应的文本字体样式对象。\n
- *        可以通过{@link OH_ArkUI_TextStyle_Destroy}接口销毁文本字体样式对象。\n
- *        对象创建后通过OH_ArkUI_TextStyle_SetXXX系列接口设置生效的具体样式，例如通过\n
- *        {@link OH_ArkUI_TextStyle_SetFontColor}设置字体颜色。
+ * @brief 定义文本字体样式，用于设置文本的字体颜色、大小、样式等属性，适用于需要自定义文本显示效果的场景。\n
+ * 调用{@link OH_ArkUI_TextStyle_Create}接口创建文本字体样式对象。\n
+ * 调用{@link OH_ArkUI_TextStyle_Destroy}接口销毁文本字体样式对象。销毁后不应再调用OH_ArkUI_TextStyle_SetXXX系列接口。\n
+ * 对象创建成功后，调用OH_ArkUI_TextStyle_SetXXX系列接口设置具体样式；若创建失败则不可调用SetXXX系列接口。
+ * 例如，调用{@link OH_ArkUI_TextStyle_SetFontColor}设置字体颜色。
  *
  * @since 24
  */
@@ -1000,11 +1002,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetTextStyle(OH_ArkUI_SpanStyle* spanStyle, c
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetTextStyle(const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_TextStyle* textStyle);
  
 /**
- * @brief 定义段落样式。\n
- *        可以通过{@link OH_ArkUI_ParagraphStyle_Create}接口创建对应的段落样式对象。\n
- *        可以通过{@link OH_ArkUI_ParagraphStyle_Destroy}接口销毁段落样式对象。\n
- *        对象创建后通过OH_ArkUI_ParagraphStyle_SetXXX系列接口设置生效的具体样式，例如通过\n
- *        {@link OH_ArkUI_ParagraphStyle_SetTextAlign}设置文本对齐方式。
+ * @brief 定义段落样式，用于在构建富文本段落时统一设置文本对齐、换行、截断等排版行为，适用于需要对段落进行精细化排版控制的场景，例如在富文本编辑器中设置段落对齐方式、在新闻阅读应用中控制长文本的换行与截断显示等。\n
+ * 调用{@link OH_ArkUI_ParagraphStyle_Create}接口创建对应的段落样式对象。\n
+ * 调用{@link OH_ArkUI_ParagraphStyle_Destroy}接口销毁段落样式对象。\n
+ * 对象创建后，调用OH_ArkUI_ParagraphStyle_SetXXX系列接口设置具体样式。
+ * 例如，调用{@link OH_ArkUI_ParagraphStyle_SetTextAlign}设置文本对齐方式。若创建对象失败（返回空指针）或对象已销毁，调用SetXXX系列接口将不会生效。
  *
  * @since 24
  */
@@ -1039,11 +1041,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetParagraphStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief 定义事件手势样式。\n
- *        可以通过{@link OH_ArkUI_GestureStyle_Create}接口创建对应的事件手势样式对象。\n
- *        可以通过{@link OH_ArkUI_GestureStyle_Destroy}接口销毁事件手势样式对象。\n
- *        对象创建后通过OH_ArkUI_GestureStyle_RegisterOnXXXCallback系列接口注册具体的事件回 \n
- *        调，例如通过{@link OH_ArkUI_GestureStyle_RegisterOnClickCallback}注册点击事件回调。
+ * @brief 定义手势样式，适用于需要配置手势样式并接收相关事件回调的场景，便于应用统一管理手势样式及事件回调。\n
+ * 调用{@link OH_ArkUI_GestureStyle_Create}接口创建对应的手势样式对象。\n
+ * 对象创建后调用OH_ArkUI_GestureStyle_RegisterOnXXXCallback系列接口注册具体的事件回调，
+ * 例如调用{@link OH_ArkUI_GestureStyle_RegisterOnClickCallback}注册点击事件回调。\n
+ * 使用完毕后，调用{@link OH_ArkUI_GestureStyle_Destroy}接口销毁手势样式对象。
  *
  * @since 24
  */
@@ -1078,10 +1080,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetGestureStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_GestureStyle* gestureStyle);
  
 /**
- * @brief 定义文本阴影样式。\n
- *        可以通过{@link OH_ArkUI_TextShadowStyle_Create}接口创建对应的文本阴影样式对象。\n
- *        可以通过{@link OH_ArkUI_TextShadowStyle_Destroy}接口销毁文本阴影样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_TextShadowStyle_SetTextShadow}接口设置生效的具体样式。
+ * @brief 定义文本阴影样式，文本阴影样式包含阴影偏移、模糊半径、颜色等属性，用于为文本添加阴影效果，如标题文字突出显示、深色背景下的文字增强等。\n
+ * 调用{@link OH_ArkUI_TextShadowStyle_Create}接口创建文本阴影样式对象。\n
+ * 调用{@link OH_ArkUI_TextShadowStyle_Destroy}接口销毁文本阴影样式对象。\n
+ * 创建文本阴影样式对象后，调用{@link OH_ArkUI_TextShadowStyle_SetTextShadow}接口设置文本阴影的具体样式。\n
+ * 调用{@link OH_ArkUI_TextShadowStyle_GetTextShadow}接口获取已设置的文本阴影样式。
  *
  * @since 24
  */
@@ -1116,11 +1119,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetTextShadowStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_TextShadowStyle* textShadowStyle);
  
 /**
- * @brief 定义文本装饰线样式。\n
- *        可以通过{@link OH_ArkUI_DecorationStyle_Create}接口创建对应的文本装饰线样式对象。\n
- *        可以通过{@link OH_ArkUI_DecorationStyle_Destroy}接口销毁文本装饰线样式对象。\n
- *        对象创建后通过OH_ArkUI_DecorationStyle_SetXXX系列接口设置生效的具体样式， \n
- *        例如通过{@link OH_ArkUI_DecorationStyle_SetTextDecorationType}设置装饰线类型。
+ * @brief 定义文本装饰线样式，支持对文本添加下划线、删除线等装饰线效果，适用于需要自定义文本装饰线外观的场景，可帮助开发者灵活控制文本装饰线的类型、颜色与样式。\n
+ * 调用{@link OH_ArkUI_DecorationStyle_Create}接口创建文本装饰线样式对象。\n
+ * 对象创建后，调用OH_ArkUI_DecorationStyle_SetXXX系列接口设置具体样式。
+ * 例如，调用{@link OH_ArkUI_DecorationStyle_SetTextDecorationType}接口设置装饰线类型。\n
+ * 使用完毕后，调用{@link OH_ArkUI_DecorationStyle_Destroy}接口销毁文本装饰线样式对象。
  *
  * @since 24
  */
@@ -1155,10 +1158,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetDecorationStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_DecorationStyle* decorationStyle);
  
 /**
- * @brief 定义基线偏移量样式。\n
- *        可以通过{@link OH_ArkUI_BaselineOffsetStyle_Create}接口创建对应的基线偏移量样式对象。\n
- *        可以通过{@link OH_ArkUI_BaselineOffsetStyle_Destroy}接口销毁基线偏移量样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset}接口设置具体的基线偏移量值。
+ * @brief 定义基线偏移量样式，用于在属性字符串中设置文本的基线偏移量，使文本在垂直方向上相对于基线进行上移或下移，从而实现上下标等特殊排版效果。基线偏移量样式需通过创建样式对象、设置偏移值后应用到属性字符串中生效。\n
+ * 调用{@link OH_ArkUI_BaselineOffsetStyle_Create}接口创建基线偏移量样式对象。\n
+ * 对象创建后，调用{@link OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset}接口设置基线偏移量值。\n
+ * 调用{@link OH_ArkUI_BaselineOffsetStyle_GetBaselineOffset}接口获取基线偏移量值。\n
+ * 使用完毕后，调用{@link OH_ArkUI_BaselineOffsetStyle_Destroy}接口销毁基线偏移量样式对象。
  *
  * @since 24
  */
@@ -1193,10 +1197,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBaselineOffsetStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle);
  
 /**
- * @brief 定义字符间距样式。\n
- *        可以通过{@link OH_ArkUI_LetterSpacingStyle_Create}接口创建对应的字符间距样式对象。\n
- *        可以通过{@link OH_ArkUI_LetterSpacingStyle_Destroy}接口销毁字符间距样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_LetterSpacingStyle_SetLetterSpacing}接口设置具体的字符间距值。
+ * @brief 定义字符间距样式，用于对文本设置字符间距以优化排版效果。适用于文本排列过密导致阅读困难等需要调整字符间距的场景，可提升文本可读性和排版美观度。\n
+ * 调用{@link OH_ArkUI_LetterSpacingStyle_Create}接口创建对应的字符间距样式对象。\n
+ * 创建对象成功后，调用{@link OH_ArkUI_LetterSpacingStyle_SetLetterSpacing}接口设置具体的字符间距值，取值原则详见该接口说明。\n
+ * 调用{@link OH_ArkUI_LetterSpacingStyle_GetLetterSpacing}接口获取字符间距值。\n
+ * 对象不再使用时，调用{@link OH_ArkUI_LetterSpacingStyle_Destroy}接口销毁字符间距样式对象。若创建失败，则不得调用上述接口。
  *
  * @since 24
  */
@@ -1232,10 +1237,11 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLetterSpacingStyle(
  
 /**
  * @brief 定义行高样式。\n
- *        可以通过{@link OH_ArkUI_LineHeightStyle_Create}接口创建对应的行高样式对象。\n
- *        可以通过{@link OH_ArkUI_LineHeightStyle_Destroy}接口销毁行高样式对象。\n
- *        对象创建后可以通过{@link OH_ArkUI_LineHeightStyle_SetLineHeight}接口设置具体的固定行高值。\n
- *        从API版本26.0.0开始，{@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple}接口设置具体的行高倍数值。
+ * 可以通过{@link OH_ArkUI_LineHeightStyle_Create}接口创建对应的行高样式对象。\n
+ * 可以通过{@link OH_ArkUI_LineHeightStyle_Destroy}接口销毁行高样式对象。\n
+ * 对象创建后可以通过{@link OH_ArkUI_LineHeightStyle_SetLineHeight}接口设置具体的固定行高值。\n
+ * 从API版本26.0.0开始，对象创建后可以通过{@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple}接口
+ * 设置具体的行高的倍数值。
  *
  * @since 24
  */
@@ -1270,10 +1276,10 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineHeightStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief 定义超链接样式。\n
- *        可以通过{@link OH_ArkUI_UrlStyle_Create}接口创建对应的超链接样式对象。\n
- *        可以通过{@link OH_ArkUI_UrlStyle_Destroy}接口销毁超链接样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_UrlStyle_SetUrl}接口设置链接地址。
+ * @brief 定义链接样式，用于为属性字符串中的文本设置可点击的URL链接效果，适用于需要在文本内容中嵌入可交互链接的场景，可提升文本的交互性和用户体验。\n
+ * 调用{@link OH_ArkUI_UrlStyle_Create}接口创建链接样式对象。\n
+ * 调用{@link OH_ArkUI_UrlStyle_Destroy}接口销毁链接样式对象。\n
+ * 创建链接样式对象后，调用{@link OH_ArkUI_UrlStyle_SetUrl}接口设置链接地址。
  *
  * @since 24
  */
@@ -1307,11 +1313,12 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetUrlStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_UrlStyle* urlStyle);
  
 /**
- * @brief 定义背景颜色样式。\n
- *        可以通过{@link OH_ArkUI_BackgroundColorStyle_Create}接口创建对应的背景颜色样式对象。\n
- *        可以通过{@link OH_ArkUI_BackgroundColorStyle_Destroy}接口销毁背景颜色样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_BackgroundColorStyle_SetColor}和 \n
- *        {@link OH_ArkUI_BackgroundColorStyle_SetRadius}接口设置背景颜色和圆角。
+ * @brief 定义背景颜色样式，支持自定义背景颜色和圆角半径，适用于为属性字符串设置背景高亮效果，例如搜索结果高亮、重点文本标记、标签式文本展示等场景，可提升文本的视觉层次和可辨识度。\n
+ * 调用{@link OH_ArkUI_BackgroundColorStyle_Create}接口创建背景颜色样式对象。\n
+ * 对象创建后，调用{@link OH_ArkUI_BackgroundColorStyle_SetColor}和
+ * {@link OH_ArkUI_BackgroundColorStyle_SetRadius}接口设置背景颜色和圆角半径。\n
+ * 调用{@link OH_ArkUI_BackgroundColorStyle_GetColor}和{@link OH_ArkUI_BackgroundColorStyle_GetRadius}接口获取背景颜色和圆角半径。\n
+ * 使用完毕后，调用{@link OH_ArkUI_BackgroundColorStyle_Destroy}接口销毁背景颜色样式对象。
  *
  * @since 24
  */
@@ -1346,10 +1353,12 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBackgroundColorStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_BackgroundColorStyle* backgroundColorStyle);
  
 /**
- * @brief 定义用户数据Span样式。\n
- *        可以通过{@link OH_ArkUI_UserDataSpan_Create}接口创建对应的用户数据Span样式对象。\n
- *        可以通过{@link OH_ArkUI_UserDataSpan_Destroy}接口销毁用户数据Span样式对象。\n
- *        对象创建后通过{@link OH_ArkUI_UserDataSpan_SetUserData}接口绑定用户数据。
+ * @brief 定义用户数据Span样式，用于在富文本中为属性字符串附加自定义用户数据，以便在文本交互或自定义渲染时进行数据标识与关联。
+ * 例如，在即时通讯应用中可为消息文本Span附加消息ID，在富文本编辑器中可为文本片段附加自定义样式标签等场景中使用。\n
+ * 调用{@link OH_ArkUI_UserDataSpan_Create}接口创建用户数据Span样式对象。\n
+ * 使用完毕后应调用{@link OH_ArkUI_UserDataSpan_Destroy}接口销毁用户数据Span样式对象。\n
+ * 创建成功后，可调用{@link OH_ArkUI_UserDataSpan_SetUserData}接口设置用户数据。\n
+ * 调用{@link OH_ArkUI_UserDataSpan_GetUserData}接口获取用户数据。
  *
  * @since 24
  */
@@ -1440,11 +1449,12 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetImageAttachment(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ImageAttachment* imageAttachment);
  
 /**
- * @brief 定义段落缩进的自定义绘制信息。\n
- *        可以通过{@link OH_ArkUI_LeadingMarginSpanDrawInfo_Create}接口创建对应的段落缩进的自定义绘制信息对象。\n
- *        可以通过{@link OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy}接口销毁段落缩进的自定义绘制信息对象。\n
- *        对象用于在{@link OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback}注册的回调函数 \n
- *        中，提供当前行的绘制上下文信息。
+ * @brief 定义段首缩进的自定义绘制信息，包含当前行的绘制上下文信息（如绘制区域、偏移量等），
+ * 开发者可在回调函数中基于该信息实现自定义的段首缩进绘制逻辑，适用于需要在段落首行添加自定义图标、装饰元素或实现特殊缩进样式等场景，使段落排版更加灵活丰富。
+ * 例如，在阅读应用中为段落首行绘制书签图标，或在文档编辑器中为特定段落绘制自定义缩进标记。\n
+ * 调用{@link OH_ArkUI_LeadingMarginSpanDrawInfo_Create}接口创建对应的段首缩进的自定义绘制信息对象。\n
+ * 调用{@link OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy}接口销毁该对象。\n
+ * 该对象用于在{@link OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback}注册的回调函数中，提供当前行的绘制上下文和自定义绘制信息对象。
  *
  * @since 24
  */
@@ -2412,11 +2422,11 @@ ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_GetLineHeightMultiple(const OH_ArkUI_Li
     float* lineHeightMultiple);
  
 /**
- * @brief 定义行间距样式。\n
- *        可以通过{@link OH_ArkUI_LineSpacingStyle_Create}接口创建对应的行间距样式对象。\n
- *        可以通过{@link OH_ArkUI_LineSpacingStyle_Destroy}接口销毁行间距样式对象。\n
- *        对象创建后可以通过{@link OH_ArkUI_LineSpacingStyle_SetLineSpacing}接口设置具体的行间距值。\n
- *        可以通过{@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines}接口设置行间距是否只在行间生效。
+ * @brief 定义行间距样式，用于设置文本行之间的间距，可提升文本可读性和视觉效果。适用于电子书阅读器、新闻资讯类应用、长文档编辑等需要精细控制多行文本排版行间距的场景。\n
+ * 调用{@link OH_ArkUI_LineSpacingStyle_Create}接口创建行间距样式对象，行间距默认值为0，行间距是否只在行间生效默认为false。\n
+ * 调用{@link OH_ArkUI_LineSpacingStyle_Destroy}接口销毁行间距样式对象。\n
+ * 对象创建成功后，调用{@link OH_ArkUI_LineSpacingStyle_SetLineSpacing}接口设置行间距值（取值范围及约束详见该接口说明）。\n
+ * 调用{@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines}接口设置行间距是否只在行间生效（取值规则详见该接口说明）。
  *
  * @since 26.0.0
  */
