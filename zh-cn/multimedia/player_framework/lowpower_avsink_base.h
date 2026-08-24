@@ -27,7 +27,7 @@
  * 
  * @library liblowpower_avsink.so
  * @kit MediaKit
- * @include  <multimedia/player_framework/lowpower_avsink_base.h>
+ * @include <multimedia/player_framework/lowpower_avsink_base.h>
  * @syscap SystemCapability.Multimedia.Media.LowPowerAVSink
  * @since 20
  */
