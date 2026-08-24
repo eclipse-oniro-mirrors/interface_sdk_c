@@ -385,13 +385,14 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResour
 /**
  * @brief 获取设备的屏幕方向、语言区域、设备类型、屏幕密度、颜色模式等配置信息。
  *
- * @param {NativeResourceManager} mgr Indicates the pointer to {@link NativeResourceManager}
- *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param {ResourceManager_Configuration} configuration the result write to ResourceManager_Configuration.
- * @return Result code.
- *     <br>**SUCCESS**: Success.
- *     <br>**ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED**: Failed to access the system resource.
- *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
+ * @param mgr 输入参数。指向NativeResourceManager对象的指针，此指针通过{@link OH_ResourceManager_InitNativeResourceManager}函数获取。
+ * @param configuration 输出参数。返回设备配置信息，其中screenDensity的值为设备屏幕密度（dpi）。
+ *     <br>configuration中的locale字符串由此函数分配内存，使用完后需通过{@link OH_ResourceManager_ReleaseConfiguration}释放locale。
+ *     若configuration指针由malloc()分配内存，使用完后须通过free()释放。
+ * @return 返回错误码。
+ *     <br>返回SUCCESS，表示成功。
+ *     <br>返回ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED，表示访问系统资源失败。
+ *     <br>返回ERROR_CODE_OUT_OF_MEMORY，表示内存溢出。
  * @since 20
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,
