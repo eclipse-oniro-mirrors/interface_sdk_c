@@ -17,7 +17,8 @@
  * @{
  *
  * @brief 调用本模块下的接口，应用可以实现屏幕录制功能。支持录屏取码流和录屏写文件两种模式，适用于需要捕获屏幕音视频内容的各类场景，
- * 帮助开发者灵活获取屏幕数据并进行后续处理或保存为文件。典型使用场景包括：在线会议录制、游戏直播分享、教学演示视频制作、远程协作屏幕共享等。
+ * 帮助开发者灵活获取屏幕数据并进行后续处理或保存为文件。典型使用场景包括：在线会议录制、游戏直播分享、教学演示视频制作、
+ * 远程协作屏幕共享等。
  * 
  * 开发者可根据实际的开发需求，参考对应的开发指南及样例：
  * 
@@ -30,8 +31,9 @@
  *
  * @brief 声明用于构造屏幕录制对象的API。
  * 
- * 支持录屏取码流和录屏存文件两种模式，可采集麦克风音频和内录音频数据，获取视频缓冲区数据，提供状态变更、数据处理、错误处理等回调机制，
- * 支持Surface模式录屏、内容过滤、隐私保护、捕获策略配置、捕获区域设置与高亮、多屏幕录制等功能，适用于需要在应用内实现屏幕录制、屏幕共享或直播推流等场景。
+ * 支持录屏取码流和录屏存文件两种模式，可采集麦克风音频和内录音频数据，获取视频缓冲区数据，提供状态变更、数据处理、
+ * 错误处理等回调机制，支持Surface模式录屏、内容过滤、隐私保护、捕获策略配置、捕获区域设置与高亮、多屏幕录制等功能，
+ * 适用于需要在应用内实现屏幕录制、屏幕共享或直播推流等场景。
  * @include <multimedia/player_framework/native_avscreen_capture.h>
  * @library libnative_avscreen_capture.so
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
@@ -63,12 +65,17 @@ extern "C" {
 struct OH_AVScreenCapture *OH_AVScreenCapture_Create(void);
 
 /**
- * @brief 初始化{@link OH_AVScreenCapture}相关参数，包括下发的音频麦克风采样相关参数（可选）、音频内录采样相关参数、视频分辨率相关参数。
+ * @brief 初始化{@link OH_AVScreenCapture}相关参数，包括下发的音频麦克风采样相关参数（可选）、
+ * 音频内录采样相关参数、视频分辨率相关参数。
  * 录屏存文件场景，应用需要保证视频编码参数、视频采样参数、音频编码参数、音频内录采样参数均合法，音频麦克风采样参数合法（可选）。
  * 录屏取码流场景，应用需要保证音频内录采样参数、视频采样参数至少一个合法，音频麦克风采样参数合法（可选）。
- * 由于结构体变量在初始化时不会对成员进行初始化，应用必须根据使用场景正确设置各项参数。建议应用先将OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然后再根据录屏场景设置合法参数。
- * 音频采样参数结构体{@link OH_AudioCaptureInfo}，若audioSampleRate和audioChannels同时为0，则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，且不采集该类型的音频数据。
- * 视频采样参数结构体{@link OH_VideoCaptureInfo}，若videoFrameWidth和videoFrameHeight同时为0，则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。需先调用OH_AVScreenCapture_Create()创建实例，然后调用此方法进行参数初始化。
+ * 由于结构体变量在初始化时不会对成员进行初始化，应用必须根据使用场景正确设置各项参数。
+ * 建议应用先将OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然后再根据录屏场景设置合法参数。
+ * 音频采样参数结构体{@link OH_AudioCaptureInfo}，若audioSampleRate和audioChannels同时为0，
+ * 则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，且不采集该类型的音频数据。
+ * 视频采样参数结构体{@link OH_VideoCaptureInfo}，若videoFrameWidth和videoFrameHeight同时为0，
+ * 则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。需先调用OH_AVScreenCapture_Create()创建实例，
+ * 然后调用此方法进行参数初始化。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param config 录屏初始化相关参数。
@@ -96,8 +103,10 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
  * 
  * 4. 调用{@link OH_AVScreenCapture_AcquireVideoBuffer}获取视频buffer从而获取录屏的原始码流。
  * 
- * 与{@link OH_AVScreenCapture_StartScreenRecording}和{@link OH_AVScreenCapture_StartScreenCaptureWithSurface}不同，本接口用于获取实时音视频原始码流数据，适用于需要对码流进行二次处理的场景；
- * 而{@link OH_AVScreenCapture_StartScreenRecording}用于将录屏内容直接保存为文件，适用于仅需保存录屏的场景；{@link OH_AVScreenCapture_StartScreenCaptureWithSurface}使用Surface模式输出，适用于需要直接渲染或与其他组件共享数据的场景。
+ * 与{@link OH_AVScreenCapture_StartScreenRecording}和{@link OH_AVScreenCapture_StartScreenCaptureWithSurface}不同，
+ * 本接口用于获取实时音视频原始码流数据，适用于需要对码流进行二次处理的场景；
+ * 而{@link OH_AVScreenCapture_StartScreenRecording}用于将录屏内容直接保存为文件，适用于仅需保存录屏的场景；
+ * {@link OH_AVScreenCapture_StartScreenCaptureWithSurface}使用Surface模式输出，适用于需要直接渲染或与其他组件共享数据的场景。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
@@ -109,7 +118,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVScreenCapture *capture);
 
 /**
- * @brief 结束录屏，与{@link OH_AVScreenCapture_StartScreenCapture}配合使用。调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。
+ * @brief 结束录屏，与{@link OH_AVScreenCapture_StartScreenCapture}配合使用。
+ * 调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
@@ -127,7 +137,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture(struct OH_AVScr
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。请检查参数是否为有效指针。
  * AV_SCREEN_CAPTURE_ERR_UNSUPPORT（API version 20新增）：设备不支持该操作。请检查设备是否支持录屏功能。
- * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启用屏幕录制失败，请检查隐私权限设置或录屏配置是否正确。
+ * AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启用屏幕录制失败，
+ * 请检查隐私权限设置或录屏配置是否正确。
  * @since 10
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AVScreenCapture *capture);
@@ -202,7 +213,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseVideoBuffer(struct OH_AVSc
 
 /**
  * @brief 设置监听接口，通过设置监听，可以监听到调用过程中的错误信息，以及是否有可用的视频buffer和音频buffer。
- * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_SetErrorCallback}、{@link OH_AVScreenCapture_SetDataCallback}替代。
+ * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_SetErrorCallback}、
+ * {@link OH_AVScreenCapture_SetDataCallback}替代。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param callback OH_AVScreenCaptureCallback的结构体，保存相关回调函数指针。
@@ -227,7 +239,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Release(struct OH_AVScreenCapture
 
 /**
  * @brief 设置麦克风开关。
- * 当isMicrophone为true时，则打开麦克风，通过调用{@link OH_AVScreenCapture_StartScreenCapture}和{@link OH_AVScreenCapture_AcquireAudioBuffer}
+ * 当isMicrophone为true时，则打开麦克风，通过调用{@link OH_AVScreenCapture_StartScreenCapture}
+ * 和{@link OH_AVScreenCapture_AcquireAudioBuffer}
  * 可以正常获取到音频的麦克风原始PCM数据；isMicrophone为false时，获取到的音频数据为无声数据。
  * 默认麦克风开关为开启。
  * 
@@ -247,10 +260,14 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMicrophoneEnabled(struct OH_AV
  * @brief 设置状态变更处理回调方法，在开始录制前调用。
  * 调用该方法设置状态变更处理回调方法，当OH_AVScreenCapture实例发生状态变更时，该状态变更处理回调方法将会被调用。
  * 调用该设置方法成功后，在启动录屏时将通过隐私弹窗方式征求用户同意：
- * 1. 如果用户同意则开始启动录屏流程，在启动录屏成功后，通过该状态处理回调方法上报{@link OH_AVScreenCaptureStateCode}.OH_SCREEN_CAPTURE_STATE_STARTED状态，告知应用启动录屏成功，并在屏幕显示录屏通知。如果启动录屏失败，则通过该状态处理回调方法上报失败状态信息（如，若麦克风不可用则上报{@link OH_AVScreenCaptureStateCode}.
+ * 1. 如果用户同意则开始启动录屏流程，在启动录屏成功后，
+ * 通过该状态处理回调方法上报{@link OH_AVScreenCaptureStateCode}.OH_SCREEN_CAPTURE_STATE_STARTED状态，告知应用启动录屏成功，
+ * 并在屏幕显示录屏通知。如果启动录屏失败，
+ * 则通过该状态处理回调方法上报失败状态信息（如，若麦克风不可用则上报{@link OH_AVScreenCaptureStateCode}.
  * OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE状态），或通过错误处理回调方法{@link OH_AVScreenCapture_OnError}上报错误信息。
- * 2. 如果用户拒绝，则终止启动录屏，通过该状态处理回调方法上报{@link OH_AVScreenCaptureStateCode}.OH_SCREEN_CAPTURE_STATE_CANCELED状态，告知应用用户拒绝启动录屏，
- * 启动录屏失败。
+ * 2. 如果用户拒绝，则终止启动录屏，
+ * 通过该状态处理回调方法上报{@link OH_AVScreenCaptureStateCode}.OH_SCREEN_CAPTURE_STATE_CANCELED状态，
+ * 告知应用用户拒绝启动录屏，启动录屏失败。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param callback 指向状态处理回调方法实例的指针。
@@ -269,9 +286,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetStateCallback(struct OH_AVScre
  * 调用该方法设置数据处理回调方法，当OH_AVScreenCapture操作期间有音频或视频数据缓存区可用时，将调用该数据处理回调方法。
  * 应用需要在该数据处理回调方法中根据数据类型完成处理麦克风音频、内录音频、视频数据，当该数据处理回调方法返回后数据缓存区将不再有效。
  * 调用该方法成功后：
- * 1. 当OH_AVScreenCapture操作期间有音视频缓存区可用时，将不再调用通过{@link OH_AVScreenCapture_SetCallback}设置的数据回调方法{@link OH_AVScreenCaptureOnAudioBufferAvailable}
+ * 1. 当OH_AVScreenCapture操作期间有音视频缓存区可用时，将不再调用通过{@link OH_AVScreenCapture_SetCallback}设置的
+ * 数据回调方法{@link OH_AVScreenCaptureOnAudioBufferAvailable}
  * 和{@link OH_AVScreenCaptureOnVideoBufferAvailable}。
- * 2. 不允许应用调用如下4个方法{@link OH_AVScreenCapture_AcquireAudioBuffer}、{@link OH_AVScreenCapture_ReleaseAudioBuffer}、{@link OH_AVScreenCapture_AcquireVideoBuffer}
+ * 2. 不允许应用调用如下4个方法{@link OH_AVScreenCapture_AcquireAudioBuffer}、
+ * {@link OH_AVScreenCapture_ReleaseAudioBuffer}、{@link OH_AVScreenCapture_AcquireVideoBuffer}
  * 和{@link OH_AVScreenCapture_ReleaseVideoBuffer}，直接返回失败。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
@@ -289,7 +308,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDataCallback(struct OH_AVScree
 /**
  * @brief 设置错误处理回调方法，在开始录制前调用。
  * 调用该方法设置错误处理回调方法，当OH_AVScreenCapture实例发生错误时，该错误处理回调方法将会被调用。
- * 调用该设置方法成功后，当OH_AVScreenCapture实例发生错误时，将不再调用通过{@link OH_AVScreenCapture_SetCallback}设置的错误处理回调方法{@link OH_AVScreenCaptureOnError}
+ * 调用该设置方法成功后，当OH_AVScreenCapture实例发生错误时，将不再调用通过{@link OH_AVScreenCapture_SetCallback}设置的
+ * 错误处理回调方法{@link OH_AVScreenCaptureOnError}
  * 。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
@@ -407,7 +427,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
 /**
  * @brief 调整屏幕的分辨率。
  * 调用该方法可以设置录屏屏幕数据的分辨率，width为屏幕的宽度，height为屏幕的高度。
- * 该接口目前仅支持录屏取码流的场景，不支持录屏存文件的场景。并且调用该接口的调用者以及视频数据的消费者需要确保自身能够支持收到的视频数据分辨率发生变化。
+ * 该接口目前仅支持录屏取码流的场景，不支持录屏存文件的场景。并且调用该接口的调用者以及视频数据的消费者需要确保自身能够支持收到的
+ * 视频数据分辨率发生变化。
  * 
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param width Video frame width of avscreeencapture, in px.
@@ -423,7 +444,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCa
 
 /**
  * @brief 录屏时豁免隐私窗口。
- * 调用该方法可以豁免隐私窗口，windowIDs为需要豁免的隐私窗口ID指针，windowCount 为隐私窗口ID列表的长度，目前豁免需要传入所有隐私子窗口和主窗口ID。
+ * 调用该方法可以豁免隐私窗口，windowIDs为需要豁免的隐私窗口ID指针，windowCount 为隐私窗口ID列表的长度，目前豁免需要传入所有
+ * 隐私子窗口和主窗口ID。
  * 
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param windowIDs Pointer of windowID list
@@ -442,7 +464,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScree
  * 该接口应在录屏启动之后被调用。
  * 调用该方法可以设置录屏时的最大帧率，frameRate为想要设置的最大帧率。
  * 该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
- * 调用该接口设置录屏最大帧率时，实际帧率将受限于设备能力。目前接口入参的最大值不设限制，但当前支持的最高帧率为60FPS，当入参设置超过60FPS，将以60FPS处理。不超过上限时，则按照实际入参值处理。
+ * 调用该接口设置录屏最大帧率时，实际帧率将受限于设备能力。目前接口入参的最大值不设限制，但当前支持的最高帧率为60FPS，
+ * 当入参设置超过60FPS，将以60FPS处理。不超过上限时，则按照实际入参值处理。
  * 
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param frameRate max frame rate of video, in fps.
@@ -480,7 +503,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapt
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针、输入displayId不存在或输入的捕获区域异常。
  * @since 20
  */
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreenCapture *capture, uint64_t displayId, OH_Rect* area);
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreenCapture *capture,
+    uint64_t displayId, OH_Rect* area);
 
 /**
  * @brief 设置屏幕捕获区域高亮模式。
@@ -509,7 +533,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AV
     OH_AVScreenCapture_OnUserSelected callback, void *userData);
 
 /**
- * @brief 获取用户在确认界面选择的屏幕捕获对象类型。在{@link OH_AVScreenCapture_OnUserSelected}回调中使用，selection指针在回调结束后销毁。
+ * @brief 获取用户在确认界面选择的屏幕捕获对象类型。在{@link OH_AVScreenCapture_OnUserSelected}回调中使用，
+ * selection指针在回调结束后销毁。
  * 
  * @param selection Pointer to an OH_AVScreenCapture_UserSelectionInfo instance
  * @param type The capture object type selected by the user,
@@ -518,10 +543,12 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AV
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数selection为空指针。
  * @since 20
  */
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo *selection, int32_t* type);
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
+    int32_t* type);
 
 /**
- * @brief 获取确认页面，用户选择录制的屏幕ID。在{@link OH_AVScreenCapture_OnUserSelected}回调中使用，selection指针在回调结束后销毁。
+ * @brief 获取确认页面，用户选择录制的屏幕ID。在{@link OH_AVScreenCapture_OnUserSelected}回调中使用，
+ * selection指针在回调结束后销毁。
  * 
  * @param selection Pointer to an OH_AVScreenCapture_UserSelectionInfo instance
  * @param displayId Returns the screen ID value selected by the user
@@ -529,7 +556,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScree
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数selection为空指针。
  * @since 20
  */
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo *selection, uint64_t* displayId);
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
+    uint64_t* displayId);
 
 /**
  * @brief 创建录屏策略对象。
@@ -566,7 +594,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy(
 
 /**
  * @brief 向CaptureStrategy实例设置蜂窝通话时是否保持录屏。
- * value设置为true时并且录屏时接听蜂窝通话的过程中，出于隐私要求，双方通话的声音（本地麦克风和对方说话声音）不会被录制，其他系统音录制正常。电话挂断之后，录屏框架恢复麦克风录制。注意，如果挂断电话时录屏应用在后台运行，
+ * value设置为true时并且录屏时接听蜂窝通话的过程中，出于隐私要求，双方通话的声音（本地麦克风和对方说话声音）不会被录制，
+ * 其他系统音录制正常。电话挂断之后，录屏框架恢复麦克风录制。注意，如果挂断电话时录屏应用在后台运行，
  * 麦克风录制会启动失败，原因是音频模块不允许后台应用启动麦克风录制。
  * 
  * @param strategy Pointer to an OH_AVScreenCapture_CaptureStrategy instance
