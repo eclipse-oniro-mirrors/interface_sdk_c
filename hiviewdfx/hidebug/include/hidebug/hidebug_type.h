@@ -13,17 +13,8 @@
  * limitations under the License.
  */
 
-/**
- * @file hidebug_type.h
- *
- * @brief Defines the code of the HiDebug module.
- *
- * @kit PerformanceAnalysisKit
- * @library libohhidebug.so
- * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
- * @since 12
- */
-
+#ifndef HIVIEWDFX_HIDEBUG_TYPE_H
+#define HIVIEWDFX_HIDEBUG_TYPE_H
 /**
  * @addtogroup HiDebug
  * @{
@@ -35,13 +26,20 @@
  * @since 12
  */
 
-#ifndef HIVIEWDFX_HIDEBUG_TYPE_H
-#define HIVIEWDFX_HIDEBUG_TYPE_H
+/**
+ * @file hidebug_type.h
+ *
+ * @brief Defines the code of the HiDebug module.
+ *
+ * @kit PerformanceAnalysisKit
+ * @library libohhidebug.so
+ * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
+ * @since 12
+ */
 
 #include <stdint.h>
 #include <stddef.h>
 #include <unistd.h>
-#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,174 +55,146 @@ typedef enum HiDebug_ErrorCode {
      * Operation successful.
      */
     HIDEBUG_SUCCESS = 0,
-
     /**
      * Invalid parameter. Possible causes: 1. The parameter value is incorrect. 2. The parameter type is incorrect.
      */
     HIDEBUG_INVALID_ARGUMENT = 401,
-
     /**
      * Repeated collection.
      */
     HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,
-
     /**
      * No file write permission.
      */
     HIDEBUG_NO_PERMISSION = 11400103,
-
     /**
      * Internal system error.
      */
     HIDEBUG_TRACE_ABNORMAL = 11400104,
-
     /**
      * No trace task is running.
      */
     HIDEBUG_NO_TRACE_RUNNING = 11400105,
-
     /**
-     * Trace storage limit reached
+     * The trace file storage reaches the upper limit.
      * @since 24
      */
     OH_HIDEBUG_TRACE_STORAGE_LIMIT = 11400120,
-
     /**
      * PC address passed to the symbol parsing function is invalid.
      * @since 20
      */
     HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200,
-
     /**
- * Current device is not supported.
- * @since 22
- */
+     * Current device is not supported.
+     * @since 22
+     */
     HIDEBUG_NOT_SUPPORTED = 11400300,
-
     /**
- * Current process is being sampled.
- * @since 22
- */
+     * Current process is being sampled.
+     * @since 22
+     */
     HIDEBUG_UNDER_SAMPLING = 11400301,
-
     /**
      * Sampling resources are unavailable.
      * @since 22
      */
     HIDEBUG_RESOURCE_UNAVAILABLE = 11400302,
-
     /**
-     * Resource profiler started/stopped successfully.
+     * Resource profiling started or stopped successfully.
      * @since 24
      */
     HIDEBUG_RES_PROF_SUCCESS = 11400400,
-
     /**
-     * Invalid resource profiler argument.
+     * Invalid resource profiling parameter.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_ARG = 11400410,
-
     /**
-     * Invalid maximum duration.
+     * Invalid maximum duration for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_DURATION = 11400411,
-
     /**
-     * Invalid filter size.
+     * Invalid resource profiling filtering size.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_FILTER_SIZE = 11400412,
-
     /**
-     * Invalid maximum stack depth.
+     * Invalid maximum stack depth for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH = 11400413,
-
     /**
-     * Invalid statistics interval.
+     * Invalid statistics interval for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL = 11400414,
-
     /**
-     * Invalid sample interval.
+     * Invalid sampling size for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL = 11400415,
-
     /**
-     * Invalid resource type.
+     * Invalid resource type for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE = 11400416,
-
     /**
-     * Resource profiler permission denied.
+     * Insufficient resource profiling permission. The target process for resource profiling can only be the process
+     * that calls this API.
      * @since 24
      */
     HIDEBUG_RES_PROF_PERMISSION_DENIED = 11400420,
-
     /**
-     * Resource profiler already started.
+     * Resource profiling is repeatedly started.
      * @since 24
      */
     HIDEBUG_RES_PROF_ALREADY_STARTED = 11400421,
-
     /**
-     * Resource profiler not started.
+     * Failed to stop resource profiling because it is not started.
      * @since 24
      */
     HIDEBUG_RES_PROF_NOT_STARTED = 11400422,
-
     /**
-     * Resource profiler process count exceeds the limit.
+     * The number of resource profiling processes exceeds 4.
      * @since 24
      */
     HIDEBUG_RES_PROF_PROCESS_OVERLIMIT = 11400423,
-
     /**
-     * Resource profiler conflicts with CLI tools or system profiling tasks.
+     * Resource profiling conflicts with CLI tools or system collection tasks.
      * @since 24
      */
     HIDEBUG_RES_PROF_CONFLICT = 11400424,
-
     /**
-     * Resource profiler automatically stopped due to the duration limit.
+     * Resource profiling automatically stopped due to the duration limit.
      * @since 24
      */
     HIDEBUG_RES_PROF_AUTO_STOPPED_BY_DURATION = 11400425,
-
     /**
-     * Daily quota exceeded during resource profiling.
+     * The daily quota for resource profiling exceeded 10 times.
      * @since 24
      */
     HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED = 11400426,
-
     /**
-     * System is experiencing high CPU utilization.
+     * The system CPU is overloaded, with the CPU usage exceeding 70%.
      * @since 24
      */
     HIDEBUG_RES_PROF_CPU_OVERLOADED = 11400427,
-
     /**
-     * Insufficient available memory.
+     * The available memory space is less than 15%.
      * @since 24
      */
     HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL = 11400428,
-
     /**
-     * Insufficient available storage space.
+     * The available storage space is less than 15%.
      * @since 24
      */
     HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL = 11400429,
-
     /**
- * Failed to start/stop the resource profiler.
- * @since 24
- */
+     * Failed to start or stop resource profiling.
+     * @since 24
+     */
     HIDEBUG_RES_PROF_FAILURE = 11400430,
     /**
      * @brief Invalid maximum asynchronous nesting depth.
@@ -352,7 +322,6 @@ typedef enum HiDebug_TraceFlag {
      * Only the main thread of the current application.
      */
     HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,
-
     /**
      * All threads of the application.
      */
@@ -360,38 +329,42 @@ typedef enum HiDebug_TraceFlag {
 } HiDebug_TraceFlag;
 
 /**
- * @brief Defines trace request configuration.
+ * @brief Defines a struct for the trace collection configuration.
  *
  * @since 24
  */
 typedef struct OH_HiDebug_RequestTraceConfig {
     /**
-     * Identifier used as the prefix of the output trace file name.
+     * Prefix of the name of the file generated by trace collection. Only the first 20 characters of the string are
+     * used as the prefix. They can contain only uppercase letters, lowercase letters, and underscores (_). If the
+     * value does not meet the requirements, it defaults to an empty string.
      * @since 24
      */
     const char* identifier;
     /**
-     * The buffer size of the trace file, in kb.
+     * Cache size of the trace file, in KB. The value range is [1024, 15360]. If the input parameter is out of the
+     * valid range, the parameter will be set to the nearest boundary value.
      * @since 24
      */
     uint32_t bufferSizeKb;
     /**
-     * The duration of the trace, in ms.
+     * Trace collection duration, in milliseconds. The value range is [1000, 15000]. If the input parameter is out of
+     * the valid range, the parameter will be set to the nearest boundary value.
      * @since 24
      */
     uint32_t durationMs;
     /**
-     * Reserved field for future use. Set to 0.
+     * Reserved field. The value can be set to **0**.
      * @since 24
      */
     uint32_t reserved;
 } OH_HiDebug_RequestTraceConfig;
 
 /**
- * @brief Defines callback type for trace request.
+ * @brief Triggered for the trace collection request.
  *
- * @param errorCode Result code, see {@link HiDebug_ErrorCode}.
- * @param filePath Path of the generated trace file, may be NULL on failure.
+ * @param errorCode Result code. For details, see {@link HiDebug_ErrorCode}.
+ * @param filePath Pointer to the collected trace file. If the operation fails, a null pointer may be returned.
  * @since 24
  */
 typedef void (*OH_HiDebug_RequestTraceCallback)(HiDebug_ErrorCode errorCode, const char* filePath);
@@ -422,33 +395,33 @@ typedef struct HiDebug_JsStackFrame {
      * such as an executable file or shared library).
      */
     uint64_t relativePc;
- 
+
     /**
      * Line number of the code corresponding to the current stack frame in the file.
      */
     int32_t line;
- 
+
     /**
      * Column number of the code corresponding to the current stack frame in the specified line.
      */
     int32_t column;
- 
+
     /**
      * Name of the mapping area to which the current stack frame belongs.
      */
     const char* mapName;
- 
+
     /**
      * Name of the function corresponding to the current stack frame.
      */
     const char* functionName;
- 
+
     /**
      * URL of the code file corresponding to the current stack frame. It can be used to find the corresponding code
      * file in the local path or on the remote server.
      */
     const char* url;
- 
+
     /**
      * Name of the package to which the code corresponding to the current stack frame belongs.
      */
@@ -466,30 +439,30 @@ typedef struct HiDebug_NativeStackFrame {
      * such as an executable file or shared library).
      */
     uint64_t relativePc;
- 
+
     /**
      * Offset of the function corresponding to the current stack frame in its mapping area (such as an executable file
      * or shared library).
      */
     uint64_t funcOffset;
- 
+
     /**
      * Name of the mapping area to which the current stack frame belongs.
      */
     const char* mapName;
- 
+
     /**
      * Name of the function corresponding to the current stack frame.
      */
     const char* functionName;
- 
+
     /**
      * Build ID that uniquely identifies the current mapping area (such as an executable file or shared library).
      * During debugging and symbol parsing, **buildId** ensures that the symbol file version matches the actual binary
      * file version.
      */
     const char* buildId;
- 
+
     /**
      * Reserved field for future extension.
      */
@@ -506,7 +479,6 @@ typedef enum HiDebug_StackFrameType {
      * JS stack frame.
      */
     HIDEBUG_STACK_FRAME_TYPE_JS = 1,
-
     /**
      * Native stack frame.
      */
@@ -601,103 +573,59 @@ typedef struct HiDebug_ProcessSamplerConfig {
  */
 typedef enum HiDebug_CrashObjType {
     /**
-      * String.
-      */
+     * String.
+     */
     HIDEBUG_CRASHOBJ_STRING = 0,
-
     /**
-      * 64-byte memory block.
-      */
+     * 64-byte memory block.
+     */
     HIDEBUG_CRASHOBJ_MEMORY_64B = 1,
-
     /**
-      * 256-byte memory block.
-      */
+     * 256-byte memory block.
+     */
     HIDEBUG_CRASHOBJ_MEMORY_256B = 2,
-
     /**
      * 1024-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_1024B = 3,
-
     /**
-      * 2048-byte memory block.
-      */
+     * 2048-byte memory block.
+     */
     HIDEBUG_CRASHOBJ_MEMORY_2048B = 4,
-
     /**
      * 4096-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
-} HiDebug_CrashObjType;
+ } HiDebug_CrashObjType;
 
 /**
- * @brief Defines a struct for the resource profiler configuration.
- *
- * @since 24
- */
-typedef struct OH_HiDebug_ResProfilerConfig {
-    /**
-     * Maximum collection duration, in seconds.
-     * @since 24
-     */
-    uint32_t maxDuration;
-    /**
-     * Filter size, in bytes.
-     * @since 24
-     */
-    uint32_t filterSize;
-    /**
-     * Maximum stack trace depth, in frames.
-     * @since 24
-     */
-    uint32_t maxStackDepth;
-    /**
-     * Statistics interval, in seconds.
-     * @since 24
-     */
-    uint32_t statisticsInterval;
-    /**
-     * Sample interval, in bytes.
-     * In sampling mode, if the memory allocation size is less than or equal to the sample interval,
-     * it will be sampled probabilistically, otherwise, it will be sampled fully.
-     * @since 24
-     */
-    uint32_t sampleInterval;
-} OH_HiDebug_ResProfilerConfig;
-
-/**
- * @brief Defines an enum for the resource profiler types.
+ * @brief Enumerates the resource profiling types.
  *
  * @since 24
  */
 typedef enum OH_HiDebug_ResourceType {
     /**
-     * File descriptor
+     * File descriptor.
      * @since 24
      */
     OH_RES_TYPE_FD,
-
     /**
-     * Thread
+     * Thread.
      * @since 24
      */
     OH_RES_TYPE_THREAD,
-
     /**
-     * Native memory
+     * Native memory.
      * @since 24
      */
     OH_RES_TYPE_NATIVE,
-
     /**
-     * GPU memory
+     * GPU memory.
      * @since 24
      */
     OH_RES_TYPE_GPU,
-
     /**
-     * Global handle
+     * Global handle.
      * @since 24
      */
     OH_RES_TYPE_GLOBAL_HANDLE,
@@ -724,8 +652,7 @@ typedef enum OH_HiDebug_ResourceType {
 } OH_HiDebug_ResourceType;
 
 /**
- * @brief Encapsulates result of a single profiling request operation.
- *        It represents data delivered via OH_HiDebug_ProfilingCallback.
+ * @brief Defines a struct for encapsulating the result of a single resource collection.
  *
  * @since 24
  */
@@ -743,15 +670,56 @@ typedef struct OH_HiDebug_ProfilingResult {
 } OH_HiDebug_ProfilingResult;
 
 /**
- * @brief Callback signature for the resource profiling result.
+ * @brief Triggered for the resource profiling.
  *
- * @param result Pointer to the OH_HiDebug_ProfilingResult structure.
+ * @param result Pointer to the parameters of the resource profiling callback function.
  * @since 24
  */
 typedef void (*OH_HiDebug_ProfilingCallback)(OH_HiDebug_ProfilingResult* result);
 
 /**
- * @brief Defines an enum for memory listener callbacks.
+ * @brief Defines a struct for the resource collection configurations.
+ *
+ * @since 24
+ */
+typedef struct OH_HiDebug_ResProfilerConfig {
+    /**
+     * Maximum collection duration, in seconds. The value range is [1, 3600].<br>If the value of the input parameter is
+     * out of the value range, the API returns the error code {@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}.
+     * @since 24
+     */
+    uint32_t maxDuration;
+    /**
+     * Filter size, in bytes. The value range is [1, 4294967295].<br>If the value of the input parameter is out of the
+     * value range, the API returns the error code {@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}.
+     * @since 24
+     */
+    uint32_t filterSize;
+    /**
+     * Maximum stack trace depth, in frames. The value range is [0, 30].<br>If the value of the input parameter is out
+     * of the value range, the API returns the error code {@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}.
+     * @since 24
+     */
+    uint32_t maxStackDepth;
+    /**
+     * Statistical interval, in seconds. The value range is [0, 3600].<br>If the value of the input parameter is out of
+     * the value range, the API returns the error code {@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}.
+     * @since 24
+     */
+    uint32_t statisticsInterval;
+    /**
+     * Sampling size, in bytes. The value range is [384, 4294967295].<br>In sampling mode, if the allocated memory size
+     * is less than or equal to the sampling size, probabilistic sampling is performed. Otherwise, full sampling is
+     * performed.<br>If the value of the input parameter is out of the range, the API returns the error code
+     * {@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}.
+     * @since 24
+     */
+    uint32_t sampleInterval;
+} OH_HiDebug_ResProfilerConfig;
+
+/**
+ * @brief Enumerates the memory listener callback types. You can process the related logic based on the callback type.
+ *
  * @since 26.0.0
  */
 typedef enum OH_HiDebug_MemListenerType {
@@ -760,20 +728,17 @@ typedef enum OH_HiDebug_MemListenerType {
      * @since 26.0.0
      */
     OH_HIDEBUG_DO_NOTHING = 0,
-
     /**
      * GC operation
      * @since 26.0.0
      */
     OH_HIDEBUG_RUNNING_GC = 1,
-
     /**
      * Dump memory snapshot
      * @since 26.0.0
      */
     OH_HIDEBUG_DUMP_SNAPSHOT = 2
 } OH_HiDebug_MemListenerType;
-
 #ifdef __cplusplus
 }
 #endif // __cplusplus
@@ -784,217 +749,186 @@ typedef enum OH_HiDebug_MemListenerType {
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_FFRT (1ULL << 13)
-
 /**
  * @brief Common library subsystem tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_COMMON_LIBRARY (1ULL << 16)
-
 /**
  * @brief HDF subsystem tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_HDF (1ULL << 18)
-
 /**
  * @brief Net tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_NET (1ULL << 23)
-
 /**
  * @brief NWeb tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_NWEB (1ULL << 24)
-
 /**
  * @brief Distributed audio tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_AUDIO (1ULL << 27)
-
 /**
  * @brief File management tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_FILE_MANAGEMENT (1ULL << 29)
-
 /**
  * @brief OHOS generic tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_OHOS (1ULL << 30)
-
 /**
  * @brief Ability Manager tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_ABILITY_MANAGER (1ULL << 31)
-
 /**
  * @brief Camera module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_CAMERA (1ULL << 32)
-
 /**
  * @brief Media module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_MEDIA (1ULL << 33)
-
 /**
  * @brief Image module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_IMAGE (1ULL << 34)
-
 /**
  * @brief Audio module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_AUDIO (1ULL << 35)
-
 /**
  * @brief Distributed data manager module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_DATA (1ULL << 36)
-
 /**
  * @brief Graphics module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_GRAPHICS (1ULL << 38)
-
 /**
  * @brief ARKUI development framework tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_ARKUI (1ULL << 39)
-
 /**
  * @brief Notification module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_NOTIFICATION (1ULL << 40)
-
 /**
  * @brief MISC module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_MISC (1ULL << 41)
-
 /**
  * @brief Multimodal input module tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_MULTIMODAL_INPUT (1ULL << 42)
-
 /**
  * @brief RPC tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_RPC (1ULL << 46)
-
 /**
  * @brief ARK tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_ARK (1ULL << 47)
-
 /**
  * @brief Window manager tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_WINDOW_MANAGER (1ULL << 48)
-
 /**
  * @brief Distributed screen tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_SCREEN (1ULL << 50)
-
 /**
  * @brief Distributed camera tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_CAMERA (1ULL << 51)
-
 /**
  * @brief Distributed hardware framework tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_FRAMEWORK (1ULL << 52)
-
 /**
  * @brief Global resource manager tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_GLOBAL_RESOURCE_MANAGER (1ULL << 53)
-
 /**
  * @brief Distributed hardware device manager tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_DEVICE_MANAGER (1ULL << 54)
-
 /**
  * @brief SA tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_SAMGR (1ULL << 55)
-
 /**
  * @brief Power manager tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_POWER_MANAGER (1ULL << 56)
-
 /**
  * @brief Distributed scheduler tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_SCHEDULER (1ULL << 57)
-
 /**
  * @brief Distributed input tag.
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_INPUT (1ULL << 59)
-
 /**
  * @brief bluetooth tag.
  *

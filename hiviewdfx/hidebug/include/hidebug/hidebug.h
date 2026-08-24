@@ -34,13 +34,10 @@
  * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
  * @since 12
  */
-
 #ifndef HIVIEWDFX_HIDEBUG_H
-
 #define HIVIEWDFX_HIDEBUG_H
 
 #include <stdint.h>
-#include <stdbool.h>
 #include "hidebug_type.h"
 
 #ifdef __cplusplus
@@ -160,15 +157,16 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag flag,
 HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture();
 
 /**
- * @brief Requests application trace capture with specified configuration.
+ * @brief Requests trace collection based on the configured collection settings.
  *
- * @param config Indicates the trace request configuration. See {@link OH_HiDebug_RequestTraceConfig}.
- * @param callback Indicates the callback for the trace request. See {@link OH_HiDebug_RequestTraceCallback}.
+ * @param config Parameters for trace collection. For details, see {@link OH_HiDebug_RequestTraceConfig}.
+ * @param callback Callback function for trace collection. For details, see {@link OH_HiDebug_RequestTraceCallback}.
  * @return Result code.
- *         {@link HIDEBUG_SUCCESS} The operation is successful.
- *         {@link HIDEBUG_TRACE_ABNORMAL} Remote service exception.
- *         {@link OH_HIDEBUG_TRACE_STORAGE_LIMIT} Trace storage limit reached.
- *         {@link HIDEBUG_RESOURCE_UNAVAILABLE} Resource unavailable.
+ *     <br>{@link HIDEBUG_SUCCESS}: The collection is successful.
+ *     <br>{@link HIDEBUG_TRACE_ABNORMAL}: The remote service or status is abnormal.
+ *     <br>{@link OH_HIDEBUG_TRACE_STORAGE_LIMIT}: The number of stored trace files reaches the upper limit. If the
+ *     number of trace files stored in the directory is greater than or equal to 3, a failure message is returned.
+ *     <br>{@link HIDEBUG_RESOURCE_UNAVAILABLE}: The collection resources are unavailable.
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_RequestTrace(OH_HiDebug_RequestTraceConfig *config,
@@ -187,6 +185,23 @@ HiDebug_ErrorCode OH_HiDebug_RequestTrace(OH_HiDebug_RequestTraceConfig *config,
 HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
 
 /**
+ * @brief Obtains the detailed GPU memory usage of an application.
+ *
+ * @param interval Interval that the cached GPU memory data exists, in seconds. If the duration exceeds the value of
+ *     interval, the API obtains the latest data and updates the buffer. Otherwise, the API directly returns the cached
+ *     data.
+ *     <br>The value range of interval is [2, 3600]. If the passed-in interval is out of the range, **300** is used as
+ *     the default value.
+ * @param summary Pointer to {@link HiDebug_GraphicsMemorySummary}.
+ * @return For details, see {@link HiDebug_ErrorCode}.
+ *     <br>{@link HIDEBUG_SUCCESS}: The GPU memory information of the application is obtained successfully.
+ *     <br>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.
+ *     <br>{@link HIDEBUG_TRACE_ABNORMAL}: Internal system error.
+ * @since 21
+ */
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary);
+
+/**
  * @brief Sets the **MallocDispatch** table in the basic C library to temporarily replace the original memory operation
  * functions (such as **malloc**, **free**, **calloc**, **realloc**, **mmap**, and **munmap**) with the custom memory
  * operation functions. The **MallocDispatch** table is a struct that encapsulates memory operation functions such as **
@@ -196,8 +211,8 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
  * @param dispatchTable Pointer to the {@link HiDebug_MallocDispatch} struct that contains the custom memory operation
  *     functions.
  * @return For details, see {@link HiDebug_ErrorCode}.
- *     <ul><li>{@link HIDEBUG_SUCCESS}: The custom memory operation function is set successfully.</li>
- *     <li>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.</li></ul>
+ *     <br>{@link HIDEBUG_SUCCESS}: The custom memory operation function is set successfully.
+ *     <br>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.
  * @since 20
  */
 HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable);
@@ -253,11 +268,11 @@ typedef void (*OH_HiDebug_SymbolicAddressCallback)(void* pc, void* arg, const Hi
  *     {@link OH_HiDebug_SymbolicAddressCallback}.
  * @param callback Callback used to return the parsed stack information.
  * @return For details, see {@link HiDebug_ErrorCode}.
- *     <ul><li>{@link HIDEBUG_SUCCESS}: The detailed stack information is successfully obtained, and the callback
- *     input by the function is called.</li>
- *     <li>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.</li>
- *     <li>{@link HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS}: Failed to find the corresponding symbol based on the input
- *     PC address.</li></ul>
+ *     <br>{@link HIDEBUG_SUCCESS}: The detailed stack information is successfully obtained, and the callback input by
+ *     the function is called.
+ *     <br>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.
+ *     <br>{@link HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS}: Failed to find the corresponding symbol based on the input PC
+ *     address.
  * @since 20
  */
 HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, void* pc, void* arg,
@@ -281,51 +296,6 @@ HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void);
 void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object);
 
 /**
- * @brief Obtains the detailed GPU memory usage of an application.
- *
- * @param interval Interval that the cached GPU memory data exists, in seconds. If the duration exceeds the value of
- *     interval, the API obtains the latest data and updates the buffer. Otherwise, the API directly returns the cached
- *     data.
- *     <br>The value range of interval is [2, 3600]. If the passed-in interval is out of the range, **300** is used as
- *     the default value.
- * @param summary Pointer to {@link HiDebug_GraphicsMemorySummary}.
- * @return For details, see {@link HiDebug_ErrorCode}.
- *     <ul><li>{@link HIDEBUG_SUCCESS}: The GPU memory information of the application is obtained successfully.</li>
- *     <li>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.</li>
- *     <li>{@link HIDEBUG_TRACE_ABNORMAL}: Internal system error.</li></ul>
- * @since 21
- */
-HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary);
-
-/**
- * @brief Triggered for the lightweight Perf sampling stack content. Note: The sampling data is valid only during the
- * execution of this callback. If you need to use the data outside the function, deep copy the sampling stack content.
- *
- * @param stacks Content of the sampling call stack.
- * @since 22
- */
-typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
-
-/**
- * Performs Perf sampling on the specified threads and returns the sampling stack content after the call is complete.
- * Note: After this function is called, the current thread is blocked until the sampling process ends. The system
- * strictly limits the number of times that this API is called. If the number of times that this API is called exceeds
- * the upper limit, the error code {@link HIDEBUG_RESOURCE_UNAVAILABLE} is returned.
- * @param config Pointer to the {@link HiDebug_ProcessSamplerConfig} struct.
- * @param stacksCallback Callback used to return the sampling result when the sampling is complete.
- * @return Result code.
- *     <ul><li>{@link HIDEBUG_SUCCESS}: Sampling successful.</li>
- *     <li>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.</li>
- *     <li>{@link HIDEBUG_NOT_SUPPORTED}: Perf sampling not supported.</li>
- *     <li>{@link HIDEBUG_UNDER_SAMPLING}: A sampling task is in progress.</li>
- *     <li>{@link HIDEBUG_RESOURCE_UNAVAILABLE}: Sampling resources are insufficient or the upper call limit is
- *     reached.</li></ul>
- * @since 22
- */
-HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
-    HiDebug_ProcessSamplerConfig* config, OH_HiDebug_ThreadLiteSamplingCallback stacksCallback);
-
-/**
  * @brief Adds debugging information to the crash logs. This function is used together with
  * {@link OH_HiDebug_ResetCrashObj}. If a program crashes between **OH_HiDebug_SetCrashObj** and **
  * OH_HiDebug_ResetCrashObj**, the debugging information set by **OH_HiDebug_SetCrashObj** is added to the crash logs.
@@ -347,32 +317,60 @@ uint64_t OH_HiDebug_SetCrashObj(HiDebug_CrashObjType type, void* addr);
 void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
 
 /**
- * @brief Starts Resource Profiler for the current process asynchronously.
- * The callback is invoked only after profiling stops, including auto-stop caused by the maximum duration.
- * When profiling output is available, the callback carries the output file path. If profiling stops without
- * producing output, the callback is invoked with a NULL file path.
+ * @brief Triggered for the lightweight Perf sampling stack content. Note: The sampling data is valid only during the
+ * execution of this callback. If you need to use the data outside the function, deep copy the sampling stack content.
  *
- * @param type Type of resource to be profiled.
- * @param config Configuration parameters for the profiler.
- * @param callback Callback to receive the profiling result. See {@link OH_HiDebug_ProfilingCallback}.
- * @return Result code
- *         {@link HIDEBUG_RES_PROF_SUCCESS} Resource profiler started successfully.
- *         {@link HIDEBUG_RES_PROF_INVALID_ARG} Invalid resource profiler argument.
- *         {@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} Invalid maximum duration.
- *         {@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} Invalid filter size.
- *         {@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} Invalid maximum stack depth.
- *         {@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} Invalid statistics interval.
- *         {@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} Invalid sample interval.
- *         {@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE} Invalid resource type.
- *         {@link HIDEBUG_RES_PROF_PERMISSION_DENIED} Resource profiler permission denied.
- *         {@link HIDEBUG_RES_PROF_ALREADY_STARTED} Resource profiler already started.
- *         {@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT} Resource profiler process count exceeds the limit.
- *         {@link HIDEBUG_RES_PROF_CONFLICT} Resource profiler conflicts with CLI tools or system profiling tasks.
- *         {@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED} Daily quota exceeded during resource profiling.
- *         {@link HIDEBUG_RES_PROF_CPU_OVERLOADED} System is experiencing high CPU utilization.
- *         {@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL} Insufficient available memory.
- *         {@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL} Insufficient available storage space.
- *         {@link HIDEBUG_RES_PROF_FAILURE} Failed to start the resource profiler.
+ * @param stacks Content of the sampling call stack.
+ * @since 22
+ */
+typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
+
+/**
+ * Performs Perf sampling on the specified threads and returns the sampling stack content after the call is complete.
+ * Note: After this function is called, the current thread is blocked until the sampling process ends. The system
+ * strictly limits the number of times that this API is called. If the number of times that this API is called exceeds
+ * the upper limit, the error code {@link HIDEBUG_RESOURCE_UNAVAILABLE} is returned.
+ * @param config Pointer to the {@link HiDebug_ProcessSamplerConfig} struct.
+ * @param stacksCallback Callback used to return the sampling result when the sampling is complete.
+ * @return Result code.
+ *     <br>{@link HIDEBUG_SUCCESS}: Sampling successful.
+ *     <br>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.
+ *     <br>{@link HIDEBUG_NOT_SUPPORTED}: Perf sampling not supported.
+ *     <br>{@link HIDEBUG_UNDER_SAMPLING}: A sampling task is in progress.
+ *     <br>{@link HIDEBUG_RESOURCE_UNAVAILABLE}: Sampling resources are insufficient or the upper call limit is reached.
+ * @since 22
+ */
+HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
+    HiDebug_ProcessSamplerConfig* config, OH_HiDebug_ThreadLiteSamplingCallback stacksCallback);
+
+/**
+ * @brief Asynchronously starts the resource profiler for the current process.
+ * <br>The callback function is called only when the collection is stopped (including when the system automatically
+ * stops the collection). It carries the resource type and file path to be collected.
+ * <br>If the collection is abnormal, the file path is **NULL**.
+ *
+ * @param type Resource profiling type.
+ * @param config Configuration parameters of the resource profiler.
+ * @param callback Result callback function of resource profiling.
+ * @return Result code.
+ *     <br>{@link HIDEBUG_RES_PROF_SUCCESS}: Resource profiler started successfully.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_ARG}: Invalid resource profiler argument.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}: Invalid maximum duration.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}: Invalid filter size.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}: Invalid maximum stack depth.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}: Invalid statistics interval.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}: Invalid sampling interval.
+ *     <br>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}: Invalid resource type.
+ *     <br>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}: Insufficient resource profiling permission. The target process
+ *     for resource profiling can only be the process that calls this API.
+ *     <br>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}: Resource profiler already started.
+ *     <br>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}: The number of resource profiling processes exceeds 4.
+ *     <br>{@link HIDEBUG_RES_PROF_CONFLICT}: Resource profiling conflicts with CLI tools or system profiling tasks.
+ *     <br>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}: The daily quota for resource profiling exceeds 10 times.
+ *     <br>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}: The system CPU is overloaded, with the CPU usage exceeding 70%.
+ *     <br>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}: The available memory space is less than 15%.
+ *     <br>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}: The available storage space is less than 15%.
+ *     <br>{@link HIDEBUG_RES_PROF_FAILURE}: Failed to start resource profiler.
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDebug_ResProfilerConfig* config,
@@ -382,10 +380,10 @@ HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDe
  * @brief Stops resource profiler for the current process. This API can be called after the
  * {@link OH_HiDebug_StartProfiler} API and the call duration must be within the maximum duration.
  *
- * @return Result code
- *         {@link HIDEBUG_RES_PROF_SUCCESS} Resource profiler stopped successfully.
- *         {@link HIDEBUG_RES_PROF_NOT_STARTED} Resource profiler not started.
- *         {@link HIDEBUG_RES_PROF_FAILURE} Failed to stop the resource profiler.
+ * @return Result code.
+ *     <br>{@link HIDEBUG_RES_PROF_SUCCESS}: Resource profiler stopped successfully.
+ *     <br>{@link HIDEBUG_RES_PROF_NOT_STARTED}: Failed to stop resource profiler because it is not started.
+ *     <br>{@link HIDEBUG_RES_PROF_FAILURE}: Failed to stop resource profiler.
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
@@ -402,63 +400,68 @@ HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
  * @return Whether the operation is successful.
  * @since 26.0.0
  */
-typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag,
-                                           bool mayReportToOEM, const char* arg);
+typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag, bool mayReportToOEM, const char* arg);
 
 /**
- * @brief Registers a listener triggered when the memory watermark of an app is high or the memory information is
- *     manually exported by hidumper. The third-party app framework or app developer calls back the registered function
- *     to dump the app's internal memory information to hidumper or upload the information to the OME vendor through
- *     commercial gray release.
- * OH_HiDebug_UnregisterMemDumpListener is used to unregister the listener.
- * @param name Consumer type ID.
+ * @brief Registers a memory dump listener. When the memory usage of an application is high or the memory information
+ * is exported using the {@link hidumper command}, the system automatically calls the registered callback function.
+ * <br>The third-party application framework or developer can use this function to dump the internal memory information
+ * of the application to hidumper or upload the information to the OEM vendor through commercial grayscale release.
+ * <br>You can use {@link OH_HiDebug_UnregisterMemDumpListener} to unregister the listener.
+ *
+ * @param name Pointer to the name of the listener, which uniquely identifies the listener to be registered. The same
+ *     name must be passed during listener underegistration.
+ *     <br>A listener with the same name can be registered only once. If you attempt to register a listener with the
+ *     same name again, **HIDEBUG_INVALID_ARGUMENT** will be returned. To update a listener, unregister the original
+ *     listener first.
  * @param listener Callback triggered for listening.
  * @return Result code.
- * {@link HIDEBUG_SUCCESS } Operation succeeded.
- * {@link HIDEBUG_INVALID_ARGUMENT } Invalid argument.
+ *     <br>{@link HIDEBUG_SUCCESS}: Operation succeeded.
+ *     <br>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.
  * @since 26.0.0
  */
 HiDebug_ErrorCode OH_HiDebug_RegisterMemDumpListener(const char* name, OH_HiDebug_MemDumpListener listener);
 
 /**
  * @brief Unregisters a memory dump listener that has been successfully registered.
- * @param name Consumer type ID.
+ *
+ * @param name Pointer to the unique name of the listener. The value must be the same as the **name** passed during
+ *     registration.
  * @return Result code.
- * {@link HIDEBUG_SUCCESS } Operation succeeded.
- * {@link HIDEBUG_INVALID_ARGUMENT } Invalid argument.
+ *     <br>{@link HIDEBUG_SUCCESS}: Operation succeeded.
+ *     <br>{@link HIDEBUG_INVALID_ARGUMENT}: Invalid parameter.
  * @since 26.0.0
  */
 HiDebug_ErrorCode OH_HiDebug_UnregisterMemDumpListener(const char* name);
-
 /**
- * @brief Profiler helper interfaces, acquire a AsyncContext for further using.
- *      The corresponding unregister function is as follows: OH_HiDebug_ReleaseAsyncContext.
+ * @brief Obtains an **AsyncContext** for subsequent use. This API is an auxiliary API of the profiler. You can use
+ * {@link OH_HiDebug_ReleaseAsyncContext} to release the context.
  *
- * @return AsyncContext.
+ * @return **AsyncContext**, which is the asynchronous thread context information.
  * @since 26.0.0
  */
 uint64_t OH_HiDebug_AcquireAsyncContext();
 
 /**
- * @brief Profiler helper interfaces, push AsyncContext to the running context.
+ * @brief Pushes an **AsyncContext** into the running context stack. This API is an auxiliary API of the profiler.
  *
- * @param ctx The context acquired by {@link OH_Hidebug_AcquireAsyncContext}.
+ * @param ctx Asynchronous thread context obtained by {@link OH_HiDebug_AcquireAsyncContext()}.
  * @since 26.0.0
  */
 void OH_HiDebug_PushAsyncContext(uint64_t ctx);
 
 /**
- * @brief Profiler helper interfaces, pop AsyncContext from the running context.
+ * @brief Pops an **AsyncContext** from the running context stack. This API is an auxiliary API of the profiler.
  *
- * @param ctx The context acquired by {@link OH_Hidebug_AcquireAsyncContext}.
+ * @param ctx Asynchronous thread context obtained by {@link OH_HiDebug_AcquireAsyncContext()}.
  * @since 26.0.0
  */
 void OH_HiDebug_PopAsyncContext(uint64_t ctx);
 
 /**
- * @brief Profiler helper interfaces, release AsyncContext to system.
+ * @brief Releases an **AsyncContext** to the system. This API is an auxiliary API of the profiler.
  *
- * @param ctx The context acquired by {@link OH_Hidebug_AcquireAsyncContext}.
+ * @param ctx Asynchronous thread context obtained by {@link OH_HiDebug_AcquireAsyncContext()}.
  * @since 26.0.0
  */
 void OH_HiDebug_ReleaseAsyncContext(uint64_t ctx);
@@ -618,7 +621,6 @@ HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType ty
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-
 /** @} */
 
 #endif // HIVIEWDFX_HIDEBUG_H
