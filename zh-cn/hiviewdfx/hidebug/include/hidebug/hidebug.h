@@ -359,7 +359,7 @@ HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
  * @since 26.0.0
  */
 typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag, bool mayReportToOEM,
-    const char* arg);
+                                           bool mayReportToOEM, const char* arg);
 
 /**
  * @brief 注册内存导出监听。当应用的内存占用较高，或通过{@link hidumper命令}手动导出内存信息时，系统会主动调用已注册的回调函数。
