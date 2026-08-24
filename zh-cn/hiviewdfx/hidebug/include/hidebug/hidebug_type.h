@@ -580,7 +580,7 @@ typedef enum HiDebug_CrashObjType {
      * 4096字节内存块
      */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
- } HiDebug_CrashObjType;
+} HiDebug_CrashObjType;
 
 /**
  * @brief 定义资源采集类型的枚举。
