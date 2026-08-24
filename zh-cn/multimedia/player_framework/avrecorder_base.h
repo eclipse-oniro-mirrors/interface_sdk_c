@@ -16,12 +16,12 @@
  * @addtogroup AVRecorder
  * @{
  *
- * @brief AVRecorder提供媒体录制能力，支持配置录制参数及实时状态回调，适用于视频通话录制、语音备忘录等需要将音视频内容录制保存为文件的场景。
+ * @brief AVRecorder提供媒体录制能力，支持配置录制参数及实时状态回调，适用于视频通话录制、语音备忘录等需要将音视频内容录制保存为文件的场景。<br>
  *
- * 开发者可根据开发需求，参考对应的开发指南及样例：
+ * 开发者可根据开发需求，参考对应的开发指南及样例：<br>
  *
- * - [使用AVRecorder录制音频（C/C++）](docroot://media/media/using-ndk-avrecorder-for-audio-recording.md)
- * - [使用AVRecorder录制视频（C/C++）](docroot://media/media/using-ndk-avrecorder-for-video-recording.md)
+ * - [使用AVRecorder录制音频（C/C++）](../../../media/media/using-ndk-avrecorder-for-audio-recording.md)<br>
+ * - [使用AVRecorder录制视频（C/C++）](../../../media/media/using-ndk-avrecorder-for-video-recording.md)<br>
  *
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
@@ -35,6 +35,7 @@
  * @kit MediaKit
  * @include <multimedia/player_framework/avrecorder_base.h>
  * @library libavrecorder.so
+ * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
  
@@ -201,11 +202,11 @@ typedef enum OH_AVRecorder_FileGenerationMode {
 
 /**
  * @brief 定义音视频录制的详细参数。通过配置音频/视频编码格式、比特率、采样率、帧率、分辨率、容器格式、HDR录制、是否启用时域可分层视频编码功能等参数，可以灵活控制录制质量和录制文件大小，
- * 适用于需要自定义录制质量、选择录制内容类型（仅音频/仅视频/音视频同时录制）、启用HDR录制或时域可分层视频编码功能的场景。
+ * 适用于需要自定义录制质量、选择录制内容类型（仅音频/仅视频/音视频同时录制）、启用HDR录制或时域可分层视频编码功能的场景。<br>
  *
- * 通过参数设置可以选择仅录制音频或视频，或者同时录制音视频：
- * 1. 当 audioBitrate 或 audioChannels 为 0 时，不录制音频。
- * 2. 当 videoFrameWidth 或 videoFrameHeight 为 0 时，不录制视频。
+ * 通过参数设置可以选择仅录制音频或视频，或者同时录制音视频：<br>
+ * 1. 当 audioBitrate 或 audioChannels 为 0 时，不录制音频。<br>
+ * 2. 当 videoFrameWidth 或 videoFrameHeight 为 0 时，不录制视频。<br>
  *
  * 各参数的范围请参见[AVRecorderProfile](arkts-apis-media-i.md#avrecorderprofile9)。
  *
