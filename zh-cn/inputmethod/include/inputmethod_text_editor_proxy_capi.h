@@ -316,9 +316,9 @@ typedef void (*OH_TextEditorProxy_DeleteBackwardFunc)(InputMethod_TextEditorProx
  * 将此回调设置到TextEditorProxy中，并通过Attach完成注册。
  *
  * @param textEditorProxy 输入指针，指向当前被回调的TextEditorProxy实例。
- * @param keyboardStatus 输入参数，键盘状态。取值范围：{@link InputMethod_KeyboardStatus}枚举值（IME_KEYBOARD_NONE=0、
- * IME_KEYBOARD_SHOW=1、IME_KEYBOARD_HIDE=2）。使用后效果：设置为IME_KEYBOARD_SHOW时表示键盘已弹出，IME_KEYBOARD_HIDE时表示
- * 键盘已收起。
+ * @param keyboardStatus 输入参数，键盘状态。取值范围：{@link InputMethod_KeyboardStatus}枚举值
+ * （IME_KEYBOARD_STATUS_NONE=0、IME_KEYBOARD_STATUS_HIDE=1、IME_KEYBOARD_STATUS_SHOW=2）。
+ * 使用后效果：设置为1、IME_KEYBOARD_STATUS_SHOW时表示键盘已弹出，IME_KEYBOARD_HIDE时表示键盘已收起。
  * @since 12
  */
 typedef void (*OH_TextEditorProxy_SendKeyboardStatusFunc)(
