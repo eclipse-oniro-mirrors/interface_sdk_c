@@ -480,7 +480,7 @@ typedef struct Usb_DeviceArray {
  */
 typedef struct Usb_NonRootHubArray {
     /**
-     * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
+     * @brief 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
      * @since 26.0.0
      */
     uint64_t* nonRootHubIds;

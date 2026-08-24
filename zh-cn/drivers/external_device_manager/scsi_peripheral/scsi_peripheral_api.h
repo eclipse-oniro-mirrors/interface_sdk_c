@@ -79,7 +79,7 @@ int32_t OH_ScsiPeripheral_Release(void);
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。请确保应用已正确获取 ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL 权限。
  *     <br>{@link SCSIPERIPHERAL_DDK_INIT_ERROR} 未初始化DDK。请先调用OH_ScsiPeripheral_Init进行初始化。
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或*dev为空。请检查指针参数是否正确。
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或\*dev为空。请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} 与DDK服务通信失败。请检查DDK服务是否初始化并正常运行。
  *     <br>{@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} 内存操作失败。请检查内存状态以及是否存在越界操作。
  *     <br>{@link SCSIPERIPHERAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备状态是否正常、参数是否正确。
@@ -97,7 +97,7 @@ int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPe
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。请确保应用已正确获取 ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL 权限。
  *     <br>{@link SCSIPERIPHERAL_DDK_INIT_ERROR} 未初始化DDK。请先调用OH_ScsiPeripheral_Init进行初始化。
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或*dev为空。请检查指针参数是否正确。
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或\*dev为空。请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} 与DDK服务通信失败。请检查DDK服务是否初始化并正常运行。
  *     <br>{@link SCSIPERIPHERAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备状态是否正常、参数是否正确。
  * @since 18
@@ -283,7 +283,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
  * @param size 缓冲区的大小，单位：字节。
  * @param devMmap 创建的缓冲区通过该参数返回给调用者，详情参见{@link ScsiPeripheral_DeviceMemMap}。
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空、devMmap为空或*devMmap为空。请检查指针参数是否正确。
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空、devMmap为空或\*devMmap为空。请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} 内存操作失败。请检查内存状态以及是否存在越界操作。
  * @since 18
  */

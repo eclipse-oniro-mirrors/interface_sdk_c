@@ -1031,7 +1031,7 @@ typedef enum {
      * @brief 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。请检查内存使用情况和相关参数。
      * @since 18
      */
-    HID_DDK_MEMORY_ERROR  = 27300007,
+    HID_DDK_MEMORY_ERROR = 27300007,
     /**
      * @brief I/O操作失败。请检查设备状态和传输参数。
      * @since 18

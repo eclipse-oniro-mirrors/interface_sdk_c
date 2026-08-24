@@ -127,7 +127,7 @@ int32_t OH_Usb_GetConfigDescriptor(
 void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
 
 /**
- * @brief 声明USB接口，申请USB接口的独占使用权。调用此方法声明接口后，在使用完毕后必须调用{@link OH_Usb_ReleaseInterface}释放接口。
+ * @brief 声明USB接口，申请USB接口的独占使用权。调用此方法声明接口后，在使用完毕后必须调用OH_Usb_ReleaseInterface释放接口，否则会导致接口资源无法释放。
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId 设备ID，可通过{@link OH_Usb_GetDevices}获取，代表要操作的设备。
@@ -275,7 +275,7 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
  * @param devMmap 输出参数，创建的缓冲区指针通过该参数返回给调用者。
  * @return {@link USB_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_DDK_NO_PERM} 权限检查失败，请检查应用已获取了ohos.permission.ACCESS_DDK_USB权限。
- *     <br>{@link USB_DDK_INVALID_PARAMETER} 入参devMmap为空指针或*devMmap为空指针，请检查参数有效性。
+ *     <br>{@link USB_DDK_INVALID_PARAMETER} 入参devMmap为空指针或\*devMmap为空指针，请检查参数有效性。
  *     <br>{@link USB_DDK_MEMORY_ERROR} 内存映射失败或devMmap的内存分配失败，请检查内存大小和有效性。
  * @since 10
  * @version 1.0
