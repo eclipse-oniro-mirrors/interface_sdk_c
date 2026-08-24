@@ -74,7 +74,7 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  * @param deviceId 设备ID，必须是当前调用者通过{@link OH_Hid_CreateDevice}创建的设备，取值为非负数。
  * @param items 发送的事件列表，事件包括类型（取值来源事件类型Hid_EventType）、编码（取值来源同步事件编码Hid_SynEvent、键值编码Hid_KeyCode、
  * 绝对坐标编码Hid_AbsAxes、相对坐标编码Hid_RelAxes、其他类型的输入事件编码Hid_MscEvent）、值（根据实际设备输入决定）。
- * 发送的事件将被注入到指定设备，模拟设备产生相应的输入行为
+ * 发送的事件将被注入到指定设备，模拟设备产生相应的输入行为。
  * @param length 发送事件列表长度（一次发送事件个数），取值范围为[1, 7]。
  * @return {@link HID_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link HID_DDK_NO_PERM} 权限校验失败。请确保应用已声明ohos.permission.ACCESS_DDK_HID权限。
@@ -137,7 +137,7 @@ int32_t OH_Hid_Release(void);
  *     <br>{@link HID_DDK_SERVICE_ERROR} 与DDK服务通信失败。可能原因：服务内部错误。请检查当前操作和设备状态。
  *     <br>{@link HID_DDK_MEMORY_ERROR} dev内存申请失败。
  *     <br>{@link HID_DDK_IO_ERROR} I/O操作失败。可能原因：设备状态异常、数据传输错误等。请检查设备状态和参数。
- *     <br>{@link HID_DDK_INVALID_PARAMETER} dev为空或*dev为空。
+ *     <br>{@link HID_DDK_INVALID_PARAMETER} dev为空或\*dev为空。
  *     <br>{@link HID_DDK_DEVICE_NOT_FOUND} 根据deviceId和interfaceIndex找不到设备。
  * @since 18
  */
@@ -153,7 +153,7 @@ int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle 
  *     <br>{@link HID_DDK_INIT_ERROR} DDK未初始化，请确保已调用{@link OH_Hid_Init}完成初始化。
  *     <br>{@link HID_DDK_SERVICE_ERROR} 与DDK服务通信失败。可能原因：服务内部错误。请检查当前操作和设备状态。
  *     <br>{@link HID_DDK_IO_ERROR} I/O操作失败。可能原因：设备状态异常、数据传输错误等。请检查设备状态和参数。
- *     <br>{@link HID_DDK_INVALID_PARAMETER} dev为空或*dev为空。
+ *     <br>{@link HID_DDK_INVALID_PARAMETER} dev为空或\*dev为空。
  * @since 18
  */
 int32_t OH_Hid_Close(Hid_DeviceHandle **dev);

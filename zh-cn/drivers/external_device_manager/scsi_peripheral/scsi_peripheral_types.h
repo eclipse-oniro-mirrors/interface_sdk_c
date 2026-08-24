@@ -162,7 +162,7 @@ typedef struct ScsiPeripheral_DeviceMemMap {
     /**
      * 设备内存映射的缓冲区起始地址，指向映射的设备内存空间。该缓冲区用于存储SCSI设备数据，提供高性能的内存访问能力。
      */
-    uint8_t * const address;
+    uint8_t* const address;
     /**
      * 缓冲区大小，单位：字节。取值原则：必须大于0。
      */
@@ -210,7 +210,7 @@ typedef struct ScsiPeripheral_IORequest {
     /**
      * 数据传输的缓冲区。
      */
-    ScsiPeripheral_DeviceMemMap *data;
+    ScsiPeripheral_DeviceMemMap* data;
     /**
      * 超时时间（单位：毫秒）。
      */
@@ -245,7 +245,7 @@ typedef struct ScsiPeripheral_Request {
     /**
      * 数据传输缓冲区的指针。
      */
-    ScsiPeripheral_DeviceMemMap *data;
+    ScsiPeripheral_DeviceMemMap* data;
     /**
      * 超时时间（单位：毫秒）。
      */
@@ -327,7 +327,7 @@ typedef struct ScsiPeripheral_TestUnitReadyRequest {
 typedef struct ScsiPeripheral_InquiryRequest {
     /**
      * Page code字段。获取设备的某些特定类型的信息时使用。当发出带有特定页面代码的 Inquiry 命令时，设备会返回与该页面代码相关的详细信息。如果 page code 设置为 0x00，则表示请求的是标准的
-     * Inquiry 数据，而非特定页面的数据。
+     * Inquiry数据，而非特定页面的数据。
      */
     uint8_t pageCode;
     /**
@@ -335,11 +335,11 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint16_t allocationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
-     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
      */
     uint8_t byte1;
     /**
@@ -394,7 +394,7 @@ typedef struct ScsiPeripheral_InquiryInfo {
     /**
      * 指向设备内存映射的指针，用于存储查询得到的数据。
      */
-    ScsiPeripheral_DeviceMemMap *data;
+    ScsiPeripheral_DeviceMemMap* data;
 } ScsiPeripheral_InquiryInfo;
 
 /**
