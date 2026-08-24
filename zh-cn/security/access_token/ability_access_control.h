@@ -44,7 +44,7 @@ extern "C" {
 #endif
 /**
  * @brief 校验应用是否被授予指定的权限。
- * @param permission - 需要校验的权限名称，合法的权限名取值可在[应用权限列表](docroot://security/AccessToken/app-permissions.md)中查询。
+ * @param permission - 需要校验的权限名称。
  * @return 如果应用已经被授予该权限，则返回true。反之，返回false。
  * @since 12
  */
