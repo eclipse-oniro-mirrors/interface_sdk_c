@@ -75,7 +75,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
  * @brief Creates a video encoder instance based on an encoder name. To use this function, you must know the exact name
  * of the encoder. The encoder name can be obtained through capability query.
  *
- * For details, see [Obtaining Supported Codecs](docroot://media/avcodec/obtain-supported-codecs.md#creating-a-codec-with-the-specified-name).
+ * For details, see Obtaining Supported Codecs.
  *
  * @param name Pointer to a video encoder name.
  * @return Pointer to the video encoder instance created.

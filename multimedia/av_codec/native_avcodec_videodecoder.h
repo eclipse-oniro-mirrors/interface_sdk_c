@@ -61,7 +61,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  * @brief Creates a video decoder instance based on a decoder name. To use this function, you must know the exact name
  * of the decoder. The decoder name can be obtained through capability query.
  *
- * For details, see [Obtaining Supported Codecs](docroot://media/avcodec/obtain-supported-codecs.md#Creating a Codec with the Specified Name).
+ * For details, see Obtaining Supported Codecs.
  * 
  * @param name Pointer to a video decoder name.
  * @return Pointer to the video decoder instance.
@@ -144,7 +144,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * {@link OH_VideoDecoder_Prepare}.
  *
  * The value ranges of the following parameters can be obtained
- * from [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
+ * from Capability Query.
  * All the values of **OH_MD_KEY_ROTATION** are supported.
  *
  * If the current platform does not support **OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY**, no error is reported and the normal
