@@ -22,8 +22,8 @@
 /**
  * @file native_avscreen_capture_errors.h
  *
- * @brief 声明用于运行屏幕录制过程中接口调用的错误码说明。
- * 
+ * @brief 声明屏幕录制接口调用的错误码，帮助开发者识别和处理屏幕录制中的各类异常情况，适用于屏幕录制故障排查和错误处理的开发场景。
+ * @include <multimedia/player_framework/native_avscreen_capture_errors.h>
  * @library libnative_avscreen_capture.so
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @kit MediaKit
@@ -45,7 +45,7 @@ extern "C" {
 
 typedef enum OH_AVSCREEN_CAPTURE_ErrCode {
     /**
-     * 接口调用错误返回的基础值。
+     * 错误码的基础值，其他错误码在此基础上递增，用于标识不同的错误类型。
      */
     AV_SCREEN_CAPTURE_ERR_BASE = 0,
     /**
@@ -54,42 +54,62 @@ typedef enum OH_AVSCREEN_CAPTURE_ErrCode {
     AV_SCREEN_CAPTURE_ERR_OK = AV_SCREEN_CAPTURE_ERR_BASE,
     /**
      * 内存不足。
+     * 可能原因：系统可用内存不足。
+     * 解决措施：请检查录制参数或系统内存状况。
      */
     AV_SCREEN_CAPTURE_ERR_NO_MEMORY = AV_SCREEN_CAPTURE_ERR_BASE + 1,
     /**
-     * 不允许操作。
+     * 	不允许操作。
+     * 可能原因：当前操作未获得必要权限或处于非法状态。
+     * 解决措施：请检查操作权限和当前状态后重试。
      */
     AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT = AV_SCREEN_CAPTURE_ERR_BASE + 2,
     /**
      * 无效参数。
+     * 可能原因：传入的参数不符合接口要求或取值范围不正确。
+     * 解决措施：请检查参数类型和取值范围后重试。
      */
     AV_SCREEN_CAPTURE_ERR_INVALID_VAL = AV_SCREEN_CAPTURE_ERR_BASE + 3,
     /**
      * 输入输出流异常。
+     * 可能原因：文件读写失败或数据传输错误。
+     * 解决措施：请检查文件路径、权限和存储空间后重试。
      */
     AV_SCREEN_CAPTURE_ERR_IO = AV_SCREEN_CAPTURE_ERR_BASE + 4,
     /**
      * 网络超时。
+     * 可能原因：网络连接不稳定或服务器响应超时。
+     * 解决措施：请检查网络连接状态后重试。
      */
     AV_SCREEN_CAPTURE_ERR_TIMEOUT = AV_SCREEN_CAPTURE_ERR_BASE + 5,
     /**
      * 未知错误。
+     * 可能原因：发生了未预期的异常情况。
+     * 解决措施：请检查日志信息。
      */
     AV_SCREEN_CAPTURE_ERR_UNKNOWN = AV_SCREEN_CAPTURE_ERR_BASE + 6,
     /**
      * 媒体服务已终止。
+     * 可能原因：媒体服务进程崩溃或被系统终止。
+     * 解决措施：请检查系统资源或重启服务。
      */
     AV_SCREEN_CAPTURE_ERR_SERVICE_DIED = AV_SCREEN_CAPTURE_ERR_BASE + 7,
     /**
      * 当前状态不支持此操作。
+     * 可能原因：调用接口时实例处于错误状态。
+     * 解决措施：请检查当前状态并按正确流程调用接口。
      */
     AV_SCREEN_CAPTURE_ERR_INVALID_STATE = AV_SCREEN_CAPTURE_ERR_BASE + 8,
     /**
      * 不支持的接口。
+     * 可能原因：当前版本不支持此接口或功能。
+     * 解决措施：请检查API版本或设备兼容性。
      */
     AV_SCREEN_CAPTURE_ERR_UNSUPPORT = AV_SCREEN_CAPTURE_ERR_BASE + 9,
     /**
      * 预期之外的错误。
+     * 可能原因：发生了扩展的错误情况。
+     * 解决措施：请查看详细错误信息。
      */
     AV_SCREEN_CAPTURE_ERR_EXTEND_START = AV_SCREEN_CAPTURE_ERR_BASE + 100,
 } OH_AVSCREEN_CAPTURE_ErrCode;
