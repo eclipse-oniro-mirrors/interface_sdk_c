@@ -155,7 +155,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AV
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording(struct OH_AVScreenCapture *capture);
 
 /**
- * @brief 获取音频buffer。应用调用时需分配audiobuffer对应结构体大小的内存，否则影响音频buffer的获取。<br> 
+ * @brief 获取音频buffer。应用调用时需分配audiobuffer对应结构体大小的内存，否则影响音频buffer的获取。<br>
  * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_OnBufferAvailable}替代。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
@@ -371,10 +371,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(str
  * 关闭录屏屏幕数据旋转功能，录制的屏幕数据将不自动保持正向。默认为false。
  * 与{@link OH_AVScreenCapture_StrategyForCanvasFollowRotation}不同，本接口是静态旋转设置，仅在canvasRotation为true时
  * 将录屏数据保持正向；而StrategyForCanvasFollowRotation是自动跟随旋转策略，会在屏幕旋转时自动调换虚拟屏尺寸以保持画面正向。
- * 建议仅在需要固定正向输出时使用本接口，在需要动态跟随旋转时使用StrategyForCanvasFollowRotation。
- * > **说明：**
- * >
- * > 从API版本20开始，新增支持折叠PC/2in1设备。
+ * 建议仅在需要固定正向输出时使用本接口，在需要动态跟随旋转时使用StrategyForCanvasFollowRotation。说明：
+ * 从API版本20开始，新增支持折叠PC/2in1设备。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param canvasRotation 指示屏幕数据旋转参数。
@@ -466,7 +464,6 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
  * 调用该方法可以设置录屏屏幕数据的分辨率，width为屏幕的宽度，height为屏幕的高度。
  * 该接口目前仅支持录屏取码流的场景，不支持录屏存文件的场景。应用需要确保自身能够支持收到的视频数据分辨率发生变化。
  * 约束与限制：
- * 
  * - 该接口仅允许在录屏运行阶段调用。
  * - 设置自动跟随旋转配置{@link OH_AVScreenCapture_StrategyForCanvasFollowRotation}时，不支持同时调用该接口调整录屏分辨率。
  * @param capture 指向OH_AVScreenCapture实例的指针。
