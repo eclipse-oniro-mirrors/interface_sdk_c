@@ -1416,8 +1416,8 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
  * You should always obtain the actual height through {@link OH_VideoEncoder_GetInputDescription} (for encoding),
  * {@link OH_VideoDecoder_GetOutputDescription} (for decoding), or **OH_AVFormat** in
  * the {@link OH_AVCodecOnStreamChanged} callback, instead of assuming a fixed value.
- * For details about the example, see step 8 in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * in buffer mode or step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * For details about the example, see step 8 in [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode)
+ * in buffer mode or step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
