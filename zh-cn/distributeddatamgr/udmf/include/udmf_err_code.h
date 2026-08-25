@@ -26,7 +26,7 @@
 /**
  * @file udmf_err_code.h
  *
- * @brief 声明统一数据管理框架错误码信息。
+ * @brief 声明统一数据管理框架错误码定义和错误描述信息。
  *
  * @kit ArkData
  * @library libudmf.so

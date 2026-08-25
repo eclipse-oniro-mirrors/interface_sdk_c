@@ -50,938 +50,938 @@ extern "C" {
 #define UDMF_META_ENTITY "general.entity"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有表示逻辑内容类型的基类型，用于描述类型的功能性特征，无归属类型。
  *
  * @since 12
  */
 #define UDMF_META_OBJECT "general.object"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有组合内容类型（例如PDF文件类型混合了文本和图片类数据）的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_COMPOSITE_OBJECT "general.composite-object"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有文本的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_TEXT "general.text"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 未指定编码的文本类型，没有标识符，归属类型为TEXT。
  *
  * @since 12
  */
 #define UDMF_META_PLAIN_TEXT "general.plain-text"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief HTML文本类型，归属类型为TEXT。
  *
  * @since 12
  */
 #define UDMF_META_HTML "general.html"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 超链接类型，归属类型为TEXT。
  *
  * @since 12
  */
 #define UDMF_META_HYPERLINK "general.hyperlink"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief XML文本类型，归属类型为TEXT。
  *
  * @since 12
  */
 #define UDMF_META_XML "general.xml"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有源代码的基类型，归属类型为PLAIN_TEXT。
  *
  * @since 12
  */
 #define UDMF_META_SOURCE_CODE "general.source-code"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有脚本语言源代码的基类型，归属类型为SOURCE_CODE。
  *
  * @since 12
  */
 #define UDMF_META_SCRIPT "general.script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Shell脚本类型，归属类型为SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_SHELL_SCRIPT "general.shell-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief C-shell脚本类型，归属类型为SHELL_SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_CSH_SCRIPT "general.csh-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Perl脚本类型，归属类型为SHELL_SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_PERL_SCRIPT "general.perl-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PHP脚本类型，归属类型为SHELL_SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_PHP_SCRIPT "general.php-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Python脚本类型，归属类型为SHELL_SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_PYTHON_SCRIPT "general.python-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Ruby脚本类型，归属类型为SHELL_SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_RUBY_SCRIPT "general.ruby-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief TypeScript源代码类型，归属类型为SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_TYPE_SCRIPT "general.type-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief JavaScript源代码类型，归属类型为SCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_JAVA_SCRIPT "general.java-script"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief C头文件类型，归属类型为SOURCE_CODE。
  *
  * @since 12
  */
 #define UDMF_META_C_HEADER "general.c-header"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief C源代码类型，归属类型为SOURCE_CODE。
  *
  * @since 12
  */
 #define UDMF_META_C_SOURCE "general.c-source"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief C++头文件类型，归属类型为SOURCE_CODE。
  *
  * @since 12
  */
 #define UDMF_META_C_PLUS_PLUS_HEADER "general.c-plus-plus-header"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief C++源代码类型，归属类型为SOURCE_CODE。
  *
  * @since 12
  */
 #define UDMF_META_C_PLUS_PLUS_SOURCE "general.c-plus-plus-source"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Java源代码类型，归属类型为SOURCE_CODE。
  *
  * @since 12
  */
 #define UDMF_META_JAVA_SOURCE "general.java-source"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有电子书文件格式的基类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_EBOOK "general.ebook"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 电子出版物（EPUB）文件格式类型，归属类型为EBOOK。
  *
  * @since 12
  */
 #define UDMF_META_EPUB "general.epub"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief AZW电子书文件格式类型，归属类型为EBOOK。
  *
  * @since 12
  */
 #define UDMF_META_AZW "com.amazon.azw"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief AZW3电子书文件格式类型，归属类型为EBOOK。
  *
  * @since 12
  */
 #define UDMF_META_AZW3 "com.amazon.azw3"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief KFX电子书文件格式类型，归属类型为EBOOK。
  *
  * @since 12
  */
 #define UDMF_META_KFX "com.amazon.kfx"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief MOBI电子书文件格式类型，归属类型为EBOOK。
  *
  * @since 12
  */
 #define UDMF_META_MOBI "com.amazon.mobi"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有媒体的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_MEDIA "general.media"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有图片的基类型，归属类型为MEDIA。
  *
  * @since 12
  */
 #define UDMF_META_IMAGE "general.image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief JPEG图片类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_JPEG "general.jpeg"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PNG图片类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_PNG "general.png"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有原始图像格式的基类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_RAW_IMAGE "general.raw-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief TIFF图片类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_TIFF "general.tiff"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS位图图像类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_BMP "com.microsoft.bmp"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS图标图像类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_ICO "com.microsoft.ico"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Adobe Photoshop图片类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_PHOTOSHOP_IMAGE "com.adobe.photoshop-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Adobe Illustrator图片类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_AI_IMAGE "com.adobe.illustrator.ai-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Microsoft Word数据类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_WORD_DOC "com.microsoft.word.doc"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Microsoft Excel数据类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_EXCEL "com.microsoft.excel.xls"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Microsoft PowerPoint演示文稿类型，归属类型为
  *
  * @since 12
  */
 #define UDMF_META_PPT "com.microsoft.powerpoint.ppt"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PDF数据类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_PDF "com.adobe.pdf"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PostScript数据类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT "com.adobe.postscript"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Encapsulated PostScript类型，归属类型为POSTSCRIPT。
  *
  * @since 12
  */
 #define UDMF_META_ENCAPSULATED_POSTSCRIPT "com.adobe.encapsulated-postscript"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有视频的基类型，归属类型为MEDIA。
  *
  * @since 12
  */
 #define UDMF_META_VIDEO "general.video"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief AVI视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_AVI "general.avi"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief MPEG-1或MPEG-2视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_MPEG "general.mpeg"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief MPEG-4视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_MPEG4 "general.mpeg-4"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 3GPP视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_VIDEO_3GPP "general.3gpp"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 3GPP2视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_VIDEO_3GPP2 "general.3gpp2"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WM视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WM "com.microsoft.windows-media-wm"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WMV视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMV "com.microsoft.windows-media-wmv"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WMP视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMP "com.microsoft.windows-media-wmp"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有音频的基类型，归属类型为MEDIA。
  *
  * @since 12
  */
 #define UDMF_META_AUDIO "general.audio"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief AAC音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_AAC "general.aac"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief AIFF音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_AIFF "general.aiff"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief ALAC音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_ALAC "general.alac"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief FLAC音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_FLAC "general.flac"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief MP3音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_MP3 "general.mp3"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief OGG音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_OGG "general.ogg"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PCM音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_PCM "general.pcm"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WMA音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMA "com.microsoft.windows-media-wma"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS波形音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_WAVEFORM_AUDIO "com.microsoft.waveform-audio"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WMX视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMX "com.microsoft.windows-media-wmx"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WVX视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WVX "com.microsoft.windows-media-wvx"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief WINDOWS WAX音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WAX "com.microsoft.windows-media-wax"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有文件的基类型，归属类型为ENTITY。
  *
  * @since 12
  */
 #define UDMF_META_GENERAL_FILE "general.file"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有目录的基类型，归属类型为ENTITY。
  *
  * @since 12
  */
 #define UDMF_META_DIRECTORY "general.directory"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有文件夹的基类型，归属类型为DIRECTORY。
  *
  * @since 12
  */
 #define UDMF_META_FOLDER "general.folder"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有符号链接的基类型，归属类型为ENTITY。
  *
  * @since 12
  */
 #define UDMF_META_SYMLINK "general.symlink"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有文件和目录存档文件的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_ARCHIVE "general.archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief BZ2存档文件类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_BZ2_ARCHIVE "general.bz2-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有可作为卷装载项的文件类型的基类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_DISK_IMAGE "general.disk-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief TAR存档文件类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_TAR_ARCHIVE "general.tar-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief ZIP存档文件类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_ZIP_ARCHIVE "general.zip-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief JAVA存档文件类型，归属类型为ARCHIVE和EXECUTABLE。
  *
  * @since 12
  */
 #define UDMF_META_JAVA_ARCHIVE "com.sun.java-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief GNU存档文件类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_GNU_TAR_ARCHIVE "org.gnu.gnu-tar-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief GZIP存档文件类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_GNU_ZIP_ARCHIVE "org.gnu.gnu-zip-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief GZIP TAR存档文件类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_GNU_ZIP_TAR_ARCHIVE "org.gnu.gnu-zip-tar-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有日程类数据的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_CALENDAR "general.calendar"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有联系人类数据的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_CONTACT "general.contact"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有数据库文件的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_DATABASE "general.database"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有消息类数据的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_MESSAGE "general.message"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有电子名片类数据的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_VCARD "general.vcard"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有导航类数据的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_NAVIGATION "general.navigation"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 导航定位类型，归属类型为NAVIGATION。
  *
  * @since 12
  */
 #define UDMF_META_LOCATION "general.location"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的卡片类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_FORM "openharmony.form"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的桌面图标类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_APP_ITEM "openharmony.app-item"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的像素图类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_PIXEL_MAP "openharmony.pixel-map"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的原子化服务类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_ATOMIC_SERVICE "openharmony.atomic-service"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的包（即目录的打包文件），归属类型为DIRECTORY。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_PACKAGE "openharmony.package"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_HAP "openharmony.hap"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 同步多媒体集成语言类型，归属类型为XML文本类型。
  *
  * @since 12
  */
 #define UDMF_META_SMIL "com.real.smil"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 标记语言文本类型，归属类型为PLAIN_TEXT。
  *
  * @since 12
  */
 #define UDMF_META_MARKDOWN "general.markdown"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 传真图像的基本类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_FAX "general.fax"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief J2 jConnect传真文件类型，归属类型为FAX。
  *
  * @since 12
  */
 #define UDMF_META_JFX_FAX "com.j2.jfx-fax"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 电子传真文件类型，归属类型为FAX。
  *
  * @since 12
  */
 #define UDMF_META_EFX_FAX "com.js.efx-fax"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief X Window系统（X11）中使用的位图图像格式，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_XBITMAP_IMAGE "general.xbitmap-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 标签图形（TaggedGraphics）图像类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_TGA_IMAGE "com.truevision.tga-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 硅图（Silicon Graphics）图像类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_SGI_IMAGE "com.sgi.sgi-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开放标准的高动态范围图像格式类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_OPENEXR_IMAGE "com.ilm.openexr-image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief FlashPix图像文件类型，归属类型为IMAGE。
  *
  * @since 12
  */
 #define UDMF_META_FLASHPIX_IMAGE "com.kodak.flashpix.image"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 流媒体视频类型，归属类型为VIDEO。
  *
  * @since 12
  */
 #define UDMF_META_REALMEDIA "com.real.realmedia"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Au数据格式，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_AU_AUDIO "general.au-audio"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 音频交换数据类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_AIFC_AUDIO "general.aifc-audio"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 单声道/立体声音频类型（Digidesign Sound Designer II），归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_SD2_AUDIO "com.digidesign.sd2-audio"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief RealMedia音频类型，归属类型为AUDIO。
  *
  * @since 12
  */
 #define UDMF_META_REALAUDIO "com.real.realaudio"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源XML基类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_OPENXML "org.openxmlformats.openxml"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源XML文档类型，归属类型为OPENXML和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_WORDPROCESSINGML_DOCUMENT "org.openxmlformats.wordprocessingml.document"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源XML电子表格类型，归属类型为OPENXML和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_SPREADSHEETML_SHEET "org.openxmlformats.spreadsheetml.sheet"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源XML演示文稿类型，归属类型为OPENXML和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_PRESENTATIONML_PRESENTATION "org.openxmlformats.presentationml.presentation"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Office应用程序的开源文档类型，归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT "org.oasis.opendocument"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源文档类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_TEXT "org.oasis.opendocument.text"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源文档电子表格类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_SPREADSHEET "org.oasis.opendocument.spreadsheet"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源文档演示类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_PRESENTATION "org.oasis.opendocument.presentation"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源文档图形类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_GRAPHICS "org.oasis.opendocument.graphics"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 开源文档公式集类型，归属类型为OPENDOCUMENT。
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_FORMULA "org.oasis.opendocument.formula"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Stuffit压缩格式类型（Stuffit archive），归属类型为ARCHIVE。
  *
  * @since 12
  */
 #define UDMF_META_STUFFIT_ARCHIVE "com.allume.stuffit-archive"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief VCalendar日历数据类型，归属类型为CALENDAR和TEXT。
  *
  * @since 12
  */
 #define UDMF_META_VCS "general.vcs"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief ICalendar日历数据类型，归属类型为CALENDAR和TEXT。
  *
  * @since 12
  */
 #define UDMF_META_ICS "general.ics"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有可执行文件的基类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_EXECUTABLE "general.executable"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Microsoft Windows应用程序类型，归属类型为EXECUTABLE。
  *
  * @since 12
  */
 #define UDMF_META_PORTABLE_EXECUTABLE "com.microsoft.portable-executable"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Java类文件类型，归属类型为EXECUTABLE。
  *
  * @since 12
  */
 #define UDMF_META_SUN_JAVA_CLASS "com.sun.java-class"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 所有字体数据类型的基础类型，归属类型为OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_FONT "general.font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief TrueType字体类型，归属类型为FONT。
  *
  * @since 12
  */
 #define UDMF_META_TRUETYPE_FONT "general.truetype-font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief TrueType collection字体类型，归属类型为FONT。
  *
  * @since 12
  */
 #define UDMF_META_TRUETYPE_COLLECTION_FONT "general.truetype-collection-font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief OpenType字体类型，归属类型为FONT。
  *
  * @since 12
  */
 #define UDMF_META_OPENTYPE_FONT "general.opentype-font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PostScript字体类型，归属类型为FONT。
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT_FONT "com.adobe.postscript-font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief PostScript Font Binary字体类型，归属类型为FONT。
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT_PFB_FONT "com.adobe.postscript-pfb-font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief Adobe Type 1 字体类型，归属类型为FONT。
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT_PFA_FONT "com.adobe.postscript-pfa-font"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_HDOC "openharmony.hdoc"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_HINOTE "openharmony.hinote"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_STYLED_STRING "openharmony.styled-string"
 
 /**
- * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
+ * @brief 系统定义的Want类型，归属类型为OBJECT。
  *
  * @since 12
  */
