@@ -67,7 +67,7 @@ typedef  Drm_ErrCode (*MediaKeySession_EventCallback)(DRM_EventType eventType, u
     int32_t infoLen, char *extra);
 
 /**
- * @brief 密钥变更时将调用回调。
+ * @brief 密钥变更时调用的回调函数。
  * 
  * @param keysInfo 密钥信息。
  * @param newKeysAvailable 新密钥是否可用，true表示可用，false表示不可用。
