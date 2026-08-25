@@ -670,7 +670,7 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
     struct OhosImageSourceOps* ops, napi_value *res);
 
 /**
- * @brief 通过给定的信息{@link OhosImageSource}和{@link OhosImageSourceOps}结构，获取增量类型的JavaScript Native API ImageSource对象，
+ * @brief 通过{@link OhosImageSource}和{@link OhosImageSourceOps}结构体，获取增量类型的JavaScript Native API ImageSource对象。
  * 图像数据应通过{@link OH_ImageSource_UpdateData}更新。
  *
  * @param env 表明JNI环境的指针。
