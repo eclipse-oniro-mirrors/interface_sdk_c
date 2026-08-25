@@ -817,7 +817,11 @@ typedef struct {
 } ArkUI_PointF;
 
 /**
- * @brief 定义阴影选项对象。
+ * @brief 定义阴影选项，用于设置组件的阴影效果，包括阴影颜色、偏移量、模糊半径、阴影类型、是否填充等属性。\n
+ * 调用{@link OH_ArkUI_ShadowOptions_Create}接口创建对应的阴影选项对象。\n
+ * 调用{@link OH_ArkUI_ShadowOptions_Destroy}接口销毁阴影选项对象。\n
+ * 对象创建后，调用OH_ArkUI_ShadowOptions_SetXXX系列接口设置生效的具体样式。
+ * 例如调用{@link OH_ArkUI_ShadowOptions_SetRadius}设置阴影模糊半径。若创建对象失败（返回空指针），调用SetXXX系列接口将不会生效。
  *
  * @since 24
  */
