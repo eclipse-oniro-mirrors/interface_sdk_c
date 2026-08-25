@@ -1400,8 +1400,8 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
  * {@link OH_VideoEncoder_GetInputDescription} (for encoding),
  * {@link OH_VideoDecoder_GetOutputDescription} (for decoding), or **OH_AVFormat** in
  * the {@link OH_AVCodecOnStreamChanged} callback, instead of assuming a fixed value.
- * For details about the example, see step 8 in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * in buffer mode or step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * For details about the example, see step 8 in [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode)
+ * in buffer mode or step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1433,8 +1433,8 @@ extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
  * the configuration phase. The latter is a configuration hint used for pre-allocating buffers. When cropping is
  * applied, this value (rather than the stride) should be used as the actual width for displaying or saving the image.
  * For details about the image layout and usage example, see step 8 in
- * [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
- * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
+ * step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1451,8 +1451,8 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
  * for pre-allocating buffers. When cropping is applied, this value (rather than **sliceHeight**) should be used as the
  * actual height for displaying or saving the image.
  * For details about the image layout and usage example, see step 8
- * in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
- * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * in [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
+ * step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */

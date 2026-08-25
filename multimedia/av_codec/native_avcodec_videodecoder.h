@@ -61,7 +61,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  * @brief Creates a video decoder instance based on a decoder name. To use this function, you must know the exact name
  * of the decoder. The decoder name can be obtained through capability query.
  *
- * For details, see Obtaining Supported Codecs.
+ * For details, see [Obtaining Supported Codecs](../../../media/avcodec/obtain-supported-codecs.md#Creating a Codec with the Specified Name).
  * 
  * @param name Pointer to a video decoder name.
  * @return Pointer to the video decoder instance.
@@ -144,7 +144,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * {@link OH_VideoDecoder_Prepare}.
  *
  * The value ranges of the following parameters can be obtained
- * from Capability Query.
+ * from [Capability Query](../../../media/avcodec/obtain-supported-codecs.md).
  * All the values of **OH_MD_KEY_ROTATION** are supported.
  *
  * If the current platform does not support **OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY**, no error is reported and the normal
@@ -447,7 +447,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
  * timely manner. Otherwise, the decoding process is blocked.
  *
  * For details,
- * see step 12 in surface mode or step 10 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md).
+ * see step 12 in surface mode or step 10 in buffer mode in [Video Decoding](../../../media/avcodec/video-decoding.md).
  *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputBuffer}.
@@ -557,9 +557,9 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param mediaKeySession Pointer to a media key session instance with decryption capabilities.
  * @param secureVideoPath Whether a secure video channel is used. The value **true** means a secure video channel, and
  *     **false** means a non-secure video channel.
- *     In [surface mode](docroot://media/avcodec/video-decoding.md#surface-mode),
+ *     In [surface mode](../../../media/avcodec/video-decoding.md#surface-mode),
  *     both secure and non-secure video channels are supported.
- *     In [buffer mode](docroot://media/avcodec/video-decoding.md#buffer-mode),
+ *     In [buffer mode](../../../media/avcodec/video-decoding.md#buffer-mode),
  *     only non-secure video channels are supported.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}:<br>1. The operation is not allowed.

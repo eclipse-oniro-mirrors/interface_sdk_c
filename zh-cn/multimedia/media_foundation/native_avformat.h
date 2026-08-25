@@ -153,7 +153,7 @@ void OH_AVFormat_Destroy(struct OH_AVFormat *format);
 bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
 
 /**
- * @brief 对OH_AVFormat的key赋int类型的值。
+ * @brief 对OH_AVFormat的[key](capi-codecbase.md#媒体数据键值对)赋int类型的值。
  * 该接口仅能设置int类型的参数，参数类型定义详见{@link native_avcodec_base.h}。
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param format 指向OH_AVFormat实例的指针。
