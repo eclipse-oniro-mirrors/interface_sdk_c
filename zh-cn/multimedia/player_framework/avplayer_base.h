@@ -170,41 +170,39 @@ typedef enum AVPlaybackSpeed {
  * @since 11
  */
 typedef enum AVPlayerOnInfoType {
-    /* return the message when seeking done. */
+    /* 跳转到对应播放位置时返回消息。 */
     AV_INFO_TYPE_SEEKDONE = 0,
-    /* return the message when speeding done. */
+    /* 播放倍速设置完成时返回消息。 */
     AV_INFO_TYPE_SPEEDDONE = 1,
-    /* return the message when select bitrate done */
+    /* 比特率设置完成时返回消息。 */
     AV_INFO_TYPE_BITRATEDONE = 2,
-    /* return the message when playback is end of steam. */
+    /* 播放完成时返回消息。 */
     AV_INFO_TYPE_EOS = 3,
-    /* return the message when PlayerStates changed. */
+    /* 状态改变时返回消息。 */
     AV_INFO_TYPE_STATE_CHANGE = 4,
-    /* return the current posion of playback automatically. */
+    /* 返回当前播放位置。 */
     AV_INFO_TYPE_POSITION_UPDATE = 5,
-    /* return the playback message. */
+    /* 视频开始渲染时返回消息。 */
     AV_INFO_TYPE_MESSAGE = 6,
-    /* return the message when volume changed. */
+    /* 音量改变时返回消息。 */
     AV_INFO_TYPE_VOLUME_CHANGE = 7,
-    /* return the message when video size is first known or updated. */
+    /*  首次获取视频大小或视频大小更新时返回消息。 */
     AV_INFO_TYPE_RESOLUTION_CHANGE = 8,
-    /* return multiqueue buffering time. */
+    /* 返回多队列缓冲时间。 */
     AV_INFO_TYPE_BUFFERING_UPDATE = 9,
-    /* return hls bitrate.
-       Bitrate is to convert data into uint8_t array storage,
-       which needs to be forcibly converted to uint32_t through offset access. */
+    /* 上报HLS视频比特率列表消息。 */
     AV_INFO_TYPE_BITRATE_COLLECT = 10,
-    /* return the message when audio focus changed. */
+    /* 音频焦点改变时返回消息。 */
     AV_INFO_TYPE_INTERRUPT_EVENT = 11,
-    /* return the duration of playback. */
+    /* 返回播放时长。 */
     AV_INFO_TYPE_DURATION_UPDATE = 12,
-    /* return the playback is live stream. */
+    /* 播放为直播流时返回消息。 */
     AV_INFO_TYPE_IS_LIVE_STREAM = 13,
-    /* return the message when track changes. */
+    /* 轨道改变时返回消息。 */
     AV_INFO_TYPE_TRACKCHANGE = 14,
-    /* return the message when subtitle track info updated. */
+    /* 轨道更新时返回消息。 */
     AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,
-    /* return the subtitle of playback. */
+    /* 字幕信息更新时返回消息。 */
     AV_INFO_TYPE_SUBTITLE_UPDATE = 16,
     /**
      * 音频输出设备改变时返回消息。<br> key为OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。
@@ -565,7 +563,7 @@ typedef void (*OH_AVPlayerOnInfoCallback)(OH_AVPlayer *player, AVPlayerOnInfoTyp
  * AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8。
  * AV_ERR_UNSUPPORT：未支持的接口，取值为9。
  * AV_ERR_EXTEND_START：扩展错误码初始值，取值为100。
- * @param errorMsg Error message.
+ * @param errorMsg 错误消息。
  * @since 11
  * @deprecated since 12
  * @useinstead {@link OH_AVPlayerOnErrorCallback}
@@ -587,8 +585,8 @@ typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const
  * AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8。
  * AV_ERR_UNSUPPORT：未支持的接口，取值为9。
  * AV_ERR_EXTEND_START：扩展错误码初始值，取值为100。
- * @param errorMsg Error message, only valid in callback function.
- * @param userData Pointer to user specific data.
+ * @param errorMsg 错误消息，只在回调函数中有效。
+ * @param userData 指向用户特定数据的指针。
  * @since 12
  */
 typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg,
@@ -611,12 +609,12 @@ typedef struct AVPlayerCallback {
 /**
  * @brief 当计算出最大音频电平值时调用。
  * 
- * @param player Pointer to an OH_AVPlayer instance.
- * @param amplitudes The pointer to the maximum audio level values array.
- * Note: the amplitudes array will be released after callback automatically.
- * If necessary, user need copy the data for the further use.
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param amplitudes 指向最大音频电平值数组的指针。
+ * 注意：最大音频电平值数组会在回调后自动释放。
+ * 如有需要，用户需自行拷贝数据以供后续使用。
  * @param size 最大音频电平值数组的大小。
- * @param userData Pointer to user specific data.
+ * @param userData 指向用户特定数据的指针。
  * @since 23
  */
 typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double *amplitudes, uint32_t size,
@@ -625,12 +623,12 @@ typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double
 /**
  * @brief 用于获取SEI消息的回调处理函数。在订阅SEI消息事件时使用，回调返回详细的SEI信息。
  * 
- * @param player Pointer to an OH_AVPlayer instance
- * @param message SEI message array.
- * Note: the message array will be released after callback automatically.
- * If necessary, user need copy the data for the further use.
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param message SEI消息数组。
+ * 注意：SEI消息数组会在回调后自动释放。
+ * 如有需要，用户需自行拷贝数据以供后续使用。
  * @param playbackPosition 播放位置。
- * @param userData Pointer to user specific data
+ * @param userData 指向用户特定数据的指针。
  * @since 23
  */
 typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
