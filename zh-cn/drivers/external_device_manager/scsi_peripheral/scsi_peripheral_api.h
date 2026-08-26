@@ -280,7 +280,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
  * @brief 创建缓冲区。请在缓冲区使用完后，调用{@link OH_ScsiPeripheral_DestroyDeviceMemMap}销毁缓冲区，否则会造成资源泄漏。
  *
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
- * @param size 缓冲区的大小，单位：字节。
+ * @param size 缓冲区的大小，单位：Byte。
  * @param devMmap 创建的缓冲区通过该参数返回给调用者，详情参见{@link ScsiPeripheral_DeviceMemMap}。
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空、devMmap为空或\*devMmap为空。请检查指针参数是否正确。
@@ -305,7 +305,7 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
  * @brief 解析基本的Sense Data，包括Information、Command specific information、Sense key specific字段。
  *
  * @param senseData 待解析的Sense Data。
- * @param senseDataLen Sense Data长度，即senseData参数指向的数据长度，单位：字节。
+ * @param senseDataLen Sense Data长度，即senseData参数指向的数据长度，单位：Byte。
  * @param senseInfo 用于保存解析后的基本信息，详情参见{@link ScsiPeripheral_BasicSenseInfo}。
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} senseData格式不是描述符或固定格式、senseDataLen小于
