@@ -70,7 +70,7 @@ typedef struct DDK_Ashmem {
      */
     uint32_t bufferLength;
     /**
-     * 已传输数据的长度。单位：字节。在数据传输完成后由接口更新。
+     * 已传输数据的长度。单位：Byte。在数据传输完成后由接口更新。
      */
     uint32_t transferredLength;
 } DDK_Ashmem;

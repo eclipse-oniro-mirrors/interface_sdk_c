@@ -897,7 +897,7 @@ typedef struct Hid_AbsAxesArray {
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：0~65535。
+     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：[0, 65535]。
      */
     uint16_t length;
 } Hid_AbsAxesArray;

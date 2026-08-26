@@ -164,19 +164,19 @@ typedef struct ScsiPeripheral_DeviceMemMap {
      */
     uint8_t* const address;
     /**
-     * 缓冲区大小，单位：字节。取值原则：必须大于0。
+     * 缓冲区大小，单位：Byte。取值原则：必须大于0。
      */
     const size_t size;
     /**
-     * 缓冲区读写起始偏移量，单位：字节。默认值为0，表示没有偏移，缓冲区从指定地址开始。取值范围为[0, size]，当需要从缓冲区特定位置开始读写时设置此参数，不同的offset值对应不同的起始读写位置。
+     * 缓冲区读写起始偏移量，单位：Byte。默认值为0，表示没有偏移，缓冲区从指定地址开始。取值范围为[0, size]，当需要从缓冲区特定位置开始读写时设置此参数，不同的offset值对应不同的起始读写位置。
      */
     uint32_t offset;
     /**
-     * 要使用的缓冲区长度，单位：字节。默认情况下，该值等于缓冲区的大小，表示整个缓冲区都被使用。当只使用缓冲区的一部分时设置此参数，bufferLength加offset的值应小于等于size。
+     * 要使用的缓冲区长度，单位：Byte。默认情况下，该值等于缓冲区的大小，表示整个缓冲区都被使用。当只使用缓冲区的一部分时设置此参数，bufferLength加offset的值应小于等于size。
      */
     uint32_t bufferLength;
     /**
-     * 已传输数据的长度，单位：字节。初始值为0，表示尚未传输任何数据。该字段在SCSI数据传输完成后更新，表示实际传输的数据量，可用于监控传输进度。
+     * 已传输数据的长度，单位：Byte。初始值为0，表示尚未传输任何数据。该字段在SCSI数据传输完成后更新，表示实际传输的数据量，可用于监控传输进度。
      */
     uint32_t transferredLength;
 } ScsiPeripheral_DeviceMemMap;
@@ -212,7 +212,7 @@ typedef struct ScsiPeripheral_IORequest {
      */
     ScsiPeripheral_DeviceMemMap* data;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_IORequest;
@@ -247,7 +247,7 @@ typedef struct ScsiPeripheral_Request {
      */
     ScsiPeripheral_DeviceMemMap* data;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_Request;
@@ -298,7 +298,7 @@ typedef struct ScsiPeripheral_Response {
      */
     int32_t resId;
     /**
-     * 执行SCSI命令消耗的时间（单位：毫秒）。
+     * 执行SCSI命令消耗的时间（单位：ms）。
      */
     uint32_t duration;
 } ScsiPeripheral_Response;
@@ -314,7 +314,7 @@ typedef struct ScsiPeripheral_TestUnitReadyRequest {
      */
     uint8_t control;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_TestUnitReadyRequest;
@@ -331,7 +331,7 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint8_t pageCode;
     /**
-     * Allocation length字段，用于指定请求发起者（通常是主机）为响应数据准备的缓冲区大小。单位：字节。
+     * Allocation length字段，用于指定请求发起者（通常是主机）为响应数据准备的缓冲区大小。单位：Byte。
      */
     uint16_t allocationLength;
     /**
@@ -343,7 +343,7 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint8_t byte1;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_InquiryRequest;
@@ -416,7 +416,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
      */
     uint8_t byte8;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_ReadCapacityRequest;
@@ -432,7 +432,7 @@ typedef struct ScsiPeripheral_CapacityInfo {
      */
     uint32_t lbAddress;
     /**
-     * 单个逻辑块长度（单位：字节）。表示每个逻辑块的字节大小，通常为512、2048或4096等标准值，具体取决于设备类型和格式化方式。
+     * 单个逻辑块长度（单位：Byte）。表示每个逻辑块的字节大小，通常为512、2048或4096等标准值，具体取决于设备类型和格式化方式。
      */
     uint32_t lbLength;
 } ScsiPeripheral_CapacityInfo;
@@ -444,7 +444,7 @@ typedef struct ScsiPeripheral_CapacityInfo {
  */
 typedef struct ScsiPeripheral_RequestSenseRequest {
     /**
-     * Allocation length字段，指定了请求发起者（通常是主机）为响应数据准备的缓冲区大小，单位：字节。
+     * Allocation length字段，指定了请求发起者（通常是主机）为响应数据准备的缓冲区大小，单位：Byte。
      */
     uint8_t allocationLength;
     /**
@@ -456,7 +456,7 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
      */
     uint8_t byte1;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_RequestSenseRequest;
@@ -521,7 +521,7 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint8_t byte6;
     /**
-     * 超时时间（单位：毫秒）。
+     * 超时时间（单位：ms）。
      */
     uint32_t timeout;
 } ScsiPeripheral_VerifyRequest;

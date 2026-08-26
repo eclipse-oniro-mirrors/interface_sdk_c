@@ -82,7 +82,7 @@ typedef struct UsbControlRequestSetup {
  */
 typedef struct UsbDeviceDescriptor {
     /**
-     * 该描述符的大小，单位：字节。
+     * 该描述符的大小，单位：Byte。
      */
     uint8_t bLength;
     /**
@@ -147,7 +147,7 @@ typedef struct UsbDeviceDescriptor {
  */
 typedef struct UsbConfigDescriptor {
     /**
-     * 该描述符的大小，单位：字节。
+     * 该描述符的大小，单位：Byte。
      */
     uint8_t bLength;
     /**
@@ -155,7 +155,7 @@ typedef struct UsbConfigDescriptor {
      */
     uint8_t bDescriptorType;
     /**
-     * 该配置描述符的总长度，包含配置、接口、端点和特定于类或供应商的描述符，单位：字节。
+     * 该配置描述符的总长度，包含配置、接口、端点和特定于类或供应商的描述符，单位：Byte。
      */
     uint16_t wTotalLength;
     /**
@@ -188,7 +188,7 @@ typedef struct UsbConfigDescriptor {
  */
 typedef struct UsbInterfaceDescriptor {
     /**
-     * 该描述符的大小，单位：字节。
+     * 该描述符的大小，单位：Byte。
      */
     uint8_t bLength;
     /**
@@ -233,7 +233,7 @@ typedef struct UsbInterfaceDescriptor {
  */
 typedef struct UsbEndpointDescriptor {
     /**
-     * 该描述符的大小，单位：字节。
+     * 该描述符的大小，单位：Byte。
      */
     uint8_t bLength;
     /**
@@ -249,7 +249,7 @@ typedef struct UsbEndpointDescriptor {
      */
     uint8_t bmAttributes;
     /**
-     * 该端点所能承载的最大包的大小，单位：字节。
+     * 该端点所能承载的最大包的大小，单位：Byte。
      */
     uint16_t wMaxPacketSize;
     /**
@@ -366,7 +366,7 @@ typedef struct UsbRequestPipe {
      */
     uint64_t interfaceHandle;
     /**
-     * 超时时间，单位：毫秒。值为0表示等待直到操作完成；非0值表示在指定毫秒数内未完成则超时。
+     * 超时时间，单位：ms。值为0表示等待直到操作完成；非0值表示在指定毫秒数内未完成则超时。
      */
     uint32_t timeout;
     /**
@@ -387,7 +387,7 @@ typedef struct UsbDeviceMemMap {
      */
     uint8_t * const address;
     /**
-     * 缓冲区大小（单位：字节），必须大于 0。
+     * 缓冲区大小（单位：Byte），必须大于 0。
      */
     const size_t size;
     /**
@@ -399,7 +399,7 @@ typedef struct UsbDeviceMemMap {
      */
     uint32_t bufferLength;
     /**
-     * 实际传输的数据长度（单位：字节）。
+     * 实际传输的数据长度（单位：Byte）。
      */
     uint32_t transferedLength;
 } UsbDeviceMemMap;
