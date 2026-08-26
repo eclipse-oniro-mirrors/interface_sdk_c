@@ -26,7 +26,7 @@
 /**
  * @file uds.h
  *
- * @brief 提供标准化数据结构相关接口函数、结构体定义。当参数类型为char*时，字符串必须以空字符（'\0'）结尾。
+ * @brief 提供标准化数据结构相关接口函数、结构体定义。当参数类型为char*时，字符串必须以空字符（'\0'）结尾，否则可能导致未定义行为或函数返回错误。
  *
  * @kit ArkData
  * @library libudmf.so
@@ -47,6 +47,29 @@ extern "C" {
 
 /**
  * @brief 拖拽场景下的URI授权策略。
+ *
+ * > **说明：**
+ * > 此授权策略仅在拖拽场景下生效，其他场景不生效。
+ *
+ * 支持不授权、读、写、持久化四种权限策略，可组合使用，仅以下组合生效：
+ *
+ * - 仅使用NONE：不做任何文件授权。
+ * - 仅使用READ：仅做单次只读授权。
+ * - 仅使用WRITE：做单次读、写授权（写授权包含读授权）。
+ * - READ+WRITE：做单次读、写授权，与仅写授权等同。
+ * - READ+PERSIST：做持久化读授权。
+ * - WRITE+PERSIST：做持久化读写授权。
+ * - READ+WRITE+PERSIST：做持久化读写授权。
+ *
+ * 拖拽授权策略应用规则（按优先级从高到低）：
+ *
+ * - 单个数据级别：FileUri、HTML两个UDS支持配置授权策略参数，仅对单个record单次生效，优先级最高。
+ * - [OH_UdmfData](capi-udmf-oh-udmfdata.md)级别：[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中提供的授权参数对单次
+ * 拖拽有效。若某个数据中配置了授权策略，则优先按照该数据的配置进行，优先级次之。
+ * - 默认级别：若单个数据和[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)均未配置授权策略，则按照拖拽默认逻辑进行代理授权。默认逻辑如下：
+ *
+ *    - FileUri类型数据：拖拽场景下默认授权为READ+WRITE+PERSIST（读+写+持久化授权）。
+ *    - HTML类型数据：仅针对HTML文本中img标签下的uri做读授权。
  *
  * @since 26.0.0
  */
@@ -113,7 +136,7 @@ typedef struct OH_UdsAppItem OH_UdsAppItem;
 typedef struct OH_UdsFileUri OH_UdsFileUri;
 
 /**
- * @brief 描述像素图片类型的统一数据结构。
+ * @brief 描述像素图类型的统一数据结构。
  *
  * @since 13
  */
@@ -443,6 +466,9 @@ int OH_UdsHtml_SetDetails(OH_UdsHtml* pThis, const OH_UdsDetails* details);
 /**
  * @brief 给{@link OH_UdsHtml}设置授权策略。
  *
+ * > **说明：**
+ * > 此授权策略仅在拖拽场景下生效，其他场景不生效。
+ *
  * @param pThis 表示指向{@link OH_UdsHtml}实例的指针。
  * @param authPolicy 表示拖拽场景下的URI授权策略，默认值为READ（仅读授权），仅在img标签等场景下生效。只针对单个record使用，优先级最高。具体策略见{@link Udmf_AuthPermission}。
  * @return 返回执行的状态代码。
@@ -748,6 +774,9 @@ int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details)
 
 /**
  * @brief 给{@link OH_UdsFileUri}设置授权策略。
+ *
+ * > **说明：**
+ * > 此授权策略仅在拖拽场景下生效，其他场景不生效。
  *
  * @param pThis 表示指向{@link OH_UdsFileUri}实例的指针。
  * @param authPolicy 表示拖拽场景下的URI授权策略，默认值为READ+WRITE+PERSIST（读+写+持久化授权），只针对单个record使用，优先级最高。具体策略见
@@ -1067,7 +1096,7 @@ int OH_UdsContentForm_SetLinkUri(OH_UdsContentForm* pThis, const char* linkUri);
 
 /**
  * @brief 创建字典类型{@link OH_UdsDetails}指针及实例对象。
- * <br>当不再需要使用指针时，请使用OH_UdsDetails_Destroy销毁实例对象，否则会导致内存泄漏。
+ * <br>当不再需要使用指针时，请使用{@linkOH_UdsDetails_Destroy}销毁实例对象，否则会导致内存泄漏。
  *
  * @return 执行成功则返回一个指向字典类型{@link OH_UdsDetails}实例对象的指针，否则返回nullptr。
  * @since 22
