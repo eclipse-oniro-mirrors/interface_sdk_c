@@ -1707,17 +1707,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
 
 /**
- * @brief 视频编码器低功耗视频通话模式的键，值类型为int32_t。
- *
- * 该键用于配置编码器的低功耗视频通话模式。
- * 设置值为1时启用低功耗视频通话模式，设置值为0时关闭。
- * 如果未设置该键，编码器将使用默认（非低功耗）模式。
- *
- * @since 26.1.0
- */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
-
-/**
  * @brief 媒体类型。
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9

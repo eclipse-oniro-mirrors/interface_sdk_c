@@ -109,6 +109,23 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP;
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
 
 /**
+ * @brief Key that describes whether to enable joint capture and editing low-power optimization.
+ * 
+ * This key is the configuration toggle for joint capture and encoding low-power optimization.
+ * Use {@link OH_AVFormat_SetIntValue} to set the enabling status:
+ * -**1**: Enables joint capture and encoding low-power optimization.
+ * -**0** (default value): Disables this capability.
+ * Usage restrictions:
+ * This key is valid only for the video encoder.
+ * This key is optional. This key can be configured in the encoder,
+ * initialized via {@link OH_AVCodec_Configure}, or
+ * enabled at runtime via {@link OH_AVCodec_SetParameter}.
+ * After this capability is enabled, the capture side adjusts its configuration strategy based on encoding information to reduce overall power consumption.
+ * @since 26.1.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
+
+/**
  * @brief The semantic labels for Region of Interest (ROI) in video encoding.
  *
  * @since 26.0.0
