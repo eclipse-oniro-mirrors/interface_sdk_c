@@ -603,7 +603,7 @@ OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain
  * @brief 获取当前播放器的统计指标信息。设置完播放资源，并且当播放处于准备（prepared）/播放（playing）/暂停（paused）/完成（completed）/停止（stopped）状态时，可调用该接口。
  * 需要注意返回值{@link OH_AVFormat}指针对象的生命周期需要用户手动释放。
  * 
- * @param player Pointer to an OH_AVPlayer instance
+ * @param player 指向OH_AVPlayer实例的指针。
  * @return 执行成功返回播放器的统计指标信息（键值详情请参考avplayer_base.h中的{@link 变量}信息），否则返回nullptr。
  * 可能的失败原因：传入player指针不合法。
  * @since 23
@@ -613,10 +613,10 @@ OH_AVFormat *OH_AVPlayer_GetPlaybackStatisticMetrics(OH_AVPlayer *player);
 /**
  * @brief 将由文件描述符表示的字幕资源添加到播放器。目前，外挂字幕必须在AVPlayer设置完视频资源的fdSrc之后再设置。
  *  
- * @param player Pointer to an OH_AVPlayer instance
- * @param fd Indicates the file descriptor of subtitle source.
- * @param offset Indicates the offset of media source in file descriptor.
- * @param size Indicates the size of media source.
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param fd 字幕源的文件描述符。
+ * @param offset 文件描述符中媒体源的偏移量。
+ * @param size 媒体源的大小，单位为字节（Byte），用于指定从文件描述符中读取的媒体数据长度。
  * @return 函数执行结果。
  * AV_ERR_OK：表示执行成功。
  * AV_ERR_INVALID_VAL：表示输入的player为空指针。
@@ -959,7 +959,7 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackStrategy(OH_AVPlayer *player, OH_AVPlaybackS
 /**
  * @brief 获取当前播放器的统计信息。此API仅可在avplayer处于已准备、播放中或暂停状态时调用。
  * 
- * @param player Pointer to an OH_AVPlayer instance
+ * @param player 指向OH_AVPlayer实例的指针。
  * @return 返回指向OH_AVFormat实例的指针。
  * 若player为空指针或无效，则返回空指针。
  * @since 23
