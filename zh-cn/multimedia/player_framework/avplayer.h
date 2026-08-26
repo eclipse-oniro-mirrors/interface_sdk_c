@@ -68,7 +68,8 @@ typedef struct MediaKeySession MediaKeySession;
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
- * @brief OH_AVPlayerVideoOutput字段声明。
+ * @brief 定义了OH_AVPlayerVideoOutput结构体，用于表示播放器视频输出的相关信息。
+ * 
  * @since 26.0.0
  */ 
 typedef struct OH_AVPlayerVideoOutput OH_AVPlayerVideoOutput;

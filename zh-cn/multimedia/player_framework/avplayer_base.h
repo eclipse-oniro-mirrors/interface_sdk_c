@@ -68,23 +68,23 @@ typedef struct OH_AVPlaybackStrategy OH_AVPlaybackStrategy;
  * @since 11
  */
 typedef enum AVPlayerState {
-    /* idle states */
+    /* 空闲 */
     AV_IDLE = 0,
-    /* initialized states */
+    /* 初始化 */
     AV_INITIALIZED = 1,
-    /* prepared states */
+    /* 准备 */
     AV_PREPARED = 2,
-    /* playing states */
+    /* 播放 */
     AV_PLAYING = 3,
-    /* paused states */
+    /* 暂停 */
     AV_PAUSED = 4,
-    /* stopped states */
+    /* 停止 */
     AV_STOPPED = 5,
-    /* Play to the end states */
+    /* 结束 */
     AV_COMPLETED = 6,
-    /* released states */
+    /* 释放 */
     AV_RELEASED = 7,
-    /* error states */
+    /* 错误 */
     AV_ERROR = 8,
 } AVPlayerState;
 
