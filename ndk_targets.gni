@@ -15,8 +15,6 @@ import("//build/ohos_var.gni")
 
 # ndk library, ndk header configuration
 _ndk_library_targets = [
-  "//interface/sdk_c/ndk_lite_test:test_both_header",
-  "//interface/sdk_c/ndk_lite_test:test_standard_version_macro_header",
   "//interface/sdk_c/sensors/miscdevice/vibrator:lib_vibrator_ndk",
   "//interface/sdk_c/sensors/miscdevice/vibrator:ndk_vibrator_header",
   "//interface/sdk_c/third_party/zlib:libz_ndk",
@@ -303,22 +301,11 @@ _ndk_library_targets = [
 ]
 
 _ndk_lite_library_targets = [
-  "//interface/sdk_c/ndk_lite_test:test_lite_normal_header",
-  "//interface/sdk_c/ndk_lite_test:test_lite_ndk",
-  "//interface/sdk_c/ndk_lite_test:test_lite_sysapi_header",
-  "//interface/sdk_c/ndk_lite_test:test_lite_sysapi_ndk",
-  "//interface/sdk_c/ndk_lite_test:test_lite_ani_header",
-  "//interface/sdk_c/ndk_lite_test:test_lite_ani_file_header",
-  "//interface/sdk_c/ndk_lite_test:test_both_lite_header",
-  "//interface/sdk_c/ndk_lite_test:test_both_ndk",
-  "//interface/sdk_c/ndk_lite_test:test_lite_since_violation_header",
-  "//interface/sdk_c/ndk_lite_test:test_lite_no_syscap_ndk",
-  "//interface/sdk_c/ndk_lite_test:test_lite_no_syscap_header",
+  "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite",
 ]
 
 _ndk_base_libs = [
   "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk",
-  "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_arm32",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_aarch64",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_x86_64",
