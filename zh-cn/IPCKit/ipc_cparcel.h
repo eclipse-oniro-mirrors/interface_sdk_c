@@ -26,6 +26,7 @@
  *
  * @brief 提供IPC序列化/反序列化C接口，用于在IPC通信过程中对数据进行序列化和反序列化操作。
  *
+ * @include <IPCKit/ipc_cparcel.h>
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
@@ -725,7 +726,7 @@ OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
- * @param fd 要写入的文件描述符，取值原则：有效的文件描述符，为非负整数。传入负数或无效文件描述符时返回OH_IPC_CHECK_PAARM_ERROR错误。
+ * @param fd 要写入的文件描述符，取值原则：有效的文件描述符，为非负整数。传入负数或无效文件描述符时返回OH_IPC_CHECK_PARAM_ERROR错误。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  * 参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
  * 写入失败返回{@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR}。
