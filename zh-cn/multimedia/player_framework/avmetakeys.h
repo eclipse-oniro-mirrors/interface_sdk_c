@@ -61,7 +61,7 @@ extern const char* OH_AVMETA_KEY_TRACK_TYPE;
 extern const char* OH_AVMETA_KEY_MIME_TYPE;
 
 /**
- * @brief 媒体时长（单位：微秒），值类型为int64_t。
+ * @brief 媒体时长，单位为微秒（μs），值类型为int64_t。
  * 
  * @since 23
  */
@@ -75,7 +75,7 @@ extern const char* OH_AVMETA_KEY_DURATION;
 extern const char* OH_AVMETA_KEY_BITRATE;
 
 /**
- * @brief 视频帧率（每100秒的帧数），值类型为double。
+ * @brief 视频帧率，单位为每100秒的帧数，值类型为double。
  * 
  * @since 23
  */

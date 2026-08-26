@@ -159,7 +159,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
  * @brief 从视频源中提取指定时间点的图像。该函数必须在设置资源之后使用。
  * 
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
- * @param timeUs 要从视频资源中提取图像的时间位置（单位：微秒）。
+ * @param timeUs 要从视频资源中提取图像的时间位置，单位为微秒（μs）。
  * @param seekMode 定义指定时间与关键帧之间关系的跳转模式。详见{@link OH_AVMedia_SeekMode}。
  * @param outputParam 图像的输出参数，例如图像的高度或者宽度。详见{@link OH_AVMetadataExtractor_OutputParam}。若为空指针，使用视频的原始尺寸。注意：用户需要使用{@link OH_PixelmapNative_Destroy}
  * 在使用pixelMap后将其释放。
@@ -190,7 +190,7 @@ typedef void (*OH_AVMetadataExtractor_OnFrameFetched)(OH_AVMetadataExtractor *ex
  * @brief 从视频源中异步提取多个指定时间点的图像。该函数必须在设置资源之后使用。
  * 
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
- * @param timesUs 从视频源提取图像时的时间点数组（单位：微秒）。
+ * @param timesUs 从视频源提取图像时的时间点数组，单位为微秒（μs）。
  * @param timesUsSize 输入时间点数组的长度。
  * @param seekMode 定义每个给定时间与关键帧之间关系的跳转选项，详见{@link OH_AVMedia_SeekMode}。
  * @param outputParam 图像的输出参数，例如图像的高度或者宽度。详见{@link OH_AVMetadataExtractor_OutputParam}。若该参数为空指针，则获取的帧使用视频原始尺寸。
