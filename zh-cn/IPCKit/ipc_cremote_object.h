@@ -28,6 +28,7 @@
  * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进程间通信）和
  * RPC（Remote Procedure Call，远程过程调用）通信场景。
  *
+ * @include <IPCKit/ipc_cparcel.h>
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
@@ -212,7 +213,7 @@ typedef struct {
  * @param code 用户定义的IPC命令字，范围：[0x01, 0x00ffffff]。超出范围时返回OH_IPC_CODE_OUT_OF_RANGE错误码。
  * 建议按业务模块分段定义code值，确保Proxy端和Stub端使用相同的命令字定义。同一服务接口的不同操作使用不同的code值区分。
  * @param data 请求数据对象指针，不能为空。
- * @param reply 回应数据对象指针。同步请求时不能为空，用于存储响应结果；异步请求时可以为空，为空时不存储响应结果。
+ * @param reply 响应数据对象指针。同步请求时不能为空，用于存储响应结果；异步请求时可以为空，为空时不存储响应结果。
  * @param option 消息选项指针，用于配置IPC消息发送模式（同步/异步）。当需要使用异步模式或自定义消息选项时传入此参数。异步请求时必须传入并设置相应的请求模式，同步请求时可以不传或传NULL。
  * 不传入或传NULL时默认使用同步模式（OH_IPC_REQUEST_MODE_SYNC）。
  * @return 发送成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
