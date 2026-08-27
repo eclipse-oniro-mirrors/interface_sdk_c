@@ -20,7 +20,7 @@
  *
  * @brief Provides APIs related to MindSpore Lite model inference.
  *
- * @Syscap SystemCapability.Ai.MindSpore
+ * @syscap SystemCapability.Ai.MindSpore
  * @since 9
  */
 
@@ -45,7 +45,17 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Defines a handle to a runtime context.
+ *
+ * @since 9
+ */
 typedef void *OH_AI_ContextHandle;
+/**
+ * @brief Defines a handle to device information.
+ *
+ * @since 9
+ */
 typedef void *OH_AI_DeviceInfoHandle;
 
 /**
@@ -53,7 +63,7 @@ typedef void *OH_AI_DeviceInfoHandle;
  * @return Context object handle.
  * @since 9
  */
-OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate();
+OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate(void);
 
 /**
  * @brief Destroy the context object.
@@ -81,7 +91,7 @@ OH_AI_API int32_t OH_AI_ContextGetThreadNum(const OH_AI_ContextHandle context);
 /**
  * @brief Set the thread affinity to CPU cores.
  * @param context Context object handle.
- * @param mode: 0: no affinities, 1: big cores first, 2: little cores first
+ * @param mode 0: no affinities, 1: big cores first, 2: middle cores first
  * @since 9
  */
 OH_AI_API void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode);
@@ -89,7 +99,7 @@ OH_AI_API void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, i
 /**
  * @brief Obtain the thread affinity of CPU cores.
  * @param context Context object handle.
- * @return Thread affinity to CPU cores. 0: no affinities, 1: big cores first, 2: little cores first
+ * @return Thread affinity to CPU cores. 0: no affinities, 1: big cores first, 2: middle cores first
  * @since 9
  */
 OH_AI_API int OH_AI_ContextGetThreadAffinityMode(const OH_AI_ContextHandle context);
@@ -101,7 +111,7 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode(const OH_AI_ContextHandle conte
  * the core_list is effective, but the mode is not effective. \n
  *
  * @param context Context object handle.
- * @param core_list: a array of thread core lists.
+ * @param core_list an array of thread core lists.
  * @param core_num The number of core.
  * @since 9
  */
@@ -112,7 +122,7 @@ OH_AI_API void OH_AI_ContextSetThreadAffinityCoreList(OH_AI_ContextHandle contex
  * @brief Obtain the thread lists of CPU cores.
  * @param context Context object handle.
  * @param core_num The number of core.
- * @return a array of thread core lists.
+ * @return an array of thread core lists.
  * @since 9
  */
 OH_AI_API const int32_t *OH_AI_ContextGetThreadAffinityCoreList(const OH_AI_ContextHandle context, size_t *core_num);
@@ -120,7 +130,7 @@ OH_AI_API const int32_t *OH_AI_ContextGetThreadAffinityCoreList(const OH_AI_Cont
 /**
  * @brief Set the status whether to perform model inference or training in parallel.
  * @param context Context object handle.
- * @param is_parallel: true, parallel; false, not in parallel.
+ * @param is_parallel true, parallel; false, not in parallel.
  * @since 9
  */
 OH_AI_API void OH_AI_ContextSetEnableParallel(OH_AI_ContextHandle context, bool is_parallel);
@@ -143,7 +153,7 @@ OH_AI_API void OH_AI_ContextAddDeviceInfo(OH_AI_ContextHandle context, OH_AI_Dev
 
 /**
  * @brief Create a device info object.
- * @param device_info Device info object handle.
+ * @param device_type Type of the device.
  * @return Device info object handle.
  * @since 9
  */
@@ -238,7 +248,7 @@ OH_AI_API int OH_AI_DeviceInfoGetFrequency(const OH_AI_DeviceInfoHandle device_i
 OH_AI_API NNRTDeviceDesc *OH_AI_GetAllNNRTDeviceDescs(size_t *num);
 
 /**
- * @brief Obtain the specified element in NNRt device description array.
+ * @brief Obtain the specified element in NNRT device description array.
  * @param descs NNRT device description array.
  * @param index Element index.
  * @return NNRT device description.
@@ -247,7 +257,7 @@ OH_AI_API NNRTDeviceDesc *OH_AI_GetAllNNRTDeviceDescs(size_t *num);
 OH_AI_API NNRTDeviceDesc *OH_AI_GetElementOfNNRTDeviceDescs(NNRTDeviceDesc *descs, size_t index);
 
 /**
- * @brief Destroy the NNRT device descriptions returned by OH_AI_NNRTGetAllDeviceDescs().
+ * @brief Destroy the NNRT device descriptions returned by OH_AI_GetAllNNRTDeviceDescs().
  * @param desc NNRT device description array.
  * @since 10
  */
@@ -279,7 +289,7 @@ OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc(const NNRTDeviceD
 
 /**
  * @brief Create the NNRT device info by exactly matching the specific device name.
- * @param name NNRt device name.
+ * @param name NNRT device name.
  * @return Device info object handle.
  * @since 10
  */
@@ -287,7 +297,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName(const char *na
 
 /**
  * @brief Create the NNRT device info by finding the first device with the specific device type.
- * @param name NNRt device type.
+ * @param type NNRT device type.
  * @return Device info object handle.
  * @since 10
  */
@@ -312,7 +322,7 @@ OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId(const OH_AI_DeviceInfoHandle device
 /**
  * @brief Set the NNRT performance mode, Only valid for NNRT.
  * @param device_info Device info object handle.
- * @param device_id NNRT performance mode.
+ * @param mode NNRT performance mode.
  * @since 10
  */
 OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode(OH_AI_DeviceInfoHandle device_info, OH_AI_PerformanceMode mode);
@@ -328,7 +338,7 @@ OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode(const OH_AI_D
 /**
  * @brief Set the NNRT priority, Only valid for NNRT.
  * @param device_info Device info object handle.
- * @param device_id NNRT priority.
+ * @param priority NNRT task priority.
  * @since 10
  */
 OH_AI_API void OH_AI_DeviceInfoSetPriority(OH_AI_DeviceInfoHandle device_info, OH_AI_Priority priority);

@@ -20,7 +20,7 @@
  *
  * @brief Provides APIs related to MindSpore Lite model inference.
  *
- * @Syscap SystemCapability.Ai.MindSpore
+ * @syscap SystemCapability.Ai.MindSpore
  * @since 9
  */
 
@@ -55,7 +55,7 @@ extern "C" {
 typedef enum OH_AI_ModelType {
     /** the model type is MindIR, and the corresponding model file extension is .ms. */
     OH_AI_MODELTYPE_MINDIR = 0,
-    /** invaild model type */
+    /** invalid model type */
     OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF
 } OH_AI_ModelType;
 
@@ -78,7 +78,7 @@ typedef enum OH_AI_DeviceType {
 } OH_AI_DeviceType;
 
 /**
- * @brief the hard deivce type managed by NNRT.
+ * @brief the hard device type managed by NNRT.
  *
  * @since 10
  */
@@ -94,7 +94,7 @@ typedef enum OH_AI_NNRTDeviceType {
 } OH_AI_NNRTDeviceType;
 
 /**
- * @brief performance mode of the NNRT hard deivce.
+ * @brief performance mode of the NNRT hard device.
  *
  * @since 10
  */
@@ -112,7 +112,7 @@ typedef enum OH_AI_PerformanceMode {
 } OH_AI_PerformanceMode;
 
 /**
- * @brief NNRT reasoning task priority.
+ * @brief NNRT inference task priority.
  *
  * @since 10
  */
@@ -137,11 +137,11 @@ typedef enum OH_AI_OptimizationLevel {
     OH_AI_KO0 = 0,
     /** Cast network to float16, keep batchnorm and loss in float32 */
     OH_AI_KO2 = 2,
-    /** Cast network to float16, including bacthnorm */
+    /** Cast network to float16, including batchnorm */
     OH_AI_KO3 = 3,
     /** Choose optimization based on device */
     OH_AI_KAUTO = 4,
-    /** Invalid optimizatin level */
+    /** Invalid optimization level */
     OH_AI_KOPTIMIZATIONTYPE = 0xFFFFFFFF
 } OH_AI_OptimizationLevel;
 

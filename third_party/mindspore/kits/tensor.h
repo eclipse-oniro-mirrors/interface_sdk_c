@@ -20,7 +20,7 @@
  *
  * @brief Provides APIs related to MindSpore Lite model inference.
  *
- * @Syscap SystemCapability.Ai.MindSpore
+ * @syscap SystemCapability.Ai.MindSpore
  * @since 9
  */
 
@@ -115,7 +115,7 @@ OH_AI_API void OH_AI_TensorSetDataType(OH_AI_TensorHandle tensor, OH_AI_DataType
 /**
  * @brief Obtain the data type of the tensor.
  * @param tensor Tensor object handle.
- * @return The date type of the tensor.
+ * @return The data type of the tensor.
  * @since 9
  */
 OH_AI_API OH_AI_DataType OH_AI_TensorGetDataType(const OH_AI_TensorHandle tensor);
@@ -132,7 +132,7 @@ OH_AI_API void OH_AI_TensorSetShape(OH_AI_TensorHandle tensor, const int64_t *sh
 /**
  * @brief Obtain the shape of the tensor.
  * @param tensor Tensor object handle.
- * @param shape_num Dimension of shape.
+ * @param shape_num Output parameter that receives the number of shape dimensions.
  * @return The shape array of the tensor.
  * @since 9
  */
@@ -155,7 +155,7 @@ OH_AI_API void OH_AI_TensorSetFormat(OH_AI_TensorHandle tensor, OH_AI_Format for
 OH_AI_API OH_AI_Format OH_AI_TensorGetFormat(const OH_AI_TensorHandle tensor);
 
 /**
- * @brief Obtain the data for the tensor.
+ * @brief Set the data pointer for the tensor.
  * @param tensor Tensor object handle.
  * @param data A pointer to the data of the tensor.
  * @since 9
@@ -165,7 +165,7 @@ OH_AI_API void OH_AI_TensorSetData(OH_AI_TensorHandle tensor, void *data);
 /**
  * @brief Obtain the data pointer of the tensor.
  * @param tensor Tensor object handle.
- * @return The data pointer of the tensor.
+ * @return The data pointer of the tensor, or NULL if the tensor or its data is unavailable.
  * @since 9
  */
 OH_AI_API const void *OH_AI_TensorGetData(const OH_AI_TensorHandle tensor);
@@ -173,7 +173,7 @@ OH_AI_API const void *OH_AI_TensorGetData(const OH_AI_TensorHandle tensor);
 /**
  * @brief Obtain the mutable data pointer of the tensor. If the internal data is empty, it will allocate memory.
  * @param tensor Tensor object handle.
- * @return The data pointer of the tensor.
+ * @return The mutable data pointer, or NULL if the tensor is invalid or memory allocation fails.
  * @since 9
  */
 OH_AI_API void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor);
@@ -187,7 +187,7 @@ OH_AI_API void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor);
 OH_AI_API int64_t OH_AI_TensorGetElementNum(const OH_AI_TensorHandle tensor);
 
 /**
- * @brief Obtain the data size fo the tensor.
+ * @brief Obtain the data size of the tensor.
  * @param tensor Tensor object handle.
  * @return The data size of the tensor.
  * @since 9
@@ -200,11 +200,11 @@ OH_AI_API size_t OH_AI_TensorGetDataSize(const OH_AI_TensorHandle tensor);
  * The main purpose of this interface is providing a way of using memory already allocated by user as the Model's
  * input, but not which allocated inside the Model object. It can reduce one copy. \n
  * Note: The tensor won't free the data provided by invoker. Invoker has the responsibility to free it. And this
- * free action should not be preformed before destruction of the tensor. \n
+ * free action should not be performed before destruction of the tensor. \n
  *
  * @param tensor Tensor object handle.
  * @param data A pointer to the user data buffer.
- * @param data the byte size of the user data buffer.
+ * @param data_size Size of the user data buffer, in bytes.
  * @return OH_AI_STATUS_SUCCESS if success, or detail error code if failed.
  * @since 10
  */
@@ -228,7 +228,7 @@ OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tens
  * allocated by this allocator.
  *
  * @param tensor Tensor object handle.
- * @param allocator A allocator handle.
+ * @param allocator An allocator handle.
  * @return OH_AI_STATUS_SUCCESS if success, or detail error code if failed.
  * @since 12
  */
