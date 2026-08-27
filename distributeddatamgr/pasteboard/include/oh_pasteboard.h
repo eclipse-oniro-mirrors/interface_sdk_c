@@ -30,7 +30,7 @@
  * @brief Provides data structure, enum types, and APIs for accessing the system pasteboard.
  *
  * @kit BasicServicesKit
- * @include <database/pasteboard/oh_pasteboard_err_code.h>
+ * @include <database/pasteboard/oh_pasteboard.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *

@@ -91,7 +91,7 @@ typedef enum PASTEBOARD_ErrCode {
      * @error 获取剪贴板数据失败。
      * @since 15
      */
-    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010
+    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,
 } PASTEBOARD_ErrCode;
 #ifdef __cplusplus
 };
