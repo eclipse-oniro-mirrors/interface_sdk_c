@@ -297,6 +297,35 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options
     bool needsPackDfxData);
 
 /**
+ * @brief 设置OH_PackingOptions结构体中的C2PA数据大小，默认值为0，表示不预留空间。
+ * @systemapi
+ * @param options [in] 指向OH_PackingOptions结构体的指针，不能为NULL。
+ * @param c2paDataSize [in] C2PA数据预留空间大小，单位为字节。
+ * @return <ul> 
+ *         <li>{@link IMAGE_SUCCESS} 操作成功。</li>
+ *         <li>202 非系统应用程序调用该接口。</li>
+ *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options为NULL。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_PackingOptions_SetC2paDataSize(OH_PackingOptions *options, uint32_t c2paDataSize);
+
+/**
+ * @brief 获取OH_PackingOptions结构体中的C2PA数据大小。
+ * @systemapi
+ * @param options [in] 指向OH_PackingOptions结构体的指针，不能为NULL。
+ * @param c2paDataSize [out] 指向C2PA数据大小的指针，单位为字节，不能为NULL。
+ *     如果函数执行失败，c2paDataSize指向的内容保持不变。
+ * @return <ul> 
+ *         <li>{@link IMAGE_SUCCESS} 操作成功。</li>
+ *         <li>202 非系统应用程序调用该接口。</li>
+ *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options或c2paDataSize为NULL。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_PackingOptions_GetC2paDataSize(const OH_PackingOptions *options, uint32_t *c2paDataSize);
+
+/**
  * @brief 获取编码时期望的图片动态范围。
  * <br>使用约束：options和desiredDynamicRange均不能为空指针。接口返回失败时，输出参数内容不应使用。
  * 
