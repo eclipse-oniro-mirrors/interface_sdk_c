@@ -26,7 +26,7 @@
 /**
  * @file native_material.h
  *
- * @brief 提供ArkUI在Native侧的沉浸式材质类型和API声明，用于实现半透明模糊背景、光感交互反馈等沉浸式UI效果。
+ * @brief 提供ArkUI（方舟UI框架）在Native侧的沉浸式材质类型和API声明，用于实现半透明模糊背景、光感交互反馈等沉浸式UI效果。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,8 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the immersive material styles.
- * Different styles correspond to different material parameters, which affect the thickness of the material.
+ * @brief 沉浸式材质样式枚举。不同样式对应不同的材质参数，影响材质的薄厚程度。
  *
  * @since 26.0.0
  */
@@ -74,7 +73,7 @@ typedef enum {
      */
     ARKUI_IMMERSIVE_STYLE_THICK,
     /**
-     * 超厚样式。
+     * 超厚样式。材质层极厚，模糊效果极强。
      *
      * @since 26.0.0
      */
@@ -82,8 +81,8 @@ typedef enum {
 } ArkUI_ImmersiveStyle;
 
 /**
- * @brief Enumerates the material levels, which indicate the computing power level of the device.
- * Use {@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel} to obtain the material level of the current device.
+ * @brief 材质等级枚举，与设备的算力等级相关。
+ * <br>使用{@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}可获取当前设备的材质等级。
  *
  * @since 26.0.0
  */
@@ -119,7 +118,7 @@ typedef enum {
 typedef struct ArkUI_ImmersiveMaterial ArkUI_ImmersiveMaterial;
 
 /**
- * @brief 定义指向沉浸式材质对象的指针，沉浸式材质用于实现的沉浸式视觉效果对象。<br>可以通过{@link OH_ArkUI_NativeModule_ImmersiveMaterial_Create}创建沉浸式材质对象，
+ * @brief 定义指向沉浸式材质对象的指针，沉浸式材质用于实现沉浸式视觉效果对象。<br>可以通过{@link OH_ArkUI_NativeModule_ImmersiveMaterial_Create}创建沉浸式材质对象，
  * 创建后必须在使用完毕时调用{@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}销毁沉浸式材质对象以释放资源，避免内存泄漏。
  *
  * @since 26.0.0
@@ -127,15 +126,19 @@ typedef struct ArkUI_ImmersiveMaterial ArkUI_ImmersiveMaterial;
 typedef struct ArkUI_ImmersiveMaterial* ArkUI_ImmersiveMaterialHandle;
 
 /**
- * @brief 定义沉浸式材质的光感交互效果配置对象。<br>创建时默认光感交互颜色为白色（0xffffffff）。
+ * @brief 定义沉浸式材质的光感交互效果配置对象，用于配置沉浸式材质在用户交互时产生的光感响应效果。详细设计逻辑请参见{@link native_material.h}。沉浸式材质是一种具有深度感和层次感的视觉材质风格，
+ * 光感交互效果指用户与组件交互时产生的光影视觉反馈。创建后需通过{@link OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect}将配置对象设置到沉浸式材质对象上才能生效。
+ * <br>未指定光感交互颜色时，默认光感交互颜色为白色（0xffffffff）。
  *
  * @since 26.0.0
  */
 typedef struct ArkUI_LightEffectOptions ArkUI_LightEffectOptions;
 
 /**
- * @brief 定义指向光感交互效果配置对象的指针。可以通过{@link OH_ArkUI_NativeModule_LightEffectOptions_Create}创建光感交互效果配置对象，通过
- * {@link OH_ArkUI_NativeModule_LightEffectOptions_Destroy}接口销毁光感交互效果配置对象。
+ * @brief 定义指向光感交互效果配置对象的指针，开发者通过该指针可配置和管理沉浸式材质的光感交互效果参数。
+ * <br>必须通过{{@link OH_ArkUI_NativeModule_LightEffectOptions_Create}创建光感交互效果配置对象，使用完毕后必须调用
+ * {@link OH_ArkUI_NativeModule_LightEffectOptions_Destroy}接口销毁配置对象
+ * 以释放资源，销毁后继续使用该指针会导致未定义行为。两者必须配对使用。未调用Destroy销毁对象会导致资源泄漏。
  *
  * @since 26.0.0
  */
@@ -153,7 +156,10 @@ bool OH_ArkUI_NativeModule_GetSystemMaterialSupported();
 /**
  * @brief 获取全局材质等级，与设备的算力相关。该配置项由设备定义，不可修改。
  *
- * @return 返回设备的材质等级。返回类型为{@link ArkUI_MaterialLevel}。
+ * @return 返回设备的材质等级。
+ *     <br>{@link ARKUI_MATERIAL_LEVEL_EXQUISITE}（0）：高算力设备材质等级。
+ *     <br>{@link ARKUI_MATERIAL_LEVEL_GENTLE}（1）：中算力设备材质等级。
+ *     <br>{@link ARKUI_MATERIAL_LEVEL_SMOOTH}（2）：低算力设备材质等级。
  * @since 26.0.0
  */
 ArkUI_MaterialLevel OH_ArkUI_NativeModule_GetGlobalMaterialLevel();
@@ -161,7 +167,7 @@ ArkUI_MaterialLevel OH_ArkUI_NativeModule_GetGlobalMaterialLevel();
 /**
  * @brief 创建具有指定样式的沉浸式材质对象。创建的材质等级跟随全局材质等级，可通过{@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}获取。
  *
- * @param style 材质样式。
+ * @param style 材质样式。传入无效样式将导致设置失败，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}错误码。该样式仅对高算力和中算力设备的显示效果有效，对低算力设备不生效但不会报错。
  * @return 返回指向创建的沉浸式材质对象的指针。如果创建失败或材质样式无效，返回NULL。
  *     <br>返回的对象使用完后需要通过{@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}释放。
  * @release native_material/OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy {return}
@@ -178,12 +184,14 @@ ArkUI_ImmersiveMaterialHandle OH_ArkUI_NativeModule_ImmersiveMaterial_Create(Ark
 void OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy(ArkUI_ImmersiveMaterialHandle material);
 
 /**
- * @brief 设置沉浸式材质对象的样式。该参数仅对高算力和中算力设备的显示效果有效，对低算力设备不生效但不会报错。
+ * @brief 设置沉浸式材质对象的样式。该参数仅对高算力和中算力设备的显示效果有效，对低算力设备不生效但不会报错。可通过{@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}
+ * 获取当前设备的材质等级以判断该参数是否生效。
  *
  * @param material 指向沉浸式材质对象的指针。
- * @param style 材质样式。传入无效样式将导致创建失败并返回NULL。
+ *     <br>material为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param style 材质样式。传入无效样式将导致设置失败，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或style无效）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或style无效），请确保传入有效的material指针和有效的style枚举值。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetStyle(
@@ -195,19 +203,21 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetStyle(
  * @param material 指向沉浸式材质对象的指针。
  * @param style 指向用于接收材质样式的变量的指针。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或style为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或style为NULL），请确保material和style均为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetStyle(
     ArkUI_ImmersiveMaterialHandle material, ArkUI_ImmersiveStyle* style);
 
 /**
- * @brief 设置沉浸式材质对象的材质颜色。该参数仅对高算力和中算力设备的显示效果有效，对低算力设备不生效但不会报错。如果不设置，默认值为0，表示透明色。
+ * @brief 设置沉浸式材质对象的材质颜色。该参数对所有算力设备的显示效果有效。可通过{@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}获取当前设备的材质等级以判断该参数是否生效。
+ * 如果不设置，默认值为0，表示透明色。
  *
  * @param material 指向沉浸式材质对象的指针。
- * @param color 材质颜色，0xAARRGGBB格式。传入0表示透明（默认值）。
+ *     <br>material为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param color 材质颜色，0xAARRGGBB格式，对所有算力设备的显示效果有效。传入0表示透明（默认值）。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL），请确保material为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetMaterialColor(
@@ -219,7 +229,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetMaterialColor(
  * @param material 指向沉浸式材质对象的指针。
  * @param color 指向用于接收0xAARRGGBB格式的材质颜色的变量的指针。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或color为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或color为NULL），请确保material和color均为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor(
@@ -232,7 +242,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor(
  * @param material 指向沉浸式材质对象的指针。
  * @param applyShadow 是否添加材质效果的阴影。true表示材质阴影生效并优先于阴影通用属性，false表示不添加材质阴影、阴影通用属性生效。默认值为true。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL），请确保material为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetApplyShadow(
@@ -242,9 +252,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetApplyShadow(
  * @brief 获取沉浸式材质对象是否应用阴影。
  *
  * @param material 指向沉浸式材质对象的指针。
- * @param applyShadow 指向用于接收是否应用阴影的变量的指针。默认值为true。
+ * @param applyShadow 指向用于接收是否应用阴影的变量的指针。如果从未显式设置过该属性，该指针将接收默认值true。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或applyShadow为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或applyShadow为NULL），请确保material和applyShadow均为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetApplyShadow(
@@ -257,21 +267,24 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetApplyShadow(
  * @param material 指向沉浸式材质对象的指针。
  * @param interactive 材质是否可交互形变。true表示材质可交互形变，false表示材质不可交互形变。如果不设置，遵循组件的行为。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL），请确保material为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive(
     ArkUI_ImmersiveMaterialHandle material, bool interactive);
 
 /**
- * @brief 获取沉浸式材质对象是否可交互形变。
- * <br>如果从未设置过该属性，函数将返回{@link ARKUI_ERROR_CODE_PARAM_ERROR}。
+ * @brief 获取沉浸式材质对象的可交互形变属性。建议先通过{@link OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive}设置该属性后再调用本接口获取，
+ * 如果从未设置过该属性，函数将返回{@link ARKUI_ERROR_CODE_PARAM_ERROR}。
  *
  * @param material 指向沉浸式材质对象的指针。
+ *     <br>material为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param interactive 指向用于接收材质是否可交互形变的变量的指针。
+ *     <br>interactive为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或interactive为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或interactive为NULL），请确保material和interactive均为有效指针。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_ERROR} 从未设置过该属性。
+ *     请先调用OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive设置该属性后再获取。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetInteractive(
@@ -301,7 +314,7 @@ void OH_ArkUI_NativeModule_LightEffectOptions_Destroy(ArkUI_LightEffectOptionsHa
  * @param options 指向光感交互效果配置对象的指针。
  * @param color 光感交互效果颜色，0xAARRGGBB格式。如果不设置，默认颜色为白色（0xffffffff）。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（options为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（options为NULL），请确保options为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LightEffectOptions_SetColor(
@@ -309,12 +322,14 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LightEffectOptions_SetColor(
 
 /**
  * @brief 设置沉浸式材质对象的光感交互效果，即在材质表面呈现随用户交互动态变化的光效反射。该参数对所有等级材质都生效。
- * <br>传入NULL的光感交互效果配置指针表示禁用光感交互效果，传入非NULL的光感交互效果配置指针表示使用该配置参数进行光感交互。如果不调用该接口设置，光感交互效果遵循组件的行为。
+ * <br>传入NULL的光感交互效果配置指针表示禁用光感交互效果，适用于纯展示性材质表面场景；传入非NULL的光感交互效果配置指针表示使用该配置参数进行光感交互，适用于需要增强触摸视觉反馈的交互式组件场景。如果不调用该接口设置，
+ * 光感交互效果遵循组件的行为。
  *
  * @param material 指向沉浸式材质对象的指针。
- * @param options 指向光感交互效果配置对象的指针。传入NULL禁用光感交互效果，传入非NULL启用。
+ * @param options 指向光感交互效果配置对象的指针。传入NULL禁用光感交互效果，传入非NULL启用。非NULL指针需通过
+ *     {@link OH_ArkUI_NativeModule_LightEffectOptions_Create}创建。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL）。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL），请确保material为有效指针。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect(
@@ -326,10 +341,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect(
  * 如果从未设置过光感交互效果或已禁用（传入NULL的光感交互效果配置指针），函数将返回{@link ARKUI_ERROR_CODE_PARAM_ERROR}。
  *
  * @param material 指向沉浸式材质对象的指针。
- * @param color 指向用于接收光感交互效果颜色的变量的指针。
+ * @param color 指向用于接收0xAARRGGBB格式的光感交互效果颜色的变量的指针。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或color为NULL）。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_ERROR} 光感交互效果从未设置或已禁用。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数异常（material为NULL或color为NULL），请确保material和color均为有效指针。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_ERROR} 光感交互效果从未设置或已禁用，
+ *     请先调用OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect设置非NULL的光感交互效果配置指针后再获取颜色。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetLightEffectColor(
