@@ -121,6 +121,43 @@ typedef enum {
 } IMAGE_ALLOCATOR_TYPE;
 
 /**
+ * @brief Indicates the enumeration of SVG resource restriction levels.
+ * Higher levels allow fewer resources to be used when parsing and rendering SVG images.
+ * System resource limits are enforced regardless of the level specified.
+ *
+ * @systemapi
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * Use the default SVG resource limit. This level does not disable SVG resource protection.
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_NONE = 0,
+    /**
+     * Use low-level restrictions to allow more SVG resource budgets to be used for complex SVG images.
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_LOW = 1,
+    /**
+     * Allows a moderate SVG resource budget with a medium-level limit,
+     * which balances SVG compatibility and resource consumption for most SVG images.
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_MEDIUM = 2,
+    /**
+     * Allows a smaller SVG resource budget with a high level limit, which applies to simple SVG images,
+     * such as icons and basic UI resources.
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_HIGH = 3,
+} OH_ImageSource_SVGResourceLimitLevel;
+
+/**
  * @brief Enumerates the cropping and scaling strategies when **desiredSize** and **desiredRegion** are both specified.
  *
  * If the **ImageCropAndScaleStrategy** parameter is not specified in {@link OH_DecodingOptions} and both
@@ -540,6 +577,40 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromDataWithUserBuffer(uint8_t *data,
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFile, OH_ImageSourceNative **res);
+
+/**
+ * @brief Sets the SVG resource limit level for the image source.
+ * This only takes effect for SVG format images. For non-SVG images, this function has no effect.
+ * Must be called before {@link OH_ImageSourceNative_CreatePixelmap} to ensure the limit
+ * takes effect on both DOM parsing and rendering stages.
+ * @systemapi
+ * @param source Indicates a pointer to the image source.
+ * @param level Indicates the SVG resource limit level. For details, see {@link OH_ImageSource_SVGResourceLimitLevel}.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} source is nullptr.</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_ImageSourceNative_SetSvgResourceLimitLevel(OH_ImageSourceNative *source,
+    OH_ImageSource_SVGResourceLimitLevel level);
+
+/**
+ * @brief Gets the SVG resource limit level of the image source.
+ * @systemapi
+ * @param source Indicates a pointer to the image source.
+ * @param level Indicates the pointer to receive the SVG resource limit level.
+ *     For details, see {@link OH_ImageSource_SVGResourceLimitLevel}.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} source or level is nullptr.</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_ImageSourceNative_GetSvgResourceLimitLevel(OH_ImageSourceNative *source,
+    OH_ImageSource_SVGResourceLimitLevel *level);
 
 /**
  * @brief Creates the pointer to an OH_PixelmapNative object based on decoding options.
