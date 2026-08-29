@@ -329,119 +329,138 @@ typedef enum {
      */
     NODE_MARGIN,
     /**
-     * @brief Defines the translate attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: distance to translate along the x-axis, in vp. The default value is <b>0</b>.\n
-     * .value[1].f32: distance to translate along the y-axis, in vp. The default value is <b>0</b>.\n
-     * .value[2].f32: distance to translate along the z-axis, in vp. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: distance to translate along the x-axis, in vp.\n
-     * .value[1].f32: distance to translate along the y-axis, in vp.\n
-     * .value[2].f32: distance to translate along the z-axis, in vp. \n
+     * @brief 设置组件平移，支持属性设置，属性重置和属性获取接口。
+     * 与NODE_TRANSLATE_WITH_PERCENT互斥，同一组件只能使用一种平移属性设置方式。
+     * 如同时设置NODE_TRANSLATE和NODE_TRANSLATE_WITH_PERCENT，后者设置的值将覆盖前者。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：x轴移动距离，单位vp，默认值0。</li>
+     * <li>.value[1].f32：y轴移动距离，单位vp，默认值0。</li>
+     * <li>.value[2].f32：z轴移动距离，单位vp，默认值0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：x轴移动距离，单位vp。</li>
+     * <li>.value[1].f32：y轴移动距离，单位vp。</li>
+     * <li>.value[2].f32：z轴移动距离，单位vp。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_TRANSLATE,
     /**
-     * @brief Defines the scale attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: scale factor along the x-axis. The default value is <b>1</b>.\n
-     * .value[1].f32: scale factor along the y-axis. The default value is <b>1</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: scale factor along the x-axis.\n
-     * .value[1].f32: scale factor along the y-axis. \n
+     * @brief 设置组件缩放，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：x轴的缩放系数，默认值1。值为0时组件不可见，负值时组件沿x轴翻转显示。</li>
+     * <li>.value[1].f32：y轴的缩放系数，默认值1。值为0时组件不可见，负值时组件沿y轴翻转显示。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：x轴的缩放系数。</li>
+     * <li>.value[1].f32：y轴的缩放系数。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_SCALE,
     /**
-     * @brief Defines the rotate attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: X coordinate of the rotation axis vector. The default value is <b>0</b>.\n
-     * .value[1].f32: Y coordinate of the rotation axis vector. The default value is <b>0</b>.\n
-     * .value[2].f32: Z coordinate of the rotation axis vector. The default value is <b>0</b>.\n
-     * .value[3].f32: rotation angle. The default value is <b>0</b>.\n
-     * .value[4].f32: line of sight, that is, the distance from the viewpoint to the z=0 plane, in vp.
-     * The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X coordinate of the rotation axis vector.\n
-     * .value[1].f32: Y coordinate of the rotation axis vector.\n
-     * .value[2].f32: Z coordinate of the rotation axis vector.\n
-     * .value[3].f32: rotation angle.\n
-     * .value[4].f32: line of sight, that is, the distance from the viewpoint to the z=0 plane, in vp. \n
+     * @brief 设置组件旋转，支持属性设置，属性重置和属性获取接口。
+     * 与NODE_ROTATE_ANGLE互斥，同一组件只能使用一种旋转属性设置方式。
+     * 如同时设置NODE_ROTATE和NODE_ROTATE_ANGLE，后者设置的值将覆盖前者。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：旋转轴向量x坐标，默认值0。</li>
+     * <li>.value[1].f32：旋转轴向量y坐标，默认值0。</li>
+     * <li>.value[2].f32：旋转轴向量z坐标，默认值0。</li>
+     * <li>.value[3].f32：旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[4].f32：视距，即视点到z=0平面的距离，单位vp，默认值0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：旋转轴向量x坐标。</li>
+     * <li>.value[1].f32：旋转轴向量y坐标。</li>
+     * <li>.value[2].f32：旋转轴向量z坐标。</li>
+     * <li>.value[3].f32：旋转角度，单位为度（°）。</li>
+     * <li>.value[4].f32：视距，即视点到z=0平面的距离，单位vp。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_ROTATE,
     /**
-     * @brief Sets the brightness attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: brightness value. The default value is <b>1.0</b>, and the recommended value range is [0, 2]. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: brightness value. \n
+     * @brief 设置组件高光效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：亮度值，默认值1.0，推荐取值范围[0, 2.0]。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：亮度值，1.0表示原始亮度，推荐取值范围[0, 2.0]。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_BRIGHTNESS,
     /**
-     * @brief Sets the saturation attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: saturation value. The default value is <b>1.0</b>, and the recommended value range is [0, 50). \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: saturation value. \n
+     * @brief 设置组件饱和度效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：饱和度值，默认值1.0，推荐取值范围[0, 50.0)，传入负值时按0处理。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：饱和度值，1.0表示原始饱和度，推荐取值范围[0, 50.0)。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_SATURATION,
     /**
-     * @brief Sets the blur attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: blur radius. A larger value indicates a higher blur degree. If the value is <b>0</b>,
-     * the component is not blurred. The unit is vp. The default value is <b>0.0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: blur radius. The larger the fuzzy radius, the more blurred the image. If the value is <b>0</b>,
-     * the image is not blurred. The unit is vp. \n
+     * @brief 设置组件内容模糊效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：模糊半径，取值范围[0, +∞)，模糊半径越大越模糊，为0时不模糊，小于0时按0处理且不会返回错误码。单位vp，默认值0.0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：模糊半径，模糊半径越大越模糊，为0时不模糊。单位vp。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_BLUR,
     /**
-     * @brief Sets the gradient attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient. This attribute takes effect only when
-     * {@link ArkUI_LinearGradientDirection} is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When it is set, the <b>angle</b> attribute does not take effect.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}: \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: start angle of the linear gradient. \n
-     * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * @brief 设置组件颜色渐变效果，支持属性设置，属性重置和属性获取接口。
+     * 与NODE_SWEEP_GRADIENT、NODE_RADIAL_GRADIENT互斥，同一组件只能设置一种渐变类型。
+     * 如同时设置多种渐变属性，后设置的渐变类型将覆盖先前设置的渐变效果。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位度（°），0点方向顺时针旋转为正向角度，默认值180。当{@link ArkUI_LinearGradientDirection}为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle属性生效，否则按direction为主要布局方式。</li>
+     * <li>.value[1].i32：线性渐变的方向，参数类型为{@link ArkUI_LinearGradientDirection}。设置为非ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle不生效。</li>
+     * <li>.value[2].i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色，默认值0。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色。</li>
+     * <li>stops：渐变位置。</li>
+     * <li>size：颜色个数。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：线性渐变的起始角度，单位为度（°）。当为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle为设置值，其他情况均为默认值。</li>
+     * <li>.value[1].i32：线性渐变的方向，取{@link ArkUI_LinearGradientDirection}枚举值。</li>
+     * <li>.value[2].i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色。</li>
+     * <li>stops：渐变位置。</li>
+     * <li>size：颜色个数。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -463,13 +482,16 @@ typedef enum {
      */
     NODE_ALIGNMENT,
     /**
-     * @brief Defines the opacity attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: opacity value. The value ranges from 0 to 1. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: opacity value. The value ranges from 0 to 1. \n
+     * @brief 透明度属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：透明度数值，默认值为1，取值范围为[0, 1]。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：透明度数值，取值范围为0到1。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -585,10 +607,14 @@ typedef enum {
     /**
      * @brief 组件的堆叠顺序属性，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br><b>.value[0].i32</b>：堆叠顺序数值。
-     * <br>**返回：**
-     * <br><b>.value[0].i32</b>：堆叠顺序数值。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：堆叠顺序数值，数值越大组件层级越高，默认值为0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：堆叠顺序数值，默认值0。</li>
+     * </ul>
      *
      */
     NODE_Z_INDEX,
@@ -597,119 +623,124 @@ typedef enum {
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * **参数：**
      * <ul>
-     * <li><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。</li>
+     * <li>.value[0].i32：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。</li>
      * </ul>
      * **返回：**
      * <ul>
-     * <li><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。</li>
+     * <li>.value[0].i32：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。各枚举值含义及对应数字：ARKUI_VISIBILITY_VISIBLE(0)表示可见，ARKUI_VISIBILITY_HIDDEN(1)表示隐藏但占位，ARKUI_VISIBILITY_NONE(2)表示隐藏且不占位。</li>
      * </ul>
      *
      * @ingroup Interaction [交互属性]
      */
     NODE_VISIBILITY,
     /**
-     * @brief Defines the clipping and masking attribute, which can be set, reset, and obtained as required through
-     * APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to clip the component based on the parent container bounds.
-     * The value <b>1</b> means to clip the component, and <b>0</b> means the opposite. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to clip the component based on the parent container bounds.
-     * The value <b>1</b> means to clip the component, and <b>0</b> means the opposite. \n
+     * @brief 组件裁剪属性，控制是否对子组件超出当前组件范围外的区域进行裁剪，支持属性设置，属性重置和属性获取接口。
+     * 与NODE_CLIP_SHAPE互斥，同一组件只能使用一种裁剪属性设置方式。NODE_CLIP提供简单的布尔裁剪，NODE_CLIP_SHAPE提供指定形状的裁剪，同时设置时后者将覆盖前者。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：控制是否对子组件超出当前组件范围外的区域进行裁剪，0表示不裁剪，1表示裁剪。默认为不裁剪。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：控制是否对子组件超出当前组件范围外的区域进行裁剪，0表示不裁剪，1表示裁剪。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_CLIP,
     /**
-     * @brief Defines the clipping region on the component.
-     * This attribute can be set and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute,
-     * which supports four types of shapes:\n
-     * 1. Rectangle:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape. \n
-     * .value[1].f32: width of the rectangle.\n
-     * .value[2].f32: height of rectangle.\n
-     * .value[3].f32: width of the rounded corner of the rectangle.\n
-     * .value[4].f32: height of the rounded corner of the rectangle.\n
-     * .value[5]?.f32: radius of the top left corner of the rectangular shape.\n
-     * .value[6]?.f32: radius of the bottom left corner of the rectangular shape.\n
-     * .value[7]?.f32: radius of the top right corner of the rectangular shape.\n
-     * .value[8]?.f32: radius of the bottom right corner of the rectangular shape.\n
-     * ?.object: clipOption of the rectangle. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
-     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is rectangle, and .size must be equal to 1.
-     * 2. Circle:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[1].f32: width of the circle.\n
-     * .value[2].f32: height of the circle.\n
-     * ?.object: clipOption of the circle. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
-     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is circle, and .size must be equal to 1.
-     * 3.Ellipse:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[1].f32: width of the ellipse.\n
-     * .value[2].f32: height of the ellipse.\n
-     * ?.object: clipOption of the ellipse. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
-     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is ellipse, and .size must be equal to 1.
-     * 4. Path:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_PATH</b> for the path shape.\n
-     * .value[1].f32: width of the path.\n
-     * .value[2].f32: height of the path.\n
-     * .string: command for drawing the path.\n
-     * ?.object: clipOption of the path. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
-     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is path, and .size must be equal to 1.
-     * Format of the return value {@link ArkUI_AttributeItem}, which supports four types of shapes: \n
-     * 1. Rectangle:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape. \n
-     * .value[1].f32: width of the rectangle.\n
-     * .value[2].f32: height of rectangle.\n
-     * .value[3].f32: width of the rounded corner of the rectangle.\n
-     * .value[4].f32: height of the rounded corner of the rectangle.\n
-     * .value[5].f32: radius of the top left corner of the rectangular shape; \n
-     * .value[6].f32: radius of the bottom left corner of the rectangular shape; \n
-     * .value[7].f32: radius of the top right corner of the rectangular shape; \n
-     * .value[8].f32: radius of the bottom right corner of the rectangular shape; \n
-     * .value[9]?.f32: horizontal coordinate offset of the rectangle. \n
-     * .value[10]?.f32: vertical coordinate offset of the rectangle. \n
-     * 2. Circle:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[1].f32: width of the circle.\n
-     * .value[2].f32: height of the circle.\n
-     * .value[3]?.f32: horizontal coordinate offset of the circle.\n
-     * .value[4]?.f32: vertical coordinate offset of the circle.\n
-     * 3.Ellipse:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[1].f32: width of the ellipse.\n
-     * .value[2].f32: height of the ellipse.\n
-     * .value[3]?.f32: horizontal coordinate offset of the ellipse.\n
-     * .value[4]?.f32: vertical coordinate offset of the ellipse.\n
-     * 4. Path:\n
-     * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_PATH</b> for the path shape.\n
-     * .value[1].f32: width of the path.\n
-     * .value[2].f32: height of the path.\n
-     * .string: command for drawing the path.\n
+     * @brief 组件上指定形状的裁剪，支持属性设置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * 1.rect类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_RECTANGLE。</li>
+     * <li>.value[1].f32：矩形宽度，单位为vp。</li>
+     * <li>.value[2].f32：矩形高度，单位为vp。</li>
+     * <li>.value[3].f32：矩形圆角宽度，单位为vp。</li>
+     * <li>.value[4].f32：矩形圆角高度，单位为vp。</li>
+     * <li>.value[5]?.f32：矩形形状的左上圆角半径，单位为vp，默认值0。</li>
+     * <li>.value[6]?.f32：矩形形状的左下圆角半径，单位为vp，默认值0。</li>
+     * <li>.value[7]?.f32：矩形形状的右上圆角半径，单位为vp，默认值0。</li>
+     * <li>.value[8]?.f32：矩形形状的右下圆角半径，单位为vp，默认值0。</li>
+     * <li>.object：参数类型为{@link ArkUI_RenderNodeClipOption}，矩形形状的坐标偏移量，在仅传入.object参数时生效。</li>
+     * </ul>
+     * 2.circle类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_CIRCLE。</li>
+     * <li>.value[1].f32：圆形宽度，单位为vp。</li>
+     * <li>.value[2].f32：圆形高度，单位为vp。</li>
+     * <li>.object：参数类型为{@link ArkUI_RenderNodeClipOption}，圆形坐标偏移量，在仅传入.object参数时生效。</li>
+     * </ul>
+     * 3.ellipse类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_ELLIPSE。</li>
+     * <li>.value[1].f32：椭圆形宽度，单位为vp。</li>
+     * <li>.value[2].f32：椭圆形高度，单位为vp。</li>
+     * <li>.object：参数类型为{@link ArkUI_RenderNodeClipOption}，椭圆形坐标偏移量，在仅传入.object参数时生效。</li>
+     * </ul>
+     * 4.path类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_PATH。</li>
+     * <li>.value[1].f32：路径宽度，单位为vp。</li>
+     * <li>.value[2].f32：路径高度，单位为vp。</li>
+     * <li>.string：路径绘制的命令字符串，格式遵循SVG path数据语法，如'M0 0 L100 100 Z'。</li>
+     * <li>.object：参数类型为{@link ArkUI_RenderNodeClipOption}，路径绘制的命令，在仅传入.object参数时生效。</li>
+     * </ul>
+     * **返回：**
+     * 1.rect类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_RECTANGLE。</li>
+     * <li>.value[1].f32：矩形宽度，单位为vp。</li>
+     * <li>.value[2].f32：矩形高度，单位为vp。</li>
+     * <li>.value[3].f32：矩形圆角宽度，单位为vp。</li>
+     * <li>.value[4].f32：矩形圆角高度，单位为vp。</li>
+     * <li>.value[5]?.f32：矩形形状的左上圆角半径，单位为vp。</li>
+     * <li>.value[6]?.f32：矩形形状的左下圆角半径，单位为vp。</li>
+     * <li>.value[7]?.f32：矩形形状的右上圆角半径，单位为vp。</li>
+     * <li>.value[8]?.f32：矩形形状的右下圆角半径，单位为vp。</li>
+     * <li>.value[9]?.f32：矩形形状的横坐标偏移，单位为vp。</li>
+     * <li>.value[10]?.f32：矩形形状的纵坐标偏移，单位为vp。</li>
+     * </ul>
+     * 2.circle类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_CIRCLE。</li>
+     * <li>.value[1].f32：圆形宽度，单位为vp。</li>
+     * <li>.value[2].f32：圆形高度，单位为vp。</li>
+     * <li>.value[3]?.f32：圆形横坐标偏移，单位为vp。</li>
+     * <li>.value[4]?.f32：圆形纵坐标偏移，单位为vp。</li>
+     * </ul>
+     * 3.ellipse类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_ELLIPSE。</li>
+     * <li>.value[1].f32：椭圆形宽度，单位为vp。</li>
+     * <li>.value[2].f32：椭圆形高度，单位为vp。</li>
+     * <li>.value[3]?.f32：椭圆形横坐标偏移，单位为vp。</li>
+     * <li>.value[4]?.f32：椭圆形纵坐标偏移，单位为vp。</li>
+     * </ul>
+     * 4.path类型：
+     * <ul>
+     * <li>.value[0].i32：裁剪类型，参数类型{@link ArkUI_ClipType}，ARKUI_CLIP_TYPE_PATH。</li>
+     * <li>.value[1].f32：路径宽度，单位为vp。</li>
+     * <li>.value[2].f32：路径高度，单位为vp。</li>
+     * <li>.string：路径绘制的命令字符串。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_CLIP_SHAPE,
     /**
-     * @brief Defines the transform attribute, which can be used to translate, rotate, and scale images.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...15].f32: 16 floating-point numbers. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0...15].f32: 16 floating-point numbers. \n
+     * @brief 矩阵变换功能，可对图形进行平移、旋转和缩放等，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0...15].f32：4x4变换矩阵的16个浮点数，用于对图形进行平移、旋转和缩放等矩阵变换，按行优先顺序排列。此时{@link ArkUI_AttributeItem}中的size取值不应为0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0...15].f32：4x4矩阵变换的16个浮点数元素值。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -748,41 +779,46 @@ typedef enum {
      */
     NODE_POSITION,
     /**
-     * @brief Defines the shadow attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: shadow effect. The parameter type is {@link ArkUI_ShadowStyle}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: shadow effect. The parameter type is {@link ArkUI_ShadowStyle}. \n
+     * @brief 阴影效果属性，支持属性设置，属性重置和属性获取接口。
+     * 与NODE_CUSTOM_SHADOW互斥，同一组件只能使用一种阴影属性设置方式，同时设置时后者将覆盖前者。
+     * 如需使用预定义阴影样式请使用NODE_SHADOW，如需自定义阴影参数请使用NODE_CUSTOM_SHADOW。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：设置当前组件阴影效果，参数类型{@link ArkUI_ShadowStyle}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：设置当前组件阴影效果，参数类型{@link ArkUI_ShadowStyle}。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_SHADOW,
     /**
-     * @brief Defines the custom shadow effect. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: blur radius of the shadow, in vp.\n
-     * .value[1]?.i32: whether to enable the coloring strategy. The value <b>1</b> means to enable the coloring
-     * strategy, and <b>0</b> (default value) means the opposite.\n
-     * .value[2]?.f32: offset of the shadow along the x-axis, in px.\n
-     * .value[3]?.f32: offset of the shadow along the y-axis, in px.\n
-     * .value[4]?.i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.\n
-     * .value[5]?.u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * .value[6]?.u32: whether to fill the shadow. The value <b>1</b> means to fill the shadow, and <b>0</b>
-     * means the opposite.\n
-     *
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: blur radius of the shadow, in vp.\n
-     * .value[1].i32: whether to enable the coloring strategy. \n
-     * .value[2].f32: offset of the shadow along the x-axis, in px.\n
-     * .value[3].f32: offset of the shadow along the y-axis, in px.\n
-     * .value[4].i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.\n
-     * .value[5].u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * .value[6].u32: whether to fill the shadow. The value <b>1</b> means to fill the shadow, and <b>0</b>
-     * means the opposite.\n
+     * @brief 自定义阴影效果，与NODE_SHADOW互斥，同一组件只能使用一种阴影属性设置方式，同时设置时后者将覆盖前者。
+     * 如需使用预定义阴影样式请使用NODE_SHADOW，如需自定义阴影参数请使用NODE_CUSTOM_SHADOW。支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0]?.f32：阴影模糊半径，取值范围[0, +∞)，传入负值时返回参数校验失败。单位为px，默认值0.0。</li>
+     * <li>.value[1]?.i32：是否开启智能取色，0代表不开启（使用固定颜色），1代表开启（自动从组件周围取色适配背景），默认不开启。</li>
+     * <li>.value[2]?.f32：阴影X轴偏移量，单位为px，默认值0.0。</li>
+     * <li>.value[3]?.f32：阴影Y轴偏移量，单位为px，默认值0.0。</li>
+     * <li>.value[4]?.i32：阴影类型，参数类型为{@link ArkUI_ShadowType}，默认值为ARKUI_SHADOW_TYPE_COLOR。</li>
+     * <li>.value[5]?.u32：智能取色关闭（.value[1]为0）时表示阴影颜色，0xargb格式，形如0xFFFF0000表示红色，不传入时默认值为0xFF000000（黑色）；智能取色开启（.value[1]为1）时表示颜色策略，取{@link ArkUI_ColorStrategy}枚举值。</li>
+     * <li>.value[6]?.u32：阴影是否内部填充，0表示不填充，1表示填充。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：阴影模糊半径，单位为px。</li>
+     * <li>.value[1].i32：是否开启智能取色，0代表不开启，1代表开启。</li>
+     * <li>.value[2].f32：阴影X轴偏移量，单位为px。</li>
+     * <li>.value[3].f32：阴影Y轴偏移量，单位为px。</li>
+     * <li>.value[4].i32：阴影类型，参数类型为{@link ArkUI_ShadowType}，默认值为ARKUI_SHADOW_TYPE_COLOR。枚举值包括：ARKUI_SHADOW_TYPE_COLOR（颜色阴影）、ARKUI_SHADOW_TYPE_BLUR（模糊阴影）。</li>
+     * <li>.value[5].u32：阴影颜色，0xAARRGGBB格式，形如0xFFFF0000表示红色。</li>
+     * <li>.value[6].u32：阴影是否内部填充，0表示不填充，1表示填充。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -820,188 +856,200 @@ typedef enum {
      */
     NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,
     /**
-     * @brief Defines the background blur attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * @brief 设置组件背景模糊样式，模糊效果应用于组件背景层与内容层之间，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
      * <ul>
-     * <li>.value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}.</li>
-     * <li>.value[1]?.i32: color mode. The value is an enum of {@link ArkUI_ColorMode}.</li>
-     * <li>.value[2]?.i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}.</li>
-     * <li>.value[3]?.f32: blur degree. The value range is [0.0, 1.0].</li>
-     * <li>.value[4]?.f32: start boundary of grayscale blur.</li>
-     * <li>.value[5]?.f32: end boundary of grayscale blur.</li>
+     * <li>.value[0].i32：表示模糊类型，取{@link ArkUI_BlurStyle}枚举值。</li>
+     * <li>.value[1]?.i32：表示深浅色模式，取{@link ArkUI_ColorMode}枚举值。不传入时默认跟随系统深浅色模式设置。</li>
+     * <li>.value[2]?.i32：表示取色模式，取{@link ArkUI_AdaptiveColor}枚举值。不传入时默认取色模式为自适应取色，当需要指定固定取色方式时传入此参数。</li>
+     * <li>.value[3]?.f32：表示模糊效果程度，取[0.0,1.0]范围内的值。0.0表示无模糊，1.0表示最大模糊效果。不传入时默认值为1.0，当需要调整内容模糊强度时传入此参数。</li>
+     * <li>.value[4]?.f32：表示灰阶模糊起始边界，对黑色提亮到哪个位置，有效值范围0-127。参数值越大调整效果越明显。</li>
+     * <li>.value[5]?.f32：表示灰阶模糊终点边界，对白色压暗到哪个位置，有效值范围0-127。参数值越大调整效果越明显。</li>
      * </ul>
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * **返回：**
      * <ul>
-     * <li>.value[0].i32: blue type. The value is an enum of {@link ArkUI_BlurStyle}.</li>
-     * <li>.value[1].i32: color mode. The value is an enum of {@link ArkUI_ColorMode}.</li>
-     * <li>.value[2].i32: adaptive color mode. The value is an enum of {@link ArkUI_AdaptiveColor}.</li>
-     * <li>.value[3].f32: blur degree. The value range is [0.0, 1.0].</li>
-     * <li>.value[4].f32: start boundary of grayscale blur.</li>
-     * <li>.value[5].f32: end boundary of grayscale blur.</li>
+     * <li>.value[0].i32：表示模糊类型，取{@link ArkUI_BlurStyle}枚举值。</li>
+     * <li>.value[1].i32：表示深浅色模式，取{@link ArkUI_ColorMode}枚举值。枚举值包括：ARKUI_COLOR_MODE_LIGHT（浅色模式）、ARKUI_COLOR_MODE_DARK（深色模式）。</li>
+     * <li>.value[2].i32：表示取色模式，取{@link ArkUI_AdaptiveColor}枚举值。</li>
+     * <li>.value[3].f32：表示模糊效果程度，取[0.0,1.0]范围内的值。</li>
+     * <li>.value[4].f32：表示灰阶模糊起始边界。</li>
+     * <li>.value[5].f32：表示灰阶模糊终点边界。</li>
      * </ul>
      *
      * @ingroup Background Display [背景显示]
      */
     NODE_BACKGROUND_BLUR_STYLE,
     /**
-     * @brief Defines the transform center attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X coordinate of the center point, in vp.\n
-     * .value[1]?.f32: Y coordinate of the center point, in vp.\n
-     * .value[2]?.f32: Z coordinate of the center point, in vp.\n
-     * .value[3]?.f32 : X coordinate of the center point, expressed in a number that represents a percentage.
-     * For example, 0.2 indicates 20%. This attribute overwrites value[0].f32. The default value is <b>0.5f</b>. \n
-     * .value[4]?.f32 : Y coordinate of the center point, expressed in a number that represents a percentage.
-     * For example, 0.2 indicates 20%. This attribute overwrites value[1].f32. The default value is <b>0.5f</b>. \n
-     * .value[5]?.f32 : Z coordinate of the center point, expressed in a number that represents a percentage.
-     * For example, 0.2 indicates 20%. This attribute overwrites value[2].f32. The default value is <b>0.0f</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X coordinate of the center point, in vp.\n
-     * .value[1].f32: Y coordinate of the center point, in vp.\n
-     * .value[2].f32: Z coordinate of the center point, in vp.\n
-     * Note: If the coordinate is expressed in a number that represents a percentage, the attribute obtaining API
-     * returns the calculated value in vp.
+     * @brief 图形变换和转场的中心点属性，影响旋转（NODE_ROTATE/NODE_ROTATE_ANGLE/NODE_ROTATE_TRANSITION）、缩放（NODE_SCALE/NODE_SCALE_TRANSITION）、
+     * 平移（NODE_TRANSLATE/NODE_TRANSLATE_TRANSITION）等变换和转场属性的中心点行为，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0]?.f32：表示中心点X轴坐标值，单位为vp，默认值0.0。</li>
+     * <li>.value[1]?.f32：表示中心点Y轴坐标，单位为vp，默认值0.0。</li>
+     * <li>.value[2]?.f32：表示中心点Z轴坐标，单位为vp，默认值0.0。</li>
+     * <li>.value[3]?.f32：表示中心点X轴坐标的百分比位置，取值范围[0, 1]，如0.2表示百分之20的位置，该属性覆盖value[0].f32，默认值：0.5f。超出范围时返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+     * <li>.value[4]?.f32：表示中心点Y轴坐标的百分比位置，取值范围[0, 1]，如0.2表示百分之20的位置，该属性覆盖value[1].f32，默认值：0.5f。超出范围时返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+     * <li>.value[5]?.f32：表示中心点Z轴坐标的百分比位置，取值范围[0, 1]，如0.2表示百分之20的位置，该属性覆盖value[2].f32，默认值：0.0f。超出范围时返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：表示中心点X轴坐标，单位为vp。</li>
+     * <li>.value[1].f32：表示中心点Y轴坐标，单位为vp。</li>
+     * <li>.value[2].f32：表示中心点Z轴坐标，单位为vp。注：如果设置坐标百分比位置，属性获取方法返回计算后的以vp为单位的值。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_TRANSFORM_CENTER,
     /**
-     * @brief Defines the transition opacity attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: opacity values of the start and end points.\n
-     * .value[1].i32: animation duration, in milliseconds.\n
-     * .value[2].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n
-     * .value[3]?.i32: animation delay duration, in milliseconds.\n
-     * .value[4]?.i32: number of times that the animation is played.\n
-     * .value[5]?.i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}.\n
-     * .value[6]?.f32: animation playback speed.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: opacity values of the start and end points.\n
-     * .value[1].i32: animation duration, in milliseconds.\n
-     * .value[2].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n
-     * .value[3].i32: animation delay duration, in milliseconds. \n
-     * .value[4].i32: number of times that the animation is played. \n
-     * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * .value[6].f32: animation playback speed. \n
+     * @brief 转场时的透明度效果属性，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：表示转场结束时（即终点）的透明度值，转场将从当前透明度过渡到该值。</li>
+     * <li>.value[1].i32：表示动画时长，单位ms，取值需大于0。</li>
+     * <li>.value[2].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[3]?.i32：表示动画延迟时长，单位ms。不传入时默认值为0（无延迟），当需要在动画开始前等待一段时间时传入此参数。</li>
+     * <li>.value[4]?.i32：表示动画播放次数。不传入时默认值为1（单次播放），当需要动画重复播放时传入此参数。</li>
+     * <li>.value[5]?.i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。默认值为ARKUI_ANIMATION_PLAY_MODE_NORMAL，当需要反向播放、循环播放等特殊播放模式时传入此参数。</li>
+     * <li>.value[6]?.f32：表示动画播放速度。不传入时默认值为1.0（正常速度），当需要加速或减速播放动画时传入此参数，大于1.0为加速，小于1.0为减速。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：表示起始和终点的透明度值，取值范围[0, 1]。超出范围时自动修正为边界值。</li>
+     * <li>.value[1].i32：表示动画时长，单位ms。</li>
+     * <li>.value[2].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[3].i32：表示动画延迟时长，单位ms。</li>
+     * <li>.value[4].i32：表示动画播放次数。</li>
+     * <li>.value[5].i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。</li>
+     * <li>.value[6].f32：表示动画播放速度。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      */
     NODE_OPACITY_TRANSITION,
     /**
-     * @brief Defines the transition rotation attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: X-component of the rotation vector. \n
-     * .value[1].f32: Y-component of the rotation vector. \n
-     * .value[2].f32: Z-component of the rotation vector \n
-     * .value[3].f32: angle. \n
-     * .value[4].f32: line of sight. The default value is <b>0.0f</b>. \n
-     * .value[5].i32: animation duration, in milliseconds. \n
-     * .value[6].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n \n
-     * .value[7]?.i32: animation delay duration, in milliseconds. \n
-     * .value[8]?.i32: number of times that the animation is played. \n
-     * .value[9]?.i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * .value[10]?.f32: animation playback speed. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-component of the rotation vector. \n
-     * .value[1].f32: Y-component of the rotation vector. \n
-     * .value[2].f32: Z-component of the rotation vector \n
-     * .value[3].f32: angle. \n
-     * .value[4].f32: line of sight. \n
-     * .value[5].i32: animation duration, in milliseconds. \n
-     * .value[6].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n \n
-     * .value[7].i32: animation delay duration, in milliseconds. \n
-     * .value[8].i32: number of times that the animation is played. \n
-     * .value[9].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * .value[10].f32: animation playback speed. \n
+     * @brief 转场时的旋转效果属性，仅在组件插入和删除时生效。支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：表示横向旋转分量。</li>
+     * <li>.value[1].f32：表示纵向的旋转分量。</li>
+     * <li>.value[2].f32：表示竖向的旋转分量。</li>
+     * <li>.value[3].f32：表示角度，单位为度（°）。</li>
+     * <li>.value[4].f32：表示视距，即视点到z=0平面的距离，取值范围[0, +∞)，传入负值时按0处理。单位vp，默认值0.0。</li>
+     * <li>.value[5].i32：表示动画时长，单位ms。</li>
+     * <li>.value[6].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[7]?.i32：表示动画延迟时长，单位ms。不传入时默认值为0（无延迟），当需要在动画开始前等待一段时间时传入此参数。</li>
+     * <li>.value[8]?.i32：表示动画播放次数。</li>
+     * <li>.value[9]?.i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。默认值为ARKUI_ANIMATION_PLAY_MODE_NORMAL。</li>
+     * <li>.value[10]?.f32：表示动画播放速度。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：表示横向旋转分量。</li>
+     * <li>.value[1].f32：表示纵向的旋转分量。</li>
+     * <li>.value[2].f32：表示竖向的旋转分量。</li>
+     * <li>.value[3].f32：表示角度，单位为度（°）。</li>
+     * <li>.value[4].f32：表示视距，单位为vp。</li>
+     * <li>.value[5].i32：表示动画时长，单位ms。</li>
+     * <li>.value[6].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[7].i32：表示动画延迟时长，单位ms。</li>
+     * <li>.value[8].i32：表示动画播放次数。</li>
+     * <li>.value[9].i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。</li>
+     * <li>.value[10].f32：表示动画播放速度。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      */
     NODE_ROTATE_TRANSITION,
     /**
-     * @brief Defines the transition scaling attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: scale factor along the x-axis. \n
-     * .value[1].f32: scale factor along the y-axis. \n
-     * .value[2].f32: scale factor along the z-axis. \n
-     * .value[3].i32: animation duration, in milliseconds. \n
-     * .value[4].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n \n
-     * .value[5]?.i32: animation delay duration, in milliseconds. \n
-     * .value[6]?.i32: number of times that the animation is played. \n
-     * .value[7]?.i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * .value[8]?.f32: animation playback speed. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: scale factor along the x-axis. \n
-     * .value[1].f32: scale factor along the y-axis. \n
-     * .value[2].f32: scale factor along the z-axis. \n
-     * .value[3].i32: animation duration, in milliseconds. \n
-     * .value[4].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n \n
-     * .value[5].i32: animation delay duration, in milliseconds. \n
-     * .value[6].i32: number of times that the animation is played. \n
-     * .value[7].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * .value[8].f32: animation playback speed. \n
+     * @brief 转场时的缩放效果属性，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：横向放大倍数，默认值1.0。</li>
+     * <li>.value[1].f32：纵向放大倍数，默认值1.0。</li>
+     * <li>.value[2].f32：竖向放大倍数，默认值1.0。</li>
+     * <li>.value[3].i32：表示动画时长，单位ms。</li>
+     * <li>.value[4].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[5]?.i32：表示动画延迟时长，单位ms。不传入时默认值为0（无延迟），当需要在动画开始前等待一段时间时传入此参数。</li>
+     * <li>.value[6]?.i32：表示动画播放次数。</li>
+     * <li>.value[7]?.i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。默认值为ARKUI_ANIMATION_PLAY_MODE_NORMAL。</li>
+     * <li>.value[8]?.f32：表示动画播放速度。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：横向放大倍数。</li>
+     * <li>.value[1].f32：纵向放大倍数。</li>
+     * <li>.value[2].f32：竖向放大倍数。</li>
+     * <li>.value[3].i32：表示动画时长，单位ms。</li>
+     * <li>.value[4].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[5].i32：表示动画延迟时长，单位ms。</li>
+     * <li>.value[6].i32：表示动画播放次数。</li>
+     * <li>.value[7].i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。</li>
+     * <li>.value[8].f32：表示动画播放速度。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      */
     NODE_SCALE_TRANSITION,
     /**
-     * @brief Defines the transition translation attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].f32: translation distance along the x-axis, in vp.\n
-     * value[1].f32: translation distance along the y-axis, in vp.\n
-     * value[2].f32: translation distance along the z-axis, in vp.\n
-     * value[3].i32: animation duration, in milliseconds. \n
-     * value[4].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n \n
-     * value[5]?.i32: animation delay duration, in milliseconds. \n
-     * value[6]?.i32: number of times that the animation is played. \n
-     * value[7]?.i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * value[8]?.f32: animation playback speed. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].f32: translation distance along the x-axis, in vp.\n
-     * value[1].f32: translation distance along the y-axis, in vp.\n
-     * value[2].f32: translation distance along the z-axis, in vp.\n
-     * value[3].i32: animation duration, in milliseconds. \n
-     * value[4].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n \n
-     * value[5].i32: animation delay duration, in milliseconds. \n
-     * value[6].i32: number of times that the animation is played. \n
-     * value[7].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * value[8].f32: animation playback speed. \n
+     * @brief 转场时的平移效果属性，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：表示横向平移距离值，单位为vp。默认值为0.0vp。</li>
+     * <li>.value[1].f32：表示纵向平移距离值，单位为vp。默认值为0.0vp。</li>
+     * <li>.value[2].f32：表示竖向平移距离值，单位为vp。默认值为0.0vp。</li>
+     * <li>.value[3].i32：表示动画时长，单位ms。</li>
+     * <li>.value[4].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[5]?.i32：表示动画延迟时长，单位ms。不传入时默认值为0（无延迟），当需要在动画开始前等待一段时间时传入此参数。</li>
+     * <li>.value[6]?.i32：表示动画播放次数。</li>
+     * <li>.value[7]?.i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。默认值为ARKUI_ANIMATION_PLAY_MODE_NORMAL。</li>
+     * <li>.value[8]?.f32：表示动画播放速度。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：表示横向平移距离值，单位为vp。</li>
+     * <li>.value[1].f32：表示纵向平移距离值，单位为vp。</li>
+     * <li>.value[2].f32：表示竖向平移距离值，单位为vp。</li>
+     * <li>.value[3].i32：表示动画时长，单位ms。</li>
+     * <li>.value[4].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[5].i32：表示动画延迟时长，单位ms。</li>
+     * <li>.value[6].i32：表示动画播放次数。</li>
+     * <li>.value[7].i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。</li>
+     * <li>.value[8].f32：表示动画播放速度。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      */
     NODE_TRANSLATE_TRANSITION,
     /**
-     * @brief Defines the slide-in and slide-out of the component from the screen edge during transition.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_TransitionEdge}. \n
-     * .value[1].i32: animation duration, in milliseconds.\n
-     * .value[2].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n
-     * .value[3]?.i32: animation delay duration, in milliseconds.\n
-     * .value[4]?.i32: number of times that the animation is played.\n
-     * .value[5]?.i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}.\n
-     * .value[6]?.f32: animation playback speed.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_TransitionEdge}. \n
-     * .value[1].i32: animation duration, in milliseconds.\n
-     * .value[2].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n
-     * .value[3].i32: animation delay duration, in milliseconds. \n
-     * .value[4].i32: number of times that the animation is played. \n
-     * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
-     * .value[6].f32: animation playback speed. \n
+     * @brief 转场时从屏幕边缘滑入和滑出的效果属性，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：转场时组件滑入滑出的方向，参数类型{@link ArkUI_TransitionEdge}，不同枚举值决定组件从屏幕的哪个边缘滑入和滑出。</li>
+     * <li>.value[1].i32：表示动画时长，单位ms。</li>
+     * <li>.value[2].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[3]?.i32：表示动画延迟时长，单位ms。不传入时默认值为0（无延迟），当需要在动画开始前等待一段时间时传入此参数。</li>
+     * <li>.value[4]?.i32：表示动画播放次数。</li>
+     * <li>.value[5]?.i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。默认值为ARKUI_ANIMATION_PLAY_MODE_NORMAL。</li>
+     * <li>.value[6]?.f32：表示动画播放速度。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_TransitionEdge}。</li>
+     * <li>.value[1].i32：表示动画时长，单位ms。</li>
+     * <li>.value[2].i32：表示动画曲线类型，取{@link ArkUI_AnimationCurve}枚举值。</li>
+     * <li>.value[3].i32：表示动画延迟时长，单位ms。</li>
+     * <li>.value[4].i32：表示动画播放次数。</li>
+     * <li>.value[5].i32：表示动画播放模式，取{@link ArkUI_AnimationPlayMode}枚举值。</li>
+     * <li>.value[6].f32：表示动画播放速度。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      */
@@ -1093,183 +1141,189 @@ typedef enum {
      */
     NODE_OVERLAY,
     /**
-     * @brief Defines the sweep gradient effect.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X coordinate of the sweep gradient center relative to the upper left corner of the component.\n
-     * .value[1]?.f32: Y coordinate of the sweep gradient center relative to the upper left corner of the component.\n
-     * .value[2]?.f32: start point of the sweep gradient. The default value is <b>0</b>. \n
-     * .value[3]?.f32: end point of the sweep gradient. The default value is <b>0</b>. \n
-     * .value[4]?.f32: rotation angle of the sweep gradient. The default value is <b>0</b>. \n
-     * .value[5]?.i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated,
-     * and <b>0</b> means the opposite.\n
-     * .object: array of color stops, each of which consists of a color and its stop position. Invalid colors are
-     * automatically skipped.\n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X coordinate of the sweep gradient center relative to the upper left corner of the component. \n
-     * .value[1].f32: Y coordinate of the sweep gradient center relative to the upper left corner of the component. \n
-     * .value[2].f32: start point of the sweep gradient. The default value is <b>0</b>. \n
-     * .value[3].f32: end point of the sweep gradient. The default value is <b>0</b>. \n
-     * .value[4].f32: rotation angle of the sweep gradient. The default value is <b>0</b>. \n
-     * .value[5].i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated,
-     * and <b>0</b> means the opposite.\n
-     * .object: array of color stops, each of which consists of a color and its stop position. Invalid colors are
-     * automatically skipped.\n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * @brief 角度渐变效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0]?.f32：为角度渐变的中心点，即相对于当前组件左上角的X轴坐标，单位为vp，默认值为组件宽度的50%。</li>
+     * <li>.value[1]?.f32：为角度渐变的中心点，即相对于当前组件左上角的Y轴坐标，单位为vp。不传入时默认为组件垂直中心位置，当需要将渐变中心偏移到特定位置时传入此参数。</li>
+     * <li>.value[2]?.f32：角度渐变的起点，单位为度（°），默认值0。</li>
+     * <li>.value[3]?.f32：角度渐变的终点，单位为度（°），默认值0。</li>
+     * <li>.value[4]?.f32：角度渐变的旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[5]?.i32：是否对渐变颜色重复着色，0表示不重复着色，1表示重复着色。不传入时默认值为0（不重复着色），当需要颜色循环重复填充时传入1。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色。</li>
+     * <li>stops：渐变位置。</li>
+     * <li>size：颜色个数。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：为角度渐变的中心点，即相对于当前组件左上角的坐标，X轴坐标。</li>
+     * <li>.value[1].f32：为角度渐变的中心点，即相对于当前组件左上角的坐标，Y轴坐标。</li>
+     * <li>.value[2].f32：角度渐变的起点，单位为度（°），默认值0。</li>
+     * <li>.value[3].f32：角度渐变的终点，单位为度（°），默认值0。</li>
+     * <li>.value[4].f32：角度渐变的旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[5].i32：是否对渐变颜色重复着色，0表示不重复着色，1表示重复着色。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置不符合颜色格式要求的颜色值会被跳过。</li>
+     * <li>colors：渐变色颜色。</li>
+     * <li>stops：渐变位置。</li>
+     * <li>size：颜色个数。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_SWEEP_GRADIENT,
     /**
-     * @brief Defines the radial gradient effect.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0]?.f32: X coordinate of the radial gradient center relative to the upper left corner of the component. \n
-     * .value[1]?.f32: Y coordinate of the radial gradient center relative to the upper left corner of the component. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated,
-     * and <b>0</b> means the opposite. \n
-     * .object: array of color stops, each of which consists of a color and its stop position. Invalid colors are
-     * automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X coordinate of the radial gradient center relative to the upper left corner of the component. \n
-     * .value[1].f32: Y coordinate of the radial gradient center relative to the upper left corner of the component. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated,
-     * and <b>0</b> means the opposite.\n
-     * .object: array of color stops, each of which consists of a color and its stop position. Invalid colors are
-     * automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * @brief 径向渐变效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0]?.f32：为径向渐变的中心点，即相对于当前组件左上角的X轴坐标。</li>
+     * <li>.value[1]?.f32：为径向渐变的中心点，即相对于当前组件左上角的Y轴坐标。</li>
+     * <li>.value[2]?.f32：径向渐变的半径，取值范围[0, +∞)，默认值0。</li>
+     * <li>.value[3]?.i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。不传入时默认值为0（不重复着色）。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色。</li>
+     * <li>stops：渐变位置。</li>
+     * <li>size：颜色个数。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：为径向渐变的中心点，即相对于当前组件左上角的坐标，X轴坐标。</li>
+     * <li>.value[1].f32：为径向渐变的中心点，即相对于当前组件左上角的坐标，Y轴坐标。</li>
+     * <li>.value[2].f32：径向渐变的半径，默认值0。</li>
+     * <li>.value[3].i32：为渐变的颜色重复着色，false（0）表示不重复着色，true（1）表示重复着色。</li>
+     * <li>.object：参数类型为{@link ArkUI_ColorStop}。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。</li>
+     * <li>colors：渐变色颜色。</li>
+     * <li>stops：渐变位置。</li>
+     * <li>size：颜色个数。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_RADIAL_GRADIENT,
     /**
-     * @brief Adds a mask of the specified shape to the component.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute, which supports five types of
-     * shapes:\n
-     * 1. Rectangle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
-     * The value is <b>ARKUI_MASK_TYPE_RECTANGLE</b> for the rectangle shape.\n
-     * .value[4].f32: width of the rectangle.\n
-     * .value[5].f32: height of the rectangle.\n
-     * .value[6].f32: width of the rounded corner of the rectangle.\n
-     * .value[7].f32: height of the rounded corner of the rectangle.\n
-     * .value[8]?.f32: radius of the top left corner of the rectangular shape.\n
-     * .value[9]?.f32: radius of the bottom left corner of the rectangular shape.\n
-     * .value[10]?.f32: radius of the top right corner of the rectangular shape.\n
-     * .value[11]?.f32: radius of the bottom right corner of the rectangular shape.\n
-     * 2. Circle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
-     * The value is <b>ARKUI_MASK_TYPE_CIRCLE</b> for the circle shape.\n
-     * .value[4].f32: width of the circle.\n
-     * .value[5].f32: height of the circle.\n
-     * 3. Ellipse:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-      * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
-      * The value is <b>ARKUI_MASK_TYPE_ELLIPSE</b> for the ellipse shape.\n
-     * .value[4].f32: width of the ellipse.\n
-     * .value[5].f32: height of the ellipse.\n
-     * 4. Path:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
-     * The value is <b>ARKUI_MASK_TYPE_PATH</b> for the path shape.\n
-     * .value[4].f32: width of the path.\n
-     * .value[5].f32: height of the path.\n
-     * .string: command for drawing the path.\n
-     * 5. Progress:\n
-     * .value[0].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
-     * The value is <b>ARKUI_MASK_TYPE_PROGRESS</b> for the progress shape.\n
-     * .value[1].f32: current value of the progress indicator.\n
-     * .value[2].f32: maximum value of the progress indicator.\n
-     * .value[3].u32: color of the progress indicator, in 0xARGB format.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}, which supports five types of shapes:\n
-     * 1. Rectangle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type.\n
-     * .value[4].f32: width of the rectangle.\n
-     * .value[5].f32: height of the rectangle.\n
-     * .value[6].f32: width of the rounded corner of the rectangle.\n
-     * .value[7].f32: height of the rounded corner of the rectangle.\n
-     * .value[8].f32: radius of the top left corner of the rectangular shape.\n
-     * .value[9].f32: radius of the bottom left corner of the rectangular shape.\n
-     * .value[10].f32: radius of the top right corner of the rectangular shape.\n
-     * .value[11].f32: radius of the bottom right corner of the rectangular shape.\n
-     * 2. Circle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type.\n
-     * .value[4].f32: width of the circle.\n
-     * .value[5].f32: height of the circle.\n
-     * 3. Ellipse:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type.\n
-     * .value[4].f32: width of the ellipse.\n
-     * .value[5].f32: height of the ellipse.\n
-     * 4. Path:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
-     * .value[2].f32: stroke width, in vp. \n
-     * .value[3].i32: mask type.\n
-     * .value[4].f32: width of the path.\n
-     * .value[5].f32: height of the path.\n
-     * .string: command for drawing the path.\n
-     * 5. Progress:\n
-     * .value[0].i32: mask type.\n
-     * .value[1].f32: current value of the progress indicator.\n
-     * .value[2].f32: maximum value of the progress indicator.\n
-     * .value[3].u32: color of the progress indicator.\n
+     * @brief 组件上加上指定形状的遮罩，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * 1.rect类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_RECTANGLE。</li>
+     * <li>.value[4].f32：矩形宽度，单位为vp。</li>
+     * <li>.value[5].f32：矩形高度，单位为vp。</li>
+     * <li>.value[6].f32：矩形圆角宽度，单位为vp。</li>
+     * <li>.value[7].f32：矩形圆角高度，单位为vp。</li>
+     * <li>.value[8]?.f32：矩形形状的左上圆角半径，单位为vp，默认值0。</li>
+     * <li>.value[9]?.f32：矩形形状的左下圆角半径，单位为vp，默认值0。</li>
+     * <li>.value[10]?.f32：矩形形状的右上圆角半径，单位为vp，默认值0。</li>
+     * <li>.value[11]?.f32：矩形形状的右下圆角半径，单位为vp，默认值0。</li>
+     * </ul>
+     * 2.circle类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_CIRCLE。</li>
+     * <li>.value[4].f32：圆形宽度，单位为vp。</li>
+     * <li>.value[5].f32：圆形高度，单位为vp。</li>
+     * </ul>
+     * 3.ellipse类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_ELLIPSE。</li>
+     * <li>.value[4].f32：椭圆形宽度，单位为vp。</li>
+     * <li>.value[5].f32：椭圆形高度，单位为vp。</li>
+     * </ul>
+     * 4.path类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_PATH。</li>
+     * <li>.value[4].f32：路径宽度，单位为vp。</li>
+     * <li>.value[5].f32：路径高度，单位为vp。</li>
+     * <li>.string：路径绘制的命令字符串，格式遵循SVG path数据语法，如'M0 0 L100 100 Z'。</li>
+     * </ul>
+     * 5.progress类型：
+     * <ul>
+     * <li>.value[0].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_PROGRESS。</li>
+     * <li>.value[1].f32：进度遮罩的当前值。</li>
+     * <li>.value[2].f32：进度遮罩的最大值。</li>
+     * <li>.value[3].u32：进度遮罩的颜色。</li>
+     * </ul>
+     * **返回：**
+     * 1.rect类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型。</li>
+     * <li>.value[4].f32：矩形宽度，单位为vp。</li>
+     * <li>.value[5].f32：矩形高度，单位为vp。</li>
+     * <li>.value[6].f32：矩形圆角宽度，单位为vp。</li>
+     * <li>.value[7].f32：矩形圆角高度，单位为vp。</li>
+     * <li>.value[8]?.f32：矩形形状的左上圆角半径，单位为vp。</li>
+     * <li>.value[9]?.f32：矩形形状的左下圆角半径，单位为vp。</li>
+     * <li>.value[10]?.f32：矩形形状的右上圆角半径，单位为vp。</li>
+     * <li>.value[11]?.f32：矩形形状的右下圆角半径，单位为vp。</li>
+     * </ul>
+     * 2.circle类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型。</li>
+     * <li>.value[4].f32：圆形宽度，单位为vp。</li>
+     * <li>.value[5].f32：圆形高度，单位为vp。</li>
+     * </ul>
+     * 3.ellipse类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型。</li>
+     * <li>.value[4].f32：椭圆形宽度，单位为vp。</li>
+     * <li>.value[5].f32：椭圆形高度，单位为vp。</li>
+     * </ul>
+     * 4.path类型：
+     * <ul>
+     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
+     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[2].f32：描边宽度，单位为vp。</li>
+     * <li>.value[3].i32：遮罩类型。</li>
+     * <li>.value[4].f32：路径宽度，单位为vp。</li>
+     * <li>.value[5].f32：路径高度，单位为vp。</li>
+     * <li>.string：路径绘制的命令字符串。</li>
+     * </ul>
+     * 5.progress类型：
+     * <ul>
+     * <li>.value[0].i32：遮罩类型。</li>
+     * <li>.value[1].f32：进度遮罩的当前值。</li>
+     * <li>.value[2].f32：进度遮罩的最大值。</li>
+     * <li>.value[3].u32：进度遮罩的颜色。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_MASK,
     /**
-     * @brief Blends the component's background with the content of the component's child node.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
-     * <b>ARKUI_BLEND_MODE_NONE</b>. \n
-     * .value[1].?i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
-     * <b>ARKUI_BLEND_MODE_NONE</b>. \n
-     * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
+     * @brief 当前控件背景与子节点内容进行混合，用于实现叠加透明效果、颜色混合等视觉合成场景，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：控制当前组件的混合模式类型，参数类型为{@link ArkUI_BlendMode}，默认值为ARKUI_BLEND_MODE_NONE。</li>
+     * <li>.value[1]?.i32：blendMode实现方式是否离屏，参数类型{@link ArkUI_BlendApplyType}，默认值为BLEND_APPLY_TYPE_FAST。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：控制当前组件的混合模式类型，参数类型{@link ArkUI_BlendMode}，默认值为ARKUI_BLEND_MODE_NONE。</li>
+     * <li>.value[1].i32：blendMode实现方式是否离屏，参数类型为{@link ArkUI_BlendApplyType}，默认值为BLEND_APPLY_TYPE_FAST。枚举值包括：BLEND_APPLY_TYPE_FAST（快速实现，非离屏）、BLEND_APPLY_TYPE_OFFSCREEN（离屏实现）。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -1312,69 +1366,77 @@ typedef enum {
      */
     NODE_CONSTRAINT_SIZE,
     /**
-     * @brief Defines the grayscale effect.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: grayscale conversion ratio. The value ranges from 0 to 1.
-     * For example, 0.5 indicates a 50% grayscale conversion ratio. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: grayscale conversion ratio. The value ranges from 0 to 1.\n
+     * @brief 灰度效果属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：灰度转换比例，范围0-1之间，默认值为0，比如0.5指按照50%进行灰度处理。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：灰度转换比例，范围0-1之间。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_GRAY_SCALE,
     /**
-     * @brief Inverts the image.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: image inversion ratio. The value ranges from 0 to 1.
-     * For example, 0.5 indicates a 50% image inversion ratio.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: image inversion ratio. The value ranges from 0 to 1.\n
+     * @brief 反转输入的图像比例属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：图像反转比例，范围0-1之间，默认值为0，比如0.5指按照50%进行反转处理。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：图像反转比例，范围0-1之间。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_INVERT,
     /**
-     * @brief Defines the sepia conversion ratio.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: sepia conversion ratio. The value ranges from 0 to 1.
-     * For example, 0.5 indicates that a 50% sepia conversion ratio.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: sepia conversion ratio. The value ranges from 0 to 1.\n
+     * @brief 图像转换为深褐色比例属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：图像转换为深褐色比例，范围0-1之间，默认值为0，比如0.5指按照50%进行深褐色处理。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：图像转换为深褐色比例，范围0-1之间。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_SEPIA,
     /**
-     * @brief Defines the contrast attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: contrast. If the value is <b>1</b>, the source image is displayed.
-     * A larger value indicates a higher contrast. Value range: [0, 10).\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: contrast. Value range: [0, 10).\n
+     * @brief 对比度属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：对比度，等于1时为原图，越大则对比度越高，默认值为1，取值范围：[0, 10)，超出范围时返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：对比度，取值范围：[0, 10)。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_CONTRAST,
     /**
-     * @brief Defines the foreground color attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * There are two formats of {@link ArkUI_AttributeItem} for setting the attribute value:\n
-     * 1: .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * 2: .value[0].i32: color enum {@link ArkUI_ColorStrategy}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format.\n
+     * @brief 前景颜色属性，支持属性设置和属性获取接口。属性重置接口无效果，因前景颜色为不可自动恢复默认值的属性类型，重置操作不会改变已设置的前景颜色。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xAARRGGBB类型，如0xFFFF0000表示红色，默认值为0xFF000000。用于直接指定颜色值。</li>
+     * <li>.value[0].i32：颜色数值枚举{@link ArkUI_ColorStrategy}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xargb类型。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -1643,19 +1705,22 @@ typedef enum {
      */
     NODE_DISPLAY_PRIORITY,
     /**
-     * @brief Sets the thickness of an element's outline.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: thickness of the left outline. \n
-     * .value[1].f32: thickness of the top outline. \n
-     * .value[2].f32: thickness of the right outline. \n
-     * .value[3].f32: thickness of the bottom outline. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: thickness of the left outline. \n
-     * .value[1].f32: thickness of the top outline. \n
-     * .value[2].f32: thickness of the right outline. \n
-     * .value[3].f32: thickness of the bottom outline. \n
+     * @brief 设置元素的外描边宽度，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：左侧外描边宽度，单位为vp。</li>
+     * <li>.value[1].f32：上侧外描边宽度，单位为vp。</li>
+     * <li>.value[2].f32：右侧外描边宽度，单位为vp。</li>
+     * <li>.value[3].f32：下侧外描边宽度，单位为vp。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：左侧外描边宽度，单位为vp。</li>
+     * <li>.value[1].f32：上侧外描边宽度，单位为vp。</li>
+     * <li>.value[2].f32：右侧外描边宽度，单位为vp。</li>
+     * <li>.value[3].f32：下侧外描边宽度，单位为vp。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -1746,30 +1811,21 @@ typedef enum {
     NODE_MARGIN_PERCENT,
 
     /**
-      * @brief The implicit shared element transition within the component supports attribute setting,
-      * attribute reset, and attribute acquisition interfaces.
-      *
-      * Attribute setting method parameter {@link ArkUI_AttributeItem} format: \n
-      * .value[0]?.i32: The parameter type is 1 or 0. 2 components that share element bindings,
-      * Whether to continue to participate in the shared element animation when the appearance element is not deleted,
-      * the default is false, and the original position will remain unchanged if not involved. \n
-      * .string is used to set the binding relationship. Set the id to "" to
-      * clear the binding relationship to avoid participating in sharing behavior. \n
-      * The id can be changed and the binding relationship re-established.
-      * The same ID can only be bound to two components and they are in/out roles of different types.
-      * Multiple components cannot be bound to the same id. \n
-      *\n
-      * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-      * .value[0].i32: The parameter type is 1 or 0. 2 components that share element bindings,
-      * Whether to continue to participate in the shared element animation when the appearance element is not deleted,
-      * the default is not false, if not involved, the original position will remain unchanged. \n
-      * .string is used to set the binding relationship. Set the id to "" to
-      * clear the binding relationship to avoid participating in sharing behavior. \n
-      * The id can be changed and the binding relationship re-established.
-      * The same ID can only be bound to two components and they are in/out roles of different types.
-      * Multiple components cannot be bound to the same id. \n
+     * @brief 组件内隐式共享元素转场（转场在组件插入和删除时自动触发），支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0]?.i32：参数类型为1或者0。共享元素绑定的2个组件，针对出场元素未进行删除时是否要继续参与共享元素动画，默认为false，不参与保持原始位置不动。</li>
+     * <li>.string：用于设置绑定关系，id置""清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定，且两个组件必须分别为in和out两种不同类型的角色，不能多个组件绑定同一个id。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：取值为1或0。</li>
+     * <li>.string：用于设置绑定关系，id置""清除绑定关系避免参与共享行为，id可更换重新建立绑定关系。同一个id只能有两个组件绑定，且两个组件必须分别扮演进入(in)和退出(out)两种不同角色，不能多个组件绑定同一个id。</li>
+     * </ul>
+     *
      * @ingroup Animate [动效属性]
-      */
+     */
     NODE_GEOMETRY_TRANSITION,
 
     /**
@@ -1792,35 +1848,43 @@ typedef enum {
     NODE_RELATIVE_LAYOUT_CHAIN_MODE,
 
     /**
-     * @brief Set the component content filling method in the process of width and height animation,
-     * support property setting, property reset, property acquisition interface.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 Content filling mode {@link ArkUI_RenderFit}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32 Content filling mode {@link ArkUI_RenderFit}.\n
+     * @brief 设置宽高动画过程中的组件内容填充方式，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：内容填充方式，使用{@link ArkUI_RenderFit}枚举值。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：内容填充方式，使用{@link ArkUI_RenderFit}枚举值。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_RENDER_FIT,
 
     /**
-     * @brief External stroke color properties, support property setting,
-     * property reset and property acquisition interface.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].u32: Set the border color of the four sides uniformly, using 0xargb, such as 0xFFFF11FF. \n
-     * 2: .value[0].u32: Set the top border color, represented by 0xargb, such as 0xFFFF11FF. \n
-     * .value[1].u32: Set the right border color, represented by 0xargb, such as 0xFFFF11FF. \n
-     * .value[2].u32: Set the lower side box color, denoted by 0xargb, such as 0xFFFF11FF. \n
-     * .value[3].u32: Set the left border color, denoted by 0xargb, such as 0xFFFF11FF. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: Set the top border color, represented by 0xargb, such as 0xFFFF11FF. \n
-     * .value[1].u32: Set the right border color, represented by 0xargb, such as 0xFFFF11FF. \n
-     * .value[2].u32: Set the lower side box color, denoted by 0xargb, such as 0xFFFF11FF. \n
-     * .value[3].u32: Set the left border color, denoted by 0xargb, such as 0xFFFF11FF. \n
+     * @brief 外描边颜色属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * 1. 仅传入.value[0]时，统一设置四条边的边框颜色：
+     * <ul>
+     * <li>.value[0].u32：统一设置四条边的边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * </ul>
+     * 2. 传入.value[0]至.value[3]四个值时，分别设置四条边的边框颜色：
+     * <ul>
+     * <li>.value[0].u32：设置上侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[1].u32：设置右侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[2].u32：设置下侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[3].u32：设置左侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].u32：设置上侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[1].u32：设置右侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[2].u32：设置下侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[3].u32：设置左侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -1846,57 +1910,58 @@ typedef enum {
     NODE_SIZE,
 
     /**
-     * @brief Set whether the current component and child component are
-     * rendered off the screen first and then fused with the parent control,
-     * supporting property setting, property reset and property acquisition.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is 1 or 0.
+     * @brief 设置当前组件和子组件是否先整体离屏渲染绘制后再与父组件融合绘制，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：参数值为1表示当前组件与子组件需要先整体离屏渲染绘制后再与父控件融合绘制，参数值为0表示不需要整体离屏渲染绘制后再与父控件融合绘制。默认值为0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：参数值为1表示当前组件与子组件完成整体离屏渲染绘制，参数值为0表示当前组件与子组件未完成整体离屏渲染绘制。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_RENDER_GROUP,
 
     /**
-     * @brief Add color overlay effect to components, support property setting,
-     * property reset and property acquisition interface.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: The color of the overlay is represented by 0xargb, such as 0xFFFF11FF. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: The color of the overlay is represented by 0xargb, such as 0xFFFF11FF. \n
+     * @brief 为组件添加颜色叠加效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].u32：叠加的颜色，使用0xargb表示，默认值为0x00000000。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].u32：叠加的颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
     NODE_COLOR_BLEND,
 
     /**
-     * @brief Provide content ambiguity capability for the current component,
-     * support property setting, property reset, property acquisition interface.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
-     * .value[1]?.i32 Represents the dark and light mode used by the content blur effect,\n
-     * with the {@link ArkUI_ColorMode} enumeration value.\n
-     * .value[2]?.i32 The color extraction mode used to represent the content blur effect takes\n
-     * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[5]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
-     * .value[1].i32 Represents the dark and light mode used by the content blur effect,\n
-     * with the {@link ArkUI_ColorMode} enumeration value.\n
-     * .value[2].i32 The color extraction mode used to represent the content blur effect takes\n
-     * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[5].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * @brief 为当前组件提供内容模糊能力，支持属性设置，属性重置，属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].i32：表示内容模糊样式，取{@link ArkUI_BlurStyle}枚举值。</li>
+     * <li>.value[1]?.i32：表示内容模糊效果使用的深浅色模式，取{@link ArkUI_ColorMode}枚举值。不传入时默认值为ARKUI_COLOR_MODE_SYSTEM。</li>
+     * <li>.value[2]?.i32：表示内容模糊效果使用的取色模式，取{@link ArkUI_AdaptiveColor}枚举值。</li>
+     * <li>.value[3]?.f32：表示模糊效果程度，取[0.0,1.0]范围内的值。</li>
+     * <li>.value[4]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。不传入时默认值为0。</li>
+     * <li>.value[5]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。不传入时默认值为0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].i32：表示内容模糊样式，取{@link ArkUI_BlurStyle}枚举值。</li>
+     * <li>.value[1].i32：表示内容模糊效果使用的深浅色模式，取{@link ArkUI_ColorMode}枚举值。</li>
+     * <li>.value[2].i32：表示内容模糊效果使用的取色模式，取{@link ArkUI_AdaptiveColor}枚举值。</li>
+     * <li>.value[3].f32：表示模糊效果程度，取[0.0,1.0]范围内的值。</li>
+     * <li>.value[4].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。</li>
+     * <li>.value[5].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      */
@@ -2099,14 +2164,16 @@ typedef enum {
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
 
     /**
-     * @brief Sets the transition effect when the component is inserted or deleted.
-     * This attribute can be set, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: transition effect. The parameter type is {@link ArkUI_TransitionEffect}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: transition effect. The parameter type is {@link ArkUI_TransitionEffect}. \n
+     * @brief 定义组件插入和删除时显示过渡动效，支持属性设置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.object：组件插入和删除时的过渡动效配置，参数类型为{@link ArkUI_TransitionEffect}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.object：表示组件插入和删除时的过渡动效配置，参数类型为{@link ArkUI_TransitionEffect}。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      */
@@ -2169,21 +2236,20 @@ typedef enum {
     NODE_TAB_STOP = 98,
     
     /**
-     * @brief Defines the backdrop blur attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32：backdrop blur radius, in px. The value range is [0, +∞).\n
-     * .value[1]?.f32：grayscale blur settings that control the brightness of the black color.\n
-     * The value range is [0, 127].\n
-     * .value[2]?.f32：grayscale blur settings that control the darkness of the white color.\n
-     * The value range is [0, 127].\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32：backdrop blur radius, in px. The value range is [0, +∞).\n
-     * .value[1].f32：grayscale blur settings that control the brightness of the black color.\n
-     * The value range is [0, 127].\n
-     * .value[2].f32：grayscale blur settings that control the darkness of the white color.\n
-     * The value range is [0, 127].\n
+     * @brief 设置背景模糊效果，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)，超出范围时返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。单位px，默认值0.0。</li>
+     * <li>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。不传入时默认值为0。</li>
+     * <li>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。不传入时默认值为0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)，单位为px。</li>
+     * <li>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。</li>
+     * <li>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      * @since 15
@@ -2191,23 +2257,21 @@ typedef enum {
     NODE_BACKDROP_BLUR = 99,
 
     /**
-     * @brief Defines the background image resizable attribute, which can be set, reset,
-     * and obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * @brief 设置背景图在拉伸时可调整大小的属性，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
      * <ul>
-     * <li>.value[0].f32: width of the left edge. The unit is vp. </li>
-     * <li>.value[1].f32: width of the top edge. The unit is vp. </li>
-     * <li>.value[2].f32: width of the right edge. The unit is vp. </li>
-     * <li>.value[3].f32: width of the bottom edge. The unit is vp.
-     * </li>
+     * <li>.value[0].f32：图片左部拉伸时，图片的像素值保持不变，单位为vp，默认值0。</li>
+     * <li>.value[1].f32：图片顶部拉伸时，图片的像素值保持不变，单位为vp，默认值0。</li>
+     * <li>.value[2].f32：图片右部拉伸时，图片的像素值保持不变，单位为vp，默认值0。</li>
+     * <li>.value[3].f32：图片底部拉伸时，图片的像素值保持不变，单位为vp，默认值0。</li>
      * </ul>
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * **返回：**
      * <ul>
-     * <li>.value[0].f32: width of the left edge. The unit is vp. </li>
-     * <li>.value[1].f32: width of the top edge. The unit is vp. </li>
-     * <li>.value[2].f32: width of the right edge. The unit is vp. </li>
-     * <li>.value[3].f32: width of the bottom edge. The unit is vp. </li>
+     * <li>.value[0].f32：图片左部拉伸时，图片的像素值保持不变，单位为vp。</li>
+     * <li>.value[1].f32：图片顶部拉伸时，图片的像素值保持不变，单位为vp。</li>
+     * <li>.value[2].f32：图片右部拉伸时，图片的像素值保持不变，单位为vp。</li>
+     * <li>.value[3].f32：图片底部拉伸时，图片的像素值保持不变，单位为vp。</li>
      * </ul>
      *
      * @ingroup Background Display [背景显示]
@@ -2253,34 +2317,24 @@ typedef enum {
     NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO = 102,
 
     /**
-     * @brief Defines the translate attribute, which supports for percentile translation input, and can be set, reset,
-     * and obtained as required through APIs.\n
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: distance to translate along the x-axis. The default unit is percentage.
-     * The unit is vp only if value[3] exists and value[3] is 0. The default value of value[0] is <b>0</b>.\n
-     * .value[1].f32: distance to translate along the y-axis. The default unit is percentage.
-     * The unit is vp only if value[4] exists and value[4] is 0. The default value of value[1] is <b>0</b>.\n
-     * .value[2].f32: distance to translate along the z-axis, in vp. The default value is <b>0</b>.\n
-     * .value[3]?.i32: Whether the translation distance along the x-axis is specified as a percentage.
-     *  The value can be 0 or 1. When the value is 1, it is specified as a percentage.
-     *  For example, value[0].f32=0.1 and value[3].i32=1 indicates a 10% shift in the x direction.
-     *  The default value is <b>1</b>.\n
-     * .value[4]?.i32: Whether the translation distance along the y-axis is specified as a percentage.
-     *  The value can be 0 or 1. When the value is 1, it is specified as a percentage.
-     *  For example, value[1].f32=0.1 and value[4].i32=1 indicates a 10% shift in the y direction.
-     *  The default value is <b>1</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: distance to translate along the x-axis. The unit depends on value[3].\n
-     * .value[1].f32: distance to translate along the y-axis. The unit depends on value[4].\n
-     * .value[2].f32: distance to translate along the z-axis. The unit is vp.\n
-     * .value[3].i32: Whether the unit of the X-axis translation distance is in percentage. When value[3].i32 is 0,
-     *  the unit of the X-axis translation distance is vp; when value[3].i32 is 1, the unit of the X-axis translation
-     *  distance is percentage;\n
-     * .value[4].i32: Whether the unit of the Y-axis translation distance is in percentage. When value[4].i32 is 0,
-     *  the unit of the Y-axis translation distance is vp; when value[4].i32 is 1, the unit of the Y-axis translation
-     *  distance is percentage;\n
+     * @brief 设置组件平移，支持百分比形式的平移入参，与NODE_TRANSLATE互斥，同一组件只能使用一种平移属性设置方式，同时设置时后者将覆盖前者。支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：x轴移动距离，默认单位为百分比，除非value[3]存在且value[3]为0时单位为vp，默认值0。</li>
+     * <li>.value[1].f32：y轴移动距离，默认单位为百分比，除非value[4]存在且value[4]为0时单位为vp，默认值0。</li>
+     * <li>.value[2].f32：z轴移动距离，单位vp，默认值0。</li>
+     * <li>.value[3]?.i32：x轴移动距离是否为百分比形式指定，取值范围：0或1。为1时表示以百分比形式指定，例如value[0].f32=0.1且value[3].i32=1时表示x方向平移10%。默认值1。</li>
+     * <li>.value[4]?.i32：y轴移动距离是否为百分比形式指定，取值范围：0或1。为1时表示以百分比形式指定，例如value[1].f32=0.1且value[4].i32=1时表示y方向平移10%，默认值1。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：x轴移动距离，单位取决于value[3]。</li>
+     * <li>.value[1].f32：y轴移动距离，单位取决于value[4]。</li>
+     * <li>.value[2].f32：z轴移动距离，单位vp。</li>
+     * <li>.value[3].i32：x轴移动距离的单位是否为百分比。</li>
+     * <li>.value[4].i32：y轴移动距离的单位是否为百分比。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      * @since 20
@@ -2288,20 +2342,22 @@ typedef enum {
     NODE_TRANSLATE_WITH_PERCENT = 103,
 
     /**
-     * @brief Sets component rotation with multi-axis angle control. This attribute can be set, reset,
-     * and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>.
-     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
+     * @brief 设置组件旋转，支持各轴旋转角属性设置，属性重置和属性获取接口。与NODE_ROTATE互斥，同一组件只能使用一种旋转属性设置方式，同时设置时后者将覆盖前者。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.value[0].f32：x轴方向旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[1].f32：y轴方向旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[2].f32：z轴方向旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[3].f32：视距，即视点到z=0平面的距离，单位px，默认值0。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.value[0].f32：x轴方向旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[1].f32：y轴方向旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[2].f32：z轴方向旋转角度，单位为度（°），默认值0。</li>
+     * <li>.value[3].f32：视距，即视点到z=0平面的距离，单位px，默认值0。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      * @since 20
@@ -2371,13 +2427,13 @@ typedef enum {
     NODE_ALLOW_FORCE_DARK = 108,
 
     /**
-     * @brief 设置组件的像素取整策略，支持属性设置，属性重置和属性获取接口。
-     *
-     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * @brief 设置组件的像素取整策略，用于避免组件在缩放或非整数像素位置渲染时出现视觉锯齿等问题，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
      * <ul>
      * <li>.object：设置组件的像素取整策略；参数类型为{@link ArkUI_PixelRoundPolicy}。</li>
      * </ul>
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * **返回：**
      * <ul>
      * <li>.object：组件的像素取整策略；参数类型为{@link ArkUI_PixelRoundPolicy}。</li>
      * </ul>
@@ -2406,15 +2462,16 @@ typedef enum {
     NODE_ENABLE_CLICK_SOUND_EFFECT = 110,
 
     /**
-     * @brief Defines the motion path attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .object indicates a pointer to the ArkUI_MotionPathOptions. The parameter type is
-     * {@link ArkUI_MotionPathOptions}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .object indicates a pointer to the ArkUI_MotionPathOptions. The parameter type is
-     * {@link ArkUI_MotionPathOptions}. \n
+     * @brief 设置组件的运动路径属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.object：指向路径动画的运动路径配置项的指针；参数类型为{@link ArkUI_MotionPathOptions}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.object：指向路径动画的运动路径配置项的指针；参数类型为{@link ArkUI_MotionPathOptions}。</li>
+     * </ul>
      *
      * @ingroup Animate [动效属性]
      * @since 23
@@ -2725,27 +2782,21 @@ typedef enum {
     NODE_ACCESSIBILITY_DEFAULT_FOCUS = 125,
 
     /**
-     * @brief Defines the system material attribute, which can be set, reset, and obtained as required through APIs.
-     * Only devices that support systemMaterial can use this attribute. Otherwise, when setting this attribute,
-     * the error code {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} will be returned.
-     * Whether a device supports materials can be determined by calling
-     * {@link OH_ArkUI_NativeModule_GetSystemMaterialSupported}.
-     * The material effect behaves differently on devices with different level of computing powers.
-     * The level is defined by {@link ArkUI_MaterialLevel}, which can be obtained by
-     * {@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}.
-     * On devices with the computing power level of ARKUI_MATERIAL_LEVEL_SMOOTH, it affects attributes such as the
-     * backgroundColor, borderWidth, borderColor, shadow.
-     * On devices with the computing power levels of ARKUI_MATERIAL_LEVEL_EXQUISITE or ARKUI_MATERIAL_LEVEL_GENTLE,
-     * it affects shadow attribute and adds a filter effect at the system material layer, which can produce an effect
-     * similar to glass.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: system material object. The parameter type is {@link ArkUI_ImmersiveMaterialHandle}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: system material object. The parameter type is {@link ArkUI_ImmersiveMaterialHandle}.\n
-     * The ArkUI_ImmersiveMaterialHandle object of the return value is a pointer to static member, so do not release
-     * the return object by calling {@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}.\n
+     * @brief 定义系统材质属性，支持属性设置，属性重置和属性获取接口。
+     * 仅支持系统材质的设备可使用此属性。否则，当设置此属性时，将返回错误码{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED}。
+     * 设备是否支持系统材质可通过调用{@link OH_ArkUI_NativeModule_GetSystemMaterialSupported}获取。
+     * 材质效果在不同算力的设备上表现不同。算力等级由{@link ArkUI_MaterialLevel}定义，可通过{@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}获取。
+     * 在算力等级为ARKUI_MATERIAL_LEVEL_SMOOTH的设备上，设置NODE_SYSTEM_MATERIAL会覆盖NODE_SHADOW/NODE_CUSTOM_SHADOW的阴影效果、NODE_OUTLINE_COLOR的外描边颜色、NODE_OUTLINE_WIDTH的外描边宽度，并改变组件背景颜色。
+     * 在算力等级为ARKUI_MATERIAL_LEVEL_EXQUISITE或ARKUI_MATERIAL_LEVEL_GENTLE的设备上，设置NODE_SYSTEM_MATERIAL会覆盖阴影属性并在系统材质层添加滤镜效果，可产生类似玻璃的效果。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * **参数：**
+     * <ul>
+     * <li>.object：系统材质对象。参数类型为{@link ArkUI_ImmersiveMaterialHandle}。</li>
+     * </ul>
+     * **返回：**
+     * <ul>
+     * <li>.object：系统材质对象。参数类型为{@link ArkUI_ImmersiveMaterialHandle}。返回值中的ArkUI_ImmersiveMaterialHandle对象是指向静态成员的指针，因此无需也禁止通过{@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}释放返回对象。</li>
+     * </ul>
      *
      * @ingroup Visual [视效属性]
      * @since 26.0.0
@@ -3979,6 +4030,31 @@ typedef enum {
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
 
+    /**
+     * @brief imageSpan组件图片拉伸时，支持通过设置边框大小或者使用矩阵方格对象调整其大小，支持属性设置、属性重置和属性获取接口。接口调用时需要保证设置和获取的参数类型是相同的。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：左边缘宽度，单位为vp。</li>
+     * <li>.value[1].f32：上边缘宽度，单位为vp。</li>
+     * <li>.value[2].f32：右边缘宽度，单位为vp。</li>
+     * <li>.value[3].f32：下边缘宽度，单位为vp。</li>
+     * <li>.object：参数类型为{@link OH_Drawing_Lattice}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：左边缘宽度，单位为vp。</li>
+     * <li>.value[1].f32：上边缘宽度，单位为vp。</li>
+     * <li>.value[2].f32：右边缘宽度，单位为vp。</li>
+     * <li>.value[3].f32：下边缘宽度，单位为vp。</li>
+     * <li>.object：参数类型为{@link OH_Drawing_Lattice}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.1.0
+     */
+    NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -6634,12 +6710,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。</li>
+     * <li>.value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。</li>
+     * <li>.value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。</li>
      * </ul>
      *
      * @ingroup XComponent [自定义渲染组件]
@@ -8298,7 +8374,7 @@ typedef enum {
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
     /**
-      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。启用后，用户选中特殊文本实体时将弹出AI识别菜单，提供基于选中文本内容的智能识别和操作选项。
+      * @brief TextEditor组件的AI菜单开关，用于控制选中特殊文本实体时是否弹出AI识别菜单。该功能支持属性的设置、重置与获取，启用后可基于选中文本内容提供智能识别及操作选项。
       * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
       * <br>**参数：**
       * <br>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。
@@ -8349,7 +8425,7 @@ typedef enum {
      * @brief TextEditor组件内容最大行数，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围[0, +∞)。取值为0时按无穷大处理；设置为0、负数或未设置该属性时不限制行数。建议在需要固定显示高度的场景下设置该参数。
+     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围：(0, +∞)。设置为0、负数或未设置该属性时，取默认值UINT32_MAX，不限制行数。建议在需要固定显示高度的场景下设置该参数。
      * <br>**返回：**
      * <br>.value[0].i32：文本编辑器最大行数限制。
      *
@@ -8358,12 +8434,12 @@ typedef enum {
     NODE_TEXT_EDITOR_MAX_LINES,
 
     /**
-     * @brief TextEditor组件触觉反馈开关，启用后，在文本拖选等交互操作时将产生触觉反馈震动响应，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件触感反馈开关，启用后，在文本拖选等交互操作时将产生触感反馈震动响应，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否在文本编辑器中启用触觉反馈，0表示不启用，1表示启用，默认值为1。
+     * <br>.value[0].i32：是否在文本编辑器中启用触感反馈，0表示不启用，1表示启用，默认值为1。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用了触觉反馈，0表示不启用，1表示启用。
+     * <br>.value[0].i32：是否启用了触感反馈，0表示不启用，1表示启用。
      *
      * @since 24
      */
@@ -8503,10 +8579,10 @@ typedef enum {
 
     /**
      * @brief TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。
-     * 仅在[ArkUI_WordBreak](capi-text-common-h.md#arkui_wordbreak)属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。
+     * 仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。
+     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
      * <br>**返回：**
      * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。
      *
@@ -11770,7 +11846,7 @@ typedef struct {
 } ArkUI_TextChangeEvent;
 
 /**
- * @brief 定义TextEditor组件文本内容变化事件的结构体。
+ * @brief 定义TextEditor组件文本内容变化事件的结构体，用于在文本内容变化时通知用户，支持获取变化前后的内容等信息，适用于需要在文本内容变化前进行拦截或校验的场景，例如输入拦截、内容过滤、变更确认等。
  *
  * @since 24
  */
@@ -15666,7 +15742,7 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
 
 /**
- * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
+ * @brief 在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../../ui/ndk-scope-task.md)。
  *
  * @param uiContext 表示目标UI上下文的指针。
  * @param userData 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。
@@ -15749,7 +15825,7 @@ int32_t OH_ArkUI_NativeModule_AdoptChild(ArkUI_NodeHandle node, ArkUI_NodeHandle
 int32_t OH_ArkUI_NativeModule_RemoveAdoptedChild(ArkUI_NodeHandle node, ArkUI_NodeHandle child);
 
 /**
- * @brief 为组件和实例设置反色算法。详细介绍请参考：[利用反色能力快速适配深色模式](../../ui/ui-dark-light-color-adaptation.md#利用反色能力快速适配深色模式)。
+ * @brief 为组件和实例设置反色算法。详细介绍请参考：[利用反色能力快速适配深色模式](../../../ui/ui-dark-light-color-adaptation.md#利用反色能力快速适配深色模式)。
  *
  * @param uiContext UI实例对象指针。 \n
  *         如果该值为null，则该功能适用于整个应用进程。

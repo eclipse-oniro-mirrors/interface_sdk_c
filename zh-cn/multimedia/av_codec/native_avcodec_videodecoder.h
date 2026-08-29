@@ -68,7 +68,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
 /**
  * @brief 根据视频解码器名称创建视频解码器实例。使用此接口的前提是知道解码器的确切名称，解码器的名称可以通过能力查询获取。\n
  *
- * 详情请参见：[获取支持的编解码能力](../../media/avcodec/obtain-supported-codecs.md#创建指定名称的编解码器)。
+ * 详情请参见：[获取支持的编解码能力](../../../media/avcodec/obtain-supported-codecs.md#创建指定名称的编解码器)。
  * 
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param name 视频解码器名称。
@@ -145,7 +145,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
 
 /**
  * @brief 配置视频解码器，通常需要配置解码视频的描述信息，这些信息可以从{@link OH_AVSource}中提取。在调用OH_VideoDecoder_Prepare接口之前，必须调用此接口。\n
- * 以下参数的配置范围可通过[能力查询](../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_ROTATION配置的参数都支持。\n
+ * 以下参数的配置范围可通过[能力查询](../../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_ROTATION配置的参数都支持。\n
  * 设置OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时如果当前平台不支持，不报错，走正常解码流程。\n
  * @table 参数校验规则：
  * | Key    | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |

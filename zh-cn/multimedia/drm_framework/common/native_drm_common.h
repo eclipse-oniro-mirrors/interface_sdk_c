@@ -16,7 +16,13 @@
  * @addtogroup Drm
  * @{
  *
- * @brief Provides APIs of Drm.
+ * @brief 提供数字版权保护能力的API。
+ *
+ * 开发者可根据开发需求，参考开发指南及样例：
+ *
+ * - [数字版权保护(C/C++)](docroot://media/drm/drm-c-dev-guide.md)
+ * - [基于AVCodec播放DRM节目(C/C++)](docroot://media/drm/drm-avcodec-integration.md)
+ *
  * @kit DrmKit
  * @since 11
  * @version 1.0
@@ -24,9 +30,10 @@
 /**
  * @file native_drm_common.h
  *
- * @brief 定义DRM数据类型。
+ * @brief 定义DRM数据类型，包括媒体密钥请求、内容保护级别、证书状态等核心数据结构，用于支持DRM（数字版权管理）功能的开发，帮助应用实现受版权保护的多媒体内容的播放和管理。
  * 
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
+ * @include <multimedia/drm_framework/native_drm_common.h>
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
@@ -46,6 +53,7 @@ extern "C" {
   *
   * @brief 监听事件类型。
   * 
+  * @syscap SystemCapability.Multimedia.Drm.Core
   * @since 11
   * @version 1.0
 */
@@ -79,6 +87,7 @@ typedef enum DRM_EventType {
 /**
  * @brief 内容保护级别。
  * 
+ * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
@@ -253,31 +262,33 @@ typedef enum DRM_CertificateStatus {
  */
 typedef struct DRM_MediaKeyRequestInfo {
     /**
-     * 密钥类型。
+     * 媒体密钥请求类型，指示请求的用途。常见类型包括DRM_MEDIA_KEY_REQUEST_TYPE_INITIAL（初始请求）、
+     * DRM_MEDIA_KEY_REQUEST_TYPE_RENEWAL（续期请求）等，具体类型由DRM解决方案决定。
      */
     DRM_MediaKeyType type;
     /**
-     * 初始数据长度。
+     * 初始化数据的长度，表示initData数组中有效数据的字节数。单位为字节（Byte），取值范围为[1, MAX_INIT_DATA_LEN]。
      */
     int32_t initDataLen;
     /**
-     * PSSH info.
+     * 初始化数据，包含DRM内容保护系统特定头（PSSH）格式的数据，通常从媒体内容的PSSH box中提取。数组长度由MAX_INIT_DATA_LEN宏定义。
      */
     uint8_t initData[MAX_INIT_DATA_LEN];
     /**
-     * Media content mime type.
+     * 媒体内容的MIME类型，用于标识媒体内容的格式。常见取值如"video/mp4"、"video/webm"等，具体支持类型由DRM解决方案决定。数组长度由MAX_MIMETYPE_LEN宏定义。
      */
     char mimeType[MAX_MIMETYPE_LEN];
     /**
-     * 选项数据计数。
+     * 选项数据的数量，表示optionName和optionData数组中有效元素的个数。取值范围为[0, MAX_MEDIA_KEY_REQUEST_OPTION_COUNT]。
      */
     uint32_t optionsCount;
     /**
-     * Options name the application set to drm framework.
+     * 选项名称数组，每行存储一个选项的名称。选项名称由DRM解决方案定义，用于传递特定的请求参数。
+     * 数组维度由MAX_MEDIA_KEY_REQUEST_OPTION_COUNT和MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN宏定义。
      */
     char optionName[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN];
     /**
-     * Options data the application set to drm framework.
+     * 选项数据数组，每行存储对应optionName的选项值。数组维度由MAX_MEDIA_KEY_REQUEST_OPTION_COUNT和MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN宏定义。
      */
     char optionData[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN];
 } DRM_MediaKeyRequestInfo;
@@ -304,19 +315,19 @@ typedef struct DRM_MediaKeyRequestInfo {
  */
 typedef struct DRM_MediaKeyRequest {
     /**
-     * 媒体密钥请求类型。
+     * 媒体密钥请求类型，指示请求的用途。常见类型包括MEDIA_KEY_REQUEST_TYPE_INITIAL（初始请求）、MEDIA_KEY_REQUEST_TYPE_RENEWAL（续期请求）等，具体类型由DRM解决方案决定。
      */
     DRM_MediaKeyRequestType type;
     /**
-     * 媒体密钥请求数据长度。
+     * 媒体密钥请求数据的长度，表示data数组中有效数据的字节数。单位为字节（Byte），取值范围为[0, MAX_MEDIA_KEY_REQUEST_DATA_LEN]。
      */
     int32_t dataLen;
     /**
-     * Media key request data sent to media key server.
+     * 媒体密钥请求数据，需要发送到许可证服务器的数据。数据格式由DRM解决方案定义，通常为特定格式的二进制数据或JSON格式。数组长度由MAX_MEDIA_KEY_REQUEST_DATA_LEN宏定义。
      */
     uint8_t data[MAX_MEDIA_KEY_REQUEST_DATA_LEN];
     /**
-     * Media key server URL.
+     * 许可证服务器的默认URL，用于获取媒体密钥。该URL由DRM解决方案提供，应用可使用此URL或自定义URL发送请求。数组长度由MAX_DEFAULT_URL_LEN宏定义。
      */
     char defaultUrl[MAX_DEFAULT_URL_LEN];
 } DRM_MediaKeyRequest;
@@ -350,11 +361,13 @@ typedef struct DRM_MediaKeyRequest {
  * @version 1.0
  */
 typedef struct DRM_Statistics {
-    /* Statistics count. */
+    /* 度量信息的数量，表示statisticsName和statisticsDescription数组中有效元素的个数。取值范围为[0, MAX_STATISTICS_COUNT]。 */
     uint32_t statisticsCount;
-    /* Statistics name. */
+    /* 度量信息名称数组，每行存储一个度量项的名称，如"DecryptionOperations"（解密操作次数）、"KeySessions"（密钥会话数）等。
+       数组维度由MAX_STATISTICS_COUNT和MAX_STATISTICS_NAME_LEN宏定义。 */
     char statisticsName[MAX_STATISTICS_COUNT][MAX_STATISTICS_NAME_LEN];
-    /* Statistics description. */
+    /* 度量信息描述数组，每行存储对应statisticsName的度量值。描述内容通常包含数值、百分比或其他格式的统计数据。
+       数组维度由MAX_STATISTICS_COUNT和MAX_STATISTICS_BUFFER_LEN宏定义。 */
     char statisticsDescription[MAX_STATISTICS_COUNT][MAX_STATISTICS_BUFFER_LEN];
 } DRM_Statistics;
 
@@ -380,11 +393,12 @@ typedef struct DRM_Statistics {
  * @version 1.0
  */
 typedef struct DRM_OfflineMediakeyIdArray {
-    /* Ids count. */
+    /* 离线媒体密钥ID的数量，表示idsLen和ids数组中有效元素的个数。取值范围为[0, MAX_OFFLINE_MEDIA_KEY_ID_COUNT]。 */
     uint32_t idsCount;
-    /* Ids len. */
+    /* 离线媒体密钥ID长度数组，每个元素表示对应ids数组行中有效数据的字节数。数组长度由MAX_OFFLINE_MEDIA_KEY_ID_COUNT宏定义。 */
     int32_t idsLen[MAX_OFFLINE_MEDIA_KEY_ID_COUNT];
-    /* Ids. */
+    /* 离线媒体密钥ID数据数组，用于存储离线媒体密钥的标识符。每行存储一个密钥ID，有效长度由对应的idsLen元素指定。
+       数组维度由MAX_OFFLINE_MEDIA_KEY_ID_COUNT和MAX_OFFLINE_MEDIA_KEY_ID_LEN宏定义。 */
     uint8_t ids[MAX_OFFLINE_MEDIA_KEY_ID_COUNT][MAX_OFFLINE_MEDIA_KEY_ID_LEN];
 } DRM_OfflineMediakeyIdArray;
 
@@ -417,11 +431,12 @@ typedef struct DRM_OfflineMediakeyIdArray {
  * @version 1.0
  */
 typedef struct DRM_KeysInfo {
-    /* Keys count. */
+    /* 媒体密钥信息的数量，表示keyId和statusValue数组中有效元素的个数。取值范围为[0, MAX_KEY_INFO_COUNT]。 */
     uint32_t keysInfoCount;
-    /* Key id. */
+    /* 媒体密钥ID数组，每行存储一个密钥的标识符。密钥ID用于标识唯一的一个媒体密钥。数组维度由MAX_KEY_INFO_COUNT和MAX_KEY_ID_LEN宏定义。 */
     uint8_t keyId[MAX_KEY_INFO_COUNT][MAX_KEY_ID_LEN];
-    /* Key status value. */
+    /* 媒体密钥状态值数组，每行存储对应keyId的密钥状态。状态值由DRM解决方案定义，常见状态包括"usable"（可用）、"expired"（已过期）等。
+       数组维度由MAX_KEY_INFO_COUNT和MAX_KEY_STATUS_VALUE_LEN宏定义。 */
     char statusValue[MAX_KEY_INFO_COUNT][MAX_KEY_STATUS_VALUE_LEN];
 } DRM_KeysInfo;
 
@@ -454,11 +469,13 @@ typedef struct DRM_KeysInfo {
  * @version 1.0
  */
 typedef struct DRM_MediaKeyStatus {
-    /* Status count. */
+    /* 媒体密钥状态项的数量，表示statusName和statusValue数组中有效元素的个数。取值范围为[0, MAX_MEDIA_KEY_STATUS_COUNT]。 */
     uint32_t statusCount;
-    /* Status name. */
+    /* 媒体密钥状态名称数组，每行存储一个状态的名称。常见状态名称包括"Usable"（可用）、"Expired"（已过期）、
+       "OutputRestricted"（输出受限）等，具体由DRM解决方案定义。数组维度由MAX_MEDIA_KEY_STATUS_COUNT和MAX_MEDIA_KEY_STATUS_NAME_LEN宏定义。 */
     char statusName[MAX_MEDIA_KEY_STATUS_COUNT][MAX_MEDIA_KEY_STATUS_NAME_LEN];
-    /* Status value. */
+    /* 媒体密钥状态值数组，每行存储对应statusName的状态值。状态值格式由DRM解决方案定义，可能包含时间戳、级别等信息。
+       数组维度由MAX_MEDIA_KEY_STATUS_COUNT和MAX_MEDIA_KEY_STATUS_VALUE_LEN宏定义。 */
     char statusValue[MAX_MEDIA_KEY_STATUS_COUNT][MAX_MEDIA_KEY_STATUS_VALUE_LEN];
 } DRM_MediaKeyStatus;
 
@@ -470,7 +487,7 @@ typedef struct DRM_MediaKeyStatus {
  */
 #define DRM_UUID_LEN 16
 /**
- * @brief PSSH（Protected System Specific Header）信息的最大长度。
+ * @brief PSSH（Protection System Specific Header）信息的最大长度。
  * 
  * @since 11
  * @version 1.0
@@ -485,21 +502,21 @@ typedef struct DRM_MediaKeyStatus {
  */
 typedef struct DRM_PsshInfo {
     /**
-     * Uuid.
+     * DRM系统的UUID（通用唯一标识符），用于唯一标识一个DRM内容保护系统。UUID长度为16字节，由DRM解决方案提供商分配。
      */
     uint8_t uuid[DRM_UUID_LEN];
     /**
-     * PSSH数据长度。
+     * PSSH数据的长度，表示data数组中有效数据的字节数。单位为字节（Byte），取值范围为[0, MAX_PSSH_DATA_LEN]。
      */
     int32_t dataLen;
     /**
-     * uint8_t PSSH data.
+     * PSSH数据，包含DRM系统特定的初始化数据。数据格式通常包含密钥ID、内容ID等信息。数组长度由MAX_PSSH_DATA_LEN宏定义。
      */
     uint8_t data[MAX_PSSH_DATA_LEN];
 } DRM_PsshInfo;
 
 /**
- * @brief PSSH（Protected System Specific Header）信息的最大数量。
+ * @brief PSSH（Protection System Specific Header）信息的最大数量。
  * 
  * @since 11
  * @version 1.0
@@ -513,22 +530,25 @@ typedef struct DRM_PsshInfo {
  * @version 1.0
  */
 typedef struct DRM_MediaKeySystemInfo {
-    /* PSSH count. */
+    /* PSSH信息的数量，表示psshInfo数组中有效元素的个数。一个媒体文件可能包含多个DRM系统的PSSH，取值范围为[0, MAX_PSSH_INFO_COUNT]。 */
     uint32_t psshCount;
-    /* PSSH info. */
+    /* PSSH信息数组，每项包含一个DRM内容保护系统专用头的信息。数组长度由MAX_PSSH_INFO_COUNT宏定义，每项包含DRM系统UUID和初始化数据。 */
     DRM_PsshInfo psshInfo[MAX_PSSH_INFO_COUNT];
 } DRM_MediaKeySystemInfo;
 
 /**
 * @brief 应用为从媒体源获取DRM信息而设置的回调函数。
 * 
+* @param mediaKeySystemInfo 输出参数，从媒体源获取的DRM信息，包含DRM内容保护系统的唯一标识和PSSH数据。
 * @since 11
 * @version 1.0
 */
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
- * @brief MediaKeySystem结构。
+ * @brief MediaKeySystem结构，用于表示一个媒体密钥系统实例。MediaKeySystem提供数字版权保护能力，
+ * 负责DRM插件配置管理、设备证书管理、统计信息获取、内容保护级别查询以及创建MediaKeySession等功能。
+ * 通过OH_MediaKeySystem_Create接口创建实例，通过OH_MediaKeySystem_Destroy接口销毁实例。
  * 
  * @since 11
  * @version 1.0
@@ -536,7 +556,10 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeyS
 typedef struct MediaKeySystem MediaKeySystem;
 
 /**
- * @brief MediaKeySession结构。
+ * @brief MediaKeySession结构，用于表示一个媒体密钥会话实例。MediaKeySession是DRM解密流程的核心组件，
+ * 负责生成许可证请求、处理许可证响应、管理密钥状态等功能。每个MediaKeySession实例对应一个播放会话的密钥解密过程。
+ * 通过OH_MediaKeySystem_CreateMediaKeySession接口创建实例，通过OH_MediaKeySession_Destroy接口销毁实例。
+ * 每个MediaKeySystem可创建多个MediaKeySession实例，用于处理不同的播放会话。
  * 
  * @since 11
  * @version 1.0
@@ -565,9 +588,9 @@ typedef struct MediaKeySession MediaKeySession;
  * @version 1.0
  */
 typedef struct DRM_MediaKeySystemDescription {
-    /* Name of DRM plugin. */
+    /* DRM插件的名称，用于唯一标识一个DRM解决方案。名称格式由DRM解决方案定义，如"com.clearplay.drm"等。数组长度由MAX_MEDIA_KEY_SYSTEM_NAME_LEN宏定义。 */
     char name[MAX_MEDIA_KEY_SYSTEM_NAME_LEN];
-    /* uuid. */
+    /* DRM系统的UUID（通用唯一标识符），用于唯一标识一个DRM内容保护系统。UUID长度为16字节（DRM_UUID_LEN），由DRM解决方案提供商分配。UUID与name对应同一DRM解决方案的不同表示形式。 */
     uint8_t uuid[DRM_UUID_LEN];
 } DRM_MediaKeySystemDescription;
 

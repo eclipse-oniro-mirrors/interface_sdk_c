@@ -26,6 +26,7 @@
 /**
  * @file oh_rdb_transaction.h
  *
+ * @include database/rdb/oh_rdb_transaction.h
  * @brief 提供与数据库事务相关的函数和枚举。
  *
  * @kit ArkData
@@ -315,7 +316,7 @@ int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH
  *
  * @param trans 指向{@link OH_Rdb_Transaction}实例的指针。
  * @param predicates 表示{@link OH_Predicates}指定的删除条件。
- * @param changes 表示删除成功的次数。
+ * @param changes 输出参数，表示删除成功的次数。
  * @return 返回执行结果。
  *     <br>返回RDB_OK表示成功。
  *     <br>返回RDB_E_ERROR表示数据库常见错误。

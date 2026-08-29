@@ -75,7 +75,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
  * @brief Creates a video encoder instance based on an encoder name. To use this function, you must know the exact name
  * of the encoder. The encoder name can be obtained through capability query.
  *
- * For details, see [Obtaining Supported Codecs](docroot://media/avcodec/obtain-supported-codecs.md#creating-a-codec-with-the-specified-name).
+ * For details, see [Obtaining Supported Codecs](../../../media/avcodec/obtain-supported-codecs.md#creating-a-codec-with-the-specified-name).
  *
  * @param name Pointer to a video encoder name.
  * @return Pointer to the video encoder instance created.
@@ -232,7 +232,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * verified. The default values are used or discarded. Some invalid parameters are forcibly verified. The rules are as
  * follows:
  * The value ranges of the following parameters can be obtained through
- * [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
+ * [Capability Query](../../../media/avcodec/obtain-supported-codecs.md).
  * {@link OH_MD_KEY_I_FRAME_INTERVAL} does not support capability query currently.
  *
  * When attempting to set the {@link OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY} or
@@ -508,7 +508,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
  * function to release the output buffer in a timely manner. Otherwise, the encoding process is blocked.
  *
  * For details, see step 13 in surface mode or step 11 in buffer mode in
- * [Video Encoding](docroot://media/avcodec/video-encoding.md#surface-mode).
+ * [Video Encoding](../../../media/avcodec/video-encoding.md#surface-mode).
  *
  * @param codec Pointer to a video encoder instance.
  * @param index Index of the output buffer. The value is provided by {@link OH_AVCodecOnNewOutputBuffer}.

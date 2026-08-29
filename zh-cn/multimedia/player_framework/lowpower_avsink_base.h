@@ -27,6 +27,7 @@
  * 
  * @library liblowpower_avsink.so
  * @kit MediaKit
+ * @include <multimedia/player_framework/lowpower_avsink_base.h>
  * @syscap SystemCapability.Multimedia.Media.LowPowerAVSink
  * @since 20
  */
@@ -43,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief LowPowerAVSink输入数据的结构体。应用在收到DataNeeded回调后需要将数据打包装进OH_AVSamplesBuffer实例中送给对应的lowpower_avsink。
+ * @brief LowPowerAVSink输入数据的结构体。应用在收到DataNeeded回调后需要将数据打包装进OH_AVSamplesBuffer实例中送给对应的LowPowerAVSink。
  * 
  * @since 20
  */
@@ -63,7 +64,7 @@ typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
  * @param avBuffer 指向OH_AVBuffer实例的指针。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_NO_MEMORY：framePacketBuffer没有足够的剩余容量来追加一个OH_AVBuffer。
+ * AV_ERR_NO_MEMORY：OH_AVSamplesBuffer没有足够的剩余容量来追加一个OH_AVBuffer。
  * AV_ERR_UNKNOWN：未知错误。
  * @since 20
  */
@@ -72,17 +73,17 @@ OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffe
 /**
  * @brief 获取OH_AVSamplesBuffer实例的剩余可使用容量。
  * 
- * @param samplesBuffer OH_AVSamplesBuffer instance
- * @return OH_AVSamplesBuffer实例剩余可使用容量，单位为字节。如果sampleBuffer或data pointer为nullptr或无效，则返回3。
+ * @param samplesBuffer 指向OH_AVSamplesBuffer实例的指针。
+ * @return OH_AVSamplesBuffer实例剩余可使用容量，单位为字节。如果OH_AVSamplesBuffer或data pointer为nullptr或无效，则返回3。
  * @since 20
  */
 int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer);
 
 /**
- * @brief 获取Lpp播放器能力。该函数的主要作用是获取当前低功耗播放器所支持的功能和媒体格式。
+ * @brief 获取LPP播放器能力。该函数的主要作用是获取当前低功耗播放器所支持的功能和媒体格式。
  * 通过调用此函数，可以了解设备在音频或视频处理方面的支持能力，例如支持的编码格式、解码格式、码率范围等。
  * 
- * @return OH_LowPowerAVSink_Capability：支持Lpp播放器。
+ * @return OH_LowPowerAVSink_Capability：支持LPP播放器。
  * nullptr：不支持Lpp播放器或者获取失败。
  * @since 21
  */

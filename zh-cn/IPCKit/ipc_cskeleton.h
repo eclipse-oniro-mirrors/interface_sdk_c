@@ -26,6 +26,7 @@
  *
  * @brief ipc_cskeleton.h提供IPC框架TokenId、凭据、PID/UID、线程池配置等功能C接口，主要用于进程间通信的上下文管理和线程管理。
  *
+ * @include <IPCKit/ipc_cparcel.h>
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core

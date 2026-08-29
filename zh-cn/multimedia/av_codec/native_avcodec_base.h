@@ -1144,10 +1144,8 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
  * 宽跨距表示内存中相邻两行数据起始位置之间的字节距离。由于硬件对齐要求，stride通常大于或等于图像有效宽度。当stride等于width，表示无水平填充。
  * 应始终通过OH_VideoEncoder_GetInputDescription（编码）、OH_VideoDecoder_GetOutputDescription（解码）
  * 或OH_AVCodecOnStreamChanged回调中的OH_AVFormat参数获取实际跨距值，而非假设固定值。\n
- * 使用示例详见[视频编码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-encoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤8
- * 或[视频解码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-decoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤11。
+ * 使用示例详见[视频编码](../../../media/avcodec/video-encoding.md#buffer模式)Buffer模式的步骤8
+ * 或[视频解码](../../../media/avcodec/video-decoding.md#buffer模式)Buffer模式的步骤11。
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -1158,10 +1156,8 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
  * 高跨距表示内存中为单个平面分配的总行数。由于硬件对齐要求，sliceHeight通常大于或等于图像有效高度。U平面的起始地址相对于Y平面原点的偏移量为（sliceHeight * stride）。
  * 应始终通过OH_VideoEncoder_GetInputDescription（编码）、OH_VideoDecoder_GetOutputDescription（解码）
  * 或OH_AVCodecOnStreamChanged回调中的OH_AVFormat参数获取实际高跨距值，而非假设固定值。\n
- * 使用示例详见[视频编码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-encoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤8
- * 或[视频解码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-decoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤11。
+ * 使用示例详见[视频编码](../../../media/avcodec/video-encoding.md#buffer模式)Buffer模式的步骤8
+ * 或[视频解码](../../../media/avcodec/video-decoding.md#buffer模式)Buffer模式的步骤11。
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -1172,10 +1168,8 @@ extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
  * 调用{@link OH_VideoDecoder_GetOutputDescription}时，或通过{@link OH_AVCodecOnStreamChanged}回调检测到解码输出流变化时，
  * 可从返回的OH_AVFormat实例中获取该值。该值表示图像有效宽度，与Configure阶段设置的OH_MD_KEY_WIDTH不同，后者是用于预分配缓冲区的配置提示。
  * 当需要获取显示或保存图像的实际宽度时，读取该值。\n
- * 图像排布和使用示例详见[视频编码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-encoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤8
- * 或[视频解码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-decoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤11。
+ * 图像排布和使用示例详见[视频编码](../../../media/avcodec/video-encoding.md#buffer模式)Buffer模式的步骤8
+ * 或[视频解码](../../../media/avcodec/video-decoding.md#buffer模式)Buffer模式的步骤11。
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -1186,10 +1180,8 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
  * 调用{@link OH_VideoDecoder_GetOutputDescription}时，或通过{@link OH_AVCodecOnStreamChanged}回调检测到解码输出码流变化时，
  * 可从返回的OH_AVFormat实例中获取该值。该值表示图像有效高度，与Configure阶段设置的OH_MD_KEY_HEIGHT不同，后者是用于预分配缓冲区的配置提示。
  * 当需要获取显示或保存图像的实际高度时，读取该值。\n
- * 图像排布和使用示例详见[视频编码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-encoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤8
- * 或[视频解码](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/
- * avcodec/video-decoding.md#buffer%E6%A8%A1%E5%BC%8F)Buffer模式的步骤11。
+ * 图像排布和使用示例详见[视频编码](../../../media/avcodec/video-encoding.md#buffer模式)Buffer模式的步骤8
+ * 或[视频解码](../../../media/avcodec/video-decoding.md#buffer模式)Buffer模式的步骤11。
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -1705,6 +1697,17 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
+
+/**
+ * @brief 视频编码器低功耗视频通话模式的键，值类型为int32_t。
+ *
+ * 该键用于配置编码器的低功耗视频通话模式。
+ * 设置值为1时启用低功耗视频通话模式，设置值为0时关闭。
+ * 如果未设置该键，编码器将使用默认（非低功耗）模式。
+ *
+ * @since 26.1.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
 
 /**
  * @brief 媒体类型。

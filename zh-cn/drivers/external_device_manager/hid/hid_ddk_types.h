@@ -17,7 +17,7 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
+ * @brief 提供HID DDK接口，包括创建设备、发送事件、销毁设备等功能，用于HID设备的驱动开发。
  *
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.HID.Extension
@@ -28,7 +28,8 @@
 /**
  * @file hid_ddk_types.h
  *
- * @brief 提供HID DDK中的枚举变量与结构体定义。
+ * @brief 提供HID DDK中的枚举变量与结构体定义，支持开发者在驱动开发中定义和操作HID设备，适用于与鼠标、键盘、触摸屏等输入设备交互的场景，提供了设备特性、事件类型、键值编码、坐标轴等完整定义，
+ * 帮助开发者快速实现HID设备的驱动开发。
  *
  * @library libhid.z.so
  * @syscap SystemCapability.Driver.HID.Extension
@@ -43,25 +44,25 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif
 
 /**
- * @brief 事件信息。
+ * @brief 表示HID事件信息结构体，包含事件类型、事件编码和事件值，用于描述输入设备的上报事件。在驱动开发场景中，该结构体用于传递和识别各类HID设备产生的事件。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_EmitItem {
     /**
-     * 事件类型
+     * HID事件类型，用于标识事件类别，如按键、移动等。取值范围参考HID协议规范。
      */
     uint16_t type;
     /**
-     * 事件编码
+     * HID事件编码，用于标识具体的HID事件。取值范围参考HID协议规范。
      */
     uint16_t code;
     /**
-     * 事件值
+     * HID事件值，表示事件的参数或状态，具体含义取决于事件类型和编码。例如：对于按键事件，表示按键状态；对于移动事件，表示移动距离等。
      */
     uint32_t value;
 } Hid_EmitItem;
@@ -74,97 +75,97 @@ typedef struct Hid_EmitItem {
  */
 typedef enum {
     /**
-     * 指针设备
+     * 指针设备。
      */
     HID_PROP_POINTER = 0x00,
     /**
-     * 直接输入设备
+     * 直接输入设备。
      */
     HID_PROP_DIRECT = 0x01,
     /**
-     * 底部按键触摸设备
+     * 底部按键触摸设备。
      */
     HID_PROP_BUTTON_PAD = 0x02,
     /**
-     * 全多点触控设备
+     * 半多点触控设备。
      */
     HID_PROP_SEMI_MT = 0x03,
     /**
-     * 顶部软按键触摸设备
+     * 顶部软按键触摸设备。
      */
     HID_PROP_TOP_BUTTON_PAD = 0x04,
     /**
-     * 指点杆设备
+     * 指点杆设备。
      */
     HID_PROP_POINTING_STICK = 0x05,
     /**
-     * 加速度传感器设备
+     * 加速度传感器设备。
      */
     HID_PROP_ACCELEROMETER = 0x06
 } Hid_DeviceProp;
 
 /**
- * @brief 设备基本信息。
+ * @brief 设备基本信息，用于表示HID设备的名称、厂商ID、产品ID等基本属性，在创建和操作HID设备时作为设备标识使用。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_Device {
     /**
-     * 设备名称
+     * 设备名称，最大长度128字符，不能为NULL。超出长度或为NULL时返回错误。
      */
-    const char *deviceName;
+    const char* deviceName;
     /**
-     * 厂商ID
+     * 厂商ID。
      */
     uint16_t vendorId;
     /**
-     * 产品ID
+     * 产品ID。
      */
     uint16_t productId;
     /**
-     * 版本号
+     * 版本号。
      */
     uint16_t version;
     /**
-     * 总线类型
+     * 总线类型，取值含义参考标准HID协议的总线类型定义。
      */
     uint16_t bustype;
     /**
-     * 由{@link Hid_DeviceProp}表示的设备特性
+     * 设备特性。使用前应检查指针是否为空；该指针仅在Hid_Device对象有效期间有效，不应手动释放。
      */
     Hid_DeviceProp *properties;
     /**
-     * 设备特性数量
+     * 设备特性数量，表示properties数组的有效元素个数。注意：遍历数组时应以该值为边界条件；该值可能为0。
      */
     uint16_t propLength;
 } Hid_Device;
 
 /**
- * @brief 事件类型。
+ * @brief 事件类型。用于标识HID设备产生的事件类别，在驱动开发中用于事件分类和处理。
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
     /**
-     * 同步事件
+     * 同步事件。
      */
     HID_EV_SYN = 0x00,
     /**
-     * 按键事件
+     * 按键事件。
      */
     HID_EV_KEY = 0x01,
     /**
-     * 相对坐标事件
+     * 相对坐标事件。
      */
     HID_EV_REL = 0x02,
     /**
-     * 绝对坐标事件
+     * 绝对坐标事件。
      */
     HID_EV_ABS = 0x03,
     /**
-     * 特殊事件
+     * 特殊事件。
      */
     HID_EV_MSC = 0x04
 } Hid_EventType;
@@ -177,468 +178,468 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 表示一个事件的结束
+     * 表示一个事件的结束。
      */
     HID_SYN_REPORT = 0,
     /**
-     * 表示配置同步
+     * 表示配置同步。
      */
     HID_SYN_CONFIG = 1,
     /**
-     * 表示多点触摸的ABS数据包结束
+     * 表示多点触摸的ABS数据包结束。
      */
     HID_SYN_MT_REPORT = 2,
     /**
-     * 表示该事件被丢弃
+     * 表示该事件被丢弃。
      */
     HID_SYN_DROPPED = 3
 } Hid_SynEvent;
 
 /**
- * @brief 键值编码。
+ * @brief 键值编码。包括键盘、鼠标、触摸屏等输入设备的按键和事件编码。
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
     /**
-     * 键A
+     * 键“A”。
      */
     HID_KEY_A = 30,
     /**
-     * 键B
+     * 键“B”。
      */
     HID_KEY_B = 48,
     /**
-     * 键C
+     * 键“C”。
      */
     HID_KEY_C = 46,
     /**
-     * 键D
+     * 键“D”。
      */
     HID_KEY_D = 32,
     /**
-     * 键E
+     * 键“E”。
      */
     HID_KEY_E = 18,
     /**
-     * 键F
+     * 键“F”。
      */
     HID_KEY_F = 33,
     /**
-     * 键G
+     * 键“G”。
      */
     HID_KEY_G = 34,
     /**
-     * 键H
+     * 键“H”。
      */
     HID_KEY_H = 35,
     /**
-     * 键I
+     * 键“I”。
      */
     HID_KEY_I = 23,
     /**
-     * 键J
+     * 键“J”。
      */
     HID_KEY_J = 36,
     /**
-     * 键K
+     * 键“K”。
      */
     HID_KEY_K = 37,
     /**
-     * 键L
+     * 键“L”。
      */
     HID_KEY_L = 38,
     /**
-     * 键M
+     * 键“M”。
      */
     HID_KEY_M = 50,
     /**
-     * 键N
+     * 键“N”。
      */
     HID_KEY_N = 49,
     /**
-     * 键O
+     * 键“O”。
      */
     HID_KEY_O = 24,
     /**
-     * 键P
+     * 键“P”。
      */
     HID_KEY_P = 25,
     /**
-     * 键Q
+     * 键“Q”。
      */
     HID_KEY_Q = 16,
     /**
-     * 键R
+     * 键“R”。
      */
     HID_KEY_R = 19,
     /**
-     * 键S
+     * 键“S”。
      */
     HID_KEY_S = 31,
     /**
-     * 键T
+     * 键“T”。
      */
     HID_KEY_T = 20,
     /**
-     * 键U
+     * 键“U”。
      */
     HID_KEY_U = 22,
     /**
-     * 键V
+     * 键“V”。
      */
     HID_KEY_V = 47,
     /**
-     * 键W
+     * 键“W”。
      */
     HID_KEY_W = 17,
     /**
-     * 键X
+     * 键“X”。
      */
     HID_KEY_X = 45,
     /**
-     * 键Y
+     * 键“Y”。
      */
     HID_KEY_Y = 21,
     /**
-     * 键Z
+     * 键“Z”。
      */
     HID_KEY_Z = 44,
     /**
-     * 键ESC
+     * 键ESC。
      */
     HID_KEY_ESC = 1,
     /**
-     * 键0
+     * 键“0”。
      */
     HID_KEY_0 = 11,
     /**
-     * 键1
+     * 键“1”。
      */
     HID_KEY_1 = 2,
     /**
-     * 键2
+     * 键“2”。
      */
     HID_KEY_2 = 3,
     /**
-     * 键3
+     * 键“3”。
      */
     HID_KEY_3 = 4,
     /**
-     * 键4
+     * 键“4”。
      */
     HID_KEY_4 = 5,
     /**
-     * 键5
+     * 键“5”。
      */
     HID_KEY_5 = 6,
     /**
-     * 键6
+     * 键“6”。
      */
     HID_KEY_6 = 7,
     /**
-     * 键7
+     * 键“7”。
      */
     HID_KEY_7 = 8,
     /**
-     * 键8
+     * 键“8”。
      */
     HID_KEY_8 = 9,
     /**
-     * 键9
+     * 键“9”。
      */
     HID_KEY_9 = 10,
     /**
-     * 键`
+     * 键“`”。
      */
     HID_KEY_GRAVE = 41,
     /**
-     * 键-
+     * 键“-”。
      */
     HID_KEY_MINUS = 12,
     /**
-     * 键=
+     * 键“=”。
      */
     HID_KEY_EQUALS = 13,
     /**
-     * 键退格
+     * 键退格。
      */
     HID_KEY_BACKSPACE = 14,
     /**
-     * 键[
+     * 键“[”。
      */
     HID_KEY_LEFT_BRACKET = 26,
     /**
-     * 键]
+     * 键“]”。
      */
     HID_KEY_RIGHT_BRACKET = 27,
     /**
-     * 键回车
+     * 键回车。
      */
     HID_KEY_ENTER = 28,
     /**
-     * 键左shift
+     * 键左shift。
      */
     HID_KEY_LEFT_SHIFT = 42,
     /**
-     * 键\
+     * 键“\”。
      */
     HID_KEY_BACKSLASH = 43,
     /**
-     * 键;
+     * 键“;”。
      */
     HID_KEY_SEMICOLON = 39,
     /**
-     * 键'
+     * 键“'”。
      */
     HID_KEY_APOSTROPHE = 40,
     /**
-     * 键空格
+     * 键空格。
      */
     HID_KEY_SPACE = 57,
     /**
-     * 键/
+     * 键“/”。
      */
     HID_KEY_SLASH = 53,
     /**
-     * 键,
+     * 键“,”。
      */
     HID_KEY_COMMA = 51,
     /**
-     * 键.
+     * 键“.”。
      */
     HID_KEY_PERIOD = 52,
     /**
-     * 键右shift
+     * 键右shift。
      */
     HID_KEY_RIGHT_SHIFT = 54,
     /**
-     * 数字键0
+     * 数字小键盘的“0”键。
      */
     HID_KEY_NUMPAD_0 = 82,
     /**
-     * 数字键1
+     * 数字小键盘的“1”键。
      */
     HID_KEY_NUMPAD_1 = 79,
     /**
-     * 数字键2
+     * 数字小键盘的“2”键。
      */
     HID_KEY_NUMPAD_2 = 80,
     /**
-     * 数字键3
+     * 数字小键盘的“3”键。
      */
     HID_KEY_NUMPAD_3 = 81,
     /**
-     * 数字键4
+     * 数字小键盘的“4”键。
      */
     HID_KEY_NUMPAD_4 = 75,
     /**
-     * 数字键5
+     * 数字小键盘的“5”键。
      */
     HID_KEY_NUMPAD_5 = 76,
     /**
-     * 数字键6
+     * 数字小键盘的“6”键。
      */
     HID_KEY_NUMPAD_6 = 77,
     /**
-     * 数字键7
+     * 数字小键盘的“7”键。
      */
     HID_KEY_NUMPAD_7 = 71,
     /**
-     * 数字键8
+     * 数字小键盘的“8”键。
      */
     HID_KEY_NUMPAD_8 = 72,
     /**
-     * 数字键9
+     * 数字小键盘的“9”键。
      */
     HID_KEY_NUMPAD_9 = 73,
     /**
-     * 数字小键盘上的斜杠键（/）
+     * 数字小键盘的“/”键。
      */
     HID_KEY_NUMPAD_DIVIDE = 70,
     /**
-     * 数字小键盘上的星号键（*）
+     * 数字小键盘的“*”键。
      */
     HID_KEY_NUMPAD_MULTIPLY = 55,
     /**
-     * 数字键-
+     * 数字小键盘的“-”键。
      */
     HID_KEY_NUMPAD_SUBTRACT = 74,
     /**
-     * 数字键+
+     * 数字小键盘的“+”键。
      */
     HID_KEY_NUMPAD_ADD = 78,
     /**
-     * 数字键.
+     * 数字小键盘的“.”键。
      */
     HID_KEY_NUMPAD_DOT = 83,
     /**
-     * 键打印屏幕
+     * 键打印屏幕。
      */
     HID_KEY_SYSRQ = 99,
     /**
-     * 键删除
+     * 键删除。
      */
     HID_KEY_DELETE = 111,
     /**
-     * 键静音
+     * 键静音。
      */
     HID_KEY_MUTE = 113,
     /**
-     * 键音量-
+     * 键音量-。
      */
     HID_KEY_VOLUME_DOWN = 114,
     /**
-     * 键音量+
+     * 键音量+。
      */
     HID_KEY_VOLUME_UP = 115,
     /**
-     * 键亮度-
+     * 键亮度-。
      */
     HID_KEY_BRIGHTNESS_DOWN = 224,
     /**
-     * 键亮度+
+     * 键亮度+。
      */
     HID_KEY_BRIGHTNESS_UP = 225,
     /**
-     * 按钮0
+     * 按钮0。
      */
     HID_BTN_0 = 0x100,
     /**
-     * 按钮1
+     * 按钮1。
      */
     HID_BTN_1 = 0x101,
     /**
-     * 按钮2
+     * 按钮2。
      */
     HID_BTN_2 = 0x102,
     /**
-     * 按钮3
+     * 按钮3。
      */
     HID_BTN_3 = 0x103,
     /**
-     * 按钮4
+     * 按钮4。
      */
     HID_BTN_4 = 0x104,
     /**
-     * 按钮5
+     * 按钮5。
      */
     HID_BTN_5 = 0x105,
     /**
-     * 按钮6
+     * 按钮6。
      */
     HID_BTN_6 = 0x106,
     /**
-     * 按钮7
+     * 按钮7。
      */
     HID_BTN_7 = 0x107,
     /**
-     * 按钮8
+     * 按钮8。
      */
     HID_BTN_8 = 0x108,
     /**
-     * 按钮9
+     * 按钮9。
      */
     HID_BTN_9 = 0x109,
     /**
-     * 鼠标按键左键
+     * 鼠标按键左键。
      */
     HID_BTN_LEFT = 0x110,
     /**
-     * 鼠标按键右键
+     * 鼠标按键右键。
      */
     HID_BTN_RIGHT = 0x111,
     /**
-     * 鼠标按键中键
+     * 鼠标按键中键。
      */
     HID_BTN_MIDDLE = 0x112,
     /**
-     * 鼠标侧面按键
+     * 鼠标侧面按键。
      */
     HID_BTN_SIDE = 0x113,
     /**
-     * 鼠标附加按键
+     * 鼠标附加按键。
      */
     HID_BTN_EXTRA = 0x114,
     /**
-     * 鼠标向前按键
+     * 鼠标向前按键。
      */
     HID_BTN_FORWARD = 0x115,
     /**
-     * 鼠标向后按键
+     * 鼠标向后按键。
      */
     HID_BTN_BACKWARD = 0x116,
     /**
-     * 鼠标任务按键
+     * 鼠标任务按键。
      */
     HID_BTN_TASK = 0x117,
     /**
-     * 画笔
+     * 画笔。
      */
     HID_BTN_TOOL_PEN = 0x140,
     /**
-     * 橡皮擦
+     * 橡皮擦。
      */
     HID_BTN_TOOL_RUBBER = 0x141,
     /**
-     * 笔刷
+     * 笔刷。
      */
     HID_BTN_TOOL_BRUSH = 0x142,
     /**
-     * 钢笔
+     * 铅笔。
      */
     HID_BTN_TOOL_PENCIL = 0x143,
     /**
-     * 喷枪
+     * 喷枪。
      */
     HID_BTN_TOOL_AIRBRUSH = 0x144,
     /**
-     * 手指
+     * 手指。
      */
     HID_BTN_TOOL_FINGER = 0x145,
     /**
-     * 鼠标
+     * 鼠标。
      */
     HID_BTN_TOOL_MOUSE = 0x146,
     /**
-     * 镜头
+     * 镜头。
      */
     HID_BTN_TOOL_LENS = 0x147,
     /**
-     * 五指触控
+     * 五指触控。
      */
     HID_BTN_TOOL_QUINT_TAP = 0x148,
     /**
-     * 手写笔3
+     * 手写笔3。
      */
     HID_BTN_STYLUS3 = 0x149,
     /**
-     * 触摸
+     * 触摸。
      */
     HID_BTN_TOUCH = 0x14a,
     /**
-     * 手写笔
+     * 手写笔。
      */
     HID_BTN_STYLUS = 0x14b,
     /**
-     * 手写笔2
+     * 手写笔2。
      */
     HID_BTN_STYLUS2 = 0x14c,
     /**
-     * 二指触控
+     * 二指触控。
      */
     HID_BTN_TOOL_DOUBLE_TAP = 0x14d,
     /**
-     * 三指触控
+     * 三指触控。
      */
     HID_BTN_TOOL_TRIPLE_TAP = 0x14e,
     /**
-     * 四指触控
+     * 四指触控。
      */
     HID_BTN_TOOL_QUAD_TAP = 0x14f,
     /**
-     * 滚轮
+     * 滚轮。
      */
     HID_BTN_WHEEL = 0x150
 } Hid_KeyCode;
@@ -651,107 +652,107 @@ typedef enum {
  */
 typedef enum {
     /**
-     * X轴
+     * X轴。
      */
     HID_ABS_X = 0x00,
     /**
-     * Y轴
+     * Y轴。
      */
     HID_ABS_Y = 0x01,
     /**
-     * Z轴
+     * Z轴。
      */
     HID_ABS_Z = 0x02,
     /**
-     * 右模拟摇杆的 X 轴
+     * 右模拟摇杆的 X 轴。
      */
     HID_ABS_RX = 0x03,
     /**
-     * 右模拟摇杆的 Y 轴
+     * 右模拟摇杆的 Y 轴。
      */
     HID_ABS_RY = 0x04,
     /**
-     * 右模拟摇杆的 Z 轴
+     * 右模拟摇杆的 Z 轴。
      */
     HID_ABS_RZ = 0x05,
     /**
-     * 油门
+     * 油门控制。
      */
     HID_ABS_THROTTLE = 0x06,
     /**
-     * 舵
+     * 方向舵。
      */
     HID_ABS_RUDDER = 0x07,
     /**
-     * 滚轮
+     * 滚轮。
      */
     HID_ABS_WHEEL = 0x08,
     /**
-     * 气
+     * 油门踏板。
      */
     HID_ABS_GAS = 0x09,
     /**
-     * 制动
+     * 制动。
      */
     HID_ABS_BRAKE = 0x0a,
     /**
-     * HAT0X
+     * HAT0X，游戏手柄或操纵器的方向键X轴，表示水平方向的倾斜或旋转角度。
      */
     HID_ABS_HAT0X = 0x10,
     /**
-     * HAT0Y
+     * HAT0Y，游戏手柄或操纵器的方向键Y轴，表示垂直方向的倾斜或旋转角度。
      */
     HID_ABS_HAT0Y = 0x11,
     /**
-     * HAT1X
+     * HAT1X，游戏手柄或操纵器的第二个方向键X轴，表示水平方向的倾斜或旋转角度。
      */
     HID_ABS_HAT1X = 0x12,
     /**
-     * HAT1Y
+     * HAT1Y，游戏手柄或操纵器的第二个方向键Y轴，表示垂直方向的倾斜或旋转角度。
      */
     HID_ABS_HAT1Y = 0x13,
     /**
-     * HAT2X
+     * HAT2X，游戏手柄或操纵器的第三个方向键X轴，表示水平方向的倾斜或旋转角度。
      */
     HID_ABS_HAT2X = 0x14,
     /**
-     * HAT2Y
+     * HAT2Y，游戏手柄或操纵器的第三个方向键Y轴，表示垂直方向的倾斜或旋转角度。
      */
     HID_ABS_HAT2Y = 0x15,
     /**
-     * HAT3X
+     * HAT3X，游戏手柄或操纵器的第四个方向键X轴，表示水平方向的倾斜或旋转角度。
      */
     HID_ABS_HAT3X = 0x16,
     /**
-     * HAT3Y
+     * HAT3Y，游戏手柄或操纵器的第四个方向键Y轴，表示垂直方向的倾斜或旋转角度。
      */
     HID_ABS_HAT3Y = 0x17,
     /**
-     * 压力
+     * 压力。
      */
     HID_ABS_PRESSURE = 0x18,
     /**
-     * 距离
+     * 距离。
      */
     HID_ABS_DISTANCE = 0x19,
     /**
-     * X轴倾斜度
+     * X轴倾斜度。
      */
     HID_ABS_TILT_X = 0x1a,
     /**
-     * Y轴倾斜度
+     * Y轴倾斜度。
      */
     HID_ABS_TILT_Y = 0x1b,
     /**
-     * 触摸工具的宽度
+     * 触摸工具的宽度。
      */
     HID_ABS_TOOL_WIDTH = 0x1c,
     /**
-     * 音量
+     * 音量。
      */
     HID_ABS_VOLUME = 0x20,
     /**
-     * 其它
+     * 其他类型的绝对坐标轴，用于不适合归入上述分类的特殊轴类型。
      */
     HID_ABS_MISC = 0x28
 } Hid_AbsAxes;
@@ -764,219 +765,219 @@ typedef enum {
  */
 typedef enum {
     /**
-     * X轴
+     * X轴。
      */
     HID_REL_X = 0x00,
     /**
-     * Y轴
+     * Y轴。
      */
     HID_REL_Y = 0x01,
     /**
-     * Z轴
+     * Z轴。
      */
     HID_REL_Z = 0x02,
     /**
-     * 右模拟摇杆的 X 轴
+     * 右模拟摇杆的 X 轴。
      */
     HID_REL_RX = 0x03,
     /**
-     * 右模拟摇杆的 Y 轴
+     * 右模拟摇杆的 Y 轴。
      */
     HID_REL_RY = 0x04,
     /**
-     * 右模拟摇杆的 Z 轴
+     * 右模拟摇杆的 Z 轴。
      */
     HID_REL_RZ = 0x05,
     /**
-     * 水平滚轮
+     * 水平滚轮，表示鼠标水平滚轮的滚动方向和距离，用于水平方向的滚动操作。
      */
     HID_REL_HWHEEL = 0x06,
     /**
-     * 刻度
+     * 刻度，表示旋钮或刻度盘的旋转方向和距离，用于调节音量、亮度或其他可调节参数。
      */
     HID_REL_DIAL = 0x07,
     /**
-     * 滚轮
+     * 垂直滚轮，表示鼠标垂直滚轮的滚动方向和距离，用于垂直方向的滚动操作。
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * 其它
+     * 其他类型的相对坐标事件，用于不适合归入上述分类的特殊相对坐标事件。
      */
     HID_REL_MISC = 0x09,
-    /**
-     * 预留
+    /*
+     * 预留。
      */
     HID_REL_RESERVED = 0x0a,
     /**
-     * 高分辨率滚轮
+     * 高分辨率滚轮，表示鼠标高分辨率滚轮的滚动方向和距离，提供比普通滚轮更高的分辨率和精度。
      */
     HID_REL_WHEEL_HI_RES = 0x0b,
     /**
-     * 高分辨率水平滚轮
+     * 高分辨率水平滚轮，表示鼠标高分辨率水平滚轮的滚动方向和距离，提供比普通水平滚轮更高的分辨率和精度。
      */
     HID_REL_HWHEEL_HI_RES = 0x0c
 } Hid_RelAxes;
 
 /**
- * @brief 不适合其它类型的输入事件编码。
+ * @brief 不适合其他类型的输入事件编码。
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
     /**
-     * 序列号
+     * 序列号。
      */
     HID_MSC_SERIAL = 0x00,
     /**
-     * 脉冲
+     * 脉冲。
      */
     HID_MSC_PULSE_LED = 0x01,
     /**
-     * 手势
+     * 手势。
      */
     HID_MSC_GESTURE = 0x02,
     /**
-     * 开始事件
+     * 原始事件。
      */
     HID_MSC_RAW = 0x03,
     /**
-     * 扫描
+     * 扫描。
      */
     HID_MSC_SCAN = 0x04,
     /**
-     * 时间戳
+     * 时间戳。
      */
     HID_MSC_TIMESTAMP = 0x05
 } Hid_MscEvent;
 
 /**
- * @brief 事件类型编码数组。
+ * @brief 事件类型编码数组，用于存储HID设备支持的事件类型信息。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_EventTypeArray {
     /**
-     * 事件类型编码
+     * 事件类型编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
      */
     Hid_EventType *hidEventType;
     /**
-     * 数组的有效长度
+     * 数组的有效长度，不超过hidEventType数组的实际长度。
      */
     uint16_t length;
 } Hid_EventTypeArray;
 
 /**
- * @brief 键值属性数组。
+ * @brief 键值属性编码数组，用于存储HID设备支持的键值编码信息。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_KeyCodeArray {
     /**
-     * 键值编码
+     * 键值属性编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
      */
     Hid_KeyCode *hidKeyCode;
     /**
-     * 数组的有效长度
+     * 数组的有效长度，不超过hidKeyCode数组的实际长度。
      */
     uint16_t length;
 } Hid_KeyCodeArray;
 
 /**
- * @brief 绝对坐标属性数组。
+ * @brief 绝对坐标属性数组，用于存储HID设备的多个绝对坐标轴的属性信息，支持描述如触摸屏、游戏摇杆等输入设备的坐标特征，适用于需要精确读取和处理多维输入数据的驱动开发场景，例如在手柄、触摸板等输入设备中记录轴位数据。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_AbsAxesArray {
     /**
-     * 绝对坐标属性编码
+     * 指向绝对坐标属性编码数组首元素的指针。需与length配合使用，指针需有效且不为 NULL。
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * 数组的有效长度
+     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：[0, 65535]。
      */
     uint16_t length;
 } Hid_AbsAxesArray;
 
 /**
- * @brief 相对坐标属性数组。
+ * @brief 相对坐标属性编码数组，用于存储HID设备支持的相对坐标属性信息。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_RelAxesArray {
     /**
-     * 相对坐标属性编码
+     * 相对坐标属性编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
      */
     Hid_RelAxes *hidRelAxes;
     /**
-     * 数组的有效长度
+     * 数组的有效长度，不超过hidRelAxes数组的实际长度。
      */
     uint16_t length;
 } Hid_RelAxesArray;
 
 /**
- * @brief 其他特殊事件属性数组。
+ * @brief 其他特殊事件属性数组，用于存储HID设备支持的特殊事件信息。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_MscEventArray {
     /**
-     * 其他特殊事件属性编码
+     * 其他特殊事件属性编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
      */
     Hid_MscEvent *hidMscEvent;
     /**
-     * 数组的有效长度
+     * 数组的有效长度，不超过hidMscEvent数组的实际长度。
      */
     uint16_t length;
 } Hid_MscEventArray;
 
 /**
- * @brief 设备关注事件属性。
+ * @brief 设备事件属性，包括事件类型、键值、绝对坐标、相对坐标等各类事件属性编码及取值范围。用于HID设备的属性配置，适用于需要精细化管理输入事件的场景。使用结构体前，需根据HID设备规范初始化所有成员变量。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_EventProperties {
     /**
-     * 事件类型属性编码数组
+     * 事件类型属性编码数组，包含设备支持的事件类型集合，用于配置HID设备可触发的事件。
      */
     struct Hid_EventTypeArray hidEventTypes;
     /**
-     * 键值属性编码数组
+     * 键值属性编码数组，包含设备支持的按键编码集合，用于配置HID设备支持的按键功能。
      */
     struct Hid_KeyCodeArray hidKeys;
     /**
-     * 绝对坐标属性编码数组
+     * 绝对坐标属性编码数组，用于配置绝对坐标输入（如触摸屏、手柄摇杆）。
      */
     struct Hid_AbsAxesArray hidAbs;
     /**
-     * 相对坐标属性编码数组
+     * 相对坐标属性编码数组，用于配置相对坐标输入（如鼠标移动）。
      */
     struct Hid_RelAxesArray hidRelBits;
     /**
-     * 其它特殊事件属性编码数组
+     * 其他特殊事件属性编码数组，用于配置特殊输入事件（如扫描、手势）。
      */
     struct Hid_MscEventArray hidMiscellaneous;
 
     /**
-     * 绝对坐标属性最大值
+     * 绝对坐标属性最大值。数组元素按索引对应各坐标轴，必须不小于对应坐标轴的最小值。
      */
     int32_t hidAbsMax[64];
     /**
-     * 绝对坐标属性最小值
+     * 绝对坐标属性最小值。数组元素按索引对应各坐标轴，必须不大于对应坐标轴的最大值。
      */
     int32_t hidAbsMin[64];
     /**
-     * 绝对坐标属性模糊值
+     * 绝对坐标属性模糊值。数组元素按索引对应各坐标轴，用于定义输入事件的模糊容差，建议不超过坐标范围。
      */
     int32_t hidAbsFuzz[64];
     /**
-     * 绝对坐标属性固定值
+     * 绝对坐标属性平坦值。数组元素按索引对应各坐标轴，用于定义输入事件死区的平坦范围（此范围内的值不触发事件上报），建议不超过模糊值。
      */
     int32_t hidAbsFlat[64];
 } Hid_EventProperties;
@@ -993,51 +994,51 @@ typedef enum {
      */
     HID_DDK_SUCCESS = 0,
     /**
-     * 没有权限，从API 16起，取值由-6变更为201。
+     * 没有权限，从API 16起，取值由-6变更为201。请检查应用是否已正确获取所需的权限。
      */
     HID_DDK_NO_PERM = 201,
     /**
-     * 非法参数，从API 16起，取值由-2变更为401。
+     * 非法参数，从API 16起，取值由-2变更为401。请检查参数取值是否符合要求。
      */
     HID_DDK_INVALID_PARAMETER = 401,
     /**
-     * 操作失败，从API 16起，取值由-1变更为27300001。
+     * DDK接口执行失败，从API 16起，取值由-1变更为27300001。可能原因：设备状态异常或通信异常。请检查设备状态和参数设置。
      */
     HID_DDK_FAILURE = 27300001,
     /**
-     * 空指针异常，从API 16起，取值由-4变更为27300002。
+     * 空指针异常，从API 16起，取值由-4变更为27300002。请检查传入参数的有效性。
      */
     HID_DDK_NULL_PTR = 27300002,
     /**
-     * 非法操作，从API 16起，取值由-3变更为27300003。
+     * 非法操作，从API 16起，取值由-3变更为27300003。可能原因：调用API的时机或顺序不正确。请检查调用时机、以及是否初始化DDK。
      */
     HID_DDK_INVALID_OPERATION = 27300003,
     /**
-     * 超时，从API 16起，取值由-5变更为27300004。
+     * 超时，从API 16起，取值由-5变更为27300004。请检查设备状态和超时时间设置。
      */
     HID_DDK_TIMEOUT = 27300004,
     /**
-     * 初始化DDK失败或DDK未初始化。
+     * @brief 初始化DDK失败或DDK未初始化。请检查系统服务状态，确保在调用API前先初始化DDK。
      * @since 18
      */
     HID_DDK_INIT_ERROR = 27300005,
     /**
-     * 服务通信过程中错误。
+     * @brief 服务通信过程中错误。可能原因：服务内部错误。请检查当前操作和设备状态。
      * @since 18
      */
     HID_DDK_SERVICE_ERROR = 27300006,
     /**
-     * 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。
+     * @brief 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。请检查内存使用情况和相关参数。
      * @since 18
      */
-    HID_DDK_MEMORY_ERROR  = 27300007,
+    HID_DDK_MEMORY_ERROR = 27300007,
     /**
-     * I/O操作失败。
+     * @brief I/O操作失败。请检查设备状态和传输参数。
      * @since 18
      */
     HID_DDK_IO_ERROR = 27300008,
     /**
-     * 设备未找到。
+     * @brief 设备未找到。可能原因：设备未连接或设备ID错误。请检查设备是否连接、设备ID是否正确。
      * @since 18
      */
     HID_DDK_DEVICE_NOT_FOUND = 27300009
@@ -1051,53 +1052,54 @@ typedef enum {
 #define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)
 
 /**
- * @brief 不透明的USB HID设备结构。
+ * @brief 不透明的USB HID设备结构，用于标识和操作HID设备实例。开发者通过该句柄进行HID设备的打开、关闭、读写等操作。
  *
  * @since 18
  */
 typedef struct Hid_DeviceHandle Hid_DeviceHandle;
 
 /**
- * @brief 报告（HID设备与主机之间交换的数据包）类型定义。
+ * @brief 报告（HID设备与主机之间交换的数据包）类型定义，用于标识HID设备与主机之间通信的数据包类型，在设备通信和数据交换场景中使用。
  *
  * @since 18
  */
 typedef enum {
     /**
-     * 输入报告
+     * 输入报告，用于设备向主机上报数据。
      */
     HID_INPUT_REPORT = 0,
     /**
-     * 输出报告
+     * 输出报告，用于主机向设备发送数据。
      */
     HID_OUTPUT_REPORT = 1,
     /**
-     * 特性报告
+     * 特性报告，用于设备配置和状态查询。
      */
     HID_FEATURE_REPORT = 2
 } Hid_ReportType;
 
 /**
- * @brief 原始设备信息定义。
+ * @brief HID原始设备信息，包含总线类型、供应商ID、产品ID等关键标识信息。开发者可以通过此结构体识别和区分不同的HID设备，通常用于设备识别、设备匹配、设备过滤等场景。
  *
  * @since 18
  */
 typedef struct Hid_RawDevInfo {
     /**
-     * 总线类型
+     * 总线类型，用于标识HID设备的物理连接方式。
      */
     uint32_t busType;
     /**
-     * 供应商ID
+     * 供应商ID。
      */
     uint16_t vendor;
     /**
-     * 产品ID
+     * 产品ID。
      */
     uint16_t product;
 } Hid_RawDevInfo;
+
 #ifdef __cplusplus
 }
-/** @} */
-#endif /* __cplusplus */
+#endif
 #endif // HID_DDK_TYPES_H
+/** @} */

@@ -16,17 +16,24 @@
  * @addtogroup Drm
  * @{
  *
- * @brief Provides APIs of Drm.
+ * @brief 提供数字版权保护能力的API。
+ *
+ * 开发者可根据开发需求，参考开发指南及样例：
+ *
+ * - [数字版权保护(C/C++)](docroot://media/drm/drm-c-dev-guide.md)
+ * - [基于AVCodec播放DRM节目(C/C++)](docroot://media/drm/drm-avcodec-integration.md)
+ *
  * @kit DrmKit
  * @since 11
  * @version 1.0
  */
 /**
  * @file native_mediakeysystem.h
- * @brief 定义Drm MediaKeySystem API。提供以下功能：
- * 查询是否支持特定的drm、创建媒体密钥会话、获取和设置配置、获取统计信息、获取内容保护级别、生成提供请求、处理提供响应、事件监听、获取内容防护级别、管理离线媒体密钥等。
+ * @brief 定义DRM MediaKeySystem API。提供以下功能：\n
+ * 查询是否支持特定的DRM、创建媒体密钥会话、获取和设置配置、获取统计信息、获取内容保护级别、生成提供请求、处理提供响应、事件监听、管理离线媒体密钥等。
  * 
- * @library libnative_drm.z.so
+ * @library libnative_drm.so
+ * @include <multimedia/drm_framework/native_mediakeysystem.h>
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
@@ -53,7 +60,7 @@ extern "C" {
  * @param infoLen 事件信息长度。
  * @param extra 增量信息。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数无效。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数无效。
  * @since 11
  * @version 1.0
  */
@@ -69,7 +76,7 @@ typedef  Drm_ErrCode (*MediaKeySystem_Callback)(DRM_EventType eventType, uint8_t
  * @param infoLen 事件信息长度。
  * @param extra 增量信息。
  * @return DRM_ERR_OK：执行成功。
- * DRM_ERR_INVALID_VAL：输入参数无效。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数无效。
  * @since 12
  * @version 1.0
  */
@@ -77,26 +84,26 @@ typedef Drm_ErrCode (*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem
     uint8_t *info, int32_t infoLen, char *extra);
 
 /**
- * @brief Set media key system event callback.
- * @param mediaKeySystem Media key system instance.
- * @param callback Callback to be set to the media key system.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - If the mediaKeySystem instance is nullptr or invalid,
- *         or the mediaKeySession is nullptr or invalid.
+ * @brief 设置MediaKeySystem事件回调。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param callback 回调函数。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
  * @since 12
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_MediaKeySystem_Callback callback);
 
 /**
- * @brief Acquire supported media key systems' name and uuid.
- * @param descs Array used to save media key systems' name and uuid.
- * @param count Used to indicate count of struct DRM_MediaKeySystemDescription.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
- *         1.the description or the count is nullptr.
- *         2. the size of the description array is smaller than the actual number obtained.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取设备支持的DRM解决方案的名称和唯一标识的列表。
+ * @param descs DRM解决方案名称和唯一标识的列表。
+ * @param count DRM解决方案名称和唯一标识的列表长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：
+ *     <br>输入参数descs为空指针。
+ *     <br>输入参数count为空指针。
+ *     <br>输入参数descs长度不足。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 12
  * @version 1.0
  */
@@ -135,108 +142,108 @@ bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,
     DRM_ContentProtectionLevel contentProtectionLevel);
 
 /**
- * @brief Creates a media key system instance from the name.
- * @param name Specifies which drm system will be created by name.
- * @param mediaKeySystem Media key system instance.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
- *         1. the name is nullptr or the length of name is zero.
- *         2. the mediaKeySystem is nullptr.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
- *         {@link DRM_ERR_SERVICE_DIED} 24700507 - Service died.
- *         {@link DRM_ERR_MAX_SYSTEM_NUM_REACHED} 24700510 - The maximum number of media key systems is reached.
+ * @brief 创建MediaKeySystem实例。
+ * @param name DRM解决方案名称。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：
+ *     <br>输入参数name为空指针。
+ *     <br>输入参数name长度为0。
+ *     <br>输入参数mediaKeySystem为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_SERVICE_DIED：服务死亡。
+ *     <br>DRM_ERR_MAX_SYSTEM_NUM_REACHED：已创建的MediaKeySystem数量达到最大限制（64个）。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKeySystem);
 /**
- * @brief Set media key system configuration value by name.
- * @param mediaKeySystem Media key system instance.
- * @param configName Configuration name string.
- * @param value Configuration value string to be set.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 设置字符串类型的配置属性。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param configName 字符串类型配置属性名，不能为空，具体支持的属性名由设备上DRM解决方案决定。
+ * @param value 字符串类型配置属性值，不能为空，具体支持的属性值由设备上DRM解决方案决定。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySystem,
     const char *configName, const char *value);
 /**
- * @brief Get media key system configuration value by name.
- * @param mediaKeySystem Media key system instance.
- * @param configName Configuration name string.
- * @param value Configuration value string to be get.
- * @param valueLen Configuration value string len for in buffer.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取字符串类型配置属性值。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param configName 字符串类型配置名。
+ * @param value 字符串类型配置值，用于存储获取的配置属性值。该参数不能为空，具体支持的取值由设备上DRM解决方案决定。
+ * @param valueLen 字符串类型配置值长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySystem,
     const char *configName, char *value, int32_t valueLen);
 /**
- * @brief Set media key system configuration value by name.
- * @param mediaKeySystem Media key system instance.
- * @param configName Configuration name string.
- * @param value Configuration value in byte array to be set.
- * @param valueLen Value array len.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 设置字符数组类型的配置属性值。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param configName 字符数组类型配置属性名称，不能为空，具体支持的属性名由设备上DRM解决方案决定。
+ * @param value 字符数组类型配置属性值，不能为空，具体支持的属性值由设备上DRM解决方案决定。
+ * @param valueLen 字符数组类型配置属性值长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，或输入参数value为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKeySystem,
     const char *configName, uint8_t *value, int32_t valueLen);
 /**
- * @brief Get media key system configuration value by name.
- * @param mediaKeySystem Media key system instance.
- * @param configName Configuration name string.
- * @param value Configuration value in byte array to be get.
- * @param valueLen Configuration value len for in buffer and out data.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取字符数组类型配置属性值。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param configName 字符数组类型配置属性名称，不能为空，具体支持的属性名由设备上DRM解决方案决定。
+ * @param value 字符数组类型配置属性，用于存储获取的配置属性值。该参数不能为空，具体支持的取值由设备上DRM解决方案决定。
+ * @param valueLen 字符数组类型配置属性长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，输入参数configName为空指针，输入参数value为空指针，或valueLen为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKeySystem,
     const char *configName, uint8_t *value, int32_t *valueLen);
 /**
- * @brief Get media key system statistics info.
- * @param mediaKeySystem Media key system instance.
- * @param statistics Statistic info gotten.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取度量记录。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param statistics 度量记录。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数statistics为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_Statistics *statistics);
 /**
- * @brief Get the max content protection level media key system supported.
- * @param mediaKeySystem Media key system instance.
- * @param contentProtectionLevel Content protection level.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取设备支持的最大内容保护级别。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param contentProtectionLevel 内容保护级别。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数contentProtectionLevel为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *mediaKeySystem,
     DRM_ContentProtectionLevel *contentProtectionLevel);
 /**
- * @brief Set media key system event callback.
- * @param mediaKeySystem Media key system instance.
- * @param callback Callback to be set to the media key system.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ * @brief 设置MediaKeySystem事件回调。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param callback 回调函数。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
  * @since 11
  * @version 1.0
  */
@@ -244,18 +251,16 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKey
     MediaKeySystem_Callback callback);
 
 /**
- * @brief Create a media key session instance.
- * @param mediaKeySystem Media key system instance which will create the media key session.
- * @param level Specifies the content protection level.
- * @param mediaKeySession Media key session instance.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
- *         1. The parameter passed in is a null pointer or invalid.
- *         2. the level is beyond reasonable range.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
- *         {@link DRM_ERR_SERVICE_DIED} 24700507 - Service died.
- *         {@link DRM_ERR_MAX_SESSION_NUM_REACHED} 24700511 - The maximum number of media key sessions is reached.
+ * @brief 创建MediaKeySession会话实例。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param level 内容保护级别。可通过{@link OH_MediaKeySystem_GetMaxContentProtectionLevel}接口先获取设备支持的最大内容保护级别。
+ * @param mediaKeySession MediaKeySession实例。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数level超出合理范围，或mediaKeySession为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+ *     <br>DRM_ERR_SERVICE_DIED：服务死亡。
+ *     <br>DRM_ERR_MAX_SESSION_NUM_REACHED：当前MediaKeySystem已创建的MediaKeySession数量达到最大限制（64个）。
  * @since 11
  * @version 1.0
  */
@@ -263,16 +268,16 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySyst
     DRM_ContentProtectionLevel *level, MediaKeySession **mediaKeySession);
 
 /**
- * @brief Generate a media key system provision request.
- * @param mediaKeySystem Media key system instance.
- * @param request Provision request data sent to provision server.
- * @param requestLen Provision request data len for in buffer and out data.
- * @param defaultUrl Provision server URL.
- * @param defaultUrlLen Provision server URL len for in buffer.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 生成设备DRM证书请求。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param request 设备DRM证书请求。
+ * @param requestLen 设备DRM证书请求的长度。
+ * @param defaultUrl 设备DRM证书服务的URL。
+ * @param defaultUrlLen 设备DRM证书服务的URL长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -280,13 +285,13 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeyS
     int32_t *requestLen, char *defaultUrl, int32_t defaultUrlLen);
 
 /**
- * @brief Process a media key system provision response.
- * @param mediaKeySystem Media key system instance.
- * @param response The provision response will be processed.
- * @param responseLen The response len.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 处理设备DRM证书请求响应。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param response 设备DRM证书请求响应。
+ * @param responseLen 设备DRM证书请求响应长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数response为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -294,13 +299,13 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeyS
     uint8_t *response, int32_t responseLen);
 
 /**
- * @brief Get offline media key ids .
- * @param mediaKeySystem Media key system instance.
- * @param offlineMediaKeyIds Media key ids of all offline media keys.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取离线媒体密钥标识列表，媒体密钥标识用于对离线媒体密钥的管理。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param offlineMediaKeyIds 离线媒体密钥的媒体密钥标识列表。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_NO_MEMORY：内存不足，内存分配失败。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyIds为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -308,14 +313,14 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySyst
     DRM_OfflineMediakeyIdArray *offlineMediaKeyIds);
 
 /**
- * @brief Get offline media key status.
- * @param mediaKeySystem Media key system instance.
- * @param offlineMediaKeyId Offline media key identifier.
- * @param offlineMediaKeyIdLen Offline media key identifier len.
- * @param status The media key status gotten.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取离线媒体密钥状态。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param offlineMediaKeyId 离线媒体密钥标识。
+ * @param offlineMediaKeyIdLen 离线媒体密钥标识长度。
+ * @param status 媒体密钥状态。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或其它指针类型输入参数为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -323,13 +328,13 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeyS
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, DRM_OfflineMediaKeyStatus *status);
 
 /**
- * @brief Clear an offline media key by id.
- * @param mediaKeySystem Media key system instance.
- * @param offlineMediaKeyId Offline media key identifier.
- * @param offlineMediaKeyIdLen Offline media key identifier len.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 按ID清除离线媒体密钥。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param offlineMediaKeyId 离线媒体密钥标识。
+ * @param offlineMediaKeyIdLen 离线媒体密钥标识长度。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数offlineMediaKeyId为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -337,12 +342,12 @@ Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySyst
     uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen);
 
 /**
- * @brief Get certificate status of media key system.
- * @param mediaKeySystem Media key system instance.
- * @param certStatus Status will be gotten.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 获取设备DRM证书状态。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @param certStatus 设备DRM证书状态值。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效，或输入参数certStatus为空指针。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */
@@ -350,11 +355,11 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySyste
     DRM_CertificateStatus *certStatus);
 
 /**
- * @brief Destroy a media key system instance.
- * @param mediaKeySystem Specifies which media key system instance will be destroyed.
- * @return {@link DRM_ERR_OK} 0 - Success.
- *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
- *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ * @brief 销毁MediaKeySystem实例。
+ * @param mediaKeySystem MediaKeySystem实例。
+ * @return DRM_ERR_OK：执行成功。
+ *     <br>DRM_ERR_INVALID_VAL：输入参数mediaKeySystem为空指针或无效。
+ *     <br>DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
  * @since 11
  * @version 1.0
  */

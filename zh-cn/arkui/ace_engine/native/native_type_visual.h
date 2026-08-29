@@ -25,7 +25,7 @@
 /**
  * @file native_type_visual.h
  *
- * @brief Defines the visual effect types for the native module.
+ * @brief 提供NativeModule视觉相关的类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -39,13 +39,15 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "error_code.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
 /**
- * @brief 定义四阶矩阵对象。
+ * @brief 四阶矩阵对象，用于描述UI组件的平移、旋转、缩放等矩阵变换操作，详细使用说明请参见{@link ArkUI_NativeModule}。
  *
  * @since 24
  */
@@ -74,27 +76,27 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 超小阴影。
+     * 超小阴影。<br>!{@link defaultxs}
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS = 0,
     /**
-     * 小阴影。
+     * 小阴影。<br>!{@link defaultsm}
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM,
     /**
-     * 中阴影。
+     * 中阴影。<br>!{@link defaultmd}
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD,
     /**
-     * 大阴影。
+     * 大阴影。<br>!{@link defaultlg}
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG,
     /**
-     * 浮动小阴影。
+     * 浮动小阴影。<br>!{@link floatingsm}
      */
     ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM,
     /**
-     * 浮动中阴影。
+     * 浮动中阴影。<br>!{@link floatingmd}
      */
     ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD,
 } ArkUI_ShadowStyle;
@@ -190,55 +192,55 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 轻薄材质模糊。
+     * 轻薄材质模糊。<br>!{@link thin}
      */
     ARKUI_BLUR_STYLE_THIN = 0,
     /**
-     * 普通厚度材质模糊。
+     * 普通厚度材质模糊。<br>!{@link regular}
      */
     ARKUI_BLUR_STYLE_REGULAR,
     /**
-     * 厚材质模糊。
+     * 厚材质模糊。<br>!{@link thick}
      */
     ARKUI_BLUR_STYLE_THICK,
     /**
-     * 近距景深模糊。
+     * 近距景深模糊。<br>!{@link backgroundthin}
      */
     ARKUI_BLUR_STYLE_BACKGROUND_THIN,
     /**
-     * 中距景深模糊。
+     * 中距景深模糊。<br>!{@link backgroundregular}
      */
     ARKUI_BLUR_STYLE_BACKGROUND_REGULAR,
     /**
-     * 远距景深模糊。
+     * 远距景深模糊。<br>!{@link backgroundthick}
      */
     ARKUI_BLUR_STYLE_BACKGROUND_THICK,
     /**
-     * 超远距景深模糊。
+     * 超远距景深模糊。<br>!{@link backgroundultrathick}
      */
     ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK,
     /**
-     * 关闭模糊。
+     * 关闭模糊。<br>!{@link none}
      */
     ARKUI_BLUR_STYLE_NONE,
     /**
-     * 组件超轻薄材质模糊。
+     * 组件超轻薄材质模糊。<br>!{@link componentultrathin}
      */
     ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN,
     /**
-     * 组件轻薄材质模糊。
+     * 组件轻薄材质模糊。<br>!{@link componentthin}
      */
     ARKUI_BLUR_STYLE_COMPONENT_THIN,
     /**
-     * 组件普通材质模糊。
+     * 组件普通材质模糊。<br>!{@link componentregular}
      */
     ARKUI_BLUR_STYLE_COMPONENT_REGULAR,
     /**
-     * 组件厚材质模糊。
+     * 组件厚材质模糊。<br>!{@link componentthick}
      */
     ARKUI_BLUR_STYLE_COMPONENT_THICK,
     /**
-     * 组件超厚材质模糊。
+     * 组件超厚材质模糊。<br>!{@link componentultrathick}
      */
     ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK,
 } ArkUI_BlurStyle;
@@ -250,15 +252,15 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 跟随窗口焦点状态变化，窗口非焦点状态不激活，窗口焦点状态激活。
+     * 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。
      */
     ARKUI_BLUR_STYLE_ACTIVE_POLICY_FOLLOWS_WINDOW_ACTIVE_STATE = 0,
     /**
-     * 始终激活。
+     * 一直有模糊效果。
      */
     ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_ACTIVE,
     /**
-     * 始终不激活。
+     * 一直无模糊效果。
      */
     ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_INACTIVE,
 } ArkUI_BlurStyleActivePolicy;
@@ -366,7 +368,7 @@ typedef enum {
      */
     ARKUI_BLEND_MODE_DIFFERENCE,
     /**
-     * rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。
+     * rc = s + d - 2 * (s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。
      */
     ARKUI_BLEND_MODE_EXCLUSION,
     /**
@@ -422,7 +424,7 @@ typedef enum {
      */
     ARKUI_MASK_TYPE_RECTANGLE = 0,
     /**
-     * 圆形。
+     * 圆形类型。
      */
     ARKUI_MASK_TYPE_CIRCLE,
     /**
@@ -450,7 +452,7 @@ typedef enum {
      */
     ARKUI_CLIP_TYPE_RECTANGLE = 0,
     /**
-     * 圆形。
+     * 圆形类型。
      */
     ARKUI_CLIP_TYPE_CIRCLE,
     /**
@@ -464,7 +466,7 @@ typedef enum {
 } ArkUI_ClipType;
 
 /**
- * @brief 自定义形状。
+ * @brief 定义形状类型的枚举值。
  *
  * @since 12
  */
@@ -474,7 +476,7 @@ typedef enum {
      */
     ARKUI_SHAPE_TYPE_RECTANGLE = 0,
     /**
-     * 圆形。
+     * 圆形类型。
      */
     ARKUI_SHAPE_TYPE_CIRCLE,
     /**
@@ -488,7 +490,7 @@ typedef enum {
 } ArkUI_ShapeType;
 
 /**
- * @brief 定义渐变方向结构。
+ * @brief 定义线性渐变方向枚举。
  *
  * @since 12
  */
@@ -530,7 +532,7 @@ typedef enum {
      */
     ARKUI_LINEAR_GRADIENT_DIRECTION_NONE,
     /**
-     * 自定义渐变方向.
+     * 自定义渐变方向。
      */
     ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM,
 } ArkUI_LinearGradientDirection;
@@ -560,17 +562,17 @@ typedef enum {
 } ArkUI_TransitionEdge;
 
 /**
- * @brief 指定的混合模式应用于视图的内容选项.
+ * @brief 指定的混合模式应用于视图的内容选项。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * 在目标图像上按顺序混合视图的内容.
+     * 在目标图像上按顺序混合视图的内容。
      */
     BLEND_APPLY_TYPE_FAST = 0,
     /**
-     * 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.
+     * 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。
      */
     BLEND_APPLY_TYPE_OFFSCREEN,
 } ArkUI_BlendApplyType;
@@ -586,7 +588,7 @@ typedef enum {
      */
     ARKUI_FINISH_CALLBACK_REMOVED = 0,
     /**
-     * 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。长尾状态是指动画即将完全停止前的残余变化过程，此时动画的数值变化已非常微小，接近目标值。
+     * 当动画在逻辑上已完成，但可能仍处于其长尾状态时，将触发回调。长尾状态是指动画即将完全停止前的残余变化过程，此时动画的数值变化已非常微小，接近目标值。
      */
     ARKUI_FINISH_CALLBACK_LOGICALLY,
 } ArkUI_FinishCallbackType;
@@ -688,7 +690,7 @@ typedef enum {
 } ArkUI_AnimationFillMode;
 
 /**
- * @brief 定义动画播放模式。
+ * @brief 动画播放方向。
  *
  * @since 12
  */
@@ -712,126 +714,133 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
- * @brief 定义组件转场时的平移效果对象。
+ * @brief 定义组件转场时平移效果的配置选项，用于设置组件在转场过程中横向、纵向和深度方向的平移距离。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * 横向的平移距离，单位为vp。
+     * 横向的平移距离，单位为vp。取值原则：正值表示向右平移，负值表示向左平移，0表示不平移。默认值：0
      */
     float x;
     /**
-     * 纵向的平移距离，单位为vp。
+     * 纵向的平移距离，单位为vp。取值原则：正值表示向下平移，负值表示向上平移，0表示不平移。默认值：0
      */
     float y;
     /**
-     * 深度方向的平移距离，单位为vp。
+     * 深度方向的平移距离，单位为vp。取值原则：正值表示向靠近观察者方向平移，负值表示向远离观察者方向平移，0表示不平移。z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。默认值：0
      */
     float z;
 } ArkUI_TranslationOptions;
 
 /**
- * @brief 定义组件转场时的缩放效果对象。
+ * @brief 定义组件转场时的缩放选项。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * x轴的缩放倍数。x>1时以x轴方向放大，0<x<1时以x轴方向缩小，x=0时表示在x轴方向缩小成0，x=1时表示在x轴方向缩放倍数是1，x<0时沿x轴反向并缩放。
+     * x轴的缩放倍数，默认值1.0。x>1时沿x轴方向放大，0<x<1时沿x轴方向缩小，x<0时沿x轴方向反向，缩放倍数为|x|。缩放以centerX为锚点进行。注意：x=0时组件在x轴方向完全消失，使用时需留意特殊值的影响。
      */
     float x;
     /**
-     * y轴的缩放倍数。y>1时以y轴方向放大，0<y<1时以y轴方向缩小，y=0时表示在y轴方向缩小成0，y=1时表示在y轴方向缩放倍数是1，y<0时沿y轴反向并缩放。
+     * y轴的缩放倍数，默认值1.0。y>1时沿y轴方向放大，0<y<1时沿y轴方向缩小，y<0时沿y轴方向反向，缩放倍数为|y|。注意：y=0时组件在y轴方向完全消失，使用时需留意特殊值的影响。
      */
     float y;
     /**
-     * 当前为二维显示，该参数无效。
+     * z轴的缩放倍数，默认值1.0。在二维显示模式下，该参数无效。
      */
     float z;
     /**
-     * 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标，单位为vp。
+     * 组件变换中心点（即锚点）的x轴坐标，单位为百分比，0表示组件左边缘，1表示组件右边缘，0.5表示组件水平中心。默认值0.5。x轴缩放效果以该点为锚点进行，不同centerX值决定缩放锚点的x方向位置。
+     * 取值为0时缩放从组件左边缘展开，取值为0.5时缩放从水平中心展开，取值为1时缩放从右边缘展开。
      */
     float centerX;
     /**
-     * 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标，单位为vp。
+     * 组件变换中心点（即锚点）的y轴坐标，单位为百分比，0表示组件顶部边缘，1表示组件底部边缘，0.5表示组件垂直中心。默认值0.5。y轴缩放效果以该点为锚点进行，不同centerY值决定缩放锚点的y方向位置。
+     * 取值为0时缩放从组件顶部边缘展开，取值为0.5时缩放从垂直中心展开，取值为1时缩放从底部边缘展开。
      */
     float centerY;
 } ArkUI_ScaleOptions;
 
 /**
- * @brief 定义组件转场时的旋转效果对象。
+ * @brief 定义组件转场时的旋转配置选项。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * 横向的旋转向量分量。
+     * 横向的旋转向量分量，与y、z共同定义旋转轴方向。取值范围：(-∞, +∞)。
      */
     float x;
     /**
-     * 纵向的旋转向量分量。
+     * 纵向的旋转向量分量，与x、z共同定义旋转轴方向。取值范围：(-∞, +∞)。
      */
     float y;
     /**
-     * 竖向的旋转向量分量。
+     * 深度方向的旋转向量分量，与x、y共同定义旋转轴方向。取值范围：(-∞, +∞)。
      */
     float z;
     /**
-     * 旋转角度。取值范围：(-∞, +∞)。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。
+     * 旋转角度，单位为度（°）。取值范围：(-∞, +∞)。取值为正时沿由(x,y,z)确定的旋转轴方向顺时针转动，取值为负时沿该旋转轴方向逆时针转动。
      */
     float angle;
     /**
-     * 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标，单位为vp。
+     * 组件变换中心点（即锚点）的x轴坐标，单位为百分比，0表示组件左边缘，1表示组件右边缘，0.5表示组件水平中心。默认值0.5。x轴缩放效果以该点为锚点进行，不同centerX值决定缩放锚点的x方向位置。
+     * 取值为0时缩放从组件左边缘展开，取值为0.5时缩放从水平中心展开，取值为1时缩放从右边缘展开。
      */
     float centerX;
     /**
-     * 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标，单位为vp。
+     * 组件变换中心点（即锚点）的y轴坐标，单位为百分比，0表示组件顶部边缘，1表示组件底部边缘，0.5表示组件垂直中心。默认值0.5。y轴缩放效果以该点为锚点进行，不同centerY值决定缩放锚点的y方向位置。
+     * 取值为0时缩放从组件顶部边缘展开，取值为0.5时缩放从垂直中心展开，取值为1时缩放从底部边缘展开。
      */
     float centerY;
     /**
-     * z轴锚点，即3D旋转中心点的z轴分量，单位为px。
+     * 3D旋转中心点的z轴分量，单位为百分比，0表示组件所在平面，正值表示旋转中心向观察者方向偏移，负值表示旋转中心向远离观察者方向偏移。3D旋转效果的呈现受perspective参数影响。
      */
     float centerZ;
     /**
-     * 视距，即视点到z=0平面的距离，单位为px。
+     * 视距，即视点到z=0平面的距离，相机放置的z轴坐标，单位为px。数值大小表示视距，即相机到z=0平面的距离。取值的正负决定了相机观察的方向。当perspective=0，系统会自动计算适合的相机z轴位置，取值为负数。
      */
     float perspective;
 } ArkUI_RotationOptions;
 
-
 /**
- * @brief 定义一个二维坐标点结构体，坐标以浮点类型存储。
+ * @brief 定义一个二维坐标点结构体，用于描述组件位置或偏移等坐标信息，坐标以浮点类型存储。
  *
  * @since 24
  */
 typedef struct {
     /**
-     * x轴坐标。取值范围：(-∞, +∞)。
+     * x轴坐标，单位为px。取值范围：(-∞, +∞)。
      */
     float x;
     /**
-     * y轴坐标。取值范围：(-∞, +∞)。
+     * y轴坐标，单位为px。取值范围：(-∞, +∞)。
      */
     float y;
 } ArkUI_PointF;
 
 /**
- * @brief 定义阴影选项对象。
+ * @brief 定义阴影选项，用于设置组件的阴影效果，包括阴影颜色、偏移量、模糊半径、阴影类型、是否填充等属性。\n
+ * 调用{@link OH_ArkUI_ShadowOptions_Create}接口创建对应的阴影选项对象。\n
+ * 调用{@link OH_ArkUI_ShadowOptions_Destroy}接口销毁阴影选项对象。\n
+ * 对象创建后，调用OH_ArkUI_ShadowOptions_SetXXX系列接口设置生效的具体样式。
+ * 例如调用{@link OH_ArkUI_ShadowOptions_SetRadius}设置阴影模糊半径。若创建对象失败（返回空指针），调用SetXXX系列接口将不会生效。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
 
 /**
- * @brief 定义路径动画的运动路径配置项。
+ * @brief 定义路径动画的运动路径配置项，用于配置组件在动画过程中沿指定路径运动的轨迹及相关参数，使组件能够按照预设的运动路径进行位移动画。
  *
  * @since 23
  */
 typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions;
 
 /**
- * @brief 创建路径动画的运动路径配置项。
+ * @brief 创建路径动画的运动路径配置项。当该对象不再使用时，请调用{@link OH_ArkUI_MotionPathOptions_Dispose}销毁。
  *
  * @return 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
  *     <br>新建的{@link ArkUI_MotionPathOptions}对象中，路径动画的运动路径path值为空字符串，路径动画起点进度from值为0，路径动画终点进度to值为1，
@@ -857,7 +866,7 @@ void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
  *     等效于未设置路径动画。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} options为空指针或svgPath为空指针，请确保传入有效的运动路径配置项指针和路径字符串。
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* options, const char* svgPath);
@@ -866,15 +875,15 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* opti
  * @brief 获取路径动画的运动路径配置项中存储的运动路径字符串。
  *
  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
- * @param svgPathBuffer 存储运动路径字符串的缓冲区指针。
- * @param bufferSize svgPathBuffer参数的缓冲区大小。
- * @param writeLength 返回{@link ARKUI_ERROR_CODE_NO_ERROR}时，表示实际写入缓冲区的字符串长度。
- *     <br>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}时，表示如果为入参异常，writeLength不会被赋值，如果为拷贝异常，writeLength为可容纳目标字符串的最小缓冲区大小。
+ * @param svgPathBuffer 存储运动路径字符串的缓冲区指针。不能为空指针，缓冲区大小须足够容纳路径字符串。
+ * @param bufferSize svgPathBuffer参数的缓冲区大小，必须大于0。传入0或负数时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param writeLength 返回{@link ARKUI_ERROR_CODE_NO_ERROR}时，表示实际写入缓冲区的字符串长度（含终止符）。
+ *     <br>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}时，如果为入参异常，writeLength不会被赋值；如果为拷贝异常，writeLength为可容纳目标字符串的最小缓冲区大小。
  *     <br>返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时，表示可容纳目标字符串的最小缓冲区大小。
  * @return 错误码。
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
+ *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>如果缓冲区大小不足，返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions* options, char* svgPathBuffer,
@@ -889,7 +898,8 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} from超出[0.0, 1.0]范围，或from大于终点进度to。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} from超出[0.0, 1.0]范围，或from大于终点进度to，请将from值设置在[0.0, 1.0]
+ *     范围内且确保from不大于终点进度to。
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* options, const float from);
@@ -910,7 +920,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions
  * @brief 设置路径动画终点进度。进度指已移动路径长度与总路径长度的比值。
  *
  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
- * @param to 路径动画的终点进度，取值范围为[0.0, 1.0]，且需满足to大或等于起点进度from；否则将返回{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}错误码。
+ * @param to 路径动画的终点进度，取值范围为[0.0, 1.0]，且需满足to大于或等于起点进度from；否则将返回{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}错误码。
  *     <br>from的含义参考{@link OH_ArkUI_MotionPathOptions_SetFrom}。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -958,9 +968,11 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions*
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
 
 /**
- * @brief 创建一个阴影选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_ShadowOptions_Destroy}销毁。
+ * @brief 创建一个阴影选项对象。在新创建的对象中，模糊半径radius的默认值为0，阴影在x轴上的偏移量offsetX的默认值为0，阴影在y轴上的偏移量offsetY的默认值为0，阴影颜色color的默认值为0xFF000000，
+ * 阴影类型type的默认值为ARKUI_SHADOW_TYPE_COLOR，是否用阴影填充组件内部isFill的默认值为false。当该对象不再使用时，请调用{@link OH_ArkUI_ShadowOptions_Destroy}
+ * 销毁。
  *
- * @return 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @return 指向新创建的{@link OH_ArkUI_ShadowOptions}对象的指针，用于配置阴影的模糊半径、类型、颜色和偏移量等属性。
  * @since 24
  */
 OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
@@ -968,7 +980,7 @@ OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
 /**
  * @brief 销毁阴影选项对象。
  *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param options 指向新创建的{@link OH_ArkUI_ShadowOptions}对象的指针，用于配置阴影的模糊半径、类型、颜色和偏移量等属性。
  * @since 24
  */
 void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
@@ -977,10 +989,10 @@ void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
  * @brief 设置阴影选项的模糊半径。
  *
  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param radius 阴影的模糊半径，单位为vp。
+ * @param radius 阴影的模糊半径，取值范围：(-∞, +∞)，单位为vp。
  * @return 返回结果码。
  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>若options为空指针，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}，请确保传入有效的阴影选项对象指针。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
@@ -989,7 +1001,7 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options
  * @brief 获取阴影选项的模糊半径。
  *
  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param radius 阴影的模糊半径，单位为vp。
+ * @param radius 阴影的模糊半径，单位为px。值为0时无模糊效果。
  * @return 返回结果码。
  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1109,7 +1121,7 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
  * @brief 获取是否用阴影填充组件内部。
  *
  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。
+ * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。默认值为false。
  * @return 返回结果码。
  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1118,16 +1130,17 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
 
 /**
- * @brief 定义矩阵缩放的缩放对象。
+ * @brief 定义4×4矩阵缩放变换的参数配置对象，各参数及其取值原则详见成员变量说明。
  *
  * @since 24
  */
 typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
 
 /**
- * @brief 创建指向矩阵运算的缩放参数对象的指针。在新创建的对象中，x、y和z轴方向的缩放系数默认值，为1。变换中心点的x轴坐标centerX、变换中心点的y轴坐标centerY取默认值，为0。
+ * @brief 创建指向矩阵运算的缩放参数对象的指针。在新创建的对象中，x、y和z轴方向的缩放系数默认值为1。变换中心点的x轴坐标centerX、变换中心点的y轴坐标centerY默认值为0。当该对象不再使用时，请调用
+ * {@link OH_ArkUI_Matrix4ScaleOptions_Dispose}销毁。
  *
- * @return 返回指向新创建的{@link ArkUI_Matrix4ScaleOptions}的指针。
+ * @return 返回指向新创建的{@link ArkUI_Matrix4ScaleOptions}的指针，用于配置矩阵运算的缩放参数。
  * @since 24
  */
 ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
@@ -1261,7 +1274,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOption
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterY(const ArkUI_Matrix4ScaleOptions* options, float* centerY);
 
 /**
- * @brief 定义矩阵旋转的旋转对象。
+ * @brief 定义矩阵旋转变换的参数配置对象。
  *
  * @since 24
  */
@@ -1269,9 +1282,9 @@ typedef struct ArkUI_Matrix4RotationOptions ArkUI_Matrix4RotationOptions;
 
 /**
  * @brief 创建矩阵运算的旋转参数对象的指针。在新创建的对象中，单次矩阵变换中心点相对于组件变换中心点的x轴偏移值centerX、单次矩阵变换中心点相对于组件变换中心点的y轴偏移值centerY、旋转角度angle的默认值，为0。
- * 如果未指定x、y、z方向的方向向量中的任何一个，则等同于x=0、y=0、z=1，表示绕z轴旋转。一旦指定了x、y、z方向的方向向量中的任意一个，其余未指定的值等同于0。
+ * 如果未指定x、y、z方向的方向向量中的任何一个，旋转效果等同于绕z轴旋转（即计算时方向向量取x=0、y=0、z=1）。一旦指定了x、y、z方向的方向向量中的任意一个，以指定的方向向量生效。
  *
- * @return 返回指向新创建的{@link ArkUI_Matrix4RotationOptions}的指针
+ * @return 返回指向新创建的{@link ArkUI_Matrix4RotationOptions}的指针，用于配置矩阵运算的旋转参数。
  * @since 24
  */
 ArkUI_Matrix4RotationOptions* OH_ArkUI_Matrix4RotationOptions_Create();
@@ -1288,7 +1301,7 @@ void OH_ArkUI_Matrix4RotationOptions_Dispose(ArkUI_Matrix4RotationOptions* optio
  * @brief 设置矩阵运算的旋转参数对象x方向的方向向量。
  *
  * @param options 指向矩阵运算的旋转参数对象的指针。
- * @param x x轴方向的方向向量的值。取值范围：(-∞, +∞)。
+ * @param x x轴方向的方向向量的值。取值范围：(-∞, +∞)。与y、z方向向量共同构成旋转轴，如x=1且y=0、z=0时表示绕x轴旋转。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1300,7 +1313,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOption
  * @brief 获取矩阵运算的旋转参数对象x方向的方向向量。如果从未设置过x值，其值将处于未定义状态，此时函数将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  *
  * @param options 指向矩阵运算的旋转参数对象的指针。
- * @param x x轴方向的方向向量的值。如果从未设置x的值，其值将未定义。
+ * @param x x轴方向的方向向量的值。如果从未设置x的值，其值将未定义。该参数与y、z方向向量共同构成旋转轴。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1312,7 +1325,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4Rotation
  * @brief 设置矩阵运算的旋转参数对象y方向的方向向量。
  *
  * @param options 指向矩阵运算的旋转参数对象的指针。
- * @param y y轴方向的方向向量的值。取值范围：(-∞, +∞)。
+ * @param y y轴方向的方向向量的值。取值范围：(-∞, +∞)。与x、z方向向量共同构成旋转轴，如y=1且x=0、z=0时表示绕y轴旋转。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1324,7 +1337,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOption
  * @brief 获取矩阵运算的旋转参数对象y方向的方向向量。如果从未设置过y值，其值将处于未定义状态，此时函数将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  *
  * @param options 指向矩阵运算的旋转参数对象的指针。
- * @param y y轴方向的方向向量的值。如果从未设置y的值，其值将未定义。
+ * @param y y轴方向的方向向量的值。如果从未设置y的值，其值将未定义。该参数与x、z方向向量共同构成旋转轴。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1336,7 +1349,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4Rotation
  * @brief 设置矩阵运算的旋转参数对象z方向的方向向量。
  *
  * @param options 指向矩阵运算的旋转参数对象的指针。
- * @param z z轴方向的方向向量的值。取值范围：(-∞, +∞)。
+ * @param z z轴方向的方向向量的值。取值范围：(-∞, +∞)。与x、y方向向量共同构成旋转轴，如z=1且x=0、y=0时表示绕z轴旋转（默认行为）。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1348,7 +1361,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOption
  * @brief 获取矩阵运算的旋转参数对象z方向的方向向量。如果从未设置过z值，其值将处于未定义状态，此时函数将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  *
  * @param options 指向矩阵运算的旋转参数对象的指针。
- * @param z z轴方向的方向向量的值。如果从未设置z的值，其值将未定义。
+ * @param z z轴方向的方向向量的值。如果从未设置z的值，其值将未定义。该参数与x、y方向向量共同构成旋转轴。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1429,16 +1442,17 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4Rotation
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterY(const ArkUI_Matrix4RotationOptions* options, float* centerY);
 
 /**
- * @brief 定义矩阵平移的平移对象。
+ * @brief 定义矩阵平移变换的参数配置对象。
  *
  * @since 24
  */
 typedef struct ArkUI_Matrix4TranslationOptions ArkUI_Matrix4TranslationOptions;
 
 /**
- * @brief 创建指向矩阵运算的平移对象的指针。在新创建的对象中，x轴的平移距离x、y轴的平移距离y和z轴的平移距离z的默认值为0。
+ * @brief 创建指向矩阵运算的平移对象的指针。在新创建的对象中，x轴的平移距离x、y轴的平移距离y和z轴的平移距离z的默认值为0。当该对象不再使用时，请调用
+ * {@link OH_ArkUI_Matrix4TranslationOptions_Dispose}销毁。
  *
- * @return 返回指向新创建的{@link ArkUI_Matrix4TranslationOptions}的指针。
+ * @return 返回指向新创建的{@link ArkUI_Matrix4TranslationOptions}的指针，用于配置矩阵运算的平移参数。
  * @since 24
  */
 ArkUI_Matrix4TranslationOptions* OH_ArkUI_Matrix4TranslationOptions_Create();
@@ -1452,7 +1466,7 @@ ArkUI_Matrix4TranslationOptions* OH_ArkUI_Matrix4TranslationOptions_Create();
 void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions* options);
 
 /**
- * @brief 设置矩阵运算的平移对象x轴方向的平移值。
+ * @brief 设置矩阵运算的平移对象x轴方向的平移值，单位为px。
  *
  * @param options 指向矩阵运算的平移参数对象的指针。
  * @param x x轴方向的平移值。取值范围：(-∞, +∞)。单位为px。如果从未设置x的值，其默认值为0。
@@ -1464,10 +1478,10 @@ void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions*
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
 
 /**
- * @brief 获取矩阵运算的平移对象x轴方向的平移值。
+ * @brief 获取矩阵运算的平移对象x轴方向的平移值，单位为px。如果从未设置x的值，其默认值为0。
  *
  * @param options 指向矩阵运算的平移参数对象的指针。
- * @param x x轴方向的平移值。
+ * @param x x轴方向的平移值。单位为px。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1476,7 +1490,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4Translation
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
 
 /**
- * @brief 设置矩阵运算的平移对象y轴方向的平移值。
+ * @brief 设置矩阵运算的平移对象y轴方向的平移值，单位为px。
  *
  * @param options 指向矩阵运算的平移参数对象的指针。
  * @param y y轴方向的平移值。取值范围：(-∞, +∞)。单位为px。如果从未设置y的值，其默认值为0。
@@ -1488,10 +1502,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4Trans
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4TranslationOptions* options, const float y);
 
 /**
- * @brief 获取矩阵运算的平移对象y轴方向的平移值。
+ * @brief 获取矩阵运算的平移对象y轴方向的平移值，单位为px。如果从未设置y的值，其默认值为0。
  *
  * @param options 指向矩阵运算的平移参数对象的指针。
- * @param y y轴方向的平移值。
+ * @param y y轴方向的平移值。单位为px。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1500,7 +1514,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4Translation
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4TranslationOptions* options, float* y);
 
 /**
- * @brief 设置矩阵运算的平移对象z轴方向的平移值。
+ * @brief 设置矩阵运算的平移对象z轴方向的平移值，单位为px。
  *
  * @param options 指向矩阵运算的平移参数对象的指针。
  * @param z z轴方向的平移值。取值范围：(-∞, +∞)。单位为px。如果从未设置z的值，其默认值为0。
@@ -1512,10 +1526,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4Trans
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4TranslationOptions* options, const float z);
 
 /**
- * @brief 获取矩阵运算的平移对象z轴方向的平移值。
+ * @brief 获取矩阵运算的平移对象z轴方向的平移值，单位为px。如果从未设置z的值，其默认值为0。
  *
  * @param options 指向矩阵运算的平移参数对象的指针。
- * @param z z轴方向的平移值。
+ * @param z z轴方向的平移值。单位为px。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1534,8 +1548,8 @@ ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateIdentity();
 /**
  * @brief 通过指定矩阵的每个元素来创建一个四阶矩阵对象。
  *
- * @param elements 指向预期矩阵元素数据的数组指针。数组长度应大于或等于16。该参数不可为空指针。
- * @return 返回新创建的四阶矩阵对象。如果elements指针为空，函数将返回空值。
+ * @param elements 指向预期矩阵元素数据的数组指针。数组长度应大于或等于16，若不足16可能导致未定义行为。该参数不可为空指针，若为空指针函数将返回空值。
+ * @return 返回通过指定矩阵元素创建的四阶矩阵对象。如果elements指针为空，函数将返回NULL。
  * @since 24
  */
 ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateByElements(const float* elements);
@@ -1549,21 +1563,21 @@ ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateByElements(const float* elements);
 void OH_ArkUI_Matrix4_Dispose(ArkUI_Matrix4* matrix);
 
 /**
- * @brief 创建四阶矩阵对象的副本。用于对同一个矩阵进行操作以此获取不同矩阵对象。
+ * @brief 创建四阶矩阵对象的副本。通过复制原始矩阵，可以对其进行独立操作以获取不同矩阵变换结果。当该副本对象不再使用时，请调用{@link OH_ArkUI_Matrix4_Dispose}销毁。
  *
  * @param matrix 指向原始四阶矩阵对象的指针。
- * @return 返回新创建的四阶矩阵对象。
+ * @return 返回四阶矩阵对象的副本对象。
  * @since 24
  */
 ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
 
 /**
- * @brief 对输入矩阵执行逆矩阵变换。
+ * @brief 对输入矩阵执行逆矩阵变换，变换后将修改输入的矩阵对象。
  *
  * @param matrix 指向要逆矩阵变换的四阶矩阵对象的指针。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>如果发生参数异常（如传入空指针），返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
@@ -1575,7 +1589,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
  * @param anotherMatrix 指向要合并的另一个矩阵对象的指针。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>如果oriMatrix或anotherMatrix为空指针，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_Matrix4* anotherMatrix);
@@ -1587,7 +1601,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_M
  * @param translate 指向平移对象的指针。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>如果matrix或translate为空指针，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4TranslationOptions* translate);
@@ -1599,7 +1613,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Ma
  * @param scale 指向缩放对象的指针。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>如果options为空指针，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}，请确保传入有效的缩放参数对象指针。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix4ScaleOptions* scale);
@@ -1611,7 +1625,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix
  * @param rotate 指向旋转对象的指针。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>如果matrix或rotate为空指针，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}，请确保传入有效的对象指针。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4RotationOptions* rotate);
@@ -1620,8 +1634,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matri
  * @brief 对原始矩阵应用倾斜变换以获取倾斜后的矩阵。每次倾斜变换都是在先前的矩阵上累积的。变换后将修改输入的矩阵对象。
  *
  * @param matrix 指向待倾斜四阶矩阵对象的指针。
- * @param skewX x方向的倾斜系数。
- * @param skewY y方向的倾斜系数。
+ * @param skewX x方向的倾斜系数。取值范围：(-∞, +∞)。0表示无倾斜，正值使内容沿x方向正向倾斜，负值使内容沿x方向负向倾斜。
+ * @param skewY y方向的倾斜系数。取值范围：(-∞, +∞)。0表示无倾斜，正值使内容沿y方向正向倾斜，负值使内容沿y方向负向倾斜。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1632,8 +1646,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Skew(ArkUI_Matrix4* matrix, const float skewX, 
 /**
  * @brief 计算一个点经过矩阵变换后的新坐标位置。
  *
- * @param matrix 指向四阶矩阵对象的指针。
- * @param oriPoint 指向原始坐标点的指针。
+ * @param matrix 指向四阶矩阵对象的指针。不能为空。
+ * @param oriPoint 指向原始坐标点的指针。不能为空。
  * @param result 指向结果点的指针。不能为空。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
@@ -1644,11 +1658,11 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, con
 
 /**
  * @brief 将一个多边形的顶点坐标映射到另一个多边形的顶点坐标，并计算所需的矩阵。
- * 
+ *
  * @param matrix 指向四阶矩阵对象的指针，用于存放结果矩阵。
- * @param src 指向原始多边形坐标点数组的指针。数组长度应至少为pointCount。
- * @param dst 指向映射后多边形坐标点数组的指针。数组长度应至少为pointCount。
- * @param pointCount 多边形点的数量，必须是0、1、2、3或4中的一个值。
+ * @param src 指向原始多边形坐标点数组的指针。数组长度应至少为pointCount，否则将导致未定义行为。
+ * @param dst 指向映射后多边形坐标点数组的指针。数组长度应至少为pointCount，否则将导致未定义行为。
+ * @param pointCount 多边形点的数量，必须是0、1、2、3或4中的一个值。传入其他值时将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
@@ -1660,7 +1674,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
  * @brief 获取四阶矩阵的16个元素。
  *
  * @param matrix 指向四阶矩阵对象的指针。
- * @param result 指向可容纳16个浮点数的数组的指针。不能为空。
+ * @param result 指向可容纳16个浮点数的数组的指针。不能为空。若缓冲区容量不足16个浮点数，可能导致未定义行为。
  * @return 错误码。
  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。

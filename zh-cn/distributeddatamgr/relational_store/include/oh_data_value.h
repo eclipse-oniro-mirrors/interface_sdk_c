@@ -26,6 +26,7 @@
 /**
  * @file oh_data_value.h
  *
+ * @include database/data/oh_data_value.h
  * @brief 提供与单条数据值相关的函数和枚举。
  * <br>从API version 18开始，OH_ColumnType从oh_cursor.h移动至此头文件呈现，对于此类型，API version 18之前即支持使用，各版本均可正常使用。
  *

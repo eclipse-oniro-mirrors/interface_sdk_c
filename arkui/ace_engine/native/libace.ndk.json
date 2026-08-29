@@ -6468,10 +6468,6 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_ArkUI_EnableEventPassthrough"
-    },
-    {
-        "first_introduced": "26.0.0",
         "name": "OH_ArkUI_PointerEvent_GetCurrentLocalX"
     },
     {
@@ -6485,6 +6481,10 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_ArkUI_PointerEvent_GetCurrentLocalYByIndex"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_EnableEventPassthrough"
     },
     {
         "first_introduced": "23",
@@ -6517,6 +6517,26 @@
     {
         "first_introduced": "23",
         "name": "OH_ArkUI_Swiper_ShowNext"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DigitalCrownEvent_GetEventTime"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DigitalCrownEvent_GetAngularVelocity"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DigitalCrownEvent_GetDegree"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DigitalCrownEvent_GetAction"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DigitalCrownEvent_SetStopPropagation"
     },
     {
         "first_introduced": "26.1.0",
@@ -6625,26 +6645,6 @@
     {
         "first_introduced": "24",
         "name": "OH_ArkUI_FontConfigs_GetFontWeightConfigs"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_ArkUI_DigitalCrownEvent_GetEventTime"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_ArkUI_DigitalCrownEvent_GetAngularVelocity"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_ArkUI_DigitalCrownEvent_GetDegree"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_ArkUI_DigitalCrownEvent_GetAction"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_ArkUI_DigitalCrownEvent_SetStopPropagation"
     },
     {
         "first_introduced": "26.0.0",

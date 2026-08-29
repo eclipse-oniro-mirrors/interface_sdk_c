@@ -122,7 +122,7 @@ typedef enum {
     ARKUI_TEXT_DATA_DETECTOR_TYPE_ADDRESS
 } ArkUI_TextDataDetectorType;
 /**
- * @brief 定义文本实体识别的配置。文本实体指的是地址、电话号码等特殊内容实体。
+ * @brief 定义文本实体识别的配置，通过设置需要识别的实体类型（如电话号码、网址、邮箱、地址、日期等），在文本组件中启用对应的实体检测功能，检测到的实体将以可交互形式呈现。适用于聊天消息中自动识别联系方式、文档中提取链接等场景。
  *
  * @since 24
  */

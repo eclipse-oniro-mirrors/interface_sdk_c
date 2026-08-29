@@ -24,7 +24,7 @@
 /**
  * @file udmf.h
  *
- * @brief 提供访问统一数据管理框架数据的接口、数据结构、枚举类型。当参数类型为char*时，字符串必须以空字符（'\0'）结尾。
+ * @brief 提供访问统一数据管理框架数据的接口、数据结构、枚举类型。当参数类型为char*时，字符串必须以空字符（'\0'）结尾，否则可能导致未定义行为或函数返回错误。
  *
  * @kit ArkData
  * @library libudmf.so
@@ -339,11 +339,11 @@ OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create();
 int OH_UdmfRecordProvider_Destroy(OH_UdmfRecordProvider* provider);
 
 /**
- * @brief 定义用于按类型获取数据的回调函数。当从OH_UdmfRecord中获取数据时，会触发此回调函数，得到的数据就是这个回调函数返回的数据。
+ * @brief 定义用于按类型获取数据的回调函数。当从{@linkOH_UdmfRecord}中获取数据时，会触发此回调函数，得到的数据就是这个回调函数返回的数据。
  *
  * @param context 用{@link OH_UdmfRecordProvider_SetData}设置的上下文指针。
  * @param type 要获取的数据类型。详细类型信息见{@link udmf_meta.h}。
- * @return 需要返回一个标准化数据。
+ * @return 返回从上下文中获取的指定类型的数据指针。
  * @since 13
  */
 typedef void* (*OH_UdmfRecordProvider_GetData)(void* context, const char* type);
@@ -376,7 +376,7 @@ OH_UdmfRecord* OH_UdmfRecord_Create();
 /**
  * @brief 销毁统一数据记录{@link OH_UdmfRecord}指针指向的实例对象。
  *
- * @param pThis 表示指向统一数据对象{@link OH_UdmfRecord}实例的指针。
+ * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @see OH_UdmfRecord
  * @since 12
  */
@@ -531,7 +531,7 @@ int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
     unsigned char** entry, unsigned int* count);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取纯文本类型{@link OH_UdsPlainText}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取纯文本类型{@link OH_UdsPlainText}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param plainText 该参数是输出参数，表示指向纯文本类型{@link OH_UdsPlainText}实例的指针。
@@ -545,7 +545,7 @@ int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
 int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取超链接类型{@link OH_UdsHyperlink}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取超链接类型{@link OH_UdsHyperlink}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param hyperlink 该参数是输出参数，表示指向超链接类型{@link OH_UdsHyperlink}实例的指针。
@@ -559,7 +559,7 @@ int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
 int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取超文本标记语言类型{@link OH_UdsHtml}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取超文本标记语言类型{@link OH_UdsHtml}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param html 该参数是输出参数，表示指向超文本标记语言类型{@link OH_UdsHtml}实例的指针。
@@ -573,7 +573,7 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
 int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取桌面图标类型{@link OH_UdsAppItem}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取桌面图标类型{@link OH_UdsAppItem}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param appItem 该参数是输出参数，表示指向桌面图标类型{@link OH_UdsAppItem}实例的指针。
@@ -587,7 +587,7 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
 int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取文件Uri类型{@link OH_UdsFileUri}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取文件Uri类型{@link OH_UdsFileUri}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param fileUri 该参数是输出参数，表示指向文件Uri类型{@link OH_UdsFileUri}实例的指针。
@@ -600,7 +600,7 @@ int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
 int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取像素图片类型{@link OH_UdsPixelMap}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取像素图片类型{@link OH_UdsPixelMap}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param pixelMap 该参数是输出参数，表示指向像素图片类型{@link OH_UdsPixelMap}实例的指针。
@@ -629,7 +629,7 @@ int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, un
     OH_UdmfRecordProvider* provider);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取ArrayBuffer类型{@link OH_UdsArrayBuffer}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取ArrayBuffer类型{@link OH_UdsArrayBuffer}数据。
  *
  * @param record 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param type 表示要获取的ArrayBuffer类型数据的数据类型标识。
@@ -643,7 +643,7 @@ int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, un
 int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
 
 /**
- * @brief 从统一数据记录{@link OH_UdmfRecord}中获取内容卡片类型{@link OH_UdsContentForm}数据。
+ * @brief 向统一数据记录{@link OH_UdmfRecord}中获取内容卡片类型{@link OH_UdsContentForm}数据。
  *
  * @param pThis 表示指向统一数据记录{@link OH_UdmfRecord}实例的指针。
  * @param contentForm 该参数是输出参数，表示指向内容卡片类型{@link OH_UdsContentForm}实例的指针。
@@ -656,7 +656,7 @@ int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_Uds
 int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm);
 
 /**
- * @brief 从统一数据对象{@link OH_UdmfData}中获取第一个纯文本类型{@link OH_UdsPlainText}数据。
+ * @brief 向统一数据对象{@link OH_UdmfData}中获取第一个纯文本类型{@link OH_UdsPlainText}数据。
  *
  * @param data 表示指向统一数据对象{@link OH_UdmfData}实例的指针。
  * @param plainText 该参数是输出参数，表示指向纯文本类型{@link OH_UdsPlainText}实例的指针。
@@ -669,7 +669,7 @@ int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* conten
 int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainText);
 
 /**
- * @brief 从统一数据对象{@link OH_UdmfData}中获取第一个超文本标记语言类型{@link OH_UdsHtml}数据。
+ * @brief 向统一数据对象{@link OH_UdmfData}中获取第一个超文本标记语言类型{@link OH_UdsHtml}数据。
  *
  * @param data 表示指向统一数据对象{@link OH_UdmfData}实例的指针。
  * @param html 该参数是输出参数，表示指向超文本标记语言类型{@link OH_UdsHtml}实例的指针。
@@ -828,7 +828,7 @@ int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption opti
 int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param);
 
 /**
- * @brief 设置数据属性{@link OH_UdmfProperty}的附加整型参数。
+ * @brief 设置数据属性{@link OH_UdmfProperty}附加字符串参数。
  *
  * @param pThis 表示指向数据属性{@link OH_UdmfProperty}实例的指针。
  * @param key 表示键值对的键。
@@ -956,7 +956,7 @@ Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis);
 int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility);
 
 /**
- * @brief 从统一数据管理框架数据库中获取统一数据对象{@link OH_UdmfData}数据。
+ * @brief 向统一数据管理框架数据库中获取统一数据对象{@link OH_UdmfData}数据。
  *
  * @param key 表示数据库存储的唯一标识符。
  * @param intention 表示数据通路类型{@link Udmf_Intention}。
@@ -988,7 +988,7 @@ int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfDat
 int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
 
 /**
- * @brief 从统一数据管理框架数据库中写入统一数据对象{@link OH_UdmfData}数据。
+ * @brief 向统一数据管理框架数据库中写入统一数据对象{@link OH_UdmfData}数据。
  *
  * @param intention 表示数据通路类型{@link Udmf_Intention}。
  * @param unifiedData 表示统一数据对象{@link OH_UdmfData}数据。
@@ -1005,7 +1005,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
     char* key, unsigned int keyLen);
 
 /**
- * @brief 从统一数据管理框架数据库中写入统一数据对象{@link OH_UdmfData}数据。
+ * @brief 向统一数据管理框架数据库中写入统一数据对象{@link OH_UdmfData}数据。
  *
  * @param options 指向数据操作选项{@link OH_UdmfOptions}实例的指针。
  * @param unifiedData 指向统一数据对象{@link OH_UdmfData}实例的指针。
@@ -1051,7 +1051,7 @@ int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)
 int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
 
 /**
- * @brief 从统一数据对象{@link OH_UdmfData}数组中获取指定下标的统一数据对象数据。
+ * @brief 向统一数据对象{@link OH_UdmfData}数组中获取指定下标的统一数据对象数据。
  *
  * @param dataArray 指向统一数据对象{@link OH_UdmfData}的指针数组。
  * <br>只接受从{@link OH_Udmf_GetUnifiedDataByOptions}和{@link OH_Udmf_DeleteUnifiedData}接口中获得的指针数组。
@@ -1096,7 +1096,7 @@ int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo);
  * @brief 创建异步获取UDMF数据的请求参数{@link OH_UdmfGetDataParams}指针及实例对象。
  * <br>当不再需要使用指针时，请使用{@link OH_UdmfGetDataParams_Destroy}销毁实例对象，否则会导致内存泄漏。
  *
- * @return 执行成功则返回一个指向属性{@link OH_UdmfGetDataParams}实例对象的指针，否则返回nullptr。
+ * @return 执行成功则返回一个指向{@link OH_UdmfGetDataParams}实例对象的指针，否则返回nullptr。
  * @see OH_UdmfGetDataParams
  * @since 15
  */

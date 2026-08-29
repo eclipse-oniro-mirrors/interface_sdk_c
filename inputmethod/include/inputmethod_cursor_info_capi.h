@@ -16,7 +16,7 @@
  * @addtogroup InputMethod
  * @{
  *
- * @brief InputMethod provides functions to use input methods and develop input methods.
+ * @brief InputMethod provides functions to use input methods.
  *
  * @since 12
  */
@@ -24,8 +24,9 @@
 /**
  * @file inputmethod_cursor_info_capi.h
  *
- * @brief Provides interfaces to manage the cursor information.
+ * @brief Provides methods for creating, destroying, reading, and writing cursor information objects.
  *
+ * @include <inputmethod/inputmethod_cursor_info_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -39,9 +40,8 @@
 extern "C"{
 #endif /* __cplusplus */
 /**
- * @brief Define the InputMethod_CursorInfo structure type.
+ * @brief Represents the cursor information, including the coordinates, width, and height of the cursor.
  *
- * The coordinates and width and height information of the cursor.
  *
  * @since 12
  */
@@ -50,10 +50,12 @@ typedef struct InputMethod_CursorInfo InputMethod_CursorInfo;
 /**
  * @brief Create a new {@link InputMethod_CursorInfo} instance.
  *
- * @param left The left point of the cursor and must be absolute coordinate of the physical screen.
- * @param top The top point of the cursor and must be absolute coordinate of the physical screen.
- * @param width The width of the cursor.
- * @param height The height of the cursor.
+ * @param left Absolute value of the distance between the cursor's leftmost point and the left edge of the physical
+ * screen, in px.
+ * @param top Absolute value of the distance between the cursor's top point and the top edge of the physical screen,
+ * in px.
+ * @param width The width of the cursor.in px.
+ * @param height The height of the cursor.in px.
  * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_CursorInfo}
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
@@ -72,14 +74,16 @@ void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
  * @brief Set cursor info.
  *
  * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance.
- * @param left The left point of the cursor and must be absolute coordinate of the physical screen.
- * @param top The top point of the cursor and must be absolute coordinate of the physical screen.
- * @param width The width of the cursor.
- * @param height The height of the cursor.
+ * @param left Absolute value of the distance between the cursor's leftmost point and the left edge of the physical
+ *  screen, in px.
+ * @param top Absolute value of the distance between the cursor's top point and the top edge of the physical screen,
+ *  in px.
+ * @param width The width of the cursor.in px.
+ * @param height The height of the cursor.in px.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_CursorInfo_SetRect(
@@ -89,14 +93,16 @@ InputMethod_ErrorCode OH_CursorInfo_SetRect(
  * @brief Get cursor info.
  *
  * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance.
- * @param left The left point of the cursor and must be absolute coordinate of the physical screen.
- * @param top The top point of the cursor and must be absolute coordinate of the physical screen.
- * @param width The width of the cursor.
- * @param height The height of the cursor.
+ * @param left Absolute value of the distance between the cursor's leftmost point and the left edge of the physical
+ *  screen, in px.
+ * @param top Absolute value of the distance between the cursor's top point and the top edge of the physical screen,
+ *  in px.
+ * @param width The width of the cursor.in px.
+ * @param height The height of the cursor.in px.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_CursorInfo_GetRect(

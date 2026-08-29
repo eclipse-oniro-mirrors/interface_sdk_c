@@ -94,7 +94,7 @@ typedef enum {
 } ArkUI_NavDestinationState;
 
 /**
- * @brief 定义[Router](arkts-apis-uicontext-router.md)（路由页面）的状态。
+ * @brief 定义[Router]{@link @ohos.arkui.UIContext#Router}（路由页面）的状态。
  *
  * @since 12
  */

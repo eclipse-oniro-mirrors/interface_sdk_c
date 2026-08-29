@@ -27,6 +27,7 @@
  * @brief 定义AVImageGenerator接口。使用其C API从视频资源中获取指定时间点视频帧。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avimage_generator.h>
  * @library libavimage_generator.so
  * @since 18
  */
@@ -82,7 +83,7 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
  * 
  * @param generator 指向OH_AVImageGenerator实例的指针。
  * @param timeUs 需要获取的视频帧在视频中的时间点，单位为微秒（μs）。
- * @param options 关于给定时间Us和视频帧之间关系的时间选项。
+ * @param options 指定如何根据给定时间点查找视频帧的选项。
  * @param pixelMap 获取的视频帧对象。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。

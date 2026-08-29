@@ -24,7 +24,7 @@
 
 /**
  * @file net_ethernet_type.h
- * @brief Defines the data structure for the C APIs of the ethernet module.
+ * @brief Defines the data structures for the C APIs of the Ethernet NIC module.
  *
  * @library libnet_ethernet.so
  * @kit NetworkKit
@@ -48,11 +48,11 @@ extern "C" {
 #define ETHERNET_MAX_STR_LEN 256
 
 /**
- * @brief Defines the ethernet iface mac address info.
+ * @brief Defines the MAC address of the Ethernet NIC.
  *
  * @since 26.0.0
  */
-typedef struct Ethernet_MacAddressInfo {
+typedef struct Ethernet_MacAddressInfo  {
     /**
      * The ethernet iface name.
      * @since 26.0.0
@@ -66,31 +66,31 @@ typedef struct Ethernet_MacAddressInfo {
 } Ethernet_MacAddressInfo;
 
 /**
- * @brief Defines the ethernet iface mac address info list.
+ * @brief Defines the MAC address list of Ethernet NICs.
  *
  * @since 26.0.0
  */
-typedef struct Ethernet_MacAddrInfoList {
+typedef struct Ethernet_MacAddrInfoList  {
     /**
      * The ethernet mac address list.
      * @since 26.0.0
      */
     Ethernet_MacAddressInfo macInfoList[ETHERNET_MAX_NET_SIZE];
     /**
-     * The real size of the macInfoList.
+     * Actual size of the **macInfoList** array.
      * @since 26.0.0
      */
     int32_t macInfoListSize;
 } Ethernet_MacAddrInfoList;
 
 /**
- * @brief Defines the network address.
+ * @brief Defines a network address.
  *
  * @since 26.0.0
  */
 typedef struct Ethernet_NetAddr {
     /**
-     * Network address family.
+     * Network address family. IPv4 = 1, IPv6 = 2.
      * @since 26.0.0
      */
     uint8_t family;
@@ -112,11 +112,12 @@ typedef struct Ethernet_NetAddr {
 } Ethernet_NetAddr;
 
 /**
- * @brief Defines the ethernet iface net address info.
+ * @brief Defines the network address of the Ethernet NIC, including the Ethernet NIC name and the network address
+ * information.
  *
  * @since 26.0.0
  */
-typedef struct Ethernet_NetAddrInfo {
+typedef struct Ethernet_NetAddrInfo  {
     /**
      * The ethernet iface name.
      * @since 26.0.0
@@ -128,14 +129,14 @@ typedef struct Ethernet_NetAddrInfo {
      */
     Ethernet_NetAddr netAddrInfo[ETHERNET_MAX_NET_SIZE];
     /**
-     * The actual size of the network address.
+     * Actual size of the **netAddrInfo** array.
      * @since 26.0.0
      */
     int32_t netAddrInfoSize;
 } Ethernet_NetAddrInfo;
 
 /**
- * @brief Defines the ethernet network address list.
+ * @brief Defines the network address list of Ethernet NICs.
  *
  * @since 26.0.0
  */
@@ -146,7 +147,7 @@ typedef struct Ethernet_NetAddrList {
      */
     Ethernet_NetAddrInfo netAddrList[ETHERNET_MAX_NET_SIZE];
     /**
-     * The real size of the netAddrList.
+     * Actual size of **netAddrList**.
      * @since 26.0.0
      */
     int32_t netAddrListSize;

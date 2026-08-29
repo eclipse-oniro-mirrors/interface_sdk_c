@@ -13,14 +13,8 @@
  * limitations under the License.
  */
 
-/**
- * @addtogroup Telephony
- * @{
- *
- * @brief Provides the data structures for the C APIs of the the telephony radio.
- *
- * @since 13
- */
+#ifndef NATIVE_TELEPHONY_RADIO_TYPE_H
+#define NATIVE_TELEPHONY_RADIO_TYPE_H
 
 /**
  * @file telephony_radio_type.h
@@ -32,23 +26,12 @@
  * @library libtelephony_radio.so
  * @since 13
  */
-
-#ifndef NATIVE_TELEPHONY_RADIO_TYPE_H
-#define NATIVE_TELEPHONY_RADIO_TYPE_H
-
-#include <stdbool.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * @brief Max operator name length.
  *
  * @since 13
  */
 #define TELEPHONY_MAX_OPERATOR_LEN 64
-
 /**
  * @brief Max plmn numeric length.
  *
@@ -56,8 +39,12 @@ extern "C" {
  */
 #define TELEPHONY_MAX_PLMN_NUMERIC_LEN 6
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
- * @brief Result code.
+ * @brief Result codes.
  *
  * @since 13
  */
@@ -73,11 +60,11 @@ typedef enum {
     /* @error unable to connect to telephony service, try again later when get this error */
     TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED = 8300002,
     /* @error operation failed in telephony service, try again later when get this error */
-    TEL_RADIO_ERR_OPERATION_FAILED = 8300003,
+    TEL_RADIO_ERR_OPERATION_FAILED = 8300003
 } Telephony_RadioResult;
 
 /**
- * @brief network registration status.
+ * @brief Network registration status of the device.
  *
  * @since 13
  */
@@ -89,11 +76,11 @@ typedef enum {
     /* can use emergency call only */
     TEL_REG_STATE_EMERGENCY_CALL_ONLY = 2,
     /* radio power off */
-    TEL_REG_STATE_POWER_OFF = 3,
+    TEL_REG_STATE_POWER_OFF = 3
 } Telephony_RegState;
 
 /**
- * @brief radio access technologies.
+ * @brief RAT type of the device.
  *
  * @since 13
  */
@@ -123,11 +110,11 @@ typedef enum {
     /* Industrial Wireless LAN (IWLAN) */
     TEL_RADIO_TECHNOLOGY_IWLAN = 11,
     /* New Radio (NR) */
-    TEL_RADIO_TECHNOLOGY_NR = 12,
+    TEL_RADIO_TECHNOLOGY_NR = 12
 } Telephony_RadioTechnology;
 
 /**
- * @brief NSA network state.
+ * @brief NSA network registration status of the device.
  *
  * @since 13
  */
@@ -143,11 +130,11 @@ typedef enum {
     /* The device is connected to the LTE/NR network in an LTE cell that supports NSA */
     TEL_NSA_STATE_DUAL_CONNECTED = 5,
     /* The device is idle or connected to the NG-RAN cell when being attached to the 5G Core */
-    TEL_NSA_STATE_SA_ATTACHED = 6,
+    TEL_NSA_STATE_SA_ATTACHED = 6
 } Telephony_NsaState;
 
 /**
- * @brief Network status.
+ * @brief Defines network status information.
  *
  * @since 13
  */
@@ -177,4 +164,3 @@ typedef struct {
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_TYPE_H
-/** @} */

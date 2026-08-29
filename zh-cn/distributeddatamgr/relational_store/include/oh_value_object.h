@@ -26,6 +26,7 @@
 /**
  * @file oh_value_object.h
  *
+ * @include database/rdb/oh_value_object.h
  * @brief 提供类型转换方法。
  *
  * @kit ArkData

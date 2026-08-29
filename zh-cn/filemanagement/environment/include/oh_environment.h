@@ -17,17 +17,18 @@
  * @addtogroup Environment
  * @{
  *
- * @brief environment模块接口定义，使用environment提供的native接口，获取公共文件根目录的沙箱路径。
+ * @brief 提供获取公共文件根目录路径的能力。
  * @since 12
  */
 
 /**
  * @file oh_environment.h
  *
- * @brief Provide environment APIS.
+ * @brief environment模块接口定义，使用environment提供的native接口，获取公共文件根目录的沙箱路径。
  *
  * @library libohenvironment.so
  * @kit CoreFileKit
+ * @include <filemanagement/environment/oh_environment.h>
  * @syscap SystemCapability.FileManagement.File.Environment.FolderObtain
  * @since 12
  */
@@ -41,9 +42,9 @@
  extern "C" {
  #endif
  /**
-  * @brief 获取Download根目录沙箱路径。
+  * @brief 获取当前用户下载目录的沙箱路径，用于访问对应目录中的文件。
   *
-  * @param result Download根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。
+  * @param result 返回Download根目录的沙箱路径。该字符串由系统分配内存，调用者需在使用完毕后通过free()释放，避免内存泄漏。
   * @return 返回FileManagement模块错误码。
   *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
   *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
@@ -53,9 +54,9 @@
  FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result);
 
  /**
-  * @brief 获取Desktop根目录沙箱路径。
+  * @brief 获取当前用户桌面目录的沙箱路径，用于访问对应目录中的文件。
   *
-  * @param result Desktop根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。
+  * @param result 返回Desktop根目录的沙箱路径。该字符串由系统分配内存，调用者需在使用完毕后通过free()释放，避免内存泄漏。
   * @return 返回FileManagement模块错误码。
   *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
   *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
@@ -65,9 +66,9 @@
  FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result);
 
  /**
-  * @brief 获取Document根目录沙箱路径。
+  * @brief 获取当前用户文档目录的沙箱路径，用于访问对应目录中的文件。
   *
-  * @param result Document根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。
+  * @param result 返回Document根目录的沙箱路径。该字符串由系统分配内存，调用者需在使用完毕后通过free()释放，避免内存泄漏。
   * @return 返回FileManagement模块错误码。
   *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
   *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.

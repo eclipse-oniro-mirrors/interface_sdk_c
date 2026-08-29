@@ -26,6 +26,7 @@
 /**
  * @file oh_cursor.h
  *
+ * @include database/rdb/oh_cursor.h
  * @brief 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
  *
  * @kit ArkData
@@ -65,7 +66,7 @@ typedef struct OH_Cursor {
      */
     int64_t id;
     /**
-     * @brief 函数指针，获取结果集中的行数。
+     * @brief 函数指针，获取结果集中的列数。
      *
      * @param cursor 表示指向{@link OH_Cursor}实例的指针。
      * @param count 该参数是输出参数，列数写入此变量。
@@ -235,7 +236,8 @@ typedef struct OH_Cursor {
      * @param cursor 表示指向{@link OH_Cursor}实例的指针。
      * @param columnIndex 表示结果集中指定列的索引，索引值从0开始。
      * @param value 该参数是输出参数，请求列的值以{@link Data_Asset}实例写入此变量。
-     * @param length 表示值的长度。
+     * @param length 既是入参又是出参：作为入参，需要开发者传入一个uint32_t类型的变量，表示输入缓冲区的大小；
+     * <br>作为出参，表示函数执行后，length指向的变量会被更新为实际返回的资产数组的长度。
      * @return 返回操作是否成功，出错时返回对应的错误码。
      * @see OH_Cursor.
      * @since 11

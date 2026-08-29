@@ -55,7 +55,20 @@
 extern "C" {
 #endif
 
+/**
+ * @brief 代表Native XComponent实例。
+ *
+ * @since 8
+ * @version 1.0
+ */
 #define OH_NATIVE_XCOMPONENT_OBJ ("__NATIVE_XCOMPONENT_OBJ__")
+
+/**
+ * @brief 触摸事件中的可识别的触摸点个数最大值。
+ *
+ * @since 8
+ * @version 1.0
+ */
 #define OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER 10
 
 /** ArkUI XComponent的id最大长度。 */

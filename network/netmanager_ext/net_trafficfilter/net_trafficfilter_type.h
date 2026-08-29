@@ -24,7 +24,12 @@
 
 /**
  * @file net_trafficfilter_type.h
- * @brief Traffic filter and redirection subsystem - common types and error codes definition.
+ * @brief Declares the common types and error codes required for network traffic filtering and redirection. This header
+ * file defines the match condition structs (such as IP addresses, ports, and interfaces) used in traffic filtering and
+ * redirection, configuration structs (such as packet filter rules and redirection rules), and error codes returned by
+ * operations.
+ * <br>This header file is used to construct parameters and parse return values when APIs such as
+ * {@link OH_TrafficFilter_CreateRedirector} are called.
  *
  * @library libnet_trafficfilter.so
  * @kit NetworkKit
@@ -43,51 +48,51 @@ extern "C" {
 #endif
 
 /**
- * @brief Maximum length of IP address (compatible with IPv4 and IPv6)
+ * @brief Maximum length of the IP address byte array (compatible with both IPv4 and IPv6).
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_IP_ADDRLEN       16
 
 /**
- * @brief Maximum number of IPs supported in multi-IP matching
+ * @brief Maximum number of IP addresses supported for multi–IP address matching.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_MULTI_IP_COUNT  16
 
 /**
- * @brief Maximum number of ports supported in multi-port matching
+ * @brief Maximum number of ports supported for multi-port matching.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_MULTI_PORT_COUNT 64
 
 /**
- * @brief NFQueue packet copy mode: copy metadata only
+ * @brief NFQueue packet copy mode: copies only metadata.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_NFQUEUE_COPY_META   0
 
 /**
- * @brief NFQueue packet copy mode: copy entire packet
+ * @brief NFQueue packet copy mode: copies the entire packet.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_NFQUEUE_COPY_PACKET 0xFFFF
 
 /**
- * @brief Default NFQueue packet copy length in bytes
- * Set to 0xFFFF to copy the entire packet, smaller values (e.g., 128) copy only the packet header
+ * @brief Default length of the copied NFQueue packet, in bytes. If the value is **0xFFFF**, the entire packet is
+ * copied; if a smaller value, such as **128**, is used, only the packet header is copied.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_DEFAULT_COPY_LEN    0xFFFF
 
 /**
- * @brief Default NFQueue maximum queue length (number of packets)
+ * @brief Default maximum length of the NFQueue queue (number of packets).
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_DEFAULT_QUEUE_MAXLEN  1024
 
 /**
- * @brief NFQueue queue flag: FAIL-OPEN mode
- * When userspace process crashes, kernel automatically accepts packets to avoid network interruption
+ * @brief NFQueue queue flag: FAIL-OPEN mode. When a user-mode process crashes, the kernel automatically allows packets
+ * to pass to avoid network interruption.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_NFQUEUE_FLAG_FAIL_OPEN  0x1
@@ -99,291 +104,231 @@ extern "C" {
 #define OH_TRAFFICFILTER_MAC_ADDRSTRLEN       18
 
 /**
- * @brief Minimum priority value
+ * @brief Minimum priority.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MIN_PRIORITY        1
 
 /**
- * @brief Maximum priority value
+ * @brief Maximum priority.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_PRIORITY        10000
 
 /**
- * @brief Minimum Group ID value
+ * @brief Minimum group ID value.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MIN_GROUP_ID        1
 
 /**
- * @brief Maximum Group ID value
+ * @brief Maximum group ID value.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_MAX_GROUP_ID        65535
 
 /**
- * @brief Maximum length of interface name
+ * @brief Maximum length of the network interface name.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_IFNAMSIZ            32
 
 /**
- * @brief Protocol type constants
+ * @brief Protocol constant: any protocol.
  * @since 26.0.0
  */
 #define OH_TRAFFICFILTER_PROTO_ANY           0
+/**
+ * @brief Protocol constant: TCP.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_TCP           6
+/**
+ * @brief Protocol constant: UDP.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_UDP           17
+/**
+ * @brief Protocol constant: ICMP.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_ICMP          1
+/**
+ * @brief Protocol constant: ICMPv6.
+ * @since 26.0.0
+ */
 #define OH_TRAFFICFILTER_PROTO_ICMPV6        58
 
 /**
- * @brief TCP SYN flag
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_SYN        0x01
-
-/**
- * @brief TCP ACK flag
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_ACK        0x02
-
-/**
- * @brief TCP FIN flag
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_FIN        0x04
-
-/**
- * @brief TCP RST flag
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_RST        0x08
-
-/**
- * @brief TCP PSH flag
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_PSH        0x10
-
-/**
- * @brief TCP URG flag
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_URG        0x20
-
-/**
- * @brief Bitmask covering all TCP flags (SYN, ACK, FIN, RST, PSH, URG)
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_ALL        0x3F
-
-/**
- * @brief No TCP flags set
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_TCP_FLAG_NONE       0x00
-
-/**
- * @brief Any connection state (wildcard)
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_CT_STATE_ANY         0x00
-
-/**
- * @brief New connection state
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_CT_STATE_NEW         0x01
-
-/**
- * @brief Established connection state
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_CT_STATE_ESTABLISHED 0x02
-
-/**
- * @brief Related connection state (e.g., FTP data connection)
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_CT_STATE_RELATED     0x04
-
-/**
- * @brief Invalid connection state
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_CT_STATE_INVALID     0x08
-
-/**
- * @brief Untracked connection state
- * @since 26.1.0
- */
-#define OH_TRAFFICFILTER_CT_STATE_UNTRACKED   0x10
-
-/**
- * @brief Traffic filter and redirection error codes
+ * @brief Defines the error codes for traffic filtering and redirection.
+ *
  * @since 26.0.0
  */
 typedef enum OH_TrafficFilter_ErrCode {
     /**
-     * @brief Operation successful
+     * @brief Operation succeeded.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_OK = 0,
 
     /**
-     * @brief Error code base value
+     * @brief Base value for the error code.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_E_BASE = 29410000,
 
     /**
-     * @brief Permission denied
+     * @brief Missing permissions.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED = 201,
 
     /**
-     * @brief Invalid parameter (invalid priority, IP address, port, or group ID)
+     * @brief Parameter error (invalid priority, IP address, port, or group ID).
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_ERROR_INVALID_PARAM = (OH_TRAFFICFILTER_E_BASE + 101),
 
     /**
-     * @brief Resource not found (rule, target, process, or group ID not found)
+     * @brief Resource not found (rule, target, process, or group ID not found).
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_ERROR_NOT_FOUND = (OH_TRAFFICFILTER_E_BASE + 102),
 
     /**
-     * @brief Too many rules
+     * @brief Too many rules.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_ERROR_TOO_MANY_RULES = (OH_TRAFFICFILTER_E_BASE + 103),
 
     /**
-     * @brief Group ID already in use
+     * @brief Group ID already in use.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_ERROR_GROUP_ID_IN_USE = (OH_TRAFFICFILTER_E_BASE + 104),
 
     /**
-     * @brief NFQueue error (initialization failed or no available queue)
+     * @brief NFQueue error (initialization failed or no available queue).
      * @since 26.0.0
      */
-    OH_TRAFFICFILTER_ERROR_NFQUEUE_ERROR = (OH_TRAFFICFILTER_E_BASE + 105),
+    OH_TRAFFICFILTER_ERROR_NFQUEUE_ERROR = (OH_TRAFFICFILTER_E_BASE + 105)
 } OH_TrafficFilter_ErrCode;
 
 /**
- * @brief IP match type
+ * @brief Defines an IP match type.
+ *
  * @since 26.0.0
  */
 typedef enum OH_TrafficFilter_IPMatchType {
     /**
-     * @brief Any IP
+     * @brief Any IP address.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_MATCH_ANY = 0,
     /**
-     * @brief Single IP
+     * @brief Single IP address.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_MATCH_SINGLE,
     /**
-     * @brief CIDR format
+     * @brief CIDR (for example, **192.168.1.0/24**, which matches all IP addresses in the subnet).
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_MATCH_CIDR,
     /**
-     * @brief IP range
+     * @brief IP address range.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_MATCH_RANGE,
     /**
-     * @brief Multiple IPs
+     * @brief Multiple IP addresses.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_MATCH_MULTI
 } OH_TrafficFilter_IPMatchType;
 
 /**
- * @brief IP address family
+ * @brief Defines an IP address family.
+ *
  * @since 26.0.0
  */
 typedef enum OH_TrafficFilter_IPFamily {
     /**
-     * @brief Unspecified IP family
+     * @brief Unspecified IP address family.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_FAMILY_UNSPEC = 0,
     /**
-     * @brief IPv4 address family
+     * @brief IPv4 address family.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_FAMILY_V4 = 1,
     /**
-     * @brief IPv6 address family
+     * @brief IPv6 address family.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_IP_FAMILY_V6 = 2
 } OH_TrafficFilter_IPFamily;
 
 /**
- * @brief Port match type
+ * @brief Defines a port match type.
+ *
  * @since 26.0.0
  */
 typedef enum OH_TrafficFilter_PortMatchType {
     /**
-     * @brief Any port
+     * @brief Any port.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_PORT_MATCH_ANY = 0,
     /**
-     * @brief Single port
+     * @brief Single port.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_PORT_MATCH_SINGLE,
     /**
-     * @brief Port range
+     * @brief Port range.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_PORT_MATCH_RANGE,
     /**
-     * @brief Multiple port
+     * @brief Multiple ports.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_PORT_MATCH_MULTI
 } OH_TrafficFilter_PortMatchType;
 
 /**
- * @brief Hook point type
+ * @brief Enumerates the hook points, specifying where the rule takes effect in the network protocol stack. As packets
+ * pass through the kernel network protocol stack, hook points are triggered at different stages, and the rule
+ * intercepts packets at the corresponding hook points. For example, the INPUT chain processes packets entering the
+ * local device, and the OUTPUT chain processes packets sent from the local device.
+ *
  * @since 26.0.0
  */
 typedef enum OH_TrafficFilter_HookPoint {
     /**
-     * @brief INPUT chain
+     * @brief INPUT chain that processes packets received by the local host.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_HOOK_INPUT = 0,
     /**
-     * @brief OUTPUT chain
+     * @brief OUTPUT chain that processes packets sent from the local host.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_HOOK_OUTPUT,
     /**
-     * @brief FORWARD chain
+     * @brief FORWARD chain that processes packets forwarded by the local host.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_HOOK_FORWARD,
     /**
-     * @brief PREROUTING chain
+     * @brief PREROUTING chain that processes packets that have arrived at the NIC but not been routed.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_HOOK_PREROUTING,
     /**
-     * @brief POSTROUTING chain
+     * @brief POSTROUTING chain that processes packets about to be sent from the NIC.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_HOOK_POSTROUTING
@@ -944,7 +889,7 @@ typedef enum OH_TrafficFilter_PacketCopyMode {
  * 1. Zero-initialize the entire structure (e.g., `memset(&cfg, 0, sizeof(cfg))`).
  * 2. Set `size` = `sizeof(OH_TrafficFilter_Config)`.
  * 3. Set all other fields to valid values within the defined ranges (see below).
- * - **Failure** to follow this contract (e.g., incorrect `size`, out‑of‑range field values)
+ * - **Failure** to follow this contract (e.g., incorrect `size`, out-of-range field values)
  * will cause the API to return `OH_TRAFFICFILTER_ERROR_INVALID_PARAM`.
  *
  * @note Failure to follow this initialization contract may lead to undefined behavior or binary incompatibility
@@ -1074,7 +1019,7 @@ typedef struct OH_TrafficFilter_ConntrackMatch {
  * @since 26.1.0
  */
 typedef struct OH_TrafficFilter_FilterRule {
-     /**
+    /**
      * @brief Must be set to `sizeof(OH_TrafficFilter_FilterRule)` by the caller.
      * The caller is required to zero-initialize the structure first, then set this field.
      * The implementation uses this value to determine the valid data range for binary compatibility.

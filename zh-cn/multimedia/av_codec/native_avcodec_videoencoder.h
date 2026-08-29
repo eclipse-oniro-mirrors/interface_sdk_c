@@ -197,7 +197,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
 /**
  * @brief 配置视频编码器的编码参数，通常需要配置输入视频帧的描述信息，如帧的宽、高、像素格式等。必须在调用OH_VideoEncoder_Prepare接口之前，调用此接口。\n
  * 该接口对配置参数进行合法性校验，部分非法参数不会强校验，使用默认值或直接丢弃。部分非法参数会强校验，具体规则如下：\n
- * 以下参数的配置范围可通过[能力查询](../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_I_FRAME_INTERVAL暂不支持能力查询。\n
+ * 以下参数的配置范围可通过[能力查询](../../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_I_FRAME_INTERVAL暂不支持能力查询。\n
  * 设置OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY、OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT参数时，
  * 如果当前平台不支持这些功能，该接口不会报错，而是继续按照正常编码流程执行。
  * @table 参数校验：
@@ -205,9 +205,9 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * | ------- | -------- | -------- | ------ |
  * | OH_MD_KEY_WIDTH  | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_INVALID_VAL |
  * | OH_MD_KEY_HEIGHT | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_INVALID_VAL |
- * | OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat-1) | AV_ERR_OK | AV_ERR_UNSUPPORT | AV_ERR_OK    |
+ * | OH_MD_KEY_PIXEL_FORMAT 请参阅{@link OH_AVPixelFormat} | AV_ERR_OK | AV_ERR_UNSUPPORT | AV_ERR_OK    |
  * | OH_MD_KEY_FRAME_RATE | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK |
- * | OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK |
+ * | OH_MD_KEY_PROFILE 请参阅{@link OH_MD_KEY_PROFILE}    | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK |
  * | OH_MD_KEY_I_FRAME_INTERVAL | AV_ERR_OK |  \\       | AV_ERR_OK |
  * @tableEnd
  *
