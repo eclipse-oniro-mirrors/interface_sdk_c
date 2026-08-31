@@ -30,7 +30,7 @@
 /**
  * @file avrecorder_base.h
  *
- * @brief 定义AVRecorder的结构体、枚举和回调函数类型。
+ * @brief 定义了媒体AVRecorder的结构体、枚举和回调函数。
  * 
  * @kit MediaKit
  * @include <multimedia/player_framework/avrecorder_base.h>
@@ -169,7 +169,7 @@ typedef enum OH_AVRecorder_State {
     AVRECORDER_RELEASED = 5,
     /**
      * 错误状态。当AVRecorder实例发生不可逆错误，会转换至该状态。在AVRECORDER_ERROR状态时，不能再进行录制相关操作，
-     * 用户需要调用{@link OH_AVRecorder_Reset}接口重置AVRecorder实例，或者调用{@link OH_AVRecorder_Release}接口释放资源。 */
+     * 用户需要调用{@link OH_AVRecorder_Reset}接口重置AVRecorder实例，或者调用{@link OH_AVRecorder_Release}接口释放资源。
      */
     AVRECORDER_ERROR = 6,
 } OH_AVRecorder_State;
@@ -259,14 +259,15 @@ typedef struct OH_AVRecorder_Profile {
      */
     int32_t videoFrameRate;
     /**
-     * 是否录制HDR视频。true表示启用HDR编码，此时videoCodec必须为AVRECORDER_VIDEO_HEVC，否则录制会准备失败；false表示不启用HDR编码，对编码格式无要求。
+     * 是否录制HDR视频。<br>
+     * true表示启用HDR编码，此时videoCodec必须为AVRECORDER_VIDEO_HEVC，否则录制会准备失败；false表示不启用HDR编码，对编码格式无要求。<br>
      * 默认值为false。仅在录制视频时有效。
      */
     bool isHdr;
     /**
      * 是否启用时域可分层视频编码功能。
      * true表示编码输出的码流中时域增强层帧可被跳过不编码，适用于需要根据网络带宽或设备性能动态调整编码帧率的场景（如视频直播、视频会议等），false表示编码输出的码流中所有帧均需编码。
-     * 详情请参考[时域可分层视频编码](docroot://media/avcodec/video-encoding-temporal-scalability.md)。默认值为false。仅在录制视频时有效。
+     * 详情请参考[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md)。默认值为false。仅在录制视频时有效。
      */
     bool enableTemporalScale;
 } OH_AVRecorder_Profile;
@@ -399,8 +400,8 @@ typedef struct OH_AVRecorder_EncoderInfo {
  * @brief 当录制状态发生变化时调用。
  * 
  * @param recorder OH_AVRecorder实例的指针。
- * @param state 表示录制器状态。
- * @param reason 录制器状态变化的原因。
+ * @param state 表示录制状态。
+ * @param reason 录制状态变化的原因。
  * @param userData 用户注册回调时传入的自定义数据指针，在回调触发时由系统回传给调用方。
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
@@ -422,7 +423,7 @@ typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode
     void *userData);
 
 /**
- * @brief 当录制在{@link OH_AVRecorder_FileGenerationMode}.AVRECORDER_AUTO_CREATE_CAMERA_SCENE模式下时调用。
+ * @brief 当录制文件的生成模式为{@link OH_AVRecorder_FileGenerationMode}.AVRECORDER_AUTO_CREATE_CAMERA_SCENE时调用，用于通知应用获取录制生成的媒体资源。
  * 
  * @param recorder OH_AVRecorder实例的指针。
  * @param asset OH_MediaAsset实例的指针，用于返回系统自动创建的媒体资源对象，应用可通过该对象访问录制生成的媒体文件。
