@@ -352,13 +352,12 @@ if (host_os == "mac") {
 _ndk_tee_build_tool =
     [ "//base/tee/tee_dev_kit/sdk/build:tee_ndk_ta_linux_compile" ]
 
-all_ndk_targets_list =
-    _ndk_library_targets + _ndk_lite_library_targets + _ndk_base_libs +
-    _ndk_sysroot_uapi + _ndk_cmake + _ndk_ninja + _ndk_tee_build_tool +
-    _ndk_sysroot_lite_uapi
+all_ndk_targets_list = _ndk_library_targets + _ndk_lite_library_targets +
+    _ndk_base_libs + _ndk_sysroot_uapi + _ndk_cmake + _ndk_ninja +
+    _ndk_tee_build_tool + _ndk_sysroot_lite_uapi
 
-all_lite_ndk_targets_list =
-    _ndk_lite_library_targets + _ndk_base_libs + _ndk_sysroot_lite_uapi
+all_lite_ndk_targets_list = _ndk_lite_library_targets + _ndk_base_libs +
+    _ndk_sysroot_lite_uapi
 
 if (build_windows_ndk_target) {
   all_ndk_targets_list +=
