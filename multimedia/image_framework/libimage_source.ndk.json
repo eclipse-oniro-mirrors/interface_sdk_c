@@ -297,5 +297,15 @@
         "first_introduced": "26.0.0",
         "name": "OH_ImageSourceNative_ReadImageMetadataByType",
         "api_type": "system"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ImageSourceNative_GetSvgResourceLimitLevel",
+        "api_type": "system"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ImageSourceNative_SetSvgResourceLimitLevel",
+        "api_type": "system"
     }
 ]
