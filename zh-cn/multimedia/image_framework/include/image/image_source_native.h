@@ -555,6 +555,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
  * @param pixelmap 指向c++本地层创建的OH_PixelmapNative对象的指针。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_SOURCE_UNSUPPORTED_OPTIONS：不支持的选项。例如，无法将图像转换为所需的像素格式。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options,
