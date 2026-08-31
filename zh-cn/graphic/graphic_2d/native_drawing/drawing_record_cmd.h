@@ -109,6 +109,33 @@ OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsFinishRecording(OH_Drawing_RecordC
     OH_Drawing_RecordCmd** recordCmd);
 
 /**
+* @brief 获取录制画布的高度。
+*
+* @param recordCmdUtils [入参] 指向指令录制工具对象{@link OH_Drawing_RecordCmdUtils}的指针，不能为空。
+* @param height [出参] 用于接收录制画布的高度，单位为物理像素px。
+* @return <ul>
+*         <li>返回{@link OH_DRAWING_SUCCESS} 表示执行成功。</li>
+*         <li>返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示参数recordCmdUtils或height为nullptr。</li>
+*         </ul>
+* @since 26.1.0
+*/
+OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsGetHeight(
+    const OH_Drawing_RecordCmdUtils *recordCmdUtils, int32_t *height);
+
+/**
+* @brief 获取录制画布的宽度。
+*
+* @param recordCmdUtils [入参] 指向指令录制工具对象{@link OH_Drawing_RecordCmdUtils}的指针，不能为空。
+* @param width [出参] 用于接收录制画布的宽度，单位为物理像素px。
+* @return <ul>
+*         <li>返回{@link OH_DRAWING_SUCCESS} 表示执行成功。</li>
+*         <li>返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示参数recordCmdUtils或width为nullptr。</li>
+*         </ul>
+* @since 26.1.0
+*/
+OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsGetWidth(const OH_Drawing_RecordCmdUtils *recordCmdUtils, int32_t *width);
+
+/**
  * @brief 销毁录制指令对象，并回收该对象占用的内存。
  *
  * @param recordCmd 指向录制指令对象{@link OH_Drawing_RecordCmd}的指针。
