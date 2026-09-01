@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,6 +28,7 @@
  * @brief 声明剪贴板框架错误码信息。剪贴板错误码用于标识剪贴板操作过程中的执行结果，开发者可通过错误码判断操作是否成功以及失败的具体原因。
  *
  * @kit BasicServicesKit
+ * @include <database/pasteboard/oh_pasteboard_err_code.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *
@@ -90,7 +91,7 @@ typedef enum PASTEBOARD_ErrCode {
      * @error 获取剪贴板数据失败。
      * @since 15
      */
-    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010
+    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,
 } PASTEBOARD_ErrCode;
 #ifdef __cplusplus
 };

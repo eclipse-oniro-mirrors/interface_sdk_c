@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,6 +28,7 @@
  * @brief 提供访问系统剪贴板的接口、数据结构、枚举类型。支持剪贴板数据的读写、监听剪贴板内容变化、获取粘贴进度等功能。
  *
  * @kit BasicServicesKit
+ * @include <database/pasteboard/oh_pasteboard.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *
@@ -82,16 +83,16 @@ extern "C" {
  * @since 13
  */
 typedef enum Pasteboard_NotifyType {
-/**
- * @brief The pasteboard data of the local device is changed.
- *
- */
-NOTIFY_LOCAL_DATA_CHANGE = 1,
-/**
- * @brief The pasteboard data of a non-local device on the network is changed.
- *
- */
-NOTIFY_REMOTE_DATA_CHANGE = 2
+    /**
+     * @brief 本地设备剪贴板数据变更。
+     *
+     */
+    NOTIFY_LOCAL_DATA_CHANGE = 1,
+    /**
+     * @brief 组网内的非本地设备剪贴板数据变更。
+     *
+     */
+    NOTIFY_REMOTE_DATA_CHANGE = 2
 } Pasteboard_NotifyType;
 
 /**
@@ -100,16 +101,16 @@ NOTIFY_REMOTE_DATA_CHANGE = 2
  * @since 15
  */
 typedef enum Pasteboard_FileConflictOptions {
-/**
- * @brief Overwrites the file with the same name in the destination directory.
- *
- */
-PASTEBOARD_OVERWRITE = 0,
-/**
- * @brief Skips the file if there is a file with the same name in the destination directory.
- *
- */
-PASTEBOARD_SKIP = 1
+    /**
+     * @brief 目标路径存在同文件名时覆盖。
+     *
+     */
+    PASTEBOARD_OVERWRITE = 0,
+    /**
+     * @brief 目标路径存在同文件名时跳过。
+     *
+     */
+    PASTEBOARD_SKIP = 1
 } Pasteboard_FileConflictOptions;
 
 /**
@@ -118,16 +119,16 @@ PASTEBOARD_SKIP = 1
  * @since 15
  */
 typedef enum Pasteboard_ProgressIndicator {
-/**
- * @brief The system default progress indicator is not used.
- *
- */
-PASTEBOARD_NONE = 0,
-/**
- * @brief The system default progress indicator is used.
- *
- */
-PASTEBOARD_DEFAULT = 1
+    /**
+     * @brief 不采用系统默认进度显示。
+     *
+     */
+    PASTEBOARD_NONE = 0,
+    /**
+     * @brief 采用系统默认进度显示。
+     *
+     */
+    PASTEBOARD_DEFAULT = 1
 } Pasteboard_ProgressIndicator;
 
 /**
@@ -146,7 +147,7 @@ typedef struct Pasteboard_ProgressInfo Pasteboard_ProgressInfo;
 typedef void (*OH_Pasteboard_ProgressListener)(Pasteboard_ProgressInfo* progressInfo);
 
 /**
- * @brief 表示从剪贴板获取粘贴数据和进度时需要写入的参数。
+ * @brief 表示从剪贴板获取粘贴数据和进度时需要提供的参数。
  *
  * @since 15
  */
@@ -186,7 +187,7 @@ typedef struct OH_PasteboardObserver OH_PasteboardObserver;
  *
  * @return 执行成功时返回一个指向剪贴板数据变更观察者{@link OH_PasteboardObserver}实例对象的指针，否则返回空指针。
  * 当不再需要使用指针时，请使用{@link OH_PasteboardObserver_Destroy}销毁实例对象，否则会导致内存泄漏。
- * @see OH_PasteboardObserver.
+ * @see OH_PasteboardObserver
  * @since 13
  */
 OH_PasteboardObserver* OH_PasteboardObserver_Create();
@@ -197,7 +198,8 @@ OH_PasteboardObserver* OH_PasteboardObserver_Create();
  *
  * @param observer 表示指向剪贴板数据变更观察者{@link OH_PasteboardObserver}实例的指针。
  * @return 返回执行的错误码。详见{@link PASTEBOARD_ErrCode}。
- * @see OH_PasteboardObserver PASTEBOARD_ErrCode.
+ * @see OH_PasteboardObserver
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer);
@@ -213,7 +215,9 @@ int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer);
  * @return 返回执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * 若返回ERR_OK，表示执行成功。
  * 若返回ERR_INVALID_PARAMETER，表示传入了无效参数。
- * @see OH_PasteboardObserver Pasteboard_Notify PASTEBOARD_ErrCode.
+ * @see OH_PasteboardObserver
+ * @see Pasteboard_Notify
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context,
@@ -231,7 +235,7 @@ typedef struct OH_Pasteboard OH_Pasteboard;
  *
  * @return 执行成功则返回一个指向剪贴板{@link OH_Pasteboard}实例对象的指针，否则返回nullptr。
  * 当不再需要使用指针时，请使用{@link OH_Pasteboard_Destroy}销毁实例对象，否则会导致内存泄漏。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 13
  */
 OH_Pasteboard* OH_Pasteboard_Create();
@@ -240,7 +244,7 @@ OH_Pasteboard* OH_Pasteboard_Create();
  * @brief 销毁剪贴板{@link OH_Pasteboard}实例对象。适用于不再需要访问剪贴板时，销毁剪贴板对象释放资源。销毁前请确保已取消所有订阅。
  *
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 13
  */
 void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
@@ -263,7 +267,10 @@ void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
  * @return 返回执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * 若返回ERR_OK，表示执行成功。
  * 若返回ERR_INVALID_PARAMETER，表示传入了无效参数。
- * @see OH_Pasteboard OH_PasteboardObserver Pasteboard_NotifyType PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see OH_PasteboardObserver
+ * @see Pasteboard_NotifyType
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer);
@@ -278,7 +285,10 @@ int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_Pasteb
  * @return 返回执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * 若返回ERR_OK，表示执行成功。
  * 若返回ERR_INVALID_PARAMETER，表示传入了无效参数。
- * @see OH_Pasteboard OH_PasteboardObserver Pasteboard_NotifyType PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see OH_PasteboardObserver
+ * @see Pasteboard_NotifyType
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer);
@@ -288,7 +298,7 @@ int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_Past
  *
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
  * @return 返回剪贴板中的数据是否来自远端设备。返回true表示剪贴板中的数据来自远端设备，返回false表示剪贴板中数据来自本端设备。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 13
  */
 bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
@@ -302,7 +312,8 @@ bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
  * @return 返回执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * 若返回ERR_OK，表示执行成功。
  * 若返回ERR_INVALID_PARAMETER，表示传入了无效参数。
- * @see OH_Pasteboard PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigned int len);
@@ -314,7 +325,7 @@ int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigne
  * @param type 表示要检查的数据类型。包含剪贴板基础数据类型与自定义数据类型，其中剪贴板基础数据类型有："text/plain"、"text/html"、"text/uri"、"text/want"和"pixelMap"，
  * 详见{@link 宏定义}。
  * @return 返回剪贴板中是否有指定类型的数据。返回true表示剪贴板中包含指定类型的数据，返回false表示剪贴板中没有指定类型的数据。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 13
  */
 bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type);
@@ -324,7 +335,7 @@ bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type);
  *
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
  * @return 返回剪贴板中是否有数据。返回true表示剪贴板中有数据，返回false表示剪贴板中没有数据。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 13
  */
 bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard);
@@ -334,7 +345,7 @@ bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard);
  *
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
  * @return 返回指示剪贴板数据是否在远端设备上的结果。true表示剪贴板数据在远端设备上；false表示剪贴板数据不在远端设备上。默认为false。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 24
  */
 bool OH_Pasteboard_HasRemoteData(OH_Pasteboard* pasteboard);
@@ -351,7 +362,9 @@ bool OH_Pasteboard_HasRemoteData(OH_Pasteboard* pasteboard);
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
  * @param status 该参数是输出参数，表示执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * @return 执行成功时返回统一数据对象{@link OH_UdmfData}实例的指针。否则返回空指针。
- * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see OH_UdmfData
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
@@ -369,7 +382,9 @@ OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
  * @return 返回执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * 若返回ERR_OK，表示执行成功。
  * 若返回ERR_INVALID_PARAMETER，表示传入了无效参数。
- * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see OH_UdmfData
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
@@ -381,7 +396,8 @@ int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
  * @return 返回执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * 若返回ERR_OK，表示执行成功。
  * 若返回ERR_INVALID_PARAMETER，表示传入了无效参数。
- * @see OH_Pasteboard PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see PASTEBOARD_ErrCode
  * @since 13
  */
 int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
@@ -392,7 +408,7 @@ int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
  * @param pasteboard 表示指向剪贴板{@link OH_Pasteboard}实例的指针。
  * @param count 该参数是输出参数，结果集中的类型数量会写入该变量。
  * @return 执行成功时返回剪贴板所有内容的MIME类型数组的指针，否则返回nullptr。数组大小由count参数指示。
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @since 14
  */
 char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count);
@@ -414,7 +430,7 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
  *
  * @return 执行成功时返回一个指向剪贴板{@link Pasteboard_GetDataParams}实例对象的指针，否则返回空指针。
  * 当不再需要使用指针时，请使用{@link OH_Pasteboard_GetDataParams_Destroy}销毁实例对象，否则会导致内存泄漏。
- * @see Pasteboard_GetDataParams.
+ * @see Pasteboard_GetDataParams
  * @since 15
  */
 Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
@@ -428,7 +444,7 @@ Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
  * - 不能在进度回调函数中调用此方法销毁。
  *
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
- * @see Pasteboard_GetDataParams.
+ * @see Pasteboard_GetDataParams
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params);
@@ -439,7 +455,8 @@ void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params);
  *
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
  * @param progressIndicator 定义进度条指示选项。
- * @see Pasteboard_GetDataParams Pasteboard_ProgressIndicator.
+ * @see Pasteboard_GetDataParams
+ * @see Pasteboard_ProgressIndicator
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* params,
@@ -451,7 +468,7 @@ void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* 
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
  * @param destUri 定义拷贝文件目标路径。路径需为绝对路径格式，且应用需具有该路径的读写权限。
  * @param destUriLen 定义拷贝文件目标路径的长度（含字符串结束符），单位：字节。该值必须等于 destUri所指向字符串的实际长度。传入0或与实际长度不符时，接口调用失败。
- * @see Pasteboard_GetDataParams.
+ * @see Pasteboard_GetDataParams
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, const char* destUri, uint32_t destUriLen);
@@ -465,7 +482,8 @@ void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, co
  *
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
  * @param option 定义文件拷贝冲突时的选项，默认为PASTEBOARD_OVERWRITE。
- * @see Pasteboard_GetDataParams Pasteboard_FileConflictOptions.
+ * @see Pasteboard_GetDataParams
+ * @see Pasteboard_FileConflictOptions
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams* params,
@@ -476,7 +494,8 @@ void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams
  *
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
  * @param listener 表示进度上报回调函数，仅在{@link progressIndicator}设置为PASTEBOARD_NONE时生效。该参数支持传入NULL，以表示无需进度回调。
- * @see Pasteboard_GetDataParams OH_Pasteboard_ProgressListener.
+ * @see Pasteboard_GetDataParams
+ * @see OH_Pasteboard_ProgressListener
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetProgressListener(Pasteboard_GetDataParams* params,
@@ -487,7 +506,7 @@ void OH_Pasteboard_GetDataParams_SetProgressListener(Pasteboard_GetDataParams* p
  *
  * @param progressInfo 表示指向剪贴板{@link Pasteboard_ProgressInfo}的指针。
  * @return 返回粘贴进度百分比，取值范围[0, 100]。
- * @see Pasteboard_ProgressInfo.
+ * @see Pasteboard_ProgressInfo
  * @since 15
  */
 int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo);
@@ -500,7 +519,7 @@ int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo
  * - 取消操作不可逆，一旦取消，如需要获取剪贴板数据，需要重新开始粘贴流程。
  *
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
- * @see Pasteboard_GetDataParams.
+ * @see Pasteboard_GetDataParams
  * @since 15
  */
 void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
@@ -514,7 +533,9 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  * @param params 表示指向剪贴板Pasteboard_GetDataParams的指针。
  * @param status 该参数是输出参数，表示执行的错误码。错误码定义详见{@link PASTEBOARD_ErrCode}。
  * @return 执行成功时返回统一数据对象OH_UdmfData实例的指针。否则返回空指针。
- * @see OH_Pasteboard OH_PasteData PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard
+ * @see OH_UdmfData
+ * @see PASTEBOARD_ErrCode
  * @since 15
  */
 OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params,

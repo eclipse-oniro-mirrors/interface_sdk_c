@@ -30,6 +30,7 @@
  * @brief Declaration error code information.
  *
  * @kit BasicServicesKit
+ * @include <database/pasteboard/oh_pasteboard_err_code.h>
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *
@@ -92,7 +93,7 @@ typedef enum PASTEBOARD_ErrCode {
      * @error Get Data failed.
      * @since 15
      */
-    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010
+    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,
 } PASTEBOARD_ErrCode;
 #ifdef __cplusplus
 };
