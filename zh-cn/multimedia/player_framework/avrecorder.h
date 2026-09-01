@@ -33,7 +33,7 @@
  * @brief 定义AVRecorder接口。AVRecorder提供媒体录制能力，支持音视频数据的采集与录制、完整的状态管理与回调监听、灵活的编码器选择与参数配置等，适用于需要将音视频内容录制保存为文件的场景。
  * 
  * @kit MediaKit
- * @include <multimedia/player_framework/avrecorder_base.h>
+ * @include <multimedia/player_framework/avrecorder.h>
  * @library libavrecorder.so
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
@@ -71,8 +71,8 @@ OH_AVRecorder *OH_AVRecorder_Create(void);
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @param config 指向OH_AVRecorder_Config实例的指针，用于配置录制的音视频参数，包括音频和视频的编码格式、采样率、分辨率等配置信息。
  * 若未配置视频相关参数，则只录制音频；若未配置音频相关参数，则只录制视频。不可为nullptr，否则返回AV_ERR_INVALID_VAL。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：输入的recorder为nullptr或者准备失败。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：输入的recorder/config为nullptr或准备失败。
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
@@ -94,14 +94,15 @@ OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config
 OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config);
 
 /**
- * @brief 获取输入Surface。必须在{@link OH_AVRecorder_Prepare}成功触发之后，{@link OH_AVRecorder_Start}之前调用。
- * 此Surface提供给调用者，调用者从此Surface中获取Surface Buffer，填入相应的视频数据。
+ * @brief 获取输入Surface。必须在{@link OH_AVRecorder_Prepare}和{@link OH_AVRecorder_Start}之间调用。<br>
+ * 传入的*window必须为nullptr，由框架层统一分配和释放内存，以避免内存管理混乱，防止内存泄漏或重复释放等问题。<br>
+ * 此Surface提供给调用者，调用者从此Surface中获取Surface Buffer，填入待录制的视频数据。
  * 
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @param window 指向OHNativeWindow实例指针的指针，用于获取输入Surface。*window必须为nullptr，由框架层统一分配和释放内存，防止内存泄漏或重复释放等问题。
  * 调用成功后，*window指向框架层分配的OHNativeWindow实例，调用者可从此实例中获取Surface填入视频数据。若*window不为nullptr，将返回AV_ERR_INVALID_VAL错误。
  * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：输入的recorder为nullptr，或*window不为空。
+ * AV_ERR_INVALID_VAL：输入的recorder为nullptr或*window不为nullptr。
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window);
@@ -121,7 +122,7 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
 OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation);
 
 /**
- * @brief 开始录制。必须在{@link OH_AVRecorder_Prepare}成功触发之后调用，调用成功之后进入AVRECORDER_STARTED状态。
+ * @brief 开始录制。必须在{@link OH_AVRecorder_Prepare}之后调用，调用成功之后进入AVRECORDER_STARTED状态。
  * 
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。
@@ -131,7 +132,7 @@ OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotat
 OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder);
 
 /**
- * @brief 暂停录制。必须在{@link OH_AVRecorder_Start}成功触发之后，处于AVRECORDER_STARTED状态时调用，调用成功之后进入AVRECORDER_PAUSED状态。
+ * @brief 暂停录制。必须在{@link OH_AVRecorder_Start}之后调用，调用成功之后进入AVRECORDER_PAUSED状态。<br>
  * 之后可以通过调用{@link OH_AVRecorder_Resume}恢复录制，重新进入AVRECORDER_STARTED状态。
  * 
  * @param recorder 指向OH_AVRecorder实例的指针。
@@ -142,7 +143,7 @@ OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder);
 OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder);
 
 /**
- * @brief 恢复录制。必须在{@link OH_AVRecorder_Pause}成功触发之后，处于PAUSED状态时调用，调用成功之后重新进入AVRECORDER_STARTED状态。
+ * @brief 恢复录制。必须在{@link OH_AVRecorder_Pause}之后调用，调用成功之后进入AVRECORDER_STARTED状态。
  * 
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。
@@ -199,15 +200,16 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
  * 调用成功后，*info指向框架层分配的编码器信息数组。
  * @param length 输出参数，用于返回可用编码器数组的元素个数。不可为nullptr，调用成功后，*length的值表示*info数组中编码器信息的数量，与info参数配合使用。
  * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：输入的 recorder 为nullptr。
- * AV_ERR_NO_MEMORY：内存不足，\*info内存分配失败。
+ * AV_ERR_INVALID_VAL：输入的recorder为nullptr或*info不为nullptr。
+ * AV_ERR_NO_MEMORY：内存不足，*info内存分配失败，请释放资源后重试。
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRecorder_EncoderInfo **info,
     int32_t *length);
 
 /**
- * @brief 设置状态回调函数，以便应用能够响应AVRecorder生成的状态变化事件。此接口必须在{@link OH_AVRecorder_Start}调用之前调用。
+ * @brief 设置状态变化回调函数，以便应用能够响应AVRecorder生成的状态变化事件。必须在{@link OH_AVRecorder_Start}之前调用。<br>
+ * 用户只能设置一个状态变化回调函数，当用户重复设置时，以最后一次设置的回调函数为准。
  * 
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @param callback 状态回调函数，用于接收AVRecorder状态变化事件。当AVRecorder状态发生切换时（如开始录制、暂停录制、停止录制等状态变更）触发此回调。必须为有效的函数指针，不能为nullptr。
@@ -220,7 +222,8 @@ OH_AVErrCode OH_AVRecorder_SetStateCallback(
     OH_AVRecorder *recorder, OH_AVRecorder_OnStateChange callback, void *userData);
 
 /**
- * @brief 设置错误回调函数，以便应用能够响应AVRecorder生成的错误事件。此接口必须在{@link OH_AVRecorder_Start}调用之前调用。
+ * @brief 设置错误回调函数，以便应用能够响应AVRecorder生成的错误事件。必须在{@link OH_AVRecorder_Start}之前调用。<br>
+ * 用户只能设置一个错误回调函数，当用户重复设置时，以最后一次设置的回调函数为准。
  * 
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @param callback 错误回调函数，用于接收AVRecorder错误事件。当录制过程中发生错误时（如编码器异常、文件写入失败等）触发此回调。必须为有效的函数指针，不能为nullptr。
@@ -254,8 +257,8 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @param muteWhenInterrupted 是否开启静音打断模式。true表示开启静音打断模式，音频流被打断时录制静音；false表示关闭静音打断模式，音频流被打断时停止录制，默认值为false。
  * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：输入的recorder为nullptr或回调函数为nullptr。
- * AV_ERR_INVALID_STATE：函数在无效状态下调用，应先处于准备状态。
+ * AV_ERR_INVALID_VAL：输入的recorder为nullptr。
+ * AV_ERR_INVALID_STATE：函数不支持在当前状态下调用，应当在{@link OH_AVRecorder_Prepare}之前调用。
  * @since 20
  */
 OH_AVErrCode OH_AVRecorder_SetWillMuteWhenInterrupted(OH_AVRecorder *recorder, bool muteWhenInterrupted);
