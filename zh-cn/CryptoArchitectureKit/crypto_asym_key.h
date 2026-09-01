@@ -24,6 +24,7 @@
  * @file crypto_asym_key.h
  * @brief 定义非对称密钥接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_asym_key.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

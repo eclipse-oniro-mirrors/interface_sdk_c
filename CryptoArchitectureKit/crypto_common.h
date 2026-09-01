@@ -24,6 +24,7 @@
  * @file crypto_common.h
  * @brief Defines common data structures and error codes for crypto operations.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_common.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

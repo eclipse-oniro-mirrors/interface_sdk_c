@@ -24,6 +24,7 @@
  * @file crypto_common.h
  * @brief 定义加解密通用的数据结构和错误码。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_common.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

@@ -24,6 +24,7 @@
  * @file crypto_architecture_kit.h
  * @brief Provides a unified entry point for crypto header files for developer convenience.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_architecture_kit.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12
