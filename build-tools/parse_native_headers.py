@@ -463,6 +463,7 @@ def main():
     parser.add_argument('--input', required=True, help="头文件目录路径（就地修改）")
     parser.add_argument('--sdk-api-version', required=True, help="当前构建API版本")
     parser.add_argument('--sdk-build-public', default='false', help="是否公共SDK构建（true则裁剪@systemapi）")
+    parser.add_argument('--skip-version-macro', action='store_true', help="跳过版本宏添加（lite构建使用）")
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
@@ -478,8 +479,11 @@ def main():
     # 第二步：校验 API 版本号
     check_api_version_method(args)
 
-    # 第三步：添加版本宏（就地修改）
-    add_files_to_process(args.input)
+    # 第三步：添加版本宏（就地修改），lite构建跳过此步骤
+    if not args.skip_version_macro:
+        add_files_to_process(args.input)
+    else:
+        print("skip version macro addition for lite build")
 
 
 if __name__ == '__main__':
