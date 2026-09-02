@@ -114,6 +114,43 @@ typedef enum {
 } IMAGE_DYNAMIC_RANGE;
 
 /**
+ * @brief SVG资源限制级别的枚举。
+ * 级别越高，解析和渲染SVG图片时允许使用的资源越少。
+ * 无论指定哪个级别，系统资源限制都会生效。
+ *
+ * @systemapi
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * 使用默认的SVG资源限制。该级别不会禁用SVG资源保护。
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_NONE = 0,
+    /**
+     * 使用低级别限制，允许更多SVG资源预算用于复杂的SVG图片。
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_LOW = 1,
+    /**
+     * 使用中级别限制，允许适中的SVG资源预算，
+     * 在SVG兼容性和资源消耗之间取得平衡，适用于大多数SVG图片。
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_MEDIUM = 2,
+    /**
+     * 使用高级别限制，允许较少的SVG资源预算，适用于简单的SVG图片，
+     * 例如图标和基础UI资源。
+     *
+     * @since 26.1.0
+     */
+    OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_HIGH = 3,
+} OH_ImageSource_SVGResourceLimitLevel;
+
+/**
  * @brief 用于分配PixelMap内存的分配器类型。
  *
  * @since 15
@@ -540,6 +577,39 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromDataWithUserBuffer(uint8_t *data,
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFile, OH_ImageSourceNative **res);
+
+/**
+ * @brief 设置图像源的SVG资源限制级别。
+ * 仅对SVG格式图片生效。对于非SVG图片，此函数无效果。
+ * 必须在{@link OH_ImageSourceNative_CreatePixelmap}之前调用，以确保限制在DOM解析和渲染阶段均生效。
+ * @systemapi
+ * @param source 指向图像源的指针。
+ * @param level SVG资源限制级别。详见{@link OH_ImageSource_SVGResourceLimitLevel}。
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} 执行成功。</li>
+ *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} 非系统应用调用此系统接口。</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} source为空指针。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_ImageSourceNative_SetSvgResourceLimitLevel(OH_ImageSourceNative *source,
+    OH_ImageSource_SVGResourceLimitLevel level);
+
+/**
+ * @brief 获取图像源的SVG资源限制级别。
+ * @systemapi
+ * @param source 指向图像源的指针。
+ * @param level 用于接收SVG资源限制级别的指针。
+ *     详见{@link OH_ImageSource_SVGResourceLimitLevel}。
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} 执行成功。</li>
+ *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} 非系统应用调用此系统接口。</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} source或level为空指针。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+Image_ErrorCode OH_ImageSourceNative_GetSvgResourceLimitLevel(OH_ImageSourceNative *source,
+    OH_ImageSource_SVGResourceLimitLevel *level);
 
 /**
  * @brief 通过图片解码参数创建OH_PixelmapNative指针。
