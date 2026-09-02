@@ -2900,22 +2900,6 @@ typedef enum {
      */
     NODE_TEXT_LINE_HEIGHT,
     /**
-     * @brief Defines the text decoration style and color.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
-     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
-     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
-     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
-     * .value[1].u32: text decoration color, in 0xARGB format. \n
-     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     *
-     */
-    /**
      * @brief 文本装饰线样式及其颜色属性，支持属性设置、属性重置和属性获取接口。适用于添加文本装饰效果，如下划线表示链接、删除线表示已删除内容、或上划线表示强调。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
@@ -3367,11 +3351,14 @@ typedef enum {
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
     /**
-     * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
+     * @brief 文本行数属性，支持属性获取接口。
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: line count of the node.
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本行数。</li>
+     * </ul>
      *
+     * @ingroup Text Display[文本显示]
      * @since 20
      */
     NODE_TEXT_LINE_COUNT = 1031,
@@ -3537,6 +3524,7 @@ typedef enum {
      * <li>.value[0].i32：是否开启选中词文本识别。1表示已开启识别，0表示已关闭识别。</li>
      * </ul>
      *
+     * @ingroup Text Display[文本显示]
      * @since 22
      *
      */
@@ -3781,16 +3769,19 @@ typedef enum {
     NODE_TEXT_DIRECTION = 1052,
 
     /**
-     * @brief Used to set the selected drag preview style.
-     * 
-     * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration.\n
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * \n
-     * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration.\n
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     * @brief 用于设置文本选中状态下的拖拽预览样式。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本选中状态下的拖拽预览样式。参数类型为{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本选中状态下的拖拽预览样式。参数类型为{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 23
      */
     NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE = 1053,
@@ -4638,15 +4629,19 @@ typedef enum {
      */
     NODE_TEXT_INPUT_TEXT,
     /**
-     * @brief Defines the caret color attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 光标颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: caret color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: caret color, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：光标颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：光标颜色数值，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CARET_COLOR,
     /**
@@ -4714,15 +4709,19 @@ typedef enum {
      */
     NODE_TEXT_INPUT_ENTER_KEY_TYPE,
     /**
-     * @brief Defines the placeholder text color.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 无输入时默认提示文本的颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_PLACEHOLDER_COLOR,
     /**
@@ -4780,15 +4779,19 @@ typedef enum {
      */
     NODE_TEXT_INPUT_TYPE,
     /**
-     * @brief Defines the background color of the selected text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 输入框文本选中时的背景色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR,
     /**
@@ -5021,11 +5024,14 @@ typedef enum {
      */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
-     * @brief Obtains the number of lines of the edited text.
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of lines of the edited text. \n
+     * @brief 获取已编辑文本内容的行数。
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：已编辑文本内容行数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
@@ -5136,16 +5142,22 @@ typedef enum {
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
 
     /**
-     * @brief Sets the letter spacing of the <b>TextInput</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置该属性后，通过该属性调整TextInput组件的字符间距。
+     * 接口支持设置，重置以及获取该属性。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置letterSpacing的值，默认单位fp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：获取letterSpacing的值，默认单位fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 15
+     *
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
 
@@ -5248,14 +5260,19 @@ typedef enum {
     NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
 
     /**
-     * @brief Enables selected data detector.
+     * @brief 开启选中词文本识别。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value true.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether selected text recognition is enabled.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：开启选中词文本识别，true表示开启识别，false表示关闭识别。默认值：true。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启选中词文本识别。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 22
      */
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
@@ -5286,30 +5303,39 @@ typedef enum {
     NODE_TEXT_INPUT_SHOW_COUNTER = 7040,
 
     /**
-     * @brief Used to set or get the text content base controller.
+     * @brief 用于设置或获取文本输入控制器。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n 
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本内容基础控制器。参数类型为{@link ArkUI_TextContentBaseController}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本内容基础控制器。参数类型为{@link ArkUI_TextContentBaseController}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
      */
     NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE = 7041,
 
     /**
-     * @brief Defines the ellipsis position.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
-     * is ARKUI_ELLIPSIS_MODE_END. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
+     * @brief 设置单行文本输入框中文本省略位置，支持属性设置，属性重置，属性获取接口。
      *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_EllipsisMode}。默认值为ARKUI_ELLIPSIS_MODE_END。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_EllipsisMode}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 24
+     *
      */
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
@@ -5391,16 +5417,21 @@ typedef enum {
     NODE_TEXT_INPUT_FALLBACK_LINE_SPACING = 7046,
 
     /**
-     * @brief Writing direction of the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 单行输入框的文本排版方向。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本的排版方向，取{@link ArkUI_TextDirection}枚举值。默认值为ARKUI_TEXT_DIRECTION_DEFAULT。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本的排版方向，对应取值及含义请参考{@link ArkUI_TextDirection}枚举值。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_INPUT_DIRECTION = 7047,
 
@@ -5423,16 +5454,21 @@ typedef enum {
     NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE = 7048,
 
     /**
-     * @brief Defines the textinput textOverflow attribute.
-     * which can be set, reset, and obtained as required through APIs.
+     * @brief 单行文本输入框中文本超长时的显示方式属性，支持属性设置，属性重置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本超长时的显示方式{@link ArkUI_TextOverflow}。内联模式非编辑态下默认值为ARKUI_TEXT_OVERFLOW_ELLIPSIS，内联模式编辑态下默认值为ARKUI_TEXT_OVERFLOW_CLIP。</li>
+     * </ul>
      *
-     * @since 24  
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本超长时的显示方式{@link ArkUI_TextOverflow}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
+     * @since 24
+     *
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -5520,84 +5556,105 @@ typedef enum {
     NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052,
 
     /**
-     * @brief Defines the default placeholder text for the multi-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 多行文本输入框的默认提示文本内容属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default placeholder text. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default placeholder text. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：默认提示文本的内容。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：默认提示文本的内容。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
-     * @brief Defines the default text content for the multi-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 多行文本输入框的默认文本内容属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
-     * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string: default text content.</li> \n
+     * <li>.string：默认文本的内容。</li>
      * </ul>
-     * 
-     * @ingroup Button[按钮]
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：默认文本的内容。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_TEXT,
     /**
-     * @brief Defines the maximum number of characters in the text input.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 输入框支持的最大文本数属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: maximum number of characters in the text input. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: maximum number of characters in the text input. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：最大文本数的数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：最大文本数的数字。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_MAX_LENGTH,
     /**
-     * @brief Defines the placeholder text color.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 无输入时默认提示文本的颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_PLACEHOLDER_COLOR,
     /**
-     * @brief Defines the placeholder text font.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 无输入时默认提示文本的字体配置（包括大小、字重、样式、字体列表）属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: font size, in fp. Optional. The default value is <b>16.0</b>.\n
-     * .value[1]?.i32: font style {@link ArkUI_FontStyle}. Optional. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.\n
-     * .value[2]?.i32: font weight {@link ArkUI_FontWeight}. Optional. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
-     * ?.string: font family. Multiple font families are separated by commas (,). For example, "font weight; font family 1, font family 2". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: font size, in fp.\n
-     * .value[1].i32: font style {@link ArkUI_FontStyle}.\n
-     * .value[2].i32: font weight {@link ArkUI_FontWeight}.\n
-     * .string: font family. Multiple font families are separated by commas (,). \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.f32：可选字体大小数值，默认值16.0，单位为fp。</li>
+     * <li>.value[1]?.i32：可选字体样式{@link ArkUI_FontStyle}，默认值为ARKUI_FONT_STYLE_NORMAL。</li>
+     * <li>.value[2]?.i32：可选字体粗细样式{@link ArkUI_FontWeight}，默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * <li>?.string：字体族内容，多个字体族之间使用逗号分隔，形如“字重；字体族1，字体族2”。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：字体大小数值，单位为fp。</li>
+     * <li>.value[1].i32：字体样式{@link ArkUI_FontStyle}。</li>
+     * <li>.value[2].i32：字体粗细样式{@link ArkUI_FontWeight}。</li>
+     * <li>.string：字体族内容，多个字体族之间使用逗号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_PLACEHOLDER_FONT,
     /**
-     * @brief Defines the caret color attribute.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 光标颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：光标颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：光标颜色数值，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_CARET_COLOR,
     /**
@@ -5617,15 +5674,19 @@ typedef enum {
      */
     NODE_TEXT_AREA_EDITING,
     /**
-     * @brief Defines the text box type. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 输入框的类型属性，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text box type {@link ArkUI_TextAreaType}.
-     * The default value is <b>ARKUI_TEXTAREA_TYPE_NORMAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text box type {@link ArkUI_TextAreaType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：输入框类型枚举{@link ArkUI_TextAreaType}，默认值为ARKUI_TEXTAREA_TYPE_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：输入框类型枚举{@link ArkUI_TextAreaType}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_TYPE,
     /**
@@ -5705,27 +5766,35 @@ typedef enum {
      */
     NODE_TEXT_AREA_INPUT_FILTER,
     /**
-     * @brief Defines the background color of the selected text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置文本选中底板颜色，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：颜色数值，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_SELECTED_BACKGROUND_COLOR,
     /**
-     * @brief Defines the type of the Enter key.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置输入法回车键类型，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：回车键类型枚举{@link ArkUI_EnterKeyType}，默认值为ARKUI_ENTER_KEY_TYPE_DONE。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：回车键类型枚举{@link ArkUI_EnterKeyType}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ENTER_KEY_TYPE,
     /**
@@ -5778,11 +5847,14 @@ typedef enum {
      */
     NODE_TEXT_AREA_CONTENT_RECT,
     /**
-     * @brief Obtains the number of lines of the edited text.
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of lines of the edited text. \n
+     * @brief 获取已编辑文本内容的行数。
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：已编辑文本内容行数。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_CONTENT_LINE_COUNT,
     /**
@@ -5876,16 +5948,22 @@ typedef enum {
     NODE_TEXT_AREA_NUMBER_OF_LINES,
 
     /**
-     * @brief Sets the letter spacing of the <b>TextArea</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置该属性后，通过该属性调整TextArea组件的字符间距。
+     * 接口支持设置，重置以及获取该属性。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置letterSpacing的值，默认单位fp。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：获取letterSpacing的值，默认单位fp。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 15
+     *
      */
     NODE_TEXT_AREA_LETTER_SPACING = 8023,
     /**
@@ -5932,15 +6010,21 @@ typedef enum {
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
     /**
-     * @brief Set the keyboard style of textArea
+     * @brief 设置输入框拉起的键盘样式。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}：\n
-     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：键盘样式，参数类型{@link ArkUI_KeyboardAppearance}。默认值ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：键盘样式，参数类型{@link ArkUI_KeyboardAppearance}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 15
+     *
      */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
@@ -6042,44 +6126,57 @@ typedef enum {
     NODE_TEXT_AREA_LINE_HEIGHT = 8031,
 
     /**
-     * @brief Define bar state of the text area.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义文本输入框滚动条状态。支持属性设置、属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum.
-     * The default value is <b>ARKUI_BAR_STATE_AUTO</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本控制滚动条状态。参数类型为{@link ArkUI_BarState}。默认值为ARKUI_BAR_STATE_AUTO。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本控制滚动条状态。参数类型为{@link ArkUI_BarState}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 22
      */
      NODE_TEXT_AREA_BAR_STATE = 8032,
 
     /**
-     * @brief Enables selected data detector.
+     * @brief 开启选中词文本识别。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value true.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether selected text recognition is enabled.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：开启选中词文本识别，true表示开启识别，false表示关闭识别。默认值：true。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启选中词文本识别。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 22
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
 
     /**
-     * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置输入框滚动条颜色，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .data[0].u32: color of the scroll bar thumb, in 0xARGB format. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .data[0].u32: color of the scroll bar thumb, in 0xARGB format. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32：滚动条颜色数值。0xARGB类型。默认值：0x66182431，显示为灰色。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32：滚动条颜色数值。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 22
+     *
      */
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
@@ -6107,30 +6204,39 @@ typedef enum {
     NODE_TEXT_AREA_CUSTOM_KEYBOARD = 8036,
 
     /**
-     * @brief Used to set or get the text content base controller.
+     * @brief 用于设置或获取文本区域控制器。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n 
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本内容基础控制器。参数类型为{@link ArkUI_TextContentBaseController}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本内容基础控制器。参数类型为{@link ArkUI_TextContentBaseController}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
 
     /**
-     * @brief Defines the ellipsis position.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置多行文本输入框中文本省略位置，支持属性设置，属性重置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
-     * is ARKUI_ELLIPSIS_MODE_END. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_EllipsisMode}。默认值为ARKUI_ELLIPSIS_MODE_END。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_EllipsisMode}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 24
+     *
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
@@ -6232,57 +6338,76 @@ typedef enum {
     NODE_TEXT_AREA_HORIZONTAL_SCROLLING = 8043,
 
     /**
-     * @brief Writing direction of the text.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 多行输入框的文本排版方向。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本的排版方向，取{@link ArkUI_TextDirection}枚举值。默认值为ARKUI_TEXT_DIRECTION_DEFAULT。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本的排版方向，对应取值及含义请参考{@link ArkUI_TextDirection}枚举值。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
+     *
      */
     NODE_TEXT_AREA_DIRECTION = 8044,
 
     /**
-     * @brief Used to set the selected drag preview style.
+     * @brief 用于设置多行文本输入框内文本选中状态下的拖拽预览样式。
      *
-     * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration. 
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * \n
-     * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration. 
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本选中状态下的拖拽预览样式。参数类型为{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本选中状态下的拖拽预览样式。参数类型为{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 23
      */
     NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE = 8045,
 
     /**
-     * @brief Defines the textarea textOverflow attribute.
-     * which can be set, reset, and obtained as required through APIs.
+     * @brief 多行文本输入框中文本超长时的显示方式属性，支持属性设置，属性重置，属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本超长时的显示方式{@link ArkUI_TextOverflow}。默认值为ARKUI_TEXT_OVERFLOW_CLIP。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：表示文本超长时的显示方式{@link ArkUI_TextOverflow}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 24
+     *
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
     /**
-     * @brief Defines the text decoration style and color for multi-line text box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义多行输入框的文本装饰线样式与颜色，支持属性设置、属性重置和属性获取接口。
      *
-     * ?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：装饰样式配置项，为可选参数。参数类型为{@link OH_ArkUI_DecorationStyleOptions}。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：装饰样式配置项。参数类型为{@link OH_ArkUI_DecorationStyleOptions}。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_AREA_DECORATION = 8047,
 
@@ -8256,6 +8381,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ENTER_KEY_TYPE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
@@ -8268,6 +8394,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_CARET_COLOR,
@@ -8280,6 +8407,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_SCROLL_BAR_COLOR,
@@ -8292,6 +8420,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_BAR_STATE,
@@ -8305,6 +8434,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用了文本实体识别功能，0表示禁用，1表示启用。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
@@ -8317,6 +8447,7 @@ typedef enum {
      * <br>.object：文本实体识别配置，设置后可指定需要识别的文本实体类型（如电话号码、邮箱、链接等）及识别后的交互行为。仅在启用文本实体识别功能(
      * NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR设置为1)后传入此参数以自定义识别类型，不传入时使用系统默认识别配置。参数类型{@link ArkUI_TextDataDetectorConfig}。
      * 
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG,
@@ -8327,6 +8458,7 @@ typedef enum {
      * <br>**参数：**
      * <br>.object：扩展菜单选项，设置后可自定义默认菜单项的行为，或添加自定义选项内容。参数类型{@link ArkUI_TextEditMenuOptions}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_EDIT_MENU_OPTIONS,
@@ -8337,6 +8469,7 @@ typedef enum {
      * <br>**参数：**
      * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。不传入时，编辑器无输入状态下不显示提示文本。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
@@ -8347,6 +8480,7 @@ typedef enum {
      * <br>**参数：**
      * <br>.object：属性字符串控制器，参数类型{@link ArkUI_TextEditorStyledStringController}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
@@ -8359,6 +8493,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
@@ -8369,6 +8504,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.object：布局管理器，可通过该管理器查询文本的布局信息。参数类型{@link ArkUI_TextLayoutManager}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
@@ -8381,6 +8517,7 @@ typedef enum {
       * <br>**返回：**
       * <br>.value[0].i32：是否启用了文本选择识别的AI菜单，0表示禁用，1表示启用。
       *
+      * @ingroup Text Editor[富文本]
       * @since 24
       */
     NODE_TEXT_EDITOR_ENABLE_SELECTED_DATA_DETECTOR,
@@ -8393,6 +8530,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_SELECTED_BACKGROUND_COLOR,
@@ -8405,6 +8543,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_KEYBOARD_ON_FOCUS,
@@ -8417,6 +8556,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：文本编辑器允许输入的最大长度。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_MAX_LENGTH,
@@ -8429,6 +8569,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：文本编辑器最大行数限制。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_MAX_LINES,
@@ -8441,6 +8582,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用了触感反馈，0表示不启用，1表示启用。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_HAPTIC_FEEDBACK,
@@ -8453,6 +8595,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_COPY_OPTIONS,
@@ -8465,6 +8608,7 @@ typedef enum {
     * <br>**返回：**
     * <br>.value[0].i32：文本编辑器当前设置的键盘外观类型，参数类型{@link ArkUI_KeyboardAppearance}。
     *
+    * @ingroup Text Editor[富文本]
     * @since 24
     */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
@@ -8477,6 +8621,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
@@ -8489,6 +8634,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
@@ -8503,6 +8649,7 @@ typedef enum {
      * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
      * <br>.value[0].i32：自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_CUSTOM_KEYBOARD,
@@ -8513,6 +8660,7 @@ typedef enum {
      * <br>**参数：**
      * <br>.object：自定义选择菜单，不传入时使用系统默认文本选择菜单。参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
@@ -8525,6 +8673,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
@@ -8537,6 +8686,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
@@ -8549,6 +8699,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_COMPRESS_LEADING_PUNCTUATION,
@@ -8561,6 +8712,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
      * 
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
@@ -8573,6 +8725,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用。
      * 
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_SINGLE_LINE,
@@ -8586,6 +8739,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。
      *
+     * @ingroup Text Editor[富文本]
      * @since 26.0.0
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
@@ -8598,6 +8752,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。
      *
+     * @ingroup Text Editor[富文本]
      * @since 26.0.0
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
@@ -8611,6 +8766,7 @@ typedef enum {
      * <br>**返回：**
      * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用行尾标点符号悬挂，1表示启用行尾标点符号悬挂。
      *
+     * @ingroup Text Editor[富文本]
      * @since 26.0.0
      */
     NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
@@ -12389,23 +12545,24 @@ typedef enum {
     NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,
 
     /**
-     * @brief Triggers onDetectResultUpdate callback
-     * when the text is set to TextDataDetectorConfig and recognized successfully.
+     * @brief 文本设置TextDataDetectorConfig且识别成功时，触发onDetectResultUpdate回调。
      *
-     * Trigger this event when TextDataDetectorConfig is set and recognized successfully.\n
-     * When the event callback occurs, the event parameter{@link ArkUI_NodeEvent}The union type in the object is
-     * {@link ArkUI_StringAsyncEvent}.\n
-     * {@link ArkUI_StringAsyncEvent}contains 1 parameter\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>：Indicates the result of text recognition, in Json format.\n
+     * 触发该事件的条件：文本设置TextDataDetectorConfig且识别成功后。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：表示文本识别的结果，Json格式。</li>
+     * </ul>
      *
+     * @ingroup Text Display[文本显示]
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
-     * @brief Defines the long press event for span.
+     * @brief Span组件长按事件。
      *
-     * The event is triggered when the span is long pressed.
-     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
-     * {@link ArkUI_UIInputEvent} object. \n
+     * 组件被长按时触发此回调。\n
+     * 事件回调发生时，可从事件参数{@link ArkUI_NodeEvent}对象中获取{@link ArkUI_UIInputEvent}。\n
+     * @ingroup Text Display[文本显示]
      * @since 20
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
@@ -12418,36 +12575,43 @@ typedef enum {
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：文本选择区域的起始位置。\n
      * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：文本选择区域的结束位置。
      *
+     * @ingroup Text Display[文本显示]
      * @since 26.0.0
      */
     NODE_TEXT_ON_TEXT_SELECTION_CHANGE = 1002,
 
     /**
-     * @brief Defines the event triggered when the copy button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
-     * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * @brief 定义长按输入框时显示的剪贴板上的复制按钮被点击时触发的事件。
      *
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。 \n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：复制的文本。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_ON_COPY = 1003,
 
     /**
-     * @brief Defines the event triggered before copying text.
-     * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
-     * @return Whether the copy is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the copy is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * @brief 定义复制文本前触发的事件。
      *
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。 \n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：复制的文本。</li>
+     * </ul>
+     *
+     * @return 是否允许复制。 \n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否允许复制。
+     * <b>0</b>：不允许复制；<b>1</b>：允许复制。 \n
+     *
+     * @ingroup Text Display[文本显示]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_ON_WILL_COPY = 1004,
 
@@ -12519,119 +12683,133 @@ typedef enum {
      */
     NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
-     * @brief Defines the event triggered when the text input content changes.
+     * @brief TextInput输入内容发生变化时触发该事件。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text input.
+     * 触发该事件的条件：输入内容发生变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：输入的文本内容。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
-     * @brief Defines the event triggered when the Enter key of the text input method is pressed.
+     * @brief TextInput按下输入法回车键触发该事件。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Enter key type of the input method.
+     * 触发该事件的条件：按下输入法回车键。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：输入法回车键类型。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_SUBMIT,
     /**
-     * @brief Defines the event triggered when the cut button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
+     * @brief 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * 触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：剪切的文本内容。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_CUT,
     /**
-     * @brief Defines the event triggered when the paste button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
+     * @brief 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
-     * \n
-     * Since 26.0.0, the callback can return whether the paste is allowed.\n
-     * @return Whether the paste is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * 触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：粘贴的文本内容。</li>
+     * </ul>
      *
+     * 从API版本26.0.0开始，回调函数可以返回是否允许粘贴。 \n
+     * @return 是否允许粘贴。 \n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否允许粘贴。 \n
+     * <b>0</b>：不允许粘贴；<b>1</b>：允许粘贴。 \n
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_PASTE,
     /**
-     * @brief Defines the event triggered when the text selection position changes.
+     * @brief 文本选择的位置发生变化时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * 触发该事件的条件：文本选择的位置发生变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示所选文本的起始位置。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示所选文本的结束位置。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE,
 
     /**
-     * @brief Defines the event triggered when the input status changes.
+     * @brief 输入状态变化时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: <b>true</b> indicates that text input is in progress. \n
+     * 触发该事件的条件：输入状态变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：true表示正在输入。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_EDIT_CHANGE,
 
     /**
-      * @brief textInput This event is triggered when the input content changes.
-      *
-      * Conditions for triggering this event: When the input content changes. \n
-      * When the event callback occurs, the union type in the event parameter
-      * {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}. \n
-      * {@link ArkUI_NodeComponentEvent} contains 2 parameters:\n
-      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: Indicates the width of the text. \n
-      * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: Indicates the height of the text. \n
-      *
-      */
+     * @brief TextInput输入内容发生变化时触发该事件。
+     *
+     * 触发该事件的条件：输入内容发生变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32：表示文本的宽度。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32：表示文本的高度。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
+     */
     NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
 
     /**
-     * @brief Defines the event triggered when matching with the regular expression specified by
-     * <b>NODE_TEXT_INPUT_INPUT_FILTER</b> fails.
+     * @brief 设置NODE_TEXT_INPUT_INPUT_FILTER，正则匹配失败时触发。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: content that is filtered out when regular expression matching fails. \n
+     * 触发该事件的条件：正则匹配失败时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：表示正则匹配失败时，被过滤的内容。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_INPUT_FILTER_ERROR,
 
     /**
-     * @brief This callback is triggered when the text content is scrolled.
+     * @brief 文本内容滚动时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Indicates the horizontal offset of the text in the content area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: Indicates the vertical coordinate offset of \n
-     * the text in the content area. \n
+     * 触发该事件的条件：文本内容滚动时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示文本在内容区的横坐标偏移。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示文本在内容区的纵坐标偏移。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
 
@@ -12682,179 +12860,207 @@ typedef enum {
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
     /**
-     * @brief Defines the event triggered when content (including preview text) changes in the <b>TextInput</b>
-     * component.
+     * @brief 定义TextInput组件在内容改变时（包含预上屏内容），触发回调的枚举值。
      *
-     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_TextChangeEvent}。\n
+     * **{@link ArkUI_TextChangeEvent}包含参数：**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr：TextInput的内容。</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr：TextInput的预上屏内容。</li>
+     * <li>ArkUI_TextChangeEvent.number：TextInput的预上屏起始位置。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      * @since 15
      */
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
     /**
-     * @brief Defines the event triggered before content changes
+     * @brief 定义TextInput组件在内容将要改变时（包含预上屏内容），触发回调的枚举值。
      *
-     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
-     * 
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_TextChangeEvent}。\n
+     * **{@link ArkUI_TextChangeEvent}包含参数：**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr：TextInput的内容。</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr：TextInput的预上屏内容。</li>
+     * <li>ArkUI_TextChangeEvent.number：TextInput的预上屏起始位置。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
      * @since 20
      */
     NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
 
     /**
-     * @brief Defines the event triggered when the copy button on the pasteboard, which displays when text is
-     * selected, is clicked.
+     * @brief 定义当用户点击文本选择时显示的剪贴板上的复制按钮所触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。 \n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：复制的文本。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_INPUT_ON_COPY = 7015,
 
     /**
-     * @brief Defines the event triggered before copying text.
+     * @brief 定义复制文本前触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
-     * @return Whether the copy is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the copy is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。 \n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：复制的文本。</li>
+     * </ul>
      *
+     * @return 是否允许复制。 \n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否允许复制。
+     * <b>0</b>：不允许复制；<b>1</b>：允许复制。 \n
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_INPUT_ON_WILL_COPY = 7016,
 
     /**
-     * @brief Defines the event triggered before cutting text.
+     * @brief 定义剪切文本前触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
-     * @return Whether the cut is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the cut is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。 \n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：被剪切的文本。</li>
+     * </ul>
      *
+     * @return 是否允许剪切。 \n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否允许剪切。
+     * <b>0</b>：不允许剪切；<b>1</b>：允许剪切。 \n
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_INPUT_ON_WILL_CUT = 7017,
 
     /**
-     * @brief Defines the event triggered when the input in the text box changes.
+     * @brief 输入内容发生变化时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text entered.
+     * 触发该事件的条件：输入内容发生变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：当前输入的文本内容。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
-     * @brief Defines the event triggered when the paste button on the pasteboard, which displays when the text box is
-     * long pressed, is clicked.
+     * @brief 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
-     * \n
-     * Since 26.0.0, the callback can return whether the paste is allowed.\n
-     * @return Whether the paste is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * 触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：粘贴的文本内容。</li>
+     * </ul>
      *
+     * 从API版本26.0.0开始，回调函数可以返回是否允许粘贴。\n
+     * @return 是否允许粘贴。\n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。\n
+     * 返回值中索引为0的value.i32表示是否允许粘贴。\n
+     * <b>0</b>：不允许；<b>1</b>：允许。\n
+     *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_PASTE,
     /**
-     * @brief Defines the event triggered when the text selection position changes.
+     * @brief 文本选择的位置发生变化时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * 触发该事件的条件：文本选择的位置发生变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示所选文本的起始位置。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示所选文本的结束位置。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE,
     /**
-     * @brief Defines the event triggered when matching with the regular expression specified by
-     * <b>NODE_TEXT_AREA_INPUT_FILTER</b> fails.
+     * @brief 设置NODE_TEXT_AREA_INPUT_FILTER，正则匹配失败时触发。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: content that is filtered out when regular expression matching fails. \n
+     * 触发该事件的条件：正则匹配失败时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：表示正则匹配失败时，被过滤的内容。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_INPUT_FILTER_ERROR,
     /**
-     * @brief This callback is triggered when the text content is scrolled.
+     * @brief 文本内容滚动时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Indicates the horizontal offset of the text in the content area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: Indicates the vertical coordinate offset of \n
-     * the text in the content area. \n
+     * 触发该事件的条件：文本内容滚动时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示文本在内容区的横坐标偏移。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示文本在内容区的纵坐标偏移。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_CONTENT_SCROLL,
 
     /**
-     * @brief Defines the event triggered when the input status changes.
+     * @brief 输入状态变化时，触发该回调。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: <b>true</b> indicates that text input is in progress. \n
+     * 触发该事件的条件：输入状态变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：true表示正在输入。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_EDIT_CHANGE,
 
     /**
-     * @brief Defines the event triggered when the Enter key on the keyboard is pressed for the multi-line text box.
+     * @brief TextArea按下输入法回车键触发该事件。
      *
-     * This event is not triggered when <b>keyType</b> is <b>ARKUI_ENTER_KEY_TYPE_NEW_LINE</b>. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: type of the Enter key.
+     * 触发该事件的条件：按下输入法回车键。keyType为ARKUI_ENTER_KEY_TYPE_NEW_LINE时不触发\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：输入法回车键类型。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_SUBMIT,
 
     /**
-      * @brief textArea This event is triggered when the input content changes.
-      *
-      * Conditions for triggering this event: When the input content changes. \n
-      * When the event callback occurs, the union type in the event parameter {@link ArkUI_NodeEvent} object is \n
-      * {@link ArkUI_NodeComponentEvent}.\n
-      * {@link ArkUI_NodeComponentEvent} contains 2 parameters:\n
-      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: Indicates the width of the text. \n
-      * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: Indicates the height of the text. \n
-      *
-      */
+     * @brief TextArea输入内容发生变化时触发该事件。
+     *
+     * 触发该事件的条件：输入内容发生变化时。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * **{@link ArkUI_NodeComponentEvent}中包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32：表示文本的宽度。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32：表示文本的高度。</li>
+     * </ul>
+     *
+     * @ingroup Text Input[文本输入]
+     */
     NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
 
     /**
@@ -12893,42 +13099,44 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_DELETE = 8010,
 
     /**
-     * @brief Defines the event triggered when text is deleted.
+     * @brief 定义在删除完成时，触发回调的枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text deleted, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * 事件回调发生时，事件参数为{@link ArkUI_NodeEvent}。\n
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：删除的值的位置信息。\n
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.i32：删除值的方向，0为向后删除，1为向前删除。\n
+     * 通过OH_ArkUI_NodeEvent_GetStringValue获取到index为0的buffer字符串：删除的值。
+     * @ingroup Text Input[文本输入]
      */
     NODE_TEXT_AREA_ON_DID_DELETE = 8011,
 
     /**
-     * @brief Defines the event triggered when content (including preview text) changes in the <b>TextArea</b>
-     * component.
+     * @brief 定义TextArea组件在内容改变时（包含预上屏内容），触发回调的枚举值。
      *
-     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_TextChangeEvent}。\n
+     * **{@link ArkUI_TextChangeEvent}包含参数：**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr：TextArea的内容。</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr：TextArea的预上屏内容。</li>
+     * <li>ArkUI_TextChangeEvent.number：TextArea的预上屏起始位置。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      * @since 15
      */
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
     /**
-     * @brief Defines the event triggered before content changes.
+     * @brief 定义TextArea组件在内容将要改变时（包含预上屏内容），触发回调的枚举值。
      *
-     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_TextChangeEvent}。\n
+     * **{@link ArkUI_TextChangeEvent}包含参数：**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr：TextArea的内容。</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr：TextArea的预上屏内容。</li>
+     * <li>ArkUI_TextChangeEvent.number：TextArea的预上屏起始位置。</li>
+     * </ul>
      *
+     * @ingroup Text Input[文本输入]
      * @since 20
      */
     NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
@@ -12941,23 +13149,28 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}包含一个参数：\n
      * <b>ArkUI_StringAsyncEvent.pStr</b>：复制的文本。
      *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
      */
     NODE_TEXT_AREA_ON_COPY = 8014,
 
     /**
-     * @brief Defines the event triggered before copying text.
+     * @brief 定义复制文本前触发的事件。
+     * \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。\n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：复制的文本。</li>
+     * </ul>
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
-     * @return Whether the copy is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the copy is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * @return 是否允许复制。\n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。\n
+     * 返回值中索引为0的value.i32表示是否允许复制。
+     * <b>0</b>：不允许复制；<b>1</b>：允许复制。\n
      *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_AREA_ON_WILL_COPY = 8015,
 
@@ -12969,23 +13182,28 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}包含一个参数：\n
      * <b>ArkUI_StringAsyncEvent.pStr</b>：剪切后的文本。
      *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
      */
     NODE_TEXT_AREA_ON_CUT = 8016,
 
     /**
-     * @brief Defines the event triggered before cutting text.
+     * @brief 定义剪切文本前触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
-     * @return Whether the cut is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether the cut is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_StringAsyncEvent}。 \n
+     * **{@link ArkUI_StringAsyncEvent}包含一个参数：**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr：被剪切的文本。</li>
+     * </ul>
      *
+     * @return 是否允许剪切。 \n
+     * 可以通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}函数设置返回值。 \n
+     * 返回值中索引为0的value.i32表示是否允许剪切。
+     * <b>0</b>：不允许剪切；<b>1</b>：允许剪切。 \n
+     *
+     * @ingroup Text Input[文本输入]
      * @since 26.0.0
+     *
      */
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
@@ -13174,6 +13392,7 @@ typedef enum {
      * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：选区起始索引。
      * <br><b>ArkUI_NodeComponentEvent.data[1].i32</b>：选区结束索引。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_SELECTION_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
@@ -13182,6 +13401,7 @@ typedef enum {
      * @brief 定义TextEditor组件首次初始化完成时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_READY,
@@ -13205,6 +13425,7 @@ typedef enum {
      * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
      * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：组件的编辑状态。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_EDITING_CHANGE,
@@ -13215,6 +13436,7 @@ typedef enum {
      * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
      * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：输入法的回车键类型{@link ArkUI_EnterKeyType}。
      * 
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_SUBMIT,
@@ -13254,6 +13476,7 @@ typedef enum {
      * <br>系统会根据回调函数返回值判断当前内容是否允许被更改。
      * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
      * <br>返回值中索引为0的value.i32表示当前内容是否允许被更改。<b>0</b>：不允许更改。<b>1</b>：允许更改。
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_WILL_CHANGE,
@@ -13267,6 +13490,7 @@ typedef enum {
      * <br><b>ArkUI_NodeComponentEvent.data[2].i32</b>：文本变化后新增内容的文本范围的起始索引。
      * <br><b>ArkUI_NodeComponentEvent.data[3].i32</b>：文本变化后新增内容的文本范围的结束索引。
      *
+     * @ingroup Text Editor[富文本]
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_DID_CHANGE,
