@@ -47,7 +47,7 @@ extern "C" {
 
 /**
  * @brief 提供录屏的视频原始数据缓冲区结构体。OH_NativeBuffer提供录屏的视频原始数据处理能力，支持对录屏过程中产生的视频原始数据
- * 进行封装、传输和管理。
+ * 进行封装、传输和管理。<br>
  * 
  * 用于在AVScreenCapture录屏场景中承载获取的视频帧原始数据。可用于录屏数据的二次处理场景，如视频编辑应用中对录屏帧数据
  * 进行像素级操作、直播推流场景中对原始码流进行编码推送等。
@@ -58,7 +58,7 @@ extern "C" {
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
- * @brief 通过OH_AVScreenCapture可以获取视频与音频的原始码流。
+ * @brief 通过OH_AVScreenCapture可以获取视频与音频的原始码流。<br>
  * 
  * 开发者需通过相关接口创建实例并配置采集参数后进行屏幕录制以获取码流数据。详细的模块设计逻辑与实现机制请参见AVScreenCapture。
  * 适用于屏幕录制、直播推流等需要捕获屏幕内容及系统/麦克风音频的场景，可帮助应用实现高质量的屏幕采集与音视频数据获取。
@@ -69,7 +69,7 @@ typedef struct OH_AVScreenCapture OH_AVScreenCapture;
 
 /**
  * @brief 通过OH_AVScreenCapture_ContentFilter过滤音视频内容。开发者可以配置过滤规则，实现对屏幕录制内容中音视频流的筛选和控制，
- * 满足不同场景下的内容处理需求。
+ * 满足不同场景下的内容处理需求。<br>
  * 
  * 适用于隐私保护（如过滤敏感界面）、指定应用音视频排除等场景，可有效提升录屏内容的可控性。
  *
@@ -219,11 +219,11 @@ typedef enum OH_ContainerFormatType {
 } OH_ContainerFormatType;
 
 /**
- * @brief 音频采样信息。
+ * @brief 音频采样信息。<br>
  * 
  * 用于配置屏幕录制中的音频采集参数，包括采样率、声道数和音频源类型。
  * 开发者可通过设置audioSampleRate和audioChannels参数来控制录制音频的质量和声道布局，
- * 适用于屏幕录制时需要采集系统音频或麦克风音频的场景。
+ * 适用于屏幕录制时需要采集系统音频或麦克风音频的场景。<br>
  * 
  * 当audioSampleRate和audioChannels同时为0时，忽略该类型音频相关参数，不录制该类型音频数据。
  *
@@ -247,7 +247,7 @@ typedef struct OH_AudioCaptureInfo {
 } OH_AudioCaptureInfo;
 
 /**
- * @brief 音频编码信息。
+ * @brief 音频编码信息。<br>
  * 
  * 用于配置屏幕录制场景下的音频编码参数，包括音频编码比特率和音频编码格式。
  * 通过设置这些参数，开发者可以控制音频的质量和文件大小，适用于需要在屏幕录制场景中指定音频编码质量和编码方式的场景。
@@ -269,10 +269,10 @@ typedef struct OH_AudioEncInfo {
 } OH_AudioEncInfo;
 
 /**
- * @brief 音频信息。
+ * @brief 音频信息。<br>
  * 
  * OH_AudioInfo作为OH_ScreenCaptureConfig的音频配置成员，包含麦克风采集信息、内录采集信息和音频编码信息三个部分，开发者需根据
- * 采集场景选择配置麦克风采集信息或内录采集信息，并在需要编码输出时配置音频编码信息。适用于需要在屏幕录制中采集音频数据的场景。
+ * 采集场景选择配置麦克风采集信息或内录采集信息，并在需要编码输出时配置音频编码信息。适用于需要在屏幕录制中采集音频数据的场景。<br>
  * 
  * 同时采集音频麦克风和音频内录数据时，两路音频的audioSampleRate和audioChannels采集参数需要相同，因为两路音频数据将合并为
  * 同一音频流输出，采集参数不一致会导致音频同步异常或采集失败。
@@ -335,7 +335,7 @@ typedef struct OH_VideoCaptureInfo {
 } OH_VideoCaptureInfo;
 
 /**
- * @brief 视频编码参数。
+ * @brief 视频编码参数。<br>
  * 
  * 用于配置屏幕录制的视频编码参数，支持设置编码格式、比特率和帧率。videoCodec指定编码格式（如H.264、H.265等），
  * videoBitrate影响视频清晰度和文件大小，videoFrameRate影响视频流畅度。通常在调用屏幕录制接口前设置这些参数。
@@ -361,7 +361,7 @@ typedef struct OH_VideoEncInfo {
 } OH_VideoEncInfo;
 
 /**
- * @brief 视频信息。
+ * @brief 视频信息。<br>
  * 
  * 用于配置屏幕录制时的视频采集参数和编码参数。该结构体包含视频采集参数（如分辨率、采集格式等）和视频编码参数，
  * 适用于需要自定义屏幕录制视频输出参数的场景。开发者根据实际需求配置相关参数后，在调用屏幕录制相关接口时使用。
@@ -406,7 +406,7 @@ typedef struct OH_RecorderInfo {
 } OH_RecorderInfo;
 
 /**
- * @brief 屏幕录制配置参数。
+ * @brief 屏幕录制配置参数。<br>
  * 
  * 用于配置屏幕录制的模式、数据格式、音频参数、视频参数及录制文件参数等，适用于需要自定义屏幕录制行为（如选择录制模式、
  * 指定数据输出格式、设置音视频编码参数等）的场景。
@@ -440,7 +440,7 @@ typedef struct OH_AVScreenCaptureConfig {
 } OH_AVScreenCaptureConfig;
 
 /**
- * @brief 隐私保护信息结构体。
+ * @brief 隐私保护信息结构体。<br>
  * 
  * 用于在屏幕录制场景中对系统窗口和敏感应用进行隐私保护。通过设置该结构体的成员变量，可以控制是否开启系统窗口隐私保护和
  * 敏感应用隐私保护，避免在屏幕录制过程中泄露隐私信息。systemWindowProtection控制系统窗口级别的隐私保护，
@@ -517,26 +517,26 @@ typedef struct OH_AVScreenCaptureCallback {
     /**
      * 录屏调用操作发生错误时触发的回调函数。当录屏过程中出现权限缺失、编码异常等错误时触发回调，
      * 开发者可根据错误类型进行重试或向用户提示。需先将包含该回调的结构体实例注册到OH_AVScreenCapture实例中，
-     * 才能接收错误回调上报信息。可能上报的错误码请参考{@link OH_AVSCREEN_CAPTURE_ErrCode}。从API version 12开始，
-     * 推荐使用接口{@link OH_AVScreenCapture_OnError}替代。
+     * 才能接收错误回调上报信息。可能上报的错误码请参考{@link OH_AVSCREEN_CAPTURE_ErrCode}。<br>
+     * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_OnError}替代。
      */
     OH_AVScreenCaptureOnError onError;
     /**
      * 音频缓冲区有数据可用时触发的回调函数，当录屏过程中音频数据就绪时触发回调，开发者可在此回调中获取音频缓冲区数据进行音频录制、
-     * 编码或直播推流等处理。需先将包含该回调的结构体实例注册到OH_AVScreenCapture实例中，才能接收音频数据回调上报信息。
+     * 编码或直播推流等处理。需先将包含该回调的结构体实例注册到OH_AVScreenCapture实例中，才能接收音频数据回调上报信息。<br>
      * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_OnBufferAvailable}替代。
      */
     OH_AVScreenCaptureOnAudioBufferAvailable onAudioBufferAvailable;
     /**
      * 视频缓冲区有数据可用时触发的回调函数，当录屏过程中视频数据就绪时触发回调，开发者可在此回调中获取视频缓冲区数据进行视频录制、
-     * 编码或直播推流等处理。需先将包含该回调的结构体实例注册到OH_AVScreenCapture实例中，
-     * 才能接收视频数据回调上报信息。从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_OnBufferAvailable}替代。
+     * 编码或直播推流等处理。需先将包含该回调的结构体实例注册到OH_AVScreenCapture实例中，才能接收视频数据回调上报信息。<br>
+     * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_OnBufferAvailable}替代。
      */
     OH_AVScreenCaptureOnVideoBufferAvailable onVideoBufferAvailable;
 } OH_AVScreenCaptureCallback;
 
 /**
- * @brief 定义录屏界面的位置和尺寸。包含位置坐标和尺寸信息。可用于精确控制录屏范围，支持自定义区域录制、局部录制等场景。
+ * @brief 定义录屏界面的位置和尺寸。包含位置坐标和尺寸信息。可用于精确控制录屏范围，支持自定义区域录制、局部录制等场景。<br>
  * 
  * 适用于教学/演示录制中只录制重点操作区域、会议录制中只录制演示文稿区域和游戏录制中只录制游戏画面区域等场景。
  * 
@@ -564,7 +564,7 @@ typedef struct OH_Rect {
 
 
 /**
- * @brief 定义了音频缓冲区数据及其大小、类型、时间戳等属性信息。
+ * @brief 定义了音频缓冲区数据及其大小、类型、时间戳等属性信息。<br>
  * 
  * 在屏幕录制过程中，该结构体由系统通过音频数据回调填充，开发者可从中读取录制的音频帧数据及其时间戳，用于后续音频处理或编码。
  * 适用于需要获取屏幕录制音频帧数据的场景。
@@ -850,13 +850,33 @@ typedef enum OH_CapturePickerMode {
      * 显示屏幕和窗口模式（默认模式）。
      */
     OH_CAPTURE_PICKER_MODE_SCREEN_AND_WINDOW = 2,
+    /**
+     * @brief 仅显示应用模式。
+     * @since 26.0.0
+     */
+    OH_CAPTURE_PICKER_MODE_APP_ONLY = 3,
+    /**
+     * @brief 同时显示窗口和应用模式。
+     * @since 26.0.0
+     */
+    OH_CAPTURE_PICKER_MODE_WINDOW_AND_APP = 4,
+    /**
+     * @brief 同时显示屏幕和应用模式。
+     * @since 26.0.0
+     */
+    OH_CAPTURE_PICKER_MODE_SCREEN_AND_APP = 5,
+    /**
+     * @brief 同时显示屏幕、窗口和应用模式。
+     * @since 26.0.0
+     */
+    OH_CAPTURE_PICKER_MODE_SCREEN_WINDOW_AND_APP = 6,
 } OH_CapturePickerMode;
 
 /**
  * @brief 通过OH_AVScreenCapture_CaptureStrategy设置录屏策略。用于配置录屏行为，如录制内容范围、输出格式、性能参数等。
- * 支持配置录屏参数、调整录制质量、管理录制资源等。
+ * 支持配置录屏参数、调整录制质量、管理录制资源等。<br>
  * 
- * 录屏策略需在录屏启动之前通过OH_AVScreenCapture_SetCaptureStrategy接口设置，录屏启动后设置将不生效。
+ * 录屏策略需在录屏启动之前通过OH_AVScreenCapture_SetCaptureStrategy接口设置，录屏启动后设置将不生效。<br>
  * 
  * 支持开发者根据业务需求灵活配置录屏捕获行为，适用于需要定制录屏策略的场景，可提升录屏功能的适用性和可控性。
  * 
@@ -867,7 +887,7 @@ typedef struct OH_AVScreenCapture_CaptureStrategy OH_AVScreenCapture_CaptureStra
 
 /**
  * @brief 开发者可通过OH_AVScreenCapture_UserSelectionInfo获取用户在授权界面（选择界面）选择的参数（如捕获类型，捕获窗口等）。
- * 例如，在屏幕录制应用中，用户可以选择录制区域、录制音频源等参数后，使用该结构体获取用户的选择结果。
+ * 例如，在屏幕录制应用中，用户可以选择录制区域、录制音频源等参数后，使用该结构体获取用户的选择结果。<br>
  * 
  * 该结构体用于在屏幕录制授权流程中承载用户的选择结果，开发者可在授权完成后通过此结构体读取用户的授权选择信息。
  * 适用于应用需要根据用户授权选择来配置录屏行为的场景，帮助开发者灵活适配用户的录屏偏好。
