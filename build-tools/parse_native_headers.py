@@ -274,7 +274,7 @@ def _process_subdir_files(root: str, processor: HeaderProcessor) -> None:
             processor.process_file(os.path.join(root, file_name))
 
 
-def check_file_api_version(root: str, sdk_api_version: int) -> List[str]:
+def check_file_api_version(root: str, sdk_api_version: str) -> List[str]:
     violation_files = []
     since_pattern = re.compile(r'@since\s+([^\s\n\r]+)')
 
@@ -289,7 +289,7 @@ def check_file_api_version(root: str, sdk_api_version: int) -> List[str]:
     return violation_files
 
 
-def process_single_file(file_path: str, since_pattern: Pattern, sdk_api_version: int) -> Optional[List[str]]:
+def process_single_file(file_path: str, since_pattern: Pattern, sdk_api_version: str) -> Optional[List[str]]:
     """处理单个文件，返回匹配的since值列表"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -303,18 +303,66 @@ def process_single_file(file_path: str, since_pattern: Pattern, sdk_api_version:
         return None
 
     # 检查是否需要运行解析器
-    if _has_violation_version(matches, sdk_api_version):
+    if has_violation_version(matches, sdk_api_version):
         return matches
 
     return None
 
 
-def _has_violation_version(matches: List[str], sdk_api_version: int) -> bool:
-    """检查是否存在违规版本号"""
+_VERSION_PATTERN = re.compile(r'^(\d+)(?:\.(\d+))?(?:\.(\d+))?$')
+
+# 版本号格式校验（对应JS: ^[1-9][0-9]?((\.(0|[1-9][0-9]?)){2})?$）
+# major 1-99（不允许前导0），可选三段式 .minor.patch，minor/patch 为 0 或 1-99
+_VALID_VERSION_FORMAT = re.compile(r'^[1-9][0-9]?((\.(0|[1-9][0-9]?)){2})?$')
+
+
+def is_valid_version_format(version: str) -> bool:
+    """校验版本号格式是否合规（对应JS checkApiVersion.js 的格式校验）"""
+    return bool(_VALID_VERSION_FORMAT.match(version.strip()))
+
+
+def parse_version(version: str) -> Tuple[int, int, int]:
+    """将版本号解析为 (major, minor, patch) 数组。
+
+    支持格式：
+    - 单数字: '20'/'26'       -> (20, 0, 0)
+    - 三段式: '26.0.0'/'26.1.2' -> (26, 0, 0)/(26, 1, 2)
+    - 二段式: '26.1'          -> (26, 1, 0)
+    """
+    match = _VERSION_PATTERN.match(version.strip())
+    if not match:
+        return (-1, -1, -1)  # 无法解析
+    major = int(match.group(1))
+    minor = int(match.group(2)) if match.group(2) else 0
+    patch = int(match.group(3)) if match.group(3) else 0
+    return (major, minor, patch)
+
+
+def compare_versions(v1: str, v2: str) -> int:
+    """比较两个版本号大小：1: v1 > v2, 0: v1 == v2, -1: v1 < v2"""
+    p1 = parse_version(v1)
+    p2 = parse_version(v2)
+    for i in range(3):
+        if p1[i] > p2[i]:
+            return 1
+        if p1[i] < p2[i]:
+            return -1
+    return 0
+
+
+def has_violation_version(matches: List[str], sdk_api_version) -> bool:
+    """检查是否存在违规版本号（支持单数字与点分式版本）"""
+    sdk_parsed = parse_version(str(sdk_api_version))
+    if sdk_parsed[0] < 0:
+        return False
     for since_value in matches:
-        if not since_value.isdigit():
-            continue
-        if int(since_value) > sdk_api_version:
+        # 格式不合规（对应JS的版本格式校验）视为违规
+        if not is_valid_version_format(since_value):
+            return True
+        parsed = parse_version(since_value)
+        if parsed[0] < 0:
+            continue  # 无法解析的格式跳过
+        if compare_versions(since_value, str(sdk_api_version)) > 0:
             return True
     return False
 
@@ -443,19 +491,22 @@ def check_api_version_method(options):
     """遍历目录并检查API LEVEL"""
     abs_root_dir = os.path.abspath(options.input)
     sdk_api_version = options.sdk_api_version
-    if not sdk_api_version.isdigit():
-        raise ValueError(f"api version must be digits!")
-    sdk_version_num = int(sdk_api_version)
-    if sdk_version_num == 0:
-        print("无需校验！")
-        return
+    if not is_valid_version_format(sdk_api_version):
+        raise ValueError(
+            f"--sdk-api-version must be a valid version number format. Got: {sdk_api_version}\n"
+            f"  Valid formats: single number (e.g., 26) or three-part version (e.g., 26.0.0)\n"
+            f"  Number range: major 1-99, minor 0-99, patch 0-99"
+        )
+    sdk_parsed = parse_version(sdk_api_version)
+    if sdk_parsed[0] < 0:
+        raise ValueError(f"api version must be a valid version number! Got: {sdk_api_version}")
 
     violation_files = []  # 保存违规文件列表
     for root, dirs, files in os.walk(abs_root_dir, topdown=True):
-        violation_files.extend(check_file_api_version(root, sdk_version_num))
+        violation_files.extend(check_file_api_version(root, sdk_api_version))
 
     if violation_files:
-        run_capi_parser(violation_files, options.sdk_api_version)
+        run_capi_parser(violation_files, sdk_api_version)
 
 
 def main():
@@ -464,6 +515,7 @@ def main():
     parser.add_argument('--sdk-api-version', required=True, help="当前构建API版本")
     parser.add_argument('--sdk-build-public', default='false', help="是否公共SDK构建（true则裁剪@systemapi）")
     parser.add_argument('--skip-version-macro', action='store_true', help="跳过版本宏添加（lite构建使用）")
+    parser.add_argument('--sdk-build-check-level', default='0', help="API版本校验级别（0：不校验，非0：校验）")
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
@@ -476,8 +528,12 @@ def main():
     if sdk_build_public:
         run_systemapi_cleanup(args.input)
 
-    # 第二步：校验 API 版本号
-    check_api_version_method(args)
+    # 第二步：校验 API 版本号（sdk-build-check-level 为0时不校验，非0时校验）
+    check_level = args.sdk_build_check_level
+    if not check_level.isdigit():
+        raise ValueError(f"--sdk-build-check-level must be digits! Got: {check_level}")
+    if int(check_level) != 0:
+        check_api_version_method(args)
 
     # 第三步：添加版本宏（就地修改），lite构建跳过此步骤
     if not args.skip_version_macro:
