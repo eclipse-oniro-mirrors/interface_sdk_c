@@ -16,7 +16,14 @@
  * @addtogroup AVScreenCapture
  * @{
  *
- * @brief 提供屏幕录制的请求能力接口。
+ * @brief 调用本模块下的接口，应用可以实现屏幕录制功能。支持录屏取码流和录屏写文件两种模式，适用于需要捕获屏幕音视频内容的各类场景，
+ * 帮助开发者灵活获取屏幕数据并进行后续处理或保存为文件。典型使用场景包括：在线会议录制、游戏直播分享、教学演示视频制作、
+ * 远程协作屏幕共享等。<br>
+ * 
+ * 开发者可根据实际的开发需求，参考对应的开发指南及样例：<br>
+ * 
+ * - [使用AVScreenCapture录屏取码流](../../media/media/avscreencapture-c-basic-process.md)<br>
+ * - [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
  * @since 10
  */
 /**
@@ -25,7 +32,7 @@
  * @brief 声明用于运行屏幕录制相关的结构体、字符常量、枚举、变量和函数。屏幕录制通过配置参数设置录制模式与音视频信息，
  * 通过回调函数获取录制数据、状态变更和隐私保护事件通知。
  * 支持多种录制模式（主屏幕、指定屏幕、指定窗口）、音频源类型（麦克风、内录、指定应用音频）配置及隐私保护、内容过滤等功能，
- * 适用于需要捕获屏幕画面和音频数据的应用场景。详细设计逻辑请参见AVScreenCapture。
+ * 适用于需要捕获屏幕画面和音频数据的应用场景。详细设计逻辑请参见{@link AVScreenCapture}。
  * 
  * @include <multimedia/player_framework/native_avscreen_capture_base.h>
  * @library libnative_avscreen_capture.so
@@ -78,27 +85,30 @@ typedef struct OH_AVScreenCapture OH_AVScreenCapture;
 typedef struct OH_AVScreenCapture_ContentFilter OH_AVScreenCapture_ContentFilter;
 
 /**
- * @brief 枚举，表示屏幕录制的不同模式。
+ * @brief 枚举，表示屏幕录制的不同模式。<br>
  * 
+ * 根据录制需求选择合适的模式：录制主屏幕适用于全屏录制场景；录制指定屏幕适用于多屏环境下选择特定屏幕的场景；
+ * 录制指定窗口适用于仅录制单个应用窗口的场景。
  *
  * @since 10
  */
 typedef enum OH_CaptureMode {
-    /* capture home screen */
+    /* 录制主屏幕。 */
     OH_CAPTURE_HOME_SCREEN = 0,
-    /* capture a specified screen */
+    /* 录制指定屏幕。使用此模式需在OH_AVScreenCaptureConfig中指定displayId。 */
     OH_CAPTURE_SPECIFIED_SCREEN = 1,
-    /* capture a specified window */
+    /* 录制指定窗口。使用此模式需在OH_AVScreenCaptureConfig中指定windowId。 */
     OH_CAPTURE_SPECIFIED_WINDOW = 2,
     /* @brief 创建一个虚拟扩展屏幕并录制其内容。
      * @since 26.1.0
      */
     OH_CAPTURE_VIRTUAL_EXTENDED_SCREEN = 3,
+    /* 无效模式。 */
     OH_CAPTURE_INVAILD = -1
 } OH_CaptureMode;
 
 /**
- * @brief 枚举，表示屏幕录制时的音频源类型。
+ * @brief 枚举，表示屏幕录制时的音频源类型。<br>
  * 
  * 适用于不同的音频录制需求：OH_MIC适用于需要录制外部声音（如解说、旁白）的场景；OH_ALL_PLAYBACK适用于需要录制系统播放的所有
  * 内部音频流（如系统音效、应用音频）的场景；OH_APP_PLAYBACK适用于需要仅录制指定应用播放音频的场景。
@@ -120,7 +130,7 @@ typedef enum OH_AudioCaptureSourceType {
 } OH_AudioCaptureSourceType;
 
 /**
- * @brief 枚举，表示音频编码格式。
+ * @brief 枚举，表示音频编码格式。<br>
  * 
  * OH_AUDIO_DEFAULT为默认编码，适用于大多数音视频录制场景；OH_AAC_LC为AAC_LC编码，
  * 适用于需要较好音质和较小文件大小的通用音视频应用场景。
@@ -161,14 +171,12 @@ typedef enum OH_VideoCodecFormat {
 } OH_VideoCodecFormat;
 
 /**
- * @brief 枚举，表示屏幕录制流的数据格式。
+ * @brief 枚举，表示屏幕录制流的数据格式。<br>
  * 
  * 根据使用需求选择合适的数据格式：原始流格式适用于需要实时处理音视频数据的场景（如实时预览、流式传输）；
- * 保存文件格式适用于直接录制为文件的场景。
+ * 保存文件格式适用于直接录制为文件的场景。<br>
  * 
  * 当前仅支持原始流格式和保存文件格式。
- * 
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  *
  * @since 10
  */
@@ -203,7 +211,7 @@ typedef enum OH_VideoSourceType {
 } OH_VideoSourceType;
 
 /**
- * @brief 枚举，表示屏幕录制生成的文件类型。
+ * @brief 枚举，表示屏幕录制生成的文件类型。<br>
  * 
  * 适用于不同的文件输出需求：CFT_MPEG_4A为音频格式m4a，适用于仅需要录制音频的场景；CFT_MPEG_4为视频格式mp4，
  * 适用于需要同时录制音视频的场景。
@@ -339,8 +347,6 @@ typedef struct OH_VideoCaptureInfo {
  * 
  * 用于配置屏幕录制的视频编码参数，支持设置编码格式、比特率和帧率。videoCodec指定编码格式（如H.264、H.265等），
  * videoBitrate影响视频清晰度和文件大小，videoFrameRate影响视频流畅度。通常在调用屏幕录制接口前设置这些参数。
- * 
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  *
  * @since 10
  */
@@ -593,7 +599,7 @@ typedef struct OH_AudioBuffer {
 } OH_AudioBuffer;
 
 /**
- * @brief 枚举，表示状态码。
+ * @brief 枚举，表示状态码。<br>
  * 
  * 状态码反映了录屏的生命周期变化，包括开始、暂停、恢复、停止、中断及隐私场景切换等状态，
  * 状态变更通过OH_AVScreenCapture_OnStateChange回调通知应用。
@@ -653,24 +659,26 @@ typedef enum OH_AVScreenCaptureStateCode {
  * @since 12
  */
 typedef enum OH_AVScreenCaptureBufferType {
-    /* Buffer of video data from screen */
+    /* 视频数据。 */
     OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO = 0,
-    /* Buffer of audio data from inner capture */
+    /* 内录音频数据。 */
     OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER = 1,
-    /* Buffer of audio data from microphone */
+    /* 麦克风音频数据。 */
     OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC = 2,
 } OH_AVScreenCaptureBufferType;
 
 /**
- * @brief 枚举，表示buffer类型。
+ * @brief 枚举，表示可过滤的音频类型。<br>
  * 
+ * 在录屏场景中，可通过过滤特定音频类型来控制录制内容：过滤通知音适用于避免系统通知声音干扰录屏内容的场景；
+ * 过滤应用自身声音适用于仅录制应用内音频而排除其他声音的场景。
  *
  * @since 12
  */
 typedef enum OH_AVScreenCaptureFilterableAudioContent {
-    /* Audio content of notification sound */
+    /* 通知音。 */
     OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO = 0,
-    /* Audio content of the sound of the app itself */
+    /* 应用自身声音。 */
     OH_SCREEN_CAPTURE_CURRENT_APP_AUDIO = 1,
 } OH_AVScreenCaptureFilterableAudioContent;
 
@@ -800,7 +808,7 @@ typedef struct OH_AVScreenCaptureHighlightConfig {
 
 /**
  * @brief 枚举，表示屏幕录制高亮边框的模式。
- * 
+ *
  * @since 22
  */
 typedef enum OH_ScreenCaptureHighlightMode {
@@ -815,8 +823,11 @@ typedef enum OH_ScreenCaptureHighlightMode {
 } OH_ScreenCaptureHighlightMode;
 
 /**
- * @brief 图像填充模式。
+ * @brief 枚举，图像填充模式。<br>
  * 
+ * OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT适用于需要保持图像原始宽高比、避免变形的场景；<br>
+ * OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL适用于需要完全填充目标区域、可接受图像变形的场景。
+ *
  * @since 20
  */
 typedef enum OH_AVScreenCapture_FillMode {
@@ -825,14 +836,19 @@ typedef enum OH_AVScreenCapture_FillMode {
      */
     OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0,
     /**
-     * 图像拉伸匹配目标图像大小，若比例不一致图像变形。
+     * 图像拉伸匹配目标图像大小，若比例不一致可能会导致图像变形。
      */
     OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1,
 } OH_AVScreenCapture_FillMode;
 
 /**
- * @brief 枚举，表示Picker显示模式。
+ * @brief 枚举，表示Picker显示模式。<br>
  * 
+ * 根据应用需求选择合适的Picker模式：仅显示窗口模式适用于只允许用户选择窗口进行录制的场景；
+ * 仅显示屏幕模式适用于只允许用户选择整个屏幕的场景；
+ * 同时显示屏幕和窗口模式为默认模式，适用于需要灵活选择录制目标的场景；
+ * 仅显示应用模式适用于只允许录制单个应用的场景。
+ *
  * @since 22
  */
 typedef enum OH_CapturePickerMode {
@@ -937,7 +953,7 @@ typedef struct OH_MultiDisplayCapability {
 } OH_MultiDisplayCapability;
 
 /**
- * @brief 当{@link OH_AVScreenCapture}实例在运行过程中发生隐私保护事件时，函数指针将被调用。
+ * @brief 当{@link OH_AVScreenCapture}实例在运行过程中发生隐私保护事件时，函数指针将调用。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param privacyProtect 隐私保护信息指针。指向包含隐私保护事件详细信息的结构体，用于处理录屏过程中的隐私保护回调事件。
@@ -948,10 +964,10 @@ typedef void (*OH_AVScreenCapture_OnPrivacyProtect)(OH_AVScreenCapture* capture,
     OH_PrivacyProtectInfo* privacyProtect, void *userData);
 
 /**
-* @brief 获取录屏图像帧中有效内容区域信息的key。
+* @brief 获取录屏图像帧中有效内容区域信息的key。<br>
 * 通过此key获取到的返回值是一个int32_t数组，单位为像素（px）。
 * 数组长度为4。数组元素定义为[top, left, width, height]，其中top表示矩形窗口左上角纵坐标，left表示矩形窗口左上角横坐标，
-* width表示矩形窗口的宽度，height表示矩形窗口的高度。数组元素可以从OH_AVFormat_GetIntBuffer中获取。
+* width表示矩形窗口的宽度，height表示矩形窗口的高度。数组元素可以从{@link OH_AVFormat_GetIntBuffer}中获取。
 * @since 26.0.0
 */
 extern const char *OH_SCREEN_CAPTURE_CONTENT_RECT;
