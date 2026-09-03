@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -69,14 +69,14 @@ typedef struct AbilityBase_Element {
 } AbilityBase_Element;
 
 /**
- * @brief Want数据结构。
+ * @brief 声明元能力Want结构。
  *
  * @since 15
  */
 struct AbilityBase_Want;
 
 /**
- * @brief Want数据结构。
+ * @brief 声明元能力Want结构。
  *
  * @since 15
  */

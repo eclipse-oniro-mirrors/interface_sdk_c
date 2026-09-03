@@ -189,14 +189,14 @@ typedef struct ArkUI_BarrierOption ArkUI_BarrierOption;
 typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo;
 
 /**
- * @brief Defines the accessibility state for the component.
+ * @brief 定义组件的无障碍状态，用于描述组件的选中、勾选、禁用等无障碍状态信息，适用于无障碍服务读取和交互的场景，方便无障碍用户获取组件当前状态。
  *
  * @since 12
  */
 typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState;
 
 /**
- * @brief Defines the accessibility value for the component.
+ * @brief 定义组件的无障碍信息值，用于描述组件的无障碍状态，如范围类组件的最小值、最大值、当前值以及文本描述等，适用于需要向无障碍服务提供组件当前状态信息的场景。
  *
  * @since 12
  */

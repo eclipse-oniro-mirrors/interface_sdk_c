@@ -1576,20 +1576,18 @@ typedef enum {
      */
     NODE_FLEX_BASIS,
     /**
-     * @brief 无障碍组属性，支持属性设置，属性重置和属性获取。
+     * @brief 无障碍组属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 为<b>1</b>时表示该组件及其所有子组件为一整个可以选中的组件。</li>
-     * <li>此时无障碍服务将不再关注其子组件内容。</li>
-     * <li>参数取值为<b>1</b>或<b>0</b>。</li>
+     * <li>.value[0].i32: 为1时表示该组件及其所有子组件合并为一个可被无障碍服务整体聚焦的组件，无障碍服务将不再单独关注其子组件内容；为0时表示各子组件可被无障碍服务单独聚焦。
+     * 参数取值为1或0，传入非法值时该设置不生效。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 为<b>1</b>时表示该组件及其所有子组件为一整个可以选中的组件。</li>
-     * <li>此时无障碍服务将不再关注其子组件内容。</li>
-     * <li>参数取值为<b>1</b>或<b>0</b>。</li>
+     * <li>.value[0].i32: 为1时表示该组件及其所有子组件合并为一个可被无障碍服务整体聚焦的组件，无障碍服务将不再单独关注其子组件内容；为0时表示各子组件可被无障碍服务单独聚焦。返回值取值为1或0。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -1598,11 +1596,17 @@ typedef enum {
     NODE_ACCESSIBILITY_GROUP,
 
     /**
-     * @brief 无障碍文本属性，支持属性设置，属性重置和属性获取。
+     * @brief 无障碍文本属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string: 无障碍文本。</li>
+     * <li>.string: 无障碍文本，无长度限制。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string: 组件的无障碍文本内容，用于在无障碍服务中朗读或展示该组件的文本描述。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -1611,16 +1615,17 @@ typedef enum {
     NODE_ACCESSIBILITY_TEXT,
 
     /**
-     * @brief 无障碍辅助服务模式，支持属性设置，属性重置和属性获取。
+     * @brief 无障碍辅助服务模式，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 辅助服务模式，参数类型为{@link ArkUI_AccessibilityMode}。</li>
+     * <li>.value[0].i32: 辅助服务模式，参数类型为ArkUI_AccessibilityMode。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 辅助服务模式，参数类型为{@link ArkUI_AccessibilityMode}。</li>
+     * <li>.value[0].i32: 辅助服务模式，返回值类型为ArkUI_AccessibilityMode。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -1629,11 +1634,17 @@ typedef enum {
     NODE_ACCESSIBILITY_MODE,
 
     /**
-     * @brief 无障碍说明属性，支持属性设置，属性重置和属性获取。
+     * @brief 无障碍说明属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string: 无障碍说明。</li>
+     * <li>.string: 无障碍说明，无长度限制。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string: 组件的无障碍说明内容，用于向无障碍服务补充描述该组件的详细用途或操作指引。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -2062,6 +2073,7 @@ typedef enum {
 
     /**
      * @brief 无障碍自定义标识ID，支持属性获取。
+     * 作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -2074,11 +2086,17 @@ typedef enum {
     NODE_ACCESSIBILITY_ID = 87,
 
     /**
-     * @brief 定义无障碍支持操作类型属性，支持属性设置，属性重置和属性获取。
+     * @brief 无障碍操作类型属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32: 配置无障碍操作类型，参数类型为{@link ArkUI_AccessibilityActionType}。</li>
+     * <li>.value[0].u32: 配置无障碍操作类型，参数类型ArkUI_AccessibilityActionType。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32: 无障碍操作类型，返回值类型为ArkUI_AccessibilityActionType。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -2087,11 +2105,17 @@ typedef enum {
     NODE_ACCESSIBILITY_ACTIONS = 88,
 
     /**
-     * @brief 定义无障碍组件类型属性，支持属性设置，属性重置和属性获取。
+     * @brief 定义无障碍角色属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32: 无障碍组件类型，参数类型为{@link ArkUI_NodeType}。</li>
+     * <li>.value[0].u32: 无障碍角色，参数类型ArkUI_NodeType。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32: 无障碍角色，返回值类型为ArkUI_NodeType。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -2100,11 +2124,17 @@ typedef enum {
     NODE_ACCESSIBILITY_ROLE = 89,
 
     /**
-     * @brief 定义无障碍状态属性，支持属性设置，属性重置和属性获取。
+     * @brief 定义无障碍状态属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: 参数类型为{@link ArkUI_AccessibilityState}。</li>
+     * <li>.object: 无障碍状态信息，参数类型{@link ArkUI_AccessibilityState}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object: 返回值类型为{@link ArkUI_AccessibilityState}。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -2113,11 +2143,17 @@ typedef enum {
     NODE_ACCESSIBILITY_STATE = 90,
 
     /**
-     * @brief 定义无障碍值属性，支持属性设置，属性重置和属性获取。
+     * @brief 定义无障碍值属性，支持属性设置、属性重置和属性获取。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: 参数类型为{@link ArkUI_AccessibilityValue}。</li>
+     * <li>.object: 无障碍值信息，参数类型为{@link ArkUI_AccessibilityValue}。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object: 返回值类型为{@link ArkUI_AccessibilityValue}。</li>
      * </ul>
      *
      * @ingroup Accessibility [无障碍]
@@ -6638,16 +6674,17 @@ typedef enum {
     NODE_CHECKBOX_GROUP,
 
     /**
-     * @brief XComponent组件ID属性，支持属性设置和属性获取接口。
+     * @brief XComponent组件的ID，支持属性设置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string: ID的内容。</li>
+     * <li>.string: XComponent组件的ID内容，用于唯一标识该组件。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string: ID的内容。</li>
+     * <li>.string: XComponent组件的ID内容，用于唯一标识该组件。</li>
      * </ul>
      *
      * @ingroup XComponent [自定义渲染组件]
@@ -6656,12 +6693,13 @@ typedef enum {
     NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT,
     /**
      * @brief XComponent组件的类型，仅支持属性获取接口。
-     * XComponent组件的类型需要在组件创建时通过{@link ARKUI_NODE_XCOMPONENT}或{@link ARKUI_NODE_XCOMPONENT_TEXTURE}明确，
-     * 不允许后续修改。通过{@link setAttribute}接口尝试修改该类型会导致绘制内容异常。
+     * XComponent组件的类型需要在组件创建时通过ArkUI_NodeType中的ARKUI_NODE_XCOMPONENT或者ARKUI_NODE_XCOMPONENT_TEXTURE明确，不允许后续修改。
+     * 使用setAttribute接口尝试修改XComponent组件的类型时会发生绘制内容异常。
+     * 作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: XComponent组件的类型，参数类型为{@link ArkUI_XComponentType}。</li>
+     * <li>.value[0].i32: XComponent组件的类型，取值类型为ArkUI_XComponentType，具体枚举值及其与数字的对应关系请参见该枚举定义。</li>
      * </ul>
      *
      * @ingroup XComponent [自定义渲染组件]
@@ -6669,8 +6707,9 @@ typedef enum {
      */
     NODE_XCOMPONENT_TYPE,
     /**
-     * @brief XComponent组件的宽高，仅支持属性获取接口。
-     * 通过{@link setAttribute}接口尝试修改XComponent组件的宽高时设置不会生效。
+     * @brief XComponent组件所持有的Surface的宽高，仅支持属性获取接口。
+     * 使用setAttribute接口尝试修改Surface的宽高时，该设置不会生效。
+     * 作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -6683,22 +6722,24 @@ typedef enum {
      */
     NODE_XCOMPONENT_SURFACE_SIZE,
     /**
-     * @brief 设置XComponent组件持有Surface的显示区域，支持属性设置和属性获取接口。
+     * @brief XComponent组件所持有的Surface显示区域，支持属性设置和属性获取接口。
+     * 适用于需要在XComponent组件内指定局部区域进行渲染的场景，例如视频画面裁剪显示、画中画局部渲染等。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32: Surface显示区域相对于XComponent组件左上角的x轴坐标，单位为px。</li>
      * <li>.value[1].i32: Surface显示区域相对于XComponent组件左上角的y轴坐标，单位为px。</li>
-     * <li>.value[2].i32: Surface显示区域的宽度，单位为px。</li>
-     * <li>.value[3].i32: Surface显示区域的高度，单位为px。</li>
+     * <li>.value[2].i32: Surface显示区域的宽度，单位为px，取值必须为正整数。传入0或负数时设置不生效。</li>
+     * <li>.value[3].i32: Surface显示区域的高度，单位为px，取值必须为正整数。传入0或负数时设置不生效。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32: Surface显示区域相对于XComponent组件左上角的x轴坐标，单位为px。</li>
      * <li>.value[1].i32: Surface显示区域相对于XComponent组件左上角的y轴坐标，单位为px。</li>
-     * <li>.value[2].i32: Surface显示区域的宽度，单位为px。</li>
-     * <li>.value[3].i32: Surface显示区域的高度，单位为px。</li>
+     * <li>.value[2].i32: Surface显示区域的宽度，单位为px，取值应为正整数。</li>
+     * <li>.value[3].i32: Surface显示区域的高度，单位为px，取值应为正整数。</li>
      * </ul>
      *
      * @ingroup XComponent [自定义渲染组件]
@@ -6706,16 +6747,18 @@ typedef enum {
      */
     NODE_XCOMPONENT_SURFACE_RECT,
     /**
-     * @brief 设置XComponent组件是否支持图像分析，支持属性设置和属性获取接口。
+     * @brief XComponent组件是否支持图像分析的属性，支持属性设置和属性获取接口。
+     * 开启后可对组件中显示的图像进行内容识别分析，适用于相机预览实时识别、图像内容理解等场景。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。</li>
+     * <li>.value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。传入非0和非1的值时按0处理。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析，默认值：0。</li>
+     * <li>.value[0].i32: 是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。</li>
      * </ul>
      *
      * @ingroup XComponent [自定义渲染组件]
@@ -11317,12 +11360,15 @@ typedef enum {
     NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
 
     /**
-     * @brief 定义用于启动EmbeddedAbility的want。支持属性设置。
+     * @brief 定义用于启动EmbeddedUIExtensionAbility的want参数。
+     * 支持属性设置。使用场景：当应用需要在当前页面嵌入EmbeddedUIExtensionAbility（同应用或满足跨应用嵌入权限条件的EmbeddedUIExtensionAbility）时，
+     * 通过该属性指定目标EmbeddedUIExtensionAbility。
+     * 作为属性设置方法参数时，{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: EmbeddedComponent的want参数，参数类型为{@link AbilityBase_Want}。</li>
-     * <li>默认值为<b>nullptr</b>。</li>
+     * <li>.object: EmbeddedComponent的want参数，用于指定启动EmbeddedUIExtensionAbility所需的目标信息。参数类型为{@link AbilityBase_Want}。
+     * 默认值为nullptr。</li>
      * </ul>
      *
      * @ingroup EmbeddedComponent [同应用进程嵌入式组件]
@@ -11331,11 +11377,13 @@ typedef enum {
     NODE_EMBEDDED_COMPONENT_WANT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_EMBEDDED_COMPONENT,
 
     /**
-     * @brief EmbeddedComponent的选项。支持属性设置。
+     * @brief 定义EmbeddedComponent的运行选项，用于设置EmbeddedComponent组件的运行异常回调（onError）和正常退出回调（onTerminated）。
+     * 支持属性设置。
+     * 作为属性设置方法参数时，{@link ArkUI_AttributeItem}格式如下。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: EmbeddedComponent的选项列表，参数类型为{@link ArkUI_EmbeddedComponentOption}。</li>
+     * <li>.object: EmbeddedComponent的运行选项。参数类型为{@link ArkUI_EmbeddedComponentOption}。默认值为nullptr。</li>
      * </ul>
      *
      * @ingroup EmbeddedComponent [同应用进程嵌入式组件]
