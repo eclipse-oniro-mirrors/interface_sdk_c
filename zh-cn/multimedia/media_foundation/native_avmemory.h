@@ -69,7 +69,7 @@ OH_AVMemory *OH_AVMemory_Create(int32_t size);
 
 /**
  * @brief 获取内存虚拟地址。
- * 
+ *
  * @param mem 指向OH_AVMemory实例的指针。
  * @return 如果内存有效，返回内存的虚拟地址，如果内存无效，返回NULL。
  * <br>可能的失败原因：

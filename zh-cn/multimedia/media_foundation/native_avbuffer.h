@@ -99,7 +99,7 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr
 
 /**
  * @brief 设置数据缓冲区的pts、size、offset、flags高频属性参数。
- * 
+ *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @param attr 指向OH_AVCodecBufferAttr实例的指针。
  * @return AV_ERR_OK：操作成功。
@@ -114,7 +114,7 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBuff
 /**
  * @brief 获取除基础属性外的其他参数，信息在OH_AVFormat中承载。
  * 需要注意的是，返回值指向的创建OH_AVFormat的实例需要开发者主动释放，请参阅{@link OH_AVFormat_Destroy}。
- * 
+ *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return AV_ERR_OK：操作成功。
  * <br>AV_ERR_INVALID_VAL：可能的原因：
@@ -127,7 +127,7 @@ OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
 
 /**
  * @brief 设置除基础属性外的其他参数，信息在OH_AVFormat中承载。
- * 
+ *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @param format 指向OH_AVFormat实例的指针。
  * @return AV_ERR_OK：操作成功。
@@ -141,9 +141,9 @@ OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *fo
 
 /**
  * @brief 获取数据缓冲区的虚拟地址。
- * 
+ *
  * @param buffer 指向OH_AVBuffer实例的指针。
- * @return 如果成功，则返回数据缓冲区的虚拟地址，如果失败，则返回NULL。 
+ * @return 如果成功，则返回数据缓冲区的虚拟地址，如果失败，则返回NULL。
  * 可能的失败原因：
  * <br>1.输入的buffer为空指针。
  * <br>2.OH_AVBuffer结构校验失败。
@@ -154,7 +154,7 @@ uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
 
 /**
  * @brief 获取数据缓冲区的容量（字节数）。
- * 
+ *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return 如果成功，则返回数据缓冲区的容量，如果失败，则返回-1。
  * <br>可能的失败原因：
@@ -168,7 +168,7 @@ int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
 /**
  * @brief 获取OH_NativeBuffer实例的指针。
  * 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要开发者主动调用接口释放，请参阅{@link OH_NativeBuffer_Unreference}。
- * 
+ *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return 如果成功，则返回OH_NativeBuffer实例的指针，如果失败，则返回NULL。
  * <br>可能的失败原因：

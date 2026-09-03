@@ -561,12 +561,12 @@ OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  * 通过{@link OH_VideoEncoder_GetOutputBuffer}接口获取的缓冲区实例可以通过{@link OH_VideoEncoder_FreeOutputBuffer}接口将处理后的输出缓冲区返回到编码器。
  *
  * 需要注意的是，上述操作仅在同步模式下支持。
- * 
+ *
  * @param codec 指向视频编码实例的指针。
  * @param index 输出buffer对应的索引值。
  * @param timeoutUs 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。 
+ *         <br>AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
  *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
  *         <br>AV_ERR_UNKNOWN：未知错误。
  *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。

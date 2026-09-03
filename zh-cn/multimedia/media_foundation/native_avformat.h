@@ -92,7 +92,7 @@ typedef enum OH_AVPixelFormat {
 
 /**
  * @brief 创建OH_AVFormat实例，用于读取数据。
- * 
+ *
  * @return 返回指向OH_AVFormat实例的指针。系统资源不足时返回NULL。
  * @since 9
  */

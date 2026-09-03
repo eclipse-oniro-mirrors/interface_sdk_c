@@ -72,7 +72,7 @@ typedef enum OH_AVCodecBufferFlags {
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 << 2,
-    /** 
+    /**
      * @brief 表示缓冲区包含编解码特定数据。
      * @since 9
      */

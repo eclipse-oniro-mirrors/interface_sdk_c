@@ -158,7 +158,7 @@ OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *f
  *
  * @param roiStr 输入的ROI配置字符串。
  * @param outCount 返回从字符串中解析出的有效ROI区域的数量。
- * @return 
+ * @return
  *         AV_ERR_OK：表示操作成功。
  *         <br>AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。
  * @since 26.0.0
