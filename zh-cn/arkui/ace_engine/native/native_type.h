@@ -392,32 +392,6 @@ typedef enum {
 } ArkUI_TextPickerRangeType;
 
 /**
- * @brief Defines the input structure of the single-column text picker with image resources.
- *
- * @since 12
- */
-typedef struct {
-    /** Image resource. */
-    const char* icon;
-    /** Text information. */
-    const char* text;
-} ARKUI_TextPickerRangeContent;
-
-/**
- * @brief Defines the input structure of the interconnected multi-column text picker.
- *
- * @since 12
- */
-typedef struct {
-    /** Text information. */
-    const char* text;
-    /** Interconnected data. */
-    const ARKUI_TextPickerRangeContent* children;
-    /** Size of the interconnected data array. */
-    int32_t size;
-} ARKUI_TextPickerCascadeRangeContent;
-
-/**
  * @brief Enumerates the focus wrap mode of components.
  *
  * @since 20
@@ -3017,17 +2991,17 @@ const char* OH_ArkUI_BarrierOption_GetReferencedId(
 int32_t OH_ArkUI_BarrierOption_GetReferencedIdSize(ArkUI_BarrierOption* barrierStyle, int32_t index);
 
 /**
- * @brief Set the types and parameters related to content transition effects.
+ * @brief 设置与内容转场效果相关的类型和参数。
  *
  * @since 21
  */
 typedef struct ArkUI_ContentTransitionEffect ArkUI_ContentTransitionEffect;
 
 /**
- * @brief creates content switching animation effects.
+ * @brief 创建内容切换动画效果。
  *
- * @param type content transition type: 0-identity, 1-opacity.
- * @return content transition effect.
+ * @param type 内容转场类型：0-identity，1-opacity。
+ * @return 内容转场效果。
  * @since 21
  */
 ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type);
