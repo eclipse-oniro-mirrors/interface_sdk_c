@@ -52,7 +52,7 @@ extern "C" {
 typedef struct OH_AVTranscoder OH_AVTranscoder;
 
 /**
- * @brief 初始化OH_AVTranscoder_Config。
+ * @brief 配置AVTranscoder参数的结构体。
  * 
  * @since 20
  */
