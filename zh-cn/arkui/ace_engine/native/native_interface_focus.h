@@ -25,7 +25,8 @@
 /**
  * @file native_interface_focus.h
  *
- * @brief 定义焦点管理的相关接口，主要用于主动转移焦点或管理控制焦点转移默认行为，控制焦点激活态。
+ * @brief 定义焦点管理接口，主要用于主动转移焦点、清除焦点、管理焦点转移默认行为、控制焦点激活态，以及设置按键事件的处理模式。适用于页面切换、键盘导航等需要统一管理焦点状态和焦点转移行为的场景，
+ * 有助于提升焦点控制的可预测性和交互体验。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full

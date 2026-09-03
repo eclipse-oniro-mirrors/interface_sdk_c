@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_EventModule
  * @{
  *
- * @brief Declares the UI input event capabilities provided by ArkUI on the native side.
+ * @brief 在Native侧提供ArkUI的UI输入事件能力，用于获取并处理触控、鼠标、轴、按键等UI输入事件，适用于需要在C/C++层直接处理UI输入事件的场景。
  *
  * @since 12
  */
@@ -46,28 +46,35 @@ extern "C" {
 #endif
 
 /**
- * @brief UI输入事件定义。
+ * @brief ArkUI_UIInputEvent用于表示ArkUI中的UI输入事件。ArkUI_EventModule中的事件接口通过该对象向回调传递输入事件数据，开发者可使用查询接口获取事件信息，
+ * 适用于识别或响应用户输入事件的场景。
  *
  * @since 12
  */
 typedef struct ArkUI_UIInputEvent ArkUI_UIInputEvent;
 
 /**
- * @brief 定义惯性滚动轴事件。
+ * @brief 定义惯性滚动轴事件，支持监听触控板双指抛滑产生的衰减滑动过程，适用于在常规轴事件之后处理惯性滚动效果的场景。<br>当用户在触控板上双指抛滑时，系统根据手指抬起时的速度，按照系统预设的衰减曲线构造惯性滚动轴事件。
+ * 开发者可以监听此类事件，以便在常规轴事件之后立即处理惯性滚动效果。<br>仅当满足以下条件时，开发者才能接收到此事件：用户在触控板上双指抛滑，且指针位置下存在通过{@link registerNodeEvent}注册了
+ * {@link NODE_ON_COASTING_AXIS_EVENT}事件的组件。不再需要监听此事件时，应通过{@link unregisterNodeEvent}注销事件监听，避免回调持续触发。
  *
  * @since 22
  */
 typedef struct ArkUI_CoastingAxisEvent ArkUI_CoastingAxisEvent;
 
 /**
- * @brief 定义触摸测试信息。
+ * @brief 定义触摸测试信息，用于设置命中测试策略和结果作用的子组件，并获取各子组件的触摸测试结果。<br>当用户通过{@link registerNodeEvent}注册了
+ * {@link NODE_ON_CHILD_TOUCH_TEST}事件时，开发者才能在事件回调中获取此触摸测试信息结构体。<br>该结构体支持设置触摸测试策略（取值原则参见{@link ArkUI_TouchTestStrategy}）
+ * 和命中测试过程中需要作用的子组件ID，并可获取包含各子组件详细测试结果的触摸测试信息项数组。
  *
  * @since 22
  */
 typedef struct ArkUI_TouchTestInfo ArkUI_TouchTestInfo;
 
 /**
- * @brief 定义触摸测试信息项。触摸测试信息项包含触摸测试中子组件的信息，可以通过{@link OH_ArkUI_TouchTestInfoItem_GetXXX}系列接口获取子组件信息。
+ * @brief 定义触摸测试信息项。触摸测试是根据触摸事件坐标判定目标组件的命中测试过程。当用户通过{@link registerNodeEvent}注册了{@link NODE_ON_CHILD_TOUCH_TEST}事件时，
+ * 才能在事件回调中获取触摸测试信息项。该信息项包含触摸测试中子组件的信息，适用于获取和识别子组件信息的场景；开发者可通过{@link OH_ArkUI_TouchTestInfoItem_GetXXX系列接口}
+ * 获取信息并处理触摸测试结果。
  *
  * @since 22
  */
