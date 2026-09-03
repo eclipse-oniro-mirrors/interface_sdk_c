@@ -49,7 +49,7 @@ extern "C" {
 typedef struct OH_AVTranscoder OH_AVTranscoder;
 
 /**
- * @brief Struct for configuring AVTranscoder parameters.
+ * @brief The struct initializes an AVTranscoder_Config.
  * 
  * @since 20
  */
