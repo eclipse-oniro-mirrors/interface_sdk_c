@@ -48,16 +48,17 @@ extern "C" {
 /**
  * @brief HDR类型枚举。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 18
  */
 typedef enum OH_Core_HdrType {
     /**
      * 此选项用于标记非HDR类型。
+     * @since 18
      */
     OH_CORE_HDR_TYPE_NONE = 0,
     /**
      * 此选项用于标记HDR Vivid类型。
+     * @since 18
      */
     OH_CORE_HDR_TYPE_VIVID = 1,
 } OH_Core_HdrType;
