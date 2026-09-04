@@ -54,7 +54,7 @@ typedef struct OH_AVFormat OH_AVFormat;
 
 /**
  * @brief 视频像素格式的枚举类。
- * 
+ *
  * @since 9
  */
 typedef enum OH_AVPixelFormat {
