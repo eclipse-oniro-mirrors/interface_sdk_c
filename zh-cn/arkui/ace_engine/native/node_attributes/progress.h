@@ -17,7 +17,8 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Defines a set of Progress enum and interface.
+ * @brief 定义Progress相关的枚举和接口，支持线性、环形、圆形、胶囊等多种进度条类型，并提供线性进度条样式选项的自定义能力（平滑动效、扫光效果、宽度、圆角），适用于需要展示任务进度、加载状态等场景，
+ *        帮助开发者快速实现多样化的进度展示和交互反馈。
  *
  * @since 12
  */
@@ -25,7 +26,8 @@
 /**
  * @file progress.h
  *
- * @brief Defines a set of Progress enum and interface.
+ * @brief 定义Progress相关的枚举和接口，支持线性、环形、圆形、胶囊等多种进度条类型，并提供线性进度条样式选项的自定义能力（平滑动效、扫光效果、宽度、圆角），适用于需要展示任务进度、加载状态等场景，
+ *        帮助开发者快速实现多样化的进度展示和交互反馈。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
