@@ -872,7 +872,7 @@ Image_ErrorCode OH_PictureNative_DecomposeToPicture(OH_PixelmapNative *hdrPixelm
  *     and the object must contain a valid Picture object.
  * @param outPictureNapi Pointer to a napi_value variable that receives the ArkTS Picture object. The pointer must
  *     not be nullptr. The value of the variable is not modified if the operation fails.
- * @return <ul> 
+ * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} if env, pictureNative, or outPictureNapi is nullptr,
  *         or pictureNative does not contain a valid Picture object.</li>
@@ -898,7 +898,7 @@ Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_Pic
  *     been released.
  * @param outPictureNative Pointer to an OH_PictureNative pointer variable that receives the newly created
  *     object. The pointer must not be nullptr. The value of the variable is not modified if the operation fails.
- * @return <ul> 
+ * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} if env, pictureNapi, or outPictureNative is nullptr,
  *         pictureNapi is not an ArkTS Picture object, or the ArkTS Picture object has been released.</li>
