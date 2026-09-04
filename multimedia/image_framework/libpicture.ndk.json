@@ -205,10 +205,12 @@
     },
     {
       "first_introduced": "26.1.0",
-      "name": "OH_PictureNative_ConvertPictureNativeToNapi"
+      "name": "OH_PictureNative_ConvertPictureNativeToNapi",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.1.0",
-      "name": "OH_PictureNative_ConvertPictureNativeFromNapi"
+      "name": "OH_PictureNative_ConvertPictureNativeFromNapi",
+      "api_type": "system"
     }
   ]
