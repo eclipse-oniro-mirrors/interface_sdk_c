@@ -136,7 +136,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
- * @param bitrate 输出音频的码率，单位为比特率（bps）。默认设置为48Kbps。
+ * @param bitrate 输出音频的码率，单位为比特率（bps）。支持范围[1, 500000]，默认设置为48Kbps。
  * @return AV_ERR_OK：设置成功。
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。
  * @since 20
@@ -239,7 +239,7 @@ OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
 
 /**
  * @brief 取消转码。
- * 此函数须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
+ * 此函数必须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
  * @return AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。
@@ -314,7 +314,8 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
     OH_AVTranscoder *transcoder, OH_AVTranscoder_OnProgressUpdate callback, void *userData);
 
 /**
- * @brief 转码设置输出视频B帧编码。
+ * @brief 设置转码输出视频是否使能B帧编码。
+ * 此函数必须在OH_AVTranscoder_Prepare之前调用。
  * B帧视频编码相关的约束和限制可以参考文档{@link B帧视频编码约束和限制}。
  * 如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。
  * 
