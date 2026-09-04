@@ -48,6 +48,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief 像素图，用于表示和操作像素图像数据，支持图像的创建、读取、修改和渲染等操作。
+ *
+ * @since 22
+ */
 struct OH_PixelmapNative;
 
 /**
@@ -312,7 +317,7 @@ typedef enum InputEvent_SourceType {
 } InputEvent_SourceType;
 
 /**
- * @brief 定义按键信息，用于标识按键行为。例如，”Ctrl”按键信息包含键值和键状态。适用于快捷键处理、输入事件状态管理、按键状态检测等场景。
+ * @brief 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键状态。适用于快捷键处理、输入事件状态管理、按键状态检测等场景。
  * @see {@link OH_Input_CreateKeyState} 创建按键状态的结构体对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的结构体对象。
  * @see {@link OH_Input_DestroyKeyState} 销毁按键状态的枚举对象。
  *
@@ -1231,13 +1236,14 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * @return OH_Input_InjectTouchEvent 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
+ * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief 使用以主屏左上角为原点的全局坐标系的坐标注入触屏输入事件。
- * <br>如果当前未获得事件注入授权，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
+ * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
@@ -1613,7 +1619,7 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
  * @brief 销毁轴事件对象。
  *
  * @param axisEvent 轴事件对象实例的指针。
- * @return 若销毁成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL或者axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
+ * @return 若销毁成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -2096,7 +2102,7 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  *
  * @param hotkey hotkey 快捷键对象的实例。
  * @param preKeys preKeys 修饰键列表。
- * @param size 修饰键个数， 取值范围1~2个。
+ * @param size 修饰键个数，取值范围[1, 2]。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -2143,8 +2149,7 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  * {@link OH_Input_DestroyAllSystemHotkeys}销毁{@link Input_Hotkey}实例数组并回收内存。
  *
  * @param count 创建{@link Input_Hotkey}实例的数量。
- * @return OH_Input_CreateAllSystemHotkeys 函数返回值。
- *     <br>{@link INPUT_SUCCESS} 创建实例数组的双指针成功。
+ * @return 如果操作成功，返回创建的{@link Input_Hotkey}实例数组的指针；否则返回空指针，可能的原因是内存分配失败。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -2275,7 +2280,7 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
  * @brief 获取输入设备的键盘类型。
  *
  * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
- * @param keyboardType keyboardType 指向输入设备的键盘指针。
+ * @param keyboardType keyboardType 指向输入设备的键盘类型指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示设备ID为无效值或者keyboardType是空指针。
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -2395,7 +2400,7 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
 /**
  * @brief 取消注册所有的设备热插拔的监听。
  *
- * @return OH_Input_UnregisterDeviceListener 函数返回值。
+ * @return OH_Input_UnregisterDeviceListeners 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示调用成功。
  *     <br>{@link INPUT_SERVICE_EXCEPTION} 表示由于服务异常调用失败。
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -2420,7 +2425,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
 /**
  * @brief 查询设备支持的最大触屏报点数。
  *
- * @param count 设备支持的最大触屏报点数，count取值范围为0-10，-1表示未知数量。
+ * @param count 设备支持的最大触屏报点数，count取值范围为[0, 10]，-1表示未知数量。
  * @return OH_Input_QueryMaxTouchPoints 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示查询成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
@@ -2491,7 +2496,7 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
  *
  * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param sizeLevel 鼠标光标信息的光标大小档位。取值范围为整数1~7，数值越大则光标越大。应用自定义光标{@link DEVELOPER_DEFINED_ICON}请以实际位图大小为准。
+ * @param sizeLevel 鼠标光标信息的光标大小档位。取值范围为整数[1, 7]，数值越大则光标越大。应用自定义光标{@link DEVELOPER_DEFINED_ICON}请以实际位图大小为准。
  * @return OH_Input_CursorInfo_GetSizeLevel 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
