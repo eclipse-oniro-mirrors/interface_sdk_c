@@ -49,19 +49,33 @@ extern "C" {
 /**
  * @brief 枚举OH_AVCodec缓冲区标记的类别。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */
 typedef enum OH_AVCodecBufferFlags {
-    /** 表示为普通帧。 */
+    /**
+     * @brief 表示为普通帧。
+     * @since 9
+     */
     AVCODEC_BUFFER_FLAGS_NONE = 0,
-    /** 表示缓冲区是流结束帧。 */
+    /**
+     * @brief 表示缓冲区是流结束帧。
+     * @since 9
+     */
     AVCODEC_BUFFER_FLAGS_EOS = 1 << 0,
-    /** 表示缓冲区包含关键帧。 */
+    /**
+     * @brief 表示缓冲区包含关键帧。
+     * @since 9
+     */
     AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 << 1,
-    /** 表示缓冲区中的数据只是帧的一部分。 */
+    /**
+     * @brief 表示缓冲区中的数据只是帧的一部分。
+     * @since 9
+     */
     AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 << 2,
-    /** 表示缓冲区包含编解码特定数据。 */
+    /**
+     * @brief 表示缓冲区包含编解码特定数据。
+     * @since 9
+     */
     AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 << 3,
     /**
      * @brief 表示缓冲区被解码依赖，解码之后的数据可丢弃。
@@ -78,17 +92,28 @@ typedef enum OH_AVCodecBufferFlags {
 /**
  * @brief 定义OH_AVCodec的缓冲区描述信息。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */
 typedef struct OH_AVCodecBufferAttr {
-    /** 此缓冲区的显示时间戳（以微秒为单位）。 */
+    /**
+     * @brief 此缓冲区的显示时间戳（以微秒为单位）。
+     * @since 9
+     */
     int64_t pts;
-    /** 缓冲区中包含的数据的大小（以字节为单位）。 */
+    /**
+     * @brief 缓冲区中包含的数据的大小（以字节为单位）。
+     * @since 9
+     */
     int32_t size;
-    /** 此缓冲区中有效数据的起始偏移量。 */
+    /**
+     * @brief 此缓冲区中有效数据的起始偏移量。
+     * @since 9
+     */
     int32_t offset;
-    /** 此缓冲区具有的标志，请参阅{@link OH_AVCodecBufferFlags}。 */
+    /**
+     * @brief 此缓冲区具有的标志，请参阅{@link OH_AVCodecBufferFlags}。
+     * @since 9
+     */
     uint32_t flags;
 } OH_AVCodecBufferAttr;
 

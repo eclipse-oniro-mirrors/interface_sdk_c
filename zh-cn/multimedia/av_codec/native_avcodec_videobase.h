@@ -159,11 +159,10 @@ typedef enum OH_VideoMetadataRoiSemanticLabel {
  *
  * @param roiStrInOut 指向目标字符串的双重指针。指针本身不能为NULL。如果*roiStrInOut为NULL，则分配一个新字符串。
  * @param format 包含要追加的ROI参数的OH_AVFormat句柄，不能为NULL。
- * @return <ul>
- *         <li>AV_ERR_OK：表示字符串成功格式化并追加。</li>
- *         <li>AV_ERR_INVALID_VAL：表示roiStrInOut指针或format句柄为NULL，或者格式缺少必需的ROI键。</li>
- *         <li>AV_ERR_NO_MEMORY：表示内部内存分配或重新分配失败。</li>
- *         </ul>
+ * @return
+ *         AV_ERR_OK：表示字符串成功格式化并追加。
+ *         <br>AV_ERR_INVALID_VAL：表示roiStrInOut指针或format句柄为NULL，或者格式缺少必需的ROI键。
+ *         <br>AV_ERR_NO_MEMORY：表示内部内存分配或重新分配失败。
  * @release free {roiStrInOut}
  * @since 26.0.0
  */
@@ -176,10 +175,9 @@ OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *f
  *
  * @param roiStr 输入的ROI配置字符串。
  * @param outCount 返回从字符串中解析出的有效ROI区域的数量。
- * @return <ul>
- *         <li>AV_ERR_OK：表示操作成功。</li>
- *         <li>AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。</li>
- *         </ul>
+ * @return
+ *         AV_ERR_OK：表示操作成功。
+ *         <br>AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。
  * @since 26.0.0
 */
 OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount);
@@ -197,10 +195,9 @@ OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount
 * @param outOwnedFormats 由调用者分配的指针数组，用于接收解析后的OH_AVFormat句柄。调用者拥有此数组中每个非NULL句柄的所有权。
 * @param maxCapacity 指示outOwnedFormats数组的最大物理容量，以防止越界写入。
 * @param outCount 返回成功解析并填充到数组中的实际ROI数量。
-* @return <ul>
-*         <li>AV_ERR_OK：表示操作成功。</li>
-*         <li>AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。</li>
-*         </ul>
+* @return
+*         AV_ERR_OK：表示操作成功。
+*         <br>AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。
 * @release media_foundation/OH_AVFormat_Destroy {outOwnedFormats}。
 * @since 26.0.0
 */

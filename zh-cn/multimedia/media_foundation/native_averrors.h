@@ -44,49 +44,57 @@ extern "C" {
 
 /**
  * @brief 媒体框架错误码。
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
- * @version 1.0
  */
 typedef enum OH_AVErrCode {
     /**
      * 操作成功。
+     * @since 9
      */
     AV_ERR_OK = 0,
     /**
      * 无内存。
+     * @since 9
      */
     AV_ERR_NO_MEMORY = 1,
     /**
      * 操作不允许。
+     * @since 9
      */
     AV_ERR_OPERATE_NOT_PERMIT = 2,
     /**
      * 无效值。
+     * @since 9
      */
     AV_ERR_INVALID_VAL = 3,
     /**
      * IO错误。
+     * @since 9
      */
     AV_ERR_IO = 4,
     /**
      * 超时错误。
+     * @since 9
      */
     AV_ERR_TIMEOUT = 5,
     /**
      * 未知错误。
+     * @since 9
      */
     AV_ERR_UNKNOWN = 6,
     /**
      * 服务死亡。
+     * @since 9
      */
     AV_ERR_SERVICE_DIED = 7,
     /**
      * 当前状态不支持此操作。
+     * @since 9
      */
     AV_ERR_INVALID_STATE = 8,
     /**
      * 未支持的接口。
+     * @since 9
      */
     AV_ERR_UNSUPPORT = 9,
     /**
