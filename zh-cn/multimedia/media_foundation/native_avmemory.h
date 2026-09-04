@@ -53,7 +53,7 @@ typedef struct OH_AVMemory OH_AVMemory;
 
 /**
  * @brief 创建OH_AVMemory实例的指针。
- * 
+ *
  * @param size 创建内存的大小，单位字节。
  * @return 如果创建成功，返回OH_AVMemory实例的指针，如果失败，返回NULL。
  * 使用结束后需要通过OH_AVMemory_Destroy释放内存。
@@ -84,7 +84,7 @@ uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem);
 
 /**
  * @brief 获取内存长度。
- * 
+ *
  * @param mem 指向OH_AVMemory实例的指针。
  * @return 如果内存有效，返回内存长度，如果内存无效，返回-1。
  * <br>可能的失败原因：
@@ -99,7 +99,7 @@ int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem);
 
 /**
  * @brief 释放OH_AVMemory实例指针的资源。
- * 
+ *
  * @param mem 指向OH_AVMemory实例的指针。
  * @return AV_ERR_OK：释放成功。
  * <br>AV_ERR_INVALID_VAL：

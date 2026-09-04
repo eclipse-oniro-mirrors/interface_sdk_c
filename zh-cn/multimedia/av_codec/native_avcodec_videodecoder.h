@@ -303,7 +303,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @param index 输出Buffer对应的索引值。由{@link OH_AVCodecOnNewOutputData}给出。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL： 
+ *         <br>AV_ERR_INVALID_VAL：
  *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
  *         <br>2. index非法，该错误不影响后续解码流程。
  *         <br>AV_ERR_UNKNOWN：未知错误。

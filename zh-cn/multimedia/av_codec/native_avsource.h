@@ -177,7 +177,6 @@ OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex
  *
  * 需要注意的是，指向的OH_AVFormat实例在生命周期结束时需开发者通过调用接口{@link OH_AVFormat_Destroy}释放。
  *
- *
  * @param source 指向OH_AVSource实例的指针。
  * @return 执行成功返回元数据的基础信息，否则返回NULL。
  * <br>可能的故障原因：
