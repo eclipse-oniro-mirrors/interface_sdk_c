@@ -187,7 +187,8 @@ typedef bool (*ArkUI_OnWillDismissEvent)(int32_t reason);
 typedef struct ArkUI_DialogDismissEvent ArkUI_DialogDismissEvent;
 
 /**
- * @brief 定义自定义弹窗的选项对象。该对象不暴露任何成员字段，开发者通过 [ArkUI_NativeModule](capi-arkui-nativemodule.md) 中以 `OH_ArkUI_CustomDialog_Set` 为前缀的接口（如设置背景、圆角、阴影、模糊、位置、模态等）配置弹窗属性，再调用 `OH_ArkUI_CustomDialog_OpenDialog` 打开弹窗。
+ * @brief 定义自定义弹窗的选项对象。该对象不暴露任何成员字段，开发者通过 [ArkUI_NativeModule](capi-arkui-nativemodule.md) 中
+ * 以 `OH_ArkUI_CustomDialog_Set` 为前缀的接口（如设置背景、圆角、阴影、模糊、位置、模态等）配置弹窗属性，再调用 `OH_ArkUI_CustomDialog_OpenDialog` 打开弹窗。
  *
  * @since 19
  */
@@ -1177,7 +1178,7 @@ int32_t OH_ArkUI_CustomDialog_SetHoverModeArea(
 
 /**
  * @brief 注册系统关闭自定义弹窗的监听事件。
- * 
+ *
  * @note 本方法需要在调用<b>OH_ArkUI_CustomDialog_OpenDialog</b>方法之前调用。
  *
  * @param options 弹窗参数。
