@@ -167,31 +167,31 @@ typedef struct {
 } ArkUI_AttributeItem;
 
 /**
- * @brief 定义矩形区域。
+ * @brief 定义遮罩屏蔽区域的范围结构体。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * 矩形区域的X坐标。
+     * @brief 区域在x轴的位置，单位：vp。
      *
      * @since 12
      */
     float x;
     /**
-     * 矩形区域的Y坐标。
+     * @brief 区域在y轴的位置，单位：vp。
      *
      * @since 12
      */
     float y;
     /**
-     * 矩形区域的宽度。
+     * @brief 区域宽度，单位：vp。
      *
      * @since 12
      */
     float width;
     /**
-     * 矩形区域的高度。
+     * @brief 区域高度，单位：vp。
      *
      * @since 12
      */

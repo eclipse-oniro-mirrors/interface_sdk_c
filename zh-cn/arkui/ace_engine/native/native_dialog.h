@@ -173,7 +173,7 @@ typedef enum {
 } OH_ArkUI_DialogDisplayModeInSubWindow;
 
 /**
-* @brief Invoked when the dialog box is closed.
+* @brief 弹窗关闭的回调函数。
 *
 * @since 12
 */
@@ -187,7 +187,8 @@ typedef bool (*ArkUI_OnWillDismissEvent)(int32_t reason);
 typedef struct ArkUI_DialogDismissEvent ArkUI_DialogDismissEvent;
 
 /**
- * @brief 定义自定义弹窗的内容对象。
+ * @brief 定义自定义弹窗的选项对象。该对象不暴露任何成员字段，开发者通过 [ArkUI_NativeModule](capi-arkui-nativemodule.md) 中
+ * 以 `OH_ArkUI_CustomDialog_Set` 为前缀的接口（如设置背景、圆角、阴影、模糊、位置、模态等）配置弹窗属性，再调用 `OH_ArkUI_CustomDialog_OpenDialog` 打开弹窗。
  *
  * @since 19
  */
@@ -203,23 +204,20 @@ typedef struct {
     /**
     * @brief 创建自定义弹窗并返回指向自定义弹窗的指针。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note create方法需要在调用show方法之前调用。
     * @return 返回指向自定义弹窗的指针，如果创建失败，则返回空指针。
     */
     ArkUI_NativeDialogHandle (*create)();
     /**
-    * @brief 销毁自定义弹窗。
-    * <br>| 参数项                                                                                | 描述 ||------------------
-    * ------------------------------------------------------------------| -- || {@link ArkUI_NativeDialogHandle} handle
-    * | 指向自定义弹窗控制器的指针。 |
+    * @brief 销毁自定义弹窗。与create配对使用，用于释放create创建的弹窗资源。调用后handle会被释放，不能再继续使用该handle，如需再次使用弹窗，需要重新调用create创建。
     *
-    * @param handle Indicates the pointer to the custom dialog box controller.
+    * @param handle 指向自定义弹窗控制器的指针。
     */
     void (*dispose)(ArkUI_NativeDialogHandle handle);
     /**
     * @brief 挂载自定义弹窗内容。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setContent方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param content 弹窗内容根节点指针。
     * @return 错误码。
@@ -230,7 +228,7 @@ typedef struct {
     /**
     * @brief 卸载自定义弹窗内容。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note removeContent方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @return 错误码。
     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -240,7 +238,7 @@ typedef struct {
     /**
     * @brief 设置自定义弹窗对齐方式。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setContentAlignment方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param alignment 对齐方式，参数类型{@link ArkUI_Alignment}。
     * @param offsetX 弹窗的水平偏移量，浮点型，单位：vp。
@@ -253,7 +251,7 @@ typedef struct {
     /**
     * @brief 重置setContentAlignment方法设置的属性，使用系统默认的对齐方式，默认值：ARKUI_ALIGNMENT_TOP_START，参考{@link ArkUI_Alignment}。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note resetContentAlignment方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @return 错误码。
     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -261,9 +259,9 @@ typedef struct {
     */
     int32_t (*resetContentAlignment)(ArkUI_NativeDialogHandle handle);
     /**
-    * @brief 设置自定义弹窗是否开启模态样式的弹窗。
+    * @brief 设置自定义弹窗是否开启模态窗口模式。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setModalMode方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param isModal 设置是否开启模态窗口，模态窗口有蒙层，非模态窗口无蒙层。为true时开启模态窗口，为false时不开启模态窗口。
     * @return 错误码。
@@ -274,7 +272,7 @@ typedef struct {
     /**
     * @brief 设置自定义弹窗是否允许通过点击遮罩层退出。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setAutoCancel方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param autoCancel 设置是否允许通过点击遮罩层退出，true表示关闭弹窗，false表示不关闭弹窗。
     * @return 错误码。
@@ -285,7 +283,7 @@ typedef struct {
     /**
     * @brief 设置自定义弹窗遮罩属性。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setMask方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param maskColor 设置遮罩颜色，0xargb格式。
     * @param maskRect 遮蔽层区域范围的指针，遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。参数类型{@link ArkUI_Rect}。
@@ -297,7 +295,7 @@ typedef struct {
     /**
     * @brief 设置弹窗背景色。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setBackgroundColor方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param backgroundColor 设置弹窗背景颜色，0xargb格式。
     * @return 错误码。
@@ -308,7 +306,7 @@ typedef struct {
     /**
     * @brief 设置弹窗背板圆角半径。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setCornerRadius方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param topLeft 设置弹窗背板左上角圆角半径，单位：vp。默认值：从API version 12开始，为32vp。API version 11及之前版本，为24vp。
     * @param topRight 设置弹窗背板右上角圆角半径，单位：vp。默认值：从API version 12开始，为32vp。API version 11及之前版本，为24vp。
@@ -323,7 +321,7 @@ typedef struct {
     /**
     * @brief 设置弹窗宽度占栅格宽度的个数。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setGridColumnCount方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param gridCount 默认为按照窗口大小自适应，最大栅格数为{@link 系统最大栅格数}。
     *     取值范围：大于等于0的整数。
@@ -335,7 +333,7 @@ typedef struct {
     /**
     * @brief 弹窗容器样式是否可以自定义。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note enableCustomStyle方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param enableCustomStyle 弹窗容器样式是否可以自定义。
     *     默认值：false
@@ -348,7 +346,7 @@ typedef struct {
     /**
     * @brief 弹窗容器是否使用自定义弹窗动画。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note enableCustomAnimation方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param enableCustomAnimation true:使用自定义动画，关闭系统默认动画；false:使用系统默认动画。
     * @return 错误码。
@@ -359,7 +357,7 @@ typedef struct {
     /**
     * @brief 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册了该回调函数，弹窗不会立即关闭，而是由用户决定是否关闭。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note registerOnWillDismiss方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param eventHandler 弹窗关闭的回调函数。
     * @return 错误码。
@@ -402,7 +400,7 @@ typedef struct {
 } ArkUI_NativeDialogAPI_1;
 
 /**
- * @brief ArkUI提供的Native侧自定义弹窗接口集合。
+ * @brief ArkUI提供的Native侧自定义弹窗接口集合，用于在Native层创建和管理自定义弹窗，支持设置弹窗避让键盘距离、显示层级、层级节点id和嵌入式弹窗蒙层显示区域等功能，适用于需要精细化控制弹窗行为的场景。
  *
  * @version 2
  * @since 15
@@ -416,9 +414,9 @@ typedef struct {
     /**
      * @brief 弹窗避让键盘后，和键盘之间距离。
      *
-	 * @note This method must be called before the <b>show</b> method.
+	 * @note setKeyboardAvoidDistance方法需要在调用show方法之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
-     * @param distance 避让键盘的距离，单位为vp。
+     * @param distance 弹窗与键盘之间保持的避让距离，单位由unit参数指定。
      * @param unit 避让距离的单位，参数类型{@link ArkUI_LengthMetricUnit}。
      * @return 错误码。
      *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -431,7 +429,7 @@ typedef struct {
     /**
     * @brief 设置弹窗的显示层级。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setLevelMode方法需要在调用show方法之前调用；若需配合setLevelUniqueId使用，则需要在调用setLevelUniqueId方法之后调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param levelMode 显示层级的枚举值， 类型为{@link ArkUI_LevelMode}。
     * @return 错误码。
@@ -444,7 +442,7 @@ typedef struct {
     /**
     * @brief 设置弹窗显示层级页面下的节点id。
     *
-    * @note This method must be called before the <b>setLevelMode</b> method.
+    * @note setLevelUniqueId方法需要在调用setLevelMode方法之前调用，且需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param uniqueId 指定节点id，会查找该节点所在页面，并将弹窗显示在该页面下。
     * @return 错误码。
@@ -457,7 +455,7 @@ typedef struct {
     /**
     * @brief 设置嵌入式弹窗蒙层的显示区域。
     *
-    * @note This method must be called before the <b>show</b> method.
+    * @note setImmersiveMode方法需要在调用show方法之前调用。
     * @param handle 指向自定义弹窗控制器的指针。
     * @param immersiveMode 显示区域类型的枚举值， 类型为{@link ArkUI_ImmersiveMode}。
     * @return 错误码。
@@ -469,7 +467,7 @@ typedef struct {
 } ArkUI_NativeDialogAPI_2;
 
 /**
- * @brief ArkUI提供的Native侧自定义弹窗接口集合。
+ * @brief ArkUI提供的Native侧自定义弹窗接口集合，支持设置边框样式、尺寸、背景效果、键盘避让模式、焦点管理等能力，用于在Native层精细控制自定义弹窗的外观样式和交互行为，适用于需要高度定制化弹窗UI的场景。
  *
  * @version 3
  * @since 19
@@ -488,7 +486,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗显示的顺序。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setLevelOrder方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param levelOrder 自定义弹窗显示的顺序。
      *     <br>默认值：0，取值范围：[-100000.0, 100000.0]。超出取值范围属性不生效。
@@ -558,7 +556,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的边框宽度。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setBorderWidth方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param top 上边框的宽度。
      * @param right 右边框的宽度。
@@ -576,7 +574,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的边框颜色。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setBorderColor方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param top 上边框的颜色。
      * @param right 右边框的颜色。
@@ -593,7 +591,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的边框样式。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setBorderStyle方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param top 上边框的样式。参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。
      * @param right 右边框的样式。参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。
@@ -610,7 +608,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的背板宽度。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setWidth方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param width 背板宽度。
      * @param unit 指定宽度的单位，默认为vp。
@@ -624,7 +622,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的背板高度。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setHeight方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param height 背板高度。
      * @param unit 指定高度的单位，默认为vp。
@@ -638,7 +636,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的背板阴影。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setShadow方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param shadow 背板阴影样式，枚举值。
      * @return 错误码。
@@ -649,9 +647,9 @@ typedef struct {
     int32_t (*setShadow)(ArkUI_NativeDialogHandle handle, ArkUI_ShadowStyle shadow);
 
     /**
-     * @brief 设置自定义弹窗的背板阴影。
+     * @brief 设置自定义弹窗的背板自定义阴影。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setCustomShadow方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param customShadow 自定义阴影参数，格式与{@link ArkUI_NodeAttributeType}中的NODE_SHADOW属性一致。
      * @return 错误码。
@@ -664,7 +662,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的背板模糊材质。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setBackgroundBlurStyle方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param blurStyle 背板模糊材质，枚举值。
      * @return 错误码。
@@ -677,7 +675,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗避让键盘模式。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setKeyboardAvoidMode方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param keyboardAvoidMode 避让键盘模式，枚举值。
      * @return 错误码。
@@ -690,7 +688,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗是否响应悬停态。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note enableHoverMode方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param enableHoverMode 是否响应悬停态，默认false。true表示响应悬停态，false表示不响应悬停态。
      * @return 错误码。
@@ -703,7 +701,7 @@ typedef struct {
     /**
      * @brief 设置悬停态下自定义弹窗默认展示区域。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setHoverModeArea方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param hoverModeAreaType 悬停态区域，枚举值。
      * @return 错误码。
@@ -716,6 +714,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗是否获取焦点。
      *
+     * @note setFocusable方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param focusable 自定义弹窗是否获取焦点。true表示自动获取焦点，false表示不自动获取焦点。默认值：true
      * @return 错误码。
@@ -728,7 +727,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的背景模糊效果。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setBackgroundBlurStyleOptions方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param backgroundBlurStyleOptions 背景模糊效果。参数{@link ArkUI_AttributeItem}格式：
      *     <br>.value[0].i32：表示深浅色模式，取{@link ArkUI_ColorMode}枚举值。
@@ -749,7 +748,7 @@ typedef struct {
     /**
      * @brief 设置自定义弹窗的背景效果参数。
      *
-     * @note This method must be called before the <b>show</b> method.
+     * @note setBackgroundEffect方法需要在调用show之前调用。
      * @param handle 指向自定义弹窗控制器的指针。
      * @param backgroundEffect 背景效果参数。参数{@link ArkUI_AttributeItem}格式：
      *     <br>.value[0].f32：表示模糊半径，单位为vp。
@@ -804,7 +803,7 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* e
  * @brief 弹出自定义弹窗。
  *
  * @param options 弹窗参数。
- * @param callback Callback to be invoked when the custom dialog box displays.
+ * @param callback 开启弹窗的回调，返回弹窗ID。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -813,24 +812,25 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* e
 int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId));
 
 /**
- * @brief Callback function when the dialog is displayed.
+ * @brief 弹窗显示时的回调函数。
  *
- * @param errorCode the error code.
- * {@link ARKUI_ERROR_CODE_NO_ERROR} The operation is successful.
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} A parameter error occurs.
- * {@link ARKUI_ERROR_CODE_DIALOG_CANNOT_BE_OPENED_BY_MODAL_UEC_WINDOW} The dialog cannot be opened by the modal UEC window.
- * @param dialogId Dialog id. Returns -1 when the dialog cannot be displayed.
- * @param userData Indicates the pointer to the custom data.
+ * @param errorCode 打开弹窗的操作结果。
+ * {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
+ * {@link ARKUI_ERROR_CODE_PARAM_INVALID}  函数参数异常。
+ * {@link ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE} 由于节点挂载失败，弹窗无法打开。
+ * {@link ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE} 由于子窗口创建失败，弹窗无法打开。
+ * @param dialogId 弹窗ID。当弹窗无法显示时返回-1。
+ * @param userData 表示指向自定义数据的指针。
  * @since 26.1.0
  */
 typedef void (*ArkUI_OpenDialogCallback)(int32_t errorCode, int32_t dialogId, void* userData);
 
 /**
- * @brief Displays a custom dialog box.
+ * @brief 弹出自定义弹窗。
  *
- * @param options Dialog box parameters.
- * @param userData Indicates the pointer to the custom data.
- * @param callback Callback function when the dialog is displayed.
+ * @param options  弹窗参数。
+ * @param userData 表示指向自定义数据的指针。
+ * @param callback 弹窗显示时的回调，返回入参为错误码和弹窗ID。
  * @since 26.1.0
  */
 void OH_ArkUI_CustomDialog_OpenDialogWithCallback(ArkUI_CustomDialogOptions* options, void* userData,
@@ -840,7 +840,7 @@ void OH_ArkUI_CustomDialog_OpenDialogWithCallback(ArkUI_CustomDialogOptions* opt
  * @brief 更新自定义弹窗。
  *
  * @param options 弹窗参数。
- * @param callback Callback to be invoked when the custom dialog box updates.
+ * @param callback 更新弹窗的回调，返回弹窗ID。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -879,7 +879,7 @@ void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options);
 /**
  * @brief 设置弹窗的显示层级。
  *
- * @note This method must be called before the <b>OH_ArkUI_CustomDialog_OpenDialog</b> method.
+ * @note 本方法需要在调用<b>OH_ArkUI_CustomDialog_OpenDialog</b>方法之前调用。
  * @param options 指向自定义弹窗options的指针。
  * @param levelMode 显示层级的枚举值， 类型为{@link ArkUI_LevelMode}。
  * @return 错误码。
@@ -904,7 +904,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* option
 /**
  * @brief 设置嵌入式弹窗蒙层的显示区域。
  *
- * @note This method must be called before the <b>OH_ArkUI_CustomDialog_OpenDialog</b> method.
+ * @note 本方法需要在调用<b>OH_ArkUI_CustomDialog_OpenDialog</b>方法之前调用。
  * @param options 指向自定义弹窗options的指针。
  * @param immersiveMode 显示区域类型的枚举值， 类型为{@link ArkUI_ImmersiveMode}。
  * @return 错误码。
@@ -1111,7 +1111,8 @@ int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* option
 /**
  * @brief 设置弹窗在子窗口中的显示模式。
  *
- * @note This method takes effect only when the dialog box is displayed in a subwindow.
+ * @note 本方法需要在调用<b>OH_ArkUI_CustomDialog_OpenDialog</b>方法之前调用。<br>
+ *      本方法仅在弹窗通过<b>OH_ArkUI_CustomDialog_SetSubwindowMode</b>设置为子窗口显示时生效。
  * @param options 弹窗参数。
  * @param displayModeInSubWindow 弹窗在子窗口中的显示模式，类型为{@link OH_ArkUI_DialogDisplayModeInSubWindow}。
  *     默认值：OH_ARKUI_DIALOG_DISPLAY_MODE_SCREEN_BASED
@@ -1178,9 +1179,11 @@ int32_t OH_ArkUI_CustomDialog_SetHoverModeArea(
 /**
  * @brief 注册系统关闭自定义弹窗的监听事件。
  *
+ * @note 本方法需要在调用<b>OH_ArkUI_CustomDialog_OpenDialog</b>方法之前调用。
+ *
  * @param options 弹窗参数。
  * @param userData 用户自定义数据指针。
- * @param callback Callback for the dismissal event of the custom dialog box.
+ * @param callback 监听自定义弹窗关闭的回调事件。<br> - event: 回调函数的入参，捕获关闭原因。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1194,7 +1197,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback(
  *
  * @param options 弹窗参数。
  * @param userData 用户自定义数据指针。
- * @param callback Callback to be invoked when the dialog box is about to appear.
+ * @param callback  弹窗显示动效前的事件回调。入参userData为用户自定义数据。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1208,7 +1211,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback(
  *
  * @param options 弹窗参数。
  * @param userData 用户自定义数据指针。
- * @param callback Callback to be invoked when the custom dialog box appears.
+ * @param callback 弹窗弹出后的事件回调。入参userData为用户自定义数据。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1222,7 +1225,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback(
  *
  * @param options 弹窗参数。
  * @param userData 用户自定义数据指针。
- * @param callback Callback to be invoked when the dialog box is about to disappear.
+ * @param callback 弹窗退出动效前的事件回调。入参userData为用户自定义数据。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1236,7 +1239,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback(
  *
  * @param options 弹窗参数。
  * @param userData 用户自定义数据指针。
- * @param callback Callback to be invoked when the custom dialog box disappears.
+ * @param callback 弹窗消失时的事件回调。入参userData为用户自定义数据。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
