@@ -17,7 +17,8 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Defines a set of Text enum and interface.
+ * @brief 定义Text相关的枚举和接口，用于配置文本样式、控制跑马灯效果、实现文本实体识别以及管理文本控制器等功能。适用于需要自定义文本显示效果、实现动态文本交互、识别文本中特殊实体（如地址、电话号码）以及精确控制文本字体粗细
+ *        等场景。通过这些配置接口，开发者可以灵活控制文本组件的显示效果和交互行为，提升用户体验。
  *
  * @since 12
  */
@@ -25,7 +26,8 @@
 /**
  * @file text.h
  *
- * @brief Defines a set of Text enum and interface.
+ * @brief 定义Text相关的枚举和接口，用于配置文本样式、控制跑马灯效果、实现文本实体识别以及管理文本控制器等功能。适用于需要自定义文本显示效果、实现动态文本交互、识别文本中特殊实体（如地址、电话号码）以及精确控制文本字体粗细
+ *        等场景。通过这些配置接口，开发者可以灵活控制文本组件的显示效果和交互行为，提升用户体验。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -190,15 +192,15 @@ typedef struct OH_ArkUI_FontWeightConfigs OH_ArkUI_FontWeightConfigs;
 typedef struct OH_ArkUI_FontConfigs OH_ArkUI_FontConfigs;
 
 /**
- * @brief 创建文本跑马灯模式配置项。
+ * @brief 创建文本跑马灯模式配置项。当该对象不再使用时，请调用{@link OH_ArkUI_TextMarqueeOptions_Dispose}销毁，以释放资源避免内存泄漏。
  *
- * @return 创建文本跑马灯模式配置项的对象指针。
+ * @return 返回指向文本跑马灯模式配置项对象的指针。如果创建失败，返回空指针。使用后需调用{@link OH_ArkUI_TextMarqueeOptions_Dispose}销毁。
  * @since 23
  */
 ArkUI_TextMarqueeOptions* OH_ArkUI_TextMarqueeOptions_Create();
 
 /**
- * @brief 销毁文本跑马灯模式配置项指针。
+ * @brief 销毁文本跑马灯模式配置项指针。与{@link OH_ArkUI_TextMarqueeOptions_Create}成对使用，否则会导致内存泄漏。
  *
  * @param option 需要销毁的文本跑马灯模式配置项对象指针。
  * @since 23
@@ -209,7 +211,7 @@ void OH_ArkUI_TextMarqueeOptions_Dispose(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项是否播放。
  *
  * @param option 文本跑马灯模式配置项。
- * @param start 是否播放。true表示播放，false表示不播放。
+ * @param start 是否播放。true表示播放，false表示不播放。默认值：true。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetStart(ArkUI_TextMarqueeOptions* option, bool start);
@@ -227,7 +229,7 @@ bool OH_ArkUI_TextMarqueeOptions_GetStart(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项的步长。
  *
  * @param option 文本跑马灯模式配置项。
- * @param step 步长。单位：vp。
+ * @param step 步长。单位：vp。取值范围：(0, 文本长度]，超出取值范围时取4.0vp。默认值：4.0vp。设置步长后，跑马灯每次移动的距离为该步长值，步长越大滚动速度越快。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetStep(ArkUI_TextMarqueeOptions* option, float step);
@@ -245,7 +247,7 @@ float OH_ArkUI_TextMarqueeOptions_GetStep(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项的首尾间距。
  *
  * @param option 文本跑马灯模式配置项。
- * @param spacing 首尾间距。单位：vp。
+ * @param spacing 首尾间距。单位：vp。取值范围：[0, +∞)，超出取值范围时取48.0vp。默认值：48.0vp。设置后，跑马灯滚动一轮结束时，首尾文字之间的间隔距离为该间距值。建议根据显示区域宽度设置。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetSpacing(ArkUI_TextMarqueeOptions* option, float spacing);
@@ -263,7 +265,7 @@ float OH_ArkUI_TextMarqueeOptions_GetSpacing(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项的重复滚动的次数，小于等于零时无限循环。
  *
  * @param option 文本跑马灯模式配置项。
- * @param loop 重复滚动的次数。
+ * @param loop 重复滚动的次数。小于等于零时无限循环。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetLoop(ArkUI_TextMarqueeOptions* option, int32_t loop);
@@ -281,7 +283,7 @@ int32_t OH_ArkUI_TextMarqueeOptions_GetLoop(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项的运行方向。
  *
  * @param option 文本跑马灯模式配置项。
- * @param fromStart 跑马灯运行方向。true表示从头开始滚动，false表示反向滚动。
+ * @param fromStart 跑马灯运行方向。true表示从头开始滚动，false表示反向滚动。默认值：true。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetFromStart(ArkUI_TextMarqueeOptions* option, bool fromStart);
@@ -299,7 +301,7 @@ bool OH_ArkUI_TextMarqueeOptions_GetFromStart(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项的每轮滚动延迟时间。
  *
  * @param option 文本跑马灯模式配置项。
- * @param delay 每轮滚动延迟时间，单位为毫秒。
+ * @param delay 每轮滚动延迟时间，单位为毫秒。取值范围：[0, +∞)。默认值：0。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetDelay(ArkUI_TextMarqueeOptions* option, int32_t delay);
@@ -320,7 +322,8 @@ int32_t OH_ArkUI_TextMarqueeOptions_GetDelay(ArkUI_TextMarqueeOptions* option);
  *
  * @param option 文本跑马灯模式配置项。
  * @param fadeout 跑马灯是否支持文字超长时的渐隐效果。\n
- *     true表示支持渐隐效果，false表示不支持渐隐效果。
+ *     true表示支持渐隐效果，此时NODE_CLIP属性将自动锁定为true，不允许设置为false。\n
+ *     false表示不支持渐隐效果。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetFadeout(ArkUI_TextMarqueeOptions* option, bool fadeout);
@@ -329,7 +332,7 @@ void OH_ArkUI_TextMarqueeOptions_SetFadeout(ArkUI_TextMarqueeOptions* option, bo
  * @brief 获取文本跑马灯模式配置项是否支持文字超长时的渐隐效果。
  *
  * @param option 文本跑马灯模式配置项。
- * @return 是否支持文字超长时的渐隐效果。
+ * @return 是否支持文字超长时的渐隐效果。true表示支持渐隐效果，false表示不支持渐隐效果。
  * @since 23
  */
 bool OH_ArkUI_TextMarqueeOptions_GetFadeout(ArkUI_TextMarqueeOptions* option);
@@ -371,9 +374,10 @@ void OH_ArkUI_TextMarqueeOptions_SetUpdatePolicy(ArkUI_TextMarqueeOptions* optio
  */
 ArkUI_MarqueeUpdatePolicy OH_ArkUI_TextMarqueeOptions_GetUpdatePolicy(ArkUI_TextMarqueeOptions* option);
 /**
- * @brief 创建一个文本实体识别配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
+ * @brief 创建一个文本实体识别配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁，以释放资源避免内存泄漏。
  *
- * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。如果创建失败，返回空指针。
+ *         使用后需调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
  * @since 24
  */
 OH_ArkUI_TextDataDetectorConfig* OH_ArkUI_TextDataDetectorConfig_Create();
@@ -386,30 +390,33 @@ OH_ArkUI_TextDataDetectorConfig* OH_ArkUI_TextDataDetectorConfig_Create();
  */
 void OH_ArkUI_TextDataDetectorConfig_Destroy(OH_ArkUI_TextDataDetectorConfig* config);
 /**
- * @brief 创建一个文本控制器对象。
+ * @brief 创建一个文本控制器对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextController_Destroy}销毁，以释放资源避免内存泄漏。
  *
- * @return 返回指向文本组件控制器对象的指针。如果创建失败，返回空指针。
+ * @return 返回指向文本组件控制器对象的指针。如果创建失败，返回空指针。使用后需调用{@link OH_ArkUI_TextController_Destroy}销毁。
  * @since 26.0.0
  */
 OH_ArkUI_TextController* OH_ArkUI_TextController_Create();
 
 /**
- * @brief 销毁文本控制器。
+ * @brief 销毁文本控制器。与{@link OH_ArkUI_TextController_Create}成对使用，否则会导致内存泄漏。
  *
  * @param controller 指向文本组件控制器对象的指针。
  * @since 26.0.0
  */
 void OH_ArkUI_TextController_Destroy(OH_ArkUI_TextController* controller);
 /**
- * @brief 创建文本字体粗细配置对象。
+ * @brief 创建文本字体粗细配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_FontWeightConfigs_Destroy}销毁，以释放资源避免内存泄漏。
  *
- * @return 返回指向文本字体粗细配置对象的指针。如果创建失败，返回空指针。
+ * @return 返回指向文本字体粗细配置对象的指针。如果创建失败，返回空指针。使用后需调用{@link OH_ArkUI_FontWeightConfigs_Destroy}销毁。当配置对象为空指针时，不应用默认值，
+ *         文本字体粗细行为与父组件保持一致。
  * @since 24
  */
 OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontWeightConfigs_Create();
 
 /**
- * @brief 销毁文本字体粗细配置对象。
+ * @brief 销毁文本字体粗细配置对象。与{@link OH_ArkUI_FontWeightConfigs_Create}成对使用，否则会导致内存泄漏。
+ *        若该对象已被SetFontWeightConfigs设置到FontConfigs中，应在销毁FontConfigs之后再销毁FontWeightConfigs，
+ *        或在确保FontConfigs不再使用后再销毁FontWeightConfigs，以避免FontConfigs持有无效指针。
  *
  * @param option 指向要销毁的文本字体粗细配置对象的指针。
  * @since 24
@@ -417,7 +424,7 @@ OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontWeightConfigs_Create();
 void OH_ArkUI_FontWeightConfigs_Destroy(OH_ArkUI_FontWeightConfigs* option);
 
 /**
- * @brief 设置是否启用可变字重调节。
+ * @brief 设置是否启用可变字重调节。可变字重调节允许字体在100到900之间以任意整数值显示字重，实现更细腻的字体粗细控制。
  *
  * @param option 指向待修改的文本字体粗细配置对象的指针。
  * @param enable 是否启用可变字重调节。
@@ -463,15 +470,16 @@ void OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(OH_ArkUI_FontW
  */
 bool OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory(OH_ArkUI_FontWeightConfigs* option);
 /**
- * @brief 创建文本字体配置对象。
+ * @brief 创建文本字体配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_FontConfigs_Destroy}销毁，以释放资源避免内存泄漏。
  *
- * @return 返回指向文本字体配置对象的指针。如果创建失败，返回空指针。
+ * @return 返回指向文本字体配置对象的指针。如果创建失败，返回空指针。使用后需调用{@link OH_ArkUI_FontConfigs_Destroy}销毁。
  * @since 24
  */
 OH_ArkUI_FontConfigs* OH_ArkUI_FontConfigs_Create();
 
 /**
- * @brief 销毁文本字体配置对象。
+ * @brief 销毁文本字体配置对象。与{@link OH_ArkUI_FontConfigs_Create}成对使用，否则会导致内存泄漏。销毁FontConfigs前，
+ *        应先销毁通过SetFontWeightConfigs设置的FontWeightConfigs对象（如果不再使用），或确保FontWeightConfigs的生命周期长于FontConfigs，以避免悬空指针问题。
  *
  * @param option 指向要销毁的文本字体配置对象的指针。
  * @since 24
@@ -483,7 +491,7 @@ void OH_ArkUI_FontConfigs_Destroy(OH_ArkUI_FontConfigs* option);
  *
  * @param option 指向待修改的文本字体配置对象的指针。
  * @param fontWeightConfigs 文本字体粗细配置。
- *        当该配置不为空指针时，若用户未显式设置，各项配置将使用默认值（可变字重调节默认为禁用，文本字体粗细跟随设备字体粗细级别更新默认为启用）。
+ *        当该配置不为空指针时，若用户未显式设置，各项配置将使用默认值（可变字重调节默认为禁用，文本字体粗细跟随设备字体粗细级别更新默认为启用）；字重weight可通过相关接口设置，取值范围为[100, 900]。
  *        当该配置为空指针时，不应用上述默认值，文本字体粗细行为与父组件保持一致。
  * @since 24
  */
@@ -493,7 +501,7 @@ void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,
 /**
  * @brief 获取文本字体配置对象的文本字体粗细配置。
  *
- * @param option 指向文本字体配置对象的指针。
+ * @param option 指向文本字体配置对象的指针。若未设置或设置时为空指针，则返回空指针。
  * @return 返回文本字体粗细配置。
  * @since 24
  */
