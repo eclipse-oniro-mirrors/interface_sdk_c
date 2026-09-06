@@ -17,7 +17,7 @@
  * @addtogroup AbilityBase
  * @{
  *
- * @brief 描述Want的方法。
+ * @brief 作为Ability Kit的基础定义模块，AbilityBase提供了组件启动参数{@link Want}的定义与接口，可以用于应用组件间的信息传递。
  *
  * @syscap SystemCapability.Ability.AbilityBase
  * @since 15

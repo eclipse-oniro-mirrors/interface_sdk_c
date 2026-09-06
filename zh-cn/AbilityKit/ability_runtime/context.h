@@ -25,7 +25,7 @@
 /**
  * @file context.h
  *
- * @brief 提供上下文数据结构AbilityRuntime_Context和相关接口用于获取当前上下文的应用文件路径、数据加密等级和进程名等信息。
+ * @brief 提供上下文数据结构{@link AbilityRuntime_Context}和相关接口用于获取当前上下文的应用文件路径、数据加密等级和进程名等信息。
  *
  * @library libability_runtime.so
  * @kit AbilityKit
