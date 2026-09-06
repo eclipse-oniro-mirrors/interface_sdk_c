@@ -147,7 +147,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
  * @brief 设置用于转码的输出视频的码率。
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为OH_AVTranscoderConfig_Create创建的实例。
  * @param bitrate 输出视频的码率，单位为（bps）。默认码率按输出视频的分辨率设置。
  * [240P,480P]默认码率值为1Mbps。
  * (480P,720P]默认码率值为2Mbps。
@@ -184,7 +184,7 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
  * @brief 进行视频转码的参数设置，准备转码。
  * 此函数必须在{@link OH_AVTranscoder_Start}之前调用，调用成功之后进入AVTRANSCODER_PREPARED状态。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
  * @param config 指向OH_AVTranscoder_Config实例的指针，参考{@link OH_AVTranscoder_Config}。
  * @return AV_ERR_OK：成功设置视频转码的参数设置，进入AVTRANSCODER_PREPARED状态。
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。
@@ -239,7 +239,7 @@ OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
 
 /**
  * @brief 取消转码。
- * 此函数须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
+ * 此函数必须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
  * @return AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。
@@ -270,7 +270,7 @@ OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder);
  * 开发者只能注册一个状态修改事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
  * 若开发者需监听转码状态修改，须在{@link OH_AVTranscoder_Prepare}之前注册转码状态回调。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
  * @param callback 转码状态回调方法，详细说明请参见{@link OH_AVTranscoder_OnStateChange}。
  * @param userData 指向用户特定数据的指针。
  * @return AV_ERR_OK：注册成功。
@@ -314,7 +314,9 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
     OH_AVTranscoder *transcoder, OH_AVTranscoder_OnProgressUpdate callback, void *userData);
 
 /**
- * @brief 转码设置输出视频B帧编码。
+ * @brief 设置转码输出视频是否使能B帧编码。
+ * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
+ *
  * B帧视频编码相关的约束和限制可以参考文档{@link B帧视频编码约束和限制}。
  * 如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。
  * 
