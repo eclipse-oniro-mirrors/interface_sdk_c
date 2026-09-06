@@ -26,6 +26,9 @@
  * @file modular_object_dispatcher.h
  *
  * @brief 声明ModularObject分发器接口，提供基于类型库元数据的跨进程延迟绑定调用能力。
+ * 开发者可以通过本模块从远端Proxy对象创建主服务或子实例分发器，查询远端服务的类型库
+ * 元数据（接口/方法/枚举/结构体），并通过成员ID（MemberID）动态调用远端方法，
+ * 创建与操作容器类型（Array/Vector/Set/Map）和结构体。
  *
  * @library libability_runtime.so
  * @kit AbilityKit

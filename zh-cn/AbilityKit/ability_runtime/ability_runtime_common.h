@@ -16,7 +16,7 @@
  * @addtogroup AbilityRuntime
  * @{
  *
- * @brief 提供原生AbilityRuntime的C接口定义。
+ * @brief 声明元能力基础框架的相关能力。
  *
  * @since 13
  */
