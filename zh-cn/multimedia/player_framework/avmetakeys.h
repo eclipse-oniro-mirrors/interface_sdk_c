@@ -61,7 +61,7 @@ extern const char* OH_AVMETA_KEY_TRACK_TYPE;
 extern const char* OH_AVMETA_KEY_MIME_TYPE;
 
 /**
- * @brief 媒体时长（单位：微秒），值类型为int64_t。
+ * @brief 媒体时长，单位为微秒（μs），值类型为int64_t。
  * 
  * @since 23
  */
