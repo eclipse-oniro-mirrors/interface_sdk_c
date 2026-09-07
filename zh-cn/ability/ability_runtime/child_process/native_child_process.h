@@ -55,6 +55,7 @@
 #define OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
 
 #include <stdbool.h>
+#include "AbilityKit/ability_runtime/child_process_info.h"
 #include "IPCKit/ipc_cparcel.h"
 
 #ifdef __cplusplus
@@ -512,6 +513,30 @@ Ability_NativeChildProcess_ErrCode OH_Ability_KillChildProcess(int32_t pid);
  * @since 26.0.0
  */
 bool OH_Ability_IsNativeChildProcessSupported();
+
+/**
+ * @brief 获取当前应用的子进程信息。
+ *
+ * 包括通过以下方式创建的子进程：
+ * - OH_Ability_CreateNativeChildProcess / OH_Ability_CreateNativeChildProcessWithConfigs
+ * - OH_Ability_StartNativeChildProcess / OH_Ability_StartNativeChildProcessWithConfigs
+ * - childProcessManager.startChildProcess（非Self_FORK模式）
+ * - childProcessManager.startArkChildProcess
+ * - childProcessManager.startNativeChildProcess
+ *
+ * @param infos 输出参数，指向子进程信息集合的指针。不能为nullptr。
+ * 当不存在子进程时，将指针**infos**的解引用值设置为nullptr。
+ * @param count 输出参数，返回子进程的个数。不能是nullptr。
+ * @return <ul>
+ * 如果操作成功，则返回<li>{@link NCP_NO_ERROR}。</li>
+ * <li>{@link NCP_ERR_INVALID_PARAM}如果信息或计数为空。</li>
+ * <li>{@link NCP_ERR_INTERNAL}如果发生内部错误</li>
+ * </ul>
+ * @release OH_AbilityRuntime_ReleaseChildProcessInfos {infos}
+ * @since 26.1.0
+ */
+Ability_NativeChildProcess_ErrCode OH_Ability_AcquireChildProcessInfos(
+    OH_AbilityRuntime_ChildProcessInfosHandle* infos, uint32_t* count);
 
 #ifdef __cplusplus
 } // extern "C"
