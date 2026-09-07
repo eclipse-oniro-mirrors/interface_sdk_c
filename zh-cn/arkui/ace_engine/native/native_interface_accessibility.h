@@ -163,7 +163,7 @@ typedef enum {
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_STATE_UPDATE = 0x00000020,
     /** 页面内容发生变化时需要发送事件。 */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CONTENT_UPDATE = 0x00000800,
-    /** scrolled事件，当可滚动的组件上发生滚动事件时，会发送此事件。 */
+    /** 滚动事件，当可滚动的组件上发生滚动事件时，会发送此事件。 */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED = 0x000001000,
     /** Accessibility焦点事件，在UI组件响应后发送。 */
     ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED = 0x00008000,
