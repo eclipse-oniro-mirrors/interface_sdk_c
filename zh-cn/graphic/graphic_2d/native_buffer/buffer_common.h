@@ -304,24 +304,42 @@ typedef enum OH_NativeBuffer_Format {
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_CLUT4,
-    NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3,               /// < RGB565格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_5658,                 /// < RGBA5658格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_4444,                 /// < RGBX4444格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_4444,                 /// < RGBA4444格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGB_444,                   /// < RGB444格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_5551,                 /// < RGBX5551格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_5551,                 /// < RGBA5551格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGB_555,                   /// < RGB555格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBX_8888,                 /// < RGBX8888格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGBA_8888,                 /// < RGBA8888格式。 */
-    NATIVEBUFFER_PIXEL_FMT_RGB_888,                   /// < RGB888格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGR_565,                   /// < BGR565格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_4444,                 /// < BGRX4444格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_4444,                 /// < BGRA4444格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_5551,                 /// < BGRX5551格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_5551,                 /// < BGRA5551格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGRX_8888,                 /// < BGRX8888格式。 */
-    NATIVEBUFFER_PIXEL_FMT_BGRA_8888,                 /// < BGRA8888格式。 */
+    /** RGB565格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3,
+    /** RGBA5658格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_5658,
+    /** RGBX4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_4444,
+    /** RGBA4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_4444,
+    /** RGB444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_444,
+    /** RGBX5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_5551,
+    /** RGBA5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_5551,
+    /** RGB555格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_555,
+    /** RGBX8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_8888,
+    /** RGBA8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_8888,
+    /** RGB888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_RGB_888,
+    /** BGR565格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGR_565,
+    /** BGRX4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_4444,
+    /** BGRA4444格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_4444,
+    /** BGRX5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_5551,
+    /** BGRA5551格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_5551,
+    /** BGRX8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_8888,
+    /** BGRA8888格式。 */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_8888,
     /**
      * YUV422 interleaved 格式。
      * @since 12
@@ -432,7 +450,7 @@ typedef enum OH_NativeBuffer_Format {
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_VENDER_MASK = 0X7FFF0000,
-    NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF          /// < 无效格式 */
+    NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF          /** 无效格式 */
 } OH_NativeBuffer_Format;
 
 /**
@@ -443,18 +461,30 @@ typedef enum OH_NativeBuffer_Format {
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_TransformType {
-    NATIVEBUFFER_ROTATE_NONE = 0,         /**< 不旋转 */
-    NATIVEBUFFER_ROTATE_90,               /**< 旋转90度 */
-    NATIVEBUFFER_ROTATE_180,              /**< 旋转180度 */
-    NATIVEBUFFER_ROTATE_270,              /**< 旋转270度 */
-    NATIVEBUFFER_FLIP_H,                  /**< 水平翻转 */
-    NATIVEBUFFER_FLIP_V,                  /**< 垂直翻转 */
-    NATIVEBUFFER_FLIP_H_ROT90,            /**< 水平翻转并旋转90度 */
-    NATIVEBUFFER_FLIP_V_ROT90,            /**< 垂直翻转并旋转90度 */
-    NATIVEBUFFER_FLIP_H_ROT180,           /**< 水平翻转并旋转180度 */
-    NATIVEBUFFER_FLIP_V_ROT180,           /**< 垂直翻转并旋转180度 */
-    NATIVEBUFFER_FLIP_H_ROT270,           /**< 水平翻转并旋转270度 */
-    NATIVEBUFFER_FLIP_V_ROT270,           /**< 垂直翻转并旋转270度 */
+    /** 不旋转 */
+    NATIVEBUFFER_ROTATE_NONE = 0,
+    /** 旋转90度 */
+    NATIVEBUFFER_ROTATE_90,
+    /** 旋转180度 */
+    NATIVEBUFFER_ROTATE_180,
+    /** 旋转270度 */
+    NATIVEBUFFER_ROTATE_270,
+    /** 水平翻转 */
+    NATIVEBUFFER_FLIP_H,
+    /** 垂直翻转 */
+    NATIVEBUFFER_FLIP_V,
+    /** 水平翻转并旋转90度 */
+    NATIVEBUFFER_FLIP_H_ROT90,
+    /** 垂直翻转并旋转90度 */
+    NATIVEBUFFER_FLIP_V_ROT90,
+    /** 水平翻转并旋转180度 */
+    NATIVEBUFFER_FLIP_H_ROT180,
+    /** 垂直翻转并旋转180度 */
+    NATIVEBUFFER_FLIP_V_ROT180,
+    /** 水平翻转并旋转270度 */
+    NATIVEBUFFER_FLIP_H_ROT270,
+    /** 垂直翻转并旋转270度 */
+    NATIVEBUFFER_FLIP_V_ROT270,
 } OH_NativeBuffer_TransformType;
 
 /**

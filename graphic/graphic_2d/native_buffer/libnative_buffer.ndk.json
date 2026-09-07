@@ -40,5 +40,9 @@
     {
         "first_introduced": "23",
         "name": "OH_NativeBuffer_MapAndGetConfig"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_NativeBuffer_SetDmaBufferName"
     }
 ]
