@@ -352,7 +352,7 @@ typedef struct OH_VideoCaptureInfo {
  */
 typedef struct OH_VideoEncInfo {
     /**
-     * 视频编码格式。不同编码格式影响视频的压缩效率与兼容性，具体各格式效果参见OH_VideoCodecFormat枚举说明。
+     * 视频编码格式。不同编码格式影响视频的压缩效率与兼容性，具体各格式效果参见{@link OH_VideoCodecFormat}枚举说明。
      */
     OH_VideoCodecFormat videoCodec;
     /**
@@ -428,7 +428,7 @@ typedef struct OH_AVScreenCaptureConfig {
     OH_CaptureMode captureMode;
     /**
      * 屏幕录制流的数据格式，例如需要实时处理录制流数据时可选择流数据格式，需要保存为文件时可选择文件数据格式。
-     * 取值原则参考OH_DataType枚举定义。当数据格式为OH_CAPTURE_FILE时，必须设置{@link OH_RecorderInfo}。
+     * 取值原则参考{@link OH_DataType}枚举定义。当数据格式为OH_CAPTURE_FILE时，必须设置{@link OH_RecorderInfo}。
      */
     OH_DataType dataType;
     /**
@@ -485,7 +485,7 @@ typedef void (*OH_AVScreenCaptureOnError)(OH_AVScreenCapture *capture, int32_t e
 
 /**
  * @brief 当OH_AVScreenCapture实例操作期间音频缓冲区可用时，系统将调用该函数指针通知应用程序。
- * 从API版本12开始，推荐使用接口OH_AVScreenCapture_OnBufferAvailable替代。OH_AVScreenCapture_OnBufferAvailable将音频和
+ * 从API版本12开始，推荐使用接口{@link OH_AVScreenCapture_OnBufferAvailable}替代。OH_AVScreenCapture_OnBufferAvailable将音频和
  * 视频缓冲区回调统一为一个接口，通过bufferType参数区分缓冲区数据类型，同时增加了timestamp和userData参数支持，
  * 开发者无需分别注册音频和视频回调。
  * 
@@ -512,9 +512,9 @@ typedef void (*OH_AVScreenCaptureOnVideoBufferAvailable)(OH_AVScreenCapture *cap
  * @brief OH_AVScreenCaptureCallback是OH_AVScreenCapture中所有异步回调函数指针的集合。
  * 应用将该结构体的实例注册到OH_AVScreenCapture实例中，以便处理回调上报的信息，从而保证OH_AVScreenCapture的正常运行。
  * 该回调集合用于监控录屏过程中的错误、音频数据和视频数据的产生，适用于需要实时获取和处理录屏数据的场景，具有异步处理的特点，
- * 能有效提升录屏数据处理的效率。
+ * 能有效提升录屏数据处理的效率。<br>
  * 
- * 从API version 12开始，推荐使用接口OH_AVScreenCapture_OnError、OH_AVScreenCapture_OnBufferAvailable替代。
+ * 从API version 12开始，推荐使用接口{@link OH_AVScreenCapture_OnError}、{@link OH_AVScreenCapture_OnBufferAvailable}替代。
  * 
  *
  * @since 10
@@ -631,22 +631,22 @@ typedef enum OH_AVScreenCaptureStateCode {
     /* 系统用户切换，录屏中断。 */
     OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10,
     /**
-     * @brief 用户暂停屏幕录制。
+     * @brief 录屏已由用户暂停。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_PAUSED_BY_USER = 11,
     /**
-     * @brief 用户恢复屏幕录制。
+     * @brief 录屏已由用户恢复。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_RESUMED_BY_USER = 12,
     /**
-     * @brief 应用暂停屏幕录制。
+     * @brief 录屏已由应用程序暂停。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_PAUSED_BY_APP = 13,
     /**
-     * @brief 应用恢复屏幕录制。
+     * @brief 录屏已由应用程序恢复。
      * @since 26.0.0
      */
     OH_SCREEN_CAPTURE_STATE_RESUMED_BY_APP = 14,
@@ -953,7 +953,7 @@ typedef struct OH_MultiDisplayCapability {
 } OH_MultiDisplayCapability;
 
 /**
- * @brief 当{@link OH_AVScreenCapture}实例在运行过程中发生隐私保护事件时，函数指针将调用。
+ * @brief 当{@link OH_AVScreenCapture}实例在运行过程中发生隐私保护事件时，将调用函数指针。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
  * @param privacyProtect 隐私保护信息指针。指向包含隐私保护事件详细信息的结构体，用于处理录屏过程中的隐私保护回调事件。

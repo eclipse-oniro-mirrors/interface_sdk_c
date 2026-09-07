@@ -707,7 +707,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForBFramesEncoding(
 /**
  * @brief 设置屏幕录屏自动跟随旋转配置。设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，
  * 确保输出画面及时跟随旋转。<br>
- * 设置是否自动跟随旋转配置后，在旋转通知后，无需再手动调用{@link OH_AVScreenCapture_ResizeCanvas}接口。
+ * 设置是否自动跟随旋转配置后，在屏幕旋转事件发生后，无需再手动调用{@link OH_AVScreenCapture_ResizeCanvas}接口。
  * 
  * @param strategy 指向OH_AVScreenCapture_CaptureStrategy实例的指针。
  * @param value 虚拟屏的宽和高是否跟随屏幕旋转而旋转。<br>
