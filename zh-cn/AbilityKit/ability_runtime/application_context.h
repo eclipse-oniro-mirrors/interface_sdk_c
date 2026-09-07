@@ -37,10 +37,12 @@
 #ifndef ABILITY_RUNTIME_APPLICATION_CONTEXT_H
 #define ABILITY_RUNTIME_APPLICATION_CONTEXT_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <AbilityKit/ability_base/want.h>
 #include "ability_runtime_common.h"
+#include "child_process_info.h"
 #include "context_constant.h"
 #include "start_options.h"
 
@@ -378,6 +380,24 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLogFileDir(
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextNotifyPageChanged(
     const char* targetPageName, int32_t targetPageNameLength, int32_t windowId);
+
+/**
+ * @brief 获取当前应用的UIAbility子进程信息。
+ *
+ * 包括使用ProcessMode.NEW_PROCESS_ATTACH_TO_PARENT通过startAbility创建的子进程。
+ *
+ * @param infos 输出参数，指向子进程信息集合的指针。不能为nullptr。
+ * 当不存在子进程时，将指针**infos**的解引用值设置为nullptr。
+ * @param count 输出参数，返回子进程的个数。不能是nullptr。
+ * @return <ul>
+ * <li>{@link_RUNTIME_ERROR_CODE_NO_ERROR}如果调用成功则返回</li>
+ * <li>{@link_RUNTIME_ERROR_CODE_PARAM_INVALID}如果提供的参数无效。</li>
+ * <li>{@link_RUNTIME_ERROR_CODE_INTERNAL}如果发生内部错误</li>
+ * @release OH_AbilityRuntime_ReleaseChildProcessInfos {infos}
+ * @since 26.1.0
+ */
+AbilityRuntime_ErrorCode OH_AbilityRuntime_AcquireUIAbilityChildProcessInfos(
+    OH_AbilityRuntime_ChildProcessInfosHandle* infos, uint32_t* count);
 
 #ifdef __cplusplus
 } // extern "C"
