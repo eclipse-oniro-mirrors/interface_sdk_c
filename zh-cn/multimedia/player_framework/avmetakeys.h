@@ -75,7 +75,7 @@ extern const char* OH_AVMETA_KEY_DURATION;
 extern const char* OH_AVMETA_KEY_BITRATE;
 
 /**
- * @brief 视频帧率，单位为每100秒的帧数，值类型为double。
+ * @brief 视频帧率（每100秒的帧数），值类型为double。
  * 
  * @since 23
  */
