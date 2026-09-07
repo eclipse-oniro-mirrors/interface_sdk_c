@@ -28,7 +28,7 @@
  * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进程间通信）和
  * RPC（Remote Procedure Call，远程过程调用）通信场景。
  *
- * @include <IPCKit/ipc_cparcel.h>
+ * @include <IPCKit/ipc_cremote_object.h>
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
