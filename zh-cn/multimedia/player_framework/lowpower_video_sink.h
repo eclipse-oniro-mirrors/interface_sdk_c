@@ -16,7 +16,7 @@
  * @addtogroup LowPowerVideoSink
  * @{
  *
- * @brief LowPowerVideoSink子模块提供低功耗视频输出的变量、属性和函数。
+ * @brief LowPowerVideoSink子模块为低功耗播放视频组件提供变量、属性和函数。
  *
  * @since 20
  */
@@ -50,7 +50,7 @@ extern "C" {
 /**
  * @brief 创建LowPowerVideoSink。
  * 
- * @param mime 视频解码器的MIME类型，取值范围请参考{@link AVCODEC_MIME_TYPE}
+ * @param mime 视频解码器的MIME类型，取值范围请参考{@link OH_AVCODEC_MIMETYPE}
  * @return 如果创建成功返回指向OH_LowPowerVideoSink实例的指针，否则返回空指针。
  * @since 20
  */
@@ -61,10 +61,10 @@ OH_LowPowerVideoSink* OH_LowPowerVideoSink_CreateByMime(const char* mime);
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param format 指向OH_AVFormat的指针，用于配置LowPowerVideoSink的参数。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_UNSUPPORT：不支持的格式。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_UNSUPPORT：不支持的格式。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -75,10 +75,10 @@ OH_AVErrCode OH_LowPowerVideoSink_Configure(OH_LowPowerVideoSink* sink, const OH
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param format 指向OH_AVFormat的指针，用于配置LowPowerVideoSink的参数。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_UNSUPPORT：不支持的格式。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_UNSUPPORT：不支持的格式。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -89,8 +89,8 @@ OH_AVErrCode OH_LowPowerVideoSink_SetParameter(OH_LowPowerVideoSink* sink, const
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param format 指向OH_AVFormat的指针，为LowPowerVideoSink设置的参数。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -101,9 +101,9 @@ OH_AVErrCode OH_LowPowerVideoSink_GetParameter(OH_LowPowerVideoSink* sink, OH_AV
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param surface 指向OHNativeWindow实例的指针。请参考{@link OHNativeWindow}
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -113,10 +113,10 @@ OH_AVErrCode OH_LowPowerVideoSink_SetVideoSurface(OH_LowPowerVideoSink* sink, co
  * @brief 开始LowPowerVideoSink准备，需要在{@link OH_LowPowerVideoSink_SetSyncAudioSink}之后调用。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_UNSUPPORT：不支持的格式。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_UNSUPPORT：不支持的格式。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -128,10 +128,10 @@ OH_AVErrCode OH_LowPowerVideoSink_Prepare(OH_LowPowerVideoSink* sink);
  * 启动成功后，LowPowerVideoSink将开始上报{@link OH_LowPowerVideoSink_OnDataNeeded}事件。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_UNSUPPORT：不支持的格式。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_UNSUPPORT：不支持的格式。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -141,9 +141,9 @@ OH_AVErrCode OH_LowPowerVideoSink_StartDecoder(OH_LowPowerVideoSink* sink);
  * @brief 渲染LowPowerVideoSink解码出的第一帧，在{@link OH_LowPowerVideoSink_StartDecoder}之后调用。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -153,10 +153,10 @@ OH_AVErrCode OH_LowPowerVideoSink_RenderFirstFrame(OH_LowPowerVideoSink* sink);
  * @brief 开始LowPowerVideoSink渲染，在{@link OH_LowPowerVideoSink_StartDecoder}之后调用。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_UNSUPPORT：不支持的格式。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_UNSUPPORT：不支持的格式。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -167,9 +167,9 @@ OH_AVErrCode OH_LowPowerVideoSink_StartRenderer(OH_LowPowerVideoSink* sink);
  * 暂停成功后，LowPowerVideoSink将暂停{@link OH_LowPowerVideoSink_OnDataNeeded}事件的上报。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -180,9 +180,9 @@ OH_AVErrCode OH_LowPowerVideoSink_Pause(OH_LowPowerVideoSink* sink);
  * 恢复成功后，LowPowerVideoSink将恢复{@link OH_LowPowerVideoSink_OnDataNeeded}事件的上报。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -194,9 +194,9 @@ OH_AVErrCode OH_LowPowerVideoSink_Resume(OH_LowPowerVideoSink* sink);
  * 需要注意的是，如果编解码器之前已输入数据，则需要重新输入编解码器数据。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -206,9 +206,9 @@ OH_AVErrCode OH_LowPowerVideoSink_Flush(OH_LowPowerVideoSink* sink);
  * @brief 停止LowPowerVideoSink。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -219,9 +219,9 @@ OH_AVErrCode OH_LowPowerVideoSink_Stop(OH_LowPowerVideoSink* sink);
  * 如果要重新使用该实例，需要调用{@link OH_LowPowerVideoSink_Configure}完成配置。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -231,9 +231,9 @@ OH_AVErrCode OH_LowPowerVideoSink_Reset(OH_LowPowerVideoSink* sink);
  * @brief 清理解码器内部资源，销毁LowPowerVideoSink实例。不能重复销毁。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -244,9 +244,9 @@ OH_AVErrCode OH_LowPowerVideoSink_Destroy(OH_LowPowerVideoSink* sink);
  * 
  * @param videoSink 指向OH_LowPowerVideoSink实例的指针。
  * @param audioSink 指向OH_LowPowerAudioSink实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -259,12 +259,11 @@ OH_AVErrCode OH_LowPowerVideoSink_SetSyncAudioSink(
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param framePts 渲染的目标视频帧的pts。单位为微秒（μs）。
  * @param onTargetArrived OH_LowPowerVideoSink_OnTargetArrived方法，当目标帧渲染时触发该方法。
- * 请参考{@link OH_LowPowerVideoSink_OnTargetArrived}
  * @param timeoutMs 等待目标帧的时间超过timeoutMs，则直接调用onTargetArrived。单位为毫秒（ms）。
  * @param userData 用户数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -280,9 +279,9 @@ OH_AVErrCode OH_LowPowerVideoSink_SetTargetStartFrame(
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param speed 播放倍速的值。当前版本有效范围为[0.25, 4.0]。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -293,9 +292,9 @@ OH_AVErrCode OH_LowPowerVideoSink_SetPlaybackSpeed(OH_LowPowerVideoSink* sink, c
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param samples 需要送LowPowerVideoSink消费的OH_AVSamplesBuffer，支持聚包输入。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -306,9 +305,9 @@ OH_AVErrCode OH_LowPowerVideoSink_ReturnSamples(OH_LowPowerVideoSink* sink, OH_A
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param callback 指向OH_LowPowerVideoSinkCallback实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -326,7 +325,7 @@ OH_LowPowerVideoSinkCallback* OH_LowPowerVideoSinkCallback_Create(void);
  * @brief 销毁OH_LowPowerVideoSinkCallback对象。
  * 
  * @param callback 指向OH_LowPowerVideoSinkCallback实例的指针。
- * @return AV_ERR_OK：执行成功。
+ * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
  * @since 20
  */
@@ -339,8 +338,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_Destroy(OH_LowPowerVideoSinkCallback* 
  * @param onDataNeeded OH_LowPowerVideoSink_OnDataNeeded方法，在DataNeeded事件触发时调用。
  * 请参考{@link OH_LowPowerVideoSink_OnDataNeeded}
  * @param userData 用户执行回调所依赖的数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -354,8 +353,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetDataNeededListener(
  * @param onError OH_LowPowerVideoSink_OnError方法，在Error事件触发时调用。
  * 请参考{@link OH_LowPowerVideoSink_OnError}
  * @param userData 用户执行回调所依赖的数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -369,8 +368,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetErrorListener(
  * @param onRenderStarted OH_LowPowerVideoSink_OnRenderStarted方法，在RenderStarted事件触发时调用。
  * 请参考{@link OH_LowPowerVideoSink_OnRenderStarted}
  * @param userData 用户执行回调所依赖的数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -384,8 +383,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetRenderStartListener(
  * @param onStreamChanged OH_LowPowerVideoSink_OnStreamChanged方法，在StreamChanged事件触发时调用。
  * 请参考{@link OH_LowPowerVideoSink_OnStreamChanged}
  * @param userData 用户执行回调所依赖的数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -399,8 +398,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetStreamChangedListener(
  * @param onFirstFrameDecoded OH_LowPowerVideoSink_OnFirstFrameDecoded方法，在第一帧解码成功时调用。
  * 请参考{@link OH_LowPowerVideoSink_OnFirstFrameDecoded}
  * @param userData 用户执行回调所依赖的数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -416,8 +415,8 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetFirstFrameDecodedListener(
  * @param onEos OH_LowPowerVideoSink_OnEos方法，在Eos事件触发时调用。
  * 请参考{@link OH_LowPowerVideoSink_OnEos}
  * @param userData 用户执行回调所依赖的数据。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 20
  */
@@ -429,9 +428,9 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetEosListener(OH_LowPowerVideoSinkCal
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param pts 当前播放的pts。单位为微秒（μs）。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_SERVICE_DIED：媒体服务端已销毁。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_SERVICE_DIED：媒体服务端已销毁。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：操作不支持。
  * @since 21
  */
