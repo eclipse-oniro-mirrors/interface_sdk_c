@@ -55,7 +55,7 @@ extern "C" {
 OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create();
 
 /**
- * @brief 释放转码配置参数资源。
+ * @brief 释放转码配置参数资源。<br>
  * 调用成功后，config实例会被释放并置为nullptr。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -66,7 +66,7 @@ OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create();
 OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config);
 
 /**
- * @brief 设置转码源视频的文件描述符。
+ * @brief 设置转码源视频的文件描述符。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -81,7 +81,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(
     OH_AVTranscoder_Config *config, int32_t srcFd, int64_t srcOffset, int64_t length);
 
 /**
- * @brief 设置转码输出视频的文件描述符。
+ * @brief 设置转码输出视频的文件描述符。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -93,8 +93,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(
 OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int32_t dstFd);
 
 /**
- * @brief 设置用于转码的输出视频的编码格式。
- * 当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。
+ * @brief 设置用于转码的输出视频的编码格式。<br>
+ * 当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -106,8 +106,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int3
 OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *config, const char *mimeType);
 
 /**
- * @brief 设置用于转码的输出音频的编码格式。
- * 当前仅支持AAC。若开发者不设置，则默认设置为AAC。
+ * @brief 设置用于转码的输出音频的编码格式。<br>
+ * 当前仅支持AAC。若开发者不设置，则默认设置为AAC。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -119,8 +119,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *confi
 OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *config, const char *mimeType);
 
 /**
- * @brief 设置用于转码的输出视频文件的封装格式。
- * 当前封装格式仅支持MP4。
+ * @brief 设置用于转码的输出视频文件的封装格式。<br>
+ * 当前封装格式仅支持MP4。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -132,7 +132,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *confi
 OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config, OH_AVOutputFormat mimeType);
 
 /**
- * @brief 设置用于转码的输出音频的码率。
+ * @brief 设置用于转码的输出音频的码率。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -144,7 +144,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
 OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *config, int32_t bitrate);
 
 /**
- * @brief 设置用于转码的输出视频的码率。
+ * @brief 设置用于转码的输出视频的码率。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为OH_AVTranscoderConfig_Create创建的实例。
@@ -160,7 +160,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
 OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *config, int32_t bitrate);
 
 /**
- * @brief 设置用于转码的输出视频的分辨率，单位为像素（px），其中width为输出视频帧的宽，height为输出视频帧的高。
+ * @brief 设置用于转码的输出视频的分辨率，单位为像素（px），其中width为输出视频帧的宽，height为输出视频帧的高。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
@@ -181,7 +181,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoResolution(OH_AVTranscoder_Config 
 OH_AVTranscoder *OH_AVTranscoder_Create(void);
 
 /**
- * @brief 进行视频转码的参数设置，准备转码。
+ * @brief 进行视频转码的参数设置，准备转码。<br>
  * 此函数必须在{@link OH_AVTranscoder_Start}之前调用，调用成功之后进入AVTRANSCODER_PREPARED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
@@ -196,7 +196,7 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
 OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscoder_Config *config);
 
 /**
- * @brief 开始转码。
+ * @brief 开始转码。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}成功调用之后调用，调用成功之后进入AVTRANSCODER_STARTED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
@@ -210,7 +210,7 @@ OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscode
 OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder);
 
 /**
- * @brief 暂停转码。
+ * @brief 暂停转码。<br>
  * 此函数必须在转码实例处于AVTRANSCODER_STARTED状态时调用，调用成功之后进入AVTRANSCODER_PAUSED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
@@ -224,7 +224,7 @@ OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder);
 OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder);
 
 /**
- * @brief 恢复转码。
+ * @brief 恢复转码。<br>
  * 此函数必须在转码实例处于AVTRANSCODER_PAUSED状态时调用，调用成功之后重新进入AVTRANSCODER_STARTED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
@@ -238,7 +238,7 @@ OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder);
 OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
 
 /**
- * @brief 取消转码。
+ * @brief 取消转码。<br>
  * 此函数必须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
@@ -265,9 +265,9 @@ OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder);
 OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder);
 
 /**
- * @brief 注册触发转码状态修改事件的回调方法。
- * 当触发状态修改事件时，通过注册的回调方法通知开发者。
- * 开发者只能注册一个状态修改事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
+ * @brief 注册触发转码状态修改事件的回调方法。<br>
+ * 当触发状态修改事件时，通过注册的回调方法通知开发者。<br>
+ * 开发者只能注册一个状态修改事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。<br>
  * 若开发者需监听转码状态修改，须在{@link OH_AVTranscoder_Prepare}之前注册转码状态回调。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
@@ -281,10 +281,10 @@ OH_AVErrCode OH_AVTranscoder_SetStateCallback(
     OH_AVTranscoder *transcoder, OH_AVTranscoder_OnStateChange callback, void *userData);
 
 /**
- * @brief 注册触发转码错误事件的回调方法。
- * 当触发错误事件时，通过注册的回调方法通知开发者。
- * 如果AVTranscoder上报error事件，开发者需要通过{@link OH_AVTranscoder_Release}操作退出转码操作。
- * 开发者只能注册一个错误事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
+ * @brief 注册触发转码错误事件的回调方法。<br>
+ * 当触发错误事件时，通过注册的回调方法通知开发者。<br>
+ * 如果AVTranscoder上报error事件，开发者需要通过{@link OH_AVTranscoder_Release}操作退出转码操作。<br>
+ * 开发者只能注册一个错误事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。<br>
  * 若开发者需监听转码错误事件，须在{@link OH_AVTranscoder_Prepare}之前注册转码错误事件。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
@@ -298,9 +298,9 @@ OH_AVErrCode OH_AVTranscoder_SetErrorCallback(
     OH_AVTranscoder *transcoder, OH_AVTranscoder_OnError callback, void *userData);
 
 /**
- * @brief 注册触发转码进度更新事件的回调方法。
- * 当触发转码进度更新事件时，通过注册的回调方法通知开发者。
- * 开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
+ * @brief 注册触发转码进度更新事件的回调方法。<br>
+ * 当触发转码进度更新事件时，通过注册的回调方法通知开发者。<br>
+ * 开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。<br>
  * 若开发者需监听转码处理进度，则须在{@link OH_AVTranscoder_Prepare}之前注册该事件。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
@@ -314,10 +314,9 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
     OH_AVTranscoder *transcoder, OH_AVTranscoder_OnProgressUpdate callback, void *userData);
 
 /**
- * @brief 设置转码输出视频是否使能B帧编码。
- * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
- *
- * B帧视频编码相关的约束和限制可以参考文档{@link B帧视频编码约束和限制}。
+ * @brief 设置转码输出视频是否使能B帧编码。<br>
+ * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。<br>
+ * B帧视频编码相关的约束和限制可以参考文档{@link B帧视频编码约束和限制}。<br>
  * 如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
