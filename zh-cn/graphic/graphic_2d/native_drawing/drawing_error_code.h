@@ -57,7 +57,7 @@ typedef enum {
      */
     OH_DRAWING_SUCCESS = 0,
     /**
-     * @brief 权限校验失败。请检查是否已申请所需权限。
+     * @brief 权限校验失败，应用无权限使用该API，需要申请权限。
      *
      * @since 12
      */
