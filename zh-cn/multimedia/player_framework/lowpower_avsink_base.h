@@ -62,9 +62,9 @@ typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
  * 
  * @param samplesBuffer 指向OH_AVSamplesBuffer实例的指针。
  * @param avBuffer 指向OH_AVBuffer实例的指针。
- * @return AV_ERR_OK：执行成功。
- * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。
- * AV_ERR_NO_MEMORY：OH_AVSamplesBuffer没有足够的剩余容量来追加一个OH_AVBuffer。
+ * @return AV_ERR_OK：执行成功。<br>
+ * AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br>
+ * AV_ERR_NO_MEMORY：OH_AVSamplesBuffer没有足够的剩余容量来追加一个OH_AVBuffer。<br>
  * AV_ERR_UNKNOWN：未知错误。
  * @since 20
  */
@@ -80,11 +80,11 @@ OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffe
 int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer);
 
 /**
- * @brief 获取LPP播放器能力。该函数的主要作用是获取当前低功耗播放器所支持的功能和媒体格式。
+ * @brief 获取LPP播放器能力。该函数的主要作用是获取当前低功耗播放器所支持的功能和媒体格式。<br>
  * 通过调用此函数，可以了解设备在音频或视频处理方面的支持能力，例如支持的编码格式、解码格式、码率范围等。
  * 
- * @return OH_LowPowerAVSink_Capability：支持LPP播放器。
- * nullptr：不支持Lpp播放器或者获取失败。
+ * @return OH_LowPowerAVSink_Capability：支持LPP播放器。<br>
+ * nullptr：不支持LPP播放器或者获取失败。
  * @since 21
  */
 OH_LowPowerAVSink_Capability *OH_LowPowerAVSink_GetCapability();

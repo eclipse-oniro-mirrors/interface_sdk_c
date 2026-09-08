@@ -16,7 +16,7 @@
  * @addtogroup LowPowerVideoSink
  * @{
  *
- * @brief LowPowerVideoSink子模块提供低功耗视频输出的变量、属性和函数。
+ * @brief LowPowerVideoSink子模块为低功耗播放视频组件提供变量、属性和函数。
  *
  * @since 20
  */
@@ -45,14 +45,14 @@ extern "C" {
 #endif
 
 /**
- * @brief OH_LowPowerVideoSink是低功耗视频输出场景中使用的数据结构，开发者通过该结构体实现低功耗视频输出功能。
+ * @brief LowPowerVideoSink声明。
  * 
  * @since 20
  */
 typedef struct OH_LowPowerVideoSink OH_LowPowerVideoSink;
 
 /**
- * @brief 包含了OH_LowPowerVideoSink回调函数指针的集合。<br> 应用需注册此实例结构体到{@link OH_LowPowerVideoSink}实例中，并对回调上报的信息进行处理，
+ * @brief 包含了LowPowerVideoSink回调函数指针的集合。<br> 应用需注册此实例结构体到{@link OH_LowPowerVideoSink}实例中，并对回调上报的信息进行处理，
  * 保证OH_LowPowerVideoSink的正常运行。
  * 
  * @since 20
@@ -60,7 +60,7 @@ typedef struct OH_LowPowerVideoSink OH_LowPowerVideoSink;
 typedef struct OH_LowPowerVideoSinkCallback OH_LowPowerVideoSinkCallback;
 
 /**
- * @brief LowPowerVideoSink需要数据时调用该方法，包含在{@link OH_LowPowerVideoSinkCallback}中。
+ * @brief LowPowerVideoSink需要数据时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param buffer 指向OH_AVSamplesBuffer实例的指针。
@@ -76,9 +76,9 @@ typedef void (*OH_LowPowerVideoSink_OnDataNeeded)(
  * @brief LowPowerVideoSink发生错误时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
- * @param errorCode 业务操作过程中发生错误时返回的错误码。
- * 请参考{@OH_AVErrCode}
- * @param errorMsg 业务操作过程中发生错误时返回的错误描述信息。
+ * @param errCode 业务操作过程中发生错误时返回的错误码。
+ * 请参考{@link OH_AVErrCode}
+ * @param errMsg 业务操作过程中发生错误时返回的错误描述信息。
  * @param userData 用户执行回调所依赖的数据。
  * @since 20
  */
@@ -89,7 +89,7 @@ typedef void (*OH_LowPowerVideoSink_OnError)(
     void* userData);
 
 /**
- * @brief LowPowerVideoSink到达目标点时调用该方法，包含在{@link OH_LowPowerVideoSinkCallback}中。
+ * @brief LowPowerVideoSink到达指定的播放目标位置时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param targetPts 目标点的pts值。单位为微秒（μs）。
@@ -104,7 +104,7 @@ typedef void (*OH_LowPowerVideoSink_OnTargetArrived)(
     void* userData);
 
 /**
- * @brief LowPowerVideoSink开始渲染时调用该方法，包含在{@link OH_LowPowerVideoSinkCallback}中。
+ * @brief LowPowerVideoSink开始渲染时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param userData 用户执行回调所依赖的数据。
@@ -113,7 +113,7 @@ typedef void (*OH_LowPowerVideoSink_OnTargetArrived)(
 typedef void (*OH_LowPowerVideoSink_OnRenderStarted)(OH_LowPowerVideoSink* sink, void* userData);
 
 /**
- * @brief LowPowerVideoSink流切换调用该方法，包含在{@link OH_LowPowerVideoSinkCallback}中。
+ * @brief LowPowerVideoSink流切换时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param format 包含变化的参数和对应的值。
@@ -123,7 +123,7 @@ typedef void (*OH_LowPowerVideoSink_OnRenderStarted)(OH_LowPowerVideoSink* sink,
 typedef void (*OH_LowPowerVideoSink_OnStreamChanged)(OH_LowPowerVideoSink* sink, OH_AVFormat* format, void* userData);
 
 /**
- * @brief LowPowerVideoSink第一帧解码成功时调用该方法，包含在{@link OH_LowPowerVideoSinkCallback}中。
+ * @brief LowPowerVideoSink第一帧解码成功时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param userData 用户执行回调所依赖的数据。
@@ -132,7 +132,7 @@ typedef void (*OH_LowPowerVideoSink_OnStreamChanged)(OH_LowPowerVideoSink* sink,
 typedef void (*OH_LowPowerVideoSink_OnFirstFrameDecoded)(OH_LowPowerVideoSink* sink, void* userData);
 
 /**
- * @brief LowPowerVideoSink播放完成时调用该方法，包含在{@link OH_LowPowerVideoSinkCallback}中。
+ * @brief LowPowerVideoSink播放完成时调用该方法。
  * 
  * @param sink 指向OH_LowPowerVideoSink实例的指针。
  * @param userData 用户执行回调所依赖的数据。
