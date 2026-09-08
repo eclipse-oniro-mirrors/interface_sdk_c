@@ -142,7 +142,7 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
 /**
  * @brief Obtains the original file name of a DLP file.
  *
- * @param fileName Pointer to the target file whose original file name is to be obtained.
+ * @param fileName Pointer to the target file whose original file name is to be obtained. The length cannot exceed 256 characters.
  * @param originalFileName Double pointer to the original file name obtained.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
  *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - when the device does not support the DLP feature. (Added in API version 26.1.0.)</li>
