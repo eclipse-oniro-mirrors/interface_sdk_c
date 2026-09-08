@@ -25,7 +25,7 @@
 /**
  * @file dlp_permission_api.h
  *
- * @brief 声明用于跨设备的文件的权限管理、加密存储、授权访问等能力的接口。
+ * @brief 声明用于跨设备的文件权限管理、加密存储、授权访问等能力的接口。
  *
  * @library libohdlp_permission.so
  * @kit DataProtectionKit
@@ -114,7 +114,7 @@ typedef enum {
  * @brief 查询当前DLP沙箱的权限信息。
  *
  * @param dlpFileAccess 表示DLP文件针对用户的授权类型，例如：只读。
- * @param flags 表示DLP文件的详细操作权限，操作权限的具体含义为：
+ * @param flags 表示DLP文件的详细操作权限，具体含义为：
  *     <br>0x00000000-表示无文件权限。
  *     <br>0x00000001-表示文件的查看权限。
  *     <br>0x00000002-表示文件的保存权限。
@@ -140,7 +140,7 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
 /**
  * @brief 获取指定DLP文件名的原始文件名。
  *
- * @param fileName 指定要查询的文件名。
+ * @param fileName 指定要查询的文件名。长度不超过256字节。
  * @param originalFileName DLP文件的原始文件名。
  * @return 0 - 操作成功。
  *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
