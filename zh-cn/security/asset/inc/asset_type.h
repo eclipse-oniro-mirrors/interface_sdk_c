@@ -251,7 +251,7 @@ typedef enum {
     ASSET_SUCCESS = 0,
 
     /**
-     * 表示调用者没有权限。
+     * 表示权限校验失败，应用无权限使用该API，需要申请权限。
      */
     ASSET_PERMISSION_DENIED = 201,
 

@@ -258,7 +258,7 @@ typedef enum {
     ASSET_SUCCESS = 0,
 
     /**
-     * The caller does not have the required permission.
+     * Permission verification failed. The application does not have the permission required to call the API.
      */
     ASSET_PERMISSION_DENIED = 201,
 

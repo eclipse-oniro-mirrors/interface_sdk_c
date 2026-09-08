@@ -51,7 +51,8 @@ extern "C" {
  * @param attributes Attributes of the asset to add.
  * @param attrCnt Number of the attributes of the asset to add.
  * @return {@link ASSET_SUCCESS} 0 - The operation is successful.
- *     {@link ASSET_PERMISSION_DENIED} 201 - The caller doesn't have the permission.
+ *     {@link ASSET_PERMISSION_DENIED} 201 - Permission verification failed.
+ *         The application does not have the permission required to call the API.
  *     {@link ASSET_INVALID_ARGUMENT} 401 - Parameter error. Possible causes:
  *         1. Mandatory parameters are left unspecified.
  *         2. Incorrect parameter types.
@@ -80,8 +81,9 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
  * @param queryCnt Number of attributes.
  * @return {@link ASSET_SUCCESS} 0 - The operation is successful.
  *     {@link ASSET_INVALID_ARGUMENT} 401 - Parameter error. Possible causes:
- *         1. Incorrect parameter types.
- *         2. Parameter verification failed.
+ *         1. Mandatory parameters are left unspecified.
+ *         2. Incorrect parameter types.
+ *         3. Parameter verification failed.
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - The ASSET service is unavailable.
  *     {@link ASSET_NOT_FOUND} 24000002 - The asset is not found.
  *     {@link ASSET_OUT_OF_MEMORY} 24000006 - Insufficient memory.
@@ -134,8 +136,9 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
  * @param challenge Challenge value, which is used when {@link OH_Asset_Query} is called.
  * @return {@link ASSET_SUCCESS} 0 - The operation is successful.
  *     {@link ASSET_INVALID_ARGUMENT} 401 - Parameter error. Possible causes:
- *         1. Incorrect parameter types.
- *         2. Parameter verification failed.
+ *         1. Mandatory parameters are left unspecified.
+ *         2. Incorrect parameter types.
+ *         3. Parameter verification failed.
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - The ASSET service is unavailable.
  *     {@link ASSET_NOT_FOUND} 24000002 - The asset is not found.
  *     {@link ASSET_STATUS_MISMATCH} 24000005 - The screen lock status does not match.
@@ -161,8 +164,9 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
  * @param resultSet Array of query results.
  * @return {@link ASSET_SUCCESS} 0 - The operation is successful.
  *     {@link ASSET_INVALID_ARGUMENT} 401 - Parameter error. Possible causes:
- *         1. Incorrect parameter types.
- *         2. Parameter verification failed.
+ *         1. Mandatory parameters are left unspecified.
+ *         2. Incorrect parameter types.
+ *         3. Parameter verification failed.
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - The ASSET service is unavailable.
  *     {@link ASSET_NOT_FOUND} 24000002 - The asset is not found.
  *     {@link ASSET_ACCESS_DENIED} 24000004 - Access to the asset is denied.
