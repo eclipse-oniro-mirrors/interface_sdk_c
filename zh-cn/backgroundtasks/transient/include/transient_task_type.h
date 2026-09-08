@@ -25,7 +25,7 @@
 /**
  * @file transient_task_type.h
  *
- * @brief Defines the data structures for the C APIs of transient task.
+ * @brief 定义短时任务的错误码和结构体。
  *
  * @library libtransient_task.so
  * @kit BackgroundTasksKit
@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief 同一时刻最大短时任务数量。
+ * @brief 同一时刻最大短时任务数量。用于限制应用同时申请的短时任务数量，超过此限制将申请失败。
  *
  * @since 20
  */
@@ -125,7 +125,7 @@ typedef struct TransientTask_DelaySuspendInfo {
      */
     int32_t requestId;
     /**
-     * @brief 应用实际申请的短时任务时间，单位：ms。
+     * @brief 剩余时间（单位：ms）。取值范围：[0, 180000]。
      *
      * @since 13
      */
@@ -140,13 +140,13 @@ typedef struct TransientTask_DelaySuspendInfo {
  */
 typedef struct TransientTask_TransientTaskInfo {
     /**
-     * @brief 当日剩余总配额。单位：ms。
+     * @brief 当日剩余短时任务总时间配额。单位：ms。取值范围：[0, 600000]。
      *
      * @since 20
      */
     int32_t remainingQuota;
     /*
-     * @brief 已申请的所有短时任务信息。包括短时任务请求ID、剩余时间。单位：ms。
+     * @brief 已申请的所有短时任务信息（同一时间最多3个）。包括短时任务请求ID、剩余时间（单位：ms）。
      *
      * @since 20
      */
@@ -154,7 +154,7 @@ typedef struct TransientTask_TransientTaskInfo {
 } TransientTask_TransientTaskInfo;
 
 /**
- * @brief 定义短时任务超时回调类型。
+ * @brief 定义短时任务超时回调类型。若申请的短时任务即将超时，系统会调用此回调函数通知应用。
  *
  * @since 13
  */
