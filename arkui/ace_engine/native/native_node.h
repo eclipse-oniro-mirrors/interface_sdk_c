@@ -17729,6 +17729,19 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node,
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy* policy);
 
+/**
+ * @brief Set UI Dvsync switch. Calling this function on a non-UI thread will abort.
+ *
+ * @param context [in] Pointer to ArkUI_ContextHandle.
+ * @param enable [in] whether enable Dvsync.
+ * @return Error code.
+ *          <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *          </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *          </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.</li></ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
+
 #ifdef __cplusplus
 };
 #endif
