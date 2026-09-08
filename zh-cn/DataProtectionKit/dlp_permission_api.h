@@ -54,6 +54,11 @@ typedef enum {
      */
     ERR_OH_SUCCESS = 0,
     /**
+     * 表示当前设备由于没有DLP特性导致能力不支持。
+     *@since 26.1.0
+     */
+    OH_DLP_NOT_SUPPORTED = 801,
+    /**
      * 表示入参错误。
      */
     ERR_OH_INVALID_PARAMETER = 19100001,
@@ -121,6 +126,7 @@ typedef enum {
  *     <br>0x00000200-表示文件的导出权限。
  *     <br>0x00000400-表示文件的修改文件权限。
  * @return 0 - 操作成功。
+ *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
  *     <br>19100001 - 入参错误。
  *     <br>19100006 - 非DLP沙箱应用。
  *     <br>19100011 - 系统服务工作异常。
@@ -135,6 +141,7 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
  * @param fileName 指定要查询的文件名。
  * @param originalFileName DLP文件的原始文件名。
  * @return 0 - 操作成功。
+ *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
  *     <br>19100001 - 入参错误。
  *     <br>19100012 - 内存申请失败。
  * @since 14
@@ -146,6 +153,7 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFile
  *
  * @param isInSandbox true表示当前应用运行在DLP沙箱环境，false表示当前应用不是运行在DLP沙箱环境。
  * @return 0 - 操作成功。
+ *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100012 - 内存申请失败。
  * @since 14
@@ -157,6 +165,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
  *
  * @param configInfo 沙箱应用配置信息。
  * @return 0 - 操作成功。
+ *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
  *     <br>19100001 - 入参错误。
  *     <br>19100007 - DLP沙箱应用不允许调用此接口。
  *     <br>19100011 - 系统服务工作异常。
@@ -170,6 +179,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  *
  * @param configInfo 沙箱应用配置信息。
  * @return 0 - 操作成功。
+ *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100012 - 内存申请失败。
  *     <br>19100018 - 应用未授权。
@@ -181,6 +191,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
  * @brief 清理沙箱应用配置信息。
  *
  * @return 0 - 操作成功。
+ *     <br>801 - （API 26.1.0新增）当前设备由于没有DLP特性导致能力不支持。
  *     <br>19100007 - DLP沙箱应用不允许调用此接口。
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100018 - 应用未授权。
