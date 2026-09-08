@@ -121,13 +121,13 @@ typedef enum {
     ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM,
     /** Swiper. */
     ARKUI_NODE_SWIPER,
-    /** Scrolling container. */
+    /** 滚动容器。 */
     ARKUI_NODE_SCROLL,
-    /** List. */
+    /** 列表。 */
     ARKUI_NODE_LIST,
-    /** List item. */
+    /** 列表项。 */
     ARKUI_NODE_LIST_ITEM,
-    /** List item group. */
+    /** 列表item分组。 */
     ARKUI_NODE_LIST_ITEM_GROUP,
     /** Column container. */
     ARKUI_NODE_COLUMN,
@@ -137,15 +137,15 @@ typedef enum {
     ARKUI_NODE_FLEX,
     /** Refresh component. */
     ARKUI_NODE_REFRESH,
-    /** Water flow container. */
+    /** 瀑布流容器。 */
     ARKUI_NODE_WATER_FLOW,
-    /** Water flow item. */
+    /** 瀑布流子组件。 */
     ARKUI_NODE_FLOW_ITEM,
     /** Relative layout component. */
     ARKUI_NODE_RELATIVE_CONTAINER,
-    /** Grid. */
+    /** 网格容器。 */
     ARKUI_NODE_GRID,
-    /** Grid item. */
+    /** 网格子组件。 */
     ARKUI_NODE_GRID_ITEM,
     /** Custom span. */
     ARKUI_NODE_CUSTOM_SPAN,
@@ -10392,17 +10392,18 @@ typedef enum {
     NODE_SWIPER_ITEMFILLPOLICY = 1001024,
 
     /**
-     * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
-     * property acquisition interfaces.
+     * @brief 设置ListItem的划出组件，支持属性设置，属性重置，属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object.</li>
+     * <li>.object 使用{@link ArkUI_ListItemSwipeActionOption}对象构造。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: Construct using the {@link ArkUI_ListitemSwipeActionOption} object.</li>
+     * <li>.object 使用{@link ArkUI_ListItemSwipeActionOption}对象构造。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
@@ -13723,139 +13724,129 @@ typedef enum {
     NODE_SWIPER_EVENT_ON_SCROLL_STATE_CHANGED = 1001008,
 
     /**
-     * @brief Event triggered when scrolling occurs. This event is triggered under the following scenarios:
-     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
-     * trigger scrolling).
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>3. The out-of-bounds bounce effect is active.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: horizontal scrolling offset.
-     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: vertical scrolling offset.
+     * @brief 定义滚动容器组件的滚动事件枚举值。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用。\n
+     * 3. 越界回弹。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含2个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：表示距离上一次事件触发的X轴增量。\n
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：表示距离上一次事件触发的Y轴增量。\n
      *
      */
     NODE_SCROLL_EVENT_ON_SCROLL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
 
     /**
-     * @brief Event triggered when the scrollable container starts scrolling in each frame. The **List**, **Scroll**,
-     * and **WaterFlow** components support this event since API version 12, and the **Grid** component supports this
-     * event since API version 22.
-     * <br>This event is triggered under the following scenarios:
-     * <br>1. This event is triggered when scrolling is started by the scrollable component (supports keyboard, mouse,
-     * and other input methods that trigger scrolling).
-     * <br>2. This event is not triggered when the controller API is called.
-     * <br>3. This event is not triggered when the component bounces back out of bounds.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: amount to scroll by.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
-     * <br>**::ArkUI_NodeComponentEvent** contains one return value:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: The event handler can work out the amount by which the component
-     * needs to scroll based on the real-world situation and return the result in this parameter.
+     * @brief 定义滚动容器组件的每帧滚动开始事件枚举值。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 调用控制器接口时不触发。\n
+     * 3. 越界回弹不触发。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含2个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：表示即将发生的滚动量。\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：表示当前滚动状态。\n
+     * <b>::ArkUI_NodeComponentEvent</b>中包含1个返回值：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：事件处理函数中可根据应用场景计算实际需要的滚动量并存于data[0].f32中，Scroll将按照返回值的实际滚动量进行滚动。\n
      *
      */
     NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN,
 
     /**
-     * @brief Event triggered when the scrollable container is about to scroll. This event is triggered under the
-     * following scenarios:
-     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
-     * trigger scrolling).
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>3. The out-of-bounds bounce effect is active.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame, in vp. The offset is positive when
-     * the content is scrolled left and negative when the content is scrolled right.
-     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: scroll offset of each frame, in vp. The offset is positive when
-     * the content is scrolled up and negative when the content is scrolled down.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll state. The parameter type is
-     * {@link ArkUI_ScrollState}.
-     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: current scroll source. The parameter type is
-     * {@link ArkUI_ScrollSource}.
+     * @brief 定义滚动容器组件的滑动前触发事件枚举值。
      *
-     * @return Does not return or returns a number that sets the actual scroll distance of the scroll component.
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用。\n
+     * 3. 越界回弹。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含4个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：
+     * 每帧滚动的偏移量，内容向左滚动时偏移量为正，向右滚动时偏移量为负，单位vp。 \n
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：
+     * 每帧滚动的偏移量，内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。 \n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：当前滑动状态，参数类型{@link ArkUI_ScrollState}。\n
+     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>：当前滚动的来源，参数类型{@link ArkUI_ScrollSource}。\n
+     *
+     * @return 不返回或返回一个number，用于设置滚动组件实际的滚动距离。
      */
     NODE_SCROLL_EVENT_ON_WILL_SCROLL,
     /**
-     * @brief Event triggered when the scrollable container scrolls. This event is triggered under the following
-     * scenarios:
-     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
-     * trigger scrolling).
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>3. The out-of-bounds bounce effect is active.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame, in vp. The offset is positive when
-     * the content is scrolled left and negative when the content is scrolled right.
-     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: scroll offset of each frame, in vp. The offset is positive when
-     * the content is scrolled up and negative when the content is scrolled down.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll state. The parameter type is
-     * {@link ArkUI_ScrollState}.
+     * @brief 定义滚动容器组件的滑动时触发事件枚举值。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用。\n
+     * 3. 越界回弹。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含3个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：
+     * 每帧滚动的偏移量，内容向左滚动时偏移量为正，向右滚动时偏移量为负，单位vp。 \n
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：
+     * 每帧滚动的偏移量，内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。 \n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：当前滑动状态，参数类型{@link ArkUI_ScrollState}。 \n
      *
      */
     NODE_SCROLL_EVENT_ON_DID_SCROLL,
     /**
-     * @brief Event triggered when the scrollable container starts scrolling. The **List**, **Scroll**, and **WaterFlow**
-     * components support this event since API version 12, and the **Grid** component supports this event since API
-     * version 22.
-     * <br>This event is triggered under the following scenarios:
-     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
-     * trigger scrolling).
-     * <br>2. The controller API is called to start the scrolling, accompanied by a transition animation.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * @brief 定义滚动容器组件的滚动开始事件枚举值。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用后开始，带过渡动效。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
      *
      */
     NODE_SCROLL_EVENT_ON_SCROLL_START,
 
     /**
-     * @brief Defines the event triggered when scrolling of the <b>ARKUI_NODE_SCROLL</b> component stops.
+     * @brief 定义滚动容器组件的滚动停止事件枚举值。List/Scroll/WaterFlow从API version 12开始支持，Grid从API version 22开始支持。
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is stopped by the <b>ARKUI_NODE_SCROLL</b> component or other input
-     * settings, such as keyboard and mouse operations. \n
-     * 2. This event is triggered when the controller API is called, accompanied by a transition animation. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用后停止，带过渡动效。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
+     *
      */
     NODE_SCROLL_EVENT_ON_SCROLL_STOP,
 
     /**
-     * @brief Event triggered when the scrollable container reaches the scroll boundary. This event is triggered under
-     * the following scenarios:
-     * <br>1. Scrolling reaches the edge after being started by the scrollable component (supports keyboard, mouse, and
-     * other input methods that trigger scrolling).
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>3. The out-of-bounds bounce effect is active.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: edge (top, bottom, left, or right) that the scrolling reaches.
+     * @brief 定义滚动容器组件的滚动边缘事件枚举值。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用。\n
+     * 3. 越界回弹。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数。\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：表示当前碰到的是上下左右哪个边。\n
      *
      */
     NODE_SCROLL_EVENT_ON_SCROLL_EDGE,
 
     /**
-     * @brief Event triggered when the scrollable component reaches the start edge.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * @brief 定义滚动容器组件到达起始位置时触发回调。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 组件到达起始位置时触发。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
      *
      */
     NODE_SCROLL_EVENT_ON_REACH_START,
 
     /**
-     * @brief Event triggered when the scrollable component reaches the end edge.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     * @brief 定义滚动容器组件到达末尾位置时触发回调。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 组件到达末尾位置时触发。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
      *
      */
     NODE_SCROLL_EVENT_ON_REACH_END,
@@ -13905,99 +13896,93 @@ typedef enum {
     NODE_SCROLL_EVENT_ON_ZOOM_STOP,
 
     /**
-     * @brief Defines the callback for when the scrollable will start dragging.
+     * @brief 定义滚动容器组件拖划即将开始回调。
      *
-     * This event is triggered when the scrollable will start dragging. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
+     * 触发该事件的条件：滚动容器组件拖划即将开始时触发。 \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。 \n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
+     *
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING = 1002013,
 
     /**
-     * @brief Defines the callback for when the scrollable did end dragging.
+     * @brief 定义滚动容器组件拖划结束回调。
      *
-     * This event is triggered when the scrollable did end dragging. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether start fling animation. \n
+     * 触发该事件的条件：滚动容器组件拖划结束后触发。 \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。 \n
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数： \n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：拖划结束后是否触发滑动动画。 \n
      *
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING = 1002014,
 
     /**
-     * @brief Defines the callback for when the scrollable will start fling.
+     * @brief 定义滚动容器组件滑动动画即将开始回调。
      *
-     * This event is triggered when the scrollable will start fling. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
+     * 触发该事件的条件：滚动容器组件滑动动画即将开始时触发。 \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。 \n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
+     *
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_FLING = 1002015,
 
     /**
-     * @brief Defines the callback for when the scrollable did end fling.
+     * @brief 定义滚动容器组件滑动动画结束回调。
      *
-     * This event is triggered when the scrollable did end fling. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
+     * 触发该事件的条件：滚动容器组件滑动动画结束后触发。 \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。 \n
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。\n
+     *
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_FLING = 1002016,
 
     /**
-     * @brief Event triggered when a child component of {@link ARKUI_NODE_LIST} enters or leaves the list display area.
-     * This event is triggered in the following scenarios:
-     * <br>This event is triggered once when the list is initialized and when the index of the first child component or
-     * the last child component in the list display area changes.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: index of the first child component in the list display area.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: index of the last child component in the list display area.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the center child component in the list display area.
+     * @brief 定义ARKUI_NODE_LIST有子组件划入或划出List显示区域时触发事件枚举值。
+     *
+     * 触发该事件的条件 ：\n
+     * 列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含3个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：List显示区域内第一个子组件的索引值。\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：List显示区域内最后一个子组件的索引值。\n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：List显示区域内中间位置子组件的索引值。\n
      *
      */
     NODE_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
 
     /**
-     * @brief Event triggered when the {@link ARKUI_NODE_LIST} component is about to scroll. This event is triggered in
-     * the following scenarios:
-     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
-     * trigger scrolling).
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>3. The out-of-bounds bounce effect is active.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the list
-     * is scrolled up and negative when the list is scrolled down.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
-     * {@link ArkUI_ScrollState}.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll source. The parameter type is
-     * {@link ArkUI_ScrollSource}.
+     * @brief 定义ARKUI_NODE_LIST组件的滑动前触发事件枚举值。
      *
-     * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
+     * 触发该事件的条件：\n
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用。\n
+     * 3. 越界回弹。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含3个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：
+     * 每帧滚动的偏移量，list内容向上滚动时偏移量为正，向下滚动时偏移量为负。 \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：当前滑动状态，参数类型{@link ArkUI_ScrollState}。\n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：当前滚动的来源，参数类型{@link ArkUI_ScrollSource}。\n
+     *
+     * @return 不返回或返回一个number，用于设置滚动组件实际的滚动距离。
      */
     NODE_LIST_ON_WILL_SCROLL,
     /**
-     * @brief Event triggered when the {@link ARKUI_NODE_LIST} component scrolls. This event is triggered under the
-     * following scenarios:
-     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
-     * trigger scrolling).
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>3. The out-of-bounds bounce effect is active.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the list
-     * is scrolled up and negative when the list is scrolled down.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
+     * @brief 定义ARKUI_NODE_LIST组件的滑动时触发事件枚举值。
+     *
+     * 触发该事件的条件 ：\n
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。\n
+     * 2. 通过滚动控制器API接口调用。\n
+     * 3. 越界回弹。\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}中包含2个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：
+     * 每帧滚动的偏移量，list内容向上滚动时偏移量为正，向下滚动时偏移量为负。 \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：当前滑动状态。 \n
      *
      */
     NODE_LIST_ON_DID_SCROLL,

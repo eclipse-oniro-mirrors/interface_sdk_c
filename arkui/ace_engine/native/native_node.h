@@ -10972,7 +10972,7 @@ typedef enum {
     NODE_SWIPER_ITEMFILLPOLICY = 1001024,
 
     /**
-     * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
+     * @brief Set the delineation component of the ListItem, supporting property settings, property resets, and
      * property acquisition interfaces.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
