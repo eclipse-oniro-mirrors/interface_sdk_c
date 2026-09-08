@@ -30,7 +30,7 @@
 /**
  * @file avrecorder_base.h
  *
- * @brief 定义了媒体AVRecorder的结构体、枚举和回调函数。
+ * @brief 定义AVRecorder的结构体、枚举和回调函数类型。
  * 
  * @kit MediaKit
  * @include <multimedia/player_framework/avrecorder_base.h>
@@ -154,12 +154,12 @@ typedef enum OH_AVRecorder_State {
     /* 准备状态。参数设置完成，此时可以调用{@link OH_AVRecorder_Start}接口开始录制，进入AVRECORDER_STARTED状态。 */
     AVRECORDER_PREPARED = 1,
     /**
-     * 启动状态。正在录制，此时可以调用{@link OH_AVRecorder_Pause}接口暂停录制，进入AVRECORDER_PAUSED状态。
+     * 启动状态。正在录制，此时可以调用{@link OH_AVRecorder_Pause}接口暂停录制，进入AVRECORDER_PAUSED状态。<br>
      * 也可以调用{@link OH_AVRecorder_Stop}接口结束录制，进入AVRECORDER_STOPPED状态。
      */
     AVRECORDER_STARTED = 2,
     /**
-     * 暂停状态。此时可以调用{@link OH_AVRecorder_Resume}接口继续录制，进入AVRECORDER_STARTED状态。
+     * 暂停状态。此时可以调用{@link OH_AVRecorder_Resume}接口继续录制，进入AVRECORDER_STARTED状态。<br>
      * 也可以调用{@link OH_AVRecorder_Stop}接口结束录制，进入AVRECORDER_STOPPED状态。
      */
     AVRECORDER_PAUSED = 3,
@@ -168,7 +168,7 @@ typedef enum OH_AVRecorder_State {
     /* 释放状态。录制资源释放，此时不能再进行任何操作。在任何其他状态下，均可以通过调用{@link OH_AVRecorder_Release}接口进入AVRECORDER_RELEASED状态。 */
     AVRECORDER_RELEASED = 5,
     /**
-     * 错误状态。当AVRecorder实例发生不可逆错误，会转换至该状态。在AVRECORDER_ERROR状态时，不能再进行录制相关操作，
+     * 错误状态。当AVRecorder实例发生不可逆错误，会转换至该状态。<br>在AVRECORDER_ERROR状态时，不能再进行录制相关操作，
      * 用户需要调用{@link OH_AVRecorder_Reset}接口重置AVRecorder实例，或者调用{@link OH_AVRecorder_Release}接口释放资源。
      */
     AVRECORDER_ERROR = 6,
