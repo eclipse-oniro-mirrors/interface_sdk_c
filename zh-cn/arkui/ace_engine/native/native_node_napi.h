@@ -387,6 +387,20 @@ ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env);
  */
 void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
 
+/**
+ * @brief 启用或禁用事件透传。事件透传表示在事件分发过程中，事件直接传递给组件而不进行重采样。
+ *
+ * @param uiContext 用于绑定实例的 UIContext 对象。
+ * @param enabled 是否启用事件透传。<b>true</b>：启用；<b>false</b>：禁用（默认值）。
+ * @param type 用于启用或禁用事件透传的原始输入事件类型 {@link ArkUI_RawInputEventType}。
+ * @return 结果码。
+ *         操作成功返回 {@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *         UIContext 对象无效时返回 {@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_EnableEventPassthrough(ArkUI_ContextHandle uiContext, bool enabled,
+    ArkUI_RawInputEventType type);
+
 #ifdef __cplusplus
 };
 #endif
