@@ -653,7 +653,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseCaptureStrategy(OH_AVScree
  * @since 20
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy( 
-struct OH_AVScreenCapture *capture, OH_AVScreenCapture_CaptureStrategy *strategy);
+    struct OH_AVScreenCapture *capture, OH_AVScreenCapture_CaptureStrategy *strategy);
 
 /**
  * @brief 设置蜂窝通话时是否保持录屏。<br>
