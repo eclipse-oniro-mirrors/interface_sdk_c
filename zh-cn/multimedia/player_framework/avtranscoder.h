@@ -186,7 +186,7 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
  * @param config 指向OH_AVTranscoder_Config实例的指针，参考{@link OH_AVTranscoder_Config}。
- * @return AV_ERR_OK：成功设置视频转码的参数设置，进入AVTRANSCODER_PREPARED状态。
+ * @return AV_ERR_OK：成功设置视频转码参数，进入AVTRANSCODER_PREPARED状态。
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Prepare操作，或者是不支持的格式。
  * AV_ERR_IO：IO访问相关的错误。
