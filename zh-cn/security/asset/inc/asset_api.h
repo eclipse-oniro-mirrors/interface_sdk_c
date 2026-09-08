@@ -51,7 +51,7 @@ extern "C" {
  * @param attributes 待新增关键资产的属性集合。
  * @param attrCnt 待新增关键资产的属性数量。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
- *     {@link ASSET_PERMISSION_DENIED} 201 - 调用者没有权限。
+ *     {@link ASSET_PERMISSION_DENIED} 201 - 权限校验失败，应用无权限使用该API，需要申请权限。
  *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
  *         1. 必选参数未指定。
  *         2. 参数类型错误。
@@ -80,8 +80,9 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
  * @param queryCnt 待删除关键资产搜索条件的个数。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
  *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
- *         1. 参数类型错误。
- *         2. 参数校验失败。
+ *         1. 必选参数未指定。
+ *         2. 参数类型错误。
+ *         3. 参数校验失败。
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - 关键资产服务不可用。
  *     {@link ASSET_NOT_FOUND} 24000002 - 未找到关键资产。
  *     {@link ASSET_OUT_OF_MEMORY} 24000006 - 系统内存不足。
@@ -133,8 +134,9 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
  * @param challenge 挑战值，在后续调用{@link OH_Asset_Query}时使用。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
  *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
- *         1. 参数类型错误。
- *         2. 参数校验失败。
+ *         1. 必选参数未指定。
+ *         2. 参数类型错误。
+ *         3. 参数校验失败。
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - 关键资产服务不可用。
  *     {@link ASSET_NOT_FOUND} 24000002 - 未找到关键资产。
  *     {@link ASSET_STATUS_MISMATCH} 24000005 - 锁屏状态不匹配。
@@ -160,8 +162,9 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
  * @param resultSet 查询结果列表。
  * @return {@link ASSET_SUCCESS} 0 - 操作成功。
  *     {@link ASSET_INVALID_ARGUMENT} 401 - 参数错误。可能原因：
- *         1. 参数类型错误。
- *         2. 参数校验失败。
+ *         1. 必选参数未指定。
+ *         2. 参数类型错误。
+ *         3. 参数校验失败。
  *     {@link ASSET_SERVICE_UNAVAILABLE} 24000001 - 关键资产服务不可用。
  *     {@link ASSET_NOT_FOUND} 24000002 - 未找到关键资产。
  *     {@link ASSET_ACCESS_DENIED} 24000004 - 访问被拒绝。
