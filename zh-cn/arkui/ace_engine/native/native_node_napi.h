@@ -393,9 +393,9 @@ void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
  * @param uiContext 用于绑定实例的 UIContext 对象。
  * @param enabled 是否启用事件透传。<b>true</b>：启用；<b>false</b>：禁用（默认值）。
  * @param type 用于启用或禁用事件透传的原始输入事件类型 {@link ArkUI_RawInputEventType}。
- * @return 结果码。
- *         操作成功返回 {@link ARKUI_ERROR_CODE_NO_ERROR}。
- *         UIContext 对象无效时返回 {@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *         <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} uiContext对象无效 。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_EnableEventPassthrough(ArkUI_ContextHandle uiContext, bool enabled,
