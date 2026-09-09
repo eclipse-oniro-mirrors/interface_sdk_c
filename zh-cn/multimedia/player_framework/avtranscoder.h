@@ -59,7 +59,7 @@ OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create();
  * 调用成功后，config实例会被释放并置为nullptr。
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
- * @return AV_ERR_OK：释放成功。
+ * @return AV_ERR_OK：释放成功。<br>
  * AV_ERR_INVALID_VAL：config是空指针。
  * @since 20
  */
@@ -73,7 +73,7 @@ OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config);
  * @param srcFd 源视频的文件描述符。
  * @param srcOffset 源视频在文件描述符中的偏移量，单位：字节/Byte。
  * @param length 源视频的长度，单位：字节/Byte。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入config为空指针，或者源视频文件相关参数错误。
  * @since 20
  */
@@ -86,7 +86,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param dstFd 输出视频的文件描述符。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入config为空指针，或者输出视频文件描述符是无效的。
  * @since 20
  */
@@ -99,7 +99,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int3
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param mimeType 输出视频的编码格式，详细请参见参考native_avcodec_base.h。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。
  * @since 20
  */
@@ -112,7 +112,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *confi
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param mimeType 输出音频的编码格式，参考native_avcodec_base.h。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。
  * @since 20
  */
@@ -125,7 +125,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *confi
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param mimeType 输出视频的封装格式，参考native_avcodec_base.h。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是无效的。
  * @since 20
  */
@@ -137,7 +137,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param bitrate 输出音频的码率，单位为比特率（bps）。默认设置为48Kbps。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。
  * @since 20
  */
@@ -153,7 +153,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
  * (480P,720P]默认码率值为2Mbps。
  * (720P,1080P]默认码率值为4Mbps。
  * 1080P及以上默认码率值为8Mbps。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。
  * @since 20
  */
@@ -166,7 +166,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *co
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param width 输出视频帧的宽，支持范围[240, 3840]，默认设置为源视频帧的宽。
  * @param height 输出视频帧的高，支持范围[240, 2160]，默认设置为源视频帧的高。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者width、height值是无效的。
  * @since 20
  */
@@ -186,10 +186,10 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
  * @param config 指向OH_AVTranscoder_Config实例的指针，参考{@link OH_AVTranscoder_Config}。
- * @return AV_ERR_OK：成功设置视频转码参数，进入AVTRANSCODER_PREPARED状态。
- * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。
- * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Prepare操作，或者是不支持的格式。
- * AV_ERR_IO：IO访问相关的错误。
+ * @return AV_ERR_OK：成功设置视频转码参数，进入AVTRANSCODER_PREPARED状态。<br>
+ * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Prepare操作，或者是不支持的格式。<br>
+ * AV_ERR_IO：IO访问相关的错误。<br>
  * AV_ERR_SERVICE_DIED：媒体服务已停止。
  * @since 20
  */
@@ -200,10 +200,10 @@ OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscode
  * 此函数必须在{@link OH_AVTranscoder_Prepare}成功调用之后调用，调用成功之后进入AVTRANSCODER_STARTED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
- * @return AV_ERR_OK：成功开始转码，进入AVTRANSCODER_STARTED状态。
- * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码开始操作失败。
- * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Start操作。
- * AV_ERR_IO：IO访问相关的错误。
+ * @return AV_ERR_OK：成功开始转码，进入AVTRANSCODER_STARTED状态。<br>
+ * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码开始操作失败。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Start操作。<br>
+ * AV_ERR_IO：IO访问相关的错误。<br>
  * AV_ERR_SERVICE_DIED：媒体服务已停止。
  * @since 20
  */
@@ -214,10 +214,10 @@ OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder);
  * 此函数必须在转码实例处于AVTRANSCODER_STARTED状态时调用，调用成功之后进入AVTRANSCODER_PAUSED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
- * @return AV_ERR_OK：成功暂停转码，进入AVTRANSCODER_PAUSED状态。
- * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码暂停操作失败。
- * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Pause操作。
- * AV_ERR_IO：IO访问相关的错误。
+ * @return AV_ERR_OK：成功暂停转码，进入AVTRANSCODER_PAUSED状态。<br>
+ * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码暂停操作失败。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Pause操作。<br>
+ * AV_ERR_IO：IO访问相关的错误。<br>
  * AV_ERR_SERVICE_DIED：媒体服务已停止。
  * @since 20
  */
@@ -228,10 +228,10 @@ OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder);
  * 此函数必须在转码实例处于AVTRANSCODER_PAUSED状态时调用，调用成功之后重新进入AVTRANSCODER_STARTED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
- * @return AV_ERR_OK：成功恢复转码，进入AVTRANSCODER_STARTED状态。
- * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码恢复操作失败。
- * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Resume操作。
- * AV_ERR_IO：IO访问相关的错误。
+ * @return AV_ERR_OK：成功恢复转码，进入AVTRANSCODER_STARTED状态。<br>
+ * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码恢复操作失败。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Resume操作。<br>
+ * AV_ERR_IO：IO访问相关的错误。<br>
  * AV_ERR_SERVICE_DIED：媒体服务已停止。
  * @since 20
  */
@@ -242,10 +242,10 @@ OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
  * 此函数必须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
- * @return AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。
- * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码取消操作失败。
- * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Cancel操作。
- * AV_ERR_IO：IO访问相关的错误。
+ * @return AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。<br>
+ * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码取消操作失败。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Cancel操作。<br>
+ * AV_ERR_IO：IO访问相关的错误。<br>
  * AV_ERR_SERVICE_DIED：媒体服务已停止。
  * @since 20
  */
@@ -255,10 +255,10 @@ OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder);
  * @brief 释放转码实例资源。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。
- * @return AV_ERR_OK：成功释放转码实例资源。
- * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码释放资源操作失败。
- * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Release操作。
- * AV_ERR_IO：IO访问相关的错误。
+ * @return AV_ERR_OK：成功释放转码实例资源。<br>
+ * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码释放资源操作失败。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Release操作。<br>
+ * AV_ERR_IO：IO访问相关的错误。<br>
  * AV_ERR_SERVICE_DIED：媒体服务已停止。
  * @since 20
  */
@@ -273,7 +273,7 @@ OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder);
  * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为OH_AVTranscoder_Create创建的实例。
  * @param callback 转码状态回调方法，详细说明请参见{@link OH_AVTranscoder_OnStateChange}。
  * @param userData 指向用户特定数据的指针。
- * @return AV_ERR_OK：注册成功。
+ * @return AV_ERR_OK：注册成功。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。
  * @since 20
  */
@@ -290,7 +290,7 @@ OH_AVErrCode OH_AVTranscoder_SetStateCallback(
  * @param transcoder 指向OH_AVTranscoder实例的指针。
  * @param callback 转码错误回调方法，详细说明请参见{@link OH_AVTranscoder_OnError}。
  * @param userData 指向用户特定数据的指针。
- * @return AV_ERR_OK：注册成功。
+ * @return AV_ERR_OK：注册成功。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。
  * @since 20
  */
@@ -306,7 +306,7 @@ OH_AVErrCode OH_AVTranscoder_SetErrorCallback(
  * @param transcoder 指向OH_AVTranscoder实例的指针。
  * @param callback 转码进度更新回调方法，详细说明请参见{@link OH_AVTranscoder_OnProgressUpdate}。
  * @param userData 指向用户特定数据的指针。
- * @return AV_ERR_OK：注册成功。
+ * @return AV_ERR_OK：注册成功。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。
  * @since 20
  */
@@ -321,7 +321,7 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
  * 
  * @param config 指向OH_AVTranscoder_Config实例的指针。
  * @param enabled 是否使能B帧编码。true表示使能B帧编码，false表示不使能B帧编码，默认为false。
- * @return AV_ERR_OK：设置成功。
+ * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针。
  * @since 20
  */
