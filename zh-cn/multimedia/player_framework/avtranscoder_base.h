@@ -100,13 +100,13 @@ typedef void (*OH_AVTranscoder_OnStateChange)(OH_AVTranscoder *transcoder, OH_AV
  * @brief 转码过程中错误事件的回调函数。
  * 
  * @param transcoder OH_AVTranscoder实例的指针。
- * @param errorCode 错误码
- * {@link AV_ERR_NO_MEMORY} 无内存，取值为1。
- * {@link AV_ERR_OPERATE_NOT_PERMIT} 操作不允许，取值为2。
- * {@link AV_ERR_INVALID_VAL} 参数检查失败，取值为3。
- * {@link AV_ERR_IO} IO错误，取值为4。
- * {@link AV_ERR_INVALID_STATE} 当前状态不支持此操作，取值为8。
- * {@link AV_ERR_UNSUPPORT} 不支持的接口，取值为9。
+ * @param errorCode 错误码。<br>
+ * AV_ERR_NO_MEMORY 无内存，取值为1。<br>
+ * AV_ERR_OPERATE_NOT_PERMIT 操作不允许，取值为2。<br>
+ * AV_ERR_INVALID_VAL 参数检查失败，取值为3。<br>
+ * AV_ERR_IO IO错误，取值为4。<br>
+ * AV_ERR_INVALID_STATE 当前状态不支持此操作，取值为8。<br>
+ * AV_ERR_UNSUPPORT 不支持的接口，取值为9。
  * @param errorMsg 错误消息。
  * @param userData 用户特定数据的指针。
  * @since 20
