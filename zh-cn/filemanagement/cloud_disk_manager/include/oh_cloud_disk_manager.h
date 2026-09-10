@@ -47,6 +47,16 @@ extern "C" {
 #endif
 
 /**
+ * @brief OH_CloudDisk_SyncFolderEx服务的版本1。
+ * 
+ * 当结构体被扩展时，将定义新的版本宏。
+ * 运行库使用版本字段确定哪些字段有效。
+ *
+ * @since 26.1.0
+ */
+#define OH_CLOUD_DISK_SYNC_FOLDER_EX_VERSION_1 1
+
+/**
  * @brief 文件同步状态的枚举值。
  *
  * @since 21
@@ -446,6 +456,46 @@ typedef struct CloudDisk_SyncFolder {
 } CloudDisk_SyncFolder;
 
 /**
+ * @brief 定义带占位符支持的云盘同步文件夹。
+ * 必须将版本字段设置为有效的版本宏(例如{@ Cloud_DISK_SYNC_LAYER_EX_VERSION_1})，然后才能传递结构到任何API。
+ * 运行时使用版本来确定字段有效；当指定低版本时，在较高版本中引入的字段将被忽略。
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_CloudDisk_SyncFolderEx {
+    /**
+     * @brief 指示此结构体的版本。必须初始化为有效的版本宏，例如 {@ Cloud_DISK_SYNC_FLYER_EX_VERSION_1}。
+     *
+     * @since 26.1.0
+     */
+    uint32_t version;
+    /**
+     * @brief sync文件夹路径。
+     *
+     * @since 26.1.0
+     */
+    CloudDisk_SyncFolderPath path;
+    /**
+     * @brief 指示同步文件夹的状态。
+     *
+     * @since 26.1.0
+     */
+    CloudDisk_SyncFolderState state;
+    /**
+     * @brief 同步文件夹的displayName信息。
+     *
+     * @since 26.1.0
+     */
+    CloudDisk_DisplayNameInfo displayNameInfo;
+    /**
+     * @brief 同步文件夹是否支持占位符。
+     *
+     * @since 26.1.0
+     */
+    bool isSupportPlaceHolder;
+} OH_CloudDisk_SyncFolderEx;
+
+/**
  * @brief 占位符文件的元数据信息。
  * @since 26.1.0
  */
@@ -650,6 +700,28 @@ CloudDisk_ErrorCode OH_CloudDisk_ConvertPlaceholderToFile(const CloudDisk_SyncFo
  */
 CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
     const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo);
+
+/**
+ * @brief 使用占位符支持信息注册同步文件夹。
+ *
+ * @param syncFolder 指示具有占位符支持的同步文件夹。
+ * @return 如果操作成功，则返回{@link CLOUD_DISK_OK}；
+ *     <br> 否则返回{@link CloudDisk_ErrorCode}中定义的错误代码。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderEx(const OH_CloudDisk_SyncFolderEx *syncFolder);
+ 
+/**
+ * @brief 获取具有占位符支持信息的同步文件夹。
+ *
+ * @param syncFolders 输出参数。
+ *     <br> 返回{@link CloudDisk_SyncFolderEx}的数组，用于存储同步文件夹。
+ * @param count 输出参数。返回同步文件夹的数量。
+ * @return 如果操作成功，则返回{@link CLOUD_DISK_OK}；
+ *     <br> 否则返回{@link CloudDisk_ErrorCode}中定义的错误代码。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_GetSyncFoldersEx(OH_CloudDisk_SyncFolderEx **syncFolders, size_t *count);
 #ifdef __cplusplus
 };
 #endif
