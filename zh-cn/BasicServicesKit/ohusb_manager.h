@@ -437,10 +437,10 @@ typedef struct OH_UsbManager_UsbPipe {
  * @brief 获取所有已连接USB设备的列表。调用者必须调用{@link OH_UsbManager_FreeUsbDeviceList}
  * <br>释放返回的数组。
  *
- * @param devices [out] 指向{@link OH_UsbManager_UsbDevice}数组的二级指针。成功时，
+ * @param devices [出参] 指向{@link OH_UsbManager_UsbDevice}数组的二级指针。成功时，
  *     <br>函数会分配该数组及所有内部字符串缓冲区。调用者不得单独释放各个字段；
  *     <br>请改用{@link OH_UsbManager_FreeUsbDeviceList}。不得为空。
- * @param deviceCount [out] 指向返回设备数量的指针。成功时，该值被设置为数组中的
+ * @param deviceCount [出参] 指向返回设备数量的指针。成功时，该值被设置为数组中的
  *     <br>元素个数。为0表示当前没有设备。不得为空。
  * @return {@link OH_USBMANAGER_SUCCESS} 表示操作成功。
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示USB服务不可用。可能原因：USB服务故障，例如服务未运行或意外停止。
@@ -457,8 +457,8 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice *
  *
  * <br>调用后该指针失效，不得再使用。传入null或数量为0是安全的空操作。
  *
- * @param devices [in] 指向由{@link OH_UsbManager_GetUsbDeviceList}返回的数组的指针。
- * @param deviceCount [in] 数组中的元素个数，由{@link OH_UsbManager_GetUsbDeviceList}
+ * @param devices [入参] 指向由{@link OH_UsbManager_GetUsbDeviceList}返回的数组的指针。
+ * @param deviceCount [入参] 数组中的元素个数，由{@link OH_UsbManager_GetUsbDeviceList}
  *     <br>返回。
  * @since 26.1.0
  */
@@ -470,8 +470,8 @@ void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t 
  *
  * <br>仅需要设备结构体中的busNum和devAddress字段；其他字段将被忽略。
  *
- * @param device [in] 指向要连接的{@link OH_UsbManager_UsbDevice}的指针。不得为空。
- * @param pipe [out] 指向{@link OH_UsbManager_UsbPipe}的指针，成功时用于接收
+ * @param device [入参] 指向要连接的{@link OH_UsbManager_UsbDevice}的指针。不得为空。
+ * @param pipe [出参] 指向{@link OH_UsbManager_UsbPipe}的指针，成功时用于接收
  *     <br>句柄。不得为空。
  * @return {@link OH_USBMANAGER_SUCCESS} 表示连接成功。
  *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} 表示应用缺少设备访问权限。
@@ -494,8 +494,8 @@ OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevic
 /**
  * @brief 检查应用是否有权限访问指定设备。
  *
- * @param deviceName [in] 设备名称，格式为<总线编号>-<设备地址>。不得为空。
- * @param result [out] 用于接收结果的指针。如果应用已被授予访问设备的权限
+ * @param deviceName [入参] 设备名称，格式为<总线编号>-<设备地址>。不得为空。
+ * @param result [出参] 用于接收结果的指针。如果应用已被授予访问设备的权限
  *     <br>则为true；如果权限未被授予或未被请求则为false。不得为空。
  * @return {@link OH_USBMANAGER_SUCCESS} 表示操作成功。
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示USB服务不可用。
@@ -512,11 +512,11 @@ OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool
  * @brief 定义用于返回{@link OH_UsbManager_RequestPermission}结果的
  * <br>回调类型。
  *
- * @param errorCode [out] 请求的错误码。{@link OH_USBMANAGER_SUCCESS}表示请求
+ * @param errorCode [出参] 请求的错误码。{@link OH_USBMANAGER_SUCCESS}表示请求
  *     <br>正常完成；其他值表示服务异常。
- * @param result [out] 如果权限被授予则为true；如果用户拒绝请求则为false。
+ * @param result [出参] 如果权限被授予则为true；如果用户拒绝请求则为false。
  *     <br>该参数仅在errorCode为{@link OH_USBMANAGER_SUCCESS}时有意义。
- * @param userContext [out] 从{@link OH_UsbManager_RequestPermission}透传的用户上下文。
+ * @param userContext [出参] 从{@link OH_UsbManager_RequestPermission}透传的用户上下文。
  * @since 26.1.0
  */
 typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCode, bool result,
@@ -526,10 +526,10 @@ typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCo
  * @brief 异步请求访问指定USB设备的权限。这可能触发系统弹窗询问用户是否授权。
  * <br>函数立即返回，结果通过回调传递。
  *
- * @param deviceName [in] 设备名称，格式为<总线编号>-<设备地址>。不得为空。
- * @param callback [in] 请求完成时调用的{@link OH_UsbManager_PermissionCallback}。
+ * @param deviceName [入参] 设备名称，格式为<总线编号>-<设备地址>。不得为空。
+ * @param callback [入参] 请求完成时调用的{@link OH_UsbManager_PermissionCallback}。
  *     <br>不得为空。
- * @param userContext [in] 传递给回调的用户上下文指针。可以为空。
+ * @param userContext [入参] 传递给回调的用户上下文指针。可以为空。
  * @return {@link OH_USBMANAGER_SUCCESS} 表示请求成功发起。
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示服务启动请求失败。
  *     <br>可能原因：USB服务故障（例如服务未运行或意外停止），或传入的deviceName无效。
@@ -546,9 +546,9 @@ OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
  * @brief 获取已打开USB设备管道的文件描述符。该fd可用于基于ioctl的
  * <br>低层USB传输。
  *
- * @param pipe [in] 指向从{@link OH_UsbManager_ConnectDevice}获取的
+ * @param pipe [入参] 指向从{@link OH_UsbManager_ConnectDevice}获取的
  *     <br>{@link OH_UsbManager_UsbPipe}的指针。不得为空。
- * @param fd [out] 用于在成功时接收文件描述符的指针。不得为空。
+ * @param fd [出参] 用于在成功时接收文件描述符的指针。不得为空。
  * @return {@link OH_USBMANAGER_SUCCESS} 表示操作成功。
  *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} 表示应用缺少设备访问权限。
  *     <br>可能原因：尚未请求访问权限、权限已被撤销，或用户拒绝了请求。
@@ -571,7 +571,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbP
  * @brief 关闭USB设备管道并释放底层资源。该管道必须从{@link OH_UsbManager_ConnectDevice}
  * <br>获取。
  *
- * @param pipe [in] 指向要关闭的、从{@link OH_UsbManager_ConnectDevice}获取的
+ * @param pipe [入参] 指向要关闭的、从{@link OH_UsbManager_ConnectDevice}获取的
  *     <br>{@link OH_UsbManager_UsbPipe}的指针。不得为空。
  * @return {@link OH_USBMANAGER_SUCCESS} 表示管道关闭成功。
  *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} 表示应用缺少设备访问权限。
