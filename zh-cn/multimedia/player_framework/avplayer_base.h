@@ -626,7 +626,7 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
  * @param onError 监控OH_AVPlayer运行错误，参阅{@link OH_AVPlayerOnError}
  * @since 11
  * @deprecated since 12
- * @useinstead {@link OH_AVPlayerOnInfoCallback}或{@link OH_AVPlayerOnErrorCallback}
+ * @useinstead {@link OH_AVPlayerOnInfoCallback}或{@link OH_AVPlayerOnErrorCallback}。
  */
 typedef struct AVPlayerCallback {
     OH_AVPlayerOnInfo onInfo;
