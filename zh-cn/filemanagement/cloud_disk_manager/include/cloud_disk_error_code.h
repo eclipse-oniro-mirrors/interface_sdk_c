@@ -52,7 +52,7 @@ typedef enum CloudDisk_ErrorCode {
      */
     CLOUD_DISK_OK = 0,
     /**
-     * @brief 接口权限校验失败。
+     * @brief 接口权限校验或文件访问失败。
      *
      * @since 21
      */
@@ -212,7 +212,49 @@ typedef enum CloudDisk_ErrorCode {
      *
      * @since 26.1.0
      */
-    OH_CLOUD_DISK_NAME_TOO_LONG = 34400025
+    OH_CLOUD_DISK_NAME_TOO_LONG = 34400025,
+    /**
+     * @brief 文件过大。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_FILE_TOO_LARGE = 34400026,
+    /**
+     * @brief 占位符文件未完全水合。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_NOT_FULLY_HYDRATED = 34400028,
+    /**
+     * @brief 应用回调拒绝脱水操作。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_DEHYDRATE_DENIED = 34400029,
+    /**
+     * @brief 水合任务已取消。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_CANCELLED = 34400030,
+    /**
+     * @brief 占位符文件已完全水合。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_ALREADY_HYDRATED = 34400031,
+    /**
+     * @brief 没有正在进行的水合任务。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_NO_HYDRATION_IN_PROGRESS = 34400032,
+    /**
+     * @brief 待处理的占位符水合任务数量达到上限。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_HYDRATION_TASK_LIMIT_REACHED = 34400034
 } CloudDisk_ErrorCode;
 
 #ifdef __cplusplus
