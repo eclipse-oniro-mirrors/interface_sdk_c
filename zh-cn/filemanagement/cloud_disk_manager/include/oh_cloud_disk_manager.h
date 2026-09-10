@@ -48,7 +48,6 @@ extern "C" {
 
 /**
  * @brief OH_CloudDisk_SyncFolderEx服务的版本1。
- * 
  * 当结构体被扩展时，将定义新的版本宏。
  * 运行库使用版本字段确定哪些字段有效。
  *
