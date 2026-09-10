@@ -46,17 +46,22 @@ extern "C" {
 
 typedef struct AVPlayerCallback AVPlayerCallback;
 
+/**
+ * @brief 声明OH_AVPlayer结构体类型。
+ * 
+ * @since 11
+ */
 typedef struct OH_AVPlayer OH_AVPlayer;
 
 /**
- * @brief SEI消息数组的结构体类型。
+ * @brief SEI（Supplemental Enhancement Information）消息数组的结构体类型。用于存储和管理SEI消息，支持批量获取和处理视频流中的SEI消息，适用于需要解析视频补充增强信息的场景。
  * 
  * @since 23
  */
 typedef struct OH_AVSeiMessageArray OH_AVSeiMessageArray;
 
 /**
- * @brief 音视频播放策略的结构体类型。
+ * @brief 音视频播放策略的结构体类型，用于配置播放器在播放音视频内容时的策略参数，适用于需要精细控制播放行为的场景。若未设置该策略参数，播放器将采用默认播放策略。
  * 
  * @since 23
  */
@@ -94,9 +99,9 @@ typedef enum AVPlayerState {
  * @since 11
  */
 typedef enum AVPlayerSeekMode {
-    /* 在时间点之后同步至关键帧。 */
+    /* 同步到时间点之后的关键帧。*/
     AV_SEEK_NEXT_SYNC = 0,
-    /* 在时间点之前同步至关键帧。 */
+    /* 同步到时间点之前的关键帧。*/
     AV_SEEK_PREVIOUS_SYNC = 1,
     /**
      * @brief 同步到距离指定时间点最近的帧。
@@ -530,6 +535,25 @@ extern const char* OH_PLAYER_MD_KEY_TRACK_INDEX;
  * @param player 指向OH_AVPlayer实例的指针。
  * @param type 信息类型。类型为{@link AVPlayerOnInfoType}，与extra的对应关系可见方法描述。
  * @param extra 其他信息，如播放文件的开始时间位置。
+ * 信息类型（type）：对应的extra描述
+ * AV_INFO_TYPE_SEEKDONE	跳转到对应播放位置时返回消息，extra表示跳转到的位置。
+ * AV_INFO_TYPE_SPEEDDONE	播放倍速设置完成时返回消息，extra表示播放倍速信息，具体请参考AVPlaybackSpeed。
+ * AV_INFO_TYPE_BITRATEDONE	比特率设置完成时返回消息，extra表示比特率信息。
+ * AV_INFO_TYPE_EOS	播放完成时返回消息。
+ * AV_INFO_TYPE_STATE_CHANGE	状态改变时返回消息，extra表示当前播放状态，具体请参见AVPlayerState。
+ * AV_INFO_TYPE_POSITION_UPDATE	返回当前播放位置，extra表示当前位置。
+ * AV_INFO_TYPE_MESSAGE	视频开始渲染时返回消息，extra表示视频首帧渲染。
+ * AV_INFO_TYPE_VOLUME_CHANGE	音量改变时返回消息，此场景下extra未定义。
+ * AV_INFO_TYPE_RESOLUTION_CHANGE	首次获取视频大小或视频大小更新时返回消息，此场景下extra未定义。
+ * AV_INFO_TYPE_BUFFERING_UPDATE	返回缓冲更新消息。此场景下extra表示缓冲相关数据，建议使用OH_AVPlayerOnInfoCallback获取详细的缓冲信息。
+ * AV_INFO_TYPE_BITRATE_COLLECT	上报HLS视频比特率列表消息。上报时每个比特率已经转化为uint8_t字节数组，使用者需要将uint8_t字节数组强制转换为uint32_t整型数组。
+ * AV_INFO_TYPE_INTERRUPT_EVENT	音频焦点改变时返回消息，extra表示音频打断提示，具体请参见OH_AudioInterrupt_Hint，应用可决定是否根据打断提示作进一步处理。
+ * AV_INFO_TYPE_DURATION_UPDATE	返回播放时长，extra表示视频时长。
+ * AV_INFO_TYPE_IS_LIVE_STREAM	播放为直播流时返回消息，extra表示是否为直播流，0表示非直播流，1表示直播流。
+ * AV_INFO_TYPE_TRACKCHANGE	轨道改变时返回消息，此场景extra未定义。
+ * AV_INFO_TYPE_TRACK_INFO_UPDATE	轨道更新时返回消息，此场景下extra参数无特定含义。
+ * AV_INFO_TYPE_SUBTITLE_UPDATE	字幕信息更新时返回消息，此场景extra未定义。
+ * AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE	音频输出设备改变时返回消息，extra表示设备改变原因，具体请参见OH_AudioStream_DeviceChangeReason。
  * @since 11
  * @deprecated since 12
  * @useinstead {@link OH_AVPlayerOnInfoCallback}
@@ -553,17 +577,17 @@ typedef void (*OH_AVPlayerOnInfoCallback)(OH_AVPlayer *player, AVPlayerOnInfoTyp
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param errorCode 错误码。
- * AV_ERR_NO_MEMORY：无内存，取值为1。
- * AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2。
- * AV_ERR_INVALID_VAL：无效值，取值为3。
- * AV_ERR_IO：IO错误，取值为4。
- * AV_ERR_TIMEOUT：超时错误，取值为5。
- * AV_ERR_UNKNOWN：未知错误，取值为6。
- * AV_ERR_SERVICE_DIED：服务死亡，取值为7。
- * AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8。
- * AV_ERR_UNSUPPORT：未支持的接口，取值为9。
- * AV_ERR_EXTEND_START：扩展错误码初始值，取值为100。
- * @param errorMsg 错误消息。
+ * AV_ERR_NO_MEMORY：无内存，取值为1。可能原因：系统内存不足。处理方法：释放不必要的资源后重试。
+ * AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2。可能原因：当前状态下不允许执行该操作。处理方法：检查当前状态，在合适的状态下执行操作。
+ * AV_ERR_INVALID_VAL：无效值，取值为3。可能原因：传入的参数值无效。处理方法：检查参数值是否在有效范围内。
+ * AV_ERR_IO：IO错误，取值为4。可能原因：文件读写失败或网络IO异常。处理方法：检查文件是否存在或网络连接是否正常。
+ * AV_ERR_TIMEOUT：超时错误，取值为5。可能原因：操作超时。处理方法：检查网络状况或增大超时时间。
+ * AV_ERR_UNKNOWN：未知错误，取值为6。可能原因：发生未知错误。处理方法：查看日志或联系技术支持。
+ * AV_ERR_SERVICE_DIED：服务死亡，取值为7。可能原因：媒体服务异常终止。处理方法：重新创建播放器实例。
+ * AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8。可能原因：在错误的状态下调用了该方法。处理方法：检查播放器当前状态是否支持该操作。
+ * AV_ERR_UNSUPPORT：未支持的接口，取值为9。可能原因：调用了不支持的接口。处理方法：检查API版本支持情况。
+ * AV_ERR_EXTEND_START：扩展错误码初始值，取值为100。可能原因：扩展错误。处理方法：根据具体错误码进行处理。
+ * @param errorMsg 错误消息。由播放器返回的错误描述信息，具体内容取决于错误类型，可能为NULL或空字符串。
  * @since 11
  * @deprecated since 12
  * @useinstead {@link OH_AVPlayerOnErrorCallback}
@@ -575,16 +599,16 @@ typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param errorCode 错误码。
- * AV_ERR_NO_MEMORY：无内存，取值为1。
- * AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2。
- * AV_ERR_INVALID_VAL：无效值，取值为3。
- * AV_ERR_IO：IO错误。API version 12-13取值为4；API version 14及以后，对应错误细化为错误码5411001~5411011。
- * AV_ERR_TIMEOUT：超时错误，取值为5。
- * AV_ERR_UNKNOWN：未知错误，取值为6。
- * AV_ERR_SERVICE_DIED：服务死亡，取值为7。
- * AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8。
- * AV_ERR_UNSUPPORT：未支持的接口，取值为9。
- * AV_ERR_EXTEND_START：扩展错误码初始值，取值为100。
+ * AV_ERR_NO_MEMORY：无内存，取值为1。可能原因：系统内存不足。处理方法：释放不必要的资源后重试。
+ * AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2。可能原因：当前状态下不允许执行该操作。处理方法：检查当前状态，在合适的状态下执行操作。
+ * AV_ERR_INVALID_VAL：无效值，取值为3。可能原因：传入的参数值无效。处理方法：检查参数值是否在有效范围内。
+ * AV_ERR_IO：IO错误。API version 12-13取值为4；API version 14及以后，对应错误细化为错误码5411001~5411011。可能原因：文件读写失败或网络IO异常。处理方法：检查文件是否存在或网络连接是否正常。
+ * AV_ERR_TIMEOUT：超时错误，取值为5。可能原因：操作超时。处理方法：检查网络状况或增大超时时间。
+ * AV_ERR_UNKNOWN：未知错误，取值为6。可能原因：发生未知错误。处理方法：查看日志或联系技术支持。
+ * AV_ERR_SERVICE_DIED：服务死亡，取值为7。可能原因：媒体服务异常终止。处理方法：重新创建播放器实例。
+ * AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8。可能原因：在错误的状态下调用了该方法。处理方法：检查播放器当前状态是否支持该操作。
+ * AV_ERR_UNSUPPORT：未支持的接口，取值为9。可能原因：调用了不支持的接口。处理方法：检查API版本支持情况。
+ * AV_ERR_EXTEND_START：扩展错误码初始值，取值为100。可能原因：扩展错误。处理方法：根据具体错误码进行处理。
  * @param errorMsg 错误消息，只在回调函数中有效。
  * @param userData 指向用户特定数据的指针。
  * @since 12
@@ -593,7 +617,10 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
     void *userData);
 
 /**
- * @brief 包含了OH_AVPlayerOnInfo和OH_AVPlayerOnError回调函数指针的集合。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+ * @brief AVPlayerCallback（AVPlayer回调）是AVPlayer（音视频播放器）的回调管理结构体，包含了播放过程信息OH_AVPlayerOnInfo和错误信息OH_AVPlayerOnError的回调函数指针。
+ * 应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+ * 通过注册这些回调，开发者可以实时监控AVPlayer的播放状态、获取播放过程信息（如缓冲进度、播放位置等）和错误事件，及时响应和处理播放过程中的各种事件。
+ * 适用于需要对播放流程进行细粒度控制（Fine-grained Control）和监控的场景，如音乐播放器、视频播放器、直播应用等需要实时监控播放状态和异常处理的应用。
  * 
  * @param onInfo 监控OH_AVPlayer运行信息，参见{@link OH_AVPlayerOnInfo}
  * @param onError 监控OH_AVPlayer运行错误，参阅{@link OH_AVPlayerOnError}
@@ -633,6 +660,27 @@ typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double
  */
 typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
     int32_t playbackPosition, void *userData);
+
+/** 
+ * @brief 如果应用成功设置该回调，则会获取音频PCM数据输出。PCM数据为原始音频数据，格式（采样率、声道数、位深等）与媒体源一致。回调在音频解码后触发，数据仅在此回调期间有效，需及时处理或拷贝。适用于音频分析、特效处理等场景。
+ *
+ * @param player 指向OH_AVPlayer实例的指针。 
+ * @param pcmBuffer 音频PCM数据。音频PCM数据仅在此回调期间有效，回调返回后由播放器释放。
+ * @param userData 指向用户指定数据的指针。
+ * @since 26.0.0 
+ */ 
+typedef void (*OH_AVPlayerPCMOutputCallback)(OH_AVPlayer *player, OH_AVBuffer *pcmBuffer, void *userData);
+
+/**
+ * @brief 如果应用成功设置该回调，则AVPlayer需要使用处理后的数据进行音频播放，且处理必须在回调返回前及时完成，否则会阻塞播放。
+ *        使用本方法期间请勿更改采样率、声道数或采样格式，避免数据获取出现异常。
+ *
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param pcmBuffer 音频PCM数据。音频PCM数据仅在此回调期间有效，回调返回后由播放器释放。
+ * @param userData 	指向用户指定数据的指针。
+ * @since 26.0.0
+ */
+typedef void (*OH_AVPlayerPCMProcessorCallback)(OH_AVPlayer *player, OH_AVBuffer *pcmBuffer, void *userData);
 
 /**
  * @brief 获取统计指标信息中的准备时长的关键字，对应值类型为uint32_t，单位为毫秒。
