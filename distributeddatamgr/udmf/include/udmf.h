@@ -238,7 +238,7 @@ typedef struct OH_UdmfDataLoadInfo OH_UdmfDataLoadInfo;
 /**
  * @brief Describes summary information of unified data.
  *
- * @since 24
+ * @since 26.2.0
  */
 typedef struct OH_UdmfSummary OH_UdmfSummary;
 
@@ -977,7 +977,7 @@ int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibili
  * @return Returns a pointer to the created {@link OH_UdmfSummary} instance if the operation is successful;
  *     returns nullptr otherwise.
  * @see OH_UdmfSummary OH_UdmfSummary_Destroy.
- * @since 24
+ * @since 26.2.0
  */
 OH_UdmfSummary* OH_UdmfSummary_Create(void);
 
@@ -986,7 +986,7 @@ OH_UdmfSummary* OH_UdmfSummary_Create(void);
  *
  * @param summary Represents a pointer to an {@link OH_UdmfSummary} instance.
  * @see OH_UdmfSummary OH_UdmfSummary_Create.
- * @since 24
+ * @since 26.2.0
  */
 void OH_UdmfSummary_Destroy(OH_UdmfSummary* summary);
 
@@ -1005,7 +1005,7 @@ void OH_UdmfSummary_Destroy(OH_UdmfSummary* summary);
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The input parameter is invalid.
  * @see OH_UdmfSummary OH_UdmfSummary_GetOverviewDataSize Udmf_ErrCode.
- * @since 24
+ * @since 26.2.0
  */
 int OH_UdmfSummary_GetOverviewTypes(const OH_UdmfSummary* summary, const char* const** types,
     unsigned int* count);
@@ -1021,7 +1021,7 @@ int OH_UdmfSummary_GetOverviewTypes(const OH_UdmfSummary* summary, const char* c
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The input parameter is invalid.
  * @see OH_UdmfSummary OH_UdmfSummary_GetOverviewTypes Udmf_ErrCode.
- * @since 24
+ * @since 26.2.0
  */
 int OH_UdmfSummary_GetOverviewDataSize(const OH_UdmfSummary* summary, const char* type, int64_t* dataSize);
 
@@ -1040,7 +1040,7 @@ int OH_UdmfSummary_GetOverviewDataSize(const OH_UdmfSummary* summary, const char
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The input parameter is invalid.
  * @see OH_UdmfSummary Udmf_ErrCode.
- * @since 24
+ * @since 26.2.0
  */
 int OH_UdmfSummary_GetFilenameExtensions(const OH_UdmfSummary* summary,
     const char* const** filenameExtensions, unsigned int* count);
@@ -1059,7 +1059,7 @@ int OH_UdmfSummary_GetFilenameExtensions(const OH_UdmfSummary* summary,
  *         {@link UDMF_E_INVALID_PARAM} The input parameter, key, or intention is invalid.
  *         {@link UDMF_ERR} An internal data error occurs.
  * @see OH_UdmfOptions OH_UdmfSummary Udmf_ErrCode.
- * @since 24
+ * @since 26.2.0
  */
 int OH_Udmf_GetSummary(OH_UdmfOptions* options, OH_UdmfSummary* summary);
 
