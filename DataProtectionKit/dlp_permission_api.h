@@ -56,7 +56,7 @@ typedef enum {
      */
     ERR_OH_SUCCESS = 0,
     /**
-     *The capability not supported because car not support DLP feature.
+     * The capability not supported because car not support DLP feature.
      *@since 26.1.0
      */
     OH_DLP_NOT_SUPPORTED = 801,
