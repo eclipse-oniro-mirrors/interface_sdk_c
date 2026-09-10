@@ -108,3 +108,17 @@ ohos_ndk_library("libohbattery_info_ndk") {
   system_capability = "SystemCapability.PowerManager.BatteryManager.Core"
   system_capability_headers = [ "BasicServicesKit/ohbattery_info.h" ]
 }
+
+ohos_ndk_headers("ohusb_manager_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [ "./ohusb_manager.h" ]
+}
+
+ohos_ndk_library("libohusb_manager_ndk") {
+  output_name = "ohusb_manager"
+  output_extension = "so"
+  ndk_description_file = "./ohusb_manager.ndk.json"
+  min_compact_version = "26.1.0"
+  system_capability = "SystemCapability.USB.USBManager"
+  system_capability_headers = [ "BasicServicesKit/ohusb_manager.h" ]
+}
