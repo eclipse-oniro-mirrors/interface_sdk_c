@@ -66,30 +66,37 @@ typedef struct OHIPCParcel OHIPCParcel;
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_Usage {
-    NATIVEBUFFER_USAGE_CPU_READ = (1ULL << 0),        /// < CPU可读 */
-    NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL << 1),       /// < CPU可写 */
-    NATIVEBUFFER_USAGE_MEM_DMA = (1ULL << 3),         /// < 直接内存访问缓冲区 */
+    /** CPU可读 */
+    NATIVEBUFFER_USAGE_CPU_READ = (1ULL << 0),
+    /** CPU可写 */
+    NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL << 1),
+    /** 直接内存访问缓冲区 */
+    NATIVEBUFFER_USAGE_MEM_DMA = (1ULL << 3),
     /**
      * 媒体内存区域缓存
      * @since 20
      */
     NATIVEBUFFER_USAGE_MEM_MMZ_CACHE = (1ULL << 5),
     /**
+     * GPU可写
      * @since 12
      */
-    NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),       /// < GPU可写 */
+    NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),
     /**
+     * GPU可读
      * @since 12
      */
-    NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),      /// < GPU可读 */
+    NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),
     /**
+     * CPU可直接映射
      * @since 12
      */
-    NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16), /// < CPU可直接映射 */
+    NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16),
     /**
+     * 512字节对齐
      * @since 12
      */
-    NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),  /// < 512字节对齐 */
+    NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),
 } OH_NativeBuffer_Usage;
 
 /**
@@ -100,17 +107,28 @@ typedef enum OH_NativeBuffer_Usage {
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_ColorGamut {
-    NATIVEBUFFER_COLOR_GAMUT_NATIVE = 0,            /**< 默认色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT601 = 1,    /**< Standard BT601色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709 = 2,    /**< Standard BT709色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_DCI_P3 = 3,            /**< DCI P3色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_SRGB = 4,              /**< SRGB色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_ADOBE_RGB = 5,         /**< Adobe RGB色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_P3 = 6,        /**< Display P3色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_BT2020 = 7,            /**< BT2020色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_BT2100_PQ = 8,         /**< BT2100 PQ色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_BT2100_HLG = 9,        /**< BT2100 HLG色域格式 */
-    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_BT2020 = 10,   /**< Display BT2020色域格式 */
+    /** 默认色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_NATIVE = 0,
+    /** Standard BT601色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT601 = 1,
+    /** Standard BT709色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709 = 2,
+    /** DCI P3色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_DCI_P3 = 3,
+    /** SRGB色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_SRGB = 4,
+    /** Adobe RGB色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_ADOBE_RGB = 5,
+    /** Display P3色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_P3 = 6,
+    /** BT2020色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_BT2020 = 7,
+    /** BT2100 PQ色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_BT2100_PQ = 8,
+    /** BT2100 HLG色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_BT2100_HLG = 9,
+    /** Display BT2020色域格式 */
+    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_BT2020 = 10,
 } OH_NativeBuffer_ColorGamut;
 
 /**
@@ -121,14 +139,19 @@ typedef enum OH_NativeBuffer_ColorGamut {
  * @version 1.0
  */
 typedef struct {
-    int32_t width;           ///< 宽度（像素）
-    int32_t height;          ///< 高度（像素）
-    int32_t format;          ///< PixelFormat之一
-    int32_t usage;           ///< buffer usage的组合
+    /** 宽度（像素）*/
+    int32_t width;
+    /** 高度（像素）*/
+    int32_t height;
+    /** PixelFormat之一 */
+    int32_t format;
+    /** buffer usage的组合 */
+    int32_t usage;
     /**
+     * stride stride in bytes
      * @since 10
      */
-    int32_t stride;          ///< stride stride in bytes
+    int32_t stride;
 } OH_NativeBuffer_Config;
 
 /**
@@ -139,9 +162,12 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    uint64_t offset;         ///< 平面字节偏移
-    uint32_t rowStride;      ///< 图像一行第一个值到下一行第一个值的字节距离
-    uint32_t columnStride;   ///< 图像一列第一个值到下一列第一个值的字节距离
+    /** 平面字节偏移 */
+    uint64_t offset;
+    /** 图像一行第一个值到下一行第一个值的字节距离 */
+    uint32_t rowStride;
+    /** 图像一列第一个值到下一列第一个值的字节距离 */
+    uint32_t columnStride;
 } OH_NativeBuffer_Plane;
 
 /**
@@ -152,8 +178,10 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    uint32_t planeCount;              ///< 不同平面的数量
-    OH_NativeBuffer_Plane planes[4];  ///< 图像平面数组
+    /** 不同平面的数量 */
+    uint32_t planeCount;
+    /** 图像平面数组 */
+    OH_NativeBuffer_Plane planes[4];
 } OH_NativeBuffer_Planes;
 
 /**
@@ -417,6 +445,19 @@ int32_t OH_NativeBuffer_IsSupported(OH_NativeBuffer_Config config, bool* isSuppo
  * @version 1.0
  */
 int32_t OH_NativeBuffer_MapAndGetConfig(OH_NativeBuffer* buffer, void** virAddr, OH_NativeBuffer_Config* config);
+
+/**
+ * @brief 设置OH_NativeBuffer的DMA buffer名称。\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param buffer 一个指向OH_NativeBuffer的结构体实例的指针。
+ * @param name 传入的DMA buffer名称字符串。名称必须以字母开头，只能包含字母或数字，且长度不超过64字节。
+ * @return 执行成功时返回NATIVE_ERROR_OK。\n
+ * buffer为空指针或name非法时返回NATIVE_ERROR_INVALID_ARGUMENTS。\n
+ * 其他返回值可参考OHNativeErrorCode。
+ * @since 26.1.0
+ */
+int32_t OH_NativeBuffer_SetDmaBufferName(OH_NativeBuffer *buffer, const char *name);
 #ifdef __cplusplus
 }
 #endif

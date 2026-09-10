@@ -67,30 +67,37 @@ typedef struct OHIPCParcel OHIPCParcel;
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_Usage {
-    NATIVEBUFFER_USAGE_CPU_READ = (1ULL << 0),        /// < CPU read buffer */
-    NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL << 1),       /// < CPU write memory */
-    NATIVEBUFFER_USAGE_MEM_DMA = (1ULL << 3),         /// < Direct memory access (DMA) buffer */
+    /** CPU read buffer */
+    NATIVEBUFFER_USAGE_CPU_READ = (1ULL << 0),
+    /** CPU write memory */
+    NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL << 1),
+    /** Direct memory access (DMA) buffer */
+    NATIVEBUFFER_USAGE_MEM_DMA = (1ULL << 3),
     /**
      * MMZ with cache
      * @since 20
      */
     NATIVEBUFFER_USAGE_MEM_MMZ_CACHE = (1ULL << 5),
     /**
+     * For GPU write case
      * @since 12
      */
-    NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),       /// < For GPU write case */
+    NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),
     /**
+     * For GPU read case
      * @since 12
      */
-    NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),      /// < For GPU read case */
+    NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),
     /**
+     * Often be mapped for direct CPU reads
      * @since 12
      */
-    NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16), /// < Often be mapped for direct CPU reads */
+    NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16),
     /**
+     * 512 bytes alignment
      * @since 12
      */
-    NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),  /// < 512 bytes alignment */
+    NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),
 } OH_NativeBuffer_Usage;
 
 /**
@@ -101,17 +108,28 @@ typedef enum OH_NativeBuffer_Usage {
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_ColorGamut {
-    NATIVEBUFFER_COLOR_GAMUT_NATIVE = 0,            /**< Native or default */
-    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT601 = 1,    /**< Standard BT601 */
-    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709 = 2,    /**< Standard BT709 */
-    NATIVEBUFFER_COLOR_GAMUT_DCI_P3 = 3,            /**< DCI P3 */
-    NATIVEBUFFER_COLOR_GAMUT_SRGB = 4,              /**< SRGB */
-    NATIVEBUFFER_COLOR_GAMUT_ADOBE_RGB = 5,         /**< Adobe RGB */
-    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_P3 = 6,        /**< Display P3 */
-    NATIVEBUFFER_COLOR_GAMUT_BT2020 = 7,            /**< BT2020 */
-    NATIVEBUFFER_COLOR_GAMUT_BT2100_PQ = 8,         /**< BT2100 PQ */
-    NATIVEBUFFER_COLOR_GAMUT_BT2100_HLG = 9,        /**< BT2100 HLG */
-    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_BT2020 = 10,   /**< Display BT2020 */
+    /** Native or default */
+    NATIVEBUFFER_COLOR_GAMUT_NATIVE = 0,
+    /** Standard BT601 */
+    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT601 = 1,
+    /** Standard BT709 */
+    NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709 = 2,
+    /** DCI P3 */
+    NATIVEBUFFER_COLOR_GAMUT_DCI_P3 = 3,
+    /** SRGB */
+    NATIVEBUFFER_COLOR_GAMUT_SRGB = 4,
+    /** Adobe RGB */
+    NATIVEBUFFER_COLOR_GAMUT_ADOBE_RGB = 5,
+    /** Display P3 */
+    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_P3 = 6,
+    /** BT2020 */
+    NATIVEBUFFER_COLOR_GAMUT_BT2020 = 7,
+    /** BT2100 PQ */
+    NATIVEBUFFER_COLOR_GAMUT_BT2100_PQ = 8,
+    /** BT2100 HLG */
+    NATIVEBUFFER_COLOR_GAMUT_BT2100_HLG = 9,
+    /** Display BT2020 */
+    NATIVEBUFFER_COLOR_GAMUT_DISPLAY_BT2020 = 10,
 } OH_NativeBuffer_ColorGamut;
 
 /**
@@ -123,14 +141,19 @@ typedef enum OH_NativeBuffer_ColorGamut {
  * @version 1.0
  */
 typedef struct {
-    int32_t width;           ///< Width in pixels
-    int32_t height;          ///< Height in pixels
-    int32_t format;          ///< One of PixelFormat
-    int32_t usage;           ///< Combination of buffer usage
+    /** Width in pixels */
+    int32_t width;
+    /** Height in pixels */
+    int32_t height;
+    /** One of PixelFormat */
+    int32_t format;
+    /** Combination of buffer usage */
+    int32_t usage;
     /**
+     * the stride of memory in bytes
      * @since 10
      */
-    int32_t stride;          ///< the stride of memory in bytes
+    int32_t stride;
 } OH_NativeBuffer_Config;
 
 /**
@@ -141,9 +164,12 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    uint64_t offset;         ///< Offset in bytes of plane.
-    uint32_t rowStride;      ///< Distance in bytes from the first value of one row of the image to the first value of the next row.
-    uint32_t columnStride;   ///< Distance in bytes from the first value of one column of the image to the first value of the next column.
+    /** Offset in bytes of plane. */
+    uint64_t offset;
+    /** Distance in bytes from the first value of one row of the image to the first value of the next row. */
+    uint32_t rowStride;
+    /** Distance in bytes from the first value of one column of the image to the first value of the next column. */
+    uint32_t columnStride;
 } OH_NativeBuffer_Plane;
 
 /**
@@ -154,8 +180,10 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    uint32_t planeCount;              ///< Number of distinct planes.
-    OH_NativeBuffer_Plane planes[4];  ///< Array of image planes.
+    /** Number of distinct planes. */
+    uint32_t planeCount;
+    /** Array of image planes. */
+    OH_NativeBuffer_Plane planes[4];
 } OH_NativeBuffer_Planes;
 
 /**
@@ -427,6 +455,19 @@ int32_t OH_NativeBuffer_IsSupported(OH_NativeBuffer_Config config, bool* isSuppo
  * @version 1.0
  */
 int32_t OH_NativeBuffer_MapAndGetConfig(OH_NativeBuffer* buffer, void** virAddr, OH_NativeBuffer_Config* config);
+
+/**
+ * @brief Set the dma buffer name of the OH_NativeBuffer.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
+ * @param name Indicates the dma buffer name string. The name must start with a letter, only contain
+ * letters or digits, and be no longer than 64 bytes.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - buffer is NULL or name invalid.
+ * @since 26.1.0
+ */
+int32_t OH_NativeBuffer_SetDmaBufferName(OH_NativeBuffer *buffer, const char *name);
 #ifdef __cplusplus
 }
 #endif
