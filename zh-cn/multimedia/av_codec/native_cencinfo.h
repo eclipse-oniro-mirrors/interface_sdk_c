@@ -183,7 +183,7 @@ OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlg
  * @param iv 初始化向量。
  * @param ivLen 初始化向量长度。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：cencInfo为空、keyId为空、keyIdLen != DRM_KEY_ID_SIZE、iv是空、
+ *         <br>AV_ERR_INVALID_VAL：cencInfo为空、keyId为空、keyIdLen != DRM_KEY_ID_SIZE、iv为空、
  * ivLen != DRM_KEY_IV_SIZE、keyId拷贝失败，或者iv拷贝失败。
  * @since 12
  */
