@@ -1,0 +1,30 @@
+[
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_GetUsbDeviceList"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_FreeDeviceList"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_ConnectDevice"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_HasPermission"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_RequestPermission"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_GetFileDescriptor"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UsbManager_ClosePipe"
+    }
+]
