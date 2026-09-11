@@ -739,7 +739,7 @@ void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64
 bool OH_HiTrace_IsTraceEnabled(void);
 
 /**
- * @brief Registers a callback to notify whether the application trace capture is enabled. This API uses a synchronous
+ * @brief Registers a callback to notify whether the application trace capture is enabled. This API uses an asynchronous
  * callback to return the result.
  * After the registration is successful, the callback is executed immediately. Subsequent callbacks are executed
  * when the application trace capture status changes.
