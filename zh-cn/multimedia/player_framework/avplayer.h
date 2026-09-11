@@ -23,7 +23,8 @@
 /**
  * @file avplayer.h
  *
- * @brief 定义AVPlayer接口。使用AVPlayer提供的Native API播放媒体源。AVPlayer是音视频播放组件，提供完整的播放控制和高级功能（多轨道、字幕、DRM等），适用于视频播放器、音频播放器、直播应用等场景，为开发者提供高性能、低延迟的媒体播放能力，降低开发复杂度。
+ * @brief 定义AVPlayer接口。使用AVPlayer提供的Native API播放媒体源。AVPlayer是音视频播放组件，提供完整的播放控制和高级功能（多轨道、字幕、DRM等），适用于视频播放器、音频播放器、
+ *        直播应用等场景，为开发者提供高性能、低延迟的媒体播放能力，降低开发复杂度。
  * 
  * @kit MediaKit
  * @include <multimedia/player_framework/avplayer.h>
@@ -297,8 +298,10 @@ OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth)
 OH_AVErrCode OH_AVPlayer_GetVideoHeight(OH_AVPlayer *player, int32_t *videoHeight);
 
 /**
- * @brief 根据指定的{@link AVPlaybackSpeed}，设置播放器的播放速率。支持的状态包括prepared、playing、paused、completed。默认播放速率为1.0倍速（正常速度），若未调用本接口设置速率则使用该默认值。
- * 差异说明：OH_AVPlayer_SetPlaybackRate也用于设置播放速率，但使用float类型支持更灵活的速率范围。本方法使用固定枚举档位，适合标准播放场景；SetPlaybackRate适合需要精确控制速率值的场景。适用于倍速播放、慢动作回放、快进预览等场景。
+ * @brief 根据指定的{@link AVPlaybackSpeed}，设置播放器的播放速率。支持的状态包括prepared、playing、paused、completed。
+ *        默认播放速率为1.0倍速（正常速度），若未调用本接口设置速率则使用该默认值。
+ *        差异说明：OH_AVPlayer_SetPlaybackRate也用于设置播放速率，但使用float类型支持更灵活的速率范围。
+ *        本方法使用固定枚举档位，适合标准播放场景；SetPlaybackRate适合需要精确控制速率值的场景。适用于倍速播放、慢动作回放、快进预览等场景。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
  * @param speed 速率模式。
@@ -572,7 +575,8 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  * 支持的状态：已准备/正在播放/已暂停/已完成。
  * 
  * @param player 指向OH_AVPlayer实例的指针。
- * @param rate 播放速率，在API版本26.0.0及以上的取值范围是[0.125, 8.0]，API版本26.0.0以下的取值范围是[0.125, 4.0]。小于1.0适合慢速播放（如学习、分析），1.0为正常速度，大于1.0适合快速浏览。
+ * @param rate 播放速率，在API版本26.0.0及以上的取值范围是[0.125, 8.0]，API版本26.0.0以下的取值范围是[0.125, 4.0]。
+ *             小于1.0适合慢速播放（如学习、分析），1.0为正常速度，大于1.0适合快速浏览。
  * @return AV_ERR_OK：成功设置播放速率。
  * AV_ERR_OPERATE_NOT_PERMIT：如果在不支持的状态下调用或在直播期间调用。
  * AV_ERR_INVALID_VAL：输入player为空指针，或者速率超出范围。

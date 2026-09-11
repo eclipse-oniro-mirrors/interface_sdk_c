@@ -602,7 +602,8 @@ typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const
  * AV_ERR_NO_MEMORY：无内存，取值为1。可能原因：系统内存不足。处理方法：释放不必要的资源后重试。
  * AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2。可能原因：当前状态下不允许执行该操作。处理方法：检查当前状态，在合适的状态下执行操作。
  * AV_ERR_INVALID_VAL：无效值，取值为3。可能原因：传入的参数值无效。处理方法：检查参数值是否在有效范围内。
- * AV_ERR_IO：IO错误。API version 12-13取值为4；API version 14及以后，对应错误细化为错误码5411001~5411011。可能原因：文件读写失败或网络IO异常。处理方法：检查文件是否存在或网络连接是否正常。
+ * AV_ERR_IO：IO错误。API version 12-13取值为4；API version 14及以后，对应错误细化为错误码5411001~5411011。
+ *            可能原因：文件读写失败或网络IO异常。处理方法：检查文件是否存在或网络连接是否正常。
  * AV_ERR_TIMEOUT：超时错误，取值为5。可能原因：操作超时。处理方法：检查网络状况或增大超时时间。
  * AV_ERR_UNKNOWN：未知错误，取值为6。可能原因：发生未知错误。处理方法：查看日志或联系技术支持。
  * AV_ERR_SERVICE_DIED：服务死亡，取值为7。可能原因：媒体服务异常终止。处理方法：重新创建播放器实例。
@@ -617,7 +618,8 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
     void *userData);
 
 /**
- * @brief AVPlayerCallback（AVPlayer回调）是AVPlayer（音视频播放器）的回调管理结构体，包含了播放过程信息OH_AVPlayerOnInfo和错误信息OH_AVPlayerOnError的回调函数指针。
+ * @brief AVPlayerCallback（AVPlayer回调）是AVPlayer（音视频播放器）的回调管理结构体，
+ * 包含了播放过程信息OH_AVPlayerOnInfo和错误信息OH_AVPlayerOnError的回调函数指针。
  * 应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
  * 通过注册这些回调，开发者可以实时监控AVPlayer的播放状态、获取播放过程信息（如缓冲进度、播放位置等）和错误事件，及时响应和处理播放过程中的各种事件。
  * 适用于需要对播放流程进行细粒度控制（Fine-grained Control）和监控的场景，如音乐播放器、视频播放器、直播应用等需要实时监控播放状态和异常处理的应用。
@@ -664,7 +666,7 @@ typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_
 /** 
  * @brief 如果应用成功设置该回调，则会获取音频PCM数据输出。PCM数据为原始音频数据，格式（采样率、声道数、位深等）与媒体源一致。回调在音频解码后触发，数据仅在此回调期间有效，需及时处理或拷贝。适用于音频分析、特效处理等场景。
  *
- * @param player 指向OH_AVPlayer实例的指针。 
+ * @param player 指向OH_AVPlayer实例的指针。
  * @param pcmBuffer 音频PCM数据。音频PCM数据仅在此回调期间有效，回调返回后由播放器释放。
  * @param userData 指向用户指定数据的指针。
  * @since 26.0.0 
