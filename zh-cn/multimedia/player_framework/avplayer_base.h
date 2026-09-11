@@ -26,6 +26,8 @@
  *
  * @brief 定义AVPlayer的结构体和枚举。
  * 
+ * @Syscap SystemCapability.Multimedia.Media.AVPlayer
+ *
  * @kit MediaKit
  * @include <multimedia/player_framework/avplayer_base.h>
  * @library libavplayer.so
@@ -438,13 +440,15 @@ extern const char* OH_PLAYER_MESSAGE_TYPE;
 extern const char* OH_PLAYER_IS_LIVE_STREAM;
 
 /**
- * SEI消息中表示负载类型的关键字。
+ * @brief SEI消息中表示负载类型的关键字。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_SEI_PAYLOAD_TYPE;
 
 /**
- * SEI消息中表示负载内容的关键字。
+ * @brief SEI消息中表示负载内容的关键字。
+ *
  * @since 23
  */
 extern const char* OH_PLAYER_SEI_PAYLOAD_CONTENT;
