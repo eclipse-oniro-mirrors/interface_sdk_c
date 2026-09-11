@@ -867,10 +867,10 @@ Image_ErrorCode OH_PictureNative_DecomposeToPicture(OH_PixelmapNative *hdrPixelm
  * The returned ArkTS Picture object and pictureNative share the same underlying Picture object. This function
  * does not copy the main image, auxiliary pictures, or metadata.
  *
- * @param env A valid N-API environment in which the returned ArkTS Picture object is created.
- * @param pictureNative Pointer to the OH_PictureNative object to convert. The pointer must not be nullptr,
+ * @param env [in] A valid N-API environment in which the returned ArkTS Picture object is created.
+ * @param pictureNative [in] Pointer to the OH_PictureNative object to convert. The pointer must not be nullptr,
  *     and the object must contain a valid Picture object.
- * @param outPictureNapi Pointer to a napi_value variable that receives the ArkTS Picture object. The pointer must
+ * @param outPictureNapi [out] Pointer to a napi_value variable that receives the ArkTS Picture object. The pointer must
  *     not be nullptr. The value of the variable is not modified if the operation fails.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
@@ -893,10 +893,10 @@ Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_Pic
  * The returned OH_PictureNative object and pictureNapi share the same underlying Picture object. This function
  * does not copy the main image, auxiliary pictures, or metadata.
  *
- * @param env A valid N-API environment to which pictureNapi belongs.
- * @param pictureNapi The ArkTS Picture object to convert. The object must belong to env and must not have
+ * @param env [in]  A valid N-API environment to which pictureNapi belongs.
+ * @param pictureNapi [in] The ArkTS Picture object to convert. The object must belong to env and must not have
  *     been released.
- * @param outPictureNative Pointer to an OH_PictureNative pointer variable that receives the newly created
+ * @param outPictureNative [out] Pointer to an OH_PictureNative pointer variable that receives the newly created
  *     object. The pointer must not be nullptr. The value of the variable is not modified if the operation fails.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
