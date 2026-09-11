@@ -16408,17 +16408,17 @@ ArkUI_GestureCollectInterceptInfo* OH_ArkUI_NodeEvent_GetGestureCollectIntercept
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy policy);
 
 /**
- * @brief Get the current child mount policy of the specified node.
+ * @brief 设置UI Dvsync开关。开启后系统会更及时地响应Vsync请求，更频繁执行渲染任务。通常在自渲染框架中动效开始时使能，结束后关闭，以确保动画效果更加流畅，同时避免频繁的Vsync影响其他业务。在非UI线程上调用此函数将导致应用退出。
  *
- * @param node the target node handle.
- * @param policy the pointer to receive child mounting policy of the target node.
- * @return Error code.
- *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.</li></ul>
- * @since 26.0.0
+ * @param context [入参] ArkUI_ContextHandle指针。
+ * @param enable [入参] 是否启用Dvsync，取值为true时开启Dvsync，取值为false时关闭Dvsync。
+ * @return 返回结果。
+ * <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR}成功。
+ * </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
+ * </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。</li></ul>
+ * @since 26.1.0
  */
-ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy* policy);
+ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
 
 #ifdef __cplusplus
 };

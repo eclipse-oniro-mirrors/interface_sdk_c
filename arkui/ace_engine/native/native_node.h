@@ -17730,14 +17730,19 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node,
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy* policy);
 
 /**
- * @brief Set UI Dvsync switch. Calling this function on a non-UI thread will abort.
+ * @brief Sets the UI Dvsync switch.
  *
- * @param context [in] Pointer to ArkUI_ContextHandle.
- * @param enable [in] whether enable Dvsync.
- * @return Error code.
- *          <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *          </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *          </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.</li></ul>
+ * When enabled, the system responds to Vsync requests more promptly and executes rendering tasks more frequently.
+ * It is typically enabled at the start of an animation in a self-rendering framework and disabled when the animation
+ * ends, to ensure smoother animation effects while preventing frequent Vsync requests from affecting other
+ * functionalities. Calling this function on a non-UI thread will cause the application to exit.
+ *
+ * @param context [in] Pointer to an ArkUI_ContextHandle.
+ * @param enable [in] Whether to enable Dvsync. The value true enables Dvsync, and false disables Dvsync.
+ * @return Returns the result.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} The operation is successful.
+ *     </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR} Failed to initialize the CAPI.
+ *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} The function parameter is invalid.</li></ul>
  * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
