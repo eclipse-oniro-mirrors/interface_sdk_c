@@ -185,7 +185,8 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
  * 此函数必须在{@link OH_AVTranscoder_Start}之前调用，调用成功之后进入AVTRANSCODER_PREPARED状态。
  * 
  * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
- * @param config 指向OH_AVTranscoder_Config实例的指针，传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针，
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @return AV_ERR_OK：成功设置视频转码参数，进入AVTRANSCODER_PREPARED状态。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Prepare操作，或者是不支持的格式。<br>
@@ -319,7 +320,8 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(
  * B帧视频编码相关的约束和限制可以参考文档{@link B帧视频编码约束和限制}。<br>
  * 如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param enabled 是否使能B帧编码。true表示使能B帧编码，false表示不使能B帧编码，默认为false。
  * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针。
