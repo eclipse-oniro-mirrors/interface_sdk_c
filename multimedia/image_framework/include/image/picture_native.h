@@ -893,7 +893,7 @@ Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_Pic
  * The returned OH_PictureNative object and pictureNapi share the same underlying Picture object. This function
  * does not copy the main image, auxiliary pictures, or metadata.
  *
- * @param env [in]  A valid N-API environment to which pictureNapi belongs.
+ * @param env [in] A valid N-API environment to which pictureNapi belongs.
  * @param pictureNapi [in] The ArkTS Picture object to convert. The object must belong to env and must not have
  *     been released.
  * @param outPictureNative [out] Pointer to an OH_PictureNative pointer variable that receives the newly created
