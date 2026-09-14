@@ -57,7 +57,7 @@ typedef enum {
     ERR_OH_SUCCESS = 0,
     /**
      * 功能不支持。可能原因：车不支持。
-     *@since 26.1.0
+     * @since 26.1.0
      */
     OH_DLP_NOT_SUPPORTED = 801,
     /**
