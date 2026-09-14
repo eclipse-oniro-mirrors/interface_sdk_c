@@ -505,7 +505,6 @@ void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t 
 OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevice *device,
     OH_UsbManager_UsbPipe *pipe);
 
-
 /**
  * @brief Checks whether the application has permission to access the specified device.
  *
