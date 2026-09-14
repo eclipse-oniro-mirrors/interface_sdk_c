@@ -26,7 +26,7 @@
 /**
  * @file native_avcapability.h
  *
- * @brief 声明用于编解码能力查询到的Native API。
+ * @brief 声明用于编解码能力查询的Native API。
  * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
@@ -188,7 +188,7 @@ OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_
  * @brief 检查能力实例是否描述了硬件编解码器。
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param capability 编解码能力指针。
- * @return 如果能力实例描述的是硬件编解码器，则返回true，如果功能实例描述的是软件编解码器，则为false。
+ * @return 表示该能力实例描述的是否是硬件编解码器，返回true表示该能力实例描述的是硬件编解码器，返回false表示该能力实例描述的是软件编解码器。
  * @since 10
  */
 bool OH_AVCapability_IsHardware(OH_AVCapability *capability);
