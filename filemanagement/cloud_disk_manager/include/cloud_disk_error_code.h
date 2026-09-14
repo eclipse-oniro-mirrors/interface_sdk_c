@@ -52,7 +52,7 @@ typedef enum CloudDisk_ErrorCode {
      */
     CLOUD_DISK_OK = 0,
     /**
-     * @brief The permission verification or file access fails.
+     * @brief The permission verification fails.
      *
      * @since 21
      */

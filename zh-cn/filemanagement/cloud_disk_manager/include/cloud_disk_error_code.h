@@ -52,7 +52,7 @@ typedef enum CloudDisk_ErrorCode {
      */
     CLOUD_DISK_OK = 0,
     /**
-     * @brief 接口权限校验或文件访问失败。
+     * @brief 接口权限校验失败。
      *
      * @since 21
      */
