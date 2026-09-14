@@ -161,6 +161,10 @@
     },
     {
         "first_introduced": "26.0.1",
+        "name": "OH_HiDebug_SetStackTraceMode"
+    },
+    {
+        "first_introduced": "26.0.1",
         "name": "OH_HiDebug_StartProfilerWithOptions"
     }
 ]
