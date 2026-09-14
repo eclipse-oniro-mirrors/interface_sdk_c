@@ -58,7 +58,8 @@ OH_AVTranscoder_Config *OH_AVTranscoderConfig_Create();
  * @brief 释放转码配置参数资源。<br>
  * 调用成功后，config实例会被释放并置为nullptr。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @return AV_ERR_OK：释放成功。<br>
  * AV_ERR_INVALID_VAL：config是空指针。
  * @since 20
@@ -69,7 +70,8 @@ OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config);
  * @brief 设置转码源视频的文件描述符。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param srcFd 源视频的文件描述符。
  * @param srcOffset 源视频在文件描述符中的偏移量，单位：字节/Byte。
  * @param length 源视频的长度，单位：字节/Byte。
@@ -84,7 +86,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(
  * @brief 设置转码输出视频的文件描述符。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param dstFd 输出视频的文件描述符。
  * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入config为空指针，或者输出视频文件描述符是无效的。
@@ -97,7 +100,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int3
  * 当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param mimeType 输出视频的编码格式，详细请参见参考native_avcodec_base.h。
  * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。
@@ -110,7 +114,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *confi
  * 当前仅支持AAC。若开发者不设置，则默认设置为AAC。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param mimeType 输出音频的编码格式，参考native_avcodec_base.h。
  * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。
@@ -123,7 +128,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *confi
  * 当前封装格式仅支持MP4。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param mimeType 输出视频的封装格式，参考native_avcodec_base.h。
  * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是无效的。
@@ -135,7 +141,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
  * @brief 设置用于转码的输出音频的码率。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param bitrate 输出音频的码率，单位为比特率（bps）。默认设置为48Kbps。
  * @return AV_ERR_OK：设置成功。<br>
  * AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。
@@ -147,7 +154,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
  * @brief 设置用于转码的输出视频的码率。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param bitrate 输出视频的码率，单位为（bps）。默认码率按输出视频的分辨率设置。
  * [240P,480P]默认码率值为1Mbps。
  * (480P,720P]默认码率值为2Mbps。
@@ -163,7 +171,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *co
  * @brief 设置用于转码的输出视频的分辨率，单位为像素（px），其中width为输出视频帧的宽，height为输出视频帧的高。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}之前调用。
  * 
- * @param config 指向OH_AVTranscoder_Config实例的指针。传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
+ * @param config 指向OH_AVTranscoder_Config实例的指针。
+ * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @param width 输出视频帧的宽，支持范围[240, 3840]，默认设置为源视频帧的宽。
  * @param height 输出视频帧的高，支持范围[240, 2160]，默认设置为源视频帧的高。
  * @return AV_ERR_OK：设置成功。<br>
@@ -184,7 +193,8 @@ OH_AVTranscoder *OH_AVTranscoder_Create(void);
  * @brief 进行视频转码的参数设置，准备转码。<br>
  * 此函数必须在{@link OH_AVTranscoder_Start}之前调用，调用成功之后进入AVTRANSCODER_PREPARED状态。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @param config 指向OH_AVTranscoder_Config实例的指针，
  * 传入的config指针必须为[OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create)创建的实例。
  * @return AV_ERR_OK：成功设置视频转码参数，进入AVTRANSCODER_PREPARED状态。<br>
@@ -200,7 +210,8 @@ OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscode
  * @brief 开始转码。<br>
  * 此函数必须在{@link OH_AVTranscoder_Prepare}成功调用之后调用，调用成功之后进入AVTRANSCODER_STARTED状态。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @return AV_ERR_OK：成功开始转码，进入AVTRANSCODER_STARTED状态。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码开始操作失败。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Start操作。<br>
@@ -214,7 +225,8 @@ OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder);
  * @brief 暂停转码。<br>
  * 此函数必须在转码实例处于AVTRANSCODER_STARTED状态时调用，调用成功之后进入AVTRANSCODER_PAUSED状态。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @return AV_ERR_OK：成功暂停转码，进入AVTRANSCODER_PAUSED状态。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码暂停操作失败。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Pause操作。<br>
@@ -228,7 +240,8 @@ OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder);
  * @brief 恢复转码。<br>
  * 此函数必须在转码实例处于AVTRANSCODER_PAUSED状态时调用，调用成功之后重新进入AVTRANSCODER_STARTED状态。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @return AV_ERR_OK：成功恢复转码，进入AVTRANSCODER_STARTED状态。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码恢复操作失败。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Resume操作。<br>
@@ -242,7 +255,8 @@ OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder);
  * @brief 取消转码。<br>
  * 此函数必须在转码实例处于AVTRANSCODER_STARTED或AVTRANSCODER_PAUSED状态时调用，调用成功之后进入AVTRANSCODER_CANCELLED状态。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @return AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码取消操作失败。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Cancel操作。<br>
@@ -255,7 +269,8 @@ OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder);
 /**
  * @brief 释放转码实例资源。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @return AV_ERR_OK：成功释放转码实例资源。<br>
  * AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码释放资源操作失败。<br>
  * AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Release操作。<br>
@@ -271,7 +286,8 @@ OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder);
  * 开发者只能注册一个状态修改事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。<br>
  * 若开发者需监听转码状态修改，须在{@link OH_AVTranscoder_Prepare}之前注册转码状态回调。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @param callback 转码状态回调方法，详细说明请参见{@link OH_AVTranscoder_OnStateChange}。
  * @param userData 指向用户特定数据的指针。
  * @return AV_ERR_OK：注册成功。<br>
@@ -288,7 +304,8 @@ OH_AVErrCode OH_AVTranscoder_SetStateCallback(
  * 开发者只能注册一个错误事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。<br>
  * 若开发者需监听转码错误事件，须在{@link OH_AVTranscoder_Prepare}之前注册转码错误事件。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @param callback 转码错误回调方法，详细说明请参见{@link OH_AVTranscoder_OnError}。
  * @param userData 指向用户特定数据的指针。
  * @return AV_ERR_OK：注册成功。<br>
@@ -304,7 +321,8 @@ OH_AVErrCode OH_AVTranscoder_SetErrorCallback(
  * 开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。<br>
  * 若开发者需监听转码处理进度，则须在{@link OH_AVTranscoder_Prepare}之前注册该事件。
  * 
- * @param transcoder 指向OH_AVTranscoder实例的指针。传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
+ * @param transcoder 指向OH_AVTranscoder实例的指针。
+ * 传入的transcoder指针必须为[OH_AVTranscoder_Create](#oh_avtranscoder_create)创建的实例。
  * @param callback 转码进度更新回调方法，详细说明请参见{@link OH_AVTranscoder_OnProgressUpdate}。
  * @param userData 指向用户特定数据的指针。
  * @return AV_ERR_OK：注册成功。<br>
