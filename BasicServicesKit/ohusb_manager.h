@@ -27,7 +27,7 @@
  * @file ohusb_manager.h
  *
  * @brief Declares the C APIs for USB device management.
- *
+ * @include <BasicServicesKit/ohusb_manager.h>
  * @library libohusb_manager.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.USB.USBManager
@@ -51,49 +51,49 @@ extern "C" {
  */
 typedef enum OH_UsbManager_ErrorCode {
     /**
-     * Operation successful.
+     * @brief Operation successful.
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_SUCCESS = 0,
 
     /**
-     * Permission denied.
+     * @brief Permission denied.
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_ERROR_PERMISSION_DENIED = 14400001,
 
     /**
-     * Service exception.
+     * @brief Service exception.
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_ERROR_SERVICE_EXCEPTION = 14400004,
 
     /**
-     * No such device (it may have been disconnected).
+     * @brief No such device (it may have been disconnected).
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_ERROR_NO_DEVICE = 14400008,
 
     /**
-     * Insufficient memory.
+     * @brief Insufficient memory.
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_ERROR_NO_MEMORY = 14400009,
 
     /**
-     * Transmission I/O error.
+     * @brief Transmission I/O error.
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_ERROR_IO_ERROR = 14400012,
 
     /**
-     * Invalid parameter. A null pointer is passed for a parameter that must not be null.
+     * @brief Invalid parameter. A null pointer is passed for a parameter that must not be null.
      *
      * @since 26.1.0
      */
@@ -107,14 +107,14 @@ typedef enum OH_UsbManager_ErrorCode {
  */
 typedef enum OH_UsbManager_RequestDirection {
     /**
-     * Request for writing data from the host to the device.
+     * @brief Request for writing data from the host to the device.
      *
      * @since 26.1.0
      */
     OH_USBMANAGER_REQUEST_DIR_TO_DEVICE = 0,
 
     /**
-     * Request for reading data from the device to the host.
+     * @brief Request for reading data from the device to the host.
      *
      * @since 26.1.0
      */
@@ -123,64 +123,64 @@ typedef enum OH_UsbManager_RequestDirection {
 
 /**
  * @brief Defines the USB endpoint from which data is sent or received. An endpoint
- * is obtained from {@link OH_UsbManager_UsbInterface}.
+ * <br>is obtained from {@link OH_UsbManager_UsbInterface}.
  *
  * @since 26.1.0
  */
 typedef struct OH_UsbManager_UsbEndpoint {
     /**
-     * Endpoint address.
+     * @brief Endpoint address.
      *
      * @since 26.1.0
      */
     uint8_t address;
 
     /**
-     * Endpoint attributes.
+     * @brief Endpoint attributes.
      *
      * @since 26.1.0
      */
     uint8_t attributes;
 
     /**
-     * Endpoint interval for data transfers. For interrupt endpoints, the value
-     * is in milliseconds. For isochronous endpoints, the unit depends on the
-     * device speed.
+     * @brief Endpoint interval for data transfers. For interrupt endpoints, the value
+     * <br>is in milliseconds. For isochronous endpoints, the unit depends on the
+     * <br>device speed.
      *
      * @since 26.1.0
      */
     uint8_t interval;
 
     /**
-     * Maximum size of data packets on the endpoint. Unit: bytes.
+     * @brief Maximum size of data packets on the endpoint. Unit: bytes.
      *
      * @since 26.1.0
      */
     uint16_t maxPacketSize;
 
     /**
-     * Endpoint direction.
+     * @brief Endpoint direction.
      *
      * @since 26.1.0
      */
     OH_UsbManager_RequestDirection direction;
 
     /**
-     * Endpoint number.
+     * @brief Endpoint number.
      *
      * @since 26.1.0
      */
     uint8_t number;
 
     /**
-     * Endpoint type.
+     * @brief Endpoint type.
      *
      * @since 26.1.0
      */
     uint8_t type;
 
     /**
-     * Unique ID of the interface to which the endpoint belongs.
+     * @brief Unique ID of the interface to which the endpoint belongs.
      *
      * @since 26.1.0
      */
@@ -189,63 +189,63 @@ typedef struct OH_UsbManager_UsbEndpoint {
 
 /**
  * @brief Defines a USB interface. One {@link OH_UsbManager_UsbConfig} can contain
- * multiple OH_UsbManager_UsbInterface instances, each providing a specific function.
+ * <br>multiple OH_UsbManager_UsbInterface instances, each providing a specific function.
  *
  * @since 26.1.0
  */
 typedef struct OH_UsbManager_UsbInterface {
     /**
-     * Unique ID of the USB interface.
+     * @brief Unique ID of the USB interface.
      *
      * @since 26.1.0
      */
     uint8_t id;
 
     /**
-     * Interface protocol.
+     * @brief Interface protocol.
      *
      * @since 26.1.0
      */
     uint8_t protocol;
 
     /**
-     * Interface class.
+     * @brief Interface class.
      *
      * @since 26.1.0
      */
     uint8_t clazz;
 
     /**
-     * Interface subclass.
+     * @brief Interface subclass.
      *
      * @since 26.1.0
      */
     uint8_t subClass;
 
     /**
-     * Alternate setting number of this USB interface, as defined in the USB
-     * interface descriptor. Value 0 indicates the default alternate setting.
+     * @brief Alternate setting number of this USB interface, as defined in the USB
+     * <br>interface descriptor. Value 0 indicates the default alternate setting.
      *
      * @since 26.1.0
      */
     uint8_t alternateSetting;
 
     /**
-     * Interface name.
+     * @brief Interface name.
      *
      * @since 26.1.0
      */
     const char *name;
 
     /**
-     * Endpoints that belong to the USB interface.
+     * @brief Endpoints that belong to the USB interface.
      *
      * @since 26.1.0
      */
     OH_UsbManager_UsbEndpoint *endpoints;
 
     /**
-     * Number of endpoints in the interface.
+     * @brief Number of endpoints in the interface.
      *
      * @since 26.1.0
      */
@@ -254,64 +254,64 @@ typedef struct OH_UsbManager_UsbInterface {
 
 /**
  * @brief Defines a USB configuration. One {@link OH_UsbManager_UsbDevice} can contain multiple
- * **OH_UsbManager_UsbConfig** instances.
+ * <br>**OH_UsbManager_UsbConfig** instances.
  *
  * @since 26.1.0
  */
 typedef struct OH_UsbManager_UsbConfig {
     /**
-     * Unique ID of the USB configuration.
+     * @brief Unique ID of the USB configuration.
      *
      * @since 26.1.0
      */
     uint8_t id;
 
     /**
-     * Configuration attributes.
+     * @brief Configuration attributes.
      *
      * @since 26.1.0
      */
     uint8_t attributes;
 
     /**
-     * Maximum power consumption. Unit: mA.
+     * @brief Maximum power consumption. Unit: mA.
      *
      * @since 26.1.0
      */
     uint8_t maxPower;
 
     /**
-     * Configuration name, which can be left empty.
+     * @brief Configuration name, which can be left empty.
      *
      * @since 26.1.0
      */
     const char *name;
 
     /**
-     * Whether remote wakeup is supported. true indicates that remote wakeup is supported;
-     * false indicates the opposite.
+     * @brief Whether remote wakeup is supported. true indicates that remote wakeup is supported;
+     * <br>false indicates the opposite.
      *
      * @since 26.1.0
      */
     bool isRemoteWakeup;
 
     /**
-     * Whether an independent power supply is supported. true indicates that an independent
-     * power supply is supported; false indicates the opposite.
+     * @brief Whether an independent power supply is supported. true indicates that an independent
+     * <br>power supply is supported; false indicates the opposite.
      *
      * @since 26.1.0
      */
     bool isSelfPowered;
 
     /**
-     * Supported interface attributes.
+     * @brief Supported interface attributes.
      *
      * @since 26.1.0
      */
     OH_UsbManager_UsbInterface *interfaces;
 
     /**
-     * Number of interfaces in the configuration.
+     * @brief Number of interfaces in the configuration.
      *
      * @since 26.1.0
      */
@@ -325,91 +325,91 @@ typedef struct OH_UsbManager_UsbConfig {
  */
 typedef struct OH_UsbManager_UsbDevice {
     /**
-     * Bus number of the USB device.
+     * @brief Bus number of the USB device.
      *
      * @since 26.1.0
      */
     uint8_t busNum;
 
     /**
-     * Device address on the bus.
+     * @brief Device address on the bus.
      *
      * @since 26.1.0
      */
     uint8_t devAddress;
 
     /**
-     * Device name, in the format of <bus number>-<device address>.
+     * @brief Device name, in the format of <bus number>-<device address>.
      *
      * @since 26.1.0
      */
     const char *name;
 
     /**
-     * Manufacturer name.
+     * @brief Manufacturer name.
      *
      * @since 26.1.0
      */
     const char *manufacturerName;
 
     /**
-     * Product name.
+     * @brief Product name.
      *
      * @since 26.1.0
      */
     const char *productName;
 
     /**
-     * Device version.
+     * @brief Device version.
      *
      * @since 26.1.0
      */
     const char *version;
 
     /**
-     * Vendor ID.
+     * @brief Vendor ID.
      *
      * @since 26.1.0
      */
     uint16_t vendorId;
 
     /**
-     * Product ID.
+     * @brief Product ID.
      *
      * @since 26.1.0
      */
     uint16_t productId;
 
     /**
-     * Device class.
+     * @brief Device class.
      *
      * @since 26.1.0
      */
     uint8_t clazz;
 
     /**
-     * Device subclass.
+     * @brief Device subclass.
      *
      * @since 26.1.0
      */
     uint8_t subClass;
 
     /**
-     * Device protocol.
+     * @brief Device protocol.
      *
      * @since 26.1.0
      */
     uint8_t protocol;
 
     /**
-     * Device configuration descriptor information.
+     * @brief Device configuration descriptor information.
      *
      * @since 26.1.0
      */
     OH_UsbManager_UsbConfig *configs;
 
     /**
-     * Number of configurations in the device.
+     * @brief Number of configurations in the device.
      *
      * @since 26.1.0
      */
@@ -423,14 +423,14 @@ typedef struct OH_UsbManager_UsbDevice {
  */
 typedef struct OH_UsbManager_UsbPipe {
     /**
-     * Bus number of the connected device.
+     * @brief Bus number of the connected device.
      *
      * @since 26.1.0
      */
     uint8_t busNum;
 
     /**
-     * Device address of the connected device.
+     * @brief Device address of the connected device.
      *
      * @since 26.1.0
      */
@@ -439,23 +439,23 @@ typedef struct OH_UsbManager_UsbPipe {
 
 /**
  * @brief Obtains the list of all connected USB devices. The caller must release the
- * returned array by calling {@link OH_UsbManager_FreeUsbDeviceList}.
+ * <br>returned array by calling {@link OH_UsbManager_FreeUsbDeviceList}.
  *
  * @param devices [out] Double pointer to the array of {@link OH_UsbManager_UsbDevice}. On success,
- *     the function allocates the array and all internal string buffers. The caller
- *     must NOT free individual fields; use {@link OH_UsbManager_FreeUsbDeviceList} instead.
- *     Must not be null.
+ *     <br>the function allocates the array and all internal string buffers. The caller
+ *     <br>must NOT free individual fields; use {@link OH_UsbManager_FreeUsbDeviceList} instead.
+ *     <br>Must not be null.
  * @param deviceCount [out] Pointer to the number of devices returned. On success, this is
- *     set to the number of elements in the array. Zero indicates no devices present.
- *     Must not be null.
+ *     <br>set to the number of elements in the array. Zero indicates no devices present.
+ *     <br>Must not be null.
  * @return {@link OH_USBMANAGER_SUCCESS} if the operation is successful.
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} if the USB service is unavailable. Possible cause:
- *     a USB service fault, for example the service is not running or has stopped unexpectedly.
+ *     <br>a USB service fault, for example the service is not running or has stopped unexpectedly.
  *     <br>{@link OH_USBMANAGER_ERROR_NO_MEMORY} if memory allocation for the device array or strings fails.
- *     Possible causes: insufficient system memory or too many connected devices. Suggested action: release
- *     unused memory and retry.
+ *     <br>Possible causes: insufficient system memory or too many connected devices. Suggested action: release
+ *     <br>unused memory and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if devices or deviceCount is NULL. Possible cause:
- *     a required parameter is not provided. Suggested action: pass valid non-null pointers.
+ *     <br>a required parameter is not provided. Suggested action: pass valid non-null pointers.
  * @release OH_UsbManager_FreeUsbDeviceList {devices}
  * @since 26.1.0
  */
@@ -465,30 +465,41 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice *
 /**
  * @brief Frees a device array previously returned by {@link OH_UsbManager_GetUsbDeviceList}.
  *
- * After this call, the pointer is invalid and must not be used. Passing null or a
- * count of 0 is a safe no-op.
+ * <br>After this call, the pointer is invalid and must not be used. Passing null or a
+ * <br>count of 0 is a safe no-op.
  *
  * @param devices [in] Pointer to the array returned by {@link OH_UsbManager_GetUsbDeviceList}.
  * @param deviceCount [in] Number of elements in the array, as returned by
- *     {@link OH_UsbManager_GetUsbDeviceList}.
+ *     <br>{@link OH_UsbManager_GetUsbDeviceList}.
  * @since 26.1.0
  */
 void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t deviceCount);
 
 /**
  * @brief Connects to a USB device and opens a pipe for communication. The returned pipe must be closed by calling
- * {@link OH_UsbManager_ClosePipe} to avoid resource leaks.
+ * <br>{@link OH_UsbManager_ClosePipe} to avoid resource leaks.
  *
- * Only the **busNum** and **devAddress** fields in the device structure are required. Other fields are ignored.
+ * <br>Only the **busNum** and **devAddress** fields in the device structure are required. Other fields are ignored.
  *
- * @param device Pointer to the {@link OH_UsbManager_UsbDevice} to connect. This is an input parameter. This parameter cannot be left empty.
- * @param pipe Pointer to the {@link OH_UsbManager_UsbPipe}, which is used to receive the handle upon successful operation.
- *     This is an output parameter. This parameter cannot be left empty.
+ * @param device [in] Pointer to the {@link OH_UsbManager_UsbDevice} to connect. This is an input
+ * <br>parameter. This parameter cannot be left empty.
+ * @param pipe [out] Pointer to the {@link OH_UsbManager_UsbPipe}, which is used to receive the handle
+ *     <br>upon successful operation.
+ *     <br>This is an output parameter. This parameter cannot be left empty.
  * @return {@link OH_USBMANAGER_SUCCESS}: The connection is successful.
- *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED}: The app does not have the permission to access the device. Possible causes: The access permission has not been requested, the permission has been revoked, or the user has rejected the request. Suggestion: Call {@link OH_UsbManager_RequestPermission} to request the access permission.
- * <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION}: The USB service fails to open the device. Possible causes: The USB service is abnormal (for example, the service is not running or has stopped unexpectedly), or the input **device** is invalid. Suggestion: If **device** is invalid, call {@link OH_UsbManager_GetUsbDeviceList} to obtain valid device data and try again.
- *     <br>{@link OH_USBMANAGER_ERROR_IO_ERROR}: The device cannot be opened. For example, the device is disconnected or an I/O error occurs. Possible causes: The device is disconnected or an I/O error occurs on the USB bus. Suggestion: Check the physical connection and device status, and try again.
- *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER}: **device** or **pipe** is null. Possible cause: Mandatory parameters are not provided. Suggestion: Pass a valid non-null pointer.
+ *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED}: The app does not have the permission to access the device.
+ *     <br>Possible causes: The access permission has not been requested, the permission has been revoked, or the user
+ *     <br>has rejected the request. Suggestion: Call {@link OH_UsbManager_RequestPermission} to request the access
+ *     <br>permission.
+ * <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION}: The USB service fails to open the device. Possible causes: The
+ * <br>USB service is abnormal (for example, the service is not running or has stopped unexpectedly), or the input
+ * <br>**device** is invalid. Suggestion: If **device** is invalid, call {@link OH_UsbManager_GetUsbDeviceList} to
+ * <br>obtain valid device data and try again.
+ *     <br>{@link OH_USBMANAGER_ERROR_IO_ERROR}: The device cannot be opened. For example, the device is disconnected
+ *     <br>or an I/O error occurs. Possible causes: The device is disconnected or an I/O error occurs on the USB bus.
+ *     <br>Suggestion: Check the physical connection and device status, and try again.
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER}: **device** or **pipe** is null. Possible cause: Mandatory
+ *     <br>parameters are not provided. Suggestion: Pass a valid non-null pointer.
  * @since 26.1.0
  */
 OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevice *device,
@@ -500,27 +511,27 @@ OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevic
  *
  * @param deviceName [in] Device name, in the format of <bus number>-<device address>. Must not be null.
  * @param result [out] Pointer to receive the result. true if the application has been
- *     granted permission to access the device; false if permission has not been
- *     granted or has not been requested. Must not be null.
+ *     <br>granted permission to access the device; false if permission has not been
+ *     <br>granted or has not been requested. Must not be null.
  * @return {@link OH_USBMANAGER_SUCCESS} if the operation is successful.
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} if the USB service is unavailable. Possible causes:
- *     a USB service fault (for example, the service is not running or has stopped unexpectedly), or the
- *     passed deviceName is invalid. Suggested action: if deviceName is invalid, call
- *     {@link OH_UsbManager_GetUsbDeviceList} to obtain a valid device name and retry.
+ *     <br>a USB service fault (for example, the service is not running or has stopped unexpectedly), or the
+ *     <br>passed deviceName is invalid. Suggested action: if deviceName is invalid, call
+ *     <br>{@link OH_UsbManager_GetUsbDeviceList} to obtain a valid device name and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if deviceName or result is NULL. Possible cause:
- *     a required parameter is not provided. Suggested action: pass valid non-null pointers.
+ *     <br>a required parameter is not provided. Suggested action: pass valid non-null pointers.
  * @since 26.1.0
  */
 OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool *result);
 
 /**
  * @brief Defines the callback type used to return the result of
- * {@link OH_UsbManager_RequestPermission}.
+ * <br>{@link OH_UsbManager_RequestPermission}.
  *
  * @param errorCode [out] Error code of the request. {@link OH_USBMANAGER_SUCCESS} means the
- *     request completed normally; other values indicate a service exception.
+ *     <br>request completed normally; other values indicate a service exception.
  * @param result [out] true if the permission is granted; false if the user denied the request.
- *     This parameter is meaningful only when errorCode is {@link OH_USBMANAGER_SUCCESS}.
+ *     <br>This parameter is meaningful only when errorCode is {@link OH_USBMANAGER_SUCCESS}.
  * @param userContext [out] User context passed through from {@link OH_UsbManager_RequestPermission}.
  * @since 26.1.0
  */
@@ -529,20 +540,20 @@ typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCo
 
 /**
  * @brief Requests permission to access the specified USB device asynchronously.
- * This may trigger a system dialog asking the user for permission. The function
- * returns immediately and the result is delivered via the callback.
+ * <br>This may trigger a system dialog asking the user for permission. The function
+ * <br>returns immediately and the result is delivered via the callback.
  *
  * @param deviceName [in] Device name, in the format of <bus number>-<device address>. Must not be null.
  * @param callback [in] {@link OH_UsbManager_PermissionCallback} invoked when the request completes.
- *     Must not be null.
+ *     <br>Must not be null.
  * @param userContext [in] User context pointer passed to the callback. May be null.
  * @return {@link OH_USBMANAGER_SUCCESS} if the request is successfully initiated.
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} if the service fails to start the request. Possible
- *     causes: a USB service fault (for example, the service is not running or has stopped unexpectedly), or
- *     the passed deviceName is invalid. Suggested action: if deviceName is invalid, call
- *     {@link OH_UsbManager_GetUsbDeviceList} to obtain a valid device name and retry.
+ *     <br>causes: a USB service fault (for example, the service is not running or has stopped unexpectedly), or
+ *     <br>the passed deviceName is invalid. Suggested action: if deviceName is invalid, call
+ *     <br>{@link OH_UsbManager_GetUsbDeviceList} to obtain a valid device name and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if deviceName or callback is NULL. Possible cause:
- *     a required parameter is not provided. Suggested action: pass valid non-null pointers.
+ *     <br>a required parameter is not provided. Suggested action: pass valid non-null pointers.
  * @since 26.1.0
  */
 OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
@@ -550,24 +561,24 @@ OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
 
 /**
  * @brief Obtains the file descriptor for the opened USB device pipe. The fd can be
- * used for low-level ioctl-based USB transfers.
+ * <br>used for low-level ioctl-based USB transfers.
  *
  * @param pipe [in] Pointer to the {@link OH_UsbManager_UsbPipe} obtained from
- *     {@link OH_UsbManager_ConnectDevice}. Must not be null.
+ *     <br>{@link OH_UsbManager_ConnectDevice}. Must not be null.
  * @param fd [out] Pointer to receive the file descriptor on success. Must not be null.
  * @return {@link OH_USBMANAGER_SUCCESS} if the operation is successful.
  *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} if the app lacks device access permission. Possible causes:
- *     the access permission has not been requested, has been revoked, or the user denied the request. Suggested
- *     action: call {@link OH_UsbManager_RequestPermission} to request the access permission.
+ *     <br>the access permission has not been requested, has been revoked, or the user denied the request. Suggested
+ *     <br>action: call {@link OH_UsbManager_RequestPermission} to request the access permission.
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} if the pipe is invalid or the service fails. Possible
- *     causes: a USB service fault, or the pipe was not obtained from {@link OH_UsbManager_ConnectDevice} or
- *     has been closed. Suggested action: if the pipe is invalid or closed, obtain a valid open pipe from
- *     {@link OH_UsbManager_ConnectDevice} and retry.
+ *     <br>causes: a USB service fault, or the pipe was not obtained from {@link OH_UsbManager_ConnectDevice} or
+ *     <br>has been closed. Suggested action: if the pipe is invalid or closed, obtain a valid open pipe from
+ *     <br>{@link OH_UsbManager_ConnectDevice} and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_NO_DEVICE} if the device is not present or has been disconnected. Possible
- *     cause: the device has been unplugged. Suggested action: enumerate devices again with
- *     {@link OH_UsbManager_GetUsbDeviceList} and reconnect.
+ *     <br>cause: the device has been unplugged. Suggested action: enumerate devices again with
+ *     <br>{@link OH_UsbManager_GetUsbDeviceList} and reconnect.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if pipe or fd is NULL. Possible cause: a required
- *     parameter is not provided. Suggested action: pass valid non-null pointers.
+ *     <br>parameter is not provided. Suggested action: pass valid non-null pointers.
  * @since 26.1.0
  */
 OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbPipe *pipe,
@@ -575,19 +586,19 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbP
 
 /**
  * @brief Closes the USB device pipe and releases the underlying resources.
- * The pipe must be obtained from {@link OH_UsbManager_ConnectDevice}.
+ * <br>The pipe must be obtained from {@link OH_UsbManager_ConnectDevice}.
  *
  * @param pipe [in] Pointer to the {@link OH_UsbManager_UsbPipe} obtained from
- *     {@link OH_UsbManager_ConnectDevice} to close. Must not be null.
+ *     <br>{@link OH_UsbManager_ConnectDevice} to close. Must not be null.
  * @return {@link OH_USBMANAGER_SUCCESS} if the pipe is closed successfully.
  *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} if the app lacks device access permission. Possible causes:
- *     the access permission has not been requested, has been revoked, or the user denied the request. Suggested
- *     action: call {@link OH_UsbManager_RequestPermission} to request the access permission.
+ *     <br>the access permission has not been requested, has been revoked, or the user denied the request. Suggested
+ *     <br>action: call {@link OH_UsbManager_RequestPermission} to request the access permission.
  *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} if the close operation fails. Possible causes: a USB
- *     service fault, or the pipe is invalid or has already been closed. Suggested action: if the pipe is
- *     invalid or closed, obtain a valid open pipe from {@link OH_UsbManager_ConnectDevice} and retry.
+ *     <br>service fault, or the pipe is invalid or has already been closed. Suggested action: if the pipe is
+ *     <br>invalid or closed, obtain a valid open pipe from {@link OH_UsbManager_ConnectDevice} and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if pipe is NULL. Possible cause: a required parameter
- *     is not provided. Suggested action: pass valid non-null pointers.
+ *     <br>is not provided. Suggested action: pass valid non-null pointers.
  * @since 26.1.0
  */
 OH_UsbManager_ErrorCode OH_UsbManager_ClosePipe(const OH_UsbManager_UsbPipe *pipe);
