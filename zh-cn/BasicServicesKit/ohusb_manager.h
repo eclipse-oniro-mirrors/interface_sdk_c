@@ -25,7 +25,7 @@
 
 /**
  * @file ohusb_manager.h
- *
+ * @include <BasicServicesKit/ohusb_manager.h>
  * @brief Declares the C APIs for USB device management.
  *
  * @library libohusb_manager.so
