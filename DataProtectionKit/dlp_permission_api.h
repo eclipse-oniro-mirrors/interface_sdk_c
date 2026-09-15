@@ -128,7 +128,7 @@ typedef enum {
  *     <br>**0x00000400** indicates the permission for modifying the permissions on the file.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
  *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.1.0 and above, this error is returned. On API 26.1.0 and above, this error is returned. 
+ *     On API 26.1.0 and above, this error is returned. On API 26.1.0 and above, this error is returned.
  *     [since 26.1.0]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to
