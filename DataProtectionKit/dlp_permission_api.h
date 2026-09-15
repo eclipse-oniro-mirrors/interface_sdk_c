@@ -126,7 +126,8 @@ typedef enum {
  *     <br>**0x00000400** indicates the permission for modifying the permissions on the file.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
  *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.1.0 and above, this error is returned.On API 26.1.0 and above, this error is returned. [since 26.1.0]</li>
+ *     On API 26.1.0 and above, this error is returned.On API 26.1.0 and above, this error is returned. 
+ *     [since 26.1.0]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to
  *     call this API, which is available only for DLP sandbox applications.</li>
@@ -140,8 +141,8 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
 /**
  * @brief Obtains the original file name of a DLP file.
  *
- * @param fileName [in] Pointer to the target file whose original file name is to be obtained. The length cannot exceed 256
- *     characters.
+ * @param fileName [in] Pointer to the target file whose original file name is to be obtained. The length cannot exceed
+ *     256 characters.
  * @param originalFileName [out] Double pointer to the original file name obtained.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
  *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
@@ -155,7 +156,8 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFile
 /**
  * @brief Checks whether this application is running in a DLP sandbox environment.
  *
- * @param isInSandbox [out] Returns **true** if the application is running in a DLP sandbox; returns **false** otherwise.
+ * @param isInSandbox [out] Returns **true** if the application is running in a DLP sandbox; returns **false**
+ *     otherwise.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
  *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
  *     On API 26.1.0 and above, this error is returned. [since 26.1.0]</li>
