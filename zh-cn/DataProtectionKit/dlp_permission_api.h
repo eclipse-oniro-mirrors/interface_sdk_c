@@ -36,9 +36,6 @@
 #ifndef DLP_PERMISSION_API_H
 #define DLP_PERMISSION_API_H
 
-#include "napi/native_api.h"
-#include <stdbool.h>
-#include <stdint.h>
 #include "DataProtectionKit/dlp_permission_api.h"
 
 #ifdef __cplusplus
