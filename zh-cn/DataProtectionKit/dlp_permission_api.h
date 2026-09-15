@@ -37,6 +37,8 @@
 #define DLP_PERMISSION_API_H
 
 #include "DataProtectionKit/dlp_permission_api.h"
+#include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
