@@ -699,25 +699,25 @@ typedef struct OH_CloudDisk_FetchDataRequest {
  */
 typedef union OH_CloudDisk_CallbackContext {
     /**
-     * @brief 获取数据请求。当callbackType为{@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}时生效。
+     * @brief 获取数据请求。当callbackType为{@link CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}时生效。
      *
      * @since 26.1.0
      */
     OH_CloudDisk_FetchDataRequest *fetchData;
     /**
-     * @brief 取消获取数据请求。当callbackType为{@link OH_CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}时生效。
+     * @brief 取消获取数据请求。当callbackType为{@link CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}时生效。
      *
      * @since 26.1.0
      */
     CloudDisk_PathInfo *cancelFetchData;
     /**
-     * @brief 脱水授权请求。当callbackType为{@link OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}时生效。
+     * @brief 脱水授权请求。当callbackType为{@link CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}时生效。
      *
      * @since 26.1.0
      */
     OH_CloudDisk_DehydrateInfo *dehydrateData;
     /**
-     * @brief 获取范围数据请求。当callbackType为{@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}时生效。
+     * @brief 获取范围数据请求。当callbackType为{@link CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}时生效。
      *
      * @since 26.2.0
      */

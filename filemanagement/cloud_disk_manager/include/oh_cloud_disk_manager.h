@@ -716,28 +716,28 @@ typedef struct OH_CloudDisk_FetchDataRequest {
 typedef union OH_CloudDisk_CallbackContext {
     /**
      * @brief Fetch data request. It takes effect when callbackType is
-     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}.
+     * {@link CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}.
      *
      * @since 26.1.0
      */
     OH_CloudDisk_FetchDataRequest *fetchData;
     /**
      * @brief Cancel fetch data request. It takes effect when callbackType is
-     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}.
+     * {@link CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}.
      *
      * @since 26.1.0
      */
     CloudDisk_PathInfo *cancelFetchData;
     /**
      * @brief Dehydrate authorization request. It takes effect when callbackType is
-     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}.
+     * {@link CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}.
      *
      * @since 26.1.0
      */
     OH_CloudDisk_DehydrateInfo *dehydrateData;
     /**
      * @brief Fetch range data request. It takes effect when callbackType is
-     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
+     * {@link CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
      *
      * @since 26.2.0
      */
