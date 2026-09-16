@@ -864,9 +864,12 @@ Image_ErrorCode OH_PictureNative_DecomposeToPicture(OH_PixelmapNative *hdrPixelm
  * @brief Converts an {@link OH_PictureNative} object to an ArkTS <b>Picture</b> object represented by
  * a napi_value.
  *
- * The returned ArkTS Picture object and pictureNative share the same underlying Picture object. This function
- * does not copy the main image, auxiliary pictures, or metadata.
- *
+ * The returned ArkTS Picture object and pictureNative share the same underlying Picture object through
+ * shared ownership (reference counting). This function does not copy the main image, auxiliary pictures,
+ * or metadata. Releasing either side (via {@link OH_PictureNative_Release} for the native handle, or
+ * ArkTS garbage collection for the napi_value) does not invalidate the other. The underlying Picture
+ * object is destroyed only when the last reference is released.
+ * @systemapi
  * @param env [in] A valid N-API environment in which the returned ArkTS Picture object is created.
  * @param pictureNative [in] Pointer to the OH_PictureNative object to convert. The pointer must not be nullptr,
  *     and the object must contain a valid Picture object.
@@ -880,7 +883,6 @@ Image_ErrorCode OH_PictureNative_DecomposeToPicture(OH_PixelmapNative *hdrPixelm
  *         be created.</li>
  *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} if a non-system application calls this system API.</li>
  *         </ul>
- * @systemapi
  * @since 26.1.0
  */
 Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_PictureNative *pictureNative,
@@ -890,28 +892,32 @@ Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_Pic
  * @brief Converts an ArkTS <b>Picture</b> object represented by a napi_value to an
  * {@link OH_PictureNative} object.
  *
- * The returned OH_PictureNative object and pictureNapi share the same underlying Picture object. This function
- * does not copy the main image, auxiliary pictures, or metadata.
- *
+ * The returned OH_PictureNative object and pictureNapi share the same underlying Picture object through
+ * shared ownership (reference counting). This function does not copy the main image, auxiliary pictures,
+ * or metadata. Releasing either side (via {@link OH_PictureNative_Release} for the native handle, or
+ * ArkTS garbage collection for the napi_value) does not invalidate the other. The underlying Picture
+ * object is destroyed only when the last reference is released.
+ * @systemapi
  * @param env [in] A valid N-API environment to which pictureNapi belongs.
  * @param pictureNapi [in] The ArkTS Picture object to convert. The object must belong to env and must not have
  *     been released.
- * @param outPictureNative [out] Pointer to an OH_PictureNative pointer variable that receives the newly created
- *     object. The pointer must not be nullptr. The value of the variable is not modified if the operation fails.
+ * @param outOwnedPictureNative [out] Pointer to an OH_PictureNative pointer variable that receives the newly
+ *     created object. The pointer must not be nullptr. The value of the variable is not modified if the
+ *     operation fails. The caller owns the returned object and must release it via
+ *     {@link OH_PictureNative_Release} when it is no longer needed.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} if env, pictureNapi, or outPictureNative is nullptr,
+ *         <li>{@link IMAGE_INVALID_PARAMETER} if env, pictureNapi, or outOwnedPictureNative is nullptr,
  *         pictureNapi is not an ArkTS Picture object, or the ArkTS Picture object has been released.</li>
  *         <li>{@link IMAGE_ALLOC_FAILED} if memory allocation fails.</li>
  *         <li>{@link IMAGE_UNKNOWN_ERROR} if an N-API operation fails while inspecting pictureNapi in env.</li>
  *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} if a non-system application calls this system API.</li>
  *         </ul>
- * @release picture_native/OH_PictureNative_Release {outPictureNative}
- * @systemapi
+ * @release picture_native/OH_PictureNative_Release {outOwnedPictureNative}
  * @since 26.1.0
  */
 Image_ErrorCode OH_PictureNative_ConvertPictureNativeFromNapi(napi_env env, napi_value pictureNapi,
-    OH_PictureNative **outPictureNative);
+    OH_PictureNative **outOwnedPictureNative);
 
 #ifdef __cplusplus
 };
