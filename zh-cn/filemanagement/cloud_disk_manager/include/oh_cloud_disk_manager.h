@@ -559,7 +559,13 @@ typedef enum OH_CloudDisk_CallbackType {
      *
      * @since 26.1.0
      */
-    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2
+    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2,
+    /**
+     * @brief 获取指定范围数据，用于读取。
+     *
+     * @since 26.2.0
+     */
+    OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA = 3
 } OH_CloudDisk_CallbackType;
 
 /**
@@ -635,6 +641,38 @@ typedef struct OH_CloudDisk_DehydrateInfo {
 } OH_CloudDisk_DehydrateInfo;
 
 /**
+ * @brief 获取范围数据请求信息。
+ *
+ * @since 26.2.0
+ */
+typedef struct OH_CloudDisk_FetchRangeDataRequest {
+    /**
+     * @brief 同步根内相对文件路径。
+     *
+     * @since 26.2.0
+     */
+    CloudDisk_PathInfo filePath;
+    /**
+     * @brief 获取范围数据的起始偏移，以字节为单位。
+     *
+     * @since 26.2.0
+     */
+    uint64_t offset;
+    /**
+     * @brief 获取范围数据的大小，以字节为单位。
+     *
+     * @since 26.2.0
+     */
+    uint64_t size;
+    /**
+     * @brief 需要读取的数据。
+     *
+     * @since 26.2.0
+     */
+    OH_CloudDisk_DataBuf *data;
+} OH_CloudDisk_FetchRangeDataRequest;
+
+/**
  * @brief 获取数据请求信息。
  *
  * @since 26.1.0
@@ -678,6 +716,12 @@ typedef union OH_CloudDisk_CallbackContext {
      * @since 26.1.0
      */
     OH_CloudDisk_DehydrateInfo *dehydrateData;
+    /**
+     * @brief 获取范围数据请求。当callbackType为{@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}时生效。
+     *
+     * @since 26.2.0
+     */
+    OH_CloudDisk_FetchRangeDataRequest *fetchRangeData;
 } OH_CloudDisk_CallbackContext;
 
 /**
@@ -919,10 +963,11 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPat
 /**
  * @brief 注册用于水合和脱水请求的回调表。
  *
- * @param syncFolderPath 已注册同步根路径。
- * @param callback 注册的回调函数。
+ * @param syncFolderPath [in] 已注册同步根路径。
+ * @param callback [in] 注册的回调函数。
  * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
  * <br>否则返回{@link CloudDisk_ErrorCode}。
+ * @see OH_CloudDisk_UnregisterCallbackTable
  * @since 26.1.0
  */
 CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
@@ -932,7 +977,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
 /**
  * @brief 取消注册用于水合和脱水请求的回调表。
  *
- * @param syncFolderPath 已注册同步根路径。
+ * @param syncFolderPath [in] 已注册同步根路径。
  * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
  * <br>否则返回{@link CloudDisk_ErrorCode}。
  * @since 26.1.0
@@ -942,9 +987,9 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
 /**
  * @brief 响应回调请求。
  *
- * @param reqHead 回调请求头。
- * @param reqContext 回调请求上下文。
- * @param rsp 回调响应。
+ * @param reqHead [in] 回调请求头。
+ * @param reqContext [in] 回调请求上下文。
+ * @param rsp [in] 回调响应。
  * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
  * <br>否则返回{@link CloudDisk_ErrorCode}。
  * @since 26.1.0
@@ -956,10 +1001,10 @@ CloudDisk_ErrorCode OH_CloudDisk_Execute(const OH_CloudDisk_CallbackReqHead reqH
 /**
  * @brief 主动水合占位符文件或取消水合。
  *
- * @param syncFolderPath 已注册同步根路径。
- * @param filePath 同步根内相对路径。
- * @param type 水合或取消水合的回调类型。
- * @param priority 水合优先级。
+ * @param syncFolderPath [in] 已注册同步根路径。
+ * @param filePath [in] 同步根内相对路径。
+ * @param type [in] 水合或取消水合的回调类型。
+ * @param priority [in] 水合优先级。
  * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
  * <br>否则返回{@link CloudDisk_ErrorCode}。
  * @since 26.1.0
@@ -972,8 +1017,8 @@ CloudDisk_ErrorCode OH_CloudDisk_HydratePlaceholder(const CloudDisk_SyncFolderPa
 /**
  * @brief 对完全水合的占位符文件执行脱水。
  *
- * @param syncFolderPath 已注册同步根路径。
- * @param filePath 同步根内相对路径。
+ * @param syncFolderPath [in] 已注册同步根路径。
+ * @param filePath [in] 同步根内相对路径。
  * @return 如果接口调用成功，则返回{@link CLOUD_DISK_OK}；
  * <br>否则返回{@link CloudDisk_ErrorCode}。
  * @since 26.1.0

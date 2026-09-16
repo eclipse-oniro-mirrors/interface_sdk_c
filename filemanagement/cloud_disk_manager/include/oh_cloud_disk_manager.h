@@ -575,7 +575,13 @@ typedef enum OH_CloudDisk_CallbackType {
      *
      * @since 26.1.0
      */
-    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2
+    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2,
+    /**
+     * @brief Fetch range data for read.
+     *
+     * @since 26.2.0
+     */
+    OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA = 3
 } OH_CloudDisk_CallbackType;
 
 /**
@@ -651,6 +657,38 @@ typedef struct OH_CloudDisk_DehydrateInfo {
 } OH_CloudDisk_DehydrateInfo;
 
 /**
+ * @brief A struct that encapsulates the fetch range data request information.
+ *
+ * @since 26.2.0
+ */
+typedef struct OH_CloudDisk_FetchRangeDataRequest {
+    /**
+     * @brief Relative file path in the sync root path.
+     *
+     * @since 26.2.0
+     */
+    CloudDisk_PathInfo filePath;
+    /**
+     * @brief Start offset of the fetched range data, in bytes.
+     *
+     * @since 26.2.0
+     */
+    uint64_t offset;
+    /**
+     * @brief Size of the fetched range data, in bytes.
+     *
+     * @since 26.2.0
+     */
+    uint64_t size;
+    /**
+     * @brief The data that needs to be read.
+     *
+     * @since 26.2.0
+     */
+    OH_CloudDisk_DataBuf *data;
+} OH_CloudDisk_FetchRangeDataRequest;
+
+/**
  * @brief A struct that encapsulates the fetch data request information.
  *
  * @since 26.1.0
@@ -697,6 +735,13 @@ typedef union OH_CloudDisk_CallbackContext {
      * @since 26.1.0
      */
     OH_CloudDisk_DehydrateInfo *dehydrateData;
+    /**
+     * @brief Fetch range data request. It takes effect when callbackType is
+     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
+     *
+     * @since 26.2.0
+     */
+    OH_CloudDisk_FetchRangeDataRequest *fetchRangeData;
 } OH_CloudDisk_CallbackContext;
 
 /**
@@ -951,10 +996,11 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPat
 /**
  * @brief Registers a callback table for hydration and dehydrate requests.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param callback Registered callback.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param callback [in] Registered callback.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @see OH_CloudDisk_UnregisterCallbackTable
  * @since 26.1.0
  */
 CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
@@ -964,7 +1010,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
 /**
  * @brief Unregisters the callback table for hydration and dehydrate requests.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.1.0
@@ -974,9 +1020,9 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
 /**
  * @brief Responds to a callback request.
  *
- * @param reqHead Callback request header.
- * @param reqContext Callback request context.
- * @param rsp Callback response.
+ * @param reqHead [in] Callback request header.
+ * @param reqContext [in] Callback request context.
+ * @param rsp [in] Callback response.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.1.0
@@ -988,10 +1034,10 @@ CloudDisk_ErrorCode OH_CloudDisk_Execute(const OH_CloudDisk_CallbackReqHead reqH
 /**
  * @brief Actively hydrates a placeholder file or cancels hydration.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param filePath Indicates the relative path in the sync folder.
- * @param type Indicates the callback type for hydration or cancellation.
- * @param priority Indicates the hydrate priority.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param filePath [in] Indicates the relative path in the sync folder.
+ * @param type [in] Indicates the callback type for hydration or cancellation.
+ * @param priority [in] Indicates the hydrate priority.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.1.0
@@ -1004,8 +1050,8 @@ CloudDisk_ErrorCode OH_CloudDisk_HydratePlaceholder(const CloudDisk_SyncFolderPa
 /**
  * @brief Dehydrates a fully hydrated placeholder file.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param filePath Indicates the relative path in the sync folder.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param filePath [in] Indicates the relative path in the sync folder.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.1.0
