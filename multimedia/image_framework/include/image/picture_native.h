@@ -861,20 +861,18 @@ Image_ErrorCode OH_PictureNative_DecomposeToPicture(OH_PixelmapNative *hdrPixelm
     OH_PictureNative **outOwnedPicture);
 
 /**
- * @brief Converts an {@link OH_PictureNative} object to an ArkTS <b>Picture</b> object represented by
- * a napi_value.
+ * @brief Converts an {@link OH_PictureNative} object to an ArkTS <b>Picture</b> object represented by a napi_value.
  *
- * The returned ArkTS Picture object and pictureNative share the same underlying Picture object through
- * shared ownership (reference counting). This function does not copy the main image, auxiliary pictures,
- * or metadata. Releasing either side (via {@link OH_PictureNative_Release} for the native handle, or
- * ArkTS garbage collection for the napi_value) does not invalidate the other. The underlying Picture
- * object is destroyed only when the last reference is released.
+ * The returned ArkTS Picture object and pictureNative share the same underlying Picture object.
+ * This function does not copy the main image, auxiliary pictures, or metadata.
  * @systemapi
  * @param env [in] A valid N-API environment in which the returned ArkTS Picture object is created.
  * @param pictureNative [in] Pointer to the OH_PictureNative object to convert. The pointer must not be nullptr,
- *     and the object must contain a valid Picture object.
+ *     and the object must contain a valid Picture object. The underlying Picture is shared, not consumed;
+ *     the returned napi_value remains valid even after pictureNative is released.
  * @param outPictureNapi [out] Pointer to a napi_value variable that receives the ArkTS Picture object. The pointer must
- *     not be nullptr. The value of the variable is not modified if the operation fails.
+ *     not be nullptr. The value of the variable is not modified if the operation fails. Not caller-owned
+ *     (managed by the N-API runtime); shares the underlying Picture and remains valid while any reference exists.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} if env, pictureNative, or outPictureNapi is nullptr,
@@ -889,22 +887,18 @@ Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_Pic
     napi_value *outPictureNapi);
 
 /**
- * @brief Converts an ArkTS <b>Picture</b> object represented by a napi_value to an
- * {@link OH_PictureNative} object.
+ * @brief Converts an ArkTS <b>Picture</b> object represented by a napi_value to an {@link OH_PictureNative} object.
  *
- * The returned OH_PictureNative object and pictureNapi share the same underlying Picture object through
- * shared ownership (reference counting). This function does not copy the main image, auxiliary pictures,
- * or metadata. Releasing either side (via {@link OH_PictureNative_Release} for the native handle, or
- * ArkTS garbage collection for the napi_value) does not invalidate the other. The underlying Picture
- * object is destroyed only when the last reference is released.
+ * The returned OH_PictureNative object and pictureNapi share the same underlying Picture object.
+ * This function does not copy the main image, auxiliary pictures, or metadata.
  * @systemapi
  * @param env [in] A valid N-API environment to which pictureNapi belongs.
  * @param pictureNapi [in] The ArkTS Picture object to convert. The object must belong to env and must not have
- *     been released.
+ *     been released. The underlying Picture is shared, not consumed; the returned OH_PictureNative remains
+ *     valid even after pictureNapi is released or GC-collected.
  * @param outOwnedPictureNative [out] Pointer to an OH_PictureNative pointer variable that receives the newly
- *     created object. The pointer must not be nullptr. The value of the variable is not modified if the
- *     operation fails. The caller owns the returned object and must release it via
- *     {@link OH_PictureNative_Release} when it is no longer needed.
+ *     created object. The pointer must not be nullptr. The value of the variable is not modified if the
+ *     operation fails. The caller owns the returned object and must release it via
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} if env, pictureNapi, or outOwnedPictureNative is nullptr,
