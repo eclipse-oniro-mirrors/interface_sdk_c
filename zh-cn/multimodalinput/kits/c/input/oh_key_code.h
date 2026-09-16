@@ -460,7 +460,7 @@ typedef enum {
     KEYCODE_SEMICOLON = 2062,
 
     /**
-     * @brief 按键''' (单引号)
+     * @brief 按键'''（单引号）
      */
     KEYCODE_APOSTROPHE = 2063,
 
@@ -894,12 +894,12 @@ typedef enum {
      */
     KEYCODE_SCALE = 2612,
     /**
-     * @brief 日文韩语键
+     * @brief 韩文键
      * @since 22
      */
     KEYCODE_HANGUEL = 2613,
     /**
-     * @brief 日文汉语键
+     * @brief 韩文汉字键
      * @since 22
      */
     KEYCODE_HANJA = 2614,
@@ -1255,22 +1255,22 @@ typedef enum {
      */
     KEYCODE_CALENDAR = 2685,
     /**
-     * @brief 红色指示器
+     * @brief 红色指示器键
      * @since 22
      */
     KEYCODE_RED = 2686,
     /**
-     * @brief 绿色指示器
+     * @brief 绿色指示器键
      * @since 22
      */
     KEYCODE_GREEN = 2687,
     /**
-     * @brief 黄色指示器
+     * @brief 黄色指示器键
      * @since 22
      */
     KEYCODE_YELLOW = 2688,
     /**
-     * @brief 蓝色指示器
+     * @brief 蓝色指示器键
      * @since 22
      */
     KEYCODE_BLUE = 2689,
@@ -1365,12 +1365,12 @@ typedef enum {
      */
     KEYCODE_NEWS = 2707,
     /**
-     * @brief 语音信箱
+     * @brief 语音信箱键
      * @since 22
      */
     KEYCODE_VOICEMAIL = 2708,
     /**
-     * @brief 通讯簿
+     * @brief 通讯簿键
      * @since 22
      */
     KEYCODE_ADDRESSBOOK = 2709,
@@ -1390,7 +1390,7 @@ typedef enum {
      */
     KEYCODE_SPELLCHECK = 2712,
     /**
-     * @brief 终端锁/屏幕保护程序
+     * @brief 终端锁/屏幕保护程序键
      * @since 22
      */
     KEYCODE_COFFEE = 2713,
@@ -1410,7 +1410,7 @@ typedef enum {
      */
     KEYCODE_BUTTONCONFIG = 2716,
     /**
-     * @brief 任务管理器
+     * @brief 任务管理器键
      * @since 22
      */
     KEYCODE_TASKMANAGER = 2717,
@@ -1500,7 +1500,7 @@ typedef enum {
      */
     KEYCODE_AOD_SINGLE_CLICK = 2740,
     /**
-     * @brief 挡风玻璃除雾器开关
+     * @brief 挡风玻璃除雾器开关键
      * @since 22
      */
     KEYCODE_FRONT = 2800,
@@ -1650,7 +1650,7 @@ typedef enum {
      */
     KEYCODE_PROG4 = 2829,
     /**
-     * @brief 仪表板
+     * @brief 仪表板键
      * @since 22
      */
     KEYCODE_DASHBOARD = 2830,
@@ -1710,7 +1710,7 @@ typedef enum {
      */
     KEYCODE_BLUETOOTH = 2843,
     /**
-     * @brief 无线局域网
+     * @brief 无线局域网键
      * @since 22
      */
     KEYCODE_WLAN = 2844,
@@ -1725,7 +1725,7 @@ typedef enum {
      */
     KEYCODE_WWAN_WIMAX = 2846,
     /**
-     * @brief 控制所有收音机的键
+     * @brief 控制所有无线设备的键
      * @since 22
      */
     KEYCODE_RFKILL = 2847,
@@ -1735,52 +1735,52 @@ typedef enum {
      */
     KEYCODE_CHANNEL = 3001,
     /**
-     * @brief 按键0
+     * @brief 按钮'0'
      * @since 22
      */
     KEYCODE_BTN_0 = 3100,
     /**
-     * @brief 按键1
+     * @brief 按钮'1'
      * @since 22
      */
     KEYCODE_BTN_1 = 3101,
     /**
-     * @brief 按键2
+     * @brief 按钮'2'
      * @since 22
      */
     KEYCODE_BTN_2 = 3102,
     /**
-     * @brief 按键3
+     * @brief 按钮'3'
      * @since 22
      */
     KEYCODE_BTN_3 = 3103,
     /**
-     * @brief 按键4
+     * @brief 按钮'4'
      * @since 22
      */
     KEYCODE_BTN_4 = 3104,
     /**
-     * @brief 按键5
+     * @brief 按钮'5'
      * @since 22
      */
     KEYCODE_BTN_5 = 3105,
     /**
-     * @brief 按键6
+     * @brief 按钮'6'
      * @since 22
      */
     KEYCODE_BTN_6 = 3106,
     /**
-     * @brief 按键7
+     * @brief 按钮'7'
      * @since 22
      */
     KEYCODE_BTN_7 = 3107,
     /**
-     * @brief 按键8
+     * @brief 按钮'8'
      * @since 22
      */
     KEYCODE_BTN_8 = 3108,
     /**
-     * @brief 按键9
+     * @brief 按钮'9'
      * @since 22
      */
     KEYCODE_BTN_9 = 3109,

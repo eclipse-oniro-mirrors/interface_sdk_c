@@ -319,7 +319,7 @@ typedef enum InputEvent_SourceType {
 /**
  * @brief 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键状态。适用于快捷键处理、输入事件状态管理、按键状态检测等场景。
  * @see {@link OH_Input_CreateKeyState} 创建按键状态的结构体对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的结构体对象。
- * @see {@link OH_Input_DestroyKeyState} 销毁按键状态的枚举对象。
+ * @see {@link OH_Input_DestroyKeyState} 销毁按键状态的结构体对象。
  *
  * @since 12
  */
@@ -344,7 +344,7 @@ typedef struct Input_MouseEvent Input_MouseEvent;
 /**
  * @brief 触屏输入事件对象，用于表示触屏输入的详细信息，包括触摸点位置、触摸状态、时间戳等。
  * @see {@link OH_Input_CreateTouchEvent} 创建触屏输入事件对象。通过调用{@link OH_Input_DestroyTouchEvent}销毁触屏输入事件对象。
- * @see {@link OH_Input_DestroyTouchEvent} 	销毁触屏输入事件对象。
+ * @see {@link OH_Input_DestroyTouchEvent} 销毁触屏输入事件对象。
  *
  * @since 12
  */
@@ -366,7 +366,7 @@ typedef struct Input_AxisEvent Input_AxisEvent;
  */
 typedef struct Input_Hotkey Input_Hotkey;
 /**
- * @brief 定义鼠标光标信息，用于在输入系统中管理和控制鼠标光标的显示行为和外观属性。包括光标显示状态、光标样式、光标大小档位、光标颜色。
+ * @brief 定义鼠标光标信息，用于在输入系统中描述鼠标光标的显示行为和外观属性。包括光标显示状态、光标样式、光标大小档位、光标颜色。
  * @see {@link OH_Input_CursorInfo_Create} 创建鼠标光标信息对象。通过调用{@link OH_Input_CursorInfo_Destroy}销毁鼠标光标信息对象。
  * @see {@link OH_Input_CursorInfo_Destroy} 销毁鼠标光标信息对象。
  *
@@ -445,7 +445,7 @@ typedef enum Input_Result {
      */
     INPUT_INJECTION_AUTHORIZED = 3900007,
     /**
-     * @brief 其它应用已经授权。
+     * @brief 其他应用已经授权。
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008,
@@ -610,7 +610,7 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
 typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
 
 /**
- * @brief 拦截回调事件结构体，用于定义输入事件拦截所需的回调函数类型，支持拦截鼠标事件、触屏输入事件、按键事件和轴事件。
+ * @brief 拦截回调事件结构体，用于定义输入事件拦截所需的回调函数类型，支持拦截鼠标事件、触屏输入事件和轴事件。
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
@@ -651,9 +651,9 @@ typedef struct Input_DeviceListener {
 typedef struct Input_InterceptorOptions Input_InterceptorOptions;
 
 /**
- * @brief 查询按键状态的枚举对象。
+ * @brief 查询按键状态的结构体对象。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 操作成功返回{@link INPUT_SUCCESS}；参数校验失败返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -661,7 +661,7 @@ typedef struct Input_InterceptorOptions Input_InterceptorOptions;
 Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
 
 /**
- * @brief 创建按键状态的枚举对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的枚举对象。
+ * @brief 创建按键状态的结构体对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的结构体对象。
  *
  * @return 操作成功返回一个{@link Input_KeyState}指针对象；否则返回空指针。
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -670,9 +670,9 @@ Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
 struct Input_KeyState* OH_Input_CreateKeyState();
 
 /**
- * @brief 销毁按键状态的枚举对象。
+ * @brief 销毁按键状态的结构体对象。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -681,7 +681,7 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
 /**
  * @brief 设置按键状态对象的键值。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @param keyCode 按键键值，具体请参考{@link Input_KeyCode}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -691,7 +691,7 @@ void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
 /**
  * @brief 获取按键状态对象的键值。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的键值。相关取值可参考{@link Input_KeyStateAction}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -701,7 +701,7 @@ int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
 /**
  * @brief 设置按键状态对象的按键是否按下。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @param keyAction 按键是否按下，具体请参考{@link Input_KeyEventAction}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -711,7 +711,7 @@ void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
 /**
  * @brief 获取按键状态对象的按键是否按下。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的按键按下状态。相关取值可参考{@link Input_KeyStateAction}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -721,7 +721,7 @@ int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
 /**
  * @brief 设置按键状态对象的按键开关。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @param keySwitch 按键开关。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -755,7 +755,7 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 获取按键状态对象的按键开关。
  *
- * @param keyState 按键状态的枚举对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的按键开关。相关取值可参考{@link Input_KeyStateAction}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1573,13 +1573,13 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  * @param callback 授权状态回调，具体请参考{@link Input_InjectAuthorizeCallback}。
  * @return 函数返回值，参见{@link Input_Result}。
  *     <br>INPUT_SUCCESS = 0 申请授权成功，等待用户授权结果并回调授权状态。
- *     <br>INPUT_PARAMETER_ERROR = 401  参数错误，参数callback为空。
- *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801  表示不支持该功能。
- *     <br>INPUT_SERVICE_EXCEPTION = 3800001  服务异常。
- *     <br>INPUT_INJECTION_AUTHORIZING =  3900005 正在授权中。
+ *     <br>INPUT_PARAMETER_ERROR = 401 参数错误，参数callback为空。
+ *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801 表示不支持该功能。
+ *     <br>INPUT_SERVICE_EXCEPTION = 3800001 服务异常。
+ *     <br>INPUT_INJECTION_AUTHORIZING = 3900005 正在授权中。
  *     <br>INPUT_INJECTION_OPERATION_FREQUENT = 3900006 重复请求（当前应用连续申请授权弹窗成功，间隔时间不超过3秒）。
  *     <br>INPUT_INJECTION_AUTHORIZED = 3900007 当前应用已经授权。
- *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008   其它应用已经授权。
+ *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 其他应用已经授权。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 20
  */
@@ -1600,8 +1600,8 @@ void OH_Input_CancelInjection();
  * @param status 当前应用注入权限状态。参见{@link Input_InjectionStatus}。
  * @return 函数返回值，参见{@link Input_Result}。
  *     <br>INPUT_SUCCESS = 0 查询成功。
- *     <br>INPUT_PARAMETER_ERROR = 401  参数错误，参数status为空。
- *     <br>INPUT_SERVICE_EXCEPTION = 3800001  服务异常。
+ *     <br>INPUT_PARAMETER_ERROR = 401 参数错误，参数status为空。
+ *     <br>INPUT_SERVICE_EXCEPTION = 3800001 服务异常。
  * @since 20
  */
 Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
@@ -1642,7 +1642,7 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param action action 出参，返回轴事件动作，具体请参考在{@link InputEvent_AxisAction}。
+ * @param action 出参，返回轴事件动作，具体请参考{@link InputEvent_AxisAction}。
  * @return 若获取轴事件的动作成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者action为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1907,7 +1907,7 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
 
 /**
  * @brief 添加鼠标事件监听，包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。
- * <br>该接口处于录屏场景时才允许调用，否则调用该接口不生效。
+ * <br>应用处于录屏场景时才允许调用该接口，否则调用不生效。
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback 回调函数，用于接收鼠标事件。
@@ -2024,7 +2024,7 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * @param option option 输入事件拦截的可选项，传null则使用默认值。
  * @return 若添加按键事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
- *     <br>若服务异常；则返回{@link INPUT_SERVICE_EXCEPTION}。
+ *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -2038,7 +2038,7 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  * @param option option 输入事件拦截的可选项，传null则使用默认值。
  * @return 若添加输入事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
- *     <br>若服务异常；则返回{@link INPUT_SERVICE_EXCEPTION}。
+ *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -2227,7 +2227,8 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @param hotkey 指定要取消订阅的快捷键对象。
  * @param callback 回调函数，用于回调快捷键事件。
  * @return OH_Input_RemoveHotkeyMonitor 函数返回值。
- *     <br>{@link INPUT_SUCCESS} 取消订阅组合按键成功， {@link INPUT_PARAMETER_ERROR} 参数检查失败。
+ *     <br>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。
+ *     <br>{@link INPUT_PARAMETER_ERROR} 参数检查失败。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -2249,11 +2250,11 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
 /**
  * @brief 获取输入设备信息。
  *
- * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
+ * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。可以通过
+ *     {@link OH_Input_GetDeviceIds}接口查询系统支持的设备ID。
  * @param deviceInfo deviceInfo 指向输入设备信息{@link Input_DeviceInfo}的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo为空指针或deviceId无效。
- *     <br>可以通过 {@link OH_Input_GetDeviceIds} 表示接口查询系统支持的设备ID。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
@@ -2280,7 +2281,7 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
  * @brief 获取输入设备的键盘类型。
  *
  * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
- * @param keyboardType keyboardType 指向输入设备的键盘类型指针。
+ * @param keyboardType keyboardType 指向输入设备的键盘类型的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示设备ID为无效值或者keyboardType是空指针。
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -2524,7 +2525,7 @@ Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t
  *     {@link OH_Input_AddInputEventInterceptor}接口的回调函数中获取鼠标事件对象。
  * @param cursorInfo 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
  * @return OH_Input_GetMouseEventCursorInfo 函数返回值：
- *     <br>{@link INPUT_SUCCESS} 表示操作成功；
+ *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
  * @since 22
  */
@@ -2646,7 +2647,7 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
 /**
  * @brief 创建自定义鼠标光标配置对象。通过调用{@link OH_Input_CursorConfig_Destroy}销毁自定义鼠标光标配置对象。
  *
- * @param followSystem 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小，256×256]，单位为像素（px）。
+ * @param followSystem 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小, 256×256]，单位为像素（px）。
  * @return 自定义鼠标光标配置{@link Input_CursorConfig}对象。
  * @since 22
  */

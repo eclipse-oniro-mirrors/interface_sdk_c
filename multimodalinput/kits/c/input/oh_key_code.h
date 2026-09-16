@@ -198,7 +198,7 @@ typedef enum {
     KEYCODE_9 = 2009,
 
     /**
-     * @brief Key '*'
+     * @brief Key *
      */
     KEYCODE_STAR = 2010,
 
@@ -453,7 +453,7 @@ typedef enum {
     KEYCODE_RIGHT_BRACKET = 2060,
 
     /**
-     * @brief Key |
+     * @brief Key \
      */
     KEYCODE_BACKSLASH = 2061,
 
@@ -463,12 +463,12 @@ typedef enum {
     KEYCODE_SEMICOLON = 2062,
 
     /**
-     * @brief Key '
+     * @brief Key ' (single quote)
      */
     KEYCODE_APOSTROPHE = 2063,
 
     /**
-     * @brief Key '/'
+     * @brief Key /
      */
     KEYCODE_SLASH = 2064,
 
@@ -588,7 +588,7 @@ typedef enum {
     KEYCODE_MEDIA_CLOSE = 2087,
 
     /**
-     * @brief Media: Reject key
+     * @brief Media: Eject key
      */
     KEYCODE_MEDIA_EJECT = 2088,
 
@@ -897,7 +897,7 @@ typedef enum {
      */
     KEYCODE_SCALE = 2612,
     /**
-     * @brief Hanguel key
+     * @brief Hangul key
      * @since 22
      */
     KEYCODE_HANGUEL = 2613,
@@ -1259,22 +1259,22 @@ typedef enum {
      */
     KEYCODE_CALENDAR = 2685,
     /**
-     * @brief Red indicator
+     * @brief Red indicator key
      * @since 22
      */
     KEYCODE_RED = 2686,
     /**
-     * @brief Green indicator
+     * @brief Green indicator key
      * @since 22
      */
     KEYCODE_GREEN = 2687,
     /**
-     * @brief Yellow indicator
+     * @brief Yellow indicator key
      * @since 22
      */
     KEYCODE_YELLOW = 2688,
     /**
-     * @brief Blue indicator
+     * @brief Blue indicator key
      * @since 22
      */
     KEYCODE_BLUE = 2689,
@@ -1369,7 +1369,7 @@ typedef enum {
      */
     KEYCODE_NEWS = 2707,
     /**
-     * @brief Voice mailbox
+     * @brief Voicemail key
      * @since 22
      */
     KEYCODE_VOICEMAIL = 2708,
@@ -1394,7 +1394,7 @@ typedef enum {
      */
     KEYCODE_SPELLCHECK = 2712,
     /**
-     * @brief Coffee key, which is used to launch screen lock or screen saver
+     * @brief Terminal lock/screen saver key
      * @since 22
      */
     KEYCODE_COFFEE = 2713,
@@ -1414,7 +1414,7 @@ typedef enum {
      */
     KEYCODE_BUTTONCONFIG = 2716,
     /**
-     * @brief Task Manager
+     * @brief Task manager key
      * @since 22
      */
     KEYCODE_TASKMANAGER = 2717,
@@ -1504,7 +1504,7 @@ typedef enum {
      */
     KEYCODE_AOD_SINGLE_CLICK = 2740,
     /**
-     * @brief Front key, which is used to launch the windshield defogger
+     * @brief Windshield defogger switch key
      * @since 22
      */
     KEYCODE_FRONT = 2800,
@@ -1654,7 +1654,7 @@ typedef enum {
      */
     KEYCODE_PROG4 = 2829,
     /**
-     * @brief Dashboard
+     * @brief Dashboard key
      * @since 22
      */
     KEYCODE_DASHBOARD = 2830,
@@ -1729,7 +1729,7 @@ typedef enum {
      */
     KEYCODE_WWAN_WIMAX = 2846,
     /**
-     * @brief RF Kill key
+     * @brief Key for controlling all wireless devices
      * @since 22
      */
     KEYCODE_RFKILL = 2847,
@@ -1739,52 +1739,52 @@ typedef enum {
      */
     KEYCODE_CHANNEL = 3001,
     /**
-     * @brief Button 0
+     * @brief Button '0'
      * @since 22
      */
     KEYCODE_BTN_0 = 3100,
     /**
-     * @brief Button 1
+     * @brief Button '1'
      * @since 22
      */
     KEYCODE_BTN_1 = 3101,
     /**
-     * @brief Button 2
+     * @brief Button '2'
      * @since 22
      */
     KEYCODE_BTN_2 = 3102,
     /**
-     * @brief Button 3
+     * @brief Button '3'
      * @since 22
      */
     KEYCODE_BTN_3 = 3103,
     /**
-     * @brief Button 4
+     * @brief Button '4'
      * @since 22
      */
     KEYCODE_BTN_4 = 3104,
     /**
-     * @brief Button 5
+     * @brief Button '5'
      * @since 22
      */
     KEYCODE_BTN_5 = 3105,
     /**
-     * @brief Button 6
+     * @brief Button '6'
      * @since 22
      */
     KEYCODE_BTN_6 = 3106,
     /**
-     * @brief Button 7
+     * @brief Button '7'
      * @since 22
      */
     KEYCODE_BTN_7 = 3107,
     /**
-     * @brief Button 8
+     * @brief Button '8'
      * @since 22
      */
     KEYCODE_BTN_8 = 3108,
     /**
-     * @brief Button 9
+     * @brief Button '9'
      * @since 22
      */
     KEYCODE_BTN_9 = 3109,

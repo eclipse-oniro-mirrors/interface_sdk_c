@@ -317,13 +317,13 @@ typedef enum Input_PointerStyle {
     MIDDLE_BTN_EAST_WEST = 44,
 
     /**
-     * @brief 后台运行中动画光标(拓展1)
+     * @brief 后台运行中动画光标（拓展1）
      * @since 22
      */
     RUNNING_LEFT = 45,
 
     /**
-     * @brief 后台运行中动画光标(拓展2)
+     * @brief 后台运行中动画光标（拓展2）
      * @since 22
      */
     RUNNING_RIGHT = 46,

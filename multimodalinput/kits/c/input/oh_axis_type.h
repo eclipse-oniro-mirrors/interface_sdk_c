@@ -25,10 +25,9 @@
  */
 
 /**
- *
- * @brief Defines the device axis event struct and enumerates device axis events. The axis type defines the physical
- *  behavior characteristics of an input device in different interaction scenarios. The system uses the axis type to
- *  distinguish and transmit different gesture interaction information.
+ * @brief Enumerates the axis events of input devices. An axis type defines the physical behavior characteristics of an
+ *  input device in different interaction scenarios, and the system distinguishes and delivers different gesture
+ *  interaction information based on the axis type.
  *
  * @file oh_axis_type.h
  * @include <multimodalinput/oh_axis_type.h>
