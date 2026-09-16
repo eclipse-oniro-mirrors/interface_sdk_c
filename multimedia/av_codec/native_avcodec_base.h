@@ -513,6 +513,13 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DTS;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_COOK;
 
 /**
+ * @brief MIME type of the DSD audio decoder.
+ *
+ * @since 26.2.0
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DSD;
+
+/**
  * @brief Pointer to the key that describes the MIME type of the MPEG2 video codec.
  * 
  * @since 17
@@ -730,7 +737,7 @@ extern const char *OH_MD_KEY_AUDIO_SAMPLE_FORMAT;
 /**
  * @brief Pointer to the key that describes the video frame rate. The value type is double. The value must be greater
  * than **0**. You can call {@link OH_AVCapability_GetVideoFrameRateRange} to obtain the value range.
- * 
+ *
  * @since 9
  */
 extern const char *OH_MD_KEY_FRAME_RATE;

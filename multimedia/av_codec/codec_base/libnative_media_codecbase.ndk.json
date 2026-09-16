@@ -147,6 +147,11 @@
         "type": "variable"
     },
     {
+        "first_introduced": "26.2.0",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_DSD",
+        "type": "variable"
+    },
+    {
         "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
@@ -288,6 +293,11 @@
     {
         "first_introduced": "9",
         "name": "OH_MD_KEY_AUDIO_SAMPLE_FORMAT"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_MD_KEY_AUDIO_DSD_CODEC_TYPE",
+        "type": "variable"
     },
     {
         "first_introduced": "9",
