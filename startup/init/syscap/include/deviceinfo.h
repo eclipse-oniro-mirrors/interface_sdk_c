@@ -22,7 +22,7 @@
  * information, or manage devices. These APIs obtain device information by reading system properties.
  * The return value is a pointer to a constant string. The pointer points to the data stored in the
  * system. The caller does not need to release the memory.
- * 
+ *
  * @since 10
  */
 /**
@@ -35,7 +35,7 @@
  * information, or manage devices. These APIs obtain device information by reading system properties.
  * The return value is a pointer to a constant string. The pointer points to the data stored in the
  * system. The caller does not need to release the memory.
- * 
+ *
  * @library libdeviceinfo_ndk.z.so
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
