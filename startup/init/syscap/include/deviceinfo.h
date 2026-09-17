@@ -52,7 +52,7 @@ extern "C" {
 
 /**
  * @brief Obtains the device type. This API returns a predefined device type in the form of a string.
- * 
+ *
  * @return Device type as a string. The options are as follows:
  *    <br>• **phone**
  *    <br>• **default**: default value returned when the device type cannot be identified
@@ -317,24 +317,6 @@ int OH_GetDistributionOSApiVersion(void);
  * @since 10
  */
 const char *OH_GetDistributionOSReleaseType(void);
-
-/**
- * @brief Obtains the Disk Serial Number.
- *
- * @param diskSn [out] Disk Serial Number.
- * @return **0**: Success.**201**: Missing permissions.
- * @permission ohos.permission.ACCESS_DISK_PHY_INFO
- * @since 26.2.0
- */
-int32_t *OH_GetDiskSN(char *diskSn);
-
-/**
- * @brief Obtains the Open device identifier.
- *
- * @return Returns the Open device identifier.
- * @since 26.2.0
- */
-const char *OH_GetOdid(void);
 
 #ifdef __cplusplus
 #if __cplusplus
