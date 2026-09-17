@@ -27,9 +27,10 @@
  *
  * @brief Declares the APIs for implementing application access control.
  *
- * @library ability_access_control.so
- * @kit AbilityKit
  * @syscap SystemCapability.Security.AccessToken
+ * @include <accesstoken/ability_access_control.h>
+ * @library libability_access_control.so
+ * @kit AbilityKit
  * @since 12
  */
 
