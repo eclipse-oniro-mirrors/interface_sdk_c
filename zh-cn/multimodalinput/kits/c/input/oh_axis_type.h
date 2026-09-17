@@ -23,14 +23,13 @@
  */
 
 /**
+ * @file oh_axis_type.h
  * @brief 输入设备的轴事件枚举，轴类型定义了输入设备在不同交互场景下的物理行为特征，系统通过轴类型来区分和传递不同的手势交互信息。
  *
- * @file oh_axis_type.h
- * @include <multimodalinput/oh_axis_type.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_axis_type.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 

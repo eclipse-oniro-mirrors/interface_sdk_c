@@ -23,14 +23,13 @@
  */
 
 /**
+ * @file oh_pointer_style.h
  * @brief 鼠标光标的样式。
  *
- * @file oh_pointer_style.h
- * @include <multimodalinput/oh_pointer_style.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_pointer_style.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 22
  */
 #ifndef OH_POINTER_STYLE_H

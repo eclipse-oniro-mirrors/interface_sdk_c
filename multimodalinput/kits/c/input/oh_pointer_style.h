@@ -25,14 +25,13 @@
  */
 
 /**
+ * @file oh_pointer_style.h
  * @brief Defines the mouse cursor styles.
  *
- * @file oh_pointer_style.h
- * @include <multimodalinput/oh_pointer_style.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_pointer_style.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 22
  */
 #ifndef OH_POINTER_STYLE_H

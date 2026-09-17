@@ -25,16 +25,15 @@
  */
 
 /**
+ * @file oh_input_manager.h
  * @brief Provides functions such as input event injection, key state query, device hot swapping listener, event
  *  interception, hotkey management, mouse cursor management, input device information query, and injection
  *  permission management.
  *
- * @file oh_input_manager.h
- * @include <multimodalinput/oh_input_manager.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_input_manager.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 
@@ -100,6 +99,7 @@ typedef enum Input_KeyStateAction {
 typedef enum Input_KeyEventAction {
     /**
      * @brief Key action canceled.
+     * @since 12
      */
     KEY_ACTION_CANCEL = 0,
 
@@ -245,11 +245,13 @@ typedef enum Input_TouchEventAction {
 typedef enum Input_KeyboardType {
     /**
      * @brief No keyboard.
+     * @since 12
      */
     KEYBOARD_TYPE_NONE = 0,
 
     /**
      * @brief Unknown keyboard.
+     * @since 12
      */
     KEYBOARD_TYPE_UNKNOWN = 1,
 
@@ -655,11 +657,20 @@ typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedSt
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
-    /** @brief Callback for mouse events. */
+    /**
+     * @brief Callback for mouse events.
+     * @since 12
+     * */
     Input_MouseEventCallback mouseCallback;
-    /** @brief Callback for touch input events. */
+    /**
+     * @brief Callback for touch input events.
+     * @since 12
+     */
     Input_TouchEventCallback touchCallback;
-    /** @brief Callback for axis events. */
+    /**
+     * @brief Callback for axis events.
+     * @since 12
+     * */
     Input_AxisEventCallback axisCallback;
 } Input_InterceptorEventCallback;
 
@@ -704,7 +715,6 @@ typedef struct Input_InterceptorOptions Input_InterceptorOptions;
  * @param keyState Key state struct object. For details, see {@link Input_KeyStateAction}.
  * @return If the operation is successful, {@link INPUT_SUCCESS} is returned; if parameter verification fails,
  *     {@link INPUT_PARAMETER_ERROR} is returned.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
@@ -714,7 +724,8 @@ Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
  * struct object.
  *
  * @return If the operation is successful, {@link Input_KeyState} is returned. Otherwise, a null pointer is returned.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>The returned object is owned by the caller. To avoid memory leaks, destroy it by calling
+ *     {@link OH_Input_DestroyKeyState} when it is no longer needed.
  * @since 12
  */
 struct Input_KeyState* OH_Input_CreateKeyState();
@@ -723,7 +734,6 @@ struct Input_KeyState* OH_Input_CreateKeyState();
  * @brief Destroys a key state struct object.
  *
  * @param keyState Key state struct object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
@@ -733,7 +743,6 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
  *
  * @param keyState Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
  * @param keyCode Key code. For details, see {@link oh_key_code.h#Input_KeyCode}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
@@ -743,7 +752,6 @@ void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
  *
  * @param keyState Key state struct object. For details, see {@link Input_KeyStateAction}.
  * @return Key value of the key state object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
@@ -753,7 +761,6 @@ int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
  *
  * @param keyState Key state struct object. For details, see {@link Input_KeyStateAction}.
  * @param keyAction Whether a key is pressed. For details, see {@link Input_KeyEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
@@ -763,7 +770,6 @@ void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
  *
  * @param keyState Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
  * @return Key pressing status of the key state object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
@@ -773,7 +779,6 @@ int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
  *
  * @param keyState Key state struct object. For details, see {@link Input_KeyStateAction}.
  * @param keySwitch Key switch.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
@@ -803,7 +808,6 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  *     <br>- {@link INPUT_SUCCESS} if the injection is successful;
  *     <br>- {@link INPUT_PERMISSION_DENIED} if the permission is missing;
  *     <br>- {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
@@ -813,7 +817,6 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
  *
  * @param keyState Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
  * @return Key switch of the key state object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
@@ -822,7 +825,6 @@ int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
  * @brief Creates a key event object. You can call {@link OH_Input_DestroyKeyEvent} to destroy a key event object.
  *
  * @return {@link Input_KeyEvent} pointer object if the operation is successful; a null pointer otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_KeyEvent* OH_Input_CreateKeyEvent();
@@ -831,7 +833,6 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent();
  * @brief Destroys a key event object.
  *
  * @param keyEvent Key event object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
@@ -841,7 +842,6 @@ void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @param action Key event type. For details, see {@link Input_KeyEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action);
@@ -851,7 +851,6 @@ void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action)
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Key event type. For details, see {@link Input_KeyEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
@@ -861,7 +860,6 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @param keyCode Key value. For details, see {@link oh_key_code.h#Input_KeyCode}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode);
@@ -871,7 +869,6 @@ void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCod
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Key code of a key event. For details, see {@link oh_key_code.h#Input_KeyCode}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
@@ -882,7 +879,6 @@ int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @param actionTime Time when the key event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime);
@@ -893,7 +889,6 @@ void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t act
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Returns the time when the key event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
@@ -903,7 +898,6 @@ int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @param windowId Window ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId);
@@ -913,7 +907,6 @@ void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windo
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Window ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
@@ -923,7 +916,6 @@ int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @param displayId Screen ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId);
@@ -933,7 +925,6 @@ void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t disp
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Screen ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
@@ -1027,7 +1018,6 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  *     <br>{@link INPUT_SUCCESS} indicates successful injection;
  *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error;
  *     <br>{@link INPUT_PERMISSION_DENIED} indicates permission missing.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
@@ -1060,7 +1050,6 @@ int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEven
  * object.
  *
  * @return {@link Input_MouseEvent} pointer object if the operation is successful; a null pointer otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_MouseEvent* OH_Input_CreateMouseEvent();
@@ -1069,7 +1058,6 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent();
  * @brief Destroys a mouse event object.
  *
  * @param mouseEvent Mouse event object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
@@ -1080,7 +1068,6 @@ void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param action Mouse action. For details, see {@link Input_MouseEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action);
@@ -1091,7 +1078,6 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Mouse action. For details, see {@link Input_MouseEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
@@ -1105,7 +1091,6 @@ int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param displayX X-coordinate in the relative coordinate system with the upper-left corner of the specified screen
  *     as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX);
@@ -1119,7 +1104,6 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return The X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
  *     specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent);
@@ -1133,7 +1117,6 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param displayY Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
  *     specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY);
@@ -1147,7 +1130,6 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Y-coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
  *     specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent);
@@ -1158,7 +1140,6 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param button Mouse button. For details, see {@link Input_MouseEventButton}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button);
@@ -1170,7 +1151,6 @@ void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t b
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Mouse button.
  *     <br>For details, see {@link Input_MouseEventButton}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
@@ -1183,7 +1163,6 @@ int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param axisType Mouse axis type, such as vertical axis and horizontal axis. For details, see
  *     {@link InputEvent_MouseAxis}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType);
@@ -1195,7 +1174,6 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Mouse axis type.
  *     <br>For details, see {@link InputEvent_MouseAxis}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent);
@@ -1208,7 +1186,6 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
  * @param axisValue Value of the axis event. A positive value indicates scrolling forward (for example, 1.0 indicates
  *     scrolling forward by one unit), a negative value indicates scrolling backward (for example, -1.0 indicates
  *     scrolling backward by one unit), and zero indicates no scrolling.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue);
@@ -1219,7 +1196,6 @@ void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float 
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Axis event value.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent);
@@ -1232,7 +1208,6 @@ float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param actionTime Time when the mouse event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime);
@@ -1245,7 +1220,6 @@ void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Returns the time when the mouse event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent);
@@ -1256,7 +1230,6 @@ int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEve
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param windowId Window ID of the mouse event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId);
@@ -1267,7 +1240,6 @@ void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Window ID of the mouse event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent);
@@ -1278,7 +1250,6 @@ int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @param displayId Screen ID of the mouse event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId);
@@ -1289,7 +1260,6 @@ void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Screen ID if the operation is successful; **-1** if **mouseEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent);
@@ -1361,7 +1331,6 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * @return Return value of the OH_Input_InjectTouchEvent function.
  *     <br>{@link INPUT_SUCCESS} indicates that the injection is successful.
  *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
@@ -1393,7 +1362,6 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
  * object.
  *
  * @return {@link Input_TouchEvent} pointer object if the operation is successful; a null pointer otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_TouchEvent* OH_Input_CreateTouchEvent();
@@ -1402,7 +1370,6 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent();
  * @brief Destroys a **TouchEvent** object.
  *
  * @param touchEvent **TouchEvent** object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
@@ -1412,7 +1379,6 @@ void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
  * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param action Action of the touch event. For details, see {@link Input_TouchEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action);
@@ -1422,7 +1388,6 @@ void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t a
  * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Action of the touch event. For details, see {@link Input_TouchEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
@@ -1433,7 +1398,6 @@ int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param id Finger ID of a touch event. The ID of the first finger touching the screen is 0, the second is 1, and so
  *     on incrementally.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id);
@@ -1444,7 +1408,6 @@ void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Finger ID of a touch event. The ID of the first finger touching the screen is 0, the second is 1, and so on
  *     incrementally.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent);
@@ -1457,7 +1420,6 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param displayX X coordinate of the touch screen input event in the relative coordinate system with the upper-left
  *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX);
@@ -1470,7 +1432,6 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return The X coordinate of the touch screen input event in the relative coordinate system with the upper-left
  *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent);
@@ -1483,7 +1444,6 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param displayY Y-coordinate of the touch screen input event in the relative coordinate system with the upper-left
  *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY);
@@ -1496,7 +1456,6 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return The Y coordinate of the touch screen input event in the relative coordinate system with the upper-left
  *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent);
@@ -1507,7 +1466,6 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param actionTime Time when the touch screen input event occurred, indicating the number of microseconds elapsed
  *     since system startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime);
@@ -1518,7 +1476,6 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Time when the touchscreen input event occurs, indicating the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent);
@@ -1528,7 +1485,6 @@ int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEve
  * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param windowId Window ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId);
@@ -1538,7 +1494,6 @@ void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t
  * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Window ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent);
@@ -1548,7 +1503,6 @@ int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent
  * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param displayId Screen ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId);
@@ -1558,7 +1512,6 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
  * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Screen ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent);
@@ -1756,7 +1709,6 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  *     authorization dialog box consecutively and successfully, with an interval of no longer than 3 seconds).
  *     <br>INPUT_INJECTION_AUTHORIZED = 3900007: The current application has been authorized.
  *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008: Another application has been authorized.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 20
  */
 Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
@@ -1764,7 +1716,6 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
 /**
  * @brief Stops event injection and revokes authorization.
  *
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_CancelInjection();
@@ -1789,7 +1740,6 @@ Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
  * object.
  *
  * @return {@link Input_AxisEvent} object if the operation is successful; **null** otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_AxisEvent* OH_Input_CreateAxisEvent(void);
@@ -1800,7 +1750,6 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
  * @param axisEvent Pointer to the axis event object.
  * @return {@link INPUT_SUCCESS} if the destruction is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
@@ -1811,8 +1760,10 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param action Axis event action. For details, see {@link oh_axis_type.h#InputEvent_AxisAction}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action);
@@ -1824,9 +1775,10 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param action Output parameter, which returns the axis event action. For details, see
  *     {@link oh_axis_type.h#InputEvent_AxisAction}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
- *     **action** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or * **action** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action);
@@ -1839,8 +1791,10 @@ Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, Input
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param displayX X coordinate in the relative coordinate system with the upper-left corner of the specified screen
  *     as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX);
@@ -1853,9 +1807,10 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param displayX Output parameter, returns the X coordinate of the axis event in the relative coordinate system with
  *     the upper-left corner of the specified screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
- *     **displayX** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or * **displayX** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX);
@@ -1868,8 +1823,10 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param displayY Y coordinate in the relative coordinate system with the upper-left corner of the specified screen
  *     as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY);
@@ -1882,9 +1839,10 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param displayY Output parameter, returns the Y coordinate of the axis event in the relative coordinate system with
  *     the upper-left corner of the specified screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
- *     **displayY** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or * **displayY** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY);
@@ -1898,8 +1856,10 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
  * @param axisValue Value of the axis event. A positive value indicates scrolling forward (for example, 1.0 means
  *     scrolling forward by one unit), a negative value indicates scrolling backward (for example, -1.0 means scrolling
  *     backward by one unit), and zero indicates no scrolling.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
@@ -1914,9 +1874,10 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
  * @param axisValue Output parameter, which returns the value of the axis event. A positive value indicates scrolling
  *     forward (for example, 1.0 indicates scrolling forward by one unit), a negative value indicates scrolling backward
  *     (for example, -1.0 indicates scrolling backward by one unit), and zero indicates no scrolling.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
- *     **axisValue** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or * **axisValue** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
@@ -1930,7 +1891,6 @@ Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
  * @param actionTime Time when the axis event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime);
@@ -1944,7 +1904,6 @@ Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t
  *     microseconds elapsed since system startup, in microseconds (μs).
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
  *     **actionTime** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, int64_t* actionTime);
@@ -1955,8 +1914,10 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param axisEventType Axis event type. For details, see {@link oh_axis_type.h#InputEvent_AxisEventType}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_AxisEventType axisEventType);
@@ -1967,9 +1928,10 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param axisEventType Axis event type. For details, see {@link oh_axis_type.h#InputEvent_AxisEventType}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
- *     **axisEventType** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or * **axisEventType** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEvent_AxisEventType* axisEventType);
@@ -1981,7 +1943,6 @@ Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEv
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param sourceType Axis event source type. For details, see {@link InputEvent_SourceType}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEvent_SourceType sourceType);
@@ -1994,7 +1955,6 @@ Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEv
  * @param sourceType Axis event source type. For details, see {@link InputEvent_SourceType}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
  *     **sourceType** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, InputEvent_SourceType* sourceType);
@@ -2006,7 +1966,6 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param windowId Window ID of an axis event.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t windowId);
@@ -2017,9 +1976,10 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param windowId Window ID of the axis event. This is an output parameter.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
- *     **windowId** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or * **windowId** is null.</li>
+ *         </ul>
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int32_t* windowId);
@@ -2031,7 +1991,6 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param displayId Screen ID of an axis event.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t displayId);
@@ -2044,7 +2003,6 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
  * @param displayId Screen ID of the axis event.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
  *     **displayId** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId);
@@ -2114,7 +2072,6 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
@@ -2131,7 +2088,6 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  *     <br>{@link INPUT_PERMISSION_DENIED} if the permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
@@ -2145,7 +2101,6 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  *     <br>{@link INPUT_PERMISSION_DENIED} if the permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
@@ -2160,7 +2115,6 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
@@ -2176,7 +2130,6 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  *     <br>{@link INPUT_PERMISSION_DENIED} if the permission check fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2190,7 +2143,6 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
@@ -2204,7 +2156,6 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback);
@@ -2218,7 +2169,6 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback);
@@ -2232,7 +2182,6 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback);
@@ -2248,7 +2197,6 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2265,7 +2213,6 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option);
@@ -2284,7 +2231,6 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
  *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback,
@@ -2297,7 +2243,6 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @return {@link INPUT_SUCCESS} if the key event interception is removed successfully;
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventInterceptor(void);
@@ -2309,7 +2254,6 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @return {@link INPUT_SUCCESS} if the input event interception is removed successfully;
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveInputEventInterceptor(void);
@@ -2322,7 +2266,6 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
  *     <br>{@link INPUT_SUCCESS} if the interval is obtained successfully;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
@@ -2332,7 +2275,6 @@ Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
  *
  * @return If the operation is successful, a pointer to an {@link Input_Hotkey} object is returned. Otherwise, a null
  *     pointer is returned, possibly due to memory allocation failure.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Hotkey *OH_Input_CreateHotkey(void);
@@ -2341,7 +2283,6 @@ Input_Hotkey *OH_Input_CreateHotkey(void);
  * @brief Destroys a hotkey object.
  *
  * @param hotkey Hotkey object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
@@ -2352,7 +2293,6 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  * @param hotkey Hotkey object.
  * @param preKeys List of modifier keys.
  * @param size Number of modifier keys. The value ranges from [1, 2].
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
@@ -2366,7 +2306,6 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
  * @return Return value of the **OH_Input_GetPreKeys** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the operation fails.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount);
@@ -2376,7 +2315,6 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
  *
  * @param hotkey Hotkey object.
  * @param finalKey Modifier key value. Only one modifier key value is allowed.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
@@ -2389,7 +2327,6 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  * @return Return value of the **OH_Input_GetFinalKey** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the operation fails.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode);
@@ -2402,7 +2339,8 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  * @param count Number of {@link Input_Hotkey} instances.
  * @return Pointer to the array of {@link Input_Hotkey} instances if the operation is successful. If the
  *     operation fails, a null pointer is returned, possibly due to memory allocation failure.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>The returned array is owned by the caller. To avoid memory leaks, destroy it by calling
+ *     {@link OH_Input_DestroyAllSystemHotkeys} when it is no longer needed.
  * @since 14
  */
 Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
@@ -2412,7 +2350,6 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
  *
  * @param hotkeys Double pointer to the {@link Input_Hotkey} array.
  * @param count Number of {@link Input_Hotkey} instances.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
@@ -2426,7 +2363,6 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
  * @return Return value of the **OH_Input_GetAllSystemHotkeys** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the operation fails.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count);
@@ -2437,7 +2373,6 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
  * @param hotkey Hotkey object.
  * @param isRepeat Whether to report repeated key events. The value **true** means to report repeated key events, and
  *     the value **false** means the opposite.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
@@ -2451,7 +2386,6 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  * @return Return value of the **OH_Input_GetRepeat** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the operation fails.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
@@ -2475,7 +2409,6 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  *     {@link OH_Input_GetAllSystemHotkeys} to query all system hotkeys);
  *     <br>{@link INPUT_OCCUPIED_BY_OTHER} if the subscription has been preempted;
  *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the feature is not supported.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2488,7 +2421,6 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @return Return value of the **OH_Input_RemoveHotkeyMonitor** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if parameter verification fails.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2502,7 +2434,6 @@ Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_Hotk
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceIds** or **outSize** is a null pointer or **inSize** is less than
  *     **0**.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *outSize);
@@ -2516,7 +2447,6 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
  * @param deviceInfo Pointer to the {@link Input_DeviceInfo} object.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** is a null pointer or **deviceId** is invalid.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo);
@@ -2526,7 +2456,6 @@ Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
  *
  * @return Pointer to the {@link Input_DeviceInfo} object if the operation is successful; a null pointer otherwise (
  *     possibly because of a memory allocation failure).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
@@ -2535,7 +2464,6 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
  * @brief Destroys a **deviceInfo** object.
  *
  * @param deviceInfo **deviceInfo** object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
@@ -2548,7 +2476,6 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
  * @param keyboardType Pointer to the keyboard type of the input device.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the device ID is invalid or **keyboardType** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
@@ -2560,7 +2487,6 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
  * @param id Pointer to the input device ID.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **ID** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
@@ -2572,7 +2498,6 @@ Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
  * @param name Pointer to the input device name.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **name** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
@@ -2584,7 +2509,6 @@ Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
  * @param capabilities Pointer to the capability information of the input device.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **capabilities** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *capabilities);
@@ -2596,7 +2520,6 @@ Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *cap
  * @param version Pointer to the version information of the input device.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **version** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *version);
@@ -2608,7 +2531,6 @@ Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *ve
  * @param product Pointer to the product information of the input device.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **product** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *product);
@@ -2620,7 +2542,6 @@ Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *pr
  * @param vendor Pointer to the vendor information of the input device.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **vendor** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor);
@@ -2632,7 +2553,6 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
  * @param address Pointer to the physical address of the input device.
  * @return {@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **address** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
@@ -2644,7 +2564,6 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
  * @return Return value of the **OH_Input_RegisterDeviceListener** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the listener is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
@@ -2657,7 +2576,6 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if **listener** is null or the listener is not registered;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
@@ -2668,7 +2586,6 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
  * @return Return value of the **OH_Input_UnregisterDeviceListeners** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListeners();
@@ -2683,7 +2600,6 @@ Input_Result OH_Input_UnregisterDeviceListeners();
  *     <br>{@link INPUT_SUCCESS} if the state is obtained successfully;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
  *     <br>{@link INPUT_KEYBOARD_DEVICE_NOT_EXIST} if the keyboard device does not exist.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
@@ -2910,6 +2826,8 @@ Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
  *     in pixels (px).
  * @return {@link Input_CustomCursor} object. The pointer to the custom mouse pointer object is returned if the
  *     operation is successful, and a null pointer is returned if an exception occurs.
+ *     <br>The returned object is owned by the caller. To avoid memory leaks, destroy it by calling
+ *     {@link OH_Input_CustomCursor_Destroy} when it is no longer needed.
  * @since 22
  */
 Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY);
@@ -2955,6 +2873,8 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
  *     that the custom mouse cursor style size is used, and **true** indicates that the mouse cursor size is adjusted
  *     based on system settings. The adjustable range is [cursor resource image size, 256 × 256], in pixels.
  * @return Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
+ *     <br>The returned object is owned by the caller. To avoid memory leaks, destroy it by calling
+ *     {@link OH_Input_CursorConfig_Destroy} when it is no longer needed.
  * @since 22
  */
 Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
@@ -3015,7 +2935,6 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails (the input device does not exist, the
  *     display device does not exist, or the input device is not a stylus device).
  *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates that the service is abnormal. Try again.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);

@@ -25,14 +25,13 @@
  */
 
 /**
+ * @file oh_key_code.h
  * @brief Defines key codes of the key device.
  *
- * @file oh_key_code.h
- * @include <multimodalinput/oh_key_code.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_key_code.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 
@@ -198,6 +197,7 @@ typedef enum {
 
     /**
      * @brief Key *
+     * @since 12
      */
     KEYCODE_STAR = 2010,
 
@@ -453,6 +453,7 @@ typedef enum {
 
     /**
      * @brief Key \
+     * @since 12
      */
     KEYCODE_BACKSLASH = 2061,
 
@@ -463,11 +464,13 @@ typedef enum {
 
     /**
      * @brief Key ' (single quote)
+     * @since 12
      */
     KEYCODE_APOSTROPHE = 2063,
 
     /**
      * @brief Key /
+     * @since 12
      */
     KEYCODE_SLASH = 2064,
 
@@ -588,6 +591,7 @@ typedef enum {
 
     /**
      * @brief Media: Eject key
+     * @since 12
      */
     KEYCODE_MEDIA_EJECT = 2088,
 

@@ -23,14 +23,13 @@
  */
 
 /**
+ * @file oh_key_code.h
  * @brief 按键设备的键值。
  *
- * @file oh_key_code.h
- * @include <multimodalinput/oh_key_code.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_key_code.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 
@@ -196,6 +195,7 @@ typedef enum {
 
     /**
      * @brief 按键'*'
+     * @since 12
      */
     KEYCODE_STAR = 2010,
 
@@ -451,6 +451,7 @@ typedef enum {
 
     /**
      * @brief 按键'\'
+     * @since 12
      */
     KEYCODE_BACKSLASH = 2061,
 
@@ -461,11 +462,13 @@ typedef enum {
 
     /**
      * @brief 按键'''（单引号）
+     * @since 12
      */
     KEYCODE_APOSTROPHE = 2063,
 
     /**
      * @brief 按键'/'
+     * @since 12
      */
     KEYCODE_SLASH = 2064,
 
@@ -586,6 +589,7 @@ typedef enum {
 
     /**
      * @brief 光盘弹出键
+     * @since 12
      */
     KEYCODE_MEDIA_EJECT = 2088,
 

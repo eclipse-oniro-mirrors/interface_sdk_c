@@ -23,14 +23,13 @@
  */
 
 /**
+ * @file oh_input_manager.h
  * @brief 提供输入事件注入、按键状态查询、设备热插拔监听、事件拦截、快捷键管理、鼠标光标管理、输入设备信息查询、注入权限管理等功能。
  *
- * @file oh_input_manager.h
- * @include <multimodalinput/oh_input_manager.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_input_manager.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 
@@ -95,6 +94,7 @@ typedef enum Input_KeyStateAction {
 typedef enum Input_KeyEventAction {
     /**
      * @brief 按键动作取消。
+     * @since 12
      */
     KEY_ACTION_CANCEL = 0,
 
@@ -240,11 +240,13 @@ typedef enum Input_TouchEventAction {
 typedef enum Input_KeyboardType {
     /**
      * @brief 表示无按键设备。
+     * @since 12
      */
     KEYBOARD_TYPE_NONE = 0,
 
     /**
      * @brief 表示未知按键设备。
+     * @since 12
      */
     KEYBOARD_TYPE_UNKNOWN = 1,
 
@@ -614,11 +616,20 @@ typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedSt
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
-    /** @brief 鼠标事件的回调函数。 */
+    /**
+     * @brief 鼠标事件的回调函数。
+     * @since 12
+     * */
     Input_MouseEventCallback mouseCallback;
-    /** @brief 触屏输入事件的回调函数。 */
+    /**
+     * @brief 触屏输入事件的回调函数。
+     * @since 12
+     */
     Input_TouchEventCallback touchCallback;
-    /** @brief 轴事件的回调函数。 */
+    /**
+     * @brief 轴事件的回调函数。 
+     * @since 12
+     * */
     Input_AxisEventCallback axisCallback;
 } Input_InterceptorEventCallback;
 
@@ -655,7 +666,6 @@ typedef struct Input_InterceptorOptions Input_InterceptorOptions;
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 操作成功返回{@link INPUT_SUCCESS}；参数校验失败返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
@@ -664,7 +674,7 @@ Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
  * @brief 创建按键状态的结构体对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的结构体对象。
  *
  * @return 操作成功返回一个{@link Input_KeyState}指针对象；否则返回空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_DestroyKeyState}销毁。
  * @since 12
  */
 struct Input_KeyState* OH_Input_CreateKeyState();
@@ -673,7 +683,6 @@ struct Input_KeyState* OH_Input_CreateKeyState();
  * @brief 销毁按键状态的结构体对象。
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
@@ -683,7 +692,6 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @param keyCode 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
@@ -693,7 +701,6 @@ void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的键值。相关取值可参考{@link Input_KeyStateAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
@@ -703,7 +710,6 @@ int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @param keyAction 按键是否按下，具体请参考{@link Input_KeyEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
@@ -713,7 +719,6 @@ void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的按键按下状态。相关取值可参考{@link Input_KeyStateAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
@@ -723,7 +728,6 @@ int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @param keySwitch 按键开关。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
@@ -747,7 +751,6 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  *     <br>若注入成功，返回{@link INPUT_SUCCESS}；
  *     <br>若缺少权限，返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若参数错误，返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
@@ -757,7 +760,6 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的按键开关。相关取值可参考{@link Input_KeyStateAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
@@ -766,7 +768,6 @@ int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
  * @brief 创建按键事件对象。通过调用{@link OH_Input_DestroyKeyEvent}销毁按键事件对象。
  *
  * @return 如果操作成功返回一个{@link Input_KeyEvent}指针对象，否则返回空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_KeyEvent* OH_Input_CreateKeyEvent();
@@ -775,7 +776,6 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent();
  * @brief 销毁按键事件对象。
  *
  * @param keyEvent 按键事件对象。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
@@ -785,7 +785,6 @@ void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @param action 按键事件类型。相关取值可参考{@link Input_KeyEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action);
@@ -795,7 +794,6 @@ void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action)
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 返回按键事件类型。相关取值可参考{@link Input_KeyEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
@@ -805,7 +803,6 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @param keyCode 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode);
@@ -815,7 +812,6 @@ void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCod
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 返回按键事件的键值。相关取值可参考{@link oh_key_code.h#Input_KeyCode}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
@@ -825,7 +821,6 @@ int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @param actionTime 按键事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime);
@@ -835,7 +830,6 @@ void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t act
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 返回按键事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
@@ -845,7 +839,6 @@ int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @param windowId 按键事件对应的窗口ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId);
@@ -855,7 +848,6 @@ void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windo
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 按键事件的窗口ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
@@ -865,7 +857,6 @@ int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @param displayId 按键事件对应的屏幕ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId);
@@ -875,7 +866,6 @@ void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t disp
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 按键事件的屏幕ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
@@ -955,7 +945,6 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
  *     <br>{@link INPUT_PERMISSION_DENIED} 表示缺少权限。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
@@ -982,7 +971,6 @@ int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEven
  * @brief 创建鼠标事件对象。通过调用{@link OH_Input_DestroyMouseEvent}销毁鼠标事件对象。
  *
  * @return 如果操作成功返回一个{@link Input_MouseEvent}指针对象，否则返回空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_MouseEvent* OH_Input_CreateMouseEvent();
@@ -991,7 +979,6 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent();
  * @brief 销毁鼠标事件对象。
  *
  * @param mouseEvent 鼠标事件对象。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
@@ -1001,7 +988,6 @@ void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param action 鼠标的动作。相关取值可参考{@link Input_MouseEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action);
@@ -1011,7 +997,6 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标的动作。相关取值可参考{@link Input_MouseEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
@@ -1022,7 +1007,6 @@ int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param displayX 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX);
@@ -1033,7 +1017,6 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent);
@@ -1044,7 +1027,6 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param displayY 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY);
@@ -1055,7 +1037,6 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent);
@@ -1065,7 +1046,6 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param button 鼠标按键。相关取值可参考{@link Input_MouseEventButton}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button);
@@ -1075,7 +1055,6 @@ void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t b
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标按键。相关取值可参考{@link Input_MouseEventButton}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
@@ -1086,7 +1065,6 @@ int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param axisType 鼠标轴类型，比如垂直轴、水平轴。相关取值可参考{@link InputEvent_MouseAxis}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType);
@@ -1096,7 +1074,6 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标轴类型。相关取值可参考{@link InputEvent_MouseAxis}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent);
@@ -1106,7 +1083,6 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue);
@@ -1116,7 +1092,6 @@ void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float 
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 轴事件的值。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent);
@@ -1127,7 +1102,6 @@ float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param actionTime 鼠标事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime);
@@ -1138,7 +1112,6 @@ void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 返回鼠标事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent);
@@ -1148,7 +1121,6 @@ int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEve
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param windowId 鼠标事件的窗口ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId);
@@ -1158,7 +1130,6 @@ void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件的窗口ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent);
@@ -1168,7 +1139,6 @@ int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @param displayId 鼠标事件的屏幕ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId);
@@ -1178,7 +1148,6 @@ void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_
  * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 若获取鼠标事件的屏幕ID成功，则返回鼠标事件的屏幕ID；若mouseEvent为NULL，则返回-1。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent);
@@ -1236,7 +1205,6 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * @return OH_Input_InjectTouchEvent 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
@@ -1263,7 +1231,6 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
  * @brief 创建触屏输入事件对象。通过调用{@link OH_Input_DestroyTouchEvent}销毁触屏输入事件对象。
  *
  * @return 如果操作成功返回一个{@link Input_TouchEvent}指针对象，否则返回空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_TouchEvent* OH_Input_CreateTouchEvent();
@@ -1272,7 +1239,6 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent();
  * @brief 销毁触屏输入事件对象。
  *
  * @param touchEvent 触屏输入事件对象。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
@@ -1282,7 +1248,6 @@ void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param action 触屏的动作。相关取值可参考{@link Input_TouchEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action);
@@ -1292,7 +1257,6 @@ void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t a
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏的动作。相关取值可参考{@link Input_TouchEventAction}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
@@ -1302,7 +1266,6 @@ int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param id 触屏的手指ID。第一个手指碰到屏幕，ID就是0，第二个手指碰到屏幕，ID就是1，依次累加。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id);
@@ -1312,7 +1275,6 @@ void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏的手指ID。第一个手指碰到屏幕，ID就是0，第二个手指碰到屏幕，ID就是1，依次累加。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent);
@@ -1323,7 +1285,6 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param displayX 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX);
@@ -1334,7 +1295,6 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent);
@@ -1345,7 +1305,6 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param displayY 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY);
@@ -1356,7 +1315,6 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent);
@@ -1366,7 +1324,6 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param actionTime 触屏输入事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime);
@@ -1376,7 +1333,6 @@ void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 返回触屏输入事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent);
@@ -1386,7 +1342,6 @@ int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEve
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param windowId 触屏输入事件的窗口ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId);
@@ -1396,7 +1351,6 @@ void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件的窗口ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent);
@@ -1406,7 +1360,6 @@ int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @param displayId 触屏输入事件的屏幕ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId);
@@ -1416,7 +1369,6 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
  * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件的屏幕ID。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent);
@@ -1580,7 +1532,6 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  *     <br>INPUT_INJECTION_OPERATION_FREQUENT = 3900006 重复请求（当前应用连续申请授权弹窗成功，间隔时间不超过3秒）。
  *     <br>INPUT_INJECTION_AUTHORIZED = 3900007 当前应用已经授权。
  *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 其他应用已经授权。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 20
  */
 Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
@@ -1588,7 +1539,6 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
 /**
  * @brief 取消事件注入并撤销授权。
  *
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_CancelInjection();
@@ -1610,7 +1560,6 @@ Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
  * @brief 创建轴事件对象。通过调用{@link OH_Input_DestroyAxisEvent}销毁轴事件对象。
  *
  * @return 成功返回{@link Input_AxisEvent}对象实例，失败则返回null。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_AxisEvent* OH_Input_CreateAxisEvent(void);
@@ -1620,7 +1569,6 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
  *
  * @param axisEvent 轴事件对象实例的指针。
  * @return 若销毁成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
@@ -1631,8 +1579,10 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param action 轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
- * @return 若设置轴事件的动作成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若设置轴事件的动作成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action);
@@ -1643,8 +1593,10 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param action 出参，返回轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
- * @return 若获取轴事件的动作成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者action为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若获取轴事件的动作成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent或者action为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action);
@@ -1655,8 +1607,10 @@ Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, Input
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayX 轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
- * @return 若设置轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若设置轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX);
@@ -1667,8 +1621,10 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayX 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
- * @return 若获取轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者displayX为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若获取轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent或者displayX为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX);
@@ -1679,8 +1635,10 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayY 轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
- * @return 若设置轴事件的Y坐标成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若设置轴事件的Y坐标成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY);
@@ -1691,8 +1649,10 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayY 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
- * @return 若获取轴事件的Y坐标成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者displayY为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若获取轴事件的Y坐标成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent或者displayY为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY);
@@ -1704,8 +1664,10 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param axisType 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
  * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
- * @return 若设置轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若设置轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
@@ -1718,8 +1680,10 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param axisType 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
  * @param axisValue 出参，返回轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
- * @return 若获取轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者axisValue为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若获取轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent或者axisValue为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
@@ -1732,7 +1696,6 @@ Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param actionTime 轴事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @return 若设置轴事件发生的时间成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime);
@@ -1744,7 +1707,6 @@ Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param actionTime 出参，返回轴事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @return 若获取轴事件发生的时间成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者actionTime为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, int64_t* actionTime);
@@ -1755,8 +1717,10 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param axisEventType 轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
- * @return 若设置轴事件类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若设置轴事件类型成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_AxisEventType axisEventType);
@@ -1767,8 +1731,10 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param axisEventType 出参，返回轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
- * @return 若获取轴事件类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者axisEventType为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若获取轴事件类型成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent或者axisEventType为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEvent_AxisEventType* axisEventType);
@@ -1780,7 +1746,6 @@ Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEv
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param sourceType 轴事件源类型，具体请参考{@link InputEvent_SourceType}。
  * @return 若设置轴事件源类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEvent_SourceType sourceType);
@@ -1792,7 +1757,6 @@ Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEv
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param sourceType 出参，返回轴事件源类型，具体请参考{@link InputEvent_SourceType}。
  * @return 若获取轴事件源类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者sourceType为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, InputEvent_SourceType* sourceType);
@@ -1804,7 +1768,6 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param windowId 轴事件窗口ID。
  * @return 若设置轴事件的窗口ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t windowId);
@@ -1815,8 +1778,10 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param windowId 出参，返回轴事件窗口ID。
- * @return 若获取轴事件的窗口ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者windowId为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>若获取轴事件的窗口ID成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若axisEvent或者windowId为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         </ul>
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int32_t* windowId);
@@ -1828,7 +1793,6 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayId 轴事件屏幕ID。
  * @return 若设置轴事件的屏幕ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t displayId);
@@ -1840,7 +1804,6 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayId 出参，返回轴事件屏幕ID。
  * @return 若获取轴事件的屏幕ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者displayId为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId);
@@ -1900,7 +1863,6 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  * @param callback 回调函数，用于接收按键事件。
  * @return 若添加按键事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
@@ -1913,7 +1875,6 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  * @param callback 回调函数，用于接收鼠标事件。
  * @return 若添加鼠标事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
@@ -1925,7 +1886,6 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  * @param callback 回调函数，用于接收触屏输入事件。
  * @return 若添加触屏输入事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
@@ -1937,7 +1897,6 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  * @param callback 回调函数，用于接收轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
@@ -1950,7 +1909,6 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  * @param callback 回调函数，用于接收指定类型的轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -1962,7 +1920,6 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
  * @param callback 指定要被移除的用于按键事件监听的回调函数。
  * @return 若移除按键事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
@@ -1974,7 +1931,6 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
  * @param callback 指定要被移除的用于鼠标事件监听的回调函数。
  * @return 若移除鼠标事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback);
@@ -1986,7 +1942,6 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
  * @param callback 指定要被移除的用于触屏输入事件监听的回调函数。
  * @return 若移除触屏输入事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback);
@@ -1998,7 +1953,6 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
  * @param callback 指定要被移除的用于所有类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback);
@@ -2011,7 +1965,6 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
  * @param callback 指定要被移除的用于指定类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2025,7 +1978,6 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * @return 若添加按键事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
  *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option);
@@ -2039,7 +1991,6 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  * @return 若添加输入事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
  *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback,
@@ -2051,7 +2002,6 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
  * @return 若移除按键事件拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventInterceptor(void);
@@ -2062,7 +2012,6 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
  * @return 若移除输入事件拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_RemoveInputEventInterceptor(void);
@@ -2074,7 +2023,6 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
  * @return OH_Input_GetIntervalSinceLastInput 函数返回值。
  *     <br>若获取时间间隔成功，则返回{@link INPUT_SUCCESS}；若服务异常，返回{@link INPUT_SERVICE_EXCEPTION}；若参数错误，返回
  *     {@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
@@ -2083,7 +2031,6 @@ Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
  * @brief 创建快捷键对象。通过调用{@link OH_Input_DestroyHotkey}销毁快捷键对象。
  *
  * @return 如果操作成功，则返回一个{@link Input_Hotkey}指针对象。否则，返回一个空指针，可能的原因是内存分配失败。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Hotkey *OH_Input_CreateHotkey(void);
@@ -2092,7 +2039,6 @@ Input_Hotkey *OH_Input_CreateHotkey(void);
  * @brief 销毁快捷键对象。
  *
  * @param hotkey hotkey 快捷键对象的实例。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
@@ -2103,7 +2049,6 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  * @param hotkey hotkey 快捷键对象的实例。
  * @param preKeys preKeys 修饰键列表。
  * @param size 修饰键个数，取值范围[1, 2]。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
@@ -2116,7 +2061,6 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
  * @param preKeyCount preKeyCount 返回修饰键个数。
  * @return OH_Input_GetPreKeys 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount);
@@ -2126,7 +2070,6 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
  *
  * @param hotkey 快捷键对象的实例。
  * @param finalKey 被修饰键值，被修饰键值只能是1个。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
@@ -2139,7 +2082,6 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  * @return OH_Input_GetFinalKey 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；
  *     <br>若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode);
@@ -2150,7 +2092,7 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  *
  * @param count 创建{@link Input_Hotkey}实例的数量。
  * @return 如果操作成功，返回创建的{@link Input_Hotkey}实例数组的指针；否则返回空指针，可能的原因是内存分配失败。
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>返回的数组由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_DestroyAllSystemHotkeys}销毁。
  * @since 14
  */
 Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
@@ -2160,7 +2102,6 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
  *
  * @param hotkeys hotkeys 指向{@link Input_Hotkey}实例数组的双指针。
  * @param count 销毁{@link Input_Hotkey}实例的数量。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
@@ -2173,7 +2114,6 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
  * @return OH_Input_GetAllSystemHotkeys 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；
  *     <br>若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count);
@@ -2183,7 +2123,6 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
  *
  * @param hotkey 快捷键对象的实例。
  * @param isRepeat 是否上报重复key事件。true表示上报，false表示不上报。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
@@ -2196,7 +2135,6 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  * @return OH_Input_GetRepeat 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；
  *     <br>若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
@@ -2216,7 +2154,6 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  *     <br>{@link INPUT_OCCUPIED_BY_SYSTEM} 该快捷键已被系统占用，可以通过接口{@link OH_Input_GetAllSystemHotkeys}查询所有的系统快捷键。
  *     <br>{@link INPUT_OCCUPIED_BY_OTHER} 已被抢占订阅。
  *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} 表示不支持该功能。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2229,7 +2166,6 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @return OH_Input_RemoveHotkeyMonitor 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 参数检查失败。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2242,7 +2178,6 @@ Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_Hotk
  * @param outSize outSize 输出输入设备ID列表的长度，值小于等于inSize长度。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceIds或outSize为空指针或inSize小于0。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *outSize);
@@ -2255,7 +2190,6 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
  * @param deviceInfo deviceInfo 指向输入设备信息{@link Input_DeviceInfo}的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo为空指针或deviceId无效。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo);
@@ -2263,7 +2197,6 @@ Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo)
  * @brief 创建输入设备信息的对象。通过调用{@link OH_Input_DestroyDeviceInfo}销毁输入设备信息的对象。
  *
  * @return 如果操作成功，返回设备信息{@link Input_DeviceInfo}实例的指针。否则返回空指针，可能的原因是分配内存失败。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
@@ -2272,7 +2205,6 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
  * @brief 销毁输入设备信息的对象。
  *
  * @param deviceInfo deviceInfo 设备信息的对象。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
@@ -2284,7 +2216,6 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
  * @param keyboardType keyboardType 指向输入设备的键盘类型的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示设备ID为无效值或者keyboardType是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
@@ -2296,7 +2227,6 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
  * @param id id 指向输入设备ID的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者ID是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
@@ -2308,7 +2238,6 @@ Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
  * @param name name 指向输入设备名称的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者name是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
@@ -2320,7 +2249,6 @@ Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
  * @param capabilities capabilities 指向输入设备能力信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者capabilities是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *capabilities);
@@ -2332,7 +2260,6 @@ Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *cap
  * @param version version 指向输入设备版本信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者version是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *version);
@@ -2344,7 +2271,6 @@ Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *ve
  * @param product product 指向输入设备产品信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者product是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *product);
@@ -2356,7 +2282,6 @@ Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *pr
  * @param vendor vendor 指向输入设备厂商信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者vendor是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor);
@@ -2368,7 +2293,6 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
  * @param address address 指向输入设备物理地址的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者address是空指针。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
@@ -2380,7 +2304,6 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
  * @return OH_Input_RegisterDeviceListener 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注册成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示listener 为NULL。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
@@ -2393,7 +2316,6 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
  *     <br>{@link INPUT_SUCCESS} 表示取消注册成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示listener 为 NULL 或者 listener 未被注册。
  *     <br>{@link INPUT_SERVICE_EXCEPTION} 表示由于服务异常调用失败。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
@@ -2404,7 +2326,6 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
  * @return OH_Input_UnregisterDeviceListeners 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示调用成功。
  *     <br>{@link INPUT_SERVICE_EXCEPTION} 表示由于服务异常调用失败。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListeners();
@@ -2418,7 +2339,6 @@ Input_Result OH_Input_UnregisterDeviceListeners();
  *     <br>{@link INPUT_SUCCESS} 表示获取状态成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
  *     <br>{@link INPUT_KEYBOARD_DEVICE_NOT_EXIST} 表示键盘设备不存在。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
@@ -2609,6 +2529,7 @@ Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
  * @param anchorX 自定义鼠标光标焦点的水平坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的宽度最大值，单位为像素（px）。
  * @param anchorY 自定义鼠标光标焦点的垂直坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的高度最大值，单位为像素（px）。
  * @return {@link Input_CustomCursor}对象。操作成功时返回自定义鼠标光标资源对象的指针。异常时返回空指针。
+ *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_CustomCursor_Destroy}销毁。
  * @since 22
  */
 Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY);
@@ -2650,6 +2571,7 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
  *
  * @param followSystem 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小, 256×256]，单位为像素（px）。
  * @return 自定义鼠标光标配置{@link Input_CursorConfig}对象。
+ *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_CursorConfig_Destroy}销毁。
  * @since 22
  */
 Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
@@ -2703,7 +2625,6 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  *     <br>{@link INPUT_PERMISSION_DENIED}表示权限校验失败。
  *     <br>{@link INPUT_PARAMETER_ERROR}表示参数检查失败（输入设备不存在，显示屏设备不存在，或者输入设备不是手写笔设备）。
  *     <br>{@link INPUT_SERVICE_EXCEPTION}表示服务异常，请重试。
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
