@@ -76,8 +76,7 @@ typedef enum {
     KEYCODE_SEARCH = 9,
     /**
      * @brief Media: Play/Pause key<br>Difference between this key and **KEYCODE_PLAYPAUSE**:<br> **KEYCODE_PLAYPAUSE**
-     * is an
-     * earlier definition, while **KEYCODE_MEDIA_PLAY_PAUSE** is designed for modern media key devices.
+     * is an earlier definition, while **KEYCODE_MEDIA_PLAY_PAUSE** is designed for modern media key devices.
      * @since 22
      */
     KEYCODE_MEDIA_PLAY_PAUSE = 10,

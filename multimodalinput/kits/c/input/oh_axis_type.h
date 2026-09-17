@@ -59,16 +59,14 @@ typedef enum InputEvent_AxisType {
 
     /**
      * @brief Vertical scroll axis. When you scroll the mouse wheel or slide with one or two fingers on the touchpad,
-     * the
-     * status of the vertical scroll axis changes.
+     * the status of the vertical scroll axis changes.
      * @since 12
      */
     AXIS_TYPE_SCROLL_VERTICAL = 1,
 
     /**
      * @brief Horizontal scroll axis. When you scroll the mouse wheel or slide with two fingers on the touchpad, the
-     * status of
-     * the horizontal scroll axis changes.
+     * status of the horizontal scroll axis changes.
      * @since 12
      */
     AXIS_TYPE_SCROLL_HORIZONTAL = 2,
