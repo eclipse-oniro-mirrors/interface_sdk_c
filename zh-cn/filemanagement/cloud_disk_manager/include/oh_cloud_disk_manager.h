@@ -714,7 +714,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderEx(const OH_CloudDisk_SyncFol
  * @brief 获取具有占位符支持信息的同步文件夹。
  *
  * @param syncFolders 输出参数。
- *     <br> 返回{@link CloudDisk_SyncFolderEx}的数组，用于存储同步文件夹。
+ *     <br> 返回{@link OH_CloudDisk_SyncFolderEx}的数组，用于存储同步文件夹。
  * @param count 输出参数。返回同步文件夹的数量。
  * @return 如果操作成功，则返回{@link CLOUD_DISK_OK}；
  *     <br> 否则返回{@link CloudDisk_ErrorCode}中定义的错误代码。
