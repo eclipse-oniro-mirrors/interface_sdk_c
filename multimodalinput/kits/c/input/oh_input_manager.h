@@ -25,8 +25,8 @@
  */
 
 /**
- * @brief Provides functions for input event injection, key state query, device hot swapping monitoring, event
- *  interception, shortcut key management, mouse cursor management, input device information query, and injection
+ * @brief Provides functions such as input event injection, key state query, device hot swapping listener, event
+ *  interception, hotkey management, mouse cursor management, input device information query, and injection
  *  permission management.
  *
  * @file oh_input_manager.h

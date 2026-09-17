@@ -25,7 +25,7 @@
  */
 
 /**
- * @brief Defines the mouse pointer styles.
+ * @brief Defines the mouse cursor styles.
  *
  * @file oh_pointer_style.h
  * @include <multimodalinput/oh_pointer_style.h>
