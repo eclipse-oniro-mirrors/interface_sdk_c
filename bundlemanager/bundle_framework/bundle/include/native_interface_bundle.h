@@ -17,7 +17,8 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describes the Native Bundle.
+ * @brief The file declares the APIs for obtaining the application information, including the bundle name, fingerprint
+ * information, and appId.
  *
  * @since 9
  * @version 1.0
@@ -130,7 +131,9 @@ typedef struct OH_NativeBundle_ModuleMetadata {
      */
     OH_NativeBundle_Metadata* metadataArray;
     /**
-     * @brief Number of elements in the metadata array.
+     * @brief Size of the metadata array of the module. It must be used together with metadataArray and should be equal
+     * to the actual number of elements in the metadataArray array. An incorrect value may cause array out-of-bounds
+     * access or abnormal data access.
      *
      */
     size_t metadataArraySize;
@@ -155,9 +158,8 @@ typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
 /**
  * @brief Obtains the current application information, including the bundle name and fingerprint information.
  *
- * @return Pointer to the OH_NativeBundle_ApplicationInfo object. If the attribute of the returned object is NULL,
- *     the creation fails. The possible cause is that the application address space is full, causing space
- *     allocation to fail.
+ * @return Pointer to the OH_NativeBundle_ApplicationInfo object. If the returned object is NULL, the creation fails.
+ *     The possible cause is that the application address space is full, causing space allocation to fail.
  * @since 9
  * @version 1.0
  */
@@ -168,8 +170,9 @@ OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo();
  * determined by the bundle name and signature information of the application. After using this function, you must
  * manually release the pointer returned to prevent memory leakage.
  *
- * @return Pointer to a new string that indicates the appID. If the returned object is NULL, the creation fails.
- *     <br> The possible cause is that the application address space is full, causing space allocation to fail.
+ * @return Returns a newly created string used to indicate the appId information. If the returned object is NULL, it
+ *     indicates that creation failed.
+ *     A possible cause of failure is that the application address space is full, causing space allocation failure.
  * @since 11
  * @version 1.0
  */
@@ -181,8 +184,8 @@ char* OH_NativeBundle_GetAppId();
  * application migration. After using this function, you must manually release the pointer returned to prevent memory
  * leakage.
  *
- * @return Pointer to a new string that indicates the appIdentifier. If the returned object is NULL, the creation
- *     fails. The possible cause is that the application address space is full, causing space allocation to fail.
+ * @return Pointer to a new string that indicates the appIdentifier. If the returned object is NULL, the creation fails.
+ *     The possible cause is that the application address space is full, causing space allocation to fail.
  * @since 11
  * @version 1.0
  */
@@ -192,21 +195,21 @@ char* OH_NativeBundle_GetAppIdentifier();
  * @brief Obtains the mainElement information of the current application, including the bundle name, module name, and
  * ability name. After using this function, you must manually release the pointer returned to prevent memory leakage.
  *
- * @return Pointer to the OH_NativeBundle_ElementName object. If the attribute of the returned object is NULL,
- *     the creation fails. The possible cause is that the application address space is full, causing space
- *     allocation to fail.
+ * @return Returns a newly created OH_NativeBundle_ElementName object. If any field in the returned object is NULL, it
+ *     indicates that creation failed.
+ *     A possible cause of failure is that the application address space is full, causing space allocation failure.
  * @since 13
  */
 OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
 
 /**
- * @brief Obtains the compatible device type of the current application. It helps you optimize the layout and font
- * size when distributing mobile applications to tablets or 2-in-1 devices. After using this function, you must
- * manually release the pointer returned to prevent memory leakage.
+ * @brief Obtains the compatible device type of the current application. It helps you optimize the layout and font size
+ * when distributing mobile applications to tablets or 2-in-1 devices. After using this function, you must manually
+ * release the pointer returned to prevent memory leakage.
  *
  * @return Pointer to a new string that indicates the compatible device type. If the returned object is NULL, the
  *     creation fails.
- *     <br> The possible cause is that the application address space is full, causing space allocation to fail.
+ *     The possible cause is that the application address space is full, causing space allocation to fail.
  * @since 14
  * @version 1.0
  */
@@ -227,21 +230,27 @@ bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
  * release the pointer returned to prevent memory leakage.
  *
  * @param size Pointer to the size of the module metadata array.
- * @return An array of module metadata. If the returned object is NULL, the retrieval fails.
- *     <br> The possible cause is that the application address space is full, causing space allocation to fail.
+ * @return Returns the module metadata array. If the returned object is NULL, it indicates that the acquisition failed.
+ *     The possible cause of failure is that the application address space is full, causing space allocation
+ *     failure.
  * @since 20
  */
 OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
 
 /**
- * @brief Obtain a list of ability that support opening files in a certain format.
+ * @brief Obtains a list of ability resource information that supports opening a specific file type. After using this
+ * function, you must call {@link OH_AbilityResourceInfo_Destroy} to release the pointer returned to prevent memory
+ * leakage.
  *
  * @permission ohos.permission.GET_ABILITY_INFO
- * @param fileType Indicates the file type.
- * @param abilityResourceInfo Indicates the ability resource array.
- * @param size Indicates the ability resource array size.
- * @return <ul><li>Returns {@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR} if the call is successful.</li><li>
- *     Returns {@link BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED} if the caller has no correct permission.</li></ul>
+ * @param fileType Specific file type to query. It is recommended to use the {@link UTD type}, for example, "general.
+ *     plain-text" and "general.image". Currently, it is also compatible with the {@link MIME type} and file extension
+ *     names, such as "text/xml" and ".png". For the mapping between file extensions and file types, see
+ *     {@link UTD preset list}. Passing "\/*/\/*" is not supported.
+ * @param abilityResourceInfo Double pointer to the list of ability resource information.
+ * @param size Pointer to the size of the ability resource information list.
+ * @return <ul><li>Returns {@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The operation is successful.</li><li>
+ *     Returns {@link BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED}: The caller does not have the required permission.</li></ul>
  * @since 21
  */
 BundleManager_ErrorCode OH_NativeBundle_GetAbilityResourceInfo(char* fileType,

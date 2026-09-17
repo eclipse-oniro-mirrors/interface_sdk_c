@@ -17,7 +17,8 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describe the functions of AbilityResourceInfo.
+ * @brief The file declares the APIs for obtaining the following ability resource information: bundle name, module name,
+ *  ability name, icon, clone index, and whether the application is a default application.
  *
  * @since 21
  */
@@ -47,7 +48,9 @@ extern "C" {
 #endif
 
 /**
- * @brief The struct describes the ability resource information.
+ * @brief Represents the ability resource information, which is used to store and pass the basic configuration
+ * information of an ability, including attributes such as name and type. It is applicable to scenarios where the
+ * native layer queries and manages ability resources.
  *
  * @since 21
  */

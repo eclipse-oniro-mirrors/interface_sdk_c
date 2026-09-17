@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describes the Native Bundle.
+ * @brief 声明BundleManager定义的相关错误码。
  *
  * @since 21
  * @version 1.0
@@ -26,7 +26,7 @@
 /**
  * @file bundle_manager_common.h
  *
- * @brief The file declares the error codes defined by BundleManager.
+ * @brief 声明BundleManager定义的相关错误码。
  *
  * @library libbundle_ndk.z.so
  * @kit AbilityKit

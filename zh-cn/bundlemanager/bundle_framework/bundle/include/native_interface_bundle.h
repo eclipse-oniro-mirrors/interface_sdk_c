@@ -17,7 +17,7 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describes the Native Bundle.
+ * @brief 提供查询应用包信息的功能，包括应用包名、应用指纹、应用appId等。
  *
  * @since 9
  * @version 1.0
@@ -46,7 +46,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief 应用包信息数据结构，包含应用包名和应用指纹信息。
  *
@@ -84,7 +83,7 @@ struct OH_NativeBundle_ElementName {
      */
     char* moduleName;
     /**
-     * 组件名。
+     * Ability名称。
      */
     char* abilityName;
 };
@@ -129,7 +128,7 @@ typedef struct OH_NativeBundle_ModuleMetadata {
      */
     OH_NativeBundle_Metadata* metadataArray;
     /**
-     * @brief 模块的元数据数组大小。
+     * @brief 模块的元数据数组大小。需与metadataArray配合使用，应等于metadataArray数组的实际元素数量，设置错误可能导致数组越界或数据访问异常。
      *
      */
     size_t metadataArraySize;
