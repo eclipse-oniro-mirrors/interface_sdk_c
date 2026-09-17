@@ -732,7 +732,7 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
  * @brief Sets the key value of a key state object.
  *
  * @param keyState Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
- * @param keyCode Key code. For details, see {@link Input_KeyCode}.
+ * @param keyCode Key code. For details, see {@link oh_key_code.h#Input_KeyCode}.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -860,7 +860,7 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
  *
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
- * @param keyCode Key value. For details, see {@link Input_KeyCode}.
+ * @param keyCode Key value. For details, see {@link oh_key_code.h#Input_KeyCode}.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -870,7 +870,7 @@ void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCod
  *
  * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
- * @return Key code of a key event. For details, see {@link Input_KeyCode}.
+ * @return Key code of a key event. For details, see {@link oh_key_code.h#Input_KeyCode}.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -1810,7 +1810,7 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
  *
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
- * @param action Axis event action. For details, see {@link InputEvent_AxisAction}.
+ * @param action Axis event action. For details, see {@link oh_axis_type.h#InputEvent_AxisAction}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1823,7 +1823,7 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param action Output parameter, which returns the axis event action. For details, see
- *     {@link InputEvent_AxisAction}.
+ *     {@link oh_axis_type.h#InputEvent_AxisAction}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
  *     **action** is null.
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1894,7 +1894,7 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
  *
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
- * @param axisType Axis type. For details, see {@link InputEvent_AxisType}.
+ * @param axisType Axis type. For details, see {@link oh_axis_type.h#InputEvent_AxisType}.
  * @param axisValue Value of the axis event. A positive value indicates scrolling forward (for example, 1.0 means
  *     scrolling forward by one unit), a negative value indicates scrolling backward (for example, -1.0 means scrolling
  *     backward by one unit), and zero indicates no scrolling.
@@ -1910,7 +1910,7 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
  *
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
- * @param axisType Axis type. For details, see {@link InputEvent_AxisType}.
+ * @param axisType Axis type. For details, see {@link oh_axis_type.h#InputEvent_AxisType}.
  * @param axisValue Output parameter, which returns the value of the axis event. A positive value indicates scrolling
  *     forward (for example, 1.0 indicates scrolling forward by one unit), a negative value indicates scrolling backward
  *     (for example, -1.0 indicates scrolling backward by one unit), and zero indicates no scrolling.
@@ -1954,7 +1954,7 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
  *
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
- * @param axisEventType Axis event type. For details, see {@link InputEvent_AxisEventType}.
+ * @param axisEventType Axis event type. For details, see {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1966,7 +1966,7 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
  *
  * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis event object.
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
- * @param axisEventType Axis event type. For details, see {@link InputEvent_AxisEventType}.
+ * @param axisEventType Axis event type. For details, see {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
  *     **axisEventType** is null.
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -2151,7 +2151,8 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
 Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
 
 /**
- * @brief Adds a listener for all types of axis events, which are defined in {@link InputEvent_AxisEventType}.
+ * @brief Adds a listener for all types of axis events, which are defined in
+ * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback Callback used to receive axis events.
@@ -2165,10 +2166,11 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
 Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
 
 /**
- * @brief Adds a listener for the specified type of axis events, which are defined in {@link InputEvent_AxisEventType}.
+ * @brief Adds a listener for the specified type of axis events, which are defined in
+ * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType Axis event type, which is defined in {@link InputEvent_AxisEventType}.
+ * @param axisEventType Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback Callback used to receive axis events of a specified type.
  * @return {@link INPUT_SUCCESS} if the axis event listener is added successfully;
  *     <br>{@link INPUT_PERMISSION_DENIED} if the permission check fails;
@@ -2237,10 +2239,10 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
 
 /**
  * @brief Removes the listener for the specified type of axis events, which are defined in
- * {@link InputEvent_AxisEventType}.
+ * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType Axis event type, which is defined in {@link InputEvent_AxisEventType}.
+ * @param axisEventType Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback Callback for the specified type of axis events.
  * @return {@link INPUT_SUCCESS} if the axis event listener is removed successfully;
  *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
@@ -2462,7 +2464,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * > 1. **preKeys**: Modifier key set (including Ctrl, Shift, and Alt) containing [1, 4] keys. There is no requirement
  * on the key order. For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.
  * > 2. **finalKey**: Modified key, which can be any key except the modifier keys and Meta key. For details about the
- * keys, see {@link Input_KeyCode}. For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.
+ * keys, see {@link oh_key_code.h#Input_KeyCode}. For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.
  *
  * @param hotkey Hotkey object.
  * @param callback Defines the callback used to return hotkey events.
@@ -2754,7 +2756,8 @@ Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* v
  * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo} to query
  *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query the
  *     current mouse pointer information.
- * @param style Cursor style enum of the mouse cursor information. For details, see {@link Input_PointerStyle}.
+ * @param style Cursor style enum of the mouse cursor information. For details, see
+ * {@link oh_pointer_style.h#Input_PointerStyle}.
  * @return Return value of the **OH_Input_CursorInfo_GetStyle** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails or the cursor is invisible.
@@ -2769,8 +2772,8 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
  *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query the
  *     current mouse pointer information.
  * @param sizeLevel Cursor size level of the mouse cursor information. The value ranges from [1, 7], and a larger
- *     value indicates a larger cursor. For an app custom cursor {@link DEVELOPER_DEFINED_ICON}, the actual bitmap size
- *     prevails.
+ *     value indicates a larger cursor. For an app custom cursor
+ *     {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap size prevails.
  * @return Return value of the **OH_Input_CursorInfo_GetSizeLevel** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails or the cursor is invisible.
@@ -2786,7 +2789,7 @@ Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int3
  *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query the
  *     current mouse pointer information.
  * @param color Cursor color of the mouse cursor info, represented by a 32-bit ARGB integer. For application-defined
- *     custom cursors {@link DEVELOPER_DEFINED_ICON}, the actual bitmap color shall prevail.
+ *     custom cursors {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap color shall prevail.
  * @return Return value of the **OH_Input_CursorInfo_GetColor** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails or the cursor is invisible.
@@ -2812,7 +2815,7 @@ Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mou
 /**
  * @brief Obtains the mouse cursor information, including the cursor visible status, cursor style, cursor size
  * level, and cursor color. If the **pixelmap** parameter is not empty and the cursor style is
- * {@link DEVELOPER_DEFINED_ICON}, the **PixelMap** object of the cursor is returned.
+ * {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the **PixelMap** object of the cursor is returned.
  *
  * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create} to create a
  *     mouse pointer information object.
@@ -2865,7 +2868,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
  *     <br>Only the ID of the current window or global window can be specified. If any other ID is specified, the
  *     default pointer style of the global window is returned. You can obtain the ID of the current window through
  *     {@link oh_window.h#getWindowProperties}.
- * @param pointerStyle Mouse cursor style, which is an enum value of {@link Input_PointerStyle}.
+ * @param pointerStyle Mouse cursor style, which is an enum value of {@link oh_pointer_style.h#Input_PointerStyle}.
  * @return Return value of the **OH_Input_GetPointerStyle** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
@@ -2882,7 +2885,8 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  *     <br>Only the ID of the current window can be specified. If any other ID is specified, the API call is
  *     successful, but the setting does not take effect. You can obtain the ID of the current window through
  *     {@link oh_window.h#getWindowProperties}.
- * @param pointerStyle Mouse pointer style. The value is an enumerated value of {@link Input_PointerStyle}.
+ * @param pointerStyle Mouse pointer style. The value is an enumerated value of
+ * {@link oh_pointer_style.h#Input_PointerStyle}.
  * @return Return value of the **OH_Input_SetPointerStyle** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;

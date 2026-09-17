@@ -358,7 +358,8 @@ typedef enum Input_PointerStyle {
      */
     LASER_CURSOR_DOT_RED = 51,
     /**
-     * @brief 自定义光标，开发者可使用{@link OH_Input_SetCustomCursor}设置自定义光标，不支持使用{@link OH_Input_SetPointerStyle}直接设置。
+     * @brief 自定义光标，开发者可使用{@link oh_input_manager.h#OH_Input_SetCustomCursor}设置自定义光标，
+     * 不支持使用{@link oh_input_manager.h#OH_Input_SetPointerStyle}直接设置。
      * @since 22
      */
     DEVELOPER_DEFINED_ICON = -100

@@ -682,7 +682,7 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
  * @brief 设置按键状态对象的键值。
  *
  * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
- * @param keyCode 按键键值，具体请参考{@link Input_KeyCode}。
+ * @param keyCode 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -804,7 +804,7 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
  *
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param keyCode 按键键值，具体请参考{@link Input_KeyCode}。
+ * @param keyCode 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -814,7 +814,7 @@ void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCod
  *
  * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @return 返回按键事件的键值。相关取值可参考{@link Input_KeyCode}。
+ * @return 返回按键事件的键值。相关取值可参考{@link oh_key_code.h#Input_KeyCode}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
@@ -1630,7 +1630,7 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param action 轴事件动作，具体请参考{@link InputEvent_AxisAction}。
+ * @param action 轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
  * @return 若设置轴事件的动作成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1642,7 +1642,7 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param action 出参，返回轴事件动作，具体请参考{@link InputEvent_AxisAction}。
+ * @param action 出参，返回轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
  * @return 若获取轴事件的动作成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者action为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1702,7 +1702,7 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisType 轴类型，具体请参考{@link InputEvent_AxisType}。
+ * @param axisType 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
  * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @return 若设置轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1716,7 +1716,7 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisType 轴类型，具体请参考{@link InputEvent_AxisType}。
+ * @param axisType 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
  * @param axisValue 出参，返回轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @return 若获取轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者axisValue为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1754,7 +1754,7 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisEventType 轴事件类型，具体请参考{@link InputEvent_AxisEventType}。
+ * @param axisEventType 轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
  * @return 若设置轴事件类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1766,7 +1766,7 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
  *
  * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisEventType 出参，返回轴事件类型，具体请参考{@link InputEvent_AxisEventType}。
+ * @param axisEventType 出参，返回轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
  * @return 若获取轴事件类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者axisEventType为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
@@ -1931,7 +1931,7 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
 Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
 
 /**
- * @brief 添加所有类型轴事件监听，轴事件类型定义在{@link InputEvent_AxisEventType}中。
+ * @brief 添加所有类型轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback 回调函数，用于接收轴事件。
@@ -1943,10 +1943,10 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
 Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
 
 /**
- * @brief 添加指定类型的轴事件监听，轴事件类型定义在{@link InputEvent_AxisEventType}中。
+ * @brief 添加指定类型的轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType 要监听的轴事件类型，轴事件类型定义在{@link InputEvent_AxisEventType}中。
+ * @param axisEventType 要监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  * @param callback 回调函数，用于接收指定类型的轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -2004,10 +2004,10 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
 Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback);
 
 /**
- * @brief 移除指定类型轴事件监听，轴事件类型定义在{@link InputEvent_AxisEventType}中。
+ * @brief 移除指定类型轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType 指定要移除监听的轴事件类型，轴事件类型定义在{@link InputEvent_AxisEventType}中。
+ * @param axisEventType 指定要移除监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  * @param callback 指定要被移除的用于指定类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -2206,7 +2206,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * <br>**说明：**
  * <br>订阅快捷键事件时，对于preKeys和finalKey有以下约束：
  * <br>1. preKeys：修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 4]，无顺序要求。例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。
- * <br>2. finalKey：被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见{@link Input_KeyCode}。例如，Ctrl+Shift+Esc中，Esc称为被修饰键。
+ * <br>2. finalKey：被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见{@link oh_key_code.h#Input_KeyCode}。例如，Ctrl+Shift+Esc中，Esc称为被修饰键。
  *
  * @param hotkey 指定要订阅的快捷键对象。
  * @param callback 回调函数，用于回调快捷键事件。
@@ -2484,7 +2484,7 @@ Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* v
  *
  * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param style 鼠标光标信息的光标样式枚举，具体请参考{@link Input_PointerStyle}。
+ * @param style 鼠标光标信息的光标样式枚举，具体请参考{@link oh_pointer_style.h#Input_PointerStyle}。
  * @return OH_Input_CursorInfo_GetStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
@@ -2497,7 +2497,8 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
  *
  * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param sizeLevel 鼠标光标信息的光标大小档位。取值范围为整数[1, 7]，数值越大则光标越大。应用自定义光标{@link DEVELOPER_DEFINED_ICON}请以实际位图大小为准。
+ * @param sizeLevel 鼠标光标信息的光标大小档位。取值范围为整数[1, 7]，数值越大则光标越大。应用自定义光标
+ *     {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}请以实际位图大小为准。
  * @return OH_Input_CursorInfo_GetSizeLevel 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
@@ -2510,7 +2511,7 @@ Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int3
  *
  * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param color 鼠标光标信息的光标颜色，使用32位ARGB整数表示。应用自定义光标{@link DEVELOPER_DEFINED_ICON}请以实际位图颜色为准。
+ * @param color 鼠标光标信息的光标颜色，使用32位ARGB整数表示。应用自定义光标{@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}请以实际位图颜色为准。
  * @return OH_Input_CursorInfo_GetColor 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
@@ -2532,7 +2533,7 @@ Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t
 Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mouseEvent, Input_CursorInfo* cursorInfo);
 
 /**
- * @brief 查询当前鼠标光标信息，包括光标显示状态、光标样式、光标大小档位、光标颜色。如果pixelmap参数非空，且光标样式为{@link DEVELOPER_DEFINED_ICON}，
+ * @brief 查询当前鼠标光标信息，包括光标显示状态、光标样式、光标大小档位、光标颜色。如果pixelmap参数非空，且光标样式为{@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}，
  * 则会同时返回光标的PixelMap位图对象。
  *
  * @param cursorInfo 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
@@ -2578,7 +2579,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
  *
  * @param windowId 窗口ID。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。
  *     <br>仅支持传入当前窗口和全局窗口的ID，传入其他ID返回全局窗口的默认光标样式，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
- * @param pointerStyle 鼠标光标样式，取值为{@link Input_PointerStyle}的枚举值。
+ * @param pointerStyle 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
  * @return OH_Input_GetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2592,7 +2593,7 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  *
  * @param windowId 窗口ID。取值范围为大于等于0的整数。
  *     <br>仅支持传入当前窗口的光标样式，传入其他窗口ID本接口可以运行成功但设置不生效，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
- * @param pointerStyle 鼠标光标样式，取值为{@link Input_PointerStyle}的枚举值。
+ * @param pointerStyle 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
  * @return OH_Input_SetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
