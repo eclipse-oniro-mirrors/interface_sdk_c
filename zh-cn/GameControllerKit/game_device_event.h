@@ -58,7 +58,7 @@ typedef enum GameDevice_StatusChangedType {
      * 设备上线。
      * @since 21
      */
-    ONLINE = 1,
+    ONLINE = 1
 } GameDevice_StatusChangedType;
 
 /**
@@ -77,7 +77,7 @@ typedef enum GameDevice_DeviceType {
      * 游戏手柄。
      * @since 21
      */
-    GAME_PAD = 1,
+    GAME_PAD = 1
 } GameDevice_DeviceType;
 
 /**
@@ -87,6 +87,7 @@ typedef enum GameDevice_DeviceType {
  * @see {@link OH_GameDevice_DeviceInfo_GetDeviceId} 获取设备 ID。
  * @see {@link OH_GameDevice_DeviceInfo_GetName} 获取设备名称。
  * @see {@link OH_GameDevice_DeviceInfo_GetProduct} 获取产品信息。
+ * @see {@link OH_GameDevice_DeviceInfo_GetVendor} 获取厂商信息。
  * @see {@link OH_GameDevice_DeviceInfo_GetVersion} 获取版本信息。
  * @see {@link OH_GameDevice_DeviceInfo_GetPhysicalAddress} 获取物理地址。
  * @see {@link OH_GameDevice_DeviceInfo_GetDeviceType} 获取设备类型。
@@ -108,7 +109,7 @@ typedef struct GameDevice_DeviceEvent GameDevice_DeviceEvent;
  * @param deviceEvent 输入参数。设备状态变化事件{@link GameDevice_DeviceEvent}。
  * @since 21
  */
-typedef void (*GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceEvent* deviceEvent);
+typedef void(* GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceEvent* deviceEvent);
 
 /**
  * @brief 从设备状态变化事件中获取状态变化类型。
@@ -176,12 +177,24 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevic
  *
  * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空。
  * @param product 输出参数，产品信息。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数deviceInfo为null，返回
- *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo或product为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,
                                                              int32_t* product);
+
+/**
+ * @brief 从设备信息中获取厂商信息。
+ *
+ * @param deviceInfo [in]指向{@link GameDevice_DeviceInfo}实例的指针。指针不能为空。
+ * @param vendor [out]输出参数。供应商信息。
+ * @return <ul><li>如果操作成功，则返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ *     <li>如果deviceInfo或vendor参数为空，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVendor(const struct GameDevice_DeviceInfo* deviceInfo,
+                                                             int32_t* vendor);
 
 /**
  * @brief 从设备信息中获取版本信息。

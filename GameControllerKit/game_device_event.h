@@ -58,7 +58,7 @@ typedef enum GameDevice_StatusChangedType {
      * The game device is online.
      * @since 21
      */
-    ONLINE = 1,
+    ONLINE = 1
 } GameDevice_StatusChangedType;
 
 /**
@@ -77,19 +77,20 @@ typedef enum GameDevice_DeviceType {
      * Gamepad.
      * @since 21
      */
-    GAME_PAD = 1,
+    GAME_PAD = 1
 } GameDevice_DeviceType;
 
 /**
  * @brief Defines the device information.
  *
  * @since 21
- * @see {@link OH_GameDevice_DeviceInfo_GetDeviceId} obtains the device ID from the device information.
- * @see {@link OH_GameDevice_DeviceInfo_GetName} obtains the device name from the device information.
- * @see {@link OH_GameDevice_DeviceInfo_GetProduct} obtains the product information from the device information.
- * @see {@link OH_GameDevice_DeviceInfo_GetVersion} obtains the version information from the device information.
- * @see {@link OH_GameDevice_DeviceInfo_GetPhysicalAddress} obtains the physical address from the device information.
- * @see {@link OH_GameDevice_DeviceInfo_GetDeviceType} obtains the device type from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceId} Obtains the device ID from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetName} Obtains the device name from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetProduct} Obtains the product information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetVendor} Obtains the vendor information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetVersion} Obtains the version information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetPhysicalAddress} Obtains the physical address from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceType} Obtains the device type from the device information.
  */
 typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
 
@@ -181,12 +182,24 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevic
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param product Output parameter. Product information.
- * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
- *     deviceInfo** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned. </li>
+ * <li>If **deviceInfo** or **product** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,
                                                              int32_t* product);
+
+/**
+ * @brief Obtains the vendor information from the device information.
+ *
+ * @param deviceInfo [in] Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
+ * @param vendor [out] Output parameter. Vendor information.
+ * @return <ul><li> If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned. </li>
+ * <li>If **deviceInfo** or **vendor** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVendor(const struct GameDevice_DeviceInfo* deviceInfo,
+                                                             int32_t* vendor);
 
 /**
  * @brief Obtains the version information from the device information.

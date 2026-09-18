@@ -303,6 +303,27 @@ GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
 GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
 
 /**
+ * @brief 注册非标准按钮事件的回调。
+ *
+ * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @since 26.0.1
+ * @see {@link OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor} 取消注册非标准的回调
+ * 按钮事件。
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_RegisterButtonInputMonitor(
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+
+/**
+ * @brief 取消注册非标准按钮事件的回调。
+ *
+ * @return 操作成功，返回{@link GAME_CONTROLLER_SUCCESS}。
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor(void);
+
+/**
  * @brief 注册方向按键的向左按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
