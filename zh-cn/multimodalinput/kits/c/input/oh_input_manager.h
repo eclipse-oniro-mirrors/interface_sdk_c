@@ -526,7 +526,7 @@ typedef enum Input_TouchEventToolType {
 /**
  * @brief 回调函数，用于回调快捷键事件。
  *
- * @param hotkey hotkey 快捷键对象的实例。
+ * @param hotkey [in] hotkey 快捷键对象的实例。
  * @since 14
  */
 typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
@@ -559,7 +559,7 @@ typedef struct Input_CursorConfig Input_CursorConfig;
 /**
  * @brief 按键事件的回调函数，keyEvent的生命周期为回调函数内。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @since 12
  */
@@ -568,7 +568,7 @@ typedef void (*Input_KeyEventCallback)(const Input_KeyEvent* keyEvent);
 /**
  * @brief 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @since 12
  */
@@ -576,7 +576,7 @@ typedef void (*Input_MouseEventCallback)(const Input_MouseEvent* mouseEvent);
 /**
  * @brief 触屏输入事件的回调函数，touchEvent的生命周期为回调函数内。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @since 12
  */
@@ -584,7 +584,7 @@ typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent);
 /**
  * @brief 轴事件的回调函数，axisEvent的生命周期为回调函数内。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @since 12
  */
@@ -592,21 +592,21 @@ typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent);
 /**
  * @brief 回调函数，用于接收输入设备的热插事件。
  *
- * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
+ * @param deviceId [in] 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
  * @since 13
  */
 typedef void (*Input_DeviceAddedCallback)(int32_t deviceId);
 /**
  * @brief 回调函数，用于接收输入设备的热拔事件。
  *
- * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
+ * @param deviceId [in] 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
  * @since 13
  */
 typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
 /**
  * @brief 回调函数，用于获取注入权限状态。
  *
- * @param authorizedStatus 注入权限状态。
+ * @param authorizedStatus [in] 注入权限状态。
  * @since 20
  */
 typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
@@ -664,7 +664,7 @@ typedef struct Input_InterceptorOptions Input_InterceptorOptions;
 /**
  * @brief 查询按键状态的结构体对象。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState [in,out] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 操作成功返回{@link INPUT_SUCCESS}；参数校验失败返回{@link INPUT_PARAMETER_ERROR}。
  * @since 12
  */
@@ -675,6 +675,7 @@ Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
  *
  * @return 操作成功返回一个{@link Input_KeyState}指针对象；否则返回空指针。
  *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_DestroyKeyState}销毁。
+ * @release OH_Input_DestroyKeyState {return}
  * @since 12
  */
 struct Input_KeyState* OH_Input_CreateKeyState();
@@ -682,7 +683,7 @@ struct Input_KeyState* OH_Input_CreateKeyState();
 /**
  * @brief 销毁按键状态的结构体对象。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @since 12
  */
 void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
@@ -690,8 +691,8 @@ void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
 /**
  * @brief 设置按键状态对象的键值。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
- * @param keyCode 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyCode [in] 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
  * @since 12
  */
 void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
@@ -699,7 +700,7 @@ void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
 /**
  * @brief 获取按键状态对象的键值。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的键值。相关取值可参考{@link Input_KeyStateAction}。
  * @since 12
  */
@@ -708,8 +709,8 @@ int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
 /**
  * @brief 设置按键状态对象的按键是否按下。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
- * @param keyAction 按键是否按下，具体请参考{@link Input_KeyEventAction}。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyAction [in] 按键是否按下，具体请参考{@link Input_KeyEventAction}。
  * @since 12
  */
 void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
@@ -717,7 +718,7 @@ void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
 /**
  * @brief 获取按键状态对象的按键是否按下。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的按键按下状态。相关取值可参考{@link Input_KeyStateAction}。
  * @since 12
  */
@@ -726,8 +727,8 @@ int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
 /**
  * @brief 设置按键状态对象的按键开关。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
- * @param keySwitch 按键开关。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keySwitch [in] 按键开关。
  * @since 12
  */
 void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
@@ -744,7 +745,7 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。并通过{@link OH_Input_SetKeyEventKeyCode}、
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。并通过{@link OH_Input_SetKeyEventKeyCode}、
  *     {@link OH_Input_SetKeyEventAction}接口可以设置按键事件的键值和按键事件的类型。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return OH_Input_InjectKeyEvent 函数返回值。
@@ -758,7 +759,7 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 获取按键状态对象的按键开关。
  *
- * @param keyState 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
+ * @param keyState [in] 按键状态的结构体对象，具体请参考{@link Input_KeyStateAction}。
  * @return 返回按键状态对象的按键开关。相关取值可参考{@link Input_KeyStateAction}。
  * @since 12
  */
@@ -775,23 +776,23 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent();
 /**
  * @brief 销毁按键事件对象。
  *
- * @param keyEvent 按键事件对象。
+ * @param keyEvent [in] 按键事件对象。
  * @since 12
  */
 void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
 /**
  * @brief 设置按键事件类型。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param action 按键事件类型。相关取值可参考{@link Input_KeyEventAction}。
+ * @param action [in] 按键事件类型。相关取值可参考{@link Input_KeyEventAction}。
  * @since 12
  */
 void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action);
 /**
  * @brief 获取按键事件类型。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 返回按键事件类型。相关取值可参考{@link Input_KeyEventAction}。
  * @since 12
@@ -800,16 +801,16 @@ int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 设置按键事件的键值。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param keyCode 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
+ * @param keyCode [in] 按键键值，具体请参考{@link oh_key_code.h#Input_KeyCode}。
  * @since 12
  */
 void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode);
 /**
  * @brief 获取按键事件的键值。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 返回按键事件的键值。相关取值可参考{@link oh_key_code.h#Input_KeyCode}。
  * @since 12
@@ -818,16 +819,16 @@ int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 设置按键事件发生的时间。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param actionTime 按键事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
+ * @param actionTime [in] 按键事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 12
  */
 void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime);
 /**
  * @brief 获取按键事件发生的时间。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 返回按键事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 12
@@ -836,16 +837,16 @@ int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 设置按键事件的窗口ID。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param windowId 按键事件对应的窗口ID。
+ * @param windowId [in] 按键事件对应的窗口ID。
  * @since 15
  */
 void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId);
 /**
  * @brief 获取按键事件的窗口ID。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 按键事件的窗口ID。
  * @since 15
@@ -854,16 +855,16 @@ int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 设置按键事件的屏幕ID。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param displayId 按键事件对应的屏幕ID。
+ * @param displayId [in] 按键事件对应的屏幕ID。
  * @since 15
  */
 void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId);
 /**
  * @brief 获取按键事件的屏幕ID。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
  * @return 按键事件的屏幕ID。
  * @since 15
@@ -873,9 +874,9 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief 获取按键事件的ID。
  *
- * @param keyEvent 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
+ * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
- * @param eventId 按键事件的ID。
+ * @param eventId [out] 按键事件的ID。
  * @return OH_Input_GetKeyEventId 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -888,7 +889,7 @@ Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32
  * <br>添加后可以通过{@link OH_Input_RemoveKeyEventHook}接口移除。一个进程仅支持设置一个钩子，一个应用支持多个钩子函数，后添加的生效优先级更高。
  *
  * @permission ohos.permission.HOOK_KEY_EVENT
- * @param callback 钩子函数，用于拦截待分发的所有按键事件。
+ * @param callback [in] 钩子函数，用于拦截待分发的所有按键事件。
  * @return OH_Input_AddKeyEventHook 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -904,7 +905,7 @@ Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback);
  * @brief 移除按键事件拦截钩子函数。
  * <br>通常与{@link OH_Input_AddKeyEventHook}接口配合使用。
  *
- * @param callback 钩子函数，用于拦截待分发的所有按键事件。
+ * @param callback [in] 钩子函数，用于拦截待分发的所有按键事件。
  * @return OH_Input_RemoveKeyEventHook 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。如果之前没有添加对应钩子，移除时也会返回成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -922,7 +923,7 @@ Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
  * <br>如果仅分发{@link KEY_ACTION_UP}或{@link KEY_ACTION_CANCEL}按键事件，接口可以调用成功，但不会执行实际的分发动作。
  * <br>如果分发的事件未被钩子拦截，函数调用会成功，但不会执行实际的分发动作。
  *
- * @param eventId 按键事件的ID。可以通过{@link OH_Input_GetKeyEventId}接口获取。
+ * @param eventId [in] 按键事件的ID。可以通过{@link OH_Input_GetKeyEventId}接口获取。
  * @return OH_Input_DispatchToNextHandler 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。可通过{@link OH_Input_GetKeyEventId}查看传入的eventId是否准确。
@@ -939,7 +940,7 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return OH_Input_InjectMouseEvent 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
@@ -957,7 +958,7 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return OH_Input_InjectMouseEventGlobal 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
@@ -978,23 +979,23 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent();
 /**
  * @brief 销毁鼠标事件对象。
  *
- * @param mouseEvent 鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象。
  * @since 12
  */
 void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
 /**
  * @brief 设置鼠标事件的动作。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param action 鼠标的动作。相关取值可参考{@link Input_MouseEventAction}。
+ * @param action [in] 鼠标的动作。相关取值可参考{@link Input_MouseEventAction}。
  * @since 12
  */
 void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action);
 /**
  * @brief 获取鼠标事件的动作。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标的动作。相关取值可参考{@link Input_MouseEventAction}。
  * @since 12
@@ -1004,9 +1005,9 @@ int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief 设置鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param displayX 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
+ * @param displayX [in] 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX);
@@ -1014,7 +1015,7 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
 /**
  * @brief 获取鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @since 12
@@ -1024,9 +1025,9 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
 /**
  * @brief 设置鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param displayY 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
+ * @param displayY [in] 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY);
@@ -1034,7 +1035,7 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
 /**
  * @brief 获取鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @since 12
@@ -1043,16 +1044,16 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
 /**
  * @brief 设置鼠标事件的按键。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param button 鼠标按键。相关取值可参考{@link Input_MouseEventButton}。
+ * @param button [in] 鼠标按键。相关取值可参考{@link Input_MouseEventButton}。
  * @since 12
  */
 void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button);
 /**
  * @brief 获取鼠标事件的按键。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标按键。相关取值可参考{@link Input_MouseEventButton}。
  * @since 12
@@ -1062,16 +1063,16 @@ int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief 设置鼠标轴事件的类型。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param axisType 鼠标轴类型，比如垂直轴、水平轴。相关取值可参考{@link InputEvent_MouseAxis}。
+ * @param axisType [in] 鼠标轴类型，比如垂直轴、水平轴。相关取值可参考{@link InputEvent_MouseAxis}。
  * @since 12
  */
 void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType);
 /**
  * @brief 获取鼠标轴事件的类型。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标轴类型。相关取值可参考{@link InputEvent_MouseAxis}。
  * @since 12
@@ -1080,16 +1081,16 @@ int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent
 /**
  * @brief 设置鼠标轴事件的值。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
+ * @param axisValue [in] 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @since 12
  */
 void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue);
 /**
  * @brief 获取鼠标轴事件的值。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 轴事件的值。
  * @since 12
@@ -1099,9 +1100,9 @@ float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
 /**
  * @brief 设置鼠标事件发生的时间。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param actionTime 鼠标事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
+ * @param actionTime [in] 鼠标事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 12
  */
 void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime);
@@ -1109,7 +1110,7 @@ void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64
 /**
  * @brief 获取鼠标事件发生的时间。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 返回鼠标事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 12
@@ -1118,16 +1119,16 @@ int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEve
 /**
  * @brief 设置鼠标事件的窗口ID。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param windowId 鼠标事件的窗口ID。
+ * @param windowId [in] 鼠标事件的窗口ID。
  * @since 15
  */
 void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId);
 /**
  * @brief 获取鼠标事件的窗口ID。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件的窗口ID。
  * @since 15
@@ -1136,16 +1137,16 @@ int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent
 /**
  * @brief 设置鼠标事件的屏幕ID。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param displayId 鼠标事件的屏幕ID。
+ * @param displayId [in] 鼠标事件的屏幕ID。
  * @since 15
  */
 void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId);
 /**
  * @brief 获取鼠标事件的屏幕ID。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 若获取鼠标事件的屏幕ID成功，则返回鼠标事件的屏幕ID；若mouseEvent为NULL，则返回-1。
  * @since 15
@@ -1155,9 +1156,9 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
 /**
  * @brief 设置鼠标事件以主屏左上角为原点的全局坐标系的X坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param globalX 鼠标事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
+ * @param globalX [in] 鼠标事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
  * @since 20
  */
 void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX);
@@ -1165,7 +1166,7 @@ void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t 
 /**
  * @brief 获取鼠标事件以主屏左上角为原点的全局坐标系的X坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
  * @since 20
@@ -1175,9 +1176,9 @@ int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)
 /**
  * @brief 设置鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
- * @param globalY 鼠标事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
+ * @param globalY [in] 鼠标事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
  * @since 20
  */
 void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY);
@@ -1185,7 +1186,7 @@ void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t 
 /**
  * @brief 获取鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。
  *
- * @param mouseEvent 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
+ * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return 鼠标事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
  * @since 20
@@ -1200,7 +1201,7 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return OH_Input_InjectTouchEvent 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
@@ -1217,7 +1218,7 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return OH_Input_InjectTouchEventGlobal 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注入成功。
@@ -1238,23 +1239,23 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent();
 /**
  * @brief 销毁触屏输入事件对象。
  *
- * @param touchEvent 触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象。
  * @since 12
  */
 void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
 /**
  * @brief 设置触屏输入事件的动作。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param action 触屏的动作。相关取值可参考{@link Input_TouchEventAction}。
+ * @param action [in] 触屏的动作。相关取值可参考{@link Input_TouchEventAction}。
  * @since 12
  */
 void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action);
 /**
  * @brief 获取触屏输入事件的动作。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏的动作。相关取值可参考{@link Input_TouchEventAction}。
  * @since 12
@@ -1263,16 +1264,16 @@ int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
 /**
  * @brief 设置触屏输入事件的手指ID。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param id 触屏的手指ID。第一个手指碰到屏幕，ID就是0，第二个手指碰到屏幕，ID就是1，依次累加。
+ * @param id [in] 触屏的手指ID。第一个手指碰到屏幕，ID就是0，第二个手指碰到屏幕，ID就是1，依次累加。
  * @since 12
  */
 void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id);
 /**
  * @brief 获取触屏输入事件的手指ID。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏的手指ID。第一个手指碰到屏幕，ID就是0，第二个手指碰到屏幕，ID就是1，依次累加。
  * @since 12
@@ -1282,9 +1283,9 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
 /**
  * @brief 设置触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param displayX 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
+ * @param displayX [in] 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX);
@@ -1292,7 +1293,7 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 /**
  * @brief 获取触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @since 12
@@ -1302,9 +1303,9 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
 /**
  * @brief 设置触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param displayY 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
+ * @param displayY [in] 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY);
@@ -1312,7 +1313,7 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 /**
  * @brief 获取触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @since 12
@@ -1321,16 +1322,16 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
 /**
  * @brief 设置触屏输入事件发生的时间。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param actionTime 触屏输入事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
+ * @param actionTime [in] 触屏输入事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 12
  */
 void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime);
 /**
  * @brief 获取触屏输入事件发生的时间。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 返回触屏输入事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 12
@@ -1339,16 +1340,16 @@ int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEve
 /**
  * @brief 设置触屏输入事件的窗口ID。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param windowId 触屏输入事件的窗口ID。
+ * @param windowId [in] 触屏输入事件的窗口ID。
  * @since 15
  */
 void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId);
 /**
  * @brief 获取触屏输入事件的窗口ID。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件的窗口ID。
  * @since 15
@@ -1357,16 +1358,16 @@ int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent
 /**
  * @brief 设置触屏输入事件的屏幕ID。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param displayId 触屏输入事件的屏幕ID。
+ * @param displayId [in] 触屏输入事件的屏幕ID。
  * @since 15
  */
 void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId);
 /**
  * @brief 获取触屏输入事件的屏幕ID。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件的屏幕ID。
  * @since 15
@@ -1376,9 +1377,9 @@ int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEven
 /**
  * @brief 设置触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param globalX 触屏输入事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
+ * @param globalX [in] 触屏输入事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
  * @since 20
  */
 void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX);
@@ -1386,7 +1387,7 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
 /**
  * @brief 获取触屏输入事件以主屏左上角为原点的全局坐标系的X坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
  * @since 20
@@ -1396,9 +1397,9 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
 /**
  * @brief 设置触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param globalY 触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
+ * @param globalY [in] 触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
  * @since 20
  */
 void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY);
@@ -1406,7 +1407,7 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
 /**
  * @brief 获取触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 触屏输入事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
  * @since 20
@@ -1416,9 +1417,9 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
 /**
  * @brief 设置触屏输入事件的压力。如果未设置压力值，或设置的值不在[0.0, 1.0]范围内，默认值是0.0。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param pressure 压力值，范围[0.0, 1.0]，当前触屏可感知的最小压力程度为0.0，最大压力程度为1.0，无单位。
+ * @param pressure [in] 压力值，范围[0.0, 1.0]，当前触屏可感知的最小压力程度为0.0，最大压力程度为1.0，无单位。
  * @return OH_Input_SetTouchEventPressure 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -1428,7 +1429,7 @@ Input_Result OH_Input_SetTouchEventPressure(struct Input_TouchEvent* touchEvent,
 /**
  * @brief 获取触屏输入事件的压力。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 压力值，无单位。
  * @since 24
@@ -1438,9 +1439,9 @@ double OH_Input_GetTouchEventPressure(const struct Input_TouchEvent* touchEvent)
 /**
  * @brief 设置触屏输入事件以指定窗口左上角为原点的相对坐标系的X坐标。如果未设置，默认值是0。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param windowX 指定窗口左上角为原点的相对坐标系的X坐标，单位为像素（px）。
+ * @param windowX [in] 指定窗口左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @since 24
  */
 void OH_Input_SetTouchEventWindowX(struct Input_TouchEvent* touchEvent, int32_t windowX);
@@ -1448,7 +1449,7 @@ void OH_Input_SetTouchEventWindowX(struct Input_TouchEvent* touchEvent, int32_t 
 /**
  * @brief 获取触屏输入事件以指定窗口左上角为原点的相对坐标系的X坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 指定窗口左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @since 24
@@ -1458,9 +1459,9 @@ int32_t OH_Input_GetTouchEventWindowX(const struct Input_TouchEvent* touchEvent)
 /**
  * @brief 设置触屏输入事件以指定窗口左上角为原点的相对坐标系的Y坐标。如果未设置，默认值是0。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param windowY 指定窗口左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
+ * @param windowY [in] 指定窗口左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @since 24
  */
 void OH_Input_SetTouchEventWindowY(struct Input_TouchEvent* touchEvent, int32_t windowY);
@@ -1468,7 +1469,7 @@ void OH_Input_SetTouchEventWindowY(struct Input_TouchEvent* touchEvent, int32_t 
 /**
  * @brief 获取触屏输入事件以指定窗口左上角为原点的相对坐标系的Y坐标。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 指定窗口左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @since 24
@@ -1478,9 +1479,9 @@ int32_t OH_Input_GetTouchEventWindowY(const struct Input_TouchEvent* touchEvent)
 /**
  * @brief 设置当前触屏事件对应手指/其他触屏外设最近一次按下事件发生的时间。如果未设置，默认值是0。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param downTime 当前触屏事件对应手指/其他触屏外设最近一次按下事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
+ * @param downTime [in] 当前触屏事件对应手指/其他触屏外设最近一次按下事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 24
  */
 void OH_Input_SetTouchEventDownTime(struct Input_TouchEvent* touchEvent, int64_t downTime);
@@ -1488,7 +1489,7 @@ void OH_Input_SetTouchEventDownTime(struct Input_TouchEvent* touchEvent, int64_t
 /**
  * @brief 获取当前触屏事件对应手指/其他触屏外设最近一次按下事件发生的时间。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 当前触屏事件对应手指/其他触屏外设最近一次按下事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @since 24
@@ -1498,9 +1499,9 @@ int64_t OH_Input_GetTouchEventDownTime(const struct Input_TouchEvent* touchEvent
 /**
  * @brief 设置触屏输入事件的工具类型。如果未设置toolType，默认值是Input_TouchEventToolType.TOOL_TYPE_FINGER。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
- * @param toolType 工具类型。
+ * @param toolType [in] 工具类型。
  * @return OH_Input_SetTouchEventToolType 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -1510,7 +1511,7 @@ Input_Result OH_Input_SetTouchEventToolType(struct Input_TouchEvent* touchEvent,
 /**
  * @brief 获取触屏输入事件的工具类型。
  *
- * @param touchEvent 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
+ * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return 工具类型。
  * @since 24
@@ -1522,7 +1523,7 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  * {@link OH_Input_InjectMouseEvent}等注入操作的权限。
  * <br>从API版本26.0.0开始，在已授予ohos.permission.CONTROL_DEVICE权限的情况下，无需再申请注入授权。本接口的行为与ohos.permission.CONTROL_DEVICE权限无关。
  *
- * @param callback 授权状态回调，具体请参考{@link Input_InjectAuthorizeCallback}。
+ * @param callback [in] 授权状态回调，具体请参考{@link Input_InjectAuthorizeCallback}。
  * @return 函数返回值，参见{@link Input_Result}。
  *     <br>INPUT_SUCCESS = 0 申请授权成功，等待用户授权结果并回调授权状态。
  *     <br>INPUT_PARAMETER_ERROR = 401 参数错误，参数callback为空。
@@ -1547,7 +1548,7 @@ void OH_Input_CancelInjection();
  * @brief 查询当前应用注入的权限状态。
  * <br>从API版本26.0.0开始，本接口仅返回弹窗授权状态，不表示调用方是否因持有ohos.permission.CONTROL_DEVICE权限而具备注入能力。
  *
- * @param status 当前应用注入权限状态。参见{@link Input_InjectionStatus}。
+ * @param status [out] 当前应用注入权限状态。参见{@link Input_InjectionStatus}。
  * @return 函数返回值，参见{@link Input_Result}。
  *     <br>INPUT_SUCCESS = 0 查询成功。
  *     <br>INPUT_PARAMETER_ERROR = 401 参数错误，参数status为空。
@@ -1567,7 +1568,7 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
 /**
  * @brief 销毁轴事件对象。
  *
- * @param axisEvent 轴事件对象实例的指针。
+ * @param axisEvent [in] 轴事件对象实例的指针。
  * @return 若销毁成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 12
  */
@@ -1576,9 +1577,9 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
 /**
  * @brief 设置轴事件的动作。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param action 轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
+ * @param action [in] 轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
  * @return <ul>
  *         <li>若设置轴事件的动作成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1590,9 +1591,9 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
 /**
  * @brief 获取轴事件的动作。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param action 出参，返回轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
+ * @param action [out] 出参，返回轴事件动作，具体请参考{@link oh_axis_type.h#InputEvent_AxisAction}。
  * @return <ul>
  *         <li>若获取轴事件的动作成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent或者action为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1604,9 +1605,9 @@ Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, Input
 /**
  * @brief 设置轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param displayX 轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
+ * @param displayX [in] 轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @return <ul>
  *         <li>若设置轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1618,9 +1619,9 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
 /**
  * @brief 获取轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param displayX 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
+ * @param displayX [out] 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @return <ul>
  *         <li>若获取轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent或者displayX为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1632,9 +1633,9 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
 /**
  * @brief 设置轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param displayY 轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
+ * @param displayY [in] 轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @return <ul>
  *         <li>若设置轴事件的Y坐标成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1646,9 +1647,9 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
 /**
  * @brief 获取轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param displayY 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
+ * @param displayY [out] 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标，单位为像素（px）。
  * @return <ul>
  *         <li>若获取轴事件的Y坐标成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent或者displayY为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1660,10 +1661,10 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
 /**
  * @brief 设置轴事件指定轴类型的轴值。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisType 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
- * @param axisValue 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
+ * @param axisType [in] 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
+ * @param axisValue [in] 轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @return <ul>
  *         <li>若设置轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1676,10 +1677,10 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
 /**
  * @brief 获取轴事件指定轴类型的轴值。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisType 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
- * @param axisValue 出参，返回轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
+ * @param axisType [in] 轴类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisType}。
+ * @param axisValue [out] 出参，返回轴事件的值，正数向前滚动（例如，1.0表示向前滚动一个单位），负数向后滚动（例如，-1.0表示向后滚动一个单位），零表示没有滚动。
  * @return <ul>
  *         <li>若获取轴事件指定轴类型的轴值成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent或者axisValue为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1692,9 +1693,9 @@ Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
 /**
  * @brief 设置轴事件发生的时间。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param actionTime 轴事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
+ * @param actionTime [in] 轴事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @return 若设置轴事件发生的时间成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 12
  */
@@ -1703,9 +1704,9 @@ Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t
 /**
  * @brief 获取轴事件发生的时间。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param actionTime 出参，返回轴事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
+ * @param actionTime [out] 出参，返回轴事件发生的时间，表示系统启动运行至今逝去的微秒数，单位为微秒（μs）。
  * @return 若获取轴事件发生的时间成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者actionTime为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 12
  */
@@ -1714,9 +1715,9 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
 /**
  * @brief 设置轴事件类型。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisEventType 轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
+ * @param axisEventType [in] 轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
  * @return <ul>
  *         <li>若设置轴事件类型成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1728,9 +1729,9 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
 /**
  * @brief 获取轴事件类型。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param axisEventType 出参，返回轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
+ * @param axisEventType [out] 出参，返回轴事件类型，具体请参考{@link oh_axis_type.h#InputEvent_AxisEventType}。
  * @return <ul>
  *         <li>若获取轴事件类型成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent或者axisEventType为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1742,9 +1743,9 @@ Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEv
 /**
  * @brief 设置轴事件源类型。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param sourceType 轴事件源类型，具体请参考{@link InputEvent_SourceType}。
+ * @param sourceType [in] 轴事件源类型，具体请参考{@link InputEvent_SourceType}。
  * @return 若设置轴事件源类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 12
  */
@@ -1753,9 +1754,9 @@ Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEv
 /**
  * @brief 获取轴事件源类型。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param sourceType 出参，返回轴事件源类型，具体请参考{@link InputEvent_SourceType}。
+ * @param sourceType [out] 出参，返回轴事件源类型，具体请参考{@link InputEvent_SourceType}。
  * @return 若获取轴事件源类型成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者sourceType为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 12
  */
@@ -1764,9 +1765,9 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
 /**
  * @brief 设置轴事件的窗口ID。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param windowId 轴事件窗口ID。
+ * @param windowId [in] 轴事件窗口ID。
  * @return 若设置轴事件的窗口ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 15
  */
@@ -1775,9 +1776,9 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
 /**
  * @brief 获取轴事件的窗口ID。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param windowId 出参，返回轴事件窗口ID。
+ * @param windowId [out] 出参，返回轴事件窗口ID。
  * @return <ul>
  *         <li>若获取轴事件的窗口ID成功，则返回{@link INPUT_SUCCESS}。</li>
  *         <li>若axisEvent或者windowId为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
@@ -1789,9 +1790,9 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
 /**
  * @brief 设置轴事件的屏幕ID。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param displayId 轴事件屏幕ID。
+ * @param displayId [in] 轴事件屏幕ID。
  * @return 若设置轴事件的屏幕ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 15
  */
@@ -1800,9 +1801,9 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
 /**
  * @brief 获取轴事件的屏幕ID。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param displayId 出参，返回轴事件屏幕ID。
+ * @param displayId [out] 出参，返回轴事件屏幕ID。
  * @return 若获取轴事件的屏幕ID成功，则返回{@link INPUT_SUCCESS}；若axisEvent或者displayId为NULL，则返回{@link INPUT_PARAMETER_ERROR}。
  * @since 15
  */
@@ -1811,9 +1812,9 @@ Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, in
 /**
  * @brief 设置轴事件以主屏左上角为原点的全局坐标系的X坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param globalX 轴事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
+ * @param globalX [in] 轴事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示axisEvent是空指针。
  * @since 20
@@ -1823,9 +1824,9 @@ Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int
 /**
  * @brief 获取轴事件以主屏左上角为原点的全局坐标系的X坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param globalX 轴事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
+ * @param globalX [out] 轴事件以主屏左上角为原点的全局坐标系的X坐标，单位为像素（px）。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示axisEvent或者globalX是空指针。
  * @since 20
@@ -1835,9 +1836,9 @@ Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int3
 /**
  * @brief 设置轴事件以主屏左上角为原点的全局坐标系的Y坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param globalY 轴事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
+ * @param globalY [in] 轴事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示axisEvent是空指针。
  * @since 20
@@ -1847,9 +1848,9 @@ Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int
 /**
  * @brief 获取轴事件以主屏左上角为原点的全局坐标系的Y坐标。
  *
- * @param axisEvent 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
+ * @param axisEvent [in] 轴事件对象，通过{@link OH_Input_CreateAxisEvent}接口可以创建轴事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
- * @param globalY 轴事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
+ * @param globalY [out] 轴事件以主屏左上角为原点的全局坐标系的Y坐标，单位为像素（px）。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示axisEvent或者globalY是空指针。
  * @since 20
@@ -1860,7 +1861,7 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  * @brief 添加按键事件监听。重复添加只有第一次生效，后续添加请求将被忽略。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 回调函数，用于接收按键事件。
+ * @param callback [in] 回调函数，用于接收按键事件。
  * @return 若添加按键事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1872,7 +1873,7 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  * <br>应用处于录屏场景时才允许调用该接口，否则调用不生效。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 回调函数，用于接收鼠标事件。
+ * @param callback [in] 回调函数，用于接收鼠标事件。
  * @return 若添加鼠标事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1883,7 +1884,7 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  * @brief 添加触屏输入事件监听。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 回调函数，用于接收触屏输入事件。
+ * @param callback [in] 回调函数，用于接收触屏输入事件。
  * @return 若添加触屏输入事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1894,7 +1895,7 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  * @brief 添加所有类型轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 回调函数，用于接收轴事件。
+ * @param callback [in] 回调函数，用于接收轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1905,8 +1906,8 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  * @brief 添加指定类型的轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType 要监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
- * @param callback 回调函数，用于接收指定类型的轴事件。
+ * @param axisEventType [in] 要监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
+ * @param callback [in] 回调函数，用于接收指定类型的轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1917,7 +1918,7 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
  * @brief 移除按键事件监听。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 指定要被移除的用于按键事件监听的回调函数。
+ * @param callback [in] 指定要被移除的用于按键事件监听的回调函数。
  * @return 若移除按键事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1928,7 +1929,7 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
  * @brief 移除鼠标事件监听。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 指定要被移除的用于鼠标事件监听的回调函数。
+ * @param callback [in] 指定要被移除的用于鼠标事件监听的回调函数。
  * @return 若移除鼠标事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1939,7 +1940,7 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
  * @brief 移除触屏输入事件监听。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 指定要被移除的用于触屏输入事件监听的回调函数。
+ * @param callback [in] 指定要被移除的用于触屏输入事件监听的回调函数。
  * @return 若移除触屏输入事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1950,7 +1951,7 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
  * @brief 移除所有类型轴事件监听。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback 指定要被移除的用于所有类型轴事件监听的回调函数。
+ * @param callback [in] 指定要被移除的用于所有类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1961,8 +1962,8 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
  * @brief 移除指定类型轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType 指定要移除监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
- * @param callback 指定要被移除的用于指定类型轴事件监听的回调函数。
+ * @param axisEventType [in] 指定要移除监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
+ * @param callback [in] 指定要被移除的用于指定类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
  * @since 12
@@ -1973,8 +1974,8 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * @brief 添加按键事件的拦截，重复添加只有第一次生效，后续添加请求返回错误码{@link INPUT_REPEAT_INTERCEPTOR}。仅在应用获焦时拦截按键事件。
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @param callback 回调函数，用于接收按键事件。
- * @param option option 输入事件拦截的可选项，传null则使用默认值。
+ * @param callback [in] 回调函数，用于接收按键事件。
+ * @param option [in] option 输入事件拦截的可选项，传null则使用默认值。
  * @return 若添加按键事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
  *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1986,8 +1987,8 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  * @brief 添加输入事件拦截，包括鼠标、触屏和轴事件。重复添加只有第一次生效，后续添加请求返回错误码{@link INPUT_REPEAT_INTERCEPTOR}。仅命中应用窗口时拦截输入事件。
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @param callback callback 用于回调输入事件的结构体指针，请参考定义{@link Input_InterceptorEventCallback}。
- * @param option option 输入事件拦截的可选项，传null则使用默认值。
+ * @param callback [in] callback 用于回调输入事件的结构体指针，请参考定义{@link Input_InterceptorEventCallback}。
+ * @param option [in] option 输入事件拦截的可选项，传null则使用默认值。
  * @return 若添加输入事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
  *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -2019,7 +2020,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
 /**
  * @brief 获取距离上次系统输入事件的时间间隔。
  *
- * @param timeInterval timeInterval 时间间隔，单位为微秒（μs）。
+ * @param timeInterval [out] timeInterval 时间间隔，单位为微秒（μs）。
  * @return OH_Input_GetIntervalSinceLastInput 函数返回值。
  *     <br>若获取时间间隔成功，则返回{@link INPUT_SUCCESS}；若服务异常，返回{@link INPUT_SERVICE_EXCEPTION}；若参数错误，返回
  *     {@link INPUT_PARAMETER_ERROR}。
@@ -2038,7 +2039,7 @@ Input_Hotkey *OH_Input_CreateHotkey(void);
 /**
  * @brief 销毁快捷键对象。
  *
- * @param hotkey hotkey 快捷键对象的实例。
+ * @param hotkey [in] hotkey 快捷键对象的实例。
  * @since 14
  */
 void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
@@ -2046,9 +2047,9 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
 /**
  * @brief 设置修饰键。
  *
- * @param hotkey hotkey 快捷键对象的实例。
- * @param preKeys preKeys 修饰键列表。
- * @param size 修饰键个数，取值范围[1, 2]。
+ * @param hotkey [in] hotkey 快捷键对象的实例。
+ * @param preKeys [in] preKeys 修饰键列表。
+ * @param size [in] 修饰键个数，取值范围[1, 2]。
  * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
@@ -2056,9 +2057,9 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
 /**
  * @brief 获取修饰键。
  *
- * @param hotkey hotkey 快捷键对象的实例。
- * @param preKeys preKeys 返回修饰键列表。
- * @param preKeyCount preKeyCount 返回修饰键个数。
+ * @param hotkey [in] hotkey 快捷键对象的实例。
+ * @param preKeys [out] preKeys 返回修饰键列表。
+ * @param preKeyCount [out] preKeyCount 返回修饰键个数。
  * @return OH_Input_GetPreKeys 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
  * @since 14
@@ -2068,8 +2069,8 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
 /**
  * @brief 设置被修饰键。
  *
- * @param hotkey 快捷键对象的实例。
- * @param finalKey 被修饰键值，被修饰键值只能是1个。
+ * @param hotkey [in] 快捷键对象的实例。
+ * @param finalKey [in] 被修饰键值，被修饰键值只能是1个。
  * @since 14
  */
 void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
@@ -2077,8 +2078,8 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
 /**
  * @brief 获取被修饰键。
  *
- * @param hotkey 快捷键对象的实例。
- * @param finalKeyCode finalKeyCode 返回被修饰键键值。
+ * @param hotkey [in] 快捷键对象的实例。
+ * @param finalKeyCode [out] finalKeyCode 返回被修饰键键值。
  * @return OH_Input_GetFinalKey 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；
  *     <br>若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
@@ -2090,9 +2091,10 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  * @brief 创建{@link Input_Hotkey}类型实例的数组。通过调用{@link OH_Input_GetAllSystemHotkeys}获取有效的count参数。通过调用
  * {@link OH_Input_DestroyAllSystemHotkeys}销毁{@link Input_Hotkey}实例数组并回收内存。
  *
- * @param count 创建{@link Input_Hotkey}实例的数量。
+ * @param count [in] 创建{@link Input_Hotkey}实例的数量。
  * @return 如果操作成功，返回创建的{@link Input_Hotkey}实例数组的指针；否则返回空指针，可能的原因是内存分配失败。
  *     <br>返回的数组由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_DestroyAllSystemHotkeys}销毁。
+ * @release OH_Input_DestroyAllSystemHotkeys {return}
  * @since 14
  */
 Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
@@ -2100,8 +2102,8 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
 /**
  * @brief 销毁{@link Input_Hotkey}实例数组并回收内存。
  *
- * @param hotkeys hotkeys 指向{@link Input_Hotkey}实例数组的双指针。
- * @param count 销毁{@link Input_Hotkey}实例的数量。
+ * @param hotkeys [in] hotkeys 指向{@link Input_Hotkey}实例数组的双指针。
+ * @param count [in] 销毁{@link Input_Hotkey}实例的数量。
  * @since 14
  */
 void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
@@ -2109,8 +2111,8 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
 /**
  * @brief 获取设置的所有快捷键。
  *
- * @param hotkey hotkey 返回{@link Input_Hotkey} 类型实例数组。首次调用可传入NULL，可获取数组长度。
- * @param count count 返回支持快捷键的个数。
+ * @param hotkey [out] hotkey 返回{@link Input_Hotkey} 类型实例数组。首次调用可传入NULL，可获取数组长度。
+ * @param count [out] count 返回支持快捷键的个数。
  * @return OH_Input_GetAllSystemHotkeys 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；
  *     <br>若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
@@ -2121,8 +2123,8 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
 /**
  * @brief 设置是否上报重复key事件。
  *
- * @param hotkey 快捷键对象的实例。
- * @param isRepeat 是否上报重复key事件。true表示上报，false表示不上报。
+ * @param hotkey [in] 快捷键对象的实例。
+ * @param isRepeat [in] 是否上报重复key事件。true表示上报，false表示不上报。
  * @since 14
  */
 void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
@@ -2130,8 +2132,8 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
 /**
  * @brief 获取是否上报重复key事件。
  *
- * @param hotkey 快捷键对象的实例。
- * @param isRepeat isRepeat 返回Key事件是否重复。true表示重复，false表示不重复。
+ * @param hotkey [in] 快捷键对象的实例。
+ * @param isRepeat [out] isRepeat 返回Key事件是否重复。true表示重复，false表示不重复。
  * @return OH_Input_GetRepeat 函数返回值。
  *     <br>若获取成功，返回{@link INPUT_SUCCESS}；
  *     <br>若获取失败，返回{@link INPUT_PARAMETER_ERROR}。
@@ -2146,8 +2148,8 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * <br>1. preKeys：修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 4]，无顺序要求。例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。
  * <br>2. finalKey：被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见{@link oh_key_code.h#Input_KeyCode}。例如，Ctrl+Shift+Esc中，Esc称为被修饰键。
  *
- * @param hotkey 指定要订阅的快捷键对象。
- * @param callback 回调函数，用于回调快捷键事件。
+ * @param hotkey [in] 指定要订阅的快捷键对象。
+ * @param callback [in] 回调函数，用于回调快捷键事件。
  * @return OH_Input_AddHotkeyMonitor 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示订阅组合按键成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 参数检查失败。
@@ -2161,8 +2163,8 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
 /**
  * @brief 取消订阅快捷键。
  *
- * @param hotkey 指定要取消订阅的快捷键对象。
- * @param callback 回调函数，用于回调快捷键事件。
+ * @param hotkey [in] 指定要取消订阅的快捷键对象。
+ * @param callback [in] 回调函数，用于回调快捷键事件。
  * @return OH_Input_RemoveHotkeyMonitor 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 参数检查失败。
@@ -2173,9 +2175,9 @@ Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_Hotk
 /**
  * @brief 获取所有输入设备的ID列表。
  *
- * @param deviceIds deviceIds 保存输入设备ID的列表。
- * @param inSize 保存输入设备ID列表的大小。
- * @param outSize outSize 输出输入设备ID列表的长度，值小于等于inSize长度。
+ * @param deviceIds [out] deviceIds 保存输入设备ID的列表。
+ * @param inSize [in] 保存输入设备ID列表的大小。
+ * @param outSize [out] outSize 输出输入设备ID列表的长度，值小于等于inSize长度。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceIds或outSize为空指针或inSize小于0。
  * @since 13
@@ -2185,9 +2187,9 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
 /**
  * @brief 获取输入设备信息。
  *
- * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。可以通过
+ * @param deviceId [in] 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。可以通过
  *     {@link OH_Input_GetDeviceIds}接口查询系统支持的设备ID。
- * @param deviceInfo deviceInfo 指向输入设备信息{@link Input_DeviceInfo}的指针。
+ * @param deviceInfo [out] deviceInfo 指向输入设备信息{@link Input_DeviceInfo}的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo为空指针或deviceId无效。
  * @since 13
@@ -2204,7 +2206,7 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
 /**
  * @brief 销毁输入设备信息的对象。
  *
- * @param deviceInfo deviceInfo 设备信息的对象。
+ * @param deviceInfo [in] deviceInfo 设备信息的对象。
  * @since 13
  */
 void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
@@ -2212,8 +2214,8 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
 /**
  * @brief 获取输入设备的键盘类型。
  *
- * @param deviceId 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
- * @param keyboardType keyboardType 指向输入设备的键盘类型的指针。
+ * @param deviceId [in] 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备ID可能会发生变化。
+ * @param keyboardType [out] keyboardType 指向输入设备的键盘类型的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示设备ID为无效值或者keyboardType是空指针。
  * @since 13
@@ -2223,8 +2225,8 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
 /**
  * @brief 获取输入设备的ID。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param id id 指向输入设备ID的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param id [out] id 指向输入设备ID的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者ID是空指针。
  * @since 13
@@ -2234,8 +2236,8 @@ Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
 /**
  * @brief 获取输入设备的名称。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param name name 指向输入设备名称的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param name [out] name 指向输入设备名称的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者name是空指针。
  * @since 13
@@ -2245,8 +2247,8 @@ Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
 /**
  * @brief 获取有关输入设备能力信息，比如设备是触摸屏、触控板、键盘等。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param capabilities capabilities 指向输入设备能力信息的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param capabilities [out] capabilities 指向输入设备能力信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者capabilities是空指针。
  * @since 13
@@ -2256,8 +2258,8 @@ Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *cap
 /**
  * @brief 获取输入设备的版本信息。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param version version 指向输入设备版本信息的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param version [out] version 指向输入设备版本信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者version是空指针。
  * @since 13
@@ -2267,8 +2269,8 @@ Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *ve
 /**
  * @brief 获取输入设备的产品信息。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param product product 指向输入设备产品信息的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param product [out] product 指向输入设备产品信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者product是空指针。
  * @since 13
@@ -2278,8 +2280,8 @@ Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *pr
 /**
  * @brief 获取输入设备的厂商信息。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param vendor vendor 指向输入设备厂商信息的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param vendor [out] vendor 指向输入设备厂商信息的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者vendor是空指针。
  * @since 13
@@ -2289,8 +2291,8 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
 /**
  * @brief 获取输入设备的物理地址。
  *
- * @param deviceInfo deviceInfo 输入设备信息{@link Input_DeviceInfo}。
- * @param address address 指向输入设备物理地址的指针。
+ * @param deviceInfo [in] deviceInfo 输入设备信息{@link Input_DeviceInfo}。
+ * @param address [out] address 指向输入设备物理地址的指针。
  * @return {@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示deviceInfo或者address是空指针。
  * @since 13
@@ -2300,7 +2302,7 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
 /**
  * @brief 注册设备热插拔的监听器。
  *
- * @param listener 指向设备热插拔监听器{@link Input_DeviceListener}的指针。
+ * @param listener [in] 指向设备热插拔监听器{@link Input_DeviceListener}的指针。
  * @return OH_Input_RegisterDeviceListener 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示注册成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示listener 为NULL。
@@ -2311,7 +2313,7 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
 /**
  * @brief 取消注册设备热插拔的监听。
  *
- * @param listener 指向设备热插拔监听器{@link Input_DeviceListener}的指针。
+ * @param listener [in] 指向设备热插拔监听器{@link Input_DeviceListener}的指针。
  * @return OH_Input_UnregisterDeviceListener 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示取消注册成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示listener 为 NULL 或者 listener 未被注册。
@@ -2333,8 +2335,8 @@ Input_Result OH_Input_UnregisterDeviceListeners();
 /**
  * @brief 获取功能键状态。
  *
- * @param keyCode 功能键值。目前仅支持CapsLock键，键值为1。
- * @param state state 功能键状态。0表示功能键关闭，1表示功能键打开。
+ * @param keyCode [in] 功能键值。目前仅支持CapsLock键，键值为1。
+ * @param state [out] state 功能键状态。0表示功能键关闭，1表示功能键打开。
  * @return OH_Input_GetFunctionKeyState 函数返回值。
  *     <br>{@link INPUT_SUCCESS} 表示获取状态成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
@@ -2346,7 +2348,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
 /**
  * @brief 查询设备支持的最大触屏报点数。
  *
- * @param count 设备支持的最大触屏报点数，count取值范围为[0, 10]，-1表示未知数量。
+ * @param count [out] 设备支持的最大触屏报点数，count取值范围为[0, 10]，-1表示未知数量。
  * @return OH_Input_QueryMaxTouchPoints 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示查询成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
@@ -2358,9 +2360,9 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @brief 获取当前屏幕上鼠标的坐标点。
  * <br>从API版本26.0.0开始，非焦点应用持有ohos.permission.INPUT_DEVICE_CONFIGURATOR权限，可调用该接口。
  *
- * @param displayId 当前屏幕的屏幕ID。
- * @param displayX 鼠标在当前屏幕的X坐标，单位为像素（px）。
- * @param displayY 鼠标在当前屏幕的Y坐标，单位为像素（px）。
+ * @param displayId [out] 当前屏幕的屏幕ID。
+ * @param displayX [out] 鼠标在当前屏幕的X坐标，单位为像素（px）。
+ * @param displayY [out] 鼠标在当前屏幕的Y坐标，单位为像素（px）。
  * @return OH_Input_GetPointerLocation 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示查询成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数错误。
@@ -2381,7 +2383,7 @@ struct Input_CursorInfo* OH_Input_CursorInfo_Create();
 /**
  * @brief 销毁鼠标光标信息对象。
  *
- * @param cursorInfo 鼠标光标信息对象。
+ * @param cursorInfo [in] 鼠标光标信息对象。
  * @since 22
  */
 void OH_Input_CursorInfo_Destroy(Input_CursorInfo** cursorInfo);
@@ -2389,9 +2391,9 @@ void OH_Input_CursorInfo_Destroy(Input_CursorInfo** cursorInfo);
 /**
  * @brief 获取指定鼠标光标信息对象对应的光标显示状态。
  *
- * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
+ * @param cursorInfo [in] 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param visible 鼠标光标显示或隐藏状态。true代表显示状态，false代表隐藏状态。
+ * @param visible [in] 鼠标光标显示或隐藏状态。true代表显示状态，false代表隐藏状态。
  * @return OH_Input_CursorInfo_IsVisible 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2402,9 +2404,9 @@ Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* v
 /**
  * @brief 获取指定鼠标光标信息对象对应的光标样式。
  *
- * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
+ * @param cursorInfo [in] 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param style 鼠标光标信息的光标样式枚举，具体请参考{@link oh_pointer_style.h#Input_PointerStyle}。
+ * @param style [in] 鼠标光标信息的光标样式枚举，具体请参考{@link oh_pointer_style.h#Input_PointerStyle}。
  * @return OH_Input_CursorInfo_GetStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
@@ -2415,9 +2417,9 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
 /**
  * @brief 获取指定鼠标光标信息对象对应的光标大小档位。
  *
- * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
+ * @param cursorInfo [in] 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param sizeLevel 鼠标光标信息的光标大小档位。取值范围为整数[1, 7]，数值越大则光标越大。应用自定义光标
+ * @param sizeLevel [in] 鼠标光标信息的光标大小档位。取值范围为整数[1, 7]，数值越大则光标越大。应用自定义光标
  *     {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}请以实际位图大小为准。
  * @return OH_Input_CursorInfo_GetSizeLevel 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
@@ -2429,9 +2431,9 @@ Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int3
 /**
  * @brief 获取指定鼠标光标信息对象对应的光标颜色，使用32位ARGB整数表示。
  *
- * @param cursorInfo 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
+ * @param cursorInfo [in] 指定鼠标光标信息对象。可以通过{@link OH_Input_GetMouseEventCursorInfo}查询指定鼠标事件的鼠标光标信息、或通过
  *     {@link OH_Input_GetCursorInfo}接口查询当前的鼠标光标信息。
- * @param color 鼠标光标信息的光标颜色，使用32位ARGB整数表示。应用自定义光标{@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}请以实际位图颜色为准。
+ * @param color [in] 鼠标光标信息的光标颜色，使用32位ARGB整数表示。应用自定义光标{@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}请以实际位图颜色为准。
  * @return OH_Input_CursorInfo_GetColor 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败或者光标不可见。
@@ -2442,9 +2444,9 @@ Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t
 /**
  * @brief 获取鼠标事件的鼠标光标信息，包括光标显示状态、光标样式、光标大小档位、光标颜色。
  *
- * @param mouseEvent 鼠标事件对象。可以通过{@link OH_Input_AddMouseEventMonitor}或者
+ * @param mouseEvent [in] 鼠标事件对象。可以通过{@link OH_Input_AddMouseEventMonitor}或者
  *     {@link OH_Input_AddInputEventInterceptor}接口的回调函数中获取鼠标事件对象。
- * @param cursorInfo 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
+ * @param cursorInfo [out] 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
  * @return OH_Input_GetMouseEventCursorInfo 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2456,8 +2458,8 @@ Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mou
  * @brief 查询当前鼠标光标信息，包括光标显示状态、光标样式、光标大小档位、光标颜色。如果pixelmap参数非空，且光标样式为{@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}，
  * 则会同时返回光标的PixelMap位图对象。
  *
- * @param cursorInfo 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
- * @param pixelmap PixelMap位图对象，如果该参数非空且光标为应用自定义，则会返回光标的PixelMap位图对象，否则不返回PixelMap位图对象。首先通过
+ * @param cursorInfo [out] 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
+ * @param pixelmap [out] PixelMap位图对象，如果该参数非空且光标为应用自定义，则会返回光标的PixelMap位图对象，否则不返回PixelMap位图对象。首先通过
  *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_Create}接口创建OH_PixelmapInitializationOptions对象，然后调用
  *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_SetWidth}接口设置大于0的宽度，调用
  *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_SetHeight}接口设置大于0的高度，最后以该
@@ -2485,7 +2487,7 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
 /**
  * @brief 设置当前窗口的鼠标光标的显示或隐藏状态。
  *
- * @param visible 鼠标光标是否显示。true表示显示，false表示不显示。
+ * @param visible [in] 鼠标光标是否显示。true表示显示，false表示不显示。
  * @return OH_Input_SetPointerVisible 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} 表示设备不支持。
@@ -2497,9 +2499,9 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
 /**
  * @brief 获取指定窗口的鼠标光标样式。此接口仅支持获取本应用进程内窗口的鼠标光标样式。
  *
- * @param windowId 窗口ID。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。
+ * @param windowId [in] 窗口ID。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。
  *     <br>仅支持传入当前窗口和全局窗口的ID，传入其他ID返回全局窗口的默认光标样式，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
- * @param pointerStyle 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
+ * @param pointerStyle [out] 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
  * @return OH_Input_GetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2511,9 +2513,9 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
 /**
  * @brief 设置指定窗口的鼠标光标样式。此接口仅支持设置本应用进程内窗口的鼠标光标样式。
  *
- * @param windowId 窗口ID。取值范围为大于等于0的整数。
+ * @param windowId [in] 窗口ID。取值范围为大于等于0的整数。
  *     <br>仅支持传入当前窗口的光标样式，传入其他窗口ID本接口可以运行成功但设置不生效，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
- * @param pointerStyle 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
+ * @param pointerStyle [in] 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
  * @return OH_Input_SetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2525,11 +2527,12 @@ Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
 /**
  * @brief 创建自定义鼠标光标资源对象。通过调用{@link OH_Input_CustomCursor_Destroy}销毁自定义鼠标光标资源对象。
  *
- * @param pixelMap {@link pixelmap_native.h#OH_PixelmapNative}自定义鼠标光标像素图。最小限制为资源图本身的最小限制。最大限制为256 x 256px。
- * @param anchorX 自定义鼠标光标焦点的水平坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的宽度最大值，单位为像素（px）。
- * @param anchorY 自定义鼠标光标焦点的垂直坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的高度最大值，单位为像素（px）。
+ * @param pixelMap [in] {@link pixelmap_native.h#OH_PixelmapNative}自定义鼠标光标像素图。最小限制为资源图本身的最小限制。最大限制为256 x 256px。
+ * @param anchorX [in] 自定义鼠标光标焦点的水平坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的宽度最大值，单位为像素（px）。
+ * @param anchorY [in] 自定义鼠标光标焦点的垂直坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的高度最大值，单位为像素（px）。
  * @return {@link Input_CustomCursor}对象。操作成功时返回自定义鼠标光标资源对象的指针。异常时返回空指针。
  *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_CustomCursor_Destroy}销毁。
+ * @release OH_Input_CustomCursor_Destroy {return}
  * @since 22
  */
 Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY);
@@ -2537,7 +2540,7 @@ Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, in
 /**
  * @brief 销毁自定义鼠标光标资源对象。
  *
- * @param customCursor 自定义鼠标光标资源{@link Input_CustomCursor}。
+ * @param customCursor [in] 自定义鼠标光标资源{@link Input_CustomCursor}。
  * @since 22
  */
 void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
@@ -2545,8 +2548,8 @@ void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
 /**
  * @brief 获取指定自定义鼠标光标资源的自定义鼠标光标像素图。
  *
- * @param customCursor 自定义鼠标光标资源{@link Input_CustomCursor}。
- * @param pixelMap {@link pixelmap_native.h#OH_PixelmapNative}自定义鼠标光标像素图。
+ * @param customCursor [in] 自定义鼠标光标资源{@link Input_CustomCursor}。
+ * @param pixelMap [in] {@link pixelmap_native.h#OH_PixelmapNative}自定义鼠标光标像素图。
  * @return OH_Input_CustomCursor_GetPixelMap 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2557,9 +2560,9 @@ Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor,
 /**
  * @brief 获取指定自定义鼠标光标资源的焦点坐标。
  *
- * @param customCursor 自定义鼠标光标资源{@link Input_CustomCursor}。
- * @param anchorX 自定义鼠标光标资源的焦点水平坐标，单位为像素（px）。
- * @param anchorY 自定义鼠标光标资源的焦点垂直坐标，单位为像素（px）。
+ * @param customCursor [in] 自定义鼠标光标资源{@link Input_CustomCursor}。
+ * @param anchorX [in] 自定义鼠标光标资源的焦点水平坐标，单位为像素（px）。
+ * @param anchorY [in] 自定义鼠标光标资源的焦点垂直坐标，单位为像素（px）。
  * @return OH_Input_CustomCursor_GetAnchor 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2569,9 +2572,11 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
 /**
  * @brief 创建自定义鼠标光标配置对象。通过调用{@link OH_Input_CursorConfig_Destroy}销毁自定义鼠标光标配置对象。
  *
- * @param followSystem 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小, 256×256]，单位为像素（px）。
+ * @param followSystem [in] 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小,
+ *     256×256]，单位为像素（px）。
  * @return 自定义鼠标光标配置{@link Input_CursorConfig}对象。
  *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_CursorConfig_Destroy}销毁。
+ * @release OH_Input_CursorConfig_Destroy {return}
  * @since 22
  */
 Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
@@ -2579,7 +2584,7 @@ Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
 /**
  * @brief 销毁自定义鼠标光标配置对象。
  *
- * @param cursorConfig 自定义鼠标光标配置{@link Input_CursorConfig}对象。
+ * @param cursorConfig [in] 自定义鼠标光标配置{@link Input_CursorConfig}对象。
  * @since 22
  */
 void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
@@ -2587,8 +2592,8 @@ void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
 /**
  * @brief 查询自定义鼠标光标配置是否跟随系统设置调整光标大小。
  *
- * @param cursorConfig 自定义鼠标光标配置{@link Input_CursorConfig}。
- * @param followSystem 是否根据系统设置调整光标大小，取值为true表示根据系统设置调整鼠标光标大小，取值为false表示使用自定义鼠标光标样式大小。
+ * @param cursorConfig [in] 自定义鼠标光标配置{@link Input_CursorConfig}。
+ * @param followSystem [in] 是否根据系统设置调整光标大小，取值为true表示根据系统设置调整鼠标光标大小，取值为false表示使用自定义鼠标光标样式大小。
  * @return OH_Input_CursorConfig_IsFollowSystem 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2600,9 +2605,9 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
  * @brief 设置自定义鼠标光标样式。
  * <br>应用窗口布局改变、热区切换、页面跳转、光标移出再回到窗口、光标在窗口不同区域移动，以上场景可能导致光标切换回系统样式，需要开发者重新设置光标样式。此接口仅支持设置本应用进程内窗口的自定义鼠标光标样式。
  *
- * @param windowId 窗口ID。取值范围为大于等于0的整数，仅支持传入当前窗口的光标样式。
- * @param customCursor 自定义鼠标光标资源{@link Input_CustomCursor}。
- * @param cursorConfig 自定义鼠标光标配置{@link Input_CursorConfig}。
+ * @param windowId [in] 窗口ID。取值范围为大于等于0的整数，仅支持传入当前窗口的光标样式。
+ * @param customCursor [in] 自定义鼠标光标资源{@link Input_CustomCursor}。
+ * @param cursorConfig [in] 自定义鼠标光标配置{@link Input_CursorConfig}。
  * @return OH_Input_SetCustomCursor 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
  *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
@@ -2618,8 +2623,8 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  * @brief 绑定指定输入设备到指定屏幕。
  *
  * @permission ohos.permission.INPUT_DEVICE_CONFIGURATOR
- * @param inputDeviceId 指定输入设备的设备ID。
- * @param displayId 指定屏幕的屏幕ID。
+ * @param inputDeviceId [in] 指定输入设备的设备ID。
+ * @param displayId [in] 指定屏幕的屏幕ID。
  * @return OH_Input_BindInputDeviceToDisplay函数返回值：
  *     <br>{@link INPUT_SUCCESS}表示操作成功。
  *     <br>{@link INPUT_PERMISSION_DENIED}表示权限校验失败。
