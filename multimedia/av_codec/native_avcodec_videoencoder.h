@@ -127,7 +127,7 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  * successfully created, it must be destroyed via {@link OH_VideoEncoder_Destroy}.
  * You are advised to destroy the secondary encoder before destroying the primary encoder.
  *
- * @param primary Handle to the primary encoder, which must be created via 
+ * @param primary Handle to the primary encoder, which must be created via
  *                {@link OH_VideoEncoder_CreatePrimaryWithPreproc} and cannot be **NULL**.
  * @param codec Double pointer used to receive the created secondary encoder instance. It cannot be **NULL**.
  *              Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
