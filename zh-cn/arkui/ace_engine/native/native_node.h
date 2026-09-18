@@ -3241,7 +3241,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>?.object：可选。指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于设置行间距选项。
-     *     从API version 26.1.0开始支持。
+     *     从API version 26.0.1开始支持。
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Create}创建对象，
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy}销毁对象。</li>
      * </ul>
@@ -3250,7 +3250,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。</li>
      * <li>.object：指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于获取行间距选项。
-     *     从API version 26.1.0开始支持。</li>
+     *     从API version 26.0.1开始支持。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]
@@ -4079,7 +4079,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -16416,7 +16416,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node,
  * <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR}成功。
  * </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
  * </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
 

@@ -52,7 +52,7 @@ extern "C" {
  * When the structure is extended, a new version macro will be defined.
  * The runtime uses the version field to determine which fields are valid.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 #define OH_CLOUD_DISK_SYNC_FOLDER_EX_VERSION_1 1
 
@@ -146,7 +146,7 @@ typedef enum CloudDisk_OperationType {
     /**
      * @brief Close a file after modifying content.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_CLOSE_MODIFY = 6
 } CloudDisk_OperationType;
@@ -472,7 +472,7 @@ typedef struct CloudDisk_SyncFolder {
  * structure to any API. The runtime uses version to determine which
  * fields are valid; fields introduced in a later version are ignored
  * when a lower version is specified.
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_CloudDisk_SyncFolderEx {
     /**
@@ -480,54 +480,54 @@ typedef struct OH_CloudDisk_SyncFolderEx {
      * Must be initialized to a valid version macro such as
      * {@link OH_CLOUD_DISK_SYNC_FOLDER_EX_VERSION_1}.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t version;
     /**
      * @brief Indicates the path of sync folder.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     CloudDisk_SyncFolderPath path;
     /**
      * @brief Indicates the state of sync folder.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     CloudDisk_SyncFolderState state;
     /**
      * @brief Indicates the displayName info of sync folder.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     CloudDisk_DisplayNameInfo displayNameInfo;
     /**
      * @brief Indicates whether the sync folder supports placeholder.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool isSupportPlaceHolder;
 } OH_CloudDisk_SyncFolderEx;
 
 /**
  * @brief Metadata information for the placeholder file.
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_CloudDisk_PlaceholderInfo {
     /**
      * @brief Logical size of the placeholder file, in bytes, which reflects the actual size of the cloud file.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint64_t logicalSize;
     /**
      * @brief Time when the placeholder file is created,
      * which maps the actual time when the file is created on the cloud.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint64_t atimeMs;
     /**
      * @brief Modification time of the placeholder file, which maps the actual modification time of the cloud file.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint64_t mtimeMs;
 } OH_CloudDisk_PlaceholderInfo;
@@ -682,7 +682,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
  * @param placeholderInfo Indicates the placeholder metadata information.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
- * @since 26.1.0
+ * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
                                                    const CloudDisk_PathInfo relativePathInfo,
@@ -697,7 +697,7 @@ CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPat
  *     Returns true if the file is a placeholder file; returns false otherwise. The value is set to false on error.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
- * @since 26.1.0
+ * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_IsPlaceholderFile(const CloudDisk_SyncFolderPath syncFolderPath,
                                                    const CloudDisk_PathInfo relativePathInfo,
@@ -710,7 +710,7 @@ CloudDisk_ErrorCode OH_CloudDisk_IsPlaceholderFile(const CloudDisk_SyncFolderPat
  * @param relativePathInfo Indicates the relative path in the sync folder.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
- * @since 26.1.0
+ * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_ConvertPlaceholderToFile(const CloudDisk_SyncFolderPath syncFolderPath,
     const CloudDisk_PathInfo relativePathInfo);
@@ -723,7 +723,7 @@ CloudDisk_ErrorCode OH_CloudDisk_ConvertPlaceholderToFile(const CloudDisk_SyncFo
  * @param placeholderInfo Indicates the placeholder metadata.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
- * @since 26.1.0
+ * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
     const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo);
@@ -734,7 +734,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPat
  * @param syncFolder [in] Indicates the sync folder with placeholder support.
  * @return Returns {@link CLOUD_DISK_OK} if the operation is successful;
  *     <br> returns an error code defined in {@link CloudDisk_ErrorCode} otherwise.
- * @since 26.1.0
+ * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderEx(const OH_CloudDisk_SyncFolderEx *syncFolder);
  
@@ -746,7 +746,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderEx(const OH_CloudDisk_SyncFol
  * @param count [out] Output parameter. Returns the number of sync folders.
  * @return Returns {@link CLOUD_DISK_OK} if the operation is successful;
  *     <br> returns an error code defined in {@link CloudDisk_ErrorCode} otherwise.
- * @since 26.1.0
+ * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_GetSyncFoldersEx(OH_CloudDisk_SyncFolderEx **syncFolders, size_t *count);
 #ifdef __cplusplus

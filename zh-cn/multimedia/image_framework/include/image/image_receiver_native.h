@@ -313,7 +313,7 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative* re
  *         <li>{@link IMAGE_RECEIVER_INVALID_PARAMETER} receiver或name为NULL，或size为0，
  *             或name过滤后无可视字符，或过滤后大小超过256字节。</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_ImageReceiverNative_SetMemoryName(const OH_ImageReceiverNative* receiver, const char *name,
     uint32_t size);

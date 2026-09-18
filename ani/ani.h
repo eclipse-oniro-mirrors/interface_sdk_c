@@ -6253,7 +6253,7 @@ struct __ani_interaction_api {
      * @param[in] array The ValueArray whose length is to be retrieved.
      * @param[out] result A pointer to store the length of the ValueArray.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     ani_status (*ValueArray_GetLength)(ani_env *env, ani_valuearray array, ani_size *result);
 };

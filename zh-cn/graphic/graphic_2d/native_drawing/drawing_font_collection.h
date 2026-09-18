@@ -55,7 +55,7 @@ extern "C" {
  * @since 8
  * @version 1.0
  * @release OH_Drawing_DestroyFontCollection {return}
- * @deprecated since 26.1.0
+ * @deprecated since 26.0.1
  * @useinstead OH_Drawing_CreateSharedFontCollection
  */
 OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);

@@ -241,7 +241,7 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options
  *         <li>202 if a non-system application calls this system API.</li>
  *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} if options is NULL.</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_PackingOptions_SetC2paDataSize(OH_PackingOptions *options, uint32_t c2paDataSize);
 
@@ -256,7 +256,7 @@ Image_ErrorCode OH_PackingOptions_SetC2paDataSize(OH_PackingOptions *options, ui
  *         <li>202 if a non-system application calls this system API.</li>
  *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} if options or c2paDataSize is NULL.</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_PackingOptions_GetC2paDataSize(const OH_PackingOptions *options, uint32_t *c2paDataSize);
 

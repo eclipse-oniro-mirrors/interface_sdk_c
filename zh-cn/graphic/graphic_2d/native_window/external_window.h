@@ -252,7 +252,7 @@ typedef enum NativeWindowOperation {
      * 设置DMA buffer名称，函数中的可变参数是
      * [输入] const char* name，为DMA buffer名称字符串。名称必须以字母开头，
      * 只能包含字母或数字，且长度不超过64字节。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_NATIVEWINDOW_SET_DMABUFFER_NAME = 25,
 } NativeWindowOperation;

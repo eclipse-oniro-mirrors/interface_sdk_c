@@ -56,7 +56,7 @@ typedef enum {
     ERR_OH_SUCCESS = 0,
     /**
      * 功能不支持。可能原因：车不支持。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_DLP_NOT_SUPPORTED = 801,
     /**
@@ -127,7 +127,7 @@ typedef enum {
  *     <br>0x00000200-表示文件的导出权限。
  *     <br>0x00000400-表示文件的修改文件权限。
  * @return 0 - 操作成功。
- *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.1.0及其以上，该错误码返回。[since 26.1.0]
+ *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.0.1及其以上，该错误码返回。[since 26.0.1]
  *     <br>19100001 - 入参错误。
  *     <br>19100006 - 非DLP沙箱应用。
  *     <br>19100011 - 系统服务工作异常。
@@ -142,7 +142,7 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
  * @param fileName [in] 指定要查询的文件名。长度不超过256字节。
  * @param originalFileName [out] DLP文件的原始文件名。
  * @return 0 - 操作成功。
- *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.1.0及其以上，该错误码返回。[since 26.1.0]
+ *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.0.1及其以上，该错误码返回。[since 26.0.1]
  *     <br>19100001 - 入参错误。
  *     <br>19100012 - 内存申请失败。
  * @since 14
@@ -154,7 +154,7 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFile
  *
  * @param isInSandbox [out] true表示当前应用运行在DLP沙箱环境，false表示当前应用不是运行在DLP沙箱环境。
  * @return 0 - 操作成功。
- *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.1.0及其以上，该错误码返回。[since 26.1.0]
+ *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.0.1及其以上，该错误码返回。[since 26.0.1]
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100012 - 内存申请失败。
  * @since 14
@@ -166,7 +166,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
  *
  * @param configInfo [in] 沙箱应用配置信息。
  * @return 0 - 操作成功。
- *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.1.0及其以上，该错误码返回。[since 26.1.0]
+ *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.0.1及其以上，该错误码返回。[since 26.0.1]
  *     <br>19100001 - 入参错误。
  *     <br>19100007 - DLP沙箱应用不允许调用此接口。
  *     <br>19100011 - 系统服务工作异常。
@@ -180,7 +180,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  *
  * @param configInfo [out] 沙箱应用配置信息。
  * @return 0 - 操作成功。
- *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.1.0及其以上，该错误码返回。[since 26.1.0]
+ *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.0.1及其以上，该错误码返回。[since 26.0.1]
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100012 - 内存申请失败。
  *     <br>19100018 - 应用未授权。
@@ -192,7 +192,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
  * @brief 清理沙箱应用配置信息。
  *
  * @return 0 - 操作成功。
- *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.1.0及其以上，该错误码返回。[since 26.1.0]
+ *     <br>801 - 功能不支持。可能原因：车不支持。在版本26.0.1及其以上，该错误码返回。[since 26.0.1]
  *     <br>19100007 - DLP沙箱应用不允许调用此接口。
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100018 - 应用未授权。

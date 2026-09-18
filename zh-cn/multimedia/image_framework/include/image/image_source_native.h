@@ -119,33 +119,33 @@ typedef enum {
  * 无论指定哪个级别，系统资源限制都会生效。
  *
  * @systemapi
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum {
     /**
      * 使用默认的SVG资源限制。该级别不会禁用SVG资源保护。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_NONE = 0,
     /**
      * 使用低级别限制，允许更多SVG资源预算用于复杂的SVG图片。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_LOW = 1,
     /**
      * 使用中级别限制，允许适中的SVG资源预算，
      * 在SVG兼容性和资源消耗之间取得平衡，适用于大多数SVG图片。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_MEDIUM = 2,
     /**
      * 使用高级别限制，允许较少的SVG资源预算，适用于简单的SVG图片，
      * 例如图标和基础UI资源。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_IMAGESOURCE_SVG_RESOURCE_LIMIT_LEVEL_HIGH = 3,
 } OH_ImageSource_SVGResourceLimitLevel;
@@ -590,7 +590,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
  *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} 非系统应用调用此系统接口。</li>
  *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} source为空指针。</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_ImageSourceNative_SetSvgResourceLimitLevel(OH_ImageSourceNative *source,
     OH_ImageSource_SVGResourceLimitLevel level);
@@ -606,7 +606,7 @@ Image_ErrorCode OH_ImageSourceNative_SetSvgResourceLimitLevel(OH_ImageSourceNati
  *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION} 非系统应用调用此系统接口。</li>
  *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} source或level为空指针。</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_ImageSourceNative_GetSvgResourceLimitLevel(OH_ImageSourceNative *source,
     OH_ImageSource_SVGResourceLimitLevel *level);

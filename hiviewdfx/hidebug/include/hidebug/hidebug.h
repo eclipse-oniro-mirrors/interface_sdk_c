@@ -470,7 +470,7 @@ void OH_HiDebug_ReleaseAsyncContext(uint64_t ctx);
 /**
  * @brief Forward declaration for resource profiler options.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_HiDebug_ProfilerOptions OH_HiDebug_ProfilerOptions;
 
@@ -479,7 +479,7 @@ typedef struct OH_HiDebug_ProfilerOptions OH_HiDebug_ProfilerOptions;
  *
  * @return Pointer to the OH_HiDebug_ProfilerOptions structure.
  * @release hidebug/OH_HiDebug_DestroyProfilerOptions {return}
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_HiDebug_ProfilerOptions *OH_HiDebug_CreateProfilerOptions(void);
 
@@ -490,7 +490,7 @@ OH_HiDebug_ProfilerOptions *OH_HiDebug_CreateProfilerOptions(void);
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *opts);
 
@@ -503,7 +503,7 @@ HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH} Invalid maximum nesting depth.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
 
@@ -517,7 +517,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions 
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH} Invalid maximum asynchronous
  *     task stack depth.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
 
@@ -530,7 +530,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOption
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} Invalid sampling interval.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *opts, uint32_t bytes);
 
@@ -543,7 +543,7 @@ HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} Invalid statistics interval.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
 
@@ -556,7 +556,7 @@ HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} Invalid maximum backtrace stack depth.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
 
@@ -569,7 +569,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, 
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} Invalid filter size.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uint32_t size);
 
@@ -582,7 +582,7 @@ HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uin
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} Invalid maximum duration.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
 
@@ -614,7 +614,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts,
  *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL} Memory pressure is critical.</li>
  *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL} Storage pressure is critical.</li>
  *     <li>{@link HIDEBUG_RES_PROF_FAILURE} Failed to start the resource profiler.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType type,
     OH_HiDebug_ProfilerOptions *opts, OH_HiDebug_ProfilingCallback callback);

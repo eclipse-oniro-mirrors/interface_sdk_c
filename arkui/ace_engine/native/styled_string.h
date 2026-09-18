@@ -3250,7 +3250,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttac
  * @return Returns the result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachment* imageAttachment,
     float left, float top, float right, float bottom);
@@ -3267,7 +3267,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachm
  * @return Returns the result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageAttachment* imageAttachment,
     float* left, float* top, float* right, float* bottom);
@@ -3281,7 +3281,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageA
  * @return Returns the result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
     OH_ArkUI_ImageAttachment* imageAttachment, const OH_Drawing_Lattice* lattice);
@@ -3296,7 +3296,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
  * @return Returns the result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
     const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);

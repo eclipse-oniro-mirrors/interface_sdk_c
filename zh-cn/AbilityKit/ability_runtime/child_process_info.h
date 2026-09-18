@@ -19,7 +19,7 @@
  *
  * @brief Defines the child process info types and accessor APIs.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 /**
@@ -30,7 +30,7 @@
  * @library libability_runtime.so
  * @kit AbilityKit
  * @syscap SystemCapability.Ability.AbilityRuntime.Core
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 #ifndef ABILITY_RUNTIME_CHILD_PROCESS_INFO_H
@@ -45,13 +45,13 @@ extern "C" {
 
 /**
  * @brief 定义OH_AbilityRuntime_ChildProcessInfos指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_AbilityRuntime_ChildProcessInfos *OH_AbilityRuntime_ChildProcessInfosHandle;
 
 /**
  * @brief 定义OH_AbilityRuntime_ChildProcessInfo指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_AbilityRuntime_ChildProcessInfo *OH_AbilityRuntime_ChildProcessInfoHandle;
 
@@ -65,7 +65,7 @@ typedef struct OH_AbilityRuntime_ChildProcessInfo *OH_AbilityRuntime_ChildProces
  * 如果操作成功，则返回<li>{@link_RUNTIME_ERROR_CODE_NO_ERROR}。</li>
  * <li>{@link_RUNTIME_ERROR_CODE_PARAM_INVALID}如果提供的参数无效。</li>
  * </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetChildProcessInfoByIndex(
     OH_AbilityRuntime_ChildProcessInfosHandle infos, uint32_t index,
@@ -80,7 +80,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetChildProcessInfoByIndex(
  * 如果操作成功，则返回<li>{@link_RUNTIME_ERROR_CODE_NO_ERROR}。</li>
  * <li>{@link_RUNTIME_ERROR_CODE_PARAM_INVALID}如果提供的参数无效。</li>
  * </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetPid(
     OH_AbilityRuntime_ChildProcessInfoHandle info, int32_t *pid);
@@ -94,7 +94,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetPid(
  * 如果操作成功，则返回<li>{@link_RUNTIME_ERROR_CODE_NO_ERROR}。</li>
  * <li>{@link_RUNTIME_ERROR_CODE_PARAM_INVALID}如果提供的参数无效。</li>
  * </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetParentPid(
     OH_AbilityRuntime_ChildProcessInfoHandle info, int32_t *parentPid);
@@ -113,7 +113,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetParentPid(
  * <li>如果缓冲区太小，则会出现<li>{@link_RUNTIME_ERROR_CODE_BUFFER_TOO_SMALL}。</li>
  * <li>如果字符串拷贝操作失败，则会出现<li>{@link_RUNTIME_ERROR_CODE_INTERNAL}。</li>
  * </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetProcessName(
     OH_AbilityRuntime_ChildProcessInfoHandle info, char *processName, uint32_t processNameSize, uint32_t *requiredSize);
@@ -123,7 +123,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetProcessName(
  *
  * @param infos 【in】要释放的子进程信息。它不能为NULL。
  * 释放后，handle将被设置为NULL。
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_AbilityRuntime_ReleaseChildProcessInfos(OH_AbilityRuntime_ChildProcessInfosHandle *infos);
 
