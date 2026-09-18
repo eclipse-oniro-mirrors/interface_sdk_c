@@ -118,7 +118,7 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  *
  * 必须在主编码器创建成功之后才能创建。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。销毁顺序建议先Destroy Secondary再Destroy Primary。
  *
- * @param primary 主编码器句柄，必须由{@link OH_VideoEncoder_CreatePrimaryWithPreproc}创建，不可为NULL。
+ * @param primary 主编码器句柄，必须由{@link OH_VideoEncoder_CreatePrimaryWithPreproc}创建，不可为NULL。请参阅{@link AVCODEC_MIME_TYPE}。
  * @param codec 双指针，用于接收创建的副编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  *
  * @return AV_ERR_OK：执行成功。
