@@ -807,9 +807,11 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  *     event type of the key event object.
  *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Return value of the OH_Input_InjectKeyEvent function.
- *     <br>Returns {@link INPUT_SUCCESS} if the injection is successful;
- *     <br>Returns {@link INPUT_PERMISSION_DENIED} if the permission is missing;
- *     <br>Returns {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.
+ *     <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the injection is successful.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission is missing.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
@@ -953,13 +955,15 @@ Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32
  * @permission ohos.permission.HOOK_KEY_EVENT
  * @param callback [in] Hook function, which is used to intercept all key events to be distributed.
  * @return Return value of the **OH_Input_AddKeyEventHook** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the function is not supported.
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.
- *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if the hook function is set repeatedly (only one hook function can be set
- *     for a process).
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.</li>
+ *         <li>{@link INPUT_DEVICE_NOT_SUPPORTED} if the function is not supported.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>{@link INPUT_REPEAT_INTERCEPTOR} if the hook function is set repeatedly (only one hook function can be
+ *             set for a process).</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *     </ul>
  * @since 21
  */
 Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback);
@@ -970,10 +974,12 @@ Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback);
  *
  * @param callback [in] Hook function, which is used to intercept all key events to be distributed.
  * @return Return value of the OH_Input_RemoveKeyEventHook function:
- *     <br>Returns {@link INPUT_SUCCESS} if the operation is successful. If no corresponding hook was added before,
- *     success is also returned upon removal.
- *     <br>Returns {@link INPUT_PARAMETER_ERROR} if the parameter check fails.
- *     <br>Returns {@link INPUT_SERVICE_EXCEPTION} if a service exception occurs. Retry.
+ *     <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the operation is successful. If no corresponding hook was added before,
+ *             success is also returned upon removal.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if the parameter check fails.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if a service exception occurs. Retry.</li>
+ *     </ul>
  * @since 21
  */
 Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
@@ -993,10 +999,12 @@ Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
  *
  * @param eventId [in] ID of the key event, which can be obtained through {@link OH_Input_GetKeyEventId}.
  * @return Return value of OH_Input_DispatchToNextHandler:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure. You can use
- *     {@link OH_Input_GetKeyEventId} to check whether the passed eventId is accurate.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure. You can use
+ *             {@link OH_Input_GetKeyEventId} to check whether the passed eventId is accurate.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 21
  */
 Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
@@ -1017,9 +1025,11 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Return value of OH_Input_InjectMouseEvent.
- *     <br>{@link INPUT_SUCCESS} indicates successful injection.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
- *     <br>{@link INPUT_PERMISSION_DENIED} indicates permission missing.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates successful injection.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} indicates permission missing.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
@@ -1040,9 +1050,11 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
  *     object.
  *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Return value of OH_Input_InjectMouseEventGlobal.
- *     <br>{@link INPUT_SUCCESS} indicates successful injection.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
- *     <br>{@link INPUT_PERMISSION_DENIED} indicates permission missing.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates successful injection.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} indicates permission missing.</li>
+ *     </ul>
  * @since 20
  */
 int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent);
@@ -1331,8 +1343,10 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Return value of the OH_Input_InjectTouchEvent function.
- *     <br>{@link INPUT_SUCCESS} indicates that the injection is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the injection is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
@@ -1352,9 +1366,11 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
  * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Result code of the OH_Input_InjectTouchEventGlobal function.
- *     <br>Returns {@link INPUT_SUCCESS} if the injection is successful.
- *     <br>Returns {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.
- *     <br>Returns {@link INPUT_PERMISSION_DENIED} if the permission is missing.
+ *     <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the injection is successful.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission is missing.</li>
+ *     </ul>
  * @since 20
  */
 int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent);
@@ -1579,8 +1595,10 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
  * @param pressure [in] Pressure value. The value range is [0.0, 1.0]. Currently, the minimum pressure that can be
  *     sensed by the touchscreen is 0.0, and the maximum pressure is 1.0. This value has no unit.
  * @return Return value of the OH_Input_SetTouchEventPressure function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 24
  */
 Input_Result OH_Input_SetTouchEventPressure(struct Input_TouchEvent* touchEvent, double pressure);
@@ -1676,8 +1694,10 @@ int64_t OH_Input_GetTouchEventDownTime(const struct Input_TouchEvent* touchEvent
  *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @param toolType [in] Tool type.
  * @return Return value of the OH_Input_SetTouchEventToolType function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 24
  */
 Input_Result OH_Input_SetTouchEventToolType(struct Input_TouchEvent* touchEvent, Input_TouchEventToolType toolType);
@@ -1750,8 +1770,10 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
  * @brief Destroys an axis event object.
  *
  * @param axisEvent [in] Pointer to the axis event object.
- * @return Returns {@link INPUT_SUCCESS} if the destruction is successful; returns {@link INPUT_PARAMETER_ERROR} if
- *     axisEvent is NULL.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the destruction is successful.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if axisEvent is NULL.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
@@ -2035,8 +2057,10 @@ Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, in
  *     <br>After use, the axis event object must be destroyed through the {@link OH_Input_DestroyAxisEvent} API.
  * @param globalX [in] X coordinate of the axis event in the global coordinate system with the upper left corner of the
  *     primary screen as the origin, in px.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX);
@@ -2050,8 +2074,10 @@ Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param globalX [out] X-coordinate of the axis event in the global coordinate system with the upper left corner of the
  *     primary screen as the origin, in px.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent or globalX is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent or globalX is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX);
@@ -2064,8 +2090,10 @@ Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int3
  *     <br>After use, the axis event object must be destroyed using the {@link OH_Input_DestroyAxisEvent} API.
  * @param globalY [in] Y-coordinate of the axis event in the global coordinate system with the origin at the upper left
  *     corner of the primary screen, in px.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY);
@@ -2079,8 +2107,10 @@ Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int
  *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @param globalY [out] Y-coordinate of the axis event in the global coordinate system with the upper left corner of the
  *     primary screen as the origin, in px.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent or globalY is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent or globalY is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY);
@@ -2090,10 +2120,12 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback used to receive key events.
- * @return {@link INPUT_SUCCESS} if the key event listener is added successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the key event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
@@ -2106,10 +2138,12 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback used to receive mouse events.
- * @return {@link INPUT_SUCCESS} if the mouse event listener is added successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the mouse event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
@@ -2119,10 +2153,12 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback used to receive touch events.
- * @return {@link INPUT_SUCCESS} if the touch event listener is added successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the touch event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
@@ -2133,10 +2169,12 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback used to receive axis events.
- * @return {@link INPUT_SUCCESS} if the axis event listener is added successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the axis event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
@@ -2148,10 +2186,12 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  * @permission ohos.permission.INPUT_MONITORING
  * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback [in] Callback used to receive axis events of a specified type.
- * @return {@link INPUT_SUCCESS} if the axis event listener is added successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission check fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the axis event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission check fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2161,10 +2201,12 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback for key events.
- * @return {@link INPUT_SUCCESS} if the key event listener is removed successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the key event listener is removed successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
@@ -2174,10 +2216,12 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback for mouse events.
- * @return If the mouse event listener is removed successfully, {@link INPUT_SUCCESS} is returned.
- *     <br>If the permission verification fails, {@link INPUT_PERMISSION_DENIED} is returned.
- *     <br>If callback is null or no listener has been added, {@link INPUT_PARAMETER_ERROR} is returned.
- *     <br>If the service is abnormal, {@link INPUT_SERVICE_EXCEPTION} is returned.
+ * @return <ul>
+ *         <li>If the mouse event listener is removed successfully, {@link INPUT_SUCCESS} is returned.</li>
+ *         <li>If the permission verification fails, {@link INPUT_PERMISSION_DENIED} is returned.</li>
+ *         <li>If callback is null or no listener has been added, {@link INPUT_PARAMETER_ERROR} is returned.</li>
+ *         <li>If the service is abnormal, {@link INPUT_SERVICE_EXCEPTION} is returned.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback);
@@ -2187,10 +2231,12 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback for touch events.
- * @return {@link INPUT_SUCCESS} if the touch event listener is removed successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the touch event listener is removed successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback);
@@ -2200,10 +2246,12 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
  *
  * @permission ohos.permission.INPUT_MONITORING
  * @param callback [in] Callback for the all types of axis events.
- * @return {@link INPUT_SUCCESS} if the axis event listener is removed successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the axis event listener is removed successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback);
@@ -2215,10 +2263,12 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
  * @permission ohos.permission.INPUT_MONITORING
  * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback [in] Callback for the specified type of axis events.
- * @return Returns {@link INPUT_SUCCESS} if the axis event listener is removed successfully;
- *     <br>returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails;
- *     <br>returns {@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added; returns
- *     {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the axis event listener is removed successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2230,11 +2280,13 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
  * @param callback [in] Callback used to receive key events.
  * @param option [in] Options for event interception. If **null** is passed, the default value is used.
- * @return Returns {@link INPUT_SUCCESS} if the key event interception is added successfully; returns
- *     {@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>returns {@link INPUT_PARAMETER_ERROR} if callback is null; returns {@link INPUT_REPEAT_INTERCEPTOR} if the
- *     interceptor is added repeatedly;
- *     <br>returns {@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the key event interception is added successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>Returns {@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option);
@@ -2248,11 +2300,13 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  * @param callback [in] Pointer to the structure of the interceptor event callback. For details, see
  *     {@link Input_InterceptorEventCallback}.
  * @param option [in] Options for event interception. If **null** is passed, the default value is used.
- * @return {@link INPUT_SUCCESS} if the input event interception is added successfully;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission check fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if callback is null;
- *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the input event interception is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission check fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback,
@@ -2262,9 +2316,11 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @brief Removes the interceptor for key events.
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @return Returns {@link INPUT_SUCCESS} if the key event interception is removed successfully;
- *     <br>returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails;
- *     <br>returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the key event interception is removed successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventInterceptor(void);
@@ -2273,9 +2329,11 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @brief Removes the interceptor for input events, including mouse, touch, and axis events.
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @return Returns {@link INPUT_SUCCESS} if the input event interception is removed successfully; returns
- *     {@link INPUT_PERMISSION_DENIED} if the permission verification fails;
- *     <br>returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the input event interception is removed successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveInputEventInterceptor(void);
@@ -2326,8 +2384,10 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
  * @param preKeys [out] List of modifier keys.
  * @param preKeyCount [out] Number of modifier keys.
  * @return Return value of the OH_Input_GetPreKeys function.
- *     <br>If the operation is successful, {@link INPUT_SUCCESS} is returned; if the operation fails,
- *     {@link INPUT_PARAMETER_ERROR} is returned.
+ *     <ul>
+ *         <li>If the operation is successful, {@link INPUT_SUCCESS} is returned.</li>
+ *         <li>If the operation fails, {@link INPUT_PARAMETER_ERROR} is returned.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount);
@@ -2347,8 +2407,10 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  * @param hotkey [in] Hotkey object.
  * @param finalKeyCode [out] Modified key.
  * @return Return value of the OH_Input_GetFinalKey function.
- *     <br>If obtained successfully, returns {@link INPUT_SUCCESS}.
- *     <br>If failed, returns {@link INPUT_PARAMETER_ERROR}.
+ *     <ul>
+ *         <li>If obtained successfully, returns {@link INPUT_SUCCESS} .</li>
+ *         <li>If failed, returns {@link INPUT_PARAMETER_ERROR} .</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode);
@@ -2384,8 +2446,10 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
  *     obtain the array length.
  * @param count [out] Number of supported hotkeys.
  * @return Return value of the OH_Input_GetAllSystemHotkeys function.
- *     <br>Returns {@link INPUT_SUCCESS} if obtained successfully;
- *     <br>returns {@link INPUT_PARAMETER_ERROR} if the obtaining fails.
+ *     <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if obtained successfully.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if the obtaining fails.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count);
@@ -2407,8 +2471,10 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  * @param isRepeat [out] Whether the reported key event is repeated. The value **true** indicates that the key event is
  *     repeated, and the value **false** indicates that the key event is not repeated.
  * @return Return value of the OH_Input_GetRepeat function.
- *     <br>If obtained successfully, {@link INPUT_SUCCESS} is returned;
- *     <br>if obtaining fails, {@link INPUT_PARAMETER_ERROR} is returned.
+ *     <ul>
+ *         <li>If obtained successfully, {@link INPUT_SUCCESS} is returned.</li>
+ *         <li>If obtaining fails, {@link INPUT_PARAMETER_ERROR} is returned.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
@@ -2426,12 +2492,14 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * @param hotkey [in] Hotkey object.
  * @param callback [in] Defines the callback used to return hotkey events.
  * @return Return value of the OH_Input_AddHotkeyMonitor function.
- *     <br>{@link INPUT_SUCCESS} indicates that the hotkey subscription is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
- *     <br>{@link INPUT_OCCUPIED_BY_SYSTEM} indicates that the hotkey is occupied by the system. You can query all
- *     system hotkeys through the API {@link OH_Input_GetAllSystemHotkeys}.
- *     <br>{@link INPUT_OCCUPIED_BY_OTHER} indicates that the subscription has been preempted.
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} indicates that the feature is not supported.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the hotkey subscription is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *         <li>{@link INPUT_OCCUPIED_BY_SYSTEM} indicates that the hotkey is occupied by the system. You can query all
+ *             system hotkeys through the API {@link OH_Input_GetAllSystemHotkeys} .</li>
+ *         <li>{@link INPUT_OCCUPIED_BY_OTHER} indicates that the subscription has been preempted.</li>
+ *         <li>{@link INPUT_DEVICE_NOT_SUPPORTED} indicates that the feature is not supported.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2442,8 +2510,10 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @param hotkey [in] Hotkey object.
  * @param callback [in] Defines the callback used to return hotkey events.
  * @return Return value of the OH_Input_RemoveHotkeyMonitor function.
- *     <br>{@link INPUT_SUCCESS} indicates that the hotkey is unsubscribed successfully.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the hotkey is unsubscribed successfully.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2455,9 +2525,11 @@ Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_Hotk
  * @param inSize [in] Size of the input device ID list.
  * @param outSize [out] Length of the output device ID list. The value must be less than or equal to the value
  *     of **inSize**.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceIds or outSize is a null pointer or inSize is less than
- *     0.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceIds or outSize is a null pointer or inSize is less
+ *             than 0.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *outSize);
@@ -2469,8 +2541,10 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
  *     repeatedly plugged in and out or restarted. You can query the device IDs supported by the system through the
  *     {@link OH_Input_GetDeviceIds} API.
  * @param deviceInfo [out] Pointer to the {@link Input_DeviceInfo} object.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo is a null pointer or deviceId is invalid.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo is a null pointer or deviceId is invalid.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo);
@@ -2498,8 +2572,10 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
  * @param deviceId [in] Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its
  *     ID may change.
  * @param keyboardType [out] Pointer to the keyboard type of the input device.
- * @return {@link INPUT_SUCCESS} The operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} The device ID is invalid or keyboardType is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} The operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} The device ID is invalid or keyboardType is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
@@ -2509,8 +2585,10 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param id [out] Pointer to the input device ID.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or ID is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or ID is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
@@ -2520,8 +2598,10 @@ Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param name [out] Pointer to the input device name.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or name is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or name is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
@@ -2531,8 +2611,10 @@ Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param capabilities [out] Pointer to the capability information of the input device.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or capabilities is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or capabilities is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *capabilities);
@@ -2542,8 +2624,10 @@ Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *cap
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param version [out] Pointer to the version information of the input device.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or version is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or version is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *version);
@@ -2553,8 +2637,10 @@ Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *ve
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param product [out] Pointer to the product information of the input device.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or product is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or product is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *product);
@@ -2564,8 +2650,10 @@ Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *pr
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param vendor [out] Pointer to the vendor information of the input device.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or vendor is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or vendor is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor);
@@ -2575,8 +2663,10 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
  *
  * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
  * @param address [out] Pointer to the physical address of the input device.
- * @return {@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or address is a null pointer.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or address is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
@@ -2586,8 +2676,10 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
  *
  * @param listener [in] Pointer to the {@link Input_DeviceListener} object.
  * @return Return value of OH_Input_RegisterDeviceListener.
- *     <br>{@link INPUT_SUCCESS} indicates successful registration.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that listener is NULL.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates successful registration.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that listener is NULL.</li>
+ *     </ul>
  * @since 13
  */
 Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
@@ -2597,9 +2689,11 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
  *
  * @param listener [in] Pointer to the {@link Input_DeviceListener} listener.
  * @return Return value of the OH_Input_UnregisterDeviceListener function.
- *     <br>{@link INPUT_SUCCESS} indicates that the unregistration is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that listener is NULL or listener is not registered.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates that the call fails due to a service exception.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the unregistration is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that listener is NULL or listener is not registered.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates that the call fails due to a service exception.</li>
+ *     </ul>
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
@@ -2608,8 +2702,10 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
  * @brief Unregisters all listeners for device hot swap events.
  *
  * @return Return value of the OH_Input_UnregisterDeviceListeners function.
- *     <br>{@link INPUT_SUCCESS} indicates that the call is successful.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates that the call fails due to a service exception.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the call is successful.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates that the call fails due to a service exception.</li>
+ *     </ul>
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListeners();
@@ -2621,9 +2717,11 @@ Input_Result OH_Input_UnregisterDeviceListeners();
  * @param state [out] Function key status. The value **0** indicates that the function key is disabled, and the value
  *     **1** indicates that the function key is enabled.
  * @return Return value of the OH_Input_GetFunctionKeyState function.
- *     <br>{@link INPUT_SUCCESS} indicates that the state is obtained successfully.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
- *     <br>{@link INPUT_KEYBOARD_DEVICE_NOT_EXIST} indicates that the keyboard device does not exist.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the state is obtained successfully.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *         <li>{@link INPUT_KEYBOARD_DEVICE_NOT_EXIST} indicates that the keyboard device does not exist.</li>
+ *     </ul>
  * @since 15
  */
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
@@ -2649,11 +2747,13 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @param displayX [out] X coordinate of the mouse on the current screen, in px.
  * @param displayY [out] Y coordinate of the mouse on the current screen, in px.
  * @return Return value of the OH_Input_GetPointerLocation function:
- *     <br>{@link INPUT_SUCCESS} indicates that the query is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception.
- *     <br>{@link INPUT_APP_NOT_FOCUSED} indicates that the current application is not the focused application.
- *     <br>{@link INPUT_DEVICE_NO_POINTER} indicates that no mouse-type input peripheral is available.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the query is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception.</li>
+ *         <li>{@link INPUT_APP_NOT_FOCUSED} indicates that the current application is not the focused application.</li>
+ *         <li>{@link INPUT_DEVICE_NO_POINTER} indicates that no mouse-type input peripheral is available.</li>
+ *     </ul>
  * @since 20
  */
 Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
@@ -2684,8 +2784,10 @@ void OH_Input_CursorInfo_Destroy(Input_CursorInfo** cursorInfo);
  * @param visible [in] Visible status of the mouse pointer. The value **true** indicates that the mouse pointer is
  *     visible, and the value **false** indicates the opposite.
  * @return Return value of the OH_Input_CursorInfo_IsVisible function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* visible);
@@ -2699,8 +2801,10 @@ Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* v
  * @param style [in] Cursor style enum of the mouse cursor information. For details, see
  * {@link oh_pointer_style.h#Input_PointerStyle}.
  * @return Return value of the OH_Input_CursorInfo_GetStyle function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure or that the cursor is invisible.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure or that the cursor is invisible.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_PointerStyle* style);
@@ -2715,8 +2819,10 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
  *     value indicates a larger cursor. For an app custom cursor
  *     {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap size prevails.
  * @return Return value of the OH_Input_CursorInfo_GetSizeLevel function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails or the cursor is invisible.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails or the cursor is invisible.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int32_t* sizeLevel);
@@ -2732,8 +2838,10 @@ Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int3
  *     application-defined custom cursors {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap color
  *     shall prevail.
  * @return Return value of the OH_Input_CursorInfo_GetColor function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails or the cursor is invisible.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails or the cursor is invisible.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t* color);
@@ -2747,8 +2855,10 @@ Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t
  * @param cursorInfo [out] Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create} to create a
  *     mouse pointer information object.
  * @return Return value of the OH_Input_GetMouseEventCursorInfo function:
- *     <br>{@link INPUT_SUCCESS}: The operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR}: Parameter check failed.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} : The operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} : Parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mouseEvent, Input_CursorInfo* cursorInfo);
@@ -2772,9 +2882,11 @@ Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mou
  *     {@link pixelmap_native.h#OH_PixelmapNative_Release} to release the object and then call
  *     {@link pixelmap_native.h#OH_PixelmapNative_Destroy} to destroy it.
  * @return Return value of the OH_Input_GetCursorInfo function:
- *     <br>{@link INPUT_SUCCESS}: The operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR}: Parameter check failed.
- *     <br>{@link INPUT_SERVICE_EXCEPTION}: Service exception. Try again.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} : The operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} : Parameter check failed.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} : Service exception. Try again.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetCursorInfo(Input_CursorInfo* cursorInfo, OH_PixelmapNative** pixelmap);
@@ -2793,9 +2905,11 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @param visible [in] Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is
  *     visible, and the value **false** indicates the opposite.
  * @return Return value of OH_Input_SetPointerVisible:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} indicates that the device is not supported.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_DEVICE_NOT_SUPPORTED} indicates that the device is not supported.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_SetPointerVisible(bool visible);
@@ -2812,9 +2926,11 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
  * @param pointerStyle [out] Mouse cursor style, which is an enum value of
  *     {@link oh_pointer_style.h#Input_PointerStyle}.
  * @return Return value of the OH_Input_GetPointerStyle function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Retry.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Retry.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
@@ -2830,9 +2946,11 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  * @param pointerStyle [in] Mouse pointer style. The value is an enumerated value of
  * {@link oh_pointer_style.h#Input_PointerStyle}.
  * @return Return value of the OH_Input_SetPointerStyle function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
@@ -2874,8 +2992,10 @@ void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
  * @param pixelMap [in] Pixel map of the custom mouse pointer object. For details, see
  *     {@link pixelmap_native.h#OH_PixelmapNative}.
  * @return Return value of the OH_Input_CustomCursor_GetPixelMap function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor, OH_PixelmapNative** pixelMap);
@@ -2887,8 +3007,10 @@ Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor,
  * @param anchorX [in] Horizontal coordinate of the focus point of the custom mouse cursor resource, in px.
  * @param anchorY [in] Vertical coordinate of the focus point of the custom mouse cursor resource, in px.
  * @return Return value of the OH_Input_CustomCursor_GetAnchor function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, int32_t* anchorX, int32_t* anchorY);
@@ -2923,8 +3045,10 @@ void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
  *     adjust the pointer size based on the system setting, and the value **false** means to use the size of custom
  *     mouse pointer.
  * @return Return value of the OH_Input_CursorConfig_IsFollowSystem function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConfig, bool *followSystem);
@@ -2941,11 +3065,13 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
  * @param customCursor [in] Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
  * @param cursorConfig [in] Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
  * @return Return value of the OH_Input_SetCustomCursor function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful.
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
- *     <br>{@link INPUT_INVALID_WINDOWID} if the window ID is invalid.
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported.
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.</li>
+ *         <li>{@link INPUT_INVALID_WINDOWID} if the window ID is invalid.</li>
+ *         <li>{@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* customCursor,
@@ -2958,11 +3084,13 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  * @param inputDeviceId [in] ID of the input device.
  * @param displayId [in] ID of the screen.
  * @return Return value of OH_Input_BindInputDeviceToDisplay:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PERMISSION_DENIED} indicates that permission verification failed.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that parameter check failed (the input device does not exist, the
- *     display device does not exist, or the input device is not a stylus device).
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} indicates that permission verification failed.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that parameter check failed (the input device does not exist, the
+ *             display device does not exist, or the input device is not a stylus device).</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);

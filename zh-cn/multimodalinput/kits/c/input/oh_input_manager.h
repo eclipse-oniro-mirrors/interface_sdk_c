@@ -1976,9 +1976,13 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
  * @param callback [in] 回调函数，用于接收按键事件。
  * @param option [in] option 输入事件拦截的可选项，传null则使用默认值。
- * @return 若添加按键事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
- *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
- *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
+ * @return <ul>
+ *         <li>若添加按键事件的拦截成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}。</li>
+ *         <li>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         <li>若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}。</li>
+ *         <li>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option);
@@ -1989,9 +1993,13 @@ Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, In
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
  * @param callback [in] callback 用于回调输入事件的结构体指针，请参考定义{@link Input_InterceptorEventCallback}。
  * @param option [in] option 输入事件拦截的可选项，传null则使用默认值。
- * @return 若添加输入事件的拦截成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
- *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}；
- *     <br>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
+ * @return <ul>
+ *         <li>若添加输入事件的拦截成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}。</li>
+ *         <li>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}。</li>
+ *         <li>若重复添加拦截器，则返回{@link INPUT_REPEAT_INTERCEPTOR}。</li>
+ *         <li>若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback,
@@ -2166,8 +2174,10 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @param hotkey [in] 指定要取消订阅的快捷键对象。
  * @param callback [in] 回调函数，用于回调快捷键事件。
  * @return OH_Input_RemoveHotkeyMonitor 函数返回值。
- *     <br>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。
- *     <br>{@link INPUT_PARAMETER_ERROR} 参数检查失败。
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} 参数检查失败。</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2448,8 +2458,10 @@ Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t
  *     {@link OH_Input_AddInputEventInterceptor}接口的回调函数中获取鼠标事件对象。
  * @param cursorInfo [out] 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
  * @return OH_Input_GetMouseEventCursorInfo 函数返回值：
- *     <br>{@link INPUT_SUCCESS} 表示操作成功。
- *     <br>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。
+ *     <ul>
+ *         <li>{@link INPUT_SUCCESS} 表示操作成功。</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mouseEvent, Input_CursorInfo* cursorInfo);
