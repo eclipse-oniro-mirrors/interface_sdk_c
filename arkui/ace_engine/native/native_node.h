@@ -16054,7 +16054,7 @@ typedef struct {
      *
      * @param parent Pointer to the parent node.
      * @param child Pointer to the child node.
-     * @param position Inserting position. The value range is [-2147483648, 2147483647]. If the value is a negative
+     * @param position Inserting position. The value range is [0, current child count]. If the value is a negative
      *     number or invalid, the component is inserted at the end of the parent node.
      * @return Result code.
      *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -16075,7 +16075,7 @@ typedef struct {
      *
      * @param node Node whose attribute needs to be set.
      * @param attribute Type of attribute to set.
-     * @param value Indicates the attribute value.
+     * @param item Indicates the attribute value.
      * @return Result code.
      *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
