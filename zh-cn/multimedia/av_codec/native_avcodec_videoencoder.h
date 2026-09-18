@@ -83,9 +83,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
 OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 
 /**
- * @brief 创建支持前处理的主视频编码器实例。
- *
- * 该编码器支持以下能力：
+ * @brief 创建支持前处理的主视频编码器实例。该编码器支持以下能力：
  *
  * 1. 前处理功能（降采样、裁剪、丢帧）。
  *
@@ -93,7 +91,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  *
  * 通过该接口创建的编码器仅支持Surface模式，不支持Buffer模式和同步模式。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  *
- * @param mime MIME类型字符串，不可为NULL。必须是支持的类型。请参阅{@link AVCODEC_MIME_TYPE}。
+ * @param mime MIME类型字符串，不可为NULL。必须是支持的类型。
  * @param codec 双指针，用于接收创建的编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_INVALID_VAL：mime为NULL/codec为NULL/MIME类型不支持。
@@ -104,9 +102,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCodec **codec);
 
 /**
- * @brief 从主编码器创建副视频编码器实例。
- *
- * 副编码器具有以下特性：
+ * @brief 从主编码器创建副视频编码器实例。副编码器具有以下特性：
  *
  * 1. 与主编码器共享输入源。
  *
