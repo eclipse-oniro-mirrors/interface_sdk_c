@@ -121,7 +121,7 @@ typedef enum {
     ARKUI_NODE_TEXT_EDITOR = 22,
     /**
      * ArcAlphabetIndexer.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     ARKUI_NODE_ARC_ALPHABET_INDEXER = 23,
     /** Stack container. */
@@ -188,7 +188,7 @@ typedef enum {
     ARKUI_NODE_ARC_SCROLL_BAR = 1021,
     /**
      * ArcSwiper.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     ARKUI_NODE_ARC_SWIPER = 1022,
 } ArkUI_NodeType;
@@ -3262,7 +3262,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
      * <li>?.object: Optional. Pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing
-     * options. Available since API version 26.1.0.
+     * options. Available since API version 26.0.1.
      * Use {@link OH_ArkUI_NativeModule_LineSpacingOptions_Create} to create and
      * {@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy} to destroy the object.</li>
      * </ul>
@@ -3271,7 +3271,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
      * <li>.object: pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing options.
-     * Available since API version 26.1.0.</li>
+     * Available since API version 26.0.1.</li>
      * </ul>
      *
      * @ingroup Text Display
@@ -4102,7 +4102,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -9034,7 +9034,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_ARRAY = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_ALPHABET_INDEXER,
 
@@ -9053,7 +9053,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_COLOR,
 
@@ -9072,7 +9072,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_SELECTED_COLOR,
 
@@ -9091,7 +9091,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_POPUP_COLOR,
 
@@ -9110,7 +9110,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_SELECTED_BACKGROUND_COLOR,
 
@@ -9129,7 +9129,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_POPUP_BACKGROUND_COLOR,
 
@@ -9149,7 +9149,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_USE_POPUP,
 
@@ -9177,7 +9177,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_SELECTED_FONT,
 
@@ -9205,7 +9205,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_POPUP_FONT,
 
@@ -9233,7 +9233,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_FONT,
 
@@ -9253,7 +9253,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_ITEM_SIZE,
 
@@ -9272,7 +9272,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_SELECTED,
 
@@ -9294,7 +9294,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_AUTO_COLLAPSE,
 
@@ -9314,7 +9314,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_POPUP_BACKGROUND_BLUR_STYLE,
 
@@ -12703,7 +12703,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SWIPER,
 
@@ -12742,7 +12742,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      *
      */
     NODE_ARC_SWIPER_INDICATOR,
@@ -12762,7 +12762,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DURATION,
 
@@ -12782,7 +12782,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_VERTICAL,
 
@@ -12802,7 +12802,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DISABLE_SWIPE,
 
@@ -12822,7 +12822,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DIGITAL_CROWN_SENSITIVITY,
 
@@ -12844,7 +12844,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EFFECT_MODE,
 
@@ -12864,7 +12864,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DISABLE_TRANSITION_ANIMATION,
 } ArkUI_NodeAttributeType;
@@ -14511,7 +14511,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_EVENT_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_ALPHABET_INDEXER,
 
@@ -15468,7 +15468,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SWIPER,
 
@@ -15489,7 +15489,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_ANIMATION_START,
 
@@ -15506,7 +15506,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_ANIMATION_END,
 
@@ -15524,7 +15524,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_GESTURE_SWIPE,
 } ArkUI_NodeEventType;
@@ -17650,7 +17650,7 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_ArcSwiper_ShowPrevious(ArkUI_NodeHandle node);
 
@@ -17661,7 +17661,7 @@ int32_t OH_ArkUI_ArcSwiper_ShowPrevious(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
 
@@ -17672,7 +17672,7 @@ int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_ArcSwiper_FinishAnimation(ArkUI_NodeHandle node);
 
@@ -17743,7 +17743,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node,
  *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} The operation is successful.
  *     </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR} Failed to initialize the CAPI.
  *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} The function parameter is invalid.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
 

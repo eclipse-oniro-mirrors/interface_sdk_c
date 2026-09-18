@@ -20,7 +20,7 @@
  * @brief Provides the C interface for the USB Manager module, enabling USB device
  * enumeration, connection, permission management, and pipe operations.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 /**
@@ -31,7 +31,7 @@
  * @library libohusb_manager.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.USB.USBManager
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 #ifndef OHUSB_MANAGER_H
@@ -47,55 +47,55 @@ extern "C" {
 /**
  * @brief Enumerates the USB Manager error codes.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum OH_UsbManager_ErrorCode {
     /**
      * @brief Operation successful.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_SUCCESS = 0,
 
     /**
      * @brief Permission denied.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_PERMISSION_DENIED = 14400001,
 
     /**
      * @brief Service exception.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_SERVICE_EXCEPTION = 14400004,
 
     /**
      * @brief No such device (it may have been disconnected).
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_NO_DEVICE = 14400008,
 
     /**
      * @brief Insufficient memory.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_NO_MEMORY = 14400009,
 
     /**
      * @brief Transmission I/O error.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_IO_ERROR = 14400012,
 
     /**
      * @brief Invalid parameter. A null pointer is passed for a parameter that must not be null.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_INVALID_PARAMETER = 14400014
 } OH_UsbManager_ErrorCode;
@@ -103,20 +103,20 @@ typedef enum OH_UsbManager_ErrorCode {
 /**
  * @brief Enumerates USB request directions.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum OH_UsbManager_RequestDirection {
     /**
      * @brief Request for writing data from the host to the device.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_REQUEST_DIR_TO_DEVICE = 0,
 
     /**
      * @brief Request for reading data from the device to the host.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_REQUEST_DIR_FROM_DEVICE = 0x80
 } OH_UsbManager_RequestDirection;
@@ -125,20 +125,20 @@ typedef enum OH_UsbManager_RequestDirection {
  * @brief Defines the USB endpoint from which data is sent or received. An endpoint
  * <br>is obtained from {@link OH_UsbManager_UsbInterface}.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbEndpoint {
     /**
      * @brief Endpoint address.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t address;
 
     /**
      * @brief Endpoint attributes.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t attributes;
 
@@ -147,42 +147,42 @@ typedef struct OH_UsbManager_UsbEndpoint {
      * <br>is in milliseconds. For isochronous endpoints, the unit depends on the
      * <br>device speed.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t interval;
 
     /**
      * @brief Maximum size of data packets on the endpoint. Unit: bytes.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t maxPacketSize;
 
     /**
      * @brief Endpoint direction.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_RequestDirection direction;
 
     /**
      * @brief Endpoint number.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t number;
 
     /**
      * @brief Endpoint type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t type;
 
     /**
      * @brief Unique ID of the interface to which the endpoint belongs.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t interfaceId;
 } OH_UsbManager_UsbEndpoint;
@@ -191,34 +191,34 @@ typedef struct OH_UsbManager_UsbEndpoint {
  * @brief Defines a USB interface. One {@link OH_UsbManager_UsbConfig} can contain
  * <br>multiple OH_UsbManager_UsbInterface instances, each providing a specific function.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbInterface {
     /**
      * @brief Unique ID of the USB interface.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t id;
 
     /**
      * @brief Interface protocol.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t protocol;
 
     /**
      * @brief Interface class.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t clazz;
 
     /**
      * @brief Interface subclass.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t subClass;
 
@@ -226,28 +226,28 @@ typedef struct OH_UsbManager_UsbInterface {
      * @brief Alternate setting number of this USB interface, as defined in the USB
      * <br>interface descriptor. Value 0 indicates the default alternate setting.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t alternateSetting;
 
     /**
      * @brief Interface name.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *name;
 
     /**
      * @brief Endpoints that belong to the USB interface.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_UsbEndpoint *endpoints;
 
     /**
      * @brief Number of endpoints in the interface.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t endpointCount;
 } OH_UsbManager_UsbInterface;
@@ -256,34 +256,34 @@ typedef struct OH_UsbManager_UsbInterface {
  * @brief Defines a USB configuration. One {@link OH_UsbManager_UsbDevice} can contain multiple
  * <br>**OH_UsbManager_UsbConfig** instances.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbConfig {
     /**
      * @brief Unique ID of the USB configuration.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t id;
 
     /**
      * @brief Configuration attributes.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t attributes;
 
     /**
      * @brief Maximum power consumption. Unit: mA.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t maxPower;
 
     /**
      * @brief Configuration name, which can be left empty.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *name;
 
@@ -291,7 +291,7 @@ typedef struct OH_UsbManager_UsbConfig {
      * @brief Whether remote wakeup is supported. true indicates that remote wakeup is supported;
      * <br>false indicates the opposite.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool isRemoteWakeup;
 
@@ -299,21 +299,21 @@ typedef struct OH_UsbManager_UsbConfig {
      * @brief Whether an independent power supply is supported. true indicates that an independent
      * <br>power supply is supported; false indicates the opposite.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool isSelfPowered;
 
     /**
      * @brief Supported interface attributes.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_UsbInterface *interfaces;
 
     /**
      * @brief Number of interfaces in the configuration.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t interfaceCount;
 } OH_UsbManager_UsbConfig;
@@ -321,97 +321,97 @@ typedef struct OH_UsbManager_UsbConfig {
 /**
  * @brief Defines a flat representation of a USB device.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbDevice {
     /**
      * @brief Bus number of the USB device.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t busNum;
 
     /**
      * @brief Device address on the bus.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t devAddress;
 
     /**
      * @brief Device name, in the format of <bus number>-<device address>.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *name;
 
     /**
      * @brief Manufacturer name.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *manufacturerName;
 
     /**
      * @brief Product name.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *productName;
 
     /**
      * @brief Device version.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *version;
 
     /**
      * @brief Vendor ID.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t vendorId;
 
     /**
      * @brief Product ID.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t productId;
 
     /**
      * @brief Device class.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t clazz;
 
     /**
      * @brief Device subclass.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t subClass;
 
     /**
      * @brief Device protocol.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t protocol;
 
     /**
      * @brief Device configuration descriptor information.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_UsbConfig *configs;
 
     /**
      * @brief Number of configurations in the device.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t configCount;
 } OH_UsbManager_UsbDevice;
@@ -419,20 +419,20 @@ typedef struct OH_UsbManager_UsbDevice {
 /**
  * @brief Defines the USB device pipe used to communicate with an opened device.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbPipe {
     /**
      * @brief Bus number of the connected device.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t busNum;
 
     /**
      * @brief Device address of the connected device.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t devAddress;
 } OH_UsbManager_UsbPipe;
@@ -457,7 +457,7 @@ typedef struct OH_UsbManager_UsbPipe {
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if devices or deviceCount is NULL. Possible cause:
  *     <br>a required parameter is not provided. Suggested action: pass valid non-null pointers.
  * @release OH_UsbManager_FreeUsbDeviceList {devices}
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice **devices,
     uint32_t *deviceCount);
@@ -471,7 +471,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice *
  * @param devices [in] Pointer to the array returned by {@link OH_UsbManager_GetUsbDeviceList}.
  * @param deviceCount [in] Number of elements in the array, as returned by
  *     <br>{@link OH_UsbManager_GetUsbDeviceList}.
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t deviceCount);
 
@@ -500,7 +500,7 @@ void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t 
  *     <br>Suggestion: Check the physical connection and device status, and try again.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER}: **device** or **pipe** is null. Possible cause: Mandatory
  *     <br>parameters are not provided. Suggestion: Pass a valid non-null pointer.
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevice *device,
     OH_UsbManager_UsbPipe *pipe);
@@ -519,7 +519,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevic
  *     <br>{@link OH_UsbManager_GetUsbDeviceList} to obtain a valid device name and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if deviceName or result is NULL. Possible cause:
  *     <br>a required parameter is not provided. Suggested action: pass valid non-null pointers.
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool *result);
 
@@ -532,7 +532,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool
  * @param result [out] true if the permission is granted; false if the user denied the request.
  *     <br>This parameter is meaningful only when errorCode is {@link OH_USBMANAGER_SUCCESS}.
  * @param userContext [out] User context passed through from {@link OH_UsbManager_RequestPermission}.
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCode, bool result,
     void *userContext);
@@ -553,7 +553,7 @@ typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCo
  *     <br>{@link OH_UsbManager_GetUsbDeviceList} to obtain a valid device name and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if deviceName or callback is NULL. Possible cause:
  *     <br>a required parameter is not provided. Suggested action: pass valid non-null pointers.
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
     OH_UsbManager_PermissionCallback callback, void *userContext);
@@ -578,7 +578,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
  *     <br>{@link OH_UsbManager_GetUsbDeviceList} and reconnect.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if pipe or fd is NULL. Possible cause: a required
  *     <br>parameter is not provided. Suggested action: pass valid non-null pointers.
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbPipe *pipe,
     int32_t *fd);
@@ -598,7 +598,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbP
  *     <br>invalid or closed, obtain a valid open pipe from {@link OH_UsbManager_ConnectDevice} and retry.
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} if pipe is NULL. Possible cause: a required parameter
  *     <br>is not provided. Suggested action: pass valid non-null pointers.
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_ClosePipe(const OH_UsbManager_UsbPipe *pipe);
 

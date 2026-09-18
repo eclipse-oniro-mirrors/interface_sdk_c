@@ -44,11 +44,11 @@
         "name": "OH_CloudDisk_UpdateCustomAlias"
     },
     {
-        "first_introduced": "26.1.0",
+        "first_introduced": "26.0.1",
         "name": "OH_CloudDisk_RegisterSyncFolderEx"
     },
     {
-        "first_introduced": "26.1.0",
+        "first_introduced": "26.0.1",
         "name": "OH_CloudDisk_GetSyncFoldersEx"
     }
 ]

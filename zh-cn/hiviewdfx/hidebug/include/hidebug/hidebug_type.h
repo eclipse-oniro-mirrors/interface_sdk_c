@@ -198,13 +198,13 @@ typedef enum HiDebug_ErrorCode {
     /**
      * @brief 无效的最大异步嵌套深度。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH = 11400431,
     /**
      * @brief 无效的最大异步任务栈深度。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH = 11400432
 } HiDebug_ErrorCode;
@@ -616,21 +616,21 @@ typedef enum OH_HiDebug_ResourceType {
     /**
      * @brief DMA内存
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_RES_TYPE_DMA,
 
     /**
      * @brief 匿名共享内存
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_RES_TYPE_ASHMEM,
 
     /**
      * @brief 组合堆
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_RES_TYPE_COMPOSITE_HEAP
 } OH_HiDebug_ResourceType;

@@ -307,7 +307,7 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative* re
  *         <li>{@link IMAGE_RECEIVER_INVALID_PARAMETER} if receiver or name is NULL, or size is 0,
  *             or name contains no visible characters after filtering, or filtered size exceeds 256 bytes.</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_ImageReceiverNative_SetMemoryName(const OH_ImageReceiverNative* receiver, const char *name,
     uint32_t size);

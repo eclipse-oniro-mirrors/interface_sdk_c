@@ -510,7 +510,7 @@ OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_F
 /**
  * @brief 定义文本行间距选项。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_LineSpacingOptions;
 
@@ -519,7 +519,7 @@ typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_Li
  *
  * @return 返回指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
  * @release OH_ArkUI_NativeModule_LineSpacingOptions_Destroy {return}
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptions_Create();
 
@@ -527,7 +527,7 @@ OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptio
  * @brief 销毁文本行间距选项对象。
  *
  * @param options [in] 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_LineSpacingOptions *options);
 
@@ -545,7 +545,7 @@ void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_Line
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 表示options参数为空。</li>
  *     </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
     OH_ArkUI_NativeModule_LineSpacingOptions *options, bool onlyBetweenLines);
@@ -562,7 +562,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 表示任意参数为空。</li>
  *     </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines(
     const OH_ArkUI_NativeModule_LineSpacingOptions *options, bool *onlyBetweenLines);

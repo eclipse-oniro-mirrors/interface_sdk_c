@@ -118,7 +118,7 @@ ohos_ndk_library("libohusb_manager_ndk") {
   output_name = "ohusb_manager"
   output_extension = "so"
   ndk_description_file = "./ohusb_manager.ndk.json"
-  min_compact_version = "26.1.0"
+  min_compact_version = "26.0.1"
   system_capability = "SystemCapability.USB.USBManager"
   system_capability_headers = [ "BasicServicesKit/ohusb_manager.h" ]
 }

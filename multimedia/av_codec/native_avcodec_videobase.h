@@ -121,7 +121,7 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
  * initialized via {@link OH_AVCodec_Configure}, or
  * enabled at runtime via {@link OH_AVCodec_SetParameter}.
  * After this capability is enabled, the capture side adjusts its configuration strategy based on encoding information to reduce overall power consumption.
- * @since 26.1.0
+ * @since 26.0.1
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
 

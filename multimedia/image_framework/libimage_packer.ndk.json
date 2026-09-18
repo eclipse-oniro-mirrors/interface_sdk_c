@@ -138,12 +138,12 @@
         "api_type": "system"
     },
     {
-        "first_introduced": "26.1.0",
+        "first_introduced": "26.0.1",
         "name": "OH_PackingOptions_SetC2paDataSize",
         "api_type": "system"
     },
     {
-        "first_introduced": "26.1.0",
+        "first_introduced": "26.0.1",
         "name": "OH_PackingOptions_GetC2paDataSize",
         "api_type": "system"
     }

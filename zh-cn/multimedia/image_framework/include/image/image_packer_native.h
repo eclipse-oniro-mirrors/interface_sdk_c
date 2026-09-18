@@ -306,7 +306,7 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options
  *         <li>202 非系统应用程序调用该接口。</li>
  *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options为NULL。</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_PackingOptions_SetC2paDataSize(OH_PackingOptions *options, uint32_t c2paDataSize);
 
@@ -321,7 +321,7 @@ Image_ErrorCode OH_PackingOptions_SetC2paDataSize(OH_PackingOptions *options, ui
  *         <li>202 非系统应用程序调用该接口。</li>
  *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options或c2paDataSize为NULL。</li>
  *         </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 Image_ErrorCode OH_PackingOptions_GetC2paDataSize(const OH_PackingOptions *options, uint32_t *c2paDataSize);
 

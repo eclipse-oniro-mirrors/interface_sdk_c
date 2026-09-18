@@ -455,7 +455,7 @@ int32_t OH_NativeBuffer_MapAndGetConfig(OH_NativeBuffer* buffer, void** virAddr,
  * @return 执行成功时返回NATIVE_ERROR_OK。\n
  * buffer为空指针或name非法时返回NATIVE_ERROR_INVALID_ARGUMENTS。\n
  * 其他返回值可参考OHNativeErrorCode。
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_NativeBuffer_SetDmaBufferName(OH_NativeBuffer *buffer, const char *name);
 #ifdef __cplusplus

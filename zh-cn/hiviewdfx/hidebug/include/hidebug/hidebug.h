@@ -421,7 +421,7 @@ void OH_HiDebug_ReleaseAsyncContext(uint64_t ctx);
 /**
  * @brief 资源采集配置结构体前向声明。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_HiDebug_ProfilerOptions OH_HiDebug_ProfilerOptions;
 
@@ -430,7 +430,7 @@ typedef struct OH_HiDebug_ProfilerOptions OH_HiDebug_ProfilerOptions;
  *
  * @return 指向OH_HiDebug_ProfilerOptions结构体的指针。
  * @release hidebug/OH_HiDebug_DestroyProfilerOptions {return}
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_HiDebug_ProfilerOptions *OH_HiDebug_CreateProfilerOptions(void);
 
@@ -441,7 +441,7 @@ OH_HiDebug_ProfilerOptions *OH_HiDebug_CreateProfilerOptions(void);
  * @return 返回码。
  * <ul><li>{@link HIDEBUG_SUCCESS}成功</li>
  * <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *opts);
 
@@ -454,7 +454,7 @@ HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH} 无效的最大异步嵌套深度。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
 
@@ -467,7 +467,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions 
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH} 无效的最大异步任务栈深度。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
 
@@ -480,7 +480,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOption
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} 无效的采样间隔。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *opts, uint32_t bytes);
 
@@ -493,7 +493,7 @@ HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} 无效的统计间隔。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
 
@@ -506,7 +506,7 @@ HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} 无效的最大栈深度。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, uint32_t depth);
 
@@ -519,7 +519,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, 
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} 无效的过滤大小。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uint32_t size);
 
@@ -532,7 +532,7 @@ HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uin
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} 无效的最大持续时间。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
 
@@ -562,7 +562,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts,
  *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}系统内存可用空间紧张，禁止采集。</li>
  *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}存储可用空间紧张，禁止采集。</li>
  *    <li>{@link HIDEBUG_RES_PROF_FAILURE}启动资源采集失败。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType type,
     OH_HiDebug_ProfilerOptions *opts, OH_HiDebug_ProfilingCallback callback);
