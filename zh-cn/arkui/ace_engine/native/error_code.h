@@ -207,6 +207,36 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
     /**
+     * @brief 无法获取属性，因为之前未设置该属性。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND = 106211,
+    /**
+     * @brief 子动画参数无效。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_SUB_ANIMATION_INVALID = 106212,
+    /**
+     * @brief 在{@link ArkUI_ContextHandle}上未找到指定的动画组。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_NOT_FOUND = 106213,
+    /**
+     * @brief 检测到同一线程上对动画组接口的重入调用。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL = 106214,
+    /**
+     * @brief 动画组未处于操作所需的状态。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE = 106215,
+    /**
      * @brief 当前节点不是自定义节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      *
      * @since 20
