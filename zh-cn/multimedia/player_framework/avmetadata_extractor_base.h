@@ -16,7 +16,7 @@
  * @addtogroup AVMetadataExtractor
  * @{
  *
- * @brief 提供媒体源的元数据能力接口。
+ * @brief 提供从媒体资源中获取元数据的API。
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
@@ -29,6 +29,7 @@
  * @kit MediaKit
  * @include <multimedia/player_framework/avmetadata_extractor_base.h>
  * @library libavmetadata_extractor.so
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 
@@ -66,7 +67,7 @@ typedef enum OH_AVMetadataExtractor_FetchState {
 } OH_AVMetadataExtractor_FetchState;
 
 /**
- * @brief 定义由AVMetadataExtractor提取的帧的输出参数。
+ * @brief 定义由AVMetadataExtractor提取的元数据的输出参数。
  * 
  * @since 23
  */
@@ -163,7 +164,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_DURATION = "duration";
 static const char* OH_AVMETADATA_EXTRACTOR_GENRE = "genre";
 
 /**
- * @brief 获取媒体资源是否包含音频的关键字，对应值类型为int32_t。
+ * @brief 获取媒体资源是否包含音频的关键字，对应值类型为int32_t。<br>
  * 取值原则：0表示不包含音频，1表示包含音频。
  * 
  * @since 18
@@ -171,7 +172,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_GENRE = "genre";
 static const char* OH_AVMETADATA_EXTRACTOR_HAS_AUDIO = "hasAudio";
 
 /**
- * @brief 获取媒体资源是否包含视频的关键字，对应值类型为int32_t。
+ * @brief 获取媒体资源是否包含视频的关键字，对应值类型为int32_t。<br>
  * 取值原则：0表示不包含视频，1表示包含视频。
  * 
  * @since 18
