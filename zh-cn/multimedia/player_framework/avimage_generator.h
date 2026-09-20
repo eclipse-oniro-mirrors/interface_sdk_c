@@ -83,7 +83,7 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
 
 /**
  * @brief 从视频资源中获取指定时间点视频帧。<br>
- * 此函数必须在{@link OH_AVImageGenerator_SetFDSource}之后调用。 
+ * 此函数必须在{@link OH_AVImageGenerator_SetFDSource}之后调用。
  *
  * @param generator 指向OH_AVImageGenerator实例的指针。
  * @param timeUs 需要获取的视频帧在视频中的时间点，单位为微秒（μs）。
