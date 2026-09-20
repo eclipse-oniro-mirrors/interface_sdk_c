@@ -1839,15 +1839,15 @@ typedef enum {
      */
     OH_INPUT_KEYCODE_PTZ_FOCUS_RIGHT = 3237,
     /**
-     * @brief PTZ expose left
+     * @brief PTZ exposure left
      * @since 26.1.0
      */
-    OH_INPUT_KEYCODE_PTZ_EXPOSE_LEFT = 3238,
+    OH_INPUT_KEYCODE_PTZ_EXPOSURE_LEFT = 3238,
     /**
-     * @brief PTZ expose right
+     * @brief PTZ exposure right
      * @since 26.1.0
      */
-    OH_INPUT_KEYCODE_PTZ_EXPOSE_RIGHT = 3239,
+    OH_INPUT_KEYCODE_PTZ_EXPOSURE_RIGHT = 3239,
     /**
      * @brief PTZ shutter left
      * @since 26.1.0
