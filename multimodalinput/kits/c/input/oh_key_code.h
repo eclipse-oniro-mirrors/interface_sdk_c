@@ -1827,47 +1827,47 @@ typedef enum {
      * @brief PTZ click
      * @since 26.1.0
      */
-    KEYCODE_PTZ_CLICK = 3235,
+    OH_INPUT_KEYCODE_PTZ_CLICK = 3235,
     /**
      * @brief PTZ focus left
      * @since 26.1.0
      */
-    KEYCODE_PTZ_FOCUS_LEFT = 3236,
+    OH_INPUT_KEYCODE_PTZ_FOCUS_LEFT = 3236,
     /**
      * @brief PTZ focus right
      * @since 26.1.0
      */
-    KEYCODE_PTZ_FOCUS_RIGHT = 3237,
+    OH_INPUT_KEYCODE_PTZ_FOCUS_RIGHT = 3237,
     /**
      * @brief PTZ expose left
      * @since 26.1.0
      */
-    KEYCODE_PTZ_EXPOSE_LEFT = 3238,
+    OH_INPUT_KEYCODE_PTZ_EXPOSE_LEFT = 3238,
     /**
      * @brief PTZ expose right
      * @since 26.1.0
      */
-    KEYCODE_PTZ_EXPOSE_RIGHT = 3239,
+    OH_INPUT_KEYCODE_PTZ_EXPOSE_RIGHT = 3239,
     /**
      * @brief PTZ shutter left
      * @since 26.1.0
      */
-    KEYCODE_PTZ_SHUTTER_LEFT = 3240,
+    OH_INPUT_KEYCODE_PTZ_SHUTTER_LEFT = 3240,
     /**
      * @brief PTZ shutter right
      * @since 26.1.0
      */
-    KEYCODE_PTZ_SHUTTER_RIGHT = 3241,
+    OH_INPUT_KEYCODE_PTZ_SHUTTER_RIGHT = 3241,
     /**
      * @brief PTZ aperture left
      * @since 26.1.0
      */
-    KEYCODE_PTZ_APERTURE_LEFT = 3242,
+    OH_INPUT_KEYCODE_PTZ_APERTURE_LEFT = 3242,
     /**
      * @brief PTZ aperture right
      * @since 26.1.0
      */
-    KEYCODE_PTZ_APERTURE_RIGHT = 3243
+    OH_INPUT_KEYCODE_PTZ_APERTURE_RIGHT = 3243
 } Input_KeyCode;
 
 #ifdef __cplusplus
