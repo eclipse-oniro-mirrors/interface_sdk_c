@@ -91,7 +91,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  *
  * 通过该接口创建的编码器仅支持Surface模式，不支持Buffer模式和同步模式。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  *
- * @param mime MIME类型字符串，不可为NULL。必须是支持的类型。
+ * @param mime MIME类型字符串，不可为NULL。必须是支持的类型。请参阅{@link AVCODEC_MIME_TYPE}。
  * @param codec 双指针，用于接收创建的编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_INVALID_VAL：mime为NULL/codec为NULL/MIME类型不支持。
@@ -118,7 +118,7 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  *
  * 必须在主编码器创建成功之后才能创建。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。销毁顺序建议先Destroy Secondary再Destroy Primary。
  *
- * @param primary 主编码器句柄，必须由{@link OH_VideoEncoder_CreatePrimaryWithPreproc}创建，不可为NULL。请参阅{@link AVCODEC_MIME_TYPE}。
+ * @param primary 主编码器句柄，必须由{@link OH_VideoEncoder_CreatePrimaryWithPreproc}创建，不可为NULL。
  * @param codec 双指针，用于接收创建的副编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  *
  * @return AV_ERR_OK：执行成功。
