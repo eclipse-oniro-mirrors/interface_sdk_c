@@ -773,6 +773,170 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
+ * @brief Enumerates the animatable property types for property animations and keyframe animations.
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief Translation in both x and y directions.
+     * The value parameter requires two f32 {@link ArkUI_NumberValue} elements: [x, y], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION = 0,
+    /**
+     * @brief Translation in the x direction.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [x], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_X = 1,
+    /**
+     * @brief Translation in the y direction.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [y], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Y = 2,
+    /**
+     * @brief Translation in the z direction.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [z], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Z = 3,
+    /**
+     * @brief Scale in both x and y directions.
+     * The value parameter requires two f32 {@link ArkUI_NumberValue} elements: [x, y].
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE = 4,
+    /**
+     * @brief Scale in the x direction.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [x].
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE_X = 5,
+    /**
+     * @brief Scale in the y direction.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [y].
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE_Y = 6,
+    /**
+     * @brief Rotation angle for all axes.
+     * The value parameter requires three f32 {@link ArkUI_NumberValue} elements: [angleX, angleY, angleZ], in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION = 7,
+    /**
+     * @brief Rotation angle around the x-axis.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [angle], in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_X = 8,
+    /**
+     * @brief Rotation angle around the y-axis.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [angle], in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Y = 9,
+    /**
+     * @brief Rotation angle around the z-axis.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [angle], in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Z = 10,
+    /**
+     * @brief Opacity of the component.
+     * The value parameter requires one f32 {@link ArkUI_NumberValue} element: [opacity].
+     * Value range: [0, 1].
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_OPACITY = 11,
+    /**
+     * @brief Bounds (position and size).
+     * The value parameter requires four i32 {@link ArkUI_NumberValue} elements: [x, y, width, height], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS = 12,
+    /**
+     * @brief Position x within bounds.
+     * The value parameter requires one i32 {@link ArkUI_NumberValue} element: [x], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_X = 13,
+    /**
+     * @brief Position y within bounds.
+     * The value parameter requires one i32 {@link ArkUI_NumberValue} element: [y], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_Y = 14,
+    /**
+     * @brief Width of the bounds.
+     * The value parameter requires one i32 {@link ArkUI_NumberValue} element: [width], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_WIDTH = 15,
+    /**
+     * @brief Height of the bounds.
+     * The value parameter requires one i32 {@link ArkUI_NumberValue} element: [height], in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_HEIGHT = 16,
+    /**
+     * @brief Background color of the component.
+     * The value parameter requires one u32 {@link ArkUI_NumberValue} element: [color].
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BACKGROUND_COLOR = 17,
+} OH_ArkUI_AnimationPropertyType;
+
+/**
+ * @brief Enumerates the playback states of an animation group.
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief The animation group is running.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING = 0,
+    /**
+     * @brief The animation group is paused.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED = 1,
+    /**
+     * @brief The animation group is inactive, for example, when the animation has finished or when the group is
+     * in an invalid state.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_INACTIVE = 2,
+} OH_ArkUI_AnimationGroupState;
+
+/**
+ * @brief Enumerates the finish modes of an animation group.
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief Finishes the animation group and jumps to the start state.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_START = 0,
+    /**
+     * @brief Finishes the animation group and stays at the current value.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_CURRENT = 1,
+    /**
+     * @brief Finishes the animation group and jumps to the end state.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_END = 2,
+} OH_ArkUI_AnimationFinishMode;
+
+/**
  * @brief Defines the translation options for component transition.
  *
  * @since 12

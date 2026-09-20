@@ -222,6 +222,31 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
     /**
+     * @brief Can not get attribute because it is not set before.
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND = 106211,
+    /**
+     * @brief The parameters of sub animation are invalid.
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_SUB_ANIMATION_INVALID = 106212,
+    /**
+     * @brief The animation group is not found on the UIContext.
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_NOT_FOUND = 106213,
+    /**
+     * @brief A re-entrant call to the animation group API is detected on the same thread.
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL = 106214,
+    /**
+     * @brief The animation group is not in the state required by the operation.
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE = 106215,
+    /**
      * The current node is not a custom node. For details, see {@link Render Node Error Codes}.
      *
      * @since 20

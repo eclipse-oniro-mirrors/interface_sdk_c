@@ -1682,6 +1682,169 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
 
+/**
+ * @brief 枚举属性动画和关键帧动画的可动画属性类型。
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief 在x和y方向上的平移。
+     * value参数需要两个f32类型的{@link ArkUI_NumberValue}元素：[x, y]，单位为px。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION = 0,
+    /**
+     * @brief 在x方向上的平移。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[x]，单位为px。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_X = 1,
+    /**
+     * @brief 在y方向上的平移。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[y]，单位为px。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Y = 2,
+    /**
+     * @brief 在z方向上的平移。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[z]，单位为px。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Z = 3,
+    /**
+     * @brief 在x和y方向上的缩放。
+     * value参数需要两个f32类型的{@link ArkUI_NumberValue}元素：[x, y]。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE = 4,
+    /**
+     * @brief 在x方向上的缩放。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[x]。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE_X = 5,
+    /**
+     * @brief 在y方向上的缩放。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[y]。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE_Y = 6,
+    /**
+     * @brief 所有轴的旋转角度。
+     * value参数需要三个f32类型的{@link ArkUI_NumberValue}元素：[angleX, angleY, angleZ]，单位为度。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION = 7,
+    /**
+     * @brief 围绕x轴的旋转角度。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_X = 8,
+    /**
+     * @brief 围绕y轴的旋转角度。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Y = 9,
+    /**
+     * @brief 围绕z轴的旋转角度。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Z = 10,
+    /**
+     * @brief 组件的不透明度。
+     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[opacity]。
+     * 取值范围：[0, 1]。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_OPACITY = 11,
+    /**
+     * @brief 边界（位置和大小）。
+     * value参数需要四个i32类型的{@link ArkUI_NumberValue}元素：[x, y, width, height]，单位为px。其中width和height需大于等于0。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS = 12,
+    /**
+     * @brief 边界左上角的x坐标位置。
+     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[x]，单位为px。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_X = 13,
+    /**
+     * @brief 边界左上角的y坐标位置。
+     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[y]，单位为px。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_Y = 14,
+    /**
+     * @brief 边界的宽度。
+     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[width]，单位为px。该值需大于等于0。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_WIDTH = 15,
+    /**
+     * @brief 边界的高度。
+     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[height]，单位为px。该值需大于等于0。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_HEIGHT = 16,
+    /**
+     * @brief 组件的背景颜色。
+     * value参数需要一个u32类型的{@link ArkUI_NumberValue}元素：[color]。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BACKGROUND_COLOR = 17,
+} OH_ArkUI_AnimationPropertyType;
+
+/**
+ * @brief 枚举动画组的播放状态。
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief 动画组正在运行。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING = 0,
+    /**
+     * @brief 动画组已暂停。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED = 1,
+    /**
+     * @brief 动画组处于非活动状态，例如动画已结束或动画组处于无效状态。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_INACTIVE = 2,
+} OH_ArkUI_AnimationGroupState;
+
+/**
+ * @brief 枚举动画组的结束模式。
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief 结束动画组并跳转到起始状态。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_START = 0,
+    /**
+     * @brief 结束动画组并保持在当前值。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_CURRENT = 1,
+    /**
+     * @brief 结束动画组并跳转到结束状态。
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_END = 2,
+} OH_ArkUI_AnimationFinishMode;
+
 #ifdef __cplusplus
 }
 #endif
