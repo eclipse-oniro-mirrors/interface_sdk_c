@@ -71,6 +71,13 @@ typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
 typedef struct ArkUI_DrawContext ArkUI_DrawContext;
 
 /**
+ * @brief native UI的上下文实例对象。
+ *
+ * @since 12
+ */
+typedef struct ArkUI_Context ArkUI_Context;
+
+/**
  * @brief 定义ArkUI Native上下文对象指针。
  *
  * @since 12
