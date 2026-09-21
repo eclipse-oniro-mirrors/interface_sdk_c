@@ -119,7 +119,7 @@ typedef enum OH_AVCapabilityFeature {
     * @since 20
     */
     VIDEO_ENCODER_B_FRAME = 7,
-    /** Decoding-order frame output feature, which is available only in video decoding scenarios.
+    /** Feature for codec supports decoding sequence output. It is only used in video decoder.
      * @since 26.0.0
      */
     VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER = 8,
