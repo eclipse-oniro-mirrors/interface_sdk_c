@@ -156,103 +156,103 @@ typedef enum CloudDisk_ErrorCode {
     /**
      * @brief 目标路径下已存在同名文件。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_FILE_ALREADY_EXISTS = 34400016,
     /**
      * @brief 目标路径不是占位符文件。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_NOT_A_PLACEHOLDER = 34400017,
     /**
      * @brief 目标路径已经是占位符文件。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_IS_A_PLACEHOLDER = 34400018,
     /**
      * @brief 水合进行中。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_HYDRATE_IN_PROGRESS = 34400019,
     /**
      * @brief 磁盘剩余空间不足。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_NO_SPACE_LEFT = 34400020,
     /**
      * @brief 回调表没有注册。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_CALLBACK_NOT_REGISTERED = 34400021,
     /**
      * @brief 回调表已经注册。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_CALLBACK_ALREADY_REGISTERED = 34400022,
     /**
      * @brief 目标路径的父目录不是目录。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_NOT_A_DIRECTORY = 34400023,
     /**
      * @brief 目标路径不存在。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_FILE_NOT_EXIST = 34400024,
     /**
      * @brief 文件名或路径过长。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_NAME_TOO_LONG = 34400025,
     /**
      * @brief 文件过大。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_FILE_TOO_LARGE = 34400026,
     /**
      * @brief 占位符文件未完全水合。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_PLACEHOLDER_NOT_FULLY_HYDRATED = 34400028,
     /**
      * @brief 应用回调拒绝脱水操作。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_DEHYDRATE_DENIED = 34400029,
     /**
      * @brief 水合任务已取消。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_CANCELLED = 34400030,
     /**
      * @brief 占位符文件已完全水合。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_ALREADY_HYDRATED = 34400031,
     /**
      * @brief 没有正在进行的水合任务。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_NO_HYDRATION_IN_PROGRESS = 34400032,
     /**
      * @brief 待处理的占位符水合任务数量达到上限。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CLOUD_DISK_HYDRATION_TASK_LIMIT_REACHED = 34400034
 } CloudDisk_ErrorCode;
