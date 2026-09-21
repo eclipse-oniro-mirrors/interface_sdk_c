@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -295,11 +295,14 @@ typedef enum OH_Huks_KeyPadding {
      */
     OH_HUKS_PADDING_PKCS7 = 5,
     /**
-     * ISO IEC 9796-2.
+     * @brief ISO IEC 9796-2.
+     *
      * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9796_2 = 6,
-    /** ISO IEC 9797-1.
+    /**
+     * @brief ISO IEC 9797-1.
+     *
      * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9797_1 = 7,
@@ -329,7 +332,8 @@ typedef enum OH_Huks_CipherMode {
      */
     OH_HUKS_MODE_OFB = 4,
     /**
-     * CFB.
+     * @brief CFB.
+     *
      * @since 12
      */
     OH_HUKS_MODE_CFB = 5,
@@ -436,15 +440,21 @@ typedef enum OH_Huks_KeySize {
      */
     OH_HUKS_SM4_KEY_SIZE_128 = 128,
 
-    /** DES key of 64 bits.
+    /**
+     * @brief DES key of 64 bits.
+     *
      * @since 18
      */
     OH_HUKS_DES_KEY_SIZE_64 = 64,
-    /** 3DES key of 128 bits.
+    /**
+     * @brief 3DES key of 128 bits.
+     *
      * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_128 = 128,
-    /** 3DES key of 192 bits.
+    /**
+     * @brief 3DES key of 192 bits.
+     *
      * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_192 = 192,
@@ -517,15 +527,21 @@ typedef enum OH_Huks_KeyAlg {
      */
     OH_HUKS_ALG_SM4 = 152,
 
-    /** DES.
+    /**
+     * @brief DES.
+     *
      * @since 18
      */
     OH_HUKS_ALG_DES = 160,
-    /** 3DES.
+    /**
+     * @brief 3DES.
+     *
      * @since 18
      */
     OH_HUKS_ALG_3DES = 161,
-    /** CMAC.
+    /**
+     * @brief CMAC.
+     *
      * @since 18
      */
     OH_HUKS_ALG_CMAC = 162,
@@ -534,21 +550,21 @@ typedef enum OH_Huks_KeyAlg {
 /**
  * @brief Enumerates the algorithm suites that can be used for importing of a key in ciphertext.
  * <br>Key material format for **OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING**:
- * | x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
- * |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
- * |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
- * |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
- * |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+ * <br>| x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
+ * <br>|   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
+ * <br>|    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
+ * <br>|      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
+ * <br>|   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
  *
  * <br>Key material format for **OH_HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING**:
- * |  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
- * |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
- * |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
- * |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
- * |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+ * <br>|  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
+ * <br>|   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
+ * <br>|    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
+ * <br>|      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
+ * <br>|   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
  *
  * <br>Key material format for **OH_HUKS_UNWRAP_SUITE_SM2_SM4_ECB_NOPADDING**:
- * |     kek_SM4_enc_length      (4 Byte) |      EN_SM4_key     | importkey_enc_length (4 Byte) | importkey_enc
+ * <br>|     kek_SM4_enc_length      (4 Byte) |      EN_SM4_key     | importkey_enc_length (4 Byte) | importkey_enc
  *
  * @since 9
  * @version 1.0
@@ -770,59 +786,69 @@ typedef enum OH_Huks_ErrCode {
      */
     OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015,
     /**
-     * The lock screen password required is not set.
+     * @brief The lock screen password required is not set.
+     *
      * @since 11
      */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
     /**
-     * A key with the same name already exists.
+     * @brief A key with the same name already exists.
+     *
      * @since 20
      */
     OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017,
     /**
-     * An input parameter is invalid.
+     * @brief An input parameter is invalid.
+     *
      * @since 20
      */
     OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018,
 
     /**
-     * The entity already exists.
+     * @brief The entity already exists.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_ITEM_EXISTS = 12000019,
 
     /**
-     * The provider or UKey internal execution fails.
+     * @brief The provider or UKey internal execution fails.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_EXTERNAL_MODULE = 12000020,
 
     /**
-     * The PIN is locked.
+     * @brief The PIN is locked.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_LOCKED = 12000021,
 
     /**
-     * Incorrect PIN.
+     * @brief Incorrect PIN.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_INCORRECT = 12000022,
 
     /**
-     * PIN authentication fails.
+     * @brief PIN authentication fails.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_NO_AUTH = 12000023,
 
     /**
-     * The provider or UKey resources are being used.
+     * @brief The provider or UKey resources are being used.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_BUSY = 12000024,
 
     /**
-     * The resource limit is exceeded.
+     * @brief The resource limit is exceeded.
+     *
      * @since 22
      */
     OH_HUKS_ERR_CODE_EXCEED_LIMIT = 12000025,
@@ -883,7 +909,8 @@ typedef enum OH_Huks_UserAuthType {
      */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
     /**
-     * TUI PIN authentication.
+     * @brief TUI PIN authentication.
+     *
      * @since 20
      */
     OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 << 5,
@@ -918,17 +945,20 @@ typedef enum OH_Huks_AuthAccessType {
  */
 typedef enum OH_Huks_AuthStorageLevel {
     /**
-     * The key can be accessed only after the device is started.
+     * @brief The key can be accessed only after the device is started.
+     *
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_DE = 0,
     /**
-     * The key can be accessed only after the first unlock of the device.
+     * @brief The key can be accessed only after the first unlock of the device.
+     *
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_CE = 1,
     /**
-     * The key can be accessed only when the device is unlocked.
+     * @brief The key can be accessed only when the device is unlocked.
+     *
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_ECE = 2,
@@ -942,12 +972,14 @@ typedef enum OH_Huks_AuthStorageLevel {
  */
 typedef enum OH_Huks_UserAuthMode {
     /**
-     * Local authentication.
+     * @brief Local authentication.
+     *
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_LOCAL = 0,
     /**
-     * Cross-device collaborative authentication.
+     * @brief Cross-device collaborative authentication.
+     *
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_COAUTH = 1,
@@ -1039,12 +1071,14 @@ typedef enum OH_Huks_KeyClassType {
 } OH_Huks_KeyClassType;
 
 /**
- * Enumerates the wrap type of the key generated or imported.
+ * @brief Enumerates the wrap type of the key generated or imported.
+ *
  * @since 20
  */
 typedef enum OH_Huks_KeyWrapType {
     /**
-     * Wrap type of the unique hardware key.
+     * @brief Wrap type of the unique hardware key.
+     *
      * @since 20
      */
     OH_HUKS_KEY_WRAP_TYPE_HUK_BASED = 2,
@@ -1199,7 +1233,7 @@ typedef enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_CHALLENGE_TYPE = OH_HUKS_TAG_TYPE_UINT | 309,
     /**
-     *  Position of the 8-byte valid value in a custom challenge. For details, see {@link OH_Huks_ChallengePosition}.
+     * Position of the 8-byte valid value in a custom challenge. For details, see {@link OH_Huks_ChallengePosition}.
      */
     OH_HUKS_TAG_CHALLENGE_POS = OH_HUKS_TAG_TYPE_UINT | 310,
 
@@ -1209,13 +1243,15 @@ typedef enum OH_Huks_Tag {
     OH_HUKS_TAG_KEY_AUTH_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 311,
 
     /**
-     * Security levels for storing the key. For details, see {@link OH_Huks_AuthStorageLevel}.
+     * @brief Security levels for storing the key. For details, see {@link OH_Huks_AuthStorageLevel}.
+     *
      * @since 11
      */
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
     /**
-     * User authentication mode in key access control. For details, see {@link OH_Huks_UserAuthMode}.
+     * @brief User authentication mode in key access control. For details, see {@link OH_Huks_UserAuthMode}.
+     *
      * @since 12
      */
     OH_HUKS_TAG_USER_AUTH_MODE = OH_HUKS_TAG_TYPE_UINT | 319,
@@ -1302,9 +1338,10 @@ typedef enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT | 1011,
     /**
-     * Whether the key is accessible only when the user sets a lock screen password.<br> **true** indicates that the
-     * key can be generated and used only when a password is set. **false** indicates that the key can be generated and
-     * used without setting a password.
+     * @brief Whether the key is accessible only when the user sets a lock screen password.<br> **true** indicates that
+     * the key can be generated and used only when a password is set. **false** indicates that the key can be generated
+     * and used without setting a password.
+     *
      * @since 11
      */
     OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL | 1012,
