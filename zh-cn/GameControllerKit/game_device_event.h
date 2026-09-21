@@ -178,7 +178,7 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevic
  * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空。
  * @param product 输出参数，产品信息。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- * <li>如果参数deviceInfo或product为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ *     <li>如果参数deviceInfo或product为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,

@@ -183,7 +183,7 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevic
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param product Output parameter. Product information.
  * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned. </li>
- * <li>If **deviceInfo** or **product** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
+ *     <li>If **deviceInfo** or **product** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,
@@ -195,7 +195,7 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDe
  * @param deviceInfo [in] Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param vendor [out] Output parameter. Vendor information.
  * @return <ul><li> If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned. </li>
- * <li>If **deviceInfo** or **vendor** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
+ *     <li>If **deviceInfo** or **vendor** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
  * @since 26.0.1
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVendor(const struct GameDevice_DeviceInfo* deviceInfo,

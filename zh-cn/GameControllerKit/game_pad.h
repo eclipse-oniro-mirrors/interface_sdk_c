@@ -309,8 +309,7 @@ GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
  *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 26.0.1
- * @see {@link OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor} 取消注册非标准的回调
- * 按钮事件。
+ * @see {@link OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor} 取消注册非标准的回调按钮事件。
  */
 GameController_ErrorCode OH_GamePad_ButtonNonstandard_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
