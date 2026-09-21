@@ -25,7 +25,10 @@
 /**
  * @file text_common.h
  *
- * @brief Defines a set of text common enum and interface.
+ * @brief Defines common text enumerations and APIs, covering text alignment, decoration line styles, copy and paste,
+ * overflow handling, line break policies, and menu customization. It is applicable to scenarios such as text boxes and
+ * text display, helping you flexibly control text styles and interaction behavior while reducing development
+ * complexity.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -44,28 +47,34 @@ extern "C" {
 #endif
 
 /**
-* @brief Define the data objects of styled string supported by text components.
-*
-* @since 14
-*/
+ * @brief Defines the styled string descriptor object supported by the text component, which is used for style setting
+ * and management of text content. It applies to scenarios such as rich text display and style customization.
+ *
+ * @since 14
+ */
 typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor;
 
 /**
- * @brief Defines the textField's counter configuration.
+ * @brief Defines the counter configuration of a text input box for managing character counting. It applies to
+ * scenarios where character count limits and real-time prompts are required for user input, helping users track input
+ * progress and prevent exceeding the character limit.
  *
  * @since 22
  */
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 
 /**
- * @brief Defines the text content base controller.
+ * @brief Defines a text content base controller, providing content control capabilities for text components and
+ * supporting operations such as obtaining, setting, and updating text content. It is suitable for scenarios that
+ * require dynamic content management and real-time control of text components, helping you manage text display content
+ * more flexibly.
  *
  * @since 23
  */
 typedef struct ArkUI_TextContentBaseController ArkUI_TextContentBaseController;
 
 /**
- * @brief Enumerates the text alignment mode.
+ * @brief Enumerates text horizontal alignment styles.
  *
  * @since 12
  */
@@ -85,7 +94,7 @@ typedef enum {
     /** Aligned with right to left.
      * @since 23
      */
-    ARKUI_TEXT_ALIGNMENT_RIGHT_TO_LEFT = 5,
+    ARKUI_TEXT_ALIGNMENT_RIGHT_TO_LEFT = 5
 } ArkUI_TextAlignment;
 
 /**
@@ -101,11 +110,11 @@ typedef enum {
     /** Center aligned. */
     ARKUI_TEXT_VERTICAL_ALIGNMENT_CENTER,
     /** Top aligned. */
-    ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP,
+    ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP
 } ArkUI_TextVerticalAlignment;
 
 /**
- * @brief Enumerates text content align styles.
+ * @brief Enumerates vertical alignment styles in the text content area.
  *
  * @since 21
  */
@@ -115,11 +124,11 @@ typedef enum {
     /** Center aligned. */
     ARKUI_TEXT_CONTENT_ALIGN_CENTER = 1,
     /** Bottom aligned. */
-    ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2,
+    ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2
 } ArkUI_TextContentAlign;
 
 /**
- * @brief Enumerates the text text direction.
+ * @brief Enumerates text layout directions.
  *
  * @since 23
  */
@@ -131,11 +140,11 @@ typedef enum {
     /** The text direction follows the component layout. */
     ARKUI_TEXT_DIRECTION_DEFAULT = 2,
     /** The text direction follows the actual text. */
-    ARKUI_TEXT_DIRECTION_AUTO = 3,
+    ARKUI_TEXT_DIRECTION_AUTO = 3
 } ArkUI_TextDirection;
 
 /**
- * @brief Enumerates the types of the Enter key for a single-line text box.
+ * @brief Enumerates the types of the **Enter** key for single-line text input.
  *
  * @since 12
  */
@@ -153,11 +162,11 @@ typedef enum {
     /** The Enter key is labeled "Previous." */
     ARKUI_ENTER_KEY_TYPE_PREVIOUS,
     /** The Enter key is labeled "New Line." */
-    ARKUI_ENTER_KEY_TYPE_NEW_LINE,
+    ARKUI_ENTER_KEY_TYPE_NEW_LINE
 } ArkUI_EnterKeyType;
 
 /**
- * @brief Enumerates the text decoration types.
+ * @brief Enumerates text decoration types.
  *
  * @since 12
  */
@@ -169,11 +178,11 @@ typedef enum {
     /** Line over the text. */
     ARKUI_TEXT_DECORATION_TYPE_OVERLINE,
     /** Line through the text. */
-    ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH,
+    ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH
 } ArkUI_TextDecorationType;
 
 /**
- * @brief Enumerates the text decoration styles.
+ * @brief Enumerates text decoration styles.
  *
  * @since 12
  */
@@ -187,11 +196,11 @@ typedef enum {
     /** Dashed line. */
     ARKUI_TEXT_DECORATION_STYLE_DASHED,
     /** Wavy line. */
-    ARKUI_TEXT_DECORATION_STYLE_WAVY,
+    ARKUI_TEXT_DECORATION_STYLE_WAVY
 } ArkUI_TextDecorationStyle;
 
 /**
- * @brief Enumerates the text cases.
+ * @brief Enumerates text cases.
  *
  * @since 12
  */
@@ -201,11 +210,11 @@ typedef enum {
     /** All letters in the text are in lowercase. */
     ARKUI_TEXT_CASE_LOWER,
     /** All letters in the text are in uppercase. */
-    ARKUI_TEXT_CASE_UPPER,
+    ARKUI_TEXT_CASE_UPPER
 } ArkUI_TextCase;
 
 /**
- * @brief Defines whether copy and paste is allowed for text content.
+ * @brief Enumerates copy options, which define whether copy and paste is allowed for text content.
  *
  * @since 12
  */
@@ -217,7 +226,7 @@ typedef enum {
     /** Intra-device copy is allowed. */
     ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE,
     /** Cross-device copy is allowed. */
-    ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE,
+    ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE
 } ArkUI_TextCopyOptions;
 
 /**
@@ -233,11 +242,11 @@ typedef enum {
     /** An ellipsis (...) is used to represent text overflow. */
     ARKUI_TEXT_OVERFLOW_ELLIPSIS,
     /** Text continuously scrolls when text overflow occurs. */
-    ARKUI_TEXT_OVERFLOW_MARQUEE,
+    ARKUI_TEXT_OVERFLOW_MARQUEE
 } ArkUI_TextOverflow;
 
 /**
- * @brief Enumerates the word break rules.
+ * @brief Enumerates word break rules.
  *
  * @since 12
  */
@@ -250,18 +259,18 @@ typedef enum {
     ARKUI_WORD_BREAK_BREAK_ALL,
     /** This option has the same effect as <b>BREAK_ALL</b> for non-CJK text, except that if it preferentially wraps
      *  lines at appropriate characters (for example, spaces) whenever possible.
-        CJK text behavior is the same as for <b>NORMAL</b>. */
+     CJK text behavior is the same as for <b>NORMAL</b>. */
     ARKUI_WORD_BREAK_BREAK_WORD,
     /**
      * @brief Line breaks can occur between any two syllabic units for non-CJK text.
      * CJK text behavior is the same as for <b>NORMAL</b>.
      * @since 18
      */
-    ARKUI_WORD_BREAK_HYPHENATION,
+    ARKUI_WORD_BREAK_HYPHENATION
 } ArkUI_WordBreak;
 
 /**
- * @brief Enumerates the ellipsis positions.
+ * @brief Enumerates ellipsis positions.
  *
  * @since 12
  */
@@ -273,19 +282,19 @@ typedef enum {
     /** An ellipsis is used at the end of the line of text. */
     ARKUI_ELLIPSIS_MODE_END,
     /**
-     *@brief An ellipsis is used at the start of the line of text for multiline and single line.
-     *@since 24
+     * @brief An ellipsis is used at the start of the line of text for multiline and single line.
+     * @since 24
      */
     ARKUI_ELLIPSIS_MODE_MULTILINE_START,
     /**
-     *@brief An ellipsis is used at the center of the line of text for multiline and single line.
-     *@since 24
+     * @brief An ellipsis is used at the center of the line of text for multiline and single line.
+     * @since 24
      */
-    ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER,
+    ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER
 } ArkUI_EllipsisMode;
 
 /**
- * @brief Defines the keyboard style of input box
+ * @brief Enumerates the appearance of the keyboard when the text box is focused.
  *
  * @since 15
  */
@@ -309,25 +318,29 @@ typedef enum {
      * Dark immersive style.
      * @since 15
      */
-    ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3,
+    ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3
 } ArkUI_KeyboardAppearance;
 
 /**
- * @brief Defines the text menu item for edit menu item.
+ * @brief Defines a text menu item, used to represent a single menu item in a text selection menu. This struct supports
+ * setting attributes such as the title, icon, and enabled state of the menu item. It is applicable to scenarios where
+ * you need to customize text selection menu content and menu item extension, helping you flexibly customize the text
+ * selection menu.
  *
  * @since 22
  */
 typedef struct ArkUI_TextMenuItem ArkUI_TextMenuItem;
 
 /**
- * @brief Defines text menu item array.
+ * @brief Defines an array of text menu items, which carries data of multiple text menu items in a text selection menu
+ * or context menu scenario.
  *
  * @since 22
  */
 typedef struct ArkUI_TextMenuItemArray ArkUI_TextMenuItemArray;
 
 /**
- * @brief Enumerates the text menu item id.
+ * @brief Enumerates the IDs of text menu items.
  *
  * @since 22
  */
@@ -432,24 +445,26 @@ typedef enum {
     /**
      * Inclusive end of app-reserved ID range.
      */
-    ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_END = 20000,
+    ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_END = 20000
 } ArkUI_TextMenuItemId;
 
 /**
- * @brief Defines the text menu item for edit menu options.
+ * @brief Defines editable text menu extension options, used to extend the functionality of the text editing menu. It
+ * is applicable to scenarios where you need to customize text editing menu operations.
  *
  * @since 22
  */
 typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
 
 /**
- * The text menu create callback function.
- *
- * @param items The framework creates and owns the array.
- *     In callback: the developer can modify the array by calling {@link OH_ArkUI_TextMenuItemArray_Insert},
- *     {@link OH_ArkUI_TextMenuItemArray_Erase}, or similar APIs.
- *     The developer must not free the array instance.
- * @param userData User defined data.
+ * Callback for the text menu creation event. This callback is triggered when a text menu is created, allowing you to
+ * set menu data in it.
+ * @param items Pointer to the **ArkUI_TextMenuItemArray** object, which is created and released by the system. You can
+ *     call {@link OH_ArkUI_TextMenuItemArray_Insert} and {@link OH_ArkUI_TextMenuItemArray_Erase} to modify the array
+ *     in the callback.
+ * @param userData Pointer to the user-defined data, which is passed by you when registering the callback and returned
+ *     as-is when the callback is triggered. It is used to obtain context data in the callback. The value **null**
+ *     indicates that no custom data is passed.
  * @since 22
  */
 typedef void (*ArkUI_TextCreateMenuCallback)(
@@ -458,13 +473,14 @@ typedef void (*ArkUI_TextCreateMenuCallback)(
 );
 
 /**
- * The text menu prepare callback function.
- *
- * @param items The framework creates and owns the array.
- *     In callback: the developer can modify the array by calling {@link OH_ArkUI_TextMenuItemArray_Insert},
- *     {@link OH_ArkUI_TextMenuItemArray_Erase}, or similar APIs.
- *     The developer must not free the array instance.
- * @param userData User defined data.
+ * Callback for the text menu preparation event. This callback is called when the text selection area changes and
+ * before the menu is displayed, allowing you to set menu data in it.
+ * @param items Pointer to the **ArkUI_TextMenuItemArray** object, which is created and released by the system. You can
+ *     call {@link OH_ArkUI_TextMenuItemArray_Insert} and {@link OH_ArkUI_TextMenuItemArray_Erase} to modify the array
+ *     in the callback.
+ * @param userData Pointer to the user-defined data, which is passed by you when registering the callback and returned
+ *     as-is when the callback is triggered. It is used to obtain context data in the callback. The value **null**
+ *     means no custom data is passed.
  * @since 22
  */
 typedef void (*ArkUI_TextPrepareMenuCallback)(
@@ -490,14 +506,18 @@ typedef bool (*ArkUI_TextMenuItemClickCallback)(
 );
 
 /**
- * @brief Defines the selection menu.
+ * @brief Defines the options of a custom text selection menu, supporting custom configuration of menu content, styles,
+ * and behavior. It is applicable to scenarios where the text selection menu interaction needs to be customized.
  *
  * @since 22
  */
 typedef struct ArkUI_TextSelectionMenuOptions ArkUI_TextSelectionMenuOptions;
 
 /**
- * @brief Defines decoration style options.
+ * @brief Defines decoration style options, which are used to add decorative line effects to text. You can set the type
+ * (such as underline, strikethrough, and overline), style (such as solid, dashed, and wavy), and color of the
+ * decorative line. Typical use cases include adding an underline to link text, adding a strikethrough to deleted
+ * content, and adding an overline to important text.
  *
  * @since 24
  */
@@ -525,7 +545,7 @@ typedef enum {
      * Balance mode.<br>Without splitting words, the width of each line in a paragraph is the same as much as possible.
      * @since 24
      */
-    OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2,
+    OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2
 } OH_ArkUI_LineBreakStrategy;
 
 /**
@@ -568,11 +588,11 @@ typedef enum {
      * When this type is registered but TEXT, IMAGE, or MIXED types are not registered,
      * this type will be triggered and displayed for those registered types.
      */
-    ARKUI_TEXT_SPAN_TYPE_DEFAULT = 3,
+    ARKUI_TEXT_SPAN_TYPE_DEFAULT = 3
 } ArkUI_TextSpanType;
 
 /**
- * @brief Enumerates the text response type.
+ * @brief Enumerates the response types of a custom text selection menu.
  *
  * @since 22
  */
@@ -588,119 +608,140 @@ typedef enum {
      * When this type is registered but RIGHT_CLICK, LONG_PRESS, or SELECT types are not registered,
      * this type will be triggered and displayed for right-click, long press, and mouse selection actions.
      */
-    ARKUI_TEXT_RESPONSE_TYPE_DEFAULT = 3,
+    ARKUI_TEXT_RESPONSE_TYPE_DEFAULT = 3
 } ArkUI_TextResponseType;
 
 /**
- * @brief Creates a configuration object for textField's counter.
+ * @brief Creates a text input counter configuration object. When this object is no longer used, call
+ * {@link OH_ArkUI_ShowCounterConfig_Dispose} to dispose of it.
  *
- * @return A pointer to the configuration object.
+ * @return Pointer to the text input counter configuration object.
  * @since 22
  */
 ArkUI_ShowCounterConfig* OH_ArkUI_ShowCounterConfig_Create();
 
 /**
- * @brief Disposes a configuration object for textField's counter.
+ * @brief Disposes of the text input counter configuration object created by {@link OH_ArkUI_ShowCounterConfig_Create}.
  *
- * @param config Pointer to the configuration object to be disposed.
+ * @param config Pointer to the text input counter configuration object to be disposed of.
  * @since 22
  */
 void OH_ArkUI_ShowCounterConfig_Dispose(ArkUI_ShowCounterConfig* config);
 
 /**
- * @brief Sets the color of counter when textField hasn't wanted to exceed the maximum character count.
+ * @brief Sets the text color of the counter when the text input has not reached the maximum character limit. If this
+ * API is not called, the default color is **0x66182431**, displayed as gray.
  *
- * @param config Pointer to the configuration object to be modified.
- * @param color The color of the counter when textField hasn't wanted to exceed the maximum character count, in 0xARGB format.
+ * @param config Pointer to the text input counter configuration object. It must be created using **
+ *     OH_ArkUI_ShowCounterConfig_Create()** before use.
+ * @param color Text color of the counter when the text input has not reached the maximum character limit, in 0xARGB
+ *     format.
  * @since 22
  */
 void OH_ArkUI_ShowCounterConfig_SetCounterTextColor(ArkUI_ShowCounterConfig* config, uint32_t color);
 
 /**
- * @brief Sets the color of counter when textField wants to exceed the maximum character count.
+ * @brief Sets the text color of the counter when the text input exceeds the maximum character limit. If this API is
+ * not called, the default color is **0x99FA2A2D**, displayed as red.
  *
- * @param config Pointer to the configuration object to be modified.
- * @param color The color of the counter when textField wants to exceed the maximum character count, in 0xARGB format.
+ * @param config Pointer to the text input counter configuration object.
+ * @param color Text color of the counter when the text input exceeds the maximum character limit, in 0xARGB format.
  * @since 22
  */
 void OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config, uint32_t color);
 
 /**
- * @brief Gets the color of counter when textField hasn't wanted to exceed the maximum character count.
+ * @brief Obtains the text color of the counter when the text input has not reached the maximum character limit.
  *
- * @param config Pointer to the configuration object.
- * @return Returns the color of the counter when textField hasn't wanted to exceed the maximum character count, in 0xARGB format.
+ * @param config Pointer to the text input counter configuration object.
+ * @return Text color of the counter when the text input has not reached the maximum character limit, in 0xARGB format.
+ *     **0** is returned if the color is not set using {@link OH_ArkUI_ShowCounterConfig_SetCounterTextColor};
+ *     otherwise, the set color value is returned.
  * @since 22
  */
 uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextColor(ArkUI_ShowCounterConfig* config);
 
 /**
- * @brief Gets the color of counter when textField wants to exceed the maximum character count.
+ * @brief Obtains the text color of the counter when the text input exceeds the maximum character limit.
  *
- * @param config Pointer to the configuration object.
- * @return Returns the color of the counter when textField wants to exceed the maximum character count, in 0xARGB format.
+ * @param config Pointer to the text input counter configuration object.
+ * @return Text color of the counter when the text input exceeds the maximum character limit, in 0xARGB format. **0**
+ *     is returned if the color is not set using {@link OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor};
+ *     otherwise, the set color value is returned.
  * @since 22
  */
 uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config);
 
 /**
- * @brief Create an object of the text edit menu item.
+ * @brief Creates a text menu item object for customizing the text selection menu or extending the system menu. It is
+ * applicable when custom menu items need to be added, such as sharing to a specific platform or performing custom
+ * editing operations. When this object is no longer used, call {@link OH_ArkUI_TextMenuItem_Dispose} to dispose of it.
  *
- * @return A pointer to the ArkUI_TextMenuItem.
+ * @return Pointer to the text menu item object, used to represent a single menu item in the text selection menu.
  * @since 22
  */
 ArkUI_TextMenuItem* OH_ArkUI_TextMenuItem_Create();
 
 /**
- * @brief Dispose an object of the text edit menu options.
+ * @brief Disposes of the text menu item object created by {@link OH_ArkUI_TextMenuItem_Create}.
  *
- * @param textMenuItem Pointer to the ArkUI_TextMenuItem object to be disposed.
+ * @param textMenuItem Pointer to the **ArkUI_TextMenuItem** object.
  * @since 22
  */
 void OH_ArkUI_TextMenuItem_Dispose(ArkUI_TextMenuItem* textMenuItem);
 
 /**
- * @brief Create an object of the text edit menu options.
+ * @brief Creates a text menu extension object for extending the text editing menu functionality. It is applicable when
+ * custom menu items need to be added to the text editing component, such as inserting special characters or performing
+ * quick formatting. When this object is no longer used, call {@link OH_ArkUI_TextEditMenuOptions_Dispose} to dispose
+ * of it.
  *
- * @return A pointer to the ArkUI_TextEditMenuOptions.
+ * @return Pointer to the text menu extension object, used to extend the functionality of the text editing menu.
  * @since 22
  */
 ArkUI_TextEditMenuOptions* OH_ArkUI_TextEditMenuOptions_Create();
 
 /**
- * @brief Dispose an object of the text edit menu options.
+ * @brief Disposes of the text menu extension object created by {@link OH_ArkUI_TextEditMenuOptions_Create}.
  *
- * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object to be disposed.
+ * @param editMenuOptions Pointer to the **ArkUI_TextEditMenuOptions** object.
  * @since 22
  */
 void OH_ArkUI_TextEditMenuOptions_Dispose(ArkUI_TextEditMenuOptions* editMenuOptions);
 
 /**
- * @brief Create an object of the text selection menu options.
+ * @brief Creates a custom text selection menu object for configuring the content and behavior of the text selection
+ * menu. It is applicable when the text selection menu needs to be fully customized, such as replacing the default menu
+ * and adding application-specific operations. When this object is no longer used, call
+ * {@link OH_ArkUI_TextSelectionMenuOptions_Dispose} to dispose of it.
  *
- * @return A pointer to the ArkUI_TextSelectionMenuOptions.
+ * @return Pointer to the custom text selection menu object, used for custom configuration of menu content, styles, and
+ *     behavior.
  * @since 22
  */
 ArkUI_TextSelectionMenuOptions* OH_ArkUI_TextSelectionMenuOptions_Create();
 
 /**
- * @brief Dispose an object of the text selection menu options.
+ * @brief Disposes of the custom text selection menu object created by {@link OH_ArkUI_TextSelectionMenuOptions_Create}.
  *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object to be disposed.
+ * @param selectionMenuOptions Pointer to the **ArkUI_TextSelectionMenuOptions** object.
  * @since 22
  */
 void OH_ArkUI_TextSelectionMenuOptions_Dispose(ArkUI_TextSelectionMenuOptions* selectionMenuOptions);
 
 /**
- * @brief Create an object of the text content base controller.
+ * @brief Creates a text content base controller object. When this object is no longer used, call
+ * {@link OH_ArkUI_TextContentBaseController_Dispose} to dispose of it.
  *
- * @return A pointer to the controller object.
+ * @return Pointer to the text content base controller object, used for content control of text components, supporting
+ *     operations such as obtaining, setting, and updating text content.
  * @since 23
  */
 ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
 
 /**
- * @brief Dispose an object of the text content base controller.
+ * @brief Disposes of the text content base controller object created by
+ * {@link OH_ArkUI_TextContentBaseController_Create}.
  *
  * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
  * @since 23
@@ -708,8 +749,8 @@ ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
 void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
 
 /**
- * @brief Delete the character before the caret of the input field component in editing state.
- *        Otherwise, delete the last character of the input field component.
+ * @brief Deletes the character before the cursor in editing state; deletes the last character of the text box
+ * component in other states.
  *
  * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
  * @since 23
@@ -717,28 +758,39 @@ void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController*
 void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
 
 /**
- * @brief Scroll the input field component to make the specified content visible.
+ * @brief Passes the start and end indexes to the bound text box component, and scrolls the text within the range to
+ * the visible area.
  *
  * @param {ArkUI_TextContentBaseController*} controller Pointer to the
- * configuration object to be modified.
- * @param {int32_t} start The start offset of the content to be made visible.
- * @param {int32_t} end The end offset of the content to be made visible
+ *     configuration object to be modified.
+ * @param {int32_t} start Start text index.
+ *     The start index must be less than or equal to the end index. Otherwise, the API call is invalid.
+ *     The value range is [0, Total length of the text in the text box]. If the start index is less than 0,
+ *     the start index is regarded as 0. If the start index is greater than the total length,
+ *     the start indexis regarded as the total length.
+ * @param {int32_t} end End text index.
+ *     The end index must be greater than or equal to the start index. Otherwise, the API call is invalid.
+ *     The value range is [0, Total length of the text in the text box]. If the end index is less than 0,
+ *     the end index is regarded as 0. If the end index is greater than the total length,
+ *     the end index is regarded as the total length.
  * @since 23
  */
 void OH_ArkUI_TextContentBaseController_ScrollToVisible(
     ArkUI_TextContentBaseController *controller, int32_t start, int32_t end);
 
 /**
- * @brief Creates a decorative line style object. When the object is no longer used, call
+ * @brief Creates a decoration style object for setting the type, style, and color of text decorative lines. It is
+ * applicable when decoration effects such as underlines or strikethroughs need to be added to text, for example, in
+ * rich text editors, hyperlink text, or price tags. When this object is no longer used, call
  * {@link OH_ArkUI_DecorationStyleOptions_Destroy} to destroy it.
  *
- * @return Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @return Pointer to the decoration style object, used to define the decorative line style.
  * @since 24
  */
 OH_ArkUI_DecorationStyleOptions* OH_ArkUI_DecorationStyleOptions_Create();
 
 /**
- * @brief Destroys the decorative line style object.
+ * @brief Destroys the decoration style object created by {@link OH_ArkUI_DecorationStyleOptions_Create}.
  *
  * @param options Pointer to the option object to be destroyed.
  * @since 24
