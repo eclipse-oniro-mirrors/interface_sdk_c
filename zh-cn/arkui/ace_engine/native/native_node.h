@@ -3836,6 +3836,60 @@ typedef enum {
     NODE_TEXT_CONTROLLER = 1054,
 
     /**
+     * @brief 设置文本描边宽度，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本描边宽度，单位为vp。默认值：0，表示无描边效果。小于0时显示实心字，大于0时显示空心字。不支持百分比。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本描边宽度，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_WIDTH = 1057,
+
+    /**
+     * @brief 设置文本描边颜色，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：文本描边颜色，0xARGB格式。默认值为字体颜色，设置异常值时取默认值。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：文本描边颜色，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_COLOR = 1058,
+
+    /**
+     * @brief 设置文本描边拐角样式，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本描边拐角样式，参数类型为{@link OH_ArkUI_StrokeJoinStyle}。默认值为OH_ARKUI_STROKE_JOIN_STYLE_MITER_JOIN，表示尖角连接。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本描边拐角样式，参数类型为{@link OH_ArkUI_StrokeJoinStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_JOIN_STYLE = 1059,
+
+    /**
      * @brief 文本内容属性，支持属性设置、属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
