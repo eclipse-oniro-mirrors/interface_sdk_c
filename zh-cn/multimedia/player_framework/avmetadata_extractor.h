@@ -24,11 +24,12 @@
 /**
  * @file avmetadata_extractor.h
  *
- * @brief 定义AVMetadataExtractor接口。使用其Native API从媒体资源中获取元数据。
+ * @brief 定义AVMetadataExtractor接口。使用其C API从媒体资源中获取元数据。
  * 
  * @kit MediaKit
  * @include <multimedia/player_framework/avmetadata_extractor.h>
  * @library libavmetadata_extractor.so
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 
@@ -104,6 +105,7 @@ OH_AVErrCode OH_AVMetadataExtractor_SetMediaSource(OH_AVMetadataExtractor *extra
  * 
  * @return 创建成功时返回指向OH_AVMetadataExtractor实例的指针，否则返回空指针。
  * 可能的失败原因：HstEngineFactory::CreateAVMetadataHelperEngine执行失败。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
@@ -119,6 +121,7 @@ OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
  * AV_ERR_INVALID_VAL： 输入的extractor为空指针或参数无效。
  * AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extractor,
@@ -136,6 +139,7 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
  * AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
  * AV_ERR_IO_CLEARTEXT_NOT_PERMITTED：（API version 23新增）不允许HTTP明文流量。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata);
@@ -151,6 +155,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extrac
  * AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
  * AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extractor, OH_PixelmapNative** pixelMap);
@@ -225,6 +230,7 @@ void OH_AVMetadataExtractor_CancelAllFetchFrames(OH_AVMetadataExtractor *extract
  * @param extractor 指向OH_AVMetadataExtractor实例指针。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL： 输入的extractor为空指针或参数无效。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor);
@@ -252,8 +258,8 @@ void OH_AVMetadataExtractor_OutputParam_Destroy(OH_AVMetadataExtractor_OutputPar
  * @param outputParam 指向OH_AVMetadataExtractor_OutputParam实例的指针。
  * @param width 输出图像的期望宽度，如有必要可进行缩放。
  * @param height 输出图像的期望高度，如有必要可进行缩放。
- * @return 成功返回true，失败返回false。
- * 可能失败的原因：outputParam为空指针。
+ * @return 成功返回true，失败返回false。<br>
+ * 可能失败的原因：输入的outputParam为空指针。
  * @since 23
  */
 bool OH_AVMetadataExtractor_OutputParam_SetSize(OH_AVMetadataExtractor_OutputParam* outputParam,
