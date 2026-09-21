@@ -456,14 +456,14 @@ typedef struct CloudDisk_SyncFolder {
 
 /**
  * @brief 定义带占位符支持的云盘同步文件夹。
- * 必须将版本字段设置为有效的版本宏(例如{@ Cloud_DISK_SYNC_LAYER_EX_VERSION_1})，然后才能传递结构到任何API。
+ * 必须将版本字段设置为有效的版本宏(例如{@link OH_CLOUD_DISK_SYNC_FOLDER_EX_VERSION_1})，然后才能传递结构到任何API。
  * 运行时使用版本来确定字段有效；当指定低版本时，在较高版本中引入的字段将被忽略。
  *
  * @since 26.0.1
  */
 typedef struct OH_CloudDisk_SyncFolderEx {
     /**
-     * @brief 指示此结构体的版本。必须初始化为有效的版本宏，例如 {@ Cloud_DISK_SYNC_FLYER_EX_VERSION_1}。
+     * @brief 指示此结构体的版本。必须初始化为有效的版本宏，例如 {@link OH_CLOUD_DISK_SYNC_FOLDER_EX_VERSION_1}。
      *
      * @since 26.0.1
      */
@@ -714,7 +714,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderEx(const OH_CloudDisk_SyncFol
  * @brief 获取具有占位符支持信息的同步文件夹。
  *
  * @param syncFolders 输出参数。
- *     <br> 返回{@link CloudDisk_SyncFolderEx}的数组，用于存储同步文件夹。
+ *     <br> 返回{@link OH_CloudDisk_SyncFolderEx}的数组，用于存储同步文件夹。
  * @param count 输出参数。返回同步文件夹的数量。
  * @return 如果操作成功，则返回{@link CLOUD_DISK_OK}；
  *     <br> 否则返回{@link CloudDisk_ErrorCode}中定义的错误代码。
