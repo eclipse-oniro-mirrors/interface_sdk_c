@@ -27,7 +27,8 @@
 /**
  * @file udmf.h
  *
- * @brief Provides unified data management framework related functions and enumerations.
+ * @brief Defines the APIs, data structs, and enums for accessing the UDMF. If the parameter type is char*,
+ * the string must end with a null character ('\0').
  *
  * @kit ArkData
  * @library libudmf.so
@@ -48,7 +49,7 @@ extern "C" {
 #endif
 
 /**
- * @brief The key minimum memory space size of Unified Data.
+ * @brief Minimum space length of the unique identifier of a unified data object.
  *
  * @since 12
  */
@@ -164,49 +165,50 @@ typedef enum Udmf_Visibility {
 } Udmf_Visibility;
 
 /**
- * @brief Describes the unified data type.
+ * @brief Defines a struct for a unified data object.
  *
  * @since 12
  */
 typedef struct OH_UdmfData OH_UdmfData;
 
 /**
- * @brief Describes the record type in the unified data.
+ * @brief Defines a struct for a data record in a unified data object.
  *
  * @since 12
  */
 typedef struct OH_UdmfRecord OH_UdmfRecord;
 
 /**
- * @brief Defines the data provider.
+ * @brief Defines the data record provider in a unified data object.
  *
  * @since 13
  */
 typedef struct OH_UdmfRecordProvider OH_UdmfRecordProvider;
 
 /**
- * @brief Describes some property parameters of unified data.
+ * @brief Defines a struct for a data record property in a unified data object.
  *
  * @since 12
  */
 typedef struct OH_UdmfProperty OH_UdmfProperty;
 
 /**
- * @brief Represents the udmf progress information.
+ * @brief Defines a struct for progress information.
  *
  * @since 15
 */
 typedef struct OH_Udmf_ProgressInfo OH_Udmf_ProgressInfo;
 
 /**
- * @brief Represents the parameters of udmf get data with progress info.
+ * @brief Defines a struct for the parameters used to obtain UDMF data asynchronously.
  *
  * @since 15
 */
 typedef struct OH_UdmfGetDataParams OH_UdmfGetDataParams;
 
 /**
- * @brief Defines the callback function used to return the progress information and data.
+ * @brief Defines the callback used to return progress information and data. When using it, check whether a null pointer
+ * is returned. Data is returned only when the progress reaches 100%.
  *
  * @param progressInfo The progress information notified to Application.
  * @param data Represents the unified data.
@@ -215,21 +217,21 @@ typedef struct OH_UdmfGetDataParams OH_UdmfGetDataParams;
 typedef void (*OH_Udmf_DataProgressListener)(OH_Udmf_ProgressInfo* progressInfo, OH_UdmfData* data);
 
 /**
- * @brief Describes the optional arguments of data operation
+ * @brief Defines the optional parameters for data operations.
  *
  * @since 20
  */
 typedef struct OH_UdmfOptions OH_UdmfOptions;
 
 /**
- * @brief Indicates data loading params.
+ * @brief Defines a struct for data loading parameters.
  *
  * @since 20
  */
 typedef struct OH_UdmfDataLoadParams OH_UdmfDataLoadParams;
 
 /**
- * @brief Indicates data loading information.
+ * @brief Defines a struct for the data loading information.
  *
  * @since 20
  */
@@ -252,7 +254,8 @@ typedef struct OH_UDMF_Summary OH_UDMF_Summary;
 typedef OH_UdmfData* (*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableInfo);
 
 /**
- * @brief Creates a pointer to the instance of the {@link OH_UdmfData}.
+ * @brief Creates an {@link OH_UdmfData} pointer and its instance. When the pointer is no longer needed,
+ * use OH_UdmfData_Destroy to destroy the instance; otherwise, memory leaks may occur.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfData}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -395,7 +398,8 @@ OH_UdmfRecord* OH_UdmfRecord_Create();
 void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis);
 
 /**
- * @brief Add one custom data to the {@link OH_UdmfRecord} record.
+ * @brief Adds user-defined general data to a unified data record {@link OH_UdmfRecord}. This API cannot be used for
+ * defined UDS types (such as PlainText, Link, and Pixelmap).
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
  * @param typeId Represents record type, reference udmf_meta.h.
@@ -1246,7 +1250,12 @@ OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create();
 void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis);
 
 /**
- * @brief Sets the destination uri to the {@OH_UdmfGetDataParams}.
+ * @brief Sets the destination path in an asynchronous request parameter {@OH_UdmfGetDataParams}.If the destination path
+ * is set, file-type data is copied to the specified path, and the file-type data obtained in the callback is replaced
+ * with the URI of the destination path.
+ * If the destination path is not set, no file copy is performed, and the file-type data obtained in the callback is
+ * the URI of the source path. If the application involves complex file processing policies or needs to copy files to
+ * multiple paths, it is recommended not to set this parameter and let the application handle the file copy.
  *
  * @param params Represents a pointer to an instance of {@link OH_UdmfGetDataParams}.
  * @param destUri Pointer to a destination uri.
@@ -1368,7 +1377,7 @@ void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo);
 char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int* count);
 
 /**
- * @brief Sets the data load info to the {@OH_UdmfDataLoadInfo}.
+ * @brief Sets the data type in a data load information {@OH_UdmfDataLoadInfo}.
  *
  * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
  * @param type Represents the type of data.
