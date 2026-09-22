@@ -2858,6 +2858,30 @@ typedef enum {
     NODE_SYSTEM_MATERIAL = 127,
 
     /**
+     * @brief Defines the 3D transform attribute, which sets the 3D transformation matrix of the component.
+     * When 3D transformation with the perspective effect is involved, the display effect of
+     * {@link NODE_TRANSFORM} may be incorrect. In this case, this attribute is recommended.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers, indicating a 4x4 transformation matrix.
+     * The array length must be <b>16</b>.</li>
+     * <li>.object: pointer to an {@link ArkUI_Matrix4} object, indicating a 4x4 transformation matrix.
+     * Either .value or .object is used to set the matrix. If both are set at the same time, .value takes priority.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers, indicating the current 3D transformation matrix.</li>
+     * </ul>
+     *
+     * @ingroup Visual
+     * @since 26.0.1
+     */
+    NODE_TRANSFORM_3D = 128,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
