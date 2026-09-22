@@ -5774,6 +5774,24 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(
     const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
 
 /**
+ * @brief 通过属性字符串控制器使指定起始索引至结束索引范围内的内容滚动至可视区域。
+ *
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param start 起始内容索引值。
+ *        起始索引应小于等于结束索引，否则接口调用无效。取值范围[0, TextEditor组件内容总长度]，
+ *        起始索引小于0视为0，大于总长度视为总长度。
+ * @param end 结束内容索引值。
+ *        结束索引应大于等于起始索引，否则接口调用无效。取值范围[0, TextEditor组件内容总长度]，
+ *        结束索引小于0视为0，大于总长度视为总长度。
+ * @return 返回结果码。
+ *         若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *         若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_ScrollToVisible(
+    const OH_ArkUI_TextEditorStyledStringController* controller, int32_t start, int32_t end);
+
+/**
  * @brief Set the parameters of background style.
  *
  * @param style The ArkUI_PickerIndicatorStyle instance.
