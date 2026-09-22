@@ -25,7 +25,11 @@
 /**
  * @file text_input.h
  *
- * @brief Defines a set of TextInput enum and interface.
+ * @brief Defines enumerations related to **TextInput**, which supports multiple input type configurations (including
+ * text, numbers, passwords, emails, and phone numbers),  style customization of the clear button, auto-filling content
+ * type settings, and input box style selection. It is applicable to scenarios requiring user interaction input, such
+ * as login and registration, form filling, and search input, helping you quickly implement single-line text input that
+ * meets service requirements.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,7 +47,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the text input types.
+ * @brief Enumerates the input types of single-line text.
  *
  * @since 12
  */
@@ -72,10 +76,11 @@ typedef enum {
      * One time code input mode.
      * @since 20
      */
-    ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14,
+    ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14
 } ArkUI_TextInputType;
+
 /**
- * @brief Enumerates the styles of the Cancel button.
+ * @brief Enumerates the styles of the **Cancel** button.
  *
  * @since 12
  */
@@ -85,10 +90,11 @@ typedef enum {
     /** The Cancel button is always hidden. */
     ARKUI_CANCELBUTTON_STYLE_INVISIBLE,
     /** The Cancel button is displayed when there is text input. */
-    ARKUI_CANCELBUTTON_STYLE_INPUT,
+    ARKUI_CANCELBUTTON_STYLE_INPUT
 } ArkUI_CancelButtonStyle;
+
 /**
- * @brief Enumerates the autofill types.
+ * @brief Enumerates autofill types.
  *
  * @since 12
  */
@@ -156,60 +162,60 @@ typedef enum {
     /**
      *  Passport validity. The scenario-based autofill feature, when enabled, can automatically save and fill in
      *  passport validities.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY,
     /**
      *  Place of issue. The scenario-based autofill feature, when enabled, can automatically save and fill in
      *  place of issues.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT,
     /**
      *  Tax organization. The scenario-based autofill feature, when enabled, can automatically save and fill in tax
      *  organizations.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION,
     /**
      *  Tax id. The scenario-based autofill feature, when enabled, can automatically save and fill in standard Tax ids.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID,
     /**
      *  City name and state name or state code. The scenario-based autofill feature, when enabled, can automatically
      *  save and fill in city names and state names or state codes.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE,
     /**
      *  Flight number. The scenario-based autofill feature, when enabled, can automatically save and fill in flight
      *  numbers.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER,
     /**
      *  License number. The scenario-based autofill feature, when enabled, can automatically save and fill in license
      *  numbers.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER,
     /**
      *  License file number. The scenario-based autofill feature, when enabled, can automatically save and fill in
      *  license file numbers.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER,
     /**
      *  License plate number. The scenario-based autofill feature, when enabled, can automatically save and fill in
      *  license plate numbers.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE,
     /**
      *  Engine number. The scenario-based autofill feature, when enabled, can automatically save and fill in engine
      *  numbers.
-     *  @since 18
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER,
     /**
@@ -217,10 +223,11 @@ typedef enum {
      *  license chassis numbers.
      *  @since 18
      */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER,
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER
 } ArkUI_TextInputContentType;
+
 /**
- * @brief Defines the text input style.
+ * @brief Enumerates text input styles.
  *
  * @since 12
  */

@@ -48,17 +48,24 @@ extern "C" {
  * @since 12
  */
 typedef enum {
-    /** 图片下边沿与文本BaseLine对齐。*/
+    /**
+     * 图片下边沿与文本基线对齐。
+     */
     ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE = 0,
-    /** 图片下边沿与文本下边沿对齐。*/
+    /**
+     * 图片下边沿与文本下边沿对齐。
+     */
     ARKUI_IMAGE_SPAN_ALIGNMENT_BOTTOM,
-    /** 图片中间与文本中间对齐。*/
+    /**
+     * 图片中间与文本中间对齐。
+     */
     ARKUI_IMAGE_SPAN_ALIGNMENT_CENTER,
-    /** 图片上边沿与文本上边沿对齐。 */
+    /**
+     * 图片上边沿与文本上边沿对齐。
+     */
     ARKUI_IMAGE_SPAN_ALIGNMENT_TOP,
     /**
      * 图片对齐方式跟随Text组件对齐方式。
-     *
      * @since 20
      */
     ARKUI_IMAGE_SPAN_ALIGNMENT_FOLLOW_PARAGRAPH
