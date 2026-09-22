@@ -180,33 +180,48 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor(
     uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor, size_t* resultSize);
 
 /**
- * @brief Defines a styled string style.<br>        {@link OH_ArkUI_SpanStyle_Create} can be used to create a styled
- * string style object.<br>        {@link OH_ArkUI_SpanStyle_Destroy} can be used to destroy the styled string style
- * object.<br>        After the object is created, {@link OH_ArkUI_SpanStyle_SetStart} and
- * {@link OH_ArkUI_SpanStyle_SetLength} can be used to set the usage scope of the style.<br>        After the object is
- * created, the **OH_ArkUI_SpanStyle_SetXXXStyle** series APIs can be used to set the specific styles that take effect.
- * For example, you can use {@link OH_ArkUI_SpanStyle_SetTextStyle} to set the font style.
+ * @brief Defines a styled string style object, which is used to set style effects for text within a specified
+ * range of a styled string. It supports flexible combination of multiple style types and precise range
+ * specification, and is suitable for scenarios where different styles need to be applied to different segments
+ * of the same styled string to achieve rich text effects, for example, using different colors and font sizes
+ * for different message segments in a chat application, setting different styles for titles and body text in a
+ * news reader, and highlighting key content in a note-taking application.<br>
+ * Call {@link OH_ArkUI_SpanStyle_Create} to create a styled string style object.<br>
+ * Call {@link OH_ArkUI_SpanStyle_Destroy} to destroy the styled string style object.<br>
+ * After the object is created, call {@link OH_ArkUI_SpanStyle_SetStart} and {@link OH_ArkUI_SpanStyle_SetLength}
+ * to specify the range to which the style applies.<br>
+ * Call the <b>OH_ArkUI_SpanStyle_SetXXXStyle</b> series APIs to set the specific styles to take effect. The range
+ * specification and style settings must be used together for the styles to take effect within the specified range.<br>
+ * For example, call {@link OH_ArkUI_SpanStyle_SetTextStyle} to set the font style effect. The configured
+ * <b>SpanStyle</b> must be added to the styled string to take effect.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_SpanStyle OH_ArkUI_SpanStyle;
  
 /**
- * @brief Defines an image style object.<br>        {@link OH_ArkUI_ImageAttachment_Create} can be used to create an
- * image style object.<br>        {@link OH_ArkUI_ImageAttachment_Destroy} can be used to destroy the image style
- * object.<br>        After the object is created, the **OH_ArkUI_ImageAttachment_SetXXX** series APIs can be used to
- * set the styles that take effect. For example, you can use {@link OH_ArkUI_ImageAttachment_SetPixelMap} to set an
- * image source.
+ * @brief Defines an image object used to embed image content in a styled string. As a component of the styled
+ * string, the image can be attached to the styled string to implement mixed text and image layout after the
+ * image source and style attributes are set.<br>
+ * Call {@link OH_ArkUI_ImageAttachment_Create} to create an image style object.<br>
+ * Call {@link OH_ArkUI_ImageAttachment_Destroy} to destroy the image style object.<br>
+ * After the object is created, call the <b>OH_ArkUI_ImageAttachment_SetXXX</b> series APIs to set style
+ * attributes, for example, call {@link OH_ArkUI_ImageAttachment_SetPixelMap} to set the image source.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_ImageAttachment OH_ArkUI_ImageAttachment;
  
 /**
- * @brief Defines a custom drawing span.<br>        {@link OH_ArkUI_CustomSpan_Create} can be used to create a custom
- * drawing span object.<br>        {@link OH_ArkUI_CustomSpan_Destroy} can be used to destroy the custom drawing span
- * object.<br>        After the object is created, {@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback} and
- * {@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback} can be used to register drawing callback functions.
+ * @brief Defines a custom span, which is used to implement custom measurement and drawing capabilities in a
+ * styled string. A custom span determines its placeholder size through the measurement callback and draws custom
+ * content in the corresponding area through the drawing callback, thereby embedding custom graphic elements into
+ * rich text.<br>
+ * Call {@link OH_ArkUI_CustomSpan_Create} to create a custom span object.<br>
+ * After the object is created, call {@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback} to register the
+ * measurement callback.<br>
+ * Call {@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback} to register the drawing callback.<br>
+ * Call {@link OH_ArkUI_CustomSpan_Destroy} to destroy the custom span object.
  *
  * @since 24
  */
@@ -638,11 +653,14 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_AppendStyledString(
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InvalidateCustomSpan(const ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief Defines a text font style.
- * {@link OH_ArkUI_TextStyle_Create} can be used to create a text font style object.
- * {@link OH_ArkUI_TextStyle_Destroy} can be used to destroy the text font style object.<br>
- * After the object is created, the **OH_ArkUI_TextStyle_SetXXX** series APIs can be used to set the specific
- * styles that take effect. For example, you can use {@link OH_ArkUI_TextStyle_SetFontColor} to set text color.
+ * @brief Defines a text font style, which is used to set attributes such as the font color, size, and style of
+ * text. It is applicable to scenarios where text display effects need to be customized.<br>
+ * Call {@link OH_ArkUI_TextStyle_Create} to create a text font style object.<br>
+ * Call {@link OH_ArkUI_TextStyle_Destroy} to destroy the text font style object. After destruction, do not call
+ * the <b>OH_ArkUI_TextStyle_SetXXX</b> series APIs.<br>
+ * After the object is created successfully, call the <b>OH_ArkUI_TextStyle_SetXXX</b> series APIs to set specific
+ * styles. If creation fails, do not call the <b>SetXXX</b> series APIs. For example, call
+ * {@link OH_ArkUI_TextStyle_SetFontColor} to set the font color.
  *
  * @since 24
  */
@@ -1022,11 +1040,16 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetTextStyle(OH_ArkUI_SpanStyle* spanStyle, c
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetTextStyle(const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_TextStyle* textStyle);
  
 /**
- * @brief Defines a paragraph style.<br>        {@link OH_ArkUI_ParagraphStyle_Create} can be used to create a
- * paragraph style object.<br>        {@link OH_ArkUI_ParagraphStyle_Destroy} can be used to destroy the paragraph
- * style object.<br>        After the object is created, the **OH_ArkUI_ParagraphStyle_SetXXX** series APIs can be used
- * to set the specific styles that take effect. For example, you can use {@link OH_ArkUI_ParagraphStyle_SetTextAlign}
- * to set a text alignment method.
+ * @brief Defines a paragraph style for uniformly setting the text alignment, line break, truncation, and other
+ * layout behaviors when building rich text paragraphs. It applies to scenarios that require fine-grained layout
+ * control over paragraphs, for example, setting the paragraph alignment in a rich text editor, and controlling
+ * the line break and truncation of long text in a news reader.<br>
+ * Call {@link OH_ArkUI_ParagraphStyle_Create} to create the corresponding paragraph style object.<br>
+ * Call {@link OH_ArkUI_ParagraphStyle_Destroy} to destroy the paragraph style object.<br>
+ * After the object is created, call the <b>OH_ArkUI_ParagraphStyle_SetXXX</b> series APIs to set specific
+ * styles, for example, call {@link OH_ArkUI_ParagraphStyle_SetTextAlign} to set the text alignment.
+ * If the object fails to be created (a null pointer is returned) or the object has been destroyed, calling the
+ * <b>SetXXX</b> series APIs will not take effect.
  *
  * @since 24
  */
@@ -1061,12 +1084,14 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetParagraphStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief Defines a gesture style.
- * {@link OH_ArkUI_GestureStyle_Create} can be used to create a gesture style object.
- * {@link OH_ArkUI_GestureStyle_Destroy} can be used to destroy the gesture style object.<br>
- * After the object is created, the **OH_ArkUI_GestureStyle_RegisterOnXXXCallback** series APIs can be used to
- * register specific event callbacks. For example, you can use {@link OH_ArkUI_GestureStyle_RegisterOnClickCallback} to
- * register a click event callback.
+ * @brief Defines a gesture style. It applies to scenarios where a gesture style needs to be configured and
+ * related event callbacks need to be received, making it easier for an application to manage gesture styles
+ * and event callbacks in a unified manner.<br>
+ * Call {@link OH_ArkUI_GestureStyle_Create} to create the corresponding gesture style object.<br>
+ * After the object is created, call the <b>OH_ArkUI_GestureStyle_RegisterOnXXXCallback</b> series APIs to
+ * register specific event callbacks, for example, call {@link OH_ArkUI_GestureStyle_RegisterOnClickCallback}
+ * to register the click event callback.<br>
+ * After use, call {@link OH_ArkUI_GestureStyle_Destroy} to destroy the gesture style object.
  *
  * @since 24
  */
@@ -1101,10 +1126,14 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetGestureStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_GestureStyle* gestureStyle);
  
 /**
- * @brief Defines a text shadow style.<br>        {@link OH_ArkUI_TextShadowStyle_Create} can be used to create a text
- * shadow style object.<br>        {@link OH_ArkUI_TextShadowStyle_Destroy} can be used to destroy the text shadow
- * style object.<br>        After the object is created, {@link OH_ArkUI_TextShadowStyle_SetTextShadow} can be used to
- * set a style.
+ * @brief Defines a text shadow style, which includes attributes such as the shadow offset, blur radius, and
+ * color. It is used to add shadow effects to text, such as highlighting title text and enhancing text on a dark
+ * background.<br>
+ * Call {@link OH_ArkUI_TextShadowStyle_Create} to create a text shadow style object.<br>
+ * Call {@link OH_ArkUI_TextShadowStyle_Destroy} to destroy the text shadow style object.<br>
+ * After creating the text shadow style object, call {@link OH_ArkUI_TextShadowStyle_SetTextShadow} to set the
+ * specific text shadow style.<br>
+ * Call {@link OH_ArkUI_TextShadowStyle_GetTextShadow} to obtain the text shadow style that has been set.
  *
  * @since 24
  */
@@ -1139,11 +1168,14 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetTextShadowStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_TextShadowStyle* textShadowStyle);
  
 /**
- * @brief Defines a text decoration style.<br>        {@link OH_ArkUI_DecorationStyle_Create} can be used to create a
- * text decoration style object.<br>        {@link OH_ArkUI_DecorationStyle_Destroy} can be used to destroy the text
- * decoration style object.<br>        After the object is created, the **OH_ArkUI_DecorationStyle_SetXXX** series APIs
- * can be used to set the specific styles that take effect. For example, you can use
- * {@link OH_ArkUI_DecorationStyle_SetTextDecorationType} to set the decoration type.
+ * @brief Defines a text decoration style, supporting decorative line effects such as underline and strikethrough
+ * for text. It applies to scenarios where the appearance of text decorative lines needs to be customized,
+ * helping you flexibly control the type, color, and style of text decorative lines.<br>
+ * Call {@link OH_ArkUI_DecorationStyle_Create} to create a text decoration style object.<br>
+ * After the object is created, call the <b>OH_ArkUI_DecorationStyle_SetXXX</b> series APIs to set specific
+ * styles. For example, call {@link OH_ArkUI_DecorationStyle_SetTextDecorationType} to set the decorative line
+ * type.<br>
+ * After the object is used, call {@link OH_ArkUI_DecorationStyle_Destroy} to destroy it.
  *
  * @since 24
  */
@@ -1178,10 +1210,15 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetDecorationStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_DecorationStyle* decorationStyle);
  
 /**
- * @brief Defines a baseline offset style.<br>        {@link OH_ArkUI_BaselineOffsetStyle_Create} can be used to create
- * a baseline offset style object.<br>        {@link OH_ArkUI_BaselineOffsetStyle_Destroy} can be used to destroy the
- * baseline offset style object.<br>        After the object is created,
- * {@link OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset} can be used to set a baseline offset.
+ * @brief Defines a baseline offset style, which is used to set the baseline offset of text in a styled string
+ * so that the text moves up or down relative to the baseline in the vertical direction, thereby achieving
+ * special typesetting effects such as superscripts and subscripts. The baseline offset style takes effect
+ * for the styled string only after a style object is created and the offset value is set.<br>
+ * Call {@link OH_ArkUI_BaselineOffsetStyle_Create} to create a baseline offset style object.<br>
+ * After the object is created, call {@link OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset} to set the baseline
+ * offset value.<br>
+ * Call {@link OH_ArkUI_BaselineOffsetStyle_GetBaselineOffset} to obtain the baseline offset value.<br>
+ * After the object is used, call {@link OH_ArkUI_BaselineOffsetStyle_Destroy} to destroy it.
  *
  * @since 24
  */
@@ -1216,10 +1253,15 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBaselineOffsetStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle);
  
 /**
- * @brief Defines a letter spacing style.<br>        {@link OH_ArkUI_LetterSpacingStyle_Create} can be used to create a
- * letter spacing style object.<br>        {@link OH_ArkUI_LetterSpacingStyle_Destroy} can be used to destroy the
- * letter spacing style object.<br>        After the object is created,
- * {@link OH_ArkUI_LetterSpacingStyle_SetLetterSpacing} can be used to set letter spacing.
+ * @brief Defines a letter spacing style, which is used to set the letter spacing of text to optimize the layout
+ * effect. It applies to scenarios where text is too densely arranged and difficult to read and the letter
+ * spacing needs to be adjusted, improving text readability and layout aesthetics.<br>
+ * Call {@link OH_ArkUI_LetterSpacingStyle_Create} to create a letter spacing style object.<br>
+ * After the object is created, call {@link OH_ArkUI_LetterSpacingStyle_SetLetterSpacing} to set the specific
+ * letter spacing value. For details about the value selection principle, see the description of this API.<br>
+ * Call {@link OH_ArkUI_LetterSpacingStyle_GetLetterSpacing} to obtain the letter spacing value.<br>
+ * When the object is no longer used, call {@link OH_ArkUI_LetterSpacingStyle_Destroy} to destroy it.
+ * If creation fails, do not call the preceding APIs.
  *
  * @since 24
  */
@@ -1254,11 +1296,13 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLetterSpacingStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LetterSpacingStyle* letterSpacingStyle);
  
 /**
- * @brief Defines a line height style.<br>        {@link OH_ArkUI_LineHeightStyle_Create} can be used to create a line
- * height style object.<br>        {@link OH_ArkUI_LineHeightStyle_Destroy} can be used to destroy the line height
- * style object.<br>        After the object is created, {@link OH_ArkUI_LineHeightStyle_SetLineHeight} can be used to
- * set fixed line height.<br>        Since API version 26.0.0, {@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple}
- * can be used to set the line height multiplier after the object is created.
+ * @brief Defines a line height style.<br>
+ * {@link OH_ArkUI_LineHeightStyle_Create} can be used to create a line height style object.<br>
+ * {@link OH_ArkUI_LineHeightStyle_Destroy} can be used to destroy the line height style object.<br>
+ * After the object is created, {@link OH_ArkUI_LineHeightStyle_SetLineHeight} can be used to set fixed line
+ * height.<br>
+ * Since API version 26.0.0, {@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple} can be used to set the line
+ * height multiplier after the object is created.
  *
  * @since 24
  */
@@ -1293,10 +1337,12 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineHeightStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief Defines a URL style.<br>
- * {@link OH_ArkUI_UrlStyle_Create} can be used to create a URL style object.
- * {@link OH_ArkUI_UrlStyle_Destroy} can be used to destroy the URL style object.
- * After the object is created, {@link OH_ArkUI_UrlStyle_SetUrl} can be used to set a URL.
+ * @brief Defines a URL style used to set a tappable URL effect for text in a styled string. It applies to
+ * scenarios where interactive links need to be embedded in text content, improving text interactivity and
+ * user experience.<br>
+ * Call {@link OH_ArkUI_UrlStyle_Create} to create a URL style object.<br>
+ * Call {@link OH_ArkUI_UrlStyle_Destroy} to destroy the URL style object.<br>
+ * After creating the URL style object, call {@link OH_ArkUI_UrlStyle_SetUrl} to set the URL.
  *
  * @since 24
  */
@@ -1330,11 +1376,15 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetUrlStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_UrlStyle* urlStyle);
  
 /**
- * @brief Defines a background color style.<br>        {@link OH_ArkUI_BackgroundColorStyle_Create} can be used to
- * create a background color style object.<br>        {@link OH_ArkUI_BackgroundColorStyle_Destroy} can be used to
- * destroy the background color style object.<br>        After the object is created,
- * {@link OH_ArkUI_BackgroundColorStyle_SetColor} and {@link OH_ArkUI_BackgroundColorStyle_SetRadius} can be used to
- * set the background color and rounded corners.
+ * @brief Defines a background color style, which supports customizing the background color and corner radius.
+ * It is used to set a background highlight effect for a styled string, for example, search result highlighting,
+ * key text marking, and label-style text display, to improve the visual hierarchy and recognizability of text.<br>
+ * Call {@link OH_ArkUI_BackgroundColorStyle_Create} to create a background color style object.<br>
+ * After the object is created, call {@link OH_ArkUI_BackgroundColorStyle_SetColor} and
+ * {@link OH_ArkUI_BackgroundColorStyle_SetRadius} to set the background color and corner radius.<br>
+ * Call {@link OH_ArkUI_BackgroundColorStyle_GetColor} and {@link OH_ArkUI_BackgroundColorStyle_GetRadius}
+ * to obtain the background color and corner radius.<br>
+ * After the object is used, call {@link OH_ArkUI_BackgroundColorStyle_Destroy} to destroy it.
  *
  * @since 24
  */
@@ -1369,10 +1419,14 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBackgroundColorStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_BackgroundColorStyle* backgroundColorStyle);
  
 /**
- * @brief Defines a user data span style.<br>        {@link OH_ArkUI_UserDataSpan_Create} can be used to create a user
- * data span style object.<br>        {@link OH_ArkUI_UserDataSpan_Destroy} can be used to destroy the user data span
- * style object.<br>        After the object is created, {@link OH_ArkUI_UserDataSpan_SetUserData} can be used to bind
- * user data.
+ * @brief Defines a user data span style, which is used to attach custom user data to a styled string in rich text
+ * for data identification and association during text interaction or custom rendering. For example, it can be used
+ * in scenarios such as attaching a message ID to a message text span in an instant messaging application, or
+ * attaching a custom-style tag to a text fragment in a rich text editor.<br>
+ * Call {@link OH_ArkUI_UserDataSpan_Create} to create a user data span style object.<br>
+ * After use, call {@link OH_ArkUI_UserDataSpan_Destroy} to destroy the user data span style object.<br>
+ * After successful creation, call {@link OH_ArkUI_UserDataSpan_SetUserData} to set the user data.<br>
+ * Call {@link OH_ArkUI_UserDataSpan_GetUserData} to obtain the user data.
  *
  * @since 24
  */
@@ -1463,12 +1517,19 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetImageAttachment(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ImageAttachment* imageAttachment);
  
 /**
- * @brief Defines the custom drawing information for paragraph indentation.<br>
- * {@link OH_ArkUI_LeadingMarginSpanDrawInfo_Create} can be used to create a custom drawing information object for
- * paragraph indentation.<br>        {@link OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy} can be used to destroy the
- * custom drawing information object for paragraph indentation.<br>        This object is used to provide the drawing
- * context information of the current line in the callback function registered by
- * {@link OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback}.
+ * @brief Defines the custom drawing information for leading margin indentation, including the drawing context
+ * information of the current line (such as the drawing area and offset). You can implement custom leading margin
+ * indentation drawing logic in the callback function based on this information. It is applicable to scenarios
+ * such as adding custom icons or decorative elements to the first line of a paragraph, or implementing special
+ * indentation styles, making paragraph layout more flexible and rich. For example, draw a bookmark icon for the
+ * first line of a paragraph in a reader application, or draw a custom indentation marker for a specific paragraph
+ * in a document editor.<br>
+ * Call {@link OH_ArkUI_LeadingMarginSpanDrawInfo_Create} to create the corresponding custom drawing information
+ * object for leading margin indentation.<br>
+ * Call {@link OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy} to destroy the object.<br>
+ * This object is used in the callback function registered by
+ * {@link OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback} to provide the drawing context of the
+ * current line and the custom drawing information object.
  *
  * @since 24
  */
@@ -2512,12 +2573,18 @@ ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_GetLineHeightMultiple(const OH_ArkUI_Li
     float* lineHeightMultiple);
  
 /**
- * @brief Defines a line spacing style.<br>        {@link OH_ArkUI_LineSpacingStyle_Create} can be used to create a
- * line spacing style object.<br>        {@link OH_ArkUI_LineSpacingStyle_Destroy} can be used to destroy the line
- * spacing style object.<br>        After the object is created, {@link OH_ArkUI_LineSpacingStyle_SetLineSpacing} can
- * be used to set a line spacing value.<br>        After the object is created,
- * {@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines} can be used to set whether the line spacing takes effect only
- * between lines.
+ * @brief Defines a line spacing style, which is used to set the spacing between text lines to improve text
+ * readability and visual effect. It applies to scenarios that require fine-grained control over the line
+ * spacing of multi-line text layout, such as e-book readers, news and information applications, and editors
+ * for long documents.<br>
+ * Call {@link OH_ArkUI_LineSpacingStyle_Create} to create a line spacing style object. The default line
+ * spacing value is <b>0</b>, and whether the line spacing takes effect only between lines defaults to
+ * <b>false</b>.<br>
+ * Call {@link OH_ArkUI_LineSpacingStyle_Destroy} to destroy the line spacing style object.<br>
+ * After the object is created, call {@link OH_ArkUI_LineSpacingStyle_SetLineSpacing} to set the line spacing
+ * value. For details about the value range and constraints, see the description of this API.<br>
+ * Call {@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines} to set whether the line spacing takes effect
+ * only between lines. For details about the value principle, see the description of this API.
  *
  * @since 26.0.0
  */
