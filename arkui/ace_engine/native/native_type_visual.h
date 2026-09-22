@@ -877,7 +877,14 @@ typedef struct {
 } ArkUI_PointF;
 
 /**
- * @brief Defines shadow options.
+ * @brief Defines shadow options for setting the shadow effect of a component, including attributes such as the
+ * shadow color, offset, blur radius, shadow type, and whether to fill.<br>
+ * Call {@link OH_ArkUI_ShadowOptions_Create} to create the corresponding shadow option object.<br>
+ * Call {@link OH_ArkUI_ShadowOptions_Destroy} to destroy the shadow option object.<br>
+ * After the object is created, call the <b>OH_ArkUI_ShadowOptions_SetXXX</b> series APIs to set the specific
+ * styles to take effect, for example, call {@link OH_ArkUI_ShadowOptions_SetRadius} to set the shadow blur
+ * radius. If the object fails to be created (a null pointer is returned), calling the <b>SetXXX</b> series APIs
+ * will not take effect.
  *
  * @since 24
  */
