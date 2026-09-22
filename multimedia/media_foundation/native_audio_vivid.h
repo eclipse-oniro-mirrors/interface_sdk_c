@@ -74,6 +74,17 @@ typedef enum OH_AudioVividSignalFormat {
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
+     * @brief Audio VIVID encoding HOA type ID.
+     * In this encoding mode, the audio channel type needs to be configured. The supported audio channel types are
+     * as follows:
+     * {@link CH_LAYOUT_AMB_ORDER1_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER1_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER1_FUMA},
+     * {@link CH_LAYOUT_AMB_ORDER2_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER2_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER2_FUMA}:
+     * {@link OH_AudioCodec_Configure} takes effect in the configuration phase.
+     * If an unsupported audio channel type is configured, {@link AV_ERR_INVALID_VAL} is returned.
+     * @since 26.2.0
+     */
+    OH_AUDIO_VIVID_SIGNAL_FORMAT_HOA = 3,
+    /**
      * @brief Hybrid mode, including a bed and an object. The bed supports the following channel layouts:
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1,
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4,
