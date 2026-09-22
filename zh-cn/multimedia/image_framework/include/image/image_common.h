@@ -407,25 +407,26 @@ typedef enum {
 } Image_MetadataType;
 
 /**
- * @brief Type of allocator used to allocate memory of a PixelMap.
+ * @brief Pixelmap的内存分配类型。
  *
  * @since 20
  */
 typedef enum {
     /**
-     * The system determines which memory to use to create the PixelMap.
+     * 系统决定内存分配类型。系统会根据图像类型、图像大小、平台能力等选择内存类型。
      *
      * @since 20
      */
     IMAGE_ALLOCATOR_MODE_AUTO = 0,
     /**
-     * Use DMA buffer to create the PixelMap.
+     * 使用DMA（Direct Memory Access，直接内存访问）的内存类型，适用于对解码及渲染性能有较高要求的场景。
+     * 根据设备硬件的差异可能会在每行像素的末尾产生用于内存对齐的空白填充字节。
      *
      * @since 20
      */
     IMAGE_ALLOCATOR_MODE_DMA = 1,
     /**
-     * Use share memory to create the PixelMap.
+     * 使用共享内存（Shared Memory）的内存类型。
      *
      * @since 20
      */

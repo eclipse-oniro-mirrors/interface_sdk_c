@@ -719,7 +719,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 
 /**
  * @brief 通过像素数据和图像属性创建Pixelmap，可以通过allocator指定内存类型。
- * <br>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。
+ * <br>此接口不支持创建以下像素格式的Pixelmap：PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010。
  * <br>在处理此接口返回的像素图时，需要考虑行跨距的影响。行跨距即图像每行占用的真实内存大小，可能因内存对齐而大于图像宽度乘以单位像素字节数，
  * 请参考{@link OH_PixelmapInitializationOptions_GetRowStride}获取详细说明。
  *
@@ -729,6 +729,14 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
  * @param dataLength 像素数组的长度。单位：字节（Byte）。
  * @param options 创建图像的初始化属性。
  * @param allocator 决定Pixelmap内存分配的类型。
+ *     <br>1. IMAGE_ALLOCATOR_MODE_AUTO：不支持该内存类型的格式有PIXEL_FORMAT_UNKNOWN、
+ *     PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010。PIXEL_FORMAT_RGBA_1010102默认申请DMA内存。
+ *     其他格式（PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_BGRA_8888、
+ *     PIXEL_FORMAT_RGBA_F16和PIXEL_FORMAT_ALPHA_F16）尺寸大于512*512像素默认申请DMA内存，否则申请共享内存。
+ *     <br>2. IMAGE_ALLOCATOR_MODE_DMA：PIXEL_FORMAT_RGBA_1010102、PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_8888、
+ *     PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_F16和PIXEL_FORMAT_ALPHA_F16支持DMA内存类型，其余格式不支持。
+ *     <br>3. IMAGE_ALLOCATOR_MODE_SHARED_MEMORY：PIXEL_FORMAT_UNKNOWN、PIXEL_FORMAT_RGBA_1010102、
+ *     PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010不支持共享内存，其余格式支持。
  * @param pixelmap 被创建的OH_PixelmapNative对象指针。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
@@ -1241,12 +1249,20 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_Initialization
 
 /**
  * @brief 根据入参options创建空的Pixelmap，Pixelmap使用的内存类型可以通过allocator指定。
- * <br>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。
  * <br>在处理此接口返回的像素图时，需要考虑行跨距的影响。行跨距即图像每行占用的真实内存大小，可能因内存对齐而大于图像宽度乘以单位像素字节数，
  * 请参考{@link OH_PixelmapInitializationOptions_GetRowStride}获取详细说明。
  *
  * @param options 创建图像的初始化属性。
  * @param allocator 决定pixelmap内存分配的类型。
+ *     <br>1. IMAGE_ALLOCATOR_MODE_AUTO：不支持该内存类型的格式有PIXEL_FORMAT_UNKNOWN。
+ *     PIXEL_FORMAT_RGBA_1010102、PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010默认申请DMA内存。
+ *     其他格式（PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_BGRA_8888、
+ *     PIXEL_FORMAT_RGBA_F16和PIXEL_FORMAT_ALPHA_F16）尺寸大于512*512像素默认申请DMA内存，否则申请共享内存。
+ *     <br>2. IMAGE_ALLOCATOR_MODE_DMA：PIXEL_FORMAT_RGBA_1010102、PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_8888、
+ *     PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_ALPHA_F16、
+ *     PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010支持DMA内存类型，其余格式不支持。
+ *     <br>3. IMAGE_ALLOCATOR_MODE_SHARED_MEMORY：PIXEL_FORMAT_UNKNOWN、PIXEL_FORMAT_RGBA_1010102、
+ *     PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010不支持共享内存，其余格式支持。
  * @param pixelmap 被创建的OH_PixelmapNative对象指针。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
