@@ -204,12 +204,12 @@
       "api_type": "system"
     },
     {
-      "first_introduced": "26.1.0",
+      "first_introduced": "26.0.1",
       "name": "OH_PictureNative_ConvertPictureNativeToNapi",
       "api_type": "system"
     },
     {
-      "first_introduced": "26.1.0",
+      "first_introduced": "26.0.1",
       "name": "OH_PictureNative_ConvertPictureNativeFromNapi",
       "api_type": "system"
     }
