@@ -2431,5 +2431,37 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_Drawing_RecordCmdUtilsGetWidth"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_FontTextToGlyphsWithFallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_FontMeasureTextWithFallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_FontMeasureTextWithBrushOrPenWithFallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_FontTypefaceFallbackInfoDestroy"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_TextBlobCreateFromTextWithFallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_TextBlobCreateFromPosTextWithFallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_TextBlobCreateFromStringWithFallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Drawing_TextBlobsArrayDestroy"
     }
 ]
