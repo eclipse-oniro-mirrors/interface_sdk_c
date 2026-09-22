@@ -72,6 +72,15 @@ typedef enum OH_AudioVividSignalFormat {
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
+     * @brief audio vivid编码HOA类型标识.
+     * 该编码模式编码要配置声道类型，支持的声道类型如下：
+     * {@link CH_LAYOUT_AMB_ORDER1_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER1_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER1_FUMA},
+     * {@link CH_LAYOUT_AMB_ORDER2_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER2_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER2_FUMA}；
+     * 配置阶段生效 {@link OH_AudioCodec_Configure}，如果配置不支持的声道类型，则返回{@link AV_ERR_INVALID_VAL}.
+     * @since 26.2.0
+     */
+    OH_AUDIO_VIVID_SIGNAL_FORMAT_HOA = 3,
+    /**
      * @brief Audio Vivid信号格式为混合模式，包含声床（Bed）和对象（object）。声床的声道布局支持{@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1、
