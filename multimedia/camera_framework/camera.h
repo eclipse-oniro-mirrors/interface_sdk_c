@@ -1015,7 +1015,14 @@ typedef enum Camera_HostDeviceType {
     /**
      * Indicates tablet camera.
      */
-    HOST_DEVICE_TYPE_TABLET = 0x11
+    HOST_DEVICE_TYPE_TABLET = 0x11,
+    
+    /**
+     * @brief Indicates glasses camera.
+     * 
+     * @since 26.0.1
+     */
+    HOST_DEVICE_TYPE_GLASSES = 0xA31
 } Camera_HostDeviceType;
 
 /**
