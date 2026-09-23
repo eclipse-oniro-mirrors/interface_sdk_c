@@ -46,6 +46,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+/**
+ * @brief 提供对OH_NativeBuffer的访问功能。
+ * @since 9
+ */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
