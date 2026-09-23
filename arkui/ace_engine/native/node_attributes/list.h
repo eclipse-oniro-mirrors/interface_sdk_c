@@ -25,7 +25,7 @@
 /**
  * @file list.h
  *
- * @brief Provides shared list-related type and function definitions for <b>NativeNode</b> APIs.
+ * @brief Defines enumerations and APIs related to **List**.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the **ChildrenMainSize** information of the **List** component.
+ * @brief Defines the size of the main axis of a child component of the **List** component.
  *
  * @since 12
  */
@@ -132,15 +132,17 @@ typedef enum {
 } ArkUI_ListItemGroupArea;
 
 /**
- * @brief Creates a **ListChildrenMainSize** instance.
+ * @brief Creates a **ListChildrenMainSize** instance. After use, call
+ * {@link OH_ArkUI_ListChildrenMainSizeOption_Dispose} to release resources.
  *
- * @return Pointer to the created **ListChildrenMainSize** instance.
+ * @return Pointer to the **ListChildrenMainSize** instance.
  * @since 12
  */
 ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
 
 /**
- * @brief Disposes of a **ListChildrenMainSize** instance.
+ * @brief Disposes of a **ListChildrenMainSize** instance created by {@link OH_ArkUI_ListChildrenMainSizeOption_Create}.
+ * The instance cannot be accessed after disposal.
  *
  * @param option Pointer to the **ListChildrenMainSize** instance to dispose of.
  * @since 12
@@ -148,23 +150,23 @@ ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
 void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option);
 
 /**
- * @brief Sets the default size of the list item in the {@link List} component along the main axis. The vertical axis
- * indicates the height, and the horizontal axis indicates the width.
+ * @brief Sets the default size of the list item in the {@link List} component along the main axis. The vertical
+ * direction indicates the height, and the horizontal direction indicates the width.
  *
- * @param option Pointer to the **ListChildrenMainSize** instance.
- * @param defaultMainSize Default size of the list item along the main axis, in vp.
+ * @param option Pointer to the **ListChildrenMainSize** instance. **ARKUI_ERROR_CODE_PARAM_INVALID** is returned when
+ *     the parameter is a null pointer.
+ * @param defaultMainSize Default size of the list item along the main axis, in vp. The value must be greater than or
+ *     equal to 0.
  * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     </ul>
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(
     ArkUI_ListChildrenMainSize* option, float defaultMainSize);
 /**
  * @brief Obtains the default size of the list item in the {@link List} component along the main axis. The vertical
- * axis indicates the height, and the horizontal axis indicates the width.
+ * direction indicates the height, and the horizontal direction indicates the width.
  *
  * @param option Pointer to the **ListChildrenMainSize** instance.
  * @return Default size of the list item along the main axis. The default value is **0**. The unit is {@link vp}. If **
@@ -174,54 +176,61 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(
 float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option);
 
 /**
- * @brief Adjusts the capacity of the children item size array in the {@link List} component along the main axis.
+ * @brief Adjusts the length of the main axis size array of child items in the {@link List} component. When the array
+ * is expanded, the initial value of new elements is **-1**.
  *
- * @param option Pointer to the **ListChildrenMainSize** instance.
- * @param totalSize Capacity of the target array.
+ * @param option Pointer to the **ListChildrenMainSize** instance. No operation is performed when the parameter is a
+ *     null pointer.
+ * @param totalSize Target array length. The value range is greater than 0. No operation is performed when a value less
+ *     than or equal to 0 is passed in.
  * @since 12
  */
 void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize);
 
 /**
- * @brief Adjusts the children item size array in the {@link List} component along the main axis.
+ * @brief Deletes **deleteCount** elements from the main axis size array of child items in the {@link List} component
+ * starting from the specified index position, and inserts **addCount** elements with an initial value of **-1** at
+ * that position. If the value of **deleteCount** exceeds the number of remaining elements, deletion proceeds to the
+ * end of the array.
  *
- * @param option Pointer to the **ListChildrenMainSize** instance.
- * @param index Start index.
- * @param deleteCount Number of elements to be deleted from the start position.
- * @param addCount Number of elements to be added from the start position.
+ * @param option Pointer to the **ListChildrenMainSize** instance. **ARKUI_ERROR_CODE_PARAM_INVALID** is returned when
+ *     the parameter is a null pointer.
+ * @param index Start index of the operation. The value ranges from 0 to the current array length minus 1.
+ * @param deleteCount Number of elements to delete starting from the start position. The value is greater than or equal
+ *     to 0. If the number exceeds the remaining elements, deletion proceeds to the end of the array.
+ * @param addCount Number of elements to add starting from the start position. The value is greater than or equal to 0.
+ *     The initial value of new elements is **-1**.
  * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     </ul>
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(
     ArkUI_ListChildrenMainSize* option, int32_t index, int32_t deleteCount, int32_t addCount);
 
 /**
- * @brief Updates the size at the specified index in the children item size array of the {@link List} component along
- * the main axis. The vertical axis indicates the height, and the horizontal axis indicates the width.
+ * @brief Updates the size at the specified index in the child item size array of the {@link List} component along the
+ * main axis. The vertical direction indicates the height, and the horizontal direction indicates the width.
  *
- * @param option Pointer to the **ListChildrenMainSize** instance.
- * @param index Array index of the target element.
- * @param mainSize Size of the main axis, in vp.
+ * @param option Pointer to the **ListChildrenMainSize** instance. **ARKUI_ERROR_CODE_PARAM_INVALID** is returned when
+ *     the parameter is a null pointer.
+ * @param index Array index of the target element. The value ranges from 0 to the current array length minus 1.
+ * @param mainSize Main axis size value to set, in vp. The value must be greater than or equal to 0.
  * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     </ul>
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(
     ArkUI_ListChildrenMainSize* option, int32_t index, float mainSize);
 /**
- * @brief Obtains the size at the specified index in the children item size array of the {@link List} component along
- * the main axis. The vertical axis indicates the height, and the horizontal axis indicates the width.
+ * @brief Obtains the size at the specified index in the child item size array of the {@link List} component along the
+ * main axis. The vertical direction indicates the height, and the horizontal direction indicates the width.
  *
  * @param option Pointer to the **ListChildrenMainSize** instance.
- * @param index Array index of the target element.
- * @return Value at the specified index. If a parameter error occurs, **-1** is returned.
+ * @param index Array index of the target element. The value ranges from 0 to the current array length minus 1.
+ * @return Main axis size value at the specified index in the array, in vp. **-1** is returned if **option** is a null
+ *     pointer or **index** is out of the array range.
  * @since 12
  */
 float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);
