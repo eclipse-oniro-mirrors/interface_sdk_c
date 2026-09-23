@@ -2057,7 +2057,7 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  *
  * @param hotkey [in] hotkey 快捷键对象的实例。
  * @param preKeys [in] preKeys 修饰键列表。
- * @param size [in] 修饰键个数，取值范围[1, 2]。
+ * @param size [in] 修饰键个数，取值范围[1, 4]。
  * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);

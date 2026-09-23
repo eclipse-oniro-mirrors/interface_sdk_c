@@ -2372,7 +2372,7 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  *
  * @param hotkey [in] Hotkey object.
  * @param preKeys [in] List of modifier keys.
- * @param size [in] Number of modifier keys. The value ranges from [1, 2].
+ * @param size [in] Number of modifier keys. The value ranges from 1 to 4.
  * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
@@ -2484,7 +2484,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * <br> > **NOTE**
  * >
  * > When subscribing to hotkey events, pay attention to the following restrictions on **preKeys** and **finalKey**:
- * > 1. **preKeys**: Modifier key set (including Ctrl, Shift, and Alt) containing [1, 4] keys. There is no requirement
+ * > 1. **preKeys**: Modifier key set (including Ctrl, Shift, and Alt) containing 1-4 keys. There is no requirement
  * on the key order. For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.
  * > 2. **finalKey**: Modified key, which can be any key except the modifier keys and Meta key. For details about the
  * keys, see {@link oh_key_code.h#Input_KeyCode}. For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.
@@ -2729,7 +2729,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
 /**
  * @brief Queries the maximum number of touch points supported by the device.
  *
- * @param count [out] Maximum number of touch points supported by the device. The value ranges from [0, 10], and -1
+ * @param count [out] Maximum number of touch points supported by the device. The value ranges from 0 to 10, and -1
  *     indicates unknown.
  * @return Return value of the **OH_Input_QueryMaxTouchPoints** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
@@ -2815,7 +2815,7 @@ Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_Po
  * @param cursorInfo [in] Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo} to
  *     query the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query
  *     the current mouse pointer information.
- * @param sizeLevel [in] Cursor size level of the mouse cursor information. The value ranges from [1, 7], and a larger
+ * @param sizeLevel [in] Cursor size level of the mouse cursor information. The value ranges from 1 to 7, and a larger
  *     value indicates a larger cursor. For an app custom cursor
  *     {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap size prevails.
  * @return Return value of the OH_Input_CursorInfo_GetSizeLevel function:
