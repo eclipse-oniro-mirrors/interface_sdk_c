@@ -567,6 +567,15 @@ static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.ev
 static const char* const COMMON_EVENT_TABLET_MODE_CHANGED = "usual.event.TABLET_MODE_CHANGED";
 
 /**
+ * @brief 表示应用的技能信息已经发生变更的公共事件.
+ *
+ * 要订阅此事件，您的应用必须具备ohos.permission.MANAGE_SKILL权限.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_SKILL_CHANGED = "usual.event.SKILL_CHANGED";
+
+/**
  * @brief 表示可感知开合盖子的设备，其开合盖状态变化的公共事件。
  *
  * @since 23
