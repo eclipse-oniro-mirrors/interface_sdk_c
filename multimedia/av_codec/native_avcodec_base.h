@@ -2051,10 +2051,19 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_PTS_MODE;
 extern const char *OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT;
 
 /**
- * @brief Key for enabling sample format conversion in the audio encoder.
- * Optional. The value type is int32_t (0 or 1). 1 is enabled, 0 is disabled. Defaults to 0.
+ * @brief Defines the pointer to the key for setting the suffix of the video codec DMABUF name. The value is a string.
  *
+ * The suffix uses a colon (:) as the separator and is appended to the internal DMABUF name of the codec. 
+ * The final DMABUF name format is: {System custom string}:{Suffix}.
+ * Note: The prefix is the current system custom string, which may vary with the system version.
  *
+ * Constraints on the suffix value:
+ * 1. Only printable ASCII characters are allowed. If the suffix contains any non-ASCII characters, spaces, line breaks,
+ * tab characters, or other invisible (control) characters, {@link AV_ERR_INVALID_VAL} will be returned.
+ * 2. The suffix must contain at least one non-digit character. Otherwise, {@link AV_ERR_INVALID_VAL} will be returned.
+ *
+ * This key is optional. If it is not set, the DMABUF name remains unchanged.
+ * You can use {@link OH_VideoDecoder_Configure} or {@link OH_VIDEO_ENCODER_Configure} to configure it.
  * @since 26.0.1
  */
 extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
