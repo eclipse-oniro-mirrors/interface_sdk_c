@@ -2051,6 +2051,15 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_PTS_MODE;
 extern const char *OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT;
 
 /**
+ * @brief Key for enabling sample format conversion in the audio encoder.
+ * Optional. The value type is int32_t (0 or 1). 1 is enabled, 0 is disabled. Defaults to 0.
+ *
+ *
+ * @since 26.0.1
+ */
+extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
+
+/**
  * @brief Enumerates the media types.
  * 
  * @since 9
