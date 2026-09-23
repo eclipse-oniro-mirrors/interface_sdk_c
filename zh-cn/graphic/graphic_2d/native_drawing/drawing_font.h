@@ -771,8 +771,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
  *     <br>如果font、text或path中的任何一个为空指针，或者byteLength为0，则返回OH_DRAWING_ERROR_INCORRECT_PARAMETER。
  * @since 26.0.0
  */
-OH_Drawing_ErrorCode OH_Drawing_FontGetTextPathWithFallback(const OH_Drawing_Font *font, const void *text,
-    size_t byteLength, OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path *path);
+OH_Drawing_ErrorCode OH_Drawing_FontGetTextPathWithFallback(const OH_Drawing_Font* font, const void* text,
+    size_t byteLength, OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path);
 
 /**
  * @brief 用于创建一个字体特征容器对象。
