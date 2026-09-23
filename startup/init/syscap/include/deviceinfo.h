@@ -16,7 +16,7 @@
  * @addtogroup DeviceInfo
  * @{
  *
- * @brief Provides APIs for querying terminal device information.
+ * @brief Provides APIs for querying device information.
  * This module provides the capability of obtaining basic device information, such as the device type,
  * manufacturer, brand, model, and version. It can be used to adapt device features, collect device
  * information, or manage devices. These APIs obtain device information by reading system properties.
