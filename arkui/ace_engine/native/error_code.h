@@ -299,6 +299,26 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
+     * @brief The last request was not finished.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
+    /**
+     * @brief The node corresponding to uniqueId is not found.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
+    /**
+     * @brief result too large.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
+    /**
+     * @brief resource exhausted.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
+    /**
      * The current node is not focusable. For details about the error code, see {@link 150001 Component Not Focusable}.
      *
      * @since 15

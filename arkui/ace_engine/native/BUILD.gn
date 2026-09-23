@@ -46,7 +46,9 @@ if (!is_arkui_x) {
       "native_type_visual.h",
       "node_attributes",
       "styled_string.h",
+      "ui_info_collection.h",
       "ui_input_event.h",
+      "ui_json_wrapper.h",
     ]
   }
 
@@ -100,7 +102,9 @@ if (!is_arkui_x) {
       "arkui/node_attributes/text_input.h",
       "arkui/node_attributes/xcomponent.h",
       "arkui/styled_string.h",
+      "arkui/ui_info_collection.h",
       "arkui/ui_input_event.h",
+      "arkui/ui_json_wrapper.h",
       "ace/xcomponent/native_interface_xcomponent.h",
       "ace/xcomponent/native_xcomponent_key_event.h",
     ]
