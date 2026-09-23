@@ -2053,7 +2053,7 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT;
 /**
  * @brief Defines the pointer to the key for setting the suffix of the video codec DMABUF name. The value is a string.
  *
- * The suffix uses a colon (:) as the separator and is appended to the internal DMABUF name of the codec. 
+ * The suffix uses a colon (:) as the separator and is appended to the internal DMABUF name of the codec.
  * The final DMABUF name format is: {System custom string}:{Suffix}.
  * Note: The prefix is the current system custom string, which may vary with the system version.
  *
