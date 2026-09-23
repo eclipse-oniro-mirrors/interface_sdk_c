@@ -2064,6 +2064,7 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT;
  *
  * This key is optional. If it is not set, the DMABUF name remains unchanged.
  * You can use {@link OH_VideoDecoder_Configure} or {@link OH_VIDEO_ENCODER_Configure} to configure it.
+ *
  * @since 26.0.1
  */
 extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
