@@ -1728,6 +1728,14 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
 
 /**
+ * @brief 
+ *
+ *
+ * @since 26.0.1
+ */
+extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
+
+/**
  * @brief 媒体类型。
  *
  * @since 9
