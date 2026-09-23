@@ -7357,5 +7357,9 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_ArkUI_NativeModule_FinishAnimationGroup"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_SetRuntimeCheckMode"
     }
 ]
