@@ -1728,11 +1728,20 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
 
 /**
- * @brief 
- *
- *
- * @since 26.0.1
- */
+* @brief 设置视频编解码器DMABUF名称后缀的键，值类型为字符串。
+*
+* 该后缀使用':'作为分隔符，拼接在编解码器内部DMABUF名称之后。最终的DMABUF名称格式为：{系统自定义字符串}:{后缀}。
+* 注意：前缀为当前系统自定义字符串，可能会随系统版本变化。
+*
+* 后缀值的约束：
+* 1. 仅允许ASCII可打印字符，若后缀包含任何非ASCII字符、空格、换行、制表符或其他不可见（控制）字符。将返回 {@link AV_ERR_INVALID_VAL}。
+* 2. 后缀必须至少包含一个非数字字符，否则将返回 {@link AV_ERR_INVALID_VAL}。
+*
+* 该键是可选项，未设置时DMABUF名称保持不变。
+* 可通过{@link OH_VideoDecoder_Configure}或{@link OH_VideoEncoder_Configure}进行配置。
+*
+* @since 26.0.1
+*/
 extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
 
 /**
