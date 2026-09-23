@@ -16,7 +16,7 @@
  * @addtogroup AVSinkBase
  * @{
  *
- * @brief AVSinkBase模块提供低功耗音频输出和低功耗视频输出的变量、属性和函数。
+ * @brief AVSinkBase模块为LowPowerAudioSink和LowPowerVideoSink提供变量、属性和函数。
  *
  * @since 20
  */
@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief LowPowerAVSink输入数据的结构体。应用在收到DataNeeded回调后需要将数据打包装进OH_AVSamplesBuffer实例中送给对应的LowPowerAVSink。
+ * @brief LowPowerAVSink输入数据的结构体。应用在收到DataNeeded回调后需要将数据打包装进OH_AVSamplesBuffer实例中送给对应的lowpower_avsink。
  * 
  * @since 20
  */

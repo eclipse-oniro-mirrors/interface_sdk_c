@@ -999,48 +999,48 @@ int OH_HiAppEvent_ReportFrameworkMemAnomaly(
  *
  * You are advised to select system event types based on their respective usage scenarios.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum {
     /**
      * App crash event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_APP_CRASH = 1,
 
     /**
      * App freeze event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_APP_FREEZE = 2,
 
     /**
      * Resource overlimit event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_RESOURCE_OVERLIMIT = 3,
 
     /**
      * Address sanitizer event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_ADDRESS_SANITIZER = 4,
 
     /**
      * App hicollie event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_APP_HICOLLIE = 5,
 
     /**
      * CPU usage high event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CPU_USAGE_HIGH = 6
 } OH_HiAppEvent_SysEvent;
@@ -1049,31 +1049,31 @@ typedef enum {
  * @brief The OH_HiAppEvent_ExternalLog structure is used to describe external log information, including
  * the file path, the generation timestamp, file size, and type of system event.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_HiAppEvent_ExternalLog {
     /**
      * The log file path.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char* filePath;
     /**
      * The timestamp of the file generation in ms.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     long long generationTs;
     /**
      * The file size in kb.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     long fileSize;
     /**
      * The system event type.
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_HiAppEvent_SysEvent event;
 } OH_HiAppEvent_ExternalLog;
@@ -1084,7 +1084,7 @@ typedef struct OH_HiAppEvent_ExternalLog {
  *
  * @param externalLogArr The array of external log info.
  * @param arrLen The length of externalLogArr.
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef void (*OH_HiAppEvent_ExternalLogCapacityReachedCallback)(
     OH_HiAppEvent_ExternalLog* externalLogArr, uint32_t arrLen);
@@ -1096,7 +1096,7 @@ typedef void (*OH_HiAppEvent_ExternalLogCapacityReachedCallback)(
  * @return set callback result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
  *         {@link HIAPPEVENT_OPERATE_FAILED} The operation failed.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int OH_HiAppEvent_RegExternalLogCapacityReachedCallback(OH_HiAppEvent_ExternalLogCapacityReachedCallback callback);
 #ifdef __cplusplus

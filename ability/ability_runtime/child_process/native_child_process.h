@@ -572,7 +572,7 @@ bool OH_Ability_IsNativeChildProcessSupported();
  *      <li>{@link NCP_ERR_INTERNAL} if an internal error occurs, such as connect system service failed.</li>
  *      </ul>
  * @release OH_AbilityRuntime_ReleaseChildProcessInfos {infos}
- * @since 26.1.0
+ * @since 26.0.1
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_AcquireChildProcessInfos(
     OH_AbilityRuntime_ChildProcessInfosHandle* infos, uint32_t* count);

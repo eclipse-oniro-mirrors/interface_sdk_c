@@ -20,7 +20,7 @@
  * @brief Provides the C interface for the USB Manager module, enabling USB device
  * enumeration, connection, permission management, and pipe operations.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 /**
@@ -32,7 +32,7 @@
  * @library libohusb_manager.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.USB.USBManager
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 #ifndef OHUSB_MANAGER_H
@@ -48,55 +48,55 @@ extern "C" {
 /**
  * @brief 枚举USB管理器的错误码。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum OH_UsbManager_ErrorCode {
     /**
      * @brief 操作成功。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_SUCCESS = 0,
 
     /**
      * @brief 权限被拒绝。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_PERMISSION_DENIED = 14400001,
 
     /**
      * @brief 服务异常。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_SERVICE_EXCEPTION = 14400004,
 
     /**
      * @brief 不存在该设备（可能已被断开连接）。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_NO_DEVICE = 14400008,
 
     /**
      * @brief 内存不足。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_NO_MEMORY = 14400009,
 
     /**
      * @brief 传输I/O错误。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_IO_ERROR = 14400012,
 
     /**
      * @brief 无效参数。对不可为空的参数传入了空指针。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_ERROR_INVALID_PARAMETER = 14400014
 } OH_UsbManager_ErrorCode;
@@ -104,20 +104,20 @@ typedef enum OH_UsbManager_ErrorCode {
 /**
  * @brief 枚举USB请求方向。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum OH_UsbManager_RequestDirection {
     /**
      * @brief 用于从主机向设备写入数据的请求。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_REQUEST_DIR_TO_DEVICE = 0,
 
     /**
      * @brief 用于从设备向主机读取数据的请求。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_USBMANAGER_REQUEST_DIR_FROM_DEVICE = 0x80
 } OH_UsbManager_RequestDirection;
@@ -125,20 +125,20 @@ typedef enum OH_UsbManager_RequestDirection {
 /**
  * @brief 定义用于发送或接收数据的USB端点。端点从{@link OH_UsbManager_UsbInterface}获取。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbEndpoint {
     /**
      * @brief 端点地址。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t address;
 
     /**
      * @brief 端点属性。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t attributes;
 
@@ -146,42 +146,42 @@ typedef struct OH_UsbManager_UsbEndpoint {
      * @brief 端点数据传输间隔。对于中断端点，单位为毫秒。对于等时端点，
      * <br>单位取决于设备速度。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t interval;
 
     /**
      * @brief 端点上数据包的最大大小。单位：字节。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t maxPacketSize;
 
     /**
      * @brief 端点方向。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_RequestDirection direction;
 
     /**
      * @brief 端点号。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t number;
 
     /**
      * @brief 端点类型。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t type;
 
     /**
      * @brief 端点所属接口的唯一标识。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t interfaceId;
 } OH_UsbManager_UsbEndpoint;
@@ -190,34 +190,34 @@ typedef struct OH_UsbManager_UsbEndpoint {
  * @brief 定义USB接口。一个{@link OH_UsbManager_UsbConfig}可以包含多个
  * <br>OH_UsbManager_UsbInterface实例，每个实例提供特定功能。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbInterface {
     /**
      * @brief USB接口的唯一标识。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t id;
 
     /**
      * @brief 接口协议。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t protocol;
 
     /**
      * @brief 接口类。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t clazz;
 
     /**
      * @brief 接口子类。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t subClass;
 
@@ -225,28 +225,28 @@ typedef struct OH_UsbManager_UsbInterface {
      * @brief 此USB接口的交替设置编号，由USB接口描述符定义。值0表示
      * <br>默认的交替设置。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t alternateSetting;
 
     /**
      * @brief 接口名称。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *name;
 
     /**
      * @brief 属于该USB接口的端点。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_UsbEndpoint *endpoints;
 
     /**
      * @brief 接口中的端点数量。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t endpointCount;
 } OH_UsbManager_UsbInterface;
@@ -255,62 +255,62 @@ typedef struct OH_UsbManager_UsbInterface {
  * @brief 定义USB配置。一个{@link OH_UsbManager_UsbDevice}可以包含多个
  * <br>OH_UsbManager_UsbConfig实例。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbConfig {
     /**
      * @brief USB配置的唯一标识。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t id;
 
     /**
      * @brief 配置属性。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t attributes;
 
     /**
      * @brief 最大功耗。单位：mA。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t maxPower;
 
     /**
      * @brief 配置名称，可以为空。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *name;
 
     /**
      * @brief 是否支持远程唤醒。true表示支持远程唤醒；false表示不支持。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool isRemoteWakeup;
 
     /**
      * @brief 是否支持独立供电。true表示支持独立供电；false表示不支持。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool isSelfPowered;
 
     /**
      * @brief 支持的接口属性。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_UsbInterface *interfaces;
 
     /**
      * @brief 配置中的接口数量。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t interfaceCount;
 } OH_UsbManager_UsbConfig;
@@ -318,97 +318,97 @@ typedef struct OH_UsbManager_UsbConfig {
 /**
  * @brief 定义USB设备的扁平化表示。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbDevice {
     /**
      * @brief USB设备的总线编号。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t busNum;
 
     /**
      * @brief 设备在总线上的地址。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t devAddress;
 
     /**
      * @brief 设备名称，格式为<总线编号>-<设备地址>。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *name;
 
     /**
      * @brief 制造商名称。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *manufacturerName;
 
     /**
      * @brief 产品名称。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *productName;
 
     /**
      * @brief 设备版本。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     const char *version;
 
     /**
      * @brief 厂商ID。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t vendorId;
 
     /**
      * @brief 产品ID。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t productId;
 
     /**
      * @brief 设备类。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t clazz;
 
     /**
      * @brief 设备子类。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t subClass;
 
     /**
      * @brief 设备协议。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t protocol;
 
     /**
      * @brief 设备配置描述符信息。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_UsbManager_UsbConfig *configs;
 
     /**
      * @brief 设备中的配置数量。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t configCount;
 } OH_UsbManager_UsbDevice;
@@ -416,20 +416,20 @@ typedef struct OH_UsbManager_UsbDevice {
 /**
  * @brief 定义用于与已打开设备通信的USB设备管道。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_UsbManager_UsbPipe {
     /**
      * @brief 所连接设备的总线编号。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t busNum;
 
     /**
      * @brief 所连接设备的设备地址。
      *
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t devAddress;
 } OH_UsbManager_UsbPipe;
@@ -448,7 +448,7 @@ typedef struct OH_UsbManager_UsbPipe {
  *     <br>{@link OH_USBMANAGER_ERROR_NO_MEMORY} 表示设备数组或字符串的内存分配失败。可能原因：系统内存不足或连接的设备过多。处理建议：释放未使用的内存后重试。
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示devices或deviceCount为NULL。可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
  * @release OH_UsbManager_FreeUsbDeviceList {devices}
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice **devices,
     uint32_t *deviceCount);
@@ -461,7 +461,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice *
  * @param devices [入参] 指向由{@link OH_UsbManager_GetUsbDeviceList}返回的数组的指针。
  * @param deviceCount [入参] 数组中的元素个数，由{@link OH_UsbManager_GetUsbDeviceList}
  *     <br>返回。
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t deviceCount);
 
@@ -487,7 +487,7 @@ void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t 
  *     <br>处理建议：检查物理连接和设备状态后重试。
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示device或pipe为NULL。
  *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevice *device,
     OH_UsbManager_UsbPipe *pipe);
@@ -505,7 +505,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevic
  *     <br>获取有效的设备名称后重试。
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示deviceName或result为NULL。
  *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool *result);
 
@@ -518,7 +518,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool
  * @param result [出参] 如果权限被授予则为true；如果用户拒绝请求则为false。
  *     <br>该参数仅在errorCode为{@link OH_USBMANAGER_SUCCESS}时有意义。
  * @param userContext [出参] 从{@link OH_UsbManager_RequestPermission}透传的用户上下文。
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCode, bool result,
     void *userContext);
@@ -538,7 +538,7 @@ typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCo
  *     <br>获取有效的设备名称后重试。
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示deviceName或callback为NULL。
  *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
     OH_UsbManager_PermissionCallback callback, void *userContext);
@@ -563,7 +563,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
  *     <br>重新枚举设备并重新连接。
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示pipe或fd为NULL。
  *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbPipe *pipe,
     int32_t *fd);
@@ -583,7 +583,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbP
  *     <br>请通过{@link OH_UsbManager_ConnectDevice}获取有效的打开管道后重试。
  *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示pipe为NULL。
  *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 OH_UsbManager_ErrorCode OH_UsbManager_ClosePipe(const OH_UsbManager_UsbPipe *pipe);
 

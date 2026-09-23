@@ -100,7 +100,7 @@ typedef enum OH_CaptureMode {
     /* 录制指定窗口。使用此模式需在OH_AVScreenCaptureConfig中指定windowId。 */
     OH_CAPTURE_SPECIFIED_WINDOW = 2,
     /* @brief 创建一个虚拟扩展屏幕并对其内容进行录制。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_CAPTURE_VIRTUAL_EXTENDED_SCREEN = 3,
     /* 无效模式。 */

@@ -121,7 +121,7 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
  * 通过{@link OH_AVCodec_Configure}初始化，或
  * 在运行时通过{@link OH_AVCodec_SetParameter}启用。
  * 启用后，采集侧会根据编码信息调整采集配置策略，以降低整体功耗
- * @since 26.1.0
+ * @since 26.0.1
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
 

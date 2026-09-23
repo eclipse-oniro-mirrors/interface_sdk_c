@@ -29,7 +29,7 @@
  * @kit MediaKit
  * @include <multimedia/player_framework/avimage_generator_base.h>
  * @library libavimage_generator.so
- * @syscap SystemCapability.Multimedia.Media.Core
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 
@@ -44,7 +44,7 @@ extern "C" {
 
 /**
  * @brief 指定查询视频帧时，时间点与帧对应关系选项的枚举类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 typedef enum OH_AVImageGenerator_QueryOptions {

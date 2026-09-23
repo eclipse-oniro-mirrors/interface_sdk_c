@@ -29,7 +29,8 @@
 /**
  * @file uds.h
  *
- * @brief Provides uniform data struct(UDS).
+ * @brief Defines the APIs and structs related to the uniform data structs. If the parameter type is char*,
+ * the string must end with a null character ('\0').
  *
  * @kit ArkData
  * @library libudmf.so
@@ -49,31 +50,58 @@ extern "C" {
 #endif
 
 /**
- * @brief Describes authorization permission values.
+ * @brief Enumerates the URI authorization policies in the drag scenario.
+ *
+ * > **NOTE**
+ * >
+ * > This authorization policy takes effect only in drag scenarios.
+ *
+ * The **NONE**, **READ**, **WRITE**, and **PERSIST** policies are supported. They can be combined, and only the
+ * following combinations take effect:
+ *
+ * - **NONE**: No file permission is granted.
+ * - **READ**: Only one-time read permission is granted.
+ * - **WRITE**: Only one-time read and write permissions are granted. (Write permission includes read permission.)
+ * - **READ+WRITE**: One-time read and write authorization is performed, which is equivalent to **WRITE** authorization.
+ * - **READ+PERSIST**: Persistent read permission is granted.
+ * - **WRITE+PERSIST**: Persistent read and write permissions are granted.
+ * - **READ+WRITE+PERSIST**: Persistent read and write permissions are granted.
+ * The rules for applying the drag authorization policies are as follows (in descending order of priority):
+ * - Single data level: The **FileUri** and **HTML** (UDSs) support the configuration of authorization policy
+ * parameters, which take effect only once for a single record and have the highest priority.
+ * - [OH_UdmfData](capi-udmf-oh-udmfdata.md) level: The authorization parameters provided in
+ * [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md) are valid for a single drag operation. If an authorization policy is
+ * configured for a piece of data, the configuration of the data is preferentially used. This level has the second
+ * highest priority.
+ * - Default level: If no authorization policy is configured for a single piece of data or
+ * [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md), proxy authorization is performed based on the default drag logic.
+ * The default logic is as follows:
+ * - FileUri data: By default, the **READ**, **WRITE**, and **PERSIST** permissions are granted in drag scenarios.
+ * - HTML data: Grants read permission only to the URIs in the img tags of the HTML text.
  *
  * @since 26.0.0
  */
 typedef enum Udmf_AuthPermission {
     /**
-     * @brief No permission.
+     * @brief No permission granted.
      *
      * @since 26.0.0
      */
     UDMF_PERM_NONE = 0,
     /**
-     * @brief Read permission.
+     * @brief Permission to read or view data.
      *
      * @since 26.0.0
      */
     UDMF_PERM_READ = 1u << 0,
     /**
-     * @brief Write permission.
+     * @brief Permission to modify data (including READ).
      *
      * @since 26.0.0
      */
     UDMF_PERM_WRITE = 1u << 1,
     /**
-     * @brief Persist permission.
+     * @brief Permission to persist files.
      *
      * @since 26.0.0
      */
@@ -95,7 +123,7 @@ typedef struct OH_UdsPlainText OH_UdsPlainText;
 typedef struct OH_UdsHyperlink OH_UdsHyperlink;
 
 /**
- * @brief Describes the unified data struct of html.
+ * @brief Defines a struct for the unified data of the Hypertext Markup Language (HTML) type.
  *
  * @since 12
  */
@@ -123,7 +151,7 @@ typedef struct OH_UdsFileUri OH_UdsFileUri;
 typedef struct OH_UdsPixelMap OH_UdsPixelMap;
 
 /**
- * @brief Describes the unified data struct of content form.
+ * @brief Defines a struct for the unified data of the content card type.
  *
  * @since 14
  */
@@ -144,7 +172,8 @@ typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer;
 typedef struct OH_UdsDetails OH_UdsDetails;
 
 /**
- * @brief Creates a pointer to the instance of the {@link OH_UdsPlainText}.
+ * @brief Creates an {@link OH_UdsPlainText} instance and a pointer to it. If this pointer is no longer required, use
+ * {@lOH_UdsPlainText_Destroy} to destroy it. Otherwise, memory leaks may occur.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPlainText}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -209,7 +238,7 @@ int OH_UdsPlainText_GetDetails(OH_UdsPlainText* pThis, OH_UdsDetails* details);
  * @brief Set content to the {@link OH_UdsPlainText}.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsPlainText}.
- * @param content Represents a new content string.
+ * @param content Pointer to the plain text content to set.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
@@ -264,7 +293,7 @@ OH_UdsHyperlink* OH_UdsHyperlink_Create();
 void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis);
 
 /**
- * @brief Get type from the {@link OH_UdsHyperlink}.
+ * @brief Obtains the type ID from an {@link OH_UdsHyperlink} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsHyperlink}.
  * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
@@ -365,7 +394,7 @@ OH_UdsHtml* OH_UdsHtml_Create();
 void OH_UdsHtml_Destroy(OH_UdsHtml* pThis);
 
 /**
- * @brief Get html from the {@link OH_UdsHtml}.
+ * @brief Obtains the type ID from an {@link OH_UdsHtml} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsHtml}.
  * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
@@ -449,7 +478,9 @@ int OH_UdsHtml_SetDetails(OH_UdsHtml* pThis, const OH_UdsDetails* details);
 /**
  * @brief Set the authorization policy to {@link OH_UdsHtml}.
  * @param pThis Represents a pointer to an instance of {@link OH_UdsHtml}.
- * @param authPolicy Represents auth policy.
+ * @param authPolicy URI authorization policy in drag scenarios. The default value is READ (read-only authorization),
+ * which takes effect only in scenarios such as the img tag. This policy is used only for a single record and has the
+ * highest priority. For details about the policy, see {@link Udmf_AuthPermission}.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
@@ -755,10 +786,12 @@ int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details)
 /**
  * @brief Set the authorization policy to {@link OH_UdsFileUri}.
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
- * @param authPolicy Indicates the identity authorization policy.
+ * @param authPolicy URI authorization policy in the drag scenario. The default value is READ+WRITE+PERSIST, which is
+ *     used only for a single record and has the highest priority. For details about the policy,
+ *     see {@link Udmf_ErrCode}.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *     <br>{@link UDMF_E_OK} success.
+ *     <br>{@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  * @see OH_UdsFileUri Udmf_ErrCode
  * @since 26.0.0
  */
@@ -957,7 +990,7 @@ const char* OH_UdsContentForm_GetDescription(OH_UdsContentForm* pThis);
 const char* OH_UdsContentForm_GetTitle(OH_UdsContentForm* pThis);
 
 /**
- * @brief Get thumb data from the {@link OH_UdsContentForm}.
+ * @brief Obtains the application icon data from an {@link OH_UdsContentForm} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsContentForm}.
  * @param appIcon Represents a pointer to app icon that is a output param.
@@ -1032,7 +1065,7 @@ int OH_UdsContentForm_SetDescription(OH_UdsContentForm* pThis, const char* descr
 int OH_UdsContentForm_SetTitle(OH_UdsContentForm* pThis, const char* title);
 
 /**
- * @brief Set thumb data to the {@link OH_UdsContentForm}.
+ * @brief Sets the application icon data for an {@link OH_UdsContentForm} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsContentForm}.
  * @param appIcon Represents the app icon.
@@ -1158,12 +1191,14 @@ const char* OH_UdsDetails_GetValue(const OH_UdsDetails* pThis, const char* key);
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
  * @param count Represents the keys count.
- * @return Returns string list of keys. Memory will be released after calling the OH_UdsDetails_Destroy function.
+ * @return Returns a double pointer to the result set if the operation is successful;
+ *     <br>returns nullptr otherwise.
+ *     <br>When {@link OH_UdsDetails_Destroy} is used to destroy the {@link OH_UdsDetails} instance,
+ *     the return value is also released.
  * @since 22
  * @see OH_UdsDetails
  */
 char** OH_UdsDetails_GetAllKeys(OH_UdsDetails* pThis, unsigned int* count);
-
 #ifdef __cplusplus
 };
 #endif

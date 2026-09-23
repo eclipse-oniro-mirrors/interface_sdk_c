@@ -282,7 +282,7 @@ typedef enum NativeWindowOperation {
      * variable parameter in function is
      * [in] const char* name. The dma buffer name string. The name must start with a letter,
      * only contain letters or digits, and be no longer than 64 bytes.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_NATIVEWINDOW_SET_DMABUFFER_NAME = 25,
 } NativeWindowOperation;

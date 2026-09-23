@@ -236,6 +236,13 @@ typedef struct OH_UdmfDataLoadParams OH_UdmfDataLoadParams;
 typedef struct OH_UdmfDataLoadInfo OH_UdmfDataLoadInfo;
 
 /**
+ * @brief 描述统一数据的汇总信息。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_UDMF_Summary OH_UDMF_Summary;
+
+/**
  * @brief 表示用于加载数据的回调函数。
  *
  * @param acceptableInfo 表示接收端可接收的数据类型和数量信息。
@@ -954,6 +961,98 @@ Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis);
  * @since 20
  */
 int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility);
+
+/**
+ * @brief 创建{@link OH_UDMF_Summary}实例。
+ *
+ * @return 如果操作成功，返回一个指向{@link OH_UDMF_Summary}实例的指针，调用者拥有该实例的所有权，
+ * 不再需要时必须调用{@link OH_UDMF_DestroySummary}释放。如果内存不足，则返回nullptr。
+ *
+ * @release udmf/OH_UDMF_DestroySummary {return}
+ * @see OH_UDMF_Summary
+ * @see OH_UDMF_DestroySummary
+ * @since 26.0.1
+ */
+OH_UDMF_Summary *OH_UDMF_CreateSummary(void);
+
+/**
+ * @brief 销毁{@link OH_UDMF_Summary}指针指向的堆内存。
+ * 请注意，对于同一个指针，不能重复调用此函数。
+ *
+ * @param summary [in] 表示指向{@link OH_UDMF_Summary}实例的指针。
+ * 该实例必须是{@link OH_UDMF_CreateSummary}创建的有效实例。
+ * 该指针不能为NULL。
+ * @see OH_UDMF_Summary
+ * @see OH_UDMF_CreateSummary
+ * @since 26.0.1
+ */
+void OH_UDMF_DestroySummary(OH_UDMF_Summary *summary);
+
+/**
+ * @brief 获取{@link OH_UDMF_Summary}实例概览中的所有数据类型。
+ *
+ * 返回的数组和字符串由summary拥有。调用者不得修改或释放它们。它们在摘要被
+ * {@link OH_UDMF_DestroySummary}销毁之前一直有效。每个返回的数据类型都是非空的、以NUL结尾的UTF-8字符串。
+ * 返回的数据类型顺序未指定。如果概览为空，则*types为nullptr，*count为0。
+ *
+ * @param summary [in] 表示指向{@link OH_UDMF_Summary}实例的指针。该指针不能为NULL。
+ * @param types [out] 表示数据类型的输出数组。每个元素都是非空的、以NUL结尾的UTF-8字符串。
+ * 调用{@link OH_UDMF_DestroySummary}方法后该参数失效。该指针不能为NULL。
+ * 如果本函数返回非{@link UDMF_E_OK}的任何值，则*types保持不变。
+ * @param count [out] 表示输出数组中的数据类型的数量。该值为非负整数，且在int64_t范围内；概览为空时为0。该指针不能为NULL。
+ * 如果本函数返回非{@link UDMF_E_OK}的任何值，则*count保持不变。
+ * @return 返回执行的状态代码。
+ *     <br>若返回UDMF_E_OK，表示执行成功。
+ *     <br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。具体请参阅错误码定义{@link Udmf_ErrCode}。
+ * @see OH_UDMF_Summary
+ * @see OH_UDMF_GetSummaryOverviewSize
+ * @see Udmf_ErrCode
+ * @since 26.0.1
+ */
+int OH_UDMF_GetSummaryOverviewTypes(const OH_UDMF_Summary *summary, const char *const **types,
+    int64_t *count);
+
+/**
+ * @brief 获取与{@link OH_UDMF_Summary}实例的概述中的数据类型关联的数据大小。
+ *
+ * @param summary [in] 表示指向{@link OH_UDMF_Summary}实例的指针。该指针不能为NULL。
+ * @param type [in] 表示用作概述键的数据类型，是以NUL结尾的UTF-8字符串，且不能为空。该指针不能为NULL。
+ * @param dataSize [out] 表示以字节为单位的输出数据大小。只有当该函数返回{@link UDMF_E_OK}时，该值才有效。
+ * 如果未找到该数据类型，则*dataSize被设置为-1。如果本函数返回{@link UDMF_E_INVALID_PARAM}，则*dataSize保持不变。
+ * 该指针不能为NULL。
+ * @return 返回执行的状态代码。
+ *     <br>若返回UDMF_E_OK，表示执行成功。
+ *     <br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+ *     <br>若返回UDMF_ERR，表示内部数据错误。可能的原因是服务故障或者内存不足等。具体请参阅错误码定义{@link Udmf_ErrCode}。
+ * @see OH_UDMF_Summary
+ * @see OH_UDMF_GetSummaryOverviewTypes
+ * @see Udmf_ErrCode
+ * @since 26.0.1
+ */
+int OH_UDMF_GetSummaryOverviewSize(const OH_UDMF_Summary *summary, const char *type, int64_t *dataSize);
+
+/**
+ * @brief 获取{@link OH_UDMF_Summary}实例中的所有文件扩展名。
+ *
+ * 每个返回的扩展名包括前导句点，并使用小写ASCII字母，是非空的、以NUL结尾的字符串。
+ * 返回的数组和字符串由summary拥有。调用者不得修改或释放它们。它们在摘要被{@link OH_UDMF_DestroySummary}销毁
+ * 或再次成功填充之前一直有效。如果没有有效的文件扩展名可用，*filenameExtensions为nullptr，*count为0。
+ *
+ * @param summary [in] 表示指向{@link OH_UDMF_Summary}实例的指针。该指针不能为NULL。
+ * @param filenameExtensions [out] 表示文件扩展名的输出数组。每个元素都是非空的、以NUL结尾的ASCII字符串。
+ * 调用{@link OH_UDMF_DestroySummary}方法后该参数失效。该指针不能为NULL。
+ * 如果本函数返回非{@link UDMF_E_OK}的任何值，则*filenameExtensions保持不变。
+ * @param count [out] 表示输出数组中的文件扩展名的数量。该值为非负整数，且在int64_t范围内；没有有效的文件扩展名时为0。该指针不能为NULL。
+ * 如果本函数返回非{@link UDMF_E_OK}的任何值，则*count保持不变。
+ * @return 返回执行的状态代码。
+ *     <br>若返回UDMF_E_OK，表示执行成功。
+ *     <br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。具体请参阅错误码定义{@link Udmf_ErrCode}。
+ * @see OH_UDMF_Summary
+ * @see Udmf_ErrCode
+ * @since 26.0.1
+ */
+int OH_UDMF_GetSummaryFilenameExtensions(const OH_UDMF_Summary *summary,
+    const char *const **filenameExtensions, int64_t *count);
 
 /**
  * @brief 向统一数据管理框架数据库中获取统一数据对象{@link OH_UdmfData}数据。

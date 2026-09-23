@@ -394,7 +394,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextNotifyPageChanged(
  * <li>{@link_RUNTIME_ERROR_CODE_PARAM_INVALID}如果提供的参数无效。</li>
  * <li>{@link_RUNTIME_ERROR_CODE_INTERNAL}如果发生内部错误</li>
  * @release OH_AbilityRuntime_ReleaseChildProcessInfos {infos}
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_AcquireUIAbilityChildProcessInfos(
     OH_AbilityRuntime_ChildProcessInfosHandle* infos, uint32_t* count);

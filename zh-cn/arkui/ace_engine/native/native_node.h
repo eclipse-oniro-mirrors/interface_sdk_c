@@ -3241,7 +3241,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>?.object：可选。指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于设置行间距选项。
-     *     从API version 26.1.0开始支持。
+     *     从API version 26.0.1开始支持。
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Create}创建对象，
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy}销毁对象。</li>
      * </ul>
@@ -3250,7 +3250,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。</li>
      * <li>.object：指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于获取行间距选项。
-     *     从API version 26.1.0开始支持。</li>
+     *     从API version 26.0.1开始支持。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]
@@ -3836,6 +3836,60 @@ typedef enum {
     NODE_TEXT_CONTROLLER = 1054,
 
     /**
+     * @brief 设置文本描边宽度，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本描边宽度，单位为vp。默认值：0，表示无描边效果。小于0时显示实心字，大于0时显示空心字。不支持百分比。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：文本描边宽度，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_WIDTH = 1057,
+
+    /**
+     * @brief 设置文本描边颜色，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：文本描边颜色，0xARGB格式。默认值为字体颜色，设置异常值时取默认值。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：文本描边颜色，0xARGB格式。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_COLOR = 1058,
+
+    /**
+     * @brief 设置文本描边拐角样式，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本描边拐角样式，参数类型为{@link OH_ArkUI_StrokeJoinStyle}。默认值为OH_ARKUI_STROKE_JOIN_STYLE_MITER_JOIN，表示尖角连接。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本描边拐角样式，参数类型为{@link OH_ArkUI_StrokeJoinStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Text Display[文本显示]
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_JOIN_STYLE = 1059,
+
+    /**
      * @brief 文本内容属性，支持属性设置、属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
@@ -4079,7 +4133,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -16416,7 +16470,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node,
  * <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR}成功。
  * </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
  * </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
 

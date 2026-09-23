@@ -327,7 +327,7 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnNewOutputBuffer(Video
  * @param type [in] The autoeffect type to query.
  * @return <ul><li><b>true</b> if the autoeffect is supported.</li>
  *     <li><b>false</b> if the autoeffect is not supported.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 bool OH_VideoProcessing_IsAutoEffectSupported(uint32_t type);
  
@@ -345,7 +345,7 @@ bool OH_VideoProcessing_IsAutoEffectSupported(uint32_t type);
  *     or name is null.</li>
  *     <li>{@link VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED} if {@link OH_VideoProcessing_IsAutoEffectSupported}
  *     returns false for the type, or the same name has already been registered by calling this function.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool enable, const char *name);
  
@@ -362,7 +362,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_UseAutoEffect(uint32_t type, bool e
  *     returns false for the type, or name does not match any registered name, or the VPE instance has not been
  *     created or {@link OH_VideoProcessing_UseAutoEffect} has not been called for the name.</li>
  *     <li>{@link VIDEO_PROCESSING_ERROR_UNKNOWN} if an internal algorithm error occurs.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 VideoProcessing_ErrorCode OH_VideoProcessing_SetAutoEffectParam(uint32_t type, const char *name,
     const OH_AVFormat *param);

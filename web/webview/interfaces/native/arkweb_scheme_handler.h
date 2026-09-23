@@ -291,7 +291,7 @@ typedef struct ArkWeb_HttpBodyStream_ ArkWeb_HttpBodyStream;
 /**
  * @brief The error info for setting response error details.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct ArkWeb_ErrorInfo_ ArkWeb_ErrorInfo;
 
@@ -1126,7 +1126,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler
  *                  If the creation succeeds, *errorInfo points to the newly created object, which must be destroyed
  *                  using {@link OH_ArkWeb_DestroyErrorInfo} when no longer needed.
  *                  If the creation fails, *errorInfo is set to NULL.
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
 
@@ -1134,7 +1134,7 @@ void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
  * @brief Destroys the ArkWeb_ErrorInfo.
  * @param errorInfo The ArkWeb_ErrorInfo to be destroyed.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
 
@@ -1146,7 +1146,7 @@ void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, errorInfo is nullptr.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_SetCompleteIfNoResponse(ArkWeb_ErrorInfo* errorInfo, bool completeIfNoResponse);
 
@@ -1156,7 +1156,7 @@ int32_t OH_ArkWebErrorInfo_SetCompleteIfNoResponse(ArkWeb_ErrorInfo* errorInfo, 
  * @return Returns true if automatically generating a response when no response has been received is enabled,
  *         returns false otherwise.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 bool OH_ArkWebErrorInfo_GetCompleteIfNoResponse(const ArkWeb_ErrorInfo* errorInfo);
 
@@ -1168,7 +1168,7 @@ bool OH_ArkWebErrorInfo_GetCompleteIfNoResponse(const ArkWeb_ErrorInfo* errorInf
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, errorInfo is nullptr.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_SetCustomErrorCode(ArkWeb_ErrorInfo* errorInfo, int32_t errorCode);
 
@@ -1177,7 +1177,7 @@ int32_t OH_ArkWebErrorInfo_SetCustomErrorCode(ArkWeb_ErrorInfo* errorInfo, int32
  * @param errorInfo The ArkWeb_ErrorInfo.
  * @return The custom error code.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_GetCustomErrorCode(const ArkWeb_ErrorInfo* errorInfo);
 
@@ -1188,7 +1188,7 @@ int32_t OH_ArkWebErrorInfo_GetCustomErrorCode(const ArkWeb_ErrorInfo* errorInfo)
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, errorInfo is nullptr.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_SetErrorCode(ArkWeb_ErrorInfo* errorInfo, ArkWeb_NetError errorCode);
 
@@ -1197,7 +1197,7 @@ int32_t OH_ArkWebErrorInfo_SetErrorCode(ArkWeb_ErrorInfo* errorInfo, ArkWeb_NetE
  * @param errorInfo The ArkWeb_ErrorInfo.
  * @return The error code.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkWeb_NetError OH_ArkWebErrorInfo_GetErrorCode(const ArkWeb_ErrorInfo* errorInfo);
 
@@ -1210,7 +1210,7 @@ ArkWeb_NetError OH_ArkWebErrorInfo_GetErrorCode(const ArkWeb_ErrorInfo* errorInf
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, response or errorInfo is nullptr.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorInfo* errorInfo);
 
@@ -1220,7 +1220,7 @@ int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorIn
  * @param response The ArkWeb_Response.
  * @return The pointer to the ArkWeb_ErrorInfo if set; NULL otherwise.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response);
 
@@ -1231,7 +1231,7 @@ ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, resourceHandler or errorInfo is nullptr.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebResourceHandler_DidFailWithErrorInfo(
     const ArkWeb_ResourceHandler* resourceHandler,

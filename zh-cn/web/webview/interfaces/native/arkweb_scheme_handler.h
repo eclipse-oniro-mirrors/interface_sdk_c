@@ -267,7 +267,7 @@ typedef struct ArkWeb_HttpBodyStream_ ArkWeb_HttpBodyStream;
 /**
  * @brief OH_ArkWebResourceHandler_DidFailWithErrorInfo的错误信息；
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct ArkWeb_ErrorInfo_ ArkWeb_ErrorInfo;
 
@@ -1016,7 +1016,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler
  * 如果errorInfo为空，则不做任何操作。
  * 如果创建成功，则*errorInfo指向新创建的对象。当不再需要时，必须使用OH_ArkWeb_DestroyErrorInfo进行销毁。
  * 如果创建失败，*errorInfo将被设置为NULL。
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
 
@@ -1024,7 +1024,7 @@ void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
  * @brief 销毁ArkWeb_ErrorInfo。
  * @param errorInfo 要销毁的ArkWeb_ErrorInfo。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
 
@@ -1035,7 +1035,7 @@ void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
  * @return {@link ARKWEB_NET_OK} 0 -成功。
  * {@link ARKWEB_INVALID_PARAM} 17100101 -参数无效，errorInfo为nullptr。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_SetCompleteIfNoResponse(ArkWeb_ErrorInfo* errorInfo, bool completeIfNoResponse);
 
@@ -1044,7 +1044,7 @@ int32_t OH_ArkWebErrorInfo_SetCompleteIfNoResponse(ArkWeb_ErrorInfo* errorInfo, 
  * @param errorInfo ArkWeb_ErrorInfo。
  * @return 如果启用如果没有收到响应，则自动生成响应，则返回true，否则返回false。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 bool OH_ArkWebErrorInfo_GetCompleteIfNoResponse(const ArkWeb_ErrorInfo* errorInfo);
 
@@ -1056,7 +1056,7 @@ bool OH_ArkWebErrorInfo_GetCompleteIfNoResponse(const ArkWeb_ErrorInfo* errorInf
  * @return {@link ARKWEB_NET_OK} 0 -成功。
  * {@link ARKWEB_INVALID_PARAM} 17100101 -参数无效，errorInfo为nullptr。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_SetCustomErrorCode(ArkWeb_ErrorInfo* errorInfo, int32_t errorCode);
 
@@ -1065,7 +1065,7 @@ int32_t OH_ArkWebErrorInfo_SetCustomErrorCode(ArkWeb_ErrorInfo* errorInfo, int32
  * @param errorInfo ArkWeb_ErrorInfo。
  * @return 返回先前设置的自定义错误码。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_GetCustomErrorCode(const ArkWeb_ErrorInfo* errorInfo);
 
@@ -1076,7 +1076,7 @@ int32_t OH_ArkWebErrorInfo_GetCustomErrorCode(const ArkWeb_ErrorInfo* errorInfo)
  * @return {@link ARKWEB_NET_OK} 0 -成功。
  * {@link ARKWEB_INVALID_PARAM} 17100101 -参数无效，errorInfo为nullptr。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebErrorInfo_SetErrorCode(ArkWeb_ErrorInfo* errorInfo, ArkWeb_NetError errorCode);
 
@@ -1085,7 +1085,7 @@ int32_t OH_ArkWebErrorInfo_SetErrorCode(ArkWeb_ErrorInfo* errorInfo, ArkWeb_NetE
  * @param errorInfo ArkWeb_ErrorInfo。
  * @return 返回之前设置的错误码。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkWeb_NetError OH_ArkWebErrorInfo_GetErrorCode(const ArkWeb_ErrorInfo* errorInfo);
 
@@ -1096,7 +1096,7 @@ ArkWeb_NetError OH_ArkWebErrorInfo_GetErrorCode(const ArkWeb_ErrorInfo* errorInf
  * @return {@link ARKWEB_NET_OK} 0 -成功。
  * {@link ARKWEB_INVALID_PARAM} 17100101 -参数无效。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorInfo* errorInfo);
 
@@ -1106,7 +1106,7 @@ int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorIn
  * @param response ArkWeb_Response对象。
  * @return 如果已设置ArkWeb_ErrorInfo，则返回指向ArkWeb_ErrorInfo的指针；否则返回NULL。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response);
 
@@ -1116,7 +1116,7 @@ ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response
  * @param errorInfo 此请求的错误信息。
  * @return 如果成功，则为0；否则，则为失败。请参阅arkweb_error_code.h。
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkWebResourceHandler_DidFailWithErrorInfo(
     const ArkWeb_ResourceHandler* resourceHandler,

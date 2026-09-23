@@ -754,5 +754,25 @@
     {
         "first_introduced": "22",
         "name": "OH_UDMF_GetDataElementAt"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UDMF_CreateSummary"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UDMF_DestroySummary"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UDMF_GetSummaryOverviewTypes"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UDMF_GetSummaryOverviewSize"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UDMF_GetSummaryFilenameExtensions"
     }
 ]

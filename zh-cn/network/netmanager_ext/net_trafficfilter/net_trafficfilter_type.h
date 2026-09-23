@@ -101,7 +101,7 @@ extern "C" {
 
 /**
  * @brief MAC地址字符串最大长度（XX:XX:XX:XX:XX:XX）
- * @since 26.1.0
+ * @since 26.0.1
  */
 #define OH_TRAFFICFILTER_MAC_ADDRSTRLEN       18
 
@@ -753,69 +753,69 @@ typedef struct OH_TrafficFilter_RedirectRule {
  * @brief 报文描述符
  *
  * 包含五元组信息和报文数据
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_PacketDesc {
     /**
      * @brief 报文ID（报文到达netfilter时由内核分配）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t packetId;
     /**
      * @brief 协议类型
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t protocol;
     /**
      * @brief 源IP地址（支持IPv4和IPv6）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_IPAddress srcIp;
     /**
      * @brief 源端口
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t srcPort;
     /**
      * @brief 目的IP地址（支持IPv4和IPv6）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_IPAddress dstIp;
     /**
      * @brief 目的端口
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint16_t dstPort;
     /**
      * @brief 报文长度
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t packetLen;
     /**
      * @brief 报文数据指针（用户可修改，内存由系统管理，仅在回调期间有效）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t* data;
     /**
      * @brief 用户数据（在回调中使用）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     void* userData;
 } OH_TrafficFilter_PacketDesc;
 
 /**
  * @brief 报文决策类型
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum OH_TrafficFilter_PacketDecision {
     /**
      * @brief 接收报文
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TRAFFICFILTER_DECISION_ACCEPT = 0,
     /**
      * @brief 丢弃报文
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TRAFFICFILTER_DECISION_DROP
 } OH_TrafficFilter_PacketDecision;
@@ -826,7 +826,7 @@ typedef enum OH_TrafficFilter_PacketDecision {
  * @param packet 报文描述符
  * @param userData 用户数据
  * @return 报文决策（接收或丢弃）
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef OH_TrafficFilter_PacketDecision (*OH_TrafficFilter_PacketCallback)(
     const OH_TrafficFilter_PacketDesc* packet,
@@ -835,27 +835,27 @@ typedef OH_TrafficFilter_PacketDecision (*OH_TrafficFilter_PacketCallback)(
 
 /**
  * @brief 报文拷贝模式枚举
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef enum OH_TrafficFilter_PacketCopyMode {
      /**
       * @brief 仅拷贝元数据（不拷贝报文数据）
-      * @since 26.1.0
+      * @since 26.0.1
       */
     OH_TRAFFICFILTER_COPY_MODE_META = 0,
      /**
       * @brief 仅拷贝报文头（由packetCopyLen指定）
-      * @since 26.1.0
+      * @since 26.0.1
       */
     OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
      /**
       * @brief 拷贝整个报文
-      * @since 26.1.0
+      * @since 26.0.1
       */
     OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
      /**
       * @brief 按指定最大长度拷贝报文
-      * @since 26.1.0
+      * @since 26.0.1
       */
     OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
 } OH_TrafficFilter_PacketCopyMode;
@@ -875,34 +875,34 @@ typedef enum OH_TrafficFilter_PacketCopyMode {
  *
  * @note 未遵守此初始化约定可能导致未定义行为或跨版本
  *     的二进制不兼容。
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_Config {
      /**
      * @brief 调用者必须将其设置为`sizeof(OH_TrafficFilter_Config)`。
      * 调用者需要先零初始化结构体，然后设置此字段。
      * 实现使用此值来确定有效数据范围，以实现二进制兼容。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t size;
     /**
      * @brief NFQueue报文拷贝模式，参见OH_TrafficFilter_PacketCopyMode
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t packetCopyMode;
     /**
      * @brief NFQueue报文拷贝长度（字节），0xFFFF表示拷贝整个报文，较小的值仅拷贝报文头
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t packetCopyLen;
     /**
      * @brief NFQueue最大队列长度（报文数量），0表示系统默认值（1024）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t nfqueueMaxlen;
     /**
      * @brief NFQueue队列标志，参见OH_TRAFFICFILTER_NFQUEUE_FLAG_*定义
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t nfqueueFlags;
 } OH_TrafficFilter_Config;
@@ -912,17 +912,17 @@ typedef struct OH_TrafficFilter_Config {
  *
  * 基于MAC地址匹配报文
  * 仅支持源MAC地址
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_MACMatch {
     /**
      * @brief 启用MAC地址匹配
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool enable;
     /**
      * @brief 是否反转匹配结果
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool invert;
     /**
@@ -931,7 +931,7 @@ typedef struct OH_TrafficFilter_MACMatch {
      * OH_TRAFFICFILTER_MAC_ADDRSTRLEN包含null终止符；
      * 最大有效字符串长度为17个字符。
      * 格式无效将导致规则设置接口返回OH_TRAFFICFILTER_ERROR_INVALID_PARAM。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     char srcMac[OH_TRAFFICFILTER_MAC_ADDRSTRLEN];
 } OH_TrafficFilter_MACMatch;
@@ -940,22 +940,22 @@ typedef struct OH_TrafficFilter_MACMatch {
  * @brief TCP标志匹配条件
  *
  * 基于TCP标志设置匹配TCP报文
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_TCPFlagsMatch {
     /**
      * @brief 启用TCP标志匹配
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool enable;
     /**
      * @brief 标志掩码（指定要检查的标志，使用OH_TRAFFICFILTER_TCP_FLAG_*常量）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t flagMask;
     /**
      * @brief 比较标志（指定必须设置的标志）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t flagComp;
 } OH_TrafficFilter_TCPFlagsMatch;
@@ -964,17 +964,17 @@ typedef struct OH_TrafficFilter_TCPFlagsMatch {
  * @brief 连接跟踪匹配条件
  *
  * 基于连接跟踪状态匹配报文
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_ConntrackMatch {
     /**
      * @brief 启用连接跟踪匹配
-     * @since 26.1.0
+     * @since 26.0.1
      */
     bool enable;
     /**
      * @brief 连接状态（使用OH_TRAFFICFILTER_CT_STATE_*位图）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t stateMask;
 } OH_TrafficFilter_ConntrackMatch;
@@ -997,59 +997,59 @@ typedef struct OH_TrafficFilter_ConntrackMatch {
  *
  * @note 未遵守此初始化约定可能导致未定义行为或跨版本
  *     的二进制不兼容。
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_FilterRule {
      /**
      * @brief 调用者必须将其设置为`sizeof(OH_TrafficFilter_FilterRule)`。
      * 调用者需要先零初始化结构体，然后设置此字段。
      * 实现使用此值来确定有效数据范围，以实现二进制兼容。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t size;
     /**
      * @brief 优先级（数值越小优先级越高）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t priority;
     /**
      * @brief 钩子点
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_HookPoint hookPoint;
     /**
      * @brief 协议（0=任意，6=TCP，17=UDP）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint8_t protocol;
     /**
      * @brief 源IP匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_IPMatch srcIp;
     /**
      * @brief 源端口匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_PortMatch srcPort;
     /**
      * @brief 目的IP匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_IPMatch dstIp;
     /**
      * @brief 目的端口匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_PortMatch dstPort;
     /**
      * @brief 入接口匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_InterfaceMatch inInterface;
     /**
      * @brief 出接口匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_InterfaceMatch outInterface;
     /**
@@ -1057,35 +1057,35 @@ typedef struct OH_TrafficFilter_FilterRule {
      * 要匹配任意UID，将uidStart和uidEnd都设置为UINT32_MAX。
      * 如果uidStart > uidEnd，规则设置接口返回OH_TRAFFICFILTER_ERROR_INVALID_PARAM。
      * 零初始化后，uidStart=0且uidEnd=0，仅匹配UID 0。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t uidStart;
     /**
      * @brief 应用UID范围结束值（包含）。有效范围：0到UINT32_MAX。
      * 使用详情参见uidStart。
-     * @since 26.1.0
+     * @since 26.0.1
      */
     uint32_t uidEnd;
     /**
      * @brief MAC地址匹配条件（仅源MAC）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_MACMatch macMatch;
     /**
      * @brief TCP标志匹配条件（仅对TCP协议有效）
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
     /**
      * @brief 连接跟踪匹配条件
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_TrafficFilter_ConntrackMatch conntrackMatch;
 } OH_TrafficFilter_FilterRule;
 
 /**
  * @brief 报文控制器
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_PacketController OH_TrafficFilter_PacketController;
 

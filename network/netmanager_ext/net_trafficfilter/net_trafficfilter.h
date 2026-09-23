@@ -155,7 +155,7 @@ int32_t OH_TrafficFilter_QueryProcess(
  *     <li>{@link OH_TRAFFICFILTER_ERROR_TOO_MANY_RULES} if too many rules added.</li></ul>
  *
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_TrafficFilter_AddPacketRule(
     OH_TrafficFilter_PacketController* controller,
@@ -172,7 +172,7 @@ int32_t OH_TrafficFilter_AddPacketRule(
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if controller is NULL.</li></ul>
  *
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_TrafficFilter_ClearPacketRule(OH_TrafficFilter_PacketController* controller);
 
@@ -199,7 +199,7 @@ int32_t OH_TrafficFilter_ClearPacketRule(OH_TrafficFilter_PacketController* cont
  *
  * @release TrafficFilter/OH_TrafficFilter_DestroyPacketController {controller}
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_TrafficFilter_CreatePacketController(
     uint32_t groupId,
@@ -220,7 +220,7 @@ int32_t OH_TrafficFilter_CreatePacketController(
  *     <li>{@link OH_TRAFFICFILTER_ERROR_NOT_FOUND} if the specified controller handle is not found.</li></ul>
  *
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_TrafficFilter_DestroyPacketController(OH_TrafficFilter_PacketController* controller);
 
@@ -268,7 +268,7 @@ int32_t OH_TrafficFilter_DestroyPacketController(OH_TrafficFilter_PacketControll
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if controller or callback is NULL.</li></ul>
  *
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_TrafficFilter_RegisterPacketCallback(
     OH_TrafficFilter_PacketController* controller,
@@ -287,7 +287,7 @@ int32_t OH_TrafficFilter_RegisterPacketCallback(
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} if controller is NULL.</li></ul>
  *
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_TrafficFilter_UnregisterPacketCallback(OH_TrafficFilter_PacketController* controller);
 

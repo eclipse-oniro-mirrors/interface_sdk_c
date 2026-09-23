@@ -3188,7 +3188,7 @@ NAPI_EXTERN napi_status napi_set_property_with_callsite_info(napi_env env,
  *         <ul><li>{@link napi_ok } If the function executed successfully.</li>
  *         <li>{@link napi_invalid_arg } If env or count is nullptr.</li>
  *         <li>{@link napi_pending_exception } There is an uncaught exception occurred before execution.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 NAPI_EXTERN napi_status napi_get_global_handle_count(napi_env env, size_t* count);
 #ifdef __cplusplus

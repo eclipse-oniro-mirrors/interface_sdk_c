@@ -465,7 +465,7 @@ int32_t OH_NativeBuffer_MapAndGetConfig(OH_NativeBuffer* buffer, void** virAddr,
  * letters or digits, and be no longer than 64 bytes.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - buffer is NULL or name invalid.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_NativeBuffer_SetDmaBufferName(OH_NativeBuffer *buffer, const char *name);
 #ifdef __cplusplus

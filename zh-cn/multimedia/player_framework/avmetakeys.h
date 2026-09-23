@@ -82,14 +82,14 @@ extern const char* OH_AVMETA_KEY_BITRATE;
 extern const char* OH_AVMETA_KEY_FRAME_RATE;
 
 /**
- * @brief 视频宽度，值类型为int32_t。
+ * @brief 视频宽度，单位为像素（px），值类型为int32_t。
  * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_WIDTH;
 
 /**
- * @brief 视频高度，值类型为int32_t。
+ * @brief 视频高度，单位为像素（px），值类型为int32_t。
  * 
  * @since 23
  */
@@ -103,14 +103,14 @@ extern const char* OH_AVMETA_KEY_HEIGHT;
 extern const char* OH_AVMETA_KEY_CHANNEL_COUNT;
 
 /**
- * @brief 音频采样率（Hz），值类型为int32_t。
+ * @brief 音频采样率，单位为赫兹（Hz），值类型为int32_t。
  * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_SAMPLE_RATE;
 
 /**
- * @brief 音频采样位深（bit depth），值类型为int32_t。
+ * @brief 音频采样位深，单位为比特（bit），值类型为int32_t。
  * 
  * @since 23
  */

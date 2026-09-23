@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -293,11 +293,15 @@ typedef enum OH_Huks_KeyPadding {
      * 使用PKCS7填充算法。
      */
     OH_HUKS_PADDING_PKCS7 = 5,
-    /** 使用ISO IEC 9796-2填充算法。
+    /**
+     * @brief 使用ISO IEC 9796-2填充算法。
+     *
      * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9796_2 = 6,
-    /** 使用ISO IEC 9797-1填充算法。
+    /**
+     * @brief 使用ISO IEC 9797-1填充算法。
+     *
      * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9797_1 = 7,
@@ -327,7 +331,8 @@ typedef enum OH_Huks_CipherMode {
      */
     OH_HUKS_MODE_OFB = 4,
     /**
-     * 使用CFB模式。
+     * @brief 使用CFB模式。
+     *
      * @since 12
      */
     OH_HUKS_MODE_CFB = 5,
@@ -435,17 +440,20 @@ typedef enum OH_Huks_KeySize {
     OH_HUKS_SM4_KEY_SIZE_128 = 128,
 
     /**
-     * 使用DES算法的密钥长度为64bit。
+     * @brief 使用DES算法的密钥长度为64bit。
+     *
      * @since 18
      */
     OH_HUKS_DES_KEY_SIZE_64 = 64,
     /**
-     * 使用3DES算法的密钥长度为128bit。
+     * @brief 使用3DES算法的密钥长度为128bit。
+     *
      * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_128 = 128,
     /**
-     * 使用3DES算法的密钥长度为192bit。
+     * @brief 使用3DES算法的密钥长度为192bit。
+     *
      * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_192 = 192,
@@ -519,17 +527,20 @@ typedef enum OH_Huks_KeyAlg {
     OH_HUKS_ALG_SM4 = 152,
 
     /**
-     * 使用DES算法。
+     * @brief 使用DES算法。
+     *
      * @since 18
      */
     OH_HUKS_ALG_DES = 160,
     /**
-     * 使用3DES算法。
+     * @brief 使用3DES算法。
+     *
      * @since 18
      */
     OH_HUKS_ALG_3DES = 161,
     /**
-     * 使用CMAC算法。
+     * @brief 使用CMAC算法。
+     *
      * @since 18
      */
     OH_HUKS_ALG_CMAC = 162,
@@ -538,21 +549,21 @@ typedef enum OH_Huks_KeyAlg {
 /**
  * @brief 密文导入所需的算法套件类型。
  * <br>OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING对应的密钥材料格式。
- *  | x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
- *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
- *  |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
- *  |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
- *  |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+ * <br>| x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
+ * <br>|   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
+ * <br>|    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
+ * <br>|      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
+ * <br>|   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
  *
  * <br>OH_HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING对应的密钥材料格式。
- *  |  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
- *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
- *  |    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
- *  |      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
- *  |   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
+ * <br>|  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
+ * <br>|   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    | agreekey_aead_tag_len(4 Byte) | agreekey_aead_tag
+ * <br>|    kek_enc_data_length      (4 Byte) |    kek_enc_data     |    kek_aad_length    (4 Byte) | kek_aad
+ * <br>|      kek_nonce_length       (4 Byte) |      kek_nonce      |   kek_aead_tag_len   (4 Byte) | kek_aead_tag
+ * <br>|   key_material_size_len     (4 Byte) |  key_material_size  |   key_mat_enc_length (4 Byte) | key_mat_enc_data
  *
  * <br>OH_HUKS_UNWRAP_SUITE_SM2_SM4_ECB_NOPADDING对应的密钥材料格式。
- *  |      kek_SM4_enc_length     (4 Byte) |      EN_SM4_key     | importkey_enc_length (4 Byte) | importkey_enc
+ * <br>|     kek_SM4_enc_length      (4 Byte) |      EN_SM4_key     | importkey_enc_length (4 Byte) | importkey_enc
  *
  * @since 9
  * @version 1.0
@@ -769,68 +780,68 @@ typedef enum OH_Huks_ErrCode {
      */
     OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015,
     /**
-     * 需要锁屏密码，但没有设置。
+     * @brief 需要锁屏密码，但没有设置。
      *
      * @since 11
      */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
     /**
-     * 同名密钥已存在。
+     * @brief 同名密钥已存在。
      *
      * @since 20
      */
     OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017,
     /**
-     * 输入的参数无效。
+     * @brief 输入的参数无效。
      *
      * @since 20
      */
     OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018,
 
     /**
-     * 该项实体已存在。
+     * @brief 该项实体已存在。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_ITEM_EXISTS = 12000019,
 
     /**
-     * 提供者或UKey内部执行失败。
+     * @brief 提供者或UKey内部执行失败。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_EXTERNAL_MODULE = 12000020,
 
     /**
-     * PIN码被锁定
+     * @brief PIN码被锁定
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_LOCKED = 12000021,
 
     /**
-     * PIN码错误。
+     * @brief PIN码错误。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_INCORRECT = 12000022,
 
     /**
-     * PIN码未认证通过。
+     * @brief PIN码未认证通过。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_PIN_NO_AUTH = 12000023,
 
     /**
-     * 提供者或UKey中的资源正在被使用。
+     * @brief 提供者或UKey中的资源正在被使用。
      *
      * @since 22
      */
     OH_HUKS_ERR_CODE_BUSY = 12000024,
 
     /**
-     * 资源超过限制。
+     * @brief 资源超过限制。
      *
      * @since 22
      */
@@ -892,7 +903,7 @@ typedef enum OH_Huks_UserAuthType {
      */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
     /**
-     * 用户认证类型为TUI PIN码。
+     * @brief 用户认证类型为TUI PIN码。
      *
      * @since 20
      */
@@ -929,17 +940,20 @@ typedef enum OH_Huks_AuthAccessType {
  */
 typedef enum OH_Huks_AuthStorageLevel {
     /**
-     * 表示密钥仅在开机后可访问。
+     * @brief 表示密钥仅在开机后可访问。
+     *
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_DE = 0,
     /**
-     * 表示密钥仅在首次解锁后可访问。
+     * @brief 表示密钥仅在首次解锁后可访问。
+     *
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_CE = 1,
     /**
-     * 表示密钥仅在解锁状态时可访问。
+     * @brief 表示密钥仅在解锁状态时可访问。
+     *
      * @since 11
      */
     OH_HUKS_AUTH_STORAGE_LEVEL_ECE = 2,
@@ -953,12 +967,14 @@ typedef enum OH_Huks_AuthStorageLevel {
  */
 typedef enum OH_Huks_UserAuthMode {
     /**
-     * 本地认证模式。
+     * @brief 本地认证模式。
+     *
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_LOCAL = 0,
     /**
-     * 跨端协同认证模式。
+     * @brief 跨端协同认证模式。
+     *
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_COAUTH = 1,
@@ -1047,12 +1063,13 @@ typedef enum OH_Huks_KeyClassType {
 } OH_Huks_KeyClassType;
 
 /**
- * 生成或导入密钥时，指定该密钥的封装类型。
+ * @brief 生成或导入密钥时，指定该密钥的封装类型。
+ *
  * @since 20
  */
 typedef enum OH_Huks_KeyWrapType {
     /**
-     * 硬件唯一密钥的封装类型。
+     * @brief 硬件唯一密钥的封装类型。
      *
      * @since 20
      */
@@ -1218,14 +1235,14 @@ typedef enum OH_Huks_Tag {
     OH_HUKS_TAG_KEY_AUTH_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 311,
 
     /**
-     * 密钥文件存储访问控制的类别，类型可在枚举{@link OH_Huks_AuthStorageLevel}中选择。
+     * @brief 密钥文件存储访问控制的类别，类型可在枚举{@link OH_Huks_AuthStorageLevel}中选择。
      *
      * @since 11
      */
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
     /**
-     * 表示密钥访问控制中用户认证模式，类型可在枚举{@link OH_Huks_UserAuthMode}中选择。
+     * @brief 表示密钥访问控制中用户认证模式，类型可在枚举{@link OH_Huks_UserAuthMode}中选择。
      *
      * @since 12
      */
@@ -1313,7 +1330,8 @@ typedef enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT | 1011,
     /**
-     * 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br> true表示只有在密码设置时才能生成和使用密钥。false表示不需要设置锁屏密码即能生成和使用密钥。
+     * @brief 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。
+     * <br> true表示只有在密码设置时才能生成和使用密钥。false表示不需要设置锁屏密码即能生成和使用密钥。
      *
      * @since 11
      */

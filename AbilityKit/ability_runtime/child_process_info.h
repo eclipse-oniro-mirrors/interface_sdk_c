@@ -19,7 +19,7 @@
  *
  * @brief Defines the child process info types and accessor APIs.
  *
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 /**
@@ -30,7 +30,7 @@
  * @library libability_runtime.so
  * @kit AbilityKit
  * @syscap SystemCapability.Ability.AbilityRuntime.Core
- * @since 26.1.0
+ * @since 26.0.1
  */
 
 #ifndef ABILITY_RUNTIME_CHILD_PROCESS_INFO_H
@@ -45,13 +45,13 @@ extern "C" {
 
 /**
  * @brief Defines the pointer to OH_AbilityRuntime_ChildProcessInfos.
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_AbilityRuntime_ChildProcessInfos *OH_AbilityRuntime_ChildProcessInfosHandle;
 
 /**
  * @brief Defines the pointer to OH_AbilityRuntime_ChildProcessInfo.
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef struct OH_AbilityRuntime_ChildProcessInfo *OH_AbilityRuntime_ChildProcessInfoHandle;
 
@@ -65,7 +65,7 @@ typedef struct OH_AbilityRuntime_ChildProcessInfo *OH_AbilityRuntime_ChildProces
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided are invalid.</li>
  *      </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetChildProcessInfoByIndex(
     OH_AbilityRuntime_ChildProcessInfosHandle infos, uint32_t index,
@@ -80,7 +80,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetChildProcessInfoByIndex(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided are invalid.</li>
  *      </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetPid(
     OH_AbilityRuntime_ChildProcessInfoHandle info, int32_t *pid);
@@ -94,7 +94,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetPid(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided are invalid.</li>
  *      </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetParentPid(
     OH_AbilityRuntime_ChildProcessInfoHandle info, int32_t *parentPid);
@@ -113,7 +113,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetParentPid(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_BUFFER_TOO_SMALL} if the buffer is too small.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if string copy operation failed.</li>
  *      </ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetProcessName(
     OH_AbilityRuntime_ChildProcessInfoHandle info, char *processName, uint32_t processNameSize, uint32_t *requiredSize);
@@ -123,7 +123,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ChildProcessInfo_GetProcessName(
  *
  * @param infos [in] The child process infos to be released. It must not be NULL.
  *     After release, handle will be set to NULL.
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_AbilityRuntime_ReleaseChildProcessInfos(OH_AbilityRuntime_ChildProcessInfosHandle *infos);
 

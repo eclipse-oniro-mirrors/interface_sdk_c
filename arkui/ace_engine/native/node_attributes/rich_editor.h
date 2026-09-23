@@ -17,7 +17,10 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Defines a set of RichEditor enum and interface.
+ * @brief Defines structs, enumerations, and APIs related to <b>RichEditor</b>. <b>RichEditor</b> provides rich
+ * text editing capabilities, supporting custom text selection menus, styled string controllers, paragraph and
+ * text style settings, and haptic feedback control. It is suitable for scenarios where rich text editing and
+ * custom interaction menus need to be implemented in applications.
  *
  * @since 24
  */
@@ -25,7 +28,10 @@
 /**
  * @file rich_editor.h
  *
- * @brief Defines a set of RichEditor enum and interface.
+ * @brief Defines structs, enumerations, and APIs related to <b>RichEditor</b>. <b>RichEditor</b> provides rich
+ * text editing capabilities, supporting custom text selection menus, styled string controllers, paragraph and
+ * text style settings, and haptic feedback control. It is suitable for scenarios where rich text editing and
+ * custom interaction menus need to be implemented in applications.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -45,35 +51,48 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the text selection menu options of the text editor.
+ * @brief Defines the text selection menu options of a text editor, which are used to customize the content of
+ * the text selection menu. It supports you in adding, replacing, or removing menu items based on service
+ * requirements, and is applicable to scenarios that require text operation menu customization, such as adding
+ * custom operation items like "Translate", "Search", and "Share", or replacing the default menu options.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorSelectionMenuOptions OH_ArkUI_TextEditorSelectionMenuOptions;
 
 /**
- * @brief Defines the hint text options when no content is entered in the text editor.
+ * @brief Defines the placeholder text options for a text editor when there is no input. When the text editor
+ * content is empty, the placeholder text is displayed based on these options. After the user enters content,
+ * the placeholder text is automatically hidden. This is applicable to scenarios where input guidance needs to
+ * be provided for users.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
 
 /**
- * @brief Defines the attribute string controller of the text editor.
+ * @brief Defines the styled string controller of a text editor, which supports operations such as setting and
+ * obtaining a styled string, setting an input style, and controlling the cursor. It can be used to adjust the
+ * cursor position, set the selection, obtain the preview text, and perform backward deletion.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
 
 /**
- * @brief Defines the paragraph style of the text editor.
+ * @brief Defines the paragraph style of a text editor, which describes the formatting attributes of paragraphs
+ * in a text editor. You can call related APIs to set and obtain the paragraph style. It applies to scenarios
+ * where style attributes such as the paragraph alignment, indentation, and line spacing need to be set.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
 
 /**
- * @brief Defines the text style of the text editor.
+ * @brief Defines the text style of a text editor, which supports the setting of text attributes such as the
+ * font, color, and size. It applies to scenarios where the content style of a text editor needs to be
+ * controlled, helping you flexibly customize the display effect of text in the editor. For example, in a rich
+ * text editor, you can set styles such as the font, color, and size for different paragraphs or text.
  *
  * @since 24
  */
@@ -103,7 +122,13 @@ typedef enum {
 } OH_ArkUI_HapticFeedbackMode;
 
 /**
- * @brief Enumerates the span types of a custom text selection menu.
+ * @brief Enumerates the span types of a custom text selection menu, which are used to identify the span type
+ * of the text selection menu in the text editor. Different span types correspond to different content structures,
+ * affecting the display and interaction behavior of the custom menu. For example, the
+ * <b>OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT</b> type is used when the user selects only text content, the
+ * <b>OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED</b> type is used when the selection contains mixed content such as
+ * text and images, and the <b>OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER</b> type is used when a custom menu item
+ * layout is required.
  *
  * @since 24
  */
@@ -136,7 +161,10 @@ typedef enum {
 } OH_ArkUI_TextEditorSpanType;
 
 /**
- * @brief Enumerates the response types of a custom text selection menu.
+ * @brief Enumerates the response types of a custom text selection menu, which are used to identify the
+ * interaction method that triggers the menu pop-up. Different response types correspond to different user
+ * operations (such as right-click, long press, and mouse-based selection), allowing different menu content
+ * to be customized based on the response type.
  *
  * @since 24
  */
@@ -164,7 +192,12 @@ typedef enum {
 } OH_ArkUI_TextEditorResponseType;
 
 /**
- * @brief Enumerates text menu types.
+ * @brief Enumerates text menu types, which are used to distinguish different types of pop-up menus in the text
+ * editor, including the text selection menu and the preview menu. Different menu types correspond to different
+ * interaction scenarios and menu display modes. For example, the text selection menu pops up when the user
+ * selects text and is used for text operations such as copy and delete; the preview menu pops up when the user
+ * long-presses an image and is used to trigger image content drag preview as well as copy and deletion
+ * operations.
  *
  * @since 24
  */
@@ -200,8 +233,10 @@ OH_ArkUI_TextEditorPlaceholderOptions* OH_ArkUI_TextEditorPlaceholderOptions_Cre
 void OH_ArkUI_TextEditorPlaceholderOptions_Destroy(OH_ArkUI_TextEditorPlaceholderOptions* options);
 
 /**
- * @brief Creates a styled string controller object for the text editor. When the object is no longer used, call
- * {@link OH_ArkUI_TextEditorStyledStringController_Destroy} to destroy it.
+ * @brief Creates a styled string controller object, which is used to control the styled string of the text
+ * editor when rich text content needs to be managed through styled strings (such as mixed layout of text and
+ * images, dynamic setting of paragraph or character styles, and other scenarios). When the object is no longer
+ * used, call {@link OH_ArkUI_TextEditorStyledStringController_Destroy} to destroy it.
  *
  * @return Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
  * @since 24

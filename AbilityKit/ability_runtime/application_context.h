@@ -456,7 +456,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextNotifyPageChanged(
  *      such as connect system service failed.</li>
  *      </ul>
  * @release OH_AbilityRuntime_ReleaseChildProcessInfos {infos}
- * @since 26.1.0
+ * @since 26.0.1
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_AcquireUIAbilityChildProcessInfos(
     OH_AbilityRuntime_ChildProcessInfosHandle* infos, uint32_t* count);

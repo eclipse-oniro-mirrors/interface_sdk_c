@@ -121,7 +121,7 @@ typedef enum {
     ARKUI_NODE_TEXT_EDITOR = 22,
     /**
      * ArcAlphabetIndexer.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     ARKUI_NODE_ARC_ALPHABET_INDEXER = 23,
     /** Stack container. */
@@ -188,7 +188,7 @@ typedef enum {
     ARKUI_NODE_ARC_SCROLL_BAR = 1021,
     /**
      * ArcSwiper.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     ARKUI_NODE_ARC_SWIPER = 1022,
 } ArkUI_NodeType;
@@ -2858,6 +2858,30 @@ typedef enum {
     NODE_SYSTEM_MATERIAL = 127,
 
     /**
+     * @brief Defines the 3D transform attribute, which sets the 3D transformation matrix of the component.
+     * When 3D transformation with the perspective effect is involved, the display effect of
+     * {@link NODE_TRANSFORM} may be incorrect. In this case, this attribute is recommended.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers, indicating a 4x4 transformation matrix.
+     * The array length must be <b>16</b>.</li>
+     * <li>.object: pointer to an {@link ArkUI_Matrix4} object, indicating a 4x4 transformation matrix.
+     * Either .value or .object is used to set the matrix. If both are set at the same time, .value takes priority.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers, indicating the current 3D transformation matrix.</li>
+     * </ul>
+     *
+     * @ingroup Visual
+     * @since 26.0.1
+     */
+    NODE_TRANSFORM_3D = 128,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
@@ -3262,7 +3286,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
      * <li>?.object: Optional. Pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing
-     * options. Available since API version 26.1.0.
+     * options. Available since API version 26.0.1.
      * Use {@link OH_ArkUI_NativeModule_LineSpacingOptions_Create} to create and
      * {@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy} to destroy the object.</li>
      * </ul>
@@ -3271,7 +3295,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
      * <li>.object: pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing options.
-     * Available since API version 26.1.0.</li>
+     * Available since API version 26.0.1.</li>
      * </ul>
      *
      * @ingroup Text Display
@@ -3861,6 +3885,67 @@ typedef enum {
     NODE_TEXT_TAIL_INDENTS = 1056,
 
     /**
+     * @brief Sets the text stroke width.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: text stroke width, in vp. The default value is <b>0</b>, indicating no stroke.
+     * A value less than <b>0</b> indicates solid text; a value greater than <b>0</b> indicates outlined text.
+     * Percentage values are not supported.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: text stroke width, in vp.</li>
+     * </ul>
+     *
+     * @ingroup Text Display
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_WIDTH = 1057,
+
+    /**
+     * @brief Sets the text stroke color.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: text stroke color, in 0xARGB format.
+     * The default value is the text font color. Invalid values are treated as the default value.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: text stroke color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @ingroup Text Display
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_COLOR = 1058,
+
+    /**
+     * @brief Sets the join style of the text stroke.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text stroke join style. The parameter type is {@link OH_ArkUI_StrokeJoinStyle}.
+     * The default value is <b>OH_ARKUI_STROKE_JOIN_STYLE_MITER_JOIN</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text stroke join style. The parameter type is {@link OH_ArkUI_StrokeJoinStyle}.</li>
+     * </ul>
+     *
+     * @ingroup Text Display
+     * @since 26.2.0
+     */
+    NODE_TEXT_STROKE_JOIN_STYLE = 1059,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
@@ -4102,7 +4187,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -9034,7 +9119,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_ARRAY = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_ALPHABET_INDEXER,
 
@@ -9053,7 +9138,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_COLOR,
 
@@ -9072,7 +9157,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_SELECTED_COLOR,
 
@@ -9091,7 +9176,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_POPUP_COLOR,
 
@@ -9110,7 +9195,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_SELECTED_BACKGROUND_COLOR,
 
@@ -9129,7 +9214,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_POPUP_BACKGROUND_COLOR,
 
@@ -9149,7 +9234,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_USE_POPUP,
 
@@ -9177,7 +9262,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_SELECTED_FONT,
 
@@ -9205,7 +9290,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_POPUP_FONT,
 
@@ -9233,7 +9318,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_FONT,
 
@@ -9253,7 +9338,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_ITEM_SIZE,
 
@@ -9272,7 +9357,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_SELECTED,
 
@@ -9294,7 +9379,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_AUTO_COLLAPSE,
 
@@ -9314,7 +9399,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_POPUP_BACKGROUND_BLUR_STYLE,
 
@@ -12703,7 +12788,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SWIPER,
 
@@ -12742,7 +12827,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      *
      */
     NODE_ARC_SWIPER_INDICATOR,
@@ -12762,7 +12847,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DURATION,
 
@@ -12782,7 +12867,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_VERTICAL,
 
@@ -12802,7 +12887,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DISABLE_SWIPE,
 
@@ -12822,7 +12907,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DIGITAL_CROWN_SENSITIVITY,
 
@@ -12844,7 +12929,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EFFECT_MODE,
 
@@ -12864,7 +12949,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_DISABLE_TRANSITION_ANIMATION,
 } ArkUI_NodeAttributeType;
@@ -14511,7 +14596,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_ALPHABET_INDEXER_EVENT_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_ALPHABET_INDEXER,
 
@@ -15468,7 +15553,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_SWIPER,
 
@@ -15489,7 +15574,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_ANIMATION_START,
 
@@ -15506,7 +15591,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_ANIMATION_END,
 
@@ -15524,7 +15609,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Navigation Related Components
-     * @since 26.1.0
+     * @since 26.0.1
      */
     NODE_ARC_SWIPER_EVENT_ON_GESTURE_SWIPE,
 } ArkUI_NodeEventType;
@@ -16054,7 +16139,7 @@ typedef struct {
      *
      * @param parent Pointer to the parent node.
      * @param child Pointer to the child node.
-     * @param position Inserting position. The value range is [-2147483648, 2147483647]. If the value is a negative
+     * @param position Inserting position. The value range is [0, current child count]. If the value is a negative
      *     number or invalid, the component is inserted at the end of the parent node.
      * @return Result code.
      *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -16075,7 +16160,7 @@ typedef struct {
      *
      * @param node Node whose attribute needs to be set.
      * @param attribute Type of attribute to set.
-     * @param value Indicates the attribute value.
+     * @param item Indicates the attribute value.
      * @return Result code.
      *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -17650,7 +17735,7 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_ArcSwiper_ShowPrevious(ArkUI_NodeHandle node);
 
@@ -17661,7 +17746,7 @@ int32_t OH_ArkUI_ArcSwiper_ShowPrevious(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
 
@@ -17672,7 +17757,7 @@ int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 26.1.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_ArcSwiper_FinishAnimation(ArkUI_NodeHandle node);
 
@@ -17743,7 +17828,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node,
  *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} The operation is successful.
  *     </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR} Failed to initialize the CAPI.
  *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} The function parameter is invalid.</li></ul>
- * @since 26.1.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
 

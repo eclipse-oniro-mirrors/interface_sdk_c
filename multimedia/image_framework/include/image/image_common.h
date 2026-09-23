@@ -178,7 +178,7 @@ typedef enum {
     IMAGE_BAD_PARAMETER = 401,
     /**
      * @error Permission verification failed. A non-system application calls a system API.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION = 202,
     /** unsupported mime type */
@@ -225,7 +225,7 @@ typedef enum {
     IMAGE_UNSUPPORTED_DATA_FORMAT = 7600207,
     /**
      * @error the decomposition process failed.
-     * @since 26.1.0
+     * @since 26.0.1
      */
     OH_IMAGE_ERROR_DECOMPOSE_FAILED = 7600208,
     /** failed to allocate memory */

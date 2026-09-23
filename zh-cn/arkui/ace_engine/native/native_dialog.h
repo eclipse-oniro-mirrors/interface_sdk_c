@@ -821,7 +821,7 @@ int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, voi
  * {@link ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE} 由于子窗口创建失败，弹窗无法打开。
  * @param dialogId 弹窗ID。当弹窗无法显示时返回-1。
  * @param userData 表示指向自定义数据的指针。
- * @since 26.1.0
+ * @since 26.0.1
  */
 typedef void (*ArkUI_OpenDialogCallback)(int32_t errorCode, int32_t dialogId, void* userData);
 
@@ -831,7 +831,7 @@ typedef void (*ArkUI_OpenDialogCallback)(int32_t errorCode, int32_t dialogId, vo
  * @param options  弹窗参数。
  * @param userData 表示指向自定义数据的指针。
  * @param callback 弹窗显示时的回调，返回入参为错误码和弹窗ID。
- * @since 26.1.0
+ * @since 26.0.1
  */
 void OH_ArkUI_CustomDialog_OpenDialogWithCallback(ArkUI_CustomDialogOptions* options, void* userData,
     ArkUI_OpenDialogCallback callback);
