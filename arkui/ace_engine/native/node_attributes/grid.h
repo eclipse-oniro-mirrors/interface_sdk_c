@@ -23,9 +23,9 @@
  */
 
 /**
- * @file grid.h
+ * @file node_grid.h
  *
- * @brief Provides Grid-related type and function definitions for <b>NativeNode</b> APIs.
+ * @brief Defines enumerations and APIs related to **Grid**.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,51 +43,65 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the return value for the **onGetIrregularSizeByIndex** callback in **Grid** layout options.
+ * @brief Defines the return value for the {@link OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback}
+ * callback in **Grid** layout options, which is used to specify the row span and column span for an irregular grid
+ * item at the specified index.
  *
  * @since 22
  */
 typedef struct {
     /**
-     * Number of rows occupied by the **GridItem** component.
+     * Number of rows occupied by a grid item, which is used to set the span of the grid item in the row direction.
+     * Value range: [1, +∞). If set to **0**, the value **1** is used. In a horizontal grid layout, if the value
+     * exceeds the actual number of rows, the actual number of rows is used.
      */
     uint32_t rowSpan;
 
     /**
-     * Number of columns occupied by the **GridItem** component.
+     * Number of columns occupied by a grid item, which is used to set the span of the grid item in the column
+     * direction. Value range: [1, +∞). If set to **0**, the value **1** is used. In a vertical grid layout, if the
+     * value exceeds the actual number of columns, the actual number of columns is used.
      */
     uint32_t columnSpan;
 } ArkUI_GridItemSize;
 
 /**
- * @brief Defines the return value for the **onGetRectByIndex** callback in **Grid** layout options.
+ * @brief Defines the return value for the {@link OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback} callback
+ * in **Grid** layout options, which is used to specify the start row, start column, row span, and column span for the
+ * grid item in **Grid** at the specified index.
  *
  * @since 22
  */
 typedef struct {
     /**
-     * Starting row position of the **GridItem** component.
+     * Start row of a grid item in **Grid**, which is counted from 0.
      */
     uint32_t rowStart;
 
     /**
-     * Starting column position of the **GridItem** component.
+     * Start column of a grid item in **Grid**, which is counted from 0.
      */
     uint32_t columnStart;
 
     /**
-     * Number of rows occupied by the **GridItem** component.
+     * Number of rows occupied by a grid item, which is used to set the span of the grid item in the row direction.
+     * Value range: [1, +∞). If set to **0**, the value **1** is used. In a horizontal grid layout, if the value
+     * exceeds the actual number of rows, the actual number of rows is used.
      */
     uint32_t rowSpan;
 
     /**
-     * Number of columns occupied by the **GridItem** component.
+     * Number of columns occupied by a grid item, which is used to set the span of the grid item in the column
+     * direction. Value range: [1, +∞). If set to **0**, the value **1** is used. In a vertical grid layout, if the
+     * value exceeds the actual number of columns, the actual number of columns is used.
      */
     uint32_t columnSpan;
 } ArkUI_GridItemRect;
 
 /**
- * @brief Defines the **Grid** layout options.
+ * @brief Defines grid layout options, which are used to set layout parameters for irregular grid items in a **Grid**
+ * component, including the irregular item index and layout callback. An irregular grid item refers to a grid item that
+ * spans rows and columns or has a different size in the grid layout.
  *
  * @since 22
  */
@@ -128,32 +142,30 @@ typedef enum {
 } ArkUI_GridItemStyle;
 
 /**
- * @brief Creates **Grid** layout options.
+ * @brief Creates **Grid** layout options. Call **OH_ArkUI_GridLayoutOptions_Dispose** to dispose of it after use.
  *
- * @return Pointer to the **Grid** layout option.
+ * @return Pointer to the created **Grid** layout option array.
  * @since 22
  */
 ArkUI_GridLayoutOptions* OH_ArkUI_GridLayoutOptions_Create();
 
 /**
- * @brief Disposes of the **Grid** layout option.
+ * @brief Disposes of the **Grid** layout options to release resources.
  *
- * @param option Pointer to the **Grid** layout option.
+ * @param option Pointer to the **Grid** layout option array to dispose of.
  * @since 22
  */
 void OH_ArkUI_GridLayoutOptions_Dispose(ArkUI_GridLayoutOptions* option);
 /**
  * @brief Sets the irregular grid item index array for the grid layout.
  *
- * @param option Pointer to the **Grid** layout option.
- * @param irregularIndexes Pointer to the **GridItem** index array.
- * @param size Size of the **GridItem** index array.
+ * @param option Pointer to the **Grid** layout option array to set.
+ * @param irregularIndexes Pointer to the array of irregular grid item indexes used to set the **Grid** layout options.
+ * @param size Number of elements in the **irregularIndexes** array.
  * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     <li><br>A possible cause is that mandatory parameters are left unspecified.</li>
- *     </ul>
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>A possible cause is that mandatory parameters are left unspecified.
  * @since 22
  */
 int32_t OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(
@@ -164,16 +176,16 @@ int32_t OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(
  * parameter occupies an entire row of the grid that scrolls vertically or an entire column of the grid that scrolls
  * horizontally.
  *
- * @param option Pointer to the **Grid** layout option.
- * @param irregularIndexes Pointer to the **GridItem** index array.
- * @param size Size of the **GridItem** index array.
+ * @param option Pointer to the **Grid** layout option array to be obtained.
+ * @param irregularIndexes Pointer to the buffer for receiving the irregular grid item index array.
+ * @param size Pointer to the number of elements that the **irregularIndexes** buffer can hold. Pass the buffer
+ *     capacity before calling, and it will be updated to the actual number of indexes actually written after a
+ *     successful call.
  * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is insufficient.</li>
- *     <li><br>A possible cause is that mandatory parameters are left unspecified.</li>
- *     </ul>
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the array size is insufficient.
+ *     <br>A possible cause is that mandatory parameters are left unspecified.
  * @since 22
  */
 int32_t OH_ArkUI_GridLayoutOptions_GetIrregularIndexes(
@@ -182,7 +194,7 @@ int32_t OH_ArkUI_GridLayoutOptions_GetIrregularIndexes(
 /**
  * @brief Registers a callback to obtain the row and column span for the grid item at the specified index.
  *
- * @param option Pointer to the **Grid** layout option.
+ * @param option Pointer to the **Grid** layout option array.
  * @param userData Pointer to the user-defined data.
  * @param callback Callback that returns the row and column span for the grid item at the specified index.
  *     itemIndex: grid item index, which must be within the range set by
@@ -196,7 +208,7 @@ void OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback(
  * @brief Registers a callback to obtain the starting row, starting column, row span, and column span for the grid item
  * at the specified index.
  *
- * @param option Pointer to the **Grid** layout option.
+ * @param option Pointer to the **Grid** layout option array.
  * @param userData Pointer to the user-defined data.
  * @param callback Callback that returns the starting row, starting column, row span,
  *     and column span for the grid item at the specified index.
