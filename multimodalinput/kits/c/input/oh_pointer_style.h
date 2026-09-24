@@ -18,8 +18,8 @@
  * @{
  *
  * @brief Provides C APIs of the multimodal input module, supporting event processing for various input devices such as
- *  touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
- *  application interaction experience.
+ * touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
+ * application interaction experience.
  *
  * @since 12
  */
@@ -369,7 +369,7 @@ typedef enum Input_PointerStyle {
     LASER_CURSOR_DOT_RED = 51,
     /**
      * @brief Custom cursor. You can use the {@link oh_input_manager.h#OH_Input_SetCustomCursor} to set a custom
-     * pointer, but not the {@link oh_input_manager.h#OH_Input_SetPointerStyle}.
+     * cursor, but not the {@link oh_input_manager.h#OH_Input_SetPointerStyle}.
      * @since 22
      */
     DEVELOPER_DEFINED_ICON = -100

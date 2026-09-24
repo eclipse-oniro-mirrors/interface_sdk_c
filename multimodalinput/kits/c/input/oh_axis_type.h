@@ -18,8 +18,8 @@
  * @{
  *
  * @brief Provides C APIs of the multimodal input module, supporting event processing for various input devices such as
- *  touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
- *  application interaction experience.
+ * touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
+ * application interaction experience.
  *
  * @since 12
  */
@@ -27,8 +27,8 @@
 /**
  * @file oh_axis_type.h
  * @brief Axis event enums of input devices. The axis type defines the physical behavior characteristics of the
- *  input device in different interaction scenarios. The system distinguishes and delivers different gesture
- *  interaction information through the axis type.
+ * input device in different interaction scenarios. The system distinguishes and delivers different gesture
+ * interaction information through the axis type.
  *
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @include <multimodalinput/oh_axis_type.h>

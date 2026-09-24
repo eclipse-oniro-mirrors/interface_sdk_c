@@ -100,11 +100,13 @@ typedef enum Input_KeyEventAction {
 
     /**
      * @brief 按键按下。
+     * @since 12
      */
     KEY_ACTION_DOWN = 1,
 
     /**
      * @brief 按键抬起。
+     * @since 12
      */
     KEY_ACTION_UP = 2
 } Input_KeyEventAction;
@@ -117,36 +119,43 @@ typedef enum Input_KeyEventAction {
 typedef enum Input_MouseEventAction {
     /**
      * @brief 取消鼠标动作。
+     * @since 12
      */
     MOUSE_ACTION_CANCEL = 0,
 
     /**
      * @brief 移动鼠标。
+     * @since 12
      */
     MOUSE_ACTION_MOVE = 1,
 
     /**
      * @brief 按下鼠标。
+     * @since 12
      */
     MOUSE_ACTION_BUTTON_DOWN = 2,
 
     /**
      * @brief 抬起鼠标按键。
+     * @since 12
      */
     MOUSE_ACTION_BUTTON_UP = 3,
 
     /**
      * @brief 鼠标轴事件开始。
+     * @since 12
      */
     MOUSE_ACTION_AXIS_BEGIN = 4,
 
     /**
      * @brief 更新鼠标轴事件。
+     * @since 12
      */
     MOUSE_ACTION_AXIS_UPDATE = 5,
 
     /**
      * @brief 鼠标轴事件结束。
+     * @since 12
      */
     MOUSE_ACTION_AXIS_END = 6
 } Input_MouseEventAction;
@@ -240,13 +249,13 @@ typedef enum Input_TouchEventAction {
 typedef enum Input_KeyboardType {
     /**
      * @brief 表示无按键设备。
-     * @since 12
+     * @since 13
      */
     KEYBOARD_TYPE_NONE = 0,
 
     /**
      * @brief 表示未知按键设备。
-     * @since 12
+     * @since 13
      */
     KEYBOARD_TYPE_UNKNOWN = 1,
 
@@ -279,16 +288,19 @@ typedef enum Input_KeyboardType {
 typedef enum Input_InjectionStatus {
     /**
      * @brief 未授权。
+     * @since 20
      */
     UNAUTHORIZED = 0,
 
     /**
      * @brief 授权中。
+     * @since 20
      */
     AUTHORIZING = 1,
 
     /**
      * @brief 已授权。
+     * @since 20
      */
     AUTHORIZED = 2
 } Input_InjectionStatus;
@@ -619,7 +631,7 @@ typedef struct Input_InterceptorEventCallback {
     /**
      * @brief 鼠标事件的回调函数。
      * @since 12
-     * */
+     */
     Input_MouseEventCallback mouseCallback;
     /**
      * @brief 触屏输入事件的回调函数。
@@ -627,9 +639,9 @@ typedef struct Input_InterceptorEventCallback {
      */
     Input_TouchEventCallback touchCallback;
     /**
-     * @brief 轴事件的回调函数。 
+     * @brief 轴事件的回调函数。
      * @since 12
-     * */
+     */
     Input_AxisEventCallback axisCallback;
 } Input_InterceptorEventCallback;
 
@@ -674,7 +686,6 @@ Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
  * @brief 创建按键状态的结构体对象。通过调用{@link OH_Input_DestroyKeyState}销毁按键状态的结构体对象。
  *
  * @return 操作成功返回一个{@link Input_KeyState}指针对象；否则返回空指针。
- *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_DestroyKeyState}销毁。
  * @release OH_Input_DestroyKeyState {return}
  * @since 12
  */
@@ -2101,7 +2112,6 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  *
  * @param count [in] 创建{@link Input_Hotkey}实例的数量。
  * @return 如果操作成功，返回创建的{@link Input_Hotkey}实例数组的指针；否则返回空指针，可能的原因是内存分配失败。
- *     <br>返回的数组由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_DestroyAllSystemHotkeys}销毁。
  * @release OH_Input_DestroyAllSystemHotkeys {return}
  * @since 14
  */
@@ -2175,8 +2185,8 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @param callback [in] 回调函数，用于回调快捷键事件。
  * @return OH_Input_RemoveHotkeyMonitor 函数返回值。
  *     <ul>
- *         <li>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。</li>
- *         <li>{@link INPUT_PARAMETER_ERROR} 参数检查失败。</li>
+ *     <li>{@link INPUT_SUCCESS} 表示取消订阅组合按键成功。</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} 参数检查失败。</li>
  *     </ul>
  * @since 14
  */
@@ -2459,8 +2469,8 @@ Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t
  * @param cursorInfo [out] 鼠标光标信息对象，可以通过{@link OH_Input_CursorInfo_Create}接口创建鼠标光标信息对象。
  * @return OH_Input_GetMouseEventCursorInfo 函数返回值：
  *     <ul>
- *         <li>{@link INPUT_SUCCESS} 表示操作成功。</li>
- *         <li>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。</li>
+ *     <li>{@link INPUT_SUCCESS} 表示操作成功。</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} 表示参数检查失败。</li>
  *     </ul>
  * @since 22
  */
@@ -2543,7 +2553,6 @@ Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
  * @param anchorX [in] 自定义鼠标光标焦点的水平坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的宽度最大值，单位为像素（px）。
  * @param anchorY [in] 自定义鼠标光标焦点的垂直坐标。该坐标受自定义鼠标光标大小的限制。最小值为0，最大值为资源图的高度最大值，单位为像素（px）。
  * @return {@link Input_CustomCursor}对象。操作成功时返回自定义鼠标光标资源对象的指针。异常时返回空指针。
- *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_CustomCursor_Destroy}销毁。
  * @release OH_Input_CustomCursor_Destroy {return}
  * @since 22
  */
@@ -2587,7 +2596,6 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
  * @param followSystem [in] 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小,
  *     256×256]，单位为像素（px）。
  * @return 自定义鼠标光标配置{@link Input_CursorConfig}对象。
- *     <br>返回的对象由调用方拥有，为避免内存泄漏，不再需要时须调用{@link OH_Input_CursorConfig_Destroy}销毁。
  * @release OH_Input_CursorConfig_Destroy {return}
  * @since 22
  */
