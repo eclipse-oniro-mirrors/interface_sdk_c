@@ -3302,6 +3302,47 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
     const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);
 
 /**
+ * @brief Sets the image text tag in the image style.
+ *
+ * @param imageAttachment [in] Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ *     The pointer must not be NULL.
+ * @param imageTag [in] Pointer to the image text tag string. The pointer must not be NULL.
+ * @return Returns the result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
+    OH_ArkUI_ImageAttachment *imageAttachment, const char *imageTag);
+ 
+/**
+ * @brief Obtains the image text tag in the image style.
+ *
+ * @param imageAttachment [in] Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ *     The pointer must not be NULL.
+ * @param bufferSize [in] Buffer size.
+ * @param buffer [out] Pointer to the buffer for storing the image text tag string in the memory. You need to
+ *     allocate the memory. The pointer must not be NULL.
+ * @param writeLength [out] Pointer to the length of the string actually written to the buffer if
+ *     {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.
+ *     <br>Pointer to the minimum length required for writing the entire string to the buffer if
+ *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ *     The pointer must not be NULL.
+ * @return Returns the result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is
+ *     less than the minimum buffer size.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetImageTag(const OH_ArkUI_ImageAttachment *imageAttachment,
+    int32_t bufferSize, char *buffer, int32_t *writeLength);
+
+/**
  * @brief Obtains the range of the content to be replaced in the text change information.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
