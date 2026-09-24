@@ -15785,7 +15785,10 @@ typedef enum {
 typedef struct ArkUI_NodeCustomEvent ArkUI_NodeCustomEvent;
 
 /**
- * @brief Defines the component adapter, which is used for lazy loading of elements of scrollable components.
+ * @brief Defines the pointer to a component adapter object,
+ * which is used for lazy loading of elements in scrollable components.
+ * This is applicable to scenarios where a large amount of scrollable content needs to be loaded on demand.
+ * It prevents all elements from being created at once, reducing memory usage and improving scrolling performance.
  *
  * @since 12
  */
