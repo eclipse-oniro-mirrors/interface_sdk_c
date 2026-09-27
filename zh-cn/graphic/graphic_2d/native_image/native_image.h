@@ -48,6 +48,10 @@ extern "C" {
 
 struct OH_NativeImage;
 typedef struct OH_NativeImage OH_NativeImage;
+/**
+ * @brief 定义结构体NativeWindow的新类型名OHNativeWindow。
+ * @since 8
+ */
 typedef struct NativeWindow OHNativeWindow;
 /**
  * @brief 定义结构体NativeWindowBuffer的新类型名OHNativeWindowBuffer。
