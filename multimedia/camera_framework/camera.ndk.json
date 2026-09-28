@@ -1146,5 +1146,29 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_PreviewOutput_SetLogViewAssistEnable"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_GetAuxiliaryImage"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_GetUncompressedAuxiliaryImage"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_ReleasePicture"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_ReleaseImage"
     }
 ]
