@@ -673,6 +673,42 @@ Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOu
  * @since 26.0.0
  */
 bool OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported(const Camera_PhotoOutput* photoOutput);
+
+/**
+ * @brief Check if the automatic auxiliary photo delivery is supported.
+ *
+ * @param photoOutput [in] Pointer to the target PhotoOutput instance.
+ * @param auxPhotoType [in] Target auxiliary photo type.
+ * @param isSupported [out] Pointer to the check result for the support of capturing auxiliary photo. **true** if
+ *     supported, **false** otherwise.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_ERROR_PARAM_OUT_OF_RANGE**: A parameter is out of the range.</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported(const Camera_PhotoOutput* photoOutput,
+    OH_Camera_AuxiliaryPhotoType auxPhotoType, bool* isSupported);
+
+/**
+ * @brief Enable or disable auto auxiliary photo delivery.
+ *
+ * @param photoOutput [in] Pointer to the target PhotoOutput instance.
+ * @param auxPhotoTypes [in] Pointer to the target auxiliary photo types array.
+ * @param size [in] The size of the auxiliary photo types array(number of elements).
+ * @param enable [in] Whether to enable or disable auxiliary photo delivery. **true** to enable, **false** otherwise.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_ERROR_PARAM_OUT_OF_RANGE**: A parameter is out of the range.</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled(Camera_PhotoOutput* photoOutput,
+    const OH_Camera_AuxiliaryPhotoType* auxPhotoTypes, uint32_t size, bool enable);
 #ifdef __cplusplus
 }
 #endif
