@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the size of the main axis of a child component of the **List** component.
+ * @brief Defines the main axis size information of the child component of the **List** component.
  *
  * @since 12
  */
