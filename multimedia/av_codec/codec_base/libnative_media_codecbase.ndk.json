@@ -913,5 +913,5 @@
         "first_introduced": "26.0.1",
         "name": "OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX",
         "type": "variable"
-    },
+    }
 ]
