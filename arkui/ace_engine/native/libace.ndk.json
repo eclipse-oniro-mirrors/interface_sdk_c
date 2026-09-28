@@ -6431,6 +6431,14 @@
         "name": "OH_ArkUI_ImageAttachment_GetResizableLattice"
     },
     {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_ImageAttachment_SetImageTag"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_ImageAttachment_GetImageTag"
+    },
+    {
         "first_introduced": "24",
         "name": "OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent"
     },
