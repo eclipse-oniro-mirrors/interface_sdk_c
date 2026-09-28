@@ -1634,7 +1634,7 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
  *     <br>使用完需使用{@link OH_Input_DestroyAxisEvent}接口销毁轴事件对象。
  * @param displayX [out] 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的X坐标，单位为像素（px）。
  * @return <ul>
- *         <li>若获取轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}。</li>
+ *         <li>若获取轴事件的X坐标成功，则返回{@link INPUT_SUCCESS}；</li>
  *         <li>若axisEvent或者displayX为NULL，则返回{@link INPUT_PARAMETER_ERROR}。</li>
  *         </ul>
  * @since 12
@@ -2593,7 +2593,7 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
 /**
  * @brief 创建自定义鼠标光标配置对象。通过调用{@link OH_Input_CursorConfig_Destroy}销毁自定义鼠标光标配置对象。
  *
- * @param followSystem [in] 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小,
+ * @param followSystem [in] 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小，
  *     256×256]，单位为像素（px）。
  * @return 自定义鼠标光标配置{@link Input_CursorConfig}对象。
  * @release OH_Input_CursorConfig_Destroy {return}

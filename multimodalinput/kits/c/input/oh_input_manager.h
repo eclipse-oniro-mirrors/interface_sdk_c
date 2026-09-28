@@ -424,12 +424,12 @@ typedef enum Input_Result {
     INPUT_SUCCESS = 0,
 
     /**
-     * @brief Permission verification failed.
+     * @brief Permission verification failed. The application does not have the permission required to call the API.
      */
     INPUT_PERMISSION_DENIED = 201,
 
     /**
-     * @brief Non-system application.
+     * @brief Permission verification failed. A non-system application calls a system API.
      */
     INPUT_NOT_SYSTEM_APPLICATION = 202,
 
@@ -439,7 +439,8 @@ typedef enum Input_Result {
     INPUT_PARAMETER_ERROR = 401,
 
     /**
-     * @brief Function not supported.
+     * @brief Capability not supported. Possible causes: 1. The hardware does not support the capability; 
+     * 2. The chip does not support the capability; 3. A dependent service feature is not supported.
      */
     INPUT_DEVICE_NOT_SUPPORTED = 801,
 
@@ -1737,7 +1738,9 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  *     <br>INPUT_SUCCESS = 0: The authorization request succeeds, and the system waits for the user's authorization
  *     result and invokes the callback to return the authorization state.
  *     <br>INPUT_PARAMETER_ERROR = 401: The parameter is invalid, for example, the callback parameter is null.
- *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: The function is not supported.
+ *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: Capability not supported. Possible causes: 1. The hardware does not 
+ *     support the capability; 2. The chip does not support the capability; 3. A dependent service feature is 
+ *     not supported.
  *     <br>INPUT_SERVICE_EXCEPTION = 3800001: The service is abnormal.
  *     <br>INPUT_INJECTION_AUTHORIZING = 3900005: Authorization is in progress.
  *     <br>INPUT_INJECTION_OPERATION_FREQUENT = 3900006: Duplicate request (the current application requests the
@@ -2981,7 +2984,6 @@ Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
  * @param anchorY [in] Vertical coordinate of the custom mouse cursor focus. This coordinate is limited by the size of
  *     the custom mouse cursor. The minimum value is 0, and the maximum value is the maximum height of the resource
  *     image, in px.
- * @return  and a null pointer is returned if an exception occurs.
  * @return <ul>
  *         <li>{@link Input_CustomCursor} object. The pointer to the custom mouse pointer object is returned if the
  *         operation is successful,</li>
