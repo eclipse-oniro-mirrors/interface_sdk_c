@@ -204,6 +204,30 @@ const char *OH_GetOSFullName(void);
 int OH_GetSdkApiVersion(void);
 
 /**
+ * @brief 获取系统次版本号。从API版本26.0.0起，为配合语义化版本号，新增次版本号的定义，即中间
+ * 字段的值，值为整型数。完整版本号由sdkApiVersion.sdkMinorApiVersion.sdkPatchApiVersion共同构成。
+ *
+ * @return <ul>
+ *     <li>0 ~ 99 - 系统次版本号，取值范围为整数。</li>
+ *     <li>-1 - 未查询到系统次版本号, 或调用内部接口失败。</li>
+ *     </ul>
+ * @since 26.0.1
+ */
+int OH_GetSdkMinorApiVersion(void);
+ 
+/**
+ * @brief 获取系统修订版本号。从API版本26.0.0起，为配合语义化版本号，新增修订版本号的定义，即第三
+ * 个字段的值，值为整型数。完整版本号由sdkApiVersion.sdkMinorApiVersion.sdkPatchApiVersion共同构成。
+ *
+ * @return <ul>
+ *     <li>0 ~ 99 - 系统修订版本号，取值范围为整数。</li>
+ *     <li>-1 - 未查询到系统修订版本号, 或调用内部接口失败。</li>
+ *     </ul>
+ * @since 26.0.1
+ */
+int OH_GetSdkPatchApiVersion(void);
+
+/**
  * @brief 获取首个版本系统软件API版本。指设备首次发布时所支持的系统软件API版本。
  *
  * @return 首个版本系统软件API版本。指设备首次发布时所支持的系统软件API版本，取值范围为整数。

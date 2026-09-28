@@ -16,6 +16,14 @@
     {"name": "OH_GetOsReleaseType"},
     {"name": "OH_GetOSFullName"},
     {"name": "OH_GetSdkApiVersion"},
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_GetSdkMinorApiVersion"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_GetSdkPatchApiVersion"
+    },
     {"name": "OH_GetFirstApiVersion"},
     {"name": "OH_GetVersionId"},
     {"name": "OH_GetBuildType"},
