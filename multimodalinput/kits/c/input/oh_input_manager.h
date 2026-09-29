@@ -439,7 +439,7 @@ typedef enum Input_Result {
     INPUT_PARAMETER_ERROR = 401,
 
     /**
-     * @brief Capability not supported. Possible causes: 1. The hardware does not support the capability; 
+     * @brief Capability not supported. Possible causes: 1. The hardware does not support the capability;
      * 2. The chip does not support the capability; 3. A dependent service feature is not supported.
      */
     INPUT_DEVICE_NOT_SUPPORTED = 801,
@@ -1739,7 +1739,7 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  *     result and invokes the callback to return the authorization state.
  *     <br>INPUT_PARAMETER_ERROR = 401: The parameter is invalid, for example, the callback parameter is null.
  *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: Capability not supported. Possible causes: 1. The hardware does not
- *     support the capability; 2. The chip does not support the capability; 3. A dependent service feature is 
+ *     support the capability; 2. The chip does not support the capability; 3. A dependent service feature is
  *     not supported.
  *     <br>INPUT_SERVICE_EXCEPTION = 3800001: The service is abnormal.
  *     <br>INPUT_INJECTION_AUTHORIZING = 3900005: Authorization is in progress.
