@@ -9810,7 +9810,11 @@ typedef enum {
     NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_STACK,
 
     /**
-     * @brief Defines the scrollbar status. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Scrollbar display mode. This attribute can be set, reset, and obtained as required through APIs. {@link
+     * List}, {@link Scroll}, and {@link WaterFlow} support this attribute since API version 12, and {@link Grid}
+     * supports this attribute since API version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9828,8 +9832,11 @@ typedef enum {
      */
     NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
     /**
-     * @brief Defines the width of the scrollbar. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Width of the scrollbar. This attribute can be set, reset, and obtained as required through APIs. {@link
+     * List}, {@link Scroll}, and {@link WaterFlow} support this attribute since API version 12, and {@link Grid}
+     * supports this attribute since API version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9845,8 +9852,11 @@ typedef enum {
      */
     NODE_SCROLL_BAR_WIDTH,
     /**
-     * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Color of the scrollbar. This attribute can be set, reset, and obtained as required through APIs. {@link
+     * List}, {@link Scroll}, and {@link WaterFlow} support this attribute since API version 12, and {@link Grid}
+     * supports this attribute since API version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9862,7 +9872,9 @@ typedef enum {
      */
     NODE_SCROLL_BAR_COLOR,
     /**
-     * @brief Defines the scroll direction. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Scroll direction. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9879,8 +9891,10 @@ typedef enum {
      */
     NODE_SCROLL_SCROLL_DIRECTION,
     /**
-     * @brief Defines the effect used at the edges of the component when the boundary of the scrollable content is
-     * reached. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Effect used at the edges of the component when the boundary of the scrollable content is reached. This
+     * attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9910,8 +9924,12 @@ typedef enum {
      */
     NODE_SCROLL_EDGE_EFFECT,
     /**
-     * @brief Defines whether to support scroll gestures. When this attribute is set to <b>false</b>, scrolling by
-     * finger or mouse is not supported, but the scroll controller API is not affected.
+     * @brief Whether to support scroll gestures. When this attribute is set to **0**, scrolling by finger or mouse is
+     * not supported, but the scrolling controller API is not affected.
+     * <br>The **List**, **Scroll**, and **WaterFlow** components support this attribute since API version 12, and the
+     * **Grid** component supports this attribute since API version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9927,8 +9945,12 @@ typedef enum {
      */
     NODE_SCROLL_ENABLE_SCROLL_INTERACTION,
     /**
-     * @brief Defines the friction coefficient. It applies only to gestures in the scrolling area, and it affects only
-     * indirectly the scroll chaining during the inertial scrolling process.
+     * @brief Friction coefficient. It applies only to gestures in the scrolling area, and it only indirectly affects
+     * the scroll chaining during the inertial scrolling process.
+     * <br>The **List**, **Scroll**, and **WaterFlow** components support this attribute since API version 12, and the
+     * **Grid** component supports this attribute since API version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9945,7 +9967,11 @@ typedef enum {
      */
     NODE_SCROLL_FRICTION,
     /**
-     * @brief Defines the scroll snapping mode. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Scroll snapping mode of the {@link Scroll} component. This attribute can be set, reset, and obtained as
+     * required through APIs. If both swipe-to-turn-pages and scroll snapping are set, scroll snapping takes effect
+     * first, and swipe-to-turn-pages does not take effect.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -9982,8 +10008,11 @@ typedef enum {
     NODE_SCROLL_SNAP,
 
     /**
-     * @brief Defines the nested scrolling options. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Nested scrolling attribute, which can be set, reset, and obtained as required through APIs. The **List**,
+     * **Scroll**, and **WaterFlow** components support this attribute since API version 12, and the **Grid** component
+     * supports this attribute since API version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10005,8 +10034,10 @@ typedef enum {
      */
     NODE_SCROLL_NESTED_SCROLL,
     /**
-     * @brief Defines the specified position to scroll to. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Position to scroll to for the {@link Scroll} component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10034,7 +10065,10 @@ typedef enum {
     NODE_SCROLL_OFFSET,
 
     /**
-     * @brief Defines the edge position to scroll to. This attribute can be set and obtained as required through APIs.
+     * @brief Edge position to scroll to for the {@link Scroll} component. This attribute can be set and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10053,10 +10087,11 @@ typedef enum {
     NODE_SCROLL_EDGE,
 
     /**
-     * @brief Defines whether to enable the swipe-to-turn-pages feature. This attribute can be set, reset, and obtained
-     * as required through APIs.
-     * If both <b>enablePaging</b> and <b>scrollSnap</b> are set, <b>scrollSnap</b> takes effect, but
-     * <b>enablePaging</b> does not.
+     * @brief Whether to enable the swipe-to-turn-pages feature. This attribute can be set, reset, and obtained as
+     * required through APIs. If both {@link enablePaging} and {@link scrollSnap} are set, {@link scrollSnap} takes
+     * effect preferentially, and {@link enablePaging} does not take effect.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10073,7 +10108,8 @@ typedef enum {
     NODE_SCROLL_ENABLE_PAGING,
 
     /**
-     * @brief Scroll to the next or previous page.
+     * @brief Scrolls to the next or previous page.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10087,8 +10123,9 @@ typedef enum {
     NODE_SCROLL_PAGE,
 
     /**
-     * @brief Scroll a specified distance.
-     * List/Scroll/WaterFlow support since API version 12, Grid support since API version 26.0.0.
+     * @brief Scrolling distance. The **List**, **Scroll**, and **WaterFlow** components support this attribute since
+     * API version 12. The **Grid** component supports this attribute since API version 26.0.0.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10102,6 +10139,7 @@ typedef enum {
 
     /**
      * @brief Performs inertial scrolling based on the initial velocity passed in.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10116,7 +10154,9 @@ typedef enum {
     NODE_SCROLL_FLING,
 
     /**
-     * @brief Sets the fading effect for the edges of scrollable components.
+     * @brief Edge fade effect for the scrollable component.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10138,7 +10178,8 @@ typedef enum {
     NODE_SCROLL_FADING_EDGE,
 
     /**
-     * @brief Obtains the total size of all child components when fully expanded in the scrollable component.
+     * @brief Total size of all child components when fully expanded in the scrollable component.
+     * <br>The format of the return value {@link ArkUI_AttributeItem} is as follows.
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
@@ -10156,7 +10197,11 @@ typedef enum {
     NODE_SCROLL_SIZE,
 
     /**
-     * @brief Sets the offset from the start of the scrollable components content.
+     * @brief Offset from the start of the content of the scrollable component. {@link List} supports this attribute
+     * since API version 15, and {@link Grid}, {@link Scroll}, and {@link WaterFlow} support this attribute since API
+     * version 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10174,7 +10219,11 @@ typedef enum {
     NODE_SCROLL_CONTENT_START_OFFSET,
 
     /**
-     * @brief Sets the offset from the end of the scrollable components content.
+     * @brief Offset from the end of the content of the scrollable component. {@link List} supports this attribute since
+     * API version 15, and {@link Grid}, {@link Scroll}, and {@link WaterFlow} support this attribute since API version
+     * 22.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10192,8 +10241,10 @@ typedef enum {
     NODE_SCROLL_CONTENT_END_OFFSET,
 
     /**
-     * @brief Defines the maximum starting fling speed of the scrollable when the fling animation starts.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Maximum initial velocity at the start of the fling animation that occurs after gesture-driven scrolling
+     * ends. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10211,8 +10262,10 @@ typedef enum {
     NODE_SCROLL_FLING_SPEED_LIMIT = 1002019,
 
     /**
-     * @brief Defines the clip mode of the scrollable.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Content clipping area for the scrollable component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10232,8 +10285,10 @@ typedef enum {
     NODE_SCROLL_CLIP_CONTENT = 1002020,
 
     /**
-     * @brief Defines whether the scrollable scrolls back to top when status bar is clicked.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether to scroll back to the top when the status bar is clicked for the scrollable component. This
+     * attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10254,8 +10309,9 @@ typedef enum {
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
     /**
-     * @brief Defines the margin of the scrollbar.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Margin of the scrollbar. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10275,7 +10331,9 @@ typedef enum {
     NODE_SCROLL_BAR_MARGIN = 1002022,
 
     /**
-     * @brief Sets the maximum zoom scale for scrollable content.
+     * @brief Maximum zoom scale for scrollable content.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10293,7 +10351,9 @@ typedef enum {
     NODE_SCROLL_MAX_ZOOM_SCALE = 1002023,
 
     /**
-     * @brief Sets the minimum zoom scale for scrollable content.
+     * @brief Minimum zoom scale for scrollable content.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10311,7 +10371,9 @@ typedef enum {
     NODE_SCROLL_MIN_ZOOM_SCALE = 1002024,
 
     /**
-     * @brief Sets the zoom scale for scrollable content.
+     * @brief Zoom scale for scrollable content.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10329,7 +10391,9 @@ typedef enum {
     NODE_SCROLL_ZOOM_SCALE = 1002025,
 
     /**
-     * @brief Sets whether to enable the zoom bounce effect when the scaling exceeds the limits.
+     * @brief Whether to enable the zoom bounce effect when the scaling exceeds the limits.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10369,8 +10433,11 @@ typedef enum {
     NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
 
     /**
-     * @brief Sets whether to automatically adjust the margin of the scrollbar to avoid the component's
-     * <b>NODE_PADDING</b>, <b>NODE_SCROLL_CONTENT_START_OFFSET</b>, and <b>NODE_SCROLL_CONTENT_END_OFFSET</b> areas.
+     * @brief Whether the scrollbar automatically adjusts its margin to avoid the area of the **NODE_PADDING**,
+     * **NODE_SCROLL_CONTENT_START_OFFSET**, or **NODE_SCROLL_CONTENT_END_OFFSET** component. This attribute can be set,
+     * reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10389,8 +10456,9 @@ typedef enum {
     NODE_SCROLL_AUTO_ADJUST_MARGIN = 1002028,
 
     /**
-     * @brief Defines the scrollbar track height. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Scrollbar height. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10410,8 +10478,10 @@ typedef enum {
     NODE_SCROLL_BAR_HEIGHT = 1002029,
 
     /**
-     * @brief Sets the direction in which the list items are arranged.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Direction in which the {@link list} items are arranged. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10428,8 +10498,11 @@ typedef enum {
      */
     NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
     /**
-     * @brief Defines whether to pin the header to the top or the footer to the bottom in the <b><ListItemGroup></b>
-     * component. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether to pin the header to the top or the footer to the bottom in the {@link ListItemGroup} component.
+     * It is used together with the **ListItemGroup** component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10449,8 +10522,9 @@ typedef enum {
      */
     NODE_LIST_STICKY,
     /**
-     * @brief Defines the spacing between list items. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Spacing between list items. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10466,7 +10540,10 @@ typedef enum {
      */
     NODE_LIST_SPACE,
     /**
-     * @brief Defines the list adapter. The attribute can be set, reset, and obtained as required through APIs.
+     * @brief Adapter of the **List** component. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10478,8 +10555,10 @@ typedef enum {
     NODE_LIST_NODE_ADAPTER,
 
     /**
-     * @brief Sets the number of cached items in the list adapter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Number of cached items in the adapter of the **List** component. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10521,9 +10600,12 @@ typedef enum {
      */
     NODE_LIST_SCROLL_TO_INDEX,
     /**
-     * @brief Sets the alignment mode of list items along the cross axis when the cross-axis width of the list is
-     * greater than the cross-axis width of list items multiplied by the value of lanes.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Alignment mode of list items along the cross axis when the cross-axis width of the list is greater than
+     * the cross-axis width of list items multiplied by the number of lanes. When the list scrolls vertically, the
+     * number of lanes is the number of columns; when the list scrolls horizontally, the number of lanes is the number
+     * of rows. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10542,7 +10624,9 @@ typedef enum {
     NODE_LIST_ALIGN_LIST_ITEM,
 
     /**
-     * @brief Set the default spindle size for the List subcomponent.
+     * @brief Default main axis size of the child component in **List**.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10559,8 +10643,10 @@ typedef enum {
     NODE_LIST_CHILDREN_MAIN_SIZE = 1003007,
 
     /**
-     * @brief Set the index value of the item displayed at the start of the viewport
-     * when the current List is first loaded.This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Index of the item displayed at the beginning of the viewport when the current list is loaded for the first
+     * time. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10578,8 +10664,10 @@ typedef enum {
      */
     NODE_LIST_INITIAL_INDEX = 1003008,
     /**
-     * @brief sets the ListItem splitter style. By default, there is no splitter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Style of the divider for the list items. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10602,9 +10690,10 @@ typedef enum {
     NODE_LIST_DIVIDER = 1003009,
 
     /**
-     * @brief Scrolls to the item with the specified index in the specified list item group.
-     * When <b>smooth</b> is set to <b>true</b>, all passed items are loaded and counted in layout calculation.
-     * This may result in performance issues if a large number of items are involved.
+     * @brief Scrolls to the item with the specified index in the specified {@link list item group}. When **smooth** is
+     * set to **true**, all passed items are loaded and counted in layout calculation. This may result in performance
+     * issues if a large number of items are involved.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10623,8 +10712,11 @@ typedef enum {
     NODE_LIST_SCROLL_TO_INDEX_IN_GROUP = 1003010,
 
     /**
-     * @brief Sets the number of lanes in the list.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Number of lanes in the list. (The number of columns is used when the list is scrolled vertically, and the
+     * number of rows is used when the list is scrolled horizontally.) This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10649,7 +10741,9 @@ typedef enum {
     NODE_LIST_LANES = 1003011,
 
     /**
-     * @brief Sets the list snap alignment mode.
+     * @brief Alignment mode for scroll snapping in the **List** component.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10669,8 +10763,10 @@ typedef enum {
     NODE_LIST_SCROLL_SNAP_ALIGN = 1003012,
 
     /**
-     * @brief Sets whether to maintain the visible content's position when data is inserted or deleted outside the
-     * display area of the <b>List</b> component.
+     * @brief Whether to maintain the visible content's position when data is inserted or deleted outside the display
+     * area of the **List** component.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10692,7 +10788,9 @@ typedef enum {
     NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION = 1003013,
 
     /**
-     * @brief Sets whether the <b>List</b> component starts layout from the end.
+     * @brief Whether the **List** component starts layout from the end.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10712,8 +10810,10 @@ typedef enum {
     NODE_LIST_STACK_FROM_END = 1003014,
     
     /**
-     * @brief Defines the focus wrap mode for the <b>List</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Focus wrap mode of the **List** component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10733,8 +10833,10 @@ typedef enum {
     NODE_LIST_FOCUS_WRAP_MODE = 1003015,
 
     /**
-     * @brief Defines whether the <b>List</b> component loads child nodes synchronously.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether the **List** component loads child nodes synchronously. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10754,8 +10856,10 @@ typedef enum {
     NODE_LIST_SYNC_LOAD = 1003016,
 
     /**
-     * @brief Defines the scroll snap animation speed for the <b>List</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Scroll snap animation speed for the **List** component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10775,8 +10879,10 @@ typedef enum {
     NODE_LIST_SCROLL_SNAP_ANIMATION_SPEED = 1003017,
 
     /**
-     * @brief Specifies the responsive column layout policy for the <b>List</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Responsive lane layout policy of the **List** component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10798,11 +10904,10 @@ typedef enum {
     NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
     /**
-     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>List</b> container.
-     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode,
-     * empty branches (items without content) in the <b>List</b> will be rendered and set to width 0 and height 0,
-     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
-     * data source may have gaps or when maintaining specific layout positions is required.
+     * @brief Whether the **List** component supports the generation of empty branch nodes that do not contain any child
+     * components using the **if/else** rendering control syntax in **LazyForEach** or **Repeat**.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10822,8 +10927,10 @@ typedef enum {
     NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
 
     /**
-     * @brief Sets the back button behavior for the List component. Attribute setting, resetting, and obtaining APIs
-     * are supported.
+     * @brief Behavior of the system back button for the **List** component. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10842,16 +10949,11 @@ typedef enum {
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
     /**
-     * @brief Defines whether the <b>List</b> component enables edit mode.
-     * When set to <b>1</b> (editable), checkboxes are displayed by default and
-     * single-finger sliding multi-selection is available within the edit mode.
-     * When the edit mode state changes, the {@link NODE_LIST_ON_EDIT_MODE_CHANGE}
-     * event callback is triggered. The state can be changed in two ways:
-     * 1. Directly setting this attribute.
-     * 2. Triggered via two-finger sliding gesture when
-     * {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
-     * and the {@link NODE_LIST_ON_EDIT_MODE_CHANGE} callback is registered.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether to enable the edit mode for the **List** component. After the edit mode is enabled, the check box
+     * is displayed by default, and users can swipe with their fingers to select multiple items. This attribute can be
+     * set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10871,8 +10973,10 @@ typedef enum {
     NODE_LIST_ENABLE_EDIT_MODE = 1003021,
 
     /**
-     * @brief List component edit mode option configuration.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Edit mode options of the **List** component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11446,8 +11550,10 @@ typedef enum {
     NODE_SWIPER_ITEMFILLPOLICY = 1001024,
 
     /**
-     * @brief Set the delineation component of the ListItem, supporting property settings, property resets, and
-     * property acquisition interfaces.
+     * @brief Swipe-out component of **ListItem**. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11464,8 +11570,10 @@ typedef enum {
     NODE_LIST_ITEM_SWIPE_ACTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
     /**
-     * @brief Defines the header of the list item group.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Header component of **ListItemGroup**. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11481,8 +11589,10 @@ typedef enum {
      */
     NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM_GROUP,
     /**
-     * @brief Defines the footer of the list item group. This attribute can be set, reset, and obtained as
-     * required through APIs.
+     * @brief Footer component of **ListItemGroup**. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11498,8 +11608,10 @@ typedef enum {
      */
     NODE_LIST_ITEM_GROUP_SET_FOOTER,
     /**
-     * @brief Defines the style of the divider for the list items. This attribute can be set, reset, and obtained
-     * as required through APIs.
+     * @brief Style of the divider for the list items. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11522,7 +11634,9 @@ typedef enum {
     NODE_LIST_ITEM_GROUP_SET_DIVIDER,
 
     /**
-     * @brief Set the default spindle size for the ListItem Group subcomponent.
+     * @brief Default main axis size of the **ListItemGroup** child components.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11539,8 +11653,10 @@ typedef enum {
     NODE_LIST_ITEM_GROUP_CHILDREN_MAIN_SIZE = 1005003,
 
     /**
-     * @brief Defines the list item group adapter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Adapter of the {@link ListItemGroup} component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11707,8 +11823,9 @@ typedef enum {
     NODE_FLEX_SPACE,
 
     /**
-     * @brief Sets whether the component is being refreshed.
-     * This attribute can be set and obtained as required through APIs.
+     * @brief Whether the component is being refreshed. This attribute can be set and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11724,8 +11841,8 @@ typedef enum {
      */
     NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
-     * @brief Sets the custom content in the pull-down area.
-     * This attribute can be set and reset as required through APIs.
+     * @brief Custom content in the pull-down area. This attribute can be set and reset as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11736,8 +11853,9 @@ typedef enum {
      */
     NODE_REFRESH_CONTENT,
     /**
-     * @brief Set the pull-down hand coefficient.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Pull-down follow ratio. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11753,8 +11871,10 @@ typedef enum {
      */
     NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
     /**
-     * @brief Sets the pull-down offset that initiates a refresh.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Pull-down offset that triggers refresh. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11770,8 +11890,10 @@ typedef enum {
      */
     NODE_REFRESH_OFFSET = 1009003,
     /**
-     * @brief Sets whether to initiate a refresh when the pull-down distance exceeds the value of <b>refreshOffset</b>.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether to initiate a refresh when the pull-down distance exceeds the value of {@link refreshOffset}. This
+     * attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11789,8 +11911,10 @@ typedef enum {
      */
     NODE_REFRESH_PULL_TO_REFRESH = 1009004,
     /**
-     * @brief Sets the maximum pull-down distance for refreshing.
-     * This attribute can be set, reset, and obtained through the API as required.
+     * @brief Maximum pull-down distance for refreshing. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11807,8 +11931,10 @@ typedef enum {
      */
     NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
     /**
-     * @brief Sets whether the pull-up gesture cancels refresh.
-     * This attribute can be set, reset, and obtained through the API as required.
+     * @brief Whether to enable the pull-up-to-cancel gesture for refreshing operations. This attribute can be set,
+     * reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11828,8 +11954,10 @@ typedef enum {
     NODE_REFRESH_PULL_UP_TO_CANCEL_REFRESH = 1009006,
 
     /**
-     * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Main axis direction of the **WaterFlow** component layout. This attribute can be set, reset, and obtained
+     * as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11846,14 +11974,14 @@ typedef enum {
     NODE_WATER_FLOW_LAYOUT_DIRECTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
 
     /**
-     * @brief Sets the number of columns in the water flow layout. If this parameter is not set, one column is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three columns, with the first column taking up 1/4 of the parent
-     * component's full width, the second column 1/4, and the third column 2/4.
-     * You can use <b>columnsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of
-     * columns based on the specified column width <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief Number of columns in the water flow layout. If this attribute is not set, one column is used by default.
+     * This attribute can be set, reset, and obtained as required through APIs. For example, **'1fr 1fr 2fr'** indicates
+     * three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4,
+     * and the third column 2/4. You can use {@link columnsTemplate}('repeat(auto-fill,track-size)') to automatically
+     * calculate the number of columns based on the specified column width (using **track-size**). **repeat** and
+     * **auto-fill** are keywords. The units for **track-size** can be px, vp (default), %, or a valid number.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11870,14 +11998,14 @@ typedef enum {
     NODE_WATER_FLOW_COLUMN_TEMPLATE,
 
     /**
-     * @brief Sets the number of rows in the water flow layout. If this parameter is not set, one row is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three rows, with the first row taking up 1/4 of the parent
-     * component's full height, the second row 1/4, and the third row 2/4.
-     * You can use <b>rowsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of rows
-     * based on the specified row height <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief Number of rows in the water flow layout. If this attribute is not set, one row is used by default. This
+     * attribute can be set, reset, and obtained as required through APIs. For example, **'1fr 1fr 2fr'** indicates
+     * three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the
+     * third row 2/4. You can use {@link rowsTemplate}('repeat(auto-fill,track-size)') to automatically calculate the
+     * number of rows based on the specified row height (using **track-size**). **repeat** and **auto-fill** are
+     * keywords. The units for **track-size** can be px, vp (default), %, or a valid number.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11894,8 +12022,9 @@ typedef enum {
     NODE_WATER_FLOW_ROW_TEMPLATE,
 
     /**
-     * @brief Sets the gap between columns.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Gap between columns. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11912,8 +12041,9 @@ typedef enum {
     NODE_WATER_FLOW_COLUMN_GAP,
 
     /**
-     * @brief Sets the gap between rows.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Gap between rows. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11930,8 +12060,9 @@ typedef enum {
     NODE_WATER_FLOW_ROW_GAP,
 
     /**
-     * @brief Defines the water flow section configuration.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Water flow section configuration. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11950,7 +12081,10 @@ typedef enum {
     NODE_WATER_FLOW_SECTION_OPTION,
 
     /**
-     * @brief Defines the water flow adapter. The attribute can be set, reset, and obtained as required through APIs.
+     * @brief Adapter of the {@link WaterFlow} component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11962,8 +12096,10 @@ typedef enum {
     NODE_WATER_FLOW_NODE_ADAPTER,
 
     /**
-     * @brief Sets the number of cached items in the water flow adapter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Number of cached items in the adapter of the {@link WaterFlow} component. This attribute can be set,
+     * reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -11984,7 +12120,8 @@ typedef enum {
     NODE_WATER_FLOW_CACHED_COUNT,
 
     /**
-     * @brief Set the custom display component at the end of the waterfall flow component.
+     * @brief Custom footer for the **WaterFlow** component.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12018,8 +12155,10 @@ typedef enum {
     NODE_WATER_FLOW_SCROLL_TO_INDEX,
 
     /**
-     * @brief Defines the size constraints to apply to water flow items.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Size constraints to apply to water flow items, constraining the size range of the child component. This
+     * attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12042,8 +12181,10 @@ typedef enum {
     NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE,
 
     /**
-     * @brief Defines the layout mode of the <b><WaterFlow></b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Layout mode for the **WaterFlow** component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12061,8 +12202,10 @@ typedef enum {
     NODE_WATER_FLOW_LAYOUT_MODE,
 
     /**
-     * @brief Defines whether the <b>WaterFlow</b> component loads child nodes synchronously.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether the **WaterFlow** component loads child nodes synchronously. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12082,8 +12225,10 @@ typedef enum {
     NODE_WATER_FLOW_SYNC_LOAD = 1010012,
 
     /**
-     * @brief Specifies the responsive column layout policy for the <b>WaterFlow</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Responsive column layout policy of the **WaterFlow** component. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12103,12 +12248,10 @@ typedef enum {
     NODE_WATER_FLOW_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1010013,
 
     /**
-     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>WaterFlow</b>
-     * container.
-     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode,
-     * empty branches (items without content) in the <b>WaterFlow</b> will be rendered and set to width 0 and height 0,
-     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
-     * data source may have gaps or when maintaining specific layout positions is required.
+     * @brief Whether the **WaterFlow** component supports the generation of empty branch nodes that do not contain any
+     * child components using the **if/else** rendering control syntax in **LazyForEach** or **Repeat**.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12162,14 +12305,14 @@ typedef enum {
     NODE_RELATIVE_CONTAINER_BARRIER,
 
     /**
-     * @brief Sets the number of columns in the grid layout. If this parameter is not set, one column is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three columns, with the first column taking up 1/4 of the parent
-     * component's full width, the second column 1/4, and the third column 2/4.
-     * You can use <b>columnsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of
-     * columns based on the specified column width <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief Number of columns in the **Grid** component. If this attribute is not set, one column is used by default.
+     * This attribute can be set, reset, and obtained as required through APIs. For example, **'1fr 1fr 2fr'** indicates
+     * three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4,
+     * and the third column 2/4. You can use {@link columnsTemplate}('repeat(auto-fill,track-size)') to automatically
+     * calculate the number of columns based on the specified column width (using **track-size**). **repeat** and
+     * **auto-fill** are keywords. The units for **track-size** can be px, vp (default), %, or a valid number.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12186,14 +12329,14 @@ typedef enum {
     NODE_GRID_COLUMN_TEMPLATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
 
     /**
-     * @brief Sets the number of rows in the grid layout. If this parameter is not set, one row is used
-     * by default. This attribute can be set, reset, and obtained as required through APIs.
-     * For example, <b>'1fr 1fr 2fr'</b> indicates three rows, with the first row taking up 1/4 of the parent
-     * component's full height, the second row 1/4, and the third row 2/4.
-     * You can use <b>rowsTemplate('repeat(auto-fill,track-size)')</b> to automatically calculate the number of rows
-     * based on the specified row height <b>track-size</b>.
-     * <b>repeat</b> and <b>auto-fill</b> are keywords. The units for <b>track-size</b> can be px, vp (default), %,
-     * or a valid number.
+     * @brief Number of rows or the minimum row height in the **Grid** component. If this parameter is not set, one row
+     * is used by default. This attribute can be set, reset, and obtained as required through APIs. For example, **'1fr
+     * 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the
+     * second row 1/4, and the third row 2/4. You can use {@link rowsTemplate}('repeat(auto-fill,track-size)') to
+     * automatically calculate the number of rows based on the specified row height (using **track-size**). **repeat**
+     * and **auto-fill** are keywords. The units for **track-size** can be px, vp (default), %, or a valid number.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12210,7 +12353,9 @@ typedef enum {
     NODE_GRID_ROW_TEMPLATE,
 
     /**
-     * @brief Sets the gap between columns. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Gap between columns. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12227,7 +12372,9 @@ typedef enum {
     NODE_GRID_COLUMN_GAP,
 
     /**
-     * @brief Sets the gap between rows. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Gap between rows. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12244,7 +12391,10 @@ typedef enum {
     NODE_GRID_ROW_GAP,
 
     /**
-     * @brief Defines the grid adapter. The attribute can be set, reset, and obtained as required through APIs.
+     * @brief Adapter of the {@link Grid} component. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12256,8 +12406,9 @@ typedef enum {
     NODE_GRID_NODE_ADAPTER,
 
     /**
-     * @brief Sets the number of cached items in the grid adapter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Number of cached items in the adapter of the {@link Grid} component. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12277,8 +12428,10 @@ typedef enum {
     NODE_GRID_CACHED_COUNT,
 
     /**
-     * @brief Defines the focus wrap mode for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Focus wrap mode of the {@link Grid} component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12298,8 +12451,10 @@ typedef enum {
     NODE_GRID_FOCUS_WRAP_MODE = 1013006,
 
     /**
-     * @brief Defines whether the <b>Grid</b> component loads child nodes synchronously.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether the {@link Grid} component synchronously loads child nodes. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12319,8 +12474,10 @@ typedef enum {
     NODE_GRID_SYNC_LOAD = 1013007,
 
     /**
-     * @brief Specifies the alignment of <b>GridItem</b> components in the parent <b>Grid</b> container.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Alignment mode of {@link GridItem} in **Grid**. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12340,8 +12497,9 @@ typedef enum {
     NODE_GRID_ALIGN_ITEMS = 1013008,
 
     /**
-     * @brief Specifies the layout options of the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Layout options of **Grid**. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12359,8 +12517,10 @@ typedef enum {
     NODE_GRID_LAYOUT_OPTIONS = 1013009,
 
     /**
-     * @brief Specifies the responsive column layout policy for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Responsive column layout policy of the **Grid** component. This attribute can be set, reset, and obtained
+     * as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12380,9 +12540,11 @@ typedef enum {
     NODE_GRID_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1013010,
 
     /**
-     * @brief Specifies whether to enable edit mode for the <b>Grid</b> component.
-     * In edit mode, <b>GridItem</b> components can be dragged through the <b>NODE_GRID_ON_ITEM_DRAG_START</b> event.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether the **Grid** component enters the editing mode. After the component enters the editing mode, you
+     * can drag **GridItem** by using the **NODE_GRID_ON_ITEM_DRAG_START** event. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12402,11 +12564,14 @@ typedef enum {
     NODE_GRID_EDIT_MODE = 1013011,
 
     /**
-     * @brief Specifies whether to enable the drag animation for <b>GridItem</b> components in the <b>Grid</b>
-     * container. This attribute can be set, reset, and obtained as required through APIs.
-     * Animations are supported only in scrolling mode (when either <b>NODE_GRID_ROW_TEMPLATE</b> or
-     * <b>NODE_GRID_COLUMN_TEMPLATE</b> is set, but not both). Drag animations are only supported in regularly sized
-     * grid layouts; scenarios involving spanning across rows or columns are not supported.
+     * @brief Whether to enable the drag animation for **GridItem** in the **Grid** component. This attribute can be
+     * set, reset, and obtained as required through APIs.
+     * <br>The animation is supported only when the scrolling mode is used (only one of **NODE_GRID_ROW_TEMPLATE** and
+     * **NODE_GRID_COLUMN_TEMPLATE** is set).
+     * <br>Drag animations are only supported in grids with fixed size rules; scenarios involving spanning across rows
+     * or columns are not supported.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12427,9 +12592,12 @@ typedef enum {
     NODE_GRID_DRAG_ANIMATION = 1013012,
 
     /**
-     * @brief Specifies whether to enable mouse-based multi-selection in the <b>Grid</b> container. This attribute can
-     * be set, reset, and obtained as required through APIs. When enabled, mouse-based multi-selection within the
-     * <b>Grid</b> area triggers the <b>NODE_GRID_ITEM_ON_SELECT</b> event on <b>GridItem</b> components.
+     * @brief Whether to enable mouse-based multi-selection for the **Grid** component. This attribute can be set,
+     * reset, and obtained as required through APIs.
+     * <br>After enabled, mouse-based multi-selection within the grid will trigger the {@link NODE_GRID_ITEM_ON_SELECT}
+     * event of the grid item.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12472,11 +12640,10 @@ typedef enum {
     NODE_GRID_SCROLL_TO_INDEX = 1013014,
 
     /**
-     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>Grid</b> container.
-     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode,
-     * empty branches (items without content) in the <b>Grid</b> will be rendered and set to width 0 and height 0,
-     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
-     * data source may have gaps or when maintaining specific layout positions is required.
+     * @brief Whether the **Grid** component supports the generation of empty branch nodes that do not contain any child
+     * components using the **if/else** rendering control syntax in **LazyForEach** or **Repeat**.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12496,16 +12663,11 @@ typedef enum {
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
 
     /**
-     * @brief Defines whether the <b>Grid</b> component enables edit mode.
-     * When set to <b>1</b> (editable), checkboxes are displayed by default and
-     * single-finger sliding multi-selection is available within the edit mode.
-     * When the edit mode state changes, the {@link NODE_GRID_ON_EDIT_MODE_CHANGE}
-     * event callback is triggered. The state can be changed in two ways:
-     * 1. Directly setting this attribute.
-     * 2. Triggered via two-finger sliding gesture when
-     * {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
-     * and the {@link NODE_GRID_ON_EDIT_MODE_CHANGE} callback is registered.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether to enable the edit mode for the **Grid** component. After the edit mode is enabled, the check box
+     * is displayed by default, and users can swipe with their fingers to select multiple items. This attribute can be
+     * set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12525,8 +12687,10 @@ typedef enum {
     NODE_GRID_ENABLE_EDIT_MODE = 1013016,
 
     /**
-     * @brief Defines the edit mode options for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Edit mode options of the **Grid** component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12555,8 +12719,9 @@ typedef enum {
     NODE_GRID_EDIT_MODE_OPTIONS = 1013017,
 
     /**
-     * @brief Sets the style of the <b>GridItem</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Style for **GridItem**. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12575,8 +12740,10 @@ typedef enum {
     NODE_GRID_ITEM_STYLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
 
     /**
-     * @brief Specifies whether the <b>GridItem</b> component can be selected using mouse-based multi-selection.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Whether **GridItem** can be selected using mouse-based multi-selection. This attribute can be set, reset,
+     * and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12596,8 +12763,9 @@ typedef enum {
     NODE_GRID_ITEM_SELECTABLE = 1014001,
 
     /**
-     * @brief Sets the selected state of the <b>GridItem</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Selection status of **GridItem**. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12785,9 +12953,10 @@ typedef enum {
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
 
     /**
-     * @brief Sets the digital crown sensitivity of the ArcList component. This attribute can be set, reset, and
-     * obtained as
-     * required through APIs.
+     * @brief Crown sensitivity of the **ArcList** component, which can be set, reset, and obtained as required through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12826,8 +12995,10 @@ typedef enum {
     NODE_ARC_LIST_SPACE = 1019001,
 
     /**
-     * @brief Sets the cache count of the ArcList component. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Number of cached items of the **ArcList** component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12845,9 +13016,10 @@ typedef enum {
     NODE_ARC_LIST_CACHED_COUNT = 1019002,
 
     /**
-     * @brief Scrolls to the specified index.
-     * When smooth animation is enabled, all items being scrolled through will be loaded and layout calculated. This may
-     * cause performance issues when a large number of items are loaded.\n
+     * @brief Scrolls to the list item corresponding to a specified index value. When the animation is enabled, all
+     * passed list items are loaded and counted in layout calculation. This may result in performance issues if a large
+     * number of list items are involved.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12865,8 +13037,9 @@ typedef enum {
     NODE_ARC_LIST_SCROLL_TO_INDEX = 1019003,
 
     /**
-     * @brief Sets whether to enable chain animation for ArcList. This attribute can be set, reset, and obtained as
-     * required through APIs.
+     * @brief Whether to enable the chain animation effect for the **ArcList** component. This attribute can be set,
+     * reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12885,8 +13058,9 @@ typedef enum {
     NODE_ARC_LIST_CHAIN_ANIMATION = 1019004,
 
     /**
-     * @brief Sets the default main axis size of ArcList child components. This attribute can be set and reset
-     * as required through APIs.
+     * @brief Default main axis size of the **ArcList** child component. The attribute can be set and reset through
+     * APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12899,8 +13073,9 @@ typedef enum {
     NODE_ARC_LIST_CHILDREN_MAIN_SIZE = 1019005,
 
     /**
-     * @brief Sets the header component of ArcList. This attribute can be set, reset, and obtained as required through
-     * APIs.
+     * @brief Header component of **ArcList**. This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12918,8 +13093,10 @@ typedef enum {
     NODE_ARC_LIST_SET_HEADER = 1019006,
 
     /**
-     * @brief Sets the scroll bar status of ArcList. This attribute can be set, reset, and obtained as required through
-     * APIs.
+     * @brief Scroll bar display mode of the **ArcList** component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12938,8 +13115,10 @@ typedef enum {
     NODE_ARC_LIST_SCROLL_BAR = 1019007,
 
     /**
-     * @brief Sets the scroll bar color of ArcList. This attribute can be set, reset, and obtained as required through
-     * APIs.
+     * @brief Scroll bar color of the **ArcList** component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12977,8 +13156,10 @@ typedef enum {
     NODE_ARC_LIST_SCROLL_BAR_WIDTH = 1019009,
 
     /**
-     * @brief Sets whether ArcList supports scroll gesture. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Whether the **ArcList** component supports scroll gestures. This attribute can be set, reset, and obtained
+     * as required through APIs.
+     * The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and
+     * the format of the return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -12997,8 +13178,10 @@ typedef enum {
     NODE_ARC_LIST_ENABLE_SCROLL_INTERACTION = 1019010,
 
     /**
-     * @brief Sets the fading edge effect of ArcList. This attribute can be set, reset, and obtained as required through
-     * APIs.
+     * @brief Edge fade effect of the **ArcList** component. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -13020,9 +13203,10 @@ typedef enum {
     NODE_ARC_LIST_FADING_EDGE = 1019011,
 
     /**
-     * @brief Sets the friction coefficient of ArcList. This attribute can be set, reset, and obtained as required
-     * through
-     * APIs.
+     * @brief Friction coefficient of the **ArcList** component, which can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -13041,8 +13225,10 @@ typedef enum {
     NODE_ARC_LIST_FRICTION = 1019012,
 
     /**
-     * @brief Sets the maximum initial velocity of Fling animation for ArcList. This attribute can be set, reset, and
-     * obtained as required through APIs.
+     * @brief Maximum initial speed of the fling animation in the **ArcList** component. This attribute can be set,
+     * reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -13061,9 +13247,10 @@ typedef enum {
     NODE_ARC_LIST_FLING_SPEED_LIMIT = 1019013,
 
     /**
-     * @brief Sets whether to enable auto scale for ArcListItem. This attribute can be set, reset, and obtained as
-     * required
-     * through APIs.
+     * @brief Whether to enable automatic scaling for **ArcListItem**. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -13082,8 +13269,8 @@ typedef enum {
     NODE_ARC_LIST_ITEM_AUTO_SCALE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST_ITEM,
 
     /**
-     * @brief Sets the swipe action component of ArcListItem. This attribute can be set and reset as required
-     * through APIs.
+     * @brief Swipe-out component of **ArcListItem**. This attribute can be set and reset as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -13096,8 +13283,10 @@ typedef enum {
     NODE_ARC_LIST_ITEM_SWIPE_ACTION = 1020001,
 
     /**
-     * @brief Sets the scrollable component bound by ArcScrollBar. This attribute can be set, reset, and obtained as
-     * required through APIs.
+     * @brief Scrollable component bound to **ArcScrollBar**. This attribute can be set, reset, and obtained as required
+     * through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>

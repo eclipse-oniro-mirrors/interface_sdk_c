@@ -66,7 +66,7 @@ typedef enum {
 } ArkUI_EdgeEffect;
 
 /**
- * @brief Enumerates the text control scrollbar states.
+ * @brief Enumerates the scrollbar states of the **TextArea** and **TextEditor** components.
  *
  * @since 22
  */
@@ -227,8 +227,10 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
-     * does not scroll when the component scrolling reaches the boundary. */
+    /**
+     * The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
+     * does not scroll when the component scrolling reaches the boundary.
+     */
     ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
 
     /**
@@ -244,9 +246,11 @@ typedef enum {
      * effect of the parent component is displayed instead.
      */
     ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST,
-    /** The component and its parent component scroll at the same time. When both the component and its parent component
-     *  hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
+    /**
+     * The component and its parent component scroll at the same time. When both the component and its parent component
+     * hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
+     * component, the edge effect of the parent component is displayed instead.
+     */
     ARKUI_SCROLL_NESTED_MODE_PARALLEL,
 } ArkUI_ScrollNestedMode;
 
@@ -278,7 +282,7 @@ typedef enum {
 } ArkUI_ScrollEdge;
 
 /**
- * @brief Defines how the list item to scroll to is aligned with the container.
+ * @brief Enumerates how the list item to scroll to is aligned with the container.
  *
  * @since 12
  */
