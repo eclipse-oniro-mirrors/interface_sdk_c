@@ -533,6 +533,271 @@ typedef struct OH_CloudDisk_PlaceholderInfo {
 } OH_CloudDisk_PlaceholderInfo;
 
 /**
+ * @brief A struct that encapsulates the cloud disk data buffer.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_CloudDisk_DataBuf {
+    /**
+     * @brief Pointer to the data buffer.
+     *
+     * @since 26.0.1
+     */
+    uint8_t *data;
+    /**
+     * @brief Data buffer size, in bytes.
+     *
+     * @since 26.0.1
+     */
+    uint64_t dataSize;
+} OH_CloudDisk_DataBuf;
+
+/**
+ * @brief Enumerates the cloud disk callback types.
+ *
+ * @since 26.0.1
+ */
+typedef enum OH_CloudDisk_CallbackType {
+    /**
+     * @brief Fetch cloud file data for hydration.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA = 0,
+    /**
+     * @brief Cancel fetching cloud file data.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA = 1,
+    /**
+     * @brief Request authorization for dehydrate.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2,
+    /**
+     * @brief Fetch range data for read.
+     *
+     * @since 26.2.0
+     */
+    OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA = 3
+} OH_CloudDisk_CallbackType;
+
+/**
+ * @brief Enumerates the hydrate priorities.
+ *
+ * @since 26.0.1
+ */
+typedef enum OH_CloudDisk_HydratePriority {
+    /**
+     * @brief Low priority.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_HYDRATE_PRIORITY_LOW = 0,
+    /**
+     * @brief Normal priority.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_HYDRATE_PRIORITY_NORMAL = 1,
+    /**
+     * @brief High priority.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_HYDRATE_PRIORITY_HIGH = 2
+} OH_CloudDisk_HydratePriority;
+
+/**
+ * @brief A struct that encapsulates the cloud disk callback request header.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_CloudDisk_CallbackReqHead {
+    /**
+     * @brief Sync root path of the callback request.
+     *
+     * @since 26.0.1
+     */
+    CloudDisk_SyncFolderPath syncFolderPath;
+    /**
+     * @brief Callback request type.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_CallbackType callbackType;
+    /**
+     * @brief Opaque request key.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_DataBuf reqKey;
+} OH_CloudDisk_CallbackReqHead;
+
+/**
+ * @brief A struct that encapsulates the dehydrate authorization information.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_CloudDisk_DehydrateInfo {
+    /**
+     * @brief Relative file path in the sync root path.
+     *
+     * @since 26.0.1
+     */
+    CloudDisk_PathInfo filePath;
+    /**
+     * @brief Whether the dehydrate operation is allowed.
+     *
+     * @since 26.0.1
+     */
+    bool allow;
+} OH_CloudDisk_DehydrateInfo;
+
+/**
+ * @brief A struct that encapsulates the fetch range data request information.
+ *
+ * @since 26.2.0
+ */
+typedef struct OH_CloudDisk_FetchRangeDataRequest {
+    /**
+     * @brief Relative file path in the sync root path.
+     *
+     * @since 26.2.0
+     */
+    CloudDisk_PathInfo filePath;
+    /**
+     * @brief Start offset of the fetched range data, in bytes.
+     *
+     * @since 26.2.0
+     */
+    uint64_t offset;
+    /**
+     * @brief Size of the fetched range data, in bytes.
+     *
+     * @since 26.2.0
+     */
+    uint64_t size;
+    /**
+     * @brief The data that needs to be read.
+     *
+     * @since 26.2.0
+     */
+    OH_CloudDisk_DataBuf *data;
+} OH_CloudDisk_FetchRangeDataRequest;
+
+/**
+ * @brief A struct that encapsulates the fetch data request information.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_CloudDisk_FetchDataRequest {
+    /**
+     * @brief Relative file path in the sync root path.
+     *
+     * @since 26.0.1
+     */
+    CloudDisk_PathInfo filePath;
+    /**
+     * @brief Hydrate priority.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_HydratePriority priority;
+} OH_CloudDisk_FetchDataRequest;
+
+/**
+ * @brief A union that encapsulates callback request context information.
+ *
+ * @since 26.0.1
+ */
+typedef union OH_CloudDisk_CallbackContext {
+    /**
+     * @brief Fetch data request. It takes effect when callbackType is
+     * {@link CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_FetchDataRequest *fetchData;
+    /**
+     * @brief Cancel fetch data request. It takes effect when callbackType is
+     * {@link CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}.
+     *
+     * @since 26.0.1
+     */
+    CloudDisk_PathInfo *cancelFetchData;
+    /**
+     * @brief Dehydrate authorization request. It takes effect when callbackType is
+     * {@link CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_DehydrateInfo *dehydrateData;
+    /**
+     * @brief Fetch range data request. It takes effect when callbackType is
+     * {@link CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
+     *
+     * @since 26.2.0
+     */
+    OH_CloudDisk_FetchRangeDataRequest *fetchRangeData;
+} OH_CloudDisk_CallbackContext;
+
+/**
+ * @brief A struct that encapsulates fetched cloud file data.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_CloudDisk_FetchData {
+    /**
+     * @brief Start offset of the fetched data, in bytes.
+     *
+     * @since 26.0.1
+     */
+    uint64_t offset;
+    /**
+     * @brief Size of the fetched data, in bytes.
+     *
+     * @since 26.0.1
+     */
+    uint64_t size;
+    /**
+     * @brief Total size of the cloud file, in bytes.
+     *
+     * @since 26.0.1
+     */
+    uint64_t totalSize;
+    /**
+     * @brief File data buffer.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_DataBuf data;
+    /**
+     * @brief Whether the fetched data is the last data block.
+     *
+     * @since 26.0.1
+     */
+    bool isComplete;
+} OH_CloudDisk_FetchData;
+
+/**
+ * @brief A union that encapsulates callback response information.
+ *
+ * @since 26.0.1
+ */
+typedef union OH_CloudDisk_CallbackResponse {
+    /**
+     * @brief Fetch data response. It takes effect when callbackType is
+     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}.
+     *
+     * @since 26.0.1
+     */
+    OH_CloudDisk_FetchData *fetchData;
+} OH_CloudDisk_CallbackResponse;
+
+/**
  * @brief Registers a callback to obtain file changes in the sync root path.
  *
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
@@ -729,6 +994,72 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPat
     const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo);
 
 /**
+ * @brief Registers a callback table for hydration and dehydrate requests.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param callback [in] Registered callback.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @see OH_CloudDisk_UnregisterCallbackTable
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
+    const CloudDisk_SyncFolderPath syncFolderPath,
+    void (*callback)(const OH_CloudDisk_CallbackReqHead reqHead, OH_CloudDisk_CallbackContext reqContext));
+
+/**
+ * @brief Unregisters the callback table for hydration and dehydrate requests.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFolderPath syncFolderPath);
+
+/**
+ * @brief Responds to a callback request.
+ *
+ * @param reqHead [in] Callback request header.
+ * @param reqContext [in] Callback request context.
+ * @param rsp [in] Callback response.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_Execute(const OH_CloudDisk_CallbackReqHead reqHead,
+                                         OH_CloudDisk_CallbackContext reqContext,
+                                         OH_CloudDisk_CallbackResponse rsp);
+
+/**
+ * @brief Actively hydrates a placeholder file or cancels hydration.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param filePath [in] Indicates the relative path in the sync folder.
+ * @param type [in] Indicates the callback type for hydration or cancellation.
+ * @param priority [in] Indicates the hydrate priority.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_HydratePlaceholder(const CloudDisk_SyncFolderPath *syncFolderPath,
+                                                    const CloudDisk_PathInfo *filePath,
+                                                    OH_CloudDisk_CallbackType type,
+                                                    OH_CloudDisk_HydratePriority priority);
+
+/**
+ * @brief Dehydrates a fully hydrated placeholder file.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param filePath [in] Indicates the relative path in the sync folder.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_DehydrateFile(const CloudDisk_SyncFolderPath *syncFolderPath,
+                                               const CloudDisk_PathInfo *filePath);
+
+/**
  * @brief Registers a sync folder with placeholder support info.
  *
  * @param syncFolder [in] Indicates the sync folder with placeholder support.
@@ -737,7 +1068,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPat
  * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderEx(const OH_CloudDisk_SyncFolderEx *syncFolder);
- 
+
 /**
  * @brief Gets the sync folders with placeholder support info.
  *
