@@ -1738,7 +1738,7 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  *     <br>INPUT_SUCCESS = 0: The authorization request succeeds, and the system waits for the user's authorization
  *     result and invokes the callback to return the authorization state.
  *     <br>INPUT_PARAMETER_ERROR = 401: The parameter is invalid, for example, the callback parameter is null.
- *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: Capability not supported. Possible causes: 1. The hardware does not 
+ *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: Capability not supported. Possible causes: 1. The hardware does not
  *     support the capability; 2. The chip does not support the capability; 3. A dependent service feature is 
  *     not supported.
  *     <br>INPUT_SERVICE_EXCEPTION = 3800001: The service is abnormal.
