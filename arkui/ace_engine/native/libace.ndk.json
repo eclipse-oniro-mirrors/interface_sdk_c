@@ -2200,6 +2200,10 @@
         "name": "OH_ArkUI_DragEvent_GetDataTypes"
     },
     {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_DragEvent_GetSummary"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_DragEvent_GetDragResult"
     },
