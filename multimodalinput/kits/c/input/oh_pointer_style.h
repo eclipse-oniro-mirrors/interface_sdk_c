@@ -18,21 +18,20 @@
  * @{
  *
  * @brief Provides C APIs of the multimodal input module, supporting event processing for various input devices such as
- *  touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
- *  application interaction experience.
+ * touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
+ * application interaction experience.
  *
  * @since 12
  */
 
 /**
- * @brief Defines the mouse pointer styles.
- *
  * @file oh_pointer_style.h
- * @include <multimodalinput/oh_pointer_style.h>
+ * @brief Defines the mouse cursor styles.
  *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_pointer_style.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 22
  */
 #ifndef OH_POINTER_STYLE_H
@@ -43,13 +42,13 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the pointer styles.
+ * @brief Enumerates the cursor styles.
  *
  * @since 22
  */
 typedef enum Input_PointerStyle {
     /**
-     * @brief Cursor style displayed when no specific style is set by the application.
+     * @brief Cursor style displayed when no style is set by the app.
      * @since 22
      */
     DEFAULT = 0,
@@ -283,7 +282,7 @@ typedef enum Input_PointerStyle {
     MIDDLE_BTN_NORTH_SOUTH_WEST_EAST = 38,
 
     /**
-     * @brief Horizontal text selection
+     * @brief Selecting text horizontally
      * @since 22
      */
     HORIZONTAL_TEXT_CURSOR = 39,
@@ -331,48 +330,46 @@ typedef enum Input_PointerStyle {
     RUNNING_RIGHT = 46,
 
     /**
-     * @brief Custom circular pointer
+     * @brief Custom circular cursor
      * @since 22
      */
     AECH_DEVELOPER_DEFINED_ICON = 47,
 
     /**
-     * @brief Screen recording
+     * @brief Screen recording cursor
      * @since 22
      */
     SCREENRECORDER_CURSOR = 48,
 
     /**
-     * @brief Floating This pointer can be used only when the stylus enters the air mouse mode and cannot be directly
-     * set.<br>
-     * In air mouse mode, you can rotate the stylus in the air to control the movement of the virtual pointer on the
-     * screen and press the button on the stylus to turn pages up or down. This mode is used PPT presentation and air
-     * gesture control.
+     * @brief Floating cursor. This cursor is used when the stylus enters air mouse mode and cannot be set
+     * directly.<br>In air mouse mode, the stylus can be rotated in the air to control the movement of the virtual
+     * cursor on the screen, and the buttons on the stylus body can be used to implement page up/down, for scenarios
+     * such as PPT presentations and air gesture operations.
      * @since 22
      */
     LASER_CURSOR = 49,
 
     /**
-     * @brief Click This pointer can be used only when the stylus enters the air mouse mode and cannot be directly
-     * set.<br>In air mouse mode, you can rotate the stylus in the air to control the movement of the virtual pointer
-     * on the screen and press the button on the stylus to turn pages up or down. This mode is used PPT presentation
-     * and air gesture control.
+     * @brief Click cursor. This cursor is used when the stylus enters air mouse mode and cannot be set
+     * directly.<br>In air mouse mode, the stylus can be rotated in the air to control the movement of the virtual
+     * cursor on the screen, and the buttons on the stylus body can be used to implement page up/down, for scenarios
+     * such as PPT presentations and air gesture operations.
      * @since 22
      */
     LASER_CURSOR_DOT = 50,
 
     /**
-     * @brief Laser pointer This pointer can be used only when the stylus enters the air mouse mode and cannot be
-     * directly set.
-     * <br>In air mouse mode, you can rotate the stylus in the air to control the movement of the virtual pointer on
-     * the screen and press the button on the stylus to turn pages up or down. This mode is used PPT presentation and
-     * air gesture control.
+     * @brief Laser pointer cursor. This cursor is used when the stylus enters air mouse mode and cannot be set
+     * directly.<br>In air mouse mode, the stylus can be rotated in the air to control the movement of the virtual
+     * cursor on the screen, and the buttons on the stylus body can be used to implement page up/down, for scenarios
+     * such as PPT presentations and air gesture operations.
      * @since 22
      */
     LASER_CURSOR_DOT_RED = 51,
     /**
-     * @brief Custom pointer. You can use the {@link OH_Input_SetCustomCursor} to set a custom pointer, but not the
-     * {@link OH_Input_SetPointerStyle}.
+     * @brief Custom cursor. You can use the {@link oh_input_manager.h#OH_Input_SetCustomCursor} to set a custom
+     * pointer, but not the {@link oh_input_manager.h#OH_Input_SetPointerStyle}.
      * @since 22
      */
     DEVELOPER_DEFINED_ICON = -100
