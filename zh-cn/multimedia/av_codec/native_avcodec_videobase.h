@@ -118,8 +118,8 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
  * 使用约束：
  * 该key仅对视频编码器有效。
  * 这是一个可选参数。可在编码器中配置
- * 通过{@link OH_AVCodec_Configure}初始化，或
- * 在运行时通过{@link OH_AVCodec_SetParameter}启用。
+ * 通过{@link OH_VideoEncoder_Configure}初始化，或
+ * 在运行时通过{@link OH_VideoEncoder_SetParameter}启用。
  * 启用后，采集侧会根据编码信息调整采集配置策略，以降低整体功耗
  * @since 26.0.1
  */
