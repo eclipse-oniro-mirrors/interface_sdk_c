@@ -8449,6 +8449,26 @@ typedef enum {
      * @ingroup ImageAnimator
      */
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
+    /**
+     * @brief Defines the interpolation effect of the frame images, which mitigates aliasing during image scaling.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the frame images. The parameter type is
+     * {@link ArkUI_ImageInterpolation}. The default value is <b>ARKUI_IMAGE_INTERPOLATION_LOW</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the frame images. The parameter type is
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
+     *
+     * @ingroup ImageAnimator
+     * @since 26.0.1
+     */
+    NODE_IMAGE_ANIMATOR_INTERPOLATION = 19007,
 
     /**
      * @brief Defines the name of the checkboxgroup.
