@@ -9397,22 +9397,22 @@ typedef enum {
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
     /**
-     * @brief 是否支持使用鼠标左键进行滚动。这个属性可以通过 API 按需设置、重置和获取。
-     * <br>用于设置属性的 {@link ArkUI_AttributeItem} 参数格式以及返回值 **ArkUI_AttributeItem** 的格式如下。
+     * @brief 是否支持鼠标左键进行滚动。此属性可以设置、重置和根据需要通过API获取。
+     * <br>设置属性的 {@link ArkUI_AttributeItem} 参数的格式
+     * 和返回值**ArkUI_AttributeItem**如下所示。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 是否支持按下鼠标左键进行滚动。0：否；1：是。
-     * 对于 API 版本早于 26.2.0 的情况下，默认值为 0。
-     * 对于 API 版本 26.2.0 及以后，当可滚动组件水平滚动时，默认值为 1，否则为 0。</li>
+     * <li>.value[0].i32: 是否支持鼠标左键滚动。0：不支持；1：支持。
+     * 26.2.0之前的API版本，默认值为0。对于API版本26.2.0及更高版本，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
      * </ul>
      *
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * **返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32: 是否支持按下鼠标左键进行滚动。0：否；1：是。</li>
+     * <li>.value[0].i32: 是否支持鼠标左键进行滚动。0：不支持；1：支持。</li>
      * </ul>
      *
-     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @ingroup 可滚动容器组件
      * @since 26.0.0
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
