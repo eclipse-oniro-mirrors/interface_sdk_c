@@ -831,10 +831,10 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
 /**
  * @brief Asynchronously collects images for specified ArkUI node IDs.
  *
- * The framework accepts from <b>0</b> to <b>20</b> unique node IDs in one
+ * The framework accepts from <b>1</b> to <b>20</b> unique node IDs in one
  * request and copies the <b>nodeIds</b> array before this function returns.
- * The framework accepts a request with <b>count</b> equal to <b>0</b> and
- * returns a non-<b>NULL</b> empty collection through the callback.
+ * If <b>count</b> is <b>0</b> or greater than <b>20</b>, this function returns
+ * {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}.
  *
  * Each accepted node ID has one result in the collection, including a result
  * for a node ID that cannot be found or whose image cannot be captured. An
@@ -845,7 +845,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * If the ArkUI node corresponding to a requested node ID cannot be found, the
  * corresponding collection item reports
- * <b>ARKUI_ERROR_CODE_PARAM_INVALID</b>; the caller should check the node ID.
+ * <b>ARKUI_ERROR_CODE_NODE_NOT_FOUND</b>; the caller should check the node ID.
  * A capture timeout reports
  * <b>ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT</b>; the caller can retry the
  * request. Another internal capture failure reports
@@ -855,14 +855,15 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * The caller can call this function from any thread. For each accepted
  * request, the framework invokes <b>callback</b> exactly once on the UI thread
- * associated with <b>context</b>. Concurrent requests are independent, and the
- * framework does not guarantee their callback order.
+ * associated with <b>context</b>. If the previous request has not finished,
+ * this function returns {@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED}. The caller
+ * must wait for that request to complete before submitting another request.
  *
  * @param context [in] Indicates the ArkUI context used to process the request.
  *     The parameter must not be <b>NULL</b>.
  * @param nodeIds [in] Indicates the first element of an array containing
  *     <b>count</b> unique ArkUI node IDs. The parameter must not be NULL.
- * @param count [in] Indicates the number of node IDs. The valid range is (0, 20]
+ * @param count [in] Indicates the number of node IDs. The valid range is (0, 20].
  * @param callback [in] Indicates the callback used to receive the result. The
  *     parameter must not be <b>NULL</b>.
  * @param userData [in] Indicates the caller-defined context pointer passed
@@ -870,8 +871,8 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the framework accepts the request. </li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or callback is NULL.</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count out of range of (0, 20].</li>
- *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the last request is unfinished.</li></ul>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if count is 0 or greater than 20.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the previous request has not finished.</li></ul>
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle context, const int32_t* nodeIds,
@@ -917,9 +918,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
 /**
  * @brief Destroys an image collection and releases <b>PixelMap</b> instances that have not been consumed.
  *
- * The caller must destroy every non-<b>NULL</b> collection that a callback
- * returns, including an empty collection or a collection after the caller has
- * consumed all its items. This function does not release or invalidate
+ * The caller must destroy every non-<b>NULL</b> collection returned through
+ * the callback, even after all its items have been consumed.
+ * This function does not release or invalidate
  * <b>PixelMap</b> instances that the caller obtained through
  * <b>OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId</b>.
  *

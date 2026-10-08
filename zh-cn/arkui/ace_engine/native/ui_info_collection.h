@@ -818,9 +818,10 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
 /**
  * @brief 异步采集指定ArkUI节点ID对应的图像。
  *
- * 单次请求可包含<b>0</b>到<b>20</b>个互不重复的节点ID。
+ * 单次请求可包含<b>1</b>到<b>20</b>个互不重复的节点ID。
  * 框架会在本函数返回前复制<b>nodeIds</b>数组。
- * 框架接受<b>count</b>为<b>0</b>的请求，并通过回调返回非<b>NULL</b>的空集合。
+ * 如果<b>count</b>为<b>0</b>或大于<b>20</b>，本函数返回
+ * {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}。
  *
  * 每个被接受的节点ID在结果集合中都有对应的结果项，即使未找到该节点或无法截取其图像。
  * 对于<b>Image</b>节点，如果可以获取其源<b>PixelMap</b>，则返回完整的源<b>PixelMap</b>；
@@ -828,14 +829,15 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * 节点无需处于可见状态。
  *
  * 如果找不到请求的节点ID对应的ArkUI节点，对应结果项会报告
- * <b>ARKUI_ERROR_CODE_PARAM_INVALID</b>，调用方应检查节点ID。
+ * <b>ARKUI_ERROR_CODE_NODE_NOT_FOUND</b>，调用方应检查节点ID。
  * 截图超时时，对应结果项报告<b>ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT</b>，调用方可以重试请求。
  * 发生其他内部截图错误时，对应结果项报告<b>ARKUI_ERROR_CODE_INTERNAL_ERROR</b>，
  * 调用方可以在处理该错误后重试请求。单个结果项失败不会改变请求整体成功的结果。
  *
  * 调用方可以从任意线程调用本函数。对于每个被接受的请求，
  * 框架都会在<b>context</b>关联的UI线程上调用且仅调用一次<b>callback</b>。
- * 并发请求相互独立，框架不保证其回调顺序。
+ * 如果上一次请求尚未完成，本函数返回{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED}。
+ * 调用方必须等待该请求完成后再提交下一次请求。
  *
  * @param context [in] 用于处理请求的ArkUI上下文，不能为<b>NULL</b>。
  * @param nodeIds [in] 指向节点ID数组首元素的指针。数组包含<b>count</b>个互不重复的ArkUI节点ID，
@@ -846,7 +848,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 框架已接受请求。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context或callback为NULL。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count超出(0, 20]范围。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count为0或大于20。</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} 上一次请求尚未完成。</li>
  *     </ul>
  * @since 26.2.0
@@ -891,7 +893,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
 /**
  * @brief 销毁图像集合，并释放尚未取出的<b>PixelMap</b>实例。
  *
- * 调用方必须销毁回调返回的每个非<b>NULL</b>集合，包括空集合以及所有结果项均已取出的集合。
+ * 调用方必须销毁回调返回的每个非<b>NULL</b>集合，即使其中的所有结果项均已取出。
  * 本函数不会释放通过<b>OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId</b>
  * 取得的<b>PixelMap</b>实例，也不会使这些实例失效。
  *
