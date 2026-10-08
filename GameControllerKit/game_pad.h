@@ -309,6 +309,27 @@ GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
 GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
 
 /**
+ * @brief Registers a callback for nonstandard button events.
+ *
+ * @param inputMonitorCallback [in] Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
+ * @since 26.0.1
+ * @see {@link OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor} unregisters the callback for nonstandard 
+ *     button events.
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_RegisterButtonInputMonitor(
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+
+/**
+ * @brief Unregisters the callback for nonstandard button events.
+ *
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor(void);
+
+/**
  * @brief Registers a callback for D-pad Left button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.

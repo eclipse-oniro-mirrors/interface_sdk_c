@@ -13,13 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef NET_WEBSOCKET_H
-#define NET_WEBSOCKET_H
-
-#include <signal.h>
-#include <stdint.h>
-#include <string.h>
-
 /**
  * @addtogroup netstack
  * @{
@@ -41,6 +34,13 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef NET_WEBSOCKET_H
+#define NET_WEBSOCKET_H
+
+#include <signal.h>
+#include <stdint.h>
+#include <string.h>
 
 #include "net_websocket_type.h"
 

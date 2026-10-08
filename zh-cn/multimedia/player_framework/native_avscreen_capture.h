@@ -850,13 +850,12 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetMultiDisplayIdsSelected(
     size_t *count);
 
 /**
- * @brief 设置隐私保护回调函数，用于响应屏幕捕获产生的隐私保护事件。该接口必须在调用开始录屏之前调用。<br>
+ * @brief 设置隐私保护回调函数，用于响应屏幕捕获产生的隐私保护事件。该接口必须在开始录屏之前调用。<br>
  * 
- * 当录屏过程中检测到隐私窗口或隐私内容时，将通过该回调通知应用，应用可根据回调信息进行相应的隐私保护处理。
+ * 在录屏过程中，隐私保护信息被修改时，触发回调上报隐私保护状态给应用。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
- * @param callback 隐私保护回调函数。用于响应隐私保护事件（如隐私窗口出现），在事件发生时触发，需在录屏前设置。
- * 不设置则无法获知隐私保护事件。
+ * @param callback 隐私保护回调函数。不设置则无法获知隐私保护事件。
  * @param userData 指向应用提供的自定义数据的指针，在隐私保护回调方法被调用时作为入参回传。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入录屏实例为空指针或输入回调为空指针。

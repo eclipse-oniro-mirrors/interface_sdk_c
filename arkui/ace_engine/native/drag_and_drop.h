@@ -320,6 +320,21 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes(
     ArkUI_DragEvent *event, char *eventTypeArray[], int32_t length, int32_t maxStrLen);
 
 /**
+ * @brief Obtains the data summary from a drag event.
+ *
+ * @param event [in] Pointer to an <b>ArkUI_DragEvent</b> object. The pointer cannot be null.
+ * @param summary [out] Pointer to an <b>OH_UDMF_Summary</b> object used to receive the summary.
+ *     The pointer cannot be null. The object must be created by the caller before this API is called and destroyed
+ *     by the caller after use. If the operation fails, the content of the object is not guaranteed to be valid.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if an internal error occurs.
+ * @since 26.2.0
+ */
+int32_t OH_ArkUI_DragEvent_GetSummary(ArkUI_DragEvent* event, OH_UDMF_Summary* summary);
+
+/**
  * @brief Obtains the drag and drop result from the drag event.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.

@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Defines a set of Swiper enum and interface.
+ * @brief 定义Swiper组件的枚举和接口。
  *
  * @since 12
  */
@@ -25,7 +25,10 @@
 /**
  * @file swiper.h
  *
- * @brief 定义Swiper组件的枚举和接口。
+ * @brief Defines the enumerations and APIs of the **Swiper** component for implementing scenarios such as carousel
+ * display and content navigation. It supports custom navigation indicators (dot/number types), navigation arrow styles,
+ *  nested scrolling modes, mouse wheel page-turning modes, and animation modes, helping users quickly build carousel
+ * interaction experiences.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,22 +46,21 @@ extern "C" {
 #endif
 
 /**
- * @brief 定义Swiper组件的导航指示器样式，用于在轮播等场景中展示当前位置和切换状态。
- *        支持自定义指示器的大小、颜色、间距等属性配置，能够提升用户对当前浏览位置的感知，增强用户交互体验，适用于需要展示轮播图片、广告位、内容导航等多种应用场景。
+ * @brief 定义Swiper组件的导航指示器风格。
  *
  * @since 12
  */
 typedef struct ArkUI_SwiperIndicator ArkUI_SwiperIndicator;
 
 /**
- * @brief 定义Swiper组件的数字导航指示器样式，用于以数字形式展示当前位置和总页数。
+ * @brief 定义Swiper组件的数字导航指示器风格。
  *
  * @since 19
  */
 typedef struct ArkUI_SwiperDigitIndicator ArkUI_SwiperDigitIndicator;
 
 /**
- * @brief 定义Swiper组件的导航箭头样式结构体，通过配置箭头位置、大小、颜色等属性实现翻页指引。
+ * @brief 定义Swiper组件的导航箭头风格。
  *
  * @since 19
  */
@@ -428,7 +430,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* in
 void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float space);
 
 /**
- * @brief Obtains 导航点间距。单位：vp。.
+ * @brief 获取导航点间距。
  *
  * @param indicator 导航指示器对象指针。
  * @return 导航点间距。单位：vp。

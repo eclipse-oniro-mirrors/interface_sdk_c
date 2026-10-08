@@ -51,7 +51,7 @@ extern "C" {
  */
 typedef struct ArkUI_ListItemSwipeActionItem ArkUI_ListItemSwipeActionItem;
 /**
- * @brief Defines the configuration information of the **ListItemSwipeActionOption**.
+ * @brief Defines a configuration of a swipe action on a list item.
  *
  * @since 12
  */

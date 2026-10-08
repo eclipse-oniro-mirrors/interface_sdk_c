@@ -206,7 +206,13 @@ typedef enum HiDebug_ErrorCode {
      *
      * @since 26.0.1
      */
-    HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH = 11400432
+    HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH = 11400432,
+    /**
+     * @brief 无效的调用栈追踪模式。
+     *
+     * @since 26.0.1
+     */
+    HIDEBUG_RES_PROF_INVALID_STACK_TRACE_MODE = 11400433
 } HiDebug_ErrorCode;
 
 /**
@@ -718,6 +724,25 @@ typedef enum OH_HiDebug_MemListenerType {
      */
     OH_HIDEBUG_DUMP_SNAPSHOT = 2
 } OH_HiDebug_MemListenerType;
+
+/**
+ * @brief 定义调用栈追踪模式枚举。
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief 保留所有调用栈追踪，包括已销毁的。
+     * @since 26.0.1
+     */
+    OH_HIDEBUG_STACK_TRACE_KEEP_ALL = 0,
+    /**
+     * @brief 丢弃已销毁的调用栈追踪。
+     * @since 26.0.1
+     */
+    OH_HIDEBUG_STACK_TRACE_DISCARD_DESTROYED = 1,
+} OH_HiDebug_ProfilerStackTraceMode;
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

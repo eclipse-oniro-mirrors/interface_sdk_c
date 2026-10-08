@@ -861,6 +861,61 @@ Image_ErrorCode OH_DecomposeOptions_GetDesiredPixelFormat(OH_DecomposeOptions *o
 Image_ErrorCode OH_DecomposeOptions_Release(OH_DecomposeOptions *options);
 
 /**
+ * @brief 将 {@link OH_PictureNative} 对象转换为以 napi_value 表示的 ArkTS <b>Picture</b> 对象。
+ * 返回的 ArkTS Picture 对象独立持有底层 Picture 的强引用，与 pictureNative 共享同一个底层 Picture。
+ * 本接口不会深拷贝主图、辅助图或元数据。
+ * @param env [in] 用于创建返回的 ArkTS Picture 对象的有效 N-API 环境。
+ *     该参数不能为 nullptr。必须在 env 所属的线程上调用本接口。
+ * @param pictureNative [in] 指向待转换的 OH_PictureNative 对象的指针。
+ *     该指针不能为 nullptr，且对象内部必须持有有效的 Picture 对象。
+ *     本接口不释放 pictureNative，也不接管其所有权。
+ *     转换成功后，释放 pictureNative 不会使创建的ArkTS Picture 对象失效。
+ * @param outPictureNapi [out] 指向 napi_value 变量的指针，用于接收转换得到的 ArkTS Picture 对象句柄。
+ *     该指针不能为 nullptr。仅在返回 IMAGE_SUCCESS 时，输出值才有效。
+ *     转换失败时，不得使用该输出值。该句柄受 N-API 句柄作用域规则约束。
+ *     ArkTS Picture 对象的生命周期由其释放接口和运行时的垃圾回收机制管理。
+ *
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS}：转换成功。</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER}：env、pictureNative 或 outPictureNapi 为 nullptr。</li>
+ *         <li>{@link IMAGE_UNKNOWN_ERROR}：创建 ArkTS Picture 对象失败。</li>
+ *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION}：非系统应用调用该系统接口。</li>
+ *         </ul>
+ * @systemapi
+ * @since 26.0.1
+ */
+Image_ErrorCode OH_PictureNative_ConvertPictureNativeToNapi(napi_env env, OH_PictureNative *pictureNative,
+    napi_value *outPictureNapi);
+
+/**
+ * @brief 将由 napi_value 表示的 ArkTS <b>Picture</b> 对象转换为 {@link OH_PictureNative} 对象。
+ * 返回的 OH_PictureNative 对象与 pictureNapi 共享同一个底层 Picture 对象。
+ * 本接口不复制主图、辅助图或元数据。
+ * @param env [in] pictureNapi 所属的 N-API 环境。
+ *     该参数不能为 nullptr。必须在 env 所属的线程上调用本接口。
+ * @param pictureNapi [in] 表示待转换 ArkTS Picture 对象的有效 napi_value 句柄。
+ *     该对象必须属于 env，且未被显式释放。
+ *     本接口不释放输入的 ArkTS Picture 对象，也不接管其所有权。
+ * @param outOwnedPictureNative [out] 指向 OH_PictureNative 指针变量的指针，用于接收新创建的 Native 对象。
+ *     该指针不能为 nullptr。转换失败时，不修改该输出变量的值。
+ *     调用者拥有该 OH_PictureNative 对象，必须在不再使用时调用 {@link OH_PictureNative_Release} 释放。
+ *     转换成功后，输入的 ArkTS Picture 对象被显式释放或被垃圾回收，均不会使创建的 OH_PictureNative 对象失效。
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS}：操作成功。</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER}：env、pictureNapi 或 outOwnedPictureNative 为 nullptr，
+ *         pictureNapi 不是 ArkTS Picture 对象，或者该 ArkTS Picture 对象已被释放。</li>
+ *         <li>{@link IMAGE_ALLOC_FAILED}：内存分配失败。</li>
+ *         <li>{@link IMAGE_UNKNOWN_ERROR}：在 env 中检查 pictureNapi 时，N-API 操作失败。</li>
+ *         <li>{@link OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION}：非系统应用调用本系统接口。</li>
+ *         </ul>
+ * @release picture_native/OH_PictureNative_Release {outOwnedPictureNative}
+ * @systemapi
+ * @since 26.0.1
+ */
+Image_ErrorCode OH_PictureNative_ConvertPictureNativeFromNapi(napi_env env, napi_value pictureNapi,
+    OH_PictureNative **outOwnedPictureNative);
+
+/**
  * @brief 将HDR PixelMap分解为包含SDR PixelMap和增益图（gainmap）的Picture对象。创建的Picture实例需通过{@link OH_PictureNative_Release}释放。
  *
  * @param hdrPixelmap 被分解的HDR PixelMap指针，像素格式需为RGBA_F16、RGBA_1010102、YCBCR_P010或YCRCB_P010。

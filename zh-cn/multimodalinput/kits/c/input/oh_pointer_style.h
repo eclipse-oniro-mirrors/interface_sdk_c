@@ -23,14 +23,13 @@
  */
 
 /**
+ * @file oh_pointer_style.h
  * @brief 鼠标光标的样式。
  *
- * @file oh_pointer_style.h
- * @include <multimodalinput/oh_pointer_style.h>
- *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_pointer_style.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 22
  */
 #ifndef OH_POINTER_STYLE_H
@@ -317,13 +316,13 @@ typedef enum Input_PointerStyle {
     MIDDLE_BTN_EAST_WEST = 44,
 
     /**
-     * @brief 后台运行中动画光标(拓展1)
+     * @brief 后台运行中动画光标（拓展1）
      * @since 22
      */
     RUNNING_LEFT = 45,
 
     /**
-     * @brief 后台运行中动画光标(拓展2)
+     * @brief 后台运行中动画光标（拓展2）
      * @since 22
      */
     RUNNING_RIGHT = 46,
@@ -358,7 +357,8 @@ typedef enum Input_PointerStyle {
      */
     LASER_CURSOR_DOT_RED = 51,
     /**
-     * @brief 自定义光标，开发者可使用{@link OH_Input_SetCustomCursor}设置自定义光标，不支持使用{@link OH_Input_SetPointerStyle}直接设置。
+     * @brief 自定义光标，开发者可使用{@link oh_input_manager.h#OH_Input_SetCustomCursor}设置自定义光标，
+     * 不支持使用{@link oh_input_manager.h#OH_Input_SetPointerStyle}直接设置。
      * @since 22
      */
     DEVELOPER_DEFINED_ICON = -100

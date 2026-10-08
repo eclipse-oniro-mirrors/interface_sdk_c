@@ -25,7 +25,7 @@
 /**
  * @file navigation_router.h
  *
- * @brief Defines a set of navigation or router enum and interface.
+ * @brief Defines the enumerations related to the **NavDestination** and **Router** components.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -41,7 +41,8 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the state of the NavDestination component.
+ * @brief Enumerates the states of the **NavDestination** component, used to describe the lifecycle state changes of **
+ * NavDestination** during navigation.
  *
  * @since 12
  */
@@ -87,14 +88,25 @@ typedef enum {
      */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
     /**
+     * The NavDestination component is active.
+     * @since 26.2.0
+     */
+    ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
+    /**
+     * The NavDestination component is inactive.
+     * @since 26.2.0
+     */
+    ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
+    /**
      * The NavDestination returns from the component.
      * @since 12
      */
-    ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100,
+    ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100
 } ArkUI_NavDestinationState;
 
 /**
- * @brief Define the state of Router Page.
+ * @brief Enumerates the states of the {@link Router} component (route page), used to describe the lifecycle state
+ * changes of **Router** during routing.
  *
  * @since 12
  */
@@ -123,7 +135,7 @@ typedef enum {
      * The Router Page returns.
      * @since 12
      */
-    ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4,
+    ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4
 } ArkUI_RouterPageState;
 
 #ifdef __cplusplus

@@ -3162,6 +3162,48 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
     const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);
 
 /**
+ * @brief 设置图片样式中的图片文本标签。
+ *
+ * @param imageAttachment [in] 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
+ *     不可为nullptr，调用者拥有该对象并负责其生命周期。
+ * @param imageTag [in] 指向图片文本标签字符串的指针。
+ *     不可为nullptr，NUL结尾的UTF-8编码字符串，函数内部拷贝该字符串，调用者保留原字符串的所有权。
+ * @return 返回结果码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
+    OH_ArkUI_ImageAttachment *imageAttachment, const char *imageTag);
+
+/**
+ * @brief 获取图片样式中的图片文本标签。
+ *
+ * @param imageAttachment [in] 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
+ *     不可为nullptr，调用者拥有该对象并负责其生命周期。
+ * @param bufferSize [in] 缓冲区大小，单位为字节，须包含NUL结尾符的空间。
+ * @param buffer [out] 输出参数，指向用于存储图片文本标签字符串的缓冲区的指针。
+ *     不可为nullptr，调用者需分配和管理该内存。
+ *     缓冲区存储NUL结尾的UTF-8编码字符串，调用失败时缓冲区内容保持不变。
+ * @param writeLength [out] 输出参数，指向实际写入缓冲区的字符串长度的指针。
+ *     不可为nullptr，无论成功或失败该值始终会被设置。
+ *     返回{@link ARKUI_ERROR_CODE_NO_ERROR}时，表示实际写入缓冲区的字符串长度，不包含NUL结尾符。
+ *     返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时，表示字符串完整写入缓冲区所需的最小长度，
+ *     不包含NUL结尾符；调用者需分配至少<b>*writeLength + 1</b>字节的空间。
+ * @return 返回结果码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetImageTag(const OH_ArkUI_ImageAttachment *imageAttachment,
+    int32_t bufferSize, char *buffer, int32_t *writeLength);
+
+/**
  * @brief 获取文本变化信息中待被替换的原文本的范围。
  *
  * @param event 指向{@link OH_ArkUI_TextEditorChangeEvent}对象的指针。

@@ -187,6 +187,80 @@ typedef enum {
 } OH_ArkUI_TextMenuType;
 
 /**
+ * @brief 文本编辑器输入类型枚举，用于指定文本编辑器的输入模式。
+ *
+ * @since 26.2.0
+ */
+typedef enum {
+    /**
+     * @brief 普通输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_NORMAL = 0,
+    /**
+     * @brief 数字输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_NUMBER = 2,
+    /**
+     * @brief 电话号码输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_PHONE_NUMBER = 3,
+    /**
+     * @brief 邮箱地址输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_EMAIL = 5,
+    /**
+     * @brief 密码输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_PASSWORD = 7,
+    /**
+     * @brief 数字密码输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_NUMBER_PASSWORD = 8,
+    /**
+     * @brief 锁屏密码输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_SCREEN_LOCK_PASSWORD = 9,
+    /**
+     * @brief 用户名输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_USER_NAME = 10,
+    /**
+     * @brief 新密码输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_NEW_PASSWORD = 11,
+    /**
+     * @brief 带小数点的数字输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_NUMBER_DECIMAL = 12,
+    /**
+     * @brief 一次性验证码输入模式。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_TEXT_EDITOR_TYPE_ONE_TIME_CODE = 14,
+} OH_ArkUI_TextEditorType;
+
+/**
  * @brief 创建一个无输入时的提示文本的选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorPlaceholderOptions_Destroy}销毁。
  *
  * @return 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。

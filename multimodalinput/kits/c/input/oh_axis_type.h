@@ -18,24 +18,22 @@
  * @{
  *
  * @brief Provides C APIs of the multimodal input module, supporting event processing for various input devices such as
- *  touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
- *  application interaction experience.
+ * touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
+ * application interaction experience.
  *
  * @since 12
  */
 
 /**
- *
- * @brief Defines the device axis event struct and enumerates device axis events. The axis type defines the physical
- *  behavior characteristics of an input device in different interaction scenarios. The system uses the axis type to
- *  distinguish and transmit different gesture interaction information.
- *
  * @file oh_axis_type.h
- * @include <multimodalinput/oh_axis_type.h>
+ * @brief Axis event enums of input devices. The axis type defines the physical behavior characteristics of the
+ * input device in different interaction scenarios. The system distinguishes and delivers different gesture
+ * interaction information through the axis type.
  *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @include <multimodalinput/oh_axis_type.h>
  * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 
@@ -60,16 +58,14 @@ typedef enum InputEvent_AxisType {
 
     /**
      * @brief Vertical scroll axis. When you scroll the mouse wheel or slide with one or two fingers on the touchpad,
-     * the
-     * status of the vertical scroll axis changes.
+     * the status of the vertical scroll axis changes.
      * @since 12
      */
     AXIS_TYPE_SCROLL_VERTICAL = 1,
 
     /**
      * @brief Horizontal scroll axis. When you scroll the mouse wheel or slide with two fingers on the touchpad, the
-     * status of
-     * the horizontal scroll axis changes.
+     * status of the horizontal scroll axis changes.
      * @since 12
      */
     AXIS_TYPE_SCROLL_HORIZONTAL = 2,
