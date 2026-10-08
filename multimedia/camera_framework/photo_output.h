@@ -159,6 +159,13 @@ typedef void (*OH_PhotoOutput_PhotoAvailable)(Camera_PhotoOutput* photoOutput, O
 typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset);
 
 /**
+ * @brief Defines the C2PA signature configuration.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_Camera_C2PASignatureConfig OH_Camera_C2PASignatureConfig;
+
+/**
  * @brief The struct describes the callbacks related to photo output.
  * 
  * @see OH_PhotoOutput_RegisterCallback
@@ -709,6 +716,88 @@ Camera_ErrorCode OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported(const Came
  */
 Camera_ErrorCode OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled(Camera_PhotoOutput* photoOutput,
     const OH_Camera_AuxiliaryPhotoType* auxPhotoTypes, uint32_t size, bool enable);
+
+/**
+ * @brief Checks whether C2PA signature is supported.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @param isSupported Pointer to the check result for the support of C2PA signature. **true** if supported, **false**
+ *     otherwise.
+ * @return <ul>
+ *         <li>**CAMERA_OK** : The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_IsC2PASignatureSupported(const Camera_PhotoOutput* photoOutput, bool* isSupported);
+
+/**
+ * @brief Creates an {@link OH_Camera_C2PASignatureConfig} instance.
+ * Release the C2PA signature configuration by calling {@link OH_Camera_C2PASignatureConfig_Destroy}.
+ *
+ * @return Returns the pointer to the {@link OH_Camera_C2PASignatureConfig} instance created,
+ *     or **NULL** if the creation fails.
+ * @release OH_Camera_C2PASignatureConfig_Destroy {return};
+ * @since 26.0.1
+ */
+OH_Camera_C2PASignatureConfig* OH_Camera_C2PASignatureConfig_Create(void);
+
+/**
+ * @brief Destroys an {@link OH_Camera_C2PASignatureConfig} instance.
+ *
+ * @param config Pointer to the {@link OH_Camera_C2PASignatureConfig} instance to destroy.
+ * @since 26.0.1
+ */
+void OH_Camera_C2PASignatureConfig_Destroy(OH_Camera_C2PASignatureConfig* config);
+
+/**
+ * @brief Sets the author name for the C2PA signature configuration.
+ *
+ * @param config Pointer to the target {@link OH_Camera_C2PASignatureConfig} instance.
+ * @param authorName Pointer to the author name string to set.
+ * @return <ul>
+ *         <li>**CAMERA_OK** : The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorName(
+    OH_Camera_C2PASignatureConfig* config, const char* authorName);
+
+/**
+ * @brief Sets the author ID for the C2PA signature configuration.
+ *
+ * @param config Pointer to the target {@link OH_Camera_C2PASignatureConfig} instance.
+ * @param authorID Pointer to the author ID string to set.
+ * @return <ul>
+ *         <li>**CAMERA_OK** : The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorID(OH_Camera_C2PASignatureConfig* config, const char* authorID);
+
+/**
+ * @brief Configures the C2PA signature settings. This function enables or disables C2PA signature
+ * and optionally sets the author information for the C2PA signature.
+ *
+ * Before calling this function, check whether C2PA signature is supported by calling
+ * {@link OH_PhotoOutput_IsC2PASignatureSupported}.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @param enableC2PA Whether to enable C2PA signature. **true** to enable, **false** to disable.
+ * @param config Pointer to the {@link OH_Camera_C2PASignatureConfig} instance, which includes the author name
+ *     and author ID. If **NULL**, the C2PA signature will be generated without author information.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_ConfigureC2PASignature(
+    Camera_PhotoOutput* photoOutput, bool enableC2PA, OH_Camera_C2PASignatureConfig* config);
+
 #ifdef __cplusplus
 }
 #endif
