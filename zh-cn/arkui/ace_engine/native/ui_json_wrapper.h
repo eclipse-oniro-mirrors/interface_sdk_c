@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief 定义UI感知与控制接口共用的不可变JSON数据对象，供应用内智能体和UI自动化使用。
+ * @brief 定义UI感知与控制接口共用的不可变JSON数据对象，供应用内智能体或UI自动化采集场景使用。
  * JSON是一种主流的结构化数据格式，可供不同编程语言和进程使用，避免为各个字段提供大量访问接口。
  *
  * @since 26.2.0
@@ -26,7 +26,7 @@
 /**
  * @file ui_json_wrapper.h
  *
- * @brief 声明UI感知与控制接口共用的JSON数据对象。
+ * @brief 声明UI感知与控制等接口共用的JSON数据对象。
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
@@ -49,7 +49,10 @@ extern "C" {
 /**
  * @brief 定义内部结构不对外公开的不可变JSON数据对象。
  *
- * 该对象保存一个JSON字符串，既用于承载框架传递的数据（UI感知），也用于承载应用提交的命令（UI控制）。
+ * 该对象保存一个JSON字符串，既用于承载框架传递的数据（UI感知），也用于承载应用注入的命令（UI控制）。
+ * JSON对象顶层必须包含schemaVersion字段，用于版本控制和后续兼容性维护。
+ * 应用传入的JSON，以及框架通过接口返回或回调传递的JSON，均必须满足此要求；
+ * 即使没有采集内容，返回的JSON也必须携带该字段。
  *
  * @since 26.2.0
  */
@@ -61,14 +64,17 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * 传入的字符串会被复制到对象中。调用方拥有所创建对象的所有权，
  * 并且必须在不再使用时调用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
  *
- * 传入的字符串应包含schemaVersion字段。如果缺少该字段，或其值超出支持的版本范围，则按版本1处理，如下所示：
+ * 传入的字符串必须表示有效的JSON对象，且对象顶层必须包含schemaVersion字段。
+ * 如果缺少该字段，或其值超出支持的版本范围，本函数返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}，
+ * 不使用默认版本。示例如下：
  * { "schemaVersion": 1, ... }
  *
  * 注意：传入的data字符串仍归调用方所有。销毁本接口返回的JSON封装对象，
  * 不会代替调用方释放data所指向的内存。
  *
  * @param data [in] 指向JSON字符串的指针。不能为NULL，且必须在整个调用期间保持有效。
- *     被调用方不会保留该指针。允许传入空字符串，此时size为0。
+ *     被调用方不会保留该指针。字符串必须包含有效的JSON对象，且schemaVersion必须为受支持的版本。
+ *     空字符串无效。
  * @param size [in] JSON字符串的长度，单位为字节，不包含末尾的空字符。
  *     必须与data字符串的实际长度一致，否则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param outOwned [out] 用于接收创建成功的对象的输出参数。调用方拥有返回对象的所有权，
@@ -76,7 +82,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *     outOwned不能为NULL，其指向的对象指针无需初始化；创建失败时，该对象指针被设置为NULL。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数无效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数无效、data为空字符串或不表示有效的JSON对象，
+ *         或schemaVersion字段缺失、版本不受支持。</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
  * @since 26.2.0
@@ -88,7 +95,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  * @brief 获取对象保存的JSON字符串。
  *
  * 返回的字符串为只读字符串，以空字符结尾。字符串所在的内存归JSON对象所有，在该对象销毁前一直有效。
- * 调用方不得修改或释放返回的字符串。
+ * 调用方不得修改或释放返回的字符串。JSON对象顶层包含schemaVersion字段。
  *
  * @param json [in] JSON数据对象，不能为NULL。
  * @return 返回借用的JSON字符串指针，调用方不拥有其所有权；如果json为NULL，则返回NULL。
@@ -99,12 +106,11 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
 /**
  * @brief 获取JSON字符串的字节长度。
  *
- * 返回的长度不包含末尾的空字符。对于空JSON字符串，返回0。
+ * 返回的长度不包含末尾的空字符，包含JSON字符串中schemaVersion字段所占的字节。
  *
  * @param json [in] JSON数据对象，不能为NULL。
  * @return <ul>
  *     <li>JSON字符串的字节长度，不包含末尾的空字符。</li>
- *     <li>对于空JSON字符串，返回0。</li>
  *     </ul>
  * @since 26.2.0
  */

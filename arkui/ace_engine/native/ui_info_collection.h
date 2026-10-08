@@ -130,7 +130,8 @@ typedef enum {
  * The callback carries a borrowed {@link OH_ArkUI_NativeModule_UIJsonWrapper} object that holds the
  * event payload. The object is valid only within the callback invocation; the callback must not
  * retain or destroy it. All positional coordinates in the payload are relative to the screen
- * (display), in physical pixels (px). The payload's top-level structure is:
+ * (display), in physical pixels (px). The payload always includes a top-level schemaVersion field.
+ * Its top-level structure is:
  *
  * { "schemaVersion": 1, "type": "<event type>", ... }
  *
@@ -247,7 +248,8 @@ typedef enum {
  * @param requestId [in] The identifier assigned to the accepted request.
  * @param errorCode [in] The request result.
  * @param json [in] Immutable JSON result. If the request fails, the value is NULL. Otherwise, the control tree is in
- *     the JSON structure. This object needs to be released by the developer after being used.
+ *     the JSON structure, which includes a top-level schemaVersion field.
+ *     This object needs to be released by the developer after being used.
  * @param userData [in] The caller-provided data passed to OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync.
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
@@ -301,7 +303,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes
  * @brief Sets whether fully occluded nodes are filtered from the returned tree.
  *
  * Filtering is disabled by default and can be enabled only for visible-tree
- * requests. Disabling this option does not disable visibility, clipping,
+ * requests. Enabling occlusion filtering may add substantial computational overhead
+ * to collection. Use this option judiciously based on the complexity of the UI.
+ * Disabling this option does not disable visibility, clipping,
  * off-screen, or fully transparent node filtering.
  *
  * The occluder opacity threshold is configured separately by
@@ -452,8 +456,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param context [in] The UI context whose tree is collected.
  * @param request [in] The collection request.
  * @param format [in] The JSON output format.
- * @param json [out] The output immutable JSON object. The caller must release it by calling
- *     OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
+ * @param json [out] The output immutable JSON object, which includes a top-level schemaVersion field.
+ *     The caller must release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if collection succeeds.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter or format is invalid.</li>
@@ -481,6 +485,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  * @param format [in] The JSON output format.
  * @param callback [in] The completion callback. On success, the callback receives ownership of the JSON object and must
  *     release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
+ *     The JSON object includes a top-level schemaVersion field.
  * @param userData [in] The caller-provided data passed to the callback.
  * @param requestId [out] The output identifier for the accepted request.
  * @return <ul>
@@ -506,8 +511,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  * The function must be called on the UI thread. The output format is as follows:
  * @param uiContext [in] Context of the target UI instance for text collection
  * @param pageText [out] output slot, initialized to NULL by the caller.
- *     A valid slot is set to NULL on failure; an empty page still returns a
- *     wrapper.
+ *     A valid slot is set to NULL on failure. On success, the returned JSON object includes a
+ *     top-level schemaVersion field, even when the page is empty.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} on success.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if pageText is NULL.</li>
@@ -546,7 +551,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
-     * @brief Overlay events.
+     * @brief Events for modals, menus, or popups.
      *
      * @since 26.2.0
      */
@@ -627,19 +632,19 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_HIDE = 5,
     /**
-     * @brief A swiper interaction has started.
+     * @brief A Swiper transition has started.
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_START = 6,
     /**
-     * @brief A swiper interaction has completed, including its transition animation if exists.
+     * @brief A Swiper transition has completed, including its transition animation, if any.
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_END = 7,
     /**
-     * @brief The Swiper switchover event returns to the start index.
+     * @brief The Swiper transition is interrupted, and Swiper springs back to the starting index.
      *
      * @since 26.2.0
      */
@@ -776,15 +781,15 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
 /**
  * @brief Obtains the content change event details as a JSON wrapper from an ArkUI state change event snapshot.
  *
- * The JSON output includes the content change type, trigger node, target node, overlay type, and an optional
- * sub-tree dump depending on the event category:
+ * The JSON output includes a top-level schemaVersion field, the content change type, trigger node,
+ * target node, overlay type, and an optional sub-tree dump depending on the event category:
  *
  * Page events identify the target page. Scroll events identify the scrolling node. Overlay events identify
  * overlay node and provide the overlay type (such as "dialog"). The trigger node is the node that initiated the
  * content change; it is available for overlay events and general start/end scenarios, and is NULL for page and
- * scroll events when no trigger node can be exposed. The operation succeeds and writes an empty JSON wrapper when
- * no target node can be exposed. The handles referenced in the JSON wrapper are borrowed and must not be released
- * or used after the callback returns.
+ * scroll events when no trigger node can be exposed. The operation succeeds when no target node can be exposed;
+ * the returned JSON still contains schemaVersion. The handles referenced in the JSON wrapper are borrowed and must
+ * not be released or used after the callback returns.
  *
  * @param event [in] Pointer to the event snapshot. The pointer is valid only while the callback is running.
  * @param json [out] Pointer to the {@link OH_ArkUI_NativeModule_UIJsonWrapper} that receives the content change event

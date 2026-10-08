@@ -18,9 +18,9 @@
  * @{
  *
  * @brief Defines the shared immutable JSON data object used by the UI perception and control APIs
- * for in-app intelligent agents and UI automation. JSON is adopted as the mainstream structured
- * format for cross-language and cross-process consumption, as an alternative to a large set of
- * field accessors.
+ * for in-app intelligent agents and UI automation data collection scenarios. JSON is adopted as the
+ * mainstream structured format for cross-language and cross-process consumption, as an alternative
+ * to a large set of field accessors.
  *
  * @since 26.2.0
  */
@@ -28,7 +28,7 @@
 /**
  * @file ui_json_wrapper.h
  *
- * @brief Declares the shared JSON data object for the UI perception and control APIs.
+ * @brief Declares the shared JSON data object for APIs such as UI perception and control.
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
@@ -52,7 +52,11 @@ extern "C" {
  * @brief Defines an opaque, immutable JSON data object.
  *
  * The object holds a JSON string. It is used both to carry data delivered by the framework (UI
- * sensing) and to carry commands submitted by the application (UI control).
+ * sensing) and to carry commands injected by the application (UI control).
+ * The JSON object must contain a top-level schemaVersion field for version control and future
+ * compatibility. This requirement applies both to JSON supplied by the application and to JSON
+ * returned or delivered through callbacks by the framework, including results with no collected
+ * content.
  *
  * @since 26.2.0
  */
@@ -64,8 +68,9 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * The provided string is copied into the object. The caller owns the created object and must
  * release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy} when it is no longer needed.
  *
- * The provided string should contain a schemaVersion field. If it is absent, or the specified
- * version value is outside the supported range, it is treated as 1, as follows:
+ * The provided string must represent a valid JSON object with a top-level schemaVersion field.
+ * If this field is missing or its value is outside the supported version range, this function
+ * returns {@link ARKUI_ERROR_CODE_PARAM_INVALID}; no default version is used. For example:
  * { "schemaVersion": 1, ... }
  *
  * Note: the data string passed to this function remains owned by the caller. Destroying the JSON
@@ -73,8 +78,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * caller's behalf.
  *
  * @param data [in] Pointer to the JSON string. It must not be NULL and must remain valid for the
- *     duration of the call. The callee does not retain it. An empty string is valid and corresponds
- *     to a size of 0.
+ *     duration of the call. The callee does not retain it. The string must contain a valid JSON
+ *     object with a supported schemaVersion. An empty string is invalid.
  * @param size [in] Byte length (in bytes) of the JSON string, excluding the terminating '\0'
  *     character. It must equal the actual length of data. If size is inconsistent with the actual
  *     string length, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
@@ -83,7 +88,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *     NULL, requires no initialization, and on failure is set to NULL.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid, data is empty or
+ *             does not represent a valid JSON object, or schemaVersion is missing or unsupported.</li>
  *         </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
  * @since 26.2.0
@@ -96,7 +102,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  *
  * The returned string is read-only and terminated by '\0'. It points to memory owned by the JSON
  * object and remains valid until the object is destroyed. The caller must not modify or free the
- * returned string.
+ * returned string. The JSON object contains a top-level schemaVersion field.
  *
  * @param json [in] The JSON data object. It must not be NULL.
  * @return The borrowed JSON string, or NULL if json is NULL.
@@ -107,13 +113,12 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
 /**
  * @brief Obtains the byte length of the JSON string.
  *
- * The returned length excludes the terminating '\0' character. For an empty JSON string, zero is
- * returned.
+ * The returned length excludes the terminating '\0' character and includes the schemaVersion
+ * field in the JSON string.
  *
  * @param json [in] The JSON data object. It must not be NULL.
  * @return <ul>
  *     <li>The byte length of the JSON string, excluding the terminating '\0' character.</li>
- *     <li>Returns 0 for an empty JSON string.</li>
  *     </ul>
  * @since 26.2.0
  */

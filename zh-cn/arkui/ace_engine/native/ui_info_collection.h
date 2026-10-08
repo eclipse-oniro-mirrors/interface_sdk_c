@@ -128,7 +128,8 @@ typedef enum {
  *
  * 回调通过借用的{@link OH_ArkUI_NativeModule_UIJsonWrapper}对象接收事件数据，
  * 不取得该对象的所有权。对象仅在本次回调执行期间有效，回调不得保留或销毁该对象。
- * 事件数据中的所有位置坐标均相对于屏幕（显示器），单位为物理像素（px）。数据的顶层结构如下：
+ * 事件数据中的所有位置坐标均相对于屏幕（显示器），单位为物理像素（px）。
+ * 事件数据顶层始终包含schemaVersion字段，结构如下：
  *
  * { "schemaVersion": 1, "type": "<event type>", ... }
  *
@@ -242,7 +243,7 @@ typedef enum {
  * @param requestId [in] 分配给已接受请求的标识符。
  * @param errorCode [in] 请求的处理结果。
  * @param json [in] 不可变的JSON结果。请求失败时为NULL，成功时包含以JSON结构表示的控件树。
- *     开发者必须在使用完毕后释放该对象。
+ *     JSON对象顶层包含schemaVersion字段。开发者必须在使用完毕后释放该对象。
  * @param userData [in] 调用方传给OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync的数据。
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
@@ -295,7 +296,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes
 /**
  * @brief 设置是否从返回的UI树中过滤被完全遮挡的节点。
  *
- * 默认不启用过滤，且仅可对可见树采集请求启用此选项。
+ * 默认不启用过滤，且仅可对可见树采集请求启用此选项。开启遮挡过滤可能给采集带来较大的额外计算量，请根据界面复杂程度酌情使用。
  * 关闭此选项不会关闭可见性过滤、裁剪过滤、离屏节点过滤或完全透明节点过滤。
  *
  * 作为遮挡方的节点所需满足的不透明度阈值由
@@ -430,7 +431,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param context [in] 待采集UI树所属的UI上下文。
  * @param request [in] 采集请求。
  * @param format [in] JSON输出格式。
- * @param json [out] 用于接收不可变JSON结果对象的输出参数。
+ * @param json [out] 用于接收不可变JSON结果对象的输出参数，JSON对象顶层包含schemaVersion字段。
  *     调用方必须调用OH_ArkUI_NativeModule_UIJsonWrapperDestroy释放该对象。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 采集成功。</li>
@@ -461,6 +462,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  * @param format [in] JSON输出格式。
  * @param callback [in] 请求完成时调用的回调函数。请求成功时，回调取得JSON对象的所有权，
  *     必须调用OH_ArkUI_NativeModule_UIJsonWrapperDestroy释放该对象。
+ *     JSON对象顶层包含schemaVersion字段。
  * @param userData [in] 调用方提供的、传给回调的数据。
  * @param requestId [out] 用于接收已接受请求的标识符的输出参数。
  * @return <ul>
@@ -487,7 +489,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  *
  * @param uiContext [in] 要采集文本的目标UI实例的上下文。
  * @param pageText [out] 用于接收结果对象的输出参数。调用方应将其指向的对象指针初始化为NULL。
- *     调用失败时，若输出参数有效，则将其指向的对象指针设置为NULL；即使页面为空，仍会返回JSON封装对象。
+ *     调用失败时，若输出参数有效，则将其指向的对象指针设置为NULL。
+ *     调用成功时，返回的JSON对象顶层包含schemaVersion字段，即使页面为空也必须携带该字段。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} pageText为NULL。</li>
@@ -526,7 +529,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
-     * @brief 浮层事件。
+     * @brief 模态、菜单或弹窗类事件。
      *
      * @since 26.2.0
      */
@@ -607,19 +610,19 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_HIDE = 5,
     /**
-     * @brief Swiper交互开始。
+     * @brief Swiper切换开始。
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_START = 6,
     /**
-     * @brief Swiper交互完成；如果存在过渡动画，则该动画也已完成。
+     * @brief Swiper切换完成；如果存在过渡动画，则该动画也已完成。
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_END = 7,
     /**
-     * @brief Swiper切换回到起始索引。
+     * @brief Swiper切换中断，并回弹到起始索引。
      *
      * @since 26.2.0
      */
@@ -763,12 +766,13 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
 /**
  * @brief 从ArkUI状态变化事件快照中获取内容变化事件详情，并以JSON封装对象返回。
  *
- * JSON输出包含内容变化类型、触发节点、目标节点、浮层类型，以及根据事件类别决定是否包含的子树转储信息。
+ * JSON输出的顶层包含schemaVersion字段，并包含内容变化类型、触发节点、目标节点、浮层类型，
+ * 以及根据事件类别决定是否包含的子树转储信息。
  *
  * 页面事件标识目标页面，滚动事件标识发生滚动的节点，浮层事件标识浮层节点并提供浮层类型，例如"dialog"。
  * 触发节点是引起内容变化的节点，在浮层事件和一般的开始、结束场景中可用。
  * 对于页面事件和滚动事件，如果无法提供触发节点，则该节点为NULL。
- * 如果无法提供目标节点，操作仍然成功，并返回空的JSON封装对象。
+ * 如果无法提供目标节点，操作仍然成功，返回的JSON中仍包含schemaVersion字段。
  * JSON封装对象中引用的句柄均为借用句柄，不得释放，也不得在回调返回后使用。
  *
  * @param event [in] 指向事件快照的指针，仅在回调执行期间有效。
