@@ -67,13 +67,13 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * 注意：传入的data字符串仍归调用方所有。销毁本接口返回的JSON封装对象，
  * 不会代替调用方释放data所指向的内存。
  *
- * @param data [in] 指向JSON字符串的指针。不能为null，且必须在整个调用期间保持有效。
+ * @param data [in] 指向JSON字符串的指针。不能为NULL，且必须在整个调用期间保持有效。
  *     被调用方不会保留该指针。允许传入空字符串，此时size为0。
  * @param size [in] JSON字符串的长度，单位为字节，不包含末尾的空字符。
  *     必须与data字符串的实际长度一致，否则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param outOwned [out] 用于接收创建成功的对象的输出参数。调用方拥有返回对象的所有权，
  *     必须调用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
- *     outOwned不能为null，其指向的对象指针无需初始化；创建失败时，该对象指针被设置为null。
+ *     outOwned不能为NULL，其指向的对象指针无需初始化；创建失败时，该对象指针被设置为NULL。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数无效。</li>
@@ -90,8 +90,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  * 返回的字符串为只读字符串，以空字符结尾。字符串所在的内存归JSON对象所有，在该对象销毁前一直有效。
  * 调用方不得修改或释放返回的字符串。
  *
- * @param json [in] JSON数据对象，不能为null。
- * @return 返回借用的JSON字符串指针，调用方不拥有其所有权；如果json为null，则返回null。
+ * @param json [in] JSON数据对象，不能为NULL。
+ * @return 返回借用的JSON字符串指针，调用方不拥有其所有权；如果json为NULL，则返回NULL。
  * @since 26.2.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
@@ -101,7 +101,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  *
  * 返回的长度不包含末尾的空字符。对于空JSON字符串，返回0。
  *
- * @param json [in] JSON数据对象，不能为null。
+ * @param json [in] JSON数据对象，不能为NULL。
  * @return <ul>
  *     <li>JSON字符串的字节长度，不包含末尾的空字符。</li>
  *     <li>对于空JSON字符串，返回0。</li>
@@ -113,7 +113,7 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
 /**
  * @brief 销毁JSON数据对象并释放其资源。
  *
- * 传入null时不执行任何操作。调用本函数后，
+ * 传入NULL时不执行任何操作。调用本函数后，
  * {@link OH_ArkUI_NativeModule_UIJsonWrapperGetData}返回的所有指针均失效。
  *
  * 注意：仅可对调用方明确拥有所有权的JSON封装对象调用本函数，

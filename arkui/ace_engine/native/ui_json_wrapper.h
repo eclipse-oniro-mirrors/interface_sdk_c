@@ -72,15 +72,15 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * wrapper object returned by this API does not release the memory pointed to by data on the
  * caller's behalf.
  *
- * @param data [in] Pointer to the JSON string. It must not be null and must remain valid for the
+ * @param data [in] Pointer to the JSON string. It must not be NULL and must remain valid for the
  *     duration of the call. The callee does not retain it. An empty string is valid and corresponds
  *     to a size of 0.
- * @param size [in] Byte length (in bytes) of the JSON string, excluding the terminating null
+ * @param size [in] Byte length (in bytes) of the JSON string, excluding the terminating '\0'
  *     character. It must equal the actual length of data. If size is inconsistent with the actual
  *     string length, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param outOwned [out] Receives the created object on success. The caller owns the returned object
  *     and must release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}. It must not be
- *     null, requires no initialization, and on failure is set to null.
+ *     NULL, requires no initialization, and on failure is set to NULL.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
@@ -94,12 +94,12 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
 /**
  * @brief Obtains the JSON string held by the object.
  *
- * The returned string is read-only and null-terminated. It points to memory owned by the JSON
+ * The returned string is read-only and terminated by '\0'. It points to memory owned by the JSON
  * object and remains valid until the object is destroyed. The caller must not modify or free the
  * returned string.
  *
- * @param json [in] The JSON data object. It must not be null.
- * @return The borrowed JSON string, or null if json is null.
+ * @param json [in] The JSON data object. It must not be NULL.
+ * @return The borrowed JSON string, or NULL if json is NULL.
  * @since 26.2.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
@@ -107,12 +107,12 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
 /**
  * @brief Obtains the byte length of the JSON string.
  *
- * The returned length excludes the terminating null character. For an empty JSON string, zero is
+ * The returned length excludes the terminating '\0' character. For an empty JSON string, zero is
  * returned.
  *
- * @param json [in] The JSON data object. It must not be null.
+ * @param json [in] The JSON data object. It must not be NULL.
  * @return <ul>
- *     <li>The byte length of the JSON string, excluding the terminating null character.</li>
+ *     <li>The byte length of the JSON string, excluding the terminating '\0' character.</li>
  *     <li>Returns 0 for an empty JSON string.</li>
  *     </ul>
  * @since 26.2.0
@@ -122,7 +122,7 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
 /**
  * @brief Destroys a JSON data object and releases its resources.
  *
- * Passing null has no effect. Any pointer returned by
+ * Passing NULL has no effect. Any pointer returned by
  * {@link OH_ArkUI_NativeModule_UIJsonWrapperGetData} becomes invalid after this call.
  *
  * Note: call this function only on a JSON wrapper object whose ownership you explicitly hold, for
