@@ -123,10 +123,10 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * @brief Destroys a JSON data object and releases its resources.
  *
  * Passing null has no effect. Any pointer returned by
- * {@link OH_ArkUI_NativeModule_UIJsonWrapper_GetData} becomes invalid after this call.
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapperGetData} becomes invalid after this call.
  *
  * Note: call this function only on a JSON wrapper object whose ownership you explicitly hold, for
- * example, a wrapper created with {@link OH_ArkUI_NativeModule_UIJsonWrapper_Create}, or a wrapper
+ * example, a wrapper created with {@link OH_ArkUI_NativeModule_UIJsonWrapperCreate}, or a wrapper
  * whose ownership you have explicitly obtained through an ownership transfer function. Do not use
  * this function to release JSON wrapper objects that are constructed and handed out by the system,
  * for example, the object delivered through

@@ -124,10 +124,10 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * @brief 销毁JSON数据对象并释放其资源。
  *
  * 传递null没有任何效果。返回的任何指针
- * {@link OH_ArkUI_NativeModule_UIJsonWrapper_GetData}在此次调用后失效。
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapperGetData}在此次调用后失效。
  *
  * 注意：仅在您显式持有其所有权的JSON包装器对象上调用此函数，对于
- * 例如，使用{@link OH_ArkUI_NativeModule_UIJsonWrapper_Create}创建的包装器，或者包装器
+ * 例如，使用{@link OH_ArkUI_NativeModule_UIJsonWrapperCreate}创建的包装器，或者包装器
  * 你通过所有权转移函数明确地获得了所有权。不使用
  * 该函数用于释放系统构造并传递出去的JSON包装器对象。
  * 例如，通过传递的对象

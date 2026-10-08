@@ -246,7 +246,7 @@ typedef enum {
  * @param requestId [in] 分配给被接受的请求的标识符。
  * @param errorCode [in] 采集请求的结果。
  * @param json [in] 不可变的JSON结果，如果请求失败，则为NULL。否则为Json结构的控件树。这个对象在使用完毕后需要开发者显示释放。
- * @param userData [in] 传递给OH_ArkUI_NativeModule_UIAgent_GetTreeJsonAsync的调用方提供的数据。
+ * @param userData [in] 传递给OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync的调用方提供的数据。
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
  */
@@ -257,7 +257,7 @@ typedef void (*OH_ArkUI_NativeModule_UIAgentJsonCallback)(ArkUI_ContextHandle co
  * @brief 创建UI树收集请求。
  * @param treeType [in] 树型。该值必须是OH_ArkUI_NativeModule_UIAgentTreeType的成员。
  * @param request [out] 输出请求对象。调用者必须通过调用来释放它
- * OH_ArkUI_NativeModule_UIAgentTreeRequest_Destroy.
+ * OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 如果请求创建成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 如果输入或输出参数无效。</li>
@@ -919,7 +919,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
  * 返回，包括一个空集合或一个在调用者有
  * 消耗了它所有的物品。此功能不会释放或失效
  * 调用方通过获取的<b>PixelMap</b>实例
- * <b>OH_ArkUI_NativeModule_ImageCollection_TakeItemByNodeId</b>.
+ * <b>OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId</b>.
  *
  * 调用者不能与另一个集合同时调用此函数
  * 同一个集合的api。
