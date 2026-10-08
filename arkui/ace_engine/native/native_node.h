@@ -9944,7 +9944,7 @@ typedef enum {
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
      * <li>.value[0].i32: whether to support scrolling by pressing the left mouse button. 0: no; 1: yes.
-     * For API versions earlier than 26.2.0, the default value is 0. For API veraions 26.2.0 and later,
+     * For API versions earlier than 26.2.0, the default value is 0. For API versions 26.2.0 and later,
      * the default value is 1 when the scollable component scrolls horizontally,0 otherwise.</li>
      * </ul>
      *
