@@ -1149,11 +1149,6 @@
     },
     {
         "first_introduced": "26.0.1",
-        "name": "OH_CaptureSession_RegisterCameraDeviceSwitchRequestCallback"
-    },
-    {
-        "first_introduced": "26.0.1",
-        "name": "OH_CaptureSession_UnregisterCameraDeviceSwitchRequestCallback"
         "name": "OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported"
     },
     {
@@ -1175,5 +1170,13 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_PhotoNative_ReleaseImage"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_CaptureSession_RegisterCameraDeviceSwitchRequestCallback"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_CaptureSession_UnregisterCameraDeviceSwitchRequestCallback"
     }
 ]
