@@ -95,7 +95,10 @@ struct ArkUI_NativeDialog;
 typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle;
 
 /**
- * @brief Defines information about gesture collection interception.
+ * @brief Defines gesture collection interception information. During gesture collection in the touch test, this
+ * struct is used to provide the gesture and touch recognizers in the response chain to the interception callback,
+ * and carries the gesture collection intervention result set by the callback. For details about the related APIs for
+ * gesture collection interception, see {@link native_gesture.h}.
  *
  * @since 26.0.0
  */
