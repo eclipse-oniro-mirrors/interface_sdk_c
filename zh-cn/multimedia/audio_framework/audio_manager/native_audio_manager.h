@@ -51,6 +51,18 @@ extern "C" {
 typedef struct OH_AudioManager OH_AudioManager;
 
 /**
+ * @brief 音频场景变化回调函数的原型定义，用于{@link OH_AudioManager_RegisterAudioSceneChangeCallback}接口。
+ * 
+ * @param userData 指向开发者在{@link OH_AudioManager_RegisterAudioSceneChangeCallback}接口传入的userData数据。
+ * @param scene 变化后的音频场景。
+ * @since 20
+ */
+typedef void (*OH_AudioManager_OnAudioSceneChangeCallback) (
+    void *userData,
+    OH_AudioScene scene
+);
+
+/**
  * @brief 获取音频基础管理器实例，该实例为单例，用于调用音频基础管理功能接口。
  *
  * @param audioManager [out] 指向OH_AudioManager指针的地址，用于接收获取的音频管理器实例。
@@ -75,18 +87,6 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
  * @since 12
  */
 OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *scene);
-
-/**
- * @brief 音频场景变化回调函数的原型定义，用于{@link OH_AudioManager_RegisterAudioSceneChangeCallback}接口。
- * 
- * @param userData 指向开发者在{@link OH_AudioManager_RegisterAudioSceneChangeCallback}接口传入的userData数据。
- * @param scene 变化后的音频场景。
- * @since 20
- */
-typedef void (*OH_AudioManager_OnAudioSceneChangeCallback) (
-    void *userData,
-    OH_AudioScene scene
-);
 
 /**
  * @brief 注册音频场景变化回调函数。

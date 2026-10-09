@@ -266,27 +266,6 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
     clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
 
 /**
- * @brief 获取音频播放流时间戳和位置信息。
- * <br>相比OH_AudioRenderer_GetTimestamp适配了倍速接口。
- * <br>通常用于进行音画同步对齐，播放位置单位为采样数（samples），时间戳单位为ns。
- * <br>当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
- * <br>该接口通常用来实现音画同步，调用间隔建议不小于200ms，推荐频率为每秒一次。在能保证音画同步效果的情况下，不需要频繁地查询时间戳，避免出现功耗问题。
- *
- * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
- * @param framePosition [out] 用于接收获取的最近输出音频帧位置，单位为采样数。
- * @param timestamp [out] 用于接收获取的最近输出音频帧时间戳，与位置对应，单位为ns。
- * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 1. 参数renderer为空指针；2. 参数framePosition或timestamp为空指针。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} 当前流状态不为合法状态时返回。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_SYSTEM} 1. 系统进程崩溃或被阻塞；2. 内部系统其他错误。</li>
- *         </ul>
- * @since 15
- */
-OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
-    int64_t* framePosition, int64_t* timestamp);
-
-/**
  * @brief 获取当前音频播放流每次数据回调请求写入的音频数据帧长，单位为采样点数。
  * <br>当音频播放流运行模式发生变化时，如从低时延模式切换到普通模式，此帧长可能发生变化。
  *
@@ -533,6 +512,27 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
     OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType);
 
 /**
+ * @brief 获取音频播放流时间戳和位置信息。
+ * <br>相比OH_AudioRenderer_GetTimestamp适配了倍速接口。
+ * <br>通常用于进行音画同步对齐，播放位置单位为采样数（samples），时间戳单位为ns。
+ * <br>当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
+ * <br>该接口通常用来实现音画同步，调用间隔建议不小于200ms，推荐频率为每秒一次。在能保证音画同步效果的情况下，不需要频繁地查询时间戳，避免出现功耗问题。
+ *
+ * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
+ * @param framePosition [out] 用于接收获取的最近输出音频帧位置，单位为采样数。
+ * @param timestamp [out] 用于接收获取的最近输出音频帧时间戳，与位置对应，单位为ns。
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 1. 参数renderer为空指针；2. 参数framePosition或timestamp为空指针。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} 当前流状态不为合法状态时返回。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_SYSTEM} 1. 系统进程崩溃或被阻塞；2. 内部系统其他错误。</li>
+ *         </ul>
+ * @since 15
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
+    int64_t* framePosition, int64_t* timestamp);
+
+/**
  * @brief 音频播放流中断事件回调函数的原型定义。
  *
  * @param renderer 指向触发回调的音频播放流实例。
@@ -559,26 +559,33 @@ typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, voi
     OH_AudioStream_Result error);
 
 /**
- * @brief 音频播放流写入音频数据回调函数的原型定义。
- * <br>不同于OH_AudioRenderer_OnWriteDataCallback，此函数允许应用填充[0, audioDataSize]长度的数据。
- * <br>其中audioDataSize为回调buffer的长度。调用方通过返回值告知系统写入的数据长度。
- * <br>如果返回0，回调线程将会sleep一段时间。
- * <br>否则，系统可能会立刻进行下一次回调。
+ * @brief 获取音频播放过程中的运行状态，是否在低时延运行状态下工作。
+ *
+ * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
+ * @param status [out] 用于接收获取的低时延运行状态。
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数renderer为空指针。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} 执行状态异常，仅在释放状态之前可用。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetFastStatus(OH_AudioRenderer* renderer,
+    OH_AudioStream_FastStatus* status);
+
+/**
+ * @brief 音频播放流低时延状态变化事件回调函数的原型定义。
  *
  * @param renderer 指向触发回调的音频播放流实例。
  * @param userData 指向开发者在注册回调函数时传入的userData数据。
- * @param audioData 指向让应用写入的音频数据。
- * @param audioDataSize 应用可写入音频数据的数据长度，单位为Byte。
- * @return 应用实际填充有效音频数据的长度。返回值必须在[0, audioDataSize]范围内。
- *     <br>如果返回值小于0，系统将调整为0。 并且，如果返回值大于audioDataSize，系统将其调整到audioDataSize。
- *     <br>注意返回值必须是单个采样点大小的整数倍。
- *     <br>比如，双声道S16格式的音频数据，必须是4(2 * 16 / 8)的整数倍。
- *     <br>否则，可能造成播放杂音。
- * @see OH_AudioRenderer_OnWriteDataCallback
+ * @param status 当前低时延运行状态。
  * @since 20
  */
-typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,
-    void* audioData, int32_t audioDataSize);
+typedef void (*OH_AudioRenderer_OnFastStatusChange)(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioStream_FastStatus status
+);
 
 /**
  * @brief 设置音频播放的响度值。
@@ -612,33 +619,26 @@ OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* rendere
 OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain);
 
 /**
- * @brief 获取音频播放过程中的运行状态，是否在低时延运行状态下工作。
- *
- * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
- * @param status [out] 用于接收获取的低时延运行状态。
- * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数renderer为空指针。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} 执行状态异常，仅在释放状态之前可用。</li>
- *         </ul>
- * @since 20
- */
-OH_AudioStream_Result OH_AudioRenderer_GetFastStatus(OH_AudioRenderer* renderer,
-    OH_AudioStream_FastStatus* status);
-
-/**
- * @brief 音频播放流低时延状态变化事件回调函数的原型定义。
+ * @brief 音频播放流写入音频数据回调函数的原型定义。
+ * <br>不同于OH_AudioRenderer_OnWriteDataCallback，此函数允许应用填充[0, audioDataSize]长度的数据。
+ * <br>其中audioDataSize为回调buffer的长度。调用方通过返回值告知系统写入的数据长度。
+ * <br>如果返回0，回调线程将会sleep一段时间。
+ * <br>否则，系统可能会立刻进行下一次回调。
  *
  * @param renderer 指向触发回调的音频播放流实例。
  * @param userData 指向开发者在注册回调函数时传入的userData数据。
- * @param status 当前低时延运行状态。
+ * @param audioData 指向让应用写入的音频数据。
+ * @param audioDataSize 应用可写入音频数据的数据长度，单位为Byte。
+ * @return 应用实际填充有效音频数据的长度。返回值必须在[0, audioDataSize]范围内。
+ *     <br>如果返回值小于0，系统将调整为0。 并且，如果返回值大于audioDataSize，系统将其调整到audioDataSize。
+ *     <br>注意返回值必须是单个采样点大小的整数倍。
+ *     <br>比如，双声道S16格式的音频数据，必须是4(2 * 16 / 8)的整数倍。
+ *     <br>否则，可能造成播放杂音。
+ * @see OH_AudioRenderer_OnWriteDataCallback
  * @since 20
  */
-typedef void (*OH_AudioRenderer_OnFastStatusChange)(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    OH_AudioStream_FastStatus status
-);
+typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,
+    void* audioData, int32_t audioDataSize);
 
 /**
  * @brief 获取当前音频路由的估算时延（单位：ms）。无线连接的音频设备，时延估算可能存在误差，结果仅供参考。

@@ -409,6 +409,23 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallbackAdvanced
 OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder,
     OH_AudioStream_VolumeMode volumeMode);
 /**
+ * @brief 设置音频播放流中断事件的回调函数。
+ * <br>当音频播放流被其他音频业务打断，回调函数会触发。
+ * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetRendererCallback}设置音频中断事件回调类似，建议开发者优先使用本接口。如果同时使用
+ * {@link OH_AudioStreamBuilder_SetRendererCallback}和本接口，只有最后一次设置的回调才生效。
+ *
+ * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
+ * @param callback [in] 当音频播放流被其他音频业务打断，此回调函数会触发。
+ * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效，比如，builder为空指针。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder,
+    OH_AudioRenderer_OnInterruptCallback callback, void* userData);
+/**
  * @brief 设置音频播放流错误事件的回调函数。
  * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetRendererCallback}设置音频错误事件回调类似，建议开发者优先使用本接口。如果同时使用
  * {@link OH_AudioStreamBuilder_SetRendererCallback}和本接口，只有最后一次设置的回调才生效。
@@ -424,6 +441,39 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder*
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnErrorCallback callback, void* userData);
+/**
+ * @brief 设置读取音频录制数据的回调函数。
+ * <br>在音频录制流运行过程中，此回调函数会被周期性的触发，让调用者读取已录到的音频数据。
+ * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetCapturerCallback}设置读取音频数据回调类似，建议开发者优先使用本接口。如果同时使用
+ * {@link OH_AudioStreamBuilder_SetCapturerCallback}和本接口，只有最后一次设置的回调才生效。
+ *
+ * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
+ * @param callback [in] 当音频系统录制到数据时，此回调函数会触发。
+ * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效，比如，builder为空指针。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder,
+    OH_AudioCapturer_OnReadDataCallback callback, void* userData);
+/**
+ * @brief 设置音频录制流设备变化的回调函数。
+ * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetCapturerCallback}设置音频流状态变化事件回调类似，建议开发者优先使用本接口。如果同时使用
+ * {@link OH_AudioStreamBuilder_SetCapturerCallback}和本接口，只有最后一次设置的回调才生效。
+ *
+ * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
+ * @param callback [in] 当音频录制流设备变化时，此回调函数会触发。
+ * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效，比如，builder为空指针。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder,
+    OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData);
 /**
  * @brief 设置音频录制流中断事件的回调函数。
  * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetCapturerCallback}设置录音流中断事件回调类似，建议开发者优先使用本接口。如果同时使用
@@ -456,56 +506,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_Audi
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnErrorCallback callback, void* userData);
-/**
- * @brief 设置读取音频录制数据的回调函数。
- * <br>在音频录制流运行过程中，此回调函数会被周期性的触发，让调用者读取已录到的音频数据。
- * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetCapturerCallback}设置读取音频数据回调类似，建议开发者优先使用本接口。如果同时使用
- * {@link OH_AudioStreamBuilder_SetCapturerCallback}和本接口，只有最后一次设置的回调才生效。
- *
- * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
- * @param callback [in] 当音频系统录制到数据时，此回调函数会触发。
- * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
- * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效，比如，builder为空指针。</li>
- *         </ul>
- * @since 20
- */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnReadDataCallback callback, void* userData);
-/**
- * @brief 设置音频播放流中断事件的回调函数。
- * <br>当音频播放流被其他音频业务打断，回调函数会触发。
- * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetRendererCallback}设置音频中断事件回调类似，建议开发者优先使用本接口。如果同时使用
- * {@link OH_AudioStreamBuilder_SetRendererCallback}和本接口，只有最后一次设置的回调才生效。
- *
- * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
- * @param callback [in] 当音频播放流被其他音频业务打断，此回调函数会触发。
- * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
- * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效，比如，builder为空指针。</li>
- *         </ul>
- * @since 20
- */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioRenderer_OnInterruptCallback callback, void* userData);
-/**
- * @brief 设置音频录制流设备变化的回调函数。
- * <br>此接口功能与通过{@link OH_AudioStreamBuilder_SetCapturerCallback}设置音频流状态变化事件回调类似，建议开发者优先使用本接口。如果同时使用
- * {@link OH_AudioStreamBuilder_SetCapturerCallback}和本接口，只有最后一次设置的回调才生效。
- *
- * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
- * @param callback [in] 当音频录制流设备变化时，此回调函数会触发。
- * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
- * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效，比如，builder为空指针。</li>
- *         </ul>
- * @since 20
- */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder,
-    OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData);
 
 /**
  * @brief 设置音频录制流是否启用静音替代打断模式。
@@ -558,6 +558,20 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(
     OH_AudioCapturer_OnFastStatusChange callback, void* userData);
 
 /**
+ * @brief 设置音频录制流是否采集带音频混响效果的音频数据。<br>当开发者使用{@link AudioLoopback}接口实现音频硬件返听功能，并通过{@link setReverbPreset}设置混响效果后，同时使用低时延模式的录制流实现录音功能，通过此接口设置，可以获取到具备混响效果的录音数据。
+ *
+ * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
+ * @param enabled [in] 设置录制流是否采集有混响效果的音频数据。true表示有混响效果，false表示没有。默认为没有混响效果。
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效。如builder为空指针。</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
+    OH_AudioStreamBuilder* builder, bool enabled);
+
+/**
  * 设置内录（录制系统内部音频）的模式，该模式将决定要录制的音频播放流范围。<br>此功能仅适用于{@link AUDIOSTREAM_TYPE_CAPTURER}类型。<br>设置内录模式后，录音流的使用场景会被强制设为内录，使用
  * {@link OH_AudioStreamBuilder_SetCapturerInfo}设置的OH_AudioStream_SourceType会被忽略。<br>设置的内录模式，可以是单个
  * {@link OH_AudioStream_PlaybackCaptureMode}，或多个枚举或运算的结果。<br>该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
@@ -571,20 +585,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(
     OH_AudioStreamBuilder* builder, uint32_t mode);
-
-/**
- * @brief 设置音频录制流是否采集带音频混响效果的音频数据。<br>当开发者使用{@link AudioLoopback}接口实现音频硬件返听功能，并通过{@link setReverbPreset}设置混响效果后，同时使用低时延模式的录制流实现录音功能，通过此接口设置，可以获取到具备混响效果的录音数据。
- *
- * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
- * @param enabled [in] 设置录制流是否采集有混响效果的音频数据。true表示有混响效果，false表示没有。默认为没有混响效果。
- * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数无效。如builder为空指针。</li>
- *         </ul>
- * @since 26.0.0
- */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
-    OH_AudioStreamBuilder* builder, bool enabled);
 
 /**
  * @brief 设置蜂窝通话下行录音风险提示语播放结束事件的回调函数。

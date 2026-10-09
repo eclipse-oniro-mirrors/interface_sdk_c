@@ -84,6 +84,21 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(
     OH_AudioStream_Usage usage, OH_AudioStream_DirectPlaybackMode *directPlaybackMode);
 
 /**
+ * @brief 查询当前设备在特定的音频录制流使用场景下是否支持回声消除。
+ *
+ * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。
+ * @param sourceType [in] 音频录制流使用场景。
+ * @param supported [out] 用于获取是否支持回声消除的结果。true表示支持，false表示不支持。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1.参数streamManager为空指针；<br>2.参数sourceType无效；<br>3.参数supported为空指针。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(
+    OH_AudioStreamManager *streamManager, OH_AudioStream_SourceType sourceType, bool *supported);
+
+/**
  * @brief 查询当前设备在特定音频播放流信息和使用场景下是否支持低时延播放。
  *
  * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。
@@ -106,21 +121,6 @@ bool OH_AudioStreamManager_IsFastPlaybackSupported(
  */
 bool OH_AudioStreamManager_IsFastRecordingSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source);
-
-/**
- * @brief 查询当前设备在特定的音频录制流使用场景下是否支持回声消除。
- *
- * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。
- * @param sourceType [in] 音频录制流使用场景。
- * @param supported [out] 用于获取是否支持回声消除的结果。true表示支持，false表示不支持。
- * @return <ul>
- *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1.参数streamManager为空指针；<br>2.参数sourceType无效；<br>3.参数supported为空指针。</li>
- *         </ul>
- * @since 20
- */
-OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(
-    OH_AudioStreamManager *streamManager, OH_AudioStream_SourceType sourceType, bool *supported);
 
 /**
  * @brief 查询在当前音频设备连接状态下，特定使用场景录音流的智能降噪开关是否已开启。
@@ -146,18 +146,6 @@ bool OH_AudioStreamManager_IsMultichannelPlaybackSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
 
 /**
- * @brief 查询当前设备在特定音频播放流信息和使用场景下是否支持低功耗播放。
- *
- * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。
- * @param streamInfo [in] 音频播放流基础格式信息指针。
- * @param usage [in] 音频播放流使用场景。
- * @return 返回true时表示支持低功耗播放，返回false时表示不支持。当输入参数为空指针或无效值时，也会返回false。
- * @since 26.0.0
- */
-bool OH_AudioStreamManager_IsOffloadPlaybackSupported(
-    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
-
-/**
  * @brief 查询当前设备在特定音频播放流信息和使用场景下是否支持直通播放。
  *
  * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。
@@ -167,6 +155,18 @@ bool OH_AudioStreamManager_IsOffloadPlaybackSupported(
  * @since 26.0.0
  */
 bool OH_AudioStreamManager_IsDirectPlaybackSupported(
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
+
+/**
+ * @brief 查询当前设备在特定音频播放流信息和使用场景下是否支持低功耗播放。
+ *
+ * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。
+ * @param streamInfo [in] 音频播放流基础格式信息指针。
+ * @param usage [in] 音频播放流使用场景。
+ * @return 返回true时表示支持低功耗播放，返回false时表示不支持。当输入参数为空指针或无效值时，也会返回false。
+ * @since 26.0.0
+ */
+bool OH_AudioStreamManager_IsOffloadPlaybackSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
 
 #ifdef __cplusplus
