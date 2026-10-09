@@ -1683,117 +1683,118 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
 ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
 
 /**
- * @brief 枚举属性动画和关键帧动画的可动画属性类型。
+ * @brief 枚举属性动画、关键帧动画和路径动画的可动画属性类型。
  *
  * @since 26.0.1
  */
 typedef enum {
     /**
      * @brief 在x和y方向上的平移。
-     * value参数需要两个f32类型的{@link ArkUI_NumberValue}元素：[x, y]，单位为px。
+     * 设置或获取该属性值时，需要两个f32类型的{@link ArkUI_NumberValue}元素，依次为x、y方向的平移量，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION = 0,
     /**
      * @brief 在x方向上的平移。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[x]，单位为px。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_X = 1,
     /**
      * @brief 在y方向上的平移。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[y]，单位为px。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Y = 2,
     /**
      * @brief 在z方向上的平移。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[z]，单位为px。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Z = 3,
     /**
      * @brief 在x和y方向上的缩放。
-     * value参数需要两个f32类型的{@link ArkUI_NumberValue}元素：[x, y]。
+     * 设置或获取该属性值时，需要两个f32类型的{@link ArkUI_NumberValue}元素，依次为x、y方向的缩放比例。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_SCALE = 4,
     /**
      * @brief 在x方向上的缩放。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[x]。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_SCALE_X = 5,
     /**
      * @brief 在y方向上的缩放。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[y]。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_SCALE_Y = 6,
     /**
      * @brief 所有轴的旋转角度。
-     * value参数需要三个f32类型的{@link ArkUI_NumberValue}元素：[angleX, angleY, angleZ]，单位为度。
+     * 设置或获取该属性值时，需要三个f32类型的{@link ArkUI_NumberValue}元素，依次为x、y、z轴的旋转角度，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION = 7,
     /**
      * @brief 围绕x轴的旋转角度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION_X = 8,
     /**
      * @brief 围绕y轴的旋转角度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Y = 9,
     /**
      * @brief 围绕z轴的旋转角度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Z = 10,
     /**
      * @brief 组件的不透明度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[opacity]。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素。
      * 取值范围：[0, 1]。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_OPACITY = 11,
     /**
      * @brief 边界（位置和大小）。
-     * value参数需要四个i32类型的{@link ArkUI_NumberValue}元素：[x, y, width, height]，单位为px。其中width和height需大于等于0。
+     * 设置或获取该属性值时，需要四个i32类型的{@link ArkUI_NumberValue}元素，依次为x坐标、y坐标、宽度、高度，单位为px。
+     * 其中宽度和高度的取值范围为大于等于0。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS = 12,
     /**
      * @brief 边界左上角的x坐标位置。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[x]，单位为px。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_X = 13,
     /**
      * @brief 边界左上角的y坐标位置。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[y]，单位为px。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_Y = 14,
     /**
      * @brief 边界的宽度。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[width]，单位为px。该值需大于等于0。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。取值范围为大于等于0。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_WIDTH = 15,
     /**
      * @brief 边界的高度。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[height]，单位为px。该值需大于等于0。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。取值范围为大于等于0。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_HEIGHT = 16,
     /**
      * @brief 组件的背景颜色。
-     * value参数需要一个u32类型的{@link ArkUI_NumberValue}元素：[color]。
+     * 设置或获取该属性值时，需要一个u32类型的{@link ArkUI_NumberValue}元素。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BACKGROUND_COLOR = 17,
