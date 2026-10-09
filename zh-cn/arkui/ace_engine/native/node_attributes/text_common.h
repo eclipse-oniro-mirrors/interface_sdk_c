@@ -561,7 +561,8 @@ typedef void (*ArkUI_TextPrepareMenuCallback)(
 );
 
 /**
- * The text menu item click callback function.
+ * @brief 文本菜单项点击事件回调函数，在菜单项被点击时触发此回调函数，开发者可在此函数中对系统默认处理行为进行拦截。
+ * 适用于需要在菜单项点击时执行自定义逻辑的场景，如：粘贴前校验剪贴板内容、复制时附加自定义信息、分享前记录操作日志等。
  *
  * @param item 指向ArkUI_TextMenuItem对象的指针，表示被点击的文本菜单项。
  * @param start 选中文本起始索引。
