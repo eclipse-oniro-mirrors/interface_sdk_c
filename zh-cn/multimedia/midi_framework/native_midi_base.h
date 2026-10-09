@@ -23,7 +23,8 @@
 /**
  * @file native_midi_base.h
  *
- * @brief 声明MIDI模块的基础数据结构。定义MIDI接口的基础类型、枚举、结构体和回调函数。
+ * @brief 声明MIDI模块的基础数据结构，定义MIDI接口的基础类型、枚举、结构体和回调函数。MIDI模块提供标准化的MIDI数据通信能力，支持USB和BLE设备的连接与枚举，基于UMP格式兼容MIDI 1.0和MIDI 2.
+ * 0协议，适用于音乐演奏数据传输、MIDI设备控制等需要与外部MIDI硬件交互的场景。
  *
  * @library libohmidi.so
  * @syscap SystemCapability.Multimedia.Audio.MIDI
@@ -48,97 +49,122 @@ extern "C" {
  */
 typedef enum {
     /**
-     * 操作成功。
+     * @error Operation successful.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_OK = 0,
 
     /**
-     * 无效参数（例如：空指针）。
+     * @error Invalid parameter (e.g., null pointer).
+     *
      * @since 24
      */
     OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT = 35500001,
 
     /**
-     * IPC通信失败。
+     * @error IPC communication failure.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_GENERIC_IPC_FAILURE = 35500002,
 
     /**
-     * 无效的客户端句柄。
+     * @error Invalid client handle.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_INVALID_CLIENT = 35500003,
 
     /**
-     * 无效的设备句柄。
+     * @error Invalid device handle.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_INVALID_DEVICE_HANDLE = 35500004,
 
     /**
-     * 无效的端口索引。
+     * @error Invalid port index.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_INVALID_PORT = 35500005,
 
     /**
-     * 发送缓冲区暂时已满。表示共享内存缓冲区当前空间不足。<br> 当消息无法放入缓冲区时由非阻塞发送返回。建议等待约10ms后重试。
+     * @error The send buffer is transiently full.
+     * Indicates that the shared memory buffer currently lacks space.
+     * Returned by non-blocking send when a message cannot fit in the buffer.
+     * Retry the operation with a short delay (recommended: 10ms).
+     *
      * @since 24
      */
     OH_MIDI_STATUS_WOULD_BLOCK = 35500006,
 
     /**
-     * 操作超时。
+     * @error Operation can not be handled in a reasonable time.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_TIMEOUT = 35500007,
 
     /**
-     * 客户端已达到允许打开的最大设备数量（16个）。<br> 要打开新设备，必须先关闭现有设备。
+     * @error The client has reached the maximum number of open devices allowed.
+     * To open a new device, the client must close an existing one first.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES = 35500008,
 
     /**
-     * 客户端已达到允许打开的最大端口数量（64个）。<br> 要打开新端口，必须先关闭现有端口。
+     * @error The client has reached the maximum number of open ports allowed.
+     * To open a new port, the client must close an existing one first.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_TOO_MANY_OPEN_PORTS = 35500009,
 
     /**
-     * 客户端已经打开此设备。同一设备在同一客户端中不允许重复打开。
+     * @error The client has already opened this device.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_DEVICE_ALREADY_OPEN = 35500010,
 
     /**
-     * 客户端已经打开此端口。同一端口在同一客户端中不允许重复打开。
+     * @error The client has already opened this port.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_PORT_ALREADY_OPEN = 35500011,
 
     /**
-     * 系统级（8个）或应用级（2个/UID）客户端数量已达上限。应用应等待或释放其他资源后重试。
+     * @error The system-wide or per-application limit for MIDI clients has been reached.
+     * The application should wait or release other resources before retrying.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_TOO_MANY_CLIENTS = 35500012,
 
     /**
-     * 权限被拒绝。当应用尝试在未获得所需权限（例如BLE设备的蓝牙权限）的情况下执行操作时返回。
+     * @error Permission denied.
+     * Returned when the application attempts to perform an operation
+     * without the required permission (e.g., Bluetooth for BLE devices).
+     *
      * @since 24
      */
     OH_MIDI_STATUS_PERMISSION_DENIED = 35500013,
 
     /**
-     * MIDI系统服务已崩溃或断开连接。必须销毁并重新创建客户端。
+     * @error The MIDI system service has died or disconnected.
+     * The client must be destroyed and recreated.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_SERVICE_DIED = 35500014,
 
     /**
-     * 系统内部错误。表示发生了未预期的系统级错误。
+     * @error System-level errors such as insufficient memory or system service failure.
+     *
      * @since 24
      */
     OH_MIDI_STATUS_SYSTEM_ERROR = 35500100
@@ -253,7 +279,8 @@ typedef enum {
 } OH_MIDIDeviceChangeAction;
 
 /**
- * @brief MIDI事件结构体（通用）。事件数据以Universal MIDI Packets（UMP）格式传输。原始字节流（MIDI 1.0）数据需要先转换为UMP格式后再填充此结构体。
+ * @brief MIDI事件结构体（通用），用于以UMP（Universal MIDI Packet）格式承载和传输MIDI事件数据，适用于MIDI消息的接收、发送与处理场景（如音乐制作应用接收和处理MIDI控制器输入事件、
+ * 数字音频工作站处理MIDI消息、音乐教育类应用中MIDI设备交互等）。原始字节流（MIDI 1.0）数据需要先转换为UMP格式后再填充此结构体。
  *
  * @since 24
  */
@@ -285,7 +312,8 @@ typedef struct {
 } OH_MIDIEvent;
 
 /**
- * @brief 设备信息结构体。存储设备ID等相关信息。
+ * @brief 设备信息结构体，用于存储MIDI设备的详细信息，包括设备唯一标识符、设备类型（如USB、BLE）、支持的MIDI协议、设备名称、厂商ID、产品ID及物理地址等。适用于在MIDI设备枚举、识别和连接管理等场景中，
+ * 获取并传递设备的完整属性信息。
  *
  * @since 24
  */
@@ -345,7 +373,7 @@ typedef struct {
 } OH_MIDIDeviceInformation;
 
 /**
- * @brief 端口信息结构体。用于枚举端口，包含可显示的端口名称。
+ * @brief 端口信息结构体。用于枚举和标识MIDI设备端口，包含可显示的端口名称、端口索引、所属设备ID及端口方向（输入或输出）等关键信息，便于开发者在MIDI应用中管理和操作各端口。
  *
  * @since 24
  */
@@ -380,7 +408,7 @@ typedef struct {
 } OH_MIDIPortInformation;
 
 /**
- * @brief 端口描述符结构体，用于打开端口时指定端口索引和协议行为。
+ * @brief 端口描述符结构体，用于打开端口时指定端口索引和MIDI协议版本（MIDI 1.0或MIDI 2.0），由系统自动完成应用与硬件之间的协议适配与数据转换，适用于需要在不同MIDI协议版本间进行兼容通信的场景。
  *
  * @since 24
  */
@@ -417,14 +445,14 @@ typedef struct {
 } OH_MIDIPortDescriptor;
 
 /**
- * @brief 声明MIDI客户端。
+ * @brief 声明MIDI客户端。OH_MIDIClient用于建立与MIDI服务的连接，是开发者进行MIDI数据收发和设备管理等操作的基础句柄，适用于音乐播放器、MIDI控制器接入、数字音乐创作等需要与MIDI设备通信的场景。
  *
  * @since 24
  */
 typedef struct OH_MIDIClientStruct OH_MIDIClient;
 
 /**
- * @brief 声明MIDI设备。
+ * @brief OH_MIDIDevice用于声明和表示MIDI设备，提供对MIDI设备的标识与引用能力，适用于需要在应用中对MIDI设备进行操作的场景。
  *
  * @since 24
  */
@@ -436,6 +464,7 @@ typedef struct OH_MIDIDeviceStruct OH_MIDIDevice;
  * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
  * @param action 设备变化操作（已连接/已断开）。
  * @param deviceInfo 变化设备的信息。
+ *     <br>此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。
  * @since 24
  */
 typedef void (*OH_MIDICallback_OnDeviceChange)(
@@ -481,7 +510,8 @@ typedef void (*OH_MIDICallback_OnError)(void *userData, OH_MIDIStatusCode code);
  *     {@link #OH_MIDIClient_CloseDevice} when it is no longer needed.
  *     If opened is false, this parameter is NULL.
  * @param info 已打开设备的信息。
- *     <br>**注意：** 此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。
+ *     <br>如果opened为false，此参数的内容无效。
+ *     <br>此对象仅在此回调范围内有效。如需持久化特定属性（如ID或名称），请对该设备信息进行复制。
  * @since 24
  */
 typedef void (*OH_MIDIClient_OnDeviceOpened)(void *userData,
@@ -490,7 +520,7 @@ typedef void (*OH_MIDIClient_OnDeviceOpened)(void *userData,
                                              OH_MIDIDeviceInformation info);
 
 /**
- * @brief 客户端回调结构体，包含设备变化和错误处理的回调函数指针。
+ * @brief 客户端回调结构体，用于监听MIDI设备的热插拔事件和关键服务错误，包含设备热插拔和错误处理的回调函数指针，适用于需要在应用中实时感知MIDI设备状态变化并处理异常的场景。
  *
  * @since 24
  */

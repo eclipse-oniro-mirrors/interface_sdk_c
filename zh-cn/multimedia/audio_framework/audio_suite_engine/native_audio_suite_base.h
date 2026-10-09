@@ -135,20 +135,19 @@ typedef enum {
 } OH_AudioNode_Type;
 
 /**
- * @brief 定义音频节点系统类型。
+ * @brief 定义音频系统节点类型。
+ *
  * @systemapi
  * @since 26.0.0
  */
 typedef enum OH_AudioSuite_SystemNodeType {
     /**
-     * 对话增强系统效果节点。
-     *
+     * 用于对话增强的系统效果节点。
      * @since 26.0.0
      */
     OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_DIALOGUE_ENHANCE = 301,
     /**
-     * 语音美化系统效果节点。
-     *
+     * 用于语音美化的系统效果节点。
      * @since 26.0.0
      */
     OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_VOICE_BEAUTIFIER = 302
@@ -195,88 +194,86 @@ typedef enum {
  */
 typedef enum {
     /**
-     * @error
-     * 调用成功。
+     * @error The call was successful.
+     *
      * @since 22
      */
     AUDIOSUITE_SUCCESS = 0,
     /**
-     * @error
-     * 输入参数无效。
+     * @error 输入参数无效。
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_INVALID_PARAM = 1,
     /**
-     * @error
-     * 非法状态。
+     * @error Execution status exception.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_INVALID_STATE = 2,
     /**
-     * @error
-     * 系统通用错误。
+     * @error A system error has occurred.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_SYSTEM = 3,
     /**
-     * @error
-     * 不支持的音频格式，如不支持的编码类型、采样格式等。
+     * @error Unsupported audio format, such as unsupported encoding type, sample format etc.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT = 4,
     /**
-     * @error
-     * 引擎不存在。
+     * @error audio engine does not exist.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_ENGINE_NOT_EXIST = 5,
     /**
-     * @error
-     * 管线不存在。
+     * @error audio pipeline does not exist.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST = 6,
     /**
-     * @error
-     * 节点不存在。
+     * @error audio node does not exist.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_NODE_NOT_EXIST = 7,
     /**
-     * @error
-     * 节点之间不支持连接。
+     * @error the connect or disconnect between the nodes is unsupported.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_CONNECT = 8,
     /**
-     * @error
-     * 不支持的操作。例如，效果节点不支持设置音频格式。
+     * @error Unsupported operation.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION = 9,
     /**
-     * @error
-     * 创建管线或者节点超过系统最大数量限制。具体情况如下：<br> 引擎最多支持创建10条管线（其中，实时预览管线最多创建1条）。<br> 每一个管线中，输出节点的数量不超过1个，混音节点的数量不超过3个，
-     * 音源分离节点的数量不超过1个。<br> 在API version 24之前，每一个管线中，输入节点的数量不超过5个，其余效果节点的数量不超过5个；在API version 24及以后，每一个管线中，输入节点的数量不超过15个，
-     * 其余效果节点的数量不超过15个。
+     * @error The application attempted to create an object that exceeds the system's maximum limit.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS = 10,
     /**
-     * @error
-     * 参数缺少必要参数。例如，输入节点未设置回调函数、输出节点未设置音频格式。
+     * @error Required parameters are missing.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING = 11,
     /**
-     * @error
-     * 操作超时。
+     * @error Operation timed out.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_TIMEOUT = 12,
     /**
-     * @error
-     * 内存申请失败。
+     * @error Memory allocation failed.
+     *
      * @since 22
      */
     AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED = 13
@@ -293,17 +290,17 @@ typedef enum {
      */
     AUDIO_SAMPLE_U8 = 0,
     /**
-     * Short 16位小端。
+     * Signed 16位小端。
      * @since 22
      */
     AUDIO_SAMPLE_S16LE = 1,
     /**
-     * Short 24位小端。
+     * Signed 24位小端。
      * @since 22
      */
     AUDIO_SAMPLE_S24LE = 2,
     /**
-     * Short 32位小端。
+     * Signed 32位小端。
      * @since 22
      */
     AUDIO_SAMPLE_S32LE = 3,
@@ -452,37 +449,38 @@ typedef struct OH_AudioFormat {
 } OH_AudioFormat;
 
 /**
- * @brief 定义音频格式信息结构，用于描述系统节点的基本音频格式。
+ * @brief 定义系统节点的基本音频格式。
+ *
  * @systemapi
  * @since 26.0.0
  */
 typedef struct OH_AudioSuite_SystemNodeFormat {
     /**
-     * @brief 音频采样率。
+     * @brief 音频流采样率。
      *
      * @since 26.0.0
      */
     OH_Audio_SampleRate samplingRate;
     /**
-     * @brief 声道布局。
+     * @brief 音频流声道布局。
      *
      * @since 26.0.0
      */
     OH_AudioChannelLayout channelLayout;
     /**
-     * @brief 音频通道数。
+     * @brief 音频流声道个数。
      *
      * @since 26.0.0
      */
     uint32_t channelCount;
     /**
-     * @brief 音频编码格式。
+     * @brief 音频流编码类型。取值为1或者9，1表示PCM编码格式，9表示PCM与MetaData混合音频数据。
      *
      * @since 26.0.0
      */
     int32_t encoding;
     /**
-     * @brief 音频样本格式。
+     * @brief 音频流采样格式。
      *
      * @since 26.0.0
      */
@@ -508,7 +506,7 @@ typedef struct OH_AudioDataArray {
      */
     int32_t arraySize;
     /**
-     * @brief audioDataArray数组中每个地址指向的内存大小，单位为字节（Byte）。应确保每个地址指向的内存大小均为requestFrameSize字节。
+     * @brief audioDataArray数组中每个地址指向的内存大小，单位为Byte。应确保每个地址指向的内存大小均符合requestFrameSize字段定义。
      *
      * @since 22
      */
@@ -516,8 +514,8 @@ typedef struct OH_AudioDataArray {
 } OH_AudioDataArray;
 
 /**
- * @brief 定义音频元数据帧结构。
- * 该结构用于将音频数据和元数据一起传递。
+ * @brief 定义包含音频数据和元数据的帧结构。
+ *
  * @systemapi
  * @since 26.0.0
  */
@@ -643,13 +641,21 @@ typedef enum {
  */
 typedef struct OH_EqualizerFrequencyBandGains {
     /**
-     * The equalizer supports gain adjustment for 10 specific frequencies.
-     * Frequencies: 31 Hz, 62 Hz, 125 Hz, 250 Hz, 500 Hz, 1 kHz, 2 kHz, 4 kHz, 8 kHz, 16 kHz.
+     * 均衡器支持10个特定频点的增益调整。
+     * 频率：31 Hz、62 Hz、125 Hz、250 Hz、500 Hz、1 kHz、2 kHz、4 kHz、8 kHz、16 kHz。
      *
      * @since 22
      */
     int32_t gains[EQUALIZER_BAND_NUM];
 } OH_EqualizerFrequencyBandGains;
+
+/**
+ * Default equalization effect band gains.
+ * Gains is {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
 
 /**
  * Default equalization effect band gains.
@@ -665,6 +671,21 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
+/**
+ * Ballad equalization effect band gains.
+ * Gains is {3, 5, 2, -4, 1, 2, -3, 1, 4, 5}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
+
+/**
+ * Chinese style equalization effect band gains.
+ * Gains is {0, 0, 2, 0, 0, 4, 4, 2, 2, 5}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 
 /**
  * Chinese style equalization effect band gains.
@@ -683,12 +704,36 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
 
 /**
+ * Classic equalization effect band gains.
+ * Gains is {2, 3, 2, 1, 0, 0, -5, -5, -5, -6}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
+
+/**
  * Dance music equalization effect band gains.
  * Gains is {4, 3, 2, -3, 0, 0, 5, 4, 2, 0}.
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
+
+/**
+ * Dance music equalization effect band gains.
+ * Gains is {4, 3, 2, -3, 0, 0, 5, 4, 2, 0}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
+
+/**
+ * Jazz equalization effect band gains.
+ * Gains is {2, 0, 2, 3, 6, 5, -1, 3, 4, 4}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 
 /**
  * Jazz equalization effect band gains.
@@ -707,12 +752,36 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
 
 /**
+ * Pop equalization effect band gains.
+ * Gains is {5, 2, 1, -1, -5, -5, -2, 1, 2, 4}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
+
+/**
  * R&B equalization effect band gains.
  * Gains is {1, 4, 5, 3, -2, -2, 2, 3, 5, 5}.
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_RB;
+
+/**
+ * R&B equalization effect band gains.
+ * Gains is {1, 4, 5, 3, -2, -2, 2, 3, 5, 5}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_RB;
+
+/**
+ * Rock equalization effect band gains.
+ * Gains is {6, 4, 4, 2, 0, 1, 3, 3, 5, 4}.
+ *
+ * @since 22
+ */
+extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_ROCK;
 
 /**
  * Rock equalization effect band gains.
@@ -819,7 +888,7 @@ typedef struct OH_AudioSuite_SpaceRenderRotationParams {
      */
     int32_t surroundTime;
     /**
-     * 单周环绕方向。取值范围为[0, 1]。
+     * 环绕方向。0表示逆时针旋转，1表示顺时针旋转。
      * @since 23
      */
     OH_AudioSuite_SurroundDirection surroundDirection;
@@ -832,12 +901,12 @@ typedef struct OH_AudioSuite_SpaceRenderRotationParams {
  */
 typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
     /**
-     * 扩展半径。取值范围为[1.0, 5.0]，单位为米。
+     * 扩展半径，表示声音源的空间扩散范围。取值越大，声音的空间扩散范围越宽广。取值范围为[1.0, 5.0]，单位为米（m）。
      * @since 23
      */
     float extRadius;
     /**
-     * 扩展角度。取值范围为(0, 360)，单位为度。
+     * 扩展角度，表示声音源在水平面上的扩散角度范围。取值越大，声音的扩散角度越宽。取值范围为(0, 360)，单位为度（°）。
      * @since 23
      */
     int32_t extAngle;
@@ -929,7 +998,7 @@ typedef struct OH_AudioSuite_PureVoiceChangeOption {
      */
     OH_AudioSuite_PureVoiceChangeType optionType;
     /**
-     * 指定传统变声音调。如果使用系统中的默认音调以获得最佳效果, 设置为{@link 宏定义}中的OH_PURE_VOICE_DEFAULT_PITCH。<br> 设置自定义音调的取值范围为[0.3f, 3.0f]。
+     * 指定传统变声音调。如果使用系统中的默认音调以获得最佳效果，设置为{@link 宏定义}中的OH_PURE_VOICE_DEFAULT_PITCH。<br> 设置自定义音调的取值范围为[0.3f, 3.0f]。
      * @since 23
      */
     float pitch;

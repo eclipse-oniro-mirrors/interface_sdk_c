@@ -24,7 +24,7 @@
  * @file native_midi.h
  *
  * @brief 声明MIDI相关的接口。MIDI是一种用于电子乐器、计算机和其他设备之间通信的技术标准。
- * <br>该文件中的接口用于MIDI设备管理、MIDI消息发送和接收、设备状态监控等。
+ * <br>该文件中的接口用于MIDI设备管理（包括BLE MIDI设备）、MIDI消息发送和接收、设备状态监控等。
  * <br>使用OHMIDI连接MIDI设备的典型流程如下：
  *
  * @library libohmidi.so
@@ -64,7 +64,7 @@ extern "C" {
  * @param callbacks 用于系统事件的回调结构体。
  * @param userData 传递给回调函数的用户自定义数据指针。
  * @return OH_MIDI_STATUS_OK：操作成功。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数client为nullptr。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数client为空指针。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  *     <br>OH_MIDI_STATUS_TOO_MANY_CLIENTS：因资源限制MIDI客户端创建失败。当调用应用超出其每UID配额或系统全局客户端数量已达上限时发生。
  * @since 24
@@ -94,7 +94,7 @@ OH_MIDIStatusCode OH_MIDIClient_Destroy(OH_MIDIClient *client);
  * @param count 输出参数，用于接收设备数量。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数count为nullptr。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数count为空指针。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
@@ -111,12 +111,12 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceCount(const OH_MIDIClient *client, size
  *     will be filled into 'infos', and the output 'actualDeviceCount' reflects the actual devices number.
  *
  * @param client MIDI客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
- * @param infos 用户分配的该缓冲区，用于存储设备信息。
+ * @param infos 用户分配的缓冲区，用于存储设备信息。
  * @param capacity 缓冲区可容纳的最大元素数量。
  * @param actualDeviceCount 输出参数，用于接收实际写入的设备数量。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数infos或actualDeviceCount为nullptr。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数infos或actualDeviceCount为空指针。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
@@ -136,7 +136,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(const OH_MIDIClient *client,
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
  *     <br>OH_MIDI_STATUS_DEVICE_ALREADY_OPEN：设备已被当前客户端打开。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数device为nullptr，或deviceId不存在。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数device为空指针，或deviceId不存在。
  *     <br>OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES：客户端已达到最大打开设备数量限制。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
@@ -144,7 +144,8 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(const OH_MIDIClient *client,
 OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t deviceId, OH_MIDIDevice **device);
 
 /**
- * @brief 异步打开蓝牙低功耗（BLE）MIDI设备。此函数为异步操作，调用后立即返回状态码（表示请求是否成功发送），实际连接结果（成功或失败）将在BLE连接过程完成后通过提供的回调异步传递。
+ * @brief 异步打开蓝牙低功耗（BLE）MIDI设备。此函数为异步操作，调用后立即返回状态码（表示请求是否成功发送），实际连接结果（成功或失败）将在BLE连接过程完成后通过提供的回调异步传递。使用
+ * {@link OH_MIDIClient_CloseDevice}释放设备资源。
  *
  * @note This function triggers a BLE scan so the opening process may take time.
  *     Use {@link #OH_MIDIClient_CloseDevice} to release the device resource.
@@ -152,16 +153,17 @@ OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t device
  * @permission ohos.permission.ACCESS_BLUETOOTH
  *
  * @param client 目标客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
- * @param deviceAddr BLE设备的MAC地址（例如："AA:BB:CC:DD:EE:FF"）。
+ * @param deviceAddr BLE设备的MAC地址。
+ *     <br>格式："XX:XX:XX:XX:XX:XX"，X为十六进制字符0-9、A-F，例如："AA:BB:CC:DD:EE:FF"。
  * @param callback 连接过程完成时要调用的回调函数。
  * @param userData 传递给回调的用户自定义数据指针。
  * @return OH_MIDI_STATUS_OK：连接请求已成功分发。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
  *     <br>OH_MIDI_STATUS_DEVICE_ALREADY_OPEN：设备已被当前客户端打开。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数deviceAddr或callback为nullptr。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数deviceAddr或callback为空指针。
  *     <br>OH_MIDI_STATUS_PERMISSION_DENIED：权限被拒绝。应用未声明或未获得所需权限。
  *     <br>OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES：客户端已达到最大打开设备数量限制。
- *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：服务无法访问。
+ *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @warning If Bluetooth permission is denied, the {@link #OH_MIDIClient_OnDeviceOpened} will be
  *     invoked with opened parameter set to false and device parameter set to null. The application
  *     should check the opened parameter before attempting to use the device handle.
@@ -183,6 +185,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
+ *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：IPC通信失败。
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_CloseDevice(OH_MIDIClient *client, OH_MIDIDevice *device);
@@ -191,18 +194,18 @@ OH_MIDIStatusCode OH_MIDIClient_CloseDevice(OH_MIDIClient *client, OH_MIDIDevice
  * @brief 获取指定MIDI设备的端口数量。此函数用于确定存储端口信息所需的缓冲区大小。
  *
  * @param client MIDI客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
- * @param deviceId 目标设备ID。
+ * @param deviceId 目标设备ID，由{@link OH_MIDIClient_GetDeviceInfos}获取。
  * @param count 输出参数，用于接收端口数量。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数count为nullptr，或deviceId无效。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数count为空指针，或deviceId无效。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_GetPortCount(const OH_MIDIClient *client, int64_t deviceId, size_t *count);
 
 /**
- * @brief 获取指定MIDI设备的端口信息。将端口信息写入由调用者分配的缓冲区。
+ * @brief 获取指定MIDI设备的端口信息。将端口信息写入由调用者分配的缓冲区。缓冲区大小应基于{@link OH_MIDIClient_GetPortCount}返回的数量进行分配。
  *
  * @note The actual number of connected devices may be larger than the capacity of the input parameter
  *     'infos' array. If this happens, the output 'infos' array will only contain partial devices information,
@@ -211,13 +214,13 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortCount(const OH_MIDIClient *client, int64_
  *     will be filled into 'infos', and the output 'actualPortCount' reflects the actual ports number.
  *
  * @param client MIDI客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
- * @param deviceId 目标设备ID。
+ * @param deviceId 目标设备ID，由{@link OH_MIDIClient_GetDeviceInfos}获取。
  * @param infos 用户分配的缓冲区，用于存储端口信息。
  * @param capacity infos缓冲区可容纳的最大元素数量。
  * @param actualPortCount 输出参数，用于接收实际写入的端口数量。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_CLIENT：客户端句柄无效。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数infos或actualPortCount为nullptr，或deviceId无效。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数infos或actualPortCount为空指针，或deviceId无效。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
@@ -241,7 +244,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(const OH_MIDIClient *client,
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效或不是输入端口。
  *     <br>OH_MIDI_STATUS_PORT_ALREADY_OPEN：端口已被此客户端打开。
  *     <br>OH_MIDI_STATUS_TOO_MANY_OPEN_PORTS：已达到最大打开端口数量限制。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数callback为nullptr。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数callback为空指针。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
@@ -271,7 +274,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenOutputPort(OH_MIDIDevice *device, OH_MIDIPor
  * @note Paired with {@link #OH_MIDIDevice_OpenInputPort}.
  *
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
- * @param portIndex 要关闭的输入端口索引。
+ * @param portIndex 要关闭的输入端口索引，须为已通过{@link OH_MIDIDevice_OpenInputPort}打开的输入端口索引。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。
@@ -286,7 +289,7 @@ OH_MIDIStatusCode OH_MIDIDevice_CloseInputPort(OH_MIDIDevice *device, uint32_t p
  * @note Paired with {@link #OH_MIDIDevice_OpenOutputPort}.
  *
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
- * @param portIndex 要关闭的输出端口索引。
+ * @param portIndex 要关闭的输出端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的端口索引。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或不是打开的输出端口。
@@ -296,18 +299,18 @@ OH_MIDIStatusCode OH_MIDIDevice_CloseInputPort(OH_MIDIDevice *device, uint32_t p
 OH_MIDIStatusCode OH_MIDIDevice_CloseOutputPort(OH_MIDIDevice *device, uint32_t portIndex);
 
 /**
- * @brief 批量发送MIDI消息（非阻塞模式，每条消息具有原子性）。
+ * @brief 批量发送MIDI消息（非阻塞模式，每条消息具有原子性）。此函数需要通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口发送数据，portIndex应为一个已打开的输出端口索引。
  *
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
- * @param portIndex 目标端口索引。
+ * @param portIndex 目标端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口索引。
  * @param events 指向要发送的事件数组的指针，内存空间需要由开发者分配。
  * @param eventCount 数组中的事件数量。
- * @param eventsWritten 输出参数，返回成功发送的事件数量。
+ * @param eventsWritten 输出参数，用于接收成功发送的事件数量。当返回OH_MIDI_STATUS_WOULD_BLOCK时，可用于从断点处继续发送剩余事件。
  * @return OH_MIDI_STATUS_OK：所有数据均已成功处理并写入。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。
  *     <br>OH_MIDI_STATUS_WOULD_BLOCK：缓冲区已满（检查eventsWritten）。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数无效。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数events或eventsWritten为nullptr。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
@@ -316,32 +319,34 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex,
 
 /**
  * @brief 发送超过标准MIDI消息长度的SysEx（System Exclusive，系统独占消息），自动处理分包和阻塞等待。这是一个实用函数，适用于将SysEx作为原始字节流（MIDI 1.0风格，F0...F7）处理的应用。
+ * 此函数需要通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口发送数据。
  * <br>同时适用于{@link OH_MIDI_PROTOCOL_1_0}和{@link OH_MIDI_PROTOCOL_2_0}会话。
  * <br>操作系统MIDI服务会自动将数据转换为设备端口所需的格式。
  *
  * @warning **BLOCKING CALL**: This function executes a loop and may block if the buffer fills up.
  *
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
- * @param portIndex 目标端口索引。
+ * @param portIndex 目标端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口索引。
  * @param data 指向要发送的字节数据流的指针，内存空间需要由开发者分配。
  * @param byteSize 数据的字节大小。
  * @return OH_MIDI_STATUS_OK：所有数据均已成功处理并写入。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。
- *     <br>OH_MIDI_STATUS_TIMEOUT：无法在合理时间内完成，可使用{@link OH_MIDIDevice_FlushOutputPort}重置。
- *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数无效。
+ *     <br>OH_MIDI_STATUS_TIMEOUT：操作超时，无法在系统规定的超时时间内完成写入，可使用{@link OH_MIDIDevice_FlushOutputPort}重置输出端口后重试。
+ *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数data为nullptr，或byteSize为0。
+ *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIDevice_SendSysEx(OH_MIDIDevice *device, uint32_t portIndex,
     const uint8_t *data, uint32_t byteSize);
 
 /**
- * @brief 清空输出缓冲区中的待发送消息。立即丢弃指定端口输出缓冲区中等待的所有MIDI事件，包括用于未来时间戳的事件。
+ * @brief 清空输出缓冲区中的待发送消息。立即丢弃指定端口输出缓冲区中等待的所有MIDI事件，包括已入队、计划在未来时间戳发送的事件。适用于停止播放、切换音色或设备异常时需要取消尚未发送的MIDI事件的场景。
  *
  * @note This function does not send "All Notes Off" event. It simply clears the queue.
  *
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
- * @param portIndex 目标端口索引。
+ * @param portIndex 目标端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口索引。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效或不是输出端口。

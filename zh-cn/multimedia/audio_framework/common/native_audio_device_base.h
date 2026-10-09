@@ -26,7 +26,8 @@
 /**
  * @file native_audio_device_base.h
  *
- * @brief 定义音频设备参数的类型以及获取每个设备参数的接口。
+ * @brief 本文件提供音频设备管理模块所依赖的基础枚举和结构体定义，包括音频设备类型、音频设备描述结构体以及从设备描述结构体查询具体设备参数的接口。
+ * <br>该模块为音频设备管理提供基础数据结构和查询能力，支持获取音频设备的角色、类型、ID、名称、地址、采样率、声道数、编码类型等信息，适用于需要查询和管理音频设备属性的场景。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -107,13 +108,13 @@ typedef enum {
     AUDIO_DEVICE_TYPE_SPEAKER = 2,
 
     /**
-     * @brief 带话筒的耳机。
+     * @brief 带话筒的有线耳机。
      *
      */
     AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,
 
     /**
-     * @brief 无话筒的耳机。
+     * @brief 无话筒的有线耳机。
      *
      */
     AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,
@@ -284,33 +285,33 @@ typedef enum {
 } OH_AudioDevice_Usage;
 
 /**
- * @brief 声明音频设备描述符。该实例用于获取更多音频设备详细信息属性。
+ * @brief 声明音频设备描述结构体，该结构体用于查询音频设备详细信息。
  *
  * @since 12
  */
 typedef struct OH_AudioDeviceDescriptor OH_AudioDeviceDescriptor;
 
 /**
- * @brief 声明音频设备描述符数组。
+ * @brief 声明音频设备描述符数组的结构体，该结构体表示一组音频设备描述符，通过每个描述符可查询设备详细信息。
  *
  * @since 12
  */
 typedef struct OH_AudioDeviceDescriptorArray {
     /**
-     * @brief 音频设备描述符数组大小。
+     * @brief 音频设备描述符数组元素个数。
      *
      */
     uint32_t size;
 
     /**
-     * @brief 音频设备描述符数组。
+     * @brief 指向音频设备描述符数组的指针。
      *
      */
     OH_AudioDeviceDescriptor **descriptors;
 } OH_AudioDeviceDescriptorArray;
 
 /**
- * @brief 声明音频设备的堵塞状态。默认情况下，音频设备被视为未堵塞。
+ * @brief 定义音频设备的堵塞状态，主要用于表示内置麦克风的堵塞。默认情况下，音频设备是未堵塞状态。
  *
  * @since 13
  */
@@ -333,10 +334,12 @@ typedef enum {
 /**
  * @brief 查询目标音频设备描述符的设备角色。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param deviceRole 设备角色指针。将设置设备角色值的变量，指向{@link OH_AudioDevice_Role}。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param deviceRole [out] 获取设备角色的指针。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 deviceRole 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -345,22 +348,26 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescr
 /**
  * @brief 查询目标音频设备描述符的设备类型。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param deviceType 设备类型指针。将设置设备类型值的变量，指向{@link OH_AudioDevice_Type}。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param deviceType [out] 获取设备类型的指针。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 deviceType 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
     OH_AudioDevice_Type *deviceType);
 
 /**
- * @brief 查询目标音频设备描述符的设备id。
+ * @brief 查询目标音频设备描述符的设备ID。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param id 设备id指针，将设置设备角色值的变量。
- * @return AUDIOCOMMON_RESULT_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param id [out] 获取设备ID的指针。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 id 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -369,11 +376,13 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescrip
 /**
  * @brief 查询目标音频设备描述符的设备名称。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param name 设备名称指针，将设置设备名称值的变量。
- *     <br>不要单独释放音频设备名称指针，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，以便在不再使用时释放所有DeviceDescriptor数组。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param name [out] 获取设备名称字符串的指针。
+ *     <br>不要单独释放此指针指向的内存，而是调用 {@link OH_AudioRoutingManager_ReleaseDevices} 在不使用时释放所有内存。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 name 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -382,39 +391,45 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescr
 /**
  * @brief 查询目标音频设备描述符的设备地址。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param address 设备MAC地址指针，将设置设备MAC地址值的变量。
- *     <br>不要单独释放音频设备MAC地址指针，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，以便在不再使用时释放所有DeviceDescriptor数组。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param address [out] 获取设备地址字符串的指针。
+ *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 address 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
     char **address);
 
 /**
- * @brief 查询目标音频设备描述符的采样率数组。
+ * @brief 查询目标音频设备描述符的支持采样率数组。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param sampleRates 设置采样率数组值的数组指针变量。
- *     <br>不要单独释放音频设备采样率指针，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，以便在不再使用时释放所有DeviceDescriptor数组。
- * @param size 设置采样率大小值的指针变量。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param sampleRates [out] 获取采样率数组的指针，单位为Hz。
+ *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
+ * @param size [out] 获取采样率数组长度的指针。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、sampleRates 或 size 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
     uint32_t **sampleRates, uint32_t *size);
 
 /**
- * @brief 查询目标音频设备描述符的设备通道计数数组。
+ * @brief 查询目标音频设备描述符的支持声道数数组。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param channelCounts 数组指针变量，该变量将设置通道计数数组值。
- *     <br>不要单独释放音频设备通道数指针，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，以便在不再使用时释放所有DeviceDescriptor数组。
- * @param size 设置通道计数大小值的指针变量。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param channelCounts [out] 获取声道数数组的指针。
+ *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices} 在不使用时释放所有内存。
+ * @param size [out] 获取声道数数组长度的指针。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、channelCounts 或 size 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -422,30 +437,36 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDe
 
 /**
  * @brief 查询目标音频设备描述符的显示名称。
+ * <br>此名称为目标音频设备所属产品设备的名称，如扬声器所属手机的设备名称。主要用于分布式音频场景下设备选择列表的显示。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param displayName 设置显示名称值的指针变量。
- *     <br>不要单独释放音频设备显示名称指针，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，以便在不再使用时释放所有DeviceDescriptor数组。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param displayName [out] 获取显示名称值字符串的指针。
+ *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 displayName 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
     char **displayName);
 
 /**
- * @brief 查询目标音频设备描述符的编码类型数组。
+ * @brief 查询目标音频设备描述符的支持编码类型数组。
  *
- * @param audioDeviceDescriptor 音频设备描述符。通过 {@link OH_AudioRoutingManager_GetDevices} 或者
- *     {@link OH_AudioRoutingManager_OnDeviceChangedCallback}获取。
- * @param encodingTypes 音频设备编码类型，指向{@link OH_AudioStream_EncodingType}。
- *     <br>不要单独释放音频设备编码类型指针，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，以便在不再使用时释放所有DeviceDescriptor数组。
- * @param size 设置编码类型大小值的指针变量。
- * @return AUDIOCOMMON_RESULT_SUCCESS或AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+ * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
+ * @param encodingTypes [out] 获取音频编码类型数组的指针。
+ *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
+ * @param size [out] 获取编码类型大小值的指针变量。
+ * @return <ul>
+ *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、encodingTypes 或 size 为空指针。</li>
+ *     <br></ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
     OH_AudioStream_EncodingType **encodingTypes, uint32_t *size);
+
 #ifdef __cplusplus
 }
 #endif

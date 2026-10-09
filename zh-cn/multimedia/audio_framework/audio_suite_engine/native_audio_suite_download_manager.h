@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup AudioSuite
+ * @addtogroup OHAudioSuite
  * @{
  *
  * @brief Provide the definition of the C interface for the audio download manager module.
@@ -31,6 +31,7 @@
 #ifndef NATIVE_AUDIO_SUITE_DOWNLOAD_MANAGER_H
 #define NATIVE_AUDIO_SUITE_DOWNLOAD_MANAGER_H
 #include <stdint.h>
+#include <stdbool.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -170,10 +171,28 @@ int32_t OH_AudioSuite_UnregisterDownloadCallback(
  * <li>202如果非系统应用程序调用此系统API。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET} 所需网络条件未满足。当前网络状态不可用。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_STORAGE_NOT_ENOUGH}如果存储空间不足。</li>
  * </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuite_StartDownload(
+    OH_AudioSuite_DownloadManager *downloadManager, const char *featureName);
+
+/**
+ * @brief 暂停下载特性二进制文件。
+ * @systemapi
+ * @param downloadManager 下载管理器句柄。
+ * @param featureName 要暂停的功能的名称。
+ * @return <ul>
+ * <li>{@link AUDIOCOMMON_RESULT_SUCCESS}如果执行成功</li>
+ * <li>202如果非系统应用程序调用此系统API。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM如果downloadManager或featureName为nullptr。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
+ * </ul>
+ * @since 26.0.0
+ */
+int32_t OH_AudioSuite_PauseDownload(
     OH_AudioSuite_DownloadManager *downloadManager, const char *featureName);
 
 /**
