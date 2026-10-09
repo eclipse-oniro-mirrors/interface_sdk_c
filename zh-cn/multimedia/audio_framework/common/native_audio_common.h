@@ -52,56 +52,72 @@ extern "C" {
  */
 typedef enum {
     /**
-     * @error The call was successful.
+     * @brief 操作成功。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_SUCCESS = 0,
 
     /**
-     * @error This means that caller does not have the required permission.
+     * @brief 权限缺失。
      *
      * @since 26.0.0
      */
     AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED = 201,
 
     /**
-     * @error This means that the input parameter is invalid.
+     * @brief 入参错误。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101,
 
     /**
-     * @error This means there is no memory left.
+     * @brief 内存不足。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_NO_MEMORY = 6800102,
 
     /**
-     * @error 非法状态。
+     * @brief 非法状态。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE = 6800103,
 
     /**
-     * @error This means the operation is unsupported.
+     * @brief 操作不支持。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED = 6800104,
 
     /**
-     * @error This means the operation timed out.
+     * @brief 操作超时。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,
 
     /**
-     * @error This means the input audio data does not match the required frame length.
+     * @brief 输入音频数据与所需帧长度不匹配。
      *
      * @since 26.0.0
      */
     AUDIOCOMMON_RESULT_ERROR_FRAME_LENGTH_MISMATCH = 6800106,
 
     /**
-     * @error This means the stream limit is reached.
+     * @brief 达到系统可支持的最大数量。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_STREAM_LIMIT = 6800201,
 
     /**
-     * @error A system error has occurred.
+     * @brief 系统通用错误。
+     *
+     * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301,
 } OH_AudioCommon_Result;

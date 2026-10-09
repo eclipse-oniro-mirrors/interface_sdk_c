@@ -49,122 +49,97 @@ extern "C" {
  */
 typedef enum {
     /**
-     * @error Operation successful.
-     *
+     * @error 操作成功。
      * @since 24
      */
     OH_MIDI_STATUS_OK = 0,
 
     /**
-     * @error Invalid parameter (e.g., null pointer).
-     *
+     * @error 无效参数（例如：空指针）。
      * @since 24
      */
     OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT = 35500001,
 
     /**
-     * @error IPC communication failure.
-     *
+     * @error IPC通信失败。
      * @since 24
      */
     OH_MIDI_STATUS_GENERIC_IPC_FAILURE = 35500002,
 
     /**
-     * @error Invalid client handle.
-     *
+     * @error 无效的客户端句柄。
      * @since 24
      */
     OH_MIDI_STATUS_INVALID_CLIENT = 35500003,
 
     /**
-     * @error Invalid device handle.
-     *
+     * @error 无效的设备句柄。
      * @since 24
      */
     OH_MIDI_STATUS_INVALID_DEVICE_HANDLE = 35500004,
 
     /**
-     * @error Invalid port index.
-     *
+     * @error 无效的端口索引。
      * @since 24
      */
     OH_MIDI_STATUS_INVALID_PORT = 35500005,
 
     /**
-     * @error The send buffer is transiently full.
-     * Indicates that the shared memory buffer currently lacks space.
-     * Returned by non-blocking send when a message cannot fit in the buffer.
-     * Retry the operation with a short delay (recommended: 10ms).
-     *
+     * @error 发送缓冲区暂时已满。表示共享内存缓冲区当前空间不足。<br> 当消息无法放入缓冲区时由非阻塞发送返回。建议等待约10ms后重试。
      * @since 24
      */
     OH_MIDI_STATUS_WOULD_BLOCK = 35500006,
 
     /**
-     * @error Operation can not be handled in a reasonable time.
-     *
+     * @error 操作超时。
      * @since 24
      */
     OH_MIDI_STATUS_TIMEOUT = 35500007,
 
     /**
-     * @error The client has reached the maximum number of open devices allowed.
-     * To open a new device, the client must close an existing one first.
-     *
+     * @error 客户端已达到允许打开的最大设备数量（16个）。<br> 要打开新设备，必须先关闭现有设备。
      * @since 24
      */
     OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES = 35500008,
 
     /**
-     * @error The client has reached the maximum number of open ports allowed.
-     * To open a new port, the client must close an existing one first.
-     *
+     * @error 客户端已达到允许打开的最大端口数量（64个）。<br> 要打开新端口，必须先关闭现有端口。
      * @since 24
      */
     OH_MIDI_STATUS_TOO_MANY_OPEN_PORTS = 35500009,
 
     /**
-     * @error The client has already opened this device.
-     *
+     * @error 客户端已经打开此设备。同一设备在同一客户端中不允许重复打开。
      * @since 24
      */
     OH_MIDI_STATUS_DEVICE_ALREADY_OPEN = 35500010,
 
     /**
-     * @error The client has already opened this port.
-     *
+     * @error 客户端已经打开此端口。同一端口在同一客户端中不允许重复打开。
      * @since 24
      */
     OH_MIDI_STATUS_PORT_ALREADY_OPEN = 35500011,
 
     /**
-     * @error The system-wide or per-application limit for MIDI clients has been reached.
-     * The application should wait or release other resources before retrying.
-     *
+     * @error 系统级（8个）或应用级（2个/UID）客户端数量已达上限。应用应等待或释放其他资源后重试。
      * @since 24
      */
     OH_MIDI_STATUS_TOO_MANY_CLIENTS = 35500012,
 
     /**
-     * @error Permission denied.
-     * Returned when the application attempts to perform an operation
-     * without the required permission (e.g., Bluetooth for BLE devices).
-     *
+     * @error 权限被拒绝。当应用尝试在未获得所需权限（例如BLE设备的蓝牙权限）的情况下执行操作时返回。
      * @since 24
      */
     OH_MIDI_STATUS_PERMISSION_DENIED = 35500013,
 
     /**
-     * @error The MIDI system service has died or disconnected.
-     * The client must be destroyed and recreated.
-     *
+     * @error MIDI系统服务已崩溃或断开连接。必须销毁并重新创建客户端。
      * @since 24
      */
     OH_MIDI_STATUS_SERVICE_DIED = 35500014,
 
     /**
-     * @error System-level errors such as insufficient memory or system service failure.
-     *
+     * @error 系统内部错误。表示发生了未预期的系统级错误。
      * @since 24
      */
     OH_MIDI_STATUS_SYSTEM_ERROR = 35500100

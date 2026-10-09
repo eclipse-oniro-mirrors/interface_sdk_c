@@ -96,7 +96,7 @@ typedef enum {
     AUDIO_SESSION_SCENE_VOICE_COMMUNICATION = 2,
 
     /**
-     * @brief 语音消息场景
+     * @brief 语音消息音频会话场景。
      *
      * @since 26.0.1
      */
@@ -111,44 +111,44 @@ typedef enum {
 typedef enum {
     /**
      * @brief 提示音频会话恢复，应用可主动触发开始渲染等相关操作。
-     * */
+     */
     AUDIO_SESSION_STATE_CHANGE_HINT_RESUME = 0,
 
     /**
      * @brief 提示音频会话暂停，暂时失去音频焦点。当焦点再次可用时，会收到AUDIO_SESSION_STATE_CHANGE_HINT_RESUME事件。
-     * */
+     */
     AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE = 1,
 
     /**
      * @brief 提示音频会话在焦点被抢占后停止，彻底失去音频焦点。
-     * */
+     */
     AUDIO_SESSION_STATE_CHANGE_HINT_STOP = 2,
 
     /**
      * @brief 提示长时间没有音频业务，音频会话将被系统停止，彻底失去音频焦点。
-     * */
+     */
     AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP = 3,
 
     /**
      * @brief 提示音频会话躲避开始，降低音量播放。如果已启用{@link OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers}，此时可以选择执行静音操作。
-     * */
+     */
     AUDIO_SESSION_STATE_CHANGE_HINT_DUCK = 4,
 
     /**
      * @brief 提示音频会话躲避结束，恢复音量播放。如果已启用{@link OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers}，此时可取消静音。
-     * */
+     */
     AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK = 5,
 
     /**
      * @brief 静音播放建议。当其他应用程序开始播放不可混音的音频时，应用程序可以自行决定是否静音。
-     * 
+     *
      * @since 23
      */
     AUDIO_SESSION_STATE_CHANGE_HINT_MUTE_SUGGESTION = 6,
 
     /**
      * @brief 取消静音播放建议。当其他应用程序不可混音的音频已结束，该应用程序可自行决定是否取消静音。
-     * 
+     *
      * @since 23
      */
     AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION = 7,
@@ -180,7 +180,7 @@ typedef enum {
     /**
      * @brief 推荐继续播放（该事件作为播放维持提示，作用是告知应用本次设备变动音频无需停止播放，但不可将其作为启动音频播放的判断依据）。
      *
-    */
+     */
     DEVICE_CHANGE_RECOMMEND_TO_CONTINUE = 0,
 
     /**

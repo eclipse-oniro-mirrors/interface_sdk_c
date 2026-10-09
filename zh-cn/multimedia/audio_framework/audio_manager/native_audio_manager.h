@@ -52,7 +52,7 @@ typedef struct OH_AudioManager OH_AudioManager;
 
 /**
  * @brief 音频场景变化回调函数的原型定义，用于{@link OH_AudioManager_RegisterAudioSceneChangeCallback}接口。
- * 
+ *
  * @param userData 指向开发者在{@link OH_AudioManager_RegisterAudioSceneChangeCallback}接口传入的userData数据。
  * @param scene 变化后的音频场景。
  * @since 20

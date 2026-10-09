@@ -83,7 +83,7 @@ typedef struct OH_AudioWorkgroup OH_AudioWorkgroup;
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数resourceManager为空指针；2. 参数name为空指针；3. 参数group为空指针。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 系统资源不足。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统处理错误。</li>
  *         </ul>
  * @since 20
@@ -117,7 +117,7 @@ OH_AudioCommon_Result OH_AudioResourceManager_ReleaseWorkgroup(OH_AudioResourceM
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数group为空指针；2. 参数tokenId为空指针。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 系统资源不足。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统处理错误。</li>
  *         </ul>
  * @since 20

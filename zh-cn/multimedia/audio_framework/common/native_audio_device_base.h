@@ -337,9 +337,9 @@ typedef enum {
  * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
  * @param deviceRole [out] 获取设备角色的指针。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 deviceRole 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 deviceRole 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -351,9 +351,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescr
  * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
  * @param deviceType [out] 获取设备类型的指针。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 deviceType 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 deviceType 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -365,9 +365,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescr
  * @param audioDeviceDescriptor [in] 音频设备描述符。可通过 {@link OH_AudioRoutingManager} 的设备查询或监听接口获取。
  * @param id [out] 获取设备ID的指针。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 id 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 id 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -380,9 +380,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescrip
  * @param name [out] 获取设备名称字符串的指针。
  *     <br>不要单独释放此指针指向的内存，而是调用 {@link OH_AudioRoutingManager_ReleaseDevices} 在不使用时释放所有内存。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 name 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 name 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -395,9 +395,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescr
  * @param address [out] 获取设备地址字符串的指针。
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 address 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 address 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -411,9 +411,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDe
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @param size [out] 获取采样率数组长度的指针。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、sampleRates 或 size 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、sampleRates 或 size 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -427,9 +427,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDevi
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices} 在不使用时释放所有内存。
  * @param size [out] 获取声道数数组长度的指针。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、channelCounts 或 size 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、channelCounts 或 size 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -443,9 +443,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDe
  * @param displayName [out] 获取显示名称值字符串的指针。
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 displayName 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor 或 displayName 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
@@ -459,9 +459,9 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDevi
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @param size [out] 获取编码类型大小值的指针变量。
  * @return <ul>
- *     <br><li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、encodingTypes 或 size 为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数 audioDeviceDescriptor、encodingTypes 或 size 为空指针。</li>
+ *         </ul>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDeviceDescriptor *audioDeviceDescriptor,

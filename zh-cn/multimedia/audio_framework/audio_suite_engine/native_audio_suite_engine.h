@@ -45,11 +45,13 @@ extern "C" {
  * @brief 创建音频编创引擎。
  *
  * @param audioSuiteEngine 音频编创引擎句柄，指向接收audioSuiteEngine变量的指针。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioSuiteEngine为空指针。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：引擎已经被初始化。
- *     <br>AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED：内存申请失败。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuiteEngine为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 引擎已经被初始化。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} 内存申请失败。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_Create(OH_AudioSuiteEngine** audioSuiteEngine);
@@ -58,10 +60,12 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Create(OH_AudioSuiteEngine** audioSuite
  * @brief 销毁音频编创引擎句柄。
  *
  * @param audioSuiteEngine 音频编创引擎句柄，通过{@link OH_AudioSuiteEngine_Create}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioSuiteEngine为空指针。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：引擎已被去初始化、引擎未创建或引擎未初始化。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuiteEngine为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 引擎已被去初始化、引擎未创建或引擎未初始化。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuiteEngine);
@@ -78,13 +82,15 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuite
  * @param audioSuiteEngine 音频编创引擎句柄。通过{@link OH_AudioSuiteEngine_Create}获取句柄。
  * @param audioSuitePipeline 音频编创管线句柄。
  * @param workMode 管线工作模式。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioSuiteEngine为空指针或参数audioSuitePipeline为空指针。
- *     <br>AUDIOSUITE_ERROR_ENGINE_NOT_EXIST：未初始化引擎。
- *     <br>AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS：创建管线数量超过系统最大数量限制（引擎最多创建10条管线）。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED：内存申请失败。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuiteEngine为空指针或参数audioSuitePipeline为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_ENGINE_NOT_EXIST} 未初始化引擎。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} 创建管线数量超过系统最大数量限制（引擎最多创建10条管线）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} 内存申请失败。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_CreatePipeline(
@@ -95,11 +101,13 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_CreatePipeline(
  * @brief 销毁音频编创管线句柄。
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取需要销毁的句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioSuitePipeline为空指针。
- *     <br>AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST：管线不存在或已经被销毁。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuitePipeline为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyPipeline(OH_AudioSuitePipeline* audioSuitePipeline);
@@ -108,17 +116,17 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyPipeline(OH_AudioSuitePipeline* 
  * @brief 开始运行该管线，管线会进入{@link OH_AudioSuite_PipelineState}.AUDIOSUITE_PIPELINE_RUNNING运行状态。
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioSuitePipeline为空指针。
- *     <br>AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST：管线不存在或已经被销毁。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线已在运行或节点连接异常。
- *     <br>可能的原因如下：
- *     <br>1. 管线已经在运行状态；
- *     <br>2. 当前管线中不存在输出类型节点；
- *     <br>3. 起始节点不是输入类型节点。
- *     <br>4. HOA（High-Order Ambisonics）音频格式的输入节点未连接HOA空间渲染节点，或HOA空间渲染节点的前置节点不是HOA格式的输入节点。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuitePipeline为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线已在运行或节点连接异常。可能的原因如下：
+ *             1. 管线已经在运行状态；
+ *             2. 当前管线中不存在输出类型节点；
+ *             3. 起始节点不是输入类型节点。4. HOA（High-Order Ambisonics）音频格式的输入节点未连接HOA空间渲染节点，或HOA空间渲染节点的前置节点不是HOA格式的输入节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_StartPipeline(OH_AudioSuitePipeline* audioSuitePipeline);
@@ -128,12 +136,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_StartPipeline(OH_AudioSuitePipeline* au
  * ，{@link OH_AudioSuiteEngine_RenderFrame}就不能再进行音频处理。
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioSuitePipeline为空指针。
- *     <br>AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST：管线不存在或已经被销毁。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线已在停止状态。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuitePipeline为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线已在停止状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_StopPipeline(OH_AudioSuitePipeline* audioSuitePipeline);
@@ -143,11 +153,13 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_StopPipeline(OH_AudioSuitePipeline* aud
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
  * @param pipelineState 管线状态的输出参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioSuitePipeline为空指针等。
- *     <br>AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST：管线不存在或已经被销毁。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioSuitePipeline为空指针等。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
@@ -159,21 +171,22 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
  * @param audioData 获取音频需要写入的数据地址。
  * @param requestFrameSize audioData的内存字节大小，需大于0。
- * @param responseSize 管线写入audioData的音频数据大小，不会大于requestFrameSize，单位为Byte。
+ * @param responseSize 管线写入audioData的音频数据大小，不会大于requestFrameSize，单位为字节(Byte)。
  * @param finishedFlag 标识当前管线是否渲染完成。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数为空指针或无效值。
- *     <br>可能的原因如下：
- *     <br>1. 参数audioSuitePipeline为空指针；
- *     <br>2. 参数audioData为空指针；
- *     <br>3. 参数requestFrameSize小于等于0；
- *     <br>4. 参数responseSize为空指针；
- *     <br>5. 参数finishedFlag为空指针。
- *     <br>AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST：管线不存在或已经被销毁。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线不在运行状态。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
+ *             1. 参数audioSuitePipeline为空指针；
+ *             2. 参数audioData为空指针；
+ *             3. 参数requestFrameSize小于等于0；
+ *             4. 参数responseSize为空指针；
+ *             5. 参数finishedFlag为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在运行状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audioSuitePipeline,
@@ -184,22 +197,23 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
  * @param audioDataArray 用户读取音频数据时所使用的数组指针，每个一维数组大小需一致。
- * @param responseSize 管线写入audioDataArray的音频数据大小。系统会确保每个一维数组被填充的数据大小一致，单位为Byte。
+ * @param responseSize 管线写入audioDataArray的音频数据大小。系统会确保每个一维数组被填充的数据大小一致，单位为字节(Byte)。
  * @param finishedFlag 标记当前管线是否渲染完成。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数为空指针或无效值。
- *     <br>可能的原因如下：
- *     <br>1. 参数audioSuitePipeline为空指针；
- *     <br>2. 参数audioDataArray为空指针；
- *     <br>3. 参数audioDataArray中的某个成员为空指针；
- *     <br>4. 参数audioDataArray中的requestFrameSize小于等于0；
- *     <br>5. 参数responseSize为空指针；
- *     <br>6. 参数finishedFlag为空指针。
- *     <br>AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST：管线不存在或已经被销毁。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线不在运行状态。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
+ *             1. 参数audioSuitePipeline为空指针；
+ *             2. 参数audioDataArray为空指针；
+ *             3. 参数audioDataArray中的某个成员为空指针；
+ *             4. 参数audioDataArray中的requestFrameSize小于等于0；
+ *             5. 参数responseSize为空指针；
+ *             6. 参数finishedFlag为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在运行状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_MultiRenderFrame(OH_AudioSuitePipeline* audioSuitePipeline,
@@ -212,17 +226,19 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_MultiRenderFrame(OH_AudioSuitePipeline*
  * @systemapi
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取。
  * @param metaFrame 音频元数据帧结构体指针。
- * @param responseAudioSize 接口实际写入的音频数据的大小，单位是Byte。
- * @param responseMetaSize 接口实际写入的元数据的大小，单位是Byte。
+ * @param responseAudioSize 接口实际写入的音频数据的大小，单位是字节(Byte)。
+ * @param responseMetaSize 接口实际写入的元数据的大小，单位是字节(Byte)。
  * @param finishedFlag 该标志用于向用户指示是否已完成所有数据处理。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数为空指针或其他非法值。
- *     <br>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST}：管线不存在或已被销毁。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_STATE}：管线不在运行状态。
- *     <br>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}：管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。
- *     <br>{@link AUDIOSUITE_ERROR_TIMEOUT}：操作处理超时。
- *     <br>{@link AUDIOSUITE_ERROR_SYSTEM}：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或其他非法值。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在运行状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteEngine_MetaRenderFrame(OH_AudioSuitePipeline* audioSuitePipeline,
@@ -232,10 +248,12 @@ int32_t OH_AudioSuiteEngine_MetaRenderFrame(OH_AudioSuitePipeline* audioSuitePip
  * @brief 获取一个音频编创节点构造器，用于配置并创建音频节点。构建器可复用，但若新节点属性与之前不同，必须使用{@link OH_AudioSuiteNodeBuilder_Reset}重置。
  *
  * @param builder 音频编创节点构造器句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，builder为空指针。
- *     <br>AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED：内存申请失败。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} 内存申请失败。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Create(OH_AudioNodeBuilder** builder);
@@ -244,9 +262,11 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Create(OH_AudioNodeBuilder** build
  * @brief 销毁一个音频编创节点构造器。使用完构造器后必须调用此函数进行销毁。
  *
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，builder为空指针。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Destroy(OH_AudioNodeBuilder* builder);
@@ -255,9 +275,11 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Destroy(OH_AudioNodeBuilder* build
  * @brief 重置一个音频编创节点构造器，同时将之前使用接口设置参数重置。若需复用构建器创建属性不同的新节点，必须调用此接口清除所有属性（如节点类型等）。
  *
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，builder为空指针。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Reset(OH_AudioNodeBuilder* builder);
@@ -267,9 +289,11 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Reset(OH_AudioNodeBuilder* builder
  *
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
  * @param type 节点类型。
- * @return AUDIOSUITE_SUCCESS：配置节点类型成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效，例如，builder为空指针。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 配置节点类型成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效，例如，builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetNodeType(OH_AudioNodeBuilder* builder, OH_AudioNode_Type type);
@@ -280,9 +304,11 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetNodeType(OH_AudioNodeBuilder* b
  * @systemapi
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取。
  * @param type {@link OH_AudioSuite_SystemNodeType}音频系统节点类型。
- * @return {@link AUDIOSUITE_SUCCESS}：配置节点类型成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数无效，例如，builder为空指针。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 配置节点类型成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效，例如，builder为空指针。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteNodeBuilderSystem_SetNodeType(
@@ -295,10 +321,12 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetNodeType(
  *
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
  * @param audioFormat 音频流格式。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效，例如，builder为空指针。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT：audioFormat中的channelCount不支持。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效，例如，builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT} audioFormat中的channelCount不支持。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetFormat(OH_AudioNodeBuilder* builder, OH_AudioFormat audioFormat);
@@ -309,10 +337,12 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetFormat(OH_AudioNodeBuilder* bui
  * @systemapi
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取。
  * @param audioFormat 音频节点格式。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数无效，例如，builder为空指针。
- *     <br>{@link AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT}：audioFormat中的某种音频格式不支持。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效，例如，builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT} audioFormat中的某种音频格式不支持。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(
@@ -324,9 +354,9 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param userData 用户使用的数据指针。系统调用此回调函数时，将使用{@link OH_AudioSuiteNodeBuilder_SetRequestDataCallback}接口传入的userData。
  * @param audioData 系统提供的内存地址，用于将需要处理的音频数据流写入（需由用户填充）。
- * @param audioDataSize audioData内存地址指向的音频数据大小，单位为Byte。
+ * @param audioDataSize audioData内存地址指向的音频数据大小，单位为字节(Byte)。
  * @param finished 标记audioNode节点需要处理的音频数据流是否已经写入完成。true表示已完成，false表示未完成。
- * @return 写入audioData缓冲区的有效数据长度（单位为Byte）。
+ * @return 写入audioData缓冲区的有效数据长度，单位为字节(Byte)。
  *     <br>返回值范围必须在[0, audioDataSize]范围内，如果返回值小于0，系统会将其修改为0，
  *     <br>如果返回值大于audioDataSize，系统会将其修改为audioDataSize。
  * @since 22
@@ -340,13 +370,14 @@ typedef int32_t (*OH_InputNode_RequestDataCallback)(
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
  * @param callback 写入当前节点音频数据的回调接口。
  * @param userData 用户自定义数据，在回调函数callback中传入给用户。不使用时可传空指针。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：
- *     <br>可能的原因如下：
- *     <br>1. 参数builder为空指针；
- *     <br>2. 参数callback为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 可能的原因如下：
+ *             1. 参数builder为空指针；
+ *             2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
@@ -360,9 +391,9 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取。
  * @param userData 由用户传递的用户数据指针。
  * @param metaFrame 音频元数据帧结构体指针。
- * @param responseMetaDataSize 应用程序实际写入的元数据的大小，单位是Byte。
+ * @param responseMetaDataSize 应用程序实际写入的元数据的大小，单位是字节(Byte)。
  * @param finished 此布尔值表示是否已成功写入所有音频数据。
- * @return 写入audio data缓冲区的有效音频数据长度，单位为Byte。
+ * @return 写入audio data缓冲区的有效音频数据长度，单位为字节(Byte)。
  *     <br>返回值范围为[0, metaFrame->AudioDataSize]。
  * @since 26.0.0
  */
@@ -376,11 +407,13 @@ typedef int32_t (*OH_InputNode_RequestMetaDataCallback)(OH_AudioNode* audioNode,
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取。
  * @param callback 用户自定义数据，会在callback函数中将地址传入给用户，如果不使用，可以传入空指针。
  * @param userData 指向将传递给回调函数的应用程序数据结构的指针。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数非法，例如，参数builder为空指针。
- *     <br>{@link AUDIOSUITE_ERROR_TIMEOUT}：操作处理超时。
- *     <br>{@link AUDIOSUITE_ERROR_SYSTEM}：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数非法，例如，参数builder为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteNodeBuilder_SetRequestMetaDataCallback(
@@ -393,21 +426,19 @@ int32_t OH_AudioSuiteNodeBuilder_SetRequestMetaDataCallback(
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
  * @param audioNode 输出参数，用于返回创建的音频编创节点句柄的指针。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数为空指针或无效值。
- *     <br>可能的原因如下：
- *     <br>1. 参数audioSuitePipeline为空指针；
- *     <br>2. 参数builder为空指针；
- *     <br>3. 参数audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS：当构建当前类型的节点数量超过管线限制。
- *     <br>例如，在API version 24之前，创建效果类节点的数量超过5个；在API version 24及以后，创建效果类节点的数量超过15个。
- *     <br>AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING：构建builder中type类型的节点时缺少必要参数。
- *     <br>例如，builder未设置节点类型。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：当前构造器节点类型为输出节点但设置了回调函数，
- *     <br>或构造器节点类型为效果节点但设置了音频格式或回调函数。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED：内存申请失败。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
+ *             1. 参数audioSuitePipeline为空指针；
+ *             2. 参数builder为空指针；
+ *             3. 参数audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} 当构建当前类型的节点数量超过管线限制。例如，在API version 24之前，创建效果类节点的数量超过5个；在API version 24及以后，创建效果类节点的数量超过15个。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING} 构建builder中type类型的节点时缺少必要参数。例如，builder未设置节点类型。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 当前构造器节点类型为输出节点但设置了回调函数，或构造器节点类型为效果节点但设置了音频格式或回调函数。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} 内存申请失败。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_CreateNode(
@@ -418,12 +449,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_CreateNode(
  * 而节点处于管线处理路径中，将销毁失败。
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线不在停止状态。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在停止状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyNode(OH_AudioNode* audioNode);
@@ -434,13 +467,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyNode(OH_AudioNode* audioNode);
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param bypassStatus 获取当前效果类节点使能状态，false表示未跳过节点处理，true表示已跳过节点处理。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：
- *     <br>参数audioNode或bypassStatus为空指针。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非效果类节点。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioNode或bypassStatus为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非效果类节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetNodeBypassStatus(
@@ -452,12 +486,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetNodeBypassStatus(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param bypass 当前效果类节点使能状态。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode为非效果节点。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode为非效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNode, bool bypass);
@@ -467,14 +503,16 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNod
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param audioFormat 指向音频流格式的指针，用于设置音频格式信息。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数audioNode或audioFormat为空指针。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode是效果节点。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT：（API版本26.0.0新增）参数audioFormat为不支持的格式。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线不在停止状态。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioNode或audioFormat为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode是效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT} （API版本26.0.0新增）参数audioFormat为不支持的格式。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在停止状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode, OH_AudioFormat* audioFormat);
@@ -485,14 +523,16 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode,
  * @systemapi
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取。
  * @param audioFormat 音频格式。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数为空指针或其他非法值。
- *     <br>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST}：节点不存在或已被销毁。
- *     <br>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}：节点是效果节点。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_STATE}：管线不在停止状态。
- *     <br>{@link AUDIOSUITE_ERROR_TIMEOUT}：操作处理超时。
- *     <br>{@link AUDIOSUITE_ERROR_SYSTEM}：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或其他非法值。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或已被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 节点是效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在停止状态。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteEngineSystem_SetAudioFormat(
@@ -504,21 +544,22 @@ int32_t OH_AudioSuiteEngineSystem_SetAudioFormat(
  *
  * @param sourceAudioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param destAudioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数sourceAudioNode或destAudioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_CONNECT：节点之间不支持连接。
- *     <br>可能的原因如下：
- *     <br>1. 参数sourceAudioNode类型为输出类型节点；
- *     <br>2. 参数destAudioNode类型为输入类型节点；
- *     <br>3. 参数sourceAudioNode和destAudioNode为同一个节点；
- *     <br>4. 参数sourceAudioNode为音源分离类型，但是destAudioNode类型不为输出类型节点；
- *     <br>5. 参数sourceAudioNode和destAudioNode不为同一个管线中的节点；
- *     <br>6. 管线状态为运行状态，但是destAudioNode不为mix类型节点；
- *     <br>7. 管线状态为运行状态，destAudioNode为mix类型节点，但是sourceAudioNode节点未连接输入类型节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线为无效状态。例如，无法找到输出节点。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数sourceAudioNode或destAudioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_CONNECT} 节点之间不支持连接。可能的原因如下：
+ *             1. 参数sourceAudioNode类型为输出类型节点；
+ *             2. 参数destAudioNode类型为输入类型节点；
+ *             3. 参数sourceAudioNode和destAudioNode为同一个节点；
+ *             4. 参数sourceAudioNode为音源分离类型，但是destAudioNode类型不为输出类型节点；
+ *             5. 参数sourceAudioNode和destAudioNode不为同一个管线中的节点；
+ *             6. 管线状态为运行状态，但是destAudioNode不为mix类型节点；
+ *             7. 管线状态为运行状态，destAudioNode为mix类型节点，但是sourceAudioNode节点未连接输入类型节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线为无效状态。例如，无法找到输出节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_ConnectNodes(
@@ -529,20 +570,21 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_ConnectNodes(
  *
  * @param sourceAudioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param destAudioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数sourceAudioNode或destAudioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：不支持操作。
- *     <br>可能的原因如下：
- *     <br>1. 参数sourceAudioNode类型为输出类型节点；
- *     <br>2. 参数destAudioNode类型为输入类型节点；
- *     <br>3. 参数sourceAudioNode和destAudioNode为同一个节点；
- *     <br>4. 参数sourceAudioNode和destAudioNode不为同一个管线中的节点；
- *     <br>5. 管线状态为运行状态，但是destAudioNode不为mix类型节点；
- *     <br>6. 管线状态为运行状态，destAudioNode为mix类型节点，但是mix节点当前只连接了sourceAudioNode一个输入。
- *     <br>AUDIOSUITE_ERROR_INVALID_STATE：管线为无效状态。例如，无法找到输出节点。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数sourceAudioNode或destAudioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 不支持操作。可能的原因如下：
+ *             1. 参数sourceAudioNode类型为输出类型节点；
+ *             2. 参数destAudioNode类型为输入类型节点；
+ *             3. 参数sourceAudioNode和destAudioNode为同一个节点；
+ *             4. 参数sourceAudioNode和destAudioNode不为同一个管线中的节点；
+ *             5. 管线状态为运行状态，但是destAudioNode不为mix类型节点；
+ *             6. 管线状态为运行状态，destAudioNode为mix类型节点，但是mix节点当前只连接了sourceAudioNode一个输入。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线为无效状态。例如，无法找到输出节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_DisconnectNodes(OH_AudioNode* sourceAudioNode, OH_AudioNode* destAudioNode);
@@ -552,10 +594,11 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_DisconnectNodes(OH_AudioNode* sourceAud
  *
  * @param nodeType 待查的节点类型。
  * @param isSupported 表示是否支持当前节点的创建。false表示未支持，true表示已支持。
- * @return AUDIOSUITE_SUCCESS：查询函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：传入非法参数。
- *     <br>例如，入参nodeType不在OH_AudioNode_Type枚举类型范围内、isSupported为空指针等。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 查询函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 传入非法参数。例如，入参nodeType不在OH_AudioNode_Type枚举类型范围内、isSupported为空指针等。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_IsNodeTypeSupported(OH_AudioNode_Type nodeType, bool* isSupported);
@@ -565,15 +608,16 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_IsNodeTypeSupported(OH_AudioNode_Type n
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param frequencyBandGains 均衡器节点的均衡参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非均衡器节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：
- *     <br>可能的原因如下：
- *     <br>1. 参数audioNode为空指针；
- *     <br>2. 参数frequencyBandGains每个成员的值不在[-10, 10]范围内。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非均衡器节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 可能的原因如下：
+ *             1. 参数audioNode为空指针；
+ *             2. 参数frequencyBandGains每个成员的值不在[-10, 10]范围内。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(
@@ -584,12 +628,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param frequencyBandGains 均衡器节点的均衡参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非均衡器节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode或frequencyBandGains为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非均衡器节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode或frequencyBandGains为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetEqualizerFrequencyBandGains(
@@ -600,12 +646,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetEqualizerFrequencyBandGains(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param soundFieldType 声场效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非声场节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非声场节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetSoundFieldType(OH_AudioNode* audioNode, OH_SoundFieldType soundFieldType);
@@ -615,12 +663,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetSoundFieldType(OH_AudioNode* audioNo
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param soundFieldType 声场效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非soundFieldType节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode或soundFieldType为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非soundFieldType节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode或soundFieldType为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetSoundFieldType(
@@ -631,12 +681,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetSoundFieldType(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param environmentType 环境效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非环境节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非环境节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetEnvironmentType(
@@ -647,12 +699,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetEnvironmentType(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param environmentType 环境效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非环境效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode或environmentType为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非环境效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode或environmentType为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetEnvironmentType(
@@ -663,12 +717,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetEnvironmentType(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param voiceBeautifierType 声音美化效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非声音美化效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非声音美化效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetVoiceBeautifierType(
@@ -679,13 +735,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetVoiceBeautifierType(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param voiceBeautifierType 声音美化效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非声音美化效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。
- *     <br>例如，audioNode或voiceBeautifierType为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非声音美化效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode或voiceBeautifierType为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetVoiceBeautifierType(
@@ -696,12 +753,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetVoiceBeautifierType(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param position 空间渲染效果节点固定摆位模式的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非空间渲染效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非空间渲染效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderPositionParams(
@@ -712,12 +771,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderPositionParams(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param position 空间渲染效果节点固定摆位模式的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非空间渲染效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非空间渲染效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderPositionParams(
@@ -728,12 +789,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderPositionParams(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param rotation 空间渲染效果节点旋转模式的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非空间渲染效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非空间渲染效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderRotationParams(
@@ -744,12 +807,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderRotationParams(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param rotation 空间渲染效果节点旋转模式的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非空间渲染效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非空间渲染效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderRotationParams(
@@ -760,12 +825,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderRotationParams(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param extension 空间渲染效果节点扩展模式的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非空间渲染效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非空间渲染效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderExtensionParams(
@@ -776,12 +843,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetSpaceRenderExtensionParams(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param extension 空间渲染效果节点扩展模式的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非空间渲染效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非空间渲染效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderExtensionParams(
@@ -793,12 +862,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetSpaceRenderExtensionParams(
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param speed 变速参数。取值范围为[0.5, 10.0]。
  * @param pitch 变调参数。取值范围为[0.1, 5.0]。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非变速变调效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非变速变调效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetTempoAndPitch(OH_AudioNode* audioNode, float speed, float pitch);
@@ -809,12 +880,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetTempoAndPitch(OH_AudioNode* audioNod
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param speed 变速参数。取值范围为[0.5, 10.0]。
  * @param pitch 变调参数。取值范围为[0.1, 5.0]。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非变速变调效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非变速变调效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetTempoAndPitch(OH_AudioNode* audioNode, float* speed, float* pitch);
@@ -824,12 +897,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetTempoAndPitch(OH_AudioNode* audioNod
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param option 传统变声效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非传统变声效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非传统变声效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetPureVoiceChangeOption(
@@ -840,12 +915,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetPureVoiceChangeOption(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param option 传统变声效果节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非传统变声效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非传统变声效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetPureVoiceChangeOption(
@@ -856,12 +933,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPureVoiceChangeOption(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param type 通用变声节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非通用变声效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非通用变声效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
@@ -872,12 +951,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param type 通用变声节点的配置参数。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_NODE_NOT_EXIST：节点不存在或者当前节点已经被销毁。
- *     <br>AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION：audioNode节点类型为非通用变声效果节点。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数无效。例如，audioNode为空指针。
- *     <br>AUDIOSUITE_ERROR_TIMEOUT：操作处理超时。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或者当前节点已经被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} audioNode节点类型为非通用变声效果节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数无效。例如，audioNode为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 23
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetGeneralVoiceChangeType(
@@ -891,9 +972,11 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetGeneralVoiceChangeType(
  *     <br>如果audioSuitePipeline为空，输出所有管线（引擎下的所有管线/节点）。否则，仅输出此管线和节点的快照。
  * @param fd 文件句柄，表示快照信息存储的位置。
  *     <br>如果fd小于0，快照信息存储在日志中。否则，快照将以追加模式存储在由fd句柄指向的文件中。
- * @return AUDIOSUITE_SUCCESS：函数执行成功。
- *     <br>AUDIOSUITE_ERROR_INVALID_PARAM：参数为空指针或无效值。
- *     <br>AUDIOSUITE_ERROR_SYSTEM：系统存在其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或无效值。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统存在其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioSuite_Result OH_AudioSuite_PrintInfo(
@@ -906,13 +989,15 @@ OH_AudioSuite_Result OH_AudioSuite_PrintInfo(
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取。
  * @param param 参数缓冲区。
  * @param paramSize 参数缓冲区大小。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST}：节点不存在或已被销毁。
- *     <br>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}：节点为非系统类型节点。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数为空指针或其他非法值。
- *     <br>{@link AUDIOSUITE_ERROR_TIMEOUT}：操作处理超时。
- *     <br>{@link AUDIOSUITE_ERROR_SYSTEM}：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 节点不存在或已被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 节点为非系统类型节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或其他非法值。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteEngineSystem_SetNodeParam(
@@ -925,13 +1010,15 @@ int32_t OH_AudioSuiteEngineSystem_SetNodeParam(
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取。
  * @param param 参数缓冲区。
  * @param paramSize 参数缓冲区大小。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST}：音频节点不存在或已被销毁。
- *     <br>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}：节点为非系统类型节点。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数为空指针或其他非法值。
- *     <br>{@link AUDIOSUITE_ERROR_TIMEOUT}：操作处理超时。
- *     <br>{@link AUDIOSUITE_ERROR_SYSTEM}：系统发生其他异常。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 音频节点不存在或已被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 节点为非系统类型节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或其他非法值。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteEngineSystem_GetNodeParam(
@@ -942,15 +1029,17 @@ int32_t OH_AudioSuiteEngineSystem_GetNodeParam(
  *
  * @systemapi
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取。
- * @param inSize 输入帧大小，单位为Byte。
- * @param outSize 输出帧大小，单位为Byte。
- * @return {@link AUDIOSUITE_SUCCESS}：函数执行成功。
- *     <br>202：非系统应用调用了此系统API。
- *     <br>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST}：音频节点不存在或已被销毁。
- *     <br>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}：节点为非系统类型节点。
- *     <br>{@link AUDIOSUITE_ERROR_INVALID_PARAM}：参数为空指针或其他非法值。
- *     <br>{@link AUDIOSUITE_ERROR_TIMEOUT}：操作处理超时。
- *     <br>{@link AUDIOSUITE_ERROR_SYSTEM}：系统发生其他异常。
+ * @param inSize 输入帧大小，单位为字节(Byte)。
+ * @param outSize 输出帧大小，单位为字节(Byte)。
+ * @return <ul>
+ *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
+ *         <li>202 非系统应用调用了此系统API。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_NODE_NOT_EXIST} 音频节点不存在或已被销毁。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 节点为非系统类型节点。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或其他非法值。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
+ *         </ul>
  * @since 26.0.0
  */
 int32_t OH_AudioSuiteEngineSystem_GetNodeInOutSize(

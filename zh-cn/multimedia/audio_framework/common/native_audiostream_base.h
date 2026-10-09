@@ -49,53 +49,48 @@ extern "C" {
  */
 typedef enum {
     /**
-     * @error The call was successful.
-     *
+     * @error 操作成功
      * @since 10
      */
     AUDIOSTREAM_SUCCESS = 0,
 
     /**
-     * @error This means that the function was executed with an invalid input parameter.
-     *
+     * @error 入参错误。
      * @since 10
      */
     AUDIOSTREAM_ERROR_INVALID_PARAM = 1,
 
     /**
-     * @error Execution status exception.
-     *
+     * @error 非法状态。
      * @since 10
      */
     AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,
 
     /**
-     * @error An system error has occurred.
-     *
+     * @error 系统通用错误。
      * @since 10
      */
     AUDIOSTREAM_ERROR_SYSTEM = 3,
 
     /**
-     * @error Unsupported audio format, such as unsupported encoding type, sample format etc.
-     *
+     * @error 不支持的音频格式，如不支持的编码类型、采样格式等。
      * @since 19
      */
     AUDIOSTREAM_ERROR_UNSUPPORTED_FORMAT = 4,
 
     /**
-     * @error Unsupported audio stream ability, including function and configuration.
+     * @error 不支持的音频流功能，包括功能和配置。
      *
      * @since 26.0.0
      */
     AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY = 6800104,
 
     /**
-     * @error Audio server process died.
+     * @error 音频服务器进程死掉。
      *
      * @since 26.0.0
      */
-    AUDIOSTREAM_ERROR_SERVICE_DIED = 6800302,
+    AUDIOSTREAM_ERROR_SERVICE_DIED = 6800302
 } OH_AudioStream_Result;
 
 /**
@@ -178,6 +173,38 @@ typedef enum {
      */
     AUDIOSTREAM_ENCODING_TYPE_E_AC3 = 2,
 } OH_AudioStream_EncodingType;
+
+/**
+ * @brief 声明音频流信息结构体，该结构体用于表示音频基础格式，包括采样率、声道布局、编码格式和采样格式信息。
+ *
+ * @since 19
+ */
+typedef struct OH_AudioStreamInfo {
+    /**
+     * @brief 音频流采样率，单位为Hz。
+     *
+     * @since 19
+     */
+    int32_t samplingRate;
+    /**
+     * @brief 音频流声道布局。
+     *
+     * @since 19
+     */
+    OH_AudioChannelLayout channelLayout;
+    /**
+     * @brief 音频流编码格式。
+     *
+     * @since 19
+     */
+    OH_AudioStream_EncodingType encodingType;
+    /**
+     * @brief 音频流采样格式。
+     *
+     * @since 19
+     */
+    OH_AudioStream_SampleFormat sampleFormat;
+} OH_AudioStreamInfo;
 
 /**
  * @brief 定义音频播放流使用场景。
@@ -289,6 +316,30 @@ typedef enum {
      */
     AUDIOSTREAM_LATENCY_MODE_FAST = 1,
 } OH_AudioStream_LatencyMode;
+
+/**
+ * @brief 定义音频流直通通路播放模式。
+ * <br>使用直通通路的音频播放流，不会与其他播放流混音，系统也不会对数据进行处理，直接输出到底层硬件。通常用于高音质音源播放场景。
+ *
+ * @since 19
+ */
+typedef enum {
+    /**
+     * 该模式表示不支持直通通路播放。
+     * @since 19
+     */
+    AUDIOSTREAM_DIRECT_PLAYBACK_NOT_SUPPORTED = 0,
+    /**
+     * 该模式表示支持编码格式的直通通路播放。
+     * @since 19
+     */
+    AUDIOSTREAM_DIRECT_PLAYBACK_BITSTREAM_SUPPORTED = 1,
+    /**
+     * 该模式表示支持PCM编码的直通通路播放。
+     * @since 19
+     */
+    AUDIOSTREAM_DIRECT_PLAYBACK_PCM_SUPPORTED = 2
+} OH_AudioStream_DirectPlaybackMode;
 
 /**
  * @brief 定义音频事件。
@@ -462,7 +513,7 @@ typedef enum {
     AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,
 
     /**
-     * 内录（录制设备内部应用的声音）。<br>**废弃版本：** 12<br>**替代接口：** {@link OH_AVScreenCapture}
+     * 内录（录制设备内部应用的声音）。
      * @deprecated since 12
      * @useinstead OH_AVScreenCapture in native interface.
      * @since 10
@@ -549,7 +600,7 @@ typedef enum {
  * @since 20
  */
 typedef enum {
-/**
+    /**
      * 普通音频流状态。
      */
     AUDIOSTREAM_FASTSTATUS_NORMAL = 0,
@@ -559,24 +610,6 @@ typedef enum {
      */
     AUDIOSTREAM_FASTSTATUS_FAST = 1
 } OH_AudioStream_FastStatus;
-
-/**
- * @brief 定义音频流音量模式。
- *
- * @since 19
- */
-typedef enum {
-    /**
-     * 系统级音量（默认模式）。音频流音量仅受系统音量影响。
-     * @since 19
-     */
-    AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,
-    /**
-     * 应用级音量。音频流音量会同时受系统音量和应用级音量影响。
-     * @since 19
-     */
-    AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
-} OH_AudioStream_VolumeMode;
 
 /**
  * @brief 声明音频流构造器结构体，该结构体用于调用设置音频流属性和创建音频流功能接口。
@@ -601,8 +634,9 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 
 /**
  * @brief 声明用于同时设置音频渲染器的4个回调函数的结构体，包括写入音频数据、音频播放流事件、音频播放中断事件和音频播放错误回调函数。
- * {@link OH_AudioStreamBuilder_SetRendererCallback}接口会用此结构体设置回调。<br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
- * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考{@link 推荐使用OHAudio开发音频播放功能(C/C++)}。
+ * {@link OH_AudioStreamBuilder_SetRendererCallback}接口会用此结构体设置回调。
+ * <br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
+ * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考开发指南-推荐使用OHAudio开发音频播放功能(C/C++)。
  *
  * @deprecated since 20
  * @useinstead Use the callback type: OH_AudioRenderer_OnWriteDataCallback, OH_AudioRenderer_OutputDeviceChangeCallback,
@@ -611,8 +645,16 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
  */
 typedef struct OH_AudioRenderer_Callbacks_Struct {
     /**
-     * 该函数指针将指向用于写入音频数据的回调函数。<br> 回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。<br> 回调函数结束后，音频服务会将buffer数据放入队列中等待播放，
-     * 因此请勿在回调外再次更改buffer指向的数据，且务必保证往buffer填满length长度的待播放数据，否则会导致音频服务播放杂音。
+     * 指向用于写入音频数据的回调函数。当渲染器处于运行状态，此回调会周期性地触发，让开发者持续写入播放数据。
+     * 由于系统会将buffer内的全部数据用于播放，开发者需确保每次写入音频数据都填满buffer，否则会因播放未初始化的数据导致不可预期的行为。
+     * 回调函数每次执行完成后，音频系统会将buffer数据暂时放入内部队列中等待处理，因此请勿在回调函数返回后修改buffer指向的数据，否则会导致播放出现杂音。
+     * 注意，回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer的状态切换接口，避免引起死锁问题。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param renderer 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetRendererCallback}接口传入的userdata数据。
+     * @param buffer 指向播放数据存储区域，开发者可从此buffer写入播放数据。每次写入都需要填满buffer，否则会因播放未初始化的数据导致不可预期的行为。
+     * @param length buffer的长度，单位为字节(Byte)。
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
      * @useinstead OH_AudioRenderer_OnWriteDataCallback.
      * @since 10
@@ -624,8 +666,13 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
             int32_t length);
 
     /**
-     * 该函数指针将指向用于处理音频播放流事件的回调函数。<br>OH_AudioRenderer_OnStreamEvent当前无触发场景，为预留接口。从API version 11开始，开发者如果需要监听设备变化，可直接使用
-     * {@link OH_AudioRenderer_OutputDeviceChangeCallback}替代。
+     * 指向用于处理音频播放流事件的回调函数，但当前版本此回调不会被触发。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * 从API version 11开始，开发者如果需要监听音频设备变化，可直接使用{@link OH_AudioRenderer_OutputDeviceChangeCallback}替代。
+     * @param renderer 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetRendererCallback}接口传入的userdata数据。
+     * @param event 音频播放流状态变化事件类型。
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
      * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
      * @since 10
@@ -636,7 +683,13 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
             OH_AudioStream_Event event);
 
     /**
-     * 该函数指针将指向用于处理音频播放中断事件的回调函数。
+     * 指向用于处理音频播放中断事件的回调函数。当播放流被系统中其他高优先级音频打断，会触发此回调。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param renderer 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetRendererCallback}接口传入的userdata数据。
+     * @param type 音频中断强制类型。
+     * @param hint 音频中断提示类型。
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
      * @useinstead OH_AudioRenderer_OnInterruptCallback.
      * @since 10
@@ -648,7 +701,15 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
             OH_AudioInterrupt_Hint hint);
 
     /**
-     * 该函数指针将指向用于处理音频播放错误结果的回调函数。
+     * 指向用于处理音频播放错误结果的回调函数。当播放流在使用过程中出现错误情况，会触发此回调。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param renderer 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetRendererCallback}接口传入的userdata数据。
+     * @param error 音频播放错误类型，常见错误包括：
+     *     <br>AUDIOSTREAM_ERROR_INVALID_PARAM（入参错误，请检查输入参数类型和有效范围）
+     *     <br>AUDIOSTREAM_ERROR_ILLEGAL_STATE（非法状态，请检查当前状态是否允许执行该操作）
+     *     <br>AUDIOSTREAM_ERROR_SYSTEM（系统通用错误，请检查系统状态或重试）
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
      * @useinstead OH_AudioRenderer_OnErrorCallback.
      * @since 10
@@ -661,8 +722,11 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
 
 /**
  * @brief 声明用于同时设置音频采集器的4个回调函数的结构体，包括读取音频数据、音频录制流事件、音频录制中断事件和音频录制错误回调函数。
- * {@link OH_AudioStreamBuilder_SetCapturerCallback}接口会用此结构体设置回调。<br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
- * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考{@link 推荐使用OHAudio开发音频录制功能(C/C++)}。
+ * {@link OH_AudioStreamBuilder_SetCapturerCallback}接口会用此结构体设置回调。
+ * <br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
+ * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考开发指南-推荐使用OHAudio开发音频录制功能(C/C++)。
+ * 
+ * 说明，以下回调接口的返回值均没有对应枚举定义，当前版本系统并不处理返回值，但考虑到后续系统版本的可扩展性，建议使用0作为返回值。
  *
  * @deprecated since 20
  * @useinstead Use the callback type: OH_AudioCapturer_OnReadDataCallback, OH_AudioCapturer_OnDeviceChangeCallback,
@@ -671,7 +735,14 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
  */
 typedef struct OH_AudioCapturer_Callbacks_Struct {
     /**
-     * 该函数指针将指向用于读取音频数据的回调函数。<br>回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
+     * 该指向用于读取音频数据的回调函数。当采集器处于运行状态，此回调会周期性地触发，让开发者持续读取录音数据。
+     * 注意，回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer的状态切换接口，避免引起死锁问题。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param capturer 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetCapturerCallback}接口传入的userdata数据。
+     * @param buffer 指向录音数据存储区域，开发者可从此buffer读取录音数据。系统会将录音数据填满buffer。
+     * @param length buffer的长度，单位为字节(Byte)。
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
      * @useinstead OH_AudioCapturer_OnReadDataCallback
      * @since 10
@@ -679,44 +750,59 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
     int32_t (*OH_AudioCapturer_OnReadData)( OH_AudioCapturer* capturer, void* userData, void* buffer, int32_t length);
 
     /**
-     * This function pointer will point to the callback function that
-     * is used to handle audio capturer stream events.
-     *
+     * 指向用于处理音频录制流事件的回调函数。当音频录制流的状态发生变化，如音频设备路由变化，会触发此回调。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param capturer 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetCapturerCallback}接口传入的userdata数据。
+     * @param event 音频录制流状态变化事件类型。
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
      * @useinstead OH_AudioCapturer_OnDeviceChangeCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnStreamEvent)(
-            OH_AudioCapturer* capturer,
-            void* userData,
-            OH_AudioStream_Event event);
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioStream_Event event);
 
     /**
-     * This function pointer will point to the callback function that
-     * is used to handle audio interrupt events.
+     * 指向用于处理音频录制中断事件的回调函数。当音频录制流被系统中其他高优先级音频打断，会触发此回调。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param capturer 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetCapturerCallback}接口传入的userdata数据。
+     * @param type 音频中断强制类型。
+     * @param hint 音频中断提示类型。
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      *
      * @deprecated since 20
      * @useinstead OH_AudioCapturer_OnInterruptCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnInterruptEvent)(
-            OH_AudioCapturer* capturer,
-            void* userData,
-            OH_AudioInterrupt_ForceType type,
-            OH_AudioInterrupt_Hint hint);
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioInterrupt_ForceType type,
+        OH_AudioInterrupt_Hint hint);
 
     /**
-     * This function pointer will point to the callback function that
-     * is used to handle audio error result.
+     * 指向用于处理音频录制错误结果的回调函数。当录制流在使用过程中出现错误情况，会触发此回调。
+     * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
+     * @param capturer 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
+     * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetCapturerCallback}接口传入的userdata数据。
+     * @param error 音频录制错误类型，常见错误包括：
+     *     <br>AUDIOSTREAM_ERROR_INVALID_PARAM（入参错误，请检查输入参数类型和有效范围）
+     *     <br>AUDIOSTREAM_ERROR_ILLEGAL_STATE（非法状态，请检查当前状态是否允许执行该操作）
+     *     <br>AUDIOSTREAM_ERROR_SYSTEM（系统通用错误，请检查系统状态或重试）
+     * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      *
      * @deprecated since 20
      * @useinstead OH_AudioCapturer_OnErrorCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnError)(
-            OH_AudioCapturer* capturer,
-            void* userData,
-            OH_AudioStream_Result error);
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioStream_Result error);
 } OH_AudioCapturer_Callbacks;
 
 /**
@@ -725,21 +811,32 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
  * @since 11
  */
 typedef enum {
-    /* Unknown. */
+    /**
+     * @brief 未知原因。
+     * 
+     */
     REASON_UNKNOWN = 0,
 
-    /* New Device available. */
+    /**
+     * @brief 新设备可用。例如，音频播放过程中连接有线/蓝牙耳机。
+     * 
+     */
     REASON_NEW_DEVICE_AVAILABLE = 1,
 
-    /* Old Device unavailable. Applications should consider to pause the audio playback when this reason is
-     reported. */
+    /**
+     * @brief 旧设备不可用。例如，音频播放过程中断开有线/蓝牙耳机。当报告此原因时，应用程序应考虑暂停音频播放。
+     * 
+     */
     REASON_OLD_DEVICE_UNAVAILABLE = 2,
 
-    /* Device is overrode by user or system. */
+    /**
+     * @brief 用户或系统强制选择切换。例如，在播控中心强选设备。
+     * 
+     */
     REASON_OVERRODE = 3,
 
     /**
-     * @brief {@link 音频会话管理(ArkTS)}中激活音频会话触发的设备切换。
+     * @brief 音频会话管理中激活音频会话触发的设备切换。
      *
      * @since 20
      */
@@ -783,9 +880,9 @@ typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* rendere
  * @param renderer 指向触发回调的音频播放流实例。
  * @param userData 指向开发者在注册回调函数时传入的userData数据。
  * @param audioData 指向让应用写入的音频数据。
- * @param audioDataSize 应用需写入音频数据的数据长度，单位为Byte。
+ * @param audioDataSize 应用需写入音频数据的数据长度，单位为字节(Byte)。
  * @param metadata 指向让应用写入的元数据，元数据内容与音频流编码格式类型相关。
- * @param metadataSize 应用需写入元数据的数据长度，单位为Byte。
+ * @param metadataSize 应用需写入元数据的数据长度，单位为字节(Byte)。
  * @return 应用返回的回调函数的错误码。
  * @since 12
  */
@@ -798,20 +895,22 @@ typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRender
  * @since 12
  */
 typedef enum {
-    /** 公开类型，表示音频流不包含隐私内容，当音频流不是通话类型时，允许被其他应用录制或进行屏幕投射。
+    /**
+     * 公开类型，表示音频流不包含隐私内容，当音频流不是通话类型时，允许被其他应用录制或进行屏幕投射。
      * @since 12
      */
     AUDIO_STREAM_PRIVACY_TYPE_PUBLIC = 0,
 
-    /** 隐私类型，表示音频流包含隐私内容，不允许被其他应用录制或进行屏幕投射。
+    /**
+     * 隐私类型，表示音频流包含隐私内容，不允许被其他应用录制或进行屏幕投射。
      * @since 12
      */
     AUDIO_STREAM_PRIVACY_TYPE_PRIVATE = 1,
 
     /**
-     * 共享类型，表示音频流包含隐私内容，但允许被其他应用录制或进行屏幕投射。<br>     例如，在AUDIO_STREAM_PRIVACY_TYPE_PUBLIC策略下，
-     * {@link AUDIOSTREAM_USAGE_VOICE_COMMUNICATION}类型的音频流不会被其他应用录制或进行屏幕投射。然而，在AUDIO_STREAM_PRIVACY_TYPE_SHARED策略下，
-     * 这种音频流将会允许被其他应用录制或进行屏幕投射。
+     * 共享类型，表示音频流包含隐私内容，但允许被其他应用录制或进行屏幕投射。
+     * <br>例如，在AUDIO_STREAM_PRIVACY_TYPE_PUBLIC策略下，{@link AUDIOSTREAM_USAGE_VOICE_COMMUNICATION}类型的音频流不会被其他应用录制或进行屏幕投射。
+     * 然而，在AUDIO_STREAM_PRIVACY_TYPE_SHARED策略下，这种音频流将会允许被其他应用录制或进行屏幕投射。
      * @since 21
      */
     AUDIO_STREAM_PRIVACY_TYPE_SHARED = 2
@@ -823,12 +922,12 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-/**
+    /**
      * 表示音频数据回调结果无效，音频数据不播放。
      */
     AUDIO_DATA_CALLBACK_RESULT_INVALID = -1,
 
-/**
+    /**
      * 表示音频数据回调结果有效，音频数据将被播放。
      */
     AUDIO_DATA_CALLBACK_RESULT_VALID = 0
@@ -846,7 +945,7 @@ typedef enum {
  * @param renderer 指向触发回调的音频播放流实例。
  * @param userData 指向开发者在注册回调函数时传入的userData数据。
  * @param audioData 指向让应用写入的音频数据。
- * @param audioDataSize 应用需写入音频数据的数据长度，单位为Byte。
+ * @param audioDataSize 应用需写入音频数据的数据长度，单位为字节(Byte)。
  * @return <ul>
  *         <li>{@link AUDIO_DATA_CALLBACK_RESULT_INVALID} 音频数据回调结果无效，音频数据不播放。</li>
  *         <li>{@link AUDIO_DATA_CALLBACK_RESULT_VALID} 音频数据回调结果有效，音频数据将被播放。</li>
@@ -858,60 +957,22 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
     void* audioData, int32_t audioDataSize);
 
 /**
- * @brief 声明音频流信息结构体，该结构体用于表示音频基础格式，包括采样率、声道布局、编码格式和采样格式信息。
- *
- * @since 19
- */
-typedef struct OH_AudioStreamInfo {
-    /**
-     * @brief 音频流采样率，单位为Hz。
-     *
-     * @since 19
-     */
-    int32_t samplingRate;
-    /**
-     * @brief 音频流声道布局。
-     *
-     * @since 19
-     */
-    OH_AudioChannelLayout channelLayout;
-    /**
-     * @brief 音频流编码格式。
-     *
-     * @since 19
-     */
-    OH_AudioStream_EncodingType encodingType;
-    /**
-     * @brief 音频流采样格式。
-     *
-     * @since 19
-     */
-    OH_AudioStream_SampleFormat sampleFormat;
-} OH_AudioStreamInfo;
-
-/**
- * @brief 定义音频流直通通路播放模式。
- * <br>使用直通通路的音频播放流，不会与其他播放流混音，系统也不会对数据进行处理，直接输出到底层硬件。通常用于高音质音源播放场景。
+ * @brief 定义音频流音量模式。
  *
  * @since 19
  */
 typedef enum {
     /**
-     * 该模式表示不支持直通通路播放。
+     * 系统级音量（默认模式）。音频流音量仅受系统音量影响。
      * @since 19
      */
-    AUDIOSTREAM_DIRECT_PLAYBACK_NOT_SUPPORTED = 0,
+    AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,
     /**
-     * 该模式表示支持编码格式的直通通路播放。
+     * 应用级音量。音频流音量会同时受系统音量和应用级音量影响。
      * @since 19
      */
-    AUDIOSTREAM_DIRECT_PLAYBACK_BITSTREAM_SUPPORTED = 1,
-    /**
-     * 该模式表示支持PCM编码的直通通路播放。
-     * @since 19
-     */
-    AUDIOSTREAM_DIRECT_PLAYBACK_PCM_SUPPORTED = 2
-} OH_AudioStream_DirectPlaybackMode;
+    AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
+} OH_AudioStream_VolumeMode;
 
 /**
  * @brief 定义音频时延类型。
@@ -939,7 +1000,8 @@ typedef enum {
 } OH_AudioStream_LatencyType;
 
 /**
- * @brief 表示内录（录制设备内部应用的声音）的过滤类型，每种过滤类型可录制不同的播放流类型。该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
+ * @brief 表示内录（录制设备内部应用的声音）的过滤类型，每种过滤类型可录制不同的播放流类型。
+ * 该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
  *
  * @since 23
  */
@@ -962,8 +1024,8 @@ typedef enum {
 } OH_AudioStream_PlaybackCaptureMode;
 
 /**
- * @brief 定义内录的启动状态，该状态在调用{@link OH_AudioCapturer_RequestPlaybackCaptureStart}函数后异步返回。该API最初仅对特定系统应用可用，从API版本26.0.0开始，
- * 支持任意应用使用。
+ * @brief 定义内录的启动状态，该状态在调用{@link OH_AudioCapturer_RequestPlaybackCaptureStart}函数后异步返回。
+ * 该API最初仅对特定系统应用可用，从API版本26.0.0开始，支持任意应用使用。
  *
  * @since 23
  */

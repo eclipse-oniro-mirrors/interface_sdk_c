@@ -87,56 +87,47 @@ typedef struct OH_AudioConverterStruct OH_AudioConverter;
  */
 typedef enum {
     /**
-     * @error The call was successful.
-     *
+     * @error 函数调用成功。
      * @since 26.0.0
      */
     AUDIOCONVERTER_SUCCESS = 0,
     /**
-     * @error This means that the function was executed with an invalid input parameter.
-     *
+     * @error 函数输入参数无效。例如传入的格式转换器指针为nullptr。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_INVALID_PARAM = 1,
     /**
-     * @error Unsupported audio format, such as unsupported encoding type, sample format etc.
-     *
+     * @error 不支持的音频格式。例如不支持的编码类型、采样格式等。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT = 2,
     /**
-     * @error A system error has occurred.
-     *
+     * @error 系统错误。例如使用已销毁的格式转换器执行格式转换。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_SYSTEM = 3,
     /**
-     * @error Memory allocation failed.
-     *
+     * @error 内存分配失败。例如内部输出数据缓冲区内存分配失败。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED = 4,
     /**
-     * @error Buffer capacity is insufficient.
-     *
+     * @error 输出缓存容量不足。例如设置的存储输出数据的容量不足以存储一帧输出数据量。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL = 5,
     /**
-     * @error Audio converter instance is not initialized.
-     *
+     * @error 音频转换器实例未初始化。例如未创建格式转换器直接执行格式转换处理函数。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_NOT_INITIALIZED = 6,
     /**
-     * @error Callback is invalid.
-     *
+     * @error 输入回调函数无效。例如输入回调函数返回数据量小于0或大于最大值400KB。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_CALLBACK_INVALID = 7,
     /**
-     * @error Callback is not set.
-     *
+     * @error 未设置回调函数。例如输入回调函数指针为空指针。
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET = 8

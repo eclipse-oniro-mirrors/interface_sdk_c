@@ -597,9 +597,9 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(
  * @param callback [in] 当风险提示语播放结束，此回调函数会触发。不允许为空指针。
  * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
  * @return <ul>
- *     <br><li>AUDIOSTREAM_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder或callback为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOSTREAM_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder或callback为空指针。</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
@@ -616,9 +616,9 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
  * @param cellularRecordPhoneNum [in] 目标蜂窝通话的电话号码，用于makeCallWithToken()中，不允许为空指针。
  * @param cellularRecordToken [in] 目标蜂窝通话的安全令牌，可通过通话管理的makeCallWithToken()函数获取，不允许为空指针。
  * @return <ul>
- *     <br><li>AUDIOSTREAM_SUCCESS：函数执行成功。</li>
- *     <br><li>AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder、cellularRecordPhoneNum或cellularRecordToken为空指针。</li>
- *     <br></ul>
+ *         <li>AUDIOSTREAM_SUCCESS：函数执行成功。</li>
+ *         <li>AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder、cellularRecordPhoneNum或cellularRecordToken为空指针。</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(

@@ -194,86 +194,76 @@ typedef enum {
  */
 typedef enum {
     /**
-     * @error The call was successful.
-     *
+     * @error 调用成功。
      * @since 22
      */
     AUDIOSUITE_SUCCESS = 0,
     /**
      * @error 输入参数无效。
-     *
      * @since 22
      */
     AUDIOSUITE_ERROR_INVALID_PARAM = 1,
     /**
-     * @error Execution status exception.
-     *
+     * @error 非法状态。
      * @since 22
      */
     AUDIOSUITE_ERROR_INVALID_STATE = 2,
     /**
-     * @error A system error has occurred.
-     *
+     * @error 系统通用错误。
      * @since 22
      */
     AUDIOSUITE_ERROR_SYSTEM = 3,
     /**
-     * @error Unsupported audio format, such as unsupported encoding type, sample format etc.
-     *
+     * @error 不支持的音频格式，如不支持的编码类型、采样格式等。
      * @since 22
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT = 4,
     /**
-     * @error audio engine does not exist.
-     *
+     * @error 引擎不存在。
      * @since 22
      */
     AUDIOSUITE_ERROR_ENGINE_NOT_EXIST = 5,
     /**
-     * @error audio pipeline does not exist.
-     *
+     * @error 管线不存在。
      * @since 22
      */
     AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST = 6,
     /**
-     * @error audio node does not exist.
-     *
+     * @error 节点不存在。
      * @since 22
      */
     AUDIOSUITE_ERROR_NODE_NOT_EXIST = 7,
     /**
-     * @error the connect or disconnect between the nodes is unsupported.
-     *
+     * @error 节点之间不支持连接。
      * @since 22
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_CONNECT = 8,
     /**
-     * @error Unsupported operation.
-     *
+     * @error 不支持的操作。例如，效果节点不支持设置音频格式。
      * @since 22
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION = 9,
     /**
-     * @error The application attempted to create an object that exceeds the system's maximum limit.
-     *
+     * @error 创建管线或者节点超过系统最大数量限制。具体情况如下：
+     * <br>引擎最多支持创建10条管线（其中，实时预览管线最多创建1条）。
+     * <br>每一个管线中，输出节点的数量不超过1个，混音节点的数量不超过3个，音源分离节点的数量不超过1个。
+     * <br>在API version 24之前，每一个管线中，输入节点的数量不超过5个，其余效果节点的数量不超过5个。
+     * <br>在API version 24及以后，每一个管线中，输入节点的数量不超过15个，其余效果节点的数量不超过15个。
      * @since 22
      */
     AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS = 10,
     /**
-     * @error Required parameters are missing.
-     *
+     * @error 参数缺少必要参数。例如，输入节点未设置回调函数、输出节点未设置音频格式。
      * @since 22
      */
     AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING = 11,
     /**
-     * @error Operation timed out.
-     *
+     * @error 操作超时。
      * @since 22
      */
     AUDIOSUITE_ERROR_TIMEOUT = 12,
     /**
-     * @error Memory allocation failed.
-     *
+     * @error 内存申请失败。
      * @since 22
      */
     AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED = 13
@@ -641,8 +631,8 @@ typedef enum {
  */
 typedef struct OH_EqualizerFrequencyBandGains {
     /**
-     * 均衡器支持10个特定频点的增益调整。
-     * 频率：31 Hz、62 Hz、125 Hz、250 Hz、500 Hz、1 kHz、2 kHz、4 kHz、8 kHz、16 kHz。
+     * 均衡器频带增益配置。数组长度为10，增益输入范围为[-10, 10]，单位为dB（分贝）。
+     * 频带：31Hz、62Hz、125Hz、250Hz、500Hz、1kHz、2kHz、4kHz、8kHz、16kHz。
      *
      * @since 22
      */
@@ -650,142 +640,72 @@ typedef struct OH_EqualizerFrequencyBandGains {
 } OH_EqualizerFrequencyBandGains;
 
 /**
- * Default equalization effect band gains.
- * Gains is {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}.
+ * 默认均衡器频带增益效果。
+ * 各频带增益：{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
 
 /**
- * Default equalization effect band gains.
- * Gains is {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
-/**
- * Ballad equalization effect band gains.
- * Gains is {3, 5, 2, -4, 1, 2, -3, 1, 4, 5}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
-/**
- * Ballad equalization effect band gains.
- * Gains is {3, 5, 2, -4, 1, 2, -3, 1, 4, 5}.
+ * 均衡器节点内置民谣效果。
+ * 各频带增益：{3, 5, 2, -4, 1, 2, -3, 1, 4, 5}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
 
 /**
- * Chinese style equalization effect band gains.
- * Gains is {0, 0, 2, 0, 0, 4, 4, 2, 2, 5}.
+ * 均衡器节点内置中国风效果。
+ * 各频带增益：{0, 0, 2, 0, 0, 4, 4, 2, 2, 5}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 
 /**
- * Chinese style equalization effect band gains.
- * Gains is {0, 0, 2, 0, 0, 4, 4, 2, 2, 5}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
-
-/**
- * Classic equalization effect band gains.
- * Gains is {2, 3, 2, 1, 0, 0, -5, -5, -5, -6}.
+ * 均衡器节点内置古典效果。
+ * 各频带增益：{2, 3, 2, 1, 0, 0, -5, -5, -5, -6}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
 
 /**
- * Classic equalization effect band gains.
- * Gains is {2, 3, 2, 1, 0, 0, -5, -5, -5, -6}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
-
-/**
- * Dance music equalization effect band gains.
- * Gains is {4, 3, 2, -3, 0, 0, 5, 4, 2, 0}.
+ * 均衡器节点内置舞曲效果。
+ * 各频带增益：{4, 3, 2, -3, 0, 0, 5, 4, 2, 0}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
 
 /**
- * Dance music equalization effect band gains.
- * Gains is {4, 3, 2, -3, 0, 0, 5, 4, 2, 0}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
-
-/**
- * Jazz equalization effect band gains.
- * Gains is {2, 0, 2, 3, 6, 5, -1, 3, 4, 4}.
+ * 均衡器节点内置爵士效果。
+ * 各频带增益：{2, 0, 2, 3, 6, 5, -1, 3, 4, 4}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 
 /**
- * Jazz equalization effect band gains.
- * Gains is {2, 0, 2, 3, 6, 5, -1, 3, 4, 4}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
-
-/**
- * Pop equalization effect band gains.
- * Gains is {5, 2, 1, -1, -5, -5, -2, 1, 2, 4}.
+ * 均衡器节点内置流行效果。
+ * 各频带增益：{5, 2, 1, -1, -5, -5, -2, 1, 2, 4}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
 
 /**
- * Pop equalization effect band gains.
- * Gains is {5, 2, 1, -1, -5, -5, -2, 1, 2, 4}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
-
-/**
- * R&B equalization effect band gains.
- * Gains is {1, 4, 5, 3, -2, -2, 2, 3, 5, 5}.
+ * 均衡器节点内置R&B效果。
+ * 各频带增益：{1, 4, 5, 3, -2, -2, 2, 3, 5, 5}。
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_RB;
 
 /**
- * R&B equalization effect band gains.
- * Gains is {1, 4, 5, 3, -2, -2, 2, 3, 5, 5}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_RB;
-
-/**
- * Rock equalization effect band gains.
- * Gains is {6, 4, 4, 2, 0, 1, 3, 3, 5, 4}.
- *
- * @since 22
- */
-extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_ROCK;
-
-/**
- * Rock equalization effect band gains.
- * Gains is {6, 4, 4, 2, 0, 1, 3, 3, 5, 4}.
+ * 均衡器节点内置摇滚效果。
+ * 各频带增益：{6, 4, 4, 2, 0, 1, 3, 3, 5, 4}。
  *
  * @since 22
  */
