@@ -2840,6 +2840,27 @@ typedef enum {
     NODE_SYSTEM_MATERIAL = 127,
 
     /**
+     * @brief 定义线性渐变模糊属性，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：线性渐变模糊选项对象。参数类型为{@link OH_ArkUI_LinearGradientBlurOptions}*。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：线性渐变模糊选项对象。类型为{@link OH_ArkUI_LinearGradientBlurOptions}*。
+     * 该对象为内部静态对象，无需调用{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}释放。
+     * 当属性未设置或已重置时，返回的对象包含默认值（blurRadius = 0，fractionStops = {0.0, 0.0, 0.0, 1.0}，
+     * direction = {@link OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM}）。</li>
+     * </ul>
+     *
+     * @ingroup Visual [视效属性]
+     * @since 26.2.0
+     */
+    NODE_LINEAR_GRADIENT_BLUR = 129,
+
+    /**
      * @brief Text组件设置文本内容属性，支持属性设置、属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**

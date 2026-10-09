@@ -1846,6 +1846,182 @@ typedef enum {
     OH_ARKUI_ANIMATION_FINISH_TO_END = 2,
 } OH_ArkUI_AnimationFinishMode;
 
+/**
+ * @brief 枚举线性渐变模糊的渐变方向。
+ *
+ * @since 26.2.0
+ */
+typedef enum {
+    /**
+     * @brief 线性渐变模糊从右到左。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT = 0,
+    /**
+     * @brief 线性渐变模糊从下到上。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_TOP = 1,
+    /**
+     * @brief 线性渐变模糊从左到右。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT = 2,
+    /**
+     * @brief 线性渐变模糊从上到下。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM = 3,
+    /**
+     * @brief 线性渐变模糊从右下到左上。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_TOP = 4,
+    /**
+     * @brief 线性渐变模糊从右上到左下。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_BOTTOM = 5,
+    /**
+     * @brief 线性渐变模糊从左下到右上。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_TOP = 6,
+    /**
+     * @brief 线性渐变模糊从左上到右下。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_BOTTOM = 7,
+} OH_ArkUI_LinearGradientBlurDirection;
+
+/**
+ * @brief 定义线性渐变模糊效果的选项。
+ *
+ * 选项包括模糊半径、渐变停止点和方向。通过{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}创建时，
+ * 默认值为：blurRadius = 0（不模糊），fractionStops = {0.0, 0.0, 0.0, 1.0}（两个停止点：位置0处模糊值为0，
+ * 位置1处模糊值为0，表示整个渐变方向上无模糊），direction = {@link OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM}。
+ *
+ * @since 26.2.0
+ */
+typedef struct OH_ArkUI_LinearGradientBlurOptions OH_ArkUI_LinearGradientBlurOptions;
+
+/**
+ * @brief 创建线性渐变模糊选项对象。
+ *
+ * @return 返回指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。调用者拥有返回的对象，
+ *     不再使用时需要调用{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}释放该对象。
+ * @release 调用者不再使用该对象时，需要调用{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}释放该对象。
+ * @since 26.2.0
+ */
+OH_ArkUI_LinearGradientBlurOptions* OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create(void);
+
+/**
+ * @brief 销毁线性渐变模糊选项对象。
+ *
+ * @param options [in] 表示由{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}返回的
+ *     {@link OH_ArkUI_LinearGradientBlurOptions}对象指针。传入<b>NULL</b>无效果。
+ *     该函数对非NULL句柄返回后，句柄即失效，不得再次使用或销毁。
+ * @since 26.2.0
+ */
+void OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy(OH_ArkUI_LinearGradientBlurOptions *options);
+
+/**
+ * @brief 设置线性渐变模糊选项的模糊半径。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param blurRadius [in] 表示模糊半径，单位为px。值越大模糊程度越高。值为<b>0</b>时表示不模糊。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options为空、blurRadius为负数或blurRadius为NaN。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius(
+    OH_ArkUI_LinearGradientBlurOptions *options, float blurRadius);
+
+/**
+ * @brief 获取线性渐变模糊选项的模糊半径。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param blurRadius [out] 表示用于接收模糊半径的指针，单位为px。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options或blurRadius为空。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius(
+    const OH_ArkUI_LinearGradientBlurOptions *options, float *blurRadius);
+
+/**
+ * @brief 设置线性渐变模糊选项的渐变停止点。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param fractionStops [in] 表示(模糊值, 位置)对的扁平float数组。
+ *         每两个元素一组(fractionStops[i], fractionStops[i+1])表示一个停止点。
+ *         模糊值(fractionStops[i])表示该位置处应用的模糊半径比例，0.0表示不模糊，1.0表示按blurRadius完全模糊。
+ *         位置(fractionStops[i+1])表示沿渐变方向的相对位置，0.0表示起点，1.0表示终点。
+ *         位置值必须严格单调递增。每个元素不能为NaN，且必须在[0.0, 1.0]范围内。
+ * @param stopsLength [in] 表示fractionStops数组中的float元素个数。必须为偶数且不小于4。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options或fractionStops为空、stopsLength为奇数、
+ *         stopsLength小于4、位置未严格单调递增、或fractionStops中存在NaN或超出[0.0, 1.0]范围的元素。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops(
+    OH_ArkUI_LinearGradientBlurOptions *options, const float *fractionStops, int32_t stopsLength);
+
+/**
+ * @brief 获取线性渐变模糊选项的渐变停止点。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param fractionStops [out] 表示用于接收(模糊值, 位置)对的扁平float数组的缓冲区指针。
+ * @param stopsSize [in] 表示调用者为fractionStops数组分配的缓冲区大小（float元素个数）。若缓冲区不足以容纳所有渐变停止点数据，
+ *     则返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}，并将writeLength设为所需大小。
+ * @param writeLength [out] 表示返回{@link ARKUI_ERROR_CODE_NO_ERROR}时实际写入fractionStops缓冲区的float元素个数；
+ *     返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示容纳fractionStops所需的最小缓冲区大小。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} stopsSize小于实际fractionStops数量。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops(
+    const OH_ArkUI_LinearGradientBlurOptions *options, float *fractionStops, int32_t stopsSize, int32_t *writeLength);
+
+/**
+ * @brief 设置线性渐变模糊选项的渐变方向。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param direction [in] 表示线性渐变模糊的方向。参数类型为{@link OH_ArkUI_LinearGradientBlurDirection}。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options为空或direction不是有效的枚举值。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection(
+    OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection direction);
+
+/**
+ * @brief 获取线性渐变模糊选项的渐变方向。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param direction [out] 表示用于接收线性渐变模糊方向的指针。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options或direction为空。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetDirection(
+    const OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection *direction);
+
 #ifdef __cplusplus
 }
 #endif
