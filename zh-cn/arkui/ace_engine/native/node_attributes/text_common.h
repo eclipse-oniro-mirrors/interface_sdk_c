@@ -537,7 +537,8 @@ typedef enum {
 typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
 
 /**
- * 文本菜单创建事件回调函数，在文本菜单创建时会触发此回调函数，开发者可在此函数中设置菜单数据。
+ * @brief 文本菜单创建事件回调函数，在文本菜单创建时会触发此回调函数，开发者可在此函数中设置菜单数据。
+ *
  * @param items 指向ArkUI_TextMenuItemArray对象的指针，该数组对象由系统内部创建并释放，在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert}，
  *     {@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
  * @param userData 用户自定义数据指针，由开发者在注册回调时传入，在回调触发时原样回传给开发者，用于在回调函数中获取上下文数据。传参为null表示不传递自定义数据。
@@ -549,7 +550,8 @@ typedef void (*ArkUI_TextCreateMenuCallback)(
 );
 
 /**
- * 文本菜单准备事件回调函数，当文本选择区域变化后显示菜单之前会触发此回调函数，开发者可在此函数中配置菜单数据。
+ * @brief 文本菜单准备事件回调函数，当文本选择区域变化后显示菜单之前会触发此回调函数，开发者可在此函数中配置菜单数据。
+ *
  * @param items 指向ArkUI_TextMenuItemArray对象的指针，该数组对象由系统内部创建并释放，在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert}，
  *     {@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
  * @param userData 用户自定义数据指针，由开发者在注册回调时传入，在回调触发时原样回传给开发者，用于在回调函数中获取上下文数据。传参为null表示不传递自定义数据。
@@ -561,7 +563,7 @@ typedef void (*ArkUI_TextPrepareMenuCallback)(
 );
 
 /**
- * The text menu item click callback function.
+ * @brief 文本菜单项点击事件回调函数，在菜单项被点击时触发此回调函数，开发者可在此函数中对系统默认处理行为进行拦截。
  *
  * @param item 指向ArkUI_TextMenuItem对象的指针，表示被点击的文本菜单项。
  * @param start 选中文本起始索引。

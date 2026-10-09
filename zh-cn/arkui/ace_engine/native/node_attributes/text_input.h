@@ -62,9 +62,10 @@ typedef enum {
      * 电话号码输入模式。<br>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。
      */
     ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER = 3,
-
+    /**
      * 邮箱地址输入模式。<br>支持数字、字母、下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、{、|、}、~以及@字符（只能存在一个@字符）。邮箱地址格式需符合基本规范：@字符前为用户名部分，@
      * 字符后为域名部分。
+     */
     ARKUI_TEXTINPUT_TYPE_EMAIL = 5,
     /**
      * 密码输入模式。<br>默认输入文字短暂显示后变成圆点。从API version 12开始，PC/2in1设备上输入文字直接显示为圆点。<br>TV设备上输入框末尾默认不显示小眼睛图标，其他设备输入框末尾默认显示小眼睛图标。
@@ -264,7 +265,8 @@ typedef enum {
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER,
     /**
-     *  【车架号】暂不支持自动保存和自动填充。
+     * 【车架号】暂不支持自动保存和自动填充。
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER
 } ArkUI_TextInputContentType;
