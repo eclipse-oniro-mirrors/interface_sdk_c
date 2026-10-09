@@ -238,8 +238,7 @@ typedef struct OH_UdmfDataLoadParams OH_UdmfDataLoadParams;
 typedef struct OH_UdmfDataLoadInfo OH_UdmfDataLoadInfo;
 
 /**
- * @brief Describes summary information of unified data.
- *
+ * @brief Summarizes the data information of the **unifiedData** object, including the data type and size.
  * @since 26.0.1
  */
 typedef struct OH_UDMF_Summary OH_UDMF_Summary;
