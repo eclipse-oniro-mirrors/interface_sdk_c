@@ -311,7 +311,7 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
 int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy);
 
 /**
- * @brief 数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下表所示：
+ * @brief 获取传感器数据。数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下表所示：
  *
  * | 传感器类型 | 数据元素及描述 |
  * | --- | --- |
