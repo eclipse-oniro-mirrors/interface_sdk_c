@@ -1824,7 +1824,7 @@ typedef enum {
      */
     KEYCODE_FINGERPRINT_SLIDE_DOWN = 3234,
     /**
-     * @brief 云台单击键
+     * @brief 云台模式调节键
      * @since 26.0.1
      */
     OH_INPUT_KEYCODE_PTZ_CLICK = 3235,

@@ -1594,7 +1594,7 @@ Camera_ErrorCode OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCall
  * @param maxZoom 输出参数，返回变焦最大值。
  * @return CAMERA_OK：方法调用成功。
  *     <br>CAMERA_INVALID_ARGUMENT：参数丢失或者参数不正确。
- *     <br>CAMERA_OPERATION_NOT_ALLOWED：操作不允许,会话或相机状态异常。
+ *     <br>CAMERA_OPERATION_NOT_ALLOWED：操作不允许，会话或相机状态异常。
  *     <br>CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。
  * @since 24
  */

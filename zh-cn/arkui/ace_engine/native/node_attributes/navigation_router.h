@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief 定义Navigation或Router组件的枚举和接口。
+ * @brief Defines a set of navigation or router enum and interface.
  *
  * @since 12
  */
@@ -25,7 +25,7 @@
 /**
  * @file navigation_router.h
  *
- * @brief Defines the enumerations related to the **NavDestination** and **Router** components.
+ * @brief 定义Navigation或Router组件的枚举和接口。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -47,90 +47,90 @@ extern "C" {
  */
 typedef enum {
     /**
-     * NavDestination组件显示。
+     * @brief NavDestination组件显示。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_SHOW = 0,
     /**
-     * NavDestination组件隐藏。
+     * @brief NavDestination组件隐藏。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_HIDE = 1,
     /**
-     * NavDestination从组件树上挂载。
+     * @brief NavDestination从组件树上挂载。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_APPEAR = 2,
     /**
-     * NavDestination从组件树上卸载。
+     * @brief NavDestination从组件树上卸载。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_DISAPPEAR = 3,
     /**
-     * NavDestination组件显示之前。
+     * @brief NavDestination组件显示之前。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_SHOW = 4,
     /**
-     * NavDestination组件隐藏之前。
+     * @brief NavDestination组件隐藏之前。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_HIDE = 5,
     /**
-     * NavDestination挂载到组件树之前。
+     * @brief NavDestination挂载到组件树之前。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR = 6,
     /**
-     * NavDestination从组件树上卸载之前。
+     * @brief NavDestination从组件树上卸载之前。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
     /**
-     * NavDestination组件处于激活状态。
+     * @brief NavDestination组件处于激活态。
      * @since 26.2.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
     /**
-     * NavDestination组件处于非激活状态。
+     * @brief NavDestination组件处于非激活态。
      * @since 26.2.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
     /**
-     * NavDestination从组件返回。
+     * @brief NavDestination从组件返回。
      * @since 12
      */
     ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100
 } ArkUI_NavDestinationState;
 
 /**
- * @brief 定义[Router](arkts-apis-uicontext-router.md)（路由页面）的状态。
+ * @brief 定义[Router]{@link @ohos.arkui.UIContext#Router}（路由页面）的状态。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * Router Page即将创建。
+     * @brief Router Page即将创建。
      * @since 12
      */
     ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_APPEAR = 0,
     /**
-     * Router Page即将销毁。
+     * @brief Router Page即将销毁。
      * @since 12
      */
     ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_DISAPPEAR = 1,
     /**
-     * Router Page显示。
+     * @brief Router Page显示。
      * @since 12
      */
     ARKUI_ROUTER_PAGE_STATE_ON_SHOW = 2,
     /**
-     * Router Page隐藏。
+     * @brief Router Page隐藏。
      * @since 12
      */
     ARKUI_ROUTER_PAGE_STATE_ON_HIDE = 3,
     /**
-     * Router Page返回时。
+     * @brief Router Page返回时。
      * @since 12
      */
     ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4
