@@ -707,7 +707,7 @@ typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
  *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if uiContext is NULL or no longer active.</li>
  *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if callback is NULL.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if eventMask or subscriptionId is invalid.</li>
- *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native C API is not initialized.</li></ul>
+ *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native module is not initialized.</li></ul>
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_RegisterUIContentChangeEvent(

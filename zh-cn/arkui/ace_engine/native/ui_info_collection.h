@@ -688,7 +688,7 @@ typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
  *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} uiContext为NULL或不再处于活跃状态。</li>
  *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} callback为NULL。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} eventMask或subscriptionId无效。</li>
- *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} Native C接口尚未初始化。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} Native模块尚未初始化。</li>
  *     </ul>
  * @since 26.2.0
  */
