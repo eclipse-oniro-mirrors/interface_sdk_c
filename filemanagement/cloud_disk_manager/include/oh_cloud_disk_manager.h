@@ -994,10 +994,10 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
 /**
  * @brief Creates a placeholder in a registered sync folder.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
- * @param placeholderInfo Indicates the placeholder metadata information.
- * @param customInfo Indicates optional opaque custom information. NULL means it is not provided.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param placeholderInfo [in] Indicates the placeholder metadata information.
+ * @param customInfo [in] Indicates optional opaque custom information. NULL means it is not provided.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.0.1
@@ -1010,9 +1010,9 @@ CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPat
 /**
  * @brief Checks whether a file in a sync folder is a placeholder file.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
- * @param isPlaceholder Output parameter. The value is valid only when the return value is {@link CLOUD_DISK_OK}.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param isPlaceholder [out] Output parameter. The value is valid only when the return value is {@link CLOUD_DISK_OK}.
  *     Returns true if the file is a placeholder file; returns false otherwise. The value is set to false on error.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
@@ -1040,8 +1040,8 @@ CloudDisk_ErrorCode OH_CloudDisk_GetPlaceholderState(const CloudDisk_SyncFolderP
 /**
  * @brief Converts a placeholder file to a 0-byte normal file.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.0.1
@@ -1079,10 +1079,10 @@ CloudDisk_ErrorCode OH_CloudDisk_UnmarkPlaceholderFile(const CloudDisk_SyncFolde
 /**
  * @brief Updates file metadata (supports placeholder and normal files).
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
- * @param placeholderInfo Indicates the placeholder metadata.
- * @param customInfo Optional opaque custom information. NULL means the existing value is preserved.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param placeholderInfo [in] Indicates the placeholder metadata.
+ * @param customInfo [in] Optional opaque custom information. NULL means the existing value is preserved.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.0.1
