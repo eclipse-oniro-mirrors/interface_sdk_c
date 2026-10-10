@@ -952,8 +952,8 @@ typedef struct {
     /**
      * Z-axis translation distance, in vp. Value principles: A positive value indicates translation toward the observer,
      * a negative value indicates translation away from the observer, and **0** indicates no translation. When moving
-     * along the z-axis, since the observation point remains unchanged, the component will be scaled up as the value of *
-     **z** approaches the observation point and scaled in as it moves away. Default value: **0**.
+     * along the z-axis, since the observation point remains unchanged, the component will be scaled up as the value of
+     * **z** approaches the observation point and scaled in as it moves away. Default value: **0**.
      */
     float z;
 } ArkUI_TranslationOptions;
@@ -965,7 +965,7 @@ typedef struct {
 typedef struct {
     /**
      * Scale factor along the x-axis. The default value is **1.0**. x > 1: The component is scaled up along the x-axis.
-     *0 < x < 1: The component is scaled down along the x-axis. x < 0: The component is scaled in the reversed
+     * 0 < x < 1: The component is scaled down along the x-axis. x < 0: The component is scaled in the reversed
      * direction along the x-axis, with the scale factor being |x|. The scaling is performed with **centerX** as the
      * anchor point. Note: when x = 0, the component completely disappears along the x-axis. Pay attention to the impact
      * of this special value when using it.
@@ -973,7 +973,7 @@ typedef struct {
     float x;
     /**
      * Scale factor along the y-axis. The default value is **1.0**. y > 1: The component is scaled up along the y-axis.
-     *0 < y < 1: The component is scaled down along the y-axis. y < 0: The component is scaled in the reversed
+     * 0 < y < 1: The component is scaled down along the y-axis. y < 0: The component is scaled in the reversed
      * direction along the y-axis, with the scale factor being |y|. Note: when y = 0, the component completely
      * disappears along the y-axis. Pay attention to the impact of this special value when using it.
      */
@@ -989,8 +989,8 @@ typedef struct {
      * the horizontal center of the component. The default value is **0.5**. The scaling effect along the x-axis is
      * performed with this point as the anchor point. Different **centerX** values determine the x-direction positions
      * of the scaling anchor point. When the value is **0**, the scaling is performed from the left edge of the
-     * component; when the value is **0.5**, the scaling is performed from the horizontal center; when the value is **1**
-     *, the scaling is performed from the right edge.
+     * component; when the value is **0.5**, the scaling is performed from the horizontal center; when the value is
+     * **1**, the scaling is performed from the right edge.
      */
     float centerX;
     /**
@@ -998,9 +998,9 @@ typedef struct {
      * indicates the top edge of the component, **1** indicates the bottom edge of the component, and **0.5** indicates
      * the vertical center of the component. The default value is **0.5**. The scaling effect along the y-axis is
      * performed with this point as the anchor point. Different **centerY** values determine the y-direction positions
-     * of the scaling anchor point. When the value is **0**, the scaling is performed from the top edge of the component;
-     * when the value is **0.5**, the scaling is performed from the vertical center; when the value is **1**, the
-     * scaling is performed from the bottom edge.
+     * of the scaling anchor point. When the value is **0**, the scaling is performed from the top edge of the
+     * component; when the value is **0.5**, the scaling is performed from the vertical center; when the value is **1**,
+     * the scaling is performed from the bottom edge.
      */
     float centerY;
 } ArkUI_ScaleOptions;
@@ -1038,8 +1038,8 @@ typedef struct {
      * the horizontal center of the component. The default value is **0.5**. The scaling effect along the x-axis is
      * performed with this point as the anchor point. Different **centerX** values determine the x-direction positions
      * of the scaling anchor point. When the value is **0**, the scaling is performed from the left edge of the
-     * component; when the value is **0.5**, the scaling is performed from the horizontal center; when the value is **1**
-     *, the scaling is performed from the right edge.
+     * component; when the value is **0.5**, the scaling is performed from the horizontal center; when the value is
+     * **1**, the scaling is performed from the right edge.
      */
     float centerX;
     /**
@@ -1047,9 +1047,9 @@ typedef struct {
      * indicates the top edge of the component, **1** indicates the bottom edge of the component, and **0.5** indicates
      * the vertical center of the component. The default value is **0.5**. The scaling effect along the y-axis is
      * performed with this point as the anchor point. Different **centerY** values determine the y-direction positions
-     * of the scaling anchor point. When the value is **0**, the scaling is performed from the top edge of the component;
-     * when the value is **0.5**, the scaling is performed from the vertical center; when the value is **1**, the
-     * scaling is performed from the bottom edge.
+     * of the scaling anchor point. When the value is **0**, the scaling is performed from the top edge of the
+     * component; when the value is **0.5**, the scaling is performed from the vertical center; when the value is **1**,
+     * the scaling is performed from the bottom edge.
      */
     float centerY;
     /**
@@ -1061,9 +1061,9 @@ typedef struct {
     float centerZ;
     /**
      * Viewing distance, that is, the distance from the viewpoint to the z=0 plane, which is the z-coordinate where the
-     * camera is placed, in px. The value indicates the viewing distance, that is, the distance from the camera to the z=
-     *0 plane. The sign of the value determines the direction in which the camera observes. When **perspective** is set
-     * to **0**, the system automatically calculates a suitable z-axis position for the camera, which is a negative
+     * camera is placed, in px. The value indicates the viewing distance, that is, the distance from the camera to the
+     * z=0 plane. The sign of the value determines the direction in which the camera observes. When **perspective** is
+     * set to **0**, the system automatically calculates a suitable z-axis position for the camera, which is a negative
      * value.
      */
     float perspective;
