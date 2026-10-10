@@ -201,18 +201,18 @@ typedef enum {
 } ArkUI_XComponentType;
 
 /**
- * @brief Enumerates the text copy and paste modes.
+ * @brief 定义文本复制粘贴模式枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** Copy is not allowed. */
+    /** 不支持复制。*/
     ARKUI_COPY_OPTIONS_NONE = 0,
-    /** Intra-application copy is allowed. */
+    /** 支持应用内复制。*/
     ARKUI_COPY_OPTIONS_IN_APP,
-    /** Intra-device copy is allowed. */
+    /** 支持设备内复制。*/
     ARKUI_COPY_OPTIONS_LOCAL_DEVICE,
-    /** Cross-device copy is allowed. */
+    /** 支持跨设备复制。*/
     ARKUI_COPY_OPTIONS_CROSS_DEVICE,
 } ArkUI_CopyOptions;
 
