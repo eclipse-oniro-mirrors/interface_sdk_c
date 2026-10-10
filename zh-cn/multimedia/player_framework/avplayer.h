@@ -1007,6 +1007,21 @@ uint32_t OH_AVPlayer_GetTrackCount(OH_AVPlayer *player);
 OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex);
 
 /**
+ * @brief 设置音频PCM数据回调的方法。该API仅在AVPlayer处于空闲或初始化状态时可调用。
+ *
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param callback 回调函数指针，空指针表示取消注册回调。
+ * @param userData 指向用户特定数据的指针。
+ * @return 函数结果代码。
+ *         {@link AV_ERR_OK} 如果执行成功。
+ *         {@link AV_ERR_INVALID_VAL} 如果输入播放器为空或播放器SetPCMOutputCallback失败。
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} 如果在不受支持的状态下调用。
+ * @since 26.0.0
+ */
+OH_AVErrCode OH_AVPlayer_SetPCMOutputCallback(OH_AVPlayer *player, OH_AVPlayerPCMOutputCallback callback,
+    void *userData);
+
+/**
  * @brief 设置视频解码帧输出回调的方法。此接口仅在播放器处于空闲或已初始化状态时可调用。
  * @param player 指向OH_AVPlayer实例的指针。
  * @param window 指向OHNativeWindow实例的指针，请参见{@link OHNativeWindow}
@@ -1023,6 +1038,35 @@ OH_AVPlayerVideoOutput* OH_AVPlayer_SetVideoSideOutput(OH_AVPlayer *player, OHNa
  * @since 26.0.0
  */
 OH_VideoOutputResult OH_AVPlayerVideoOutput_GetNewestVideoSample(OH_AVPlayerVideoOutput *videoOutput);
+
+/**
+ * @brief 设置音频pcm数据处理回调的方法。只有当AVPlayer处于空闲或初始化状态时，才能调用此API。
+ *
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param callback 指向回调函数的指针，nullptr表示取消注册回调。
+ * @param userData 指向用户特定数据的指针。
+ * @return 函数结果代码。
+ *         <br>{@link AV_ERR_OK} 如果执行成功。
+ *         <br>{@link AV_ERR_INVALID_VAL} 如果输入播放器为空或播放器SetPCMProcessorCallback失败。
+ *         <br>{@link AV_ERR_OPERATE_NOT_PERMIT} 如果在不受支持的状态下调用。
+ * @since 26.0.0
+ */
+OH_AVErrCode OH_AVPlayer_SetPCMProcessorCallback(OH_AVPlayer *player, OH_AVPlayerPCMProcessorCallback callback,
+    void *userData);
+
+/**
+ * @brief 设置音频后处理期间一次可以返回的最大数据量。允许缓存一些PCM数据，并与下一个PCM数据一起返回。只有当avplayer处于空闲或初始化状态时，才能调用此API。
+ *
+ * @param player 指向OH_AVPlayer实例的指针。
+ * @param maxProcessedPCMLen 一次返回的PCM数据的最大量，在（0，5MB]范围内。
+ *     OH_AVPlayerPCMProcessorCallback确保返回的pcmBuffer的容量不小于此值。
+ * @return 函数结果代码。
+ *         <br>{@link AV_ERR_OK} 如果执行成功。
+ *         <br>{@link AV_ERR_INVALID_VAL} 如果输入播放器为空或maxProcessedPMCLen出错。
+ *         <br>{@link AV_ERR_OPERATE_NOT_PERMIT} 如果在不受支持的状态下调用。
+ * @since 26.0.0
+ */
+OH_AVErrCode OH_AVPlayer_SetPCMProcessorMaxLen(OH_AVPlayer *player, int32_t maxProcessedPCMLen);
 
 #ifdef __cplusplus
 }
