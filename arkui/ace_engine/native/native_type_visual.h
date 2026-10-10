@@ -1111,9 +1111,9 @@ typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions;
  * @brief Create a motion path option for path animation. When the object is no longer used, call
  * {@link OH_ArkUI_MotionPathOptions_Dispose} to dispose of it.
  * @return Pointer to {@link ArkUI_MotionPathOptions}.
- * In the newly created {@link ArkUI_MotionPathOptions} object, **path** (motion path) is an empty string, **from** (
- * start progress) is **0**, **to** (end progress) is **1**, and **rotatable** (whether the component rotates along the
- * path) is **false**.
+ *     <br>In the newly created {@link ArkUI_MotionPathOptions} object, **path** (motion path) is an empty string,
+ *     **from** ( start progress) is **0**, **to** (end progress) is **1**, and **rotatable** (whether the component
+ *     rotates along the path) is **false**.
  * @since 23
  */
 ArkUI_MotionPathOptions* OH_ArkUI_MotionPathOptions_Create();
