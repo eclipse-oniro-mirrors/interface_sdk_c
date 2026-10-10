@@ -1227,8 +1227,8 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* 
 /**
  * @brief Sets whether a component rotates along the motion path.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param rotatable Whether the component rotates along the path. **true**: The component rotates along the path. **
- * false**: The component does not rotate along the path. The default value is **false**.
+ * @param rotatable Whether the component rotates along the path. **true**: The component rotates along the path.
+ * **false**: The component does not rotate along the path. The default value is **false**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1405,8 +1405,8 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* option
  * @brief Sets whether to fill a component with a shadow.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and **
- * false** means the opposite. The default value is **false**.
+ * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and
+ * **false** means the opposite. The default value is **false**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1552,8 +1552,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOption
  * operations.
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
- * @param centerX Pointer to the X-coordinate of the transformation center point. The unit is px. The default value is *
- * *0**.
+ * @param centerX Pointer to the X-coordinate of the transformation center point. The unit is px. The default value is
+ * **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1582,8 +1582,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOption
  * operations.
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
- * @param centerY Pointer to the Y-coordinate of the transformation center point. The unit is px. The default value is *
- * *0**.
+ * @param centerY Pointer to the Y-coordinate of the transformation center point. The unit is px. The default value is
+ * **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1952,8 +1952,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
 
 /**
  * @brief Combines another matrix with the original matrix and stores the result matrix in **oriMatrix**. In this case,
- * the result matrix applies the transformation of **oriMatrix** and then applies the transformation of **anotherMatrix*
- * *. This API will modify the **oriMatrix** object.
+ * the result matrix applies the transformation of **oriMatrix** and then applies the transformation of
+ * **anotherMatrix**. This API will modify the **oriMatrix** object.
  * @param oriMatrix Pointer to the original fourth-order matrix object.
  * @param anotherMatrix Pointer to another matrix object to be combined.
  * @return <ul> 
