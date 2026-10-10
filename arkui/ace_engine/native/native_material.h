@@ -191,9 +191,10 @@ void OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy(ArkUI_ImmersiveMaterialHand
  * If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param style Material style. Passing an invalid style will cause the setting failure, and the error code
  * {@link ARKUI_ERROR_CODE_PARAM_INVALID} will be returned.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** is **NULL** or **style** is
- * invalid). Ensure that a valid material pointer and a valid style enumerated value are passed.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetStyle(
@@ -203,9 +204,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetStyle(
  * @brief Obtains the style of an immersive material object.
  * @param material Pointer to the immersive material object.
  * @param style Pointer to the variable used to receive the material style.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** or **style** is **NULL**).
- * Ensure that both **material** and **style** are valid pointers.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetStyle(
@@ -220,9 +222,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetStyle(
  * If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param color Material color, in 0xAARRGGBB format, which takes effect on the display effects of devices with all
  * computing power levels. The value **0** indicates transparent (default value).
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** is **NULL**). Ensure that
- * **material** is a valid pointer.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetMaterialColor(
@@ -232,9 +235,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetMaterialColor(
  * @brief Obtains the material color of an immersive material object.
  * @param material Pointer to the immersive material object.
  * @param color Pointer to the variable used to receive the material color in 0xAARRGGBB format.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** or **color** is **NULL**).
- * Ensure that both **material** and **color** are valid pointers.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_ERROR} if the value is never set.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor(
@@ -247,9 +252,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor(
  * @param applyShadow Whether to apply a shadow to the material. The value **true** indicates that the material shadow
  * takes effect and takes precedence over the common shadow attribute. The value **false** indicates that the material
  * shadow is not added and the common shadow attribute takes effect. The default value is **true**.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** is **NULL**). Ensure that
- * **material** is a valid pointer.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetApplyShadow(
@@ -260,9 +266,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetApplyShadow(
  * @param material Pointer to the immersive material object.
  * @param applyShadow Pointer to the variable used to receive whether the shadow is applied. If never explicitly set,
  * this pointer receives the default value **true**.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** or **applyShadow** is
- * **NULL**). Ensure that both **material** and **applyShadow** are valid pointers.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetApplyShadow(
@@ -276,9 +283,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetApplyShadow(
  * @param interactive Whether interactive deformation can be performed for a material. The value **true** indicates
  * that interactive deformation can be performed for a material, and **false** indicates the opposite. If this
  * parameter is not set, the component behavior is followed.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** is **NULL**). Ensure that
- * **material** is a valid pointer.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive(
@@ -292,11 +300,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive(
  * If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param interactive Pointer to the variable used to receive whether the material supports interactive deformation.
  * If **interactive** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** or **interactive** is
- * **NULL**). Ensure that both **material** and **interactive** are valid pointers.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_ERROR} if this attribute has never been set. Call
- * **OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive** to set this attribute before obtaining it.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_ERROR} if the value is never set.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetInteractive(
@@ -327,9 +335,10 @@ void OH_ArkUI_NativeModule_LightEffectOptions_Destroy(ArkUI_LightEffectOptionsHa
  * @param options Pointer to the light sensing interaction effect configuration object.
  * @param color Color of the light sensing interaction effect, in 0xAARRGGBB format. If this parameter is not set, the
  * default color is white (0xffffffff).
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**options** is **NULL**). Ensure that
- * **options** is a valid pointer.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LightEffectOptions_SetColor(
@@ -343,9 +352,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LightEffectOptions_SetColor(
  * @param options Pointer to the light sensing interaction effect configuration object. A null pointer disables the
  * light sensing interaction effect, and a non-null enables it. A non-null pointer must be created through
  * {@link OH_ArkUI_NativeModule_LightEffectOptions_Create}.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** is **NULL**). Ensure that
- * **material** is a valid pointer.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect(
@@ -355,12 +365,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect(
  * @brief Obtains the color of the light sensing interaction effect for an immersive material object.
  * @param material Pointer to the immersive material object.
  * @param color Pointer to the variable used to receive the light sensing interaction effect color in 0xAARRGGBB format.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs (**material** or **color** is **NULL**).
- * Ensure that both **material** and **color** are valid pointers.
- * Returns {@link ARKUI_ERROR_CODE_PARAM_ERROR} if the light sensing interaction effect has never been set or has been
- * disabled. Call **OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect** first to set a non-null light sensing
- * interaction effect configuration pointer before obtaining the color.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_ERROR} if lightEffect is never set or disabled.</li>
+ *         </ul>
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetLightEffectColor(
