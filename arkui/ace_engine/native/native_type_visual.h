@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup ArkUI_NativeModule
  * @{
@@ -20,6 +21,7 @@
  *
  * @since 12
  */
+
 /**
  * @file native_type_visual.h
  *

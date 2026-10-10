@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup ArkUI_NativeModule
  * @{
@@ -20,6 +21,7 @@
  *
  * @since 12
  */
+
 /**
  * @file native_animate.h
  *
@@ -39,9 +41,11 @@
 #include <cstdint>
 #else
 #include <stdint.h>
+#include <stdbool.h>
 #endif
 
 #include "native_type.h"
+#include "native_render.h"
 
 #ifdef __cplusplus
 extern "C" {
