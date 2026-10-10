@@ -52,147 +52,180 @@ extern "C" {
  */
 typedef enum HiDebug_ErrorCode {
     /**
-     * Operation successful.
+     * @brief Operation successful.
      */
     HIDEBUG_SUCCESS = 0,
     /**
-     * Invalid parameter. Possible causes: 1. The parameter value is incorrect. 2. The parameter type is incorrect.
+     * @brief Invalid parameter. Possible causes: 1. The parameter value
+     * is incorrect. 2. The parameter type is incorrect.
      */
     HIDEBUG_INVALID_ARGUMENT = 401,
     /**
-     * Repeated collection.
+     * @brief Repeated collection.
      */
     HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,
     /**
-     * No file write permission.
+     * @brief No file write permission.
      */
     HIDEBUG_NO_PERMISSION = 11400103,
     /**
-     * Internal system error.
+     * @brief Internal system error.
      */
     HIDEBUG_TRACE_ABNORMAL = 11400104,
     /**
-     * No trace task is running.
+     * @brief No trace task is running.
      */
     HIDEBUG_NO_TRACE_RUNNING = 11400105,
     /**
-     * The trace file storage reaches the upper limit.
+     * @brief The trace file storage reaches the upper limit.
      * @since 24
      */
     OH_HIDEBUG_TRACE_STORAGE_LIMIT = 11400120,
     /**
-     * PC address passed to the symbol parsing function is invalid.
+     * @brief PC address passed to the symbol parsing function is invalid.
      * @since 20
      */
     HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200,
     /**
-     * Current device is not supported.
+     * @brief Current device is not supported.
      * @since 22
      */
     HIDEBUG_NOT_SUPPORTED = 11400300,
     /**
-     * Current process is being sampled.
+     * @brief Current process is being sampled.
      * @since 22
      */
     HIDEBUG_UNDER_SAMPLING = 11400301,
     /**
-     * Sampling resources are unavailable.
+     * @brief Sampling resources are unavailable.
      * @since 22
      */
     HIDEBUG_RESOURCE_UNAVAILABLE = 11400302,
     /**
-     * Resource profiling started or stopped successfully.
+     * @brief Resource profiling started or stopped successfully.
      * @since 24
      */
     HIDEBUG_RES_PROF_SUCCESS = 11400400,
     /**
-     * Invalid resource profiling parameter.
+     * @brief Invalid resource profiling parameter.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_ARG = 11400410,
     /**
-     * Invalid maximum duration for resource profiling.
+     * @brief Invalid maximum duration for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_DURATION = 11400411,
     /**
-     * Invalid resource profiling filtering size.
+     * @brief Invalid resource profiling filtering size.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_FILTER_SIZE = 11400412,
     /**
-     * Invalid maximum stack depth for resource profiling.
+     * @brief Invalid maximum stack depth for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH = 11400413,
     /**
-     * Invalid statistics interval for resource profiling.
+     * @brief Invalid statistics interval for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL = 11400414,
     /**
-     * Invalid sampling size for resource profiling.
+     * @brief Invalid sampling size for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL = 11400415,
     /**
-     * Invalid resource type for resource profiling.
+     * @brief Invalid resource type for resource profiling.
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE = 11400416,
     /**
-     * Insufficient resource profiling permission. The target process for resource profiling can only be the process
+     * @brief Insufficient resource profiling permission. The target
+     * process for resource profiling can only be the process
      * that calls this API.
      * @since 24
      */
     HIDEBUG_RES_PROF_PERMISSION_DENIED = 11400420,
     /**
-     * Resource profiling is repeatedly started.
+     * @brief Resource profiling is repeatedly started.
      * @since 24
      */
     HIDEBUG_RES_PROF_ALREADY_STARTED = 11400421,
     /**
-     * Failed to stop resource profiling because it is not started.
+     * @brief Failed to stop resource profiling because it is not started.
      * @since 24
      */
     HIDEBUG_RES_PROF_NOT_STARTED = 11400422,
     /**
-     * The number of resource profiling processes exceeds 4.
+     * @brief The number of resource profiling processes exceeds 4.
+     * This limit applies only to release-signed applications.
+     * Debug-signed applications are not subject to this limit
+     * for development and debugging purposes. The limit is
+     * released when an existing profiling task stops.
+     * [since 26.0.1]
+     * On API 26.0.0 and below, this limit applied to all
+     * applications. [since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_PROCESS_OVERLIMIT = 11400423,
     /**
-     * Resource profiling conflicts with CLI tools or system collection tasks.
+     * @brief Resource profiling conflicts with CLI tools or system collection tasks.
      * @since 24
      */
     HIDEBUG_RES_PROF_CONFLICT = 11400424,
     /**
-     * Resource profiling automatically stopped due to the duration limit.
+     * @brief Resource profiling automatically stopped due to the duration limit.
      * @since 24
      */
     HIDEBUG_RES_PROF_AUTO_STOPPED_BY_DURATION = 11400425,
     /**
-     * The daily quota for resource profiling exceeded 10 times.
+     * @brief The daily quota for resource profiling is exceeded.
+     * For release-signed applications, the limit is 2 times
+     * per day per application and 4 times per day for device.
+     * Debug-signed applications are not subject to this limit
+     * for development and debugging purposes. The quota
+     * resets at the start of each day. [since 26.0.1]
+     * On API 26.0.0 and below, only debug-signed applications
+     * were supported, with a limit of 10 times per day.
+     * [since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED = 11400426,
     /**
-     * The system CPU is overloaded, with the CPU usage exceeding 70%.
+     * @brief Resource profiling requests are not permitted when the
+     * system CPU is overloaded, with the CPU usage exceeding
+     * 70%. Callers may retry when CPU usage drops below the
+     * threshold.
      * @since 24
      */
     HIDEBUG_RES_PROF_CPU_OVERLOADED = 11400427,
     /**
-     * The available memory space is less than 15%.
+     * @brief Resource profiling requests are not permitted when the
+     * system is under memory pressure. Memory pressure is
+     * defined as available system memory below 2GB, a fixed
+     * threshold independent of device capacity. Callers may
+     * retry when available memory recovers. [since 26.0.1]
+     * On API 26.0.0 and below, memory pressure was defined
+     * as available memory below 15%. [since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL = 11400428,
     /**
-     * The available storage space is less than 15%.
+     * @brief Resource profiling requests are not permitted when the
+     * system is under storage pressure. Storage pressure is
+     * defined as available system storage dropping below the
+     * greater of 3% of total storage and 15GB. Callers may
+     * retry when available storage recovers. [since 26.0.1]
+     * On API 26.0.0 and below, storage pressure was defined
+     * as available storage below 15%. [since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL = 11400429,
     /**
-     * Failed to start or stop resource profiling.
+     * @brief Failed to start or stop resource profiling. Callers
+     * may check system conditions and retry.
      * @since 24
      */
     HIDEBUG_RES_PROF_FAILURE = 11400430,
@@ -325,11 +358,11 @@ typedef struct HiDebug_MemoryLimit {
  */
 typedef enum HiDebug_TraceFlag {
     /**
-     * Only the main thread of the current application.
+     * @brief Only the main thread of the current application.
      */
     HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,
     /**
-     * All threads of the application.
+     * @brief All threads of the application.
      */
     HIDEBUG_TRACE_FLAG_ALL_THREADS = 2
 } HiDebug_TraceFlag;
@@ -482,11 +515,11 @@ typedef struct HiDebug_NativeStackFrame {
  */
 typedef enum HiDebug_StackFrameType {
     /**
-     * JS stack frame.
+     * @brief JS stack frame.
      */
     HIDEBUG_STACK_FRAME_TYPE_JS = 1,
     /**
-     * Native stack frame.
+     * @brief Native stack frame.
      */
     HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2
 } HiDebug_StackFrameType;
@@ -498,7 +531,7 @@ typedef enum HiDebug_StackFrameType {
  */
 typedef struct HiDebug_StackFrame {
     /**
-     * Type of the current stack.
+     * @brief Type of the current stack.
      */
     HiDebug_StackFrameType type;
 
@@ -579,27 +612,27 @@ typedef struct HiDebug_ProcessSamplerConfig {
  */
 typedef enum HiDebug_CrashObjType {
     /**
-     * String.
+     * @brief String.
      */
     HIDEBUG_CRASHOBJ_STRING = 0,
     /**
-     * 64-byte memory block.
+     * @brief 64-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_64B = 1,
     /**
-     * 256-byte memory block.
+     * @brief 256-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_256B = 2,
     /**
-     * 1024-byte memory block.
+     * @brief 1024-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_1024B = 3,
     /**
-     * 2048-byte memory block.
+     * @brief 2048-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_2048B = 4,
     /**
-     * 4096-byte memory block.
+     * @brief 4096-byte memory block.
      */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
 } HiDebug_CrashObjType;
@@ -611,27 +644,27 @@ typedef enum HiDebug_CrashObjType {
  */
 typedef enum OH_HiDebug_ResourceType {
     /**
-     * File descriptor.
+     * @brief File descriptor.
      * @since 24
      */
     OH_RES_TYPE_FD,
     /**
-     * Thread.
+     * @brief Thread.
      * @since 24
      */
     OH_RES_TYPE_THREAD,
     /**
-     * Native memory.
+     * @brief Native memory.
      * @since 24
      */
     OH_RES_TYPE_NATIVE,
     /**
-     * GPU memory.
+     * @brief GPU memory.
      * @since 24
      */
     OH_RES_TYPE_GPU,
     /**
-     * Global handle.
+     * @brief Global handle.
      * @since 24
      */
     OH_RES_TYPE_GLOBAL_HANDLE,
@@ -664,12 +697,13 @@ typedef enum OH_HiDebug_ResourceType {
  */
 typedef struct OH_HiDebug_ProfilingResult {
     /**
-     * Profiled resource type.
+     * @brief Profiled resource type.
      * @since 24
      */
     OH_HiDebug_ResourceType resourceType;
     /**
-     * File path of the profiling result data. Null if the profiling fails.
+     * @brief File path of the profiling result data. Null if the
+     * profiling fails.
      * @since 24
      */
     const char* filePath;
