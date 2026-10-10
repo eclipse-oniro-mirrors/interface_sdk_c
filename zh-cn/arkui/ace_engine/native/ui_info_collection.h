@@ -129,11 +129,10 @@ typedef enum {
  * 回调通过借用的{@link OH_ArkUI_NativeModule_UIJsonWrapper}对象接收事件数据，
  * 不取得该对象的所有权。对象仅在本次回调执行期间有效，回调不得保留或销毁该对象。
  * 事件数据中的所有位置坐标均相对于屏幕（显示器），单位为物理像素（px）。
- * 事件数据顶层始终包含schemaVersion字段，结构如下：
+ * 事件数据顶层始终包含schemaVersion字段。
+ * 顶层结构为{ "schemaVersion": 1, "type": "<event type>", ... }。
  *
- * { "schemaVersion": 1, "type": "<event type>", ... }
- *
- * 各事件类型对应的字段如下：
+ * 各事件类型对应的字段见下方列表。
  * - 点击手势或点击事件：id、point、count、fingers。
  * - 长按手势：id、point、actualDuration（毫秒）、action（"end"）。
  * - 拖动手势：id、point、direction、action（"start" | "end" | "cancel"）。

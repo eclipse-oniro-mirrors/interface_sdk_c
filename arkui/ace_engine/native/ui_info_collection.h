@@ -131,11 +131,9 @@ typedef enum {
  * event payload. The object is valid only within the callback invocation; the callback must not
  * retain or destroy it. All positional coordinates in the payload are relative to the screen
  * (display), in physical pixels (px). The payload always includes a top-level schemaVersion field.
- * Its top-level structure is:
+ * Its top-level structure is { "schemaVersion": 1, "type": "<event type>", ... }.
  *
- * { "schemaVersion": 1, "type": "<event type>", ... }
- *
- * The event-specific fields are as follows:
+ * The event-specific fields are listed below.
  * - Tap or click: id, point, count, fingers.
  * - Long press: id, point, actualDuration (milliseconds), action ("end").
  * - Pan: id, point, direction, action ("start" | "end" | "cancel").
