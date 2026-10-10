@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup AudioSuite
+ * @addtogroup OHAudioSuite
  * @{
  *
  * @brief Provide the definition of the C interface for the audio download manager module.
@@ -31,6 +31,7 @@
 #ifndef NATIVE_AUDIO_SUITE_DOWNLOAD_MANAGER_H
 #define NATIVE_AUDIO_SUITE_DOWNLOAD_MANAGER_H
 #include <stdint.h>
+#include <stdbool.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -98,6 +99,44 @@ typedef struct OH_AudioSuite_DownloadStatusInfoArray {
      */
     OH_AudioSuite_DownloadStatusInfo **downloadStatusInfo;
 } OH_AudioSuite_DownloadStatusInfoArray;
+
+/**
+ * @brief 定义特性版本信息结构体。
+ * @systemapi
+ * @since 26.0.1
+ */
+typedef struct OH_AudioSuite_FeatureVersionInfo {
+    /**
+     * @brief 特性名称。
+     *
+     * @since 26.0.1
+     */
+    char featureName[256];
+    /**
+     * @brief 下载状态。
+     *
+     * @since 26.0.1
+     */
+    int32_t downloadStatus;
+    /**
+     * @brief 特性版本。
+     *
+     * @since 26.0.1
+     */
+    char version[128];
+    /**
+     * @brief 特性大小以字节为单位，单位为字节。
+     *
+     * @since 26.0.1
+     */
+    int64_t size;
+    /**
+     * @brief 错误码。
+     *
+     * @since 26.0.1
+     */
+    int32_t errorCode;
+} OH_AudioSuite_FeatureVersionInfo;
 
 /**
  * @brief 声明音频下载管理器。
@@ -177,6 +216,22 @@ int32_t OH_AudioSuite_StartDownload(
     OH_AudioSuite_DownloadManager *downloadManager, const char *featureName);
 
 /**
+ * @brief 暂停下载特性二进制文件。
+ * @systemapi
+ * @param downloadManager 下载管理器句柄。
+ * @param featureName 要暂停的功能的名称。
+ * @return <ul>
+ * <li>{@link AUDIOCOMMON_RESULT_SUCCESS}如果执行成功</li>
+ * <li>202如果非系统应用程序调用此系统API。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM如果downloadManager或featureName为nullptr。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
+ * </ul>
+ * @since 26.0.0
+ */
+int32_t OH_AudioSuite_PauseDownload(
+    OH_AudioSuite_DownloadManager *downloadManager, const char *featureName);
+
+/**
  * @brief 取消下载特性。
  * @systemapi
  * @param downloadManager 下载管理器句柄。
@@ -242,6 +297,73 @@ int32_t OH_AudioSuite_GetDownloadStatus(
  */
 int32_t OH_AudioSuite_UninstallCloudRom(
     OH_AudioSuite_DownloadManager *downloadManager, const char *featureName);
+
+/**
+ * @brief 批量获取特性的安装状态。
+ * @systemapi
+ * @param downloadManager 【in】下载管理器句柄。
+ * @param featureNames 【in】特性名称的数组。
+ * @param count 【in】输入数组中特性名称的个数。
+ * @param installStatus 【out】调用者分配的接收安装状态的布尔数组。
+ * @param installStatusSize 【in】调用者分配的输出数组的容量。必须至少为count。
+ * @return <ul>
+ * <li>{@link}如果执行成功</li>
+ * <li>202权限验证失败。非系统应用调用系统API</li>
+ * <li>{@链接如果下载管理器、功能名称、
+ * installStatus为nullptr, count为0，或者installStatusSize小于count。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
+ * </ul>
+ * @since 26.0.1
+ */
+int32_t OH_AudioSuite_IsFeatureInstalled(OH_AudioSuite_DownloadManager *downloadManager,
+    const char **featureNames, uint32_t count,
+    bool *installStatus, uint32_t installStatusSize);
+
+/**
+ * @brief 批量获取特性的下载状态。
+ * @systemapi
+ * @param downloadManager 【in】下载管理器句柄。
+ * @param featureNames 【in】特性名称的数组。
+ * @param count 【in】输入数组中特性名称的个数。
+ * @param statusInfos 【out】调用者分配的接收下载状态的数组。
+ * @param statusInfosSize 【in】调用者分配的输出数组的容量。必须至少为count。
+ * @return <ul>
+ * <li>{@link}如果执行成功</li>
+ * <li>202权限验证失败。非系统应用调用系统API</li>
+ * <li>{@链接如果downloadManager、featureNames、statusInfos都为nullptr，
+ * count为0，或者statusInfosSize小于count。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
+ * </ul>
+ * @since 26.0.1
+ */
+int32_t OH_AudioSuite_GetFeatureStatus(
+    OH_AudioSuite_DownloadManager *downloadManager,
+    const char **featureNames, uint32_t count,
+    OH_AudioSuite_DownloadStatusInfo *statusInfos, uint32_t statusInfosSize);
+
+/**
+ * @brief 批量获取特性的新版本信息。
+ * @systemapi
+ * @param downloadManager 【in】下载管理器句柄。
+ * @param featureNames 【in】特性名称的数组。
+ * @param count 【in】输入数组中特性名称的个数。
+ * @param versionInfos 【out】调用者分配的接收版本信息的数组。
+ * @param versionInfosSize 【in】调用者分配的输出数组的容量。必须至少为count。
+ * @return <ul>
+ * <li>{@链接：执行成功</li></li>
+ * <li>202权限验证失败。非系统应用程序调用系统API</li>
+ * <li>{@链接如果downloadManager、featureNames、versionInfos都是nullptr，
+ * count为0，或者versionInfosSize小于count。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET}要求的网络条件不满足。
+ * 当前网络状态不可用</li>
+ * </ul>
+ * @since 26.0.1
+ */
+int32_t OH_AudioSuite_GetNewVersionInfo(
+    OH_AudioSuite_DownloadManager *downloadManager,
+    const char **featureNames, uint32_t count,
+    OH_AudioSuite_FeatureVersionInfo *versionInfos, uint32_t versionInfosSize);
 
 #ifdef __cplusplus
 }

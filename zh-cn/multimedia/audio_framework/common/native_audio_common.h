@@ -121,6 +121,24 @@ typedef enum {
      * @since 12
      */
     AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301,
+
+    /**
+     * @brief 系统服务进程死亡。
+     * @since 26.0.1
+     */
+    AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED = 6800302,
+
+    /**
+     * @brief 网络条件不满足接口要求。
+     * @since 26.0.1
+     */
+    AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET = 6800501,
+
+    /**
+     * @brief 设备存储空间不足。
+     * @since 26.0.1
+     */
+    AUDIOCOMMON_RESULT_ERROR_STORAGE_NOT_ENOUGH = 6800502
 } OH_AudioCommon_Result;
 
 /**
