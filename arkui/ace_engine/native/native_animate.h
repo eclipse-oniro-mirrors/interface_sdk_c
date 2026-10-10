@@ -69,8 +69,8 @@ typedef struct {
      */
     uint32_t max;
     /**
-     * Expected optimal frame rate, in fps. Rule: The value of **expected** must be within the range of [**min**, **max**
-     *].
+     * Expected optimal frame rate, in fps. Rule: The value of **expected** must be within the range of [**min**,
+     * **max**].
      */
     uint32_t expected;
 } ArkUI_ExpectedFrameRateRange;
@@ -208,39 +208,69 @@ typedef struct {
      * @brief Performs an explicit animation transition effect.
      * @note Make sure the component attributes to be set in the event closure have been set before.
      *
-     * @param context UI context instance, which is used to specify the UI context where the animation resides. It must not be **NULL**.
+     * @param context UI context instance, which is used to specify the UI context where the animation resides. It
+     * must not be **NULL**.
      * @param option Pointer to the animation effect option. It must not be **NULL**.
-     * @param update Pointer to the closure function for the animation effect. The system automatically inserts a transition animation for state changes that occur within the closure function. The parameter must not be **NULL**.
-     *     **Note:** The component attributes to be set in the closure function must have been set on the component before **animateTo** is called.
-     * @param complete Pointer to the callback invoked when the animation playback is complete. If **NULL** is passed, no completion callback notification is set.
+     * @param update Pointer to the closure function for the animation effect. The system automatically inserts a
+     * transition animation for state changes that occur within the closure function. The parameter must not be
+     * **NULL**.
+     *     **Note:** The component attributes to be set in the closure function must have been set on the component
+     *     before **animateTo** is called.
+     * @param complete Pointer to the callback invoked when the animation playback is complete. If **NULL** is
+     * passed, no completion callback notification is set.
      * @return Result code.
      *             Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *             Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs. Check the type and validity of the passed parameters. Possible causes: **context** is invalid or **option** is set to **NULL** or is set improperly. Solution: ensure that **context** is valid and **option** is set correctly and not to **NULL**.
+     *             Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs. Check the type and
+     *             validity of the passed parameters. Possible causes: **context** is invalid or **option** is set to
+     *             **NULL** or is set improperly. Solution: ensure that **context** is valid and **option** is set
+     *             correctly and not to **NULL**.
      */
     int32_t (*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, ArkUI_ContextCallback* update,
         ArkUI_AnimateCompleteCallback* complete);
 
     /**
-     * @brief Defines a keyframe animation. By specifying keyframes to define the values of attributes at different time points, the system automatically calculates the attribute values of intermediate frames based on the interpolation algorithm to achieve smooth transitions. For details about the keyframe parameter configuration, see {@link ArkUI_KeyframeAnimateOption}. Unlike the explicit transition animation of **animateTo**, **keyframeAnimateTo** is suitable for scenarios where different animation states need to be defined at multiple time points. You can use **animateTo** when only a transition animation from the start state to the end state is required, and use **keyframeAnimateTo** when fine-grained control of the animation process through multiple keyframes is required.
-     * @param context UI context instance, which is used to specify the UI context where the keyframe animation resides. It must not be **NULL**.
-     * @param option Pointer to the keyframe animation option, which is used to specify the parameter of the keyframe animation, including the time point, animation attribute value, and transition effect. It must not be **NULL**.
+     * @brief Defines a keyframe animation. By specifying keyframes to define the values of attributes at different
+     * time points, the system automatically calculates the attribute values of intermediate frames based on the
+     * interpolation algorithm to achieve smooth transitions. For details about the keyframe parameter configuration,
+     * see {@link ArkUI_KeyframeAnimateOption}. Unlike the explicit transition animation of **animateTo**,
+     * **keyframeAnimateTo** is suitable for scenarios where different animation states need to be defined at multiple
+     * time points. You can use **animateTo** when only a transition animation from the start state to the end state is
+     * required, and use **keyframeAnimateTo** when fine-grained control of the animation process through multiple
+     * keyframes is required.
+     * @param context UI context instance, which is used to specify the UI context where the keyframe animation
+     * resides. It must not be **NULL**.
+     * @param option Pointer to the keyframe animation option, which is used to specify the parameter of the keyframe
+     * animation, including the time point, animation attribute value, and transition effect. It must not be
+     * **NULL**.
      * @return Result code.
      *             Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *             Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs. Check the type and validity of the passed parameters. Possible causes: **context** is invalid or **option** is set to **NULL** or is set improperly. Solution: ensure that **context** is valid and **option** is set correctly and not to **NULL**.
+     *             Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs. Check the type and
+     *             validity of the passed parameters. Possible causes: **context** is invalid or **option** is set to
+     *             **NULL** or is set improperly. Solution: ensure that **context** is valid and **option** is set
+     *             correctly and not to **NULL**.
      */
     int32_t (*keyframeAnimateTo)(ArkUI_ContextHandle context, ArkUI_KeyframeAnimateOption* option);
 
     /**
-     * @brief Creates an animator animation object and returns its pointer. Unlike the trigger-based animation of **animateTo**\/**keyframeAnimateTo**, **createAnimator** creates a persistently controllable animation object, which is suitable for scenarios requiring fine-grained control such as repeated starting, stopping, and state listening. You can use **animateTo** or **keyframeAnimateTo** for one-time transition animations, and use **createAnimator** when persistent control of the animation lifecycle is required.
-     * @param context UI context instance, which is used to specify the UI context where the animation resides. It must not be **NULL**.
+     * @brief Creates an animator animation object and returns its pointer. Unlike the trigger-based animation of
+     * **animateTo**\/**keyframeAnimateTo**, **createAnimator** creates a persistently controllable animation object,
+     * which is suitable for scenarios requiring fine-grained control such as repeated starting, stopping, and state
+     * listening. You can use **animateTo** or **keyframeAnimateTo** for one-time transition animations, and use
+     * **createAnimator** when persistent control of the animation lifecycle is required.
+     * @param context UI context instance, which is used to specify the UI context where the animation resides. It
+     * must not be **NULL**.
      * @param option Pointer to the animator animation option, which must not be **NULL**.
-     * @return Pointer to the animator animation object, which is used to control the animation object subsequently. **NULL** is returned when the function parameter is invalid.
+     * @return Pointer to the animator animation object, which is used to control the animation object subsequently.
+     * **NULL** is returned when the function parameter is invalid.
      */
     ArkUI_AnimatorHandle (*createAnimator)(ArkUI_ContextHandle context, ArkUI_AnimatorOption* option);
 
     /**
-     * @brief Disposes of the animator animation object and releases its memory. After the disposal, the handle must not be used again. When **NULL** or a handle that has been destroyed is passed, the API does not perform the disposal operation.
-     * @param animatorHandle Animator animation object, which must be a valid handle created by **createAnimator**. It must not be an object that has been disposed of.
+     * @brief Disposes of the animator animation object and releases its memory. After the disposal, the handle must
+     * not be used again. When **NULL** or a handle that has been destroyed is passed, the API does not perform the
+     * disposal operation.
+     * @param animatorHandle Animator animation object, which must be a valid handle created by **createAnimator**. It
+     * must not be an object that has been disposed of.
      */
     void (*disposeAnimator)(ArkUI_AnimatorHandle animatorHandle);
 } ArkUI_NativeAnimateAPI_1;
@@ -1169,7 +1199,10 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, floa
 /**
  * @brief Creates a spring curve. The curve shape is determined by the spring parameters, and the animation duration is
  * determined by the duration parameter in the animation parameters.
-   * @param velocity Initial velocity. It is a parameter that reflects the impact of external factors on the spring motion, and its purpose is to ensure that the object smoothly transitions from the previous motion state to the spring motion. This velocity is a normalized velocity, whose value equals the actual velocity at the start of the animation divided by the change value of the animation attribute.
+   * @param velocity Initial velocity. It is a parameter that reflects the impact of external factors on the spring
+   * motion, and its purpose is to ensure that the object smoothly transitions from the previous motion state to
+   * the spring motion. This velocity is a normalized velocity, whose value equals the actual velocity at the
+   * start of the animation divided by the change value of the animation attribute.
  * @param mass Mass. It is the object on which the force acts in the spring system, and it produces an inertial effect
  * on the spring system. The greater the mass, the larger the oscillation amplitude and the slower the speed of
  * returning to the equilibrium position. Value range: [0, +∞).
@@ -1238,7 +1271,10 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
  *
  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
  * <b>animation</b> or <b>animateTo</b>.
-   * @param velocity Initial velocity. It is applied by external factors to the spring animation, designed to help ensure the smooth transition from the previous motion state. This is a normalized velocity, and it is calculated as the actual initial velocity divided by the change in the animation attribute. Value range: (-∞, +∞).
+   * @param velocity Initial velocity. It is applied by external factors to the spring animation, designed to help
+   * ensure the smooth transition from the previous motion state. This is a normalized velocity, and it is
+   * calculated as the actual initial velocity divided by the change in the animation attribute. Value range:
+   * (-∞, +∞).
  * @param mass Mass. It is the object on which the force acts in the spring system, which produces an inertial effect
  * on the spring system. The greater the mass, the larger the oscillation amplitude and the slower the speed of
  * returning to the equilibrium position. Value range: [0, +∞).
