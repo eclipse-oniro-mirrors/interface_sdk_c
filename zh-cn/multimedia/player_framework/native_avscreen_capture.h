@@ -908,6 +908,21 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_PauseScreenCapture(struct OH_AVSc
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVScreenCapture *capture);
 
+/**
+ * @brief 设置当麦克风开启时是否使能回声消除（AEC）功能。<br>
+ * 该策略需通过{@link OH_AVScreenCapture_SetCaptureStrategy}在录屏启动前完成配置。
+ * 
+ * @param strategy 指向OH_AVScreenCapture_CaptureStrategy实例的指针。
+ * @param enable 麦克风采集时是否使能AEC（回声消除）能力。<br>
+ * true表示开启麦克风回声消除功能，false表示关闭麦克风回声消除功能。<br>
+ * 默认是false。
+ * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入value为无效值。
+ * @since 26.2.0
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
+    OH_AVScreenCapture_CaptureStrategy *strategy, bool enable);
+
 #ifdef __cplusplus
 }
 #endif
