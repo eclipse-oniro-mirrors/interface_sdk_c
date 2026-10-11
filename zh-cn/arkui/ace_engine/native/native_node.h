@@ -7734,6 +7734,24 @@ typedef enum {
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
     /**
+     * @brief 设置日历选择器每周的起始日，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器每周的起始日。取值范围：[0, 7]。
+     * <br>0：跟随系统区域变化。1：周一。2：周二。3：周三。4：周四。5：周五。6：周六。7：周日。默认值：0（跟随系统区域变化）。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器每周的起始日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
+     * @since 26.2.0
+     */
+    NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
+    /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
