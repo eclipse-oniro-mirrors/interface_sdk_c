@@ -104,7 +104,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  *
  * @param json [in] JSON数据对象，不能为NULL。
  *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
- * @return 返回借用的JSON字符串指针，调用方不拥有其所有权；如果json为NULL，则返回NULL。
+ * @return <ul>
+ *     <li>借用的JSON字符串指针，调用方不得修改或释放该指针。</li>
+ *     <li>json为NULL时返回NULL。</li>
+ *     </ul>
  * @since 26.2.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);

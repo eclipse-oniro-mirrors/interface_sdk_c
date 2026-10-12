@@ -112,7 +112,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  *
  * @param json [in] The JSON data object. It must not be NULL.
  *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
- * @return The borrowed JSON string, or NULL if json is NULL.
+ * @return <ul>
+ *     <li>The borrowed JSON string. The caller must not modify or free it.</li>
+ *     <li>NULL if json is NULL.</li>
+ *     </ul>
  * @since 26.2.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
