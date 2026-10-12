@@ -117,6 +117,9 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  *
  * 返回的长度不包含末尾的空字符，包含JSON字符串中schemaVersion字段所占的字节。
  *
+ * 传入NULL时未获取到对象的长度。重试前应提供有效且尚未销毁的对象，使用相同NULL参数重试无法成功。
+ * 本查询不分配或释放资源。
+ *
  * @param json [in] JSON数据对象，不能为NULL。
  *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
  * @return <ul>

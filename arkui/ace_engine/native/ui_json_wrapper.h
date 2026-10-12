@@ -126,6 +126,9 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  * The returned length excludes the terminating '\0' character and includes the schemaVersion
  * field in the JSON string.
  *
+ * A NULL input does not produce a size for an object. Provide a valid live object before retrying;
+ * retrying with the same NULL input cannot succeed. This query does not allocate or release resources.
+ *
  * @param json [in] The JSON data object. It must not be NULL.
  *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
  * @return <ul>
