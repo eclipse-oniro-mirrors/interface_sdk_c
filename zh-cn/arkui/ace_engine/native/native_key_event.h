@@ -37,6 +37,7 @@
 #define ARKUI_NATIVE_KEY_EVENT_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #include "native_type.h"
 #include "ui_input_event.h"
@@ -987,6 +988,234 @@ typedef enum {
      */
     ARKUI_KEY_INTENTION_CAMERA = 300
 } ArkUI_KeyIntension;
+
+/**
+ * @brief 按键事件意图类型的正确拼写别名。
+ *
+ * 原类型名 {@link ArkUI_KeyIntension} 将保留以兼容已有接口。
+ *
+ * @since 26.2.0
+ */
+typedef ArkUI_KeyIntension OH_ArkUI_KeyIntention;
+
+/**
+ * @brief 创建可通过 {@link OH_ArkUI_KeyEvent_Dispatch} 分发的按键事件。
+ *
+ * @param event [out] 二级指针，指向创建的 **ArkUI_UIInputEvent** 对象，不能为空。成功时创建的事件写入
+ *     **event**，事件归调用方所有，必须调用{@link OH_ArkUI_KeyEvent_Destroy}释放。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空。</li>
+ *     </ul>
+ * @release arkui/OH_ArkUI_KeyEvent_Destroy {event}
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_Create(ArkUI_UIInputEvent** event);
+
+/**
+ * @brief 销毁通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件，并将事件指针置空。
+ *
+ * 当 **event** 不为空且 **event** 指向的事件指针为空时，函数执行成功。
+ *
+ * @param event [in] 二级指针，指向待销毁的 **ArkUI_UIInputEvent** 对象，不能为空。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或者输入事件不是通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_Destroy(ArkUI_UIInputEvent** event);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件类型。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param type [in] 按键事件类型。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetType(ArkUI_UIInputEvent* event, ArkUI_KeyEventType type);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件键码。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param keyCode [in] 按键键码，取值由 {@link ArkUI_KeyCode} 定义。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyCode(ArkUI_UIInputEvent* event, int32_t keyCode);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件键值。
+ *
+ * 本函数会复制 **keyText**。函数返回后，调用方可以释放或复用原字符串。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param keyText [in] 以空字符结尾的按键键值，UTF-8编码，不能为空。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyText(ArkUI_UIInputEvent* event, const char* keyText);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件输入设备类型。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param keySource [in] 输入设备类型。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeySource(ArkUI_UIInputEvent* event, ArkUI_KeySourceType keySource);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件设备ID。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param deviceId [in] 设备ID，由系统分配的输入设备标识。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetDeviceId(ArkUI_UIInputEvent* event, int32_t deviceId);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件Unicode码值。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param unicode [in] Unicode码值，必须为有效的Unicode码位。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetUnicode(ArkUI_UIInputEvent* event, uint32_t unicode);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件发生时间。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param timestamp [in] 事件发生时间，单位为ns，时间基准与{@link OH_ArkUI_UIInputEvent_GetEventTime}一致。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetEventTime(ArkUI_UIInputEvent* event, int64_t timestamp);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件中所有已按下的按键。
+ *
+ * 本函数会复制 **pressedKeyCodes**。函数返回后，调用方可以释放或复用原数组。
+ * 将 **pressedKeyCodes** 传入空指针、**length** 传入 **0** 可以清空已按下的按键。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param pressedKeyCodes [in] 所有已按下按键的键码数组，仅当 **length** 为 **0** 时可以为 <b>nullptr</b>。
+ *     每个元素的取值由 {@link ArkUI_KeyCode} 定义。
+ * @param length [in] **pressedKeyCodes** 中的元素个数，必须大于等于 **0**。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetPressedKeys(
+    ArkUI_UIInputEvent* event, const int32_t* pressedKeyCodes, int32_t length);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件意图码。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param intentionCode [in] 按键事件关联的意图码。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyIntentionCode(
+    ArkUI_UIInputEvent* event, OH_ArkUI_KeyIntention intentionCode);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件NumLock状态。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param isNumLockOn [in] NumLock是否激活。true表示处于激活状态，false表示处于未激活状态。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetNumLockOn(ArkUI_UIInputEvent* event, bool isNumLockOn);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件CapsLock状态。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param isCapsLockOn [in] CapsLock是否激活。true表示处于激活状态，false表示处于未激活状态。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetCapsLockOn(ArkUI_UIInputEvent* event, bool isCapsLockOn);
+
+/**
+ * @brief 设置通过 {@link OH_ArkUI_KeyEvent_Create} 创建的按键事件ScrollLock状态。
+ *
+ * @param event [in] 目标 **ArkUI_UIInputEvent** 对象的指针，不能为空，且必须是
+ *     通过{@link OH_ArkUI_KeyEvent_Create}创建的按键事件。
+ * @param isScrollLockOn [in] ScrollLock是否激活。true表示处于激活状态，false表示处于未激活状态。
+ * @return 错误码。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} **event** 为空，或不是通过 {@link OH_ArkUI_KeyEvent_Create}创建的按键事件。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetScrollLockOn(ArkUI_UIInputEvent* event, bool isScrollLockOn);
 
 /**
  * @brief 获取按键的类型。
