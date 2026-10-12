@@ -245,6 +245,8 @@ typedef enum {
  *     JSON对象顶层包含schemaVersion字段。开发者必须在使用完毕后释放该对象。
  * @param userData [in] 调用方传给OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync的数据。
  *     可以为NULL，表示未提供自定义上下文。
+ *     该指针被原样传回，框架不会解引用或释放其指向的数据。
+ *     数据的所有权仍归调用方，调用方必须保证数据在本次回调返回前一直有效。
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
  */
@@ -465,6 +467,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  *     必须调用OH_ArkUI_NativeModule_UIJsonWrapperDestroy释放该对象。
  *     JSON对象顶层包含schemaVersion字段。
  * @param userData [in] 调用方提供的、传给回调的数据，可以为NULL，表示未提供自定义上下文。
+ *     框架仅保存指针值直至请求完成，并将其原样传回，不会复制、解引用或释放指针指向的数据。
+ *     数据归调用方所有，调用方必须保证数据在完成回调返回前一直有效；请求被同步拒绝时不保留该指针。
  * @param requestId [out] 用于接收已接受请求的标识符的输出参数。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 请求已被接受。</li>

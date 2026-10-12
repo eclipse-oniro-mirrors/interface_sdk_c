@@ -250,6 +250,8 @@ typedef enum {
  *     This object needs to be released by the developer after being used.
  * @param userData [in] The caller-provided data passed to OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync.
  *     NULL is allowed and indicates that no custom context was provided.
+ *     The pointer is passed through unchanged. The framework does not dereference or free the pointed-to data.
+ *     The data remains owned by the caller and must remain valid until this callback returns.
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
  */
@@ -487,6 +489,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  *     release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
  *     The JSON object includes a top-level schemaVersion field.
  * @param userData [in] The caller-provided data passed to the callback. NULL is allowed and indicates no custom context.
+ *     The framework retains only the pointer value until completion and passes it through unchanged;
+ *     it does not copy, dereference, or free the pointed-to data. The caller owns the data and must keep it
+ *     valid until the completion callback returns. If the request is rejected synchronously, it is not retained.
  * @param requestId [out] The output identifier for the accepted request.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the request is accepted.</li>
