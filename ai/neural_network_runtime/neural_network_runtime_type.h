@@ -170,7 +170,7 @@ typedef enum {
     OH_NN_UNAVALIDABLE_DEVICE = 7,
     /** Invalid path. */
     OH_NN_INVALID_PATH = 8,
-    /** 
+    /**
      * Timeout.
      * @since 11
      */
