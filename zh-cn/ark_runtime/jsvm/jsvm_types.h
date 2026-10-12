@@ -510,31 +510,31 @@ typedef enum {
  * @since 12
  */
 typedef struct {
-    /** 总堆大小，单位kb。 */
+    /** 总堆大小，单位KB。 */
     size_t totalHeapSize;
-    /** 可执行堆的总大小，单位kb。 */
+    /** 可执行堆的总大小，单位KB。 */
     size_t totalHeapSizeExecutable;
-    /** 总的物理内存大小，单位kb。 */
+    /** 总的物理内存大小，单位KB。 */
     size_t totalPhysicalSize;
-    /** 总的可用内存大小，单位kb。 */
+    /** 总的可用内存大小，单位KB。 */
     size_t totalAvailableSize;
-    /** 已使用的堆大小，单位kb。 */
+    /** 已使用的堆大小，单位KB。 */
     size_t usedHeapSize;
-    /** 堆大小限制，单位kb。 */
+    /** 堆大小限制，单位KB。 */
     size_t heapSizeLimit;
-    /** 已分配内存的大小，单位kb。 */
+    /** 已分配内存的大小，单位KB。 */
     size_t mallocedMemory;
-    /** 外部内存大小，单位kb。 */
+    /** 外部内存大小，单位KB。 */
     size_t externalMemory;
-    /** 最大可分配内存的大小，单位kb。 */
+    /** 最大可分配内存的大小，单位KB。 */
     size_t peakMallocedMemory;
     /** 表示当前活跃的native上下文的数量，该数值一直增加可能指示存在内存泄漏。 */
     size_t numberOfNativeContexts;
     /** 表示已经脱离的上下文数量。 */
     size_t numberOfDetachedContexts;
-    /** 全局Handle的总大小，单位kb。 */
+    /** 全局Handle的总大小，单位KB。 */
     size_t totalGlobalHandlesSize;
-    /** 已经使用的全局Handle的大小，单位kb。 */
+    /** 已经使用的全局Handle的大小，单位KB。 */
     size_t usedGlobalHandlesSize;
 } JSVM_HeapStatistics;
 
@@ -558,7 +558,7 @@ typedef struct {
      * 开发环境不同，它们可能不会生效。
      */
     int* argc;
-    /** argv。 */
+    /** 指向命令行参数字符串数组的指针，与argc配合传递虚拟机相关配置。 */
     char** argv;
     /** 是否删除，为true，则已识别的标志将从（argc, argv）中移除，为false，则已识别的标志不会从（argc, argv）中移除。*/
     bool removeFlags;
@@ -633,7 +633,7 @@ typedef struct {
  * @since 11
  */
 typedef struct {
-    /** UTF8编码的字符串，包含异常信息描述。*/
+    /** UTF-8编码的字符串，包含异常信息描述。*/
     const char* errorMessage;
     /** 特定于VM的详细异常信息。目前尚未为任何VM实现此功能。*/
     void* engineReserved;
@@ -871,7 +871,7 @@ typedef enum {
     JSVM_TRACE_EXECUTE,
     /** 采集外部函数调用相关信息。*/
     JSVM_TRACE_RUNTIME,
-    /** 采集 JSVM 中回栈相关信息。*/
+    /** 采集 JSVM 中堆栈相关信息。*/
     JSVM_TRACE_STACK_TRACE,
     /** 采集主要的 WASM 相关接口调用, 例如编译与实例化 WASM 模块。*/
     JSVM_TRACE_WASM,
@@ -1043,11 +1043,11 @@ typedef struct {
     JSVM_DefineClassOptionsId id;
     /** 选项内容。 */
     union {
-        /** void*类型。*/
+        /** 指向定义Class选项值的指针。*/
         void* ptr;
-        /** int类型。*/
+        /** 存储整数类型的定义Class选项值。*/
         int num;
-        /** bool类型。*/
+        /** 存储布尔类型的定义Class选项值。*/
         bool boolean;
     } content;
 } JSVM_DefineClassOptions;
