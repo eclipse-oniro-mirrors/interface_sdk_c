@@ -161,7 +161,7 @@ typedef enum {
     OH_NN_NULL_PTR = 5,
     /** Invalid file. */
     OH_NN_INVALID_FILE = 6,
-    /** 
+    /**
      * A hardware error occurs, for example, HDL service crash.
      * @deprecated since 11
      * @useinstead {@link OH_NN_UNAVAILABLE_DEVICE}
@@ -175,11 +175,12 @@ typedef enum {
      * @since 11
      */
     OH_NN_TIMEOUT = 9,
-    /** Unsupported.
+    /**
+     * Unsupported.
      * @since 11
      */
     OH_NN_UNSUPPORTED = 10,
-    /** 
+    /**
      * Connection Exception.
      * @since 11
      */
@@ -189,12 +190,12 @@ typedef enum {
      * @since 11
      */
     OH_NN_SAVE_CACHE_EXCEPTION = 12,
-    /** 
+    /**
      * Dynamic shape.
      * @since 11
      */
     OH_NN_DYNAMIC_SHAPE = 13,
-    /** 
+    /**
      * A hardware error occurs, for example, HDL service crash.
      * @since 11
      */
