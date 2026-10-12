@@ -455,6 +455,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param request [in] The collection request.
  * @param format [in] The JSON output format.
  * @param json [out] The output immutable JSON object, which includes a top-level schemaVersion field.
+ *     The output pointer must not be NULL and must point to writable storage valid for the duration of the call.
  *     The caller must release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if collection succeeds.</li>

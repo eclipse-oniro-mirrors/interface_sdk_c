@@ -431,6 +431,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param request [in] 采集请求。
  * @param format [in] JSON输出格式。
  * @param json [out] 用于接收不可变JSON结果对象的输出参数，JSON对象顶层包含schemaVersion字段。
+ *     输出指针不能为NULL，且必须指向在整个调用期间有效的可写存储空间。
  *     调用方必须调用OH_ArkUI_NativeModule_UIJsonWrapperDestroy释放该对象。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 采集成功。</li>
