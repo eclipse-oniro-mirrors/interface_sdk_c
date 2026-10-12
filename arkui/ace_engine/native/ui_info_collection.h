@@ -492,7 +492,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  * @param callback [in] The completion callback. On success, the callback receives ownership of the JSON object and must
  *     release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
  *     The JSON object includes a top-level schemaVersion field.
- * @param userData [in] The caller-provided data passed to the callback. NULL is allowed and indicates no custom context.
+ * @param userData [in] The caller-provided data passed to the callback. NULL is allowed and indicates no custom
+ *     context.
  *     The framework retains only the pointer value until completion and passes it through unchanged;
  *     it does not copy, dereference, or free the pointed-to data. The caller owns the data and must keep it
  *     valid until the completion callback returns. If the request is rejected synchronously, it is not retained.
