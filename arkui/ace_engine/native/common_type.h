@@ -72,6 +72,13 @@ typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
 typedef struct ArkUI_DrawContext ArkUI_DrawContext;
 
 /**
+ * @brief Defines a native UI context instance.
+ *
+ * @since 12
+ */
+typedef struct ArkUI_Context ArkUI_Context;
+
+/**
  * @brief Defines the pointer to the context instance object of ArkUI on the native side.
  *
  * @since 12
