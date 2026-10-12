@@ -209,11 +209,11 @@ typedef struct {
      * @note Make sure the component attributes to be set in the event closure have been set before.
      *
      * @param context UI context instance, which is used to specify the UI context where the animation resides. It
-     * must not be **NULL**.
+     *     must not be **NULL**.
      * @param option Pointer to the animation effect option. It must not be **NULL**.
      * @param update Pointer to the closure function for the animation effect. The system automatically inserts a
-     * transition animation for state changes that occur within the closure function. The parameter must not be
-     * **NULL**.
+     *     transition animation for state changes that occur within the closure function. The parameter must not be
+     *     **NULL**.
      *     <br>**Note:** The component attributes to be set in the closure function must have been set on the component
      *     before **animateTo** is called.
      * @param complete Pointer to the callback invoked when the animation playback is complete. If **NULL** is
@@ -236,10 +236,10 @@ typedef struct {
      * required, and use **keyframeAnimateTo** when fine-grained control of the animation process through multiple
      * keyframes is required.
      * @param context UI context instance, which is used to specify the UI context where the keyframe animation
-     * resides. It must not be **NULL**.
+     *     resides. It must not be **NULL**.
      * @param option Pointer to the keyframe animation option, which is used to specify the parameter of the keyframe
-     * animation, including the time point, animation attribute value, and transition effect. It must not be
-     * **NULL**.
+     *     animation, including the time point, animation attribute value, and transition effect. It must not be
+     *     **NULL**.
      * @return <ul> 
      *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
      *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -254,7 +254,7 @@ typedef struct {
      * listening. You can use **animateTo** or **keyframeAnimateTo** for one-time transition animations, and use
      * **createAnimator** when persistent control of the animation lifecycle is required.
      * @param context UI context instance, which is used to specify the UI context where the animation resides. It
-     * must not be **NULL**.
+     *     must not be **NULL**.
      * @param option Pointer to the animator animation option, which must not be **NULL**.
      * @return Pointer to the animator animation object, which is used to control the animation object subsequently.
      * **NULL** is returned when the function parameter is invalid.
@@ -266,7 +266,7 @@ typedef struct {
      * not be used again. When **NULL** or a handle that has been destroyed is passed, the API does not perform the
      * disposal operation.
      * @param animatorHandle Animator animation object, which must be a valid handle created by **createAnimator**. It
-     * must not be an object that has been disposed of.
+     *     must not be an object that has been disposed of.
      */
     void (*disposeAnimator)(ArkUI_AnimatorHandle animatorHandle);
 } ArkUI_NativeAnimateAPI_1;
@@ -385,7 +385,7 @@ void OH_ArkUI_AnimateOption_SetTempo(ArkUI_AnimateOption* option, float value);
  * @param option Pointer to an animation configuration.
  *     <br>If **option** is set to **NULL**, the operation is invalid.
  * @param value Animation curve. Default value: {@link ARKUI_CURVE_EASE_IN_OUT}. You are advised to use
- * **ARKUI_CURVE_EASE_IN_OUT** for a smoother animation effect.
+ *     **ARKUI_CURVE_EASE_IN_OUT** for a smoother animation effect.
  *     <br>If the value is abnormal, the setting does not take effect.
  *     <br>**Note:** If {@link OH_ArkUI_AnimateOption_SetICurve} is also set, **SetICurve** takes precedence and this
  *     setting does not take effect.
@@ -399,12 +399,12 @@ void OH_ArkUI_AnimateOption_SetCurve(ArkUI_AnimateOption* option, ArkUI_Animatio
  * @param option Pointer to an animation configuration.
  *     <br>If **option** is set to **NULL**, the operation is invalid.
  * @param value Animation delay, in milliseconds. Value range: (-∞, +∞). Default value: **0**, indicating no animation
- * delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A value
- * less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute value of
- * **value** is less than the actual animation duration, the animation starts its first frame from the state at the
- * absolute value. If the absolute value of **value** is greater than or equal to the actual animation duration, the
- * animation starts its first frame from the end state. The actual animation duration is equal to the duration of a
- * single animation multiplied by the number of animation playback times.
+ *     delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A
+ *     value less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute value
+ *     of **value** is less than the actual animation duration, the animation starts its first frame from the state at
+ *     the absolute value. If the absolute value of **value** is greater than or equal to the actual animation duration,
+ *     the animation starts its first frame from the end state. The actual animation duration is equal to the duration
+ *     of a single animation multiplied by the number of animation playback times.
  * @since 12
  */
 void OH_ArkUI_AnimateOption_SetDelay(ArkUI_AnimateOption* option, int32_t value);
@@ -415,8 +415,8 @@ void OH_ArkUI_AnimateOption_SetDelay(ArkUI_AnimateOption* option, int32_t value)
  * @param option Pointer to an animation configuration.
  *     <br>If **option** is set to **NULL**, the operation is invalid.
  * @param value Number of times that the animation is played. Value range: [-1, +∞). If this parameter is set to **0**,
- * the animation is not played. If this parameter is set to **-1**, the animation is played for an infinite number of
- * times. Default value: **1** (played once).
+ *     the animation is not played. If this parameter is set to **-1**, the animation is played for an infinite number
+ *     of times. Default value: **1** (played once).
  *     <br>If the value is less than -1, the operation is invalid.
  * @since 12
  */
@@ -428,10 +428,10 @@ void OH_ArkUI_AnimateOption_SetIterations(ArkUI_AnimateOption* option, int32_t v
  * @param option Pointer to an animation configuration.
  *     <br>If **option** is set to **NULL**, the operation is invalid.
  * @param value Animation playback mode. Default value: {@link ARKUI_ANIMATION_PLAY_MODE_NORMAL}. The value options
- * include: **ARKUI_ANIMATION_PLAY_MODE_NORMAL** indicates forward playback, **ARKUI_ANIMATION_PLAY_MODE_REVERSE**
- * indicates reverse playback, **ARKUI_ANIMATION_PLAY_MODE_ALTERNATE** indicates playback in alternating mode, and
- * **ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE** indicates playback in reverse alternating mode, with reverse playback
- * on odd iterations and forward playback on even iterations.
+ *     include: **ARKUI_ANIMATION_PLAY_MODE_NORMAL** indicates forward playback, **ARKUI_ANIMATION_PLAY_MODE_REVERSE**
+ *     indicates reverse playback, **ARKUI_ANIMATION_PLAY_MODE_ALTERNATE** indicates playback in alternating mode, and
+ *     **ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE** indicates playback in reverse alternating mode, with reverse
+ *     playback on odd iterations and forward playback on even iterations.
  *     <br>If the value is abnormal, the operation is invalid.
  * @since 12
  */
@@ -470,10 +470,10 @@ ArkUI_CurveHandle OH_ArkUI_AnimateOption_GetICurve(ArkUI_AnimateOption* option);
 /**
  * @brief Creates a keyframe animation parameter object.
  * @param size Number of keyframe animation states. Value range: [0, +∞). A positive integer is required to produce an
- * animation effect.
+ *     animation effect.
  *     <br>**NULL** is returned if the value of **size** is less than 0.
  * @return Keyframe animation parameter object. If the value of **size** is less than 0 or if **option** is abnormal,
- * **NULL** is returned.
+ *     **NULL** is returned.
  * @since 12
  */
 ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create(int32_t size);
@@ -487,16 +487,18 @@ ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create(int32_t size)
 void OH_ArkUI_KeyframeAnimateOption_Dispose(ArkUI_KeyframeAnimateOption* option);
 
 /**
- * @brief Sets the overall delay of a keyframe animation, in ms. By default, playback is not delayed.
+ * @brief Sets the overall delay of a keyframe animation, in milliseconds. By default, the keyframe animation starts
+ * without any delay.
+ *
  * @param option Keyframe animation parameters.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Animation delay, in milliseconds. Value range: (-∞, +∞). Default value: **0**, indicating no animation
- * delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A value
- * less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute value of
- * **value** is less than the actual animation duration, the animation starts its first frame from the state at the
- * absolute value. If the absolute value of **value** is greater than or equal to the actual animation duration, the
- * animation starts its first frame from the end state. The actual animation duration is equal to the duration of a
- * single animation multiplied by the number of animation playback times.
+ *     delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A
+ *     value less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute
+ *     value of **value** is less than the actual animation duration, the animation starts its first frame from the
+ *     state at the absolute value. If the absolute value of **value** is greater than or equal to the actual animation
+ *     duration, the animation starts its first frame from the end state. The actual animation duration is equal to the
+ *     duration of a single animation multiplied by the number of animation playback times.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -512,9 +514,9 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* opt
  * @param option Pointer to a keyframe animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Number of times that the animation is played. Value range: [-1, +∞). If this parameter is set to **0**,
- * the animation is not played. If this parameter is set to **-1**, the animation is played for an infinite number of
- * times. Default value: **1**, indicating that the animation is played once.
- *     <br>If the value is less than -1, the operation is invalid, and the error code
+ *     the animation is not played. If this parameter is set to **-1**, the animation is played for an infinite number
+ *     of times. Default value: **1**, indicating that the animation is played once.
+ *     <br>If the value is less than **-1**, the operation is invalid, and the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -560,8 +562,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
  * @brief Sets the duration of a keyframe animation, in milliseconds.
  * @param option Pointer to a keyframe animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-   * @param value Keyframe animation duration, in ms. The default value is 1000 ms. Value range: [0, +∞).
-       *     <br>If the value is less than 0, **0** is used.
+ * @param value Keyframe animation duration, in ms. The default value is 1000 ms. Value range: [0, +∞).
+ *     <br>If the value is less than 0, **0** is used.
  * @param index State index. The value range is [0, size-1], where **size** is the number of keyframe animation states.
  *     <br>If **index** is out of range, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
@@ -576,12 +578,12 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* 
  * @brief Sets the animation curve for a specific keyframe animation segment.
  *
  * @note Because the <b>springMotion</b>, <b>responsiveSpringMotion</b>, and <b>interpolatingSpring</b> curves do not
- * have effective duration settings, they are not supported.
+ *     have effective duration settings, they are not supported.
  * @param option Pointer to a keyframe animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Animation curve to set. Default value: {@link ARKUI_CURVE_EASE_IN_OUT}.
  * @param index Index of the keyframe state segment. Value range: [0, size – 1], where **size** indicates the number of
- * keyframe animation states.
+ *     keyframe animation states.
  *     <br>If the value of **index** is less than 0 or out of range, the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
@@ -602,7 +604,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(
  * @param userData Pointer to a user-defined object.
  *     <br>Abnormal value processing is not involved.
  * @param index Index of the keyframe state segment. Value range: [0, size – 1], where **size** indicates the number of
- * keyframe animation states.
+ *     keyframe animation states.
  *     <br>If the value of **index** is less than 0 or out of range, the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
@@ -646,7 +648,7 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRat
  * @param option Pointer to a keyframe animation configuration.
  *     <br>If **option** is set to **NULL**, **0** is returned.
  * @param index State index. The value range is [0, size-1], where **size** indicates the number of keyframe animation
- * states.
+ *     states.
  *     <br>If **index** is out of range, **0** is returned.
  * @return Duration, in milliseconds. If **option** is invalid, **0** is returned.
  * @since 12
@@ -658,7 +660,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetDuration(ArkUI_KeyframeAnimateOption* 
  * @param option Pointer to a keyframe animation configuration.
  *     <br>If **option** is set to **NULL**, **NULL** is returned.
  * @param index State index. The value range is [0, size-1], where **size** indicates the number of keyframe animation
- * states.
+ *     states.
  *     <br>If **index** is out of the value range, **NULL** is returned.
  * @return Animation curve. If the parameter is abnormal, **NULL** is returned.
  * @since 12
@@ -669,7 +671,7 @@ ArkUI_CurveHandle OH_ArkUI_KeyframeAnimateOption_GetCurve(ArkUI_KeyframeAnimateO
  * @brief Creates an **AnimatorOption** object.
  *
  * @note When <b>keyframeSize</b> is greater than 0, the animation interpolation start point is 0, and the animation
- * interpolation end point is 1; no setting is allowed.
+ *     interpolation end point is 1; no setting is allowed.
  * @param keyframeSize Number of keyframes to create.
  *     <br>**NULL** is returned if the value of **keyframeSize** is less than 0.
  * @return Pointer to the animator parameter object. If the value of **size** is less than 0 or if **option** is
@@ -705,12 +707,12 @@ int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Animation delay, in milliseconds. Value range: (-∞, +∞). Default value: **0**, indicating no animation
- * delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A value
- * less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute value of
- * **value** is less than the actual animation duration, the animation starts its first frame from the state at the
- * absolute value. If the absolute value of **value** is greater than or equal to the actual animation duration, the
- * animation starts its first frame from the end state. The actual animation duration is equal to the duration of a
- * single animation multiplied by the number of animation playback times.
+ *     delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A
+ *     value less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute
+ *     value of **value** is less than the actual animation duration, the animation starts its first frame from the
+ *     state at the absolute value. If the absolute value of **value** is greater than or equal to the actual animation
+ *     duration, the animation starts its first frame from the end state. The actual animation duration is equal to the
+ *     duration of a single animation multiplied by the number of animation playback times.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -725,12 +727,12 @@ int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t v
  * no animation is played.
  *
  * @note If this parameter is set to a negative value other than <b>-1</b>, the value is invalid. In this case, the
- * animation is played once.
+ *     animation is played once.
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Value range: [-1, +∞). If this parameter is set to **0**, the animation is not played. If this
- * parameter is set to **-1**, the animation is played for an infinite number of times. Default value: **1** (played
- * once).
+ *     parameter is set to **-1**, the animation is played for an infinite number of times. Default value: **1** (
+ *     played once).
  *     <br>If the value is less than -1, the operation is invalid.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -745,12 +747,12 @@ int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int3
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value State of the component before the animation starts and after it ends during animation execution.
- * Default value: {@link ARKUI_ANIMATION_FILL_MODE_FORWARDS}.
- * The value options include: **ARKUI_ANIMATION_FILL_MODE_NONE** (0) indicates that the component restores to the
- * initial state both before and after the animation. **ARKUI_ANIMATION_FILL_MODE_FORWARDS** (1) indicates that the
- * component retains the end state after the animation ends. **ARKUI_ANIMATION_FILL_MODE_BACKWARDS** (2) indicates that
- * the component retains the start state before the animation starts. **ARKUI_ANIMATION_FILL_MODE_BOTH** (3) indicates
- * that the component retains the corresponding state both before and after the animation.
+ *     Default value: {@link ARKUI_ANIMATION_FILL_MODE_FORWARDS}.
+ *     The value options include: **ARKUI_ANIMATION_FILL_MODE_NONE** (0) indicates that the component restores to the
+ *     initial state both before and after the animation. **ARKUI_ANIMATION_FILL_MODE_FORWARDS** (1) indicates that the
+ *     component retains the end state after the animation ends. **ARKUI_ANIMATION_FILL_MODE_BACKWARDS** (2) indicates
+ *     that the component retains the start state before the animation starts. **ARKUI_ANIMATION_FILL_MODE_BOTH**
+ *     (3) indicates that the component retains the corresponding state both before and after the animation.
  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -765,12 +767,12 @@ int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_Anim
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Animation playback direction. Default value: {@link ARKUI_ANIMATION_DIRECTION_NORMAL}.
- * The value options include: **ARKUI_ANIMATION_DIRECTION_NORMAL** (0) indicates forward playback,
- * **ARKUI_ANIMATION_DIRECTION_REVERSE** (1) indicates reverse playback, **ARKUI_ANIMATION_DIRECTION_ALTERNATE** (2)
- * indicates playback in alternating mode, with forward playback on odd iterations and reverse playback on even
- * iterations, and **ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE** (3) indicates playback in reverse alternating mode,
- * with reverse playback on odd iterations and forward playback on even iterations.
- * If the value is out of the valid range, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     The value options include: **ARKUI_ANIMATION_DIRECTION_NORMAL** (0) indicates forward playback,
+ *     **ARKUI_ANIMATION_DIRECTION_REVERSE** (1) indicates reverse playback, **ARKUI_ANIMATION_DIRECTION_ALTERNATE** (2)
+ *     indicates playback in alternating mode, with forward playback on odd iterations and reverse playback on even
+ *     iterations, and **ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE** (3) indicates playback in reverse alternating
+ *     mode, with reverse playback on odd iterations and forward playback on even iterations.
+ *     If the value is out of the valid range, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -783,11 +785,11 @@ int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI
  * @brief Sets the interpolation curve for the animation of an animator.
  *
  * @note <b>springCurve</b>, <b>springMotion</b>, <b>responsiveSpringMotion</b>, <b>interpolatingSpring</b>,
- * and <b>customCurve</b> curves are not supported.
+ *     and <b>customCurve</b> curves are not supported.
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Interpolation curve. Default value: {@link ARKUI_CURVE_LINEAR}. You are advised to use
- * {@link ARKUI_CURVE_EASE_IN_OUT} to obtain a smoother animation effect.
+ *     {@link ARKUI_CURVE_EASE_IN_OUT} to obtain a smoother animation effect.
  *     <br>If **value** is set to **NULL**, the default curve {@link ARKUI_CURVE_LINEAR} is used.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -849,12 +851,13 @@ int32_t OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param time Keyframe time. Value range: [0, 1]. The time of each keyframe must increase in sequence, that is, the
- * time value of a later keyframe must be greater than that of the previous keyframe. Default value: evenly distributed
- * by index (for example, **0.0** for the first frame, **0.5** for the second frame, and **1.0** for the third frame).
+ *     time value of a later keyframe must be greater than that of the previous keyframe. Default value: evenly
+ *     distributed by index (for example, **0.0** for the first frame, **0.5** for the second frame, and **1.0** for the
+ *     third frame).
  *     <br>If the value of **time** is less than 0 or greater than 1, the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Interpolation target value corresponding to the keyframe, indicating the attribute value to be reached
- * at the keyframe moment. Value range: (-∞, +∞).
+ *     at the keyframe moment. Value range: (-∞, +∞).
  * @param index Keyframe index.
  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
@@ -870,12 +873,12 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframe(
  * @brief Sets the keyframe curve type for the animation of an animator.
  *
  * @note <b>springCurve</b>, <b>springMotion</b>, <b>responsiveSpringMotion</b>, <b>interpolatingSpring</b>,
- * and <b>customCurve</b> curves are not supported.
+ *     and <b>customCurve</b> curves are not supported.
  * @param option Pointer to an animator animation configuration.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Interpolation curve. Default value: **NULL**, indicating linear interpolation.
  * @param index Index of the keyframe. The value range is [0, keyframeSize-1], where **keyframeSize** indicates the
- * number of keyframes.
+ *     number of keyframes.
  *     <br>If **index** is out of range, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -887,7 +890,7 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, A
 /**
  * @brief Obtains the playback duration of the animator animation, in ms.
  * @param option Pointer to an animator animation configuration.
- * If **option** is **NULL**, **-1** is returned.
+ *     If **option** is **NULL**, **-1** is returned.
  * @return Duration for playing the animation, in milliseconds. If **option** is invalid, **0** is returned.
  * @since 12
  */
@@ -963,8 +966,8 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange(
  * @brief Obtains the keyframe time of the animator animation. The value range is [0, 1] and is a normalized time ratio.
  * @param option Pointer to an animator animation configuration.
  * @param index Index of the keyframe. The value range is [0, keyframeSize-1], where **keyframeSize** indicates the
- * number of keyframes.
- * **NULL** is returned if **index** is out of range.
+ *     number of keyframes.
+ *     **NULL** is returned if **index** is out of range.
  * @return Keyframe time, in milliseconds.
  * @since 12
  */
@@ -974,8 +977,8 @@ float OH_ArkUI_AnimatorOption_GetKeyframeTime(ArkUI_AnimatorOption* option, int3
  * @brief Obtains the keyframe value of an animation.
  * @param option Pointer to an animator animation configuration. If **option** is **NULL**, **0.0** is returned.
  * @param index Index of the keyframe. The value range is [0, keyframeSize-1], where **keyframeSize** indicates the
- * number of keyframes.
- * If **index** is out of range, **0.0** is returned.
+ *     number of keyframes.
+ *     If **index** is out of range, **0.0** is returned.
  * @return Keyframe value.
  * @since 12
  */
@@ -985,8 +988,8 @@ float OH_ArkUI_AnimatorOption_GetKeyframeValue(ArkUI_AnimatorOption* option, int
  * @brief Obtains the interpolation curve for a keyframe in the animation of an animator.
  * @param option Pointer to an animator animation configuration. If **option** is **NULL**, a null pointer is returned.
  * @param index Index of the keyframe. The value range is [0, keyframeSize-1], where **keyframeSize** indicates the
- * number of keyframes.
- * If **index** is out of range, a null pointer is returned.
+ *     number of keyframes.
+ *     If **index** is out of range, a null pointer is returned.
  * @return Interpolation curve. Returns **NULL** if a parameter error occurs.
  * @since 12
  */
@@ -1023,7 +1026,7 @@ float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
 /**
  * @brief Sets the callback invoked when the animator receives a frame.
  * @param option Pointer to an animator animation configuration. If **option** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param userData Pointer to a user-defined configuration.
  * @param callback Indicates the callback to set.
  * @return <ul> 
@@ -1038,7 +1041,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
 /**
  * @brief Sets the callback invoked when the animation playback is complete.
  * @param option Pointer to an animator animation configuration. If **option** is **NULL**,
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param userData Pointer to a user-defined configuration.
  * @param callback Indicates the callback to set.
  * @return <ul> 
@@ -1053,7 +1056,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
 /**
  * @brief Sets the callback invoked when the animation playback is canceled.
  * @param option Pointer to an animator animation configuration. If **option** is **NULL**,
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param userData Pointer to a user-defined configuration.
  * @param callback Indicates the callback to set.
  * @return <ul> 
@@ -1068,7 +1071,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
 /**
  * @brief Sets the callback invoked when the animation playback is repeated.
  * @param option Pointer to an animator animation configuration. If **option** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param userData Pointer to a user-defined configuration.
  * @param callback Indicates the callback to set.
  * @return <ul> 
@@ -1083,9 +1086,9 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
 /**
  * @brief Resets the configuration of the animator animation.
  * @param animatorHandle Pointer to the animator animation object.
- * When **animatorHandle** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     When **animatorHandle** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param option Pointer to an animator animation configuration.
- * If **option** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     If **option** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1098,7 +1101,7 @@ int32_t OH_ArkUI_Animator_ResetAnimatorOption(
 /**
  * @brief Starts the animator animation. This API must be called on the main thread.
  * @param animatorHandle Animator animation object. If **animatorHandle** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1113,7 +1116,7 @@ int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
  * state, whereas **Finish** makes the animation jump directly to the end state and then stop. This API must be called
  * on the main thread.
  * @param animatorHandle Animator animation object. If **animatorHandle** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1125,7 +1128,7 @@ int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Pauses the animation of an animator.
  * @param animatorHandle Animator animation object. If **animatorHandle** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1137,7 +1140,7 @@ int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Cancels the animation of an animator.
  * @param animatorHandle Animator animation object. If **animatorHandle** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1149,7 +1152,7 @@ int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Plays this animation in reverse order.
  * @param animatorHandle Animator animation object. If **animatorHandle** is **NULL**, the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1183,7 +1186,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end);
  * @brief Creates a cubic Bezier curve.
  *
  * @param x1 X-coordinate of the first point on the Bezier curve. Value range: [0, 1]. A value less than 0 is treated
- * as **0**. A value greater than 1 is treated as **1**.
+ *     as **0**. A value greater than 1 is treated as **1**.
  * @param y1 Y-coordinate of the first point on the Bezier curve. Value range: (-∞, +∞).
  * @param x2 X-coordinate of the second point on the Bezier curve. Value range: [0, 1]. A value less than 0 is treated
  *     as **0**. A value greater than 1 is treated as **1**.
@@ -1196,21 +1199,21 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, floa
 /**
  * @brief Creates a spring curve. The curve shape is determined by the spring parameters, and the animation duration is
  * determined by the duration parameter in the animation parameters.
-   * @param velocity Initial velocity. It is a parameter that reflects the impact of external factors on the spring
-   * motion, and its purpose is to ensure that the object smoothly transitions from the previous motion state to
-   * the spring motion. This velocity is a normalized velocity, whose value equals the actual velocity at the
-   * start of the animation divided by the change value of the animation attribute.
+ * @param velocity Initial velocity. It is a parameter that reflects the impact of external factors on the spring
+ *     motion, and its purpose is to ensure that the object smoothly transitions from the previous motion state to
+ *     the spring motion. This velocity is a normalized velocity, whose value equals the actual velocity at the
+ *     start of the animation divided by the change value of the animation attribute.
  * @param mass Mass. It is the object on which the force acts in the spring system, and it produces an inertial effect
- * on the spring system. The greater the mass, the larger the oscillation amplitude and the slower the speed of
- * returning to the equilibrium position. Value range: [0, +∞).
+ *     on the spring system. The greater the mass, the larger the oscillation amplitude and the slower the speed of
+ *     returning to the equilibrium position. Value range: [0, +∞).
  *     <br>If the value is less than or equal to 0, **1** is used.
  * @param stiffness Stiffness. It is the degree to which an object deforms by resisting the force applied. In an
- * elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed
- * of restoring to the equilibrium position. Value range: [0, +∞).
+ *     elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the
+ *     speed of restoring to the equilibrium position. Value range: [0, +∞).
  *     <br>If the value is less than or equal to 0, **1** is used.
  * @param damping Damping. It is used to describe the oscillation and attenuation of the system after being disturbed.
- * The greater the damping, the fewer the oscillation times and the smaller the oscillation amplitude of the spring
- * motion. Value range: [0, +∞).
+ *     The greater the damping, the fewer the oscillation times and the smaller the oscillation amplitude of the spring
+ *     motion. Value range: [0, +∞).
  *     <br>If the value is less than or equal to 0, **1** is used.
  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
  * @since 12
@@ -1222,17 +1225,17 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, f
  * object, each animation replaces their predecessor and inherits the velocity.
  *
  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
- * <b>animation</b> or <b>animateTo</b>.
+ *     <b>animation</b> or <b>animateTo</b>.
  * @param response Natural vibration period of the spring, which determines the speed at which the spring resets, in
- * seconds. Value range: (0, +∞).
+ *     seconds. Value range: (0, +∞).
  *     <br>If the value is less than or equal to 0, **0.55** is used.
  * @param dampingFraction Damping coefficient. > 0 and < 1: underdamped. In this case, the spring overshoots the
- * equilibrium position. **1**: critically damped. > 1: overdamped. In this case, the spring approaches equilibrium
- * gradually. Value range: (0, +∞).
+ *     equilibrium position. **1**: critically damped. > 1: overdamped. In this case, the spring approaches equilibrium
+ *     gradually. Value range: (0, +∞).
  *     <br>If the value is less than or equal to 0, **0.825** is used.
  * @param overlapDuration Overlap duration of the spring animation, in seconds. When animation inheritance occurs, if
- * the response values of the two spring animations differ, the response parameter transitions smoothly within the
- * **overlapDuration** period. Value range: [0, +∞).
+ *     the response values of the two spring animations differ, the response parameter transitions smoothly within the
+ *     **overlapDuration** period. Value range: [0, +∞).
  *     <br>If the value is less than 0, **0** is used.
  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
  * @since 12
@@ -1244,17 +1247,17 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampin
  * difference in the default values. It can be used together with **springMotion**.
  *
  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
- * <b>animation</b> or <b>animateTo</b>.
+ *     <b>animation</b> or <b>animateTo</b>.
  * @param response Natural vibration period of the spring, which determines the speed at which the spring returns to
- * its resting state, in seconds. Value range: (0, +∞).
+ *     its resting state, in seconds. Value range: (0, +∞).
  *     <br>If the value is less than or equal to 0, **0.15** is used.
  * @param dampingFraction Damping coefficient. > 0 and < 1: underdamped. In this case, the spring overshoots the
- * equilibrium position. **1**: critically damped. > 1: overdamped. In this case, the spring approaches equilibrium
- * gradually. Value range: [0, +∞).
+ *     equilibrium position. **1**: critically damped. > 1: overdamped. In this case, the spring approaches equilibrium
+ *     gradually. Value range: [0, +∞).
  *     <br>If the value is less than 0, **0.86** is used.
  * @param overlapDuration Overlap duration of the spring animation, in seconds. When animation inheritance occurs, if
- * the response values of the two spring animations differ, the response parameter transitions smoothly within the
- * **overlapDuration** period. Value range: [0, +∞).
+ *     the response values of the two spring animations differ, the response parameter transitions smoothly within the
+ *     **overlapDuration** period. Value range: [0, +∞).
  *     <br>If the value is less than 0, **0.25** is used.
  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
  * @since 12
@@ -1267,22 +1270,22 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
  * the curve.
  *
  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
- * <b>animation</b> or <b>animateTo</b>.
-   * @param velocity Initial velocity. It is applied by external factors to the spring animation, designed to help
-   * ensure the smooth transition from the previous motion state. This is a normalized velocity, and it is
-   * calculated as the actual initial velocity divided by the change in the animation attribute. Value range:
-   * (-∞, +∞).
+ *     <b>animation</b> or <b>animateTo</b>.
+ * @param velocity Initial velocity. It is applied by external factors to the spring animation, designed to help
+ *     ensure the smooth transition from the previous motion state. This is a normalized velocity, and it is
+ *     calculated as the actual initial velocity divided by the change in the animation attribute. Value range:
+ *     (-∞, +∞).
  * @param mass Mass. It is the object on which the force acts in the spring system, which produces an inertial effect
- * on the spring system. The greater the mass, the larger the oscillation amplitude and the slower the speed of
- * returning to the equilibrium position. Value range: [0, +∞).
+ *     on the spring system. The greater the mass, the larger the oscillation amplitude and the slower the speed of
+ *     returning to the equilibrium position. Value range: [0, +∞).
  *     <br>If the value is less than or equal to 0, **1** is used.
  * @param stiffness Stiffness. It is the degree to which an object deforms by resisting the force applied. The greater
- * the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the
- * equilibrium position. Value range: [0, +∞).
+ *     the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the
+ *     equilibrium position. Value range: [0, +∞).
  *     <br>If the value is less than or equal to 0, **1** is used.
  * @param damping Damping. It describes how the system oscillates and decays after being disturbed. The greater the
- * damping, the fewer the oscillation cycles and the smaller the oscillation amplitude of the spring motion. Value
- * range: [0, +∞).
+ *     damping, the fewer the oscillation cycles and the smaller the oscillation amplitude of the spring motion. Value
+ *     range: [0, +∞).
  *     <br>If the value is less than or equal to 0, **1** is used.
  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
  * @since 12
@@ -1313,7 +1316,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
  * @brief Disposes of a custom curve.
  *
  * @param curveHandle Pointer to the interpolation object of the curve.
- * The operation is invalid when **curveHandle** is **NULL**.
+ *     The operation is invalid when **curveHandle** is **NULL**.
  * @since 12
  */
 void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle);
@@ -1332,7 +1335,7 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity);
 /**
  * @brief Creates a translation effect object for component transition.
  * @param translate Pointer to the translation parameter object for component transition.
- * If **translate** is **NULL**, **NULL** is returned.
+ *     If **translate** is **NULL**, **NULL** is returned.
  * @return Translation effect object for component transitions. Returns **NULL** if a parameter error occurs.
  * @since 12
  */
@@ -1349,7 +1352,7 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateScaleTransitionEffect(ArkUI_ScaleOptions*
 /**
  * @brief Creates a rotation effect object for component transition.
  * @param rotate Pointer to the rotation options object for component transition. If **rotate** is **NULL**, **NULL**
- * is returned.
+ *     is returned.
  * @return Rotation effect object for component transitions. Returns **NULL** if a parameter error occurs.
  * @since 12
  */
@@ -1363,11 +1366,11 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOp
  * y,
  * and z directions and is suitable for scenarios where a specific displacement distance needs to be specified.
  * @param edge Movement transition type, which determines the translation direction when the component appears and
- * disappears. If the edge value is invalid, {@link ARKUI_TRANSITION_EDGE_START} is used.
- * The value options include: **ARKUI_TRANSITION_EDGE_TOP** (0) indicates sliding in/out from the top,
- * **ARKUI_TRANSITION_EDGE_BOTTOM** (1) indicates sliding in/out from the bottom, **ARKUI_TRANSITION_EDGE_START** (2)
- * indicates sliding in/out from the left, and **ARKUI_TRANSITION_EDGE_END** (3) indicates sliding in/out from the
- * right.
+ *     disappears. If the edge value is invalid, {@link ARKUI_TRANSITION_EDGE_START} is used.
+ *     The value options include: **ARKUI_TRANSITION_EDGE_TOP** (0) indicates sliding in/out from the top,
+ *     **ARKUI_TRANSITION_EDGE_BOTTOM** (1) indicates sliding in/out from the bottom, **ARKUI_TRANSITION_EDGE_START**
+ *     (2) indicates sliding in/out from the left, and **ARKUI_TRANSITION_EDGE_END** (3) indicates sliding in/out from
+ *     the right.
  * @return Translation effect object for component transitions. Returns **NULL** if a parameter error occurs.
  * @since 12
  */
@@ -1377,11 +1380,11 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_Transition
  * @brief Creates an asymmetric transition effect.
  *
  * @note If the <b>asymmetric</b> function is not used for <b>TransitionEffect</b>, the transition effect takes effect
- * for both appearance and disappearance of the component.
+ *     for both appearance and disappearance of the component.
  * @param appear Pointer to the transition effect when the component appears. If **appear** is **NULL**, **NULL** is
- * returned.
+ *     returned.
  * @param disappear Pointer to the transition effect when the component disappears. If **disappear** is **NULL**,
- * **NULL** is returned.
+ *     **NULL** is returned.
  * @return Asymmetric transition effect. Returns **NULL** if a parameter error occurs.
  * @since 12
  */
@@ -1389,7 +1392,10 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(
     ArkUI_TransitionEffect* appear, ArkUI_TransitionEffect* disappear);
 
 /**
- * @brief Creates an effect object with no transition.
+ * @brief Create an identity transition effect.
+ * Identity transition effect performs no visual transition animation. It can alse be used as the appear or disappear
+ * parameter of OH_ArkUI_CreateAsymmetricTransitionEffect to indicate no animation on one side.
+ *
  * @return Returns a pointer to the created transition effect object.
  * @release native_animate/OH_ArkUI_TransitionEffect_Dispose {return}
  * @since 26.0.0
@@ -1399,7 +1405,7 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateIdentityTransitionEffect(void);
 /**
  * @brief Disposes of a transition effect.
  * @param effect Pointer to the transition effect object.
- * The operation is invalid when **effect** is **NULL**.
+ *     The operation is invalid when **effect** is **NULL**.
  * @since 12
  */
 void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
@@ -1407,11 +1413,11 @@ void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
 /**
  * @brief Sets a combination of transition effects.
  * @param firstEffect Pointer to the preceding transition effect in the chain, which will be combined with
- * **secondEffect** to form a **TransitionEffect** containing multiple transition effects.
- * If **firstEffect** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     **secondEffect** to form a **TransitionEffect** containing multiple transition effects.
+ *     If **firstEffect** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param secondEffect Pointer to the following transition effect to be combined, which will be chained with
- * **firstEffect** to form a **TransitionEffect** containing multiple transition effects.
- * If **secondEffect** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     **firstEffect** to form a **TransitionEffect** containing multiple transition effects.
+ *     If **secondEffect** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1425,11 +1431,11 @@ int32_t OH_ArkUI_TransitionEffect_Combine(
  * @brief Sets transition effect animation settings.
  *
  * @note If <b>combine</b> is used for combining transition effects, the animation settings of a transition effect are
- * applicable to the one following it.
+ *     applicable to the one following it.
  * @param effect Pointer to the transition effect object for which animation parameters are to be set.
- * If **effect** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     If **effect** is **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param animation Pointer to the animator animation configuration.
- * If **animation** is **NULL**, the animation parameters are set to empty.
+ *     If **animation** is **NULL**, the animation parameters are set to empty.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
