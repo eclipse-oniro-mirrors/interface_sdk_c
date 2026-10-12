@@ -143,7 +143,7 @@ typedef ArkUI_LightEffectOptions* ArkUI_LightEffectOptionsHandle;
  * @brief Checks whether the current device supports system materials (that is, the built-in material rendering
  * capability of the device system).
  * @return Whether the current device supports system materials. The value **true** indicates that the current device
- * supports system materials, and **false** indicates the opposite.
+ *     supports system materials, and **false** indicates the opposite.
  * @since 26.0.0
  */
 bool OH_ArkUI_NativeModule_GetSystemMaterialSupported();
@@ -152,9 +152,11 @@ bool OH_ArkUI_NativeModule_GetSystemMaterialSupported();
  * @brief Obtains the global material level, which is related to the device computing power. This configuration item is
  * defined by the device and cannot be modified.
  * @return Material level of the device.
- * {@link ARKUI_MATERIAL_LEVEL_EXQUISITE} (0): material level for devices with high-level computing power.
- * {@link ARKUI_MATERIAL_LEVEL_GENTLE} (1): material level for devices with medium-level computing power.
- * {@link ARKUI_MATERIAL_LEVEL_SMOOTH} (2): material level for devices with low-level computing power.
+ *     <ul>
+ *     <li>{@link ARKUI_MATERIAL_LEVEL_EXQUISITE} (0): material level for devices with high-level computing power.</li>
+ *     <li>{@link ARKUI_MATERIAL_LEVEL_GENTLE} (1): material level for devices with medium-level computing power.</li>
+ *     <li>{@link ARKUI_MATERIAL_LEVEL_SMOOTH} (2): material level for devices with low-level computing power.</li>
+ *     </ul>
  * @since 26.0.0
  */
 ArkUI_MaterialLevel OH_ArkUI_NativeModule_GetGlobalMaterialLevel();
@@ -163,13 +165,13 @@ ArkUI_MaterialLevel OH_ArkUI_NativeModule_GetGlobalMaterialLevel();
  * @brief Creates an immersive material object with a specified style. The material level of the created object follows
  * the global material level, which can be obtained through {@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}.
  * @param style Material style. Passing an invalid style will cause the setting failure, and the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} will be returned. This style is effective only for the display effect on
- * devices with high- and mid-level computing power, and has no effect on devices with low-level computing power but no
- * error will be reported.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} will be returned. This style is effective only for the display effect on
+ *     devices with high- and mid-level computing power, and has no effect on devices with low-level computing power but
+ *     no error will be reported.
  * @return Pointer to the created immersive material object. If the creation fails or the material style is invalid,
- * null is returned.
- * The returned object must be released by calling {@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy} after being
- * used.
+ *     null is returned.
+ *     The returned object must be released by calling {@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy} after
+ *     being used.
  * @release native_material/OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy {return}
  * @since 26.0.0
  */
@@ -188,9 +190,9 @@ void OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy(ArkUI_ImmersiveMaterialHand
  * error is reported. You can call {@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel} to obtain the material level of
  * the current device to determine whether this attribute takes effect.
  * @param material Pointer to the immersive material object.
- * If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
+ *     If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param style Material style. Passing an invalid style will cause the setting failure, and the error code
- * {@link ARKUI_ERROR_CODE_PARAM_INVALID} will be returned.
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} will be returned.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -219,9 +221,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetStyle(
  * the material level of the current device to determine whether this attribute takes effect. If this parameter is not
  * set, the default value **0** is used, indicating the transparent color.
  * @param material Pointer to the immersive material object.
- * If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
+ *     If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param color Material color, in 0xAARRGGBB format, which takes effect on the display effects of devices with all
- * computing power levels. The value **0** indicates transparent (default value).
+ *     computing power levels. The value **0** indicates transparent (default value).
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -250,8 +252,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor(
  * all levels.
  * @param material Pointer to the immersive material object.
  * @param applyShadow Whether to apply a shadow to the material. The value **true** indicates that the material shadow
- * takes effect and takes precedence over the common shadow attribute. The value **false** indicates that the material
- * shadow is not added and the common shadow attribute takes effect. The default value is **true**.
+ *     takes effect and takes precedence over the common shadow attribute. The value **false** indicates that the
+ *     material shadow is not added and the common shadow attribute takes effect. The default value is **true**.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -265,7 +267,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetApplyShadow(
  * @brief Obtains whether a shadow is applied to an immersive material object.
  * @param material Pointer to the immersive material object.
  * @param applyShadow Pointer to the variable used to receive whether the shadow is applied. If never explicitly set,
- * this pointer receives the default value **true**.
+ *     this pointer receives the default value **true**.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
