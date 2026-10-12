@@ -249,7 +249,7 @@ typedef struct {
 
     /**
      * @brief Creates an animator animation object and returns its pointer. Unlike the trigger-based animation of
-     * **animateTo**，**keyframeAnimateTo**, **createAnimator** creates a persistently controllable animation object,
+     * **animateTo** and **keyframeAnimateTo**, **createAnimator** creates a persistently controllable animation object,
      * which is suitable for scenarios requiring fine-grained control such as repeated starting, stopping, and state
      * listening. You can use **animateTo** or **keyframeAnimateTo** for one-time transition animations, and use
      * **createAnimator** when persistent control of the animation lifecycle is required.
