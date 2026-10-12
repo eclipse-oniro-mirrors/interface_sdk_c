@@ -283,8 +283,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetApplyShadow(
  * effect for materials of all levels.
  * @param material Pointer to the immersive material object.
  * @param interactive Whether interactive deformation can be performed for a material. The value **true** indicates
- * that interactive deformation can be performed for a material, and **false** indicates the opposite. If this
- * parameter is not set, the component behavior is followed.
+ *     that interactive deformation can be performed for a material, and **false** indicates the opposite. If this
+ *     parameter is not set, the component behavior is followed.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -299,9 +299,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive(
  * {@link OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive} to set this attribute before calling this API. If this
  * attribute has never been set, {@link ARKUI_ERROR_CODE_PARAM_ERROR} will be returned.
  * @param material Pointer to the immersive material object.
- * If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
+ *     If **material** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param interactive Pointer to the variable used to receive whether the material supports interactive deformation.
- * If **interactive** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
+ *     If **interactive** is **NULL**, the API returns the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -318,7 +318,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetInteractive(
  * creation is complete, you need to call {@link OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect} to set the
  * configuration object to the immersive material object for the configuration to take effect.
  * @return Pointer to the created light sensing interaction effect configuration object. The returned object must be
- * released by calling {@link OH_ArkUI_NativeModule_LightEffectOptions_Destroy} after being used.
+ *     released by calling {@link OH_ArkUI_NativeModule_LightEffectOptions_Destroy} after being used.
  * @release native_material/OH_ArkUI_NativeModule_LightEffectOptions_Destroy {return}
  * @since 26.0.0
  */
@@ -336,7 +336,7 @@ void OH_ArkUI_NativeModule_LightEffectOptions_Destroy(ArkUI_LightEffectOptionsHa
  * white (0xffffffff).
  * @param options Pointer to the light sensing interaction effect configuration object.
  * @param color Color of the light sensing interaction effect, in 0xAARRGGBB format. If this parameter is not set, the
- * default color is white (0xffffffff).
+ *     default color is white (0xffffffff).
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -352,8 +352,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LightEffectOptions_SetColor(
  * all levels.
  * @param material Pointer to the immersive material object.
  * @param options Pointer to the light sensing interaction effect configuration object. A null pointer disables the
- * light sensing interaction effect, and a non-null enables it. A non-null pointer must be created through
- * {@link OH_ArkUI_NativeModule_LightEffectOptions_Create}.
+ *     light sensing interaction effect, and a non-null enables it. A non-null pointer must be created through
+ *     {@link OH_ArkUI_NativeModule_LightEffectOptions_Create}.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
