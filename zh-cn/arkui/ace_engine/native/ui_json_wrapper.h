@@ -86,9 +86,11 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * 注意：传入的data字符串仍归调用方所有。销毁本接口返回的JSON封装对象，
  * 不会代替调用方释放data所指向的内存。
  *
- * @param data [in] 指向JSON字符串的指针。不能为NULL，且必须在整个调用期间保持有效。
+ * @param data [in] 指向UTF-8编码JSON字符串的指针。不能为NULL，且必须在整个调用期间保持有效。
  *     被调用方不会保留该指针。字符串必须包含有效的JSON对象，且schemaVersion必须为受支持的版本。
  *     空字符串无效。
+ *     至少size个字节必须可读。输入无需以空字符结尾，创建的对象会追加自己的结束空字符。
+ *     JSON文本中不得包含嵌入的空字节，U+0000应使用JSON转义表示。
  * @param size [in] JSON字符串的长度，单位为字节，不包含末尾的空字符。
  *     必须与data字符串的实际长度一致，否则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param outOwned [out] 用于接收创建成功的对象的输出参数。调用方拥有返回对象的所有权，

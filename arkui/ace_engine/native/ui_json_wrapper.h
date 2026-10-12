@@ -95,9 +95,11 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * wrapper object returned by this API does not release the memory pointed to by data on the
  * caller's behalf.
  *
- * @param data [in] Pointer to the JSON string. It must not be NULL and must remain valid for the
+ * @param data [in] Pointer to the UTF-8 encoded JSON string. It must not be NULL and must remain valid for the
  *     duration of the call. The callee does not retain it. The string must contain a valid JSON
  *     object with a supported schemaVersion. An empty string is invalid.
+ *     At least size bytes must be readable. The input need not be terminated by '\0'; the created object
+ *     appends its own terminator. The JSON text must not contain embedded NUL bytes; encode U+0000 as a JSON escape.
  * @param size [in] Byte length (in bytes) of the JSON string, excluding the terminating '\0'
  *     character. It must equal the actual length of data. If size is inconsistent with the actual
  *     string length, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
