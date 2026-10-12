@@ -9411,7 +9411,7 @@ typedef enum {
      * <li>.value[0].i32: 是否支持鼠标左键进行滚动。0：不支持；1：支持。</li>
      * </ul>
      *
-     * @ingroup 可滚动容器组件
+     * @ingroup Scrollable Container Component[滚动容器类组件]
      * @since 26.0.0
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
