@@ -16,16 +16,12 @@
  * @addtogroup IPCKit
  * @{
  *
- * @brief Provides an entry to the IPC header files for you to reference.
- *
- * @syscap SystemCapability.Communication.IPC.Core
- * @since 12
- */
-/**
  * @file ipc_kit.h
  *
- * @brief Provides an entry to the IPC header files for you to reference.
+ * @brief The IPC header file provides C API declarations of IPC Kit, facilitating developer references. You can use
+ * inter-process communication capabilities through this header file.
  *
+ * @include <IPCKit/ipc_kit.h>
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
