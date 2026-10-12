@@ -16,7 +16,9 @@
  * @addtogroup OHMIDI
  * @{
  *
- * @brief Provides the definition of the C interface for the MIDI module.
+ * @brief 提供乐器数字接口MIDI（Musical Instrument Digital Interface）模块的C接口定义，用于MIDI设备管理和数据传输。
+ * 支持MIDI设备的发现与连接、设备热插拔状态监控、端口能力的查询与开关、UMP（通用MIDI数据包）格式的数据收发等功能，
+ * 适用于需要在应用中对接电子乐器、MIDI控制器等外设并进行MIDI数据交互的场景。
  *
  * @since 24
  */
@@ -24,8 +26,16 @@
  * @file native_midi.h
  *
  * @brief 声明MIDI相关的接口。MIDI是一种用于电子乐器、计算机和其他设备之间通信的技术标准。
- * <br>该文件中的接口用于MIDI设备管理（包括BLE MIDI设备）、MIDI消息发送和接收、设备状态监控等。
- * <br>使用OHMIDI连接MIDI设备的典型流程如下：
+ * <br> 该文件中的接口用于MIDI设备管理（包括BLE MIDI设备）、MIDI消息发送和接收、设备状态监控等。
+ * <br> 使用OHMIDI连接MIDI设备的典型流程如下：
+ * 1. **创建客户端**：初始化MIDI客户端上下文，并注册设备热插拔回调及服务异常回调。
+ * 2. **发现设备与端口**：获取当前连接的设备列表，并查询设备的端口能力。
+ * 3. **打开设备**：建立设备连接会话。
+ * 4. **打开端口**：根据端口方向（输入/输出）分别打开端口。
+ * 5. **数据交互**：
+ * - **接收**：通过回调函数接收UMP（Universal MIDI Packet）格式的MIDI数据。
+ * - **发送**：构建UMP（Universal MIDI Packet）并通过输出端口发送。
+ * 6. **释放资源**：使用完毕后关闭端口、设备并销毁客户端。
  *
  * @library libohmidi.so
  * @syscap SystemCapability.Multimedia.Audio.MIDI
@@ -44,21 +54,11 @@ extern "C" {
 
 /**
  * @brief 创建MIDI客户端实例。客户端是使用MIDI服务的入口，所有MIDI操作都需要先创建客户端。
+ * @note 资源管理和最佳实践：
  * <br>MIDI是对低延迟有严格要求的系统服务。为确保实时性能和系统稳定性，服务强制执行以下限制：
  * <br>1. 系统级限制：全局允许的活动MIDI客户端最大数量为8个。
  * <br>2. 每应用限制：每个应用UID允许的MIDI客户端最大数量为2个。建议应用在整个生命周期内维护单个MIDI客户端实例，用于管理多个设备/端口。
  * <br>在不再需要MIDI功能时，使用{@link OH_MIDIClient_Destroy}释放客户端及所有关联资源。
- *
- * @note **Resource Management & Best Practices**:
- *     MIDI is a delay-sensitive system service. To ensure real-time performance (QoS)
- *     and system stability, the service enforces the following limits:
- *     1. **System-wide limit**: A global maximum number of active MIDI clients that are allowed.
- *     2. **Per-Application limit**: A maximum number of MIDI clients that are allowed per app uid.
- *
- *     Applications are **strongly recommended** to maintain a single `OH_MIDIClient`
- *     instance throughout their lifecycle and use it to manage multiple devices/ports.
- *
- *     Use {@link #OH_MIDIClient_Destroy} to release the client and all associated resources.
  *
  * @param client 指向用于接收新客户端句柄的指针。
  * @param callbacks 用于系统事件的回调结构体。
@@ -74,9 +74,9 @@ OH_MIDIStatusCode OH_MIDIClient_Create(OH_MIDIClient **client, OH_MIDICallbacks 
 /**
  * @brief 销毁MIDI客户端并释放资源。
  *
- * @note Destroying the client will close all devices and ports (fail-safe mechanism) automatically.
- *     It is recommended to close resources in reverse order (ports->devices->client) for code clarity,
- *     but this is not a mandatory requirement.
+ * @note 在不再需要MIDI功能时（例如应用退出或MIDI模块停用时）调用此函数销毁客户端。
+ * 销毁客户端时会自动关闭所有通过此客户端打开的设备和端口（安全回收机制），无需手动逐一关闭。
+ * 建议在销毁前按逆序手动关闭资源以保证代码逻辑清晰（端口->设备->客户端），但这非强制要求。
  *
  * @param client 目标客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
  * @return OH_MIDI_STATUS_OK：操作成功。
@@ -101,14 +101,13 @@ OH_MIDIStatusCode OH_MIDIClient_Destroy(OH_MIDIClient *client);
 OH_MIDIStatusCode OH_MIDIClient_GetDeviceCount(const OH_MIDIClient *client, size_t *count);
 
 /**
- * @brief 获取连接的MIDI设备信息。将设备信息写入infos参数指定的缓冲区。缓冲区大小应基于{@link OH_MIDIClient_GetDeviceCount}返回的数量进行分配。
+ * @brief 获取连接的MIDI设备信息。将设备信息写入infos参数指定的缓冲区。
+ * 缓冲区大小应基于{@link OH_MIDIClient_GetDeviceCount}返回的数量进行分配。
  * <br>如果应用未获得蓝牙权限（ohos.permission.ACCESS_BLUETOOTH），蓝牙MIDI设备将不会包含在返回的设备信息中。
  *
- * @note The actual number of connected devices may be larger than the capacity of the input parameter
- *     'infos' array. If this happens, the output 'infos' array will only contain partial devices information,
- *     the output 'actualDeviceCount' will be equal to 'capacity', and the function returns {@link #OH_MIDI_STATUS_OK}.
- *     If the actual number is less than or equal to 'capacity', all available devices information
- *     will be filled into 'infos', and the output 'actualDeviceCount' reflects the actual devices number.
+ * @note 当实际连接的设备数量大于输入参数'infos'数组的容量时，输出'infos'数组将仅包含部分设备信息，
+ * 输出'actualDeviceCount'将等于'capacity'，函数返回OH_MIDI_STATUS_OK。
+ * 当实际数量小于或等于'capacity'时，所有可用设备信息将填入'infos'，输出'actualDeviceCount'反映实际设备数量。
  *
  * @param client MIDI客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
  * @param infos 用户分配的缓冲区，用于存储设备信息。
@@ -128,7 +127,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(const OH_MIDIClient *client,
 /**
  * @brief 打开指定ID的MIDI设备。
  *
- * @note Use {@link #OH_MIDIClient_CloseDevice} to release the device resource.
+ * @note 使用{@link OH_MIDIClient_CloseDevice}释放设备资源。
  *
  * @param client 目标客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
  * @param deviceId 设备的唯一标识符，由{@link OH_MIDIClient_GetDeviceInfos}获取。
@@ -144,11 +143,10 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(const OH_MIDIClient *client,
 OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t deviceId, OH_MIDIDevice **device);
 
 /**
- * @brief 异步打开蓝牙低功耗（BLE）MIDI设备。此函数为异步操作，调用后立即返回状态码（表示请求是否成功发送），实际连接结果（成功或失败）将在BLE连接过程完成后通过提供的回调异步传递。使用
- * {@link OH_MIDIClient_CloseDevice}释放设备资源。
+ * @brief 异步打开蓝牙低功耗（BLE）MIDI设备。此函数为异步操作，调用后立即返回状态码（表示请求是否成功发送），
+ * 实际连接结果（成功或失败）将在BLE连接过程完成后通过提供的回调异步传递。使用{@link OH_MIDIClient_CloseDevice}释放设备资源。
  *
- * @note This function triggers a BLE scan so the opening process may take time.
- *     Use {@link #OH_MIDIClient_CloseDevice} to release the device resource.
+ * @note 此函数会触发BLE扫描和连接过程，通常需要1-5秒的时间。使用{@link OH_MIDIClient_CloseDevice}释放设备资源。
  *
  * @permission ohos.permission.ACCESS_BLUETOOTH
  *
@@ -164,9 +162,8 @@ OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t device
  *     <br>OH_MIDI_STATUS_PERMISSION_DENIED：权限被拒绝。应用未声明或未获得所需权限。
  *     <br>OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES：客户端已达到最大打开设备数量限制。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
- * @warning If Bluetooth permission is denied, the {@link #OH_MIDIClient_OnDeviceOpened} will be
- *     invoked with opened parameter set to false and device parameter set to null. The application
- *     should check the opened parameter before attempting to use the device handle.
+ * @warning 如果蓝牙权限被拒绝，{@link OH_MIDIClient_OnDeviceOpened}回调将以opened参数为false、device参数为空指针被调用。
+ * 应用应检查opened参数后再尝试使用设备句柄。
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
@@ -177,8 +174,8 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
 /**
  * @brief 关闭MIDI设备。
  *
- * @note Closing a device automatically closes all opened ports on that device.
- *     Paired with {@link #OH_MIDIClient_OpenDevice} or {@link #OH_MIDIClient_OpenBLEDevice}.
+ * @note 关闭设备时会同时关闭该设备上所有已打开的端口。
+ * 该功能与{@link #OH_MIDIClient_OpenDevice}或{@link #OH_MIDIClient_OpenBLEDevice}配对使用。
  *
  * @param client 目标客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
@@ -207,11 +204,9 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortCount(const OH_MIDIClient *client, int64_
 /**
  * @brief 获取指定MIDI设备的端口信息。将端口信息写入由调用者分配的缓冲区。缓冲区大小应基于{@link OH_MIDIClient_GetPortCount}返回的数量进行分配。
  *
- * @note The actual number of connected devices may be larger than the capacity of the input parameter
- *     'infos' array. If this happens, the output 'infos' array will only contain partial devices information,
- *     the output 'actualPortCount' will be equal to 'capacity', and the function returns {@link #OH_MIDI_STATUS_OK}.
- *     If the actual number is less than or equal to 'capacity', all available ports information
- *     will be filled into 'infos', and the output 'actualPortCount' reflects the actual ports number.
+ * @note 当实际端口数量大于输入参数'infos'数组的容量时，输出'infos'数组将仅包含部分端口信息，
+ * 输出'actualPortCount'将等于'capacity'，函数返回OH_MIDI_STATUS_OK。当实际数量小于或等于'capacity'时，
+ * 所有可用端口信息将填入'infos'，输出'actualPortCount'反映实际端口数量。
  *
  * @param client MIDI客户端句柄。传入的client指针必须为{@link OH_MIDIClient_Create}创建的实例。
  * @param deviceId 目标设备ID，由{@link OH_MIDIClient_GetDeviceInfos}获取。
@@ -233,9 +228,10 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(const OH_MIDIClient *client,
 /**
  * @brief 打开MIDI输入端口（接收数据）。注册回调函数以接收MIDI数据流。
  *
- * @note Use {@link #OH_MIDIDevice_CloseInputPort} to close the input port.
+ * @note 使用{@link #OH_MIDIDevice_CloseInputPort}关闭输入端口。
  *
- * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
+ * @param device 目标设备句柄。传入的device指针必须为
+ *     {@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param descriptor 端口索引和协议配置。
  * @param callback 有数据可用时调用的回调函数。
  * @param userData 传递给回调的用户自定义数据指针。
@@ -254,9 +250,10 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
 /**
  * @brief 打开MIDI输出端口（发送数据）。
  *
- * @note Use {@link #OH_MIDIDevice_CloseOutputPort} to close the output port.
+ * @note 使用{@link #OH_MIDIDevice_CloseOutputPort}关闭输出端口。
  *
- * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
+ * @param device 目标设备句柄。传入的device指针必须为
+ *     {@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param descriptor 端口索引和协议配置。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
@@ -271,7 +268,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenOutputPort(OH_MIDIDevice *device, OH_MIDIPor
 /**
  * @brief 关闭MIDI输入端口。
  *
- * @note Paired with {@link #OH_MIDIDevice_OpenInputPort}.
+ * @note 与{@link #OH_MIDIDevice_OpenInputPort}配对使用。
  *
  * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param portIndex 要关闭的输入端口索引，须为已通过{@link OH_MIDIDevice_OpenInputPort}打开的输入端口索引。
@@ -286,9 +283,10 @@ OH_MIDIStatusCode OH_MIDIDevice_CloseInputPort(OH_MIDIDevice *device, uint32_t p
 /**
  * @brief 关闭MIDI输出端口。
  *
- * @note Paired with {@link #OH_MIDIDevice_OpenOutputPort}.
+ * @note 与{@link #OH_MIDIDevice_OpenOutputPort}配对使用。
  *
- * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
+ * @param device 目标设备句柄。传入的device指针必须为
+ *     {@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param portIndex 要关闭的输出端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的端口索引。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
@@ -299,13 +297,21 @@ OH_MIDIStatusCode OH_MIDIDevice_CloseInputPort(OH_MIDIDevice *device, uint32_t p
 OH_MIDIStatusCode OH_MIDIDevice_CloseOutputPort(OH_MIDIDevice *device, uint32_t portIndex);
 
 /**
- * @brief 批量发送MIDI消息（非阻塞模式，每条消息具有原子性）。此函数需要通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口发送数据，portIndex应为一个已打开的输出端口索引。
+ * @brief 批量发送MIDI消息（非阻塞模式，每条消息具有原子性）。
+ * 此函数需要通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口发送数据，portIndex应为一个已打开的输出端口索引。
+ * 说明，将MIDI事件数组写入共享内存缓冲区。
+ * - 单条消息原子性：每条事件作为不可分割的单元处理，不会出现消息被截断的情况。
+ * - 批量操作非原子性：整个数组不一定全部写入成功。如果缓冲区空间不足，已成功写入的事件不会被回滚。
+ * 函数返回{@link OH_MIDI_STATUS_WOULD_BLOCK}，并通过eventsWritten参数返回已成功写入的事件数量，
+ * 开发者可据此从断点处继续发送剩余事件。
  *
- * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
+ * @param device 目标设备句柄。传入的device指针必须为
+ *     {@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param portIndex 目标端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口索引。
  * @param events 指向要发送的事件数组的指针，内存空间需要由开发者分配。
  * @param eventCount 数组中的事件数量。
- * @param eventsWritten 输出参数，用于接收成功发送的事件数量。当返回OH_MIDI_STATUS_WOULD_BLOCK时，可用于从断点处继续发送剩余事件。
+ * @param eventsWritten 输出参数，用于接收成功发送的事件数量。
+ *     当返回OH_MIDI_STATUS_WOULD_BLOCK时，可用于从断点处继续发送剩余事件。
  * @return OH_MIDI_STATUS_OK：所有数据均已成功处理并写入。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。
@@ -318,21 +324,24 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex,
     const OH_MIDIEvent *events, uint32_t eventCount, uint32_t *eventsWritten);
 
 /**
- * @brief 发送超过标准MIDI消息长度的SysEx（System Exclusive，系统独占消息），自动处理分包和阻塞等待。这是一个实用函数，适用于将SysEx作为原始字节流（MIDI 1.0风格，F0...F7）处理的应用。
+ * @brief 发送超过标准MIDI消息长度的SysEx（System Exclusive，系统独占消息），自动处理分包和阻塞等待。
+ * 这是一个实用函数，适用于将SysEx作为原始字节流（MIDI 1.0风格，F0...F7）处理的应用。
  * 此函数需要通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口发送数据。
  * <br>同时适用于{@link OH_MIDI_PROTOCOL_1_0}和{@link OH_MIDI_PROTOCOL_2_0}会话。
  * <br>操作系统MIDI服务会自动将数据转换为设备端口所需的格式。
  *
- * @warning **BLOCKING CALL**: This function executes a loop and may block if the buffer fills up.
+ * @warning 此函数为阻塞调用，执行循环写入，当缓冲区填满时将阻塞并重试，直至写入完整。
  *
- * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
+ * @param device 目标设备句柄。传入的device指针必须为
+ *     {@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param portIndex 目标端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口索引。
  * @param data 指向要发送的字节数据流的指针，内存空间需要由开发者分配。
  * @param byteSize 数据的字节大小。
  * @return OH_MIDI_STATUS_OK：所有数据均已成功处理并写入。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
  *     <br>OH_MIDI_STATUS_INVALID_PORT：端口索引无效，或未打开。
- *     <br>OH_MIDI_STATUS_TIMEOUT：操作超时，无法在系统规定的超时时间内完成写入，可使用{@link OH_MIDIDevice_FlushOutputPort}重置输出端口后重试。
+ *     <br>OH_MIDI_STATUS_TIMEOUT：操作超时，无法在系统规定的超时时间内完成写入，
+ *         可使用{@link OH_MIDIDevice_FlushOutputPort}重置输出端口后重试。
  *     <br>OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT：参数data为nullptr，或byteSize为0。
  *     <br>OH_MIDI_STATUS_GENERIC_IPC_FAILURE：连接系统服务失败。
  * @since 24
@@ -341,11 +350,13 @@ OH_MIDIStatusCode OH_MIDIDevice_SendSysEx(OH_MIDIDevice *device, uint32_t portIn
     const uint8_t *data, uint32_t byteSize);
 
 /**
- * @brief 清空输出缓冲区中的待发送消息。立即丢弃指定端口输出缓冲区中等待的所有MIDI事件，包括已入队、计划在未来时间戳发送的事件。适用于停止播放、切换音色或设备异常时需要取消尚未发送的MIDI事件的场景。
+ * @brief 清空输出缓冲区中的待发送消息。立即丢弃指定端口输出缓冲区中等待的所有MIDI事件，包括已入队、计划在未来时间戳发送的事件。
+ * 适用于停止播放、切换音色或设备异常时需要取消尚未发送的MIDI事件的场景。
  *
- * @note This function does not send "All Notes Off" event. It simply clears the queue.
+ * @note 此操作不发送"All Notes Off"消息，仅清空队列。
  *
- * @param device 目标设备句柄。传入的device指针必须为{@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
+ * @param device 目标设备句柄。传入的device指针必须为
+ *     {@link OH_MIDIClient_OpenDevice}或{@link OH_MIDIClient_OpenBLEDevice}返回的实例。
  * @param portIndex 目标端口索引，须为已通过{@link OH_MIDIDevice_OpenOutputPort}打开的输出端口索引。
  * @return OH_MIDI_STATUS_OK：操作成功。
  *     <br>OH_MIDI_STATUS_INVALID_DEVICE_HANDLE：设备句柄无效。
