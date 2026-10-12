@@ -94,6 +94,9 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  * Note: the data string passed to this function remains owned by the caller. Destroying the JSON
  * wrapper object returned by this API does not release the memory pointed to by data on the
  * caller's behalf.
+ * A parameter error requires correcting the input before retrying. For a size-overflow or allocation
+ * failure, reduce the input size or release resources before retrying; do not retry in a busy loop.
+ * On failure, no object ownership is transferred and a valid output slot contains NULL.
  *
  * @param data [in] Pointer to the UTF-8 encoded JSON string. It must not be NULL and must remain valid for the
  *     duration of the call. The callee does not retain it. The string must contain a valid JSON
@@ -110,6 +113,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid, data is empty or
  *             does not represent a valid JSON object, or schemaVersion is missing or unsupported.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the buffer size including its terminator cannot
+ *             be represented on the current architecture, memory allocation fails, or copying fails.</li>
  *         </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
  * @since 26.2.0

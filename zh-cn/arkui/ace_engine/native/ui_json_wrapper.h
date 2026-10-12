@@ -85,6 +85,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *
  * 注意：传入的data字符串仍归调用方所有。销毁本接口返回的JSON封装对象，
  * 不会代替调用方释放data所指向的内存。
+ * 参数错误需要修正输入后再重试。大小溢出或内存分配失败时，应减小输入或释放资源后再重试，避免忙循环。
+ * 失败时不会转移任何对象的所有权，有效的输出参数所指向的对象指针为NULL。
  *
  * @param data [in] 指向UTF-8编码JSON字符串的指针。不能为NULL，且必须在整个调用期间保持有效。
  *     被调用方不会保留该指针。字符串必须包含有效的JSON对象，且schemaVersion必须为受支持的版本。
@@ -100,6 +102,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数无效、data为空字符串或不表示有效的JSON对象，
  *         或schemaVersion字段缺失、版本不受支持。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 包含结束空字符的缓冲区大小在当前架构上无法表示，
+ *         或内存分配、数据复制失败。</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
  * @since 26.2.0
