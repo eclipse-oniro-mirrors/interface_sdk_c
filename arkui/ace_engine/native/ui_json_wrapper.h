@@ -30,6 +30,9 @@
  *
  * @brief Declares the shared JSON data object for APIs such as UI perception and control.
  *
+ * Errors are reported through the documented return values. errno is not an error-reporting channel
+ * for these APIs; its value after a call is unspecified and must not be used to determine success or failure.
+ *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
  * @library libace_ndk.z.so

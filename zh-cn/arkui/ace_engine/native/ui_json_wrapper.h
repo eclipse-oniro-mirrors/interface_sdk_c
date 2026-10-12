@@ -28,6 +28,9 @@
  *
  * @brief 声明UI感知与控制等接口共用的JSON数据对象。
  *
+ * 错误通过文档中规定的返回值报告。这些接口不使用errno传递错误；
+ * 调用后的errno值未定义，不得用它判断调用是否成功。
+ *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
  * @library libace_ndk.z.so

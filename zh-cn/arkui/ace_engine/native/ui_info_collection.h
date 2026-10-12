@@ -28,6 +28,9 @@
  *
  * @brief 声明供应用内智能体和UI自动化使用的接口，用于监听UI交互事件并获取命中的节点。
  *
+ * 返回状态码的函数通过ArkUI_ErrorCode报告错误，异步执行结果通过相应的完成回调报告。
+ * 这些接口不使用errno传递错误；调用后的errno值未定义，不得用它判断调用是否成功。
+ *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_info_collection.h>
  * @library libace_ndk.z.so

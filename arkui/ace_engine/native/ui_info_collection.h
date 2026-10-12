@@ -29,6 +29,10 @@
  * @brief Declares the APIs used by in-app intelligent agents and UI automation to observe UI
  * interaction events and hit nodes.
  *
+ * Status-returning functions report errors through ArkUI_ErrorCode. Asynchronous execution results
+ * are reported through the documented completion callback. errno is not an error-reporting channel
+ * for these APIs; its value after a call is unspecified and must not be used to determine success or failure.
+ *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_info_collection.h>
  * @library libace_ndk.z.so
