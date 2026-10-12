@@ -737,7 +737,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
  * {@link OH_AudioStreamBuilder_SetCapturerCallback}接口会用此结构体设置回调。
  * <br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
  * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考开发指南-推荐使用OHAudio开发音频录制功能(C/C++)。
- * 
+ *
  * 说明，以下回调接口的返回值均没有对应枚举定义，当前版本系统并不处理返回值，
  * 但考虑到后续系统版本的可扩展性，建议使用0作为返回值。
  *
