@@ -10505,18 +10505,21 @@ typedef enum {
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
     /**
-     * @brief Sets whether dragging scrolling with the left mouse button pressed is supported.
+     * @brief Whether to support scroll using the left button on the mouse. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no;
-     * <b>1</b>: yes. Default value: <b>0</b>.</li>
+     * <li>.value[0].i32: whether to support scrolling by pressing the left mouse button. 0: no; 1: yes.
+     * For API versions earlier than 26.2.0, the default value is 0. For API versions 26.2.0 and later,
+     * the default value is 1 when the scrollable component scrolls horizontally,0 otherwise.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no;
-     * <b>1</b>: yes.</li>
+     * <li>.value[0].i32: whether to support scrolling by pressing the left mouse button. 0: no; 1: yes.</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component
