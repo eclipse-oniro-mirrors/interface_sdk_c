@@ -454,7 +454,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param context [in] The UI context whose tree is collected.
  * @param request [in] The collection request.
  * @param format [in] The JSON output format.
- * @param json [out] The output immutable JSON object, which includes a top-level schemaVersion field.
+ * @param outOwnedJson [out] The output immutable JSON object, which includes a top-level schemaVersion field.
  *     The output pointer must not be NULL and must point to writable storage valid for the duration of the call.
  *     The caller must release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
  * @return <ul>
@@ -466,13 +466,13 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} if allocation fails.</li>
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if another internal failure occurs.</li>
  *     </ul>
- * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}
+ * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwnedJson}
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle context,
     const OH_ArkUI_NativeModule_UIAgentTreeRequest *request,
     OH_ArkUI_NativeModule_UIJsonFormat format,
-    OH_ArkUI_NativeModule_UIJsonWrapper **json);
+    OH_ArkUI_NativeModule_UIJsonWrapper **outOwnedJson);
 
 /**
  * @brief Initiate an asynchronous UI tree collection request. Receive the collection through asynchronous callback.
@@ -509,24 +509,24 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  * memory.
  * The function must be called on the UI thread. The output format is as follows:
  * @param uiContext [in] Context of the target UI instance for text collection
- * @param pageText [out] output slot, initialized to NULL by the caller.
+ * @param outOwnedPageText [out] output slot, initialized to NULL by the caller.
  *     On success, the caller owns the returned object and must release it with
  *     {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy} when it is no longer needed.
  *     A valid slot is set to NULL on failure. On success, the returned JSON object includes a
  *     top-level schemaVersion field, even when the page is empty.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} on success.</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if pageText is NULL.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if outOwnedPageText is NULL.</li>
  *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if uiContext is NULL or no longer valid.</li>
  *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native implementation is unavailable.</li>
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if no current page exists, the JSON payload cannot be represented
  *     by uint32_t size, or collection/serialization fails.</li>
  *     </ul>
- * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {pageText}
+ * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwnedPageText}
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetPageText(
-    ArkUI_ContextHandle uiContext, OH_ArkUI_NativeModule_UIJsonWrapper** pageText);
+    ArkUI_ContextHandle uiContext, OH_ArkUI_NativeModule_UIJsonWrapper** outOwnedPageText);
 
 /**
  * @brief Declare the ArkUI content change event structure.
