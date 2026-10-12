@@ -105,6 +105,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  * returned string. The JSON object contains a top-level schemaVersion field.
  *
  * @param json [in] The JSON data object. It must not be NULL.
+ *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
  * @return The borrowed JSON string, or NULL if json is NULL.
  * @since 26.2.0
  */
@@ -117,6 +118,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  * field in the JSON string.
  *
  * @param json [in] The JSON data object. It must not be NULL.
+ *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
  * @return <ul>
  *     <li>The byte length of the JSON string, excluding the terminating '\0' character.</li>
  *     </ul>

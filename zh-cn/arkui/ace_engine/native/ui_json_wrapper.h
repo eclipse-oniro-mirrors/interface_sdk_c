@@ -98,6 +98,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  * 调用方不得修改或释放返回的字符串。JSON对象顶层包含schemaVersion字段。
  *
  * @param json [in] JSON数据对象，不能为NULL。
+ *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
  * @return 返回借用的JSON字符串指针，调用方不拥有其所有权；如果json为NULL，则返回NULL。
  * @since 26.2.0
  */
@@ -109,6 +110,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  * 返回的长度不包含末尾的空字符，包含JSON字符串中schemaVersion字段所占的字节。
  *
  * @param json [in] JSON数据对象，不能为NULL。
+ *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
  * @return <ul>
  *     <li>JSON字符串的字节长度，不包含末尾的空字符。</li>
  *     </ul>
