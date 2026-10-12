@@ -26,8 +26,11 @@
  * @file native_audio_device_enhance_manager.h
  *
  * @brief 本文件提供音频设备管理增强功能的接口。
- * <br>相比通用的音频设备管理接口文件仅提供查询设备状态的能力，本文件提供的接口可支持按应用或按音频流切换输入和输出设备。适用于需要在应用内实现应用级或流级音频设备切换的场景，例如多音频应用同时运行时的设备管理、
- * 专业音频应用需要指定特定设备、或者用户需要在应用内自定义音频设备选择等场景。通过精细化控制音频路由，可以提升应用的音频管理灵活性和用户体验。
+ * <br>相比通用的音频设备管理接口文件仅提供查询设备状态的能力，
+ * 本文件提供的接口可支持按应用或按音频流切换输入和输出设备。
+ * 适用于需要在应用内实现应用级或流级音频设备切换的场景，例如多音频应用同时运行时的设备管理、
+ * 专业音频应用需要指定特定设备、或者用户需要在应用内自定义音频设备选择等场景。
+ * 通过精细化控制音频路由，可以提升应用的音频管理灵活性和用户体验。
  * <br>但这种能力对系统音频底层架构存在依赖，并非所有设备都能支持，因此在使用前建议先调用能力查询接口进行查询。
  *
  * @library libohaudio.so
@@ -67,7 +70,8 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioDeviceEnhanceManager(
 /**
  * @brief 查询系统是否支持当前管理器提供的增强路由功能。
  *
- * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}获取的音频设备增强管理器实例。
+ * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}
+ *     获取的音频设备增强管理器实例。
  * @param supported [out] 查询结果，即系统是否支持音频设备增强管理功能。true表示支持，false表示不支持。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
@@ -82,12 +86,14 @@ OH_AudioCommon_Result OH_AudioDeviceEnhanceManager_IsEnhancedRoutingSupported(
 /**
  * @brief 为当前应用选择输出设备。
  *
- * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}获取的音频设备增强管理器实例。
- * @param deviceDescriptor [in] 选择的音频输出设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}返回的设备列表中获取。传入空指针时，
- *     系统会清除上一次选择，并为应用恢复默认输出设备。
+ * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}
+ *     获取的音频设备增强管理器实例。
+ * @param deviceDescriptor [in] 选择的音频输出设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}
+ *     返回的设备列表中获取。传入空指针时，系统会清除上一次选择，并为应用恢复默认输出设备。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioDeviceEnhanceManager为空指针，参数deviceDescriptor无效或指定输出设备已离线。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             参数audioDeviceEnhanceManager为空指针，参数deviceDescriptor无效或指定输出设备已离线。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 音频客户端调用音频服务失败或系统错误。</li>
  *         </ul>
  * @since 26.0.0
@@ -98,12 +104,14 @@ OH_AudioCommon_Result OH_AudioDeviceEnhanceManager_SelectOutputDevice(
 /**
  * @brief 为当前应用选择输入设备。
  *
- * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}获取的音频设备增强管理器实例。
- * @param deviceDescriptor [in] 选择的音频输入设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}返回的设备列表中获取。传入空指针时，
- *     系统会清除上一次选择，并为应用恢复默认输入设备。
+ * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}
+ *     获取的音频设备增强管理器实例。
+ * @param deviceDescriptor [in] 选择的音频输入设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}
+ *     返回的设备列表中获取。传入空指针时，系统会清除上一次选择，并为应用恢复默认输入设备。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioDeviceEnhanceManager为空指针，参数deviceDescriptor无效或指定输入设备已离线。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             参数audioDeviceEnhanceManager为空指针，参数deviceDescriptor无效或指定输入设备已离线。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 音频客户端调用音频服务失败或系统错误。</li>
  *         </ul>
  * @since 26.0.0
@@ -114,13 +122,16 @@ OH_AudioCommon_Result OH_AudioDeviceEnhanceManager_SelectInputDevice(
 /**
  * @brief 为指定音频播放流选择输出设备。
  *
- * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}获取的音频设备增强管理器实例。
+ * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}
+ *     获取的音频设备增强管理器实例。
  * @param renderer [in] 目标音频播放流，是通过{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频播放流实例。
- * @param deviceDescriptor [in] 选择的音频输出设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}返回的设备列表中获取。传入空指针时，
+ * @param deviceDescriptor [in] 选择的音频输出设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}
+ *     返回的设备列表中获取。传入空指针时，
  *     系统会清除上一次选择，并为该音频播放流恢复默认输出设备。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioDeviceEnhanceManager或renderer为空指针，参数deviceDescriptor无效或指定输出设备已离线。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             参数audioDeviceEnhanceManager或renderer为空指针，参数deviceDescriptor无效或指定输出设备已离线。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 音频客户端调用音频服务失败或系统错误。</li>
  *         </ul>
  * @since 26.0.0
@@ -132,13 +143,16 @@ OH_AudioCommon_Result OH_AudioDeviceEnhanceManager_SelectOutputDeviceForAudioRen
 /**
  * @brief 为指定音频录制流选择输入设备。
  *
- * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}获取的音频设备增强管理器实例。
+ * @param audioDeviceEnhanceManager [in] 通过{@link OH_AudioManager_GetAudioDeviceEnhanceManager}
+ *     获取的音频设备增强管理器实例。
  * @param capturer [in] 目标音频录制流，是通过{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频录制流实例。
- * @param deviceDescriptor [in] 选择的音频输入设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}返回的设备列表中获取。传入空指针时，
+ * @param deviceDescriptor [in] 选择的音频输入设备。可用设备需从{@link OH_AudioRoutingManager_GetAvailableDevices}
+ *     返回的设备列表中获取。传入空指针时，
  *     系统会清除上一次选择，并为该音频录制流恢复默认输入设备。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioDeviceEnhanceManager或capturer为空指针，参数deviceDescriptor无效或指定输入设备已离线。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             参数audioDeviceEnhanceManager或capturer为空指针，参数deviceDescriptor无效或指定输入设备已离线。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 音频客户端调用音频服务失败或系统错误。</li>
  *         </ul>
  * @since 26.0.0

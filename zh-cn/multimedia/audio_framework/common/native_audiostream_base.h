@@ -319,7 +319,8 @@ typedef enum {
 
 /**
  * @brief 定义音频流直通通路播放模式。
- * <br>使用直通通路的音频播放流，不会与其他播放流混音，系统也不会对数据进行处理，直接输出到底层硬件。通常用于高音质音源播放场景。
+ * <br>使用直通通路的音频播放流，不会与其他播放流混音，系统也不会对数据进行处理，直接输出到底层硬件。
+ * 通常用于高音质音源播放场景。
  *
  * @since 19
  */
@@ -410,7 +411,8 @@ typedef enum {
 /**
  * @brief 定义音频中断类型。
  * <br>当用户监听到音频中断时，将获取此信息。
- * <br>此类型表示本次音频打断的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过{@link OH_AudioInterrupt_Hint}获取。
+ * <br>此类型表示本次音频打断的操作是否已由系统强制执行，
+ * 具体操作信息（如音频暂停、停止等）可通过{@link OH_AudioInterrupt_Hint}获取。
  *
  * @since 10
  */
@@ -422,7 +424,8 @@ typedef enum {
     AUDIOSTREAM_INTERRUPT_FORCE = 0,
 
     /**
-     * 共享打断类型，即系统不执行具体操作，通过{@link OH_AudioInterrupt_Hint}提示并建议应用操作，应用可自行决策下一步处理方式。
+     * 共享打断类型，即系统不执行具体操作，通过{@link OH_AudioInterrupt_Hint}提示并建议应用操作，
+     * 应用可自行决策下一步处理方式。
      * @since 10
      */
     AUDIOSTREAM_INTERRUPT_SHARE = 1
@@ -444,7 +447,8 @@ typedef enum {
     AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,
 
     /**
-     * 提示音频恢复，应用可主动触发开始渲染或开始采集的相关操作。<br> 此操作无法由系统强制执行，其对应的{@link OH_AudioInterrupt_ForceType}
+     * 提示音频恢复，应用可主动触发开始渲染或开始采集的相关操作。
+     * <br> 此操作无法由系统强制执行，其对应的{@link OH_AudioInterrupt_ForceType}
      * 一定为AUDIOSTREAM_INTERRUPT_SHARE类型。
      * @since 10
      */
@@ -551,7 +555,8 @@ typedef enum {
     AUDIOSTREAM_SOURCE_TYPE_LIVE = 17,
 
     /**
-     * 蜂窝通话下行录音（通话中对方声音）。使用此输入流的音频采集器应在蜂窝通话开始后创建。使用{@link OH_AudioStreamBuilder_GenerateCapturer}创建采集流时需要ohos.
+     * 蜂窝通话下行录音（通话中对方声音）。使用此输入流的音频采集器应在蜂窝通话开始后创建。
+     * 使用{@link OH_AudioStreamBuilder_GenerateCapturer}创建采集流时需要ohos.
      * permission.CAPTURE_PLAYBACK_DOWNLINK权限，否则函数将返回错误。
      * @since 26.0.0
      */
@@ -633,7 +638,8 @@ typedef struct OH_AudioRendererStruct OH_AudioRenderer;
 typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 
 /**
- * @brief 声明用于同时设置音频渲染器的4个回调函数的结构体，包括写入音频数据、音频播放流事件、音频播放中断事件和音频播放错误回调函数。
+ * @brief 声明用于同时设置音频渲染器的4个回调函数的结构体，
+ * 包括写入音频数据、音频播放流事件、音频播放中断事件和音频播放错误回调函数。
  * {@link OH_AudioStreamBuilder_SetRendererCallback}接口会用此结构体设置回调。
  * <br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
  * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考开发指南-推荐使用OHAudio开发音频播放功能(C/C++)。
@@ -646,13 +652,16 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 typedef struct OH_AudioRenderer_Callbacks_Struct {
     /**
      * 指向用于写入音频数据的回调函数。当渲染器处于运行状态，此回调会周期性地触发，让开发者持续写入播放数据。
-     * 由于系统会将buffer内的全部数据用于播放，开发者需确保每次写入音频数据都填满buffer，否则会因播放未初始化的数据导致不可预期的行为。
-     * 回调函数每次执行完成后，音频系统会将buffer数据暂时放入内部队列中等待处理，因此请勿在回调函数返回后修改buffer指向的数据，否则会导致播放出现杂音。
+     * 由于系统会将buffer内的全部数据用于播放，开发者需确保每次写入音频数据都填满buffer，
+     * 否则会因播放未初始化的数据导致不可预期的行为。
+     * 回调函数每次执行完成后，音频系统会将buffer数据暂时放入内部队列中等待处理，
+     * 因此请勿在回调函数返回后修改buffer指向的数据，否则会导致播放出现杂音。
      * 注意，回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer的状态切换接口，避免引起死锁问题。
      * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
      * @param renderer 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
      * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetRendererCallback}接口传入的userdata数据。
-     * @param buffer 指向播放数据存储区域，开发者可从此buffer写入播放数据。每次写入都需要填满buffer，否则会因播放未初始化的数据导致不可预期的行为。
+     * @param buffer 指向播放数据存储区域，开发者可从此buffer写入播放数据。
+     * 每次写入都需要填满buffer，否则会因播放未初始化的数据导致不可预期的行为。
      * @param length buffer的长度，单位为字节(Byte)。
      * @return 回调函数返回值，当前版本系统并不处理，建议返回0。
      * @deprecated since 20
@@ -668,7 +677,8 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
     /**
      * 指向用于处理音频播放流事件的回调函数，但当前版本此回调不会被触发。
      * 请确保该结构体成员变量被自定义的回调函数或空指针初始化，避免未初始化的回调函数被系统调用，引起不可预知的行为。
-     * 从API version 11开始，开发者如果需要监听音频设备变化，可直接使用{@link OH_AudioRenderer_OutputDeviceChangeCallback}替代。
+     * 从API version 11开始，开发者如果需要监听音频设备变化，
+     * 可直接使用{@link OH_AudioRenderer_OutputDeviceChangeCallback}替代。
      * @param renderer 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
      * @param userData 指向开发者在{@link OH_AudioStreamBuilder_SetRendererCallback}接口传入的userdata数据。
      * @param event 音频播放流状态变化事件类型。
@@ -721,12 +731,14 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
 } OH_AudioRenderer_Callbacks;
 
 /**
- * @brief 声明用于同时设置音频采集器的4个回调函数的结构体，包括读取音频数据、音频录制流事件、音频录制中断事件和音频录制错误回调函数。
+ * @brief 声明用于同时设置音频采集器的4个回调函数的结构体，
+ * 包括读取音频数据、音频录制流事件、音频录制中断事件和音频录制错误回调函数。
  * {@link OH_AudioStreamBuilder_SetCapturerCallback}接口会用此结构体设置回调。
  * <br>注意，在设置音频回调函数时，请确保该结构体的每一个成员变量都被自定义的回调函数或空指针初始化，
  * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考开发指南-推荐使用OHAudio开发音频录制功能(C/C++)。
  * 
- * 说明，以下回调接口的返回值均没有对应枚举定义，当前版本系统并不处理返回值，但考虑到后续系统版本的可扩展性，建议使用0作为返回值。
+ * 说明，以下回调接口的返回值均没有对应枚举定义，当前版本系统并不处理返回值，
+ * 但考虑到后续系统版本的可扩展性，建议使用0作为返回值。
  *
  * @deprecated since 20
  * @useinstead Use the callback type: OH_AudioCapturer_OnReadDataCallback, OH_AudioCapturer_OnDeviceChangeCallback,
@@ -813,25 +825,25 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
 typedef enum {
     /**
      * @brief 未知原因。
-     * 
+     *
      */
     REASON_UNKNOWN = 0,
 
     /**
      * @brief 新设备可用。例如，音频播放过程中连接有线/蓝牙耳机。
-     * 
+     *
      */
     REASON_NEW_DEVICE_AVAILABLE = 1,
 
     /**
      * @brief 旧设备不可用。例如，音频播放过程中断开有线/蓝牙耳机。当报告此原因时，应用程序应考虑暂停音频播放。
-     * 
+     *
      */
     REASON_OLD_DEVICE_UNAVAILABLE = 2,
 
     /**
      * @brief 用户或系统强制选择切换。例如，在播控中心强选设备。
-     * 
+     *
      */
     REASON_OVERRODE = 3,
 
@@ -874,7 +886,8 @@ typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* rendere
 /**
  * @brief 音频播放流写入音频数据和元数据回调函数的原型定义。
  * <br>回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
- * <br>回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，因此请勿在回调外再次更改audioData指向的数据，且务必保证往audioData填满audioDataSize长度的待播放数据，
+ * <br>回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，
+ * 因此请勿在回调外再次更改audioData指向的数据，且务必保证往audioData填满audioDataSize长度的待播放数据，
  * 否则会导致音频服务播放杂音。
  *
  * @param renderer 指向触发回调的音频播放流实例。
@@ -909,7 +922,8 @@ typedef enum {
 
     /**
      * 共享类型，表示音频流包含隐私内容，但允许被其他应用录制或进行屏幕投射。
-     * <br>例如，在AUDIO_STREAM_PRIVACY_TYPE_PUBLIC策略下，{@link AUDIOSTREAM_USAGE_VOICE_COMMUNICATION}类型的音频流不会被其他应用录制或进行屏幕投射。
+     * <br>例如，在AUDIO_STREAM_PRIVACY_TYPE_PUBLIC策略下，
+     * {@link AUDIOSTREAM_USAGE_VOICE_COMMUNICATION}类型的音频流不会被其他应用录制或进行屏幕投射。
      * 然而，在AUDIO_STREAM_PRIVACY_TYPE_SHARED策略下，这种音频流将会允许被其他应用录制或进行屏幕投射。
      * @since 21
      */
@@ -937,7 +951,8 @@ typedef enum {
  * @brief 音频播放流写入音频数据回调函数的原型定义。
  * <br>回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
  * <br>该函数的返回结果表示填充到缓冲区的数据是否有效。如果结果是无效，用户填写的数据将不被播放。
- * <br>回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，因此请勿在回调外再次更改audioData指向的数据，且务必保证往audioData填满audioDataSize长度的待播放数据，
+ * <br>回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，
+ * 因此请勿在回调外再次更改audioData指向的数据，且务必保证往audioData填满audioDataSize长度的待播放数据，
  * 否则会导致音频服务播放杂音。
  * <br>参数audioDataSize可以通过{@link OH_AudioStreamBuilder_SetFrameSizeInCallback}设置。
  * <br>为避免音频播放启动和停止时数据不连续可能出现的杂音，系统通常会在启动和停止时对音频数据做20ms以内的淡入淡出处理。

@@ -25,13 +25,19 @@
 /**
  * @file native_audiorenderer.h
  *
- * @brief OH_AudioRenderer提供音频播放流功能，目前主要用于播放PCM（Pulse Code Modulation）音频数据。在播放过程中，需要持续向系统传递待播放的音频数据，适用于需要在播放前对音频数据进行预处理、
- * 对播放过程有更灵活控制要求的场景，如专业媒体播放、游戏、语音通话等。不同播放场景需通过{@link OH_AudioStream_Usage}配置合适的播放流类型，以便让系统匹配合适的音效、音量、设备与焦点策略。
- * <br>使用OH_AudioRenderer实现音频播放功能时，需先设置音频核心参数（采样率、声道、编码类型、采样格式、使用场景等）并设置数据写入回调，通过
- * {@link OH_AudioStreamBuilder_GenerateRenderer}创建播放流实例，随后调用{@link OH_AudioRenderer_Start}开始播放。播放过程中可通过
- * {@link OH_AudioRenderer_Pause}控制播放暂停、{@link OH_AudioRenderer_Stop}控制播放停止，退出播放时通过{@link OH_AudioRenderer_Release}释放资源。
+ * @brief OH_AudioRenderer提供音频播放流功能，目前主要用于播放PCM（Pulse Code Modulation）音频数据。在播放过程中，
+ * 需要持续向系统传递待播放的音频数据，适用于需要在播放前对音频数据进行预处理、
+ * 对播放过程有更灵活控制要求的场景，如专业媒体播放、游戏、语音通话等。
+ * 不同播放场景需通过{@link OH_AudioStream_Usage}配置合适的播放流类型，以便让系统匹配合适的音效、音量、设备与焦点策略。
+ * <br>使用OH_AudioRenderer实现音频播放功能时，需先设置音频核心参数（采样率、声道、编码类型、采样格式、使用场景等）
+ * 并设置数据写入回调，通过
+ * {@link OH_AudioStreamBuilder_GenerateRenderer}创建播放流实例，随后调用{@link OH_AudioRenderer_Start}开始播放。
+ * 播放过程中可通过
+ * {@link OH_AudioRenderer_Pause}控制播放暂停、{@link OH_AudioRenderer_Stop}控制播放停止，
+ * 退出播放时通过{@link OH_AudioRenderer_Release}释放资源。
  * OH_AudioRenderer内具备状态机，仅在特定状态下调用相应方法才能正常工作。
- * <br>由于系统对音频流数量有限制，不再使用时应及时调用{@link OH_AudioRenderer_Release}释放资源，避免后续创建音频流失败。
+ * <br>由于系统对音频流数量有限制，不再使用时应及时调用{@link OH_AudioRenderer_Release}释放资源，
+ * 避免后续创建音频流失败。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -95,7 +101,8 @@ OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
 
 /**
  * @brief 停止音频播放流。
- * <br>对比OH_AudioRenderer_Pause接口，通常情况下，已写入系统的音频数据缓存会全部播放完，再停止输出。但如果音频播放流处于低功耗运行模式，由于系统缓存数据很多，调用本接口仍会立即停止输出。
+ * <br>对比OH_AudioRenderer_Pause接口，通常情况下，已写入系统的音频数据缓存会全部播放完，再停止输出。
+ * 但如果音频播放流处于低功耗运行模式，由于系统缓存数据很多，调用本接口仍会立即停止输出。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
  * @return <ul>
@@ -248,8 +255,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* render
  * @brief 获取音频播放流时间戳和位置信息。
  * <br>该接口可以获取到音频通道实际播放位置（framePosition）以及播放到该位置时的时间戳（timestamp）。
  * <br>播放位置单位为采样数（samples），时间戳单位为ns。
- * <br>当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
- * <br>该接口通常用来实现音画同步，调用间隔建议不小于200ms，推荐频率为每秒一次。在能保证音画同步效果的情况下，不需要频繁地查询时间戳，避免出现功耗问题。
+ * <br>当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，
+ * 调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
+ * <br>该接口通常用来实现音画同步，调用间隔建议不小于200ms，推荐频率为每秒一次。在能保证音画同步效果的情况下，
+ * 不需要频繁地查询时间戳，避免出现功耗问题。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
  * @param clockId [in] 时钟标识符，使用CLOCK_MONOTONIC。
@@ -294,7 +303,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, floa
 
 /**
  * @brief 设置音频播放速率。
- * <br>默认播放速率为1.0。播放速率改变会影响音频数据的消耗速度，如设置2倍速时，数据消耗速度也会变为2倍，调用者需确保写入足够的音频数据。
+ * <br>默认播放速率为1.0。播放速率改变会影响音频数据的消耗速度，如设置2倍速时，数据消耗速度也会变为2倍，
+ * 调用者需确保写入足够的音频数据。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
  * @param speed [in] 设置播放的倍速值（倍速范围：[0.25, 4.0]）。
@@ -387,7 +397,8 @@ OH_AudioStream_Result OH_AudioRenderer_CancelMark(OH_AudioRenderer* renderer);
 
 /**
  * @brief 获取当前音频播放流欠载次数。
- * <br>在播放过程中，如果调用者没有及时通过数据回调写入音频数据，当系统将内部缓存全部输出后，就会触发欠载，输出静音数据。
+ * <br>在播放过程中，如果调用者没有及时通过数据回调写入音频数据，当系统将内部缓存全部输出后，就会触发欠载，
+ * 输出静音数据。
  * <br>欠载次数是按照音频系统的数据处理周期计算的，而不是以应用设置的回调长度作为周期。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
@@ -430,7 +441,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer* renderer,
 
 /**
  * @brief 设置当前音频播放流音效模式。
- * <br>对于媒体类音频，系统会根据{@link OH_AudioStream_Usage}为音频流添加音效，以达到更好的用户体验。但如果开发者不想使用系统默认音效，可通过此接口关闭。
+ * <br>对于媒体类音频，系统会根据{@link OH_AudioStream_Usage}为音频流添加音效，以达到更好的用户体验。
+ * 但如果开发者不想使用系统默认音效，可通过此接口关闭。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
  * @param effectMode [in] 目标音效模式。
@@ -459,7 +471,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy(OH_AudioRenderer* rend
 
 /**
  * @brief 设置音频播放流的静音并发播放模式。
- * <br>设置为true表示打开静音并发播放模式，系统将让此音频流静音播放，其他音频流可以保持正常播放不被打断。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
+ * <br>设置为true表示打开静音并发播放模式，系统将让此音频流静音播放，其他音频流可以保持正常播放不被打断。设置为false，
+ * 将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
  * <br>此接口适用于视频静音播放场景，避免打断正在播放的音乐。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
@@ -491,8 +504,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(
 
 /**
  * @brief 设置默认本机内置发声设备。
- * <br>本接口仅适用于音频流类型{@link OH_AudioStream_Usage}为语音消息、VoIP语音通话或者VoIP视频通话的场景，可选的设备类型为听筒、扬声器和系统默认设备。
- * <br>本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；
+ * <br>本接口仅适用于音频流类型{@link OH_AudioStream_Usage}为语音消息、VoIP语音通话或者VoIP视频通话的场景，
+ * 可选的设备类型为听筒、扬声器和系统默认设备。
+ * <br>本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，
+ * 若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；
  * 否则系统遵循应用设置的默认本机内置发声设备发声。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
@@ -515,15 +530,18 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
  * @brief 获取音频播放流时间戳和位置信息。
  * <br>相比OH_AudioRenderer_GetTimestamp适配了倍速接口。
  * <br>通常用于进行音画同步对齐，播放位置单位为采样数（samples），时间戳单位为ns。
- * <br>当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
- * <br>该接口通常用来实现音画同步，调用间隔建议不小于200ms，推荐频率为每秒一次。在能保证音画同步效果的情况下，不需要频繁地查询时间戳，避免出现功耗问题。
+ * <br>当设备切换或暂停恢复时，由于播放通路本身需要一段时间恢复，
+ * 调用该接口获取的播放位置和时间戳会短暂地保持在切换或暂停前的状态。
+ * <br>该接口通常用来实现音画同步，调用间隔建议不小于200ms，推荐频率为每秒一次。在能保证音画同步效果的情况下，
+ * 不需要频繁地查询时间戳，避免出现功耗问题。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
  * @param framePosition [out] 用于接收获取的最近输出音频帧位置，单位为采样数。
  * @param timestamp [out] 用于接收获取的最近输出音频帧时间戳，与位置对应，单位为ns。
  * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 1. 参数renderer为空指针；2. 参数framePosition或timestamp为空指针。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}
+ *             1. 参数renderer为空指针；2. 参数framePosition或timestamp为空指针。</li>
  *         <li>{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} 当前流状态不为合法状态时返回。</li>
  *         <li>{@link AUDIOSTREAM_ERROR_SYSTEM} 1. 系统进程崩溃或被阻塞；2. 内部系统其他错误。</li>
  *         </ul>
@@ -589,9 +607,12 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(
 
 /**
  * @brief 设置音频播放的响度值。
- * <br>默认的响度值是0.0dB。音频流播放类型必须是音乐{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_MUSIC， 电影或视频{@link OH_AudioStream_Usage}.
- * AUDIOSTREAM_USAGE_MOVIE， 有声读物（包括听书、相声、评书）、听新闻、播客等{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_AUDIOBOOK。
- * 音频流的时延模式必须是普通时延{@link OH_AudioStream_LatencyMode}.AUDIOSTREAM_LATENCY_MODE_NORMAL。 本接口不支持设置通过高清通路播放的音频流响度。
+ * <br>默认的响度值是0.0dB。音频流播放类型必须是音乐{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_MUSIC，
+ * 电影或视频{@link OH_AudioStream_Usage}.
+ * AUDIOSTREAM_USAGE_MOVIE， 有声读物（包括听书、相声、评书）、听新闻、
+ * 播客等{@link OH_AudioStream_Usage}.AUDIOSTREAM_USAGE_AUDIOBOOK。
+ * 音频流的时延模式必须是普通时延{@link OH_AudioStream_LatencyMode}.AUDIOSTREAM_LATENCY_MODE_NORMAL。
+ * 本接口不支持设置通过高清通路播放的音频流响度。
  * <br>由于音频框架与硬件之间存在缓冲区，响度调节实际生效存在延迟，时长取决于缓冲区长度。
  * <br>建议在不同音频开始播放前预先设置响度，以实现最佳均衡效果。
  *
@@ -599,7 +620,8 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(
  * @param loudnessGain [in] 设置播放的响度值（响度值范围为[-90.0, 24.0]，单位为dB）。
  * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 1. 参数renderer为空指针；2. 音频流不支持设置响度；3. 参数loudnessGain不在响度值范围内。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}
+ *             1. 参数renderer为空指针；2. 音频流不支持设置响度；3. 参数loudnessGain不在响度值范围内。</li>
  *         </ul>
  * @since 20
  */
@@ -650,7 +672,8 @@ typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer
  * @param latencyMs [out] 用于接收获取的音频时延，单位为ms。
  * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 1. 参数renderer为空指针；2. 参数latencyMs为空指针；3. 参数type无效。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}
+ *             1. 参数renderer为空指针；2. 参数latencyMs为空指针；3. 参数type无效。</li>
  *         <li>{@link AUDIOSTREAM_ERROR_SYSTEM} 系统内部错误，例如音频服务异常。</li>
  *         </ul>
  * @since 23
@@ -660,11 +683,13 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatency(OH_AudioRenderer* renderer,
 
 /**
  * @brief 设置音频播放流的独立音频会话策略和行为参数，这些参数主要用于扩展音频流的默认并发策略。
- * <br>建议在音频流处于运行状态前设置。当在音频流运行时调用此接口，只会在下次调用接口{@link OH_AudioRenderer_Start}启动音频流后参数才会生效。
+ * <br>建议在音频流处于运行状态前设置。当在音频流运行时调用此接口，
+ * 只会在下次调用接口{@link OH_AudioRenderer_Start}启动音频流后参数才会生效。
  *
  * @param renderer [in] 指向{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频流实例。
  * @param strategy [in] 用于设置独立的音频会话策略。
- * @param behavior [in] 音频会话行为标志，可以是单个标志，也可以是多个标志的按位OR组合。当前支持的音频会话行为详见{@link OH_AudioSession_BehaviorFlags}。
+ * @param behavior [in] 音频会话行为标志，可以是单个标志，也可以是多个标志的按位OR组合。
+ *     当前支持的音频会话行为详见{@link OH_AudioSession_BehaviorFlags}。
  * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数为空指针或超出范围。</li>

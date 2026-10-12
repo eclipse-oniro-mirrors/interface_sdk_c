@@ -27,9 +27,13 @@
  * @file native_audio_routing_manager.h
  *
  * @brief 本文件提供音频路由管理功能的接口。
- * <br>音频系统会为每个音频流选择默认的输入输出设备。对于音频播放流，系统会根据播放流的{@link OH_AudioStream_Usage}，在可用的输出设备中选择；对于音频录制流，系统会根据录制流的
+ * <br>音频系统会为每个音频流选择默认的输入输出设备。对于音频播放流，系统会根据播放流的{@link OH_AudioStream_Usage}，
+ * 在可用的输出设备中选择；
+ * 对于音频录制流，系统会根据录制流的
  * {@link OH_AudioStream_SourceType}，在可用的输入设备中选择。
- * <br>本文件提供的接口，支持开发者查询在线设备，监听设备在线状态变化，查询首选输入或输出设备，监听首选设备变化，查询麦克风堵塞状态等。当前并不提供主动选择设备的能力。
+ * <br>本文件提供的接口，支持开发者查询在线设备，监听设备在线状态变化，查询首选输入或输出设备，监听首选设备变化，
+ * 查询麦克风堵塞状态等。
+ * 当前并不提供主动选择设备的能力。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -71,7 +75,8 @@ typedef int32_t (*OH_AudioRoutingManager_OnDeviceChangedCallback) (
 );
 
 /**
- * @brief 首选输出设备变化回调函数的原型定义，用于{@link OH_AudioRoutingManager_RegisterPreferredOutputDevicesChangeCallback}和
+ * @brief 首选输出设备变化回调函数的原型定义，
+ * 用于{@link OH_AudioRoutingManager_RegisterPreferredOutputDevicesChangeCallback}和
  * {@link OH_AudioRoutingManager_UnregisterPreferredOutputDevicesChangeCallback}接口。
  * <br>首选设备可以是多个音频输出设备。
  *
@@ -83,7 +88,8 @@ typedef int32_t (*OH_AudioRoutingManager_OnPreferredOutputDeviceChangedCallback)
     OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
 
 /**
- * @brief 首选输入设备变化回调函数的原型定义，用于{@link OH_AudioRoutingManager_RegisterPreferredInputDevicesChangeCallback}和
+ * @brief 首选输入设备变化回调函数的原型定义，
+ * 用于{@link OH_AudioRoutingManager_RegisterPreferredInputDevicesChangeCallback}和
  * {@link OH_AudioRoutingManager_UnregisterPreferredInputDevicesChangeCallback}接口。
  * <br>首选设备可以是多个音频输入设备。
  *
@@ -115,7 +121,9 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager(OH_AudioRoutingMana
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数deviceFlag无效；3. 参数audioDeviceDescriptorArray为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数deviceFlag无效；
+ *             3. 参数audioDeviceDescriptorArray为空指针。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
  *         </ul>
  * @since 12
@@ -135,7 +143,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数deviceUsage无效；3. 参数audioDeviceDescriptorArray为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数deviceUsage无效；
+ *             3. 参数audioDeviceDescriptorArray为空指针。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
  *         </ul>
  * @since 12
@@ -154,7 +164,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数streamUsage无效；3. 参数audioDeviceDescriptorArray为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数streamUsage无效；
+ *             3. 参数audioDeviceDescriptorArray为空指针。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
  *         </ul>
  * @since 12
@@ -173,7 +185,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice(
  *     <br>不要单独释放此指针指向的内存，而是调用{@link OH_AudioRoutingManager_ReleaseDevices}，在不使用时释放所有内存。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数sourceType无效；3. 参数audioDeviceDescriptorArray为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数sourceType无效；
+ *             3. 参数audioDeviceDescriptorArray为空指针。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
  *         </ul>
  * @since 12
@@ -183,14 +197,16 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice(OH_AudioRou
 /**
  * @brief 注册音频在线设备变化回调。
  * <br>当音频外设连接和断连时，系统会触发此回调。
- * <br>为避免资源浪费或其他异常情况，当应用程序不再需要此回调时，必须通过调用{@link OH_AudioRoutingManager_UnregisterDeviceChangeCallback} 来释放回调。
+ * <br>为避免资源浪费或其他异常情况，当应用程序不再需要此回调时，
+ * 必须通过调用{@link OH_AudioRoutingManager_UnregisterDeviceChangeCallback} 来释放回调。
  *
  * @param audioRoutingManager [in] 指向通过{@link OH_AudioManager_GetAudioRoutingManager}获取的音频路由管理器实例。
  * @param deviceFlag [in] 音频设备标志，用来筛选输入输出。
  * @param callback [in] 音频设备在线状态变化回调函数指针。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数deviceFlag无效；3. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数deviceFlag无效；3. 参数callback为空指针。</li>
  *         </ul>
  * @since 12
  */
@@ -205,7 +221,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback(
  * @param callback [in] 已注册的音频设备在线状态变化回调函数指针，用于取消。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数callback为空指针。</li>
  *         </ul>
  * @since 12
  */
@@ -217,12 +234,13 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback(
  * @brief 注册音频首选输出设备变化回调。
  * <br>当指定播放流使用场景类型的首选输出设备发生变化时，系统会触发此回调。
  * <br>音频系统会根据播放流的{@link OH_AudioStream_Usage}确定不同的首选输出设备。
- * <br>为避免资源浪费或其他异常情况，当应用程序不再需要此回调时，必须通过调用{@link OH_AudioRoutingManager_UnregisterPreferredOutputDevicesChangeCallback}
- * 来释放回调。
+ * <br>为避免资源浪费或其他异常情况，当应用程序不再需要此回调时，
+ * 必须通过调用{@link OH_AudioRoutingManager_UnregisterPreferredOutputDevicesChangeCallback}来释放回调。
  *
  * @param audioRoutingManager [in] 指向通过{@link OH_AudioManager_GetAudioRoutingManager}获取的音频路由管理器实例。
  * @param streamUsage [in] 用于确定首选设备的音频播放流使用场景。
- * @param callback [in] 指向OH_AudioRoutingManager_OnPreferredOutputDeviceChangedCallback，用于接收首选输出设备变化事件。
+ * @param callback [in] 指向OH_AudioRoutingManager_OnPreferredOutputDeviceChangedCallback，
+ *     用于接收首选输出设备变化事件。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数校验失败。</li>
@@ -235,10 +253,12 @@ OH_AudioCommon_Result OH_AudioRoutingManager_RegisterPreferredOutputDevicesChang
     OH_AudioRoutingManager_OnPreferredOutputDeviceChangedCallback callback);
 
 /**
- * @brief 取消通过{@link OH_AudioRoutingManager_RegisterPreferredOutputDevicesChangeCallback} 注册的音频首选输出设备变化回调。
+ * @brief 取消通过{@link OH_AudioRoutingManager_RegisterPreferredOutputDevicesChangeCallback}
+ * 注册的音频首选输出设备变化回调。
  *
  * @param audioRoutingManager [in] 指向通过{@link OH_AudioManager_GetAudioRoutingManager}获取的音频路由管理器实例。
- * @param callback [in] 已注册的音频首选输出设备变化回调函数指针，用于取消。传入空指针时，系统将取消所有已注册的首选输出设备变化回调。
+ * @param callback [in] 已注册的音频首选输出设备变化回调函数指针，用于取消。
+ *     传入空指针时，系统将取消所有已注册的首选输出设备变化回调。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数校验失败。</li>
@@ -254,8 +274,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterPreferredOutputDevicesCha
  * @brief 注册音频首选输入设备变化回调。
  * <br>当指定录制流使用场景类型的首选输入设备发生变化时，系统会触发此回调。
  * <br>音频系统会根据录制流的{@link OH_AudioStream_SourceType}确定不同的首选输入设备。
- * <br>为避免资源浪费或其他异常情况，当应用程序不再需要此回调时，必须通过调用{@link OH_AudioRoutingManager_UnregisterPreferredInputDevicesChangeCallback}
- * 来释放回调。
+ * <br>为避免资源浪费或其他异常情况，当应用程序不再需要此回调时，
+ * 必须通过调用{@link OH_AudioRoutingManager_UnregisterPreferredInputDevicesChangeCallback}来释放回调。
  *
  * @param audioRoutingManager [in] 指向通过{@link OH_AudioManager_GetAudioRoutingManager}获取的音频路由管理器实例。
  * @param sourceType [in] 用于确定首选设备的音频录制流使用场景。
@@ -272,10 +292,12 @@ OH_AudioCommon_Result OH_AudioRoutingManager_RegisterPreferredInputDevicesChange
     OH_AudioRoutingManager_OnPreferredInputDeviceChangedCallback callback);
 
 /**
- * @brief 取消通过{@link OH_AudioRoutingManager_RegisterPreferredInputDevicesChangeCallback} 注册的音频首选输入设备变更回调。
+ * @brief 取消通过{@link OH_AudioRoutingManager_RegisterPreferredInputDevicesChangeCallback}
+ * 注册的音频首选输入设备变更回调。
  *
  * @param audioRoutingManager [in] 指向通过{@link OH_AudioManager_GetAudioRoutingManager}获取的音频路由管理器实例。
- * @param callback [in] 已注册的音频首选输入设备变化回调函数指针，用于取消。传入空指针时，系统将取消所有已注册的首选输入设备变化回调。
+ * @param callback [in] 已注册的音频首选输入设备变化回调函数指针，用于取消。
+ *     传入空指针时，系统将取消所有已注册的首选输入设备变化回调。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数校验失败。</li>
@@ -296,7 +318,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterPreferredInputDevicesChan
  * @param audioDeviceDescriptorArray [in] 待释放的音频设备描述符数组。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数audioDeviceDescriptorArray为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数audioDeviceDescriptorArray为空指针。</li>
  *         </ul>
  * @since 12
  */
@@ -325,7 +348,8 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(
  * @param supported [out] 获取当前设备是否支持麦克风堵塞状态检测的结果。true表示支持，false表示不支持。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数supported为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数supported为空指针。</li>
  *         </ul>
  * @since 13
  */
@@ -344,7 +368,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(
  * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1. 参数audioRoutingManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioRoutingManager为空指针；2. 参数callback为空指针。</li>
  *         </ul>
  * @since 13
  */

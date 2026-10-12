@@ -64,7 +64,8 @@ typedef bool (*OH_AudioAccessory_SetNoiseReductionCallback)(
 /**
  * @brief 获取音频配件管理器实例。
  *
- * @param outManager [out] 指向OH_AudioAccessoryManager指针的地址。该指针地址由系统管理，调用方不得释放，否则可能导致使用异常。
+ * @param outManager [out] 指向OH_AudioAccessoryManager指针的地址。
+ *     该指针地址由系统管理，调用方不得释放，否则可能导致使用异常。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS}：函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}：参数outManager为NULL。</li>

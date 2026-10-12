@@ -25,14 +25,20 @@
 /**
  * @file native_audiocapturer.h
  *
- * @brief OH_AudioCapturer提供音频录制流功能，目前主要用于录制PCM（Pulse Code Modulation）音频数据。在录制过程中，需要持续从系统读取已录到的音频数据，适用于需要在录制后对音频数据进行后处理、
- * 对录制过程有更灵活控制要求的场景，如专业媒体录制、语音识别、语音消息、语音通话等。不同录制场景需通过{@link OH_AudioStream_SourceType}配置合适的录音源类型，以便让系统匹配合适的音效、设备与焦点策略。
- * <br>使用OH_AudioCapturer实现音频录制功能时，需先设置音频核心参数（采样率、声道、编码类型、采样格式、使用场景等）并设置数据读取回调，通过
- * {@link OH_AudioStreamBuilder_GenerateCapturer}创建录制流实例，随后调用{@link OH_AudioCapturer_Start}开始录制。录制过程中可通过
- * {@link OH_AudioCapturer_Pause}控制录制暂停、{@link OH_AudioCapturer_Stop}控制录制停止，退出录制时通过{@link OH_AudioCapturer_Release}释放资源。
+ * @brief OH_AudioCapturer提供音频录制流功能，目前主要用于录制PCM（Pulse Code Modulation）音频数据。在录制过程中，
+ * 需要持续从系统读取已录到的音频数据，适用于需要在录制后对音频数据进行后处理、
+ * 对录制过程有更灵活控制要求的场景，如专业媒体录制、语音识别、语音消息、语音通话等。
+ * 不同录制场景需通过{@link OH_AudioStream_SourceType}配置合适的录音源类型，以便让系统匹配合适的音效、设备与焦点策略。
+ * <br>使用OH_AudioCapturer实现音频录制功能时，需先设置音频核心参数（采样率、声道、编码类型、采样格式、使用场景等）
+ * 并设置数据读取回调，通过
+ * {@link OH_AudioStreamBuilder_GenerateCapturer}创建录制流实例，随后调用{@link OH_AudioCapturer_Start}开始录制。
+ * 录制过程中可通过
+ * {@link OH_AudioCapturer_Pause}控制录制暂停、{@link OH_AudioCapturer_Stop}控制录制停止，
+ * 退出录制时通过{@link OH_AudioCapturer_Release}释放资源。
  * OH_AudioCapturer内具备状态机，仅在特定状态下调用相应方法才能正常工作。
  * <br>使用麦克风录制时，需申请ohos.permission.MICROPHONE权限，并且录制流只能在前台启动，启动后可退至后台保持运行。
- * <br>由于系统对音频流数量有限制，不再使用时应及时调用{@link OH_AudioCapturer_Release}释放资源，避免后续创建音频流失败。
+ * <br>由于系统对音频流数量有限制，不再使用时应及时调用{@link OH_AudioCapturer_Release}释放资源，
+ * 避免后续创建音频流失败。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -255,7 +261,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
 
 /**
  * @brief 获取音频录制流时间戳和当前数据帧位置信息。
- * <br>该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时的时间戳（timestamp），时间戳单位为ns。主要用于录像音画同步场景。
+ * <br>该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时的时间戳（timestamp），时间戳单位为ns。
+ * 主要用于录像音画同步场景。
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @param clockId [in] 时钟标识符，使用CLOCK_MONOTONIC。
@@ -286,7 +293,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer,
 
 /**
  * @brief 获取当前音频录制流过载次数。
- * <br>在录制过程中，如果调用者没有及时通过数据回调读取音频数据，系统内部缓存被录音数据填满，就会触发过载，新录到的数据会覆盖缓存内的历史数据，导致数据丢失。
+ * <br>在录制过程中，如果调用者没有及时通过数据回调读取音频数据，系统内部缓存被录音数据填满，就会触发过载，
+ * 新录到的数据会覆盖缓存内的历史数据，导致数据丢失。
  * <br>过载次数是按照音频系统的数据处理周期计算的，而不是以应用设置的回调长度作为周期。
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
@@ -394,7 +402,9 @@ typedef void (*OH_AudioCapturer_OnPlaybackCaptureStartCallback)(
     OH_AudioStream_PlaybackCaptureStartState state);
 
 /**
- * 异步请求启动内录（录制系统内部音频）。<br>该函数是非阻塞的，意味着系统在接收到启动请求后，将在函数返回后继续处理用户授权和内录流的启动。最终的启动结果将通过回调函数返回。<br>该API最初仅对特定系统应用可用，从API版本26.
+ * 异步请求启动内录（录制系统内部音频）。<br>该函数是非阻塞的，意味着系统在接收到启动请求后，
+ * 将在函数返回后继续处理用户授权和内录流的启动。
+ * 最终的启动结果将通过回调函数返回。<br>该API最初仅对特定系统应用可用，从API版本26.
  * 0.0开始，支持任意应用使用。
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @param callback [in] 用于接收启动请求最终结果的回调函数。
@@ -412,9 +422,11 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
 
 /**
  * @brief 将当前录制流的自身静音状态传递给音频系统。
- * <br>该接口用于在语音通话和语音会议场景，应用可向音频系统告知其进入录音静音状态（应用内实现录音静音），系统不会对录制流进行静音处理，而是会基于设置的状态调整数据处理策略以降低功耗。当前仅在部分PC/2in1设备上具备此效果。
+ * <br>该接口用于在语音通话和语音会议场景，应用可向音频系统告知其进入录音静音状态（应用内实现录音静音），
+ * 系统不会对录制流进行静音处理，而是会基于设置的状态调整数据处理策略以降低功耗。当前仅在部分PC/2in1设备上具备此效果。
  * <br>该接口仅在录制流处于运行态时允许调用，否则返回状态错误。
- * <br>应用同时设置音频流级静音提示接口（本接口）和会话级静音提示接口{@link OH_AudioSessionManager_SetCaptureMuteHint}时，本接口优先级更高。
+ * <br>应用同时设置音频流级静音提示接口（本接口）
+ * 和会话级静音提示接口{@link OH_AudioSessionManager_SetCaptureMuteHint}时，本接口优先级更高。
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @param mute [in] 应用内录音静音状态。true表示该录制流为静音状态，false表示该录制流为非静音状态。
@@ -429,11 +441,13 @@ OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, b
 
 /**
  * @brief 设置音频录制流的独立音频会话策略和行为参数，这些参数主要用于扩展音频流的默认并发策略。
- * <br>建议在音频流处于运行状态前设置。当在音频流运行时调用此接口，只会在下次调用接口{@link OH_AudioCapturer_Start}启动音频流后参数才会生效。
+ * <br>建议在音频流处于运行状态前设置。当在音频流运行时调用此接口，
+ * 只会在下次调用接口{@link OH_AudioCapturer_Start}启动音频流后参数才会生效。
  * 
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @param strategy [in] 用于设置独立的音频会话策略。
- * @param behavior [in] 音频会话行为标志，可以是单个标志，也可以是多个标志的按位OR组合。当前支持的音频会话行为详见{@link OH_AudioSession_BehaviorFlags}。
+ * @param behavior [in] 音频会话行为标志，可以是单个标志，也可以是多个标志的按位OR组合。
+ *     当前支持的音频会话行为详见{@link OH_AudioSession_BehaviorFlags}。
  * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数为空指针或超出范围。</li>
@@ -459,10 +473,14 @@ typedef void (*OH_AudioCapturer_SensitiveRecordPermitCallback)(
     bool isPermitted);
 
 /**
- * @brief 设置当前录制流的降噪模式。建议先调用{@link OH_AudioCapturer_GetSupportedNoiseReductionModes}获取当前录制流支持的降噪模式后，再通过本接口进行设置。
+ * @brief 设置当前录制流的降噪模式。
+ * 建议先调用{@link OH_AudioCapturer_GetSupportedNoiseReductionModes}获取当前录制流支持的降噪模式后，
+ * 再通过本接口进行设置。
  * <br>当前仅支持使用{@link AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE}创建的录制流进行降噪模式设置，其他录制流默认仅支持
- * {@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。降噪效果受设备平台、音频设备和录音并发情况影响。存在多个录制流同时运行时，设置的降噪模式可能不生效。
- * <br>该接口仅可在录制流创建后未开始录音，或停止录音后调用；录制流处于运行态或已释放时调用将返回{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE}。
+ * {@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。降噪效果受设备平台、音频设备和录音并发情况影响。
+ * 存在多个录制流同时运行时，设置的降噪模式可能不生效。
+ * <br>该接口仅可在录制流创建后未开始录音，或停止录音后调用；
+ * 录制流处于运行态或已释放时调用将返回{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE}。
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @param noiseReductionMode [in] 要设置的降噪模式。
@@ -479,7 +497,8 @@ OH_AudioStream_Result OH_AudioCapturer_SetNoiseReductionMode(OH_AudioCapturer* c
     OH_AudioNoiseReductionMode noiseReductionMode);
 
 /**
- * @brief 获取当前录制流的降噪模式。返回结果仅反映当前录制流的降噪模式。默认值为{@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。
+ * @brief 获取当前录制流的降噪模式。返回结果仅反映当前录制流的降噪模式。
+ * 默认值为{@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @param noiseReductionMode [out] 用于接收获取的录制流降噪模式。
@@ -493,18 +512,23 @@ OH_AudioStream_Result OH_AudioCapturer_GetNoiseReductionMode(OH_AudioCapturer* c
     OH_AudioNoiseReductionMode* noiseReductionMode);
 
 /**
- * @brief 获取当前设备平台支持的录音降噪模式。当前仅使用{@link AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE}创建的录制流会根据设备平台查询支持的降噪模式，其他录制流默认仅返回
+ * @brief 获取当前设备平台支持的录音降噪模式。
+ * 当前仅使用{@link AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE}创建的录制流会根据设备平台查询支持的降噪模式，
+ * 其他录制流默认仅返回
  * {@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。返回结果仅考虑音频格式和设备平台，不考虑当前输入设备和录音并发情况。
- * <br>当支持的模式数量大于入参inModeArraySize时，仅向noiseReductionModeArray写入前inModeArraySize个模式，outModeArraySize等于inModeArraySize。
+ * <br>当支持的模式数量大于入参inModeArraySize时，仅向noiseReductionModeArray写入前inModeArraySize个模式，
+ * outModeArraySize等于inModeArraySize。
  * 建议应用预留较大的数组长度，例如20，以兼容后续新增模式。
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
- * @param noiseReductionModeArray [out] 由应用分配的数组，用于接收支持的录音降噪模式，默认支持{@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。
+ * @param noiseReductionModeArray [out] 由应用分配的数组，用于接收支持的录音降噪模式，
+ *     默认支持{@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}。
  * @param inModeArraySize [in] noiseReductionModeArray数组的容量。
  * @param outModeArraySize [out] 用于接收实际获取的降噪模式数量。
  * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} 参数capturer为空指针，或参数noiseReductionModeArray为空指针，或参数outModeArraySize为空指针。</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}
+ *             参数capturer为空指针，或参数noiseReductionModeArray为空指针，或参数outModeArraySize为空指针。</li>
  *         <li>{@link AUDIOSTREAM_ERROR_SERVICE_DIED} 音频服务进程死亡。</li>
  *         </ul>
  * @since 26.0.0

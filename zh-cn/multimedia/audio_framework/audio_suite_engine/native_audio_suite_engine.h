@@ -72,21 +72,26 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuite
 
 /**
  * @brief 在当前音频编创引擎中创建1个管线。管线是引擎内负责音频编创的执行单元，1个引擎可创建多个管线。
- * <br>支持最多创建10条管线。在API版本26.0.0之前，实时预览管线最多创建1条；在API版本26.0.0及以后，不再对实时预览管线的数量做单独限制，但管线的总数仍不得超过10条。
+ * <br>支持最多创建10条管线。在API版本26.0.0之前，实时预览管线最多创建1条；在API版本26.0.0及以后，
+ * 不再对实时预览管线的数量做单独限制，但管线的总数仍不得超过10条。
  * <br>每个管线必须至少包含1个输入节点，有且只有1个输出节点。
  * <br>当管线在{@link OH_AudioSuite_PipelineWorkMode}.AUDIOSUITE_PIPELINE_EDIT_MODE模式下工作时，支持所有的效果节点。
- * <br>在API version 23之前，当管线在{@link OH_AudioSuite_PipelineWorkMode}.AUDIOSUITE_PIPELINE_REALTIME_MODE模式下工作时，仅支持
+ * <br>在API version 23之前，
+ * 当管线在{@link OH_AudioSuite_PipelineWorkMode}.AUDIOSUITE_PIPELINE_REALTIME_MODE模式下工作时，仅支持
  * {@link OH_AudioNode_Type}.EFFECT_NODE_TYPE_EQUALIZER效果节点；
- * <br>在API version 23及以后，当管线在{@link OH_AudioSuite_PipelineWorkMode}.AUDIOSUITE_PIPELINE_REALTIME_MODE模式下工作时，支持所有效果节点。
+ * <br>在API version 23及以后，
+ * 当管线在{@link OH_AudioSuite_PipelineWorkMode}.AUDIOSUITE_PIPELINE_REALTIME_MODE模式下工作时，支持所有效果节点。
  *
  * @param audioSuiteEngine 音频编创引擎句柄。通过{@link OH_AudioSuiteEngine_Create}获取句柄。
  * @param audioSuitePipeline 音频编创管线句柄。
  * @param workMode 管线工作模式。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioSuiteEngine为空指针或参数audioSuitePipeline为空指针。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM}
+ *             参数audioSuiteEngine为空指针或参数audioSuitePipeline为空指针。</li>
  *         <li>{@link AUDIOSUITE_ERROR_ENGINE_NOT_EXIST} 未初始化引擎。</li>
- *         <li>{@link AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} 创建管线数量超过系统最大数量限制（引擎最多创建10条管线）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS}
+ *             创建管线数量超过系统最大数量限制（引擎最多创建10条管线）。</li>
  *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
  *         <li>{@link AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} 内存申请失败。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
@@ -123,7 +128,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyPipeline(OH_AudioSuitePipeline* 
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线已在运行或节点连接异常。可能的原因如下：
  *             1. 管线已经在运行状态；
  *             2. 当前管线中不存在输出类型节点；
- *             3. 起始节点不是输入类型节点。4. HOA（High-Order Ambisonics）音频格式的输入节点未连接HOA空间渲染节点，或HOA空间渲染节点的前置节点不是HOA格式的输入节点。</li>
+ *             3. 起始节点不是输入类型节点。4. HOA（High-Order Ambisonics）音频格式的输入节点未连接HOA空间渲染节点，
+ *             或HOA空间渲染节点的前置节点不是HOA格式的输入节点。</li>
  *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
  *         </ul>
@@ -132,7 +138,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyPipeline(OH_AudioSuitePipeline* 
 OH_AudioSuite_Result OH_AudioSuiteEngine_StartPipeline(OH_AudioSuitePipeline* audioSuitePipeline);
 
 /**
- * @brief 停止运行该管线，管线会进入{@link OH_AudioSuite_PipelineState}.AUDIOSUITE_PIPELINE_STOPPED停止状态。该函数不会改变管线中节点之间的连接关系，管线一旦被停止
+ * @brief 停止运行该管线，管线会进入{@link OH_AudioSuite_PipelineState}.AUDIOSUITE_PIPELINE_STOPPED停止状态。
+ * 该函数不会改变管线中节点之间的连接关系，管线一旦被停止
  * ，{@link OH_AudioSuiteEngine_RenderFrame}就不能再进行音频处理。
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
@@ -183,7 +190,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  *             5. 参数finishedFlag为空指针。</li>
  *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在运行状态。</li>
- *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}
+ *             管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
  *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
  *         </ul>
@@ -193,11 +201,13 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
     void* audioData, int32_t requestFrameSize, int32_t* responseSize, bool* finishedFlag);
 
 /**
- * @brief 渲染该管线，获取管线处理后的音频数据。针对多输出效果节点，比如包含音源分离节点的管线，audioDataArray的大小需与效果节点的输出数量一一对应（例如：音源分离节点需两个：第1个为人声，第2个为背景声）。
+ * @brief 渲染该管线，获取管线处理后的音频数据。针对多输出效果节点，比如包含音源分离节点的管线，
+ * audioDataArray的大小需与效果节点的输出数量一一对应（例如：音源分离节点需两个：第1个为人声，第2个为背景声）。
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
  * @param audioDataArray 用户读取音频数据时所使用的数组指针，每个一维数组大小需一致。
- * @param responseSize 管线写入audioDataArray的音频数据大小。系统会确保每个一维数组被填充的数据大小一致，单位为字节(Byte)。
+ * @param responseSize 管线写入audioDataArray的音频数据大小。系统会确保每个一维数组被填充的数据大小一致，
+ *     单位为字节(Byte)。
  * @param finishedFlag 标记当前管线是否渲染完成。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
@@ -210,7 +220,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  *             6. 参数finishedFlag为空指针。</li>
  *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已经被销毁。</li>
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在运行状态。</li>
- *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}
+ *             管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
  *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
  *         </ul>
@@ -220,7 +231,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_MultiRenderFrame(OH_AudioSuitePipeline*
     OH_AudioDataArray* audioDataArray, int32_t* responseSize, bool* finishedFlag);
 
 /**
- * @brief 应用程序使用此接口进行音频数据和元数据处理。应用需在metaFrame结构体中指定audioData和metaData指针及其对应的大小（AudioDataSize和metaDataSize）。
+ * @brief 应用程序使用此接口进行音频数据和元数据处理。
+ * 应用需在metaFrame结构体中指定audioData和metaData指针及其对应的大小（AudioDataSize和metaDataSize）。
  * <br>处理完成后，实际输出的数据大小将通过responseAudioSize和responseMetaSize返回。
  *
  * @systemapi
@@ -235,7 +247,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_MultiRenderFrame(OH_AudioSuitePipeline*
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或其他非法值。</li>
  *         <li>{@link AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} 管线不存在或已被销毁。</li>
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_STATE} 管线不在运行状态。</li>
- *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}
+ *             管线渲染已完成（之前调用该接口时finishedFlag已写入为true）。</li>
  *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
  *         </ul>
@@ -245,7 +258,8 @@ int32_t OH_AudioSuiteEngine_MetaRenderFrame(OH_AudioSuitePipeline* audioSuitePip
     OH_AudioSuite_MetaFrame* metaFrame, int32_t* responseAudioSize, int32_t* responseMetaSize, bool* finishedFlag);
 
 /**
- * @brief 获取一个音频编创节点构造器，用于配置并创建音频节点。构建器可复用，但若新节点属性与之前不同，必须使用{@link OH_AudioSuiteNodeBuilder_Reset}重置。
+ * @brief 获取一个音频编创节点构造器，用于配置并创建音频节点。构建器可复用，但若新节点属性与之前不同，
+ * 必须使用{@link OH_AudioSuiteNodeBuilder_Reset}重置。
  *
  * @param builder 音频编创节点构造器句柄。
  * @return <ul>
@@ -272,7 +286,8 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Create(OH_AudioNodeBuilder** build
 OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Destroy(OH_AudioNodeBuilder* builder);
 
 /**
- * @brief 重置一个音频编创节点构造器，同时将之前使用接口设置参数重置。若需复用构建器创建属性不同的新节点，必须调用此接口清除所有属性（如节点类型等）。
+ * @brief 重置一个音频编创节点构造器，同时将之前使用接口设置参数重置。若需复用构建器创建属性不同的新节点，
+ * 必须调用此接口清除所有属性（如节点类型等）。
  *
  * @param builder 音频编创节点构造器句柄。通过{@link OH_AudioSuiteNodeBuilder_Create}获取句柄。
  * @return <ul>
@@ -352,7 +367,8 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(
  * @brief 定义输入节点请求数据的回调函数。
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
- * @param userData 用户使用的数据指针。系统调用此回调函数时，将使用{@link OH_AudioSuiteNodeBuilder_SetRequestDataCallback}接口传入的userData。
+ * @param userData 用户使用的数据指针。系统调用此回调函数时，
+ *     将使用{@link OH_AudioSuiteNodeBuilder_SetRequestDataCallback}接口传入的userData。
  * @param audioData 系统提供的内存地址，用于将需要处理的音频数据流写入（需由用户填充）。
  * @param audioDataSize audioData内存地址指向的音频数据大小，单位为字节(Byte)。
  * @param finished 标记audioNode节点需要处理的音频数据流是否已经写入完成。true表示已完成，false表示未完成。
@@ -384,7 +400,8 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
     OH_AudioNodeBuilder* builder, OH_InputNode_RequestDataCallback callback, void* userData);
 
 /**
- * @brief 请求元数据的回调函数，仅{@link INPUT_NODE_TYPE_DEFAULT}支持此设置。每当应用程序或用户调用{@link OH_AudioSuiteEngine_MetaRenderFrame}时，
+ * @brief 请求元数据的回调函数，仅{@link INPUT_NODE_TYPE_DEFAULT}支持此设置。
+ * 每当应用程序或用户调用{@link OH_AudioSuiteEngine_MetaRenderFrame}时，
  * 则会触发一次回调。
  *
  * @systemapi
@@ -420,7 +437,8 @@ int32_t OH_AudioSuiteNodeBuilder_SetRequestMetaDataCallback(
     OH_AudioNodeBuilder* builder, OH_InputNode_RequestMetaDataCallback callback, void* userData);
 
 /**
- * @brief 根据音频编创构造器在音频管线中构造一个音频节点。当执行此函数，系统会基于builder中设置的节点类型校验参数的合法性。
+ * @brief 根据音频编创构造器在音频管线中构造一个音频节点。当执行此函数，
+ * 系统会基于builder中设置的节点类型校验参数的合法性。
  * <br>应用可以通过返回值确定错误发生的原因。
  *
  * @param audioSuitePipeline 音频编创管线句柄。通过{@link OH_AudioSuiteEngine_CreatePipeline}获取句柄。
@@ -432,9 +450,13 @@ int32_t OH_AudioSuiteNodeBuilder_SetRequestMetaDataCallback(
  *             1. 参数audioSuitePipeline为空指针；
  *             2. 参数builder为空指针；
  *             3. 参数audioNode为空指针。</li>
- *         <li>{@link AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} 当构建当前类型的节点数量超过管线限制。例如，在API version 24之前，创建效果类节点的数量超过5个；在API version 24及以后，创建效果类节点的数量超过15个。</li>
- *         <li>{@link AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING} 构建builder中type类型的节点时缺少必要参数。例如，builder未设置节点类型。</li>
- *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} 当前构造器节点类型为输出节点但设置了回调函数，或构造器节点类型为效果节点但设置了音频格式或回调函数。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS}
+ *             当构建当前类型的节点数量超过管线限制。例如，在API version 24之前，创建效果类节点的数量超过5个；在API
+ *             version 24及以后，创建效果类节点的数量超过15个。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING}
+ *             构建builder中type类型的节点时缺少必要参数。例如，builder未设置节点类型。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}
+ *             当前构造器节点类型为输出节点但设置了回调函数，或构造器节点类型为效果节点但设置了音频格式或回调函数。</li>
  *         <li>{@link AUDIOSUITE_ERROR_TIMEOUT} 操作处理超时。</li>
  *         <li>{@link AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} 内存申请失败。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
@@ -445,7 +467,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_CreateNode(
     OH_AudioSuitePipeline* audioSuitePipeline, OH_AudioNodeBuilder* builder, OH_AudioNode** audioNode);
 
 /**
- * @brief 销毁一个音频编创节点。节点是否可以被销毁取决于它所属管线的状态，如果管线不处于{@link OH_AudioSuite_PipelineState}.AUDIOSUITE_PIPELINE_STOPPED停止状态，
+ * @brief 销毁一个音频编创节点。节点是否可以被销毁取决于它所属管线的状态，
+ * 如果管线不处于{@link OH_AudioSuite_PipelineState}.AUDIOSUITE_PIPELINE_STOPPED停止状态，
  * 而节点处于管线处理路径中，将销毁失败。
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
@@ -499,7 +522,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetNodeBypassStatus(
 OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNode, bool bypass);
 
 /**
- * @brief 配置输入/输出节点的音频格式，在创建节点之后使用，只有输入和输出节点能够设置。输入节点指定音源格式，输出节点指定目标格式。
+ * @brief 配置输入/输出节点的音频格式，在创建节点之后使用，只有输入和输出节点能够设置。输入节点指定音源格式，
+ * 输出节点指定目标格式。
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param audioFormat 指向音频流格式的指针，用于设置音频格式信息。
@@ -539,7 +563,8 @@ int32_t OH_AudioSuiteEngineSystem_SetAudioFormat(
     OH_AudioNode* audioNode, OH_AudioSuite_SystemNodeFormat* audioFormat);
 
 /**
- * @brief 连接两个节点，数据流走向从sourceAudioNode到destAudioNode。连接节点将改变管线拓扑，可能导致部分数据丢失，建议在引擎停止状态下执行此操作。
+ * @brief 连接两个节点，数据流走向从sourceAudioNode到destAudioNode。连接节点将改变管线拓扑，可能导致部分数据丢失，
+ * 建议在引擎停止状态下执行此操作。
  * <br>节点连接顺序：输入节点 -> 效果节点 -> 输出节点。
  *
  * @param sourceAudioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
@@ -590,13 +615,15 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_ConnectNodes(
 OH_AudioSuite_Result OH_AudioSuiteEngine_DisconnectNodes(OH_AudioNode* sourceAudioNode, OH_AudioNode* destAudioNode);
 
 /**
- * @brief 查询当前系统是否支持创建指定的节点类型，避免节点创建失败。调用该接口时不依赖引擎及管线状态，仅跟系统相关，无需创建引擎及管线。
+ * @brief 查询当前系统是否支持创建指定的节点类型，避免节点创建失败。调用该接口时不依赖引擎及管线状态，仅跟系统相关，
+ * 无需创建引擎及管线。
  *
  * @param nodeType 待查的节点类型。
  * @param isSupported 表示是否支持当前节点的创建。false表示未支持，true表示已支持。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 查询函数执行成功。</li>
- *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 传入非法参数。例如，入参nodeType不在OH_AudioNode_Type枚举类型范围内、isSupported为空指针等。</li>
+ *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM}
+ *             传入非法参数。例如，入参nodeType不在OH_AudioNode_Type枚举类型范围内、isSupported为空指针等。</li>
  *         <li>{@link AUDIOSUITE_ERROR_SYSTEM} 系统发生其他异常。</li>
  *         </ul>
  * @since 22

@@ -82,7 +82,8 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
  * @param scene [out] 用于接收获取的音频场景。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1. 参数manager为空指针；<br>2. 参数scene为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             <br>1. 参数manager为空指针；<br>2. 参数scene为空指针。</li>
  *         </ul>
  * @since 12
  */
@@ -98,7 +99,8 @@ OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *
  * @param userData [in] 用户自定义数据指针，回调函数触发时会携带。若无需传递数据，可传入空指针。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1. 参数manager为空指针；<br>2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             <br>1. 参数manager为空指针；<br>2. 参数callback为空指针。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统错误，主要为系统服务异常。</li>
  *         </ul>
  * @since 20
@@ -113,7 +115,8 @@ OH_AudioCommon_Result OH_AudioManager_RegisterAudioSceneChangeCallback(OH_AudioM
  * @param callback [in] 指向{@link OH_AudioManager_RegisterAudioSceneChangeCallback}传入的回调函数，用于取消注册。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1. 参数manager为空指针；<br>2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             <br>1. 参数manager为空指针；<br>2. 参数callback为空指针。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统错误，主要为系统服务异常。</li>
  *         </ul>
  * @since 20

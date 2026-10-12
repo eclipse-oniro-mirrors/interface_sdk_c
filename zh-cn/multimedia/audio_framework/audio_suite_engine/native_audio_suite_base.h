@@ -56,78 +56,93 @@ typedef enum {
      */
     OUTPUT_NODE_TYPE_DEFAULT = 101,
     /**
-     * 均衡器效果节点。均衡器效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
+     * 均衡器效果节点。均衡器效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_EQUALIZER = 201,
     /**
-     * 降噪效果节点。降噪效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：1。
+     * 降噪效果节点。降噪效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：1。
      * @since 22
      */
     EFFECT_NODE_TYPE_NOISE_REDUCTION = 202,
     /**
-     * 声场效果节点。声场效果节点支持的声场类型：{@link OH_SoundFieldType}。<br> 声场效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：
+     * 声场效果节点。声场效果节点支持的声场类型：{@link OH_SoundFieldType}。<br> 声场效果节点输出的音频格式如下：<br>
+     * 采样率：48000Hz。<br> 采样格式：
      * {@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_SOUND_FIELD = 203,
     /**
-     * 音源分离效果节点。音源分离效果节点只能连接输出节点。<br> 音源分离效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.
+     * 音源分离效果节点。音源分离效果节点只能连接输出节点。<br> 音源分离效果节点输出的音频格式如下：<br>
+     * 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.
      * AUDIO_SAMPLE_F32LE。<br> 声道数：4（前2个声道用于人声，后2个声道用于伴奏）。
      * @since 22
      */
     EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION = 204,
     /**
-     * 声音美化效果节点。声音美化效果节点支持的声音美化类型：{@link OH_VoiceBeautifierType}。<br> 声音美化效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：
+     * 声音美化效果节点。声音美化效果节点支持的声音美化类型：{@link OH_VoiceBeautifierType}。<br>
+     * 声音美化效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：
      * {@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_VOICE_BEAUTIFIER = 205,
     /**
-     * 环境效果节点。环境效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
+     * 环境效果节点。环境效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT = 206,
     /**
-     * 混音效果节点。混音效果节点输出的音频格式如下：<br> 采样率：{@link OH_Audio_SampleRate}。<br> 采样格式：{@link OH_Audio_SampleFormat}.
+     * 混音效果节点。混音效果节点输出的音频格式如下：<br> 采样率：{@link OH_Audio_SampleRate}。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.
      * AUDIO_SAMPLE_F32LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_AUDIO_MIXER = 207,
     /**
-     * 空间渲染效果节点。空间渲染效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
+     * 空间渲染效果节点。空间渲染效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 2。
      * @since 23
      */
     EFFECT_NODE_TYPE_SPACE_RENDER = 208,
     /**
-     * 传统变声效果节点。传统变声效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
+     * 传统变声效果节点。传统变声效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 1。
      * @since 23
      */
     EFFECT_NODE_TYPE_PURE_VOICE_CHANGE = 209,
     /**
-     * 通用变声效果节点。通用变声效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
+     * 通用变声效果节点。通用变声效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 2。
      * @since 23
      */
     EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE = 210,
     /**
-     * 变速变调效果节点。变速变调效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
+     * 变速变调效果节点。变速变调效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br>
+     * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 1。
      * @since 23
      */
     EFFECT_NODE_TYPE_TEMPO_PITCH = 211,
     /**
-     * HOA（High-Order Ambisonics）转双耳空间音频节点。HOA转双耳空间音频节点输入的音频格式如下：<br> 采样率：{@link OH_Audio_SampleRate}.SAMPLE_RATE_16000、
-     * {@link OH_Audio_SampleRate}.SAMPLE_RATE_48000。<br> 采样格式：{@link OH_Audio_SampleFormat}。<br> 声道布局：1阶至3阶HOA，取值如下：<
+     * HOA（High-Order Ambisonics）转双耳空间音频节点。HOA转双耳空间音频节点输入的音频格式如下：<br>
+     * 采样率：{@link OH_Audio_SampleRate}.SAMPLE_RATE_16000、
+     * {@link OH_Audio_SampleRate}.SAMPLE_RATE_48000。<br> 采样格式：{@link OH_Audio_SampleFormat}。<br>
+     * 声道布局：1阶至3阶HOA，取值如下：<
      * br> {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER1_ACN_N3D、{@link OH_AudioChannelLayout}.
      * CH_LAYOUT_AMB_ORDER1_ACN_SN3D、{@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER1_FUMA、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER2_ACN_N3D、{@link OH_AudioChannelLayout}.
      * CH_LAYOUT_AMB_ORDER2_ACN_SN3D、{@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER2_FUMA、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER3_ACN_N3D、{@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_AMB_ORDER3_ACN_SN3D、{@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER3_FUMA。HOA转双耳空间音频节点的输出音频格式如下：<br>
-     * 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S32LE。<br> 声道数：2。<br> 该节点的前置节点必须连接音频格式为HOA的输入节点，
+     * CH_LAYOUT_AMB_ORDER3_ACN_SN3D、{@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER3_FUMA。
+     * HOA转双耳空间音频节点的输出音频格式如下：<br>
+     * 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S32LE。<br> 声道数：2。<br>
+     * 该节点的前置节点必须连接音频格式为HOA的输入节点，
      * 如果未正确连接，在调用{@link OH_AudioSuiteEngine_StartPipeline}接口时将会报错。
      * @since 26.0.0
      */
@@ -165,7 +180,8 @@ typedef enum {
      */
     AUDIOSUITE_PIPELINE_EDIT_MODE = 1,
     /**
-     * 实时预览模式，即在音频处理过程中实时预览已处理的音频。<br> 在API version 23之前，实时预览模式下管线仅支持均衡器效果节点；<br> 在API version 23及以后，实时预览模式下管线支持所有效果节点。
+     * 实时预览模式，即在音频处理过程中实时预览已处理的音频。<br> 在API version 23之前，
+     * 实时预览模式下管线仅支持均衡器效果节点；<br> 在API version 23及以后，实时预览模式下管线支持所有效果节点。
      * @since 22
      */
     AUDIOSUITE_PIPELINE_REALTIME_MODE = 2
@@ -404,13 +420,17 @@ typedef struct OH_AudioFormat {
      */
     OH_Audio_SampleRate samplingRate;
     /**
-     * @brief 音频流声道布局。<br>在API版本26.0.0之前，仅支持CH_LAYOUT_MONO和CH_LAYOUT_STEREO。<br>在API版本26.0.0及以后，支持CH_LAYOUT_MONO、
+     * @brief 音频流声道布局。<br>在API版本26.0.0之前，仅支持CH_LAYOUT_MONO和CH_LAYOUT_STEREO。<br>
+     * 在API版本26.0.0及以后，支持CH_LAYOUT_MONO、
      * CH_LAYOUT_STEREO、CH_LAYOUT_STEREO_DOWNMIX、CH_LAYOUT_2POINT1、CH_LAYOUT_3POINT0、CH_LAYOUT_SURROUND、
-     * CH_LAYOUT_3POINT1、CH_LAYOUT_4POINT0、CH_LAYOUT_QUAD_SIDE、CH_LAYOUT_QUAD、CH_LAYOUT_2POINT0POINT2、CH_LAYOUT_4POINT1、
+     * CH_LAYOUT_3POINT1、CH_LAYOUT_4POINT0、CH_LAYOUT_QUAD_SIDE、CH_LAYOUT_QUAD、CH_LAYOUT_2POINT0POINT2、
+     * CH_LAYOUT_4POINT1、
      * CH_LAYOUT_5POINT0、CH_LAYOUT_5POINT0_BACK、CH_LAYOUT_2POINT1POINT2、CH_LAYOUT_3POINT0POINT2、CH_LAYOUT_5POINT1、
-     * CH_LAYOUT_5POINT1_BACK、CH_LAYOUT_6POINT0、CH_LAYOUT_3POINT1POINT2、CH_LAYOUT_6POINT0_FRONT、CH_LAYOUT_HEXAGONAL、
+     * CH_LAYOUT_5POINT1_BACK、CH_LAYOUT_6POINT0、CH_LAYOUT_3POINT1POINT2、CH_LAYOUT_6POINT0_FRONT、
+     * CH_LAYOUT_HEXAGONAL、
      * CH_LAYOUT_6POINT1、CH_LAYOUT_6POINT1_BACK、CH_LAYOUT_6POINT1_FRONT、CH_LAYOUT_7POINT0、CH_LAYOUT_7POINT0_FRONT、
-     * CH_LAYOUT_7POINT1、CH_LAYOUT_OCTAGONAL、CH_LAYOUT_5POINT1POINT2、CH_LAYOUT_7POINT1_WIDE、CH_LAYOUT_7POINT1_WIDE_BACK、
+     * CH_LAYOUT_7POINT1、CH_LAYOUT_OCTAGONAL、CH_LAYOUT_5POINT1POINT2、CH_LAYOUT_7POINT1_WIDE、
+     * CH_LAYOUT_7POINT1_WIDE_BACK、
      * CH_LAYOUT_AMB_ORDER1_ACN_N3D、CH_LAYOUT_AMB_ORDER1_ACN_SN3D、CH_LAYOUT_AMB_ORDER1_FUMA、
      * CH_LAYOUT_AMB_ORDER2_ACN_N3D、CH_LAYOUT_AMB_ORDER2_ACN_SN3D、CH_LAYOUT_AMB_ORDER2_FUMA、
      * CH_LAYOUT_AMB_ORDER3_ACN_N3D、CH_LAYOUT_AMB_ORDER3_ACN_SN3D、CH_LAYOUT_AMB_ORDER3_FUMA。
@@ -419,7 +439,8 @@ typedef struct OH_AudioFormat {
      */
     OH_AudioChannelLayout channelLayout;
     /**
-     * @brief 音频流声道数。<br>在API版本26.0.0之前，仅支持1声道和2声道。<br>在API版本26.0.0及以后，支持1至9声道及16声道。
+     * @brief 音频流声道数。<br>在API版本26.0.0之前，仅支持1声道和2声道。<br>在API版本26.0.0及以后，
+     * 支持1至9声道及16声道。
      *
      * @since 22
      */
@@ -496,7 +517,8 @@ typedef struct OH_AudioDataArray {
      */
     int32_t arraySize;
     /**
-     * @brief audioDataArray数组中每个地址指向的内存大小，单位为Byte。应确保每个地址指向的内存大小均符合requestFrameSize字段定义。
+     * @brief audioDataArray数组中每个地址指向的内存大小，单位为Byte。
+     * 应确保每个地址指向的内存大小均符合requestFrameSize字段定义。
      *
      * @since 22
      */
@@ -740,7 +762,8 @@ typedef struct OH_AudioNodeStruct OH_AudioNode;
 typedef struct OH_AudioNodeBuilderStruct OH_AudioNodeBuilder;
 
 /**
- * @brief 定义3D空间渲染效果节点固定摆位模式的配置参数。<br>左手坐标系：伸出左手，用拇指和食指形成一个“L”形。拇指指向右侧，食指向上，其余手指指向前。此时形成了一个3D的左手坐标系。在这个坐标系中，拇指、
+ * @brief 定义3D空间渲染效果节点固定摆位模式的配置参数。<br>左手坐标系：伸出左手，用拇指和食指形成一个“L”形。
+ * 拇指指向右侧，食指向上，其余手指指向前。此时形成了一个3D的左手坐标系。在这个坐标系中，拇指、
  * 食指和其他手指分别代表x轴、y轴和z轴的正方向。
  *
  * @since 23
@@ -918,7 +941,8 @@ typedef struct OH_AudioSuite_PureVoiceChangeOption {
      */
     OH_AudioSuite_PureVoiceChangeType optionType;
     /**
-     * 指定传统变声音调。如果使用系统中的默认音调以获得最佳效果，设置为{@link 宏定义}中的OH_PURE_VOICE_DEFAULT_PITCH。<br> 设置自定义音调的取值范围为[0.3f, 3.0f]。
+     * 指定传统变声音调。如果使用系统中的默认音调以获得最佳效果，设置为{@link 宏定义}中的OH_PURE_VOICE_DEFAULT_PITCH。
+     * <br> 设置自定义音调的取值范围为[0.3f, 3.0f]。
      * @since 23
      */
     float pitch;

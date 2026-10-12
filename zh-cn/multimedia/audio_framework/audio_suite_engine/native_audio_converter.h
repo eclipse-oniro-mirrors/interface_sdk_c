@@ -141,7 +141,8 @@ typedef enum {
  * @param converter 指向可用的音频格式转换器的指针。
  * @return AUDIOCONVERTER_SUCCESS：创建音频格式转换器成功，可以正常执行后续流程。
  *     <br>AUDIOCONVERTER_ERROR_INVALID_PARAM：函数输入参数无效，需要检查传入的音频格式转换器指针是否非空指针。
- *     <br>AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT：音频输入/输出格式组合不支持，输入或输出格式超出允许范围，需要检查配置的音频格式。
+ *     <br>AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT：音频输入/输出格式组合不支持，输入或输出格式超出允许范围，
+ *     需要检查配置的音频格式。
  *     <br>AUDIOCONVERTER_ERROR_SYSTEM：系统错误，需要检查是否使用已销毁的音频格式转换器执行格式转换。
  * @release OH_AudioConverter_Destroy {converter}
  * @since 26.0.0
@@ -160,8 +161,10 @@ OH_AudioConverter_Result OH_AudioConverter_Create(
 void OH_AudioConverter_Destroy(OH_AudioConverter* converter);
 
 /**
- * @brief 定义回调函数{@link OH_AudioConverter_RequestDataCallback}提供的输入音频数据的状态。转换器使用此状态来确定如何处理后续的转换逻辑。例如，继续提取数据，暂停或清除缓存数据。
- * <br>注意：即使回调返回AUDIOCONVERTER_INPUT_DATA_FINISHED，也必须重复调用OH_AudioConverter_Process，直到{@link OH_AudioConverter_Process}
+ * @brief 定义回调函数{@link OH_AudioConverter_RequestDataCallback}提供的输入音频数据的状态。
+ * 转换器使用此状态来确定如何处理后续的转换逻辑。例如，继续提取数据，暂停或清除缓存数据。
+ * <br>注意：即使回调返回AUDIOCONVERTER_INPUT_DATA_FINISHED，也必须重复调用OH_AudioConverter_Process，
+ * 直到{@link OH_AudioConverter_Process}
  * 返回AUDIOCONVERTER_SUCCESS，并且outputSize=0（表示所有缓存数据均已处理完成）。
  *
  * @since 26.0.0
@@ -203,7 +206,8 @@ typedef int32_t (*OH_AudioConverter_RequestDataCallback)(
 );
 
 /**
- * @brief 设置转换器请求数据回调函数。此函数绑定音频格式转换器的输入数据回调函数。回调函数由{@link OH_AudioConverter_Process}调用，获取输入音频数据并进行处理。
+ * @brief 设置转换器请求数据回调函数。此函数绑定音频格式转换器的输入数据回调函数。
+ * 回调函数由{@link OH_AudioConverter_Process}调用，获取输入音频数据并进行处理。
  *
  * @param converter 由{@link OH_AudioConverter_Create}函数创建转换器。
  * @param callback 回调函数用于写入音频数据。
@@ -223,8 +227,10 @@ OH_AudioConverter_Result OH_AudioConverter_SetInputCallback(
 );
 
 /**
- * @brief 执行音频格式转换处理函数。该函数执行音频转换过程，将输入音频转换为目标格式，需要注意：该函数必须在{@link OH_AudioConverter_SetInputCallback}之后调用，
- * 并且最终转换结果写入的输出缓冲区必须由调用方分配和管理。即使回调返回AUDIOCONVERTER_INPUT_DATA_FINISHED，也必须重复调用此函数，
+ * @brief 执行音频格式转换处理函数。该函数执行音频转换过程，将输入音频转换为目标格式，
+ * 需要注意：该函数必须在{@link OH_AudioConverter_SetInputCallback}之后调用，
+ * 并且最终转换结果写入的输出缓冲区必须由调用方分配和管理。即使回调返回AUDIOCONVERTER_INPUT_DATA_FINISHED，
+ * 也必须重复调用此函数，
  * 直到返回AUDIOCONVERTER_SUCCESS且outputSize=0（表示所有缓存数据均已处理完成）。
  *
  * @param converter 由{@link OH_AudioConverter_Create}函数创建转换器。
@@ -236,7 +242,8 @@ OH_AudioConverter_Result OH_AudioConverter_SetInputCallback(
  *     <br>AUDIOCONVERTER_ERROR_NOT_INITIALIZED：音频格式转换器未初始化，需要检查当前音频格式转换器是否有效。
  *     <br>AUDIOCONVERTER_ERROR_CALLBACK_INVALID：输入回调函数无效，需要检查输入回调函数返回数据量是否在允许范围内。
  *     <br>AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET：回调函数未设置，需要检查回调函数是否已成功设置并且函数指针是否非空。
- *     <br>AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL：输出缓冲区容量不足，需要检查设置的存储输出数据的缓冲区容量是否足够存放一帧输出数据。
+ *     <br>AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL：输出缓冲区容量不足，
+ *     需要检查设置的存储输出数据的缓冲区容量是否足够存放一帧输出数据。
  *     <br>AUDIOCONVERTER_ERROR_SYSTEM：系统错误，需要检查是否使用已销毁的音频格式转换器执行格式转换。
  * @since 26.0.0
  */

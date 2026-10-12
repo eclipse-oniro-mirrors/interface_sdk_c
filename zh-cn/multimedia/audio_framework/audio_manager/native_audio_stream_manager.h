@@ -26,9 +26,11 @@
  * @file native_audio_stream_manager.h
  *
  * @brief 本文件提供音频流管理功能的接口。
- * <br>音频流是对系统内音频播放和录制流的统称。音频系统会根据音频流的配置，如播放流的{@link OH_AudioStream_Usage}和录制流的{@link OH_AudioStream_SourceType}，
+ * <br>音频流是对系统内音频播放和录制流的统称。音频系统会根据音频流的配置，如播放流的{@link OH_AudioStream_Usage}
+ * 和录制流的{@link OH_AudioStream_SourceType}，
  * 为音频流选择合适的音频通路，以达到最佳的音频体验。
- * <br>在不同设备上，通路支持的情况存在差异，本模块提供了能力查询接口，开发者可传入待播放或录制音频流的基础属性和用途进行查询。
+ * <br>在不同设备上，通路支持的情况存在差异，本模块提供了能力查询接口，
+ * 开发者可传入待播放或录制音频流的基础属性和用途进行查询。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -75,7 +77,11 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManage
  * @param directPlaybackMode [out] 用于获取支持的直通通路播放模式。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1. 参数audioStreamManager为空指针；<br>2. 参数streamInfo为空指针；<br>3. 参数usage无效；<br>4. 参数directPlaybackMode为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             <br>1. 参数audioStreamManager为空指针；
+ *             <br>2. 参数streamInfo为空指针；
+ *             <br>3. 参数usage无效；
+ *             <br>4. 参数directPlaybackMode为空指针。</li>
  *         </ul>
  * @since 19
  */
@@ -91,7 +97,10 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(
  * @param supported [out] 用于获取是否支持回声消除的结果。true表示支持，false表示不支持。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
- *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} <br>1.参数streamManager为空指针；<br>2.参数sourceType无效；<br>3.参数supported为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             <br>1.参数streamManager为空指针；
+ *             <br>2.参数sourceType无效；
+ *             <br>3.参数supported为空指针。</li>
  *         </ul>
  * @since 20
  */

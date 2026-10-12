@@ -26,7 +26,8 @@
 /**
  * @file native_audio_common.h
  *
- * @brief 声明音频公共基础枚举定义，包括音频错误码、音频场景、铃声模式、录音降噪模式等，在音频播放、音频录制、音频管理相关接口中使用。
+ * @brief 声明音频公共基础枚举定义，
+ * 包括音频错误码、音频场景、铃声模式、录音降噪模式等，在音频播放、音频录制、音频管理相关接口中使用。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
