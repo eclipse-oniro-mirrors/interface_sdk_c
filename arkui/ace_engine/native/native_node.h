@@ -12943,7 +12943,7 @@ typedef enum {
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
 
     /**
-     * @brief Defines the want used to start EmbeddedAbility.
+     * @brief Defines the want used to start EmbeddedUIExtensionAbility.
      * This attribute can be set as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
