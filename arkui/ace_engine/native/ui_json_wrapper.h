@@ -33,6 +33,15 @@
  * Errors are reported through the documented return values. errno is not an error-reporting channel
  * for these APIs; its value after a call is unspecified and must not be used to determine success or failure.
  *
+ * These functions may be called from any thread, including the UI thread, within the object's
+ * documented lifetime. Read-only queries on the same live object may run concurrently. The caller
+ * must serialize destruction with all uses of that object and its borrowed data. Operations on
+ * independent objects may run concurrently. These functions do not invoke application callbacks;
+ * they may be called from callbacks when the ownership and lifetime requirements are met.
+ * They are not async-signal-safe and must not be called from a signal handler.
+ * Queries read local memory synchronously; creation and destruction also allocate or free memory.
+ * There is no asynchronous completion or cancellation operation, and no maximum allocator latency is guaranteed.
+ *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
  * @library libace_ndk.z.so
