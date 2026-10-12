@@ -17,7 +17,8 @@
  * @addtogroup OHAudio
  * @{
  *
- * @brief Provides the definition of the C interface for the audio module.
+ * @brief 提供音频模块C接口定义，可用于实现音频播放、录制和相关的音量、设备、会话管理等功能，
+ * 服务于媒体播放、语音通话、游戏音频等音频业务开发场景。
  *
  * @since 24
  * @version 1.0
@@ -26,7 +27,7 @@
 /**
  * @file native_audio_session_base.h
  *
- * @brief 声明音频会话基础数据结构。
+ * @brief 声明音频会话模块使用的基础数据结构和枚举定义。
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -51,35 +52,41 @@ extern "C" {
  */
 typedef enum {
     /**
-     * @brief 默认行为，用于清除会话行为标记。
+     * @brief 默认行为，用于重置会话行为标记。
      *
      * @since 24
      */
     DEFAULT_BEHAVIOR = 0x00000000,
 
     /**
-     * @brief 当系统需要停止或暂停音频流时，执行强制静音替代。
-     * <br>调用{@link OH_AudioSessionManager_SetBehavior}接口配置该行为时，必须同步调用{@link OH_AudioSessionManager_SetScene}接口，
+     * @brief 当系统因音频中断需要暂停或停止音频流时，执行强制静音替代。
+     * <br>调用{@link OH_AudioSessionManager_SetBehavior}接口配置该行为时，
+     * 必须同步调用{@link OH_AudioSessionManager_SetScene}接口，
      * 否则配置将无法生效。
-     * <br>在音频会话场景下，当音频流静音或恢复时，应用将分别收到{@link OH_AudioSession_StateChangeHint}.AUDIO_SESSION_STATE_CHANGE_HINT_MUTE与
+     * <br>在音频会话场景下，当音频流静音或恢复时，应用将分别收到
+     * {@link OH_AudioSession_StateChangeHint}.AUDIO_SESSION_STATE_CHANGE_HINT_MUTE与
      * {@link OH_AudioSession_StateChangeHint}.AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE的通知。
-     * <br>在OH_AudioRenderer和OH_AudioCapturer场景下，当音频流静音或恢复时，应用将分别收到{@link OH_AudioInterrupt_Hint}.
+     * <br>在OH_AudioRenderer和OH_AudioCapturer场景下，当音频流静音或恢复时，应用将分别收到
+     * {@link OH_AudioInterrupt_Hint}.
      * AUDIOSTREAM_INTERRUPT_HINT_MUTE与{@link OH_AudioInterrupt_Hint}.AUDIOSTREAM_INTERRUPT_HINT_UNMUTE的通知。
-     * **注意：** 该标志不能与PAUSE_WHEN_INTERRUPTED共存，若同时设置，仅PAUSE_WHEN_INTERRUPTED生效。
+     * <br>**注意：** 该标志不能与PAUSE_WHEN_INTERRUPTED共存，若同时设置，仅PAUSE_WHEN_INTERRUPTED生效。
      *
      * @since 24
      */
     MUTE_WHEN_INTERRUPTED = 0x00000002,
 
     /**
-     * @brief 当系统需要停止音频流时，执行暂停替代。
-     * <br>调用{@link OH_AudioSessionManager_SetBehavior}接口配置该行为时，必须同步调用{@link OH_AudioSessionManager_SetScene}接口，
+     * @brief 当系统因音频中断需要停止音频流时，执行暂停替代。
+     * <br>调用{@link OH_AudioSessionManager_SetBehavior}接口配置该行为时，
+     * 必须同步调用{@link OH_AudioSessionManager_SetScene}接口，
      * 否则配置将无法生效。
-     * <br>在音频会话场景下，当音频流暂停或恢复时，应用将分别收到{@link OH_AudioSession_StateChangeHint}.AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE与
+     * <br>在音频会话场景下，当音频流暂停或恢复时，应用将分别收到
+     * {@link OH_AudioSession_StateChangeHint}.AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE与
      * {@link OH_AudioSession_StateChangeHint}.AUDIO_SESSION_STATE_CHANGE_HINT_RESUME的通知。
-     * <br>在OH_AudioRenderer和OH_AudioCapturer场景下，当音频流暂停或恢复时，应用将分别收到{@link OH_AudioInterrupt_Hint}.
+     * <br>在OH_AudioRenderer和OH_AudioCapturer场景下，当音频流暂停或恢复时，应用将分别收到
+     * {@link OH_AudioInterrupt_Hint}.
      * AUDIOSTREAM_INTERRUPT_HINT_PAUSE与{@link OH_AudioInterrupt_Hint}.AUDIOSTREAM_INTERRUPT_HINT_RESUME的通知。
-     * **注意：** 该标志不能与MUTE_WHEN_INTERRUPTED共存，若同时设置，仅该标志生效。
+     * <br>**注意：** 该标志不能与MUTE_WHEN_INTERRUPTED共存，若同时设置，仅该标志生效。
      *
      * @since 26.0.0
      */
@@ -89,14 +96,15 @@ typedef enum {
 /**
  * @brief 音频并发模式。
  * <br>从API version 24开始，此枚举由native_audio_session_manager.h移动至此头文件。
- * <br>在API version 24之前，使用该枚举请引用native_audio_session_manager.h头文件；从API version 24开始，引用native_audio_session_manager.
+ * <br>在API version 24之前，使用该枚举请引用native_audio_session_manager.h头文件；
+ * 从API version 24开始，引用native_audio_session_manager.
  * h或native_audio_session_base.h均可正常使用该枚举。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * @brief 默认使用系统策略。
+     * @brief 使用系统默认并发策略。
      *
      */
     CONCURRENCY_DEFAULT = 0,
@@ -121,9 +129,12 @@ typedef enum {
 } OH_AudioSession_ConcurrencyMode;
 
 /**
- * @brief 音频会话策略。<br>从API version 24开始，此结构体由native_audio_session_manager.h移动至native_audio_session_base.h文件。<br>在API
- * version 24之前，使用该结构体请引用native_audio_session_manager.h头文件；从API version 24开始，引用native_audio_session_manager.
- * h或native_audio_session_base.h均可正常使用该结构体。
+ * @brief 声明音频会话策略结构体，该结构体用于在激活会话时传递会话并发策略信息。
+ * <br>从API version 24开始，此结构体由native_audio_session_manager.
+ * h移动至native_audio_session_base.h文件。
+ * <br>在API version 24之前，使用该结构体请引用native_audio_session_manager.h头文件；
+ * 从API version 24开始，
+ * 引用native_audio_session_manager.h或native_audio_session_base.h均可正常使用该结构体。
  *
  * @since 12
  */

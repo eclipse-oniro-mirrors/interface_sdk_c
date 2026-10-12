@@ -16,7 +16,7 @@
  * @addtogroup OHAudioSuite
  * @{
  *
- * @brief Provide the definition of the C interface for the audio download manager module.
+ * @brief 提供音频编创相关C接口定义，包含多种专业级音频效果处理功能，服务于音频编辑和创作类应用场景。
  *
  * @since 26.0.0
  */
@@ -209,6 +209,8 @@ int32_t OH_AudioSuite_UnregisterDownloadCallback(
  * <li>202如果非系统应用程序调用此系统API。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET} 所需网络条件未满足。当前网络状态不可用。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_STORAGE_NOT_ENOUGH}如果存储空间不足。</li>
  * </ul>
  * @since 26.0.0
  */
