@@ -164,32 +164,32 @@ typedef enum {
     OH_NN_UNAVALIDABLE_DEVICE = 7,
     /** 非法路径。 */
     OH_NN_INVALID_PATH = 8,
-    /** 
+    /**
      * 执行超时。
      * @since 11
      */
     OH_NN_TIMEOUT = 9,
-    /** 
+    /**
      * 未支持。
      * @since 11
      */
     OH_NN_UNSUPPORTED = 10,
-    /** 
+    /**
      * 连接异常。
      * @since 11
      */
     OH_NN_CONNECTION_EXCEPTION = 11,
-    /** 
+    /**
      * 保存cache异常
      * @since 11
      */
     OH_NN_SAVE_CACHE_EXCEPTION = 12,
-    /** 
+    /**
      * 动态shape。
      * @since 11
      */
     OH_NN_DYNAMIC_SHAPE = 13,
-    /** 
+    /**
      * 硬件发生错误，错误可能包含：HDL服务崩溃。
      * @since 11
      */
