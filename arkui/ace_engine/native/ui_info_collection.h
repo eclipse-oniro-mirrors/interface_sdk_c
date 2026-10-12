@@ -249,6 +249,7 @@ typedef enum {
  *     the JSON structure, which includes a top-level schemaVersion field.
  *     This object needs to be released by the developer after being used.
  * @param userData [in] The caller-provided data passed to OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync.
+ *     NULL is allowed and indicates that no custom context was provided.
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
  */
@@ -485,7 +486,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  * @param callback [in] The completion callback. On success, the callback receives ownership of the JSON object and must
  *     release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
  *     The JSON object includes a top-level schemaVersion field.
- * @param userData [in] The caller-provided data passed to the callback.
+ * @param userData [in] The caller-provided data passed to the callback. NULL is allowed and indicates no custom context.
  * @param requestId [out] The output identifier for the accepted request.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the request is accepted.</li>

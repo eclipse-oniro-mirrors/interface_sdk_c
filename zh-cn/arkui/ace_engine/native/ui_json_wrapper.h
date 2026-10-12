@@ -128,7 +128,7 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * 不得使用本函数释放由系统构造并传出的JSON封装对象，
  * 例如通过{@link OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback}传入的对象。
  *
- * @param json [in] 要销毁的JSON数据对象。
+ * @param json [in] 要销毁的JSON数据对象，可以为NULL；传入NULL时不执行任何操作。
  * @since 26.2.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);

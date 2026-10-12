@@ -137,7 +137,7 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * for example, the object delivered through
  * {@link OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback}.
  *
- * @param json [in] The JSON data object to destroy.
+ * @param json [in] The JSON data object to destroy. NULL is allowed and has no effect.
  * @since 26.2.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);

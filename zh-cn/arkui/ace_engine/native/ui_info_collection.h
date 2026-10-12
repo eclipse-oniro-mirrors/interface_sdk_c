@@ -244,6 +244,7 @@ typedef enum {
  * @param json [in] 不可变的JSON结果。请求失败时为NULL，成功时包含以JSON结构表示的控件树。
  *     JSON对象顶层包含schemaVersion字段。开发者必须在使用完毕后释放该对象。
  * @param userData [in] 调用方传给OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync的数据。
+ *     可以为NULL，表示未提供自定义上下文。
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
  */
@@ -463,7 +464,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  * @param callback [in] 请求完成时调用的回调函数。请求成功时，回调取得JSON对象的所有权，
  *     必须调用OH_ArkUI_NativeModule_UIJsonWrapperDestroy释放该对象。
  *     JSON对象顶层包含schemaVersion字段。
- * @param userData [in] 调用方提供的、传给回调的数据。
+ * @param userData [in] 调用方提供的、传给回调的数据，可以为NULL，表示未提供自定义上下文。
  * @param requestId [out] 用于接收已接受请求的标识符的输出参数。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 请求已被接受。</li>
