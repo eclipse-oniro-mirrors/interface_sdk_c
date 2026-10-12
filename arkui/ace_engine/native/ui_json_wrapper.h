@@ -121,6 +121,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
  * @return <ul>
  *     <li>The byte length of the JSON string, excluding the terminating '\0' character.</li>
+ *     <li>0 if json is NULL.</li>
  *     </ul>
  * @since 26.2.0
  */

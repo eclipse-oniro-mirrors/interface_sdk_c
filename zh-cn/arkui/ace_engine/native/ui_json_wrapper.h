@@ -113,6 +113,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
  * @return <ul>
  *     <li>JSON字符串的字节长度，不包含末尾的空字符。</li>
+ *     <li>json为NULL时返回0。</li>
  *     </ul>
  * @since 26.2.0
  */
