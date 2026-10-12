@@ -184,7 +184,7 @@ typedef enum {
      * @since 11
      */
     OH_NN_CONNECTION_EXCEPTION = 11,
-    /** 
+    /**
      * Save cache exception.
      * @since 11
      */
