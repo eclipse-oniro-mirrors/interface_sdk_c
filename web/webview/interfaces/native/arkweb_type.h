@@ -165,6 +165,8 @@ typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
  * of the Web component, such as status change notifications in scenarios like page loading completion, page
  * destruction, and component visibility changes.
  *
+ * @param webTag Name of the **Web** component.
+ * @param userData Pointer to user-defined data.
  * @since 12
  */
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
@@ -269,7 +271,9 @@ typedef struct {
  */
 typedef struct {
     /**
-     * Pointer to the method name to be injected.
+     * Name of the native method injected into the JavaScript environment, used for calling the specified native method
+     * from the web frontend. This parameter must be a non-null pointer. It is recommended to use a name with clear
+     * business semantics to avoid conflicts with existing JavaScript methods.
      */
     const char* methodName;
     /**
@@ -278,7 +282,8 @@ typedef struct {
      */
     ArkWeb_OnJavaScriptProxyCallbackWithResult callback;
     /**
-     * Custom data to be carried in the callback.
+     * Pointer to the custom data, allocated and released by the caller. It must remain valid during callback execution
+     * and is used to pass business context or state objects in the callback. NULL if not passed.
      */
     void* userData;
 } ArkWeb_ProxyMethodWithResult;
@@ -321,8 +326,8 @@ typedef struct {
  */
 typedef struct {
     /**
-     * Name of the injected object. The name must follow JavaScript identifier rules and cannot contain special
-     * characters.
+     * Name of the injected object, used for referencing the object in JavaScript calls. The name must follow
+     * JavaScript identifier rules and cannot contain special characters.
      */
     const char* objName;
     /**
@@ -333,6 +338,7 @@ typedef struct {
     const ArkWeb_ProxyMethodWithResult* methodList;
     /**
      * Length of the method struct array. Must be consistent with the actual number of elements in the methodList array.
+     * The minimum value is 0, and the maximum value depends on system resource limits.
      */
     size_t size;
 } ArkWeb_ProxyObjectWithResult;
@@ -360,6 +366,9 @@ typedef struct {
      * Injects a JavaScript script. This API must be called on the UI thread by calling the OH_ArkWeb_GetNativeAPI
      * method. This method injects a JavaScript script into the execution context of the **Web** component and executes
      * it after the page is loaded.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param javascriptObject JavaScript object to inject.
      */
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /**
@@ -370,6 +379,10 @@ typedef struct {
      * OH_ArkWeb_GetNativeAPI method. Compared with registerAsyncJavaScriptProxy, this method is suitable for scenarios
      * where a synchronous return value is required. If a synchronous return value is not needed or the operation is
      * time-consuming, you are advised to use registerAsyncJavaScriptProxy to avoid blocking the UI thread.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param proxyObject Pointer to the proxy object to register. The object will be injected into the window
+     *     object and its methods can be called through JavaScript.
      */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
@@ -378,12 +391,17 @@ typedef struct {
      * This method unbinds the JavaScript object from the native object and releases related resources. Use Cases: for
      * example, cleaning up registered objects to avoid residue when a component is destroyed, a module is unloaded, or
      * services are switched.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param objName Name of the JavaScript object.
      */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /**
      * Refreshes the current web page. The page stack is cleared during the refresh, as a result, the current page
      * cannot be navigated forward or backward. This API must be called on the UI thread by calling the
      * OH_ArkWeb_GetNativeAPI method.
+     *
+     * @param webTag Name of the **Web** component.
      */
     void (*refresh)(const char* webTag);
     /**
@@ -393,6 +411,9 @@ typedef struct {
      * Compared with registerJavaScriptProxy, this method is suitable for time-consuming operations or scenarios where
      * a synchronous return value is not needed. If a synchronous return value is needed, you are advised to use
      * registerJavaScriptProxy.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param proxyObject Object to be registered.
      */
     void (*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
@@ -505,25 +526,45 @@ typedef struct {
      */
     size_t size;
     /**
-     * Registers a callback listener for the Controller attached event. Note: This callback must be called in the UI
-     * thread. Before calling, it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function
-     * pointer exists.
+     * @brief Registers a callback listener for the Controller attached event. Note: This callback must be called in
+     * the UI thread. Before calling, it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the
+     * function pointer exists.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param callback Callback of **onControllerAttached**.
+     * @param userData User-defined data.
      */
     void (*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
-     * This callback is triggered when the web page starts loading. It is triggered only for the main frame, not for
-     * iframe or frameset content loading. This callback must be called in the UI thread. Before calling, it is
-     * recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function pointer exists.
+     * @brief This callback is triggered when the web page starts loading. It is triggered only for the main frame,
+     * not for iframe or frameset content loading. This callback must be called in the UI thread. Before calling,
+     * it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function pointer exists.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param callback Callback invoked when the web page starts loading, used to handle the business logic at the
+     *     beginning of the page load.
+     * @param userData Pointer to the user-defined data. This data is passed to the callback when the callback is
+     *     triggered, and can be used to save context information or state data.
      */
     void (*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
-     * This callback is triggered when the web page finishes loading. It is triggered only for the main frame, not for
-     * iframe or frameset content loading. This callback must be called in the UI thread. Before calling, it is
-     * recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function pointer exists.
+     * @brief This callback is triggered when the web page finishes loading. It is triggered only for the main frame,
+     * not for iframe or frameset content loading. This callback must be called in the UI thread. Before calling,
+     * it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function pointer exists.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param callback Callback triggered when page load completes, used to handle business logic after page load
+     *     completes.
+     * @param userData User-defined data pointer. This data is passed to the callback function when the callback is
+     *     triggered, and can be used to save context information or state data.
      */
     void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
-     * Triggered when this **Web** component is destroyed.
+     * @brief Triggered when this **Web** component is destroyed.
+     *
+     * @param webTag Name of the **Web** component.
+     * @param callback Callback of **onDestroy**.
+     * @param userData Pointer to the user-defined data.
      */
     void (*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
 } ArkWeb_ComponentAPI;
@@ -739,7 +780,9 @@ typedef struct {
         const char* cookieValue, bool incognito, bool includeHttpOnly);
 
     /**
-     * @brief Check whether cookies exist.
+     * @brief Checks whether cookies exist. This method is used in scenarios such as determining whether a user is
+     * logged in, checking whether a session is valid, and verifying identity status. This method must be called in
+     * the UI thread. Before calling, you are advised to check the availability of the function pointer.
      *
      * @param incognito True indicates whether cookies exist in privacy mode,
      *                  and false indicates whether cookies exist in non-privacy mode.
@@ -814,7 +857,7 @@ typedef struct {
     ((intptr_t) & ((s)->f) - (intptr_t)(s) + sizeof((s)->f) <= *(size_t *)(s))
 
 /**
- * @brief Return false if the struct member does not exist, otherwise true.
+ * @brief Return true if the struct member does not exist, otherwise false.
  *
  * @since 12
  */

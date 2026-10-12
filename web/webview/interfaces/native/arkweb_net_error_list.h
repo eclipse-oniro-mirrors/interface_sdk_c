@@ -36,6 +36,11 @@
 #ifndef ARKWEB_NET_ERROR_LIST_H
 #define ARKWEB_NET_ERROR_LIST_H
 
+/**
+ * @brief Enumerates the error codes of the ArkWeb network protocol stack.
+ *
+ * @since 12
+ */
 typedef enum ArkWeb_NetError {
     /**
      * @error Normal.

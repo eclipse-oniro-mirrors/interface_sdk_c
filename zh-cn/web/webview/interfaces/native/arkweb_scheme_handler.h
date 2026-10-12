@@ -54,6 +54,9 @@ extern "C" {
  * @since 12
  */
 typedef enum ArkWeb_CustomSchemeOption {
+    /**
+     * 表示注册自定义scheme时不赋予它任何特殊行为或能力。
+     */
     OH_ARKWEB_SCHEME_OPTION_NONE = 0,
 
     /**
@@ -739,6 +742,10 @@ void* OH_ArkWebSchemeHandler_GetUserData(const ArkWeb_SchemeHandler* schemeHandl
 
 /**
  * @brief 为SchemeHandler设置OnRequestStart回调。
+ *
+ * > **说明**
+ * >
+ * > - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
  *
  * @param schemeHandler 该scheme的SchemeHandler。
  * @param onRequestStart OnRequestStart回调函数。

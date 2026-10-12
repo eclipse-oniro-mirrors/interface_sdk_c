@@ -75,7 +75,7 @@ typedef enum ArkWeb_ErrorCode {
     ARKWEB_INVALID_COOKIE_VALUE = 17100104,
 
     /**
-     * @brief 打开动态链接库失败。请检查动态链接库文件是否存在、路径是否正确、以及是否有读取权限。
+     * @error 打开动态链接库失败。请检查动态链接库文件是否存在、路径是否正确、以及是否有读取权限。
      *
      * @syscap SystemCapability.Web.Webview.Core
      * @since 15
@@ -83,7 +83,7 @@ typedef enum ArkWeb_ErrorCode {
     ARKWEB_LIBRARY_OPEN_FAILURE = 17100105,
 
     /**
-     * @brief 动态链接库中找不到所需的符号。
+     * @error 动态链接库中找不到所需的符号。
      *
      * @syscap SystemCapability.Web.Webview.Core
      * @since 15
@@ -91,21 +91,21 @@ typedef enum ArkWeb_ErrorCode {
     ARKWEB_LIBRARY_SYMBOL_NOT_FOUND = 17100106,
 
     /**
-     * @brief CookieManager未初始化。请先调用初始化接口完成CookieManager的初始化。
+     * @error CookieManager未初始化。请先调用初始化接口完成CookieManager的初始化。
      *
      * @since 20
      */
     ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED = 17100107,
 
     /**
-     * @brief CookieManager初始化失败，请检查系统能力与权限配置。
+     * @error CookieManager初始化失败，请检查系统能力与权限配置。
      *
      * @since 20
      */
     ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED = 17100108,
 
     /**
-     * @brief 保存cookie失败。请检查存储空间是否充足、是否有写入权限，以及cookie值是否符合规范。
+     * @error 保存cookie失败。请检查存储空间是否充足、是否有写入权限，以及cookie值是否符合规范。
      *
      * @since 20
      */
