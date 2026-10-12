@@ -489,6 +489,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  *
  * @param uiContext [in] 要采集文本的目标UI实例的上下文。
  * @param pageText [out] 用于接收结果对象的输出参数。调用方应将其指向的对象指针初始化为NULL。
+ *     调用成功时，调用方拥有返回对象的所有权，必须在不再使用时调用
+ *     {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
  *     调用失败时，若输出参数有效，则将其指向的对象指针设置为NULL。
  *     调用成功时，返回的JSON对象顶层包含schemaVersion字段，即使页面为空也必须携带该字段。
  * @return <ul>

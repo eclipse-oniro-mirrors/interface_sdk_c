@@ -510,6 +510,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  * The function must be called on the UI thread. The output format is as follows:
  * @param uiContext [in] Context of the target UI instance for text collection
  * @param pageText [out] output slot, initialized to NULL by the caller.
+ *     On success, the caller owns the returned object and must release it with
+ *     {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy} when it is no longer needed.
  *     A valid slot is set to NULL on failure. On success, the returned JSON object includes a
  *     top-level schemaVersion field, even when the page is empty.
  * @return <ul>
