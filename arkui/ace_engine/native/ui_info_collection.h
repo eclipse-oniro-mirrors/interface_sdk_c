@@ -562,7 +562,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
-     * @brief Events for modals, menus, or popups.
+     * @brief Overlay events, such as events for modals, menus, or popups.
      *
      * @since 26.2.0
      */

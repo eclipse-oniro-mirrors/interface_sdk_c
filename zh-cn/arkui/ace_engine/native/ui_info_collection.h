@@ -539,7 +539,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
-     * @brief 模态、菜单或弹窗类事件。
+     * @brief 浮层事件，例如模态、菜单或弹窗事件。
      *
      * @since 26.2.0
      */
