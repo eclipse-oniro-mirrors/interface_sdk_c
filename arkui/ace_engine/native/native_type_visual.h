@@ -1202,7 +1202,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions
  *     the start progress specified by **from**. Otherwise, the error {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} will
  *     be returned.
  *     For details about the meaning of **from**, see {@link OH_ArkUI_MotionPathOptions_SetFrom}.
- * @return <ul>. 
+ * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **to** is out of the range [0.0, 1.0] or **to** is less than
