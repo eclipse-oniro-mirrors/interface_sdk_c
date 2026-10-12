@@ -54,6 +54,9 @@ extern "C" {
  * 应用传入的JSON，以及框架通过接口返回或回调传递的JSON，均必须满足此要求；
  * 即使没有采集内容，返回的JSON也必须携带该字段。
  *
+ * 该对象不使用引用计数。复制对象指针仅产生借用别名，不会创建独立对象或增加所有权。
+ * 对象的所有者必须且只能销毁该对象一次。销毁后，所有别名及数据指针均失效，不得再次使用或销毁。
+ *
  * @since 26.2.0
  */
 typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonWrapper;
@@ -63,6 +66,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *
  * 传入的字符串会被复制到对象中。调用方拥有所创建对象的所有权，
  * 并且必须在不再使用时调用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
+ * 复制返回的指针不会延长对象生命周期，也不会产生新的所有者。
+ * 对象销毁后，该指针及其所有别名均失效，不得再次使用或销毁。
  *
  * 传入的字符串必须表示有效的JSON对象，且对象顶层必须包含schemaVersion字段。
  * 如果缺少该字段，或其值超出支持的版本范围，本函数返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}，

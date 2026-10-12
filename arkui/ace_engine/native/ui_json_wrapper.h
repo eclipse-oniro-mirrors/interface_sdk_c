@@ -58,6 +58,10 @@ extern "C" {
  * returned or delivered through callbacks by the framework, including results with no collected
  * content.
  *
+ * The object is not reference-counted. Copying its pointer creates a borrowed alias, not an
+ * independent object or an additional ownership claim. The owner must destroy the object exactly
+ * once. Destruction invalidates all aliases and data pointers; do not use or destroy them again.
+ *
  * @since 26.2.0
  */
 typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonWrapper;
@@ -67,6 +71,8 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *
  * The provided string is copied into the object. The caller owns the created object and must
  * release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy} when it is no longer needed.
+ * Copying the returned pointer does not retain the object or create another owner. After destruction,
+ * the pointer and all its aliases are invalid and must not be reused or destroyed again.
  *
  * The provided string must represent a valid JSON object with a top-level schemaVersion field.
  * If this field is missing or its value is outside the supported version range, this function
