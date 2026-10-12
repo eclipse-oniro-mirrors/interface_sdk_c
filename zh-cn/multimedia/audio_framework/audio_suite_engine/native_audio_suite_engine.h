@@ -16,7 +16,7 @@
  * @addtogroup OHAudioSuite
  * @{
  *
- * @brief Provide the definition of the C interface for the audio module.
+ * @brief 提供音频编创相关C接口定义，包含多种专业级音频效果处理功能，服务于音频编辑和创作类应用场景。
  *
  * @since 22
  * @version 1.0

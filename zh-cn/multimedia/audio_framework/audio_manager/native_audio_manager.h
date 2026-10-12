@@ -17,7 +17,8 @@
  * @addtogroup OHAudio
  * @{
  *
- * @brief Provide the definition of the C interface for the audio module.
+ * @brief 提供音频模块C接口定义，可用于实现音频播放、录制和相关的音量、设备、会话管理等功能，
+ * 服务于媒体播放、语音通话、游戏音频等音频业务开发场景。
  *
  * @since 12
  * @version 1.0

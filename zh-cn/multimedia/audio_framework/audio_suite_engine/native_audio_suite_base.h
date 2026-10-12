@@ -16,7 +16,7 @@
  * @addtogroup OHAudioSuite
  * @{
  *
- * @brief Provide the definition of the C interface for the audio module.
+ * @brief 提供音频编创相关C接口定义，包含多种专业级音频效果处理功能，服务于音频编辑和创作类应用场景。
  *
  * @since 22
  * @version 1.0
@@ -146,7 +146,7 @@ typedef enum {
      * 如果未正确连接，在调用{@link OH_AudioSuiteEngine_StartPipeline}接口时将会报错。
      * @since 26.0.0
      */
-    EFFECT_NODE_TYPE_HOA_SPACE_RENDER = 212
+    EFFECT_NODE_TYPE_HOA_SPACE_RENDER = 212,
 } OH_AudioNode_Type;
 
 /**
@@ -165,7 +165,7 @@ typedef enum OH_AudioSuite_SystemNodeType {
      * 用于语音美化的系统效果节点。
      * @since 26.0.0
      */
-    OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_VOICE_BEAUTIFIER = 302
+    OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_VOICE_BEAUTIFIER = 302,
 } OH_AudioSuite_SystemNodeType;
 
 /**
@@ -184,7 +184,7 @@ typedef enum {
      * 实时预览模式下管线仅支持均衡器效果节点；<br> 在API version 23及以后，实时预览模式下管线支持所有效果节点。
      * @since 22
      */
-    AUDIOSUITE_PIPELINE_REALTIME_MODE = 2
+    AUDIOSUITE_PIPELINE_REALTIME_MODE = 2,
 } OH_AudioSuite_PipelineWorkMode;
 /**
  * @brief 定义音频编创管线运行状态。
@@ -201,7 +201,7 @@ typedef enum {
      * 管线处于运行状态。
      * @since 22
      */
-    AUDIOSUITE_PIPELINE_RUNNING = 2
+    AUDIOSUITE_PIPELINE_RUNNING = 2,
 } OH_AudioSuite_PipelineState;
 /**
  * @brief 音频编创错误码。
@@ -282,7 +282,7 @@ typedef enum {
      * @error 内存申请失败。
      * @since 22
      */
-    AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED = 13
+    AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED = 13,
 } OH_AudioSuite_Result;
 /**
  * @brief 定义音频编创节点音频流的位深度。
@@ -314,7 +314,7 @@ typedef enum {
      * Float 32位小端。
      * @since 22
      */
-    AUDIO_SAMPLE_F32LE = 4
+    AUDIO_SAMPLE_F32LE = 4,
 } OH_Audio_SampleFormat;
 /**
  * @brief 定义音频流编码类型。
@@ -326,7 +326,7 @@ typedef enum {
      * PCM编码。
      * @since 22
      */
-    AUDIO_ENCODING_TYPE_RAW = 0
+    AUDIO_ENCODING_TYPE_RAW = 0,
 } OH_Audio_EncodingType;
 
 /**
@@ -583,7 +583,7 @@ typedef enum {
      * 宽广声场效果。
      * @since 22
      */
-    SOUND_FIELD_WIDE = 4
+    SOUND_FIELD_WIDE = 4,
 } OH_SoundFieldType;
 /**
  * @brief 定义音频编创环境效果节点的模式。
@@ -801,7 +801,7 @@ typedef enum {
      * 顺时针旋转。
      * @since 23
      */
-    SPACE_RENDER_CW = 1
+    SPACE_RENDER_CW = 1,
 } OH_AudioSuite_SurroundDirection;
 
 /**
@@ -870,7 +870,7 @@ typedef enum {
      * 设置男声。
      * @since 23
      */
-    PURE_VOICE_CHANGE_MALE = 2
+    PURE_VOICE_CHANGE_MALE = 2,
 } OH_AudioSuite_PureVoiceChangeGenderOption;
 
 /**
@@ -913,7 +913,7 @@ typedef enum {
      * 传统变声效果节点为大叔类型。
      * @since 23
      */
-    PURE_VOICE_CHANGE_TYPE_SEASONED = 7
+    PURE_VOICE_CHANGE_TYPE_SEASONED = 7,
 } OH_AudioSuite_PureVoiceChangeType;
 
 /**
@@ -1003,7 +1003,7 @@ typedef enum {
      * 通用变声效果节点为战争类型。
      * @since 23
      */
-    GENERAL_VOICE_CHANGE_TYPE_WAR = 10
+    GENERAL_VOICE_CHANGE_TYPE_WAR = 10,
 } OH_AudioSuite_GeneralVoiceChangeType;
 
 #ifdef __cplusplus
