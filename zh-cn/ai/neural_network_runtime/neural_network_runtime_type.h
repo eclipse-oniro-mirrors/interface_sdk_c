@@ -164,27 +164,33 @@ typedef enum {
     OH_NN_UNAVALIDABLE_DEVICE = 7,
     /** 非法路径。 */
     OH_NN_INVALID_PATH = 8,
-    /** 执行超时。
+    /** 
+     * 执行超时。
      * @since 11
      */
     OH_NN_TIMEOUT = 9,
-    /** 未支持。
+    /** 
+     * 未支持。
      * @since 11
      */
     OH_NN_UNSUPPORTED = 10,
-    /** 连接异常。
+    /** 
+     * 连接异常。
      * @since 11
      */
     OH_NN_CONNECTION_EXCEPTION = 11,
-    /** 保存cache异常
+    /** 
+     * 保存cache异常
      * @since 11
      */
     OH_NN_SAVE_CACHE_EXCEPTION = 12,
-    /** 动态shape。
+    /** 
+     * 动态shape。
      * @since 11
      */
     OH_NN_DYNAMIC_SHAPE = 13,
-    /** 硬件发生错误，错误可能包含：HDL服务崩溃。
+    /** 
+     * 硬件发生错误，错误可能包含：HDL服务崩溃。
      * @since 11
      */
     OH_NN_UNAVAILABLE_DEVICE = 14
@@ -330,7 +336,7 @@ typedef enum {
      *
      * output，input1和input2的和，数据形状与输入broadcast之后一样，数据类型与较高精度的输入精度一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ADD = 1,
 
@@ -382,7 +388,7 @@ typedef enum {
      *
      * output，对input进行平均池化后的结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_AVG_POOL = 2,
 
@@ -405,7 +411,7 @@ typedef enum {
      *
      * output，n维输出张量，其形状和数据类型与input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_BATCH_NORM = 3,
 
@@ -430,7 +436,7 @@ typedef enum {
      *      w' = w * blockSize[1] - crops[1][0] - crops[1][1]
      *      c'= c
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_BATCH_TO_SPACE_ND = 4,
 
@@ -446,7 +452,7 @@ typedef enum {
      *
      * output，根据输入中每个维度方向偏移后的结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_BIAS_ADD = 5,
 
@@ -462,7 +468,7 @@ typedef enum {
      *
      * output，转换后的张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CAST = 6,
 
@@ -481,7 +487,7 @@ typedef enum {
      *
      * output，输出N个张量沿axis连接的结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CONCAT = 7,
 
@@ -539,7 +545,7 @@ typedef enum {
      *
      * output，卷积计算结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CONV2D = 8,
 
@@ -597,7 +603,7 @@ typedef enum {
      *
      * output，卷积转置后的计算结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CONV2D_TRANSPOSE = 9,
 
@@ -649,7 +655,7 @@ typedef enum {
      *
      * output，卷积计算的结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_DEPTHWISE_CONV2D_NATIVE = 10,
 
@@ -672,7 +678,7 @@ typedef enum {
      *
      * output，input1和input2相除的结果。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_DIV = 11,
 
@@ -692,7 +698,7 @@ typedef enum {
      *
      * output，计算后的结果，output和input1拥有相同的数据类型和形状。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ELTWISE = 12,
 
@@ -708,7 +714,7 @@ typedef enum {
      *
      * output，维度拓展后的张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_EXPAND_DIMS = 13,
 
@@ -724,7 +730,7 @@ typedef enum {
      *
      * output，生成的张量，和value具有相同的数据类型，张量形状由shape参数指定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_FILL = 14,
 
@@ -769,7 +775,7 @@ typedef enum {
      *
      * output，输出运算后的张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_FULL_CONNECTION = 15,
 
@@ -786,7 +792,7 @@ typedef enum {
      *
      * output，输出切片后的张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_GATHER = 16,
 
@@ -801,7 +807,7 @@ typedef enum {
      *
      * output,n维Hardswish激活值，数据类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_HSWISH = 17,
 
@@ -817,7 +823,7 @@ typedef enum {
      *
      * output，数据类型为OH_NN_BOOL的张量，使用量化模型时，output的量化参数不可省略，但量化参数的数值不会对输入结果产生影响。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_LESS_EQUAL = 18,
 
@@ -841,7 +847,7 @@ typedef enum {
      * output，计算得到内积，当type!=OH_NN_UNKNOWN时，output数据类型由type决定；当type==OH_NN_UNKNOWN时，
      *      output的数据类型取决于inputX和inputY进行计算时转化的数据类型。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MATMUL = 19,
 
@@ -859,7 +865,7 @@ typedef enum {
      *
      * output，n维输出张量，output的shape和数据类型和两个input中精度或者位数高的相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MAXIMUM = 20,
 
@@ -911,7 +917,7 @@ typedef enum {
      *
      * output，对input最大值池化后的张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MAX_POOL = 21,
 
@@ -933,7 +939,7 @@ typedef enum {
      *
      * output，input1和input2每个元素的乘积。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MUL = 22,
 
@@ -958,7 +964,7 @@ typedef enum {
      *
      * output，如果indices时n维张量，则output是(n+1)维张量。output的形状由indices和axis共同决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ONE_HOT = 23,
 
@@ -982,7 +988,7 @@ typedef enum {
      * output，一个n维张量，维数和数据类型和inputX保持一致。shape由inputX和paddings共同决定
      *      output.shape[i] = input.shape[i] + paddings[i][0]+paddings[i][1]。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_PAD = 24,
 
@@ -1004,7 +1010,7 @@ typedef enum {
      *
      * output，形状由input和y broadcast后的形状决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_POW = 25,
 
@@ -1027,7 +1033,7 @@ typedef enum {
      *
      * output，scale的计算结果，一个n维张量，类型和input一致，shape由axis决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SCALE = 26,
 
@@ -1042,7 +1048,7 @@ typedef enum {
      *
      * output，输出张量的维度，一个整型数组。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SHAPE = 27,
 
@@ -1057,7 +1063,7 @@ typedef enum {
      *
      * output，sigmoid的计算结果，一个n维张量，类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SIGMOID = 28,
 
@@ -1078,7 +1084,7 @@ typedef enum {
      *
      * output，切片得到的n维张量，其TensorType和input一致，shape和size相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SLICE = 29,
 
@@ -1097,7 +1103,7 @@ typedef enum {
      *
      * output，softmax的计算结果，一个n维张量，类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SOFTMAX = 30,
 
@@ -1125,7 +1131,7 @@ typedef enum {
      *      要求(h + paddings[0][0] + paddings[0][1])和(w + paddings[1][0] + paddings[1][1])能被
      *      blockShape[0]和blockShape[1]整除。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SPACE_TO_BATCH_ND = 31,
 
@@ -1148,7 +1154,7 @@ typedef enum {
      *
      * outputs，一组n维张量，每一个张量类型和shape相同，每个张量的类型和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SPLIT = 32,
 
@@ -1163,7 +1169,7 @@ typedef enum {
      *
      * output，输入的平方根，一个n维张量，类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SQRT = 33,
 
@@ -1183,7 +1189,7 @@ typedef enum {
      *      output的shape和input1、input2相同；shape不同时，需要将input1或input2做broadcast操作后，相减得到output。
      *      output的TensorType由两个输入中更高精度的TensorType决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SQUARED_DIFFERENCE = 34,
 
@@ -1203,7 +1209,7 @@ typedef enum {
      *
      * output，输出张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SQUEEZE = 35,
 
@@ -1222,7 +1228,7 @@ typedef enum {
      *
      * output，将input沿axis维度堆叠的输出，n+1维张量，TensorType和input相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_STACK = 36,
 
@@ -1253,7 +1259,7 @@ typedef enum {
      *
      * 堆叠运算后的张量，数据类型与input相同。输出维度rank(input[0])+1 维。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_STRIDED_SLICE = 37,
 
@@ -1276,7 +1282,7 @@ typedef enum {
      *      output的shape和input1、input2相同；shape不同时，需要将input1或input2做broadcast操作后，
      *      相减得到output。output的TensorType由两个输入中更高精度的TensorType决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SUB = 38,
 
@@ -1291,7 +1297,7 @@ typedef enum {
      *
      * output，input的双曲正切，TensorType和张量 shape和input相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TANH = 39,
 
@@ -1311,7 +1317,7 @@ typedef enum {
      *      则output和input维数一致，都是n维张量；如果multiples长度大于n，则用1填充input的维度，
      *      再在各个维度上拷贝相应的次数，得到m维张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TILE = 40,
 
@@ -1327,7 +1333,7 @@ typedef enum {
      *
      * output，n维张量，output的TensorType与input相同，shape由input的shape和permutation共同决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TRANSPOSE = 41,
 
@@ -1349,7 +1355,7 @@ typedef enum {
      *
      *  output，m维输出张量，数据类型和input相同。当keepDims为false时，m<n；当keepDims为true时，m==n。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_REDUCE_MEAN = 42,
 
@@ -1373,7 +1379,7 @@ typedef enum {
      *
      * output，n维输出张量，output的shape和数据类型和input相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RESIZE_BILINEAR = 43,
 
@@ -1388,7 +1394,7 @@ typedef enum {
      *
      *  output，n维输出张量，output的shape和数据类型和input相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RSQRT = 44,
 
@@ -1404,7 +1410,7 @@ typedef enum {
      *
      * output，输出张量，数据类型和input一致，shape由inputShape决定。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RESHAPE = 45,
 
@@ -1421,7 +1427,7 @@ typedef enum {
      *
      *    output，input的PReLU激活值。形状和数据类型和input保持一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_PRELU = 46,
 
@@ -1436,7 +1442,7 @@ typedef enum {
      *
      * output，n维Relu输出张量，数据类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RELU = 47,
 
@@ -1451,7 +1457,7 @@ typedef enum {
      *
      * output，n维Relu6输出张量，数据类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RELU6 = 48,
 
@@ -1474,7 +1480,7 @@ typedef enum {
      *
      * output，n维输出张量，数据类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_LAYER_NORM = 49,
 
@@ -1497,7 +1503,7 @@ typedef enum {
      *
      *  output，m维输出张量，数据类型和input相同。当keepDims为false时，m<n；当keepDims为true时，m==n。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_REDUCE_PROD = 50,
 
@@ -1518,7 +1524,7 @@ typedef enum {
      * 输出：\n
      *  output，m维输出张量，数据类型和input相同。当keepDims为false时，m<n；当keepDims为true时，m==n。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_REDUCE_ALL = 51,
 
@@ -1540,7 +1546,7 @@ typedef enum {
      *
      * output，n维张量，数据类型由dstT决定  输出shape和输入相同。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_QUANT_DTYPE_CAST = 52,
 
@@ -1562,7 +1568,7 @@ typedef enum {
      * output0，最后一维的每个切片中的k个最大元素。
      * output1，输入的最后一个维度内的值的索引。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TOP_K = 53,
 
@@ -1584,7 +1590,7 @@ typedef enum {
      * 输出：\n
      *  output，张量，轴上输入张量最大值的索引。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ARG_MAX = 54,
 
@@ -1601,7 +1607,7 @@ typedef enum {
      * 输出：\n
      * output，输出张量。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_UNSQUEEZE = 55,
 
@@ -1618,7 +1624,7 @@ typedef enum {
      * 输出：\n
      * output，n维Relu输出张量，数据类型和shape和input一致。
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_GELU = 56,
     /**

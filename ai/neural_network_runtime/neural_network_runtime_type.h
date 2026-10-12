@@ -161,15 +161,17 @@ typedef enum {
     OH_NN_NULL_PTR = 5,
     /** Invalid file. */
     OH_NN_INVALID_FILE = 6,
-    /** A hardware error occurs, for example, HDL service crash.
+    /** 
+     * A hardware error occurs, for example, HDL service crash.
      * @deprecated since 11
      * @useinstead {@link OH_NN_UNAVAILABLE_DEVICE}
-     * @since 11
+     * @since 9
      */
     OH_NN_UNAVALIDABLE_DEVICE = 7,
     /** Invalid path. */
     OH_NN_INVALID_PATH = 8,
-    /** Timeout.
+    /** 
+     * Timeout.
      * @since 11
      */
     OH_NN_TIMEOUT = 9,
@@ -177,19 +179,23 @@ typedef enum {
      * @since 11
      */
     OH_NN_UNSUPPORTED = 10,
-    /** Connection Exception.
+    /** 
+     * Connection Exception.
      * @since 11
      */
     OH_NN_CONNECTION_EXCEPTION = 11,
-    /** Save cache exception.
+    /** 
+     * Save cache exception.
      * @since 11
      */
     OH_NN_SAVE_CACHE_EXCEPTION = 12,
-    /** Dynamic shape.
+    /** 
+     * Dynamic shape.
      * @since 11
      */
     OH_NN_DYNAMIC_SHAPE = 13,
-    /** A hardware error occurs, for example, HDL service crash.
+    /** 
+     * A hardware error occurs, for example, HDL service crash.
      * @since 11
      */
     OH_NN_UNAVAILABLE_DEVICE = 14
@@ -348,7 +354,7 @@ typedef enum {
      *       The data shape is the same as that of the input after broadcasting,
      *       and the data type is the same as that of the input with a higher precision.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ADD = 1,
 
@@ -411,7 +417,7 @@ typedef enum {
      *
      * * <b>output</b>: average pooling result of the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_AVG_POOL = 2,
 
@@ -438,7 +444,7 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional output tensor whose shape and data type are the same as those of the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_BATCH_NORM = 3,
 
@@ -468,7 +474,7 @@ typedef enum {
      *       w' = w * blockSize[1] - crops[1][0] - crops[1][1]
      *       c'= c
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_BATCH_TO_SPACE_ND = 4,
 
@@ -484,7 +490,7 @@ typedef enum {
      *
      * * <b>output</b>: sum of the input tensor and the bias in each dimension.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_BIAS_ADD = 5,
 
@@ -500,7 +506,7 @@ typedef enum {
      *
      * * <b>output</b>: converted tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CAST = 6,
 
@@ -519,7 +525,7 @@ typedef enum {
      *
      * * <b>output</b>: result of connecting <i>N</i> tensors along the axis.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CONCAT = 7,
 
@@ -595,7 +601,7 @@ typedef enum {
      *
      * * <b>output</b>: convolution computing result.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CONV2D = 8,
 
@@ -675,7 +681,7 @@ typedef enum {
      *
      * * <b>output</b>: computing result after convolution and transposition.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_CONV2D_TRANSPOSE = 9,
 
@@ -740,7 +746,7 @@ typedef enum {
      *
      * * <b>output</b>: convolution computing result.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_DEPTHWISE_CONV2D_NATIVE = 10,
 
@@ -765,7 +771,7 @@ typedef enum {
      *
      * * <b>output</b>: result of dividing <b>input1</b> by <b>input2</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_DIV = 11,
 
@@ -786,7 +792,7 @@ typedef enum {
      *
      * * <b>output</b>: computing result, which has the same data type and shape of <b>input1</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ELTWISE = 12,
 
@@ -803,7 +809,7 @@ typedef enum {
      *
      * * <b>output</b>: tensor after dimension expansion.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_EXPAND_DIMS = 13,
 
@@ -820,7 +826,7 @@ typedef enum {
      * * <b>output</b>: generated tensor, which has the same data type as <b>value</b>.
      *        The tensor shape is specified by the <b>shape</b> parameter.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_FILL = 14,
 
@@ -870,7 +876,7 @@ typedef enum {
      *
      * * <b>output</b>: computed tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_FULL_CONNECTION = 15,
 
@@ -888,7 +894,7 @@ typedef enum {
      *
      * * <b>output</b>: sliced tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_GATHER = 16,
 
@@ -904,7 +910,7 @@ typedef enum {
      * * <b>output</b>: <i>n</i>-dimensional <b>Hswish</b> activation value.
      *        The data type is the same as that of <b>shape</b> and <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_HSWISH = 17,
 
@@ -925,7 +931,7 @@ typedef enum {
      *       the quantization parameters of the output
      *   cannot be omitted. However, values of the quantization parameters do not affect the result.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_LESS_EQUAL = 18,
 
@@ -950,7 +956,7 @@ typedef enum {
      *       is determined by <b>type</b>. In case of type==OH_NN_UNKNOWN, the output data type depends on the data type
      *       converted during computing of <b>inputX</b> and <b>inputY</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MATMUL = 19,
 
@@ -973,7 +979,7 @@ typedef enum {
      * * <b>output</b>: <i>n</i>-dimensional output tensor. The <b>shape</b> and data type of
      *       <b>output</b> are the same as those of the two inputs with a higher precision.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MAXIMUM = 20,
 
@@ -1032,7 +1038,7 @@ typedef enum {
      *
      * * <b>output</b>: tensor obtained after maximum pooling is applied to the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MAX_POOL = 21,
 
@@ -1055,7 +1061,7 @@ typedef enum {
      *
      * * Product of each element of <b>input1</b> and <b>input2</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_MUL = 22,
 
@@ -1087,7 +1093,7 @@ typedef enum {
      * * <b>output</b>: (<i>n</i>+1)-dimensional tensor if <b>indices</b> is an <i>n</i>-dimensional tensor.
      *       The output shape is determined by <b>indices</b> and <b>axis</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ONE_HOT = 23,
 
@@ -1117,7 +1123,7 @@ typedef enum {
      *       data type as <b>inputX</b>. The shape is determined by <b>inputX</b> and <b>paddings</b>.
      *       output.shape[i] = input.shape[i] + paddings[i][0]+paddings[i][1]
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_PAD = 24,
 
@@ -1141,7 +1147,7 @@ typedef enum {
      *
      * * <b>output</b>: tensor, whose shape is determined by the shape of <b>input</b> and <b>y</b> after broadcasting.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_POW = 25,
 
@@ -1165,7 +1171,7 @@ typedef enum {
      * * <b>output</b>: scaled <i>n</i>-dimensional tensor, whose data type is the same as that of <b>input</b> and
      *       shape is determined by <b>axis</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SCALE = 26,
 
@@ -1180,7 +1186,7 @@ typedef enum {
      *
      * * <b>output</b>: integer array representing the dimensions of the input tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SHAPE = 27,
 
@@ -1196,7 +1202,7 @@ typedef enum {
      * * <b>output</b>: result of the <b>sigmoid</b> operation. It is an <i>n</i>-dimensional tensor
      *       with the same data type and shape as <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SIGMOID = 28,
 
@@ -1219,7 +1225,7 @@ typedef enum {
      * * <b>output</b>: <i>n</i>-dimensional tensor obtained by slicing.
      *       The <b>TensorType</b>, shape, and size of the output are the same as those of the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SLICE = 29,
 
@@ -1240,7 +1246,7 @@ typedef enum {
      * * <b>output</b>: result of the <b>softmax</b> operation. It is an <i>n</i>-dimensional tensor with
      *       the same data type and shape as <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SOFTMAX = 30,
 
@@ -1272,7 +1278,7 @@ typedef enum {
      *       (h + paddings[0][0] + paddings[0][1]) and (w + paddings[1][0] + paddings[1][1]) is exactly divisible by
      *       (h + paddings[0][0] + paddings[0][1]) and (w + paddings[1][0] + paddings[1][1]).
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SPACE_TO_BATCH_ND = 31,
 
@@ -1298,7 +1304,7 @@ typedef enum {
      * * <b>outputs</b>: array of <i>n</i>-dimensional tensors, with the same data type and dimensions.
      *       The data type of each tensor is the same as that of <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SPLIT = 32,
 
@@ -1314,7 +1320,7 @@ typedef enum {
      * * <b>output</b>: square root of the input. It is an <i>n</i>-dimensional tensor with the
      *       same data type and shape as <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SQRT = 33,
 
@@ -1340,7 +1346,7 @@ typedef enum {
      *       and <b>input2</b> and perform subtraction.
      *       <b>TensorType</b> of the output is the same as that of the input tensor with higher precision.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SQUARED_DIFFERENCE = 34,
 
@@ -1362,7 +1368,7 @@ typedef enum {
      *
      * * <b>output</b>: output tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SQUEEZE = 35,
 
@@ -1385,7 +1391,7 @@ typedef enum {
      * * <b>output</b>: stacking result of the input along the axis dimension.
      *       The value is an <i>n</i>+1-dimensional tensor and has the same <b>TensorType</b> as the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_STACK = 36,
 
@@ -1429,7 +1435,7 @@ typedef enum {
      * * <b>output</b>: A tensor, with the same data type as <b>input</b>. The number of dimensions of the
      *       output tensor is rank(input[0])+1.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_STRIDED_SLICE = 37,
 
@@ -1454,7 +1460,7 @@ typedef enum {
      *       and perform subtraction. <b>TensorType</b> of the output is the same as
      *       that of the input tensor with higher precision.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_SUB = 38,
 
@@ -1470,7 +1476,7 @@ typedef enum {
      * * <b>output</b>: hyperbolic tangent of the input. The <b>TensorType</b> and tensor
      *       shape are the same as those of the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TANH = 39,
 
@@ -1494,7 +1500,7 @@ typedef enum {
      *       to fill the input dimension, and then the input is copied in each dimension the specified times
      *       to obtain the <i>m</i>-dimensional tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TILE = 40,
 
@@ -1512,7 +1518,7 @@ typedef enum {
      * * <b>output</b>: <i>n</i>-dimensional tensor. <b>TensorType</b> of <b>output</b> is the same as that
      *       of <b>input</b>, and the output shape is determined by the shape and <b>permutation</b> of <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TRANSPOSE = 41,
 
@@ -1539,7 +1545,7 @@ typedef enum {
      * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_REDUCE_MEAN = 42,
 
@@ -1567,7 +1573,7 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same shape and data type as <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RESIZE_BILINEAR = 43,
 
@@ -1583,7 +1589,7 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same shape and data type as <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RSQRT = 44,
 
@@ -1600,7 +1606,7 @@ typedef enum {
      * * <b>output</b>: tensor whose data type is the same as that of <b>input</b> and shape
      *       is determined by <b>InputShape</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RESHAPE = 45,
 
@@ -1620,7 +1626,7 @@ typedef enum {
      *
      * * <b>output</b>: PReLU activation value of <b>input</b>, with the same shape and data type as <b>input</b>.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_PRELU = 46,
 
@@ -1635,7 +1641,7 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same data type and shape as the input tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RELU = 47,
 
@@ -1651,7 +1657,7 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional Relu6 tensor, with the same data type and shape as the input tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_RELU6 = 48,
 
@@ -1678,7 +1684,7 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same data type and shape as the input tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_LAYER_NORM = 49,
 
@@ -1705,7 +1711,7 @@ typedef enum {
      * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_REDUCE_PROD = 50,
 
@@ -1731,7 +1737,7 @@ typedef enum {
      * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_REDUCE_ALL = 51,
 
@@ -1758,7 +1764,7 @@ typedef enum {
      * * <b>output</b>: <i>n</i>-dimensional tensor. The data type is determined by <b>dstT</b>.
      *       The output shape is the same as the input shape.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_QUANT_DTYPE_CAST = 52,
 
@@ -1781,7 +1787,7 @@ typedef enum {
      * * <b>output0</b>: largest <i>k</i> elements in each slice of the last dimension.
      * * <b>output1</b>: index of the value in the last dimension of the input.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_TOP_K = 53,
 
@@ -1803,7 +1809,7 @@ typedef enum {
      * Outputs:
      * * <b>output</b>: index of the maximum input tensor on the axis. The value is a tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_ARG_MAX = 54,
 
@@ -1821,7 +1827,7 @@ typedef enum {
      * Outputs:
      * * <b>output</b>: output tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_UNSQUEEZE = 55,
 
@@ -1838,7 +1844,7 @@ typedef enum {
      * Outputs:
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same data type and shape as the input tensor.
      *
-     * @since 12
+     * @since 9
      */
     OH_NN_OPS_GELU = 56,
     /**
