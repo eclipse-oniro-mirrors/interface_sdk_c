@@ -137,6 +137,8 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * 例如通过{@link OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback}传入的对象。
  *
  * @param json [in] 要销毁的JSON数据对象，可以为NULL；传入NULL时不执行任何操作。
+ *     调用方必须拥有该对象的所有权。销毁后，对象及其所有别名立即失效，不得再次使用或销毁。
+ *     不得将借用对象传给本函数。
  * @since 26.2.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);
