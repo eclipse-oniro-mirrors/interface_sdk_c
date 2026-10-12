@@ -886,7 +886,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *     unchanged to the callback. The value can be <b>NULL</b>.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the framework accepts the request. </li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or callback is NULL.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if context, nodeIds, or callback is NULL.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if count is 0 or greater than 20.</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the previous request has not finished.</li></ul>
  * @since 26.2.0

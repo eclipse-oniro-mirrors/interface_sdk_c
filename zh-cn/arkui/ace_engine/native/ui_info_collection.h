@@ -861,7 +861,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * @param userData [in] 调用方自定义的上下文指针，会原样传给回调，可以为<b>NULL</b>。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 框架已接受请求。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context或callback为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context、nodeIds或callback为NULL。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count为0或大于20。</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} 上一次请求尚未完成。</li>
  *     </ul>
