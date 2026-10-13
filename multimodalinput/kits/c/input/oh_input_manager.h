@@ -2760,15 +2760,17 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * permission can call this API.
  * <br>Since API version 26.2.0, on PC devices, there are no longer focus or permission requirements for applications.
  *
- * @param displayId Screen ID of the current screen.
- * @param displayX X coordinate of the mouse on the current screen, in pixels (px).
- * @param displayY Y coordinate of the mouse on the current screen, in pixels (px).
- * @return Return value of the **GetPointerLocation** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if a service exception occurs;
- *     <br>{@link INPUT_APP_NOT_FOCUSED} if the current application is not in focus;
- *     <br>{@link INPUT_DEVICE_NO_POINTER} if no mouse device is available.
+ * @param displayId [out] Screen ID of the current screen.
+ * @param displayX [out] X coordinate of the mouse on the current screen, in px.
+ * @param displayY [out] Y coordinate of the mouse on the current screen, in px.
+ * @return Return value of the OH_Input_GetPointerLocation function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the query is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception.</li>
+ *     <li>{@link INPUT_APP_NOT_FOCUSED} indicates that the current application is not the focused application.</li>
+ *     <li>{@link INPUT_DEVICE_NO_POINTER} indicates that no mouse-type input peripheral is available.</li>
+ *     </ul>
  * @since 20
  */
 Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
