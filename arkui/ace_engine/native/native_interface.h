@@ -46,7 +46,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the native API types.
+ * @brief Enumerates the types of native API collections.
  *
  * @since 12
  */
@@ -130,13 +130,13 @@ typedef enum {
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH = 2
 } OH_ArkUI_NativeModule_RuntimeCheckMode;
 /**
- * @brief Obtains the native API set of a specified type.
+ * @brief Initializes the C API environment and obtains the native module API collection of the specified type.
  *
- * @param type Indicates the type of the native API set provided by ArkUI, for example, <b>ARKUI_NATIVE_NODE</b>
- * and <b>ARKUI_NATIVE_GESTURE</b>.
- * @param structName Indicates the name of a native struct defined in the corresponding header file, for example,
- * <b>ArkUI_NativeNodeAPI_1</b> in <arkui/native_node.h>.
- * @return Returns the pointer to the abstract native API, which can be used after being converted into a specific type.
+ * @param type Type of the native API collection provided by ArkUI, for example, <b>ARKUI_NATIVE_NODE</b> or
+ *     <b>ARKUI_NATIVE_GESTURE</b>.
+ * @param structName Pointer to the name of a native API struct, which can be obtained by querying the struct
+ *     definition in the corresponding header file, for example, <b>ArkUI_NativeNodeAPI_1</b> in <arkui/native_node.h>.
+ * @return Pointer to the native API abstraction, which must be cast to the specific type for use.
  * @code {.cpp}
  * #include<arkui/native_interface.h>
  * #include<arkui/native_node.h>
@@ -157,17 +157,15 @@ typedef enum {
 void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName);
 
 /**
- * @brief Retrieves the latest error message, which includes the error code, method name, and error cause.
- * When other interfaces return an error code, they save the corresponding error message,
- * and this interface can retrieve the currently stored error message.
- * The information returned by this interface may evolve with versions and is intended solely for
- * output to aid in analysis and troubleshooting. It should not be used for logical decisions.
+ * @brief Obtains the latest error information, including the error codes, API names, and error causes.
+ * For details about the error code, see {@link ArkUI_ErrorCode}. When other APIs return an error code, the
+ * corresponding error information is saved, and the currently stored error information can be obtained through
+ * this API. The returned string is a thread-local global string created by the system, and its content must not be
+ * modified. If any editing is required, create a copy of the string content. The information returned by this API
+ * may change as versions evolve. It is used only for output to assist in analysis and troubleshooting, and must
+ * not be used as a basis for logical judgment. The returned error information does not need to be released manually.
  *
- * The returned string is a thread-local global string created by the system. The caller must not modify its content.
- * If any editing is required, create a copy of the string content
- * yourself. No memory deallocation is required by the caller.
- *
- * @return Returns the most recent error message.
+ * @return Pointer to the latest error information, including the error codes, API names, and error causes.
  * @since 26.0.0
  */
 const char* OH_ArkUI_NativeModule_GetErrorMessage();
@@ -201,7 +199,15 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(
     OH_ArkUI_NativeModule_RuntimeCheckType checkType, OH_ArkUI_NativeModule_RuntimeCheckMode mode);
 
 /**
- * @brief Obtains the macro function corresponding to a struct pointer based on the struct type.
+ * @brief Initializes the C API environment and obtains the corresponding struct pointer based on the struct type.
+ *
+ * It applies to the scenario where the native API set type and the API struct type have been determined, and a
+ * specific native API struct pointer needs to be obtained to call ArkUI native C APIs. This macro function receives
+ * the enumeration parameter <b>nativeAPIVariantKind</b> of the {@link ArkUI_NativeAPIVariantKind} type, the struct
+ * type parameter <b>structType</b>, and the struct pointer variable <b>structPtr</b>. <b>structPtr</b> must match
+ * <b>structType</b>. This macro function calls {@link OH_ArkUI_QueryModuleInterfaceByName} to initialize the C API
+ * environment and obtain the abstract pointer of the native API, converts it to the <b>structType*</b> type, and
+ * assigns it to <b>structPtr</b>.
  *
  * @code {.cpp}
  * #include<arkui/native_interface.h>
