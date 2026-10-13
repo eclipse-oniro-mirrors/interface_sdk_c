@@ -2379,7 +2379,7 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
 /**
  * @brief 获取当前屏幕上鼠标的坐标点。
  * <br>从API版本26.0.0开始，非焦点应用持有ohos.permission.INPUT_DEVICE_CONFIGURATOR权限，可调用该接口。
- * 
+ * <br>从API版本26.2.0开始，在PC设备上，应用不再有焦点或权限要求。
  *
  * @param displayId [out] 当前屏幕的屏幕ID。
  * @param displayX [out] 鼠标在当前屏幕的X坐标，单位为像素（px）。
