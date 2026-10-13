@@ -2758,6 +2758,7 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @brief Obtains the coordinates of the mouse pointer on the current screen.
  * <br>Since API version 26.0.0, non-focused applications that have the ohos.permission.INPUT_DEVICE_CONFIGURATOR
  * permission can call this API.
+ * 
  *
  * @param displayId [out] Screen ID of the current screen.
  * @param displayX [out] X coordinate of the mouse on the current screen, in px.
