@@ -2840,6 +2840,27 @@ typedef enum {
     NODE_SYSTEM_MATERIAL = 127,
 
     /**
+     * @brief 定义线性渐变模糊属性，支持属性设置、属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：线性渐变模糊选项对象。参数类型为{@link OH_ArkUI_LinearGradientBlurOptions}*。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：线性渐变模糊选项对象。类型为{@link OH_ArkUI_LinearGradientBlurOptions}*。
+     * 该对象为内部静态对象，无需调用{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}释放。
+     * 当属性未设置或已重置时，返回的对象包含默认值（blurRadius = 0，fractionStops = {0.0, 0.0, 0.0, 1.0}，
+     * direction = {@link OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM}）。</li>
+     * </ul>
+     *
+     * @ingroup Visual [视效属性]
+     * @since 26.2.0
+     */
+    NODE_LINEAR_GRADIENT_BLUR = 129,
+
+    /**
      * @brief Text组件设置文本内容属性，支持属性设置、属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
@@ -3241,7 +3262,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>?.object：可选。指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于设置行间距选项。
-     *     从API version 26.0.1开始支持。
+     *     从API version 26.2.0开始支持。
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Create}创建对象，
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy}销毁对象。</li>
      * </ul>
@@ -3250,7 +3271,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。</li>
      * <li>.object：指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于获取行间距选项。
-     *     从API version 26.0.1开始支持。</li>
+     *     从API version 26.2.0开始支持。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]
@@ -4133,7 +4154,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.0.1
+     * @since 26.2.0
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -9672,17 +9693,18 @@ typedef enum {
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
     /**
-     * @brief 设置是否支持鼠标左键按下拖动滚动，支持属性设置，属性重置和属性获取接口。
-     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * @brief 是否支持鼠标左键进行滚动。此属性可以设置、重置和根据需要通过API获取。
+     * <br>设置属性的 {@link ArkUI_AttributeItem} 参数的格式和返回值**ArkUI_AttributeItem**如下所示。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32 是否支持鼠标左键按下拖动滚动，0：不支持鼠标左键按下拖动滚动，1：支持鼠标左键按下拖动滚动。默认值：0。</li>
+     * <li>.value[0].i32: 是否支持鼠标左键滚动。0：不支持；1：支持。
+     * API26.2.0版本之前，默认值为0。从API版本26.2.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
      * </ul>
      *
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * **返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32 是否支持鼠标左键按下拖动滚动，0：不支持鼠标左键按下拖动滚动，1：支持鼠标左键按下拖动滚动。</li>
+     * <li>.value[0].i32: 是否支持鼠标左键进行滚动。0：不支持；1：支持。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]

@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides ArkUI UI capabilities on the Native side, such as UI component creation and destruction,
- * tree node operation, property setting, event monitoring, and so on.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。
  *
  * @since 12
  */
@@ -3114,7 +3113,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttac
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.0.1
+ * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachment* imageAttachment,
     float left, float top, float right, float bottom);
@@ -3130,7 +3129,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachm
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.0.1
+ * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageAttachment* imageAttachment,
     float* left, float* top, float* right, float* bottom);
@@ -3143,7 +3142,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageA
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.0.1
+ * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
     OH_ArkUI_ImageAttachment* imageAttachment, const OH_Drawing_Lattice* lattice);
@@ -3156,7 +3155,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.0.1
+ * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
     const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);

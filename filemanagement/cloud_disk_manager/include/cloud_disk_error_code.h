@@ -220,6 +220,12 @@ typedef enum CloudDisk_ErrorCode {
      */
     OH_CLOUD_DISK_FILE_TOO_LARGE = 34400026,
     /**
+     * @brief The placeholder does not have custom information.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_CUSTOM_INFO_NOT_FOUND = 34400027,
+    /**
      * @brief The placeholder file is not fully hydrated.
      *
      * @since 26.0.1
@@ -249,6 +255,12 @@ typedef enum CloudDisk_ErrorCode {
      * @since 26.0.1
      */
     OH_CLOUD_DISK_NO_HYDRATION_IN_PROGRESS = 34400032,
+    /**
+     * @brief The stored placeholder state is invalid.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_INVALID_PLACEHOLDER_STATE = 34400033,
     /**
      * @brief The number of pending placeholder hydration tasks has reached the limit.
      *

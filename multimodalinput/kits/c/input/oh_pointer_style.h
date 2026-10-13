@@ -367,9 +367,10 @@ typedef enum Input_PointerStyle {
      * @since 22
      */
     LASER_CURSOR_DOT_RED = 51,
+
     /**
      * @brief Custom cursor. You can use the {@link oh_input_manager.h#OH_Input_SetCustomCursor} to set a custom
-     * pointer, but not the {@link oh_input_manager.h#OH_Input_SetPointerStyle}.
+     * cursor, but not the {@link oh_input_manager.h#OH_Input_SetPointerStyle}.
      * @since 22
      */
     DEVELOPER_DEFINED_ICON = -100

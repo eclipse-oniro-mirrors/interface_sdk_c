@@ -533,6 +533,58 @@ typedef struct OH_CloudDisk_PlaceholderInfo {
 } OH_CloudDisk_PlaceholderInfo;
 
 /**
+ * @brief Opaque custom information associated with a placeholder.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_CloudDisk_PlaceholderCustomInfo {
+    /**
+     * @brief Length of the custom information, in bytes.
+     *
+     * @since 26.0.1
+     */
+    size_t dataLength;
+    /**
+     * @brief Pointer to the custom information.
+     *
+     * @since 26.0.1
+     */
+    const uint8_t *data;
+} OH_CloudDisk_PlaceholderCustomInfo;
+
+/**
+ * @brief Enumerates the placeholder states.
+ *
+ * @since 26.0.1
+ */
+typedef enum OH_CloudDisk_PlaceholderState {
+    /**
+     * @brief The file is not a placeholder.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_STATE_NONE = 0,
+    /**
+     * @brief The placeholder has no local data.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_STATE_UNHYDRATED = 1,
+    /**
+     * @brief The placeholder has partial local data.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_STATE_PARTIALLY_HYDRATED = 2,
+    /**
+     * @brief The placeholder has complete local data.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_STATE_FULLY_HYDRATED = 3
+} OH_CloudDisk_PlaceholderState;
+
+/**
  * @brief A struct that encapsulates the cloud disk data buffer.
  *
  * @since 26.0.1
@@ -716,28 +768,28 @@ typedef struct OH_CloudDisk_FetchDataRequest {
 typedef union OH_CloudDisk_CallbackContext {
     /**
      * @brief Fetch data request. It takes effect when callbackType is
-     * {@link CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}.
+     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_DATA}.
      *
      * @since 26.0.1
      */
     OH_CloudDisk_FetchDataRequest *fetchData;
     /**
      * @brief Cancel fetch data request. It takes effect when callbackType is
-     * {@link CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}.
+     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_CANCEL_FETCH_DATA}.
      *
      * @since 26.0.1
      */
     CloudDisk_PathInfo *cancelFetchData;
     /**
      * @brief Dehydrate authorization request. It takes effect when callbackType is
-     * {@link CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}.
+     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE}.
      *
      * @since 26.0.1
      */
     OH_CloudDisk_DehydrateInfo *dehydrateData;
     /**
      * @brief Fetch range data request. It takes effect when callbackType is
-     * {@link CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
+     * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
      *
      * @since 26.2.0
      */
@@ -942,23 +994,25 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
 /**
  * @brief Creates a placeholder in a registered sync folder.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
- * @param placeholderInfo Indicates the placeholder metadata information.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param placeholderInfo [in] Indicates the placeholder metadata information.
+ * @param customInfo [in] Indicates optional opaque custom information. NULL means it is not provided.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
                                                    const CloudDisk_PathInfo relativePathInfo,
-                                                   const OH_CloudDisk_PlaceholderInfo placeholderInfo);
+                                                   const OH_CloudDisk_PlaceholderInfo placeholderInfo,
+                                                   const OH_CloudDisk_PlaceholderCustomInfo *customInfo);
 
 /**
  * @brief Checks whether a file in a sync folder is a placeholder file.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
- * @param isPlaceholder Output parameter. The value is valid only when the return value is {@link CLOUD_DISK_OK}.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param isPlaceholder [out] Output parameter. The value is valid only when the return value is {@link CLOUD_DISK_OK}.
  *     Returns true if the file is a placeholder file; returns false otherwise. The value is set to false on error.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
@@ -969,10 +1023,25 @@ CloudDisk_ErrorCode OH_CloudDisk_IsPlaceholderFile(const CloudDisk_SyncFolderPat
                                                    bool *isPlaceholder);
 
 /**
+ * @brief Gets the placeholder state of a file in a registered sync folder.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param state [out] Output parameter. The placeholder state.
+ *     The value is set to {@link OH_CLOUD_DISK_PLACEHOLDER_STATE_NONE} on error.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link OH_CLOUD_DISK_INVALID_PLACEHOLDER_STATE} if the stored state is invalid;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_GetPlaceholderState(const CloudDisk_SyncFolderPath syncFolderPath,
+    const CloudDisk_PathInfo relativePathInfo, OH_CloudDisk_PlaceholderState *state);
+
+/**
  * @brief Converts a placeholder file to a 0-byte normal file.
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.0.1
@@ -981,17 +1050,62 @@ CloudDisk_ErrorCode OH_CloudDisk_ConvertPlaceholderToFile(const CloudDisk_SyncFo
     const CloudDisk_PathInfo relativePathInfo);
 
 /**
+ * @brief Marks a normal file as a fully hydrated placeholder without changing its data or metadata.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link OH_CLOUD_DISK_IS_A_PLACEHOLDER} if the file is already a placeholder;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_MarkFileAsPlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                       const CloudDisk_PathInfo relativePathInfo);
+
+/**
+ * @brief Converts a fully hydrated placeholder to a normal file without changing its data or metadata.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link OH_CLOUD_DISK_NOT_A_PLACEHOLDER} if the file is not a placeholder;
+ *     <br>returns {@link OH_CLOUD_DISK_PLACEHOLDER_NOT_FULLY_HYDRATED} if it is not fully hydrated;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_UnmarkPlaceholderFile(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                       const CloudDisk_PathInfo relativePathInfo);
+
+/**
  * @brief Updates file metadata (supports placeholder and normal files).
  *
- * @param syncFolderPath Indicates the registered sync folder path.
- * @param relativePathInfo Indicates the relative path in the sync folder.
- * @param placeholderInfo Indicates the placeholder metadata.
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param placeholderInfo [in] Indicates the placeholder metadata.
+ * @param customInfo [in] Optional opaque custom information. NULL means the existing value is preserved.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
  *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
  * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_UpdatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
-    const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo);
+    const CloudDisk_PathInfo relativePathInfo, const OH_CloudDisk_PlaceholderInfo placeholderInfo,
+    const OH_CloudDisk_PlaceholderCustomInfo *customInfo);
+
+/**
+ * @brief Gets opaque custom information associated with a placeholder.
+ *
+ * @param syncFolderPath [in] Indicates the registered sync folder path.
+ * @param relativePathInfo [in] Indicates the relative path in the sync folder.
+ * @param dataBuf [out] Caller-allocated output buffer.
+ * @param inOutDataLength [out] Input buffer capacity and output actual data length.
+ * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
+ *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @since 26.0.1
+ */
+CloudDisk_ErrorCode OH_CloudDisk_GetPlaceholderCustomInfo(const CloudDisk_SyncFolderPath syncFolderPath,
+                                                          const CloudDisk_PathInfo relativePathInfo,
+                                                          uint8_t *dataBuf,
+                                                          size_t *inOutDataLength);
 
 /**
  * @brief Registers a callback table for hydration and dehydrate requests.

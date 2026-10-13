@@ -2522,7 +2522,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
  * @brief 获取指定窗口的鼠标光标样式。此接口仅支持获取本应用进程内窗口的鼠标光标样式。
  *
  * @param windowId [in] 窗口ID。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。
- *     <br>仅支持传入当前窗口和全局窗口的ID，传入其他ID返回全局窗口的默认光标样式，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
+ *     <br>仅支持传入当前窗口和全局窗口的ID，传入其他ID返回全局窗口的默认光标样式。
  * @param pointerStyle [out] 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
  * @return OH_Input_GetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
@@ -2536,7 +2536,7 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  * @brief 设置指定窗口的鼠标光标样式。此接口仅支持设置本应用进程内窗口的鼠标光标样式。
  *
  * @param windowId [in] 窗口ID。取值范围为大于等于0的整数。
- *     <br>仅支持传入当前窗口的光标样式，传入其他窗口ID本接口可以运行成功但设置不生效，当前窗口ID可以通过{@link oh_window.h#getWindowProperties}获取。
+ *     <br>仅支持传入当前窗口的光标样式，传入其他窗口ID本接口可以运行成功但设置不生效。
  * @param pointerStyle [in] 鼠标光标样式，取值为{@link oh_pointer_style.h#Input_PointerStyle}的枚举值。
  * @return OH_Input_SetPointerStyle 函数返回值：
  *     <br>{@link INPUT_SUCCESS} 表示操作成功。
@@ -2593,7 +2593,7 @@ Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, i
 /**
  * @brief 创建自定义鼠标光标配置对象。通过调用{@link OH_Input_CursorConfig_Destroy}销毁自定义鼠标光标配置对象。
  *
- * @param followSystem [in] 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小，
+ * @param followSystem [in] 是否根据系统设置调整鼠标光标大小。false表示使用自定义鼠标光标样式大小，true表示根据系统设置调整鼠标光标大小，可调整范围为：[光标资源图大小,
  *     256×256]，单位为像素（px）。
  * @return 自定义鼠标光标配置{@link Input_CursorConfig}对象。
  * @release OH_Input_CursorConfig_Destroy {return}

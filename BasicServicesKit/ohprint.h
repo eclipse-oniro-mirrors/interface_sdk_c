@@ -681,9 +681,11 @@ typedef struct {
      */
     Print_DocumentFormat documentFormat;
     /**
-     * Advanced options in JSON format.<br>The supported keys are as follows:<br>- **isReverse**: Boolean type,
-     * indicating whether to print in reverse order.<br>- **isCollate**: Boolean type, indicating whether to print
-     * copies one by one.
+     * @brief Advanced options in JSON format.<br>The supported keys are as follows:<br>
+     * - **isReverse**: Boolean type, indicating whether to print in reverse order.<br>
+     * - **isCollate**: Boolean type, indicating whether to print copies one by one.<br>
+     * - **printPages**: Integer type, indicating the actual number of pages to print.
+     * The value must be greater than or equal to 1. Default value is 1.
      */
     char *advancedOptions;
 } Print_PrintJob;

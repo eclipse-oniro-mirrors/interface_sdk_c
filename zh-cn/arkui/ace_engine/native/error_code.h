@@ -237,6 +237,11 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE = 106215,
     /**
+     * @brief 解析的目标节点不属于注册动画组时传入的context所在的UIContext。
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_TARGET_NODE_NOT_IN_SAME_CONTEXT = 106216,
+    /**
      * @brief 当前节点不是自定义节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      *
      * @since 20

@@ -6967,19 +6967,19 @@
         "name": "OH_ArkUI_CreateIdentityTransitionEffect"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_Create"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_Destroy"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines"
     },
     {
@@ -7205,14 +7205,6 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_ArkUI_NativeModule_PathAnimation_GetDelay"
-    },
-    {
-        "first_introduced": "26.0.1",
-        "name": "OH_ArkUI_NativeModule_PathAnimation_SetCurve"
-    },
-    {
-        "first_introduced": "26.0.1",
-        "name": "OH_ArkUI_NativeModule_PathAnimation_GetCurve"
     },
     {
         "first_introduced": "26.0.1",
@@ -7481,5 +7473,41 @@
     {
         "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_UIJsonWrapperDestroy"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIEventInjectCompositeCommand"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetDirection"
     }
 ]

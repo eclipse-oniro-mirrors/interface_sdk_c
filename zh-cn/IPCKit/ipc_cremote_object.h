@@ -16,13 +16,6 @@
  * @addtogroup OHIPCRemoteObject
  * @{
  *
- * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进程间通信）和
- * RPC（Remote Procedure Call，远程过程调用）通信场景。
- *
- * @syscap SystemCapability.Communication.IPC.Core
- * @since 12
- */
-/**
  * @file ipc_cremote_object.h
  *
  * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进程间通信）和
@@ -192,7 +185,6 @@ typedef struct {
      */
     void* reserved;
 } OH_IPC_MessageOption;
-#pragma pack(4)
 #pragma pack()
 
 /**

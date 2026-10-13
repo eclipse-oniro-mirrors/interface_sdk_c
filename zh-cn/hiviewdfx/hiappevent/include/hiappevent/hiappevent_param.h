@@ -152,6 +152,13 @@ extern "C" {
  */
 #define OH_APP_CRASH_PARAM_COLLECT_MINIDUMP "collect_minidump"
 
+/**
+ * @brief 用于APP_CRASH事件，是否使能固定在重启后收到事件回调。
+ *
+ * @since 26.2.0
+ */
+#define OH_APP_CRASH_PARAM_PUBLISH_ON_NEXT_LAUNCH "publish_on_next_launch"
+
 #ifdef __cplusplus
 }
 #endif

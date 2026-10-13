@@ -25,7 +25,12 @@
 /**
  * @file drag_and_drop.h
  *
- * @brief Declares the APIs of **NativeDrag**.
+ * @brief Declares the APIs of **NativeDrag**, supporting obtaining drag events, setting and obtaining drag data,
+ * configuring drag previews, initiating drag operations, and listening for drag states. It is suitable for scenarios
+ * where applications need to implement native drag interactions, data drag-in and drag-out, and custom drag effects.
+ * This module supports cross-device drag interactions, provides an asynchronous data loading mechanism to improve
+ * the efficiency of dragging large amounts of data, and supports fine-grained drag behavior control and state
+ * listening.
  *
  * @library libace_ndk.z.so
  * @kit ArkUI
@@ -93,7 +98,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Unknown.
+     * Failed to obtain the status before drag is initiated.
      */
     ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1,
     /**
@@ -121,7 +126,7 @@ typedef enum {
      */
     ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED,
     /**
-     * A drop animation is terminated.
+     * A drop animation is canceled.
      */
     ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG,
 } ArkUI_PreDragStatus;
@@ -150,7 +155,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Unknown.
+     * Unknown drag state.
      */
     ARKUI_DRAG_STATUS_UNKNOWN = -1,
     /**
@@ -164,28 +169,48 @@ typedef enum {
 } ArkUI_DragStatus;
 
 /**
- * @brief Defines a struct for a drag event.
+ * @brief Defines a drag event, used to represent event information during the drag process of an ArkUI component.
+ * You can obtain the drag status and event data through related drag event APIs in the following header file. For
+ * details about the drag event binding process, see Binding Drag Events.
  *
  * @since 12
  */
 typedef struct ArkUI_DragEvent ArkUI_DragEvent;
 
 /**
- * @brief Defines a struct for custom drag preview options.
+ * @brief Sets a custom drag preview option (such as the shadow and rounded corner effect), which is used to
+ * customize the preview image display effect in drag scenarios and help applications provide a drag interaction
+ * experience that better meets service requirements.
  *
  * @since 12
  */
 typedef struct ArkUI_DragPreviewOption ArkUI_DragPreviewOption;
 
 /**
- * @brief Defines a drag action.
+ * @brief Defines a drag action handle, which is used to proactively initiate dragging, where you proactively call
+ * an API to start dragging, as opposed to passively responding to drag events. This handle supports creating,
+ * configuring, executing, and destroying a drag action. You can set drag data and proactively start dragging.
+ *
+ * The usage process of **ArkUI_DragAction** is as follows:
+ *
+ * 1. Create an object by calling {@link OH_ArkUI_CreateDragActionWithNode} or
+ * {@link OH_ArkUI_CreateDragActionWithContext}.
+ * 2. Set drag parameters by calling APIs such as **OH_ArkUI_DragAction_SetData**.
+ * 3. Start dragging by calling {@link OH_ArkUI_StartDrag}.
+ * 4. When the object is no longer needed, call {@link OH_ArkUI_DragAction_Dispose} to destroy the object and
+ * release resources.
+ *
+ * For details about the creation, configuration, and execution mechanisms, see Binding Drag Events.
  *
  * @since 12
  */
 typedef struct ArkUI_DragAction ArkUI_DragAction;
 
 /**
- * @brief Defines drag and drop information returned through a drag status listener.
+ * @brief Defines drag and drop information returned through a drag status listener after dragging is proactively
+ * initiated. You can obtain the drag start or end status and the drag event data when the drag ends from this
+ * struct, and perform subsequent processing based on the status. For details about how to register the drag
+ * callback, see drag_and_drop.h.
  *
  * @since 12
  */
@@ -205,14 +230,19 @@ ArkUI_DragEvent* OH_ArkUI_NodeEvent_GetDragEvent(ArkUI_NodeEvent* nodeEvent);
  * @brief Obtains the state prior to a drop and drop operation.
  *
  * @param nodeEvent Pointer to the target **ArkUI_NodeEvent** object.
- * @return State prior to the drop and drop operation.
+ * @return Interaction status before drag is initiated.
  * @since 12
  */
 ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus(ArkUI_NodeEvent* nodeEvent);
 
 /**
  * @brief Sets whether to disable the default drop animation, which is enabled by default. Use this API to apply a
- * custom drop animation.
+ * custom drop animation. It has the same functionality as {@link OH_ArkUI_NotifyDisableDefaultDropAnimation}, with
+ * the following difference: this API sets the configuration directly in a synchronous drag event callback, making it
+ * suitable for scenarios where deferred processing of the drag end event is not required;
+ * **OH_ArkUI_NotifyDisableDefaultDropAnimation** notifies the configuration in the asynchronous
+ * **RequestDragEndPending** flow, making it suitable for scenarios where
+ * {@link OH_ArkUI_DragEvent_RequestDragEndPending} has been called to defer processing of the drag end event.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param disable Whether to disable the default drop animation. The value **true** means to disable the default drop
@@ -225,10 +255,19 @@ ArkUI_PreDragStatus OH_ArkUI_NodeEvent_GetPreDragStatus(ArkUI_NodeEvent* nodeEve
 int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation(ArkUI_DragEvent* event, bool disable);
 
 /**
- * @brief Sets the data processing mode.
+ * @brief Sets the data processing mode, which affects how the badge is displayed during dragging. This is suitable
+ * for scenarios where you need to suggest data processing behavior to the system when data is dropped. For example,
+ * when copyable text or image content is dragged, it is recommended to set the copying behavior
+ * (**ARKUI_DROP_OPERATION_COPY**); when dragging content needs to be removed from the source location, it is
+ * recommended to set the cutting behavior (**ARKUI_DROP_OPERATION_MOVE**). This API has the same functionality as
+ * {@link OH_ArkUI_NotifySuggestedDropOperation}, with the following difference: this API sets the data processing
+ * mode directly in a synchronous drag event callback, which is suitable for scenarios where delayed processing of
+ * the drag end event is not required; **OH_ArkUI_NotifySuggestedDropOperation** sends the data processing mode
+ * notification in the asynchronous **RequestDragEndPending** flow, which is suitable for scenarios where
+ * {@link OH_ArkUI_DragEvent_RequestDragEndPending} has been called to delay processing of the drag end event.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @param dropOperation Type of the suggested drop operation.
+ * @param dropOperation Data processing mode, used to set the operation type upon drop.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -237,7 +276,13 @@ int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation(ArkUI_DragEvent* event, b
 int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation dropOperation);
 
 /**
- * @brief Sets the result for a drag event.
+ * @brief Sets the result for a drag event. As the data receiver, this API sets the processing result of the drag
+ * event in the drop callback so that the drag initiator can perceive the data receiving and processing status. This
+ * API has the same functionality as {@link OH_ArkUI_NotifyDragResult}, with the following difference: this API sets
+ * the drag result directly in a synchronous drag event callback, which is suitable for scenarios where delayed
+ * processing of the drag end event is not required; **OH_ArkUI_NotifyDragResult** sends the result notification in
+ * the asynchronous **RequestDragEndPending** flow, which is suitable for scenarios where
+ * {@link OH_ArkUI_DragEvent_RequestDragEndPending} has been called to delay processing of the drag end event.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param result Drag data processing result.
@@ -249,10 +294,13 @@ int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation(ArkUI_DragEvent* event, Ark
 int32_t OH_ArkUI_DragEvent_SetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult result);
 
 /**
- * @brief Set drag data for a drag event.
+ * @brief Sets drag data for **ArkUI_DragEvent**. {@link OH_ArkUI_DragEvent_SetDataLoadParams} should be used
+ * preferentially to provide data loading parameters, so as to improve the efficiency of dragging large amounts of
+ * data and the efficiency of processing dropped data in the target application. If this API conflicts with
+ * {@link OH_ArkUI_DragEvent_SetDataLoadParams}, the system always uses the last called API.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @param data Drag data configuration.
+ * @param data Pointer to the drag data object to set.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -261,12 +309,13 @@ int32_t OH_ArkUI_DragEvent_SetDragResult(ArkUI_DragEvent* event, ArkUI_DragResul
 int32_t OH_ArkUI_DragEvent_SetData(ArkUI_DragEvent* event, OH_UdmfData* data);
 
 /**
- * @brief This API provides data loading parameters to the system instead of directly providing a complete data object.
- * When the user drops data on the target application, the system will use **dataLoadParams** to request data. This can
+ * @brief Provides data loading parameters to the system instead of directly providing a complete data object. When
+ * the user drops data on the target application, the system will use **dataLoadParams** to request data. This can
  * significantly improve the efficiency of dragging large volumes of data and the efficiency of processing the dropped
  * data in the target application. This API must always be used in preference to {@link OH_ArkUI_DragEvent_SetData}.
- * For details about how to create and prepare data loading parameters, see {@link OH_UdmfDataLoadParams_Create} in **
- * udmf.h**. If this API conflicts with {@link OH_ArkUI_DragEvent_SetData}, the system always uses the last called API.
+ * For details about how to create and prepare data loading parameters, see {@link OH_UdmfDataLoadParams_Create} in
+ * **udmf.h**. If this API conflicts with {@link OH_ArkUI_DragEvent_SetData}, the system always uses the last called
+ * API.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param dataLoadParams Data loading parameters used during a drop operation.
@@ -278,7 +327,7 @@ int32_t OH_ArkUI_DragEvent_SetData(ArkUI_DragEvent* event, OH_UdmfData* data);
 ArkUI_ErrorCode OH_ArkUI_DragEvent_SetDataLoadParams(ArkUI_DragEvent* event, OH_UdmfDataLoadParams* dataLoadParams);
 
 /**
- * @brief Obtains the default drag data from a drag event.
+ * @brief Obtains the drag data from **ArkUI_DragEvent**.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param data Pointer to an **OH_UdmfData** object. The application needs to create a pointer for receiving data by
@@ -303,17 +352,19 @@ int32_t OH_ArkUI_DragEvent_GetUdmfData(ArkUI_DragEvent* event, OH_UdmfData *data
 int32_t OH_ArkUI_DragEvent_GetDataTypeCount(ArkUI_DragEvent* event, int32_t* count);
 
 /**
- * @brief Obtains the list of drag data types from a drag event.
+ * @brief Obtains the type list of drag data types from a drag event.
  *
- * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
- * @param eventTypeArray Indicates the list of the drag data types. You need to create a string array first.
- * @param length Indicates the total length of the list array. It must be greater than or equal to the number obtained
- *        by using {@link OH_ArkUI_DragEvent_GetDataTypeCount}.
- * @param maxStrLen Indicates the max string length of drag data types.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the giving buffer is not enough for string copy.
+ * @param event Pointer to the target **ArkUI_DragEvent** object.
+ * @param eventTypeArray Pointer to the list of the drag data types. You need to create a string array first.
+ * @param length Total length of the array, which cannot be less than the number obtained using
+ *     {@link OH_ArkUI_DragEvent_GetDataTypeCount}.
+ * @param maxStrLen Maximum string length of the drag data type, used to limit the buffer size of each data type
+ *     string. Recommended value: no less than 128 characters to ensure that all standard UDMF data type strings
+ *     can be fully received.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the input buffer size is abnormal.
  * @since 12
  */
 int32_t OH_ArkUI_DragEvent_GetDataTypes(
@@ -347,14 +398,15 @@ int32_t OH_ArkUI_DragEvent_GetSummary(ArkUI_DragEvent* event, OH_UDMF_Summary* s
 int32_t OH_ArkUI_DragEvent_GetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult* result);
 
 /**
- * @brief Obtains the data handling method from the drag event.
+ * @brief Obtains the data processing method from **ArkUI_DragEvent**. When the drag fails, the operation type of
+ * the current drop is unreliable, and the operation type obtained is always **ARKUI_DROP_OPERATION_COPY**.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @param operation Data handling method.
+ * @param operation Pointer to the data processing mode of the drag event.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Possible causes: 1. Parameters are null or the event is not a valid DragEvent.
+ *     <br>Possible cause: 1. Parameters are null or the event is not a valid **DragEvent**.
  * @since 12
  */
 int32_t OH_ArkUI_DragEvent_GetDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation* operation);
@@ -372,7 +424,8 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointX(ArkUI_DragEvent* event);
  * @brief Obtains the y-coordinate of the touch point on the preview image from a drag event.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @return Y-coordinate of the touch point, in px, or the default value **0** if the input parameter is invalid.
+ * @return Y-coordinate of the touch point, in px. The default value **0** is returned when the input parameter is
+ *     invalid.
  * @since 12
  */
 float OH_ArkUI_DragEvent_GetPreviewTouchPointY(ArkUI_DragEvent* event);
@@ -485,11 +538,14 @@ float OH_ArkUI_DragEvent_GetVelocityY(ArkUI_DragEvent* event);
 float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event);
 
 /**
- * @brief Obtains the pressed status of modifier keys.
+ * @brief Obtains the pressed states of modifier keys.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @param keys Pointer to the combination of pressed modifier keys (Ctrl, Shift, and Alt). The application can use
- *     bitwise operations to determine which keys are pressed.
+ * @param keys Pointer to the combination of pressed modifier keys. The value is a bitwise OR of the masks
+ *     corresponding to each modifier key: the **Ctrl** key corresponds to bit 0 (mask value 0x1), the **Shift**
+ *     key corresponds to bit 1 (mask value 0x2), and the **Alt** key corresponds to bit 2 (mask value 0x4). The
+ *     application can use bitwise operations to determine which keys are pressed, for example, using
+ *     **(*keys & 0x1)** to check whether the **Ctrl** key is pressed.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -498,11 +554,13 @@ float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event);
 int32_t OH_ArkUI_DragEvent_GetModifierKeyStates(ArkUI_DragEvent* event, uint64_t* keys);
 
 /**
- * @brief Obtains the ID of the screen where this drag event occurs. This API is not supported when **eventType** is **
- * NODE_ON_DRAG_END**.
+ * @brief Obtains the ID of the display where this drag event occurs. This is suitable for multi-display device
+ * scenarios where it is necessary to determine which display the drag operation occurs on, such as performing
+ * differentiated processing based on the display ID during cross-screen dragging. This API is not supported when
+ * **eventType** is set to **NODE_ON_DRAG_END**.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @param displayId ID of the screen where the current drag event occurs.
+ * @param displayId Pointer to the ID of the display where the current drag event occurs.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -511,8 +569,10 @@ int32_t OH_ArkUI_DragEvent_GetModifierKeyStates(ArkUI_DragEvent* event, uint64_t
 ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDisplayId(ArkUI_DragEvent* event, int32_t* displayId);
 
 /**
- * @brief Obtains the bundle name of the drag source application. The caller must provide a character array with a
- * minimum length of 128 characters to store the bundle name.
+ * @brief Obtains the bundle name of the drag source application. This API can be used to identify the drag source
+ * application, perform verification based on the source, or execute differentiated processing. When calling, a
+ * character array must be passed to receive the bundle name string, and the array length must be explicitly
+ * specified, with a length of no less than 128 characters.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param bundleName Character array to store the bundle name string, with a length of at least 128 characters.
@@ -525,7 +585,10 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDisplayId(ArkUI_DragEvent* event, int32_t*
 ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource(ArkUI_DragEvent* event, char *bundleName, int32_t length);
 
 /**
- * @brief Checks whether the current drag operation is a cross-device drag.
+ * @brief Checks whether the current drag operation is a cross-device drag. This API is suitable for scenarios where
+ * it is necessary to distinguish between local drag and cross-device drag. For example, cross-device dragging may
+ * require additional verification of data transmission or display different UI prompts, while local dragging can
+ * process data directly.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param isRemote Pointer to a boolean variable to store the result. The value **true** means that the current drag
@@ -538,13 +601,17 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource(ArkUI_DragEvent* event, char *b
 ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote(ArkUI_DragEvent* event, bool* isRemote);
 
 /**
- * @brief Starts data synchronization using the specified synchronization parameters.
+ * @brief Starts data synchronization using the specified synchronization parameters. When this API is used in
+ * **NODE_ON_DROP**, to avoid accidentally obtaining data before **NODE_ON_DROP** is executed, data prefetching must
+ * first be disabled through {@link OH_ArkUI_DisableDropDataPrefetchOnNode}.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
- * @param options Pointer to the **OH_UdmfGetDataParams** object.
- * @param key Key value returned after successful data setting. The length of the string must be no less than
- *     {@link UDMF_KEY_BUFFER_LEN}.
- * @param keyLen Length of the **key** string.
+ * @param options Pointer to the option array for data obtaining, used to configure data request options during this
+ *     drag data synchronization.
+ * @param key Pointer to the key value allocated after data loading is successfully started. The length of the
+ *     character array used to receive the key must be no less than that specified by {@link UDMF_KEY_BUFFER_LEN}.
+ * @param keyLen Length of the key string. It must be no less than the length defined by {@link UDMF_KEY_BUFFER_LEN},
+ *     which is used to ensure that the key can be completely received.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -557,7 +624,7 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading(
  * @brief Cancels the ongoing data synchronization.
  *
  * @param uiContext Pointer to the UI instance.
- * @param key Data key value, which is returned via {@link OH_ArkUI_DragEvent_StartDataLoading}.
+ * @param key Pointer to the data key returned by {@link OH_ArkUI_DragEvent_StartDataLoading}.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -574,8 +641,8 @@ int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* ke
  * prevent accidental data fetching before **NODE_ON_DROP** is executed.
  *
  * @param node Pointer to the component node.
- * @param disabled Whether to disable the data prefetching process. The value **true** means to disable the data
- *     prefetching process, and **false** means the opposite.
+ * @param disabled Whether to disable data prefetching. The value **true** means to disable it, and **false** means
+ *     the opposite.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -623,8 +690,10 @@ int32_t OH_ArkUI_SetDragEventStrictReportWithContext(ArkUI_ContextHandle uiConte
  * configured through {@link OH_ArkUI_DisallowNodeAnyDropDataTypes} or {@link OH_ArkUI_AllowNodeAllDropDataTypes}.
  *
  * @param node Pointer to the component node.
- * @param typesArray Indicates the array of types of data that can be dropped.
- * @param count Length of the array.
+ * @param typesArray Pointer to the array of types of data that can be dropped. The array elements are strings of
+ *     unified data type identifiers defined by UDMF.
+ * @param count Length of the array, indicating the number of data type strings in **typesArray**. The number must
+ *     be consistent with the actual number of elements in **typesArray**.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -634,7 +703,8 @@ int32_t OH_ArkUI_SetNodeAllowedDropDataTypes(ArkUI_NodeHandle node, const char* 
 
 /**
  * @brief Configures the specified component to disallow any data types. This API resets the settings configured
- * through {@link OH_ArkUI_SetNodeAllowedDropDataTypes}.
+ * through {@link OH_ArkUI_SetNodeAllowedDropDataTypes}. Note: Calling
+ * **OH_ArkUI_SetNodeAllowedDropDataTypes** also resets the configuration made by this API.
  *
  * @param node Pointer to the component node.
  * @return Result code.
@@ -646,7 +716,8 @@ int32_t OH_ArkUI_DisallowNodeAnyDropDataTypes(ArkUI_NodeHandle node);
 
 /**
  * @brief Configures the specified component to allow any data types. This API resets the settings configured through
- * {@link OH_ArkUI_SetNodeAllowedDropDataTypes}.
+ * {@link OH_ArkUI_SetNodeAllowedDropDataTypes}. Note: Calling **OH_ArkUI_SetNodeAllowedDropDataTypes** also resets
+ * the configuration made by this API.
  *
  * @param node Pointer to the component node.
  * @return Result code.
@@ -682,9 +753,11 @@ int32_t OH_ArkUI_SetNodeDraggable(ArkUI_NodeHandle node, bool enabled);
 int32_t OH_ArkUI_SetNodeDragPreview(ArkUI_NodeHandle node, OH_PixelmapNative* preview);
 
 /**
- * @brief Creates an **ArkUI_DragPreviewOption** object.
+ * @brief Creates an **ArkUI_DragPreviewOption** object. When the object is no longer needed, you can call
+ * {@link OH_ArkUI_DragPreviewOption_Dispose} to dispose of it to prevent resource leaks.
  *
- * @return **ArkUI_DragPreviewOption** object.
+ * @return Pointer to the **ArkUI_DragPreviewOption** object, which is used to configure custom parameters for the
+ *     drag preview.
  * @since 12
  */
 ArkUI_DragPreviewOption* OH_ArkUI_CreateDragPreviewOption(void);
@@ -692,15 +765,18 @@ ArkUI_DragPreviewOption* OH_ArkUI_CreateDragPreviewOption(void);
 /**
  * @brief Disposes of an **ArkUI_DragPreviewOption** object.
  *
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object to dispose of.
  * @since 12
  */
 void OH_ArkUI_DragPreviewOption_Dispose(ArkUI_DragPreviewOption* option);
 
 /**
- * @brief Sets the scale mode for an **ArkUI_DragPreviewOption** object.
+ * @brief Sets whether the drag preview is automatically scaled according to the system definition. This API is
+ * suitable for scenarios where the drag preview size needs to be adjusted according to system rules during
+ * dragging, or where the original size of the custom drag preview needs to be maintained.
  *
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object, which is used to set the scale mode of the
+ *     drag preview.
  * @param scaleMode Scale mode to set.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -713,7 +789,8 @@ int32_t OH_ArkUI_DragPreviewOption_SetScaleMode(ArkUI_DragPreviewOption* option,
  * @brief Sets whether to enable the default shadow effect for an **ArkUI_DragPreviewOption** object. The effect is
  * disabled by default.
  *
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object, which is used to set the default projection
+ *     effect of the drag preview.
  * @param enabled Whether to enable the default shadow effect. The value **true** means to enable the default shadow
  *     effect, and **false** means the opposite.
  * @return Result code.
@@ -724,10 +801,11 @@ int32_t OH_ArkUI_DragPreviewOption_SetScaleMode(ArkUI_DragPreviewOption* option,
 int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(ArkUI_DragPreviewOption* option, bool enabled);
 
 /**
- * @brief Sets whether to enable the default rounded corner effect for an **ArkUI_DragPreviewOption** object. The
+ * @brief Sets whether to enable the default corner radius effect for an **ArkUI_DragPreviewOption** object. The
  * rounded corner radius is 12.0 vp by default. The effect is disabled by default.
  *
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object, which is used to set the default corner radius
+ *     effect of the drag preview.
  * @param enabled Whether to enable the default corner radius effect. The value **true** means to enable the default
  *     corner radius effect, and **false** means the opposite.
  * @return Result code.
@@ -739,9 +817,11 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(ArkUI_DragPreviewOpti
 
 /**
  * @brief Sets whether to enable the badge for an **ArkUI_DragPreviewOption** object. If this feature is enabled, a
- * badge that contains the number of dragged items is displayed.
+ * badge that contains the number of dragged items is displayed. Note: Calling
+ * {@link OH_ArkUI_DragPreviewOption_SetBadgeNumber} overrides the value set by this API.
  *
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object, which is used to set whether to display the
+ *     count badge on the drag preview.
  * @param enabled Whether to enable the badge. The value **true** means to enable the badge, and **false** means the
  *     opposite.
  * @return Result code.
@@ -755,8 +835,10 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(ArkUI_DragPreviewOption
  * @brief Sets the count on the badge. The settings will overwrite the value in
  * {@link OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled}.
  *
- * @param option Custom parameters.
- * @param forcedNumber Number of badges.
+ * @param option Pointer to the custom drag preview parameter object, which is used to set the count that is
+ *     forcibly displayed on the badge.
+ * @param forcedNumber Count on the badge. The value is a positive integer used to forcibly specify the count
+ *     displayed on the badge.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -765,9 +847,10 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(ArkUI_DragPreviewOption
 int32_t OH_ArkUI_DragPreviewOption_SetBadgeNumber(ArkUI_DragPreviewOption* option, uint32_t forcedNumber);
 
 /**
- * @brief Sets whether to enable the default animation on a click or touch.
+ * @brief Sets whether to enable the default animation on a click or touch. This API is suitable for scenarios where
+ * press visual feedback is needed before the drag preview lifts.
  *
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object.
  * @param enabled Whether to enable the default animation on a click or touch. The value **true** means to enable the
  *     default animation on a click or touch, and **false** means the opposite.
  * @return Result code.
@@ -781,7 +864,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled(
  * @brief Sets an **ArkUI_DragPreviewOption** object for the specified component.
  *
  * @param node Pointer to the component node.
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object to be set on the target component.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -790,20 +873,25 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled(
 int32_t OH_ArkUI_SetNodeDragPreviewOption(ArkUI_NodeHandle node, ArkUI_DragPreviewOption* option);
 
 /**
- * @brief Creates a drag action object. The object needs to be associated with a UI instance, which can be specified by
- * passing in a component node of the current UI instance.
+ * @brief Creates a drag operation object, which must be associated with a UI instance. This can be specified by
+ * passing in a component node of the current UI instance. After the object is used, you need to call
+ * {@link OH_ArkUI_DragAction_Dispose} to dispose of it to prevent resource leaks.
  *
  * @param node Pointer to the component node.
- * @return Pointer to the created drag action object, or null if the operation fails.
+ * @return Pointer to the **ArkUI_DragAction** object, which is used to configure and initiate a drag operation. If
+ *     creation fails, null is returned.
  * @since 12
  */
 ArkUI_DragAction* OH_ArkUI_CreateDragActionWithNode(ArkUI_NodeHandle node);
 
 /**
- * @brief Creates a drag action object for the specified UI instance.
+ * @brief Creates a drag operation object, which must be associated with a UI instance. This can be associated by
+ * passing in a UI instance pointer. After the object is used, you need to call
+ * {@link OH_ArkUI_DragAction_Dispose} to dispose of it to prevent resource leaks.
  *
  * @param uiContext Pointer to the UI instance.
- * @return Pointer to the created drag action object, or null if the operation fails.
+ * @return Pointer to the **ArkUI_DragAction** object, which is used to configure and initiate a drag operation. If
+ *     creation fails, null is returned.
  * @since 12
  */
 ArkUI_DragAction* OH_ArkUI_CreateDragActionWithContext(ArkUI_ContextHandle uiContext);
@@ -833,8 +921,11 @@ int32_t OH_ArkUI_DragAction_SetPointerId(ArkUI_DragAction* dragAction, int32_t p
  * @brief Sets the drag previews for a drag action. Only pixel map objects are supported.
  *
  * @param dragAction Pointer to the target drag action object.
- * @param pixelmapArray Indicates the array of the drag previews to set, which must be pixel maps.
- * @param size Number of drag previews.
+ * @param pixelmapArray Array of the drag previews to set, which must be pixel maps.
+ *     <br>Note: This parameter must be an object allocated on the heap. You need to manually manage the lifecycle
+ *     of the object.
+ * @param size Number of drag previews. The value must be a positive integer and must match the actual number of
+ *     elements in **pixelmapArray**.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -868,10 +959,13 @@ int32_t OH_ArkUI_DragAction_SetTouchPointX(ArkUI_DragAction* dragAction, float x
 int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y);
 
 /**
- * @brief Sets the drag data.
+ * @brief Sets drag data. {@link OH_ArkUI_DragAction_SetDataLoadParams} should be used preferentially to provide
+ * data loading parameters, so as to improve the efficiency of dragging large amounts of data and the efficiency of
+ * processing dropped data in the target application. If this API conflicts with
+ * {@link OH_ArkUI_DragAction_SetDataLoadParams}, the system always uses the last called API.
  *
  * @param dragAction Pointer to the target drag action object.
- * @param data Drag data configuration.
+ * @param data Pointer to the drag data object to set.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -880,12 +974,13 @@ int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y
 int32_t OH_ArkUI_DragAction_SetData(ArkUI_DragAction* dragAction, OH_UdmfData* data);
 
 /**
- * @brief This API provides data loading parameters to the system instead of directly providing a complete data object.
- * When the user drops data on the target application, the system will use **dataLoadParams** to request data. This can
- * significantly improve the efficiency of dragging large volumes of data and the efficiency of processing the dropped
- * data in the target application. This API must always be used in preference to {@link OH_ArkUI_DragAction_SetData}.
- * For details about how to create and prepare data loading parameters, see {@link OH_UdmfDataLoadParams_Create} in **
- * udmf.h**. If this API conflicts with {@link OH_ArkUI_DragAction_SetData}, the system always uses the last called API.
+ * @brief Provides data loading parameters to the system instead of directly providing a complete data object.
+ * When the user drops data on the target application, the system will use **dataLoadParams** to request data. This
+ * can significantly improve the efficiency of dragging large volumes of data and the efficiency of processing the
+ * dropped data in the target application. This API must always be used in preference to
+ * {@link OH_ArkUI_DragAction_SetData}. For details about how to create and prepare data loading parameters, see
+ * {@link OH_UdmfDataLoadParams_Create} in **udmf.h**. If this API conflicts with
+ * {@link OH_ArkUI_DragAction_SetData}, the system always uses the last called API.
  *
  * @param dragAction Pointer to the target drag action object.
  * @param dataLoadParams Data loading parameters used during a drop operation.
@@ -901,7 +996,7 @@ ArkUI_ErrorCode OH_ArkUI_DragAction_SetDataLoadParams(ArkUI_DragAction* dragActi
  * @brief Sets an **ArkUI_DragPreviewOption** object for the specified drag action object.
  *
  * @param dragAction Pointer to the target drag action object.
- * @param option Custom parameters.
+ * @param option Pointer to the custom drag preview parameter object to be set on **ArkUI_DragAction**.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -910,13 +1005,18 @@ ArkUI_ErrorCode OH_ArkUI_DragAction_SetDataLoadParams(ArkUI_DragAction* dragActi
 int32_t OH_ArkUI_DragAction_SetDragPreviewOption(ArkUI_DragAction* dragAction, ArkUI_DragPreviewOption* option);
 
 /**
- * @brief Registers a drag status listener. This listener can be used to check whether the data is successfully
- * received and processed.
+ * @brief Registers a drag status listener, which can perceive the status of the drag having been initiated or the
+ * user having released to end. Through this listener, you can obtain whether the data receiving and processing by
+ * the drop target is successful. When the drag status no longer needs to be listened for, you need to call
+ * {@link OH_ArkUI_DragAction_UnregisterStatusListener} to unregister the listener.
  *
  * @param dragAction Pointer to the target drag action object.
- * @param userData Custom user data.
- * @param listener Listener to register. When the callback is invoked, the system returns a pointer to the drag status
- *     object. The pointer is destroyed after the callback is complete and the application should not hold it anymore.
+ * @param userData Pointer to the user-defined data. After the status listener is registered, the data will be
+ *     passed back through the **userData** parameter of the listener when the callback is triggered.
+ * @param listener Pointer to the state listener callback. **dragAndDropInfo** indicates the pointer to the drag
+ *     state object returned by the system. This pointer will be destroyed after the callback execution is
+ *     complete, and the application should no longer hold it. **userData** indicates the user-defined data passed
+ *     during registration.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -938,17 +1038,17 @@ void OH_ArkUI_DragAction_UnregisterStatusListener(ArkUI_DragAction* dragAction);
  * acquisition fails.
  *
  * @param dragAndDropInfo Drag and drop information returned by the drag status listener.
- * @return **ArkUI_DragStatus** object, or **ArkUI_DRAG_STATUS_UNKNOWN** if an error occurs.
+ * @return Drag status. If the status fails to be obtained, the default value **ArkUI_DRAG_STATUS_UNKNOWN** is
+ *     returned.
  * @since 12
  */
 ArkUI_DragStatus OH_ArkUI_DragAndDropInfo_GetDragStatus(ArkUI_DragAndDropInfo* dragAndDropInfo);
 
 /**
- * @brief Obtains a drag event based on the specified drag and drop information. The drag event can then be used to
- * obtain the drag result.
+ * @brief Obtains **DragEvent** through **dragAndDropInfo**. **DragEvent** can be used to obtain the drop result.
  *
  * @param dragAndDropInfo Drag and drop information returned by the drag status listener.
- * @return **ArkUI_DragEvent** object, or null if an error occurs.
+ * @return Pointer to the drag event object. If the obtaining fails, null is returned.
  * @since 12
  */
 ArkUI_DragEvent* OH_ArkUI_DragAndDropInfo_GetDragEvent(ArkUI_DragAndDropInfo* dragAndDropInfo);
@@ -965,10 +1065,10 @@ ArkUI_DragEvent* OH_ArkUI_DragAndDropInfo_GetDragEvent(ArkUI_DragAndDropInfo* dr
 int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction);
 
 /**
- * @brief Requests deferred processing of the drag end event, allowing the application to asynchronously confirm the
- * operation result. The application must pass the final result back to the system via the
+ * @brief Requests deferred processing of the drag end event, allowing the application to confirm the operation
+ * result. The application must pass the final result back to the system via the
  * {@link OH_ArkUI_NotifyDragResult} API, and call {@link OH_ArkUI_NotifyDragEndPendingDone} after all processing is
- * completed. The maximum waiting time is 2 seconds.
+ * complete. The maximum waiting time is 2 seconds.
  *
  * @param event Pointer to the target **ArkUI_DragEvent** object.
  * @param requestIdentify System-generated request identifier, which is an output parameter and must point to a valid
@@ -976,8 +1076,8 @@ int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction);
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if the operation is not allowed at the
- *     current stage.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if the requested operation is not
+ *     allowed in the current drag event processing phase.
  * @since 19
  */
 int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify);
@@ -991,22 +1091,24 @@ int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if the operation is not allowed at the
- *     current stage.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if the requested operation is not
+ *     allowed in the current drag event processing phase.
  * @since 19
  */
 int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result);
 
 /**
- * @brief Notifies the drag initiator of the operation type of the current drop. The drag initiator can call
- * {@link OH_ArkUI_DragEvent_GetDropOperation} in the drag end callback to obtain the operation type of the current
- * drop and perform custom processing. The drag initiator can also ignore the notification. If the drag operation fails,
- *  the action type of the current drop is unreliable. In this case, the action type obtained by calling
- * {@link OH_ArkUI_DragEvent_GetDropOperation} is always **ARKUI_DROP_OPERATION_COPY**. The system will verify whether
- * the value of **requestIdentity** is the same as that returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}.
- * If they are different, this API call does not take effect.
+ * @brief Notifies the drag initiator of the operation type of the current drop. This API must be called during the
+ * drop phase. The drag initiator can call {@link OH_ArkUI_DragEvent_GetDropOperation} in the drag end callback to
+ * obtain the operation type of the current drop and perform custom processing. The drag initiator can also ignore
+ * the notification. If the drag operation fails, the operation type of the current drop is unreliable. In this
+ * case, the operation type obtained by calling {@link OH_ArkUI_DragEvent_GetDropOperation} is always
+ * **ARKUI_DROP_OPERATION_COPY**. The system will verify whether the value of **requestIdentity** is the same as
+ * that returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}. If they are different, this API call does not
+ * take effect.
  *
- * @param requestIdentity The identity returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending} interface.
+ * @param requestIdentity Identifier returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}, which is used to
+ *     identify the drag event.
  * @param operation Operation type of the current drop.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -1017,13 +1119,15 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult resu
 int32_t OH_ArkUI_NotifySuggestedDropOperation(int32_t requestIdentity, ArkUI_DropOperation operation);
 
 /**
- * @brief Notifies the system whether to disable the default drop animation. If the drag fails, the default drop
- * animation is diffusion. If the drag succeeds, the default drop animation is shrinking and fading. Calling this API
- * can disable the default animation and implement a custom drop animation as required. The system will verify whether
- * the value of **requestIdentity** is the same as that returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}.
- * If they are different, this API call does not take effect.
+ * @brief Notifies the system whether to disable the default drop animation. This API must be called during the
+ * drop phase. If the drag fails, the default drop animation is diffusion. If the drag succeeds, the default drop
+ * animation is shrinking and fading. Calling this API can disable the default animation and implement a custom
+ * drop animation as required. The system will verify whether the value of **requestIdentity** is the same as that
+ * returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}. If they are different, this API call does not take
+ * effect.
  *
- * @param requestIdentity The identity returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending} interface.
+ * @param requestIdentity Identifier returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}, which is used to
+ *     identify the drag event.
  * @param disable Whether to disable the default drop animation. **true** if disable; **false** otherwise.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -1034,21 +1138,25 @@ int32_t OH_ArkUI_NotifySuggestedDropOperation(int32_t requestIdentity, ArkUI_Dro
 int32_t OH_ArkUI_NotifyDisableDefaultDropAnimation(int32_t requestIdentity, bool disable);
 
 /**
- * @brief Notifies the system that all asynchronous processing has been completed and the drag end pending state can be
- * terminated.
+ * @brief Notifies the system that all asynchronous processing is complete and the drag end pending state can be
+ * ended. The system will verify whether the value of **requestIdentify** matches the identifier returned by
+ * {@link OH_ArkUI_DragEvent_RequestDragEndPending}. If they do not match or the current state is not in the drop
+ * phase, this call does not take effect.
  *
  * @param requestIdentify Identifier returned by {@link OH_ArkUI_DragEvent_RequestDragEndPending}.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if the operation is not allowed at the
- *     current stage.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED} if the requested operation is not
+ *     allowed in the current drag event processing phase.
  * @since 19
  */
 int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify);
 
  /**
-  * @brief Sets whether the drop-disallowed badge can be displayed.
+  * @brief Sets whether the drop-disallowed badge can be displayed. This API is suitable for scenarios where a
+  * drop-disallowed badge is needed to prompt the user when data is dragged to a target area that does not allow
+  * dropping or does not support receiving the current data type.
   *
   * @param uiContext Pointer to the UI instance.
   * @param enabled Whether the drop-disallowed badge can be displayed. The value **true** means that the drop-

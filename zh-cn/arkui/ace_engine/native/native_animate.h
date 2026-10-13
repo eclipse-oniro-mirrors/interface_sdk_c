@@ -1353,10 +1353,12 @@ void OH_ArkUI_NativeModule_PropertyAnimation_Destroy(OH_ArkUI_PropertyAnimationH
 /**
  * @brief 设置属性动画的起始值。
  *
- * 推荐设置起始值，若未设置则默认从当前属性值开始产生动画。但需注意：如果未设置起始值且对应属性从未被赋值，由于缺少有效的起始状态，属性动画将无法产生。
+ * 推荐设置起始值，若未设置则默认从当前属性值开始产生动画。
+ * 如果属性动画未设置属性的起始值且对应属性从未被赋值，由于缺少有效的起始状态，属性动画将无法产生。
  * @param animation [in] 表示属性动画句柄。
- * @param value [in] 表示起始值。元素的数量和类型取决于{@link OH_ArkUI_AnimationPropertyType}。
- *     例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY需要1个f32值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION需要2个f32值(x, y)。
+ * @param value [in] 表示起始值。
+ *     value中元素的数量和类型取决于创建属性动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则value需要传入1个f32值。
  * @param size [in] 表示value数组中的元素个数。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -1371,12 +1373,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_SetFromValue(
  *
  * @param animation [in] 表示属性动画句柄。
  * @param value [out] 表示用于接收{@link ArkUI_NumberValue}起始值数组的指针。 \n
- *     元素的数量和类型取决于{@link OH_ArkUI_AnimationPropertyType}。
- *     例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY需要1个f32值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION需要2个f32值(x, y)。
- *     值将写入该指针指向的内存。 \n
+ *     value中元素的数量和类型取决于创建属性动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则value需要传入1个f32值。值将写入该指针指向的内存。 \n
  *     <br>该指针不能为**NULL**。如果**value**设置为**NULL**，则返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @param size [in] 表示输出数组的大小。必须等于{@link OH_ArkUI_AnimationPropertyType}所需的元素个数，
- *     否则返回错误码{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
+ * @param size [in] 表示输出数组的大小。
+ *     必须等于{@link OH_ArkUI_AnimationPropertyType}所需的元素个数，否则返回错误码{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND} 未设置起始值。
@@ -1392,8 +1393,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_GetFromValue(
  *
  * 必须设置结束值，否则属性动画句柄无实际意义。
  * @param animation [in] 表示属性动画句柄。
- * @param value [in] 表示结束值。元素的数量和类型取决于{@link OH_ArkUI_AnimationPropertyType}。
- *     例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY需要1个f32值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION需要2个f32值(x, y)。
+ * @param value [in] 表示结束值。
+ *     value中元素的数量和类型取决于创建属性动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则value需要传入1个f32值。
  * @param size [in] 表示value数组中的元素个数。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -1408,12 +1410,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_SetToValue(
  *
  * @param animation [in] 表示属性动画句柄。
  * @param value [out] 表示用于接收{@link ArkUI_NumberValue}结束值数组的指针。 \n
- *     元素的数量和类型取决于{@link OH_ArkUI_AnimationPropertyType}。
- *     例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY需要1个f32值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION需要2个f32值(x, y)。
- *     值将写入该指针指向的内存。 \n
+ *     value中元素的数量和类型取决于创建属性动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则value需要传入1个f32值。值将写入该指针指向的内存。 \n
  *     <br>该指针不能为**NULL**。如果**value**设置为**NULL**，则返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @param size [in] 表示输出数组的大小。必须等于{@link OH_ArkUI_AnimationPropertyType}所需的元素个数；
- *     否则返回错误码{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
+ * @param size [in] 表示输出数组的大小。
+ *     必须等于{@link OH_ArkUI_AnimationPropertyType}所需的元素个数；否则返回错误码{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND} 未设置结束值。
@@ -1427,8 +1428,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_GetToValue(
 /**
  * @brief 设置属性动画的持续时间。
  *
- * 实际生效的动画持续时间按以下优先级确定：如果通过本接口设置了子动画的持续时间，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}在动画组上设置的持续时间；如果两者都未设置，则使用默认值**1000**毫秒。
+ * 实际生效的动画持续时间按以下优先级确定：
+ * 如果通过本接口设置了子动画的持续时间，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}在动画组上设置的持续时间；
+ * 如果两者都未设置，则使用默认值**1000**毫秒。
  * @param animation [in] 表示属性动画句柄。
  * @param duration [in] 表示持续时间，单位为毫秒。该值必须大于0。
  * @return 错误码。
@@ -1444,8 +1447,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_SetDuration(
  *
  * 本接口仅返回在本动画上显式设置的持续时间；从动画组继承的值或默认值在运行时解析，不存储在本对象上。
  * 如果本动画未设置持续时间，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
- * 运行时实际生效的动画持续时间按以下优先级确定：如果通过{@link OH_ArkUI_NativeModule_PropertyAnimation_SetDuration}设置了持续时间，
- * 则使用该值；否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}设置的动画组持续时间；如果两者都未设置，则使用默认值**1000**毫秒。
+ * 运行时实际生效的动画持续时间按以下优先级确定：
+ * 如果通过{@link OH_ArkUI_NativeModule_PropertyAnimation_SetDuration}设置了持续时间，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}设置的动画组持续时间；
+ * 如果两者都未设置，则使用默认值**1000**毫秒。
  * @param animation [in] 表示属性动画句柄。
  * @param duration [out] 表示用于接收持续时间值的指针，单位为毫秒。
  * @return 错误码。
@@ -1486,12 +1491,16 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_GetDelay(
 /**
  * @brief 设置属性动画的动画曲线。 \n
  *
- * 实际生效的动画曲线按以下优先级确定：如果通过本接口设置了曲线，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}在动画组上设置的曲线；如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。 \n
+ * 实际生效的动画曲线按以下优先级确定：
+ * 如果通过本接口设置了曲线，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}在动画组上设置的曲线；
+ * 如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。 \n
  * 支持弹簧曲线（<b>springMotion</b>、<b>responsiveSpringMotion</b>和<b>interpolatingSpring</b>）。
  * 设置弹簧曲线时，通过{@link OH_ArkUI_NativeModule_PropertyAnimation_SetDuration}设置的持续时间不生效，动画持续时间由弹簧曲线决定。
  * @param animation [in] 表示属性动画句柄。
- * @param curve [in] 表示动画曲线。本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
+ * @param curve [in] 表示动画曲线。
+ *     <b>NULL</b>表示继承通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线。
+ *     本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1504,14 +1513,17 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_SetCurve(
  * @brief 获取属性动画的动画曲线。 \n
  *
  * 本接口仅返回在本动画上显式设置的曲线；从动画组继承的值或默认值在运行时解析，不存储在本对象上。
- * 如果本动画未设置曲线，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
- * 运行时实际生效的动画曲线按以下优先级确定：如果通过{@link OH_ArkUI_NativeModule_PropertyAnimation_SetCurve}设置了曲线，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线；如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
+ * 如果本动画未设置曲线，则<b>outBorrowedCurve</b>输出为<b>NULL</b>。
+ * 运行时实际生效的动画曲线按以下优先级确定：
+ * 如果通过{@link OH_ArkUI_NativeModule_PropertyAnimation_SetCurve}设置了曲线，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线；
+ * 如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
  * @param animation [in] 表示属性动画句柄。
- * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针；调用者不得销毁该句柄。
+ * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针。
+ *     调用者不得销毁该句柄。
+ *     <b>NULL</b>表示本动画未设置曲线，运行时将继承动画组的曲线。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND} 未设置曲线。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.1
  */
@@ -1550,7 +1562,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_GetTempo(
  * 启用自动反转后，动画在每轮播放中交替正向播放和反向播放。默认值为<b>false</b>。
  *
  * @param animation [in] 表示属性动画句柄。
- * @param autoReverse [in] 表示是否启用自动反转。默认值为<b>false</b>。
+ * @param autoReverse [in] 表示是否启用自动反转。
+ *     <b>true</b>表示启用自动反转，动画在每轮播放中交替正向播放和反向播放；
+ *     <b>false</b>表示不启用，动画仅正向播放。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1563,7 +1577,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_SetAutoReverse(
  * @brief 获取属性动画是否启用自动反转。
  *
  * @param animation [in] 表示属性动画句柄。
- * @param autoReverse [out] 表示用于接收该值的指针。如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
+ * @param autoReverse [out] 表示用于接收该值的指针。
+ *     如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1607,7 +1622,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_GetIterations(
  * 非NULL目标必须属于动画组注册的同一UIContext，该检查在通过{@link OH_ArkUI_NativeModule_AddAnimationGroup}注册动画组时执行。
  *
  * @param animation [in] 表示属性动画句柄。
- * @param targetNode [in] 表示要动画的渲染节点。<b>NULL</b>表示继承动画组的默认目标。默认值为<b>NULL</b>。
+ * @param targetNode [in] 表示要动画的渲染节点。
+ *     <b>NULL</b>表示继承动画组的默认目标。默认值为<b>NULL</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1620,7 +1636,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_SetTargetNode(
  * @brief 获取属性动画的目标渲染节点。
  *
  * @param animation [in] 表示属性动画句柄。
- * @param outBorrowedTargetNode [out] 表示用于接收目标渲染节点的指针；调用者不得销毁该句柄。<b>NULL</b>表示继承动画组的默认目标。
+ * @param outBorrowedTargetNode [out] 表示用于接收目标渲染节点的指针。
+ *     调用者不得销毁该句柄。<b>NULL</b>表示继承动画组的默认目标。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1632,9 +1649,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PropertyAnimation_GetTargetNode(
 /**
  * @brief 为指定的可动画属性创建关键帧动画。 \n
  *
- * 每个关键帧的关键时间默认按索引在[0, 1]区间均匀分布（例如，当有3个关键帧时，第一帧为<b>0.0</b>，第二帧为<b>0.5</b>，第三帧为<b>1.0</b>）。
+ * 每个关键帧的关键帧时间点默认按索引在[0, 1]区间均匀分布（例如，当有3个关键帧时，第一帧为<b>0.0</b>，第二帧为<b>0.5</b>，第三帧为<b>1.0</b>）。
  * 使用{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetKeyTimes}或
- * {@link OH_ArkUI_NativeModule_KeyframeAnimation_SetKeyTime}自定义关键时间点。 \n
+ * {@link OH_ArkUI_NativeModule_KeyframeAnimation_SetKeyTime}自定义关键帧时间点。 \n
  *
  * <b>propertyType</b>必须是有效的{@link OH_ArkUI_AnimationPropertyType}，且<b>size</b>必须大于等于2；否则，本接口返回<b>NULL</b>。
  * @param propertyType [in] 表示要动画的属性类型。
@@ -1656,15 +1673,15 @@ OH_ArkUI_KeyframeAnimationHandle OH_ArkUI_NativeModule_KeyframeAnimation_Create(
 void OH_ArkUI_NativeModule_KeyframeAnimation_Destroy(OH_ArkUI_KeyframeAnimationHandle animation);
 
 /**
- * @brief 设置关键帧的关键时间点。 \n
+ * @brief 设置关键帧的关键帧时间点。 \n
  *
- * 如果不调用本接口，每个关键帧的关键时间默认按索引在[0, 1]区间均匀分布（例如，当有3个关键帧时，第一帧为<b>0.0</b>，第二帧为<b>0.5</b>，第三帧为<b>1.0</b>）。 \n
+ * 如果不调用本接口，每个关键帧的关键帧时间点默认按索引在[0, 1]区间均匀分布（例如，当有3个关键帧时，第一帧为<b>0.0</b>，第二帧为<b>0.5</b>，第三帧为<b>1.0</b>）。 \n
  *
  * <b>keyTimes</b>中的元素必须非递减，
  * 且<b>size</b>必须等于关键帧动画的关键帧数量（即通过{@link OH_ArkUI_NativeModule_KeyframeAnimation_Create}创建动画时指定的<b>size</b>值）。
  * @param animation [in] 表示关键帧动画句柄。
- * @param keyTimes [in] 表示关键时间点数组。每个元素的取值范围：[0, 1]。
- * @param size [in] 表示关键时间点的数量。
+ * @param keyTimes [in] 表示关键帧时间点数组，为归一化时间比例，取值范围[0, 1]。
+ * @param size [in] 表示关键帧时间点的数量。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1674,11 +1691,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetKeyTimes(
     OH_ArkUI_KeyframeAnimationHandle animation, const float *keyTimes, int32_t size);
 
 /**
- * @brief 获取指定索引处关键帧的关键时间点。
+ * @brief 获取指定索引处关键帧的关键帧时间点。
  *
  * @param animation [in] 表示关键帧动画句柄。
  * @param index [in] 表示关键帧索引。
- * @param keyTime [out] 表示用于接收关键时间点的指针。
+ * @param keyTime [out] 表示用于接收关键帧时间点的指针，为归一化时间比例，取值范围[0, 1]。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1688,13 +1705,13 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_GetKeyTime(
     OH_ArkUI_KeyframeAnimationHandle animation, int32_t index, float *keyTime);
 
 /**
- * @brief 设置指定索引处关键帧的关键时间点。 \n
+ * @brief 设置指定索引处关键帧的关键帧时间点。 \n
  *
- * 如果不调用本接口设置某个关键帧，其关键时间默认按索引在[0, 1]区间均匀分布（例如，当有3个关键帧时，第一帧为<b>0.0</b>，第二帧为<b>0.5</b>，第三帧为<b>1.0</b>）。
+ * 如果不调用本接口设置某个关键帧，其关键帧时间点默认按索引在[0, 1]区间均匀分布（例如，当有3个关键帧时，第一帧为<b>0.0</b>，第二帧为<b>0.5</b>，第三帧为<b>1.0</b>）。
  *
  * @param animation [in] 表示关键帧动画句柄。
  * @param index [in] 表示关键帧索引。
- * @param keyTime [in] 表示关键时间点。取值范围：[0, 1]。
+ * @param keyTime [in] 表示关键帧时间点，为归一化时间比例，取值范围[0, 1]。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1709,8 +1726,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetKeyTime(
  * @param animation [in] 表示关键帧动画句柄。
  * @param index [in] 表示关键帧索引。
  * @param value [in] 表示{@link ArkUI_NumberValue}数组。 \n
- *     元素的数量和类型取决于{@link OH_ArkUI_AnimationPropertyType}。
- *     例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY需要1个f32值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION需要2个f32值(x, y)。
+ *     value中元素的数量和类型取决于创建关键帧动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则value需要传入1个f32值。
  * @param size [in] 表示value数组中的元素个数。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -1723,12 +1740,12 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetValue(
 /**
  * @brief 一次性设置所有关键帧的值。 \n
  *
- * 值以扁平数组形式提供。每个关键帧的元素数量取决于{@link OH_ArkUI_AnimationPropertyType}。
- * 例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY每个关键帧需要1个值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION每个关键帧需要2个值。
- * 元素总数必须等于关键帧数量乘以每个关键帧的值数量。
+ * 值以扁平数组形式提供。
  *
  * @param animation [in] 表示关键帧动画句柄。
  * @param values [in] 表示所有关键帧的{@link ArkUI_NumberValue}扁平数组。
+ *     每个关键帧的元素数量取决于创建关键帧动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则每个关键帧需要1个f32值。元素总数必须等于关键帧数量乘以每个关键帧的值数量。
  * @param size [in] 表示values数组中的元素总数。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
@@ -1744,9 +1761,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetValues(
  * @param animation [in] 表示关键帧动画句柄。
  * @param index [in] 表示关键帧索引。
  * @param value [out] 表示用于接收{@link ArkUI_NumberValue}值数组的指针。 \n
- *     元素的数量和类型取决于{@link OH_ArkUI_AnimationPropertyType}。
- *     例如，OH_ARKUI_ANIMATION_PROPERTY_OPACITY需要1个f32值，OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION需要2个f32值(x, y)。
- *     值将写入该指针指向的内存。 \n
+ *     value中元素的数量和类型取决于创建关键帧动画时传入的propertyType的取值，具体请参考{@link OH_ArkUI_AnimationPropertyType}的枚举描述。
+ *     例如，如果取值为{@link OH_ARKUI_ANIMATION_PROPERTY_OPACITY}，则value需要传入1个f32值。值将写入该指针指向的内存。 \n
  *     <br>该指针不能为**NULL**。如果**value**设置为**NULL**，则返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param size [in] 表示输出数组的大小。必须等于{@link OH_ArkUI_AnimationPropertyType}所需的元素个数；
  *     否则返回错误码{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
@@ -1764,7 +1780,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_GetValue(
  * @brief 设置关键帧的动画曲线。
  *
  * @param animation [in] 表示关键帧动画句柄。
- * @param value [in] 表示曲线句柄数组。本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，所有曲线保持有效。
+ * @param value [in] 表示曲线句柄数组。
+ *     本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，所有曲线保持有效。
  *     不支持<b>springMotion</b>、<b>responsiveSpringMotion</b>和<b>interpolatingSpring</b>曲线，因为这些曲线没有有效的持续时间设置。
  * @param size [in] 表示曲线数量。
  * @return 错误码。
@@ -1780,10 +1797,14 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetCurves(
  *
  * @param animation [in] 表示关键帧动画句柄。
  * @param index [in] 表示关键帧索引。
- * @param curve [in] 表示动画曲线。本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
+ * @param curve [in] 表示动画曲线。
+ *     <b>NULL</b>表示继承通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线。
+ *     本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
  *     不支持<b>springMotion</b>、<b>responsiveSpringMotion</b>和<b>interpolatingSpring</b>曲线，因为这些曲线没有有效的持续时间设置。
- *     实际生效的动画曲线按以下优先级确定：如果通过本接口或{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurves}为关键帧设置了曲线，则使用该值；
- *     否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}在动画组上设置的曲线；如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
+ *     实际生效的动画曲线按以下优先级确定：
+ *     如果通过本接口或{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurves}为关键帧设置了曲线，则使用该值；
+ *     否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}在动画组上设置的曲线；
+ *     如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1796,16 +1817,19 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetCurve(
  * @brief 获取指定索引处关键帧的动画曲线。 \n
  *
  * 本接口仅返回为关键帧显式设置的曲线；从动画组继承的值或默认值在运行时解析，不存储在本对象上。
- * 如果关键帧未设置曲线，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
- * 运行时实际生效的动画曲线按以下优先级确定：如果通过{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurve}或
+ * 如果关键帧未设置曲线，则<b>outBorrowedCurve</b>输出为<b>NULL</b>。
+ * 运行时实际生效的动画曲线按以下优先级确定：
+ * 如果通过{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurve}或
  * {@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurves}为关键帧设置了曲线，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线；如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线；
+ * 如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
  * @param animation [in] 表示关键帧动画句柄。
  * @param index [in] 表示关键帧索引。
- * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针；调用者不得销毁该句柄。
+ * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针。
+ *     调用者不得销毁该句柄。
+ *     <b>NULL</b>表示该关键帧未设置曲线，运行时将继承动画组的曲线。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND} 未设置曲线。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.1
  */
@@ -1815,8 +1839,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_GetCurve(
 /**
  * @brief 设置关键帧动画的持续时间。 \n
  *
- * 实际生效的动画持续时间按以下优先级确定：如果通过本接口设置了持续时间，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}在动画组上设置的持续时间；如果两者都未设置，则使用默认值**1000**毫秒。
+ * 实际生效的动画持续时间按以下优先级确定：
+ * 如果通过本接口设置了持续时间，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}在动画组上设置的持续时间；
+ * 如果两者都未设置，则使用默认值**1000**毫秒。
  * @param animation [in] 表示关键帧动画句柄。
  * @param duration [in] 表示持续时间，单位为毫秒。该值必须大于0。
  * @return 错误码。
@@ -1832,8 +1858,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetDuration(
  *
  * 本接口仅返回在本动画上显式设置的持续时间；从动画组继承的值或默认值在运行时解析，不存储在本对象上。
  * 如果本动画未设置持续时间，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
- * 运行时实际生效的动画持续时间按以下优先级确定：如果通过{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetDuration}设置了持续时间，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}设置的动画组持续时间；如果两者都未设置，则使用默认值**1000**毫秒。
+ * 运行时实际生效的动画持续时间按以下优先级确定：
+ * 如果通过{@link OH_ArkUI_NativeModule_KeyframeAnimation_SetDuration}设置了持续时间，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}设置的动画组持续时间；
+ * 如果两者都未设置，则使用默认值**1000**毫秒。
  * @param animation [in] 表示关键帧动画句柄。
  * @param duration [out] 表示用于接收持续时间值的指针，单位为毫秒。
  * @return 错误码。
@@ -1903,7 +1931,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_GetTempo(
  * 启用自动反转后，动画在每轮播放中交替正向播放和反向播放。默认值为<b>false</b>。
  *
  * @param animation [in] 表示关键帧动画句柄。
- * @param autoReverse [in] 表示是否启用自动反转。默认值为<b>false</b>。
+ * @param autoReverse [in] 表示是否启用自动反转。
+ *     <b>true</b>表示启用自动反转，动画在每轮播放中交替正向播放和反向播放；
+ *     <b>false</b>表示不启用，动画仅正向播放。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1916,7 +1946,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetAutoReverse(
  * @brief 获取关键帧动画是否启用自动反转。
  *
  * @param animation [in] 表示关键帧动画句柄。
- * @param autoReverse [out] 表示用于接收该值的指针。如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
+ * @param autoReverse [out] 表示用于接收该值的指针。
+ *     如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1955,11 +1986,13 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_GetIterations(
 /**
  * @brief 设置关键帧动画的目标渲染节点。 \n
  *
- * 目标节点是被该关键帧动画驱动的渲染节点。如果为<b>NULL</b>（默认值），则动画继承通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetTargetNode}设置的动画组默认目标。
+ * 目标节点是被该关键帧动画驱动的渲染节点。
+ * 如果为<b>NULL</b>（默认值），则动画继承通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetTargetNode}设置的动画组默认目标。
  * 非NULL目标必须属于动画组注册的同一UIContext，该检查在通过{@link OH_ArkUI_NativeModule_AddAnimationGroup}注册动画组时执行。
  *
  * @param animation [in] 表示关键帧动画句柄。
- * @param targetNode [in] 表示要动画的渲染节点。<b>NULL</b>表示继承动画组的默认目标。默认值为<b>NULL</b>。
+ * @param targetNode [in] 表示要动画的渲染节点。
+ *     <b>NULL</b>表示继承动画组的默认目标。默认值为<b>NULL</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1972,7 +2005,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_KeyframeAnimation_SetTargetNode(
  * @brief 获取关键帧动画的目标渲染节点。
  *
  * @param animation [in] 表示关键帧动画句柄。
- * @param outBorrowedTargetNode [out] 表示用于接收目标渲染节点的指针；调用者不得销毁该句柄。<b>NULL</b>表示继承动画组的默认目标。
+ * @param outBorrowedTargetNode [out] 表示用于接收目标渲染节点的指针。
+ *     调用者不得销毁该句柄。<b>NULL</b>表示继承动画组的默认目标。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1997,8 +2031,8 @@ OH_ArkUI_PathAnimationHandle OH_ArkUI_NativeModule_PathAnimation_Create(const ch
 /**
  * @brief 销毁路径动画。
  *
- * @param animation [in] 表示由{@link OH_ArkUI_NativeModule_PathAnimation_Create}返回的路径动画句柄。传入<b>NULL</b>无效果。
- *     该函数对非NULL句柄返回后，句柄即失效，不得再次使用或销毁。
+ * @param animation [in] 表示由{@link OH_ArkUI_NativeModule_PathAnimation_Create}返回的路径动画句柄。
+ *     传入<b>NULL</b>无效果。该函数对非NULL句柄返回后，句柄即失效，不得再次使用或销毁。
  * @since 26.0.1
  */
 void OH_ArkUI_NativeModule_PathAnimation_Destroy(OH_ArkUI_PathAnimationHandle animation);
@@ -2006,8 +2040,10 @@ void OH_ArkUI_NativeModule_PathAnimation_Destroy(OH_ArkUI_PathAnimationHandle an
 /**
  * @brief 设置路径动画的持续时间。 \n
  *
- * 实际生效的动画持续时间按以下优先级确定：如果通过本接口设置了持续时间，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}在动画组上设置的持续时间；如果两者都未设置，则使用默认值**1000**毫秒。
+ * 实际生效的动画持续时间按以下优先级确定：
+ * 如果通过本接口设置了持续时间，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}在动画组上设置的持续时间；
+ * 如果两者都未设置，则使用默认值**1000**毫秒。
  * @param animation [in] 表示路径动画句柄。
  * @param duration [in] 表示持续时间，单位为毫秒。该值必须大于0。
  * @return 错误码。
@@ -2023,8 +2059,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_SetDuration(
  *
  * 本接口仅返回在本动画上显式设置的持续时间；从动画组继承的值或默认值在运行时解析，不存储在本对象上。
  * 如果本动画未设置持续时间，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
- * 运行时实际生效的动画持续时间按以下优先级确定：如果通过{@link OH_ArkUI_NativeModule_PathAnimation_SetDuration}设置了持续时间，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}设置的动画组持续时间；如果两者都未设置，则使用默认值**1000**毫秒。
+ * 运行时实际生效的动画持续时间按以下优先级确定：
+ * 如果通过{@link OH_ArkUI_NativeModule_PathAnimation_SetDuration}设置了持续时间，则使用该值；
+ * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetDuration}设置的动画组持续时间；
+ * 如果两者都未设置，则使用默认值**1000**毫秒。
  * @param animation [in] 表示路径动画句柄。
  * @param duration [out] 表示用于接收持续时间值的指针，单位为毫秒。
  * @return 错误码。
@@ -2061,41 +2099,6 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_SetDelay(OH_ArkUI_PathAnimat
 ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_GetDelay(OH_ArkUI_PathAnimationHandle animation, int32_t *delay);
 
 /**
- * @brief 设置路径动画的动画曲线。
- *
- * @param animation [in] 表示路径动画句柄。
- * @param curve [in] 表示控制沿路径运动速率的动画曲线。 \n
- *     本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
- *     不支持<b>springMotion</b>、<b>responsiveSpringMotion</b>和<b>interpolatingSpring</b>曲线，因为这些曲线没有有效的持续时间设置。
- *     实际生效的动画曲线按以下优先级确定：如果通过本接口设置了曲线，则使用该值；否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}在动画组上设置的曲线；
- *     如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
- * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.0.1
- */
-ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_SetCurve(
-    OH_ArkUI_PathAnimationHandle animation, ArkUI_CurveHandle curve);
-
-/**
- * @brief 获取路径动画的动画曲线。 \n
- *
- * 本接口仅返回在本动画上显式设置的曲线；从动画组继承的值或默认值在运行时解析，不存储在本对象上。
- * 如果本动画未设置曲线，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
- * 运行时实际生效的动画曲线按以下优先级确定：如果通过{@link OH_ArkUI_NativeModule_PathAnimation_SetCurve}设置了曲线，则使用该值；
- * 否则，使用通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetCurve}设置的动画组曲线；如果两者都未设置，则使用{@link ARKUI_CURVE_LINEAR}。
- * @param animation [in] 表示路径动画句柄。
- * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针；调用者不得销毁该句柄。
- * @return 错误码。
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND} 未设置曲线。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.0.1
- */
-ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_GetCurve(
-    OH_ArkUI_PathAnimationHandle animation, ArkUI_CurveHandle *outBorrowedCurve);
-
-/**
  * @brief 设置路径动画的播放速率。
  *
  * @param animation [in] 表示路径动画句柄。
@@ -2125,7 +2128,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_GetTempo(OH_ArkUI_PathAnimat
  * 启用自动反转后，动画在每轮播放中交替正向播放和反向播放。默认值为<b>false</b>。
  *
  * @param animation [in] 表示路径动画句柄。
- * @param autoReverse [in] 表示是否启用自动反转。默认值为<b>false</b>。
+ * @param autoReverse [in] 表示是否启用自动反转。
+ *     <b>true</b>表示启用自动反转，动画在每轮播放中交替正向播放和反向播放；
+ *     <b>false</b>表示不启用，动画仅正向播放。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2138,7 +2143,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_SetAutoReverse(
  * @brief 获取路径动画是否启用自动反转。
  *
  * @param animation [in] 表示路径动画句柄。
- * @param autoReverse [out] 表示用于接收该值的指针。如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
+ * @param autoReverse [out] 表示用于接收该值的指针。
+ *     如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2177,10 +2183,12 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_GetIterations(
 /**
  * @brief 设置路径动画过程中组件是否沿路径切线方向自动旋转。 \n
  *
- * 启用自动旋转后，组件将旋转使其朝向方向与当前位置的路径切线对齐。默认值为<b>false</b>。
+ * 启用自动旋转后，组件将旋转使其朝向与当前位置的路径切线对齐。默认值为<b>false</b>。
  *
  * @param animation [in] 表示路径动画句柄。
- * @param autoRotation [in] 表示是否启用自动旋转。默认值为<b>false</b>。
+ * @param autoRotation [in] 表示是否启用自动旋转。
+ *     <b>true</b>表示启用自动旋转，组件将旋转使其朝向与当前位置的路径切线对齐；
+ *     <b>false</b>表示不启用，组件不随路径切线旋转。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2210,7 +2218,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_GetAutoRotation(
  * 非NULL目标必须属于动画组注册的同一UIContext，该检查在通过{@link OH_ArkUI_NativeModule_AddAnimationGroup}注册动画组时执行。
  *
  * @param animation [in] 表示路径动画句柄。
- * @param targetNode [in] 表示要动画的渲染节点。<b>NULL</b>表示继承动画组的默认目标。默认值为<b>NULL</b>。
+ * @param targetNode [in] 表示要动画的渲染节点。
+ *     <b>NULL</b>表示继承动画组的默认目标。默认值为<b>NULL</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2223,7 +2232,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PathAnimation_SetTargetNode(
  * @brief 获取路径动画的目标渲染节点。
  *
  * @param animation [in] 表示路径动画句柄。
- * @param outBorrowedTargetNode [out] 表示用于接收目标渲染节点的指针；调用者不得销毁该句柄。<b>NULL</b>表示继承动画组的默认目标。
+ * @param outBorrowedTargetNode [out] 表示用于接收目标渲染节点的指针。
+ *     调用者不得销毁该句柄。<b>NULL</b>表示继承动画组的默认目标。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2316,11 +2326,13 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_GetDelay(OH_ArkUI_Animation
  * @brief 设置动画组的动画曲线。 \n
  *
  * 动画组的曲线作为未通过{@link OH_ArkUI_NativeModule_PropertyAnimation_SetCurve}、
- * {@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurve}或{@link OH_ArkUI_NativeModule_PathAnimation_SetCurve}
+ * {@link OH_ArkUI_NativeModule_KeyframeAnimation_SetCurve}
  * 设置自身曲线的子动画的默认曲线。
  * 不支持<b>springMotion</b>、<b>responsiveSpringMotion</b>和<b>interpolatingSpring</b>曲线，因为这些曲线没有有效的持续时间设置。
  * @param group [in] 表示动画组句柄。
- * @param curve [in] 表示动画曲线。本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
+ * @param curve [in] 表示动画曲线。
+ *     <b>NULL</b>表示动画组在运行时使用默认值{@link ARKUI_CURVE_LINEAR}。
+ *     本接口不接管曲线句柄的所有权；调用者必须确保在使用该动画句柄期间，曲线保持有效。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2333,13 +2345,14 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_SetCurve(
  * @brief 获取动画组的动画曲线。
  *
  * 本接口仅返回在本动画组上显式设置的曲线，不受子动画的曲线影响。
- * 如果本动画组未设置曲线，则返回{@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND}。
+ * 如果本动画组未设置曲线，则<b>outBorrowedCurve</b>输出为<b>NULL</b>。
  * 运行时，未设置的动画组曲线默认为{@link ARKUI_CURVE_LINEAR}。
  * @param group [in] 表示动画组句柄。
- * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针；调用者不得销毁该句柄。
+ * @param outBorrowedCurve [out] 表示用于接收动画曲线的指针。
+ *     调用者不得销毁该句柄。
+ *     <b>NULL</b>表示本动画组未设置曲线，运行时默认使用{@link ARKUI_CURVE_LINEAR}。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND} 未设置曲线。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.1
  */
@@ -2376,7 +2389,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_GetTempo(OH_ArkUI_Animation
  * 启用自动反转后，动画组在每轮播放中交替正向播放和反向播放。默认值为<b>false</b>。
  *
  * @param group [in] 表示动画组句柄。
- * @param autoReverse [in] 表示是否启用自动反转。默认值为<b>false</b>。
+ * @param autoReverse [in] 表示是否启用自动反转。
+ *     <b>true</b>表示启用自动反转，动画在每轮播放中交替正向播放和反向播放；
+ *     <b>false</b>表示不启用，动画仅正向播放。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2389,7 +2404,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_SetAutoReverse(
  * @brief 获取动画组是否启用自动反转。
  *
  * @param group [in] 表示动画组句柄。
- * @param autoReverse [out] 表示用于接收该值的指针。如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
+ * @param autoReverse [out] 表示用于接收该值的指针。
+ *     如果启用自动反转则为<b>true</b>；否则为<b>false</b>。默认值为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2478,7 +2494,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_RegisterOnFinishCallback(
  * 任何解析后的目标必须属于动画组注册的同一UIContext。默认值为<b>NULL</b>。
  *
  * @param group [in] 表示动画组句柄。
- * @param targetNode [in] 表示默认的要动画的渲染节点。<b>NULL</b>表示没有动画组级别的默认值。默认值为<b>NULL</b>。
+ * @param targetNode [in] 表示默认的要动画的渲染节点。
+ *     <b>NULL</b>表示没有动画组级别的默认值。默认值为<b>NULL</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2491,7 +2508,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_SetTargetNode(
  * @brief 获取动画组的默认目标渲染节点。
  *
  * @param group [in] 表示动画组句柄。
- * @param outBorrowedTargetNode [out] 表示用于接收默认目标节点的指针；调用者不得销毁该句柄。<b>NULL</b>表示未设置动画组级别的默认值。
+ * @param outBorrowedTargetNode [out] 表示用于接收默认目标节点的指针。
+ *     调用者不得销毁该句柄。<b>NULL</b>表示未设置动画组级别的默认值。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2508,7 +2526,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_GetTargetNode(
  * 在注册动画组时，每个子动画必须解析为非NULL目标。
  *
  * @param group [in] 表示动画组句柄。
- * @param animation [in] 表示要添加的属性动画。本接口不接管该动画句柄的所有权；调用者必须确保在使用动画组句柄期间，该动画保持有效。
+ * @param animation [in] 表示要添加的属性动画。
+ *     本接口不接管该动画句柄的所有权；调用者必须确保在使用动画组句柄期间，该动画保持有效。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2526,7 +2545,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_AddPropertyAnimation(
  * 在注册动画组时，每个子动画必须解析为非NULL目标。
  *
  * @param group [in] 表示动画组句柄。
- * @param animation [in] 表示要添加的关键帧动画。本接口不接管该动画句柄的所有权；调用者必须确保在使用动画组句柄期间，该动画保持有效。
+ * @param animation [in] 表示要添加的关键帧动画。
+ *     本接口不接管该动画句柄的所有权；调用者必须确保在使用动画组句柄期间，该动画保持有效。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2544,7 +2564,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_AddKeyframeAnimation(
  * 在注册动画组时，每个子动画必须解析为非NULL目标。
  *
  * @param group [in] 表示动画组句柄。
- * @param animation [in] 表示要添加的路径动画。本接口不接管该动画句柄的所有权；调用者必须确保在使用动画组句柄期间，该动画保持有效。
+ * @param animation [in] 表示要添加的路径动画。
+ *     本接口不接管该动画句柄的所有权；调用者必须确保在使用动画组句柄期间，该动画保持有效。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2566,10 +2587,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_AddPathAnimation(
  * 通过{@link OH_ArkUI_NativeModule_AnimationGroup_AddPropertyAnimation}、
  * {@link OH_ArkUI_NativeModule_AnimationGroup_AddKeyframeAnimation}或
  * {@link OH_ArkUI_NativeModule_AnimationGroup_AddPathAnimation}添加的每个子动画，
- * 驱动由其自身<b>SetTargetNode</b>接口设置的目标节点；如果该目标未设置（或为<b>NULL</b>），
- * 则继承通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetTargetNode}设置的动画组默认目标。
- * 注册时，每个子动画必须解析为非NULL目标节点（自身的或动画组默认的），且每个解析后的目标节点必须属于与<b>context</b>相同的UIContext；
- * 否则返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。 \n
+ * 驱动由其自身<b>SetTargetNode</b>接口设置的目标节点；
+ * 如果该目标未设置（或为<b>NULL</b>），则继承通过{@link OH_ArkUI_NativeModule_AnimationGroup_SetTargetNode}设置的动画组默认目标。
+ * 注册时，每个子动画必须解析为非NULL目标节点（自身的或动画组默认的）。如果子动画无可解析的目标节点，则返回{@link ARKUI_ERROR_CODE_SUB_ANIMATION_INVALID}。
+ * 每个解析后的目标节点必须属于与<b>context</b>相同的UIContext，否则返回错误码{@link ARKUI_ERROR_CODE_TARGET_NODE_NOT_IN_SAME_CONTEXT}。 \n
  *
  * 播放控制和生命周期接口（{@link OH_ArkUI_NativeModule_RemoveAnimationGroup}、
  * {@link OH_ArkUI_NativeModule_GetAnimationGroupState}、
@@ -2589,9 +2610,12 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_AnimationGroup_AddPathAnimation(
  * @param context [in] 表示注册并播放动画组的{@link ArkUI_ContextHandle}（UIContext）。
  * @param group [in] 表示动画组句柄。
  * @param key [in] 表示用于在UIContext上标识动画组的key。
+ *     key为用户自定义的字符串，在同一UIContext内需唯一。
+ *     如果已用相同key注册了动画组，系统会先移除前一个动画组再注册新动画组。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，或解析后的目标节点不属于与<b>context</b>相同的UIContext。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         {@link ARKUI_ERROR_CODE_TARGET_NODE_NOT_IN_SAME_CONTEXT} 解析后的目标节点不属于与<b>context</b>相同的UIContext。
  *         {@link ARKUI_ERROR_CODE_SUB_ANIMATION_INVALID} 子动画无可解析的目标节点或子动画参数非法。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL} 检测到同线程重入调用。
  * @since 26.0.1
@@ -2639,7 +2663,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetAnimationGroupState(
  *
  * @param context [in] 表示UIContext。
  * @param key [in] 表示动画组的key。
- * @param exists [in] 表示用于接收该值的指针。如果动画组存在则为<b>true</b>；否则为<b>false</b>。
+ * @param exists [in] 表示用于接收该值的指针。
+ *     如果动画组存在则为<b>true</b>；否则为<b>false</b>。
  * @return 错误码。
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2651,7 +2676,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_HasAnimationGroup(ArkUI_ContextHandle cont
 /**
  * @brief 暂停UIContext上指定key标识的动画组。 \n
  *
- * 调用此接口时动画组必须处于RUNNING状态；否则返回{@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE}。
+ * 调用此接口时动画组必须处于{@link OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING}状态；
+ * 否则返回{@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE}。
+ * 可通过{@link OH_ArkUI_NativeModule_GetAnimationGroupState}查询动画组的播放状态。
  *
  * @param context [in] 表示UIContext。
  * @param key [in] 表示动画组的key。
@@ -2659,7 +2686,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_HasAnimationGroup(ArkUI_ContextHandle cont
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_NOT_FOUND} 在UIContext上未找到<b>key</b>标识的动画组。
- *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE} 动画组不处于RUNNING状态。
+ *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE} 动画组不处于{@link OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING}
+ *             状态。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL} 检测到同线程重入调用。
  * @since 26.0.1
  */
@@ -2668,7 +2696,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PauseAnimationGroup(ArkUI_ContextHandle co
 /**
  * @brief 恢复UIContext上指定key标识的动画组。
  *
- * 调用此接口时动画组必须处于PAUSED状态；否则返回{@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE}。
+ * 调用此接口时动画组必须处于{@link OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED}状态；
+ * 否则返回{@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE}。
+ * 可通过{@link OH_ArkUI_NativeModule_GetAnimationGroupState}查询动画组的播放状态。
  *
  * @param context [in] 表示UIContext。
  * @param key [in] 表示动画组的key。
@@ -2676,7 +2706,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_PauseAnimationGroup(ArkUI_ContextHandle co
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_NOT_FOUND} 在UIContext上未找到<b>key</b>标识的动画组。
- *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE} 动画组不处于PAUSED状态。
+ *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE} 动画组不处于{@link OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED}状态。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL} 检测到同线程重入调用。
  * @since 26.0.1
  */
@@ -2686,7 +2716,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ResumeAnimationGroup(ArkUI_ContextHandle c
  * @brief 结束UIContext上指定key标识的动画组。 \n
  *
  * 根据指定的结束模式结束动画组：跳转到结束状态、跳转到起始状态或保持当前值。
- * 动画组必须处于RUNNING或PAUSED状态；否则返回{@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE}。
+ * 动画组必须处于{@link OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING}或{@link OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED}状态；
+ * 否则返回{@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE}。
+ * 可通过{@link OH_ArkUI_NativeModule_GetAnimationGroupState}查询动画组的播放状态。
  *
  * @param context [in] 表示UIContext。
  * @param key [in] 表示动画组的key。
@@ -2696,7 +2728,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ResumeAnimationGroup(ArkUI_ContextHandle c
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，例如<b>context</b>或<b>key</b>无效，
  *             或<b>mode</b>不是{@link OH_ArkUI_AnimationFinishMode}的有效值。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_NOT_FOUND} 在UIContext上未找到<b>key</b>标识的动画组。
- *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE} 动画组不处于RUNNING或PAUSED状态。
+ *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE} 动画组不处于{@link OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING}或
+ *             {@link OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED}状态。
  *         {@link ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL} 检测到同线程重入调用。
  * @since 26.0.1
  */
