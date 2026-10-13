@@ -461,9 +461,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param context [in] The UI context whose tree is collected.
  * @param request [in] The collection request.
  * @param format [in] The JSON output format.
- * @param json [out] The output immutable JSON object, which includes a top-level schemaVersion field.
- *     The output pointer must not be NULL and must point to writable storage valid for the duration of the call.
- *     The caller must release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
+ * @param json [out] Receives the immutable JSON result object. The pointer must not be NULL and must point to
+ *     writable storage valid for the duration of the call. The caller does not need to initialize *json.
+ *     On success, *json is non-NULL and the result includes a top-level schemaVersion field. The caller owns
+ *     the result and must release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}.
+ *     On any failure, *json is set to NULL if json points to valid writable storage; no result needs to be released.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if collection succeeds.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter or format is invalid.</li>
