@@ -93,14 +93,15 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *     空字符串无效。
  *     至少size个字节必须可读。输入无需以空字符结尾，创建的对象会追加自己的结束空字符。
  *     JSON文本中不得包含嵌入的空字节，U+0000应使用JSON转义表示。
- * @param size [in] JSON字符串的长度，单位为字节，不包含末尾的空字符。
- *     必须与data字符串的实际长度一致，否则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param size [in] 从data复制的字节数，不包括结尾的空字符。
+ *     本函数按size复制字节，不校验实际字符串长度，并在副本末尾追加空字符。
+ *     size必须大于0，传入0时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param outOwned [out] 用于接收创建成功的对象的输出参数。调用方拥有返回对象的所有权，
  *     必须调用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
  *     outOwned不能为NULL，其指向的对象指针无需初始化；创建失败时，该对象指针被设置为NULL。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 参数无效、data为空字符串或不表示有效的JSON对象，
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} data或outOwned为NULL、size为0、data不表示有效的JSON对象，
  *         或schemaVersion字段缺失、版本不受支持。</li>
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 包含结束空字符的缓冲区大小在当前架构上无法表示，
  *         或内存分配、数据复制失败。</li>

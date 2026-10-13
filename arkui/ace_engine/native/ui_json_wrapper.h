@@ -103,15 +103,16 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *     object with a supported schemaVersion. An empty string is invalid.
  *     At least size bytes must be readable. The input need not be terminated by '\0'; the created object
  *     appends its own terminator. The JSON text must not contain embedded NUL bytes; encode U+0000 as a JSON escape.
- * @param size [in] Byte length (in bytes) of the JSON string, excluding the terminating '\0'
- *     character. It must equal the actual length of data. If size is inconsistent with the actual
- *     string length, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ * @param size [in] Number of bytes to copy from data, excluding any terminating null character.
+ *     The function copies exactly size bytes without checking the actual string length, then
+ *     appends a null terminator to the copy. The value must be greater than 0;
+ *     a size of 0 returns {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param outOwned [out] Receives the created object on success. The caller owns the returned object
  *     and must release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}. It must not be
  *     NULL, requires no initialization, and on failure is set to NULL.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid, data is empty or
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if data or outOwned is NULL, size is 0, or data
  *             does not represent a valid JSON object, or schemaVersion is missing or unsupported.</li>
  *         <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the buffer size including its terminator cannot
  *             be represented on the current architecture, memory allocation fails, or copying fails.</li>
