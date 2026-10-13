@@ -23,9 +23,9 @@
  * @brief 提供标准的JavaScript引擎能力。
  *
  * 功能概述：
- * 标准JS引擎是严格遵守Ecmascript规范的JavaScript代码执行引擎。
- * 支持Ecmascript规范定义的标准库，提供完备的C++交互JS的native API。
- * 通过jit加速代码执行，为应用提供安全、高效的JS执行能力。
+ * 标准JS引擎是严格遵守ECMAscript规范的JavaScript代码执行引擎。
+ * 支持ECMAscript规范定义的标准库，提供完备的C++交互JS的native API。
+ * 通过JIT加速代码执行，为应用提供安全、高效的JS执行能力。
  * 标准JS引擎的能力通过一套稳定的ABI，即JSVM-API提供。JSVM-API支持动态链接到不同版本的JS引擎库，
  * 从而为开发者屏蔽掉不同引擎接口的差异。JSVM-API提供引擎生命周期管理、JS context管理、
  * JS代码执行、JS/C++互操作、执行环境快照、codecache等能力。\n
@@ -83,7 +83,7 @@
 #include "jsvm_types.h"
 
 /**
- * @brief 对外可见。
+ * @brief 指定符号对外部可见。
  *
  * WIN环境下为：    __declspec(dllexport)
  *                  在Windows上，当构建动态链接库（DLL）时，用于告知编译器一个函数或变量从DLL中导出，使其可以被其他程序使用。
@@ -156,7 +156,7 @@ EXTERN_C_START
  * @param options 用于初始化JavaScript虚拟机的选项。
  * @return 返回执行状态码 JSVM_Status。
  *         {@link JSVM_OK } 表示执行成功。\n
- *         {@link JSVM_GENERIC_FAILURE } 表示有未知的原因导致执行失败。\n
+ *         {@link JSVM_GENERIC_FAILURE } 表示执行失败，说明当前进程已完成JSVM初始化，无需重复执行。\n
  *
  * @since 11
  */
@@ -210,7 +210,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DestroyVM(JSVM_VM vm);
  * @param result 表示创建的 JavaScript 代理。
  * @return 返回执行状态码。
  *         {@link JSVM_OK } 表示接口调用成功。\n
+ *         {@link JSVM_INVALID_ARG } 表示传入参数不合法。\n
  *         {@link JSVM_OBJECT_EXPECTED} 如果 target 或 handler 非 JS 对象。\n
+ *         {@link JSVM_PENDING_EXCEPTION } 表示执行的过程中产生了JS异常。\n
  *         {@link JSVM_GENERIC_FAILURE } 表示有未知的原因导致执行失败。\n
  *
  * @since 18
@@ -430,7 +432,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,
                                                          JSVM_Value script,
                                                          size_t optionCount,
                                                          JSVM_CompileOptions options[],
-                                                         JSVM_Value* result);
+                                                         JSVM_Script* result);
 
 /**
  * @brief 为编译后的脚本创建代码缓存。
@@ -909,7 +911,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_AllocateArrayBufferBackingStoreData(size_t byteL
  *         {@link JSVM_INVALID_ARG } 表示传入的 data 是空指针。\n
  * @since 12
  */
-JSVM_EXTERN JSVM_Status OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
+JSVM_EXTERN JSVM_Status OH_JSVM_FreeArrayBufferBackingStoreData(void* data);
 
 /**
  * @brief 在申请得到的 BackingStore 内存上创建 array buffer。
@@ -929,7 +931,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
  * @since 12
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CreateArrayBufferFromBackingStoreData(JSVM_Env env,
-                                                                      void *data,
+                                                                      void* data,
                                                                       size_t backingStoreSize,
                                                                       size_t offset,
                                                                       size_t arrayBufferSize,
@@ -2634,7 +2636,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_TakeHeapSnapshot(JSVM_VM vm,
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_TakeRawHeapSnapshot(JSVM_VM vm,
                                                     JSVM_OutputStream stream,
-                                                    void* streamData);
+                                                    void *streamData);
 
 /**
  * @brief 为VM设置堆阈值回调，VM只能有一个堆阈值回调。当不再需要时，应通过OH_JSVM_ClearHeapThresholdCallback清除已注册的回调。
@@ -2654,7 +2656,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_TakeRawHeapSnapshot(JSVM_VM vm,
 JSVM_EXTERN JSVM_Status OH_JSVM_SetHeapThresholdCallback(JSVM_VM vm,
                                                          uint64_t threshold,
                                                          JSVM_HandlerForHeapThreshold callback,
-                                                         void* data);
+                                                         void *data);
 
 /**
  * @brief 清除之前为VM注册的堆阈值回调。此API不是线程安全的，必须在VM运行的线程上调用。已注册的回调通过（threshold, callback, data）标识。
@@ -2671,7 +2673,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetHeapThresholdCallback(JSVM_VM vm,
 JSVM_EXTERN JSVM_Status OH_JSVM_ClearHeapThresholdCallback(JSVM_VM vm,
                                                            uint64_t threshold,
                                                            JSVM_HandlerForHeapThreshold callback,
-                                                           void* data);
+                                                           void *data);
 
 /**
  * @brief 在指定的主机和端口上激活inspector，将用来调试JS代码。
@@ -3633,7 +3635,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetHandlerForPromiseReject(JSVM_VM vm,
  * @param propertyCount properties数组参数中的项目数量。
  * @param properties 类的属性描述符，用于定义类的属性和方法。
  * @param parentClass 当前所定义的class的父类class。
- * @param optionCount options数组参数中的项目数量。
+ * @param option_count options数组参数中的项目数量。
  * @param options 传入的用于定义class的选项数组。
  * @param result 表示类的构造函数的JSVM_Value。
  * @return 返回执行状态码 JSVM_Status。
@@ -3649,7 +3651,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineClassWithOptions(JSVM_Env env,
     size_t propertyCount,
     const JSVM_PropertyDescriptor* properties,
     JSVM_Value parentClass,
-    size_t optionCount,
+    size_t option_count,
     JSVM_DefineClassOptions options[],
     JSVM_Value* result);
 
@@ -3698,7 +3700,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateExternalStringLatin1(JSVM_Env env,
 JSVM_EXTERN JSVM_Status OH_JSVM_CreateExternalStringUtf16(JSVM_Env env,
                                                           char16_t* str,
                                                           size_t length,
-                                                          JSVM_Finalize finalizecallback,
+                                                          JSVM_Finalize finalizeCallback,
                                                           void* finalizeHint,
                                                           JSVM_Value* result,
                                                           bool* copied);
@@ -3860,7 +3862,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseDeserializeResult(JSVM_DeserializeResult 
  * @return 返回执行状态码 JSVM_Status。
  *         {@link JSVM_OK } 表示执行成功。\n
  *         {@link JSVM_INVALID_ARG } 表示出现了以下场景：result 为空、byteLength > 0 时但 externalData 为空、
- *         externalData 未按 8 字节对齐，byteLength 超过引擎支持的 ArrayBuffer 最大大小。\n
+ *         externalData 未按 8 字节对齐、byteLength 超过引擎支持的 ArrayBuffer 最大大小、
+ *         byteLength 为 0 时但 finalizeCb 不为空。\n
  *
  * @since 26.0.0
  */
