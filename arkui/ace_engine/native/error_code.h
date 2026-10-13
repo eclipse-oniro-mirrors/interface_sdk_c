@@ -247,6 +247,11 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE = 106215,
     /**
+     * @brief The resolved target node does not belong to the same UIContext as the context parameter.
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_TARGET_NODE_NOT_IN_SAME_CONTEXT = 106216,
+    /**
      * The current node is not a custom node. For details, see {@link Render Node Error Codes}.
      *
      * @since 20
@@ -298,6 +303,26 @@ typedef enum {
      * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
+    /**
+     * @brief The last request was not finished.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
+    /**
+     * @brief The node corresponding to uniqueId is not found.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
+    /**
+     * @brief result too large.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
+    /**
+     * @brief resource exhausted.
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
     /**
      * The current node is not focusable. For details about the error code, see {@link 150001 Component Not Focusable}.
      *

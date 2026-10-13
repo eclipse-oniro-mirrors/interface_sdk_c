@@ -213,6 +213,32 @@ const char *OH_GetOSFullName(void);
 int OH_GetSdkApiVersion(void);
 
 /**
+ * @brief Obtains the SDK minor API version. Starting from API version 26.0.0, the minor version is introduced as part
+ * of semantic versioning. It is the middle field in the semantic version and is an integer.
+ * The complete API version is represented by sdkApiVersion.sdkMinorApiVersion.sdkPatchApiVersion.
+ *
+ * @return <ul>
+ *     <li>0 ~ 99 - the sdk minor api version, the value is an integer.</li>
+ *     <li>-1 - not found the sdk minor api version number, or failed to invoke the internal interface.</li>
+ *     </ul>
+ * @since 26.0.1
+ */
+int OH_GetSdkMinorApiVersion(void);
+ 
+/**
+ * @brief Obtains the SDK patch API version. Starting from API version 26.0.0, the patch version is introduced as part
+ * of semantic versioning. It is the third field in the semantic version and is an integer.
+ * The complete API version is represented by sdkApiVersion.sdkMinorApiVersion.sdkPatchApiVersion.
+ *
+ * @return <ul>
+ *     <li>0 ~ 99 - the sdk patch api version, the value is an integer.</li>
+ *     <li>-1 - not found the sdk patch api version number, or failed to invoke the internal interface.</li>
+ *     </ul>
+ * @since 26.0.1
+ */
+int OH_GetSdkPatchApiVersion(void);
+
+/**
  * @brief Obtains the first API version, which is the API version supported by the device when it was
  * first released.
  *

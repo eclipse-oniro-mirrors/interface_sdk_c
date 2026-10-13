@@ -367,13 +367,13 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    /** 鼠标触点相对于当前组件左上角的x轴坐标。单位：vp。 */
+    /** 鼠标触点相对于当前组件左上角的x轴坐标。单位：px。 */
     float x;
-    /** 鼠标触点相对于当前组件左上角的y轴坐标。单位：vp。 */
+    /** 鼠标触点相对于当前组件左上角的y轴坐标。单位：px。 */
     float y;
-    /** 鼠标触点相对于XComponent所在应用屏幕左上角的x轴坐标。单位：vp。 */
+    /** 鼠标触点相对于XComponent所在应用屏幕左上角的x轴坐标。单位：px。 */
     float screenX;
-    /** 鼠标触点相对于XComponent所在应用屏幕左上角的y轴坐标。单位：vp。 */
+    /** 鼠标触点相对于XComponent所在应用屏幕左上角的y轴坐标。单位：px。 */
     float screenY;
     /** 当前鼠标事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 */
     int64_t timestamp;
@@ -546,8 +546,8 @@ int32_t OH_NativeXComponent_GetXComponentSize(
  *
  * @param component 表示指向{@link OH_NativeXComponent}实例的指针。
  * @param window 表示NativeWindow句柄。
- * @param x 表示指向当前Surface相对于XComponent父组件左顶点x坐标的指针。单位：vp。
- * @param y 表示指向当前Surface相对于XComponent父组件左顶点y坐标的指针。单位：vp。
+ * @param x 表示指向当前Surface相对于XComponent父组件左顶点x坐标的指针。单位：px。
+ * @param y 表示指向当前Surface相对于XComponent父组件左顶点y坐标的指针。单位：px。
  *
  * @return 返回执行的状态代码。
  *         OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 执行成功。

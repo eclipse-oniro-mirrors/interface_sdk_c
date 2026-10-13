@@ -212,7 +212,61 @@ typedef enum CloudDisk_ErrorCode {
      *
      * @since 26.0.1
      */
-    OH_CLOUD_DISK_NAME_TOO_LONG = 34400025
+    OH_CLOUD_DISK_NAME_TOO_LONG = 34400025,
+    /**
+     * @brief The file is too large.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_FILE_TOO_LARGE = 34400026,
+    /**
+     * @brief The placeholder does not have custom information.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_CUSTOM_INFO_NOT_FOUND = 34400027,
+    /**
+     * @brief The placeholder file is not fully hydrated.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_PLACEHOLDER_NOT_FULLY_HYDRATED = 34400028,
+    /**
+     * @brief The dehydrate operation is denied by the application callback.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_DEHYDRATE_DENIED = 34400029,
+    /**
+     * @brief The hydration task has been cancelled.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_CANCELLED = 34400030,
+    /**
+     * @brief The placeholder file is already hydrated.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_ALREADY_HYDRATED = 34400031,
+    /**
+     * @brief No hydration task is in progress.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_NO_HYDRATION_IN_PROGRESS = 34400032,
+    /**
+     * @brief The stored placeholder state is invalid.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_INVALID_PLACEHOLDER_STATE = 34400033,
+    /**
+     * @brief The number of pending placeholder hydration tasks has reached the limit.
+     *
+     * @since 26.0.1
+     */
+    OH_CLOUD_DISK_HYDRATION_TASK_LIMIT_REACHED = 34400034
 } CloudDisk_ErrorCode;
 
 #ifdef __cplusplus

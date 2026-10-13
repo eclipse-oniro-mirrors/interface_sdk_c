@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup netmanager_ext
+ * @addtogroup NetEthernet
  * @{
  *
  * @brief Provides C APIs for the ethernet module.

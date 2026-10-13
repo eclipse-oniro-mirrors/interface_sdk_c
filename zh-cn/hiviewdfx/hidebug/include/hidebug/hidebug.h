@@ -537,6 +537,20 @@ HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uin
 HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts, uint32_t seconds);
 
 /**
+ * @brief 设置调用栈追踪模式。
+ *
+ * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
+ * @param mode [in] 调用栈追踪模式。
+ * @return 返回码。
+ *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STACK_TRACE_MODE} 无效的调用栈追踪模式。</li></ul>
+ * @since 26.0.1
+ */
+HiDebug_ErrorCode OH_HiDebug_SetStackTraceMode(OH_HiDebug_ProfilerOptions *opts,
+    OH_HiDebug_ProfilerStackTraceMode mode);
+
+/**
  * @brief 根据指定资源类型和配置启动分配栈trace日志采集。
  *
  * @param type [in] 指定采集资源类型（OH_HiDebug_ResourceType）。
@@ -552,6 +566,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts,
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}资源采集采样大小参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH}最大异步嵌套深度参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH}最大异步任务回栈栈深参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STACK_TRACE_MODE} 调用栈追踪模式参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}资源类型参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。</li>
  *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}资源采集重复启动。</li>
@@ -561,7 +576,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxDurationSec(OH_HiDebug_ProfilerOptions *opts,
  *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}系统CPU高负载，禁止采集。</li>
  *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}系统内存可用空间紧张，禁止采集。</li>
  *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}存储可用空间紧张，禁止采集。</li>
- *    <li>{@link HIDEBUG_RES_PROF_FAILURE}启动资源采集失败。</li></ul>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}启动资源采集失败。</li></ul>
  * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType type,

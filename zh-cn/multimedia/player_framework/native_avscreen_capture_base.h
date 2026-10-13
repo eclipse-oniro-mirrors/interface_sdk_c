@@ -298,8 +298,8 @@ typedef struct OH_AudioInfo {
 } OH_AudioInfo;
 
 /**
- * @brief 视频采集配置信息。用于配置屏幕录制时的视频参数。该结构体需要配合captureMode使用：在CAPTURE_SPECIFIED_SCREEN模式
- * 下需设置displayId指定物理屏；在CAPTURE_SPECIFIED_WINDOW模式下需设置missionIDs指定窗口。适用于屏幕录制应用、视频会议录制、
+ * @brief 视频采集配置信息。用于配置屏幕录制时的视频参数。该结构体需要配合captureMode使用：在OH_CAPTURE_SPECIFIED_SCREEN模式
+ * 下需设置displayId指定物理屏；在OH_CAPTURE_SPECIFIED_WINDOW模式下需设置missionIDs指定窗口。适用于屏幕录制应用、视频会议录制、
  * 直播推流、游戏录制等场景。当videoFrameWidth和videoFrameHeight同时为0时，系统将忽略视频采集相关配置参数，不录制屏幕视频数据。
  * 通过该结构体可以灵活控制录屏的视频采集行为。
  * 
@@ -308,19 +308,19 @@ typedef struct OH_AudioInfo {
  */
 typedef struct OH_VideoCaptureInfo {
     /**
-     * 采集物理屏ID，设置后录制指定物理屏幕的内容。使用该参数需要在captureMode为CAPTURE_SPECIFIED_SCREEN模式下使用，
+     * 采集物理屏ID，设置后录制指定物理屏幕的内容。使用该参数需要在captureMode为OH_CAPTURE_SPECIFIED_SCREEN模式下使用，
      * 其他模式下此参数不生效。可通过系统显示管理接口获取有效的displayId值。取值范围大于等于0。传入无效ID时录制失败。
      */
     uint64_t displayId;
     /**
      * 指定窗口ID数组，设置后录制指定窗口内容。适用于仅录制特定应用窗口内容的场景，如录制单个应用操作演示、
-     * 避免录制桌面背景和隐私信息等。使用该参数需要在captureMode为CAPTURE_SPECIFIED_WINDOW模式下使用，其他模式下此参数不生效。
+     * 避免录制桌面背景和隐私信息等。使用该参数需要在captureMode为OH_CAPTURE_SPECIFIED_WINDOW模式下使用，其他模式下此参数不生效。
      * 可通过窗口接口getWindowProperties获取有效的missionID值。列表长度需与missionIDsLen匹配，ID取值为整数。
      * 传入无效ID时录制失败。
      */
     int32_t *missionIDs;
     /**
-     * 指定窗口ID数组的长度，使用该参数需要在captureMode为CAPTURE_SPECIFIED_WINDOW模式下使用，其他模式下此参数不生效。
+     * 指定窗口ID数组的长度，使用该参数需要在captureMode为OH_CAPTURE_SPECIFIED_WINDOW模式下使用，其他模式下此参数不生效。
      * 取值需大于0，且与missionIDs列表实际长度一致。
      */
     int32_t missionIDsLen;
@@ -448,26 +448,21 @@ typedef struct OH_AVScreenCaptureConfig {
 /**
  * @brief 隐私保护信息结构体。<br>
  * 
- * 用于在屏幕录制场景中对系统窗口和敏感应用进行隐私保护。通过设置该结构体的成员变量，可以控制是否开启系统窗口隐私保护和
- * 敏感应用隐私保护，避免在屏幕录制过程中泄露隐私信息。systemWindowProtection控制系统窗口级别的隐私保护，
- * sensitiveAppProtection控制敏感应用级别的隐私保护，适用于需要在屏幕录制时保护用户隐私数据的场景。如屏幕录制或截图时，
- * 需要保护敏感窗口（如银行应用、聊天窗口）不被捕获；金融类应用需要保护用户输入的敏感信息；
- * 视频会议应用需要保护共享屏幕中的隐私内容的场景。
+ * 用于在屏幕录制场景中对系统窗口和敏感应用进行隐私保护。systemWindowProtection控制系统窗口级别的隐私保护，
+ * sensitiveAppProtection控制敏感应用级别的隐私保护，两者都适用于需要在屏幕录制时保护用户隐私数据的场景。
  * 
  * @since 24
  */
 typedef struct OH_PrivacyProtectInfo {
     /**
      * @brief 是否开启系统窗口隐私保护。true表示开启隐私保护，false表示关闭隐私保护，默认值为true。
-     * 系统窗口是指系统级应用（如设置、通知等）的窗口；需在屏幕录制启动前配置该参数，开启后录屏时该类窗口内容将被保护处理。
-     * 典型场景：在屏幕录制或共享时，开启此项可保护通知栏、弹窗等系统窗口中的隐私信息不被录制或共享出去。
+     * 系统窗口是指系统级应用（如输入法、通知等）的窗口。
      * @since 24
      */
     bool systemWindowProtection;
     /**
      * @brief 是否开启敏感应用的隐私保护。true表示开启隐私保护，false表示关闭隐私保护，默认值为true。
-     * 敏感应用是指包含用户隐私数据的应用；需在屏幕录制启动前配置该参数，开启后录屏时该类应用窗口内容将被保护处理。
-     * 典型场景：在屏幕录制或共享时，开启此项可保护银行、社交等敏感应用的内容不被录制或共享出去。
+     * 敏感应用（如金融类应用）是指包含用户隐私数据的应用。
      * @since 24
      */
     bool sensitiveAppProtection;
@@ -956,7 +951,7 @@ typedef struct OH_MultiDisplayCapability {
  * @brief 当{@link OH_AVScreenCapture}实例在运行过程中发生隐私保护事件时，将调用函数指针。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
- * @param privacyProtect 隐私保护信息指针。指向包含隐私保护事件详细信息的结构体，用于处理录屏过程中的隐私保护回调事件。
+ * @param privacyProtect 隐私保护信息指针。指向包含隐私保护事件详细信息的结构体，用于返回录屏过程中隐私保护信息。
  * @param userData 指向应用设置该回调处理方法时提供的自定义数据的指针。
  * @since 24
  */

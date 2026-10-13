@@ -324,6 +324,20 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes(
     ArkUI_DragEvent *event, char *eventTypeArray[], int32_t length, int32_t maxStrLen);
 
 /**
+ * @brief 从ArkUI_DragEvent中获取数据摘要。
+ *
+ * @param event ArkUI_DragEvent事件指针。
+ * @param summary 出参，用于接收数据摘要的OH_UDMF_Summary对象指针。调用本接口前需由调用方创建该对象，
+ * 使用完毕后由调用方销毁；操作失败时，对象内容不保证有效。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，例如入参指针为空或摘要对象无效。
+ *     <br>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 内部错误，例如拖拽事件未携带摘要数据。
+ * @since 26.2.0
+ */
+int32_t OH_ArkUI_DragEvent_GetSummary(ArkUI_DragEvent* event, OH_UDMF_Summary* summary);
+ 
+/**
  * @brief 从ArkUI_DragEvent中获取拖拽结果。
  *
  * @param event ArkUI_DragEvent事件指针。

@@ -537,7 +537,8 @@ typedef enum {
 typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
 
 /**
- * 文本菜单创建事件回调函数，在文本菜单创建时会触发此回调函数，开发者可在此函数中设置菜单数据。
+ * @brief 文本菜单创建事件回调函数，在文本菜单创建时会触发此回调函数，开发者可在此函数中设置菜单数据。
+ *
  * @param items 指向ArkUI_TextMenuItemArray对象的指针，该数组对象由系统内部创建并释放，在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert}，
  *     {@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
  * @param userData 用户自定义数据指针，由开发者在注册回调时传入，在回调触发时原样回传给开发者，用于在回调函数中获取上下文数据。传参为null表示不传递自定义数据。
@@ -549,7 +550,8 @@ typedef void (*ArkUI_TextCreateMenuCallback)(
 );
 
 /**
- * 文本菜单准备事件回调函数，当文本选择区域变化后显示菜单之前会触发此回调函数，开发者可在此函数中配置菜单数据。
+ * @brief 文本菜单准备事件回调函数，当文本选择区域变化后显示菜单之前会触发此回调函数，开发者可在此函数中配置菜单数据。
+ *
  * @param items 指向ArkUI_TextMenuItemArray对象的指针，该数组对象由系统内部创建并释放，在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert}，
  *     {@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
  * @param userData 用户自定义数据指针，由开发者在注册回调时传入，在回调触发时原样回传给开发者，用于在回调函数中获取上下文数据。传参为null表示不传递自定义数据。
@@ -561,7 +563,7 @@ typedef void (*ArkUI_TextPrepareMenuCallback)(
 );
 
 /**
- * The text menu item click callback function.
+ * @brief 文本菜单项点击事件回调函数，在菜单项被点击时触发此回调函数，开发者可在此函数中对系统默认处理行为进行拦截。
  *
  * @param item 指向ArkUI_TextMenuItem对象的指针，表示被点击的文本菜单项。
  * @param start 选中文本起始索引。
@@ -797,7 +799,7 @@ ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
 /**
  * @brief 销毁由{@link OH_ArkUI_TextContentBaseController_Create}创建的文本内容基础控制器对象。
  *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
+ * @param {ArkUI_TextContentBaseController*} controller 待销毁的控制器对象指针。
  * @since 23
  */
 void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
@@ -805,7 +807,7 @@ void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController*
 /**
  * @brief 在编辑态时删除光标前字符。其他状态删除输入框组件的最后一个字符。
  *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
+ * @param {ArkUI_TextContentBaseController*} controller 待修改的配置对象指针。
  * @since 23
  */
 void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
@@ -815,11 +817,8 @@ void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseCont
  *
  * @param {ArkUI_TextContentBaseController*} controller 待修改的配置对象指针。
  *     通过此controller将起始索引与结束索引传递给与其绑定的输入框组件并进行滚动操作。
- * @param {int32_t} start Start text index.
- *     The start index must be less than or equal to the end index. Otherwise, the API call is invalid.
- *     The value range is [0, Total length of the text in the text box]. If the start index is less than 0,
- *     the start index is regarded as 0. If the start index is greater than the total length,
- *     the start indexis regarded as the total length.
+ * @param {int32_t} start 起始文字索引值。
+ *     起始索引应小于等于结束索引，否则接口调用无效。取值范围[0, 输入框文本总长度]，起始索引小于0视为0，大于总长度视为总长度。
  * @param {int32_t} end 结束文字索引值。
  *     结束索引应大于等于起始索引，否则接口调用无效。取值范围[0, 输入框文本总长度]，结束索引小于0视为0，大于总长度视为总长度。
  * @since 23

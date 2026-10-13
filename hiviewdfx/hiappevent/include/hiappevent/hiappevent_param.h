@@ -154,6 +154,14 @@ extern "C" {
  * @since 26.0.0
  */
 #define OH_APP_CRASH_PARAM_COLLECT_MINIDUMP "collect_minidump"
+
+/**
+ * @brief Publish the APP_CRASH event when the application starts next time.
+ *
+ * @since 26.2.0
+ */
+#define OH_APP_CRASH_PARAM_PUBLISH_ON_NEXT_LAUNCH "publish_on_next_launch"
+
 #ifdef __cplusplus
 }
 #endif

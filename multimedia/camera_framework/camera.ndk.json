@@ -1146,5 +1146,53 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_PreviewOutput_SetLogViewAssistEnable"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_GetAuxiliaryImage"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_GetUncompressedAuxiliaryImage"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_ReleasePicture"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoNative_ReleaseImage"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoOutput_IsC2PASignatureSupported"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Camera_C2PASignatureConfig_Create"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Camera_C2PASignatureConfig_Destroy"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Camera_C2PASignatureConfig_SetAuthorName"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_Camera_C2PASignatureConfig_SetAuthorID"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_PhotoOutput_ConfigureC2PASignature"
     }
 ]

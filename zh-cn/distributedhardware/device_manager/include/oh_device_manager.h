@@ -40,6 +40,26 @@
 
 #ifdef __cplusplus
 extern "C" {
+/**
+  * @brief 获取本地设备显示名。
+  * 设备显示名称涉及用户的隐私数据，需要应用提供相关隐私声明，声明设备显示名的用途。
+  *
+  * @permission ohos.permission.READ_LOCAL_DEVICE_NAME
+  * @param localDeviceName 表示本地设备显示名字符串的地址指针。使用后需要手动释放空间资源。
+  *     应用具备 ohos.permission.READ_LOCAL_DEVICE_NAME 权限，返回设备显示名称；否则返回设备默认名称。
+  * @param len 表示本地设备显示名的长度。
+  * @return 返回执行的错误码。错误码定义详见{@link DeviceManager_ErrorCode}。
+  *          返回{@link ERR_OK}，表示执行成功。
+  *          返回{@link DM_ERR_FAILED}，表示函数执行失败。
+  *          返回{@link DM_ERR_OBTAIN_SERVICE}，表示获取设备管理服务失败。
+  *          返回{@link DM_ERR_OBTAIN_BUNDLE_NAME}，表示获取bundleName失败。
+  *          返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针。
+  * @since 20
+  * @deprecated since 26.0.0
+  * @useinstead OH_DeviceManager_GetLocalDeviceNameC
+  */
+int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int &len);
+
 #endif
 
 /**
@@ -49,16 +69,16 @@ extern "C" {
   * @permission ohos.permission.READ_LOCAL_DEVICE_NAME
   * @param localDeviceName 表示本地设备显示名字符串的地址指针。使用后需要手动释放空间资源。
   *     应用具备 ohos.permission.READ_LOCAL_DEVICE_NAME 权限，返回设备显示名称；否则返回设备默认名称。
-  * @param len Length of the display name of the local device.
+  * @param len 表示本地设备显示名字符串长度的地址指针。使用后需要手动释放空间资源。
   * @return 返回执行的错误码。错误码定义详见{@link DeviceManager_ErrorCode}。
   *          返回{@link ERR_OK}，表示执行成功。
   *          返回{@link DM_ERR_FAILED}，表示函数执行失败。
   *          返回{@link DM_ERR_OBTAIN_SERVICE}，表示获取设备管理服务失败。
   *          返回{@link DM_ERR_OBTAIN_BUNDLE_NAME}，表示获取bundleName失败。
-  *          返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针。
-  * @since 20
+  *          返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针或者len是空指针。
+  * @since 26.0.0
   */
-int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int &len);
+int32_t OH_DeviceManager_GetLocalDeviceNameC(char **localDeviceName, unsigned int *len);
 
 #ifdef __cplusplus
 };

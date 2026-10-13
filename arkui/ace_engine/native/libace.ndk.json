@@ -2200,6 +2200,10 @@
         "name": "OH_ArkUI_DragEvent_GetDataTypes"
     },
     {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_DragEvent_GetSummary"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_DragEvent_GetDragResult"
     },
@@ -6431,6 +6435,14 @@
         "name": "OH_ArkUI_ImageAttachment_GetResizableLattice"
     },
     {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_ImageAttachment_SetImageTag"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_ImageAttachment_GetImageTag"
+    },
+    {
         "first_introduced": "24",
         "name": "OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent"
     },
@@ -6955,19 +6967,19 @@
         "name": "OH_ArkUI_CreateIdentityTransitionEffect"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_Create"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_Destroy"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines"
     },
     {
-        "first_introduced": "26.0.1",
+        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines"
     },
     {
@@ -7196,14 +7208,6 @@
     },
     {
         "first_introduced": "26.0.1",
-        "name": "OH_ArkUI_NativeModule_PathAnimation_SetCurve"
-    },
-    {
-        "first_introduced": "26.0.1",
-        "name": "OH_ArkUI_NativeModule_PathAnimation_GetCurve"
-    },
-    {
-        "first_introduced": "26.0.1",
         "name": "OH_ArkUI_NativeModule_PathAnimation_SetTempo"
     },
     {
@@ -7357,5 +7361,153 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_ArkUI_NativeModule_FinishAnimationGroup"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_SetRuntimeCheckMode"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserver"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIInfoCollectionUnregisterInteractionObserver"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestCreate"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterOccludedNodes"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetOcclusionOpacityThreshold"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetInteractionInfo"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetAccessibilityInfo"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectVisualProperties"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProperties"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentGetTreeJson"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIAgentGetPageText"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_RegisterUIContentChangeEvent"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UnRegisterUIContentChangeEvent"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIContentChangeEventGetType"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIContentChangeEventGetTimestamp"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIContentChangeEventGetContext"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIContentChangeEventGetContentChangeEventJson"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_GetImagesByNodeIdAsync"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_ImageCollectionDestroy"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIJsonWrapperCreate"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIJsonWrapperGetData"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIJsonWrapperGetSize"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIJsonWrapperDestroy"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_UIEventInjectCompositeCommand"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetDirection"
     }
 ]

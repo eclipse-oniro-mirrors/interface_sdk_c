@@ -5,7 +5,7 @@
     },
     {
         "first_introduced": "26.0.1",
-        "name": "OH_UsbManager_FreeDeviceList"
+        "name": "OH_UsbManager_FreeUsbDeviceList"
     },
     {
         "first_introduced": "26.0.1",

@@ -72,7 +72,10 @@ typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
 typedef struct ArkUI_DrawContext ArkUI_DrawContext;
 
 /**
- * @brief Defines a native UI context instance.
+ * @brief Defines a context object of the ArkUI native UI, which is used to represent the UI context of the page
+ * where the component is located. The pointer type is {@link ArkUI_ContextHandle}. You can obtain the context using
+ * {@link OH_ArkUI_GetContextByNode} and use it as the input parameter for APIs such as dragging, animation, and UI
+ * task scheduling.
  *
  * @since 12
  */

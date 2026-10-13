@@ -635,9 +635,9 @@ void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_T
  *     <br>- glyphCount小于或等于0。
  * @since 26.0.0
  */
-OH_Drawing_ErrorCode OH_Drawing_CanvasDrawGlyphs(const OH_Drawing_Canvas *canvas, const int *glyphIds,
-    int glyphIdCount, int glyphIdOffset, const OH_Drawing_Point2D *positions, int positionCount,
-    int positionOffset, int glyphCount, const OH_Drawing_Font *font);
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawGlyphs(const OH_Drawing_Canvas* canvas, const int* glyphIds,
+    int glyphIdCount, int glyphIdOffset, const OH_Drawing_Point2D* positions, int positionCount,
+    int positionOffset, int glyphCount, const OH_Drawing_Font* font);
 
 /**
  * @brief 画布裁剪方式的枚举集合。

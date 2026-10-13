@@ -72,14 +72,6 @@ typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle;
 struct ArkUI_Node;
 
 /**
- * @brief 定义ArkUI Native组件实例对象指针，用于在ArkUI Native接口中标识和传递组件实例，
- * 例如创建、挂载、移除或销毁组件节点。
- *
- * @since 22
- */
-typedef struct ArkUI_Node* ArkUI_NodeHandle;
-
-/**
  * @brief 定义DrawableDescriptor动图的播放状态。
  *
  * @since 22

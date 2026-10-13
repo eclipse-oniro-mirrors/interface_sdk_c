@@ -237,6 +237,11 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE = 106215,
     /**
+     * @brief 解析的目标节点不属于注册动画组时传入的context所在的UIContext。
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_TARGET_NODE_NOT_IN_SAME_CONTEXT = 106216,
+    /**
      * @brief 当前节点不是自定义节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      *
      * @since 20
@@ -285,6 +290,27 @@ typedef enum {
      * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
+    /**
+     * @brief 上一次请求未完成。
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
+    /**
+     * @brief 找不到uniqueId对应的节点。
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
+    /**
+     * @brief 结果太大。
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
+    /**
+     * @brief 资源耗尽。
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
+
     /**
      * @brief 当前节点无法获得焦点。错误码的详细介绍请参见{@link 150001 节点无法获得焦点}。
      *

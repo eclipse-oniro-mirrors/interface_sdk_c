@@ -601,7 +601,7 @@ static const char* const COMMON_EVENT_VOLUME_ENCRYPTION_POLICY_SET = "usual.even
 /**
  * @brief This common event indicates that the skill information of an application has been changed.
  *
- * To receive this common event, your application must have the ohos.permission.MANAGE_SKILL_PRIVILEGE permission.
+ * To receive this common event, your application must have the ohos.permission.MANAGE_SKILL permission.
  *
  * @since 26.0.0
  */

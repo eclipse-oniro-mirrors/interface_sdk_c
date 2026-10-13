@@ -228,7 +228,7 @@ Camera_ErrorCode OH_CameraInput_UnregisterOcclusionDetectionCallback(Camera_Inpu
  * 
  * @param cameraInput 要打开的Camera_Input实例。
  * @param type 指定并发类型。
- * @return CAMERA_OK: 方法调用成功。
+ * @return CAMERA_OK：方法调用成功。
  *     <br>CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
  *     <br>CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
  *     <br>CAMERA_DEVICE_DISABLED：由于安全原因禁用了相机。

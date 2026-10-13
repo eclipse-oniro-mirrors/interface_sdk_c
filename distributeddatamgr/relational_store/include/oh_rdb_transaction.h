@@ -354,7 +354,7 @@ int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicate
  * @since 23
  */
 OH_Cursor *OH_RdbTrans_QueryWithoutRowCount(OH_Rdb_Transaction *trans, const OH_Predicates *predicates,
-    const char * const columns[], int len);
+    const char *const columns[], int len);
 
 /**
  * @brief Queries data in the database based on specified conditions.

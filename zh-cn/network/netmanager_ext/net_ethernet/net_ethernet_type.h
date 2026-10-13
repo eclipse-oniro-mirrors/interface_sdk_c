@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup netmanager_ext
+ * @addtogroup NetEthernet
  * @{
  *
  * @brief 为以太网网卡模块提供C接口。

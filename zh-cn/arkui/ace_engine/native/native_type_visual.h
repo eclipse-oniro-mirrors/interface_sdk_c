@@ -1683,117 +1683,118 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
 ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
 
 /**
- * @brief 枚举属性动画和关键帧动画的可动画属性类型。
+ * @brief 枚举属性动画、关键帧动画和路径动画的可动画属性类型。
  *
  * @since 26.0.1
  */
 typedef enum {
     /**
      * @brief 在x和y方向上的平移。
-     * value参数需要两个f32类型的{@link ArkUI_NumberValue}元素：[x, y]，单位为px。
+     * 设置或获取该属性值时，需要两个f32类型的{@link ArkUI_NumberValue}元素，依次为x、y方向的平移量，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION = 0,
     /**
      * @brief 在x方向上的平移。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[x]，单位为px。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_X = 1,
     /**
      * @brief 在y方向上的平移。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[y]，单位为px。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Y = 2,
     /**
      * @brief 在z方向上的平移。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[z]，单位为px。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Z = 3,
     /**
      * @brief 在x和y方向上的缩放。
-     * value参数需要两个f32类型的{@link ArkUI_NumberValue}元素：[x, y]。
+     * 设置或获取该属性值时，需要两个f32类型的{@link ArkUI_NumberValue}元素，依次为x、y方向的缩放比例。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_SCALE = 4,
     /**
      * @brief 在x方向上的缩放。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[x]。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_SCALE_X = 5,
     /**
      * @brief 在y方向上的缩放。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[y]。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_SCALE_Y = 6,
     /**
      * @brief 所有轴的旋转角度。
-     * value参数需要三个f32类型的{@link ArkUI_NumberValue}元素：[angleX, angleY, angleZ]，单位为度。
+     * 设置或获取该属性值时，需要三个f32类型的{@link ArkUI_NumberValue}元素，依次为x、y、z轴的旋转角度，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION = 7,
     /**
      * @brief 围绕x轴的旋转角度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION_X = 8,
     /**
      * @brief 围绕y轴的旋转角度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Y = 9,
     /**
      * @brief 围绕z轴的旋转角度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[angle]，单位为度。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素，单位为度。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Z = 10,
     /**
      * @brief 组件的不透明度。
-     * value参数需要一个f32类型的{@link ArkUI_NumberValue}元素：[opacity]。
+     * 设置或获取该属性值时，需要一个f32类型的{@link ArkUI_NumberValue}元素。
      * 取值范围：[0, 1]。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_OPACITY = 11,
     /**
      * @brief 边界（位置和大小）。
-     * value参数需要四个i32类型的{@link ArkUI_NumberValue}元素：[x, y, width, height]，单位为px。其中width和height需大于等于0。
+     * 设置或获取该属性值时，需要四个i32类型的{@link ArkUI_NumberValue}元素，依次为x坐标、y坐标、宽度、高度，单位为px。
+     * 其中宽度和高度的取值范围为大于等于0。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS = 12,
     /**
      * @brief 边界左上角的x坐标位置。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[x]，单位为px。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_X = 13,
     /**
      * @brief 边界左上角的y坐标位置。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[y]，单位为px。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_Y = 14,
     /**
      * @brief 边界的宽度。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[width]，单位为px。该值需大于等于0。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。取值范围为大于等于0。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_WIDTH = 15,
     /**
      * @brief 边界的高度。
-     * value参数需要一个i32类型的{@link ArkUI_NumberValue}元素：[height]，单位为px。该值需大于等于0。
+     * 设置或获取该属性值时，需要一个i32类型的{@link ArkUI_NumberValue}元素，单位为px。取值范围为大于等于0。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_HEIGHT = 16,
     /**
      * @brief 组件的背景颜色。
-     * value参数需要一个u32类型的{@link ArkUI_NumberValue}元素：[color]。
+     * 设置或获取该属性值时，需要一个u32类型的{@link ArkUI_NumberValue}元素。
      * @since 26.0.1
      */
     OH_ARKUI_ANIMATION_PROPERTY_BACKGROUND_COLOR = 17,
@@ -1844,6 +1845,182 @@ typedef enum {
      */
     OH_ARKUI_ANIMATION_FINISH_TO_END = 2,
 } OH_ArkUI_AnimationFinishMode;
+
+/**
+ * @brief 枚举线性渐变模糊的渐变方向。
+ *
+ * @since 26.2.0
+ */
+typedef enum {
+    /**
+     * @brief 线性渐变模糊从右到左。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT = 0,
+    /**
+     * @brief 线性渐变模糊从下到上。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_TOP = 1,
+    /**
+     * @brief 线性渐变模糊从左到右。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT = 2,
+    /**
+     * @brief 线性渐变模糊从上到下。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM = 3,
+    /**
+     * @brief 线性渐变模糊从右下到左上。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_TOP = 4,
+    /**
+     * @brief 线性渐变模糊从右上到左下。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_BOTTOM = 5,
+    /**
+     * @brief 线性渐变模糊从左下到右上。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_TOP = 6,
+    /**
+     * @brief 线性渐变模糊从左上到右下。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_BOTTOM = 7,
+} OH_ArkUI_LinearGradientBlurDirection;
+
+/**
+ * @brief 定义线性渐变模糊效果的选项。
+ *
+ * 选项包括模糊半径、渐变停止点和方向。通过{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}创建时，
+ * 默认值为：blurRadius = 0（不模糊），fractionStops = {0.0, 0.0, 0.0, 1.0}（两个停止点：位置0处模糊值为0，
+ * 位置1处模糊值为0，表示整个渐变方向上无模糊），direction = {@link OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM}。
+ *
+ * @since 26.2.0
+ */
+typedef struct OH_ArkUI_LinearGradientBlurOptions OH_ArkUI_LinearGradientBlurOptions;
+
+/**
+ * @brief 创建线性渐变模糊选项对象。
+ *
+ * @return 返回指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。调用者拥有返回的对象，
+ *     不再使用时需要调用{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}释放该对象。
+ * @release 调用者不再使用该对象时，需要调用{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}释放该对象。
+ * @since 26.2.0
+ */
+OH_ArkUI_LinearGradientBlurOptions* OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create(void);
+
+/**
+ * @brief 销毁线性渐变模糊选项对象。
+ *
+ * @param options [in] 表示由{@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}返回的
+ *     {@link OH_ArkUI_LinearGradientBlurOptions}对象指针。传入<b>NULL</b>无效果。
+ *     该函数对非NULL句柄返回后，句柄即失效，不得再次使用或销毁。
+ * @since 26.2.0
+ */
+void OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy(OH_ArkUI_LinearGradientBlurOptions *options);
+
+/**
+ * @brief 设置线性渐变模糊选项的模糊半径。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param blurRadius [in] 表示模糊半径，单位为px。值越大模糊程度越高。值为<b>0</b>时表示不模糊。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options为空、blurRadius为负数或blurRadius为NaN。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius(
+    OH_ArkUI_LinearGradientBlurOptions *options, float blurRadius);
+
+/**
+ * @brief 获取线性渐变模糊选项的模糊半径。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param blurRadius [out] 表示用于接收模糊半径的指针，单位为px。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options或blurRadius为空。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius(
+    const OH_ArkUI_LinearGradientBlurOptions *options, float *blurRadius);
+
+/**
+ * @brief 设置线性渐变模糊选项的渐变停止点。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param fractionStops [in] 表示(模糊值, 位置)对的扁平float数组。
+ *         每两个元素一组(fractionStops[i], fractionStops[i+1])表示一个停止点。
+ *         模糊值(fractionStops[i])表示该位置处应用的模糊半径比例，0.0表示不模糊，1.0表示按blurRadius完全模糊。
+ *         位置(fractionStops[i+1])表示沿渐变方向的相对位置，0.0表示起点，1.0表示终点。
+ *         位置值必须严格单调递增。每个元素不能为NaN，且必须在[0.0, 1.0]范围内。
+ * @param stopsLength [in] 表示fractionStops数组中的float元素个数。必须为偶数且不小于4。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options或fractionStops为空、stopsLength为奇数、
+ *         stopsLength小于4、位置未严格单调递增、或fractionStops中存在NaN或超出[0.0, 1.0]范围的元素。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops(
+    OH_ArkUI_LinearGradientBlurOptions *options, const float *fractionStops, int32_t stopsLength);
+
+/**
+ * @brief 获取线性渐变模糊选项的渐变停止点。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param fractionStops [out] 表示用于接收(模糊值, 位置)对的扁平float数组的缓冲区指针。
+ * @param stopsSize [in] 表示调用者为fractionStops数组分配的缓冲区大小（float元素个数）。若缓冲区不足以容纳所有渐变停止点数据，
+ *     则返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}，并将writeLength设为所需大小。
+ * @param writeLength [out] 表示返回{@link ARKUI_ERROR_CODE_NO_ERROR}时实际写入fractionStops缓冲区的float元素个数；
+ *     返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示容纳fractionStops所需的最小缓冲区大小。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} stopsSize小于实际fractionStops数量。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops(
+    const OH_ArkUI_LinearGradientBlurOptions *options, float *fractionStops, int32_t stopsSize, int32_t *writeLength);
+
+/**
+ * @brief 设置线性渐变模糊选项的渐变方向。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param direction [in] 表示线性渐变模糊的方向。参数类型为{@link OH_ArkUI_LinearGradientBlurDirection}。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options为空或direction不是有效的枚举值。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection(
+    OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection direction);
+
+/**
+ * @brief 获取线性渐变模糊选项的渐变方向。
+ *
+ * @param options [in] 表示指向{@link OH_ArkUI_LinearGradientBlurOptions}对象的指针。
+ * @param direction [out] 表示用于接收线性渐变模糊方向的指针。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} options或direction为空。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetDirection(
+    const OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection *direction);
 
 #ifdef __cplusplus
 }

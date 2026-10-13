@@ -17,9 +17,10 @@
  * @addtogroup ContentEmbed
  * @{
  *
- * @brief 内容嵌入（ContentEmbed）模块提供对象编辑（Object Editor，简称OE）功能框架与技术，支持应用间文档的嵌入与协同编辑。
- * 通过OE技术实现的被嵌入文档（简称OE文档），在客户端界面中可能呈现为缩略图或者快照（Snapshot），
- * 也可能以标准格式序列化为一段二进制数据保存在内存或者某个文件（称为OE格式文件）中。
+ * @brief 内容嵌入（ContentEmbed）模块提供对象编辑（Object Editor，简称OE）功能框架，支持应用间文档的嵌入与协同编辑。<br>
+ * 模块采用客户端-服务端架构：服务端应用通过扩展（extension）接口实现OE Extension；
+ * 客户端应用通过代理（proxy）接口查询服务端应用注册的OE Extension信息并与该OE Extension交互。<br>
+ * 通过OE技术实现的被嵌入文档（简称OE文档），在客户端界面可呈现为缩略图或快照（Snapshot），或以OE格式序列化为二进制数据，保存在内存或文件（称为OE格式文件）中。
  *
  * @syscap SystemCapability.ContentEmbed.ObjectEditor
  * @since 24
@@ -28,10 +29,11 @@
 /**
  * @file content_embed_common.h
  *
- * @brief 提供内容嵌入模块的错误码定义和嵌入文档支持能力的类型枚举描述。
+ * @brief 提供内容嵌入模块的错误码定义和嵌入文档支持能力枚举。
  *
  * @library libcontent_embed_ndk.so
  * @kit ContentEmbedKit
+ * @include <ContentEmbedKit/content_embed/content_embed_common.h>
  * @syscap SystemCapability.ContentEmbed.ObjectEditor
  * @since 24
  */
@@ -72,7 +74,7 @@ typedef enum ContentEmbed_ErrorCode {
      */
     CE_PERMISSION_DENIED = 201,
     /**
-     * @brief 参数不合法。
+     * @brief 参数不合法，请检查参数类型和取值范围是否正确。
      *
      * @since 24
      */
@@ -84,7 +86,7 @@ typedef enum ContentEmbed_ErrorCode {
      */
     CE_ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * @brief 返回空指针，可能是内存分配失败或内部错误。
+     * @brief 空指针错误，可能是内存分配失败或内部错误。
      *
      * @since 24
      */
@@ -150,7 +152,7 @@ typedef enum ContentEmbed_ErrorCode {
      */
     CE_ERR_EXTENSION_ABNORMAL_EXIT = 35300011,
     /**
-     * @brief 链接到不允许被链接目录中的文件，如应用沙箱目录内的文件。
+     * @brief 链接了不允许链接目录中的文件，如应用沙箱目录内的文件。
      *
      * @since 24
      */
@@ -182,7 +184,7 @@ typedef enum ContentEmbed_ErrorCode {
 } ContentEmbed_ErrorCode;
 
 /**
- * @brief 嵌入文档对象支持的功能枚举，并支持通过位掩码组合多个能力值。
+ * @brief 嵌入文档对象支持能力的枚举，可通过位掩码组合多个能力值。
  *
  * @since 24
  */

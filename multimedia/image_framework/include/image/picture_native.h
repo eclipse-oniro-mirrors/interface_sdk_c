@@ -113,6 +113,18 @@ typedef enum {
      * Fragment map
      */
     AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5,
+    /**
+     * Oxygen saturation map
+     *
+     * @since 26.0.1
+     */
+    OH_IMAGE_NATIVEMODULE_AUXILIARY_PICTURE_TYPE_OXY_MAP = 11,
+    /**
+     * Melanin concentration map
+     *
+     * @since 26.0.1
+     */
+    OH_IMAGE_NATIVEMODULE_AUXILIARY_PICTURE_TYPE_MEL_MAP = 12,
 } Image_AuxiliaryPictureType;
 
 /**

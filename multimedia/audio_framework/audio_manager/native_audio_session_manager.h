@@ -84,6 +84,8 @@ typedef enum {
 
     /**
      * @brief scene for voice message
+     *
+     * @since 26.0.1
      */
     AUDIO_SESSION_SCENE_VOICE_MESSAGE = 3,
 } OH_AudioSession_Scene;

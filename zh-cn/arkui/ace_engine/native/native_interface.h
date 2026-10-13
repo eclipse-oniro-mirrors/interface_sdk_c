@@ -39,6 +39,8 @@
 
 #include <stdint.h>
 
+#include "error_code.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -61,9 +63,68 @@ typedef enum {
      * 多线程UI组件相关接口类型，详见{@link native_node.h}中的{@link 结构体}类型定义。
      * @since 22
      */
-    ARKUI_MULTI_THREAD_NATIVE_NODE,
+    ARKUI_MULTI_THREAD_NATIVE_NODE
 } ArkUI_NativeAPIVariantKind;
 
+/**
+ * @brief ArkUI C API的运行时检查类型枚举。
+ *
+ * 每种检查类型对应一种ArkUI C API的不当使用场景，用于在运行时检测开发者
+ * 对C API的误用行为（如跨线程调用、访问已销毁对象等）。
+ * 可通过{@link OH_ArkUI_NativeModule_SetRuntimeCheckMode}为每种检查类型
+ * 独立配置运行时检查模式，检查失败时的行为由所配置的运行时检查模式决定，模式取值见{@link OH_ArkUI_NativeModule_RuntimeCheckMode}。
+ *
+ * @since 26.2.0
+ */
+typedef enum {
+    /**
+     * @brief UI线程检查类型：部分ArkUI C API要求必须在UI线程调用，
+     * 此类型用于检测这些API是否被非UI线程调用。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_UI_THREAD = 0,
+    /**
+     * @brief 节点销毁检查类型：检测传递给C API的ArkUI_NodeHandle是否已经被销毁。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1
+} OH_ArkUI_NativeModule_RuntimeCheckType;
+
+/**
+ * @brief ArkUI C API运行时检查的模式枚举。
+ *
+ *  所有C API的运行时检查类型均使用本枚举中定义的相同模式集合（DISABLED、LOG、CRASH）设置检查失败时的行为，
+ * 即每种检查类型都可以独立设置为以下三种模式之一。
+ * 默认模式取决于应用程序的构建类型：
+ * 以debug模式编译的应用（DevEco Studio中Debug构建，用于开发调试）
+ * 默认为{@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH}，
+ * 以release模式编译的应用（DevEco Studio中Release构建，用于正式发布）
+ * 默认为{@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED}。
+ *
+ * @since 26.2.0
+ */
+typedef enum {
+    /**
+     * @brief  禁用指定的运行时检查。C API行为与引入该检查之前一致。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED = 0,
+    /**
+     * @brief 打印诊断日志（检查类型、API名称、原因、native堆栈）并继续C API调用。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_MODE_LOG = 1,
+    /**
+     * @brief 打印诊断日志并立即终止应用程序。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH = 2
+} OH_ArkUI_NativeModule_RuntimeCheckMode;
 /**
  * @brief Obtains the native API set of a specified type.
  *
@@ -104,6 +165,32 @@ void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const
  * @since 26.0.0
  */
 const char* OH_ArkUI_NativeModule_GetErrorMessage();
+
+/**
+ * @brief 设置ArkUI C API的进程级运行时检查模式。
+ *
+ * 本函数配置特定运行时检查类型在检测到误用时的行为。
+ * 该设置为进程级，在针对同一检查类型的下一次成功调用之前持续有效。
+ *
+ * <b>线程要求：</b>本函数必须在UI线程上调用。
+ * 从其他线程调用将立即终止应用程序，不会返回。
+ * 线程检查在参数校验之前执行。
+ *
+ * <b>默认行为：</b>如果未针对某个检查类型调用本函数，
+ * debug应用构建默认为{@link ARKUI_RUNTIME_CHECK_MODE_CRASH}，
+ * release应用构建默认为{@link ARKUI_RUNTIME_CHECK_MODE_DISABLED}。
+ *
+ * @param checkType [入参] 指定要配置的运行时检查类型，
+ *     取值为{@link OH_ArkUI_NativeModule_RuntimeCheckType}中的枚举值。
+ * @param mode [入参] 指定运行时检查模式，取值为{@link OH_ArkUI_NativeModule_RuntimeCheckMode}中的枚举值。
+ * @return 返回值：
+ *     <ul><li>设置更新成功返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     </li><li>checkType或mode无效时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li></ul>
+ *  *     返回无效参数错误时，保留之前的设置。
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(
+    OH_ArkUI_NativeModule_RuntimeCheckType checkType, OH_ArkUI_NativeModule_RuntimeCheckMode mode);
 
 /**
  * @brief Obtains the macro function corresponding to a struct pointer based on the struct type.

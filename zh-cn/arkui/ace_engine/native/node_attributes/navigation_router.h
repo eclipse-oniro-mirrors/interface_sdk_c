@@ -87,6 +87,16 @@ typedef enum {
      */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
     /**
+     * @brief NavDestination组件处于激活态。
+     * @since 26.2.0
+     */
+    ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
+    /**
+     * @brief NavDestination组件处于非激活态。
+     * @since 26.2.0
+     */
+    ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
+    /**
      * @brief NavDestination从组件返回。
      * @since 12
      */
