@@ -9731,9 +9731,9 @@ typedef enum {
 
     /**
      * @brief 获取当前滚动状态。
-     * 该属性可以通过API获取。
+     * 该属性可以根据需要通过API获取。
      *
-     * **{@link ArkUI_AttributeItem}返回值的格式：**
+     * **返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32：当前滚动状态。参数类型为{@link ArkUI_ScrollState}。</li>
      * </ul>
