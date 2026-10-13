@@ -436,7 +436,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param context [in] 待采集UI树所属的UI上下文。
  * @param request [in] 采集请求。
  * @param format [in] JSON输出格式。
- * @param outOwnedJson [out] 用于接收不可变JSON结果对象的输出参数，JSON对象顶层包含schemaVersion字段。
+ * @param json [out] 用于接收不可变JSON结果对象的输出参数，JSON对象顶层包含schemaVersion字段。
  *     输出指针不能为NULL，且必须指向在整个调用期间有效的可写存储空间。
  *     调用方必须调用OH_ArkUI_NativeModule_UIJsonWrapperDestroy释放该对象。
  * @return <ul>
@@ -448,13 +448,13 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} 内存分配失败。</li>
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 发生其他内部错误。</li>
  *     </ul>
- * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwnedJson}
+ * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle context,
     const OH_ArkUI_NativeModule_UIAgentTreeRequest *request,
     OH_ArkUI_NativeModule_UIJsonFormat format,
-    OH_ArkUI_NativeModule_UIJsonWrapper **outOwnedJson);
+    OH_ArkUI_NativeModule_UIJsonWrapper **json);
 
 /**
  * @brief 发起异步UI树采集请求，并通过异步回调接收采集结果。
@@ -496,7 +496,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  * 本函数必须在UI线程上调用。
  *
  * @param uiContext [in] 要采集文本的目标UI实例的上下文。
- * @param outOwnedPageText [out] 用于接收结果对象的输出参数。调用方应将其指向的对象指针初始化为NULL。
+ * @param pageText [out] 用于接收结果对象的输出参数。调用方应将其指向的对象指针初始化为NULL。
  *     调用成功时，调用方拥有返回对象的所有权，必须在不再使用时调用
  *     {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
  *     调用失败时，若输出参数有效，则将其指向的对象指针设置为NULL。
@@ -509,11 +509,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 当前页面不存在、JSON数据的大小无法用uint32_t表示，
  *         或采集、序列化失败。</li>
  *     </ul>
- * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwnedPageText}
+ * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {pageText}
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetPageText(
-    ArkUI_ContextHandle uiContext, OH_ArkUI_NativeModule_UIJsonWrapper** outOwnedPageText);
+    ArkUI_ContextHandle uiContext, OH_ArkUI_NativeModule_UIJsonWrapper** pageText);
 
 /**
  * @brief 声明ArkUI内容变化事件结构体。
