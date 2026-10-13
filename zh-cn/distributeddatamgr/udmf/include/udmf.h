@@ -236,7 +236,7 @@ typedef struct OH_UdmfDataLoadParams OH_UdmfDataLoadParams;
 typedef struct OH_UdmfDataLoadInfo OH_UdmfDataLoadInfo;
 
 /**
- * @brief 描述统一数据的汇总信息。
+ * @brief 描述统一数据对象的数据摘要，包括数据类型和大小。
  *
  * @since 26.0.1
  */
