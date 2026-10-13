@@ -45,7 +45,7 @@ extern "C" {
  * @brief Creates an {@link OH_MediaAssetChangeRequest} instance.
  *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
- * @return Return a pointer to an instance of OH_MediaAssetChangeRequest. If the creation fails, return a NULL pointer.
+ * @return An instance of OH_MediaAssetChangeRequest. If the creation fails, return a NULL pointer.
  * @since 12
 */
 OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* mediaAsset);
