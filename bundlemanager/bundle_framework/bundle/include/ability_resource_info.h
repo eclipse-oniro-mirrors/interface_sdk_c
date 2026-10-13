@@ -61,8 +61,8 @@ typedef struct OH_NativeBundle_AbilityResourceInfo OH_NativeBundle_AbilityResour
  * @brief Obtains the bundle name of the ability. After using this function, you must manually release the
  * pointer returned to prevent memory leakage.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param bundleName Double pointer to the bundle name.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param bundleName [in] Double pointer to the bundle name.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The retrieval is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The retrieval fails because the
@@ -76,8 +76,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetBundleName(
  * @brief Obtains the module name of the ability. After using this function, you must manually release the pointer
  * returned to prevent memory leakage.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param moduleName Double pointer to the module name.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param moduleName [in] Double pointer to the module name.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The retrieval is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The retrieval fails because the
@@ -91,8 +91,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetModuleName(
  * @brief Obtains the ability name. After using this function, you must manually release the pointer returned to
  * prevent memory leakage.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param abilityName Double pointer to the ability name.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param abilityName [in] Double pointer to the ability name.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The retrieval is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The retrieval fails because the
@@ -106,8 +106,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetAbilityName(
  * @brief Obtains the application name of the ability. After using this function, you must manually release the
  * pointerreturned to prevent memory leakage.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param label Double pointer to the application name.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param label [in] Double pointer to the application name.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The retrieval is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The retrieval fails because the
@@ -120,8 +120,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetLabel(
 /**
  * @brief Obtains the clone index of the ability.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param appIndex Pointer to the clone index.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param appIndex [in] Pointer to the clone index.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The retrieval is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The retrieval fails because the **
@@ -134,8 +134,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetAppIndex(
 /**
  * @brief Checks whether the application to which the ability belongs is a default application.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param isDefault Pointer to the check result for whether the application is a default application. A default
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param isDefault [in] Pointer to the check result for whether the application is a default application. A default
  *     application is the preferred application set by the user for a specific file type or operation. **true** if the
  *     application is a default application, **false** otherwise.
  * @return One of the following operation results:
@@ -150,8 +150,8 @@ BundleManager_ErrorCode OH_NativeBundle_CheckDefaultApp(
 /**
  * @brief Releases memory allocated for ability resource information.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param count Size of the ability resource information array.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param count [in] Size of the ability resource information array.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The release is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The release fails because the
@@ -173,8 +173,8 @@ int OH_NativeBundle_GetSize();
  * @brief Obtains the {@link DrawableDescriptor} object of the ability icon resource. After using this function, you
  * must manually release the pointer returned to prevent memory leakage.
  *
- * @param abilityResourceInfo Pointer to the ability resource information.
- * @param drawableIcon Double pointer to the {@link DrawableDescriptor} object.
+ * @param abilityResourceInfo [in] Pointer to the ability resource information.
+ * @param drawableIcon [in] Double pointer to the {@link DrawableDescriptor} object.
  * @return One of the following operation results:
  *     <ul><li>{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}: The retrieval is successful.
  *     </li><li>{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}: The retrieval fails because the

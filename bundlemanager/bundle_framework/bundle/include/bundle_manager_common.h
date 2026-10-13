@@ -20,7 +20,6 @@
  * @brief The file declares the error codes defined by BundleManager.
  *
  * @since 21
- * @version 1.0
  */
 
 /**
@@ -48,19 +47,22 @@ extern "C" {
  */
 typedef enum {
     /**
-     * Operation success.
+     * @brief Operation success.
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_NO_ERROR = 0,
 
     /**
-     * No access permission.
+     * @brief No access permission.
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED = 201,
 
     /**
-     * Invalid parameter.
+     * @brief Invalid parameter.
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401

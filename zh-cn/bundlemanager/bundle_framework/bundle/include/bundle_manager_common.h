@@ -20,7 +20,6 @@
  * @brief 声明BundleManager定义的相关错误码。
  *
  * @since 21
- * @version 1.0
  */
 
 /**
@@ -48,19 +47,22 @@ extern "C" {
  */
 typedef enum {
     /**
-     * 执行成功。
+     * @brief 执行成功。
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_NO_ERROR = 0,
 
     /**
-     * 权限被拒绝。
+     * @brief 权限被拒绝。
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED = 201,
 
     /**
-     * 参数无效。
+     * @brief 参数无效。
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401

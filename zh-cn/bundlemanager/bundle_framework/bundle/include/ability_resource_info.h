@@ -56,8 +56,8 @@ typedef struct OH_NativeBundle_AbilityResourceInfo OH_NativeBundle_AbilityResour
 /**
  * @brief 获取组件的包名。在使用该接口之后，为了防止内存泄漏，需要手动释放接口返回的指针。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param bundleName 获取的包名。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param bundleName [in] 获取的包名。
  * @return 执行结果。
  *     <ul><li>如果获取成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果获取失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -69,8 +69,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetBundleName(
 /**
  * @brief 获取组件的模块名。在使用该接口之后，为了防止内存泄漏，需要手动释放接口返回的指针。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param moduleName 获取的模块名。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param moduleName [in] 获取的模块名。
  * @return 执行结果。
  *     <ul><li>如果获取成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果获取失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -82,8 +82,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetModuleName(
 /**
  * @brief 获取组件名。在使用该接口之后，为了防止内存泄漏，需要手动释放接口返回的指针。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param abilityName 获取的组件名。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param abilityName [in] 获取的组件名。
  * @return 执行结果。
  *     <ul><li>如果获取成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果获取失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -95,8 +95,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetAbilityName(
 /**
  * @brief 获取组件的应用名称。在使用该接口之后，为了防止内存泄漏，需要手动释放接口返回的指针。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param label 获取的应用名称。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param label [in] 获取的应用名称。
  * @return 执行结果。
  *     <ul><li>如果获取成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果获取失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -108,8 +108,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetLabel(
 /**
  * @brief 获取组件的分身索引。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param appIndex 获取的分身索引。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param appIndex [in] 获取的分身索引。
  * @return 执行结果。
  *     <ul><li>如果获取成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果获取失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -121,8 +121,8 @@ BundleManager_ErrorCode OH_NativeBundle_GetAppIndex(
 /**
  * @brief 查询组件所属的应用是否为默认应用。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param isDefault 组件所属的应用是否为默认应用，默认应用是指用户为特定文件类型或操作设定的首选应用。取值true为默认应用，false为非默认应用。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param isDefault [in] 组件所属的应用是否为默认应用，默认应用是指用户为特定文件类型或操作设定的首选应用。取值true为默认应用，false为非默认应用。
  * @return 执行结果。
  *     <ul><li>如果查询成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果查询失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -134,8 +134,8 @@ BundleManager_ErrorCode OH_NativeBundle_CheckDefaultApp(
 /**
  * @brief 释放组件资源信息的内存。
  *
- * @param abilityResourceInfo 要释放的组件资源信息。
- * @param count 表示组件资源信息数组的大小。
+ * @param abilityResourceInfo [in] 要释放的组件资源信息。
+ * @param count [in] 表示组件资源信息数组的大小。
  * @return 执行结果。
  *     <ul><li>如果释放成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果释放失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
@@ -156,8 +156,8 @@ int OH_NativeBundle_GetSize();
  * @brief 获取组件图标资源对应的{@link DrawableDescriptor}对象。在使用该接口之后，为了防止内存泄漏，需要手动调用{@link OH_AbilityResourceInfo_Destroy}
  * 释放接口返回的指针。
  *
- * @param abilityResourceInfo 指定组件资源信息。
- * @param drawableIcon 组件图标资源对应的{@link DrawableDescriptor}对象。
+ * @param abilityResourceInfo [in] 指定组件资源信息。
+ * @param drawableIcon [in] 组件图标资源对应的{@link DrawableDescriptor}对象。
  * @return 执行结果。
  *     <ul><li>如果获取成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。
  *     </li><li>如果获取失败，返回{@link BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID}，这是由于abilityResourceInfo为空指针所致。</li></ul>
