@@ -87,17 +87,20 @@ typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
  */
 typedef enum {
     /**
-     * 无振动效果。
+     * @brief 无振动效果。
+     *
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
     /**
-     * 有振动效果。
+     * @brief 有振动效果。
+     *
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
     /**
-     * 跟随系统的振动效果。
+     * @brief 跟随系统的振动效果。
+     *
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2
@@ -112,27 +115,32 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 文本span。
+     * @brief 文本span。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT = 0,
     /**
-     * 图片span。
+     * @brief 图片span。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_IMAGE = 1,
     /**
-     * 混合span。
+     * @brief 混合span。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED = 2,
     /**
-     * 自定义布局span。
+     * @brief 自定义布局span。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER = 3,
     /**
-     * 默认span。
+     * @brief 默认span。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_DEFAULT = 4
@@ -145,22 +153,26 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 通过鼠标右键触发菜单弹出。
+     * @brief 通过鼠标右键触发菜单弹出。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_RIGHT_CLICK = 0,
     /**
-     * 通过长按触发菜单弹出。
+     * @brief 通过长按触发菜单弹出。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_LONG_PRESS = 1,
     /**
-     * 通过鼠标选中触发菜单弹出。
+     * @brief 通过鼠标选中触发菜单弹出。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_SELECT = 2,
     /**
-     * 默认响应类型。
+     * @brief 默认响应类型。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_DEFAULT = 3
@@ -175,12 +187,14 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 文本选择菜单。
+     * @brief 文本选择菜单。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SELECTION_MENU = 0,
     /**
-     * 预览菜单。
+     * @brief 预览菜单。
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_PREVIEW_MENU = 1
