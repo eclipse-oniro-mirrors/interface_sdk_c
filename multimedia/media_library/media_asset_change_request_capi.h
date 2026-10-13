@@ -45,12 +45,7 @@ extern "C" {
  * @brief Creates an {@link OH_MediaAssetChangeRequest} instance.
  *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
- * @return MEDIA_LIBRARY_OK if the method call succeeds.
- *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
- *     <br>1. Mandatory parameters are left unspecified.
- *     <br>2. Incorrect parameter types.
- *     <br>3. Parameter verification failed.
- *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
+ * @return  An instance of OH_MediaAssetChangeRequest. If the creation fails, return a NULL pointer.
  * @since 12
 */
 OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* mediaAsset);
