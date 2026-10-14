@@ -34,6 +34,11 @@
 #ifndef ARKWEB_NET_ERROR_LIST_H
 #define ARKWEB_NET_ERROR_LIST_H
 
+/**
+ * @brief 定义ArkWeb网络协议栈错误码。
+ *
+ * @since 12
+ */
 typedef enum ArkWeb_NetError {
     /**
      * @error 正常。

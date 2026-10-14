@@ -122,7 +122,6 @@ typedef enum ArkWeb_ErrorCode {
  *
  * @since 20
  */
-
 typedef enum ArkWeb_BlanklessErrorCode {
     /**
      * @error Operation successful.

@@ -103,16 +103,16 @@ typedef void (*OH_ArkWeb_OnCookieFetchCallback)(ArkWeb_ErrorCode errorCode, char
  */
 typedef struct {
     /**
-     * 无白屏加载的错误码，取值为0表示无错误，非0值表示错误类型，见{@link ArkWeb_BlanklessErrorCode}定义。
+     * @brief 无白屏加载的错误码，取值为0表示无错误，非0值表示错误类型，见{@link ArkWeb_BlanklessErrorCode}定义。
      */
     ArkWeb_BlanklessErrorCode errCode;
     /**
-     * 首屏相似度，根据历史加载首屏内容计算相似度，范围为[0, 1.0]，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似度将在下次加载时才可反映。建议当相似度低于具体阈值（如0.33）时，
-     * 应用不启用无白屏加载插帧方案。
+     * @brief 首屏相似度，根据历史加载首屏内容计算相似度，范围为[0, 1.0]，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似度将在下次加载时才可反映。
+     * 建议当相似度低于具体阈值（如0.33）时，应用不启用无白屏加载插帧方案。
      */
     double similarity;
     /**
-     * 根据历史加载首屏耗时预测本次加载耗时，单位：ms，取值范围需大于0。
+     * @brief 根据历史加载首屏耗时预测本次加载耗时，单位：ms，取值范围需大于0。
      */
     int32_t loadingTime;
 } ArkWeb_BlanklessInfo;
@@ -359,31 +359,31 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
 
 /**
- * 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考{@link 约束与限制}）。需要根据应用兼容性需求选择特定内核版本时使用，例如应用依赖某些旧版本内核的特性，或需要在新版本系统上保持兼容性，
- * 可以指定使用特定的遗留内核版本。<br>该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
- * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb内核版本。
+ * @brief 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考{@link 约束与限制}）。需要根据应用兼容性需求选择特定内核版本时使用，例如应用依赖某些旧版本内核的特性，
+ * 或需要在新版本系统上保持兼容性，可以指定使用特定的遗留内核版本。<br>该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
+ * @param webEngineVersion - ArkWeb内核版本。
  *     详细说明见 {@link ArkWebEngineVersion}.
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
 
 /**
- * 获取当前使用的ArkWeb内核版本。
+ * @brief 获取当前使用的ArkWeb内核版本。
  * @return 返回由{@link ArkWebEngineVersion}枚举所定义的当前使用的ArkWeb内核版本。
  * @since 20
  */
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 
 /**
- * 设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；
+ * @brief 设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；
  * 应用只需要使用CookieManager而暂时不需要Web组件渲染等。该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
- * @param { bool } lazy - 是否延后初始化ArkWeb内核，true：延后，false：不延后。
+ * @param lazy - 是否延后初始化ArkWeb内核，true：延后，false：不延后。
  * @since 22
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
 
 /**
- * 判断应用所使用ArkWeb内核是否是常青内核，即系统的最新内核。
+ * @brief 判断应用所使用ArkWeb内核是否是常青内核，即系统的最新内核。
  * @return 返回当前应用所使用内核是否为常青内核。true表示是常青内核，false表示不是常青内核。
  * @since 23
  */
