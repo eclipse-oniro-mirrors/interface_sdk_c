@@ -35,7 +35,6 @@
  * @kit MediaKit
  * @include <multimedia/player_framework/avrecorder.h>
  * @library libavrecorder.so
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 
@@ -58,7 +57,6 @@ extern "C" {
  * @brief 创建AVRecorder实例。调用成功之后进入AVRECORDER_IDLE状态。必须在使用完毕后调用{@link OH_AVRecorder_Release}释放资源，否则会导致录制资源泄漏。
  * 
  * @return 成功时返回指向OH_AVRecorder实例的指针，用于后续的录制操作（如Prepare、Start、Pause等）；失败时返回nullptr。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
 */
 OH_AVRecorder *OH_AVRecorder_Create(void);
@@ -73,7 +71,6 @@ OH_AVRecorder *OH_AVRecorder_Create(void);
  * 若未配置视频相关参数，则只录制音频；若未配置音频相关参数，则只录制视频。不可为nullptr，否则返回AV_ERR_INVALID_VAL。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder/config为nullptr或准备失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config *config);
@@ -88,7 +85,6 @@ OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或\，请查看日志获取详细信息*config不为nullptr。<br>
  * AV_ERR_NO_MEMORY：内存不足，\*config内存分配失败，请释放资源后重试。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config);
@@ -103,7 +99,6 @@ OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRec
  * 调用成功后，*window指向框架层分配的OHNativeWindow实例，调用者可从此实例中获取Surface填入视频数据。若*window不为nullptr，将返回AV_ERR_INVALID_VAL错误。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或\*window不为nullptr。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window);
@@ -118,7 +113,6 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
  * 必须是上述值中的一个，传入其他角度值时返回AV_ERR_INVALID_VAL。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或输入的rotation不符合要求或更新视频旋转角度失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation);
@@ -129,7 +123,6 @@ OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotat
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或启动失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder);
@@ -141,7 +134,6 @@ OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder);
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或暂停失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder);
@@ -152,7 +144,6 @@ OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder);
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或恢复失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder);
@@ -167,7 +158,6 @@ OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder);
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或停止失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder);
@@ -181,7 +171,6 @@ OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder);
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或重置失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder);
@@ -193,7 +182,6 @@ OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder);
  * @param recorder 指向OH_AVRecorder实例的指针。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或释放失败。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
@@ -210,7 +198,6 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或\*info不为nullptr。<br>
  * AV_ERR_NO_MEMORY：内存不足，\*info内存分配失败，请释放资源后重试。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRecorder_EncoderInfo **info,
@@ -225,7 +212,6 @@ OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRec
  * @param userData 用户自定义数据指针，将在状态变化回调函数被触发时传递给回调函数，供应用层使用。不需要传递自定义数据时，可传入nullptr。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或回调函数为nullptr。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_SetStateCallback(
@@ -240,7 +226,6 @@ OH_AVErrCode OH_AVRecorder_SetStateCallback(
  * @param userData 用户自定义数据指针，将在错误回调函数被触发时传递给回调函数，供应用层使用。不需要传递自定义数据时，可传入nullptr。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或回调函数为nullptr。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnError callback, void *userData);
@@ -256,7 +241,6 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecord
  * @param userData 用户自定义数据指针，将在URI回调函数被触发时传递给回调函数，供应用层使用。不需要传递自定义数据时，可传入nullptr。
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr或回调函数为nullptr。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnUri callback, void *userData);
@@ -271,7 +255,6 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder
  * @return AV_ERR_OK：执行成功。<br>
  * AV_ERR_INVALID_VAL：输入的recorder为nullptr。<br>
  * AV_ERR_INVALID_STATE：函数不支持在当前状态下调用，应当在{@link OH_AVRecorder_Prepare}之前调用。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 20
  */
 OH_AVErrCode OH_AVRecorder_SetWillMuteWhenInterrupted(OH_AVRecorder *recorder, bool muteWhenInterrupted);
@@ -288,7 +271,6 @@ OH_AVErrCode OH_AVRecorder_SetWillMuteWhenInterrupted(OH_AVRecorder *recorder, b
  * AV_ERR_INVALID_STATE：不支持在当前状态下调用，应当在{@link OH_AVRecorder_Prepare}和{@link OH_AVRecorder_Stop}之间调用。<br>
  * AV_ERR_NO_MEMORY：内存不足，请释放资源后重试。<br>
  * AV_ERR_UNKNOWN：未知错误，请查看日志获取详细信息。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 26.0.0
  */
 OH_AVErrCode OH_AVRecorder_GetAudioCapturerMaxAmplitude(OH_AVRecorder *recorder, int32_t* amplitude);
@@ -307,7 +289,6 @@ OH_AVErrCode OH_AVRecorder_GetAudioCapturerMaxAmplitude(OH_AVRecorder *recorder,
  * AV_ERR_INVALID_STATE：不支持在当前状态下调用，应当在{@link OH_AVRecorder_Prepare}和{@link OH_AVRecorder_Stop}之间调用。<br>
  * AV_ERR_NO_MEMORY：内存不足，请释放资源后重试。<br>
  * AV_ERR_UNKNOWN：未知错误，请查看日志获取详细信息。
- * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 26.0.0
  */
 OH_AVErrCode OH_AVRecorder_SetMetadata(OH_AVRecorder *recorder, const OH_AVFormat *metadata);
