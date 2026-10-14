@@ -11777,6 +11777,20 @@ typedef enum {
     NODE_SCROLL_BAR_HEIGHT = 1002029,
 
     /**
+     * @brief Obtains the current scroll state.
+     * This attribute can be obtained as required through APIs.
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: current scroll state. The parameter type is {@link ArkUI_ScrollState}.</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component
+     * @since 26.2.0
+     */
+    NODE_SCROLL_STATE = 1002030,
+
+    /**
      * @brief Direction in which the {@link list} items are arranged. This attribute can be set, reset, and obtained as
      * required through APIs.
      * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the

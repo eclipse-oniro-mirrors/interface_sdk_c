@@ -9983,6 +9983,20 @@ typedef enum {
     NODE_SCROLL_BAR_HEIGHT = 1002029,
 
     /**
+     * @brief 获取当前滚动状态。
+     * 该属性可以根据需要通过API获取。
+     *
+     * **返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：当前滚动状态。参数类型为{@link ArkUI_ScrollState}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @since 26.2.0
+     */
+    NODE_SCROLL_STATE = 1002030,
+
+    /**
      * @brief 设置List组件排列方向。支持属性设置，属性重置和属性获取接口。
      * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      *
