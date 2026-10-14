@@ -2578,13 +2578,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
     ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb);
 
 /**
- * @brief 定义阴影选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
-
-/**
  * @brief Sets the recognition types of a configuration object for selected text recognition.
  *
  * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
