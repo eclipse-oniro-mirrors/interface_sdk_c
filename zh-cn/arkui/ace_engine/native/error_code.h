@@ -292,25 +292,52 @@ typedef enum {
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
      * @brief 上一次请求尚未完成。
+     *
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
     /**
      * @brief 未找到uniqueId对应的节点。
+     *
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
     /**
      * @brief 结果数据过大。
+     *
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
     /**
      * @brief 资源已耗尽。
+     *
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
-
+    /**
+     * @brief 节点ID重复。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_DUPLICATE_NODE_ID = 106413,
+    /**
+     * @brief 部分集合项失败。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED = 106414,
+    /**
+     * @brief 集合项未找到。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND = 106415,
+    /**
+     * @brief 集合项已被取出使用。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN = 106416,
     /**
      * @brief 当前节点无法获得焦点。错误码的详细介绍请参见{@link 150001 节点无法获得焦点}。
      *
@@ -414,12 +441,14 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
     /**
-     * 节点挂载失败导致无法打开对话框。 错误码的详细介绍请参见{@link 弹窗错误码}.
+     * @brief 节点挂载失败导致无法打开对话框。错误码的详细介绍请参见{@link 弹窗错误码}。
+     *
      * @since 26.0.1
      */
     ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE = 103306,
     /**
-     * 子窗口创建失败导致无法打开对话框. 错误码的详细介绍请参见{@link 弹窗错误码}.
+     * @brief 子窗口创建失败导致无法打开对话框。错误码的详细介绍请参见{@link 弹窗错误码}。
+     *
      * @since 26.0.1
      */
     ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE = 103308,
