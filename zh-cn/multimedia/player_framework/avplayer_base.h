@@ -47,14 +47,6 @@ extern "C" {
 #endif
 
 /**
- * @brief 声明AVPlayerCallback结构体类型。
- * 
- * @since 11
- * @deprecated since 12
- */
-typedef struct AVPlayerCallback AVPlayerCallback;
-
-/**
  * @brief 声明OH_AVPlayer结构体类型。
  * 
  * @since 11

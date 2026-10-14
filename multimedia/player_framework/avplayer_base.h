@@ -43,8 +43,6 @@
 extern "C" {
 #endif
 
-typedef struct AVPlayerCallback AVPlayerCallback;
-
 /**
  * @brief Defines a struct for the AVPlayer.
  * 
