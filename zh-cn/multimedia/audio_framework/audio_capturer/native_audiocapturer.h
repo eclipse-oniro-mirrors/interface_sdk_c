@@ -458,7 +458,7 @@ OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, b
  * @since 24
  */
 OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(
-    OH_AudioCapturer* capturer, const OH_AudioSession_Strategy *strategy, uint32_t behavior);
+    OH_AudioCapturer* capturer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
 
 /**
  * @brief 蜂窝通话录音场景下，风险提示语播放结束回调函数的原型定义。

@@ -699,7 +699,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatency(OH_AudioRenderer* renderer,
  * @since 24
  */
 OH_AudioStream_Result OH_AudioRenderer_SetIndependentAudioSessionStrategy(
-    OH_AudioRenderer* renderer, const OH_AudioSession_Strategy *strategy, uint32_t behavior);
+    OH_AudioRenderer* renderer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
 
 #ifdef __cplusplus
 }
