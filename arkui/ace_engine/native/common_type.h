@@ -44,14 +44,16 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the pointer to the ArkUI native component object.
+ * @brief Defines the pointer to an ArkUI native component object, which is used to identify and pass component
+ * instances in ArkUI native APIs, for example, creating, mounting, removing, or destroying component nodes.
  *
  * @since 12
  */
 typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
- * @brief Defines the pointer type of the ArkUI node content.
+ * @brief Defines the pointer to an **ArkUI_NodeContent** object on the native side, which is used to reference and
+ * pass a **NodeContent** instance in native APIs.
  *
  * @since 12
  */
@@ -65,7 +67,8 @@ typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
 typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
 
 /**
- * @brief Defines the structure of the component drawing context.
+ * @brief Defines component drawing context, which is used to provide drawing context information during the drawing
+ * of a custom component. You can obtain the canvas pointer used for drawing and the size of the drawing area.
  *
  * @since 12
  */
@@ -82,33 +85,41 @@ typedef struct ArkUI_DrawContext ArkUI_DrawContext;
 typedef struct ArkUI_Context ArkUI_Context;
 
 /**
- * @brief Defines the pointer to the context instance object of ArkUI on the native side.
+ * @brief Defines the pointer to the context object of ArkUI on the native side, which is used to represent the UI
+ * context of the page where the component is located. You can obtain the pointer through
+ * {@link OH_ArkUI_GetContextByNode} or {@link OH_ArkUI_GetContextFromNapiValue} and use the pointer as the context
+ * input parameter for APIs such as UI task scheduling, animation, and focus control.
  *
  * @since 12
  */
 typedef struct ArkUI_Context* ArkUI_ContextHandle;
 
 /**
- * @brief Defines the common structure type of a component event.
+ * @brief Defines a component event. This is a general struct type. This struct is used to pass event information in the
+ * component event handling process.
  *
  * @since 12
  */
 typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
 
 /**
- * @brief Defines the event callback type.
+ * @brief Provides an event callback type, which is used to define the callback function and its user-defined data.
+ * When an API of this type is called to trigger a callback, the callback is invoked and **userData** is passed as
+ * a parameter.
  *
  * @since 12
  */
 typedef struct {
     /**
-     * Custom type, data of a user-defined type that is passed as a parameter during callbacks.
+     * @brief Pointer to the user-defined data, which is passed as a parameter during callback.
      *
      * @since 12
      */
     void* userData;
     /**
-     * Event callback.
+     * @brief Pointer to the callback executed when an event is triggered. This callback does not return any value. When
+     * the callback is triggered, the user-defined data pointed to by **userData** is passed as a parameter to execute
+     * the custom processing logic. The specific triggering time is defined by the API of this type.
      *
      * @since 12
      */
@@ -116,25 +127,26 @@ typedef struct {
 } ArkUI_ContextCallback;
 
 /**
- * @brief Provides the number types of ArkUI in the native code.
+ * @brief Defines a numeric type used by ArkUI on the native side, including floating-point, signed integer, and
+ * unsigned integer types.
  *
  * @since 12
  */
 typedef union {
     /**
-     * Floating-point type, used to store a floating-point value.
+     * @brief Variable of floating-point type, used to store floating-point values.
      *
      * @since 12
      */
     float f32;
     /**
-     * Signed integer, used to store a signed integer value.
+     * @brief Variable of signed integer type, used to store signed integer values.
      *
      * @since 12
      */
     int32_t i32;
     /**
-     * Unsigned integer, used to store an unsigned integer value.
+     * @brief Variable of unsigned integer type, used to store unsigned integer values.
      *
      * @since 12
      */
@@ -142,31 +154,33 @@ typedef union {
 } ArkUI_NumberValue;
 
 /**
- * @brief Defines the general input parameter structure of the node attribute functions.
+ * @brief Defines the {@link setAttribute} function. This is a general input parameter struct. Individual
+ * attribute-setting API can use appropriate member variables within it to store parameter data of specific types.
  *
  * @since 12
  */
 typedef struct {
     /**
-     * A number array, used to store parameters of the number array type.
+     * @brief Pointer to the numeric array used to store attribute parameters of the numeric type. The array length is
+     * specified by **size**.
      *
      * @since 12
      */
     const ArkUI_NumberValue* value;
     /**
-     * The size of the number array.
+     * @brief Length of the **value** array, which must be used together with the **value** variable.
      *
      * @since 12
      */
     int32_t size;
     /**
-     * String type, used to store parameters of the string type.
+     * @brief Pointer to the string used to store attribute parameters of the string type.
      *
      * @since 12
      */
     const char* string;
     /**
-     * Object type, used to store parameters of the object type.
+     * @brief Pointer to the object data used to store attribute parameters of the object type.
      *
      * @since 12
      */
@@ -180,25 +194,25 @@ typedef struct {
  */
 typedef struct {
     /**
-     * X coordinate of the rectangular area.
+     * @brief X coordinate of the rectangular area.
      *
      * @since 12
      */
     float x;
     /**
-     * Y coordinate of the rectangular area.
+     * @brief Y coordinate of the rectangular area.
      *
      * @since 12
      */
     float y;
     /**
-     * Width of the rectangular area.
+     * @brief Width of the rectangular area.
      *
      * @since 12
      */
     float width;
     /**
-     * Height of the rectangular area.
+     * @brief Height of the rectangular area.
      *
      * @since 12
      */
@@ -212,13 +226,13 @@ typedef struct {
  */
 typedef struct {
     /**
-     * Width, in px.
+     * @brief Width, in px.
      *
      * @since 12
      */
     int32_t width;
     /**
-     * Height, in px.
+     * @brief Height, in px.
      *
      * @since 12
      */
@@ -232,13 +246,13 @@ typedef struct {
  */
 typedef struct {
     /**
-     * Horizontal coordinate, in px.
+     * @brief Horizontal coordinate, in px.
      *
      * @since 12
      */
     int32_t x;
     /**
-     * Vertical coordinate, in px.
+     * @brief Vertical coordinate, in px.
      *
      * @since 12
      */
