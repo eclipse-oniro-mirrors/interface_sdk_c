@@ -99,23 +99,27 @@ typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphSty
 typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
 
 /**
- * @brief Enumerates vibration effect types.
+ * @brief Enumerates haptic feedback modes, which are used to control the haptic feedback behavior of the text editor
+ * during user interactions (such as long press, drag, and other operations).
  *
  * @since 24
  */
 typedef enum {
     /**
-     * No vibration.
+     * @brief No vibration.
+     *
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
     /**
-     * Vibration.
+     * @brief Vibration.
+     *
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
     /**
-     * System vibration.
+     * @brief System vibration.
+     *
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
@@ -134,27 +138,32 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Text span.
+     * @brief Text span.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT = 0,
     /**
-     * Image span.
+     * @brief Image span.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_IMAGE = 1,
     /**
-     * Mixed span.
+     * @brief Mixed span.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED = 2,
     /**
-     * Custom layout span.
+     * @brief Custom layout span.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER = 3,
     /**
-     * Default span.
+     * @brief Default span.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_DEFAULT = 4
@@ -170,22 +179,26 @@ typedef enum {
  */
 typedef enum {
     /**
-     * The menu is displayed when the component is right-clicked.
+     * @brief The menu is displayed when the component is right-clicked.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_RIGHT_CLICK = 0,
     /**
-     * The menu is displayed when the component is long-pressed.
+     * @brief The menu is displayed when the component is long-pressed.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_LONG_PRESS = 1,
     /**
-     * The menu is displayed when the component is selected.
+     * @brief The menu is displayed when the component is selected.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_SELECT = 2,
     /**
-     * Default response type.
+     * @brief Default response type.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_DEFAULT = 3,
@@ -203,12 +216,14 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Text selection menu.
+     * @brief Text selection menu.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SELECTION_MENU = 0,
     /**
-     * Preview menu.
+     * @brief Preview menu.
+     *
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_PREVIEW_MENU = 1,
