@@ -611,27 +611,27 @@ typedef enum HiDebug_CrashObjType {
  */
 typedef enum OH_HiDebug_ResourceType {
     /**
-     * File descriptor.
+     * @brief File descriptor.
      * @since 24
      */
     OH_RES_TYPE_FD,
     /**
-     * Thread.
+     * @brief Thread.
      * @since 24
      */
     OH_RES_TYPE_THREAD,
     /**
-     * Native memory.
+     * @brief Native memory.
      * @since 24
      */
     OH_RES_TYPE_NATIVE,
     /**
-     * GPU memory.
+     * @brief GPU memory.
      * @since 24
      */
     OH_RES_TYPE_GPU,
     /**
-     * Global handle.
+     * @brief Global handle.
      * @since 24
      */
     OH_RES_TYPE_GLOBAL_HANDLE,

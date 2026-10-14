@@ -595,27 +595,27 @@ typedef enum HiDebug_CrashObjType {
  */
 typedef enum OH_HiDebug_ResourceType {
     /**
-     * 文件描述符
+     * @brief 文件描述符
      * @since 24
      */
     OH_RES_TYPE_FD,
     /**
-     * 线程
+     * @brief 线程
      * @since 24
      */
     OH_RES_TYPE_THREAD,
     /**
-     * Native 内存
+     * @brief Native 内存
      * @since 24
      */
     OH_RES_TYPE_NATIVE,
     /**
-     * GPU 内存
+     * @brief GPU 内存
      * @since 24
      */
     OH_RES_TYPE_GPU,
     /**
-     * 全局句柄
+     * @brief 全局句柄
      * @since 24
      */
     OH_RES_TYPE_GLOBAL_HANDLE,

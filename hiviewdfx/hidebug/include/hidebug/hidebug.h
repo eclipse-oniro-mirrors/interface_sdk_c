@@ -498,7 +498,7 @@ HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *
  * @brief Sets the maximum nesting depth for asynchronous invocations.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param depth [in] Maximum asynchronous nesting depth allowed.
+ * @param depth [in] Maximum allowed asynchronous nesting depth, ranging from 1 to 16.
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
@@ -511,7 +511,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions 
  * @brief Sets the maximum stack depth for each asynchronous task function.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param depth [in] Maximum asynchronous task stack depth.
+ * @param depth [in] Maximum stack depth of asynchronous tasks, ranging from 1 to 256.
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
@@ -525,7 +525,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOption
  * @brief Sets the sampling interval in bytes.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param bytes [in] Sample interval in bytes.
+ * @param bytes [in] Sampling interval, ranging from [384, 4294967295], in bytes.
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
@@ -538,7 +538,7 @@ HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *
  * @brief Sets the statistics interval in seconds.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param seconds [in] Statistics interval in seconds.
+ * @param seconds [in] Statistics interval, ranging from [1, 3600], in seconds.
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
@@ -551,7 +551,7 @@ HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions
  * @brief Sets the maximum backtrace stack depth.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param depth [in] Maximum backtrace stack depth.
+ * @param depth [in] Maximum stack depth, ranging from [1, 30].
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
@@ -564,7 +564,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, 
  * @brief Sets the filter size for allocations.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param size [in] Filter size threshold in bytes.
+ * @param size [in] Filter size threshold, ranging from 1 to 4294967295, in bytes.
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
@@ -577,7 +577,7 @@ HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uin
  * @brief Sets the maximum profiling duration in seconds.
  *
  * @param opts [in] Pointer to the OH_HiDebug_ProfilerOptions structure. It must not be NULL.
- * @param seconds [in] Maximum duration in seconds.
+ * @param seconds [in] Maximum collection duration, ranging from [1, 3600], in seconds.
  * @return Result code.
  *     <ul><li>{@link HIDEBUG_SUCCESS} Success.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts is a null pointer.</li>
