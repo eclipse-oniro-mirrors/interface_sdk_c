@@ -130,6 +130,12 @@ typedef struct napi_strong_ref__* napi_strong_ref;
 typedef struct napi_callsite_info__* napi_callsite_info;
 
 /**
+ * @brief Microtask scope provides a scope to pause the execution of microtasks in the runtime.
+ * @since 26.2.0
+ */
+typedef struct napi_microtask_scope__* napi_microtask_scope;
+
+/**
  * @brief Native strong sendable reference of an sendable ArkTS object.
  *
  * @since 22
@@ -3191,6 +3197,37 @@ NAPI_EXTERN napi_status napi_set_property_with_callsite_info(napi_env env,
  * @since 26.0.1
  */
 NAPI_EXTERN napi_status napi_get_global_handle_count(napi_env env, size_t* count);
+
+/**
+ * @brief Creates a microtask scope in the current ArkTS runtime. Within this scope, microtask execution is paused.
+ * @param env [in] Current running virtual machine context.
+ * @param scope [out] The microtask scope generated.
+ *
+ * @return Returns the function execution status.
+ *         <ul><li>{@link napi_ok } If the function executed successfully.</li>
+ *         <li>{@link napi_invalid_arg } If env or scope is nullptr.</li>
+ *         <li>{@link napi_pending_exception } If there is an uncaught exception.</li></ul>
+ * @since 26.2.0
+ * @note This API must be called before {@link napi_close_microtask_scope}. Each call to this API must be paired
+ *     with a call to {@link napi_close_microtask_scope}.
+ */
+napi_status napi_open_microtask_scope(napi_env env, napi_microtask_scope* scope);
+
+/**
+ * @brief To destroy the microtask scope in current ArkTS runtime. After the scope is destroyed, microtasks will be
+ * triggered to execute immediately.
+ * @param env [in] Current running virtual machine context.
+ * @param scope [in] The microtask scope needs to be recycled.
+ *
+ * @return Returns the function execution status.
+ *         <ul><li>{@link napi_ok } If the function executed successfully.</li>
+ *         <li>{@link napi_invalid_arg } If env or scope is nullptr.</li>
+ *         <li>{@link napi_pending_exception } If there is an uncaught exception.</li></ul>
+ * @since 26.2.0
+ * @note This API must be called after {@link napi_open_microtask_scope}.
+ */
+napi_status napi_close_microtask_scope(napi_env env, napi_microtask_scope scope);
+
 #ifdef __cplusplus
 }
 #endif
