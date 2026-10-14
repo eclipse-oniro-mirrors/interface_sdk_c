@@ -18,9 +18,9 @@
  * @{
  *
  * @brief Defines the shared immutable JSON data object used by the UI perception and control APIs
- * for in-app intelligent agents and UI automation. JSON is adopted as the mainstream structured
- * format for cross-language and cross-process consumption, as an alternative to a large set of
- * field accessors.
+ * for in-app intelligent agents and UI automation data collection scenarios. JSON is adopted as the
+ * mainstream structured format for cross-language and cross-process consumption, as an alternative
+ * to a large set of field accessors.
  *
  * @since 26.2.0
  */
@@ -28,7 +28,19 @@
 /**
  * @file ui_json_wrapper.h
  *
- * @brief Declares the shared JSON data object for the UI perception and control APIs.
+ * @brief Declares the shared JSON data object for APIs such as UI perception and control.
+ *
+ * Errors are reported through the documented return values. errno is not an error-reporting channel
+ * for these APIs; its value after a call is unspecified and must not be used to determine success or failure.
+ *
+ * These functions may be called from any thread, including the UI thread, within the object's
+ * documented lifetime. Read-only queries on the same live object may run concurrently. The caller
+ * must serialize destruction with all uses of that object and its borrowed data. Operations on
+ * independent objects may run concurrently. These functions do not invoke application callbacks;
+ * they may be called from callbacks when the ownership and lifetime requirements are met.
+ * They are not async-signal-safe and must not be called from a signal handler.
+ * Queries read local memory synchronously; creation and destruction also allocate or free memory.
+ * There is no asynchronous completion or cancellation operation, and no maximum allocator latency is guaranteed.
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
@@ -52,7 +64,15 @@ extern "C" {
  * @brief Defines an opaque, immutable JSON data object.
  *
  * The object holds a JSON string. It is used both to carry data delivered by the framework (UI
- * sensing) and to carry commands submitted by the application (UI control).
+ * sensing) and to carry commands injected by the application (UI control).
+ * The JSON object must contain a top-level schemaVersion field for version control and future
+ * compatibility. This requirement applies both to JSON supplied by the application and to JSON
+ * returned or delivered through callbacks by the framework, including results with no collected
+ * content.
+ *
+ * The object is not reference-counted. Copying its pointer creates a borrowed alias, not an
+ * independent object or an additional ownership claim. The owner must destroy the object exactly
+ * once. Destruction invalidates all aliases and data pointers; do not use or destroy them again.
  *
  * @since 26.2.0
  */
@@ -63,27 +83,39 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *
  * The provided string is copied into the object. The caller owns the created object and must
  * release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy} when it is no longer needed.
+ * Copying the returned pointer does not retain the object or create another owner. After destruction,
+ * the pointer and all its aliases are invalid and must not be reused or destroyed again.
  *
- * The provided string should contain a schemaVersion field. If it is absent, or the specified
- * version value is outside the supported range, it is treated as 1, as follows:
+ * The provided string must represent a valid JSON object with a top-level schemaVersion field.
+ * If this field is missing or its value is outside the supported version range, this function
+ * returns {@link ARKUI_ERROR_CODE_PARAM_INVALID}; no default version is used. For example:
  * { "schemaVersion": 1, ... }
  *
  * Note: the data string passed to this function remains owned by the caller. Destroying the JSON
  * wrapper object returned by this API does not release the memory pointed to by data on the
  * caller's behalf.
+ * A parameter error requires correcting the input before retrying. For a size-overflow or allocation
+ * failure, reduce the input size or release resources before retrying; do not retry in a busy loop.
+ * On failure, no object ownership is transferred and a valid output slot contains NULL.
  *
- * @param data [in] Pointer to the JSON string. It must not be null and must remain valid for the
- *     duration of the call. The callee does not retain it. An empty string is valid and corresponds
- *     to a size of 0.
- * @param size [in] Byte length (in bytes) of the JSON string, excluding the terminating null
- *     character. It must equal the actual length of data. If size is inconsistent with the actual
- *     string length, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ * @param data [in] Pointer to the UTF-8 encoded JSON string. It must not be NULL and must remain valid for the
+ *     duration of the call. The callee does not retain it. The string must contain a valid JSON
+ *     object with a supported schemaVersion. An empty string is invalid.
+ *     At least size bytes must be readable. The input need not be terminated by '\0'; the created object
+ *     appends its own terminator. The JSON text must not contain embedded NUL bytes; encode U+0000 as a JSON escape.
+ * @param size [in] Number of bytes to copy from data, excluding any terminating null character.
+ *     The function copies exactly size bytes without checking the actual string length, then
+ *     appends a null terminator to the copy. The value must be greater than 0;
+ *     a size of 0 returns {@link ARKUI_ERROR_CODE_PARAM_INVALID}.
  * @param outOwned [out] Receives the created object on success. The caller owns the returned object
  *     and must release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}. It must not be
- *     null, requires no initialization, and on failure is set to null.
+ *     NULL, requires no initialization, and on failure is set to NULL.
  * @return <ul>
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if data or outOwned is NULL, size is 0, or data
+ *             does not represent a valid JSON object, or schemaVersion is missing or unsupported.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the buffer size including its terminator cannot
+ *             be represented on the current architecture, memory allocation fails, or copying fails.</li>
  *         </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
  * @since 26.2.0
@@ -94,12 +126,16 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
 /**
  * @brief Obtains the JSON string held by the object.
  *
- * The returned string is read-only and null-terminated. It points to memory owned by the JSON
+ * The returned string is read-only and terminated by '\0'. It points to memory owned by the JSON
  * object and remains valid until the object is destroyed. The caller must not modify or free the
- * returned string.
+ * returned string. The JSON object contains a top-level schemaVersion field.
  *
- * @param json [in] The JSON data object. It must not be null.
- * @return The borrowed JSON string, or null if json is null.
+ * @param json [in] The JSON data object. It must not be NULL.
+ *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
+ * @return <ul>
+ *     <li>The borrowed JSON string. The caller must not modify or free it.</li>
+ *     <li>NULL if json is NULL.</li>
+ *     </ul>
  * @since 26.2.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
@@ -107,13 +143,17 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
 /**
  * @brief Obtains the byte length of the JSON string.
  *
- * The returned length excludes the terminating null character. For an empty JSON string, zero is
- * returned.
+ * The returned length excludes the terminating '\0' character and includes the schemaVersion
+ * field in the JSON string.
  *
- * @param json [in] The JSON data object. It must not be null.
+ * A NULL input does not produce a size for an object. Provide a valid live object before retrying;
+ * retrying with the same NULL input cannot succeed. This query does not allocate or release resources.
+ *
+ * @param json [in] The JSON data object. It must not be NULL.
+ *     The object is borrowed and must remain valid for the entire call. The callee does not retain it.
  * @return <ul>
- *     <li>The byte length of the JSON string, excluding the terminating null character.</li>
- *     <li>Returns 0 for an empty JSON string.</li>
+ *     <li>The byte length of the JSON string, excluding the terminating '\0' character.</li>
+ *     <li>0 if json is NULL.</li>
  *     </ul>
  * @since 26.2.0
  */
@@ -122,17 +162,19 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
 /**
  * @brief Destroys a JSON data object and releases its resources.
  *
- * Passing null has no effect. Any pointer returned by
- * {@link OH_ArkUI_NativeModule_UIJsonWrapper_GetData} becomes invalid after this call.
+ * Passing NULL has no effect. Any pointer returned by
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapperGetData} becomes invalid after this call.
  *
  * Note: call this function only on a JSON wrapper object whose ownership you explicitly hold, for
- * example, a wrapper created with {@link OH_ArkUI_NativeModule_UIJsonWrapper_Create}, or a wrapper
+ * example, a wrapper created with {@link OH_ArkUI_NativeModule_UIJsonWrapperCreate}, or a wrapper
  * whose ownership you have explicitly obtained through an ownership transfer function. Do not use
  * this function to release JSON wrapper objects that are constructed and handed out by the system,
  * for example, the object delivered through
  * {@link OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback}.
  *
- * @param json [in] The JSON data object to destroy.
+ * @param json [in] The JSON data object to destroy. NULL is allowed and has no effect.
+ *     The caller must own the object. Destruction invalidates the object and all aliases immediately;
+ *     they must not be used or destroyed again. Borrowed objects must not be passed to this function.
  * @since 26.2.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);

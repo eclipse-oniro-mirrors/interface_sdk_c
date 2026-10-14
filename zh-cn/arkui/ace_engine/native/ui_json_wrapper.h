@@ -17,10 +17,8 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Defines the shared immutable JSON data object used by the UI perception and control APIs
- * for in-app intelligent agents and UI automation. JSON is adopted as the mainstream structured
- * format for cross-language and cross-process consumption, as an alternative to a large set of
- * field accessors.
+ * @brief 定义UI感知与控制接口共用的不可变JSON数据对象，供应用内智能体或UI自动化采集场景使用。
+ * JSON是一种主流的结构化数据格式，可供不同编程语言和进程使用，避免为各个字段提供大量访问接口。
  *
  * @since 26.2.0
  */
@@ -28,7 +26,16 @@
 /**
  * @file ui_json_wrapper.h
  *
- * @brief Declares the shared JSON data object for the UI perception and control APIs.
+ * @brief 声明UI感知与控制等接口共用的JSON数据对象。
+ *
+ * 错误通过文档中规定的返回值报告。这些接口不使用errno传递错误；
+ * 调用后的errno值未定义，不得用它判断调用是否成功。
+ *
+ * 在满足对象生命周期要求的前提下，这些函数可在任意线程（包括UI线程）调用。
+ * 对同一个有效对象的只读查询可并发执行，调用方必须保证销毁操作不与对象及其借用数据的任何使用并发。
+ * 对独立对象的操作可并发执行。这些函数不触发应用回调；满足所有权和生命周期要求时，可在回调中调用。
+ * 这些函数不具备异步信号安全性，不得在信号处理函数中调用。
+ * 查询同步读取本地内存，创建和销毁还会分配或释放内存，不提供异步完成或取消操作，也不保证内存分配器的最大耗时。
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_json_wrapper.h>
@@ -49,42 +56,55 @@ extern "C" {
 #endif
 
 /**
- * @brief 定义一个不透明、不可变的JSON数据对象。
+ * @brief 定义内部结构不对外公开的不可变JSON数据对象。
  *
- * 对象拥有一个UTF-8 JSON字符串以及该字符串的模式版本
- * JSON，它既用于框架传递的数据（UI感知），也用于
- * 应用程序（UI控件）提交的命令。
+ * 该对象保存一个JSON字符串，既用于承载框架传递的数据（UI感知），也用于承载应用注入的命令（UI控制）。
+ * JSON对象顶层必须包含schemaVersion字段，用于版本控制和后续兼容性维护。
+ * 应用传入的JSON，以及框架通过接口返回或回调传递的JSON，均必须满足此要求；
+ * 即使没有采集内容，返回的JSON也必须携带该字段。
+ *
+ * 该对象不使用引用计数。复制对象指针仅产生借用别名，不会创建独立对象或增加所有权。
+ * 对象的所有者必须且只能销毁该对象一次。销毁后，所有别名及数据指针均失效，不得再次使用或销毁。
  *
  * @since 26.2.0
  */
 typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonWrapper;
 
 /**
- * @brief 从调用方提供的JSON字符串创建JSON数据对象。
+ * @brief 根据调用方提供的JSON字符串创建JSON数据对象。
  *
- * 将提供的字符串复制到对象中。调用方拥有创建的对象，必须
- * 当不再需要它时，使用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放它。
+ * 传入的字符串会被复制到对象中。调用方拥有所创建对象的所有权，
+ * 并且必须在不再使用时调用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
+ * 复制返回的指针不会延长对象生命周期，也不会产生新的所有者。
+ * 对象销毁后，该指针及其所有别名均失效，不得再次使用或销毁。
  *
- * 提供的字符串应包含schemaVersion字段。如果不存在，或指定的
- * 版本值超出支持的范围，它被视为1，如下所示：
+ * 传入的字符串必须表示有效的JSON对象，且对象顶层必须包含schemaVersion字段。
+ * 如果缺少该字段，或其值超出支持的版本范围，本函数返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}，
+ * 不使用默认版本。示例如下：
  * { "schemaVersion": 1, ... }
  *
- * 注意：传递给此函数的数据字符串仍由调用方拥有。销毁JSON
- * 此接口返回的包装器对象不会释放数据指向的内存
- * 调用者的代表。
+ * 注意：传入的data字符串仍归调用方所有。销毁本接口返回的JSON封装对象，
+ * 不会代替调用方释放data所指向的内存。
+ * 参数错误需要修正输入后再重试。大小溢出或内存分配失败时，应减小输入或释放资源后再重试，避免忙循环。
+ * 失败时不会转移任何对象的所有权，有效的输出参数所指向的对象指针为NULL。
  *
- * @param data [in] 指向JSON字符串的指针。它不能为空，并且必须对
- * 呼叫的持续时间。被调用方不保留。空字符串是有效的，对应
- * 的大小为0。
- * @param size [in] JSON字符串的字节长度，单位为字节，不包括终止null。
- * 字符，必须等于数据的实际长度。如果大小与实际不一致
- * 返回字符串长度{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @param outOwned [out] 成功时接收创建的对象。调用方拥有返回的对象
- * 并且必须使用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}来释放它。一定不是这样的
- * null，不需要初始化，失败时设置为null。
+ * @param data [in] 指向UTF-8编码JSON字符串的指针。不能为NULL，且必须在整个调用期间保持有效。
+ *     被调用方不会保留该指针。字符串必须包含有效的JSON对象，且schemaVersion必须为受支持的版本。
+ *     空字符串无效。
+ *     至少size个字节必须可读。输入无需以空字符结尾，创建的对象会追加自己的结束空字符。
+ *     JSON文本中不得包含嵌入的空字节，U+0000应使用JSON转义表示。
+ * @param size [in] 从data复制的字节数，不包括结尾的空字符。
+ *     本函数按size复制字节，不校验实际字符串长度，并在副本末尾追加空字符。
+ *     size必须大于0，传入0时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param outOwned [out] 用于接收创建成功的对象的输出参数。调用方拥有返回对象的所有权，
+ *     必须调用{@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}释放该对象。
+ *     outOwned不能为NULL，其指向的对象指针无需初始化；创建失败时，该对象指针被设置为NULL。
  * @return <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 如果操作成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 如果参数无效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} data或outOwned为NULL、size为0、data不表示有效的JSON对象，
+ *         或schemaVersion字段缺失、版本不受支持。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 包含结束空字符的缓冲区大小在当前架构上无法表示，
+ *         或内存分配、数据复制失败。</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
  * @since 26.2.0
@@ -93,14 +113,17 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
     OH_ArkUI_NativeModule_UIJsonWrapper **outOwned);
 
 /**
- * @brief 获取对象持有的JSON字符串。
+ * @brief 获取对象保存的JSON字符串。
  *
- * 返回的字符串是只读的，并且以null终止。它指向JSON拥有的内存
- * 对象，并保持有效，直到对象被销毁。调用者不得修改或释放
- * 返回的字符串。
+ * 返回的字符串为只读字符串，以空字符结尾。字符串所在的内存归JSON对象所有，在该对象销毁前一直有效。
+ * 调用方不得修改或释放返回的字符串。JSON对象顶层包含schemaVersion字段。
  *
- * @param json [in] JSON数据对象。不能为空。
- * @return 借用的JSON字符串，如果json为null，则为null。
+ * @param json [in] JSON数据对象，不能为NULL。
+ *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
+ * @return <ul>
+ *     <li>借用的JSON字符串指针，调用方不得修改或释放该指针。</li>
+ *     <li>json为NULL时返回NULL。</li>
+ *     </ul>
  * @since 26.2.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
@@ -108,13 +131,16 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
 /**
  * @brief 获取JSON字符串的字节长度。
  *
- * 返回的长度不包括终止空字符。对于一个空的JSON字符串，零是
- * 返回。
+ * 返回的长度不包含末尾的空字符，包含JSON字符串中schemaVersion字段所占的字节。
  *
- * @param json [in] JSON数据对象。不能为空。
+ * 传入NULL时未获取到对象的长度。重试前应提供有效且尚未销毁的对象，使用相同NULL参数重试无法成功。
+ * 本查询不分配或释放资源。
+ *
+ * @param json [in] JSON数据对象，不能为NULL。
+ *     该对象为借用对象，必须在整个调用期间保持有效，被调用方不会保留该对象。
  * @return <ul>
- *     <li>JSON字符串的字节长度，不包括终止空字符。</li>
- *     <li>对于空的JSON字符串返回0。</li>
+ *     <li>JSON字符串的字节长度，不包含末尾的空字符。</li>
+ *     <li>json为NULL时返回0。</li>
  *     </ul>
  * @since 26.2.0
  */
@@ -123,35 +149,36 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
 /**
  * @brief 销毁JSON数据对象并释放其资源。
  *
- * 传递null没有任何效果。返回的任何指针
- * {@link OH_ArkUI_NativeModule_UIJsonWrapper_GetData}在此次调用后失效。
+ * 传入NULL时不执行任何操作。调用本函数后，
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapperGetData}返回的所有指针均失效。
  *
- * 注意：仅在您显式持有其所有权的JSON包装器对象上调用此函数，对于
- * 例如，使用{@link OH_ArkUI_NativeModule_UIJsonWrapper_Create}创建的包装器，或者包装器
- * 你通过所有权转移函数明确地获得了所有权。不使用
- * 该函数用于释放系统构造并传递出去的JSON包装器对象。
- * 例如，通过传递的对象
- * {@link OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback}。
+ * 注意：仅可对调用方明确拥有所有权的JSON封装对象调用本函数，
+ * 例如通过{@link OH_ArkUI_NativeModule_UIJsonWrapperCreate}创建的对象，
+ * 或通过所有权转移函数明确取得所有权的对象。
+ * 不得使用本函数释放由系统构造并传出的JSON封装对象，
+ * 例如通过{@link OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback}传入的对象。
  *
- * @param json [in] 要销毁的JSON数据对象。
+ * @param json [in] 要销毁的JSON数据对象，可以为NULL；传入NULL时不执行任何操作。
+ *     调用方必须拥有该对象的所有权。销毁后，对象及其所有别名立即失效，不得再次使用或销毁。
+ *     不得将借用对象传给本函数。
  * @since 26.2.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
 /**
- * @brief JSON输出格式枚举类型。
+ * @brief 定义JSON输出格式的枚举类型。
  *
  * @since 26.2.0
  */
 typedef enum {
     /**
-     * @brief 生成规范的JSON，没有不必要的空白。
+     * @brief 输出不含多余空白字符的规范JSON。
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_JSON_COMPACT = 0,
     /**
-     * @brief 生成带有双空格缩进和换行符的JSON。
+     * @brief 输出带有两个空格缩进和换行符的JSON。
      *
      * @since 26.2.0
      */
