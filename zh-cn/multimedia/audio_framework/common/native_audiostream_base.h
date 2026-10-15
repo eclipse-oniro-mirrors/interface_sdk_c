@@ -410,7 +410,7 @@ typedef enum {
 } OH_AudioStream_State;
 
 /**
- * @brief 定义音频打断强制类型。
+ * @brief 定义音频打断是否由系统强制执行。
  * <br>当用户监听到音频打断时，将获取此信息。
  * <br>此类型表示音频打断提示{@link OH_AudioInterrupt_Hint}是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过{@link OH_AudioInterrupt_Hint}获取。
  * <br>其中，AUDIOSTREAM_INTERRUPT_HINT_RESUME对应的forceType一定为AUDIOSTREAM_INTERRUPT_SHARE，即恢复操作无法由系统强制执行，需应用自行触发。
