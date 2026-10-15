@@ -101,7 +101,7 @@ typedef struct Region {
 }Region;
 /**
  * @brief Describes a rectangle with int32_t coordinates and dimensions.
- * 
+ *
  * Used by {@link SET_SCREEN_INFO} and {@link GET_SCREEN_INFO} operation codes
  * of {@link OH_NativeWindow_NativeWindowHandleOpt} to carry per-frame offset/size
  * and original-in-screen offset/size.
