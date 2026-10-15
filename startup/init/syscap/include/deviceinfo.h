@@ -344,6 +344,24 @@ int OH_GetDistributionOSApiVersion(void);
  */
 const char *OH_GetDistributionOSReleaseType(void);
 
+/**
+ * @brief Obtains the Disk Serial Number.
+ * 
+ * @param diskSn [out] Disk Serial Number.
+ * @return **0**:Success.**201**:Missing permissions.
+ * @permission ohos.permission.ACCESS_DISK_PHY_INFO
+ * @since 26.2.0
+ */
+int32_t OH_GetDiskSN(void);
+ 
+/**
+ * @brief Obtains the Open device identifier.
+ * 
+ * @return Return the Open device identifier.
+ * @since 26.2.0
+ */
+const char *OH_GetOdid(void);
+
 #ifdef __cplusplus
 #if __cplusplus
 }
