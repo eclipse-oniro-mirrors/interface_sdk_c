@@ -343,7 +343,7 @@ int32_t OH_GetDiskSN(void);
  
 /**
  * @brief Obtains the Open device identifier.
- * 
+ *
  * @return Return the Open device identifier.
  * @since 26.2.0
  */
