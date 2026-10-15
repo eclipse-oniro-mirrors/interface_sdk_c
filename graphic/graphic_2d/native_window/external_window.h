@@ -323,7 +323,7 @@ typedef enum NativeWindowOperation {
      * [in] const OH_NativeWindow_ScreenInfoRect *currentFrameRect,
      * [in] const OH_NativeWindow_ScreenInfoRect *originalRect,
      * [in] float angle (range 0.0f to 360.0f).
-     * 
+     *
      * Note: the variadic entrypoint always returns GSERROR_OK to the caller;
      * IPC errors are written into the reply parcel by the consumer-side stub
      * but are NOT propagated back through the variadic handler.
@@ -336,7 +336,7 @@ typedef enum NativeWindowOperation {
      * [out] OH_NativeWindow_ScreenInfoRect *currentFrameRect,
      * [out] OH_NativeWindow_ScreenInfoRect *originalRect,
      * [out] float *angle.
-     * 
+     *
      * Note: same variadic-return limitation as SET_SCREEN_INFO applies.
      * @since 26.2.0
      */
