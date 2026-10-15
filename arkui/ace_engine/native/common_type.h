@@ -60,7 +60,17 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle;
 typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
 
 /**
- * @brief Sets the size constraints of a component during component layout.
+ * @brief Defines the layout constraint for limiting the size range during component layout.
+ * It supports setting minimum and maximum sizes, with the values being non-negative floating-point numbers.
+ * During component layout, the system limits the final size range of the component based on the constraint values,
+ * ensuring that the layout result meets the constraint conditions.
+ * This is applicable to controlling the size range of child components in custom layout containers,
+ * including the height of image cards in waterfall layouts,
+ * cell sizes in grid layouts, and scenario where upper and lower size need to be imposed on components,
+ * for example, limiting the maximum width of an image display component to prevent stretching,
+ * or restricting the minimum size in responsive layouts to ensure readability.
+ * It prevents component sizes from exceeding the expected range, enables more precise layout control,
+ * improves layout predictability and stability, and enhances UI controllability.
  *
  * @since 12
  */
@@ -240,19 +250,21 @@ typedef struct {
 } ArkUI_IntSize;
 
 /**
- * @brief Describes the position of a component.
+ * @brief Defines the offset of the current component relative to its parent component.
  *
  * @since 12
  */
 typedef struct {
     /**
-     * @brief Horizontal coordinate, in px.
+     * @brief Horizontal offset, in px.
+     * A positive value means the component moves right, and a negative value means it moves left.
      *
      * @since 12
      */
     int32_t x;
     /**
-     * @brief Vertical coordinate, in px.
+     * @brief Vertical offset, in px.
+     * A positive value means the component moves down, and a negative value means it moves up.
      *
      * @since 12
      */
