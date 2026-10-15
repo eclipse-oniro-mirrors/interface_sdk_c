@@ -27,7 +27,7 @@
 /**
  * @file drawing_mask_filter.h
  *
- * @brief 声明与绘图模块中的对象相关的函数。
+ * @brief 声明与绘图模块中的蒙版滤波器对象相关的函数。
  * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
@@ -86,7 +86,7 @@ typedef enum {
 OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurType, float sigma, bool respectCTM);
 
 /**
- * @brief 销毁蒙版滤波器对象，并收回该对象占用的内存。
+ * @brief 销毁蒙版滤波器对象，并回收该对象占用的内存。
  *
  * @param maskFilter 表示指向蒙版滤波器对象的指针。
  * @since 11
