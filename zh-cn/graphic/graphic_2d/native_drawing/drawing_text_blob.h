@@ -278,7 +278,7 @@ void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuild
  * 返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示textBlobs为空或者count为0。
  * @since 26.0.1
  */
-OH_Drawing_ErrorCode OH_Drawing_TextBlobsArrayDestroy(OH_Drawing_TextBlob** textBlobs, uint32_t count);
+OH_Drawing_ErrorCode OH_Drawing_TextBlobsArrayDestroy(OH_Drawing_TextBlob **textBlobs, uint32_t count);
 
 #ifdef __cplusplus
 }
