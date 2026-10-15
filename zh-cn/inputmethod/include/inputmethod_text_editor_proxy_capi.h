@@ -104,14 +104,15 @@ extern "C" {
  *     <br>
  *     <br>生命周期管理：
  *     <br>- 创建方式：通过[OH_TextEditorProxy_Create](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_create)函数创建，返回一个新的InputMethod_TextEditorProxy实例指针。创建失败时返回NULL，可能原因为内存
+ *md#oh_texteditorproxy_create)函数创建，返回一个新的InputMethod_TextEditorProxy实例指针。创建失败时返回NULL，可能原因为内存
  * 不足。
  *     <br>- 销毁方式：通过[OH_TextEditorProxy_Destroy](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_destroy)函数销毁，传入要销毁的实例指针。销毁后指针不可再使用，建议将指针设置为NULL避免误用。
+ *md#oh_texteditorproxy_destroy)函数销毁，传入要销毁的实例指针。销毁后指针不可再使用，建议将指针设置为NULL避免误用。
  *     <br>- 配对关系：OH_TextEditorProxy_Create与OH_TextEditorProxy_Destroy必须配对使用，创建的对象必须最终通过Destroy释
  * 放，否则会导致内存泄漏。同一个TextEditorProxy实例只能被销毁一次，不可重复销毁。
  *     <br>- 使用时机：创建TextEditorProxy后，须先通过Set*Func接口注册回调函数，再通过[OH_InputMethodController_Attach]
- * (capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)完成绑定注册。Attach之后不建议再修改回调函数设
+ *(capi-inputmethod-controller-capi-h.
+ *md#oh_inputmethodcontroller_attach)完成绑定注册。Attach之后不建议再修改回调函数设
  * 置。
  *     <br>
  *     <br>回调机制说明：
@@ -121,10 +122,11 @@ extern "C" {
  *     <br>- 回调函数中指针的临时性：回调函数中接收到的指针参数（如text、privateCommand等）仅在回调执行期间有效，回调返回后该内
  * 存将被释放，不可再访问。开发者应在回调内部完成必要的数据拷贝或处理，不得在回调外部继续使用这些指针。
  *     <br>- GetTextConfigFunc不受SetCallbackInMainThread影响：[OH_TextEditorProxy_GetTextConfigFunc]
- * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)的执行线程由调用
+ *(capi-inputmethod-text-editor-proxy-capi-h.
+ *md#oh_texteditorproxy_gettextconfigfunc)的执行线程由调用
  * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)的线程决定，不
  * 受[OH_TextEditorProxy_SetCallbackInMainThread](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setcallbackinmainthread)的影响。若需GetTextConfigFunc也在主线程执行，需确保Attach在主线程调用。
+ *md#oh_texteditorproxy_setcallbackinmainthread)的影响。若需GetTextConfigFunc也在主线程执行，需确保Attach在主线程调用。
  *     <br>
  *     <br>使用注意事项：
  *     <br>- 所有Set*Func接口必须在Attach之前调用，Attach后设置的回调函数将不会被输入法调用。
@@ -132,92 +134,8 @@ extern "C" {
  *     <br>- 建议至少注册GetTextConfigFunc和InsertTextFunc两个核心回调，否则输入法可能无法正常工作。
  *     <br>- 非线程安全，不建议在多线程环境下同时操作同一个TextEditorProxy对象。可通过
  * [OH_TextEditorProxy_SetCallbackInMainThread](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setcallbackinmainthread)将回调切换到主线程执行以避免多线程并发问题。
+ *md#oh_texteditorproxy_setcallbackinmainthread)将回调切换到主线程执行以避免多线程并发问题。
  *     <br>- 此对象为不透明类型，不可直接访问内部成员或进行内存操作。
- *     <br>
- *     <br>相关函数：
- *     <br>
- *     <br>- 创建/销毁函数<br>
- * | 函数 | 描述 |
- * | -- | -- |
- * | [OH_TextEditorProxy_Create](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_create) | 创建
- * 一个新的InputMethod_TextEditorProxy实例。 |
- * | [OH_TextEditorProxy_Destroy](capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_destroy) | 销
- * 毁一个InputMethod_TextEditorProxy实例。 |
- *     <br>
- *     <br>- 回调设置函数（Set*Func，须在Attach前调用）<br>
- * | 函数 | 描述 |
- * | -- | -- |
- * | [OH_TextEditorProxy_SetGetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setgettextconfigfunc) | 设置GetTextConfigFunc回调。 |
- * | [OH_TextEditorProxy_SetInsertTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setinserttextfunc) | 设置InsertTextFunc回调。 |
- * | [OH_TextEditorProxy_SetDeleteForwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setdeleteforwardfunc) | 设置DeleteForwardFunc回调。 |
- * | [OH_TextEditorProxy_SetDeleteBackwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setdeletebackwardfunc) | 设置DeleteBackwardFunc回调。 |
- * | [OH_TextEditorProxy_SetSendKeyboardStatusFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setsendkeyboardstatusfunc) | 设置SendKeyboardStatusFunc回调。 |
- * | [OH_TextEditorProxy_SetSendEnterKeyFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setsendenterkeyfunc) | 设置SendEnterKeyFunc回调。 |
- * | [OH_TextEditorProxy_SetMoveCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setmovecursorfunc) | 设置MoveCursorFunc回调。 |
- * | [OH_TextEditorProxy_SetHandleSetSelectionFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_sethandlesetselectionfunc) | 设置HandleSetSelectionFunc回调。 |
- * | [OH_TextEditorProxy_SetHandleExtendActionFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_sethandleextendactionfunc) | 设置HandleExtendActionFunc回调。 |
- * | [OH_TextEditorProxy_SetGetLeftTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setgetlefttextofcursorfunc) | 设置GetLeftTextOfCursorFunc回调。 |
- * | [OH_TextEditorProxy_SetGetRightTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setgetrighttextofcursorfunc) | 设置GetRightTextOfCursorFunc回调。 |
- * | [OH_TextEditorProxy_SetGetTextIndexAtCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setgettextindexatcursorfunc) | 设置GetTextIndexAtCursorFunc回调。 |
- * | [OH_TextEditorProxy_SetReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setreceiveprivatecommandfunc) | 设置ReceivePrivateCommandFunc回调。 |
- * | [OH_TextEditorProxy_SetSetPreviewTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setsetpreviewtextfunc) | 设置SetPreviewTextFunc回调。 |
- * | [OH_TextEditorProxy_SetFinishTextPreviewFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setfinishtextpreviewfunc) | 设置FinishTextPreviewFunc回调。 |
- *     <br>
- *     <br>- 回调获取函数（Get*Func）<br>
- * | 函数 | 描述 |
- * | -- | -- |
- * | [OH_TextEditorProxy_GetGetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getgettextconfigfunc) | 获取已注册的GetTextConfigFunc回调。 |
- * | [OH_TextEditorProxy_GetInsertTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getinserttextfunc) | 获取已注册的InsertTextFunc回调。 |
- * | [OH_TextEditorProxy_GetDeleteForwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getdeleteforwardfunc) | 获取已注册的DeleteForwardFunc回调。 |
- * | [OH_TextEditorProxy_GetDeleteBackwardFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getdeletebackwardfunc) | 获取已注册的DeleteBackwardFunc回调。 |
- * | [OH_TextEditorProxy_GetSendKeyboardStatusFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getsendkeyboardstatusfunc) | 获取已注册的SendKeyboardStatusFunc回调。 |
- * | [OH_TextEditorProxy_GetSendEnterKeyFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getsendenterkeyfunc) | 获取已注册的SendEnterKeyFunc回调。 |
- * | [OH_TextEditorProxy_GetMoveCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getmovecursorfunc) | 获取已注册的MoveCursorFunc回调。 |
- * | [OH_TextEditorProxy_GetHandleSetSelectionFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_gethandlesetselectionfunc) | 获取已注册的HandleSetSelectionFunc回调。 |
- * | [OH_TextEditorProxy_GetHandleExtendActionFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_gethandleextendactionfunc) | 获取已注册的HandleExtendActionFunc回调。 |
- * | [OH_TextEditorProxy_GetGetLeftTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getgetlefttextofcursorfunc) | 获取已注册的GetLeftTextOfCursorFunc回调。 |
- * | [OH_TextEditorProxy_GetGetRightTextOfCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getgetrighttextofcursorfunc) | 获取已注册的GetRightTextOfCursorFunc回调。 |
- * | [OH_TextEditorProxy_GetGetTextIndexAtCursorFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getgettextindexatcursorfunc) | 获取已注册的GetTextIndexAtCursorFunc回调。 |
- * | [OH_TextEditorProxy_GetReceivePrivateCommandFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getreceiveprivatecommandfunc) | 获取已注册的ReceivePrivateCommandFunc回调。 |
- * | [OH_TextEditorProxy_GetSetPreviewTextFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getsetpreviewtextfunc) | 获取已注册的SetPreviewTextFunc回调。 |
- * | [OH_TextEditorProxy_GetFinishTextPreviewFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_getfinishtextpreviewfunc) | 获取已注册的FinishTextPreviewFunc回调。 |
- *     <br>
- *     <br>- 线程配置函数：<br>
- * | 函数 | 描述 |
- * | -- | -- |
- * | [OH_TextEditorProxy_SetCallbackInMainThread](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_setcallbackinmainthread) | 配置回调函数的执行线程策略。 |
  *     <br>
  *     <br>关联关系：
  *     <br>
@@ -243,7 +161,7 @@ typedef struct InputMethod_TextEditorProxy InputMethod_TextEditorProxy;
  *     <br>
  *     <br>前置条件：须通过[OH_TextEditorProxy_SetGetTextConfigFunc](#oh_texteditorproxy_setgettextconfigfunc)将此回调设置
  * 到TextEditorProxy中，并通过[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach)完成注册。此回调的执行线程由调用Attach的线程决定，不受
+ *md#oh_inputmethodcontroller_attach)完成注册。此回调的执行线程由调用Attach的线程决定，不受
  * [OH_TextEditorProxy_SetCallbackInMainThread](#oh_texteditorproxy_setcallbackinmainthread)影响。
  *
  * @param textEditorProxy 输入指针，指向当前被回调的{@link InputMethod_TextEditorProxy}实例。用于标识触发回调的代理对象。
@@ -401,7 +319,7 @@ typedef void (*OH_TextEditorProxy_HandleExtendActionFunc)(
  *     <br>使用后效果：回调返回后，输入法应用将读取text和length中的数据用于上下文分析。
  *     <br>
  *     <br>前置条件：须通过[OH_TextEditorProxy_SetGetLeftTextOfCursorFunc]
- * (#oh_texteditorproxy_setgetlefttextofcursorfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
+ *(#oh_texteditorproxy_setgetlefttextofcursorfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
  *
  * @param textEditorProxy 输入指针，指向当前被回调的TextEditorProxy实例。
  * @param number 输入参数，要获取的字符数量（单位：字符个数）。取值范围：大于0。取值原则：若number超过光标左侧已有文本长度，应返
@@ -423,7 +341,7 @@ typedef void (*OH_TextEditorProxy_GetLeftTextOfCursorFunc)(
  *     <br>使用后效果：回调返回后，输入法应用将读取text和length中的数据用于上下文分析。
  *     <br>
  *     <br>前置条件：须通过[OH_TextEditorProxy_SetGetRightTextOfCursorFunc]
- * (#oh_texteditorproxy_setgetrighttextofcursorfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
+ *(#oh_texteditorproxy_setgetrighttextofcursorfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
  *
  * @param textEditorProxy 输入指针，指向当前被回调的TextEditorProxy实例。
  * @param number 输入参数，要获取的字符数量（单位：字符个数）。取值范围：大于0。取值原则：若number超过光标右侧剩余文本长度，应返
@@ -444,7 +362,7 @@ typedef void (*OH_TextEditorProxy_GetRightTextOfCursorFunc)(
  *     <br>使用后效果：回调返回后，输入法应用将读取返回的索引值用于定位上下文。
  *     <br>
  *     <br>前置条件：须通过[OH_TextEditorProxy_SetGetTextIndexAtCursorFunc]
- * (#oh_texteditorproxy_setgettextindexatcursorfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
+ *(#oh_texteditorproxy_setgettextindexatcursorfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
  *
  * @param textEditorProxy 输入指针，指向当前被回调的TextEditorProxy实例。
  * @return 返回光标在文本内容中的字符索引位置，索引从0开始计数（单位：字符偏移量）。取值范围：大于等于0且小于文本总长度。
@@ -455,12 +373,12 @@ typedef int32_t (*OH_TextEditorProxy_GetTextIndexAtCursorFunc)(InputMethod_TextE
  * @brief 输入法应用发送私有数据命令时触发的回调函数。开发者需实现此函数，在函数中处理输入法应用发送的私有命令数据。
  *     <br>
  *     <br>使用场景：当输入法应用通过[OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.
- * md#oh_inputmethodproxy_sendprivatecommand)向编辑框发送私有命令时，系统将自动调用此回调。
+ *md#oh_inputmethodproxy_sendprivatecommand)向编辑框发送私有命令时，系统将自动调用此回调。
  *     <br>
  *     <br>使用后效果：回调返回后，输入法应用将根据返回值判断命令是否被成功处理。
  *     <br>
  *     <br>前置条件：须通过[OH_TextEditorProxy_SetReceivePrivateCommandFunc]
- * (#oh_texteditorproxy_setreceiveprivatecommandfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
+ *(#oh_texteditorproxy_setreceiveprivatecommandfunc)将此回调设置到TextEditorProxy中，并通过Attach完成注册。
  *
  * @param textEditorProxy 输入指针，指向当前被回调的TextEditorProxy实例。
  * @param privateCommand 输入指针，私有数据命令数组。此指针仅在回调执行期间有效，回调返回后该内存将被释放，不可再访问。开发者应在
