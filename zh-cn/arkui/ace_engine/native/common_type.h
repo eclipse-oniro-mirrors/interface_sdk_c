@@ -206,7 +206,7 @@ typedef struct {
 } ArkUI_Rect;
 
 /**
- * @brief 定义组件宽高。
+ * @brief 尺寸类型，用于描述组件的宽高。
  *
  * @since 12
  */
@@ -226,19 +226,19 @@ typedef struct {
 } ArkUI_IntSize;
 
 /**
- * @brief 定义组件位置。
+ * @brief 偏移量，用于描述当前组件相对于父组件的位置。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * 水平坐标，单位为px。
+     * 水平方向的偏移量，单位为px。x为正数时组件向右偏移，为负数时向左偏移。
      *
      * @since 12
      */
     int32_t x;
     /**
-     * 垂直坐标，单位为px。
+     * 竖直方向的偏移量，单位为px。y为正数时组件向下偏移，为负数时向上偏移。
      *
      * @since 12
      */

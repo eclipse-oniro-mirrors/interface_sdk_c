@@ -1039,16 +1039,16 @@ typedef enum {
 } ArkUI_RouterPageState;
 
 /**
- * @brief defines the enumerated value of the extended security zone.
+ * @brief 定义扩展安全区域的枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** The default security zone includes the status bar and navigation bar. */
+    /** 默认安全区域，包括状态栏和导航栏。 */
     ARKUI_SAFE_AREA_TYPE_SYSTEM = 1,
-    /** Non-secure areas of the device, such as bangs or hole holes. */
+    /** 设备的非安全区域，如刘海屏或挖孔屏。 */
     ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 << 1,
-    /** Soft keyboard area. */
+    /** 软键盘区域。 */
     ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 << 2,
 } ArkUI_SafeAreaType;
 
@@ -1196,152 +1196,151 @@ typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
 typedef struct ArkUI_SelectionOptions ArkUI_SelectionOptions;
 
 /**
-* @brief Creates a size constraint.
+* @brief 创建一个尺寸约束。
 *
 * @since 12
 */
 ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create();
 
 /**
-* @brief Creates a deep copy of a size constraint.
+* @brief 创建一个尺寸约束的深拷贝。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the pointer to the new size constraint.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回指向新尺寸约束的指针。
 * @since 12
 */
 ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Destroys the pointer to a size constraint.
+* @brief 销毁指向尺寸约束的指针。
 *
-* @param Constraint Indicates the pointer to the size constraint.
+* @param Constraint 表示指向尺寸约束的指针。
 * @since 12
 */
 void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the maximum width for a size constraint, in px.
+* @brief 获取尺寸约束的最大宽度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the maximum width.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最大宽度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the minimum width for a size constraint, in px.
+* @brief 获取尺寸约束的最小宽度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the minimum width.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最小宽度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMinWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the maximum height for a size constraint, in px.
+* @brief 获取尺寸约束的最大高度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the maximum height.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最大高度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the minimum height for a size constraint, in px.
+* @brief 获取尺寸约束的最小高度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the minimum height.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最小高度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMinHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the width percentage reference for a size constraint, in px.
+* @brief 获取尺寸约束的宽度百分比基准，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the width percentage reference.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回宽度百分比基准。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the height percentage reference for a size constraint, in px.
+* @brief 获取尺寸约束的高度百分比基准，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the height percentage reference.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回高度百分比基准。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Sets the maximum width.
+* @brief 设置最大宽度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the maximum width, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最大宽度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMaxWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the minimum width.
+* @brief 设置最小宽度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the minimum width, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最小宽度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMinWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the maximum height.
+* @brief 设置最大高度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the maximum height, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最大高度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMaxHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the minimum height.
+* @brief 设置最小高度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the minimum height, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最小高度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMinHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the width percentage reference.
+* @brief 设置宽度百分比基准。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the width percentage reference, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示宽度百分比基准，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the height percentage reference.
+* @brief 设置高度百分比基准。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the height percentage reference, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示高度百分比基准，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Obtains the pointer to a canvas for drawing, which can be converted into the <b>OH_Drawing_Canvas</b> pointer
-* in the <b>Drawing</b> module.
+* @brief 获取用于绘制的画布指针，该指针可以转换为<b>Drawing</b>模块中的<b>OH_Drawing_Canvas</b>指针。
 *
-* @param context Indicates the pointer to the drawing context.
-* @return Returns the pointer to the canvas for drawing.
+* @param context 表示指向绘制上下文的指针。
+* @return 返回指向绘制画布的指针。
 * @since 12
 */
 void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context);
 
 /**
-* @brief Obtains the size of a drawing area.
+* @brief 获取绘制区域的大小。
 *
-* @param context Indicates the pointer to the drawing context.
-* @return Returns the size of the drawing area.
+* @param context 表示指向绘制上下文的指针。
+* @return 返回绘制区域的大小。
 * @since 12
 */
 ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context);
