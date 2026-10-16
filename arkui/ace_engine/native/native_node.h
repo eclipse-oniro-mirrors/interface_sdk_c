@@ -215,6 +215,7 @@ typedef enum {
      * <li>.value[0].f32: Width, in vp. Value range: [0, +∞). When an invalid value is set, the default value is used
      * for display or the component size is abnormal.</li>
      * </ul>
+     * 
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
      * <li>.value[0].f32: Width, in vp.</li>
@@ -233,6 +234,7 @@ typedef enum {
      * <li>.value[0].f32: Height, in vp. Value range: [0, +∞). When an invalid value is set, the default value is
      * displayed or the component size is abnormal. </li>
      * </ul>
+     * 
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
      * <li>.value[0].f32: Height, in vp.</li>
