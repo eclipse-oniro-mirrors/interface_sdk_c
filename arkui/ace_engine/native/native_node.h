@@ -12007,7 +12007,7 @@ typedef enum {
     NODE_LIST_DIVIDER = 1003009,
 
     /**
-     * @brief Scrolls to the item with the specified index in the specified {@link list item group}. When **smooth** is
+     * @brief Scrolls to the item with the specified index in the specified {@link ListItemGroup}. When **smooth** is
      * set to **true**, all passed items are loaded and counted in layout calculation. This may result in performance
      * issues if a large number of items are involved.
      * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
