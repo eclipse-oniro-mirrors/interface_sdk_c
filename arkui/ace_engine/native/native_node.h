@@ -10601,9 +10601,10 @@ typedef enum {
     NODE_LIST_CACHED_COUNT,
 
     /**
-     * @brief Scroll to the specified index.
-     * When activating the smooth animation, all items passed through will be loaded and layout calculated, which can
-     * lead to performance issues when loading a large number of items.
+     * @brief Scrolls to the item with the specified index. When **smooth** is set to **true**, all passed items are
+     * loaded and counted in layout calculation. This may result in performance issues if a large number of items are
+     * involved.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
@@ -10614,6 +10615,9 @@ typedef enum {
      * {@link ArkUI_ScrollAlignment}. The default value is <b>ARKUI_SCROLL_ALIGNMENT_START</b>.</li>
      * <li>.value[3]?.f32: extra offset, in vp. The default value is <b>0</b>. This parameter is supported since API
      * version 15.</li>
+     * <li>.value[4]?.i32: fast scroll mode for scrolling to a specified index. The parameter type is
+     * {@link OH_ArkUI_FastScrollMode}, and the default value is <b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>.
+     * This parameter is valid only when .value[1]?.i32 is set to 1, and is supported since API version 26.2.0.</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component
