@@ -60,6 +60,9 @@ extern "C" {
  * @since 12
  */
 typedef enum ArkWeb_CustomSchemeOption {
+    /**
+     * No special behavior or capability is assigned when the custom scheme is registered.
+     */
     OH_ARKWEB_SCHEME_OPTION_NONE = 0,
 
     /**
@@ -299,6 +302,11 @@ typedef struct ArkWeb_ErrorInfo_ ArkWeb_ErrorInfo;
  * @brief Called when a request starts. This callback is used on the IO thread. It intercepts and handles network
  * requests of a specified scheme at the start of the request. Developers can use this callback to implement custom
  * protocol handling, local resource replacement, encrypted data transmission, and other features.
+ *
+ * > **NOTE**
+ * >
+ * > - Redirected URLs cannot be intercepted individually. To intercept a redirected URL, you must also intercept
+ * > the original request URL.
  *
  * @param schemeHandler **ArkWeb_SchemeHandler**.
  * @param resourceRequest Object used to obtain the request information.

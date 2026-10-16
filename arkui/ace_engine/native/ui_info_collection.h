@@ -29,6 +29,10 @@
  * @brief Declares the APIs used by in-app intelligent agents and UI automation to observe UI
  * interaction events and hit nodes.
  *
+ * Status-returning functions report errors through ArkUI_ErrorCode. Asynchronous execution results
+ * are reported through the documented completion callback. errno is not an error-reporting channel
+ * for these APIs; its value after a call is unspecified and must not be used to determine success or failure.
+ *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_info_collection.h>
  * @library libace_ndk.z.so
@@ -130,11 +134,10 @@ typedef enum {
  * The callback carries a borrowed {@link OH_ArkUI_NativeModule_UIJsonWrapper} object that holds the
  * event payload. The object is valid only within the callback invocation; the callback must not
  * retain or destroy it. All positional coordinates in the payload are relative to the screen
- * (display), in physical pixels (px). The payload's top-level structure is:
+ * (display), in physical pixels (px). The payload always includes a top-level schemaVersion field.
+ * Its top-level structure is { "schemaVersion": 1, "type": "<event type>", ... }.
  *
- * { "schemaVersion": 1, "type": "<event type>", ... }
- *
- * The event-specific fields are as follows:
+ * The event-specific fields are listed below.
  * - Tap or click: id, point, count, fingers.
  * - Long press: id, point, actualDuration (milliseconds), action ("end").
  * - Pan: id, point, direction, action ("start" | "end" | "cancel").
@@ -247,8 +250,12 @@ typedef enum {
  * @param requestId [in] The identifier assigned to the accepted request.
  * @param errorCode [in] The request result.
  * @param json [in] Immutable JSON result. If the request fails, the value is NULL. Otherwise, the control tree is in
- *     the JSON structure. This object needs to be released by the developer after being used.
+ *     the JSON structure, which includes a top-level schemaVersion field.
+ *     This object needs to be released by the developer after being used.
  * @param userData [in] The caller-provided data passed to OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync.
+ *     NULL is allowed and indicates that no custom context was provided.
+ *     The pointer is passed through unchanged. The framework does not dereference or free the pointed-to data.
+ *     The data remains owned by the caller and must remain valid until this callback returns.
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
  * @since 26.2.0
  */
@@ -301,7 +308,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes
  * @brief Sets whether fully occluded nodes are filtered from the returned tree.
  *
  * Filtering is disabled by default and can be enabled only for visible-tree
- * requests. Disabling this option does not disable visibility, clipping,
+ * requests. Enabling occlusion filtering may add substantial computational overhead
+ * to collection. Use this option judiciously based on the complexity of the UI.
+ * Disabling this option does not disable visibility, clipping,
  * off-screen, or fully transparent node filtering.
  *
  * The occluder opacity threshold is configured separately by
@@ -452,8 +461,11 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  * @param context [in] The UI context whose tree is collected.
  * @param request [in] The collection request.
  * @param format [in] The JSON output format.
- * @param json [out] The output immutable JSON object. The caller must release it by calling
- *     OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
+ * @param json [out] Receives the immutable JSON result object. The pointer must not be NULL and must point to
+ *     writable storage valid for the duration of the call. The caller does not need to initialize *json.
+ *     On success, *json is non-NULL and the result includes a top-level schemaVersion field. The caller owns
+ *     the result and must release it with {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy}.
+ *     On any failure, *json is set to NULL if json points to valid writable storage; no result needs to be released.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if collection succeeds.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter or format is invalid.</li>
@@ -481,7 +493,12 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  * @param format [in] The JSON output format.
  * @param callback [in] The completion callback. On success, the callback receives ownership of the JSON object and must
  *     release it by calling OH_ArkUI_NativeModule_UIJsonWrapperDestroy.
- * @param userData [in] The caller-provided data passed to the callback.
+ *     The JSON object includes a top-level schemaVersion field.
+ * @param userData [in] The caller-provided data passed to the callback. NULL is allowed and indicates no custom
+ *     context.
+ *     The framework retains only the pointer value until completion and passes it through unchanged;
+ *     it does not copy, dereference, or free the pointed-to data. The caller owns the data and must keep it
+ *     valid until the completion callback returns. If the request is rejected synchronously, it is not retained.
  * @param requestId [out] The output identifier for the accepted request.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the request is accepted.</li>
@@ -506,8 +523,10 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  * The function must be called on the UI thread. The output format is as follows:
  * @param uiContext [in] Context of the target UI instance for text collection
  * @param pageText [out] output slot, initialized to NULL by the caller.
- *     A valid slot is set to NULL on failure; an empty page still returns a
- *     wrapper.
+ *     On success, the caller owns the returned object and must release it with
+ *     {@link OH_ArkUI_NativeModule_UIJsonWrapperDestroy} when it is no longer needed.
+ *     A valid slot is set to NULL on failure. On success, the returned JSON object includes a
+ *     top-level schemaVersion field, even when the page is empty.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} on success.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if pageText is NULL.</li>
@@ -546,7 +565,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
-     * @brief Overlay events.
+     * @brief Overlay events, such as events for modals, menus, or popups.
      *
      * @since 26.2.0
      */
@@ -627,19 +646,19 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_HIDE = 5,
     /**
-     * @brief A swiper interaction has started.
+     * @brief A Swiper transition has started.
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_START = 6,
     /**
-     * @brief A swiper interaction has completed, including its transition animation if exists.
+     * @brief A Swiper transition has completed, including its transition animation, if any.
      *
      * @since 26.2.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_END = 7,
     /**
-     * @brief The Swiper switchover event returns to the start index.
+     * @brief The Swiper transition is interrupted, and Swiper springs back to the starting index.
      *
      * @since 26.2.0
      */
@@ -702,7 +721,7 @@ typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
  *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if uiContext is NULL or no longer active.</li>
  *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if callback is NULL.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if eventMask or subscriptionId is invalid.</li>
- *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native C API is not initialized.</li></ul>
+ *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native module is not initialized.</li></ul>
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_RegisterUIContentChangeEvent(
@@ -776,15 +795,15 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
 /**
  * @brief Obtains the content change event details as a JSON wrapper from an ArkUI state change event snapshot.
  *
- * The JSON output includes the content change type, trigger node, target node, overlay type, and an optional
- * sub-tree dump depending on the event category:
+ * The JSON output includes a top-level schemaVersion field, the content change type, trigger node,
+ * target node, overlay type, and an optional sub-tree dump depending on the event category:
  *
  * Page events identify the target page. Scroll events identify the scrolling node. Overlay events identify
  * overlay node and provide the overlay type (such as "dialog"). The trigger node is the node that initiated the
  * content change; it is available for overlay events and general start/end scenarios, and is NULL for page and
- * scroll events when no trigger node can be exposed. The operation succeeds and writes an empty JSON wrapper when
- * no target node can be exposed. The handles referenced in the JSON wrapper are borrowed and must not be released
- * or used after the callback returns.
+ * scroll events when no trigger node can be exposed. The operation succeeds when no target node can be exposed;
+ * the returned JSON still contains schemaVersion. The handles referenced in the JSON wrapper are borrowed and must
+ * not be released or used after the callback returns.
  *
  * @param event [in] Pointer to the event snapshot. The pointer is valid only while the callback is running.
  * @param json [out] Pointer to the {@link OH_ArkUI_NativeModule_UIJsonWrapper} that receives the content change event
@@ -831,10 +850,10 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
 /**
  * @brief Asynchronously collects images for specified ArkUI node IDs.
  *
- * The framework accepts from <b>0</b> to <b>20</b> unique node IDs in one
+ * The framework accepts from <b>1</b> to <b>20</b> unique node IDs in one
  * request and copies the <b>nodeIds</b> array before this function returns.
- * The framework accepts a request with <b>count</b> equal to <b>0</b> and
- * returns a non-<b>NULL</b> empty collection through the callback.
+ * If <b>count</b> is <b>0</b> or greater than <b>20</b>, this function returns
+ * {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}.
  *
  * Each accepted node ID has one result in the collection, including a result
  * for a node ID that cannot be found or whose image cannot be captured. An
@@ -845,7 +864,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * If the ArkUI node corresponding to a requested node ID cannot be found, the
  * corresponding collection item reports
- * <b>ARKUI_ERROR_CODE_PARAM_INVALID</b>; the caller should check the node ID.
+ * <b>ARKUI_ERROR_CODE_NODE_NOT_FOUND</b>; the caller should check the node ID.
  * A capture timeout reports
  * <b>ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT</b>; the caller can retry the
  * request. Another internal capture failure reports
@@ -855,23 +874,24 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * The caller can call this function from any thread. For each accepted
  * request, the framework invokes <b>callback</b> exactly once on the UI thread
- * associated with <b>context</b>. Concurrent requests are independent, and the
- * framework does not guarantee their callback order.
+ * associated with <b>context</b>. If the previous request has not finished,
+ * this function returns {@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED}. The caller
+ * must wait for that request to complete before submitting another request.
  *
  * @param context [in] Indicates the ArkUI context used to process the request.
  *     The parameter must not be <b>NULL</b>.
  * @param nodeIds [in] Indicates the first element of an array containing
  *     <b>count</b> unique ArkUI node IDs. The parameter must not be NULL.
- * @param count [in] Indicates the number of node IDs. The valid range is (0, 20]
+ * @param count [in] Indicates the number of node IDs. The valid range is (0, 20].
  * @param callback [in] Indicates the callback used to receive the result. The
  *     parameter must not be <b>NULL</b>.
  * @param userData [in] Indicates the caller-defined context pointer passed
  *     unchanged to the callback. The value can be <b>NULL</b>.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the framework accepts the request. </li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or callback is NULL.</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count out of range of (0, 20].</li>
- *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the last request is unfinished.</li></ul>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if context, nodeIds, or callback is NULL.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if count is 0 or greater than 20.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the previous request has not finished.</li></ul>
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle context, const int32_t* nodeIds,
@@ -917,9 +937,9 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
 /**
  * @brief Destroys an image collection and releases <b>PixelMap</b> instances that have not been consumed.
  *
- * The caller must destroy every non-<b>NULL</b> collection that a callback
- * returns, including an empty collection or a collection after the caller has
- * consumed all its items. This function does not release or invalidate
+ * The caller must destroy every non-<b>NULL</b> collection returned through
+ * the callback, even after all its items have been consumed.
+ * This function does not release or invalidate
  * <b>PixelMap</b> instances that the caller obtained through
  * <b>OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId</b>.
  *

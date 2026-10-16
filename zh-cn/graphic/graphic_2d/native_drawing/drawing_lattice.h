@@ -66,7 +66,7 @@ typedef enum {
      */
     TRANSPARENT,
     /**
-     * @brief 将矩形网格对象中fColors数组的颜色绘制到矩形网格中。
+     * @brief 将矩形网格对象中colors数组的颜色绘制到矩形网格中。
      *
      * @since 23
      */

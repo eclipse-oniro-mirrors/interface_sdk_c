@@ -27,7 +27,7 @@
 /**
  * @file drawing_typeface.h
  *
- * @brief 文件中定义了与字形相关的功能函数，支持创建默认字形、从文件或内存流创建指定字形、
+ * @brief 文件中定义了与字体相关的功能函数，支持创建默认字体、从文件或内存流创建指定字体、
  * 通过字型参数自定义字体的可变维度，以及查询字形的粗体、斜体属性等。
  * <br>不同的平台有自己的默认字形，也可以从ttf文件解析出三方指定字形，如宋体、黑体字形等。
  * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
@@ -150,7 +150,6 @@ OH_Drawing_ErrorCode OH_Drawing_FontArgumentsAddVariation(OH_Drawing_FontArgumen
 
 /**
  * @brief 用于销毁一个字型参数对象。
- *
  * @param fontArguments 指向字型参数对象OH_Drawing_FontArguments的指针。
  * @return 函数返回执行错误码。
  *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。

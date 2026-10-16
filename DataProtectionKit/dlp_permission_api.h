@@ -55,7 +55,7 @@ typedef enum {
      */
     ERR_OH_SUCCESS = 0,
     /**
-     * The capability not supported because car not support DLP feature.
+     * This error code is reported when the function is not supported. Possible cause: The vehicle is not supported.
      * @since 26.0.1
      */
     OH_DLP_NOT_SUPPORTED = 801,
@@ -127,8 +127,9 @@ typedef enum {
  *     <br>**0x00000200** indicates the permission for exporting the file.
  *     <br>**0x00000400** indicates the permission for modifying the permissions on the file.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
- *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.0.1 and above, this error is returned. [since 26.0.1]</li>
+ *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the function is not supported. Possible
+ *     cause: The vehicle is not supported. This error code is returned in API version 26.0.1 or later.
+ *     [since 26.0.1]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to
  *     call this API, which is available only for DLP sandbox applications.</li>
@@ -143,11 +144,12 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
  * @brief Obtains the original file name of a DLP file.
  *
  * @param fileName [in] Pointer to the target file whose original file name is to be obtained. The length cannot exceed
- *     256 characters.
+ *     256 bytes.
  * @param originalFileName [out] Double pointer to the original file name obtained.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
- *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.0.1 and above, this error is returned. [since 26.0.1]</li>
+ *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the function is not supported. Possible
+ *     cause: The vehicle is not supported. This error code is returned in API version 26.0.1 or later.
+ *     [since 26.0.1]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.</li></ul>
  * @since 14
@@ -160,8 +162,9 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFile
  * @param isInSandbox [out] Returns **true** if the application is running in a DLP sandbox; returns **false**
  *     otherwise.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
- *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.0.1 and above, this error is returned. [since 26.0.1]</li>
+ *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the function is not supported. Possible
+ *     cause: The vehicle is not supported. This error code is returned in API version 26.0.1 or later.
+ *     [since 26.0.1]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *     works abnormally.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.</li></ul>
@@ -174,8 +177,9 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
  *
  * @param configInfo [in] Pointer to the sandbox application configuration to set.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
- *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.0.1 and above, this error is returned. [since 26.0.1]</li>
+ *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the function is not supported. Possible
+ *     cause: The vehicle is not supported. This error code is returned in API version 26.0.1 or later.
+ *     [since 26.0.1]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_API_NOT_FOR_SANDBOX} 19100007 - If no permission to
  *     call this API, which is available only for non-DLP sandbox applications.</li>
@@ -192,8 +196,9 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  *
  * @param configInfo [out] Pointer to the sandbox application configuration obtained.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
- *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.0.1 and above, this error is returned. [since 26.0.1]</li>
+ *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the function is not supported. Possible
+ *     cause: The vehicle is not supported. This error code is returned in API version 26.0.1 or later.
+ *     [since 26.0.1]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *     works abnormally.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.</li>
@@ -207,8 +212,9 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
  * @brief Cleans the sandbox application configuration.
  *
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
- *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the device is car which not support DLP feature.
- *     On API 26.0.1 and above, this error is returned. [since 26.0.1]</li>
+ *     <li> {@link DLP_ErrCode#OH_DLP_NOT_SUPPORTED} 801 - If the function is not supported. Possible
+ *     cause: The vehicle is not supported. This error code is returned in API version 26.0.1 or later.
+ *     [since 26.0.1]</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_API_NOT_FOR_SANDBOX} 19100007 - If no permission to
  *     call this API, which is available only for non-DLP sandbox applications.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability

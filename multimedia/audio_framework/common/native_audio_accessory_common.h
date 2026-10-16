@@ -73,7 +73,7 @@ typedef struct OH_AudioAccessoryInputStream OH_AudioAccessoryInputStream;
  */
 typedef enum {
     /**
-     * @brief Bluetooth SPP (Signal Processing Plugin) connection.
+     * @brief Bluetooth SPP (Serial Port Profile) connection.
      *
      * @since 26.0.0
      */

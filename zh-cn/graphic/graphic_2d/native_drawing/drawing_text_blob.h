@@ -75,7 +75,9 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t 
 
 /**
  * @brief 使用文本创建一组文本对象，支持字体回退。
- * 若当前字体的字形不支持某些字符时，会自动从系统中查找回退字体。每段连续且使用相同字体的字符会创建一个文本对象。
+ * 若当前字型的字体不支持文本中的某些字符（无对应字形）时，会自动从系统字体中查找能支持该字符的回退字体，并使用回退字体的字形索引；
+ * 若未找到回退字体，则仍使用当前字型字体的notdef占位字形。
+ * 每段使用相同字体（当前字体或回退字体）的连续字形片段会创建一个对应的TextBlob对象。
  * 所有文本对象共享整个字符串的坐标系：每个文本对象的字形位置已包含前序文本的宽度，因此所有文本对象应在同一原点绘制。
  *
  * @param text [in] 指向文本的指针。
@@ -115,8 +117,10 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText(const void* text, size
 
 /**
  * @brief 使用文本创建一组文本对象，支持字体回退。
- * 若当前字体的字形不支持某些字符时，会自动从系统中查找回退字体。
- * 每段连续且使用相同字体的字符会创建一个文本对象。文本对象中每个字符的坐标由OH_Drawing_Point2D数组中对应的坐标信息决定。
+ * 若当前字型的字体不支持文本中的某些字符（无对应字形）时，会自动从系统字体中查找能支持该字符的回退字体，并使用回退字体的字形索引；
+ * 若未找到回退字体，则仍使用当前字型字体的notdef占位字形。
+ * 每段使用相同字体（当前字体或回退字体）的连续字形片段会创建一个对应的TextBlob对象。
+ * 文本对象中每个字符的坐标由OH_Drawing_Point2D数组中对应的坐标信息决定。
  *
  * @param text [in] 指向文本的指针。
  * @param byteLength [in] 文本长度，单位为字节。
@@ -155,7 +159,9 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString(const char* str,
 
 /**
  * @brief 使用字符串创建一组文本对象，支持字体回退。
- * 若当前字体的字形不支持某些字符时，会自动从系统中查找回退字体。每段连续且使用相同字体的字符会创建一个文本对象。
+ * 若当前字型的字体不支持文本中的某些字符（无对应字形）时，会自动从系统字体中查找能支持该字符的回退字体，并使用回退字体的字形索引；
+ * 若未找到回退字体，则仍使用当前字型字体的notdef占位字形。
+ * 每段使用相同字体（当前字体或回退字体）的连续字形片段会创建一个对应的TextBlob对象。
  * 所有文本对象共享整个字符串的坐标系：每个文本对象的字形位置已包含前序文本的宽度，因此所有文本对象应在同一原点绘制。
  *
  * @param str [in] 指向字符串的指针。
@@ -186,7 +192,7 @@ OH_Drawing_ErrorCode OH_Drawing_TextBlobCreateFromStringWithFallback(const char 
 void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect* rect);
 
 /**
- * @brief 获取文本的标识符，该标识符是唯一的非零值。
+ * @brief 获取文本对象的标识符，该标识符是唯一的非零值。
  * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
  * <br>textBlob为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
@@ -278,7 +284,7 @@ void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuild
  * 返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示textBlobs为空或者count为0。
  * @since 26.0.1
  */
-OH_Drawing_ErrorCode OH_Drawing_TextBlobsArrayDestroy(OH_Drawing_TextBlob** textBlobs, uint32_t count);
+OH_Drawing_ErrorCode OH_Drawing_TextBlobsArrayDestroy(OH_Drawing_TextBlob **textBlobs, uint32_t count);
 
 #ifdef __cplusplus
 }

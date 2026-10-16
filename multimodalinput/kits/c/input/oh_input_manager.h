@@ -2758,6 +2758,7 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @brief Obtains the coordinates of the mouse pointer on the current screen.
  * <br>Since API version 26.0.0, non-focused applications that have the ohos.permission.INPUT_DEVICE_CONFIGURATOR
  * permission can call this API.
+ * <br>Since API version 26.2.0, on PC devices, there are no longer focus or permission requirements for applications.
  *
  * @param displayId [out] Screen ID of the current screen.
  * @param displayX [out] X coordinate of the mouse on the current screen, in px.
@@ -2773,6 +2774,7 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @since 20
  */
 Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
+
 /**
  * @brief Creates a mouse pointer information object. You can call {@link OH_Input_CursorInfo_Destroy} to destroy a
  * mouse pointer information object.

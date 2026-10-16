@@ -426,11 +426,12 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_F
 
 /**
  * @brief 使用画刷或画笔获取文本的宽度和边界框，支持字体回退。
- * 若当前字型的字体不支持某些字符时，会自动从系统中查找回退字体。如果未找到任何回退字体，则仍使用当前字型的字体。
+ * 若当前字型的字体不支持文本中的某些字符（无对应字形）时，会自动从系统字体中查找能支持该字符的回退字体，
+ * 并使用回退字体测量该字符宽度；若未找到回退字体，则仍使用当前字型的字体进行测量。
  *
  * @param font [in] 指向字型对象OH_Drawing_Font的指针。
  * @param text [in] 指向文本的指针。
- * @param byteLength [in] 文本长度，单位为字节。
+ * @param byteLength [in]  文本长度，单位为字节。如果此字节长度大于text字符串的字节长度，会发生未定义行为。
  * @param encoding [in] 文本编码类型。
  * @param brush [in] 指向画刷对象OH_Drawing_Brush的指针。
  * @param pen [in] 指向画笔对象OH_Drawing_Pen的指针。

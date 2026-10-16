@@ -11877,6 +11877,20 @@ typedef enum {
     NODE_SCROLL_BAR_HEIGHT = 1002029,
 
     /**
+     * @brief Obtains the current scroll state.
+     * This attribute can be obtained as required through APIs.
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: current scroll state. The parameter type is {@link ArkUI_ScrollState}.</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component
+     * @since 26.2.0
+     */
+    NODE_SCROLL_STATE = 1002030,
+
+    /**
      * @brief Direction in which the {@link list} items are arranged. This attribute can be set, reset, and obtained as
      * required through APIs.
      * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
@@ -14468,6 +14482,27 @@ typedef enum {
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
 
     /**
+     * @brief Defines the first day of the week for the calendar picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: first day of the week. The value range is [0, 7].
+     * <b>0</b>: follows the system region. <b>1</b>: Monday. <b>2</b>: Tuesday. <b>3</b>: Wednesday. <b>4</b>: Thursday.
+     * <b>5</b>: Friday. <b>6</b>: Saturday. <b>7</b>: Sunday. The default value is <b>0</b> (follows the system region).</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: first day of the week.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
+     * @since 26.2.0
+     */
+    NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
+
+    /**
      * @brief Defines the want used to start EmbeddedUIExtensionAbility.
      * This attribute can be set as required through APIs.
      *
@@ -15250,7 +15285,10 @@ typedef struct {
 } ArkUI_TextChangeEvent;
 
 /**
- * @brief Defines a text content change event of the **TextEditor** component.
+ * @brief Defines the text content change event of the **TextEditor** component, which is used to notify users when the
+ * text content changes and supports obtaining information such as the content before and after the change. It is
+ * applicable to scenarios where interception or validation is required before the text content changes, such as input
+ * interception, content filtering, and change confirmation.
  *
  * @since 24
  */

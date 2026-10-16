@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,16 +17,15 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describes the Native Bundle.
+ * @brief 声明BundleManager定义的相关错误码。
  *
  * @since 21
- * @version 1.0
  */
 
 /**
  * @file bundle_manager_common.h
  *
- * @brief The file declares the error codes defined by BundleManager.
+ * @brief 声明BundleManager定义的相关错误码。
  *
  * @library libbundle_ndk.z.so
  * @kit AbilityKit
@@ -48,19 +47,22 @@ extern "C" {
  */
 typedef enum {
     /**
-     * 执行成功。
+     * @brief 执行成功。
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_NO_ERROR = 0,
 
     /**
-     * 权限被拒绝。
+     * @brief 权限被拒绝。
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED = 201,
 
     /**
-     * 参数无效。
+     * @brief 参数无效。
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401

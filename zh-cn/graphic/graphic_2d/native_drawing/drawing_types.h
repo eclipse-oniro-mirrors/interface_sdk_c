@@ -295,7 +295,7 @@ typedef struct OH_Drawing_MemoryStream OH_Drawing_MemoryStream;
 typedef struct OH_Drawing_FontArguments OH_Drawing_FontArguments;
 
 /**
- * @brief 用于描述字形。
+ * @brief 用于描述字体。
  *
  * @since 11
  * @version 1.0
