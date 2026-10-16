@@ -25,7 +25,9 @@
 /**
  * @file scroll.h
  *
- * @brief Provides shared scroll-related enum definitions for <b>NativeNode</b> APIs.
+ * @brief Defines the enumerations related to the **Scroll** component, such as the scrolling direction, edge effect,
+ * scrollbar state, content clipping, nested scrolling, scrolling state, and scrolling source, which are used to
+ * configure and listen for the behavior of the **Scroll** component and related scrollable components.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -126,7 +128,8 @@ typedef enum {
     ARKUI_SCROLL_DIRECTION_NONE = 3,
 
     /**
-     * Free scrolling in both directions.
+     * Free scrolling. This value supports both vertical and horizontal scrolling, and is available only in the
+     * **Scroll** component.
      *
      * @since 20
      */
