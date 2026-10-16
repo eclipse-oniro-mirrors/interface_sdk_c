@@ -808,22 +808,22 @@ typedef struct OH_ArkUI_NativeModule_ImageCollection OH_ArkUI_NativeModule_Image
 /**
  * @brief 定义用于返回ArkUI节点图像采集结果的回调函数类型。
  *
- * 对于每个被接受的请求，框架都会在UI线程上调用且仅调用一次此回调。
- * 当<b>errorCode</b>为{@link ARKUI_ERROR_CODE_NO_ERROR}时，框架将非<b>NULL</b>的
- * <b>collection</b>的所有权转移给调用方。当<b>errorCode</b>为
- * {@link ARKUI_ERROR_CODE_INTERNAL_ERROR}或{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID}时，
- * <b>collection</b>为<b>NULL</b>。
+ * 对于每个被接受的请求，框架都会在UI线程上调用且仅调用一次此回调。每个非<b>NULL</b>的
+ * <b>collection</b>都会转移给调用方。即使部分结果项失败，也会返回集合。
+ * 调用方必须调用<b>OH_ArkUI_NativeModule_ImageCollectionDestroy</b>释放每个非<b>NULL</b>集合。
  *
  * 框架将<b>userData</b>原样传回，不会解引用该指针，也不会复制或释放其指向的对象。
  * 调用方必须保证该对象在回调结束使用前一直有效。
  *
  * @param errorCode [in] 请求的整体处理结果。
  *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示采集成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 表示采集过程中发生内部错误。</li>
- *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 表示请求被接受后，UI上下文失效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示所有结果项均成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED} 表示部分结果项采集失败。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 表示请求被接受后，关联的UI上下文失效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} 表示集合分配失败。</li>
  *     </ul>
- * @param collection [in] 结果集合。请求整体成功时为非<b>NULL</b>值，整体失败时为<b>NULL</b>。
+ * @param collection [in] 结果集合。所有结果项均成功或部分结果项失败时为非<b>NULL</b>值；
+ *     UI上下文失效或集合分配失败时为<b>NULL</b>。
  * @param userData [in] 调用方自定义的上下文指针，可以为<b>NULL</b>。
  * @release OH_ArkUI_NativeModule_ImageCollectionDestroy {collection}
  * @since 26.2.0
@@ -836,7 +836,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * 单次请求可包含<b>1</b>到<b>20</b>个互不重复的节点ID。
  * 框架会在本函数返回前复制<b>nodeIds</b>数组。
- * 如果<b>count</b>为<b>0</b>或大于<b>20</b>，本函数返回
+ * 如果<b>count</b>小于等于<b>0</b>或大于<b>20</b>，本函数返回
  * {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}。
  *
  * 每个被接受的节点ID在结果集合中都有对应的结果项，即使未找到该节点或无法截取其图像。
@@ -847,8 +847,8 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * 如果找不到请求的节点ID对应的ArkUI节点，对应结果项会报告
  * <b>ARKUI_ERROR_CODE_NODE_NOT_FOUND</b>，调用方应检查节点ID。
  * 截图超时时，对应结果项报告<b>ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT</b>，调用方可以重试请求。
- * 发生其他内部截图错误时，对应结果项报告<b>ARKUI_ERROR_CODE_INTERNAL_ERROR</b>，
- * 调用方可以在处理该错误后重试请求。单个结果项失败不会改变请求整体成功的结果。
+ * 消费集合中的结果项时可以获取该结果项的错误码。
+ * 任一结果项失败时，回调会报告{@link ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED}，但仍会返回集合。
  *
  * 调用方可以从任意线程调用本函数。对于每个被接受的请求，
  * 框架都会在<b>context</b>关联的UI线程上调用且仅调用一次<b>callback</b>。
@@ -863,8 +863,11 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * @param userData [in] 调用方自定义的上下文指针，会原样传给回调，可以为<b>NULL</b>。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 框架已接受请求。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context、nodeIds或callback为NULL。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count为0或大于20。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} context为NULL或无效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} callback为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} nodeIds为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count小于等于0或大于20。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_DUPLICATE_NODE_ID} 节点ID重复。</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} 上一次请求尚未完成。</li>
  *     </ul>
  * @since 26.2.0
@@ -890,14 +893,17 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle
  * @param outPixelmap [out] 用于接收所有权已转移的PixelMap的输出参数，不能为NULL。
  *     对于失败的结果项，其指向的PixelMap指针会被设置为NULL。
  * @param outItemError [out] 用于接收该结果项错误码的输出参数，不能为NULL。
- *     采集成功时写入{@link ARKUI_ERROR_CODE_NO_ERROR}；
- *     采集图像时未找到请求的节点ID对应的ArkUI节点，写入{@link ARKUI_ERROR_CODE_NODE_NOT_FOUND}；
- *     截图超时时写入{@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT}；
- *     发生其他截图错误时写入{@link ARKUI_ERROR_CODE_INTERNAL_ERROR}，调用方可以重试请求。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示结果项采集成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_NODE_NOT_FOUND} 表示采集图像时未找到请求的节点ID对应的ArkUI节点。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} 表示生成图像结果所需的内存分配失败。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} 表示截图超时。</li>
+ *     </ul>
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功取出结果项，包括图像采集失败的结果项。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 必填指针参数为NULL、nodeId在collection中没有对应的结果项，
- *         或该结果项已被取出。请提供所有必填指针参数，并确保nodeId对应collection中尚未取出的结果项。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 必填指针参数为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND} nodeId在collection中没有对应的结果项。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN} 该结果项已被取出。</li>
  *     </ul>
  * @release multimedia/image_framework/image/OH_PixelmapNative_Destroy {outPixelmap}
  * @since 26.2.0

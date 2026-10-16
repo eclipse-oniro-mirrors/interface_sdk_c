@@ -817,7 +817,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContentChangeEventJ
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, const OH_ArkUI_NativeModule_UIJsonWrapper** json);
 
 /**
- * @brief ArkUI image acquisition result structure declaration
+ * @brief Declares the ArkUI image acquisition result structure.
  * @since 26.2.0
  */
 typedef struct OH_ArkUI_NativeModule_ImageCollection OH_ArkUI_NativeModule_ImageCollection;
@@ -825,21 +825,24 @@ typedef struct OH_ArkUI_NativeModule_ImageCollection OH_ArkUI_NativeModule_Image
 /**
  * @brief Defines the callback used to return the result of collecting images of ArkUI nodes.
  *
- * The framework invokes this callback exactly once on the UI thread for each accepted request.
- * When <b>errorCode</b> is {@link ARKUI_ERROR_CODE_NO_ERROR}, the framework transfers ownership of the non-<b>NULL</b>
- * <b>collection</b> to the caller. When <b>errorCode</b> is {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} or
- * {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID}, <b>collection</b> is <b>NULL</b>.
+ * The framework invokes this callback exactly once on the UI thread for each accepted request. Every non-<b>NULL</b>
+ * <b>collection</b> is transferred to the caller. A collection is also returned for partial item failure.
+ * The caller must release each non-<b>NULL</b> collection by calling
+ * <b>OH_ArkUI_NativeModule_ImageCollectionDestroy</b>.
  *
  * The framework returns <b>userData</b> unchanged without dereferencing,
  * copying, or releasing the object it points to. The caller must keep that
  * object valid until the callback has finished using it.
  *
  * @param errorCode [in] Indicates the overall request result.
- *     <ul<li>>{@link ARKUI_ERROR_CODE_NO_ERROR} indicates successful collection.</li>
- *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} indicates an internal collection failure.</li>
- *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} context became invalid after the request was accepted.</li></ul>
- * @param collection [in] Indicates the result collection. The value is non-<b>NULL</b> for overall success and
- *     <b>NULL</b> for an overall error.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} indicates that all items succeeded.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED} indicates that some collection items failed.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} indicates that the associated ArkUI context became invalid after
+ *     the request was accepted.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} indicates that the collection allocation failed.</li>
+ *     </ul>
+ * @param collection [in] Indicates the result collection. The value is non-<b>NULL</b> when all items succeed or some
+ *     items fail, and <b>NULL</b> if the ArkUI context is invalid or collection allocation fails.
  * @param userData [in] Indicates the caller-defined context pointer. The value can be <b>NULL</b>.
  * @release OH_ArkUI_NativeModule_ImageCollectionDestroy {collection}
  * @since 26.2.0
@@ -852,7 +855,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * The framework accepts from <b>1</b> to <b>20</b> unique node IDs in one
  * request and copies the <b>nodeIds</b> array before this function returns.
- * If <b>count</b> is <b>0</b> or greater than <b>20</b>, this function returns
+ * If <b>count</b> is less than or equal to <b>0</b> or greater than <b>20</b>, this function returns
  * {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}.
  *
  * Each accepted node ID has one result in the collection, including a result
@@ -867,10 +870,9 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * <b>ARKUI_ERROR_CODE_NODE_NOT_FOUND</b>; the caller should check the node ID.
  * A capture timeout reports
  * <b>ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT</b>; the caller can retry the
- * request. Another internal capture failure reports
- * <b>ARKUI_ERROR_CODE_INTERNAL_ERROR</b> for that item; the caller can retry
- * the request after handling the failure. An item failure does not change the
- * overall successful request result.
+ * request. An item's error is available when consuming its collection entry.
+ * If any item fails, the callback reports
+ * {@link ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED} and still returns the collection.
  *
  * The caller can call this function from any thread. For each accepted
  * request, the framework invokes <b>callback</b> exactly once on the UI thread
@@ -889,8 +891,11 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *     unchanged to the callback. The value can be <b>NULL</b>.
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the framework accepts the request. </li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if context, nodeIds, or callback is NULL.</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if count is 0 or greater than 20.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if <b>context</b> is NULL or invalid.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if <b>callback</b> is NULL.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if <b>nodeIds</b> is NULL.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if count is less than or equal to 0 or greater than 20.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_DUPLICATE_NODE_ID} if node IDs repeat.</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the previous request has not finished.</li></ul>
  * @since 26.2.0
  */
@@ -917,16 +922,21 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle
  * @param nodeId [in] Indicates the ArkUI node ID of the item to consume.
  * @param outPixelmap [out] Indicates the output pointer that receives the transferred PixelMap. The parameter must not
  *     be NULL. For a failed item, the function sets outPixelmap to NULL.
- * @param outItemError [out] Indicates the output pointer to the result code for the item. The parameter must not be
- *     NULL. The function writes {@link ARKUI_ERROR_CODE_NO_ERROR} for a successful item,
- *     {@link ARKUI_ERROR_CODE_NODE_NOT_FOUND} if the ArkUI node corresponding to the requested node ID could not be
- *     found while collecting its image, {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} for a capture timeout, or
- *     {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} for another capture failure, the caller can retry the request.
+ * @param outItemError [out] Indicates the output pointer to the result code for the item.
+ *     The parameter must not be NULL.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} for a successful item.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_NODE_NOT_FOUND} if the ArkUI node corresponding to the requested node ID could not be
+ *     found while collecting its image.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} indicates that an allocation required to produce
+ *     the image result failed.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} for a capture timeout.</li></ul>
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if this function consumes the item, including a failed image result.</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a required pointer is NULL, nodeId does not identify an item in
- *     collection, or the caller has already consumed that item. To resolve the error, provide all required pointers
- *     and use a nodeId that identifies an unconsumed item in collection.</li></ul>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a required pointer is NULL.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND} if <b>nodeId</b> does not identify an item in
+ *     <b>collection</b>.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN} if the caller has already consumed that item.</li>
+ *     </ul>
  * @release multimedia/image_framework/image/OH_PixelmapNative_Destroy {outPixelmap}
  * @since 26.2.0
  */
