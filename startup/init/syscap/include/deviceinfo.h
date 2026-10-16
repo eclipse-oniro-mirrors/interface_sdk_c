@@ -348,7 +348,7 @@ const char *OH_GetDistributionOSReleaseType(void);
 
 /**
  * @brief Obtains the Disk Serial Number.
- * 
+ *
  * @param diskSn [out] Disk Serial Number.
  * @return <ul>
  *         <li>0 if the operation is successful.</li>
