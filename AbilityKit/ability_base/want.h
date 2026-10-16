@@ -47,7 +47,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Indicates information of element.
+ * @brief The struct describes the Element in {@link Want}.
  *
  * @since 15
  */
