@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides the layout-related types for the native module.
+ * @brief 为Native模块提供布局相关的类型。
  *
  * @since 12
  */
@@ -25,7 +25,7 @@
 /**
  * @file layout.h
  *
- * @brief Defines the layout-related types for the native module.
+ * @brief 定义布局相关的枚举和接口。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
