@@ -1292,6 +1292,12 @@ typedef enum OH_Huks_Tag {
      * @since 23
      */
     OH_HUKS_TAG_KEY_ACCESS_GROUP = OH_HUKS_TAG_TYPE_BYTES | 523,
+    /**
+     * Asynchronous timeout duration in seconds, customizable by business logic.
+     *
+     * @since 26.0.1
+     */
+    OH_HUKS_TAG_TIMEOUT = OH_HUKS_TAG_TYPE_UINT | 529,
 
     /**
      * 是否是密钥别名。
