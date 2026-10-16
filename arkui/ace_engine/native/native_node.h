@@ -11794,11 +11794,18 @@ typedef enum {
      * @brief Sets whether to enable scrolling with keyboard arrow keys. When enabled, the component will scroll
      * in response to arrow key presses when focused but not in active focus state.
      * This attribute can be set, reset, and obtained as required through APIs.
+     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].i32 Whether to enable scrolling with keyboard arrow keys, 0: no, 1: yes. The default value is 1.
+     * <li>.value[0].i32: Whether to enable scrolling with keyboard arrow keys, 0: no, 1: yes. The default value is 1.
      * </li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable scrolling with keyboard arrow keys, 0: no, 1: yes.</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component
