@@ -810,6 +810,41 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8_t *source, size_t bufferSize);
 
 /**
+ * @brief 将缓冲区内指定像素格式的像素数据写入整个Pixelmap。
+ *
+ * 支持的源像素格式为{@link PIXEL_FORMAT_BGRA_8888}、{@link PIXEL_FORMAT_RGBA_8888}、{@link PIXEL_FORMAT_RGB_888}、
+ * {@link PIXEL_FORMAT_RGB_565}和{@link PIXEL_FORMAT_RGBA_F16}。
+ *
+ * 本接口同步执行，可能申请内存并转换像素数据，耗时与像素数量及像素格式有关。
+ * 对于大图，建议在工作线程调用，避免阻塞UI线程。源缓冲区在接口返回前必须保持有效，且不能被修改。
+ * 调用方必须串行访问同一个Pixelmap，包括读取、写入、访问像素及释放操作。
+ * 不得对同一个Pixelmap重入调用本接口，也不得在信号处理函数中调用本接口。
+ * Pixelmap已锁定或不可编辑时，接口直接返回IMAGE_UNSUPPORTED_OPERATION，不等待其变为可写状态。
+ * 操作失败后，接口不会自动重试。
+ * 写入失败时，不保证Pixelmap的像素数据保持原样。不得使用失败写入后的像素内容；
+ * 排除失败原因后，应从有效源数据恢复像素内容，或重新创建Pixelmap。
+ * 参数或转换错误应通过修正输入或选择受支持的格式处理；内存申请或复制错误应在再次写入前检查可用内存及缓冲区有效性。
+ *
+ * 如需写入与当前Pixelmap像素格式相同的源数据（包括YUV格式），请使用{@link OH_PixelmapNative_WritePixels}。
+ * 如需写入具有自定义行跨距或偏移量的源数据，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
+ *
+ * @param pixelmap [in,out] 待修改像素数据的Pixelmap指针，不能为空指针。
+ * @param source [in] 源像素数据缓冲区指针，不能为空指针，该缓冲区内的像素数据会被拷贝至Pixelmap。
+ *     缓冲区内的像素数据必须是整个PixelMap的像素数据，且不包含内存对齐填充字节。
+ * @param bufferSize [in] 缓冲区大小。单位：字节（Byte）。所需的最小缓冲区大小可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
+ * @param sourcePixelFormat [in] 源数据的像素格式，支持BGRA_8888、RGBA_8888、RGB_888、RGB_565和RGBA_F16。
+ * @return IMAGE_SUCCESS：操作成功。
+ *     <br>IMAGE_BAD_PARAMETER：pixelmap或source为空指针、bufferSize不足，或者sourcePixelFormat无效或不受支持。
+ *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑或已锁定。
+ *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
+ *     <br>IMAGE_ALLOC_FAILED：内存申请失败。
+ *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
+ * @since 26.2.0
+ */
+Image_ErrorCode OH_PixelmapNative_WritePixelsWithPixelFormat(OH_PixelmapNative *pixelmap, const uint8_t *source,
+    uint32_t bufferSize, PIXEL_FORMAT sourcePixelFormat);
+
+/**
  * @brief 从Pixelmap的指定区域中读取像素数据并存入缓冲区。如果Pixelmap的像素格式为YUV类型，则会按照Pixelmap的像素格式存入缓冲区，
  * 否则会按照BGRA_8888格式存入缓冲区。
  *
@@ -837,6 +872,43 @@ Image_ErrorCode OH_PixelmapNative_ReadPixelsFromArea(OH_PixelmapNative *pixelmap
  * @since 22
  */
 Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area);
+
+/**
+ * @brief 将缓冲区内指定像素格式的像素数据写入Pixelmap的指定区域。
+ *
+ * 支持的源像素格式为{@link PIXEL_FORMAT_BGRA_8888}、{@link PIXEL_FORMAT_RGBA_8888}、{@link PIXEL_FORMAT_RGB_888}、
+ * {@link PIXEL_FORMAT_RGB_565}和{@link PIXEL_FORMAT_RGBA_F16}。
+ *
+ * 所需的最小缓冲区大小计算公式为：area->offset + (area->region.height - 1) * area->stride +
+ * area->region.width * sourcePixelFormat的每像素字节数。
+ * 其中area->stride的值必须大于或等于area->region.width乘以sourcePixelFormat的每像素字节数。
+ *
+ * 本接口同步执行，可能申请内存并转换像素数据，耗时与区域内像素数量及像素格式有关。
+ * 对于较大区域，建议在工作线程调用，避免阻塞UI线程。区域信息及源像素缓冲区在接口返回前必须保持有效，且不能被修改。
+ * 调用方必须串行访问同一个Pixelmap，包括读取、写入、访问像素及释放操作。
+ * 不得对同一个Pixelmap重入调用本接口，也不得在信号处理函数中调用本接口。
+ * Pixelmap已锁定或不可编辑时，接口直接返回IMAGE_UNSUPPORTED_OPERATION，不等待其变为可写状态。
+ * 操作失败后，接口不会自动重试。
+ * 写入失败时，不保证指定区域的像素数据保持原样。不得使用失败写入后的像素内容；
+ * 排除失败原因后，应从有效源数据恢复像素内容，或重新创建Pixelmap。
+ * 参数或转换错误应通过修正输入或选择受支持的格式处理；内存申请或复制错误应在再次写入前检查可用内存及缓冲区有效性。
+ *
+ * 如需将YUV格式的像素数据写入YUV格式的Pixelmap，请使用{@link OH_PixelmapNative_WritePixelsToArea}。
+ *
+ * @param pixelmap [in,out] 待修改像素数据的Pixelmap指针，不能为空指针。
+ * @param area [in] 写入区域信息指针，area和area->pixels均不能为空指针。
+ *     数据将从area->pixels拷贝至area->region指定的区域。源缓冲区大小area->pixelsSize不小于上述缓冲区的最小大小。
+ * @param sourcePixelFormat [in] 源像素的像素格式，支持BGRA_8888、RGBA_8888、RGB_888、RGB_565和RGBA_F16。
+ * @return IMAGE_SUCCESS：操作成功。
+ *     <br>IMAGE_BAD_PARAMETER：pixelmap、area或area->pixels为空指针，缓冲区大小、偏移量、行跨距或区域无效，或者sourcePixelFormat无效或不受支持。
+ *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑或已锁定。
+ *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
+ *     <br>IMAGE_ALLOC_FAILED：内存申请失败。
+ *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
+ * @since 26.2.0
+ */
+Image_ErrorCode OH_PixelmapNative_WritePixelsToAreaWithPixelFormat(OH_PixelmapNative *pixelmap,
+    const Image_PositionArea *area, PIXEL_FORMAT sourcePixelFormat);
 
 /**
  * @brief 从Pixelmap中读取ARGB格式的数据。
