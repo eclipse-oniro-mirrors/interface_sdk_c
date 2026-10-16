@@ -8247,6 +8247,25 @@ typedef enum {
      * @since 18
      */
     NODE_XCOMPONENT_ENABLE_ANALYZER,
+    /**
+     * @brief Defines the buffer queue size for the <b><XComponent></b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     * Only takes effect for XComponent of type SURFACE or TEXTURE.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: Buffer queue size. The value ranges from 2 to 5. The default value is <b>5</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: Buffer queue size.</li>
+     * </ul>
+     *
+     * @ingroup XComponent
+     * @since 26.2.0
+     */
+    NODE_XCOMPONENT_BUFFER_QUEUE_SIZE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT + 5,
 
     /**
      * @brief Defines whether to display the lunar calendar in the date picker.
