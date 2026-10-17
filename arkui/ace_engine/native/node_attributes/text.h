@@ -590,7 +590,7 @@ OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_F
  * spacing configuration. This struct is applicable to scenarios that require precise control over the display effect
  * of text line spacing, such as text display where no line spacing is added to the first and last lines.
  *
- * @since 26.2.0
+ * @since 26.0.1
  */
 typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_LineSpacingOptions;
 
@@ -600,7 +600,7 @@ typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_Li
  *
  * @return Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
  * @release OH_ArkUI_NativeModule_LineSpacingOptions_Destroy {return}
- * @since 26.2.0
+ * @since 26.0.1
  */
 OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptions_Create();
 
@@ -608,7 +608,7 @@ OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptio
  * @brief Destroys a text line spacing option object.
  *
  * @param options Pointer to the {@link OH_ArkUI_NativeModule_LineSpacingOptions} object.
- * @since 26.2.0
+ * @since 26.0.1
  */
 void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_LineSpacingOptions *options);
 
@@ -623,7 +623,7 @@ void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_Line
  *     first line and below the last line. The default value is **false**.
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.<br>
  *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the **options** parameter is a null pointer.
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
     OH_ArkUI_NativeModule_LineSpacingOptions *options, bool onlyBetweenLines);
@@ -638,7 +638,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
  *     false**.
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.<br>
  *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if any parameter is a null pointer.
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines(
     const OH_ArkUI_NativeModule_LineSpacingOptions *options, bool *onlyBetweenLines);
