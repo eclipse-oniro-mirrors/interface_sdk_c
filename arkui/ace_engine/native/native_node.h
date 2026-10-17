@@ -3944,22 +3944,27 @@ typedef enum {
      */
     NODE_TEXT_ELLIPSIS_MODE,
     /**
-     * @brief Defines the text line spacing attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Line spacing attribute, which can be set, reset, and obtained as required through APIs. This attribute
+     * is suitable for adjusting the spacing of multi-line text, such as optimizing the reading experience or
+     * achieving specific layout style effects.
+     * The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
+     * return value **ArkUI_AttributeItem** are as follows.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].f32: line spacing, in fp.</li>
-     * <li>?.object: Optional. Pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing
-     * options. Available since API version 26.2.0.
-     * Use {@link OH_ArkUI_NativeModule_LineSpacingOptions_Create} to create and
-     * {@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy} to destroy the object.</li>
+     * <li>.value[0].f32: line spacing, in fp. Value range: [0, +∞). If a negative value is passed, the setting
+     * does not take effect.</li>
+     * <li>?.object: pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object, used to set line spacing
+     * options. This parameter is optional. It is supported since API version 26.0.1. Use
+     * {@link OH_ArkUI_NativeModule_LineSpacingOptions_Create} to create the object and
+     * {@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy} to destroy it.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
      * <li>.value[0].f32: line spacing, in fp.</li>
-     * <li>.object: pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object for line spacing options.
-     * Available since API version 26.2.0.</li>
+     * <li>.object: pointer to {@link OH_ArkUI_NativeModule_LineSpacingOptions} object, used to obtain the line
+     * spacing options. This parameter is supported since API version 26.0.1.</li>
      * </ul>
      *
      * @ingroup Text Display

@@ -553,7 +553,7 @@ OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_F
  * {@link OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines}接口获取行间距配置。适用于需要精确控制文本行间距显示效果的场景，
  * 如排版要求首尾行不加行间距的文本显示。
  *
- * @since 26.2.0
+ * @since 26.0.1
  */
 typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_LineSpacingOptions;
 
@@ -562,7 +562,7 @@ typedef struct OH_ArkUI_NativeModule_LineSpacingOptions OH_ArkUI_NativeModule_Li
  *
  * @return 返回指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
  * @release OH_ArkUI_NativeModule_LineSpacingOptions_Destroy {return}
- * @since 26.2.0
+ * @since 26.0.1
  */
 OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptions_Create();
 
@@ -570,7 +570,7 @@ OH_ArkUI_NativeModule_LineSpacingOptions *OH_ArkUI_NativeModule_LineSpacingOptio
  * @brief 销毁文本行间距选项对象。
  *
  * @param options 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
- * @since 26.2.0
+ * @since 26.0.1
  */
 void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_LineSpacingOptions *options);
 
@@ -580,7 +580,7 @@ void OH_ArkUI_NativeModule_LineSpacingOptions_Destroy(OH_ArkUI_NativeModule_Line
  * @param options 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
  * @param onlyBetweenLines 行间距是否仅在行与行之间应用。true表示仅在行之间应用行间距，false表示首行上方和尾行下方也会存在行间距。 默认值为false。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 表示操作成功。{@link ARKUI_ERROR_CODE_PARAM_INVALID} 表示options参数为空。
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
     OH_ArkUI_NativeModule_LineSpacingOptions *options, bool onlyBetweenLines);
@@ -591,7 +591,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_SetOnlyBetweenLines(
  * @param options 指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针。
  * @param onlyBetweenLines 输出参数，指向bool类型变量的指针，用于接收值。true表示仅在行之间应用行间距，false表示首行上方和尾行下方也会存在行间距。默认值为false。
  * @return {@link ARKUI_ERROR_CODE_NO_ERROR} 表示操作成功。{@link ARKUI_ERROR_CODE_PARAM_INVALID} 表示任意参数为空。
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LineSpacingOptions_GetOnlyBetweenLines(
     const OH_ArkUI_NativeModule_LineSpacingOptions *options, bool *onlyBetweenLines);
