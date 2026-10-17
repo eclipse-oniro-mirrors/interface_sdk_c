@@ -25,7 +25,7 @@
 /**
  * @file list_item.h
  *
- * @brief Provides shared list item-related type and function definitions for <b>NativeNode</b> APIs.
+ * @brief 为<b>NativeNode</b>API提供共享的列表项相关类型和函数定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -45,13 +45,13 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the configuration information of an item in the **ListItemSwipeActionOption**.
+ * @brief 定义列表项侧滑操作项的配置信息。
  *
  * @since 12
  */
 typedef struct ArkUI_ListItemSwipeActionItem ArkUI_ListItemSwipeActionItem;
 /**
- * @brief Defines the configuration information of the **ListItemSwipeActionOption**.
+ * @brief 定义列表项侧滑操作的配置信息。
  *
  * @since 12
  */
@@ -154,7 +154,7 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipe
  * @brief 设置滑动条目进入长距删除区时调用的事件。仅当长距删除距离阈值有效并形成长距删除区时触发。
  *
  * @param item ListItemSwipeActionItem实例。
- * @param callback Callback event.
+ * @param callback 回调事件。
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
@@ -164,7 +164,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
  *
  * @param item ListItemSwipeActionItem实例。
  * @param userData 用户自定义数据。
- * @param callback Callback event.
+ * @param callback 回调事件。
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(
@@ -175,7 +175,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(
  * 且滑动后松手位置超过或等于该阈值时触发。
  *
  * @param item ListItemSwipeActionItem实例。
- * @param callback Callback event.
+ * @param callback 回调事件。
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
@@ -186,7 +186,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
  *
  * @param item ListItemSwipeActionItem实例。
  * @param userData 用户自定义数据。
- * @param callback Callback event.
+ * @param callback 回调事件。
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(
@@ -196,7 +196,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(
  * @brief 设置滑动条目退出长距删除区时调用的事件。仅当长距删除距离阈值有效并形成长距删除区时触发。
  *
  * @param item ListItemSwipeActionItem实例。
- * @param callback Callback event.
+ * @param callback 回调事件。
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
@@ -206,7 +206,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
  *
  * @param item ListItemSwipeActionItem实例。
  * @param userData 用户自定义数据。
- * @param callback Callback event.
+ * @param callback 回调事件。
  * @since 12
  */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(
@@ -216,7 +216,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(
  * @brief 设置列表项滑动状态变化时触发的事件。列表项滑动状态会在收起、展开和长距离状态之间切换，具体状态见{@link ArkUI_ListItemSwipeActionState}。
  *
  * @param item ListItemSwipeActionItem实例。
- * @param callback Callback event.
+ * @param callback 回调事件。
  *     **swipeActionState** The changed state.
  * @since 12
  */
@@ -228,7 +228,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(
  *
  * @param item ListItemSwipeActionItem实例。
  * @param userData 用户自定义数据。
- * @param callback Callback event.
+ * @param callback 回调事件。
  *     **swipeActionState** The changed state.
  * @since 12
  */
@@ -296,7 +296,7 @@ int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActi
  * @brief 滑动操作偏移量更改时调用的事件。
  *
  * @param option ListItemSwipeActionOption实例。
- * @param callback Callback event.
+ * @param callback 回调事件。
  *     **offset** Slide offset.
  * @since 12
  */
@@ -308,7 +308,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(
  *
  * @param option ListItemSwipeActionOption实例。
  * @param userData 用户自定义数据。
- * @param callback Callback event.
+ * @param callback 回调事件。
  *     **offset** Slide offset.
  * @since 12
  */

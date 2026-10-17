@@ -229,14 +229,14 @@ typedef enum {
 } ArkUI_ShadowType;
 
 /**
- * @brief Enumerates the focus wrap mode of components.
+ * @brief 组件走焦换行规则。Grid、List组件默认值为ARKUI_FOCUS_WRAP_MODE_DEFAULT。
  *
  * @since 20
  */
 typedef enum {
-    /** Default mode, where focus does not wrap when arrow keys are used. */
+    /** 默认规则，使用方向键走焦不换行。 */
     ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0,
-    /** Focus wraps automatically when arrow keys are used. */
+    /** 使用方向键走焦自动换行。 */
     ARKUI_FOCUS_WRAP_WITH_ARROW = 1,
 } ArkUI_FocusWrapMode;
 

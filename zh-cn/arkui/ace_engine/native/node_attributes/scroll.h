@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief ArkUI Scroll related enums on the native side.
+ * @brief ArkUI在Native侧的Scroll相关枚举。
  *
  * @since 12
  */
