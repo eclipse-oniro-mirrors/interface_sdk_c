@@ -28,11 +28,11 @@
  *
  * @brief 提供访问可信设备和本地设备信息的接口。
  *
+ * @include <distributedhardware/device_manager/oh_device_manager.h>
  * @kit DistributedServiceKit
  * @library libdevicemanager_ndk.so
  * @syscap SystemCapability.DistributedHardware.DeviceManager
  *
- * @include <distributedhardware/device_manager/oh_device_manager.h>
  * @since 20
  */
 

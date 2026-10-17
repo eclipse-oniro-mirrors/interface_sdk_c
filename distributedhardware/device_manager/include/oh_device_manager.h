@@ -36,11 +36,11 @@
  *
  * @brief Provides APIs to obtain information about trusted devices and local devices.
  *
+ * @include <distributedhardware/device_manager/oh_device_manager.h>
  * @kit DistributedServiceKit
  * @library libdevicemanager_ndk.so
  * @syscap SystemCapability.DistributedHardware.DeviceManager
  *
- * @include <distributedhardware/device_manager/oh_device_manager.h>
  * @since 20
  */
 
