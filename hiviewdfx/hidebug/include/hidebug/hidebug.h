@@ -326,7 +326,8 @@ void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
 typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
 
 /**
- * Performs Perf sampling on the specified threads and returns the sampling stack content after the call is complete.
+ * @brief Performs Perf sampling on the specified threads and returns the
+ * sampling stack content after the call is complete.
  * Note: After this function is called, the current thread is blocked until the sampling process ends. The system
  * strictly limits the number of times that this API is called. If the number of times that this API is called exceeds
  * the upper limit, the error code {@link HIDEBUG_RESOURCE_UNAVAILABLE} is returned.
@@ -353,24 +354,55 @@ HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
  * @param config Configuration parameters of the resource profiler.
  * @param callback Result callback function of resource profiling.
  * @return Result code.
- *     <br>{@link HIDEBUG_RES_PROF_SUCCESS}: Resource profiler started successfully.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_ARG}: Invalid resource profiler argument.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}: Invalid maximum duration.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}: Invalid filter size.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}: Invalid maximum stack depth.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}: Invalid statistics interval.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}: Invalid sampling interval.
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}: Invalid resource type.
- *     <br>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}: Insufficient resource profiling permission. The target process
- *     for resource profiling can only be the process that calls this API.
- *     <br>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}: Resource profiler already started.
- *     <br>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}: The number of resource profiling processes exceeds 4.
- *     <br>{@link HIDEBUG_RES_PROF_CONFLICT}: Resource profiling conflicts with CLI tools or system profiling tasks.
- *     <br>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}: The daily quota for resource profiling exceeds 10 times.
- *     <br>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}: The system CPU is overloaded, with the CPU usage exceeding 70%.
- *     <br>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}: The available memory space is less than 15%.
- *     <br>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}: The available storage space is less than 15%.
- *     <br>{@link HIDEBUG_RES_PROF_FAILURE}: Failed to start resource profiler.
+ *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS}: Resource profiler started successfully.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG}: Invalid resource profiler argument.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}: Invalid maximum duration.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}: Invalid filter size.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}: Invalid maximum stack depth.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}: Invalid statistics interval.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}: Invalid sampling interval.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}: Invalid resource type.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}: Insufficient resource profiling
+ *     permission. The target process for resource profiling can only be the
+ *     process that calls this API.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}: Resource profiler already started.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}: The number of resource profiling
+ *     processes exceeds 4. This limit applies only to release-signed
+ *     applications. Debug-signed applications are not subject to this limit
+ *     for development and debugging purposes. The limit is released when an
+ *     existing profiling task stops. [since 26.0.1]
+ *     On API 26.0.0 and below, this limit applied to all applications.
+ *     [since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CONFLICT}: Resource profiling conflicts with
+ *     CLI tools or system profiling tasks.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}: The daily quota for resource
+ *     profiling is exceeded. For release-signed applications, the limit is
+ *     2 times per day per application and 4 times per day for device.
+ *     Debug-signed applications are not subject to this limit for development
+ *     and debugging purposes. The quota resets at the start of each day.
+ *     [since 26.0.1]
+ *     On API 26.0.0 and below, only debug-signed applications were
+ *     supported, with a limit of 10 times per day. [since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}: Resource profiling requests
+ *     are not permitted when the system CPU is overloaded, with the CPU usage
+ *     exceeding 70%. Callers may retry when CPU usage drops below the
+ *     threshold.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}: Resource profiling
+ *     requests are not permitted when the system is under memory pressure.
+ *     Memory pressure is defined as available system memory below 2GB,
+ *     a fixed threshold independent of device capacity. Callers may retry
+ *     when available memory recovers. [since 26.0.1]
+ *     On API 26.0.0 and below, memory pressure was defined as available
+ *     memory below 15%. [since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}: Resource profiling
+ *     requests are not permitted when the system is under storage pressure.
+ *     Storage pressure is defined as available system storage dropping below
+ *     the greater of 3% of total storage and 15GB. Callers may retry when
+ *     available storage recovers. [since 26.0.1]
+ *     On API 26.0.0 and below, storage pressure was defined as available
+ *     storage below 15%. [since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}: Failed to start resource profiler.
+ *     Callers may check system conditions and retry.</li></ul>
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDebug_ResProfilerConfig* config,
@@ -381,9 +413,11 @@ HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDe
  * {@link OH_HiDebug_StartProfiler} API and the call duration must be within the maximum duration.
  *
  * @return Result code.
- *     <br>{@link HIDEBUG_RES_PROF_SUCCESS}: Resource profiler stopped successfully.
- *     <br>{@link HIDEBUG_RES_PROF_NOT_STARTED}: Failed to stop resource profiler because it is not started.
- *     <br>{@link HIDEBUG_RES_PROF_FAILURE}: Failed to stop resource profiler.
+ *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS}: Resource profiler stopped successfully.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_NOT_STARTED}: Failed to stop resource profiler
+ *     because it is not started.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}: Failed to stop resource profiler.
+ *     Callers may check system conditions and retry.</li></ul>
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
@@ -607,28 +641,53 @@ HiDebug_ErrorCode OH_HiDebug_SetStackTraceMode(OH_HiDebug_ProfilerOptions *opts,
  * @param opts [in] Pointer to the configured OH_HiDebug_ProfilerOptions structure. It must not be NULL.
  * @param callback [in] Callback function to receive profiling results.
  * @return Result code.
- *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS} Profiler started successfully.</li>
+ *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS} Resource profiling started successfully.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts or callback is a null pointer.</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} Maximum duration is invalid.</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} FilterSize is invalid.</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} Maximum stack depth is invalid.</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} StatisticsInterval is invalid.</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} Sample interval is invalid.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION} Invalid maximum duration.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE} Invalid filter size.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH} Invalid maximum stack depth.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL} Invalid statistics interval.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL} Invalid sampling interval.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH} Maximum asynchronous nesting depth
  *     is invalid.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH} Maximum asynchronous task stack depth
  *     is invalid.</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_STACK_TRACE_MODE} Stack trace mode is invalid.</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE} Resource type is invalid.</li>
- *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED} Permission denied.</li>
- *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED} Profiler has already been started.</li>
- *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT} Process exceeds the limit.</li>
- *     <li>{@link HIDEBUG_RES_PROF_CONFLICT} Conflict.</li>
- *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED} Daily quota exceeded.</li>
- *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED} CPU overloaded.</li>
- *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL} Memory pressure is critical.</li>
- *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL} Storage pressure is critical.</li>
- *     <li>{@link HIDEBUG_RES_PROF_FAILURE} Failed to start the resource profiler.</li></ul>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE} Invalid resource type.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED} Insufficient resource profiling
+ *     permission. The target process for resource profiling can only be the
+ *     process that calls this API.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED} Resource profiling is repeatedly
+ *     started.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT} The number of resource
+ *     profiling processes exceeds 4. This limit applies only to release-signed
+ *     applications. Debug-signed applications are not subject to this limit
+ *     for development and debugging purposes. The limit is released when an
+ *     existing profiling task stops.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CONFLICT} Resource profiling conflicts with
+ *     CLI tools or system profiling tasks.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED} The daily quota for
+ *     resource profiling is exceeded. For release-signed applications,
+ *     the limit is 2 times per day per application and 4 times per day
+ *     for device. Debug-signed applications are not subject to this limit
+ *     for development and debugging purposes. The quota resets at the
+ *     start of each day.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED} Resource profiling requests
+ *     are not permitted when the system CPU is overloaded, with the CPU usage
+ *     exceeding 70%. Callers may retry when CPU usage drops below the
+ *     threshold.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL} Resource profiling
+ *     requests are not permitted when the system is under memory pressure.
+ *     Memory pressure is defined as available system memory below 2GB,
+ *     a fixed threshold independent of device capacity. Callers may retry
+ *     when available memory recovers.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL} Resource profiling
+ *     requests are not permitted when the system is under storage pressure.
+ *     Storage pressure is defined as available system storage dropping
+ *     below the greater of 3% of total storage and 15GB. Callers may
+ *     retry when available storage recovers.</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE} Failed to start resource profiler.
+ *     Callers may check system conditions and retry.</li></ul>
  * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType type,

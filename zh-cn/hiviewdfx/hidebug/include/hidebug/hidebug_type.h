@@ -52,146 +52,159 @@ extern "C" {
  */
 typedef enum HiDebug_ErrorCode {
 /**
-     * 成功。
+     * @brief 成功。
      */
     HIDEBUG_SUCCESS = 0,
 /**
-     * 无效参数，可能的原因： 1.参数传值问题；2.参数类型问题。
+     * @brief 无效参数，可能的原因： 1.参数传值问题；2.参数类型问题。
      */
     HIDEBUG_INVALID_ARGUMENT = 401,
 /**
-     * 重复采集。
+     * @brief 重复采集。
      */
     HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,
 /**
-     * 没有写文件的权限。
+     * @brief 没有写文件的权限。
      */
     HIDEBUG_NO_PERMISSION = 11400103,
 /**
-     * 系统内部错误。
+     * @brief 系统内部错误。
      */
     HIDEBUG_TRACE_ABNORMAL = 11400104,
 /**
-     * 当前没有trace正在运行。
+     * @brief 当前没有trace正在运行。
      */
     HIDEBUG_NO_TRACE_RUNNING = 11400105,
     /**
-     * trace文件存储达到限制。
+     * @brief trace文件存储达到限制。
      * @since 24
      */
     OH_HIDEBUG_TRACE_STORAGE_LIMIT = 11400120,
     /**
-     * 传入符号解析函数的pc地址是无效的。
+     * @brief 传入符号解析函数的pc地址是无效的。
      * @since 20
      */
     HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200,
     /**
-     * 当前设备不支持。
+     * @brief 当前设备不支持。
      * @since 22
      */
     HIDEBUG_NOT_SUPPORTED = 11400300,
     /**
-     * 当前进程正在采样。
+     * @brief 当前进程正在采样。
      * @since 22
      */
     HIDEBUG_UNDER_SAMPLING = 11400301,
     /**
-     * 采样资源不可用。
+     * @brief 采样资源不可用。
      * @since 22
      */
     HIDEBUG_RESOURCE_UNAVAILABLE = 11400302,
     /**
-     * 资源采集启动/停止成功。
+     * @brief 资源采集启动/停止成功。
      * @since 24
      */
     HIDEBUG_RES_PROF_SUCCESS = 11400400,
     /**
-     * 资源采集参数无效。
+     * @brief 资源采集参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_ARG = 11400410,
     /**
-     * 资源采集最大持续时间参数无效。
+     * @brief 资源采集最大持续时间参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_DURATION = 11400411,
     /**
-     * 资源采集过滤大小参数无效。
+     * @brief 资源采集过滤大小参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_FILTER_SIZE = 11400412,
     /**
-     * 资源采集最大回栈深度参数无效。
+     * @brief 资源采集最大回栈深度参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH = 11400413,
     /**
-     * 资源采集统计间隔参数无效。
+     * @brief 资源采集统计间隔参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL = 11400414,
     /**
-     * 资源采集采样大小参数无效。
+     * @brief 资源采集采样大小参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL = 11400415,
     /**
-     * 资源采集资源类型参数无效。
+     * @brief 资源采集资源类型参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE = 11400416,
     /**
-     * 资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。
+     * @brief 资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。
      * @since 24
      */
     HIDEBUG_RES_PROF_PERMISSION_DENIED = 11400420,
     /**
-     * 资源采集重复启动。
+     * @brief 资源采集重复启动。
      * @since 24
      */
     HIDEBUG_RES_PROF_ALREADY_STARTED = 11400421,
     /**
-     * 资源采集未启动，停止失败。
+     * @brief 资源采集未启动，停止失败。
      * @since 24
      */
     HIDEBUG_RES_PROF_NOT_STARTED = 11400422,
     /**
-     * 资源采集进程数超出 4 个限制。
+     * @brief 资源采集进程数超过4个上限。
+     * 仅对发布签名应用生效，调试签名应用不受此限制，
+     * 用于开发和调试目的。已有采集任务停止后限制释放。[since 26.0.1]
+     * API版本26.0.0及以下，该限制对所有应用生效。[since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_PROCESS_OVERLIMIT = 11400423,
     /**
-     * 资源采集与命令行工具或系统采集任务冲突。
+     * @brief 资源采集与命令行工具或系统采集任务冲突。
      * @since 24
      */
     HIDEBUG_RES_PROF_CONFLICT = 11400424,
     /**
-     * 资源采集到达指定最大持续时间限制自动停止。
+     * @brief 资源采集到达指定最大持续时间限制自动停止。
      * @since 24
      */
     HIDEBUG_RES_PROF_AUTO_STOPPED_BY_DURATION = 11400425,
     /**
-     * 资源采集每日配额超出 10 次限制。
+     * @brief 资源采集每日配额超出限制。
+     * 发布签名应用：每应用每日限制采集2次，整机每日限制采集4次；
+     * 调试签名应用：采集不受限制，用于开发和调试目的。配额每日重置。[since 26.0.1]
+     * API版本26.0.0及以下，仅调试签名应用支持采集，每日限10次。[since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED = 11400426,
     /**
-     * 系统 CPU 处于高负载状态，CPU 占用率超过 70%。
+     * @brief 系统CPU处于高负载状态，禁止资源采集。
+     * CPU占用率超过70%。CPU使用率恢复后可重试。
      * @since 24
      */
     HIDEBUG_RES_PROF_CPU_OVERLOADED = 11400427,
     /**
-     * 内存可用空间紧张，可用空间少于 15%。
+     * @brief 系统内存可用空间紧张，禁止资源采集。
+     * 可用空间不足2GB，该阈值为固定值，不随设备容量变化。
+     * 可用内存恢复后可重试。[since 26.0.1]
+     * API版本26.0.0及以下，可用空间少于15%。[since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL = 11400428,
     /**
-     * 存储可用空间紧张，可用空间少于 15%。
+     * @brief 系统存储可用空间紧张，禁止资源采集。
+     * 可用空间不足总容量的3%与15GB中的较大值。
+     * 可用存储恢复后可重试。[since 26.0.1]
+     * API版本26.0.0及以下，可用空间少于15%。[since 24 - 26.0.0]
      * @since 24
      */
     HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL = 11400429,
     /**
-     * 资源采集启动/停止失败。
+     * @brief 资源采集启动/停止失败。可检查系统条件后重试。
      * @since 24
      */
     HIDEBUG_RES_PROF_FAILURE = 11400430,
@@ -323,11 +336,11 @@ typedef struct HiDebug_MemoryLimit {
  */
 typedef enum HiDebug_TraceFlag {
 /**
-     * 只采集当前应用主线程。
+     * @brief 只采集当前应用主线程。
      */
     HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,
 /**
-     * 采集当前应用下所有线程。
+     * @brief 采集当前应用下所有线程。
      */
     HIDEBUG_TRACE_FLAG_ALL_THREADS = 2
 } HiDebug_TraceFlag;
@@ -471,11 +484,11 @@ typedef struct HiDebug_NativeStackFrame {
  */
 typedef enum HiDebug_StackFrameType {
 /**
-     * js类型栈帧。
+     * @brief js类型栈帧。
      */
     HIDEBUG_STACK_FRAME_TYPE_JS = 1,
 /**
-     * native类型栈帧。
+     * @brief native类型栈帧。
      */
     HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2
 } HiDebug_StackFrameType;
@@ -487,7 +500,7 @@ typedef enum HiDebug_StackFrameType {
  */
 typedef struct HiDebug_StackFrame {
     /**
-     * 当前栈的类型。
+     * @brief 当前栈的类型。
      */
     HiDebug_StackFrameType type;
 
@@ -563,27 +576,27 @@ typedef struct HiDebug_ProcessSamplerConfig {
  */
 typedef enum HiDebug_CrashObjType {
 /**
-      * 字符串
+      * @brief 字符串
       */
     HIDEBUG_CRASHOBJ_STRING = 0,
 /**
-      * 64字节内存块
+      * @brief 64字节内存块
       */
     HIDEBUG_CRASHOBJ_MEMORY_64B = 1,
 /**
-      * 256字节内存块
+      * @brief 256字节内存块
       */
     HIDEBUG_CRASHOBJ_MEMORY_256B = 2,
 /**
-     * 1024字节内存块
+     * @brief 1024字节内存块
      */
     HIDEBUG_CRASHOBJ_MEMORY_1024B = 3,
 /**
-      * 2048字节内存块
+      * @brief 2048字节内存块
       */
     HIDEBUG_CRASHOBJ_MEMORY_2048B = 4,
 /**
-     * 4096字节内存块
+     * @brief 4096字节内存块
      */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
 } HiDebug_CrashObjType;
@@ -595,27 +608,27 @@ typedef enum HiDebug_CrashObjType {
  */
 typedef enum OH_HiDebug_ResourceType {
     /**
-     * 文件描述符
+     * @brief 文件描述符
      * @since 24
      */
     OH_RES_TYPE_FD,
     /**
-     * 线程
+     * @brief 线程
      * @since 24
      */
     OH_RES_TYPE_THREAD,
     /**
-     * Native 内存
+     * @brief Native 内存
      * @since 24
      */
     OH_RES_TYPE_NATIVE,
     /**
-     * GPU 内存
+     * @brief GPU 内存
      * @since 24
      */
     OH_RES_TYPE_GPU,
     /**
-     * 全局句柄
+     * @brief 全局句柄
      * @since 24
      */
     OH_RES_TYPE_GLOBAL_HANDLE,
@@ -648,12 +661,12 @@ typedef enum OH_HiDebug_ResourceType {
  */
 typedef struct OH_HiDebug_ProfilingResult {
     /**
-     * Profiled resource type.
+     * @brief Profiled resource type.
      * @since 24
      */
     OH_HiDebug_ResourceType resourceType;
     /**
-     * File path of the profiling result data. Null if the profiling fails.
+     * @brief 资源采集结果文件路径，如果采集失败则结果文件路径指针为空。
      * @since 24
      */
     const char* filePath;
@@ -709,7 +722,7 @@ typedef struct OH_HiDebug_ResProfilerConfig {
  */
 typedef enum OH_HiDebug_MemListenerType {
     /**
-     * 无特定操作，仅通知回调。
+     * 默认值，无需处理。
      * @since 26.0.0
      */
     OH_HIDEBUG_DO_NOTHING = 0,
