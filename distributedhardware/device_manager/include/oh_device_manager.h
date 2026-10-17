@@ -16,9 +16,19 @@
  * @addtogroup DeviceManager
  * @{
  *
- * @brief Distributed device management module,
- * which provides APIs to obtain information about trusted devices and local devices.
+ * @brief Distributed device management module, used to obtain basic information about trusted
+ * devices and local devices.
+ * Trusted devices refer to devices that have established trust relationships through device
+ * authentication. Basic information includes device name, device type, device identifier, device
+ * status, etc.
+ * This module provides functions such as device discovery, device binding, device information
+ * query, and device status monitoring. It is applicable to scenarios such as distributed
+ * cross-device collaboration and device interconnection, enabling service collaboration and
+ * data sharing.
  *
+ * Developers can use the APIs provided by this module to obtain device information and complete
+ * development tasks related to distributed device management. For module design logic and usage
+ * instructions, see the Distributed Device Management Development Guide.
  * @since 20
  */
 /**
@@ -30,6 +40,7 @@
  * @library libdevicemanager_ndk.so
  * @syscap SystemCapability.DistributedHardware.DeviceManager
  *
+ * @include <distributedhardware/device_manager/oh_device_manager.h>
  * @since 20
  */
 
@@ -53,11 +64,11 @@ extern "C" {
   *     Otherwise, the default device name is returned.
   * @param len Character length of the display name of the local device.
   * @return Error code. For details about the error code definitions, see {@link DeviceManager_ErrorCode}.
-  *      Returns {@link ERR_OK} is returned if the execution is successful.
-  *      Returns {@link DM_ERR_FAILED} is returned if the function fails to be executed.
-  *      Returns {@link DM_ERR_OBTAIN_SERVICE} is returned if the device management service fails to be obtained.
-  *      Returns {@link DM_ERR_OBTAIN_BUNDLE_NAME} is returned if the bundle name fails to be obtained.
-  *      Returns {@link ERR_INVALID_PARAMETER} is returned if the localDeviceName is nullptr or
+  *      <br>Returns {@link ERR_OK} is returned if the execution is successful.
+  *      <br>Returns {@link DM_ERR_FAILED} is returned if the function fails to be executed.
+  *      <br>Returns {@link DM_ERR_OBTAIN_SERVICE} is returned if the device management service fails to be obtained.
+  *      <br>Returns {@link DM_ERR_OBTAIN_BUNDLE_NAME} is returned if the bundle name fails to be obtained.
+  *      <br>Returns {@link ERR_INVALID_PARAMETER} is returned if the localDeviceName is nullptr or
   *                                            *localDeviceName is not nullptr.
   * @since 20
   * @deprecated since 26.0.0
@@ -81,11 +92,11 @@ int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int
   * @param len Pointer to the length of the display name of the local device.
   *     After using this API, you need to manually release resources to free up space.
   * @return Error code. For details about the error code definitions, see {@link DeviceManager_ErrorCode}.
-  *      Returns {@link ERR_OK} is returned if the execution is successful.
-  *      Returns {@link DM_ERR_FAILED} is returned if the function fails to be executed.
-  *      Returns {@link DM_ERR_OBTAIN_SERVICE} is returned if the device management service fails to be obtained.
-  *      Returns {@link DM_ERR_OBTAIN_BUNDLE_NAME} is returned if the bundle name fails to be obtained.
-  *      Returns {@link ERR_INVALID_PARAMETER} is returned if the localDeviceName is nullptr or
+  *      <br>Returns {@link ERR_OK} is returned if the execution is successful.
+  *      <br>Returns {@link DM_ERR_FAILED} is returned if the function fails to be executed.
+  *      <br>Returns {@link DM_ERR_OBTAIN_SERVICE} is returned if the device management service fails to be obtained.
+  *      <br>Returns {@link DM_ERR_OBTAIN_BUNDLE_NAME} is returned if the bundle name fails to be obtained.
+  *      <br>Returns {@link ERR_INVALID_PARAMETER} is returned if the localDeviceName is nullptr or
   *                                            *localDeviceName is not nullptr or len is nullptr.
   * @since 26.0.0
   */

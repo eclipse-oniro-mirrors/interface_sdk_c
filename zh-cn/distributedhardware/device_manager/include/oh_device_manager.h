@@ -16,9 +16,11 @@
  * @addtogroup DeviceManager
  * @{
  *
- * @brief Distributed device management module,
- * which provides APIs to obtain information about trusted devices and local devices.
+ * @brief 分布式设备管理模块，用于获取可信设备和本地设备的基本信息。
+ * 可信设备指已通过设备认证建立信任关系的设备，基本信息包括设备名称、设备类型、设备标识、设备状态等。
+ * 该模块提供设备发现、设备绑定、设备信息查询、设备状态监听等功能，适用于分布式跨设备协同、设备互联等场景，实现业务协同与数据共享。
  *
+ * 开发者可通过该模块提供的接口获取设备信息，完成分布式设备管理相关的开发任务。模块设计逻辑和使用说明，请参见分布式设备管理开发指导。
  * @since 20
  */
 /**
@@ -30,6 +32,7 @@
  * @library libdevicemanager_ndk.so
  * @syscap SystemCapability.DistributedHardware.DeviceManager
  *
+ * @include <distributedhardware/device_manager/oh_device_manager.h>
  * @since 20
  */
 
@@ -47,13 +50,13 @@ extern "C" {
   * @permission ohos.permission.READ_LOCAL_DEVICE_NAME
   * @param localDeviceName 表示本地设备显示名字符串的地址指针。使用后需要手动释放空间资源。
   *     应用具备 ohos.permission.READ_LOCAL_DEVICE_NAME 权限，返回设备显示名称；否则返回设备默认名称。
-  * @param len 表示本地设备显示名的长度。
+  * @param len 表示本地设备显示名的长度，单位：字节。
   * @return 返回执行的错误码。错误码定义详见{@link DeviceManager_ErrorCode}。
-  *          返回{@link ERR_OK}，表示执行成功。
-  *          返回{@link DM_ERR_FAILED}，表示函数执行失败。
-  *          返回{@link DM_ERR_OBTAIN_SERVICE}，表示获取设备管理服务失败。
-  *          返回{@link DM_ERR_OBTAIN_BUNDLE_NAME}，表示获取bundleName失败。
-  *          返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针。
+  *          <br>返回{@link ERR_OK}，表示执行成功。
+  *          <br>返回{@link DM_ERR_FAILED}，表示函数执行失败。
+  *          <br>返回{@link DM_ERR_OBTAIN_SERVICE}，表示获取设备管理服务失败。
+  *          <br>返回{@link DM_ERR_OBTAIN_BUNDLE_NAME}，表示获取bundleName失败。
+  *          <br>返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针。
   * @since 20
   * @deprecated since 26.0.0
   * @useinstead OH_DeviceManager_GetLocalDeviceNameC
@@ -69,13 +72,13 @@ int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int
   * @permission ohos.permission.READ_LOCAL_DEVICE_NAME
   * @param localDeviceName 表示本地设备显示名字符串的地址指针。使用后需要手动释放空间资源。
   *     应用具备 ohos.permission.READ_LOCAL_DEVICE_NAME 权限，返回设备显示名称；否则返回设备默认名称。
-  * @param len 表示本地设备显示名字符串长度的地址指针。使用后需要手动释放空间资源。
+  * @param len 表示本地设备显示名字符串长度的地址指针，单位：字节。使用后需要手动释放空间资源。
   * @return 返回执行的错误码。错误码定义详见{@link DeviceManager_ErrorCode}。
-  *          返回{@link ERR_OK}，表示执行成功。
-  *          返回{@link DM_ERR_FAILED}，表示函数执行失败。
-  *          返回{@link DM_ERR_OBTAIN_SERVICE}，表示获取设备管理服务失败。
-  *          返回{@link DM_ERR_OBTAIN_BUNDLE_NAME}，表示获取bundleName失败。
-  *          返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针或者len是空指针。
+  *          <br>返回{@link ERR_OK}，表示执行成功。
+  *          <br>返回{@link DM_ERR_FAILED}，表示函数执行失败。
+  *          <br>返回{@link DM_ERR_OBTAIN_SERVICE}，表示获取设备管理服务失败。
+  *          <br>返回{@link DM_ERR_OBTAIN_BUNDLE_NAME}，表示获取bundleName失败。
+  *          <br>返回{@link ERR_INVALID_PARAMETER}，表示参数localDeviceName是空指针或者*localDeviceName是非空指针或者len是空指针。
   * @since 26.0.0
   */
 int32_t OH_DeviceManager_GetLocalDeviceNameC(char **localDeviceName, unsigned int *len);
