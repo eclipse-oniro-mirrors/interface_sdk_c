@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief ArkUI Grid related types and functions on the native side.
+ * @brief ArkUI的Native侧的Grid相关类型和函数。
  *
  * @since 22
  */
