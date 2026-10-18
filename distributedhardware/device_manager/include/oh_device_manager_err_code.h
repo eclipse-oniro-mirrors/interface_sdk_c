@@ -16,9 +16,19 @@
  * @addtogroup DeviceManager
  * @{
  *
- * @brief Distributed device management module,
- * which provides APIs to obtain information about trusted devices and local devices.
+ * @brief Distributed device management module, used to obtain basic information about trusted
+ * devices and local devices.
+ * Trusted devices refer to devices that have established trust relationships through device
+ * authentication. Basic information includes device name, device type, device identifier, device
+ * status, etc.
+ * This module provides functions such as device discovery, device binding, device information
+ * query, and device status monitoring. It is applicable to scenarios such as distributed
+ * cross-device collaboration and device interconnection, enabling service collaboration and
+ * data sharing.
  *
+ * Developers can use the APIs provided by this module to obtain device information and complete
+ * development tasks related to distributed device management. For module design logic and usage
+ * instructions, see the Distributed Device Management Development Guide.
  * @since 20
  */
 /**
@@ -26,6 +36,7 @@
  *
  * @brief Declares the error codes of the distributed device management module.
  *
+ * @include <distributedhardware/device_manager/oh_device_manager_err_code.h>
  * @kit DistributedServiceKit
  * @library libdevicemanager_ndk.so
  * @syscap SystemCapability.DistributedHardware.DeviceManager
