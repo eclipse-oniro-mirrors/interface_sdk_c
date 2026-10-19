@@ -289,7 +289,7 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param secureAudio Whether a secure decoder is used. **true** if used, **false** otherwise.
  *     <br>Currently, the secure decoder is not supported for audio decryption.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid, or the mediaKeySystemInfo
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid, or the mediaKeySession
  *     instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
