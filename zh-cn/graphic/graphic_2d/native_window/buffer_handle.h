@@ -46,7 +46,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Buffer handle used to transfer and obtain information about the buffer.
+ * @brief 用于传输和获取缓冲区信息的BufferHandle。
  * @since 8
  */
 typedef struct {
