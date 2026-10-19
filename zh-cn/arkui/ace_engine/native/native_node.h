@@ -4162,7 +4162,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
