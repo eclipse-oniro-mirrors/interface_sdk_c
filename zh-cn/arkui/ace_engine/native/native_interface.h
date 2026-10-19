@@ -91,17 +91,19 @@ typedef enum {
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1,
     /**
-     * @brief 检查同一棵Free组件树是否被不同线程并发操作。
-     *
-     * 此检查适用于通过{@link ARKUI_MULTI_THREAD_NATIVE_NODE}获取的多线程UI组件接口。
-     * 使能后，检测到冲突时打印诊断信息和native堆栈，并立即终止应用程序。
-     * LOG模式和CRASH模式均会终止应用程序；不同组件树仍可由不同线程并行操作。
-     * debug应用构建默认使用CRASH模式，release应用构建默认关闭此检查。
-     * 即使关闭此检查，应用仍须保证对同一棵Free组件树的操作串行执行。
+     * @brief 属性匹配检查类型：检测传递给SetAttribute/GetAttribute/ResetAttribute的
+     * ArkUI_NodeAttributeType是否与节点实际组件类型匹配。
      *
      * @since 26.2.0
      */
-    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 2
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
+    /**
+     * @brief 多线程竞争检查类型：检测调用多线程API时，是否已有其他线程
+     * 正在操作同一棵组件树。
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;
 
 /**
@@ -109,7 +111,6 @@ typedef enum {
  *
  *  所有C API的运行时检查类型均使用本枚举中定义的相同模式集合（DISABLED、LOG、CRASH）设置检查失败时的行为，
  * 即每种检查类型都可以独立设置为以下三种模式之一。
- * 对于{@link OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD}，任一使能模式在检测到冲突时都会终止应用程序。
  * 默认模式取决于应用程序的构建类型：
  * 以debug模式编译的应用（DevEco Studio中Debug构建，用于开发调试）
  * 默认为{@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH}，
@@ -127,8 +128,6 @@ typedef enum {
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED = 0,
     /**
      * @brief 打印诊断日志（检查类型、API名称、原因、native堆栈）并继续C API调用。
-     * 对于{@link OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD}，此模式按
-     * {@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH}处理。
      *
      * @since 26.2.0
      */
@@ -192,8 +191,8 @@ const char* OH_ArkUI_NativeModule_GetErrorMessage();
  * 线程检查在参数校验之前执行。
  *
  * <b>默认行为：</b>如果未针对某个检查类型调用本函数，
- * debug应用构建默认为{@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH}，
- * release应用构建默认为{@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED}。
+ * debug应用构建默认为{@link ARKUI_RUNTIME_CHECK_MODE_CRASH}，
+ * release应用构建默认为{@link ARKUI_RUNTIME_CHECK_MODE_DISABLED}。
  *
  * @param checkType [入参] 指定要配置的运行时检查类型，
  *     取值为{@link OH_ArkUI_NativeModule_RuntimeCheckType}中的枚举值。
@@ -201,7 +200,7 @@ const char* OH_ArkUI_NativeModule_GetErrorMessage();
  * @return 返回值：
  *     <ul><li>设置更新成功返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     </li><li>checkType或mode无效时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li></ul>
- *     返回无效参数错误时，保留之前的设置。
+ *  *     返回无效参数错误时，保留之前的设置。
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(

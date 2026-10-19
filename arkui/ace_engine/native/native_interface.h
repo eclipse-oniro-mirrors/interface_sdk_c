@@ -94,19 +94,19 @@ typedef enum {
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1,
     /**
-     * @brief Checks for concurrent operations on the same Free component tree.
-     *
-     * This check applies to the multi-threaded UI component APIs obtained with
-     * {@link ARKUI_MULTI_THREAD_NATIVE_NODE}. When enabled, a conflict prints diagnostic
-     * information and a native stack trace, then immediately terminates the application.
-     * Both LOG and CRASH modes terminate the application. Different component trees
-     * can still be operated on in parallel.
-     * Debug application builds default to CRASH, and release application builds default to DISABLED.
-     * Even when this check is disabled, the application must serialize operations on the same Free tree.
+     * @brief Attribute match check type: Detects whether an ArkUI_NodeAttributeType passed to
+     * SetAttribute/GetAttribute/ResetAttribute matches the node's actual component type.
      *
      * @since 26.2.0
      */
-    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 2
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
+    /**
+     * @brief multi thread race condition check type: Detects whether another thread is already
+     * operating on the same component tree when a multi thread API is called.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;
 
 /**
@@ -114,9 +114,7 @@ typedef enum {
  *
  * All runtime check types use the same set of modes (DISABLED, LOG, CRASH) defined in this enum
  * to determine the behavior upon check failure. That is, each check type can be independently
- * set to one of the following three modes. For
- * {@link OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD}, any enabled mode terminates
- * the application when a conflict is detected.
+ * set to one of the following three modes.
  * The default mode depends on the application's build type:
  * For applications compiled in debug mode (Debug build in DevEco Studio, used for development
  * and debugging), the default is {@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH}.
@@ -134,8 +132,6 @@ typedef enum {
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED = 0,
     /**
      * @brief Prints diagnostic logs (check type, API name, cause, native stack trace) and continues the C API call.
-     * For {@link OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD}, this mode is treated as
-     * {@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH}.
      *
      * @since 26.2.0
      */
