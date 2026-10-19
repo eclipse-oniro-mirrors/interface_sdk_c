@@ -18,8 +18,8 @@ ohos_ndk_headers("native_media_codecbase_header") {
   sources = [
     "../avcodec_audio_channel_layout.h",
     "../native_avcapability.h",
-    "../native_avcodec_base.h",
     "../native_avcodec_audiobase.h",
+    "../native_avcodec_base.h",
     "../native_avcodec_videobase.h",
   ]
 }

@@ -30,7 +30,7 @@
  * @include <multimedia/player_framework/native_avcodec_audiobase.h>
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef NATIVE_AVCODEC_AUDIOBASE_H
@@ -44,37 +44,36 @@ extern "C" {
 
 /**
  * @brief DSD解码类型的键，值类型为int32_t，取值请参见{@link OH_AVCodec_DSDCodecType}。
- * 该KEY是可选类型，只是用来标记DSD解码类型参数，默认值是
- *  * DSD_CODEC_LSBF_PLANAR(0)。
+ * 该键是可选参数，只用来标记DSD解码类型，默认值为OH_AVCODEC_DSD_CODEC_LSBF_PLANAR(0)。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 extern const char *OH_MD_KEY_AUDIO_DSD_CODEC_TYPE;
 
 /**
  * @brief DSD编解码类型。
  *
- * @since 26.0.2
+ * @since 26.1.0
  */
 typedef enum OH_AVCodec_DSDCodecType {
     /**
      * @brief 适用于LSB first和平面排布的dsf容器格式。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
-    AVCODEC_DSD_CODEC_LSBF_PLANAR = 0,
+    OH_AVCODEC_DSD_CODEC_LSBF_PLANAR = 0,
     /**
      * @brief MSB first和平面排布的dsf容器格式。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
-    AVCODEC_DSD_CODEC_MSBF_PLANAR = 1,
+    OH_AVCODEC_DSD_CODEC_MSBF_PLANAR = 1,
     /**
-     * @brief MSB first和交织排布的DFF容器格式。
+     * @brief MSB first和交织排布的dff容器格式。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
-    AVCODEC_DSD_CODEC_MSBF = 2,
+    OH_AVCODEC_DSD_CODEC_MSBF = 2,
 } OH_AVCodec_DSDCodecType;
 
 #ifdef __cplusplus

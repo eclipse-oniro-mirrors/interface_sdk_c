@@ -27,10 +27,11 @@
  * @brief Declare the Native API used for basic audio encoding and decoding functions,
  * as well as audio-specific configurations and parameters.
  *
- * @kit AVCodecKit
- * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 26.2.0
+ * @include <multimedia/player_framework/native_avcodec_audiobase.h>
+ * @library libnative_media_codecbase.so
+ * @kit AVCodecKit
+ * @since 26.1.0
  */
 
 #ifndef NATIVE_AVCODEC_AUDIOBASE_H
@@ -43,39 +44,34 @@ extern "C" {
 #endif
 
 /**
- * @brief DSD decoding key ID. The value is of the int32_t type for (@link OH_AVCodec_DSDCodecType).
- * This key is optional for the audio decoder.
- * It is used only to identify the DSD decoding type paramter.
- * The default value is DSD_CODEC_LSBF_PLANAR(0).
- *
- * @since 26.2.0
+ * @brief DSD decoding key ID. The value is of the int32_t type from {@link OH_AVCodec_DSDCodecType}.
+ * This key is optional for audio decoders.
+ * It is used to identify the DSD decoding type parameter.
+ * The default value is OH_AVCODEC_DSD_CODEC_LSBF_PLANAR(0).
+ * @since 26.1.0
  */
 extern const char *OH_MD_KEY_AUDIO_DSD_CODEC_TYPE;
 
 /**
- * @brief DSD codec type
- *
- * @since 26.0.2
+ * @brief DSD codec type.
+ * @since 26.1.0
  */
 typedef enum OH_AVCodec_DSDCodecType {
     /**
-     * @brief dsf container format for LSB first and flat layout
-     *
-     * @since 26.2.0
+     * @brief dsf container format for LSB first and flat layout.
+     * @since 26.1.0
      */
-    AVCODEC_DSD_CODEC_LSBF_PLANAR = 0,
+    OH_AVCODEC_DSD_CODEC_LSBF_PLANAR = 0,
     /**
-     * @brief MSB first and flat layout dsf container format
-     *
-     * @since 26.2.0
+     * @brief MSB first and flat layout of the dsf container format.
+     * @since 26.1.0
      */
-    AVCODEC_DSD_CODEC_MSBF_PLANAR = 1,
+    OH_AVCODEC_DSD_CODEC_MSBF_PLANAR = 1,
     /**
-     * @brief MSB first and interleaved DFF container format
-     *
-     * @since 26.2.0
+     * @brief MSB first and interleaved dff container format.
+     * @since 26.1.0
      */
-    AVCODEC_DSD_CODEC_MSBF = 2,
+    OH_AVCODEC_DSD_CODEC_MSBF = 2,
 } OH_AVCodec_DSDCodecType;
 
 #ifdef __cplusplus
