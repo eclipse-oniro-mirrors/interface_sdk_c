@@ -461,7 +461,7 @@ HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *
  * @brief 设置异步调用最大嵌套深度。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param depth [in] 允许的最大异步嵌套深度。
+ * @param depth [in] 允许的最大异步嵌套深度，取值范围为[1, 16]。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -474,7 +474,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions 
  * @brief 设置异步任务函数的最大栈深。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param depth [in] 最大异步任务栈深。
+ * @param depth [in] 最大异步任务回栈深度，取值范围为[1, 256]。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -487,7 +487,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOption
  * @brief 设置采样间隔（单位：字节）。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param bytes [in] 采样间隔。
+ * @param bytes [in] 采样间隔，取值范围为[384, 4294967295]，单位为Byte。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -500,7 +500,7 @@ HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *
  * @brief 设置统计时间间隔（单位：秒）。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param seconds [in] 统计时间间隔。
+ * @param seconds [in] 统计间隔，取值范围为[1, 3600]，单位为s。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -513,7 +513,7 @@ HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions
  * @brief 设置最大回栈深度。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param depth [in] 最大回栈深度。
+ * @param depth [in] 最大回栈深度，取值范围为[1, 30]。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -526,7 +526,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, 
  * @brief 设置过滤大小。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param size [in] 过滤大小（单位：字节）。
+ * @param size [in] 过滤大小阈值，取值范围为[1, 4294967295]，单位为Byte。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -539,7 +539,7 @@ HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uin
  * @brief 设置最大采集持续时间（单位：秒）。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param seconds [in] 最大采集持续时间（单位：秒）。
+ * @param seconds [in] 最大采集时长，取值范围为[1, 3600]，单位为s。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
