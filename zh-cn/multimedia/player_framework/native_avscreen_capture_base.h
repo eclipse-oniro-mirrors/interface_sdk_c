@@ -90,14 +90,14 @@ typedef struct OH_AVScreenCapture_ContentFilter OH_AVScreenCapture_ContentFilter
  * @since 10
  */
 typedef enum OH_CaptureMode {
-    /* 录制主屏幕。 */
+    /* 录制主屏幕。适用于全屏录制场景。 */
     OH_CAPTURE_HOME_SCREEN = 0,
-    /* 录制指定屏幕。使用此模式需在OH_AVScreenCaptureConfig中指定displayId。 */
+    /* 录制指定屏幕。适用于多屏环境下选择特定屏幕的场景。使用此模式需在OH_AVScreenCaptureConfig中指定displayId。 */
     OH_CAPTURE_SPECIFIED_SCREEN = 1,
-    /* 录制指定窗口。使用此模式需在OH_AVScreenCaptureConfig中指定windowId。 */
+    /* 录制指定窗口。适用于仅录制单个应用窗口的场景。使用此模式需在OH_AVScreenCaptureConfig中指定windowId。 */
     OH_CAPTURE_SPECIFIED_WINDOW = 2,
     /**
-     * @brief 创建一个虚拟扩展屏幕并对其内容进行录制。
+     * @brief 录制虚拟扩展屏幕。创建一个虚拟扩展屏幕并对其内容进行录制。
      * @since 26.0.1
      */
     OH_CAPTURE_VIRTUAL_EXTENDED_SCREEN = 3,
