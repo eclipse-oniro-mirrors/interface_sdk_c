@@ -382,7 +382,7 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes(
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
  *     <li>Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if an internal error occurs.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_DragEvent_GetSummary(ArkUI_DragEvent *event, OH_UDMF_Summary *summary);
 
