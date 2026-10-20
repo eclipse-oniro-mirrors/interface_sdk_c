@@ -17,8 +17,7 @@
  * @addtogroup UsbManager
  * @{
  *
- * @brief Provides the C interface for the USB Manager module, enabling USB device
- * enumeration, connection, permission management, and pipe operations.
+ * @brief 提供USB管理器模块的C接口，支持USB设备枚举、连接、权限管理和管道操作。
  *
  * @since 26.0.1
  */
@@ -151,7 +150,7 @@ typedef struct OH_UsbManager_UsbEndpoint {
     uint8_t interval;
 
     /**
-     * @brief 端点上数据包的最大大小。单位：字节。
+     * @brief 端点上数据包的最大大小，单位：字节。
      *
      * @since 26.0.1
      */
@@ -273,7 +272,7 @@ typedef struct OH_UsbManager_UsbConfig {
     uint8_t attributes;
 
     /**
-     * @brief 最大功耗。单位：mA。
+     * @brief 最大功耗，单位：mA。
      *
      * @since 26.0.1
      */
