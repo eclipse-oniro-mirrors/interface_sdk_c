@@ -802,9 +802,9 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * @brief 事件相关的配置参数设置方法。
  *
  * 不同的事件有不同的配置项，目前仅支持以下事件：
- * MAIN_THREAD_JANK（参数配置详见{@link 主线程超时事件检测}）
- * MAIN_THREAD_JANK_V2（参数配置详见{@link 主线程超时事件检测}）
- * EVENT_APP_CRASH（参数配置详见{@link 崩溃事件介绍}），从API version 24开始支持该事件。
+ * **MAIN_THREAD_JANK**。
+ * **MAIN_THREAD_JANK_V2**。
+ * **EVENT_APP_CRASH**，从API version 24开始支持该事件。
  *
  * @param name 系统事件的名称。
  * @param config 指向配置对象的指针（即{@link OH_HiAppEvent_CreateConfig}接口返回的指针）。
@@ -824,19 +824,22 @@ int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
  */
 typedef enum OH_HiAppEvent_FrameworkType {
     /**
-     * Flutter_dart类型。
+     * @brief Flutter_dart类型。
+     *
      * @since 26.0.0
      */
     OH_FLUTTER_DART = 0,
 
     /**
-     * React_native_hermes类型。
+     * @brief React_native_hermes类型。
+     *
      * @since 26.0.0
      */
     OH_REACT_NATIVE_HERMES = 1,
 
     /**
-     * Kmp_kotlin类型。
+     * @brief Kmp_kotlin类型。
+     *
      * @since 26.0.0
      */
     OH_KMP_KOTLIN = 2
