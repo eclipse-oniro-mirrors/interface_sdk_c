@@ -54,3 +54,14 @@ cp ${SOURCE_DIR}/string.h      ${OUT_DIR}
 cp ${SOURCE_DIR}/strings.h     ${OUT_DIR}
 cp ${SOURCE_DIR}/time.h        ${OUT_DIR}
 cp ${SOURCE_DIR}/unistd.h      ${OUT_DIR}
+
+case "$(uname -s)" in
+    Darwin*|FreeBSD*|OpenBSD*|NetBSD*)
+        sed -E -i '' '/PTHREAD_[A-Z]+_INITIALIZER/d' ${OUT_DIR}/pthread.h ;;
+    Linux*|CYGWIN*|MINGW*|MSYS*|SunOS*|AIX*|HP-UX*)
+        sed -E -i '/PTHREAD_[A-Z]+_INITIALIZER/d' ${OUT_DIR}/pthread.h ;;
+    *)
+        echo "Unsupported OS: $(uname -s)" >&2
+        exit 1
+        ;;
+esac

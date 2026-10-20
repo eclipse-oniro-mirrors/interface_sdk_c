@@ -46,9 +46,10 @@ extern "C" {
  * @brief 注册LeftShoulder按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor} 取消注册LeftShoulder按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_LeftShoulder_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -65,9 +66,10 @@ GameController_ErrorCode OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor(vo
  * @brief 注册RightShoulder按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightShoulder_UnregisterButtonInputMonitor} 取消注册RightShoulder按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_RightShoulder_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -84,9 +86,10 @@ GameController_ErrorCode OH_GamePad_RightShoulder_UnregisterButtonInputMonitor(v
  * @brief 注册LeftTrigger按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor} 取消注册LeftTrigger按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -103,9 +106,10 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor(voi
  * @brief 注册LeftTrigger轴事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_AxisInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>      <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor} 取消注册LeftTrigger轴事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -122,9 +126,10 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor(void)
  * @brief 注册RightTrigger按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>      <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightTrigger_UnregisterButtonInputMonitor} 取消注册RightTrigger按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -141,9 +146,10 @@ GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterButtonInputMonitor(vo
  * @brief 注册RightTrigger轴事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_AxisInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightTrigger_UnregisterAxisInputMonitor} 取消注册RightTrigger轴事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -160,9 +166,10 @@ GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterAxisInputMonitor(void
  * @brief 注册Menu按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor} 取消注册Menu按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonMenu_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -179,9 +186,10 @@ GameController_ErrorCode OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor(void
  * @brief 注册Home按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonHome_UnregisterButtonInputMonitor} 取消注册Home按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonHome_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -198,9 +206,10 @@ GameController_ErrorCode OH_GamePad_ButtonHome_UnregisterButtonInputMonitor(void
  * @brief 注册A按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonA_UnregisterButtonInputMonitor} 取消注册A按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonA_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -217,9 +226,10 @@ GameController_ErrorCode OH_GamePad_ButtonA_UnregisterButtonInputMonitor(void);
  * @brief 注册B按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonB_UnregisterButtonInputMonitor} 取消注册B按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonB_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -236,9 +246,10 @@ GameController_ErrorCode OH_GamePad_ButtonB_UnregisterButtonInputMonitor(void);
  * @brief 注册X按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonX_UnregisterButtonInputMonitor} 取消注册X按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonX_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -255,9 +266,10 @@ GameController_ErrorCode OH_GamePad_ButtonX_UnregisterButtonInputMonitor(void);
  * @brief 注册Y按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonY_UnregisterButtonInputMonitor} 取消注册Y按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonY_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -274,9 +286,10 @@ GameController_ErrorCode OH_GamePad_ButtonY_UnregisterButtonInputMonitor(void);
  * @brief 注册C按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonC_UnregisterButtonInputMonitor} 取消注册C按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -290,12 +303,33 @@ GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
 GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
 
 /**
+ * @brief 注册非标准按钮事件的回调。
+ *
+ * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @since 26.0.1
+ * @see {@link OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor} 取消注册非标准的回调按钮事件。
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_RegisterButtonInputMonitor(
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+
+/**
+ * @brief 取消注册非标准按钮事件的回调。
+ *
+ * @return 操作成功，返回{@link GAME_CONTROLLER_SUCCESS}。
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor(void);
+
+/**
  * @brief 注册方向按键的向左按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor} 取消注册方向按键的向左按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_Dpad_LeftButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -312,9 +346,10 @@ GameController_ErrorCode OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor
  * @brief 注册方向按键的向右按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonitor} 取消注册方向按键的向右按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_Dpad_RightButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -331,9 +366,10 @@ GameController_ErrorCode OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonito
  * @brief 注册方向按键的向上按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor} 取消注册方向按键的向上按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_Dpad_UpButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -350,9 +386,10 @@ GameController_ErrorCode OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor(v
  * @brief 注册方向按键的向下按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor} 取消注册方向按键的向下按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_Dpad_DownButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -369,9 +406,10 @@ GameController_ErrorCode OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor
  * @brief 注册方向按键轴事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_AxisInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_UnregisterAxisInputMonitor} 取消注册方向按键轴事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_Dpad_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -388,9 +426,10 @@ GameController_ErrorCode OH_GamePad_Dpad_UnregisterAxisInputMonitor(void);
  * @brief 注册LeftThumbstick按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor} 取消注册LeftThumbstick按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -407,9 +446,10 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor(
  * @brief 注册LeftThumbstick轴事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_AxisInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor} 取消注册LeftThumbstick轴事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -426,9 +466,10 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor(vo
  * @brief 注册RightThumbstick按键事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_ButtonInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor} 取消注册RightThumbstick按键事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -445,9 +486,10 @@ GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor
  * @brief 注册RightThumbstick轴事件的监听回调。
  *
  * @param inputMonitorCallback 回调函数{@link GamePad_AxisInputMonitorCallback}，不能为空。
- * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
- *     <li>如果参数inputMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>     <li>如果参数inputMonitorCallback为null，返回
+ *     {@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightThumbstick_UnregisterAxisInputMonitor} 取消注册RightThumbstick轴事件的监听回调。
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);

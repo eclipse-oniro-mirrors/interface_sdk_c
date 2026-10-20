@@ -18,7 +18,7 @@ import re
 import sys
 import os
 import tempfile
-from typing import List, Dict, Set, Optional, Any
+from typing import List, Dict, Set, Optional, Any, Tuple
 import clang.cindex
 from clang.cindex import Config, Index, CursorKind, TypeKind
 
@@ -296,16 +296,76 @@ def extract_include_part_str(path_str: str) -> str:
     return os.sep.join(path_parts[include_index:])
 
 
+# major 1-99（不允许前导0），可选三段式 .minor.patch，minor/patch 为 0 或 1-99
+_VALID_VERSION_FORMAT = re.compile(r'^[1-9][0-9]?((\.(0|[1-9][0-9]?)){2})?$')
+
+
+def is_valid_version_format(version: str) -> bool:
+    """校验版本号格式是否合规（对应JS checkApiVersion.js 的格式校验）"""
+    return bool(_VALID_VERSION_FORMAT.match(version.strip()))
+
+
+def parse_version(version: str) -> Tuple[int, int, int]:
+    """将版本号解析为 (major, minor, patch) 数组。
+
+    支持格式：
+    - 单数字: '20'/'26'        -> (20, 0, 0)
+    - 三段式: '26.0.0'/'26.1.2' -> (26, 0, 0)/(26, 1, 2)
+    格式不合规时返回 (-1, -1, -1)。
+    """
+    version = version.strip()
+    if not is_valid_version_format(version):
+        return (-1, -1, -1)  # 无法解析
+    parts = [int(p) for p in version.split('.')]
+    while len(parts) < 3:
+        parts.append(0)
+    return (parts[0], parts[1], parts[2])
+
+
+def compare_versions(v1: str, v2: str) -> int:
+    """比较两个版本号大小：1: v1 > v2, 0: v1 == v2, -1: v1 < v2"""
+    p1 = parse_version(str(v1))
+    p2 = parse_version(str(v2))
+    for i in range(3):
+        if p1[i] > p2[i]:
+            return 1
+        if p1[i] < p2[i]:
+            return -1
+    return 0
+
+
 def splice_check_results(interfaces: List[Dict], sdk_api_version: str, path: str,
         violation_list: List[str] = None) -> None:
     """拼接检查结果"""
-    if not sdk_api_version.isdigit():
-        raise ValueError(f"--sdk-api-version must be digits!")
-    sdk_version_num = int(sdk_api_version)
+    if not is_valid_version_format(sdk_api_version):
+        raise ValueError(
+            f"--sdk-api-version must be a valid version number format. Got: {sdk_api_version}\n"
+            f"  Valid formats: single number (e.g., 26) or three-part version (e.g., 26.0.0)\n"
+            f"  Number range: major 1-99, minor 0-99, patch 0-99"
+        )
+    sdk_parsed = parse_version(sdk_api_version)
+    if sdk_parsed[0] < 0:
+        raise ValueError(f"--sdk-api-version must be a valid version number! Got: {sdk_api_version}")
 
     for interface in interfaces:
         since_version = interface.get('since_version')
-        if not since_version or not since_version.isdigit() or int(since_version) <= sdk_version_num:
+        if not since_version:
+            continue
+        # 格式不合规（对应JS的版本格式校验）视为违规
+        if not is_valid_version_format(since_version):
+            line_parts = [path]
+            if interface.get('node_type') and interface.get('parent_type'):
+                line_parts.extend([interface['parent_type'], interface['interface_name']])
+            else:
+                line_parts.append(interface['interface_name'])
+            # 最终输出先去掉行号（统计阶段 interface['line'] 仍保留，需要时可加回）
+            violation_line = "{}\n".format("#".join(line_parts))
+            if violation_list is not None:
+                violation_list.append(violation_line)
+            continue
+        if parse_version(since_version)[0] < 0:
+            continue  # 无法解析的版本格式跳过
+        if compare_versions(since_version, sdk_api_version) <= 0:
             continue
 
         # 错误信息格式拼接
@@ -316,7 +376,8 @@ def splice_check_results(interfaces: List[Dict], sdk_api_version: str, path: str
             line_parts.extend([interface['parent_type'], interface['interface_name']])
         else:
             line_parts.append(interface['interface_name'])
-        violation_line = "{}{}\n".format("#".join(line_parts), interface['line'])
+        # 最终输出先去掉行号（统计阶段 interface['line'] 仍保留，需要时可加回）
+        violation_line = "{}\n".format("#".join(line_parts))
 
         # 如果传入了violation_list，也追加到该列表中
         if violation_list is not None:

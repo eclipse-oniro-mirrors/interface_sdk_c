@@ -807,16 +807,16 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateArraybuffer(JSVM_Env env,
  *
  * @param byteLength size of backing store memory.
  * @param initialized initialization status of the backing store memory.
- * @param data pointer that recieve the backing store memory pointer.
+ * @param data pointer that receive the backing store memory pointer.
  * @return Returns JSVM funtions result code.
  *         Returns {@link JSVM_OK } if allocation succeed.\n
  *         Returns {@link JSVM_INVALID_ARG } if data is null pointer.\n
  *         Returns {@link JSVM_GENERIC_FAILURE } if allocation failed.\n
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_AllocateArrayBufferBackingStoreData(size_t byteLength,
-                                                                   JSVM_InitializedFlag initialized,
-                                                                   void **data);
+JSVM_EXTERN JSVM_Status OH_JSVM_AllocateArrayBufferBackingStoreData(size_t byteLength,
+                                                                    JSVM_InitializedFlag initialized,
+                                                                    void **data);
 
 /**
  * @brief This API release the memory of an array buffer backing store.
@@ -827,7 +827,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_AllocateArrayBufferBackingStoreData(size_t byteLe
  *         Returns {@link JSVM_INVALID_ARG } if data is null pointer.\n
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
+JSVM_EXTERN JSVM_Status OH_JSVM_FreeArrayBufferBackingStoreData(void* data);
 
 /**
  * @brief This API create an array buffer using the backing store data.
@@ -837,7 +837,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
  * @param backingStoreSize size of backing store memory.
  * @param offset start position of the array buffer in the backing store memory.
  * @param arrayBufferSize size of the array buffer.
- * @param result pointer that recieve the array buffer.
+ * @param result pointer that receive the array buffer.
  * @return Returns JSVM funtions result code.
  *         Returns {@link JSVM_OK } if creation succeed.\n
  *         Returns {@link JSVM_INVALID_ARG } if any of the following condition reached:\n
@@ -846,12 +846,12 @@ JSVM_Status JSVM_CDECL OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
  *         3. data or result is null pointer
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_CreateArrayBufferFromBackingStoreData(JSVM_Env env,
-                                                                     void *data,
-                                                                     size_t backingStoreSize,
-                                                                     size_t offset,
-                                                                     size_t arrayBufferSize,
-                                                                     JSVM_Value *result);
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateArrayBufferFromBackingStoreData(JSVM_Env env,
+                                                                      void* data,
+                                                                      size_t backingStoreSize,
+                                                                      size_t offset,
+                                                                      size_t arrayBufferSize,
+                                                                      JSVM_Value* result);
 
 /**
  * @brief This API does not observe leap seconds; they are ignored, as ECMAScript aligns with POSIX time specification.
@@ -2504,7 +2504,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_StopCpuProfiler(JSVM_VM vm,
                                                 void* streamData);
 
 /**
- * @brief This funciton takes the current heap snapshot and output to the stream.
+ * @brief This function takes the current heap snapshot and output to the stream.
  *
  * @param vm The VM whose heap snapshot is taken.
  * @param stream The output stream callback for receiving the data.
@@ -2900,7 +2900,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsBigInt(JSVM_Env env,
  *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_CreateMap(JSVM_Env env, JSVM_Value* result);
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateMap(JSVM_Env env, JSVM_Value* result);
 
 /**
  * @brief This API checks if the value passed in is a Map.
@@ -2913,9 +2913,9 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateMap(JSVM_Env env, JSVM_Value* result);
  *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_IsMap(JSVM_Env env,
-                                     JSVM_Value value,
-                                     bool* isMap);
+JSVM_EXTERN JSVM_Status OH_JSVM_IsMap(JSVM_Env env,
+                                      JSVM_Value value,
+                                      bool* isMap);
 
 /**
  * @brief This API returns a JSVM-API value corresponding to a JavaScript Set type.
@@ -3012,9 +3012,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsRegExp(JSVM_Env env,
  *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_IsConstructor(JSVM_Env env,
-                                             JSVM_Value value,
-                                             bool* isConstructor);
+JSVM_EXTERN JSVM_Status OH_JSVM_IsConstructor(JSVM_Env env,
+                                              JSVM_Value value,
+                                              bool* isConstructor);
 
 /**
  * @brief This API returns the JavaScript value of the regular expression
@@ -3033,10 +3033,10 @@ JSVM_Status JSVM_CDECL OH_JSVM_IsConstructor(JSVM_Env env,
  *         {@link JSVM_PENDING_EXCEPTION } If the API throws an exception during runtime.\n
  * @since 12
  */
-JSVM_Status JSVM_CDECL OH_JSVM_CreateRegExp(JSVM_Env env,
-                                            JSVM_Value value,
-                                            JSVM_RegExpFlags flags,
-                                            JSVM_Value* result);
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateRegExp(JSVM_Env env,
+                                             JSVM_Value value,
+                                             JSVM_RegExpFlags flags,
+                                             JSVM_Value* result);
 
 /**
  * @brief This API returns the Object prototype.

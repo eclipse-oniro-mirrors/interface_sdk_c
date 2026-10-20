@@ -16,7 +16,7 @@
  * @addtogroup InputMethod
  * @{
  *
- * @brief InputMethod provides functions to use input methods and develop input methods.
+ * @brief InputMethod provides functions to use input methods.
  *
  * @since 12
  */
@@ -24,8 +24,9 @@
 /**
  * @file inputmethod_attach_options_capi.h
  *
- * @brief Provides the input method attach options.
+ * @brief Provides methods for creating, destroying, reading, and writing the option object bound to the input method.
  *
+ * @include <inputmethod/inputmethod_attach_options_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -40,7 +41,7 @@
 extern "C" {
 #endif /* __cplusplus */
 /**
- * @brief Define the InputMethod_AttachOptions structure type.
+ * @brief Options for binding the input method.
  *
  * The options when attaching input method.
  *
@@ -51,7 +52,9 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
 /**
  * @brief Create a new {@link InputMethod_AttachOptions} instance.
  *
- * @param showKeyboard Represents whether to show the keyboard.
+ * @param showKeyboard Pointer to whether to display the keyboard during binding.
+ *  true: The keyboard is displayed after the binding is complete.
+ *  false: The keyboard is hidden after the binding is complete.
  * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_AttachOptions}
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
@@ -61,7 +64,7 @@ InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
  * @brief Create a new {@link InputMethod_AttachOptions} instance.
  *
  * @param showKeyboard Represents whether to show the keyboard.
- * @param requestKeyboardReason  the reason for showKeyboard.
+ * @param requestKeyboardReason  Reason for requesting the keyboard.
  * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_AttachOptions}
  * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 15
@@ -83,22 +86,21 @@ void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options);
  *     true - need to show keyboard.
  *     false - no need to show keyboard.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions *options, bool *showKeyboard);
 /**
- * @brief Get showKeyboard value from {@link InputMethod_AttachOptions}.
+ * @brief Obtains the reason that triggers the input method from {@link InputMethod_AttachOptions}.
  *
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be get value from.
- * @param requestKeyboardReason  Represents a pointer to an {@link InputMethodRequestKeyboardReason} instance which will
- * be get value from.
+ * @param requestKeyboardReason  Pointer to the reason for requesting the keyboard.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer. If options is NULL, or requestKeyboardReason is NULL.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer. If options is NULL, or requestKeyboardReason is NULL.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 15
  */
 InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason(

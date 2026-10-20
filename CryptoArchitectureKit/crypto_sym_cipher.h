@@ -24,6 +24,7 @@
  * @file crypto_sym_cipher.h
  * @brief Defines the symmetric key cipher interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_sym_cipher.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

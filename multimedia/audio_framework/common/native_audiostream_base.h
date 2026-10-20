@@ -661,7 +661,7 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
  *
  * @deprecated since 20
  * @useinstead Use the callback type: OH_AudioRenderer_OnWriteDataCallback, OH_AudioRenderer_OutputDeviceChangeCallback,
- * OH_AudioRenderer_OnInterruptEvent, OH_AudioRenderer_OnErrorCallback separately.
+ * OH_AudioRenderer_OnInterruptCallback, OH_AudioRenderer_OnErrorCallback separately.
  * @since 10
  */
 typedef struct OH_AudioRenderer_Callbacks_Struct {

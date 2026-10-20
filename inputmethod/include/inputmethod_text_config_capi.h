@@ -16,7 +16,7 @@
  * @addtogroup InputMethod
  * @{
  *
- * @brief InputMethod provides functions to use input methods and develop input methods.
+ * @brief InputMethod provides functions to use input methods.
  *
  * @since 12
  */
@@ -24,8 +24,10 @@
 /**
  * @file inputmethod_text_config_capi.h
  *
- * @brief Provides functions to manage the text configuration.
+ * @brief Provides methods for creating, destroying,
+ *  reading, and writing the text box configuration information objects.
  *
+ * @include <inputmethod/inputmethod_text_config_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -76,9 +78,9 @@ void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param inputType The text input type of text Editor, which is defined in {@link InputMethod_TextInputType}.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType inputType);
@@ -88,9 +90,9 @@ InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config,
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param enterKeyType The enter key type of text Editor, which is defined in {@link InputMethod_EnterKeyType}.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
@@ -101,9 +103,9 @@ InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param supported Indicates whether the preview text is supported.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig *config, bool supported);
@@ -114,9 +116,9 @@ InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig
  * @param start The start position of selection.
  * @param end The end position of selection.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config, int32_t start, int32_t end);
@@ -126,9 +128,9 @@ InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config,
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param windowId The window ID of the application currently bound to the input method.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, int32_t windowId);
@@ -139,15 +141,16 @@ InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, 
  * @param config Pointer to the InputMethod_TextConfig instance.
  * @param placeholder Pointer to a UTF-16 encoded double-byte string. If a null pointer is passed, the placeholder text
  *     is an empty string.
- * @param length Number of elements in the memory to which <b>placeholder</b> points, including the null character of
- *     the double-byte string.
- *      1) If <b>length</b> is <b>0</b>, the placeholder text is an empty string.
- *      2) The maximum number of UTF-16 encoded characters is 256, and the last element must be a null character.
- *      3) If the <b>length</b> exceeds 256, the placeholder text will be truncated.
+ * @param length Number of elements in the memory to which placeholder points,
+ *  including the null character of the double-byte string.
+ * <br>1. If length is 0, the placeholder text is an empty string.
+ * <br>2. The maximum length of UTF-16 encoding is 255 characters
+ *  (the null character of the string is not included in the count).
+ * <br>3. If the length exceeds 255 characters, the extra characters will be truncated.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *config, const char16_t *placeholder,
@@ -159,15 +162,16 @@ InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *confi
  * @param config Pointer to the InputMethod_TextConfig instance.
  * @param abilityName Pointer to a UTF-16 encoded double-byte string. If a null pointer is passed, the ability name is
  *     an empty string.
- * @param length Number of elements in the memory to which <b>abilityName</b> points, including the null character of
-*      the double-byte string.
- *     1) If <b>length</b> is <b>0</b>, the ability name is an empty string.
- *     2) The maximum number of UTF-16 encoded characters is 128, and the last element must be a null character.
- *     3) If the <b>length</b> exceeds 128, the placeholder text will be truncated.
+ * @param length Number of elements in the memory to which abilityName points,
+ *  including the null character of the double-byte string.
+ * <br>1. If length is 0, the ability name is set to an empty string.
+ * <br>2. The maximum length of UTF-16 encoding is 127 characters
+ *  (the null character of the string is not included in the count).
+ * <br>3. If the length exceeds 127 characters, the extra characters will be truncated.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *config, const char16_t *abilityName,
@@ -179,9 +183,9 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *confi
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param consumeKeyEvents Indicates whether the editor supports consuming key events.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 26.0.0
  */
 InputMethod_ErrorCode OH_TextConfig_SetConsumeKeyEvents(InputMethod_TextConfig *config, bool consumeKeyEvents);
@@ -193,9 +197,9 @@ InputMethod_ErrorCode OH_TextConfig_SetConsumeKeyEvents(InputMethod_TextConfig *
  * @param inputType Represents a pointer to an {@link InputMethod_TextInputType} instance.
  *     The text input type of text Editor
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType *inputType);
@@ -206,9 +210,9 @@ InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config,
  * @param enterKeyType Represents a pointer to an {@link InputMethod_EnterKeyType} instance.
  *     Indicates the enter key type of text Editor
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
@@ -219,9 +223,9 @@ InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be get from.
  * @param supported Indicates whether the preview text is supported.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfig *config, bool *supported);
@@ -231,9 +235,9 @@ InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfi
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be get from.
  * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config, InputMethod_CursorInfo **cursorInfo);
@@ -244,10 +248,10 @@ InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config
  * @param config Indicates the text configuration.
  * @param avoidInfo Indicates the text avoid information.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
- *@since 12
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
     InputMethod_TextConfig *config, InputMethod_TextAvoidInfo **avoidInfo);
@@ -259,9 +263,9 @@ InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
  * @param start Represents selection start position.
  * @param end Represents selection end position.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config, int32_t *start, int32_t *end);
@@ -271,9 +275,9 @@ InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config,
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be get from.
  * @param windowId The window ID of the application currently bound to the input method.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, int32_t *windowId);
@@ -293,10 +297,10 @@ InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, 
  *        than the actual length of the placeholder text, <b>length</b> will be set to the actual length of the
  *        placeholder text, and an error will be return.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t *placeholder,
@@ -317,10 +321,10 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
  *        than the actual length of the ability name, <b>length</b> will be set to the actual length of the ability
  *        name, and an error will be return.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *config, char16_t *abilityName,
@@ -330,11 +334,11 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *confi
  * @brief Get whether the editor supports consuming key events from TextConfig.
  *
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be get from.
- * @param consumeKeyEvents Indicates Indicates whether the editor supports consuming key events.
+ * @param consumeKeyEvents Indicates whether the editor supports consuming key events.
  * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ *     <br>{@link IME_ERR_OK} - success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 26.0.0
  */
 InputMethod_ErrorCode OH_TextConfig_GetConsumeKeyEvents(InputMethod_TextConfig *config, bool *consumeKeyEvents);

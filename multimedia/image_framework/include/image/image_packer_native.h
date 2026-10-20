@@ -33,6 +33,8 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_PACKER_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_PACKER_NATIVE_H_
+#include <stdbool.h>
+
 #include "image_common.h"
 #include "image_source_native.h"
 #include "pixelmap_native.h"
@@ -227,6 +229,36 @@ Image_ErrorCode OH_PackingOptions_GetNeedsPackDfxData(OH_PackingOptions *options
  */
 Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options,
     bool needsPackDfxData);
+
+/**
+ * @brief Sets the C2PA data size in the OH_PackingOptions struct. The default value is 0, indicating no reserved space
+ * is added.
+ * @systemapi
+ * @param options [in] Pointer to an OH_PackingOptions struct. It must not be NULL.
+ * @param c2paDataSize [in] Reserved space size for C2PA data, in bytes.
+ * @return <ul> 
+ *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} if options is NULL.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Image_ErrorCode OH_PackingOptions_SetC2paDataSize(OH_PackingOptions *options, uint32_t c2paDataSize);
+
+/**
+ * @brief Obtains the C2PA data size in the OH_PackingOptions struct.
+ * @systemapi
+ * @param options [in] Pointer to an OH_PackingOptions struct. It must not be NULL.
+ * @param c2paDataSize [out] Pointer to the C2PA data size obtained, in bytes. It must not be NULL.
+ *     If the function fails, the content of c2paDataSize is unchanged.
+ * @return <ul> 
+ *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} if options or c2paDataSize is NULL.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Image_ErrorCode OH_PackingOptions_GetC2paDataSize(const OH_PackingOptions *options, uint32_t *c2paDataSize);
 
 /**
  * @brief Obtains the desired dynamic range during encoding.
@@ -546,7 +578,7 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
  * @param supportedFormats Double pointer to the supported image formats.
  * @param length Pointer to the size of the array.
  * @return {@link IMAGE_SUCCESS} if the execution is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
+ *     <br>{@link IMAGE_PACKER_INVALID_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
  * @since 20
  */
 Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length);

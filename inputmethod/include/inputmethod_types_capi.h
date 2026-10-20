@@ -26,6 +26,7 @@
  *
  * @brief Provides the input method types.
  *
+ * @include <inputmethod/inputmethod_types_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
  * @syscap SystemCapability.MiscServices.InputMethodFramework
@@ -38,185 +39,185 @@
 extern "C"{
 #endif /* __cplusplus */
 /**
- * @brief Keyboard status.
+ * @brief Enumerates the keyboard status.
  *
  * @since 12
  */
 typedef enum InputMethod_KeyboardStatus {
     /**
-     * The keyboard status is none.
+     * @brief The keyboard status is none.
      */
     IME_KEYBOARD_STATUS_NONE = 0,
     /**
-     * The keyboard status is hide.
+     * @brief The keyboard status is hide.
      */
     IME_KEYBOARD_STATUS_HIDE = 1,
     /**
-     * The keyboard status is show.
+     * @brief The keyboard status is show.
      */
     IME_KEYBOARD_STATUS_SHOW = 2,
 } InputMethod_KeyboardStatus;
 
 /**
- * @brief Enter key type.
+ * @brief Enumerates the Enter key types.
  *
  * @since 12
  */
 typedef enum InputMethod_EnterKeyType {
     /**
-     * The enter key type is UNSPECIFIED.
+     * @brief The enter key type is UNSPECIFIED.
      */
     IME_ENTER_KEY_UNSPECIFIED = 0,
     /**
-     * The enter key type is NONE.
+     * @brief The enter key type is NONE.
      */
     IME_ENTER_KEY_NONE = 1,
     /**
-     * The enter key type is GO.
+     * @brief The enter key type is GO.
      */
     IME_ENTER_KEY_GO = 2,
     /**
-     * The enter key type is SEARCH.
+     * @brief The enter key type is SEARCH.
      */
     IME_ENTER_KEY_SEARCH = 3,
     /**
-     * The enter key type is SEND.
+     * @brief The enter key type is SEND.
      */
     IME_ENTER_KEY_SEND = 4,
     /**
-     * The enter key type is NEXT.
+     * @brief The enter key type is NEXT.
      */
     IME_ENTER_KEY_NEXT = 5,
     /**
-     * The enter key type is DONE.
+     * @brief The enter key type is DONE.
      */
     IME_ENTER_KEY_DONE = 6,
     /**
-     * The enter key type is PREVIOUS.
+     * @brief The enter key type is PREVIOUS.
      */
     IME_ENTER_KEY_PREVIOUS = 7,
     /**
-     * The enter key type is NEWLINE.
+     * @brief The enter key type is NEWLINE.
      */
     IME_ENTER_KEY_NEWLINE = 8,
 } InputMethod_EnterKeyType;
 
 /**
- * @brief Direction.
+ * @brief Enumerates the moving directions.
  *
  * @since 12
  */
 typedef enum InputMethod_Direction {
     /**
-     * The direction is NONE.
+     * @brief The direction is NONE.
      */
     IME_DIRECTION_NONE = 0,
     /**
-     * The direction is UP.
+     * @brief The direction is UP.
      */
     IME_DIRECTION_UP = 1,
     /**
-     * The direction is DOWN.
+     * @brief The direction is DOWN.
      */
     IME_DIRECTION_DOWN = 2,
     /**
-     * The direction is LEFT.
+     * @brief The direction is LEFT.
      */
     IME_DIRECTION_LEFT = 3,
     /**
-     * The direction is RIGHT.
+     * @brief The direction is RIGHT.
      */
     IME_DIRECTION_RIGHT = 4,
 } InputMethod_Direction;
 
 /**
- * @brief The extend action.
+ * @brief Enumerates the types of the extended edit action on the text box.
  *
  * @since 12
  */
 typedef enum InputMethod_ExtendAction {
     /**
-     * Select all text.
+     * @brief Select all text.
      */
     IME_EXTEND_ACTION_SELECT_ALL = 0,
     /**
-     * Cut selected text.
+     * @brief Cut selected text.
      */
     IME_EXTEND_ACTION_CUT = 3,
     /**
-     * Copy selected text.
+     * @brief Copy selected text.
      */
     IME_EXTEND_ACTION_COPY = 4,
     /**
-     * Paste from paste board.
+     * @brief Paste from paste board.
      */
     IME_EXTEND_ACTION_PASTE = 5,
 } InputMethod_ExtendAction;
 
 /**
- * @brief The text input type.
+ * @brief Enumerates the text input types.
  *
  * @since 12
  */
 typedef enum InputMethod_TextInputType {
     /**
-     * The text input type is NONE.
+     * @brief The text input type is NONE.
      */
     IME_TEXT_INPUT_TYPE_NONE = -1,
     /**
-     * The text input type is TEXT.
+     * @brief The text input type is TEXT.
      */
     IME_TEXT_INPUT_TYPE_TEXT = 0,
     /**
-     * The text input type is MULTILINE.
+     * @brief The text input type is MULTILINE.
      */
     IME_TEXT_INPUT_TYPE_MULTILINE = 1,
     /**
-     * The text input type is NUMBER.
+     * @brief The text input type is NUMBER.
      */
     IME_TEXT_INPUT_TYPE_NUMBER = 2,
     /**
-     * The text input type is PHONE.
+     * @brief The text input type is PHONE.
      */
     IME_TEXT_INPUT_TYPE_PHONE = 3,
     /**
-     * The text input type is DATETIME.
+     * @brief The text input type is DATETIME.
      */
     IME_TEXT_INPUT_TYPE_DATETIME = 4,
     /**
-     * The text input type is EMAIL ADDRESS.
+     * @brief The text input type is EMAIL ADDRESS.
      */
     IME_TEXT_INPUT_TYPE_EMAIL_ADDRESS = 5,
     /**
-     * The text input type is URL.
+     * @brief The text input type is URL.
      */
     IME_TEXT_INPUT_TYPE_URL = 6,
     /**
-     * The text input type is VISIBLE PASSWORD.
+     * @brief The text input type is VISIBLE PASSWORD.
      */
     IME_TEXT_INPUT_TYPE_VISIBLE_PASSWORD = 7,
     /**
-     * The text input type is NUMBER PASSWORD.
+     * @brief The text input type is NUMBER PASSWORD.
      */
     IME_TEXT_INPUT_TYPE_NUMBER_PASSWORD = 8,
     /**
-     * The text input type is SCREEN LOCK PASSWORD.
+     * @brief The text input type is SCREEN LOCK PASSWORD.
      */
     IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,
     /**
-     * The text input type is USER NAME.
+     * @brief The text input type is USER NAME.
      */
     IME_TEXT_INPUT_TYPE_USER_NAME = 10,
     /**
-     * The text input type is NEW PASSWORD.
+     * @brief The text input type is NEW PASSWORD.
      */
     IME_TEXT_INPUT_TYPE_NEW_PASSWORD = 11,
     /**
-     * The text input type is NUMBER DECIMAL.
+     * @brief The text input type is NUMBER DECIMAL.
      */
     IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL = 12,
     /**
-     * The text input type is ONE TIME CODE.
+     * @brief The text input type is ONE TIME CODE.
      *
      * @since 20
      */
@@ -224,31 +225,31 @@ typedef enum InputMethod_TextInputType {
 } InputMethod_TextInputType;
 
 /**
- * @brief The value type of command data.
+ * @brief Enumerates the private data types.
  *
  * @since 12
  */
 typedef enum InputMethod_CommandValueType {
     /**
-     * Value type is NONE.
+     * @brief Value type is NONE.
      */
     IME_COMMAND_VALUE_TYPE_NONE = 0,
     /**
-     * Value type is STRING.
+     * @brief Value type is STRING.
      */
     IME_COMMAND_VALUE_TYPE_STRING = 1,
     /**
-     * Value type is BOOL.
+     * @brief Value type is BOOL.
      */
     IME_COMMAND_VALUE_TYPE_BOOL = 2,
     /**
-     * Value type is INT32.
+     * @brief Value type is INT32.
      */
     IME_COMMAND_VALUE_TYPE_INT32 = 3,
 } InputMethod_CommandValueType;
 
 /**
- * @brief The value type of command data.
+ * @brief Enumerates the input method error codes.
  *
  * @since 12
  */
@@ -280,6 +281,7 @@ typedef enum InputMethod_ErrorCode {
     IME_ERR_IMCLIENT = 12800003,
     /**
      * @error The error code when configuration persistence error.
+     *  This error code is reported when the configuration fails to be saved.
      */
     IME_ERR_CONFIG_PERSIST = 12800005,
     /**
@@ -309,25 +311,25 @@ typedef enum InputMethod_ErrorCode {
 } InputMethod_ErrorCode;
 
 /**
- * @brief The value type of request keyboard.
+ * @brief Enumerates the reasons for requesting the keyboard.
  *
  * @since 15
  */
 typedef enum InputMethod_RequestKeyboardReason {
     /**
-     * The request keyboard reason is NONE.
+     * @brief The request keyboard reason is NONE.
      */
     IME_REQUEST_REASON_NONE = 0,
     /**
-     * The request keyboard reason is MOUSE.
+     * @brief The request keyboard reason is MOUSE.
      */
     IME_REQUEST_REASON_MOUSE = 1,
     /**
-     * The request keyboard reason is TOUCH.
+     * @brief The request keyboard reason is TOUCH.
      */
     IME_REQUEST_REASON_TOUCH = 2,
     /**
-     * The request keyboard reason is OTHER.
+     * @brief The request keyboard reason is OTHER.
      */
     IME_REQUEST_REASON_OTHER = 20
 } InputMethod_RequestKeyboardReason;

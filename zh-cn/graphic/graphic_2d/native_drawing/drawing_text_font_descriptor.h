@@ -14,19 +14,6 @@
  */
 
 /**
- * @file drawing_text_font_descriptor.h
- *
- * @brief This file declares the capabilities of font information, such as obtaining font information and searching for
- * a font.
- *
- * @kit ArkGraphics2D
- * @library libnative_drawing.so
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 14
- * @version 1.0
- */
-
-/**
  * @addtogroup Drawing
  * @{
  *
@@ -37,11 +24,25 @@
  * @since 14
  * @version 1.0
  */
+
+/**
+ * @file drawing_text_font_descriptor.h
+ *
+ * @brief 定义了字体信息的相关接口，比如获取字体信息、查找和匹配指定字体、读取字体描述符属性以及获取字体的Unicode码和字体数量等。
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 14
+ * @version 1.0
+ */
+
 #ifndef DRAWING_TEXT_FONT_DESCRIPTOR_H
 #define DRAWING_TEXT_FONT_DESCRIPTOR_H
 
 #include "drawing_text_declaration.h"
 #include "drawing_text_typography.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -56,26 +57,22 @@ typedef enum {
      * 所有字体类型。
      */
     ALL = 1 << 0,
-
     /**
      * 系统字体类型。
      */
     GENERIC = 1 << 1,
-
     /**
-     * 风格字体类型
+     * 风格字体类型。
      */
     STYLISH = 1 << 2,
-
     /**
      * 用户已安装字体类型。
      */
     INSTALLED = 1 << 3,
-
     /**
      * 自定义字体类型。
      * @since 18
-    */
+     */
     CUSTOMIZED = 1 << 4
 } OH_Drawing_SystemFontType;
 
@@ -87,164 +84,137 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Font file path, of the {@link OH_Drawing_String} type.
+     * 字体文件的路径，{@link OH_Drawing_String}类型。
      */
     FULL_DESCRIPTOR_ATTR_S_PATH = 0,
-
     /**
-     * Postscript font name, of the {@link OH_Drawing_String} type.
+     * 唯一标识字体的名称，{@link OH_Drawing_String}类型。
      */
     FULL_DESCRIPTOR_ATTR_S_POSTSCRIPT_NAME = 1,
-
     /**
-     * Font name, of the {@link OH_Drawing_String} type.
+     * 字体的名称，{@link OH_Drawing_String}类型。
      */
     FULL_DESCRIPTOR_ATTR_S_FULL_NAME = 2,
-
     /**
-     * Font family name, of the {@link OH_Drawing_String} type.
+     * 字体家族的名称，{@link OH_Drawing_String}类型。
      */
     FULL_DESCRIPTOR_ATTR_S_FAMILY_NAME = 3,
-
     /**
-     * Font subfamily name, of the {@link OH_Drawing_String} type.
+     * 子字体家族的名称，{@link OH_Drawing_String}类型。
      */
     FULL_DESCRIPTOR_ATTR_S_SUB_FAMILY_NAME = 4,
-
     /**
      * 字体的字重，int类型。
      */
     FULL_DESCRIPTOR_ATTR_I_WEIGHT = 5,
-
     /**
      * 字体的宽窄风格属性，int类型。
      */
     FULL_DESCRIPTOR_ATTR_I_WIDTH = 6,
-
     /**
      * 字体是否倾斜，int类型。1表示字体倾斜，0表示字体非倾斜。
      */
     FULL_DESCRIPTOR_ATTR_I_ITALIC = 7,
-
     /**
-     * 字体是否等宽，bool类型。true表示字体紧凑，false表示字体非紧凑。
+     * 字体是否等宽，bool类型。true表示字体等宽，false表示字体非等宽。
      */
     FULL_DESCRIPTOR_ATTR_B_MONO = 8,
-
     /**
      * 字体是否支持符号字体，bool类型。true表示支持符号字体，false表示不支持符号字体。
      */
     FULL_DESCRIPTOR_ATTR_B_SYMBOLIC = 9,
-
     /**
-    * 根据系统语言配置提取字体唯一标识的名称。
-    * @since 23
-    */
+     * 根据系统语言配置提取字体唯一标识的名称。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_POSTSCRIPT_NAME = 10,
-
     /**
-    * 根据系统语言配置提取字体全名。
-    * @since 23
-    */
+     * 根据系统语言配置提取字体全名。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_FULL_NAME = 11,
-
     /**
-    * 根据系统语言配置提取字体家族名称。
-    * @since 23
-    */
+     * 根据系统语言配置提取字体家族名称。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_FAMILY_NAME = 12,
-
     /**
-    * 根据系统语言配置提取子字体家族名称。
-    * @since 23
-    */
+     * 根据系统语言配置提取子字体家族名称。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_SUB_FAMILY_NAME = 13,
-
     /**
-    * 字体版本。
-    * @since 23
-    */
+     * 字体版本。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_VERSION = 14,
-
     /**
-    * 字体制造商信息。
-    * @since 23
-    */
+     * 字体制造商信息。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_MANUFACTURE = 15,
-
     /**
-    * 字体版权信息。
+     * 字体版权信息。
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_COPYRIGHT = 16,
-
     /**
-    * 字体商标信息。
-    * @since 23
-    */
+     * 字体商标信息。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_TRADEMARK = 17,
-
     /**
-    * 字体许可证信息。
-    * @since 23
-    */
+     * 字体许可证信息。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_S_LICENSE = 18,
-
     /**
-    * 字体可变轴数组。
-    * @since 24
-    */
+     * 字体可变轴数组。
+     * @since 24
+     */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_AXIS = 19,
-
     /**
-    * 字体可变实例数组。
-    * @since 24
-    */
+     * 字体可变实例数组。
+     * @since 24
+     */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_INSTANCE = 20,
-
     /**
-    * 字体索引。
-    * @since 23
-    */
+     * 字体索引。
+     * @since 23
+     */
     FULL_DESCRIPTOR_ATTR_I_INDEX = 21
 } OH_Drawing_FontFullDescriptorAttributeId;
 
 /**
-* @brief 字体可变轴属性的枚举。
-*
-* @since 24
-*/
+ * @brief 字体可变轴属性的枚举。
+ *
+ * @since 24
+ */
 typedef enum {
     /**
      * 字体可变轴的关键字标识。
      */
     FONT_VARIATION_AXIS_ATTR_S_KEY = 0,
-
     /**
      * 字体可变轴的最小值。
      */
     FONT_VARIATION_AXIS_ATTR_D_MIN_VALUE = 1,
-
     /**
      * 字体可变轴的最大值。
      */
     FONT_VARIATION_AXIS_ATTR_D_MAX_VALUE = 2,
-
     /**
      * 字体可变轴的默认值。
      */
     FONT_VARIATION_AXIS_ATTR_D_DEFAULT_VALUE = 3,
-
     /**
      * 字体可变轴的标志位。值为0时表示该轴对用户可见，值为1时表示该轴应隐藏。
      */
     FONT_VARIATION_AXIS_ATTR_I_FLAGS = 4,
-
     /**
      * 字体可变轴的英文名称。
      */
     FONT_VARIATION_AXIS_ATTR_S_NAME = 5,
-
     /**
      * 字体可变轴的本地化名称。
      */
@@ -261,7 +231,6 @@ typedef enum {
      * 字体可变实例的英文名称。
      */
     FONT_VARIATION_INSTANCE_ATTR_S_NAME = 0,
-
     /**
      * 字体可变实例的本地化名称。
      */
@@ -269,17 +238,17 @@ typedef enum {
 } OH_Drawing_FontVariationInstanceAttributeId;
 
 /**
- * @brief 字体变体坐标
+ * @brief 可变字体属性键值对。
  *
  * @since 24
  */
 typedef struct {
     /**
-     * String identified by the keyword in the variable font attribute key-value pair.
+     * 可变字体属性键值对中的关键字标识的字符串。
      */
     char* axisKey;
     /**
-     * Value of the variable font attribute key-value pair.
+     * 可变字体属性键值对的值。
      */
     double value;
 } OH_Drawing_FontVariationInstanceCoordinate;
@@ -290,10 +259,10 @@ typedef struct {
  * <br>如果匹配失败，返回NULL。不再需要{@link OH_Drawing_FontDescriptor}时，请使用{@link OH_Drawing_DestroyFontDescriptors}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param desc 指针。
+ * @param desc 指向字体描述符{@link OH_Drawing_FontDescriptor}对象的指针。
  *     <br>建议使用{@link OH_Drawing_CreateFontDescriptor}获得有效的{@link OH_Drawing_FontDescriptor}实例。
  *     <br>如果自己创建{@link OH_Drawing_FontDescriptor}实例，请确保不用于匹配的字段是默认值。
- * @param num 表示返回值数组的成员个数。
+ * @param num 出参，用于接收返回值数组的成员个数。
  * @return {@link OH_Drawing_FontDescriptor}数组，释放时请使用{@link OH_Drawing_DestroyFontDescriptors}。
  * @since 18
  */
@@ -303,14 +272,14 @@ OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors(OH_Drawing_FontDescri
  * @brief 释放字体描述符{@link OH_Drawing_FontDescriptor}数组。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param descriptors 数组。
+ * @param descriptors 需要释放的字体描述符{@link OH_Drawing_FontDescriptor}数组指针。
  * @param num {@link OH_Drawing_FontDescriptor}数组的成员个数。
  * @since 18
  */
 void OH_Drawing_DestroyFontDescriptors(OH_Drawing_FontDescriptor* descriptors, size_t num);
 
 /**
- * @brief 根据字体名称和字体类型获取指定的字体描述符，支持系统字体、风格字体和用户已安装字体。
+ * @brief 根据字体名称和字体类型获取指定的字体描述符，支持系统字体、风格字体和用户已安装字体，如果获取失败则返回NULL。
  * <br>字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -335,7 +304,7 @@ OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName(const OH_Drawi
 OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType(OH_Drawing_SystemFontType fontType);
 
 /**
- * @brief 在字体名称数组中通过索引获取对应位置的字体名称。
+ * @brief 在字体名称数组中通过索引获取对应位置的字体名称，如果索引超出范围或数组无效，则返回NULL。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fullNameArray 表示字体名称数组{@link OH_Drawing_Array}的指针。
@@ -398,7 +367,7 @@ const OH_Drawing_FontFullDescriptor* OH_Drawing_GetFontFullDescriptorByIndex(
 void OH_Drawing_DestroyFontFullDescriptors(OH_Drawing_Array* descriptorArray);
 
 /**
- * @brief 释放字体描述符指针占用内存。本函数可用于释放由{@link OH_Drawing_GetFontFullDescriptorByFullName}接口获取的字体描述符指针。
+ * @brief 释放字体描述符指针占用的内存。本函数可用于释放由{@link OH_Drawing_GetFontFullDescriptorByFullName}接口获取的字体描述符指针。
  *
  * @param descriptor 表示指向字体描述符对象{@link OH_Drawing_FontFullDescriptor}的指针。
  * @since 24
@@ -406,31 +375,31 @@ void OH_Drawing_DestroyFontFullDescriptors(OH_Drawing_Array* descriptorArray);
 void OH_Drawing_DestroyFontFullDescriptor(const OH_Drawing_FontFullDescriptor* descriptor);
 
 /**
- * @brief 从字体文件中获取unicode码。
+ * @brief 从字体文件中获取unicode码数组。
  *
  * @param fontSrc 字体文件路径。
- * @param index ttc/otc文件中字体的索引，非ttc/otc文件需设置为0。
+ * @param index ttc/otc文件中字体的索引，取值范围为[0, 字体数量-1]，非ttc/otc文件需设置为0。
  * @param unicodeArray 出参，用于接收unicode码数组，当不需要时，使用free()释放。
  * @param arrayLength 出参，用于接收unicode码数组的长度。
  * @return 函数执行结果。
  *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
- *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示字体路径非法或不是字体文件。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示传入字体路径非法、传入非字体文件或参数unicodeArray、arrayLength为NULL。
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc, uint32_t index,
     int32_t** unicodeArray, int32_t* arrayLength);
 
 /**
- * @brief 从字体字节流缓存中获取unicode码。
+ * @brief 从字体字节流缓存中获取unicode码数组。
  *
  * @param fontBuffer 字体文件数据。
  * @param length 字体文件数据长度。
- * @param index ttc/otc文件中字体的索引，非ttc/otc文件需设置为0。
+ * @param index ttc/otc文件中字体的索引，取值范围为[0, 字体数量-1]，非ttc/otc文件需设置为0。
  * @param unicodeArray 出参，用于接收unicode码数组，当不需要时，使用free()释放。
  * @param arrayLength 出参，用于接收unicode码数组的长度。
  * @return 函数执行结果。
  *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
- *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示缓存数据非法或缓存数据不是字体文件数据。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示缓存数据非法或缓存数据不是字体文件数据或参数unicodeArray、arrayLength为NULL。
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffer, size_t length, uint32_t index,
@@ -469,8 +438,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Draw
 /**
  * @brief 获取{@link OH_Drawing_String}类型字体描述符的属性。
  *
- * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *     <b>OH_Drawing_String</b> structure when it is no longer needed.
+ * @note 如果不再需要OH_Drawing_String，调用方需要手动释放OH_Drawing_String结构体内部的strData成员。
  *
  * @param descriptor 指向字体描述符对象{@link OH_Drawing_FontFullDescriptor}的指针。
  * @param id 字体描述符属性id。从{@link OH_Drawing_FontFullDescriptorAttributeId}中可获取字体描述符属性。
@@ -489,7 +457,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeString(const OH_Dr
  *
  * @param descriptor 指向字体描述符对象{@link OH_Drawing_FontFullDescriptor}的指针。
  * @param id 字体描述符属性id。从{@link OH_Drawing_FontFullDescriptorAttributeId}中可获取字体描述符属性。
- * @return 返回对象数组。
+ * @return 返回对象数组，获取失败时返回NULL。当id为FULL_DESCRIPTOR_ATTR_O_VARIATION_AXIS时，不再需要时请使用
+ *     {@link OH_Drawing_DestroyFontVariationAxis}接口释放；当id为FULL_DESCRIPTOR_ATTR_O_VARIATION_INSTANCE时，不再需要时请使用
+ *     {@link OH_Drawing_DestroyFontVariationInstance}接口释放。
  * @since 24
  */
 OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -498,7 +468,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawin
 /**
  * @brief 在字体可变轴数组中通过索引获取对应的字体可变轴。
  *
- * @param array 指向字体可变轴数组{@link OH_Drawing_Array}的指针。
+ * @param array 指向字体可变轴数组{@link OH_Drawing_Array}的指针，通过{@link OH_Drawing_GetFontFullDescriptorAttributeArray}获取。
  * @param index 数组的索引，索引值从0开始。
  * @return 返回指向指定索引处字体可变轴对象{@link OH_Drawing_FontVariationAxis}的指针。
  *     <br>如果索引超出范围或数组无效，则返回NULL。
@@ -547,8 +517,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_Font
 /**
  * @brief 获取{@link OH_Drawing_String}类型字体可变轴的属性。
  *
- * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *     <b>OH_Drawing_String</b> structure when it is no longer needed.
+ * @note 如果不再需要OH_Drawing_String，调用方需要手动释放OH_Drawing_String结构体内部的strData成员。
  *
  * @param variationAxis 指向字体可变轴对象{@link OH_Drawing_FontVariationAxis}的指针。
  * @param id 字体可变轴属性id。从{@link OH_Drawing_FontVariationAxisAttributeId}中可获取字体可变轴的属性。
@@ -565,7 +534,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_Font
 /**
  * @brief 在字体可变实例数组中通过索引获取对应的字体可变实例。
  *
- * @param array 指向字体可变实例数组{@link OH_Drawing_Array}的指针。
+ * @param array 指向字体可变实例数组{@link OH_Drawing_Array}的指针。通过{@link OH_Drawing_GetFontFullDescriptorAttributeArray}获取。
  * @param index 数组的索引，索引值从0开始。
  * @return 返回指向指定索引处字体可变实例对象{@link OH_Drawing_FontVariationInstance}的指针。
  *     <br>如果索引超出范围或数组无效，则返回NULL。
@@ -584,8 +553,7 @@ void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* fontVariaAxisInst
 /**
  * @brief 获取{@link OH_Drawing_String}类型字体可变实例的属性。
  *
- * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *     <b>OH_Drawing_String</b> structure when it is no longer needed.
+ * @note 如果不再需要OH_Drawing_String，调用方需要手动释放OH_Drawing_String结构体内部的strData成员。
  *
  * @param variationInstance 指向字体可变实例对象{@link OH_Drawing_FontVariationInstance}的指针。
  * @param id 字体可变实例属性id。从{@link OH_Drawing_FontVariationInstanceAttributeId}中可获取字体可变实例属性。
@@ -606,7 +574,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(
  *
  * @param variationInstance 指向字体可变实例的指针。
  * @param arrayLength 指向OH_Drawing_FontVariationInstanceCoordinate列表长度的指针。
- * @return 返回指向可变字体属性列表的指针。
+ * @return 返回指向可变字体属性列表的指针，若variationInstance无效则返回NULL。
  * @since 24
  */
 OH_Drawing_FontVariationInstanceCoordinate* OH_Drawing_GetFontVariationInstanceCoordinate(
@@ -634,28 +602,26 @@ const OH_Drawing_FontFullDescriptor* OH_Drawing_GetFontFullDescriptorByFullName(
 uint32_t OH_Drawing_GetFontCountFromFile(const char* fontSrc);
 
 /**
-* @brief 获取字体缓存数据中包含的字体数量。
-*
-* @param fontBuffer 字体缓存数据。
-* @param length 字体数据长度。
-* @return 字体数量。
-* @since 23
-*/
+ * @brief 获取字体缓存数据中包含的字体数量。
+ *
+ * @param fontBuffer 字体缓存数据。
+ * @param length 字体数据长度。
+ * @return 字体数量。
+ * @since 23
+ */
 uint32_t OH_Drawing_GetFontCountFromBuffer(uint8_t* fontBuffer, size_t length);
 
 /**
  * @brief 获取指定字体类型的所有字体文件路径。
  *
  * @param fontType 系统字体类型对象 {@link OH_Drawing_SystemFontType} 的枚举。
- * @param pathCount 返回的字体路径列表的数量。
- * @return 返回一个字体路径对象OH_Drawing_String列表。不再需要时，请使用free释放该对象指针以及每个OH_Drawing_String对象内部持有的指针。
+ * @param pathCount 出参，用于接收返回的字体路径列表的数量。
+ * @return 返回字体路径列表。不再需要时，请使用free释放该对象指针以及每个OH_Drawing_String对象内部持有的指针。
  * @since 23
  */
 OH_Drawing_String* OH_Drawing_GetFontPathsByType(OH_Drawing_SystemFontType fontType, size_t* pathCount);
-
 #ifdef __cplusplus
 }
 #endif
-
 /** @} */
 #endif

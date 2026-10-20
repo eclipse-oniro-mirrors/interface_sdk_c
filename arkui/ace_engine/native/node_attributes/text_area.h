@@ -25,7 +25,11 @@
 /**
  * @file text_area.h
  *
- * @brief Defines a set of TextArea enum and interface.
+ * @brief Defines enumerations related to **TextArea**. The **TextArea** component is used for receiving multi-line
+ * text input. The enumerated values specify different input types, which affect the validation rules for input content,
+ *  such as basic input, pure numbers, phone numbers, email addresses, and verification codes. You can select the
+ * appropriate enumerated value based on the form type, and the system will automatically provide corresponding content
+ * validation, thereby optimizing the user input experience and ensuring the correctness of the data format.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,7 +47,8 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the text box types.
+ * @brief Enumerates the input types of multi-line text. Different enumerated values specify the input types of the **
+ * TextArea** component and affect the validation rules for the input content.
  *
  * @since 12
  */
@@ -60,7 +65,7 @@ typedef enum {
      * One time code input mode.
      * @since 20
      */
-    ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14,
+    ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14
 } ArkUI_TextAreaType;
 
 #ifdef __cplusplus

@@ -23,7 +23,15 @@
 /**
  * @file arkweb_interface.h
  *
- * @brief Provides a unified entry for the native ArkWeb.
+ * @brief `arkweb_interface.h` is the core entry header file of ArkWeb on the native side (C/C++): it defines the basic
+ * Native API type {@link ArkWeb_AnyNativeAPI} and the API type enum {@link ArkWeb_NativeAPIVariantKind}, provides the
+ *  {@link OH_ArkWeb_GetNativeAPI} interface for obtaining specific Native API structs such as Controller, Component,
+ * and CookieManager on demand, and also provides {@link OH_ArkWeb_RegisterScrollCallback} for registering scroll event
+ * callbacks of the Web component. When developers need to control Web component behavior in native code (such as
+ * executing JavaScript, managing cookies, monitoring component lifecycle or scroll events), they should first obtain
+ * the corresponding Native API through this header file, while capabilities such as page rendering and display still
+ * need to be provided by the Web component on the ArkTS side.
+ *
  * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
@@ -42,53 +50,77 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the native API type of any size.
+ * @brief ArkWeb_AnyNativeAPI is the basic struct type of ArkWeb Native API, used to uniformly represent pointers to
+ * various Native API structs obtained through the {@link OH_ArkWeb_GetNativeAPI} API. This struct contains a size
+ * member of the size_t type, which records the size of the current struct.
  *
  * @since 12
  */
 typedef struct {
-    /** Defines the size information of the native API set. */
+    /**
+     * Size of the struct.
+     */
     size_t size;
 } ArkWeb_AnyNativeAPI;
 
 /**
- * @brief Defines the native API set type.
+ * @brief Enumerates the native API types.
  *
  * @since 12
  */
 typedef enum {
-    /** API type related to ArkWeb component. */
+    /**
+     * API type related to Component.
+     */
     ARKWEB_NATIVE_COMPONENT,
-    /** API type related to ArkWeb controller. */
+    /**
+     * API type related to Controller.
+     */
     ARKWEB_NATIVE_CONTROLLER,
-    /** API type related to ArkWeb WebMessagePort. */
+    /**
+     * API type related to WebMessagePort.
+     */
     ARKWEB_NATIVE_WEB_MESSAGE_PORT,
-    /** API type related to ArkWeb WebMessage. */
+    /**
+     * API type related to WebMessage.
+     */
     ARKWEB_NATIVE_WEB_MESSAGE,
-    /** API type related to ArkWeb cookie manager. */
+    /**
+     * API type related to CookieManager.
+     */
     ARKWEB_NATIVE_COOKIE_MANAGER,
     /**
      * @brief API type related to ArkWeb JavaScript value.
      *
      * @since 18
      */
-    ARKWEB_NATIVE_JAVASCRIPT_VALUE,
+    ARKWEB_NATIVE_JAVASCRIPT_VALUE
 } ArkWeb_NativeAPIVariantKind;
 
 /**
- * @brief Obtains the native API set of a specified type.
- * @param type Indicates the type of the native API set provided by ArkWeb.
- * @return Return the pointer to the native API abstract object that carries the size.
- *         If the type is incorrect, a null pointer is returned.
+ * @brief Obtains the corresponding Native API struct based on the API type passed in. It is used in scenarios such as
+ * obtaining a Controller in native code to control Web component behavior, obtaining a CookieManager to manage cookies,
+ * obtaining a WebMessagePort for message communication, and obtaining a JavaScriptValue to operate JavaScript objects.
  *
- * @syscap SystemCapability.Web.Webview.Core
+ * @param type Type of Native API supported by ArkWeb. Different API types may require different system versions. For
+ *     details, see the enum type description.
+ *     <br>Note: The returned pointer is managed by the system and does not need to be manually released by the
+ *     developer. Multiple calls with the same parameters may return the same pointer. The returned Native API struct
+ *     is valid within the lifecycle of the Web component. Ensure thread safety when using it.
+ * @return Returns the pointer to the corresponding Native API struct based on the passed-in API type. The first member
+ *     of the struct is the size of the current struct. It can be used to access specific Native API functions such as
+ *     Controller, Component, and CookieManager. <br> If the passed-in API type is not supported in the current system
+ *     version (for example, ARKWEB_NATIVE_JAVASCRIPT_VALUE is unavailable in versions earlier than 18), NULL is
+ *     returned.
  * @since 12
  */
 ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
 
-
 /**
- * @brief Register a scrolling event callback.
+ * @brief Registers a callback for the component scroll event. It is used in scenarios such as monitoring user scroll
+ * behavior for lazy loading, detecting scroll position for back-to-top functionality, recording user browsing behavior
+ * for data analysis, and implementing visual effects during scrolling.
+ *
  * @param webTag Name of the **Web** component.
  * @param callback Callback used when a page is scrolled.
  * @param userData Pointer to user-defined data.

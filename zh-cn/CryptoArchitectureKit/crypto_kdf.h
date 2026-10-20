@@ -24,6 +24,7 @@
  * @file crypto_kdf.h
  * @brief 定义密钥派生接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_kdf.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

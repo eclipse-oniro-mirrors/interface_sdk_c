@@ -62,7 +62,7 @@ OH_LowPowerAudioSink* OH_LowPowerAudioSink_CreateByMime(const char* mime);
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param format A pointer to an OH_AVFormat to give the description of the audio track to be decoded
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_UNSUPPORT}: The format is not supported.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
@@ -76,7 +76,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Configure(OH_LowPowerAudioSink* sink, const OH
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param format pointer to an OH_AVFormat instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_UNSUPPORT}: The format is not supported.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
@@ -90,7 +90,7 @@ OH_AVErrCode OH_LowPowerAudioSink_SetParameter(OH_LowPowerAudioSink* sink, const
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param format pointer to an OH_AVFormat instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -101,7 +101,7 @@ OH_AVErrCode OH_LowPowerAudioSink_GetParameter(OH_LowPowerAudioSink* sink, OH_AV
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_UNSUPPORT}: The format is not supported.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
@@ -114,7 +114,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Prepare(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_UNSUPPORT}: The format is not supported.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
@@ -128,7 +128,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Start(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -140,7 +140,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Pause(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -152,7 +152,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Resume(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -164,7 +164,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Flush(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -176,7 +176,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Stop(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -189,7 +189,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Reset(OH_LowPowerAudioSink* sink);
  * 
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -202,7 +202,7 @@ OH_AVErrCode OH_LowPowerAudioSink_Destroy(OH_LowPowerAudioSink* sink);
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param volume Volume to set which changes from 0.0 to 1.0
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -215,7 +215,7 @@ OH_AVErrCode OH_LowPowerAudioSink_SetVolume(OH_LowPowerAudioSink* sink, const fl
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param speed The playback speed value needs to be specified, the valid value is 0.25-4.0
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -228,7 +228,7 @@ OH_AVErrCode OH_LowPowerAudioSink_SetPlaybackSpeed(OH_LowPowerAudioSink* sink, c
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param samples Pointer to an OH_AVSamplesBuffer instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -241,7 +241,7 @@ OH_AVErrCode OH_LowPowerAudioSink_ReturnSamples(OH_LowPowerAudioSink* sink, OH_A
  * @param sink Pointer to an OH_LowPowerAudioSink instance
  * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
@@ -262,7 +262,7 @@ OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void);
  * 
  * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* callback);
@@ -275,7 +275,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* 
  * refer to {@link OH_LowPowerAudioSink_OnPositionUpdated}
  * @param userData Pointer to the data on which the caller depends when executing the callback.
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -292,7 +292,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(
  * refer to {@link OH_LowPowerAudioSink_OnDataNeeded}
  * @param userData User specific data
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -309,7 +309,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(
  * refer to {@link OH_LowPowerAudioSink_OnError}
  * @param userData User specific data
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -326,7 +326,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(
  * refer to {@link OH_LowPowerAudioSink_OnInterrupted}
  * @param userData User specific data
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -343,7 +343,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(
  * refer to {@link OH_LowPowerAudioSink_OnDeviceChanged}
  * @param userData User specific data
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -360,7 +360,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(
  * refer to {@link OH_LowPowerAudioSink_OnEos}
  * @param userData User specific data
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
@@ -376,7 +376,7 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(
  * @param loudnessGain Loudness gain to set which changes from -90.0 to 24.0, expressing in dB.
  * The default loudness gain is 0.0dB.
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
  * @since 21
  */

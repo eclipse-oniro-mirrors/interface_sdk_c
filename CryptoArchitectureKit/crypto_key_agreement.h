@@ -24,6 +24,7 @@
  * @file crypto_key_agreement.h
  * @brief Defines the key agreement interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_key_agreement.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

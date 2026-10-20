@@ -207,6 +207,41 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
     /**
+     * @brief 无法获取属性，因为之前未设置该属性。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_NO_ATTRIBUTE_FOUND = 106211,
+    /**
+     * @brief 子动画参数无效。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_SUB_ANIMATION_INVALID = 106212,
+    /**
+     * @brief 在{@link ArkUI_ContextHandle}上未找到指定的动画组。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_NOT_FOUND = 106213,
+    /**
+     * @brief 检测到同一线程上对动画组接口的重入调用。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_REENTRANT_CALL = 106214,
+    /**
+     * @brief 动画组未处于操作所需的状态。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_ANIMATION_GROUP_INVALID_STATE = 106215,
+    /**
+     * @brief 解析的目标节点不属于注册动画组时传入的context所在的UIContext。
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_TARGET_NODE_NOT_IN_SAME_CONTEXT = 106216,
+    /**
      * @brief 当前节点不是自定义节点。错误码的详细介绍请参见{@link 渲染节点错误码}。
      *
      * @since 20
@@ -255,6 +290,54 @@ typedef enum {
      * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
+    /**
+     * @brief 上一次请求尚未完成。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
+    /**
+     * @brief 未找到uniqueId对应的节点。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
+    /**
+     * @brief 结果数据过大。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
+    /**
+     * @brief 资源已耗尽。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
+    /**
+     * @brief 节点ID重复。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_DUPLICATE_NODE_ID = 106413,
+    /**
+     * @brief 部分集合项失败。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED = 106414,
+    /**
+     * @brief 集合项未找到。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND = 106415,
+    /**
+     * @brief 集合项已被取出使用。
+     *
+     * @since 26.2.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN = 106416,
     /**
      * @brief 当前节点无法获得焦点。错误码的详细介绍请参见{@link 150001 节点无法获得焦点}。
      *
@@ -357,6 +440,18 @@ typedef enum {
      * @since 19
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
+    /**
+     * @brief 节点挂载失败导致无法打开对话框。错误码的详细介绍请参见{@link 弹窗错误码}。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE = 103306,
+    /**
+     * @brief 子窗口创建失败导致无法打开对话框。错误码的详细介绍请参见{@link 弹窗错误码}。
+     *
+     * @since 26.0.1
+     */
+    ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE = 103308,
 } ArkUI_ErrorCode;
 
 #ifdef __cplusplus

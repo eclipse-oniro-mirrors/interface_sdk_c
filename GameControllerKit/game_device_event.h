@@ -58,7 +58,7 @@ typedef enum GameDevice_StatusChangedType {
      * The game device is online.
      * @since 21
      */
-    ONLINE = 1,
+    ONLINE = 1
 } GameDevice_StatusChangedType;
 
 /**
@@ -77,13 +77,20 @@ typedef enum GameDevice_DeviceType {
      * Gamepad.
      * @since 21
      */
-    GAME_PAD = 1,
+    GAME_PAD = 1
 } GameDevice_DeviceType;
 
 /**
  * @brief Defines the device information.
  *
  * @since 21
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceId} Obtains the device ID from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetName} Obtains the device name from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetProduct} Obtains the product information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetVendor} Obtains the vendor information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetVersion} Obtains the version information from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetPhysicalAddress} Obtains the physical address from the device information.
+ * @see {@link OH_GameDevice_DeviceInfo_GetDeviceType} Obtains the device type from the device information.
  */
 typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
 
@@ -91,6 +98,10 @@ typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
  * @brief Defines device status change events.
  *
  * @since 21
+ * @see {@link OH_GameDevice_DeviceEvent_GetChangedType} obtains the status change type from a device status
+ *     change event.
+ * @see {@link OH_GameDevice_DeviceEvent_GetDeviceInfo} obtains the device information from a device status
+ *     change event.
  */
 typedef struct GameDevice_DeviceEvent GameDevice_DeviceEvent;
 
@@ -108,8 +119,8 @@ typedef void(* GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceE
  *
  * @param deviceEvent Pointer to the {@link GameDevice_DeviceEvent} instance. The pointer cannot be null.
  * @param statusChangedType Output parameter. Device status change type.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     deviceEvent** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
@@ -121,9 +132,10 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
  *
  * @param deviceEvent Pointer to the {@link GameDevice_DeviceEvent} instance. The pointer cannot be null.
  * @param deviceInfo Output parameter. Double pointer to the device information.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceEvent is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     deviceEvent** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GameDevice_DestroyDeviceInfo} destroys a device information instance.
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
     const struct GameDevice_DeviceEvent* deviceEvent,
@@ -133,8 +145,8 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
  * @brief Destroys a device information instance.
  *
  * @param deviceInfo Double pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     deviceInfo** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DestroyDeviceInfo(GameDevice_DeviceInfo** deviceInfo);
@@ -144,9 +156,9 @@ GameController_ErrorCode OH_GameDevice_DestroyDeviceInfo(GameDevice_DeviceInfo**
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param deviceId Output parameter. Double pointer to the device ID.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo or deviceId is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     deviceInfo** or **deviceId** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If the
+ *     device memory is insufficient, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceId(const struct GameDevice_DeviceInfo* deviceInfo,
@@ -157,9 +169,9 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceId(const struct GameD
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param name Output parameter. Double pointer to the device name.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo or name is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     deviceInfo** or **name** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If the device
+ *     memory is insufficient, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevice_DeviceInfo* deviceInfo,
@@ -170,20 +182,32 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevic
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param product Output parameter. Product information.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned. </li>
+ *     <li>If **deviceInfo** or **product** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,
                                                              int32_t* product);
 
 /**
+ * @brief Obtains the vendor information from the device information.
+ *
+ * @param deviceInfo [in] Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
+ * @param vendor [out] Output parameter. Vendor information.
+ * @return <ul><li> If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned. </li>
+ *     <li>If **deviceInfo** or **vendor** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned. </li></ul>
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVendor(const struct GameDevice_DeviceInfo* deviceInfo,
+                                                             int32_t* vendor);
+
+/**
  * @brief Obtains the version information from the device information.
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param version Output parameter. Version information.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     deviceInfo** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVersion(const struct GameDevice_DeviceInfo* deviceInfo,
@@ -194,9 +218,9 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVersion(const struct GameDe
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param physicalAddress Output parameter. Double pointer to the physical address.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo or physicalAddress is null.</li>
- *     <li>Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     deviceInfo** or **physicalAddress** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li>     <li>If
+ *     the device memory is insufficient, {@link GAME_CONTROLLER_NO_MEMORY} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetPhysicalAddress(const struct GameDevice_DeviceInfo* deviceInfo,
@@ -207,8 +231,8 @@ GameController_ErrorCode OH_GameDevice_DeviceInfo_GetPhysicalAddress(const struc
  *
  * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance. The pointer cannot be null.
  * @param deviceType Output parameter. Device type.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceInfo is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If the **
+ *     deviceInfo** parameter is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceType(const struct GameDevice_DeviceInfo* deviceInfo,

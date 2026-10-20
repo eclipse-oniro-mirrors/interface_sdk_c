@@ -24,7 +24,9 @@
 
 /**
  * @file http_interceptor_type.h
- * @brief Defines the data structure for the C APIs of the http global interceptor.
+ * @brief Defines the data structures for the C APIs of the global HTTP interceptor module, including the interceptor
+ * request/response header information, HTTP request/response data packet structure, interceptor configuration
+ * information, and related enum types and function pointers.
  *
  * @library libhttp_interceptor.so
  * @kit NetworkKit
@@ -48,105 +50,118 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines interceptor header.
+ * @brief Defines a struct for the request/response header information of the interceptor.
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Headers {
     /**
-     * @brief Header data
+     * @brief Pointer to the request/response header information of the interceptor.
+     *
      * @since 24
      */
     char *data;
     /**
-     * @brief Next Header
+     * @brief Pointer to the next header information.
+     *
      * @since 24
      */
     struct OH_Http_Interceptor_Headers *next;
 } OH_Http_Interceptor_Headers;
 
 /**
- * @brief Defines interceptor request
+ * @brief Defines a struct for the HTTP request data packet of the interceptor.
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Request {
     /**
-     * @brief Request url, see {@link Http_Buffer}.
+     * @brief Request URL. For details, see {@link Http_Buffer}.
+     *
      * @since 24
      */
     Http_Buffer url;
     /**
-     * @brief Request method, see {@link Http_Buffer}.
+     * @brief Request method. For details, see {@link Http_Buffer}.
+     *
      * @since 24
      */
     Http_Buffer method;
     /**
-     * @brief Header of http Request, see {@link OH_Http_Interceptor_Headers}.
+     * @brief HTTP request header. For details, see {@link OH_Http_Interceptor_Headers}.
+     *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
     /**
-     * @brief Request body, see {@link Http_Buffer}.
+     * @brief Request body. For details, see {@link Http_Buffer}.
+     *
      * @since 24
      */
     Http_Buffer body;
 } OH_Http_Interceptor_Request;
 
 /**
- * @brief Defines interceptor response
+ * @brief Defines a struct for the HTTP response data packet of the interceptor.
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Response {
     /**
-     * @brief Response body, see {@link Http_Buffer}.
+     * @brief Response body. For details, see {@link Http_Buffer}.
+     *
      * @since 24
      */
     Http_Buffer body;
     /**
-     * @brief Server status code, see {@link Http_ResponseCode}.
+     * @brief Response status code. For details, see {@link Http_ResponseCode}.
+     *
      * @since 24
      */
     Http_ResponseCode responseCode;
     /**
-     * @brief Header of http response, see {@link OH_Http_Interceptor_Headers}.
+     * @brief HTTP response header. For details, see {@link OH_Http_Interceptor_Headers}.
+     *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
     /**
-     * @brief The time taken of various stages of HTTP request, see {@link Http_PerformanceTiming}.
+     * @brief Response performance information. For details, see {@link Http_PerformanceTiming}.
+     *
      * @since 24
      */
     Http_PerformanceTiming performanceTiming;
 } OH_Http_Interceptor_Response;
 
 /**
- * @brief Defines interceptor stage
+ * @brief Defines an enum for the interceptor stages.
  *
  * @since 24
  */
 typedef enum OH_Interceptor_Stage {
     /**
-     * @brief http request hook
+     * @brief The interceptor processes the request.
+     *
      * @since 24
      */
     OH_STAGE_REQUEST,
     /**
-     * @brief http response hook
+     * @brief The interceptor processes the response.
+     *
      * @since 24
      */
     OH_STAGE_RESPONSE
 } OH_Interceptor_Stage;
 
 /**
- * @brief Defines interceptor type
+ * @brief Defines an enum for the interceptor types.
  *
  * @since 24
  */
 typedef enum OH_Interceptor_Type {
     /**
-     * @brief interceptor will not modify the packet
+     * @brief Read-only interceptor.
+     *
      * @since 24
      */
     OH_TYPE_READ_ONLY,
@@ -158,31 +173,33 @@ typedef enum OH_Interceptor_Type {
 } OH_Interceptor_Type;
 
 /**
- * @brief Defines interceptor process result
+ * @brief Defines an enum for the interceptor results.
  *
  * @since 24
  */
 typedef enum OH_Interceptor_Result {
     /**
-     * @brief interceptor result is continue
+     * @brief The processing continues.
+     *
      * @since 24
      */
     OH_CONTINUE,
     /**
-     * @brief interceptor result is abort this packet
+     * @brief The processing is aborted.
+     *
      * @since 24
      */
     OH_ABORT
 } OH_Interceptor_Result;
-
 /**
- * @brief Defines interceptor handler
+ * @brief Defines the HTTP interceptor handler function.
  *
- * @param request http request packet.
- * @param response http response packet.
- * @param isModified whether interceptor modified the packet.
- * @return {@link OH_Interceptor_Result} interceptor process result.
- *
+ * @param request Pointer to the HTTP request data packet (valid only in the request stage).
+ * @param response Pointer to the HTTP response data packet (valid only in the response stage).
+ * @param isModified Output parameter, which indicates whether the interceptor has modified the data packet. This
+ *     parameter is invalid for the interceptor of the **OH_TYPE_READ_ONLY** type.
+ * @return Interceptor processing result. - **OH_CONTINUE**: The processing continues. - **OH_ABORT**: The processing
+ *     is aborted.
  * @since 24
  */
 typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
@@ -191,33 +208,39 @@ typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
     int32_t *isModified);
 
 /**
- * @brief Defines interceptor configuration
+ * @brief Defines a struct for the configuration information of the global HTTP interceptor.
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor {
     /**
-     * @brief group id of interceptor
+     * @brief Interceptor group ID.
+     *
      * @since 24
      */
     int32_t groupId;
     /**
-     * @brief stage of interceptor
+     * @brief Execution stage of the interceptor. For details, see {@link OH_Interceptor_Stage}.
+     *
      * @since 24
      */
     OH_Interceptor_Stage stage;
     /**
-     * @brief type of interceptor
+     * @brief Interceptor type. For details, see {@link OH_Interceptor_Type}.
+     *
      * @since 24
      */
     OH_Interceptor_Type type;
     /**
-     * @brief handler of interceptor
+     * @brief Interceptor handler. For details, see {@link OH_Http_InterceptorHandler}.
+     *
      * @since 24
      */
     OH_Http_InterceptorHandler handler;
     /**
-     * @brief whether the interceptor is enabled
+     * @brief Enabling status of the interceptor. The value **0** indicates that the interceptor is disabled, and a non-
+     * zero value indicates the opposite.
+     *
      * @since 24
      */
     int32_t enabled;

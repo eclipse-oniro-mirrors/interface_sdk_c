@@ -17,7 +17,7 @@
  * @addtogroup OH_NativeImage
  * @{
  *
- * @brief 定义获取和使用NativeImage的相关函数。
+ * @brief 提供NativeImage功能，作为数据消费者，其中一种用法是将数据和OpenGL纹理对接，需在OpenGL环境下使用，另外一种用法是开发者自行获取buffer进行渲染处理。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @since 9
@@ -48,6 +48,10 @@ extern "C" {
 
 struct OH_NativeImage;
 typedef struct OH_NativeImage OH_NativeImage;
+/**
+ * @brief 定义结构体NativeWindow的新类型名OHNativeWindow。
+ * @since 8
+ */
 typedef struct NativeWindow OHNativeWindow;
 /**
  * @brief 定义结构体NativeWindowBuffer的新类型名OHNativeWindowBuffer。

@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Drm
  * @{
@@ -22,11 +21,11 @@
  * @since 11
  * @version 1.0
  */
-
 /**
  * @file native_drm_common.h
  *
- * @brief Defines the Drm common struct.
+ * @brief The file declares the DRM data types.
+ * 
  * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -45,208 +44,220 @@ extern "C" {
 
 /**
   *
-  * @brief Enumerates event types of listener.
+  * @brief Enumerates the types of events that can be subscribed to.
+  * 
   * @since 11
   * @version 1.0
 */
 typedef enum DRM_EventType {
     /**
-     * DRM event base.
+     * DRM event.
      */
     EVENT_DRM_BASE = 200,
     /**
-     * Provision required event.
+     * Event indicating that the application needs to request a device certificate.
      */
     EVENT_PROVISION_REQUIRED = 201,
     /**
-     * Media key required event.
+     * Event indicating that the application needs to request a media key.
      */
     EVENT_KEY_REQUIRED = 202,
     /**
-     * Media key expired event.
+     * Event indicating that the media key expires.
      */
     EVENT_KEY_EXPIRED = 203,
     /**
-     * Vendor defined event.
+     * Vendor-defined event.
      */
     EVENT_VENDOR_DEFINED = 204,
     /**
-     * Expiration update event.
+     * Event indicating that the media key is updated on expiry.
      */
     EVENT_EXPIRATION_UPDATE = 206,
   } DRM_EventType;
 
 /**
- * @brief Content protection level.
+ * @brief Enumerates the content protection levels.
+ * 
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_ContentProtectionLevel {
     /**
-     * Content protection level unknown.
+     * Unknown level.
      */
     CONTENT_PROTECTION_LEVEL_UNKNOWN = 0,
     /**
-     * Content protection level software crypto.
+     * Software-based content protection.
      */
     CONTENT_PROTECTION_LEVEL_SW_CRYPTO,
     /**
-     * Content protection level hardware crypto.
+     * Hardware-based content protection.
      */
     CONTENT_PROTECTION_LEVEL_HW_CRYPTO,
     /**
-     * Content protection level enhanced hardware crypto.
+     * Enhanced hardware-based content protection.
      */
     CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO,
     /**
-     * Content protection level max stub.
+     * Maximum content protection level.
      */
     CONTENT_PROTECTION_LEVEL_MAX,
 } DRM_ContentProtectionLevel;
 
 /**
- * @brief Media key type.
+ * @brief Enumerates the types of media keys.
+ * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_MediaKeyType {
     /**
-     * Media key type offline.
+     * Offline media key.
      */
     MEDIA_KEY_TYPE_OFFLINE = 0,
     /**
-     * Media key type online
+     * Online media key.
      */
     MEDIA_KEY_TYPE_ONLINE,
 } DRM_MediaKeyType;
 
 /**
- * @brief Media key request type.
+ * @brief Enumerates the types of media key requests.
+ * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_MediaKeyRequestType {
     /**
-     * Media key request type unknown.
+     * Unknown type.
      */
     MEDIA_KEY_REQUEST_TYPE_UNKNOWN = 0,
     /**
-     * Media key request type initial.
+     * Initialization request.
      */
     MEDIA_KEY_REQUEST_TYPE_INITIAL,
     /**
-     * Media key request type renewal.
+     * Renewal request.
      */
     MEDIA_KEY_REQUEST_TYPE_RENEWAL,
     /**
-     * Media key request type release.
+     * Release request.
      */
     MEDIA_KEY_REQUEST_TYPE_RELEASE,
     /**
-     * Media key request type none.
+     * No request.
      */
     MEDIA_KEY_REQUEST_TYPE_NONE,
     /**
-     * Media key request type update.
+     * Update request.
      */
     MEDIA_KEY_REQUEST_TYPE_UPDATE,
 } DRM_MediaKeyRequestType;
 
 /**
- * @brief Offline media key status.
+ * @brief Enumerates the statuses of offline media keys.
+ * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_OfflineMediaKeyStatus {
     /**
-     * Offline media key status unknown.
+     * Unknown status.
      */
     OFFLINE_MEDIA_KEY_STATUS_UNKNOWN = 0,
     /**
-     * Offline media key status usable.
+     * The media key is available.
      */
     OFFLINE_MEDIA_KEY_STATUS_USABLE,
     /**
-     * Offline media key status inactive.
+     * The media key is inactive.
      */
     OFFLINE_MEDIA_KEY_STATUS_INACTIVE,
 } DRM_OfflineMediaKeyStatus;
 
 /**
- * @brief Certificate status.
+ * @brief Enumerates the device certificate statuses.
+ * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
 typedef enum DRM_CertificateStatus {
     /**
-     * Device already provisioned.
+     * A device certificate is provisioned.
      */
     CERT_STATUS_PROVISIONED = 0,
     /**
-     * Device not provisioned.
+     * No device certificate is provisioned or the certificate status is abnormal.
      */
     CERT_STATUS_NOT_PROVISIONED,
     /**
-     * Cert already expired.
+     * The device certificate has expired.
      */
     CERT_STATUS_EXPIRED,
     /**
-     * Certs are invalid.
+     * The device certificate is invalid.
      */
     CERT_STATUS_INVALID,
     /**
-     * Get certs status failed.
+     * The device certificate is unavailable.
      */
     CERT_STATUS_UNAVAILABLE,
 } DRM_CertificateStatus;
 
 /**
- * @brief Max count of media key request option.
+ * @brief Maximum number of optional data entries in a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_OPTION_COUNT 16
 /**
- * @brief Max len of media key request option name.
+ * @brief Maximum length of an optional data name in a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN 64
 /**
- * @brief Max len of media key request option data.
+ * @brief Maximum length of optional data in a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN 128
 /**
- * @brief Max len of media key request init data.
+ * @brief Maximum length of initialization data for a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_INIT_DATA_LEN 2048
 /**
- * @brief Max len of media mimetype.
+ * @brief Maximum length of a MIME type.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MIMETYPE_LEN 64
 
 /**
- * @brief Media key request info.
+ * @brief The struct describes the information about a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 typedef struct DRM_MediaKeyRequestInfo {
     /**
-     * Offline or online media key type.
+     * Type of the media key request.
      */
     DRM_MediaKeyType type;
     /**
-     * Initial data len.
+     * Length of the initialization data.
      */
     int32_t initDataLen;
     /**
@@ -258,7 +269,7 @@ typedef struct DRM_MediaKeyRequestInfo {
      */
     char mimeType[MAX_MIMETYPE_LEN];
     /**
-     * OptionsData count.
+     * Number of options.
      */
     uint32_t optionsCount;
     /**
@@ -272,29 +283,32 @@ typedef struct DRM_MediaKeyRequestInfo {
 } DRM_MediaKeyRequestInfo;
 
 /**
- * @brief Max len of media key request.
+ * @brief Maximum length of data in a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_REQUEST_DATA_LEN 8192
 /**
- * @brief Max len of URL.
+ * @brief Maximum length of a URL.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_DEFAULT_URL_LEN 2048
 /**
- * @brief Media key request.
+ * @brief The struct describes a media key request.
+ * 
  * @since 11
  * @version 1.0
  */
 typedef struct DRM_MediaKeyRequest {
     /**
-     * Media key request type.
+     * Type of the media key request.
      */
     DRM_MediaKeyRequestType type;
     /**
-     * Media key request data len.
+     * Length of data in the media key request.
      */
     int32_t dataLen;
     /**
@@ -308,26 +322,30 @@ typedef struct DRM_MediaKeyRequest {
 } DRM_MediaKeyRequest;
 
 /**
- * @brief Max count of statistics item.
+ * @brief Maximum number of metric records.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_STATISTICS_COUNT 10
 /**
- * @brief Max len of statistics item name.
+ * @brief Maximum length of a metric name.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_STATISTICS_NAME_LEN 64
 /**
- * @brief Max len of statistics item buffer.
+ * @brief Maximum length of a metric buffer.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_STATISTICS_BUFFER_LEN 256
 
 /**
- * @brief Statistics of MediaKeySystem.
+ * @brief The struct describes the metrics for a media key system.
+ * 
  * @since 11
  * @version 1.0
  */
@@ -341,20 +359,23 @@ typedef struct DRM_Statistics {
 } DRM_Statistics;
 
 /**
- * @brief Max count of offline media key id.
+ * @brief Maximum number of offline media key IDs.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_OFFLINE_MEDIA_KEY_ID_COUNT 512
 /**
- * @brief Max len of offline media key id.
+ * @brief Maximum length of an offline media key ID.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_OFFLINE_MEDIA_KEY_ID_LEN 64
 
 /**
- * @brief Offline media key ids array.
+ * @brief The struct describes an array of offline media key IDs.
+ * 
  * @since 11
  * @version 1.0
  */
@@ -368,26 +389,30 @@ typedef struct DRM_OfflineMediakeyIdArray {
 } DRM_OfflineMediakeyIdArray;
 
 /**
- * @brief Max count of key info.
+ * @brief Maximum number of key information entries.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_KEY_INFO_COUNT 64
 /**
- * @brief Max len of key id.
+ * @brief Maximum length of a key ID.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_KEY_ID_LEN 16
 /**
- * @brief Max len of key status value.
+ * @brief Maximum length of a key status value.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_KEY_STATUS_VALUE_LEN 128
 
 /**
- * @brief Media key info.
+ * @brief The struct describes the information about media keys.
+ * 
  * @since 11
  * @version 1.0
  */
@@ -401,26 +426,30 @@ typedef struct DRM_KeysInfo {
 } DRM_KeysInfo;
 
 /**
- * @brief Max count of media key status.
+ * @brief Maximum number of media key statuses.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_STATUS_COUNT 64
 /**
- * @brief Max len of media key status name.
+ * @brief Maximum length of a media key status name.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_STATUS_NAME_LEN 64
 /**
- * @brief Max len of media key status value.
+ * @brief Maximum length of a media key status value.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_STATUS_VALUE_LEN 256
 
 /**
- * @brief Media key status like policy etc.
+ * @brief The struct describes the media key status.
+ * 
  * @since 11
  * @version 1.0
  */
@@ -434,20 +463,23 @@ typedef struct DRM_MediaKeyStatus {
 } DRM_MediaKeyStatus;
 
 /**
- * @brief Drm system uuid len.
+ * @brief Length of the UUID of a DRM solution.
+ * 
  * @since 11
  * @version 1.0
  */
 #define DRM_UUID_LEN 16
 /**
- * @brief Max len of PSSH data.
+ * @brief Maximum length of PSSH data.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_PSSH_DATA_LEN 2048
 
 /**
- * @brief PSSH info by uuid.
+ * @brief The struct describes the Protection System Specific Header (PSSH) data for a DRM system.
+ * 
  * @since 11
  * @version 1.0
  */
@@ -457,7 +489,7 @@ typedef struct DRM_PsshInfo {
      */
     uint8_t uuid[DRM_UUID_LEN];
     /**
-     * PSSH data len.
+     * Length of the PSSH data payload.
      */
     int32_t dataLen;
     /**
@@ -467,14 +499,16 @@ typedef struct DRM_PsshInfo {
 } DRM_PsshInfo;
 
 /**
- * @brief Max count of PSSH info.
+ * @brief Maximum number of PSSH data entries.
+ * 
  * @since 11
  * @version 1.0
  */
 #define MAX_PSSH_INFO_COUNT 8
 
 /**
- * @brief MediaKeySystemInfo used for player to get media key system info from media source.
+ * @brief The struct describes the DRM information for encrypted content.
+ * 
  * @since 11
  * @version 1.0
  */
@@ -486,41 +520,47 @@ typedef struct DRM_MediaKeySystemInfo {
 } DRM_MediaKeySystemInfo;
 
 /**
-* @brief Callback for getting media key system information from media source.
+* @brief Defines the callback used to obtain DRM information from a media source.
+* 
 * @since 11
 * @version 1.0
 */
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
- * @brief Media key system struct.
+ * @brief The struct describes a media key system.
+ * 
  * @since 11
  * @version 1.0
  */
 typedef struct MediaKeySystem MediaKeySystem;
 
 /**
- * @brief Media key session struct.
+ * @brief The struct describes a media key session.
+ * 
  * @since 11
  * @version 1.0
  */
 typedef struct MediaKeySession MediaKeySession;
 /**
- * @brief Max len of media key system name.
+ * @brief Maximum length of a MediaKeySystem instance name.
+ * 
  * @since 12
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_SYSTEM_NAME_LEN 128
 
 /**
- * @brief Max num of media key system supported
+ * @brief Maximum number of MediaKeySystem instances.
+ * 
  * @since 12
  * @version 1.0
  */
 #define MAX_MEDIA_KEY_SYSTEM_NUM 8
 
 /**
- * @brief Name and UUID of DRM plugin.
+ * @brief The struct describes the DRM solution name and UUID list.
+ * 
  * @since 12
  * @version 1.0
  */

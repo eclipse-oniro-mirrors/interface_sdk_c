@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+# Copyright (c) 2021-2026 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -26,6 +26,7 @@ if (!is_arkui_x) {
   ohos_ndk_headers("arkui_header") {
     dest_dir = "$ndk_headers_out_dir/arkui/"
     sources = [
+      "common_type.h",
       "drag_and_drop.h",
       "drawable_descriptor.h",
       "error_code.h",
@@ -45,7 +46,10 @@ if (!is_arkui_x) {
       "native_type_visual.h",
       "node_attributes",
       "styled_string.h",
+      "ui_event_injection.h",
+      "ui_info_collection.h",
       "ui_input_event.h",
+      "ui_json_wrapper.h",
     ]
   }
 
@@ -66,6 +70,7 @@ if (!is_arkui_x) {
       "arkui/native_interface_focus.h",
       "arkui/native_key_event.h",
       "arkui/native_material.h",
+      "arkui/common_type.h",
       "arkui/native_node.h",
       "arkui/native_node_napi.h",
       "arkui/native_render.h",
@@ -82,6 +87,7 @@ if (!is_arkui_x) {
       "arkui/node_attributes/picker.h",
       "arkui/node_attributes/grid.h",
       "arkui/node_attributes/list.h",
+      "arkui/node_attributes/list_item.h",
       "arkui/node_attributes/scroll.h",
       "arkui/node_attributes/swiper.h",
       "arkui/node_attributes/common_attributes.h",
@@ -97,7 +103,10 @@ if (!is_arkui_x) {
       "arkui/node_attributes/text_input.h",
       "arkui/node_attributes/xcomponent.h",
       "arkui/styled_string.h",
+      "arkui/ui_event_injection.h",
+      "arkui/ui_info_collection.h",
       "arkui/ui_input_event.h",
+      "arkui/ui_json_wrapper.h",
       "ace/xcomponent/native_interface_xcomponent.h",
       "ace/xcomponent/native_xcomponent_key_event.h",
     ]

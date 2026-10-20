@@ -28,7 +28,8 @@
 /**
  * @file utd.h
  *
- * @brief Provides uniform type descriptor(UTD) related functions and struct.
+ * @brief Defines APIs and structs related to the Uniform Type Descriptors (UTDs). If the parameter type is char*, the
+ * string must end with a null character ('\0').
  *
  * @kit ArkData
  * @library libudmf.so
@@ -56,16 +57,17 @@ typedef struct OH_Utd OH_Utd;
  * @brief Creates a pointer to the instance of the {@link OH_Utd}.
  *
  * @param typeId Represents type of UTD, reference udmf_meta.h.
- * @return If the operation is successful, a pointer to the instance of the {@link OH_Utd}
- * structure is returned.If the operation is failed, nullptr is returned.
- * Must be destroyed with {@link OH_Utd_Destroy} when not needed.
+ * @return Returns a pointer to the {@link OH_Utd}instance created if the operation is successful; returns nullptr
+ *     otherwise. If this pointer is no longer required, use {@link OH_Utd_Destroy} to destroy it. Otherwise,
+ *     memory leaks may occur.
  * @see OH_Utd.
  * @since 12
  */
 OH_Utd* OH_Utd_Create(const char* typeId);
 
 /**
- * @brief Destroy a pointer that points to the {@link OH_Utd} instance.
+ * @brief Destroys an {@link OH_Utd} instance. After the pointer is destroyed, it becomes invalid and cannot be used
+ * again. Otherwise, undefined behavior may occur.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @see OH_Utd.
@@ -74,7 +76,7 @@ OH_Utd* OH_Utd_Create(const char* typeId);
 void OH_Utd_Destroy(OH_Utd* pThis);
 
 /**
- * @brief Get type id from the {@link OH_Utd}.
+ * @brief Obtains the type ID from an {@link OH_Utd} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @return Returns a string pointer when input args normally, otherwise return nullptr.
@@ -84,7 +86,7 @@ void OH_Utd_Destroy(OH_Utd* pThis);
 const char* OH_Utd_GetTypeId(OH_Utd* pThis);
 
 /**
- * @brief Get description from the {@link OH_Utd}.
+ * @brief Obtains the description from an {@link OH_Utd} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @return Returns a string pointer when input args normally, otherwise return nullptr.
@@ -94,8 +96,7 @@ const char* OH_Utd_GetTypeId(OH_Utd* pThis);
 const char* OH_Utd_GetDescription(OH_Utd* pThis);
 
 /**
- * @brief Get url from the {@link OH_Utd}.
- *
+ * @brief Obtains the URL from an {@link OH_Utd} instance.
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @return Returns a string pointer when input args normally, otherwise return nullptr.
  * @see OH_Utd.
@@ -104,7 +105,7 @@ const char* OH_Utd_GetDescription(OH_Utd* pThis);
 const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis);
 
 /**
- * @brief Get icon file from the {@link OH_Utd}.
+ * @brief Obtains the path of the default icon file from an {@link OH_Utd} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @return Returns a string pointer when input args normally, otherwise return nullptr.
@@ -114,7 +115,7 @@ const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis);
 const char* OH_Utd_GetIconFile(OH_Utd* pThis);
 
 /**
- * @brief Get belong to type id of the current {@link OH_Utd}.
+ * @brief Obtains the relationships between the data from an {@link OH_Utd} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @param count Represents the return types count.
@@ -125,7 +126,7 @@ const char* OH_Utd_GetIconFile(OH_Utd* pThis);
 const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count);
 
 /**
- * @brief Get filename extensions of the current {@link OH_Utd}.
+ * @brief Obtains the file name extensions associated with an {@link OH_Utd} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @param count Represents the return file extensions count.
@@ -136,7 +137,7 @@ const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count);
 const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count);
 
 /**
- * @brief Get mime types of the current {@link OH_Utd}.
+ * @brief Obtains the MIME types associated with an {@link OH_Utd} instance.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_Utd}.
  * @param count Represents the mime types count.
@@ -147,7 +148,7 @@ const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count);
 const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count);
 
 /**
- * @brief Get type id by file name extension.
+ * @brief Obtains the UTDs based on the file name extensions.
  *
  * @param extension Represents file name extension.
  * @param count Represents the types count.
@@ -157,7 +158,7 @@ const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count);
 const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count);
 
 /**
- * @brief Get type id by mime type.
+ * @brief Obtains the UTDs based on the MIME types.
  *
  * @param mimeType Represents mime type
  * @param count Represents the types count.
@@ -167,7 +168,7 @@ const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned 
 const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count);
 
 /**
- * @brief Calculate relationships of two types.
+ * @brief Checks whether a UTD belongs to the target UTD.
  *
  * @param srcTypeId Represents source type id.
  * @param destTypeId Represents target type id.
@@ -179,7 +180,8 @@ const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count
 bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId);
 
 /**
- * @brief Calculate relationships of two types.
+ * @brief Checks whether a UTD is a lower-level type of the target UTD. For example, TYPE_SCRIPT is a lower-level type
+ * of SOURCE_CODE, and TYPE_SCRIPT and SOURCE_CODE are lower-level types of PLAIN_TEXT.
  *
  * @param srcTypeId Represents source type id.
  * @param destTypeId Represents target type id.
@@ -191,7 +193,8 @@ bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId);
 bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId);
 
 /**
- * @brief Calculate relationships of two types.
+ * @brief Checks whether a UTD is a higher-level type of the target UTD. For example, SOURCE_CODE is a higher-level type
+ * of TYPE_SCRIPT, and PLAIN_TEXT is a higher-level type of SOURCE_CODE and TYPE_SCRIPT.
  *
  * @param srcTypeId Represents source type id.
  * @param destTypeId Represents target type id.
@@ -203,7 +206,7 @@ bool OH_Utd_IsLower(const char* srcTypeId, const char* destTypeId);
 bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId);
 
 /**
- * @brief Calculate two {@link OH_Utd}s are equal.
+ * @brief Checks whether two UTDs are the same.
  *
  * @param utd1 Represents a pointer to {@link OH_Utd} instance.
  * @param utd2 Represents a pointer to {@link OH_Utd} instance.
@@ -215,7 +218,8 @@ bool OH_Utd_IsHigher(const char* srcTypeId, const char* destTypeId);
 bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2);
 
 /**
- * @brief Destroy string list memory.
+ * @brief Destroys a UTD list. After the list is destroyed, it becomes invalid and cannot be used again. Otherwise,
+ * undefined behavior may occur.
  *
  * @param list Represents a point to string list.
  * @param count Represents string count in list.

@@ -590,7 +590,7 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  * The supported states are prepared, playing, paused, and completed.
  * 
  * @param player Pointer to the OH_AVPlayer instance.
- * @param rate Playback rate. The value ranges from 0.125 to 4.
+ * @param rate Playback rate. The value ranges is [0.125, 8.0], on API 24 and below, the range is [0.125, 4.0].
  * @return {@link AV_ERR_OK}: The playback speed is set successfully.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called when the AVPlayer is not in the allowed state, or it is called
  * during live streaming.
@@ -1045,21 +1045,20 @@ uint32_t OH_AVPlayer_GetTrackCount(OH_AVPlayer *player);
  */
 OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex);
 
-/** 
- * @brief Method to set audio pcm data callback. This API can be called only 
- *     when the avplayer is in the idle or initialized state. 
- * @param player Pointer to an OH_AVPlayer instance. 
- * @param callback Pointer to callback function, nullptr indicates unregister callback. 
- * @param userData Pointer to user specific data. 
- * @return Function result code. 
- *         {@link AV_ERR_OK} if the execution is successful. 
- *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetPCMOutputCallback failed. 
- *         {@link AV_ERR_OPERATE_NOT_PERMIT} if called in unsupported state. 
- * @since 26.0.0 
- */ 
-OH_AVErrCode OH_AVPlayer_SetPCMOutputCallback(OH_AVPlayer *player, OH_AVPlayerPCMOutputCallback callback, 
+/**
+ * @brief Method to set audio pcm data callback. This API can be called only
+ *     when the avplayer is in the idle or initialized state.
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param callback Pointer to callback function, nullptr indicates unregister callback.
+ * @param userData Pointer to user specific data.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetPCMOutputCallback failed.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if called in unsupported state.
+ * @since 26.0.0
+ */
+OH_AVErrCode OH_AVPlayer_SetPCMOutputCallback(OH_AVPlayer *player, OH_AVPlayerPCMOutputCallback callback,
     void *userData);
-
 
 /**
  * @brief Method to set video decoded frame output callback. This API can be called only

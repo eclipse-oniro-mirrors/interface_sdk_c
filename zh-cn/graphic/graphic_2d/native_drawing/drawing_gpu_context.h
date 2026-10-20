@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 8
  * @version 1.0
@@ -25,7 +27,9 @@
 /**
  * @file drawing_gpu_context.h
  *
- * @brief This file declares the functions related to the GPU context in the drawing module.
+ * @brief 声明与绘图模块中的图形处理器上下文对象相关的函数，用于创建、配置和销毁图形处理器上下文对象，
+ * 为绘图模块提供图形处理器加速渲染所需的上下文环境。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -44,7 +48,7 @@ extern "C" {
 #endif
 
 /**
- * @brief This struct describes the options about the GPU context.
+ * @brief 定义有关图形处理器上下文的选项。
  *
  * @since 12
  * @version 1.0
@@ -52,17 +56,18 @@ extern "C" {
  */
 typedef struct {
     /**
-     * Whether to allow path mask textures to be cached. The value **true** means to allow the path mask textures to be
-     * cached, and **false** means the opposite.
+     * 用于控制是否启用路径蒙版缓存，如果为true，则允许缓存路径蒙版纹理，如果为false，则不允许。
      */
     bool allowPathMaskCaching;
 } OH_Drawing_GpuContextOptions;
 
 /**
- * @brief 用于创建一个使用OpenGL作为后端接口的图形处理器上下文对象。
+ * @brief 用于创建一个使用OpenGL作为后端接口的图形处理器上下文对象。创建的图形处理器上下文对象使用完毕后，
+ * 需要调用{@link OH_Drawing_GpuContextDestroy}销毁并回收内存。
  *
- * @param gpuContextOptions 图形处理器上下文选项{@link OH_Drawing_GpuContextOptions}。
- * @return 返回一个指针，指针指向创建的图形处理器上下文对象{@link OH_Drawing_GpuContext}。
+ * @param gpuContextOptions 图形处理器上下文选项{@link OH_Drawing_GpuContextOptions}，
+ * 用于配置所创建的图形处理器上下文对象。
+ * @return 返回指向创建的图形处理器上下文对象{@link OH_Drawing_GpuContext}的指针。
  * @since 12
  * @version 1.0
  * @deprecated since 18
@@ -71,18 +76,20 @@ typedef struct {
 OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions gpuContextOptions);
 
 /**
- * @brief 用于创建一个图形处理器上下文对象, 使用的后端类型取决于运行设备。
+ * @brief 用于创建一个图形处理器上下文对象，使用的后端类型取决于运行设备。创建的图形处理器上下文对象使用完毕后，
+ * 需要调用{@link OH_Drawing_GpuContextDestroy}销毁并回收内存。
  *
- * @return 返回一个指针，指针指向创建的图形处理器上下文对象{@link OH_Drawing_GpuContext}。
+ * @return 返回指向创建的图形处理器上下文对象{@link OH_Drawing_GpuContext}的指针。
  * @since 16
  * @version 1.0
  */
 OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void);
 
 /**
- * @brief 用于销毁图形处理器上下文对象并回收该对象占用的内存。
+ * @brief 用于销毁图形处理器上下文对象并回收该对象占用的内存。调用后该图形处理器上下文对象指针失效，
+ * 不可再次使用或重复调用。
  *
- * @param gpuContext 指向图形处理器上下文对象的指针{@link OH_Drawing_GpuContext}。
+ * @param gpuContext 指向图形处理器上下文对象的指针。调用后该指针失效，不可再次使用，否则可能导致未定义行为或程序崩溃。
  * @since 12
  * @version 1.0
  */

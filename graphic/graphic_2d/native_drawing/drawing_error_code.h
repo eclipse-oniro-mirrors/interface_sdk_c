@@ -54,7 +54,7 @@ typedef enum {
      */
     OH_DRAWING_SUCCESS = 0,
     /**
-     * Permission denied.
+     * Permission verification failed. The application does not have the permission required to call the API.
      *
      * @since 12
      */

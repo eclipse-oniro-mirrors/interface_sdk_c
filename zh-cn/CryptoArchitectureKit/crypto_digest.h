@@ -24,6 +24,7 @@
  * @file crypto_digest.h
  * @brief 定义摘要算法接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_digest.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

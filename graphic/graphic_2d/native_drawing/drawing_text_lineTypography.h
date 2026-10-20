@@ -28,8 +28,8 @@
 /**
  * @file drawing_text_lineTypography.h
  *
- * @brief This file declares the functions related to line typography, including functions to determine the number of
- * characters that can be formatted from a given position within the text.
+ * @brief Provides APIs related to typography lines, such as obtaining the number of characters that can be typeset
+ * starting from a specified position.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -49,8 +49,9 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates a pointer to an {@link OH_Drawing_LineTypography} object, which stores the text content and style and
- * can be used to compute typography details for individual lines of text.
+ * @brief Creates a pointer to a typography line object {@link OH_Drawing_LineTypography}. The typography line object
+ * serves as a container for storing text content and styles, and can be used to calculate single-line typography
+ * information.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param handler Pointer to the {@link OH_Drawing_TypographyCreate} object, which is obtained from
@@ -77,8 +78,8 @@ void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography)
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param lineTypography Pointer to the {@link OH_Drawing_LineTypography} object, which is obtained from
  *     {@link OH_Drawing_CreateLineTypography}.
- * @param startIndex Start position (inclusive) for layout calculation. The value must be an integer in the range [0,
- *     total number of text characters].
+ * @param startIndex Start position (inclusive) for calculating the typography. The value is an integer in the range [0,
+ *     total count of text characters).
  * @param width Layout width. The value is a floating point number greater than 0, in px.
  * @return Returns the number of characters.
  * @since 18
@@ -94,11 +95,12 @@ size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypo
  *     {@link OH_Drawing_CreateLineTypography}.
  * @param startIndex Start position for layout calculation. The value is an integer in the range [0, total number of
  *     text characters).
- * @param count Number of characters from the specified start position. The value is an integer in the range [0, total
- *     number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of
- *     text characters.
- *     You can use {@link OH_Drawing_LineTypographyGetLineBreak} to obtain the number of characters that can fit in the
- *     layout. If the value is set to **0**, a null pointer is returned.
+ * @param count Number of characters to be typeset from the specified typography start position. The value is an
+ *     integer in the range [0, total count of text characters), and the sum of startIndex and count cannot exceed the
+ *     total count of text characters.
+ *     <br>You can first use {@link OH_Drawing_LineTypographyGetLineBreak} to obtain a reasonable total count of
+ *     characters that can be typeset. If this value is set to 0, the content from startIndex to the end of the text is
+ *     returned.
  * @return Pointer to the {@link OH_Drawing_TextLine} object.
  * @since 18
  */

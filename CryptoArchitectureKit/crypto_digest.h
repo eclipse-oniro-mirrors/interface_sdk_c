@@ -24,6 +24,7 @@
  * @file crypto_digest.h
  * @brief Defines the digest algorithm interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_digest.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

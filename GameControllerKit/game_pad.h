@@ -46,9 +46,11 @@ extern "C" {
  * @brief Registers a callback for Left Shoulder button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor} unregisters the callback for Left Shoulder
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_LeftShoulder_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -56,7 +58,7 @@ GameController_ErrorCode OH_GamePad_LeftShoulder_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Left Shoulder button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor(void);
@@ -65,9 +67,11 @@ GameController_ErrorCode OH_GamePad_LeftShoulder_UnregisterButtonInputMonitor(vo
  * @brief Registers a callback for Right Shoulder button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightShoulder_UnregisterButtonInputMonitor} unregisters the callback for Right Shoulder
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_RightShoulder_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -75,7 +79,7 @@ GameController_ErrorCode OH_GamePad_RightShoulder_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Right Shoulder button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightShoulder_UnregisterButtonInputMonitor(void);
@@ -84,9 +88,11 @@ GameController_ErrorCode OH_GamePad_RightShoulder_UnregisterButtonInputMonitor(v
  * @brief Registers a callback for Left Trigger button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor} unregisters the callback for Left Trigger
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -94,7 +100,7 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Left Trigger button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor(void);
@@ -103,9 +109,11 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterButtonInputMonitor(voi
  * @brief Registers a callback for Left Trigger axis events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_AxisInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>      <li>If **
+ *     inputMonitorCallback** is **null**, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor} unregisters the callback for Left Trigger
+ *     axis events.
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -113,7 +121,7 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_RegisterAxisInputMonitor(
 /**
  * @brief Unregisters the callback for Left Trigger axis events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor(void);
@@ -122,9 +130,11 @@ GameController_ErrorCode OH_GamePad_LeftTrigger_UnregisterAxisInputMonitor(void)
  * @brief Registers a callback for Right Trigger button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>      <li>If **
+ *     inputMonitorCallback** is **null**, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightTrigger_UnregisterButtonInputMonitor} unregisters the callback for Right Trigger
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -132,7 +142,7 @@ GameController_ErrorCode OH_GamePad_RightTrigger_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Right Trigger button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterButtonInputMonitor(void);
@@ -141,9 +151,11 @@ GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterButtonInputMonitor(vo
  * @brief Registers a callback for Right Trigger axis events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_AxisInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightTrigger_UnregisterAxisInputMonitor} unregisters the callback for Right Trigger
+ *     axis events.
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -151,7 +163,7 @@ GameController_ErrorCode OH_GamePad_RightTrigger_RegisterAxisInputMonitor(
 /**
  * @brief Unregisters the callback for Right Trigger axis events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterAxisInputMonitor(void);
@@ -160,9 +172,10 @@ GameController_ErrorCode OH_GamePad_RightTrigger_UnregisterAxisInputMonitor(void
  * @brief Registers a callback for Menu button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor} unregisters the callback for Menu button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonMenu_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -170,7 +183,7 @@ GameController_ErrorCode OH_GamePad_ButtonMenu_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Menu button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor(void);
@@ -179,9 +192,10 @@ GameController_ErrorCode OH_GamePad_ButtonMenu_UnregisterButtonInputMonitor(void
  * @brief Registers a callback for Home button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonHome_UnregisterButtonInputMonitor} unregisters the callback for Home button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonHome_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -189,7 +203,7 @@ GameController_ErrorCode OH_GamePad_ButtonHome_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Home button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonHome_UnregisterButtonInputMonitor(void);
@@ -198,9 +212,10 @@ GameController_ErrorCode OH_GamePad_ButtonHome_UnregisterButtonInputMonitor(void
  * @brief Registers a callback for A button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonA_UnregisterButtonInputMonitor} unregisters the callback for A button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonA_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -208,7 +223,7 @@ GameController_ErrorCode OH_GamePad_ButtonA_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for A button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonA_UnregisterButtonInputMonitor(void);
@@ -217,9 +232,10 @@ GameController_ErrorCode OH_GamePad_ButtonA_UnregisterButtonInputMonitor(void);
  * @brief Registers a callback for B button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonB_UnregisterButtonInputMonitor} unregisters the callback for B button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonB_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -227,7 +243,7 @@ GameController_ErrorCode OH_GamePad_ButtonB_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for B button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonB_UnregisterButtonInputMonitor(void);
@@ -236,9 +252,10 @@ GameController_ErrorCode OH_GamePad_ButtonB_UnregisterButtonInputMonitor(void);
  * @brief Registers a callback for X button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonX_UnregisterButtonInputMonitor} unregisters the callback for X button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonX_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -246,7 +263,7 @@ GameController_ErrorCode OH_GamePad_ButtonX_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for X button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonX_UnregisterButtonInputMonitor(void);
@@ -255,9 +272,10 @@ GameController_ErrorCode OH_GamePad_ButtonX_UnregisterButtonInputMonitor(void);
  * @brief Registers a callback for Y button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonY_UnregisterButtonInputMonitor} unregisters the callback for Y button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonY_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -265,7 +283,7 @@ GameController_ErrorCode OH_GamePad_ButtonY_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Y button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonY_UnregisterButtonInputMonitor(void);
@@ -274,9 +292,10 @@ GameController_ErrorCode OH_GamePad_ButtonY_UnregisterButtonInputMonitor(void);
  * @brief Registers a callback for C button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_ButtonC_UnregisterButtonInputMonitor} unregisters the callback for C button events.
  */
 GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -284,18 +303,41 @@ GameController_ErrorCode OH_GamePad_ButtonC_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for C button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonC_UnregisterButtonInputMonitor(void);
 
 /**
+ * @brief Registers a callback for nonstandard button events.
+ *
+ * @param inputMonitorCallback [in] Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
+ * @since 26.0.1
+ * @see {@link OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor} unregisters the callback for nonstandard 
+ *     button events.
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_RegisterButtonInputMonitor(
+    GamePad_ButtonInputMonitorCallback inputMonitorCallback);
+
+/**
+ * @brief Unregisters the callback for nonstandard button events.
+ *
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
+ * @since 26.0.1
+ */
+GameController_ErrorCode OH_GamePad_ButtonNonstandard_UnregisterButtonInputMonitor(void);
+
+/**
  * @brief Registers a callback for D-pad Left button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor} unregisters the callback for D-pad Left
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_Dpad_LeftButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -303,7 +345,7 @@ GameController_ErrorCode OH_GamePad_Dpad_LeftButton_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for D-pad Left button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor(void);
@@ -312,9 +354,11 @@ GameController_ErrorCode OH_GamePad_Dpad_LeftButton_UnregisterButtonInputMonitor
  * @brief Registers a callback for D-pad Right button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonitor} unregisters the callback for D-pad Right
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_Dpad_RightButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -322,7 +366,7 @@ GameController_ErrorCode OH_GamePad_Dpad_RightButton_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for D-pad Right button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonitor(void);
@@ -331,9 +375,11 @@ GameController_ErrorCode OH_GamePad_Dpad_RightButton_UnregisterButtonInputMonito
  * @brief Registers a callback for D-pad Up button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor} unregisters the callback for D-pad Up
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_Dpad_UpButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -341,7 +387,7 @@ GameController_ErrorCode OH_GamePad_Dpad_UpButton_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for D-pad Up button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor(void);
@@ -350,9 +396,11 @@ GameController_ErrorCode OH_GamePad_Dpad_UpButton_UnregisterButtonInputMonitor(v
  * @brief Registers a callback for D-pad Down button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor} unregisters the callback for D-pad Down
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_Dpad_DownButton_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -360,7 +408,7 @@ GameController_ErrorCode OH_GamePad_Dpad_DownButton_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for D-pad Down button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor(void);
@@ -369,9 +417,10 @@ GameController_ErrorCode OH_GamePad_Dpad_DownButton_UnregisterButtonInputMonitor
  * @brief Registers a callback for D-pad axis events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_AxisInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_Dpad_UnregisterAxisInputMonitor} unregisters the callback for D-pad axis events.
  */
 GameController_ErrorCode OH_GamePad_Dpad_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -379,7 +428,7 @@ GameController_ErrorCode OH_GamePad_Dpad_RegisterAxisInputMonitor(
 /**
  * @brief Unregisters the callback for D-pad axis events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_Dpad_UnregisterAxisInputMonitor(void);
@@ -388,9 +437,11 @@ GameController_ErrorCode OH_GamePad_Dpad_UnregisterAxisInputMonitor(void);
  * @brief Registers a callback for Left Thumbstick button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor} unregisters the callback for Left Thumbstick
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -398,7 +449,7 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Left Thumbstick button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor(void);
@@ -407,9 +458,11 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterButtonInputMonitor(
  * @brief Registers a callback for Left Thumbstick axis events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_AxisInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor} unregisters the callback for Left Thumbstick
+ *     axis events.
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -417,7 +470,7 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_RegisterAxisInputMonitor(
 /**
  * @brief Unregisters the callback for Left Thumbstick axis events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor(void);
@@ -426,9 +479,11 @@ GameController_ErrorCode OH_GamePad_LeftThumbstick_UnregisterAxisInputMonitor(vo
  * @brief Registers a callback for Right Thumbstick button events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_ButtonInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor} unregisters the callback for Right Thumbstick
+ *     button events.
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterButtonInputMonitor(
     GamePad_ButtonInputMonitorCallback inputMonitorCallback);
@@ -436,7 +491,7 @@ GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterButtonInputMonitor(
 /**
  * @brief Unregisters the callback for Right Thumbstick button events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor(void);
@@ -445,9 +500,11 @@ GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterButtonInputMonitor
  * @brief Registers a callback for Right Thumbstick axis events.
  *
  * @param inputMonitorCallback Callback function {@link GamePad_AxisInputMonitorCallback}, which cannot be null.
- * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
- *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if inputMonitorCallback is null.</li></ul>
+ * @return <ul><li>If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.</li>     <li>If **
+ *     inputMonitorCallback** is null, {@link GAME_CONTROLLER_PARAM_ERROR} is returned.</li></ul>
  * @since 21
+ * @see {@link OH_GamePad_RightThumbstick_UnregisterAxisInputMonitor} unregisters the callback for Right Thumbstick
+ *     axis events.
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterAxisInputMonitor(
     GamePad_AxisInputMonitorCallback inputMonitorCallback);
@@ -455,7 +512,7 @@ GameController_ErrorCode OH_GamePad_RightThumbstick_RegisterAxisInputMonitor(
 /**
  * @brief Unregisters the callback for Right Thumbstick axis events.
  *
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
+ * @return If the operation is successful, {@link GAME_CONTROLLER_SUCCESS} is returned.
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_RightThumbstick_UnregisterAxisInputMonitor(void);

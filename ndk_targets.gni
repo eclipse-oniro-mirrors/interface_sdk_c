@@ -259,6 +259,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/filemanagement/fileshare:oh_file_share_header",
   "//interface/sdk_c/filemanagement/archive:liboharchive",
   "//interface/sdk_c/filemanagement/archive:oh_archive_header",
+  "//interface/sdk_c/filemanagement/swapfs:libohswapfs",
+  "//interface/sdk_c/filemanagement/swapfs:oh_swapfs_header",
   "//interface/sdk_c/multimodalinput/kits/c:libohinput_ndk",
   "//interface/sdk_c/multimodalinput/kits/c:ohinput_header",
   "//interface/sdk_c/BasicServicesKit:libohprint_ndk",
@@ -296,11 +298,15 @@ _ndk_library_targets = [
   "//interface/sdk_c/TEEKit:tee_ndk_header",
   "//interface/sdk_c/GameControllerKit:ohgame_controller_header",
   "//interface/sdk_c/GameControllerKit:libohgame_controller",
+  "//interface/sdk_c/BasicServicesKit:ohusb_manager_header",
+  "//interface/sdk_c/BasicServicesKit:libohusb_manager_ndk",
 ]
+
+_ndk_lite_library_targets =
+    [ "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite" ]
 
 _ndk_base_libs = [
   "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk",
-  "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_arm32",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_aarch64",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_x86_64",
@@ -350,6 +356,9 @@ _ndk_tee_build_tool =
 all_ndk_targets_list =
     _ndk_library_targets + _ndk_base_libs + _ndk_sysroot_uapi + _ndk_cmake +
     _ndk_ninja + _ndk_tee_build_tool + _ndk_sysroot_lite_uapi
+
+all_lite_ndk_targets_list =
+    _ndk_lite_library_targets + _ndk_base_libs + _ndk_sysroot_lite_uapi
 
 if (build_windows_ndk_target) {
   all_ndk_targets_list +=

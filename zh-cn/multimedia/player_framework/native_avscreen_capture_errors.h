@@ -16,14 +16,21 @@
  * @addtogroup AVScreenCapture
  * @{
  *
- * @brief Provides APIs of request capability for Screen Capture.
+ * @brief 调用本模块下的接口，应用可以实现屏幕录制功能。支持录屏取码流和录屏写文件两种模式，适用于需要捕获屏幕音视频内容的各类场景，
+ * 帮助开发者灵活获取屏幕数据并进行后续处理或保存为文件。典型使用场景包括：在线会议录制、游戏直播分享、教学演示视频制作、
+ * 远程协作屏幕共享等。<br>
+ * 
+ * 开发者可根据实际的开发需求，参考对应的开发指南及样例：<br>
+ * 
+ * - [使用AVScreenCapture录屏取码流](../../media/media/avscreencapture-c-basic-process.md)<br>
+ * - [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
  * @since 10
  */
 /**
  * @file native_avscreen_capture_errors.h
  *
- * @brief 声明用于运行屏幕录制过程中接口调用的错误码说明。
- * 
+ * @brief 声明屏幕录制接口调用的错误码，帮助开发者识别和处理屏幕录制中的各类异常情况，适用于屏幕录制故障排查和错误处理的开发场景。
+ * @include <multimedia/player_framework/native_avscreen_capture_errors.h>
  * @library libnative_avscreen_capture.so
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @kit MediaKit
@@ -45,7 +52,7 @@ extern "C" {
 
 typedef enum OH_AVSCREEN_CAPTURE_ErrCode {
     /**
-     * 接口调用错误返回的基础值。
+     * 错误码的基础值，其他错误码在此基础上递增，用于标识不同的错误类型。
      */
     AV_SCREEN_CAPTURE_ERR_BASE = 0,
     /**
@@ -53,43 +60,63 @@ typedef enum OH_AVSCREEN_CAPTURE_ErrCode {
      */
     AV_SCREEN_CAPTURE_ERR_OK = AV_SCREEN_CAPTURE_ERR_BASE,
     /**
-     * 内存不足。
+     * 内存不足。<br>
+     * 可能原因：系统可用内存不足。<br>
+     * 解决措施：请检查录制参数或系统内存状况。
      */
     AV_SCREEN_CAPTURE_ERR_NO_MEMORY = AV_SCREEN_CAPTURE_ERR_BASE + 1,
     /**
-     * 不允许操作。
+     * 不允许操作。<br>
+     * 可能原因：当前操作未获得必要权限或处于非法状态。<br>
+     * 解决措施：请检查操作权限和当前状态后重试。
      */
     AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT = AV_SCREEN_CAPTURE_ERR_BASE + 2,
     /**
-     * 无效参数。
+     * 无效参数。<br>
+     * 可能原因：传入的参数不符合接口要求或取值范围不正确。<br>
+     * 解决措施：请检查参数类型和取值范围后重试。
      */
     AV_SCREEN_CAPTURE_ERR_INVALID_VAL = AV_SCREEN_CAPTURE_ERR_BASE + 3,
     /**
-     * 输入输出流异常。
+     * 输入输出流异常。<br>
+     * 可能原因：文件读写失败或数据传输错误。<br>
+     * 解决措施：请检查文件路径、权限和存储空间后重试。
      */
     AV_SCREEN_CAPTURE_ERR_IO = AV_SCREEN_CAPTURE_ERR_BASE + 4,
     /**
-     * 网络超时。
+     * 网络超时。<br>
+     * 可能原因：网络连接不稳定或服务器响应超时。<br>
+     * 解决措施：请检查网络连接状态后重试。
      */
     AV_SCREEN_CAPTURE_ERR_TIMEOUT = AV_SCREEN_CAPTURE_ERR_BASE + 5,
     /**
-     * 未知错误。
+     * 未知错误。<br>
+     * 可能原因：发生了未预期的异常情况。<br>
+     * 解决措施：请检查日志信息。
      */
     AV_SCREEN_CAPTURE_ERR_UNKNOWN = AV_SCREEN_CAPTURE_ERR_BASE + 6,
     /**
-     * 媒体服务已终止。
+     * 媒体服务已终止。<br>
+     * 可能原因：媒体服务进程崩溃或被系统终止。<br>
+     * 解决措施：请检查系统资源或重启服务。
      */
     AV_SCREEN_CAPTURE_ERR_SERVICE_DIED = AV_SCREEN_CAPTURE_ERR_BASE + 7,
     /**
-     * 当前状态不支持此操作。
+     * 当前状态不支持此操作。<br>
+     * 可能原因：调用接口时实例处于错误状态。<br>
+     * 解决措施：请检查当前状态并按正确流程调用接口。
      */
     AV_SCREEN_CAPTURE_ERR_INVALID_STATE = AV_SCREEN_CAPTURE_ERR_BASE + 8,
     /**
-     * 不支持的接口。
+     * 不支持的接口。<br>
+     * 可能原因：当前版本不支持此接口或功能。<br>
+     * 解决措施：请检查API版本或设备兼容性。
      */
     AV_SCREEN_CAPTURE_ERR_UNSUPPORT = AV_SCREEN_CAPTURE_ERR_BASE + 9,
     /**
-     * 预期之外的错误。
+     * 预期之外的错误。<br>
+     * 可能原因：发生了扩展的错误情况。<br>
+     * 解决措施：请查看详细错误信息。
      */
     AV_SCREEN_CAPTURE_ERR_EXTEND_START = AV_SCREEN_CAPTURE_ERR_BASE + 100,
 } OH_AVSCREEN_CAPTURE_ErrCode;

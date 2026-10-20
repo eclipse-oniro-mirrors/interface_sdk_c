@@ -23,9 +23,11 @@
  */
 
 /**
- * @file node_scroll.h
+ * @file scroll.h
  *
- * @brief Provides shared scroll-related enum definitions for <b>NativeNode</b> APIs.
+ * @brief Defines the enumerations related to the **Scroll** component, such as the scrolling direction, edge effect,
+ * scrollbar state, content clipping, nested scrolling, scrolling state, and scrolling source, which are used to
+ * configure and listen for the behavior of the **Scroll** component and related scrollable components.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -66,7 +68,7 @@ typedef enum {
 } ArkUI_EdgeEffect;
 
 /**
- * @brief Enumerates the text control scrollbar states.
+ * @brief Enumerates the scrollbar states of the **TextArea** and **TextEditor** components.
  *
  * @since 22
  */
@@ -126,7 +128,8 @@ typedef enum {
     ARKUI_SCROLL_DIRECTION_NONE = 3,
 
     /**
-     * Free scrolling in both directions.
+     * Free scrolling. This value supports both vertical and horizontal scrolling, and is available only in the
+     * **Scroll** component.
      *
      * @since 20
      */
@@ -227,8 +230,10 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
-     * does not scroll when the component scrolling reaches the boundary. */
+    /**
+     * The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
+     * does not scroll when the component scrolling reaches the boundary.
+     */
     ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
 
     /**
@@ -244,9 +249,11 @@ typedef enum {
      * effect of the parent component is displayed instead.
      */
     ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST,
-    /** The component and its parent component scroll at the same time. When both the component and its parent component
-     *  hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
+    /**
+     * The component and its parent component scroll at the same time. When both the component and its parent component
+     * hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
+     * component, the edge effect of the parent component is displayed instead.
+     */
     ARKUI_SCROLL_NESTED_MODE_PARALLEL,
 } ArkUI_ScrollNestedMode;
 
@@ -278,7 +285,7 @@ typedef enum {
 } ArkUI_ScrollEdge;
 
 /**
- * @brief Defines how the list item to scroll to is aligned with the container.
+ * @brief Enumerates how the list item to scroll to is aligned with the container.
  *
  * @since 12
  */

@@ -49,6 +49,10 @@ extern "C" {
 
 struct OH_NativeImage;
 typedef struct OH_NativeImage OH_NativeImage;
+/**
+ * @brief Defines the native window.
+ * @since 8
+ */
 typedef struct NativeWindow OHNativeWindow;
 /**
  * @brief define the new type name OHNativeWindowBuffer for struct NativeWindowBuffer.

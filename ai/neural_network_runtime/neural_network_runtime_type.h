@@ -148,8 +148,12 @@ typedef enum {
     OH_NN_FAILED = 1,
     /** Invalid parameter. */
     OH_NN_INVALID_PARAMETER = 2,
-    /** Memory-related error, for example, insufficient memory, memory data copy failure,
-     *  or memory application failure. */
+    /**
+     * Memory-related error, for example, insufficient memory, * memory data copy failure,
+     * or memory application failure.
+     *
+     * @since 9
+     */
     OH_NN_MEMORY_ERROR = 3,
     /** Invalid operation. */
     OH_NN_OPERATION_FORBIDDEN = 4,
@@ -160,6 +164,7 @@ typedef enum {
     /** A hardware error occurs, for example, HDL service crash.
      * @deprecated since 11
      * @useinstead {@link OH_NN_UNAVAILABLE_DEVICE}
+     * @since 11
      */
     OH_NN_UNAVALIDABLE_DEVICE = 7,
     /** Invalid path. */
@@ -278,7 +283,7 @@ typedef enum {
     /** GPU device */
     OH_NN_GPU = 2,
     /** Dedicated hardware accelerator */
-    OH_NN_ACCELERATOR = 3,
+    OH_NN_ACCELERATOR = 3
 } OH_NN_DeviceType;
 
 /**
@@ -342,6 +347,8 @@ typedef enum {
      * * <b>output</b>: sum of <b>input1</b> and <b>input2</b>.
      *       The data shape is the same as that of the input after broadcasting,
      *       and the data type is the same as that of the input with a higher precision.
+     *
+     * @since 12
      */
     OH_NN_OPS_ADD = 1,
 
@@ -360,22 +367,23 @@ typedef enum {
      * * <b>kernelSize</b> indicates the kernel size used to obtain the average value.
      *       It is an int array [kernelHeight, kernelWidth].
      *       The first number indicates the kernel height, and the second number indicates the kernel width.
-     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array
-     *       [strideHeight, strideWidth]. The first number indicates the moving step in height,
+     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array [strideHeight, strideWidth].
+     *       The first number indicates the moving step in height,
      *       and the second number indicates the moving step in width.
-     * * <b>padMode</b>: padding mode, which is optional. The value is of the int type and can be <b>0</b> (same)
-     *       or <b>1</b> (valid). The nearest neighbor value is used for padding.
+     * * <b>padMode</b>: padding mode, which is optional. The value is of the int type and can be <b>0</b> (same) or
+     *       <b>1</b> (valid).
+     *       The nearest neighbor value is used for padding.
      *       <b>0</b> (same): The height and width of the output are the same as those of the input.
-     *       The total and padding quantity is calculated horizontally and vertically and
-     *       evenly distributed to the top, bottom, left, right if possible.
+     *       The total padding quantity is calculated horizontally and vertically and evenly distributed to the top,
+     *       bottom, left, and right if possible.
      *       Otherwise, the last additional padding will be completed from the bottom and right.
-     *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in case of no
-     *       padding. Excessive pixels will be discarded.
-     * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
-     *       The specified activation function is called before output.
-     * * <b>global</b> Whether to do global pooling.
-     * * <b>roundMode</b> Boundary handling method. When the pool cannot completely cover the input feature map,
+     *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in case of
+     *       no padding. Excessive pixels will be discarded.
+     * * <b>roundMode</b>: Boundary handling method. When the pool cannot completely cover the input feature map,
      *       the output feature map is rounded up, 0 means round down, 1 means round up.
+     * * <b>global</b>: Whether to do global pooling.
+     * * <b>activationType</b>: is an integer constant which is contained in <b>OH_NN_FuseType</b>.
+     *       The specified activation function is called before output.
      *
      * If the input contains the <b>padList</b> parameter:
      *
@@ -385,38 +393,40 @@ typedef enum {
      *
      * Parameters:
      *
-     * * <b>kernelSize</b> indicates the kernel size used to obtain the average value.
-     *       It is an int array [kernelHeight, kernelWidth].
-     *       The first number indicates the kernel height, and the second number indicates the kernel width.
-     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array
-     *       [strideHeight, strideWidth]. The first number indicates the moving step in height,
-     *       and the second number indicates the moving step in width.
+     * * <b>kernelSize</b> indicates the kernel size used to obtain the average value. It is an int
+     *       array [kernelHeight, kernelWidth]. The first number indicates the kernel height,
+     *       and the second number indicates the kernel width.
+     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array [strideHeight, strideWidth].
+     *       The first number indicates the moving step in height, and the second number indicates
+     *       the moving step in width.
      * * <b>padList</b>: padding around <b>input</b>. It is an int array [top, bottom, left, right],
      *       and the nearest neighbor values are used for padding.
+     * * <b>roundMode</b>: Boundary handling method. When the pool cannot completely cover the input feature map,
+     *       the output feature map is rounded up, 0 means round down, 1 means round up.
+     * * <b>global</b>: Whether to do global pooling.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
-     * * <b>global</b> Whether to do global pooling.
-     * * <b>roundMode</b> Boundary handling method. When the pool cannot completely cover the input feature map,
-     *       the output feature map is rounded up, 0 means round down, 1 means round up.
      *
      * Outputs:
      *
      * * <b>output</b>: average pooling result of the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_AVG_POOL = 2,
 
     /**
-     * Performs batch normalization on the input tensors. Apply a transformation to keep the average output
-     * close to 0 and the output standard deviation close to 1.
+     * Performs batch normalization on the input tensors. Apply a transformation to keep the average output close
+     *       to 0 and the output standard deviation close to 1.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor of shape [N, ..., C].
-     *       The <i>n</i>th dimension is the number of channels.
+     * * <b>input</b>: <i>n</i>-dimensional tensor of shape [N, ..., C]. The <i>n</i>th dimension
+     *       is the number of channels.
      * * <b>scale</b>: 1D tensor of the scaling factor used to scale the first normalized tensor.
      * * <b>offset</b>: 1D tensor used to move to the first normalized tensor.
-     * * <b>mean</b>: 1D tensor of the overall mean value. It is used only for inference.
-     *       In case of training, this parameter must be left empty.
+     * * <b>mean</b>: 1D tensor of the overall mean value. It is used only for inference. In case of training,
+     *       this parameter must be left empty.
      * * <b>variance</b>: 1D tensor used for the overall variance. It is used only for inference.
      *       In case of training, this parameter must be left empty.
      *
@@ -426,14 +436,15 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>-dimensional output tensor whose shape
-     *       and data type are the same as those of the input.
+     * * <b>output</b>: <i>n</i>-dimensional output tensor whose shape and data type are the same as those of the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_BATCH_NORM = 3,
 
     /**
-     * Divides the batch dimension of a 4D tensor into small blocks by <b>blockShape</b>,
-     * and interleaves these blocks back into the spatial dimension.
+     * Divides the batch dimension of a 4D tensor into small blocks by <b>blockSize</b>,
+     *       and interleaves these blocks back into the spatial dimension.
      *
      * Parameters:
      *
@@ -442,20 +453,22 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>blockSize</b>: size of each block to be interleaved into the spatial dimension.
-     *       The value is an array [heightBlock, widthBlock].
-     * * <b>crops</b>: elements truncated from the spatial dimension of the output. The value is a 2D array
-     *       [[crop0Start, crop0End], [crop1Start, crop1End]] with the shape of (2, 2).
+     * * <b>blockSize</b>: size of each block to be interleaved into the spatial dimension. The value is an
+     *       array [heightBlock, widthBlock].
+     * * <b>crops</b>: elements truncated from the spatial dimension of the output. The value is a 2D
+     *       array [[crop0Start, crop0End], [crop1Start, crop1End]] with the shape of (2, 2).
      *
      *
      * Outputs:
      *
-     * * <b>output</b>. Assume that the shape of <b>input</b> is (n,h,w,c) and
-     *       the shape of <b>output</b> is (n',h',w',c'):
-     *       n' = n / (blockShape[0] * blockShape[1])
-     *       h' = h * blockShape[0] - crops[0][0] - crops[0][1]
-     *       w' = w * blockShape[1] - crops[1][0] - crops[1][1]
+     * * <b>output</b>. Assume that the shape of <b>input</b> is (n,h,w,c) and the shape
+     *       of <b>output</b> is (n',h',w',c'):
+     *       n' = n / (blockSize[0] * blockSize[1])
+     *       h' = h * blockSize[0] - crops[0][0] - crops[0][1]
+     *       w' = w * blockSize[1] - crops[1][0] - crops[1][1]
      *       c'= c
+     *
+     * @since 12
      */
     OH_NN_OPS_BATCH_TO_SPACE_ND = 4,
 
@@ -470,6 +483,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: sum of the input tensor and the bias in each dimension.
+     *
+     * @since 12
      */
     OH_NN_OPS_BIAS_ADD = 5,
 
@@ -484,6 +499,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: converted tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_CAST = 6,
 
@@ -501,6 +518,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: result of connecting <i>N</i> tensors along the axis.
+     *
+     * @since 12
      */
     OH_NN_OPS_CONCAT = 7,
 
@@ -525,21 +544,21 @@ typedef enum {
      * * <b>stride</b>: movement stride of the convolution kernel in height and width.
      *       It is an int array [strideHeight, strideWidth].
      * * <b>dilation</b>: dilation size of the convolution kernel in height and width.
-     *       It is an int array [dilationHeight, dilationWidth]. The value must be greater than
-     *       or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
+     *       It is an int array [dilationHeight, dilationWidth].
+     *       The value must be greater than or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
      *
-     * * <b>padMode</b>: padding mode of <b>input</b>.
-     *       The value is of the int type and can be <b>0</b> (same) or <b>1</b> (valid).
+     * * <b>padMode</b>: padding mode of <b>input</b>. The value is of the int type and
+     *       can be <b>0</b> (same) or <b>1</b> (valid).
      *       <b>0</b> (same): The height and width of the output are the same as those of the input.
-     *       The total padding quantity is calculated horizontally and vertically
-     *       and evenly distributed to the top, bottom, left, and right if possible.
+     *       The total padding quantity is calculated horizontally and vertically and evenly distributed to the top,
+     *       bottom, left, and right if possible.
      *       Otherwise, the last additional padding will be completed from the bottom and right.
      *
      *       <b>1</b> (valid): The possible maximum height and width of the output will be returned
      *       in case of no padding. The excessive pixels will be discarded.
-     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the
-     *       int type. If <b>group</b> is <b>1</b>, it is a conventional convolution. If <b>group</b> is greater
-     *       than <b>1</b> and less than or equal to <b>inChannel</b>, it is a group convolution.
+     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the int type.
+     *       If <b>group</b> is <b>1</b>, it is a conventional convolution. If <b>group</b> is greater than <b>1</b> and
+     *       less than or equal to <b>inChannel</b>, it is a group convolution.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
      *
@@ -561,11 +580,11 @@ typedef enum {
      * * <b>stride</b>: movement stride of the convolution kernel in height and width.
      *       It is an int array [strideHeight, strideWidth].
      * * <b>dilation</b>: dilation size of the convolution kernel in height and width.
-     *       It is an int array [dilationHeight, dilationWidth]. The value must be greater than
-     *       or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
+     *       It is an int array [dilationHeight, dilationWidth].
+     *       The value must be greater than or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
      * * <b>padList</b>: padding around <b>input</b>. It is an int array [top, bottom, left, right].
-     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>.
-     *       The value is of the int type. If <b>group</b> is <b>1</b>, it is a conventional convolution.
+     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the int type.
+     *       If <b>group</b> is <b>1</b>, it is a conventional convolution.
      *       If <b>group</b> is <b>inChannel</b>, it is depthwiseConv2d. In this case, group==inChannel==outChannel.
      *       If <b>group</b> is greater than <b>1</b> and less than <b>inChannel</b>, it is a group convolution.
      *       In this case, outChannel==group.
@@ -575,6 +594,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: convolution computing result.
+     *
+     * @since 12
      */
     OH_NN_OPS_CONV2D = 8,
 
@@ -600,18 +621,19 @@ typedef enum {
      * Parameters:
      *
      * * <b>dilation</b>: dilation size of the convolution kernel in height and width.
-     *       It is an int array [dilationHeight, dilationWidth]. The value must be greater than
-     *       or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
-     * * <b>padMode</b>: padding mode of <b>input</b>. The value is of the int type and can be <b>0</b> (same) or
-     *       <b>1</b> (valid). <b>0</b> (same): The height and width of the output are the same as those of the input.
+     *       It is an int array [dilationHeight, dilationWidth].
+     *       The value must be greater than or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
+     * * <b>padMode</b>: padding mode of <b>input</b>. The value is of the int type and
+     *       can be <b>0</b> (same) or <b>1</b> (valid).
+     *       <b>0</b> (same): The height and width of the output are the same as those of the input.
      *       The total padding quantity is calculated horizontally and vertically and evenly distributed to the top,
      *       bottom, left, and right if possible.
      *       Otherwise, the last additional padding will be completed from the bottom and right.
-     *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in case of
-     *       no padding. The excessive pixels will be discarded.
-     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the int
-     *       type. If <b>group</b> is <b>1</b>, it is a conventional convolution. If <b>group</b> is greater than
-     *       <b>1</b> and less than or equal to <b>inChannel</b>, it is a group convolution.
+     *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in
+     *       case of no padding. The excessive pixels will be discarded.
+     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the int type.
+     *       If <b>group</b> is <b>1</b>, it is a conventional convolution. If <b>group</b> is greater than <b>1</b> and
+     *       less than or equal to <b>inChannel</b>, it is a group convolution.
      * * <b>outputPads</b>: padding along the height and width of the output tensor. The value is an int or a tuple.
      *       It can be a single integer to specify the same value for all spatial dimensions. The amount of output
      *       padding along a dimension must be less than the stride along this dimension.
@@ -636,12 +658,12 @@ typedef enum {
      * * <b>stride</b>: movement stride of the convolution kernel in height and width.
      *       It is an int array [strideHeight, strideWidth].
      * * <b>dilation</b>: dilation size of the convolution kernel in height and width.
-     *       It is an int array [dilationHeight, dilationWidth]. The value must be greater than
-     *       or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
+     *       It is an int array [dilationHeight, dilationWidth].
+     *       The value must be greater than or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
      * * <b>padList</b>: padding around <b>input</b>. It is an int array [top, bottom, left, right].
-     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the int
-     *       type. If <b>group</b> is <b>1</b>, it is a conventional convolution. If <b>group</b> is greater than
-     *       <b>1</b> and less than or equal to <b>inChannel</b>, it is a group convolution.
+     * * <b>group</b>: number of groups in which the input is divided by <b>inChannel</b>. The value is of the int type.
+     *       If <b>group</b> is <b>1</b>, it is a conventional convolution. If <b>group</b> is greater than <b>1</b>
+     *       and less than or equal to <b>inChannel</b>, it is a group convolution.
      * * <b>outputPads</b>: padding along the height and width of the output tensor. The value is an int or a tuple.
      *       It can be a single integer to specify the same value for all spatial dimensions. The amount of output
      *       padding along a dimension must be less than the stride along this dimension.
@@ -652,6 +674,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: computing result after convolution and transposition.
+     *
+     * @since 12
      */
     OH_NN_OPS_CONV2D_TRANSPOSE = 9,
 
@@ -675,16 +699,17 @@ typedef enum {
      * * <b>stride</b>: movement stride of the convolution kernel in height and width.
      *       It is an int array [strideHeight, strideWidth].
      * * <b>dilation</b>: dilation size of the convolution kernel in height and width.
-     *       It is an int array [dilationHeight, dilationWidth]. The value must be greater than
-     *       or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
-     * * <b>padMode</b>: padding mode of <b>input</b>.
-     *       The value is of the int type and can be <b>0</b> (same) or <b>1</b> (valid).
-     *       <b>0</b> (same): The height and width of the output are the same as those of the input. The total padding
-     *       quantity is calculated horizontally and vertically and evenly distributed to the top, bottom, left, and
-     *       right if possible. Otherwise, the last additional padding will be completed from the bottom and right.
+     *       It is an int array [dilationHeight, dilationWidth].
+     *       The value must be greater than or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
+     * * <b>padMode</b>: padding mode of <b>input</b>. The value is of the int type and
+     *       can be <b>0</b> (same) or <b>1</b> (valid).
+     *       <b>0</b> (same): The height and width of the output are the same as those of the input.
+     *       The total padding quantity is calculated horizontally and vertically and evenly distributed to the top,
+     *       bottom, left, and right if possible.
+     *       Otherwise, the last additional padding will be completed from the bottom and right.
      *
-     *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in case of no
-     *       padding. The excessive pixels will be discarded.
+     *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in case of
+     *       no padding. The excessive pixels will be discarded.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
      *
@@ -705,8 +730,8 @@ typedef enum {
      * * <b>stride</b>: movement stride of the convolution kernel in height and width.
      *       It is an int array [strideHeight, strideWidth].
      * * <b>dilation</b>: dilation size of the convolution kernel in height and width.
-     *       It is an int array [dilationHeight, dilationWidth]. The value must be greater than
-     *       or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
+     *       It is an int array [dilationHeight, dilationWidth].
+     *       The value must be greater than or equal to <b>1</b> and cannot exceed the height and width of <b>input</b>.
      * * <b>padList</b>: padding around <b>input</b>. It is an int array [top, bottom, left, right].
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
@@ -714,6 +739,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: convolution computing result.
+     *
+     * @since 12
      */
     OH_NN_OPS_DEPTHWISE_CONV2D_NATIVE = 10,
 
@@ -724,9 +751,10 @@ typedef enum {
      *
      * * <b>input1</b>: first input, which is a number, a bool, or a tensor whose data type is number or Boolean.
      * * <b>input2</b>: second input, which must meet the following requirements:
-     *       If the first input is a tensor, the second input can be a real number, a Boolean value, or a tensor whose
-     *       data type is real number or Boolean value. If the first input is a real number or Boolean value,
-     *       the second input must be a tensor whose data type is real number or Boolean value.
+     *       If the first input is a tensor, the second input can be a real number, a Boolean value,
+     *       or a tensor whose data type is real number or Boolean value.
+     *       If the first input is a real number or Boolean value, the second input must be a tensor whose data
+     *       type is real number or Boolean value.
      *
      * Parameters:
      *
@@ -736,12 +764,14 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: result of dividing <b>input1</b> by <b>input2</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_DIV = 11,
 
     /**
      * Sets parameters to perform product (dot product), sum (addition and subtraction),
-     * or max (larger value) on the input.
+     *       or max (larger value) on the input.
      *
      * Inputs:
      *
@@ -755,6 +785,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: computing result, which has the same data type and shape of <b>input1</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_ELTWISE = 12,
 
@@ -764,12 +796,14 @@ typedef enum {
      * Inputs:
      *
      * * <b>input</b>: input tensor.
-     * * <b>axis</b>: index of the dimension to be added.
-     *       The value is of the int32_t type and must be a constant in the range [-dim-1, dim].
+     * * <b>axis</b>: index of the dimension to be added. The value is of the int32_t type and must be a constant
+     *       in the range [-dim-1, dim].
      *
      * Outputs:
      *
      * * <b>output</b>: tensor after dimension expansion.
+     *
+     * @since 12
      */
     OH_NN_OPS_EXPAND_DIMS = 13,
 
@@ -784,7 +818,9 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: generated tensor, which has the same data type as <b>value</b>.
-     *       The tensor shape is specified by the <b>shape</b> parameter.
+     *        The tensor shape is specified by the <b>shape</b> parameter.
+     *
+     * @since 12
      */
     OH_NN_OPS_FILL = 14,
 
@@ -795,15 +831,16 @@ typedef enum {
      *
      * * <b>input</b>: full-connection input tensor.
      * * <b>weight</b>: weight tensor for a full connection.
-     * * <b>bias</b>: full-connection bias. In quantization scenarios, no quantized parameter is required
-     *       for this parameter. If quantization is required, the data must be of the OH_NN_INT32 type.
+     * * <b>bias</b>: full-connection bias. In quantization scenarios,
+     *       no quantized parameter is required for this parameter.
+     *       If quantization is required, the data must be of the OH_NN_INT32 type.
      *       The actual quantization parameters are determined by <b>input</b> and <b>weight</b>.
      *
      * Parameters:
      *
+     * * <b>hasBias</b>: Whether to use the bias.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
-     * * <b>hasBias</b> Whether to use the bias.
      *
      * Outputs:
      *
@@ -815,22 +852,25 @@ typedef enum {
      *
      * * <b>input</b>: full-connection input tensor.
      * * <b>weight</b>: weight tensor for a full connection.
-     * * <b>bias</b>: full-connection bias. In quantization scenarios, no quantized parameter is required
-     *       for this parameter. If quantization is required, the data must be of the OH_NN_INT32 type.
-     *       The actual quantization parameters are determined by <b>input</b> and <b>weight</b>.
+     * * <b>bias</b>: full-connection bias. In quantization scenarios,
+     *       no quantized parameter is required for this parameter.
+     *       If quantization is required, the data must be of the OH_NN_INT32 type. The actual quantization parameters
+     *       are determined by <b>input</b> and <b>weight</b>.
      *
      * Parameters:
      *
      * * <b>axis</b>: axis in which the full connection is applied. The specified axis and its following axes are
      *       converted into a 1D tensor for applying the full connection.
+     * * <b>useAxis</b>: Whether to use the axis.
+     * * <b>hasBias</b>: Whether to use the bias.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
-     * * <b>useAxis</b> Whether to use the axis.
-     * * <b>hasBias</b> Whether to use the bias.
      *
      * Outputs:
      *
      * * <b>output</b>: computed tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_FULL_CONNECTION = 15,
 
@@ -847,6 +887,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: sliced tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_GATHER = 16,
 
@@ -860,7 +902,9 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional <b>Hswish</b> activation value.
-     *       The data type is the same as that of <b>shape</b> and <b>input</b>.
+     *        The data type is the same as that of <b>shape</b> and <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_HSWISH = 17,
 
@@ -870,15 +914,18 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input1</b>, can be a real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
-     * * <b>input2</b>, can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
+     * * <b>input1</b>, which can be a real number, Boolean value,
+     *       or tensor whose data type is real number or OH_NN_BOOL.
+     * * <b>input2</b>, which can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
      *       with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor of the data type OH_NN_BOOL. When a quantization model is used,
-     *       the quantization parameters of the output cannot be omitted.
-     *       However, values of the quantization parameters do not affect the result.
+     * * A tensor of the data type OH_NN_BOOL. When a quantization model is used,
+     *       the quantization parameters of the output
+     *   cannot be omitted. However, values of the quantization parameters do not affect the result.
+     *
+     * @since 12
      */
     OH_NN_OPS_LESS_EQUAL = 18,
 
@@ -899,19 +946,21 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: inner product obtained after calculation. In case of type!=NN_UNKNOWN, the output data type is
-     *       determined by <b>type</b>. In case of type==NN_UNKNOWN, the output data type depends on the data type
+     * * <b>output</b>: inner product obtained after calculation. In case of type!=OH_NN_UNKNOWN, the output data type
+     *       is determined by <b>type</b>. In case of type==OH_NN_UNKNOWN, the output data type depends on the data type
      *       converted during computing of <b>inputX</b> and <b>inputY</b>.
      *
+     * @since 12
      */
     OH_NN_OPS_MATMUL = 19,
 
     /**
-     * Calculates the maximum of <b>input1</b> and <b>input2</b> element-wise. The inputs of <b>input1</b>\n
-     * and <b>input2</b> comply with the implicit type conversion rules to make the data types consistent.
-     * The inputs must be two tensors or one tensor and one scalar.
+     * Calculates the maximum of <b>input1</b> and <b>input2</b> element-wise.
+     *       The inputs of <b>input1</b> and <b>input2</b>
+     * comply with the implicit type conversion rules to make the data types consistent.
+     *       The inputs must be two tensors or one tensor and one scalar.
      * When the inputs are two tensors, their data types cannot be both OH_NN_BOOL.
-     * Their shapes can be broadcast to the same size.
+     *       Their shapes can be broadcast to the same size.
      * When the inputs are one tensor and one scalar, the scalar must be a constant.
      *
      * Inputs:
@@ -923,6 +972,8 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional output tensor. The <b>shape</b> and data type of
      *       <b>output</b> are the same as those of the two inputs with a higher precision.
+     *
+     * @since 12
      */
     OH_NN_OPS_MAXIMUM = 20,
 
@@ -939,21 +990,22 @@ typedef enum {
      *
      * * <b>kernelSize</b>: kernel size used to obtain the maximum. It is an int array [kernelHeight, kernelWidth].
      *       The first number indicates the kernel height, and the second number indicates the kernel width.
-     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array
-     *       [strideHeight, strideWidth]. The first number indicates the moving step in height,
+     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array [strideHeight, strideWidth].
+     *       The first number indicates the moving step in height,
      *       and the second number indicates the moving step in width.
      * * <b>padMode</b>: padding mode, which is optional. The value is of the int type and can be <b>0</b> (same)
      *       or <b>1</b> (valid). The nearest neighbor value is used for padding.
-     *       <b>0</b> (same): The height and width of the output are the same as those of the input. The total padding
-     *       quantity is calculated horizontally and vertically and evenly distributed to the top, bottom, left, and
-     *       right if possible. Otherwise, the last additional padding will be completed from the bottom and right.
+     *       <b>0</b> (same): The height and width of the output are the same as those of the input.
+     *       The total padding quantity is calculated horizontally and vertically and evenly distributed to the top,
+     *       bottom, left, and right if possible.
+     *       Otherwise, the last additional padding will be completed from the bottom and right.
      *       <b>1</b> (valid): The possible maximum height and width of the output will be returned in case of
      *       no padding. The excessive pixels will be discarded.
+     * * <b>roundMode</b>: Boundary handling method. When the pool cannot completely cover the input feature map,
+     *       the output feature map is rounded up, 0 means round down, 1 means round up.
+     * * <b>global</b>: Whether to do global pooling.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
-     * * <b>global</b> Whether to do global pooling.
-     * * <b>roundMode</b> Boundary handling method. When the pool cannot completely cover the input feature map,
-     *       the output feature map is rounded up, 0 means round down, 1 means round up.
      *
      * If the input contains the <b>padList</b> parameter:
      *
@@ -965,20 +1017,22 @@ typedef enum {
      *
      * * <b>kernelSize</b>: kernel size used to obtain the maximum. It is an int array [kernelHeight, kernelWidth].
      *       The first number indicates the kernel height, and the second number indicates the kernel width.
-     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array
-     *       [strideHeight, strideWidth]. The first number indicates the moving step in height,
+     * * <b>strides</b> indicates the distance of kernel moving. The value is an int array [strideHeight, strideWidth].
+     *       The first number indicates the moving step in height,
      *       and the second number indicates the moving step in width.
      * * <b>padList</b>: padding around <b>input</b>. It is an int array [top, bottom, left, right],
      *       and the nearest neighbor values are used for padding.
-     * * <b>activationType</b> is an integer constant which is contained in <b>FuseType</b>.
-     *       The specified activation function is called before output.
-     * * <b>global</b> Whether to do global pooling.
-     * * <b>roundMode</b> Boundary handling method. When the pool cannot completely cover the input feature map,
+     * * <b>roundMode</b>: Boundary handling method. When the pool cannot completely cover the input feature map,
      *       the output feature map is rounded up, 0 means round down, 1 means round up.
+     * * <b>global</b>: Whether to do global pooling.
+     * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
+     *       The specified activation function is called before output.
      *
      * Outputs:
      *
      * * <b>output</b>: tensor obtained after maximum pooling is applied to the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_MAX_POOL = 21,
 
@@ -999,13 +1053,16 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: Product of each element of <b>input1</b> and <b>input2</b>.
+     * * Product of each element of <b>input1</b> and <b>input2</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_MUL = 22,
 
     /**
-     * Generates a one-hot tensor based on the positions specified by <b>indices</b>. The positions specified by
-     * <b>indices</b> are determined by <b>onValue</b>, and other positions are determined by <b>offValue</b>.
+     * Generates a one-hot tensor based on the positions specified by <b>indices</b>.
+     * The positions specified by <b>indices</b>
+     * are determined by <b>onValue</b>, and other positions are determined by <b>offValue</b>.
      *
      * Inputs:
      *
@@ -1014,8 +1071,8 @@ typedef enum {
      * * <b>depth</b>: integer scalar that determines the depth of the one-hot vector. The value of <b>depth</b>
      *       must be greater than <b>0</b>.
      * * <b>onValue</b>: scalar that specifies a valid value in the one-hot vector.
-     * * <b>offValue</b>: scalar that specifies the values of other posistions in the one-hot vector except
-     *       the valid value.
+     * * <b>offValue</b>: scalar that specifies the values of other posistions in
+     *       the one-hot vector except the valid value.
      *
      * Parameters:
      *
@@ -1029,6 +1086,8 @@ typedef enum {
      *
      * * <b>output</b>: (<i>n</i>+1)-dimensional tensor if <b>indices</b> is an <i>n</i>-dimensional tensor.
      *       The output shape is determined by <b>indices</b> and <b>axis</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_ONE_HOT = 23,
 
@@ -1039,28 +1098,32 @@ typedef enum {
      *
      * * <b>inputX</b>: <i>n</i>-dimensional tensor in [BatchSize, ...] format.
      * * <b>paddings</b>: 2D tensor that specifies the length to pad in each dimension. The shape is [n, 2].
-     *       For example, <b>paddings[i][0]</b> indicates the number of paddings to be added preceding
-     *       <b>inputX</b> in the <i>i</i>th dimension.
-     *       <b>paddings[i][1]</b> indicates the number of paddings to be added following <b>inputX</b>
-     *       in the <i>i</i>th dimension.
+     *       For example, <b>paddings[i][0]</b> indicates the number of paddings to be added
+     *       preceding <b>inputX</b> in the <i>i</i>th dimension.
+     *       <b>paddings[i][1]</b> indicates the number of paddings to be added
+     *       following <b>inputX</b> in the <i>i</i>th dimension.
      *
      * Parameters:
      *
-     * * <b>constantValue</b>: value to be added to the pad operation.
-     *       The value is a constant with the same data type as <b>inputX</b>.
-     * * <b>paddingMode</b>: Padding mode.
+     * * <b>constantValues</b>: value to be added to the pad operation. The value is a constant with
+     *       the same data type as <b>inputX</b>.
+     * * <b>paddingMode</b>: Padding mode. 0 indicates that constant filling with 0, 1 indicates
+     *       mirror filling (excluding the symmetry axis),
+     *       2 indicates mirror filling (including the symmetry axis), and 3 is reserved method for filling.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>-dimensional tensor after padding, with the same dimensions and data type as
-     *       <b>inputX</b>. The shape is determined by <b>inputX</b> and <b>paddings</b>.
+     * * <b>output</b>: <i>n</i>-dimensional tensor after padding, with the same dimensions and
+     *       data type as <b>inputX</b>. The shape is determined by <b>inputX</b> and <b>paddings</b>.
      *       output.shape[i] = input.shape[i] + paddings[i][0]+paddings[i][1]
+     *
+     * @since 12
      */
     OH_NN_OPS_PAD = 24,
 
     /**
      * Calculates the <b>y</b> power of each element in <b>input</b>.
-     * The inputs must be two tensors or one tensor and one scalar.
+     *       The inputs must be two tensors or one tensor and one scalar.
      * When the inputs are two tensors, their data types cannot be both OH_NN_BOOL, and their shapes must be the same.
      * When the inputs are one tensor and one scalar, the scalar must be a constant.
      *
@@ -1070,12 +1133,15 @@ typedef enum {
      * * <b>y</b>: real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
      *
      * Parameters:
+     *
      * * <b>scale</b>: A OH_NN_FLOAT32 scalar that represents the factor of the scale blend.
      * * <b>shift</b>: A OH_NN_FLOAT32 scalar that represents the bias of the scale blend.
      *
      * Outputs:
      *
      * * <b>output</b>: tensor, whose shape is determined by the shape of <b>input</b> and <b>y</b> after broadcasting.
+     *
+     * @since 12
      */
     OH_NN_OPS_POW = 25,
 
@@ -1098,6 +1164,8 @@ typedef enum {
      *
      * * <b>output</b>: scaled <i>n</i>-dimensional tensor, whose data type is the same as that of <b>input</b> and
      *       shape is determined by <b>axis</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_SCALE = 26,
 
@@ -1111,6 +1179,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: integer array representing the dimensions of the input tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_SHAPE = 27,
 
@@ -1125,6 +1195,8 @@ typedef enum {
      *
      * * <b>output</b>: result of the <b>sigmoid</b> operation. It is an <i>n</i>-dimensional tensor
      *       with the same data type and shape as <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_SIGMOID = 28,
 
@@ -1146,6 +1218,8 @@ typedef enum {
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor obtained by slicing.
      *       The <b>TensorType</b>, shape, and size of the output are the same as those of the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_SLICE = 29,
 
@@ -1165,6 +1239,8 @@ typedef enum {
      *
      * * <b>output</b>: result of the <b>softmax</b> operation. It is an <i>n</i>-dimensional tensor with
      *       the same data type and shape as <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_SOFTMAX = 30,
 
@@ -1179,8 +1255,9 @@ typedef enum {
      * Parameters:
      *
      * * <b>blockShape</b>: a pair of integers. Each of them is greater than or equal to <b>1</b>.
-     * * <b>paddings</b>: a pair of arrays. Each of them consists of two integers. The four integers that from
-     *       <b>paddings</b> must be greater than or equal to <b>0</b>. <b>paddings[0][0]</b> and <b>paddings[0][1]</b>
+     * * <b>paddings</b>: a pair of arrays. Each of them consists of two integers.
+     *       The four integers that from <b>paddings</b>
+     *       must be greater than or equal to <b>0</b>. <b>paddings[0][0]</b> and <b>paddings[0][1]</b>
      *       specify the number of paddings in the third dimension, and <b>paddings[1][0]</b> and <b>paddings[1][1]</b>
      *       specify the number of paddings in the fourth dimension.
      *
@@ -1195,6 +1272,7 @@ typedef enum {
      *       (h + paddings[0][0] + paddings[0][1]) and (w + paddings[1][0] + paddings[1][1]) is exactly divisible by
      *       (h + paddings[0][0] + paddings[0][1]) and (w + paddings[1][0] + paddings[1][1]).
      *
+     * @since 12
      */
     OH_NN_OPS_SPACE_TO_BATCH_ND = 31,
 
@@ -1209,8 +1287,8 @@ typedef enum {
      * Parameters:
      *
      * * <b>outputNum</b>: number of output tensors. The data type is long.
-     * * <b>sizeSplits</b>: size of each tensor split from the input. The value is a 1D tensor of the int type. If
-     *       <b>sizeSplits</b> is empty, the input will be evenly split into tensors of the same size. In this case,
+     * * <b>sizeSplits</b>: size of each tensor split from the input. The value is a 1D tensor of the int type.
+     *       If <b>sizeSplits</b> is empty, the input will be evenly split into tensors of the same size. In this case,
      *       <b>input.shape[axis]</b> can be exactly divisible by <b>outputNum</b>.
      *       If <b>sizeSplits</b> is not empty, the sum of all its elements must be equal to <b>input.shape[axis]</b>.
      * * <b>axis</b>: splitting dimension of the int type.
@@ -1219,6 +1297,8 @@ typedef enum {
      *
      * * <b>outputs</b>: array of <i>n</i>-dimensional tensors, with the same data type and dimensions.
      *       The data type of each tensor is the same as that of <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_SPLIT = 32,
 
@@ -1231,31 +1311,36 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: square root of the input.
-     *       It is an <i>n</i>-dimensional tensor with the same data type and shape as <b>input</b>.
+     * * <b>output</b>: square root of the input. It is an <i>n</i>-dimensional tensor with the
+     *       same data type and shape as <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_SQRT = 33,
 
     /**
      * Calculates the square of the difference between two tensors. The <b>SquaredDifference</b> operator supports
-     * tensor and tensor subtraction. If two tensors have different <b>TensorTypes</b>, the Sub operator
-     * converts the low-precision tensor to a high-precision one. If two tensors have different shapes,
-     * the two tensors can be extended to tensors with the same shape through broadcast.
+     *       tensor and tensor subtraction.
+     * If two tensors have different <b>TensorTypes</b>, the operator converts the
+     *       low-precision tensor to a high-precision one.
+     * If two tensors have different shapes, the two tensors can be extended to tensors
+     *       with the same shape through broadcast.
      *
      * Inputs:
      *
-     * * <b>input1</b>: minuend, which is a tensor of the OH_NN_FLOAT16, OH_NN_FLOAT32, OH_NN_INT32,
-     *       or OH_NN_BOOL type.
-     * * <b>input2</b>: subtrahend, which is a tensor of the OH_NN_FLOAT16, OH_NN_FLOAT32, OH_NN_INT32,
-     *       or OH_NN_BOOL type.
+     * * <b>input1</b>: minuend, which is a tensor of the OH_NN_FLOAT16, OH_NN_FLOAT32, OH_NN_INT32, or OH_NN_BOOL type.
+     * * <b>input2</b>: subtrahend, which is a tensor of the OH_NN_FLOAT16,
+     *       OH_NN_FLOAT32, OH_NN_INT32, or OH_NN_BOOL type.
      *
      * Outputs:
      *
      * * <b>output</b>: square of the difference between two inputs. The output shape is determined
-     *       by<b>input1</b> and <b>input2</b>. If they have the same shape, the output tensor has the same
-     *       shape as them. If they have different shapes, perform the broadcast operation on
-     *       <b>input1</b> and <b>input2</b> and perform subtraction.
+     *       by<b>input1</b> and <b>input2</b>. If they have the same shape, the output tensor has
+     *       the same shape as them. If they have different shapes, perform the broadcast operation on <b>input1</b>
+     *       and <b>input2</b> and perform subtraction.
      *       <b>TensorType</b> of the output is the same as that of the input tensor with higher precision.
+     *
+     * @since 12
      */
     OH_NN_OPS_SQUARED_DIFFERENCE = 34,
 
@@ -1270,12 +1355,14 @@ typedef enum {
      *
      * Parameters:
      *
-     * * <b>axis</b>: dimension to be removed.
-     *       The value is of int64_t type and can be an integer in the range [-n, n) or an array.
+     * * <b>axis</b>: dimension to be removed. The value is of int64_t type and can be an integer
+     *       in the range [-n, n) or an array.
      *
      * Outputs:
      *
      * * <b>output</b>: output tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_SQUEEZE = 35,
 
@@ -1297,6 +1384,8 @@ typedef enum {
      *
      * * <b>output</b>: stacking result of the input along the axis dimension.
      *       The value is an <i>n</i>+1-dimensional tensor and has the same <b>TensorType</b> as the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_STACK = 36,
 
@@ -1316,29 +1405,31 @@ typedef enum {
      * Parameters:
      *
      * * <b>beginMask</b>: an integer used to mask <b>begin</b>. <b>beginMask</b> is represented in binary code.
-     *       In case of binary(beginMask)[i]==1, for the <i>i</i>th dimension,
-     *       elements are sliced from the first element at <b>strides[i]</b> until the end[i]-1 element.
+     *       In case of binary(beginMask)[i]==1, for the <i>i</i>th dimension, elements are sliced from the first
+     *       element at <b>strides[i]</b> until the end[i]-1 element.
      *
      * * <b>endMask</b>: an integer used to mask <b>end</b>. <b>endMask</b> is represented in binary code.
      *       In case of binary(endMask)[i]==1, elements are sliced from the element at the <b>begin[i]</b> position
      *       in the <i>i</i>th dimension until the tensor boundary at <b>strides[i]</b>.
      *
-     * * <b>ellipsisMask</b>: integer used to mask <b>begin</b> and <b>end</b>.
-     *       <b>ellipsisMask</b> is represented in binary code. In case of binary(ellipsisMask)[i]==1,
-     *       elements are sliced from the first element at <b>strides[i]</b> in the <i>i</i>th dimension
+     * * <b>ellipsisMask</b>: integer used to mask <b>begin</b> and <b>end</b>. <b>ellipsisMask</b>
+     *       is represented in binary code. In case of binary(ellipsisMask)[i]==1, elements are sliced from the first
+     *       element at <b>strides[i]</b> in the <i>i</i>th dimension
      *       until the tensor boundary. Only one bit of <b>binary(ellipsisMask)</b> can be a non-zero value.
      *
      * * <b>newAxisMask</b>: new dimension, which is an integer. <b>newAxisMask</b> is represented in binary code.
-     *       In case of binary(newAxisMask)[i]==1,
-     *       a new dimension whose length is 1 is inserted into the <i>i</i>th dimension.
+     *       In case of binary(newAxisMask)[i]==1, a new dimension whose length is 1 is
+     *       inserted into the <i>i</i>th dimension.
      * * <b>shrinkAxisMask</b>: shrinking dimension, which is an integer. * <b>shrinkAxisMask</b> is
-     *       represented in binary code. In the case of binary(shrinkAxisMask)[i]==1, all elements in the
-     *       <i>i</i>th dimension will be discarded, and the length of the <i>i</i>th dimension is shrunk to <b>1</b>.
+     *       represented in binary code.In the case of binary(shrinkAxisMask)[i]==1, all elements in the <i>i</i>th
+     *       dimension will be discarded, and the length of the <i>i</i>th dimension is shrunk to <b>1</b>.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor, with the same data type as <b>input</b>.
-     *       The number of dimensions of the output tensor is rank(input[0])+1.
+     * * <b>output</b>: A tensor, with the same data type as <b>input</b>. The number of dimensions of the
+     *       output tensor is rank(input[0])+1.
+     *
+     * @since 12
      */
     OH_NN_OPS_STRIDED_SLICE = 37,
 
@@ -1357,11 +1448,13 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: difference between the two tensors. The output shape is determined by<b>input1</b> and
-     *       <b>input2</b>. If they have the same shape, the output tensor has the same shape as them.
-     *       If they have different shapes,
-     *       perform the broadcast operation on <b>input1</b> and <b>input2</b> and perform subtraction.
-     *       <b>TensorType</b> of the output is the same as that of the input tensor with higher precision.
+     * * <b>output</b>: difference between the two tensors. The output shape is determined by<b>input1</b>
+     *       and <b>input2</b>. If they have the same shape, the output tensor has the same shape as them.
+     *       If they have different shapes, perform the broadcast operation on <b>input1</b> and <b>input2</b>
+     *       and perform subtraction. <b>TensorType</b> of the output is the same as
+     *       that of the input tensor with higher precision.
+     *
+     * @since 12
      */
     OH_NN_OPS_SUB = 38,
 
@@ -1374,8 +1467,10 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: hyperbolic tangent of the input.
-     *       The <b>TensorType</b> and tensor shape are the same as those of the input.
+     * * <b>output</b>: hyperbolic tangent of the input. The <b>TensorType</b> and tensor
+     *       shape are the same as those of the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_TANH = 39,
 
@@ -1393,10 +1488,13 @@ typedef enum {
      * The length <b>m</b> is not less than the number of dimensions of <b>x</b>.
      *
      * Outputs:
-     * * An <i>m</i>-dimensional tensor whose <b>TensorType</b> is the same as that of the input. If <b>input</b> and
-     *       <b>multiples</b> have the same length, <b>input</b> and <b>output</b> have the same number of dimensions.
-     *       If the length of <b>multiples</b> is greater than <i>n</i>, 1 is used to fill the input dimension, and
-     *       then the input is copied in each dimension the specified times to obtain the <i>m</i>-dimensional tensor.
+     * * <b>output</b>: An <i>m</i>-dimensional tensor whose <b>TensorType</b> is the same as that of the input.
+     *       If <b>input</b> and <b>multiples</b> have the same length, <b>input</b> and <b>output</b> have the same
+     *       number of dimensions. If the length of <b>multiples</b> is greater than <i>n</i>, 1 is used
+     *       to fill the input dimension, and then the input is copied in each dimension the specified times
+     *       to obtain the <i>m</i>-dimensional tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_TILE = 40,
 
@@ -1406,20 +1504,22 @@ typedef enum {
      * Inputs:
      *
      * * <b>input</b>: <i>n</i>-dimensional tensor to be transposed.
-     * * <b>permutation</b>: The value is a 1D tensor whose length is the same as the number of
-     *       dimensions of <b>input</b>.
+     * * <b>permutation</b>: The value is a 1D tensor whose length is the same as
+     *       the number of dimensions of <b>input</b>.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>-dimensional tensor. <b>TensorType</b> of <b>output</b> is the same as that of
-     *       <b>input</b>, and the output shape is determined by the shape and <b>permutation</b> of <b>input</b>.
+     * * <b>output</b>: <i>n</i>-dimensional tensor. <b>TensorType</b> of <b>output</b> is the same as that
+     *       of <b>input</b>, and the output shape is determined by the shape and <b>permutation</b> of <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_TRANSPOSE = 41,
 
     /**
-     * Calculates the average value in the specified dimension.
-     * If <b>keepDims</b> is set to <b>false</b>, the number of dimensions is reduced for the input;
-     * if <b>keepDims</b> is set to <b>true</b>, the number of dimensions is retained.
+     * Calculates the average value in the specified dimension. If <b>keepDims</b> is set to <b>false</b>,
+     * the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
+     * the number of dimensions is retained.
      *
      * Inputs:
      *
@@ -1430,14 +1530,16 @@ typedef enum {
      * Parameters:
      *
      * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs
+     *       to be performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      *
      * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
+     *
+     * @since 12
      */
     OH_NN_OPS_REDUCE_MEAN = 42,
 
@@ -1453,18 +1555,19 @@ typedef enum {
      *
      * * <b>newHeight</b>: resized height of the 4D tensor.
      * * <b>newWidth</b>: resized width of the 4D tensor.
-     * * <b>preserveAspectRatio</b>: indicates whether to maintain the height/width
-     *       ratio of <b>input</b> after resizing.
+     * * <b>preserveAspectRatio</b>: indicates whether to maintain the height/width ratio
+     *       of <b>input</b> after resizing.
      * * <b>coordinateTransformMode</b>: coordinate transformation method used by the resize operation.
-     *       The value is an int32 integer. Currently, the following methods are supported:
-     *       0 means ASYMMETRIC, 1 means ALIGN_CORNERS, 2 means HALF_PIXEL.
-     * * <b>excludeOutside</b>: an int64 floating point number. When its value is <b>1</b>,
-     *       the sampling weight of the part that
-     *       exceeds the boundary of <b>input</b> is set to <b>0</b>, and other weights are normalized.
+     *       The value is an int32 integer. Currently, the following methods are supported: 0 means ASYMMETRIC,
+     *       1 means ALIGN_CORNERS, 2 means HALF_PIXEL.
+     * * <b>excludeOutside</b>: an int64 floating point number. When its value is <b>1</b>, the sampling weight of
+     *       the part that exceeds the boundary of <b>input</b> is set to <b>0</b>, and other weights are normalized.
      *
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same shape and data type as <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_RESIZE_BILINEAR = 43,
 
@@ -1473,12 +1576,14 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor, where <i>n</i> is less than 8.
-     *       Each element of the tensor cannot be less than 0.
+     * * <b>input</b>: <i>n</i>-dimensional tensor, where <i>n</i> is less than 8. Each element of
+     *       the tensor cannot be less than 0.
      *
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same shape and data type as <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_RSQRT = 44,
 
@@ -1492,8 +1597,10 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: tensor whose data type is the same as that of <b>input</b>
-     *       and shape is determined by <b>InputShape</b>.
+     * * <b>output</b>: tensor whose data type is the same as that of <b>input</b> and shape
+     *       is determined by <b>InputShape</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_RESHAPE = 45,
 
@@ -1502,16 +1609,18 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor. If <i>n</i> is greater than or equal to 2,
-     *       <b>input</b> must be [BatchSize, ..., Channels]. The second dimension is the number of channels.
-     * * <b>weight</b>: 1D tensor. The length of <b>weight</b> must be 1 or equal to the number of channels.
-     *       If the length of <b>weight</b> is 1, all channels share the same weight.
+     * * <b>input</b>: <i>n</i>-dimensional tensor. If <i>n</i> is greater than or equal to 2, <b>input</b> must
+     *       be [BatchSize, ..., Channels]. The second dimension is the number of channels.
+     * * <b>weight</b>: 1D tensor. The length of <b>weight</b> must be 1 or equal to the number of channels. If the
+     *        length of <b>weight</b> is 1, all channels share the same weight.
      *       If the length of <b>weight</b> is equal to the number of channels, each channel exclusively has a weight.
      *       If <i>n</i> is less than 2 for <b>input</b>, the <b>weight</b> length must be 1.
      *
      * Outputs:
      *
      * * <b>output</b>: PReLU activation value of <b>input</b>, with the same shape and data type as <b>input</b>.
+     *
+     * @since 12
      */
     OH_NN_OPS_PRELU = 46,
 
@@ -1525,12 +1634,14 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same data type and shape as the input tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_RELU = 47,
 
     /**
-     * Calculates the Relu6 activation value of the input, that is,
-     * calculate min(max(x, 0), 6) for each element x in the input.
+     * Calculates the Relu6 activation value of the input, that is, calculate min(max(x, 0), 6)
+     * for each element x in the input.
      *
      * Inputs:
      *
@@ -1539,6 +1650,8 @@ typedef enum {
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional Relu6 tensor, with the same data type and shape as the input tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_RELU6 = 48,
 
@@ -1554,65 +1667,71 @@ typedef enum {
      *
      * Parameters:
      *
-     * * <b>beginAxis</b>: an OH_NN_INT32 scalar that specifies the axis from which normalization starts.
+     * * <b>beginAxis</b>: is an OH_NN_INT32 scalar that specifies the axis from which normalization starts.
      *       The value range is [1, rank(input)).
-     * * <b>epsilon</b>: a scalar of OH_NN_FLOAT32. It is a tiny amount in the normalization formula.
-     *       The common value is 0.00001f.
-     * * <b>beginParamsAxis</b>: an OH_NN_INT32 scalar that specifies the start axis of layer normalization
-     *       of input parameter (gamma, beta).
+     * * <b>epsilon</b>: is a scalar of OH_NN_FLOAT32. It is a tiny amount in the normalization formula.
+     *       The common value is 1e-5.
+     * * <b>beginParamsAxis</b>: an OH_NN_INT32 scalar that specifies the start axis of layer normalization of
+     *       input parameter (gamma, beta).
      *
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same data type and shape as the input tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_LAYER_NORM = 49,
 
     /**
-     * Calculates the accumulated value for a tensor along the specified dimension. If <b>keepDims</b> is set to
-     * <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
-     * the number of dimensions is retained.
+     * Calculates the accumulated value for a tensor along the specified dimension.
      *
      * Inputs:
      *
      * * <b>input</b>: <i>n</i>-dimensional input tensor, where <i>n</i> is less than 8.
-     * * <b>axis</b>: dimension used to calculate the product. The value is a 1D tensor.
-     *       The value range of each element in <b>axis</b> is [–n, n).
+     * * <b>axis</b>: dimension used to calculate the product. The value is a 1D tensor. The value range of each
+     *       element in <b>axis</b> is [–n, n).
      *
      * Parameters:
      *
      * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     *       When its value is <b>true</b>, the number of output dimensions is the same as that of the input.
+     *       When its value is <b>false</b>, the number of output dimensions is reduced.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs
+     *       to be performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      *
      * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
+     *
+     * @since 12
      */
     OH_NN_OPS_REDUCE_PROD = 50,
 
     /**
-     * Calculates the logical and value for input tensor along the specified dimension. If <b>keepDims</b> is set to
-     * <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
+     * Operates the logical AND in the specified dimension. If <b>keepDims</b> is set to <b>false</b>,
+     * the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
      * the number of dimensions is retained.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional input tensor, where <i>n</i> is less than 8.
-     * * <b>axis</b>: dimension used to calculate the logical and value. The value is a 1D tensor.
+     * * <b>input</b>: A <i>n</i>-dimensional input tensor, where <i>n</i> is less than 8.
+     * * <b>axis</b>: A 1D tensor specifying the dimension used to operate the logical AND.
      *       The value range of each element in <b>axis</b> is [–n, n).
      *
      * Parameters:
      *
      * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs
+     *       to be performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
+     *
+     * @since 12
      */
     OH_NN_OPS_REDUCE_ALL = 51,
 
@@ -1621,7 +1740,7 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor. If it is a conversion between a quantized type and
+     * * <b>input</b>: <i>n</i>-dimensional tensor.If it is a conversion between a quantized type and
      *       a floating-point type, the input tensor should contain quantized parameters.
      *
      * Parameters:
@@ -1629,15 +1748,17 @@ typedef enum {
      * * <b>srcT</b>: data type of the input.
      * * <b>dstT</b>: data type of the output.
      * * <b>axis</b>: appoint the dimensions from which the quantization parameters are extracted.
-     *       If the size of the input tensor quantization parameter is 1, the operator function is
-     *       layer quantization conversion, and this parameter does not take effect. If the size of
-     *       the input tensor quantization parameter is greater than 1, the operator function is the
-     *       quantization conversion along the specific channels, and this parameter takes effect.
+     *       If the size of the input tensor quantization parameter is 1, the operator function is layer quantization
+     *       conversion, and this parameter does not take effect. If the size of the input tensor quantization parameter
+     *       is greater than 1, the operator function is the quantization conversion along the specific channels,
+     *       and this parameter takes effect.
      *
      * Outputs:
      *
      * * <b>output</b>: <i>n</i>-dimensional tensor. The data type is determined by <b>dstT</b>.
      *       The output shape is the same as the input shape.
+     *
+     * @since 12
      */
     OH_NN_OPS_QUANT_DTYPE_CAST = 52,
 
@@ -1659,6 +1780,8 @@ typedef enum {
      *
      * * <b>output0</b>: largest <i>k</i> elements in each slice of the last dimension.
      * * <b>output1</b>: index of the value in the last dimension of the input.
+     *
+     * @since 12
      */
     OH_NN_OPS_TOP_K = 53,
 
@@ -1674,11 +1797,13 @@ typedef enum {
      * * <b>axis</b>: dimension for calculating the index of the maximum.
      * * <b>keepDims</b>: indicates whether to maintain the input tensor dimension. The value is a Boolean value.
      * * <b>topK</b>: Whether to keep the output dimensions the same as the input dimensions.
-     * * <b>outMaxValue</b>: Return the index if the value is <b>false</b>.
-     *       Return the value if the value is <b>true</b>. The default value is <b>false</b>.
+     * * <b>outMaxValue</b>: Return the index if the value is false. Return the value if the value is true.
+     *       The default value is false.
      *
      * Outputs:
      * * <b>output</b>: index of the maximum input tensor on the axis. The value is a tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_ARG_MAX = 54,
 
@@ -1686,7 +1811,6 @@ typedef enum {
      * Adds a dimension based on the value of <b>axis</b>.
      *
      * Inputs:
-     *
      * * <b>input</b>: <i>n</i>-dimensional tensor.
      *
      * Parameters:
@@ -1695,37 +1819,30 @@ typedef enum {
      *       The value range of the integer is [-n, n).
      *
      * Outputs:
-     *
      * * <b>output</b>: output tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_UNSQUEEZE = 55,
 
     /**
      * Gaussian error linear unit activation function. The int quantization input is not supported.
-     * output=0.5∗input∗(1+tanh(input/2))
+     * output=0.5∗input∗(1+tanh(input/2)).
      *
      * Inputs:
-     *
      * * <b>input</b>: An <i>n</i>-dimensional input tensor.
      *
      * Parameters:
      * * <b>approximate</b>: Whether to use the approximation algorithm.
      *
      * Outputs:
-     *
      * * <b>output</b>: <i>n</i>-dimensional tensor, with the same data type and shape as the input tensor.
+     *
+     * @since 12
      */
     OH_NN_OPS_GELU = 56,
-
     /**
-     * Unpacks the input tensors base on the given dimension of axis.
-     * Unpacks tensors from <b>input</b> by chipping it along the <b>axis</b> dimension.
-     * For example, given a tensor of shape (A, B, C, D);
-     * If axis == 0, then the i'th tensor in output is the slice value[i, :, :, :],\n
-     * and each tensor in output will have shape (B, C, D).
-     * If axis == 1, then the i'th tensor in output is the slice value[:, i, :, :],\n
-     * and each tensor in output will have shape (A, C, D). Etc.
-     * This is the opposite of <b>OH_NN_OPS_STACK</b>.
+     * Unpacks the input tensors base on the given dimension of <b>axis</b>.
      *
      * Inputs:
      *
@@ -1783,13 +1900,13 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input<b>: <i>n</i>-dimensional tensor.
      *
      * Parameters:
      *
-     * * <b>base</b>: The base of exponential function. Default set to -1 representing nature logarithm 'e'.
-     *       Input value must be > 0.
-     * * <b>scale</b>: The amplifcation factor of exponential value, default 1.
+     * * <b>base</b>: the base of exponential function. Default set to -1 representing nature logarithm 'e'.
+     *       Input value must be greater than 0.
+     * * <b>scale</b>: the amplifcation factor of exponential value, default 1.
      * * <b>shift</b>: The offset of exponential value, default 0.
      *
      * Outputs:
@@ -1801,42 +1918,40 @@ typedef enum {
     OH_NN_OPS_EXP = 60,
 
     /**
-     * For <b>input1</b> and <b>input2</b>, calculate the result of input1[i] < input2[i] for each pair of elements,
-     * where i is the index of each element in the input tensor.
+     * For <b>input1</b> and <b>input2</b>, calculate the result of input1[i]<input2[i] for each pair of elements,
+     * where <b>i</b> is the index of each element in the input tensor.
      *
      * Inputs:
      *
-     * * <b>input1</b>: can be a real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
-     * * <b>input2</b>: can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
+     * * <b>input1</b>: which can be a real number, Boolean value,
+     *       or tensor whose data type is real number or OH_NN_BOOL.
+     * * <b>input2</b>: which can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
      *       with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor of the data type OH_NN_BOOL. When a quantization model is used, the quantization
-     *       parameters of the output cannot be omitted. However, values of the quantization parameters do not
-     *       affect the result.
+     * * <b>output</b>: A tensor of the OH_NN_BOOL type. When a quantization model is used,
+     *       the quantization parameters of the output cannot be omitted.
+     *       However, values of the quantization parameters do not affect the result.
      *
      * @since 12
      */
     OH_NN_OPS_LESS = 61,
 
     /**
-     * Selects output elements from input1 or input2, depending on condition.
-     * If condition is true, choose elements from input1. Otherwise, choose elements from input2 if condition is false.
-     * The three inputs, <b>condition</b> , <b>input1</b> and <b>input2</b> must share the same shape.
+     * Selects output elements from input1 or input2, depending on condition. If condition is true,
+     * choose elements from input1. Otherwise, choose elements from input2 if condition is false.
+     * The three inputs, condition, input1 and input2 must share the same shape.
      *
      * Inputs:
      *
-     * * <b>condition</b>: <i>n</i>-dimensional tensor or scalar.
-     *       The condition tensor, decides which element is chosen.
+     * * <b>condition</b>: <i>n</i>-dimensional tensor. The condition tensor, decides which element is chosen.
      * * <b>input1</b>: <i>n</i>-dimensional tensor. First input tensor to be chosen.
-     *       If condition is rank 1, input1 may have higher rank, but its first dimension must match the
-     *       size of condition.
      * * <b>input2</b>: <i>n</i>-dimensional tensor. Second input tensor to be chosen.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor, has the same shape and data type as the input.
+     * * <b>output</b>: <i>n</i>-dimensional tensor. Has the same shape and data type as the input.
      *
      * @since 12
      */
@@ -1851,7 +1966,7 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>-dimensional tensor, has the same shape and dtype as the input.
+     * * <b>output</b>: <i>n</i>-dimensional tensor. Has the same shape and data type as the input.
      *
      * @since 12
      */
@@ -1867,10 +1982,10 @@ typedef enum {
      *
      * Parameters:
      *
-     * * <b>axis</b>: Indicate up to which input dimensions (exclusive) should be flattened to the outer dimension
-     *       of the output. The value for axis must be in the range [-r, r], where r is the rank of the input tensor.
-     *       Negative value means counting dimensions from the back. When axis = 0, the shape of the output tensor is
-     *       (1, (d_0 X d_1 … d_n)), where the shape of the input tensor is (d_0, d_1, … d_n).
+     * * <b>axis, Indicate up to which input dimensions (exclusive) should be flattened to the outer dimension of
+     *       the output. The value for axis must be in the range [-r, r], where r is the rank of the input tensor.
+     *       Negative value means counting dimensions from the back. When axis = 0, the shape of the output
+     *       tensor is (1, (d_0 X d_1 … d_n)), where the shape of the input tensor is (d_0, d_1, … d_n).
      *
      * Outputs:
      *
@@ -1882,33 +1997,30 @@ typedef enum {
 
     /**
      * DepthToSpace rearranges (permutes) data from depth into blocks of spatial data.
-     * This is the reverse transformation of SpaceToDepth. More specifically, this op outputsa copy of the input tensor
-     * where values from the depth dimension are moved in spatial blocks to the height and width dimensions.
-     * By default, mode = DCR. In the DCR mode, elements along the depth dimension from the input tensor are rearranged
-     * in the following order: depth, column, and then row.
      *
      * Inputs:
      *
-     * * <b>input</b>: 4-dimensional tensor with specific format of NHWC or NCHW.
-     *       where N is the batch axis, H is the height, W is the width and C is the channel or depth.
+     * * <b>input</b>: 4-dimensional tensor with specific format of NHWC or NCHW. Only support NHWC format for now,
+     *       and the shape is [batchSize, height, width, channels].
      *
      * Parameters:
      *
-     * * <b>blockSize</b>: Blocks of [blocksize, blocksize] are moved.
-     * * <b>mode</b>: DCR (default) for depth-column-row order re-arrangement. Use CRD for column-row-depth order.
+     * * <b>blockSize</b>: blocks of [blocksize, blocksize] are moved, where blocksize should be int value.
+     * * <b>mode</b>: the mode of conveter data, can be 'DCR' or 'CRD', 'DCR' means depth-column-row order
+     *       re-arrangement, and 'CRD' means column-row-depth order re-arrangement.
      *
      * Outputs:
      *
-     * * <b>output</b>: Output tensor of [N, H * blocksize, W * blocksize, C/(blocksize * blocksize)] for NHWC format
-     *       or [N, C/(blocksize * blocksize), H * blocksize, W * blocksize] for NCHW format.
+     * * <b>output</b>: Output tensor of shape [N, H * blocksize, W * blocksize, C/(blocksize * blocksize)] for NHWC
+     *       format or shape [N, C/(blocksize * blocksize), H * blocksize, W * blocksize] for NCHW format.
      *
      * @since 12
      */
     OH_NN_OPS_DEPTH_TO_SPACE = 65,
 
     /**
-     * Generate a tensor containing a sequence of numbers that begin at <b>start</b>\n
-     * and extends by increments of <b>delta</b> up to <b>limit<b>.
+     * Generate a tensor containing a sequence of numbers that begin at start, and extends
+     * by increments of delta up to limit.
      *
      * Inputs:
      *
@@ -1922,7 +2034,7 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>1</i>-dimensional tensor with specific data type containing generated range of values.
+     * * <b>output</b>: 1-dimensional tensor with specific data type containing generated range of values.
      *
      * @since 12
      */
@@ -1933,10 +2045,10 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: Input data tensor from the previous operator; dimensions for image case are (N x C x H x W),
-     *       where N is the batch size, C is the number of channels, and H and W are the height and the width of
-     *       the data. For non image case, the dimensions are in the form of (N x C x D1 x D2 … Dn), where N is the
-     *       batch size.
+     * * <b>input</b>: Input data tensor from the previous operator. Dimensions for image case are (N x C x H x W),
+     *       where N is the batch size, C is the number of channels,
+     *       and H and W are the height and the width of the data.
+     *       For non image case, the dimensions are in the form of (N x C x D1 x D2 … Dn), where N is the batch size.
      * * <b>scale</b>: The input 1-dimensional scale tensor of channel size.
      * * <b>bias</b>: The input 1-dimensional bias tensor of channel size.
      *
@@ -1957,13 +2069,12 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>1</i>-dimensional tensor. Indicates the shape of the expected output tensor.
-     *       All values must be >= 0.
+     * * <b>input</b>: 1-dimensional tensor. Indicates the shape of the expected output tensor. All values must be >= 0.
      *
      * Parameters:
      *
      * * <b>dataType</b>: The data type of the output tensor.
-     * * <b>value</b>: The value of the output elements.
+     * * <b>value</b>: The value of the output elements, which is single-element array with data type of OH_NN_FLOAT32.
      *
      * Outputs:
      *
@@ -1994,39 +2105,41 @@ typedef enum {
 
     /**
      * For <b>input1</b> and <b>input2</b>, calculate the result of input1[i] = input2[i] for each pair of elements,
-     * where i is the index of each element in the input tensor.
+     * where <b>i</b> is the index of each element in the input tensor.
      *
      * Inputs:
      *
-     * * <b>input1</b>, can be a real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
-     * * <b>input2</b>, can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
-     *       with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
+     * * <b>input1</b>: which can be a real number, Boolean value,
+     *       or tensor whose data type is real number or OH_NN_BOOL.
+     * * <b>input2</b>: which can be a real number or a Boolean value if <b>input1</b> is a tensor
+     *       and must be a tensor with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor of the data type OH_NN_BOOL. When a quantization model is used,
-     *       the quantization output cannot be omitted. However, values of the quantization
-     *       parameters do not affect the result.
+     * * <b>output</b>: A tensor of the OH_NN_BOOL type. When a quantization model is used,
+     *       the quantization parameters of the output cannot be omitted.
+     *       However, values of the quantization parameters do not affect the result.
      *
      * @since 12
      */
     OH_NN_OPS_EQUAL = 70,
 
-     /**
+    /**
      * For <b>input1</b> and <b>input2</b>, calculate the result of input1[i] > input2[i] for each pair of elements,
-     * where i is the index of each element in the input tensor.
+     * where <b>i</b> is the index of each element in the input tensor.
      *
      * Inputs:
      *
-     * * <b>input1</b>, can be a real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
-     * * <b>input2</b>, can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
-     *       with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
+     * * <b>input1</b>: which can be a real number, Boolean value,
+     *       or tensor whose data type is real number or OH_NN_BOOL.
+     * * <b>input2</b>: which can be a real number or a Boolean value if <b>input1</b> is a tensor
+     *       and must be a tensor with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor of the data type OH_NN_BOOL. When a quantization model is used,
-     *       the quantization parameters of the output cannot be omitted. However,
-     *       values of the quantization parameters do not affect the result.
+     * * <b>output</b>: A tensor of the OH_NN_BOOL type. When a quantization model is used,
+     *       the quantization parameters of the output cannot be omitted.
+     *       However, values of the quantization parameters do not affect the result.
      *
      * @since 12
      */
@@ -2034,19 +2147,20 @@ typedef enum {
 
     /**
      * For <b>input1</b> and <b>input2</b>, calculate the result of input1[i] != input2[i] for each pair of elements,
-     * where i is the index of each element in the input tensor.
+     * where <b>i</b> is the index of each element in the input tensor.
      *
      * Inputs:
      *
-     * * <b>input1</b>, can be a real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
-     * * <b>input2</b>, can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
-     *       with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
+     * * <b>input1</b>: which can be a real number, Boolean value,
+     *       or tensor whose data type is real number or OH_NN_BOOL.
+     * * <b>input2</b>: which can be a real number or a Boolean value if <b>input1</b> is a tensor
+     *       and must be a tensor with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor of the data type OH_NN_BOOL. When a quantization model is used,
-     *       the quantization parameters of the output cannot be omitted. However,
-     *       values of the quantization parameters do not affect the result.
+     * * <b>output</b>: A tensor of the OH_NN_BOOL type. When a quantization model is used,
+     *       the quantization parameters of the output cannot be omitted.
+     *       However, values of the quantization parameters do not affect the result.
      *
      * @since 12
      */
@@ -2054,19 +2168,20 @@ typedef enum {
 
     /**
      * For <b>input1</b> and <b>input2</b>, calculate the result of input1[i] >= input2[i] for each pair of elements,
-     * where i is the index of each element in the input tensor.
+     * where <b>i</b> is the index of each element in the input tensor.
      *
      * Inputs:
      *
-     * * <b>input1</b>, can be a real number, Boolean value, or tensor whose data type is real number or OH_NN_BOOL.
-     * * <b>input2</b>, can be a real number or a Boolean value if <b>input1</b> is a tensor and must be a tensor
-     *       with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
+     * * <b>input1</b>: which can be a real number, Boolean value,
+     *       or tensor whose data type is real number or OH_NN_BOOL.
+     * * <b>input2</b>: which can be a real number or a Boolean value if <b>input1</b> is a tensor
+     *       and must be a tensor with the data type of real number or OH_NN_BOOL if <b>input1</b> is not a tensor.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor of the data type OH_NN_BOOL. When a quantization model is used,
-     *       the quantization parameters of the output cannot be omitted. However,
-     *       values of the quantization parameters do not affect the result.
+     * * <b>output</b>: A tensor of the OH_NN_BOOL type. When a quantization model is used,
+     *       the quantization parameters of the output cannot be omitted.
+     *       However, values of the quantization parameters do not affect the result.
      *
      * @since 12
      */
@@ -2074,20 +2189,20 @@ typedef enum {
 
     /**
      * LeakyRelu takes input data (Tensor) and an argument alpha, and produces one output data (Tensor)
-     * where the function f(x) = alpha * x for x < 0, f(x) = x for x >= 0,
-     * is applied to the data tensor elementwise.
+     * where the function f(x) = alpha * x for x < 0, f(x) = x for x >= 0, is applied to the data tensor elementwise.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional input tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor.
      *
      * Parameters:
      *
-     * * <b>negativeSlope</b>: Coefficient of leakage.
+     * * <b>negativeSlope</b>: Coefficient of leakage. When the input is less than 0,
+     *       controls the size of the output, and the data type is OH_NN_FLOAT32.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor, with the same data type and shape as the input tensor.
+     * * <b>output</b>: <i>n</i>-dimensional tensor. Keep same data type and shape with the input tensor.
      *
      * @since 12
      */
@@ -2098,11 +2213,11 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor, shape is [seqLen, batchSize, inputSize].
+     * * <b>input</b>: 3-dimensional tensor, shape is [seqLen, batchSize, inputSize].
      * * <b>wIh</b>: Weight tensor of input-layer to hidden-layer,
      *       shape is [numDirections* numLayers, 4 * hiddenSize, inputSize].
      * * <b>wHh</b>: Weight tensor of hidden-layer to hidden-layer,
-     *       shape is [numDirections* numLayers, 4 * hiddenSize, hiddenSize].
+     *       shape is [numDirections * numLayers, 4 * hiddenSize, hiddenSize].
      * * <b>bias</b>: Bias tensor of input-layer and hidden-layer to hidden-layer,
      *       shape is [numDirections* numLayers, 8 * hiddenSize].
      * * <b>hx</b>: Init state of hidden-layer, shape is [numDirections * numLayers, batchSize, hiddenSize].
@@ -2110,15 +2225,15 @@ typedef enum {
      *
      * Parameters:
      *
-     * * <b>bidirectional</b>: Whether the LSTM operation is bidirectional.
-     * * <b>hasBias</b>: Whether the operation contains bias.
+     * * <b>bidirectional</b>: Boolean, Whether the LSTM operation is bidirectional.
+     * * <b>hasBias</b>: Boolean, Whether the operation contains bias.
      * * <b>inputSize</b>: Size of input tensor.
      * * <b>hiddenSize</b>: Size of hidden state tensor.
      * * <b>numLayers</b>: Layers of LSTM network.
      * * <b>numDirections</b>: Number of directions, value is 2 if direction == bidirectional else 1.
      * * <b>dropout</b>: Dropout probalility of each layer except first-layer.
-     * * <b>zoneoutCell</b>: Probalility that the cell state retains the previous state. Default: 0.
-     * * <b>zoneoutHidden</b>: Probalility that the hidden state retains the previous state. Default: 0.
+     * * <b>zoneoutCell</b>: Probalility that the cell state retains the previous state. Default 0.
+     * * <b>zoneoutHidden</b>: Probalility that the hidden state retains the previous state. Default 0.
      * * <b>projSize</b>: If projSize > 0, will use LSTM with projections of corresponding size. Default: 0.
      *
      * Outputs:
@@ -2127,8 +2242,7 @@ typedef enum {
      *       shape is [seqLen, batchSize, numDirections * realHiddenSize].
      * * <b>hy</b>: The last output tensor of the hidden-layer,
      *       shape is [numDirections * numLayers, batchSize, realHiddenSize].
-     * * <b>cy</b>: The last output tensor of the cell,
-     *       shape is [numDirections * numLayers, batchSize, hiddenSize].
+     * * <b>cy</b>: The last output tensor of the cell, shape is [numDirections * numLayers, batchSize, hiddenSize].
      *
      * @since 12
      */
@@ -2136,7 +2250,7 @@ typedef enum {
 
     /**
      * Returns a tensor of the same type and shape as input tensor with its value clipped to min and max.
-     * Any values less than <b>min</b> are set to <b>min</b>. Any values greater than <b>max</b> are set to <b>max</b>.
+     * Any values less than min are set to min. Any values greater than max are set to max.
      *
      * Inputs:
      *
@@ -2144,26 +2258,26 @@ typedef enum {
      *
      * Parameters:
      *
-     * * <b>max</b>: Maximum value, above which element is replaced by max. It must be a scalar(tensor of empty shape).
      * * <b>min</b>: Minimum value, under which element is replaced by min. It must be a scalar(tensor of empty shape).
+     * * <b>max</b>: Maximum value, above which element is replaced by max. It must be a scalar(tensor of empty shape).
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>-dimensional tensor., with the same data type and shape as the input tensor.
+     * * <b>output</b>: <i>n</i>-dimensional tensor. keep same data type and shape with the input tensor.
      *
      * @since 12
      */
     OH_NN_OPS_CLIP = 76,
 
     /**
-     * Determine whether all emements in a given tensor are non-zero. It returns a boolean tensor
-     * where each element is 'True' if corresponding element in the input tensor is non-zero, and 'False' otherwise.
+     * Determine whether all elements in a given tensor are non-zero. It returns a boolean tensor where each
+     * element is 'true' if corresponding element in the input tensor is non-zero, and 'false' otherwise.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor of shape <b>(N,*)</b>,
+     * * <b>input</b>: <i>n</i>-dimensional tensor of shape (N, *),
      *       where * indicates any number of additional dimensions.
-     * * <b>aixs</b>: scalar or tensor, indices the dimension to be computed.
+     * * <b>axis</b>: scalar or <i>1</i>-dimensional tensor, indices the dimension to be computed.
      *
      * Parameters:
      *
@@ -2171,15 +2285,14 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: 1-dimension or n-dimension tensor with boolean data type.
+     * * <b>output</b>: <i>1</i>-dimensional or <i>n</i>-dimensional tensor with boolean data type.
      *
      * @since 12
      */
     OH_NN_OPS_ALL = 77,
 
     /**
-     * Asserts that the given condition si true.
-     * If <b>condition</b> evalutes to false, print the list of tensors in data.
+     * Asserts that the given condition si true. If condition evalutes to false, print the list of tensors in data.
      * Summerize determines how many entries of the tensors to print.
      *
      * Inputs:
@@ -2204,7 +2317,7 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor with data type of OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
      *
      * Outputs:
      *
@@ -2219,7 +2332,8 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor. The value must be greater than 0.
+     * * <b>input</b>: <i>n</i>-dimensional tensor with data type of OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
+     *       The value must be greater than 0.
      *
      * Outputs:
      *
@@ -2230,12 +2344,12 @@ typedef enum {
     OH_NN_OPS_LOG = 80,
 
     /**
-     * Calculates the logical value of <b>input1</b> and <b>input2</b> element-wise.
+     * Calculates the logical value of input1 AND input2 element-wise.
      *
      * Inputs:
      *
-     * * <b>input1</b>: Tensor of type boolean or convert to boolean implicitly.
-     * * <b>input2</b>: Tensor of type boolean or convert to boolean implicitly.
+     * * <b>input1</b>: <i>n</i>-dimensional tensor. Tensor of type boolean or convert to boolean implicitly.
+     * * <b>input2</b>: <i>n</i>-dimensional tensor. Tensor of type boolean or convert to boolean implicitly.
      *
      * Outputs:
      *
@@ -2247,11 +2361,11 @@ typedef enum {
     OH_NN_OPS_LOGICAL_AND = 81,
 
     /**
-     * Calculates the logical value of NOT <b>input</b> element-wise.
+     * Calculates the logical value of NOT input element-wise.
      *
      * Inputs:
      *
-     * * <b>input</b>: Tensor of type boolean or convert to boolean implicitly.
+     * * <b>input</b>: <i>n</i>-dimensional tensor. Tensor of type boolean or convert to boolean implicitly.
      *
      * Outputs:
      *
@@ -2265,8 +2379,8 @@ typedef enum {
     /**
      * Computes the remainder of dividing the first input tensor by the second input tensor element-wise.
      * Inputs of input1 and input2 comply with the implicit type conversion rules to make the data types consistent.
-     * The inputs must be two tensors or one tensor and one scalar. When the inputs are two tensors,
-     * both dtypes cannot be bool, and the shapes of them could be broadcast.
+     * The inputs must be two tensors or one tensor and one scalar.
+     * When the inputs are two tensors, both dtypes cannot be bool, and the shapes of them could be broadcast.
      * When the inputs are one tensor and one scalar, the scalar could only be a constant.
      *
      * Inputs:
@@ -2274,8 +2388,8 @@ typedef enum {
      * * <b>input1</b>: The remainder of the scalar or tensor, numeric or OH_NN_BOOL type,
      *       or the <i>n</i>-dimensional tensor of the numeric dimension numeric type.
      * * <b>input2</b>: Remainder factor. When the first input is an n-dimensional tensor,
-     *       the second input can be a numeric tensor, a OH_NN_BOOL type, or an n-dimensional
-     *       tensor of a numeric type dimension, and when the first input is a numeric or OH_NN_BOOL tensor,
+     *       the second input can be a numeric tensor, a OH_NN_BOOL type, or an n-dimensional tensor of
+     *       a numeric type dimension, and when the first input is a numeric or OH_NN_BOOL tensor,
      *       the second input must be a tensor of the numeric dimension of the data type.
      *
      * Outputs:
@@ -2292,7 +2406,7 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor with numeric data type。
+     * * <b>input</b>: <i>n</i>-dimensional tensor with numeric data type.
      *
      * Outputs:
      *
@@ -2307,7 +2421,7 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor with data type of OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
      *
      * Outputs:
      *
@@ -2322,11 +2436,11 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor with data type of OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>-dimensional tensor the same data type and shape as the input tensor.
+     * * <b>output</b>: <i>n</i>-dimensional tensor with the same shape and data type as the input tensor.
      *
      * @since 12
      */
@@ -2337,11 +2451,11 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>condition</b>: <i>n</i>-dimensional tensor or scalar. Judging conditions. If the OH_NN_BOOL element
-     *       is True, then the element corresponding to the position of input1 is selected, and if the OH_NN_BOOL
-     *       element is False, the element corresponding to the position of input2 is selected.
-     * * <b>input1</b>: <i>n</i>-dimensional tensor. First tensor to be chosen.
-     * * <b>input2</b>: <i>n</i>-dimensional tensor. Second tensor to be chosen.
+     * * <b>condition</b>: Judging conditions. If the OH_NN_BOOL element is true,
+     *       then the element corresponding to the position of input1 is selected,
+     *       and if the OH_NN_BOOL element is false, the element corresponding to the position of input2 is selected.
+     * * <b>input1</b>: <i>n</i>-dimensional tensor to be chosen.
+     * * <b>input2</b>: Second <i>n</i>-dimensional tensor to be chosen.
      *
      * Outputs:
      *
@@ -2356,32 +2470,34 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>indices</b>: 2-dimensional tensor. Position of an ellement in a sparse tensor.
+     * * <b>indices</b>: <i>2</i>-dimensional tensor. Position of an ellement in a sparse tensor.
      *       Each element value must be non-negative. The shape is (N, 2).
-     * * <b>values</b>: 1-dimensional tensor. The value corresponding to the location of indices. The shape is (N).
-     * * <b>sparseShape</b>: 2-dimensional tensor. The shape of a sparse tensor. The value consists of
-     *       two positive integers, indicating that the shape of the sparse tensor is (N, C).
+     * * <b>values</b>: <i>1</i>-dimensional tensor representing the value corresponding to the location of indices.
+     *       The shape is (N).
+     * * <b>sparseShape</b>: <i>2</i>-dimensional tensor representing the shape of a sparse tensor.
+     *       The value consists of two positive integers, indicating that the shape of the sparse tensor is (N, C).
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor. The data type is the same as values, and the shape is specified by sparseShape.
+     * * <b>output</b>: The converted tensor with the same data type as value,
+     *       and the shape is specified by the parameter sparseShape.
      *
      * @since 12
      */
     OH_NN_OPS_SPARSE_TO_DENSE = 88,
 
     /**
-     * Calculates the logical value of <b>input1</b> or <b>input2</b> element-wise.
+     * Calculates the logical value of input1 OR input2 element-wise.
      *
      * Inputs:
      *
-     * * <b>input1</b>: Tensor of type boolean or convert to boolean implicitly.
-     * * <b>input2</b>: Tensor of type boolean or convert to boolean implicitly.
+     * * <b>input1</b>: <i>n</i>-dimensional tensor. Tensor of type boolean or convert to boolean implicitly.
+     * * <b>input2</b>: <i>n</i>-dimensional tensor. Tensor of type boolean or convert to boolean implicitly.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>n</i>--dimensional tensor. The calculation result of logical-or
-     *       and the numeric type is OH_NN_BOOL.
+     * * <b>output</b>: <i>n</i>-dimensional tensor. The calculation result of logical-or and
+     *       the numeric type is OH_NN_BOOL.
      *
      * @since 12
      */
@@ -2392,11 +2508,11 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor with data type of OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor after ceiled.
+     * * <b>output</b>: <i>n</i>-dimensional tensor with the same shape and data type as the input tensor.
      *
      * @since 12
      */
@@ -2408,12 +2524,13 @@ typedef enum {
      * Inputs:
      *
      * * <b>input</b>: <i>n</i>-dimensional tensor.
-     * * <b>shape</b>: <i>1</i>-dimensional tensor, indices cropped windows dimension.
+     * * <b>shape</b>: <i>1</i>-dimensional tensor, indicating tensor to be cropped.
      *
      * Parameters:
      *
-     * * <b>axis</b>: Cropped dimension.
-     * * <b>offset</b>: Cropped offset per dimension.
+     * * <b>axis</b>: The value range of the axis at the beginning of the clipping region is [0,1,...,r-1],
+     *       where r is the rank of the input tensor, and a negative number indicates the reverse value.
+     * * <b>offset</b>: The start offset of the clipping area.
      *
      * Outputs:
      *
@@ -2425,34 +2542,46 @@ typedef enum {
 
     /**
      * The output of the object detection model is post-processed, including decoding the bounding box,
-     * class probability and score of the model output, and then performing non-maximum suppression (NMS)
-     * to remove the overlapping bounding box, and finally outputting the detection result.
+     * class probability and score of the model output, and then performing non-maximum suppression (NMS) to
+     * remove the overlapping bounding box, and finally outputting the detection result.
      *
      * Inputs:
      *
-     * * <b>bbox</b>: Boxes to be predicted.
-     * * <b>scores</b>: Socres of all boxes.
-     * * <b>anchors</b>: Information of boxes, includes box, variance and coordinates.
+     * * <b>bbox</b>: Bounding box for model output.
+     * * <b>scores</b>: Probability of class score for model output.
+     * * <b>anchors</b>: The coordinates and size information of the candidate boxes used to
+     *       generate the detection box. In the object detection task, the candidate frame refers to a series of
+     *       rectangular boxes preset according to certain rules in the image, which usually have different sizes
+     *       and aspect ratios, which are used for preliminary prediction and screening of the target in the image.
      *
      * Parameters:
-     * * <b>inputSize</b>: The size of the input tensor.
-     * * <b>scale</b>: The scaling factor used to convert the output from
-     *       the normalized form to the original image coordinates.
-     * * <b>nmsIoUThreshold</b>: The threshold of overlapping region during NMS.
-     * * <b>nmsScoreThreshold</b>: The socre threshold used to select target bbox duing NMS.
-     * * <b>maxDetections</b>: Maximum of bboxes per image.
-     * * <b>detectionsPerClass</b>: Maximum of bboxes per class.
-     * * <b>maxClassesPerDetection</b>: Maximum of reserved classes per bboxes.
-     * * <b>numClasses</b>: Number of target classes to be detected.
-     * * <b>useRegularNms</b>: Whether use NMS based on IoU threshold.
-     * * <b>outQuantized</b>: Whether need to quantize.
+     *
+     * * <b>inputSize</b>: the dimensions of the input tensor.
+     * * <b>scale</b>: The scale factor used to convert the output picture from a normalized form to
+     *       the original image coordinates.
+     * * <b>nmsIoUThreshold</b>: Thresholds for non-maximal suppression to remove duplicate detection frames.
+     * * <b>nmsScoreThreshold</b>: Confidence threshold, which is used to filter out
+     *       detection boxes with low confidence.
+     * * <b>maxDetections</b>: The maximum number of detection frames that can be output per image.
+     * * <b>detectionsPerClass</b>: Maximum number of inspections per category.
+     * * <b>maxClassesPerDetection</b>: The maximum number of detection categories in each detection box.
+     * * <b>numClasses</b>: Total number of categories detected.
+     * * <b>useRegularNms</b>: bool值</b>: bool value, whether to use the non-maximum suppression algorithm based on
+     *       IoU threshold, when true, use the NMS algorithm based on IoU threshold to filter the overlapping target
+     *       boxes and retain the target box with the highest score, when false, the NMS algorithm based on IoU
+     *       threshold is not applicable, and the target boxes are sorted according to the score,
+     *       and the target box with the highest score is retained.
+     * * <b>outQuantized</b>: bool value, which indicates whether the output needs to be quantized or not.
      *
      * Outputs:
      *
-     * * <b>bboxes</b>: The corrdinates of target detected bboxes.
-     * * <b>classes</b>: The target class index of target detected bboxes.
-     * * <b>confidences</b>: The score of target detected bboxes.
-     * * <b>numDetections</b>: The number of target detected bboxes.
+     * * <b>bboxes</b>: <i>3</i>-dimensional tensor with an inner array representing the coordinate
+     *       values of the object detection box.
+     * * <b>classes</b>: <i>2</i>-dimensional tensor with an internal numeric value representing
+     *       the classification index corresponding to each detection box.
+     * * <b>confidences</b>: <i>2</i>-dimensional tensor with an internal numerical value indicating
+     *       the confidence level of the detected object.
+     * * <b>numDetections</b>: <i>1</i>-dimensional tensor, the number of test results.
      *
      * @since 12
      */
@@ -2463,104 +2592,104 @@ typedef enum {
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor with data type of OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
      *
      * Outputs:
      *
-     * * <b>output</b>: A tensor after floored.
+     * * <b>output</b>: <i>n</i>-dimensional tensor with the same shape and data type as the input tensor.
      *
      * @since 12
      */
     OH_NN_OPS_FLOOR = 93,
 
     /**
-     * Calculate the L2-normalize of the input using the given axis.
+     * L2-regularize the input tensor according to the specified axis.
      *
      * Inputs:
      *
-     * * <b>input</b>: Input to compute the L2-normalization.
+     * * <b>input：<i>n</i>-dimensional tensor that needs to be L2-normalized.
      *
      * Parameters:
      *
-     * * <b>axis</b>: The axis on which to apply normalization, -1 means last axis, default: 0.
-     * * <b>epsilon</b>: Value added for numerical stability. default: 1e-6;
+     * * <b>axis</b>: The specified dimension for regularization, -1 for the last dimension.
+     * * <b>epsilon</b>: To maintain the stability of the calculation, add a small value to the denominator,
+     *       which defaults to 1e-6.
      * * <b>activationType</b>: Activation function type.
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same type and shape as input <b>input</b>.
+     * * <b>output</b>: The output tensor with the same data type and shape as the input.
      *
      * @since 12
      */
     OH_NN_OPS_L2_NORMALIZE = 94,
 
     /**
-     * Computes the log-softmax function to n-dimensional input tensor.
-     * The input is transformed by the Softmax function and then by the log function to lie in range[-inf,0).
+     * Perform an exponential operation on each element of the input tensor,
+     * and then normalize the result to obtain a probability distribution vector.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <i>2</i>-dimensional tensors with the shape of[batchSize, numClasses] and
+     *       the data types is OH_NN_FLOAT64, OH_NN_FLOAT32 or OH_NN_FLOAT16.
      *
      * Parameters:
      *
-     * * <b>axis</b>: The axis to apply LogSoftmax operation, -1 means the last dimension.
+     * * <b>axis</b>: scalar data. The dimensions to be calculated.
      *
      * Outputs:
      *
-     * * <b>output</b>: Tensor output. Has the same data type and shape as input.
+     * * output</b>: <i>2</i>-dimensional tensor, the probability vector after the completion of the calculation.
      *
      * @since 12
      */
     OH_NN_OPS_LOG_SOFTMAX = 95,
 
     /**
-     * Normalize over local input regions.
+     * Normalize the local response to the input tensor.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional tensor.
+     * * <b>input</b>: 4-dimensional tensors, input tensors to be normalized.
      *
      * Parameters:
      *
-     * * <b>depthRadius</b>: Half-width of the 1-dimension normalization window.
-     * * <b>bias</b>: Offset.
-     * * <b>alpha</b>: Scale factor.
-     * * <b>beta</b>: Exponent.
-     * * <b>normRegion</b>: Specifies normalization region. Options: "ACROSS_CHNNEL".
+     * * <b>depthRadius</b>: Scalar, the half-width of the normalized window.
+     * * <b>bias</b>: The offset, which is usually positive to avoid the dividing by zero problem, defaults to 1.
+     * * <b>alpha</b>: Scale factor, default is 1.
+     * * <b>beta</b>: Exponential variable, default is 0.5.
+     * * <b>normRegion</b>: the normalized region, default to 0, which means that the normalized region
+     *       is "ACROSS_CHANNELS", which is currently only supported.
      *
      * Outputs:
      *
-     * * <b>output</b>: Result output tensor.
+     * * <b>output</b>: The normalized output tensor, shape and data type are the same as the input.
      *
      * @since 12
      */
     OH_NN_OPS_LRN = 96,
 
     /**
-     * Calculates the minimum of <b>input1</b> and <b>input2</b> element-wise. The inputs of <b>input1</b> and
-     * <b>input2</b> comply with the implicit type conversion rules to make the data types are consistent.
-     *
-     * The input must be two tensors or one tensor and one scalar. When the input is two tensors, the data types
-     * cannot be Boolean at the same time, and their shapes can be broadcast to the same size. When the inputs are
-     * one tensor and one scalar, the scalar must be a constant.
+     * To calculate the minimum value of two tensors element by element, the input must be two tensors,
+     * or a tensor and a scalar. When the input is two tensors, the data types cannot be Boolean at the same time,
+     * and their shapes can be broadcast to the same size. When the inputs are one tensor and one scalar,
+     * the scalar must be a constant.
      *
      * Inputs:
      *
-     * * <b>input1</b>: <i>n</i>-dimensional tensor, whose data type can be number or Boolean.
-     * * <b>input2</b>: <i>n</i>-dimensional tensor, whose data type can be number or Boolean.
+     * * <b>input1</b>: <i>n</i>-dimensional tensor, the data type can be a numeric type or a bool value.
+     * * <b>input2</b>: <i>n</i>-dimensional tensor, the data type can be a numeric type or a bool value.
      *
      * Outputs:
      *
-     * * <b>output</b>: Minimum value of the elements of the two tensors.
+     * * <b>output</b>: The comparison results in tensors, shapes and data types and inputs are the same.
      *
      * @since 12
      */
     OH_NN_OPS_MINIMUM = 97,
 
     /**
-     * Calculate the rank of a tensor.
-     * The rank of a tensor is the number of indices required to uniquely select each element of the tensor.
+     * Calculate the rank of input tensors.
      *
      * Inputs:
      *
@@ -2568,33 +2697,35 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor. 0-D int32 Tensor representing the rank of input.
+     * * <b>output</b>: The int32 result tensor of 0 dimensions, representing the rank of the input.
      *
      * @since 12
      */
     OH_NN_OPS_RANK = 98,
 
     /**
-     * Calculates the maximum value for input tensor along the specified dimension. If <b>keepDims</b> is set to
-     * <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
-     * the number of dimensions is retained.
+     * Calculates the maximum value for a tensor along the specified dimension. If <b>keepDims</b>
+     * is set to <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b>
+     * is set to <b>true</b>, the number of dimensions is retained.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional input tensor, where <i>n</i> is less than 8.
+     * * <b>input</b>: <i>n</i>-dimensional tensor, where <i>n</i> is less than 8.
      * * <b>axis</b>: dimension used to calculate the maximum value. The value is a 1D tensor.
      *       The value range of each element in <b>axis</b> is [–n, n).
      *
      * Parameters:
      *
-     * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     * * <b>keepDims</b>: whether to retain the dimension. The value is a Boolean value. When its value is <b>true</b>,
+     *       the number of output dimensions is the same as that of the input. When its value is <b>false</b>,
+     *       the number of output dimensions is reduced.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be
+     *       performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
+     * * <b>output</b>:<i>m</i>-dimensional tensor. whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
      * @since 12
@@ -2602,26 +2733,28 @@ typedef enum {
     OH_NN_OPS_REDUCE_MAX = 99,
 
     /**
-     * Calculates the minimum value for input tensor along the specified dimension. If <b>keepDims</b> is set to
-     * <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
+     * Calculates the minimum value for a tensor along the specified dimension. If <b>keepDims</b> is set
+     * to <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
      * the number of dimensions is retained.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional input tensor, where <i>n</i> is less than 8.
-     * * <b>axis</b>: dimension used to calculate the minimum value. The value is a 1D tensor.
+     * * <b>input</b>: <i>n</i>-dimensional tensor, where <i>n</i> is less than 8.
+     * * <b>axis</b>: dimension used to calculate the maximum value. The value is a 1D tensor.
      *       The value range of each element in <b>axis</b> is [–n, n).
      *
      * Parameters:
      *
-     * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     * * <b>keepDims</b>: whether to retain the dimension. The value is a Boolean value. When its value is <b>true</b>,
+     *       the number of output dimensions is the same as that of the input. When its value is <b>false</b>,
+     *       the number of output dimensions is reduced.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be
+     *       performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
+     * * <b>output</b>:<i>m</i>-dimensional tensor. whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
      * @since 12
@@ -2629,26 +2762,28 @@ typedef enum {
     OH_NN_OPS_REDUCE_MIN = 100,
 
     /**
-     * Calculates the numerical sum value for input tensor along the specified dimension. If <b>keepDims</b> is set to
-     * <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
+     * Calculates the sum value for a tensor along the specified dimension. If <b>keepDims</b> is set to <b>false</b>,
+     * the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
      * the number of dimensions is retained.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>n</i>-dimensional input tensor, where <i>n</i> is less than 8.
+     * * <b>input</b>: <i>n</i>-dimensional tensor, where <i>n</i> is less than 8.
      * * <b>axis</b>: dimension used to calculate the sum value. The value is a 1D tensor.
      *       The value range of each element in <b>axis</b> is [–n, n).
      *
      * Parameters:
      *
-     * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     * * <b>keepDims</b>: whether to retain the dimension. The value is a Boolean value. When its value is <b>true</b>,
+     *       the number of output dimensions is the same as that of the input. When its value is <b>false</b>,
+     *       the number of output dimensions is reduced.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be
+     *       performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      *
-     * * <b>output</b>: <i>m</i>-dimensional output tensor whose data type is the same as that of the input.
+     * * <b>output</b>: <i>m</i>-dimensional tensor. whose data type is the same as that of the input.
      *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
      * @since 12
@@ -2656,7 +2791,7 @@ typedef enum {
     OH_NN_OPS_REDUCE_SUM = 101,
 
     /**
-     * Calculate half to even of a tensor element-wise.
+     * The input tensor is rounded to an approximate value.
      *
      * Inputs:
      *
@@ -2664,55 +2799,55 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same shape as the input.
+     * * <b>output</b>: The resulting tensors, data types and shapes are consistent with the inputs.
      *
      * @since 12
      */
     OH_NN_OPS_ROUND = 102,
 
     /**
-     * Scatters a tensor into a new tensor depending on the specified indices.
+     * Scatter the updated values to the new Tensor based on the specified index.
      *
      * Inputs:
      *
-     * * <b>indices</b>: The index of scattering in the new tensor with int32 or int64 data type.
-     *       The rank of indices must be at least 2 and indicesShape[-1] <= len(shape).
-     * * <b>updates</b>: The source tensor to be scattered. It has shape indicesShape[:-1]+shape[indicesShape[-1]:].
-     * * <b>shape</b>: The shape of the output tensor, has the same data type as <b>indices</b>.
+     * * <b>indices</b>: the index values scattered in the new tensor, the numeric type is OH_NN_INT64 or OH_NN_INT32,
+     *       the index rank is at least 2,and the value of the last dimension of
+     *       the indices is less than the size of the input shape.
+     * * <b>updates</b>: the updated tensor.
+     * * <b>shape</b>: Specifies the shape of the output tensor.The data type is the same as the input indices.
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same type as <b>update</b> and the same shape as <b>shape</b>.
+     * * <b>output</b>: The updated tensor, the data type is the same as the input <b>updates</b>,
+     *       and the shape is the same as the input <b>shape</b>.
      *
      * @since 12
      */
     OH_NN_OPS_SCATTER_ND = 103,
 
     /**
-     * Rearrange blocks of spatial data into depth.
-     * The output tensor’s height dimension is height / blocksize;
-     * The output tensor’s weight dimension is weight / blocksize;
-     * The depth of output tensor is blocksize * blocksize * inputDepth;
-     * The input tensor’s height and width must be divisible by blocksize.
+     * Rearrange the spatial dimension data block of the input tensor to the depth dimension.
      *
      * Inputs:
      *
-     * * <b>input</b>: <i>4</i>-dimensional tensor.
+     * * <b>input</b>: <b>4</b>-dimensional tensor, NHWC or NCHW format, currently only NHWC is supported,
+     *       the shape is [batchSize, height, width, channels].
      *
      * Parameters:
      *
-     * * <b>blocksize</b>: The block size used to divide spatial data. It must be >= 2.
+     * * <b>blockSize</b>: Specifies the size of the converted block, which must be an integer.
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same dataType as the input.
+     * * <b>output</b>: <i>4</i>-dimensional tensor, the format is the same as the input,
+     *       and the shape is [batchSize, height / blockSize, weight / blockSize, channel * blockSize^2].
      *
      * @since 12
      */
     OH_NN_OPS_SPACE_TO_DEPTH = 104,
 
     /**
-     * Swish activation function
+     * Calculate Swish activation of input tensor element-wise.
      *
      * Inputs:
      *
@@ -2720,40 +2855,43 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: Output tensor.
+     * * <i>n</i>-dimensional tensor with the same data type and shape of the input tensor.
      *
      * @since 12
      */
     OH_NN_OPS_SWISH = 105,
 
     /**
-     * Calculates the L2 norm of the input tensor along the specified axis,
-     * replacing other elements of the dimension with the L2 norm value of the specified dimension to
-     * remove the dimension, or to reduce the dimension size to 1. Control whether the dimensions of the
-     * output and input are the same by specifying the keepDims parameter.
+     * Calculates the L2-Norm value for a tensor along the specified dimension. If <b>keepDims</b> is
+     * set to <b>false</b>, the number of dimensions is reduced for the input; if <b>keepDims</b> is set to <b>true</b>,
+     * the number of dimensions is retained.
      *
      * Inputs:
      *
-     * * <b>input</b>: input tensor.
-     * * <b>axis</b>: Dimensions to perform L2-Norm calculations.
+     * * <b>input</b>: <i>n</i>-dimensional tensor, where <i>n</i> is less than 8.
+     * * <b>axis</b>: dimension used to calculate the sum value. The value is a 1D tensor.
+     *       The value range of each element in <b>axis</b> is [–n, n).
      *
      * Parameters:
      *
-     * * <b>keepDims</b>: indicates whether to retain the dimension. The value is a Boolean value.
-     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be performed
-     *       until the last axis.
+     * * <b>keepDims</b>: whether to retain the dimension. The value is a Boolean value. When its value is <b>true</b>,
+     *       the number of output dimensions is the same as that of the input. When its value is <b>false</b>,
+     *       the number of output dimensions is reduced.
+     * * <b>reduceToEnd</b>: boolean value, indicates whether the reduce operation needs to be
+     *       performed until the last axis.
      * * <b>coeff</b>: A OH_NN_FLOAT32 scalar that represents the scale factor of the output.
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same dataType as the input.
+     * * <b>output</b>: <i>m</i>-dimensional tensor. whose data type is the same as that of the input.
+     *       If <b>keepDims</b> is <b>false</b>, m<n. If <b>keepDims</b> is <b>true</b>, m==n.
      *
      * @since 12
      */
     OH_NN_OPS_REDUCE_L2 = 106,
 
     /**
-     * HardSigmoid activation function. Calculate the output by element.
+     * Calculates the <b>HardSigmoid</b> activation value of the input tensor element-wise.
      *
      * Inputs:
      *
@@ -2761,27 +2899,29 @@ typedef enum {
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same shape and dataType as the input.
+     * * <b>output</b>: <i>n</i>-dimensional tensor with the same data type and shape of the input tensor.
      *
      * @since 12
      */
     OH_NN_OPS_HARD_SIGMOID = 107,
 
     /**
-     * Gets the element at the location specified by the input tensor according to the index.
+     * Returns the slice of the input tensor based on the specified index.
      *
      * Inputs:
      *
      * * <b>input</b>: <i>n</i>-dimensional tensor.
-     * * <b>indices</b>: index tensor.
+     * * <b>indices</b>: <i>m</i>-dimensional tensor, the numeric type is OH_NN_INT64 or OH_NN_INT32.
      *
      * Outputs:
      *
-     * * <b>output</b>: Result tensor with the same shape as the input.
+     * * <b>output</b>: <i>(m-1 + n-indicesShape[-1])</i>-dimensional tensor. The data type is the same as the input,
+     *       and the shape is a splicing of the front (m-1) dimension of the indices and the back *n - size of
+     *       the last dimension of the input* dimension.
      *
      * @since 12
      */
-    OH_NN_OPS_GATHER_ND = 108,
+    OH_NN_OPS_GATHER_ND = 108
 } OH_NN_OperationType;
 
 /**
@@ -2789,8 +2929,8 @@ typedef enum {
  *
  * Tensors are usually used to set the input, output, and operator parameters of a model. When a tensor is used
  * as the input or output of a model (or operator), set the tensor type to {@link OH_NN_TENSOR}.
- * When the tensor is used as an operator parameter, select an enumerated value other than {@link OH_NN_TENSOR} as the
- * tensor type. Assume that the <b>pad</b> parameter of the {@link OH_NN_OPS_CONV2D} operator is being set.
+ * When the tensor is used as an operator parameter, select an enumerated value other than {@link OH_NN_TENSOR}
+ * as the tensor type. Assume that the <b>pad</b> parameter of the {@link OH_NN_OPS_CONV2D} operator is being set.
  * You need to set the <b>type</b> attribute of the {@link OH_NN_Tensor} instance to {@link OH_NN_CONV2D_PAD}.
  * The settings of other operator parameters are similar. The enumerated values are named
  * in the format OH_NN_{<i>Operator name</i>}_{<i>Attribute name</i>}.
@@ -3510,10 +3650,10 @@ typedef struct OH_NN_UInt32Array {
 /**
  * @brief Quantization information.
  *
- * In quantization scenarios, the 32-bit floating-point data type is quantized into
- * the fixed-point data type according to the following formula:
+ * In quantization scenarios, the 32-bit floating-point data type is quantized into the fixed-point data type according
+ * to the following formula:
  \f[
-    q = clamp(round(\frac{r}{s}+z), q_{min}, q_{max})
+ q = clamp(round(\frac{r}{s}+z), q_{min}, q_{max})
  \f]
  * s and z are quantization parameters, which are stored by <b>scale</b> and <b>zeroPoint</b>
  * in {@link OH_NN_QuantParam}.
@@ -3521,20 +3661,20 @@ typedef struct OH_NN_UInt32Array {
  * q_max is an upper bound of a quantization result. The calculation method is as follows:
  *
  \f[
-  \text{clamp}(x,min,max) =
-  \begin{cases}
-       q_{min} = -(1 << (numBits - 1)) \\
-       q_{max} = (1 << (numBits - 1)) \\
-   \end{cases}
+ \text{clamp}(x,min,max) =
+ \begin{cases}
+ q_{min} = -(1 << (numBits - 1)) \\
+ q_{max} = (1 << (numBits - 1)) \\
+ \end{cases}
  \f]
  * The clamp function is defined as follows:
  \f[
-  \text{clamp}(x,min,max) =
-  \begin{cases}
-       \text{max} & \text{ if } x > \text{ max } \\
-       \text{min} & \text{ if } x < \text{ min } \\
-       x & \text{ otherwise } \\
-   \end{cases}
+ \text{clamp}(x,min,max) =
+ \begin{cases}
+ \text{max} & \text{ if } x > \text{ max } \\
+ \text{min} & \text{ if } x < \text{ min } \\
+ x & \text{ otherwise } \\
+ \end{cases}
  \f]
  *
  * @deprecated since 11
@@ -3544,10 +3684,11 @@ typedef struct OH_NN_UInt32Array {
  */
 typedef struct OH_NN_QuantParam {
     /** Specifies the length of the numBits, scale, and zeroPoint arrays. In the per-layer quantization scenario,
-     *  <b>quantCount</b> is usually set to <b>1</b>.
-     *       That is, all channels of a tensor share a set of quantization parameters.
-     *  In the per-channel quantization scenario, <b>quantCount</b> is usually the same as the number of tensor
-     *  channels, and each channel uses its own quantization parameters.
+     *  <b>quantCount</b> is usually set to <b>1</b>. That is, all channels of a tensor share a set of
+     *  quantization parameters. In the per-channel quantization scenario, <b>quantCount</b> is usually the same as the
+     *  number of tensor channels, and each channel uses its own quantization parameters.
+     *
+     * @since 9
      */
     uint32_t quantCount;
     /** Number of quantization bits */
@@ -3582,6 +3723,7 @@ typedef struct OH_NN_Tensor {
      *  When the tensor is used as the input or output of the model, set <b>type</b> to {@link OH_NN_TENSOR}.
      *  When a tensor is used as an operator parameter, select any enumerated value except {@link OH_NN_TENSOR}
      *  from {@link OH_NN_TensorType}.
+     * @since 9
      */
     OH_NN_TensorType type;
 } OH_NN_Tensor;

@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Drm
  * @{
@@ -22,10 +21,10 @@
  * @since 11
  * @version 1.0
  */
-
 /**
  * @file native_drm_err.h
- * @brief Defines the Drm errors.
+ * @brief The file declares the DRM error codes.
+ * 
  * @library libnative_drm.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
@@ -43,66 +42,67 @@ extern "C" {
 #endif
 
 /**
- * @brief DRM error code
+ * @brief Enumerates the DRM error codes.
+ * 
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
 typedef enum Drm_ErrCode {
     /**
-     * the operation completed successfully.
+     * Operation successful.
      */
     DRM_ERR_OK = 0,
     /**
-     * DRM CAPI ERROR BASE.
+     * Base error code.
      */
     DRM_CAPI_ERR_BASE = 24700500,
     /**
-     * no memory.
+     * Insufficient memory.
      */
     DRM_ERR_NO_MEMORY = DRM_CAPI_ERR_BASE + 1,
     /**
-     * operation not be permitted.
+     * Operation not permitted.
      */
     DRM_ERR_OPERATION_NOT_PERMITTED = DRM_CAPI_ERR_BASE + 2,
     /**
-     * invalid argument.
+     * Invalid parameter.
      */
     DRM_ERR_INVALID_VAL = DRM_CAPI_ERR_BASE + 3,
     /**
-     * IO error.
+     * I/O error.
      */
     DRM_ERR_IO = DRM_CAPI_ERR_BASE + 4,
     /**
-     * network timeout.
+     * Network timeout.
      */
     DRM_ERR_TIMEOUT = DRM_CAPI_ERR_BASE + 5,
     /**
-     * unknown error.
+     * Unknown error.
      */
     DRM_ERR_UNKNOWN = DRM_CAPI_ERR_BASE + 6,
     /**
-     * drm service died.
+     * DRM service unavailable.
      */
     DRM_ERR_SERVICE_DIED = DRM_CAPI_ERR_BASE + 7,
     /**
-     * not support this operation in this state.
+     * Invalid operation state.
      */
     DRM_ERR_INVALID_STATE = DRM_CAPI_ERR_BASE + 8,
     /**
-     * unsupported interface.
+     * Unsupported operation.
      */
     DRM_ERR_UNSUPPORTED = DRM_CAPI_ERR_BASE + 9,
     /**
-     * Meet max MediaKeySystem num limit.
+     * Too many MediaKeySystem instances.
      */
     DRM_ERR_MAX_SYSTEM_NUM_REACHED = DRM_CAPI_ERR_BASE + 10,
     /**
-     * Meet max MediaKeySession num limit.
+     * Too many MediaKeySession instances.
      */
     DRM_ERR_MAX_SESSION_NUM_REACHED = DRM_CAPI_ERR_BASE + 11,
     /**
-     * extend err start.
+     * Extended error codes start.
      */
     DRM_ERR_EXTEND_START  = DRM_CAPI_ERR_BASE + 100,
 } Drm_ErrCode;

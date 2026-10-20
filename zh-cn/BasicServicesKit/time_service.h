@@ -20,13 +20,14 @@
  * @addtogroup TimeService
  * @{
  *
- * @brief Declares the time zone capabilities provided by TimeService to an application.
+ * @brief 描述TimeService向应用提供时间时区能力。
+ * 典型使用场景：应用获取当前系统时区ID，用于时间相关的业务处理。
  * @since 12
  */
 /**
  * @file time_service.h
  *
- * @brief Declares the APIs for obtaining the time zone information.
+ * @brief 声明获取时间时区信息的API。
  * @library libtime_service_ndk.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.MiscServices.Time
@@ -51,12 +52,12 @@ typedef enum TimeService_ErrCode {
     TIMESERVICE_ERR_OK = 0,
 
     /**
-     * 获取系统参数失败。
+     * 获取系统参数失败。请稍后重试，若问题持续存在请检查系统服务状态。
      */
     TIMESERVICE_ERR_INTERNAL_ERROR = 13000001,
 
     /**
-     * 无效的参数。
+     * 无效的参数。请检查timeZone是否为NULL指针，或时区名称（不包括结束字符（'\0'））的大小是否大于或等于len。
      */
     TIMESERVICE_ERR_INVALID_PARAMETER = 13000002,
 } TimeService_ErrCode;
@@ -64,11 +65,13 @@ typedef enum TimeService_ErrCode {
 /**
  * @brief 获取当前系统时区。
  *
- * @param timeZone 用于写入一个时区ID字符串的缓冲区，成功时写入当前系统时区ID字符串，失败时写入空字符串，字符串以'\0'结尾。
- * @param len 参数timeZone所指向缓冲区的容量，单位为字节，包含结束字符'\0'。当前时区字符串没有最大长度规格，建议分配至少31字节。
+ * @param timeZone 时区ID字符数组，成功时写入当前系统时区ID字符串，当timeZone不为NULL且操作失败时写入空字符串，字符串以'\0'结尾。
+ * @param len 时区ID字符数组分配的内存大小，当前时区字符串没有最大长度规格，建议申请足够多的内存，至少不能低于31字节。
+ * 当len小于或等于实际时区字符串长度（不含结束符）时，返回TIMESERVICE_ERR_INVALID_PARAMETER。
  * @return 返回`TIMESERVICE_ERR_OK`表示成功。
- *     <br>返回`TIMESERVICE_ERR_INTERNAL_ERROR`表示获取系统参数失败。
+ *     <br>返回`TIMESERVICE_ERR_INTERNAL_ERROR`表示获取系统参数失败。请稍后重试，若问题持续存在请检查系统服务状态。
  *     <br>返回`TIMESERVICE_ERR_INVALID_PARAMETER`表示timeZone为NULL指针或时区名称（不包括结束字符（'\0'））的大小大于或等于len。
+ *     请确保timeZone为有效指针且len大于时区ID的实际长度。
  * @syscap SystemCapability.MiscServices.Time
  * @since 12
  */

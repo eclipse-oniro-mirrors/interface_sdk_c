@@ -60,6 +60,13 @@ typedef enum {
     AUDIOCOMMON_RESULT_SUCCESS = 0,
 
     /**
+     * @error This means that caller does not have the required permission.
+     *
+     * @since 26.0.0
+     */
+    AUDIOCOMMON_RESULT_ERROR_PERMISSION_DENIED = 201,
+
+    /**
      * @error This means that the input parameter is invalid.
      */
     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101,
@@ -85,6 +92,13 @@ typedef enum {
     AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,
 
     /**
+     * @error This means the input audio data does not match the required frame length.
+     *
+     * @since 26.0.0
+     */
+    AUDIOCOMMON_RESULT_ERROR_FRAME_LENGTH_MISMATCH = 6800106,
+
+    /**
      * @error This means the stream limit is reached.
      */
     AUDIOCOMMON_RESULT_ERROR_STREAM_LIMIT = 6800201,
@@ -93,6 +107,24 @@ typedef enum {
      * @error A system error has occurred.
      */
     AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301,
+
+    /**
+     * @brief System service process terminated.
+     * @since 26.0.1
+     */
+    AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED = 6800302,
+
+    /**
+     * @brief Required network conditions not met.
+     * @since 26.0.1
+     */
+    AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET = 6800501,
+
+    /**
+     * @brief Insufficient storage space.
+     * @since 26.0.1
+     */
+    AUDIOCOMMON_RESULT_ERROR_STORAGE_NOT_ENOUGH = 6800502
 } OH_AudioCommon_Result;
 
 /**

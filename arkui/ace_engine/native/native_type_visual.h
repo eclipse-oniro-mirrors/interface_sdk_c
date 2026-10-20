@@ -25,8 +25,7 @@
 /**
  * @file native_type_visual.h
  *
- * @brief Defines the visual effect types for the native module.
- *
+ * @brief Defines the visual types for the native module.
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
@@ -47,8 +46,8 @@ extern "C" {
 
 
 /**
- * @brief Defines a fourth-order matrix object.
- *
+ * @brief Defines a fourth-order matrix object used to describe matrix transformation operations such as translation,
+ * rotation, and scaling of UI components. For details, see {@link ArkUI_NativeModule}.
  * @since 24
  */
 typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
@@ -102,8 +101,7 @@ typedef enum {
 } ArkUI_ShadowStyle;
 
 /**
- * @brief Enumerates the animation curves.
- *
+ * @brief Enumerates animation curves.
  * @since 12
  */
 typedef enum {
@@ -162,8 +160,7 @@ typedef enum {
 } ArkUI_AnimationCurve;
 
 /**
- * @brief Enumerates the animation playback directions.
- *
+ * @brief Enumerates animation playback modes.
  * @since 12
  */
 typedef enum {
@@ -190,8 +187,7 @@ typedef enum {
 } ArkUI_AnimationPlayMode;
 
 /**
- * @brief Enumerates the blur styles.
- *
+ * @brief Enumerates blur styles.
  * @since 12
  */
 typedef enum {
@@ -271,8 +267,7 @@ typedef enum {
 } ArkUI_BlurStyleActivePolicy;
 
 /**
- * @brief Enumerates the blend modes.
- *
+ * @brief Enumerates blend modes.
  * @since 12
  */
 typedef enum {
@@ -429,9 +424,8 @@ typedef enum {
 } ArkUI_ColorStrategy;
 
 /**
- * @brief Enumerates the mask types. A mask is a means to limit the display area of a component. It uses a specific
- * shape to crop the component content so that only the content in the mask area is visible.
- *
+ * @brief Enumerates mask types. A mask is a means to limit the display area of a component. It uses a specific shape
+ * to crop the component content so that only the content in the mask area is visible.
  * @since 12
  */
 typedef enum {
@@ -458,8 +452,7 @@ typedef enum {
 } ArkUI_MaskType;
 
 /**
- * @brief Enumerates the clipping region types.
- *
+ * @brief Enumerates clipping region types.
  * @since 12
  */
 typedef enum {
@@ -482,8 +475,7 @@ typedef enum {
 } ArkUI_ClipType;
 
 /**
- * @brief Enumerates custom shape types.
- *
+ * @brief Enumerates shape types.
  * @since 12
  */
 typedef enum {
@@ -506,8 +498,7 @@ typedef enum {
 } ArkUI_ShapeType;
 
 /**
- * @brief Enumerates the gradient directions.
- *
+ * @brief Enumerates linear gradient directions.
  * @since 12
  */
 typedef enum {
@@ -717,8 +708,7 @@ typedef enum {
 } ArkUI_RenderFit;
 
 /**
- * @brief Defines the status before and after execution of the animation in the current playback direction.
- *
+ * @brief Enumerates the states before and after execution of the frame-by-frame animation.
  * @since 12
 */
 typedef enum {
@@ -745,8 +735,7 @@ typedef enum {
 } ArkUI_AnimationFillMode;
 
 /**
- * @brief Enumerates the animation playback modes.
- *
+ * @brief Enumerates animation playback directions.
  * @since 12
  */
 typedef enum {
@@ -773,49 +762,245 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
- * @brief Defines the translation options for component transition.
+ * @brief Enumerates the animatable property types for property animations, keyframe animations, and path animations.
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief Translation in both x and y directions.
+     * When setting or getting this property value, requires two f32 {@link ArkUI_NumberValue} elements, for
+     * the x and y translation amounts respectively, in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION = 0,
+    /**
+     * @brief Translation in the x direction.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element, in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_X = 1,
+    /**
+     * @brief Translation in the y direction.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element, in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Y = 2,
+    /**
+     * @brief Translation in the z direction.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element, in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_TRANSLATION_Z = 3,
+    /**
+     * @brief Scale in both x and y directions.
+     * When setting or getting this property value, requires two f32 {@link ArkUI_NumberValue} elements, for
+     * the x and y scale ratios respectively.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE = 4,
+    /**
+     * @brief Scale in the x direction.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE_X = 5,
+    /**
+     * @brief Scale in the y direction.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_SCALE_Y = 6,
+    /**
+     * @brief Rotation angle for all axes.
+     * When setting or getting this property value, requires three f32 {@link ArkUI_NumberValue} elements,
+     * for the x, y, and z axis rotation angles respectively, in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION = 7,
+    /**
+     * @brief Rotation angle around the x-axis.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element, in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_X = 8,
+    /**
+     * @brief Rotation angle around the y-axis.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element, in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Y = 9,
+    /**
+     * @brief Rotation angle around the z-axis.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element, in degrees.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_ROTATION_Z = 10,
+    /**
+     * @brief Opacity of the component.
+     * When setting or getting this property value, requires one f32 {@link ArkUI_NumberValue} element.
+     * Value range: [0, 1].
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_OPACITY = 11,
+    /**
+     * @brief Bounds (position and size).
+     * When setting or getting this property value, requires four i32 {@link ArkUI_NumberValue} elements,
+     * for the x coordinate, y coordinate, width, and height respectively, in px. Value range of width and
+     * height: greater than or equal to 0.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS = 12,
+    /**
+     * @brief Position x within bounds.
+     * When setting or getting this property value, requires one i32 {@link ArkUI_NumberValue} element, in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_X = 13,
+    /**
+     * @brief Position y within bounds.
+     * When setting or getting this property value, requires one i32 {@link ArkUI_NumberValue} element, in px.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_Y = 14,
+    /**
+     * @brief Width of the bounds.
+     * When setting or getting this property value, requires one i32 {@link ArkUI_NumberValue} element, in px.
+     * Value range: greater than or equal to 0.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_WIDTH = 15,
+    /**
+     * @brief Height of the bounds.
+     * When setting or getting this property value, requires one i32 {@link ArkUI_NumberValue} element, in px.
+     * Value range: greater than or equal to 0.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BOUNDS_HEIGHT = 16,
+    /**
+     * @brief Background color of the component.
+     * When setting or getting this property value, requires one u32 {@link ArkUI_NumberValue} element.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_PROPERTY_BACKGROUND_COLOR = 17,
+} OH_ArkUI_AnimationPropertyType;
+
+/**
+ * @brief Enumerates the playback states of an animation group.
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief The animation group is running.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_RUNNING = 0,
+    /**
+     * @brief The animation group is paused.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_PAUSED = 1,
+    /**
+     * @brief The animation group is inactive, for example, when the animation has finished or when the group is
+     * in an invalid state.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_GROUP_STATE_INACTIVE = 2,
+} OH_ArkUI_AnimationGroupState;
+
+/**
+ * @brief Enumerates the finish modes of an animation group.
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief Finishes the animation group and jumps to the start state.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_START = 0,
+    /**
+     * @brief Finishes the animation group and stays at the current value.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_CURRENT = 1,
+    /**
+     * @brief Finishes the animation group and jumps to the end state.
+     * @since 26.0.1
+     */
+    OH_ARKUI_ANIMATION_FINISH_TO_END = 2,
+} OH_ArkUI_AnimationFinishMode;
+
+/**
+ * @brief Defines the translation options for component transition, used to set the translation distance of a component
+ * in the x, y, and z directions during the transition.
  *
  * @since 12
  */
 typedef struct {
     /**
-     * Translation distance along the x-axis.
+     * X-axis translation distance, in vp. Value principles: A positive value indicates translation to the right, a
+     * negative value indicates translation to the left, and **0** indicates no translation. Default value: **0**.
      */
     float x;
     /**
-     * Translation distance along the y-axis.
+     * Y-axis translation distance, in vp. Value principles: A positive value indicates translation downward, a negative
+     * value indicates translation upward, and **0** indicates no translation. Default value: **0**.
      */
     float y;
     /**
-     * Translation distance along the z-axis.
+     * Z-axis translation distance, in vp. Value principles: A positive value indicates translation toward the observer,
+     * a negative value indicates translation away from the observer, and **0** indicates no translation. When moving
+     * along the z-axis, since the observation point remains unchanged, the component will be scaled up as the value of
+     * **z** approaches the observation point and scaled in as it moves away. Default value: **0**.
      */
     float z;
 } ArkUI_TranslationOptions;
 
 /**
- * @brief Defines the scaling options for component transition.
- *
+ * @brief Defines the scale options for component transition.
  * @since 12
  */
 typedef struct {
     /**
-     * Scale ratio along the x-axis.
+     * Scale factor along the x-axis. The default value is **1.0**. x > 1: The component is scaled up along the x-axis.
+     * 0 < x < 1: The component is scaled down along the x-axis. x < 0: The component is scaled in the reversed
+     * direction along the x-axis, with the scale factor being |x|. The scaling is performed with **centerX** as the
+     * anchor point. Note: when x = 0, the component completely disappears along the x-axis. Pay attention to the impact
+     * of this special value when using it.
      */
     float x;
     /**
-     * Scale ratio along the y-axis.
+     * Scale factor along the y-axis. The default value is **1.0**. y > 1: The component is scaled up along the y-axis.
+     * 0 < y < 1: The component is scaled down along the y-axis. y < 0: The component is scaled in the reversed
+     * direction along the y-axis, with the scale factor being |y|. Note: when y = 0, the component completely
+     * disappears along the y-axis. Pay attention to the impact of this special value when using it.
      */
     float y;
     /**
-     * Scale factor along the z-axis (not effective for the current 2D graphics).
+     * Scale factor along the z-axis. The default value is **1.0**. In 2D display mode, this parameter does not take
+     * effect.
      */
     float z;
     /**
-     * X coordinate of the center point.
+     * X-coordinate of the component transformation center point (that is, the anchor point), in percentage. **0**
+     * indicates the left edge of the component, **1** indicates the right edge of the component, and **0.5** indicates
+     * the horizontal center of the component. The default value is **0.5**. The scaling effect along the x-axis is
+     * performed with this point as the anchor point. Different **centerX** values determine the x-direction positions
+     * of the scaling anchor point. When the value is **0**, the scaling is performed from the left edge of the
+     * component; when the value is **0.5**, the scaling is performed from the horizontal center; when the value is
+     * **1**, the scaling is performed from the right edge.
      */
     float centerX;
     /**
-     * Y coordinate of the center point.
+     * Y-coordinate of the component transformation center point (that is, the anchor point), in percentage. **0**
+     * indicates the top edge of the component, **1** indicates the bottom edge of the component, and **0.5** indicates
+     * the vertical center of the component. The default value is **0.5**. The scaling effect along the y-axis is
+     * performed with this point as the anchor point. Different **centerY** values determine the y-direction positions
+     * of the scaling anchor point. When the value is **0**, the scaling is performed from the top edge of the
+     * component; when the value is **0.5**, the scaling is performed from the vertical center; when the value is **1**,
+     * the scaling is performed from the bottom edge.
      */
     float centerY;
 } ArkUI_ScaleOptions;
@@ -827,96 +1012,126 @@ typedef struct {
  */
 typedef struct {
     /**
-     * X-component of the rotation vector.
+     * X-component of the rotation vector, which jointly defines the rotation axis direction with the y axis and z axis.
+     * Value range: (-∞, +∞).
      */
     float x;
     /**
-     * Y-component of the rotation vector.
+     * Y-component of the rotation vector, which jointly defines the rotation axis direction with the x axis and z axis.
+     * Value range: (-∞, +∞).
      */
     float y;
     /**
-     * Z-component of the rotation vector.
+     * Z-component of the rotation vector, which jointly defines the rotation axis direction with the x axis and y axis.
+     * Value range: (-∞, +∞).
      */
     float z;
     /**
-     * Rotation angle.
+     * Rotation angle, in degrees (°). Value range: (-∞, +∞). A positive value indicates clockwise rotation along the
+     * rotation axis direction determined by (x, y, z), and a negative value indicates counterclockwise rotation along
+     * that direction.
      */
     float angle;
     /**
-     * X coordinate of the center point.
+     * X-coordinate of the component transformation center point (that is, the anchor point), in percentage. **0**
+     * indicates the left edge of the component, **1** indicates the right edge of the component, and **0.5** indicates
+     * the horizontal center of the component. The default value is **0.5**. The scaling effect along the x-axis is
+     * performed with this point as the anchor point. Different **centerX** values determine the x-direction positions
+     * of the scaling anchor point. When the value is **0**, the scaling is performed from the left edge of the
+     * component; when the value is **0.5**, the scaling is performed from the horizontal center; when the value is
+     * **1**, the scaling is performed from the right edge.
      */
     float centerX;
     /**
-     * Y coordinate of the center point.
+     * Y-coordinate of the component transformation center point (that is, the anchor point), in percentage. **0**
+     * indicates the top edge of the component, **1** indicates the bottom edge of the component, and **0.5** indicates
+     * the vertical center of the component. The default value is **0.5**. The scaling effect along the y-axis is
+     * performed with this point as the anchor point. Different **centerY** values determine the y-direction positions
+     * of the scaling anchor point. When the value is **0**, the scaling is performed from the top edge of the
+     * component; when the value is **0.5**, the scaling is performed from the vertical center; when the value is **1**,
+     * the scaling is performed from the bottom edge.
      */
     float centerY;
     /**
-     * Z-axis anchor, that is, the z-component of the 3D rotation center point.
+     * Z-component of the 3D rotation center point, in percentage. **0** indicates the plane where the component is
+     * located, a positive value indicates that the rotation center is offset toward the observer, and a negative value
+     * indicates that the rotation center is offset away from the observer. The presentation of the 3D rotation effect
+     * is affected by the **perspective** parameter.
      */
     float centerZ;
     /**
-     * Distance from the user to the z=0 plane.
+     * Viewing distance, that is, the distance from the viewpoint to the z=0 plane, which is the z-coordinate where the
+     * camera is placed, in px. The value indicates the viewing distance, that is, the distance from the camera to the
+     * z=0 plane. The sign of the value determines the direction in which the camera observes. When **perspective** is
+     * set to **0**, the system automatically calculates a suitable z-axis position for the camera, which is a negative
+     * value.
      */
     float perspective;
 } ArkUI_RotationOptions;
 
 /**
- * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
- *
+ * @brief Defines a two-dimensional coordinate point, used to describe coordinate information such as the component
+ * position or offset. The coordinates are stored as floating-point numbers.
  * @since 24
  */
 typedef struct {
     /**
-     * x-axis coordinate.
+     * X-coordinate, in px. Value range: (-∞, +∞).
      */
     float x;
     /**
-     * y-axis coordinate.
+     * Y-coordinate, in px. Value range: (-∞, +∞).
      */
     float y;
 } ArkUI_PointF;
 
 /**
- * @brief Defines shadow options.
+ * @brief Defines shadow options for setting the shadow effect of a component, including attributes such as the
+ * shadow color, offset, blur radius, shadow type, and whether to fill.<br>
+ * Call {@link OH_ArkUI_ShadowOptions_Create} to create the corresponding shadow option object.<br>
+ * Call {@link OH_ArkUI_ShadowOptions_Destroy} to destroy the shadow option object.<br>
+ * After the object is created, call the <b>OH_ArkUI_ShadowOptions_SetXXX</b> series APIs to set the specific
+ * styles to take effect, for example, call {@link OH_ArkUI_ShadowOptions_SetRadius} to set the shadow blur
+ * radius. If the object fails to be created (a null pointer is returned), calling the <b>SetXXX</b> series APIs
+ * will not take effect.
  *
  * @since 24
  */
 typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
 
 /**
- * @brief Defines the motion path options for path animation.
- *
+ * @brief Defines the motion path configuration options of path animation, which are used to set the trajectory and
+ * related parameters of a component moving along a specified path during animation, so that the component can perform
+ * displacement animation along the preset motion path.
  * @since 23
  */
 typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions;
 
 /**
- * @brief Create a motion path option for path animation.
- *
+ * @brief Create a motion path option for path animation. When the object is no longer used, call
+ * {@link OH_ArkUI_MotionPathOptions_Dispose} to dispose of it.
  * @return Pointer to {@link ArkUI_MotionPathOptions}.
- *     <br>In the newly created {@link ArkUI_MotionPathOptions} object, **path** (motion path) is an empty string, **
- *     from** (start progress) is **0**, **to** (end progress) is **1**, and **rotatable** (whether the component
+ *     <br>In the newly created {@link ArkUI_MotionPathOptions} object, **path** (motion path) is an empty string,
+ *     **from** ( start progress) is **0**, **to** (end progress) is **1**, and **rotatable** (whether the component
  *     rotates along the path) is **false**.
  * @since 23
  */
 ArkUI_MotionPathOptions* OH_ArkUI_MotionPathOptions_Create();
 
 /**
- * @brief Destroys a motion path option of path animation.
- *
+ * @brief Disposes of a motion path option of path animation.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @since 23
  */
 void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
 
 /**
- * @brief Sets the motion path for the animation using an SVG path string. The path supports using **start** and
- *     **end** as placeholders for the starting and ending points, for example:
- *     **Mstart.x start.y L50 50 Lend.x end.y Z**. For details about the path string format, see {@link Path}. If this
- *     parameter is set to an empty string, it is equivalent to not setting a path animation.
- *
+ * @brief Sets the motion path of path animation.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param svgPath Motion path string for the path animation.
+ * @param svgPath Pointer to the motion path string of path animation.
+ *     The path supports "start" and "end" as placeholders for the start and end points, for example, "Mstart.x start.y
+ *     L50 50 Lend.x end.y Z". For details about the path string format, see {@link Path Drawing}. Setting this to an
+ *     empty string is equivalent to not setting a motion path.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -926,14 +1141,19 @@ void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* options, const char* svgPath);
 
 /**
- * @brief Obtains the motion path string stored in the motion path option.
- *
+ * @brief Obtains the motion path string stored in the motion path configuration item of the path animation.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param svgPathBuffer Buffer pointer to the motion path string.
- * @param bufferSize Buffer size of the **svgPathBuffer** parameter.
- * @param writeLength Indicates the string length actually written to the buffer when {@link ARKUI_ERROR_CODE_NO_ERROR}
- *     is returned. Indicates the minimum buffer size that can accommodate the target string when
- *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @param svgPathBuffer Pointer to the buffer for storing the motion path string. The pointer cannot be null. The
+ *     buffer size must be sufficient to accommodate the path string.
+ * @param bufferSize Size of the buffer specified by the **svgPathBuffer** parameter. The value must be greater than 0.
+ *     If 0 or a negative number is passed, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *     @param writeLength Pointer to the length of the string (including the terminator) actually written to the buffer
+ *     if {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.
+ *     When {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned due to an input parameter error, **writeLength** is not
+ *     assigned. If the error is due to a copy exception, **writeLength** indicates the minimum buffer size required to
+ *     hold the target string.
+ *     When {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned, it indicates the minimum buffer size required to
+ *     hold the target string.
  * @return <ul> .
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -945,13 +1165,13 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions
     const int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Sets the start progress of the motion path. Progress refers to the ratio of the length of the path that has
- *     been traveled to the total length of the entire path.
- *
+ * @brief Sets the start progress of the path animation. The progress refers to the ratio of the distance already moved
+ * along the path to the total path length.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param from Start progress of the motion path. The value ranges from **0.0** to **1.0**. The value of **from** must
- *     be less than or equal to that of **to**; otherwise, {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} is returned.
- *     For details about the meaning of **to**, see {@link OH_ArkUI_MotionPathOptions_SetTo}.
+ * @param from Start progress of the path animation, ranging from 0.0 to 1.0. This value must be less than or equal to
+ *     the end progress specified by **to**. Otherwise, the error {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} will be
+ *     returned.
+ *     For details about **to**, see {@link OH_ArkUI_MotionPathOptions_SetTo}.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -963,10 +1183,9 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* options, const float from);
 
 /**
- * @brief Obtains the start progress of the motion path from the motion path option.
- *
+ * @brief Obtains the start progress of the path animation.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param from Pointer to the variable used to receive the start progress of the motion path.
+ * @param from Pointer to the start progress in {@link ArkUI_MotionPathOptions}.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -976,12 +1195,12 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* opti
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions* options, float* from);
 
 /**
- * @brief Sets the end progress of the motion path. Progress refers to the ratio of the length of the path that has
- *     been traveled to the total length of the entire path.
- *
+ * @brief Sets the end progress of the path animation. The progress refers to the ratio of the distance already moved
+ * along the path to the total path length.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param to End progress of the motion path. The value ranges from **0.0** to **1.0**. The value of **to** must be
- *     greater than or equal to that of **from**; otherwise, {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} is returned.
+ * @param to End progress of the path animation, ranging from 0.0 to 1.0. This value must be greater than or equal to
+ *     the start progress specified by **from**. Otherwise, the error {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} will
+ *     be returned.
  *     For details about the meaning of **from**, see {@link OH_ArkUI_MotionPathOptions_SetFrom}.
  * @return <ul>.
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -994,10 +1213,9 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* options, const float to);
 
 /**
- * @brief Obtains the end progress of the motion path from the motion path option.
- *
+ * @brief Obtains the end progress of the path animation.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param to Pointer to the variable used to receive the end progress of the motion path.
+ * @param to Pointer to the end progress in {@link ArkUI_MotionPathOptions}.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1007,12 +1225,10 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* option
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* options, float* to);
 
 /**
- * @brief Sets whether the component rotates along the motion path.
- *
+ * @brief Sets whether a component rotates along the motion path.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param rotatable Whether the component rotates along the path. The value **true** means that the component rotates
- *     along the path, and **false** means that the component does not rotate along the path. The default value is
- *     **false**.
+ * @param rotatable Whether the component rotates along the path. **true**: The component rotates along the path.
+ *     **false**: The component does not rotate along the path. The default value is **false**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1022,12 +1238,11 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* 
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions* options, const bool rotatable);
 
 /**
- * @brief Obtains whether the component rotates along the motion path.
- *
+ * @brief Obtains whether a component rotates along the motion path.
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
- * @param rotatable Pointer to the variable used to receive the value of **rotatable**, which indicates whether the
- *     component rotates along the path. The value **true** means that the component rotates along the path, and
- *     **false** means that the component does not rotate along the path.
+ * @param rotatable Pointer to the **rotatable** parameter value in {@link ArkUI_MotionPathOptions}, indicating whether
+ *     the component rotates along the path.
+ *     **true**: The component rotates along the path. **false**: The component does not rotate along the path.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1037,10 +1252,14 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions*
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
 
 /**
- * @brief Creates a shadow option object. When the object is no longer in use, call
+ * @brief Creates a shadow option object. In the newly created object, the default value of the blur radius (**radius**)
+ * is **0**, the default value of the shadow offset on the x-axis (**offsetX**) is **0**, the default value of the
+ * shadow offset on the y-axis (**offsetY**) is **0**, the default value of the shadow color (**color**) is **
+ * 0xFF000000**, the default value of the shadow type (**type**) is **ARKUI_SHADOW_TYPE_COLOR**, and the default value
+ * of whether to fill the component with shadow (**isFill**) is **false**. If the object is no longer used, call
  * {@link OH_ArkUI_ShadowOptions_Destroy} to destroy it.
- *
- * @return Pointer to the {@link OH_ArkUI_ShadowOptions} object.
+ * @return Pointer to the newly created {@link OH_ArkUI_ShadowOptions} object, which is used to set the blur radius,
+ *     type, color, and offset of the shadow.
  * @since 24
  */
 OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
@@ -1119,8 +1338,7 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, 
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
 
 /**
- * @brief Obtains the shadow color for the shadow options.
- *
+ * @brief Obtains the shadow color of the shadow options.
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param color Pointer to the shadow color, in 0xARGB format.
  * @return <ul> 
@@ -1187,8 +1405,8 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* option
  * @brief Sets whether to fill a component with a shadow.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and **
- *     false** means the opposite. The default value is **false**.
+ * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and
+ *     **false** means the opposite. The default value is **false**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1202,7 +1420,7 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param isFill Pointer to the **isFill** parameter indicating whether a component is filled with a shadow. **true**
- *     means that a component is filled with a shadow, and **false** means the opposite.
+ *     means a component is filled with a shadow, and **false** means the opposite. The default value is **false**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1212,8 +1430,8 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
 
 /**
- * @brief Defines a matrix scaling object.
- *
+ * @brief Defines the configuration options for 4 × 4 matrix scaling. For details about the parameters and their value
+ * principles, see member variable descriptions.
  * @since 24
  */
 typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
@@ -1221,17 +1439,17 @@ typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
 /**
  * @brief Creates a pointer to the scaling parameter object for matrix operations. In the newly created object, the
  * default scaling coefficients in the x, y, and z directions are 1. The default values of **centerX** and **centerY**
- * of the transformation center point are 0.
- *
- * @return Pointer to the new {@link ArkUI_Matrix4ScaleOptions} object.
+ * of the transformation center point are 0. When the object is no longer used, call
+ * {@link OH_ArkUI_Matrix4ScaleOptions_Dispose} to destroy it.
+ * @return Pointer to the newly created {@link ArkUI_Matrix4ScaleOptions} object, which is used to set the scaling
+ *     parameters for matrix operations.
  * @since 24
  */
 ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
 
 /**
  * @brief Disposes of the pointer to the scaling parameter object for matrix operations.
- *
- * @param options Pointer to the {@link ArkUI_Matrix4ScaleOptions} object to be destroyed.
+ * @param options Pointer to the {@link ArkUI_Matrix4ScaleOptions} object to be disposed of.
  * @since 24
  */
 void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
@@ -1251,8 +1469,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetX(ArkUI_Matrix4ScaleOptions* opt
 
 /**
  * @brief Obtains the scaling factor in the x direction of the scaling parameter object for matrix operations. If the
- * value of x is not set, the default value of the scaling factor in the x direction is 1.
- *
+ * value of **x** is not set, the default value of the scaling factor in the x direction is 1.
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleX Pointer to the scaling factor in the x direction.
  * @return <ul> 
@@ -1278,8 +1495,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetY(ArkUI_Matrix4ScaleOptions* opt
 
 /**
  * @brief Obtains the scaling factor in the y direction of the scaling parameter object for matrix operations. If the
- * value of y is not set, the default value of the scaling factor in the y direction is 1.
- *
+ * value of **y** is not set, the default value of the scaling factor in the y direction is 1.
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleY Pointer to the scaling factor in the y direction.
  * @return <ul> 
@@ -1305,8 +1521,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetZ(ArkUI_Matrix4ScaleOptions* opt
 
 /**
  * @brief Obtains the scaling factor in the z direction of the scaling parameter object for matrix operations. If the
- * value of z is not set, the default value of the scaling factor in the z direction is 1.
- *
+ * value of **z** is not set, the default value of the scaling factor in the z direction is 1.
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleZ Pointer to the scaling factor in the z direction.
  * @return <ul> 
@@ -1337,7 +1552,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOption
  * operations.
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
- * @param centerX Pointer to the X-coordinate of the transformation center point. The unit is px. The default value is *
+ * @param centerX Pointer to the X-coordinate of the transformation center point. The unit is px. The default value is
  *     **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -1367,7 +1582,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOption
  * operations.
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
- * @param centerY Pointer to the Y-coordinate of the transformation center point. The unit is px. The default value is *
+ * @param centerY Pointer to the Y-coordinate of the transformation center point. The unit is px. The default value is
  *     **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -1378,7 +1593,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOption
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterY(const ArkUI_Matrix4ScaleOptions* options, float* centerY);
 
 /**
- * @brief Defines a matrix rotation object.
+ * @brief Defines matrix rotation options.
  *
  * @since 24
  */
@@ -1389,11 +1604,12 @@ typedef struct ArkUI_Matrix4RotationOptions ArkUI_Matrix4RotationOptions;
  * default value of an x-axis offset (**centerX**) of a single matrix transformation center point relative to a
  * component transformation center point, the default value of a y-axis offset (**centerY**) of the single matrix
  * transformation center point relative to the component transformation center point, and the default value of a
- * rotation angle (**angle**) are 0. If none of the direction vectors in the x, y, and z directions is specified, the
- * value is equivalent to x=0, y=0, and z=1, indicating rotation around the z-axis. Once any of the direction vectors
- * in the x, y, and z directions is specified, the unspecified values are equivalent to 0.
- *
- * @return Pointer to the new {@link ArkUI_Matrix4RotationOptions} object.
+ * rotation angle (**angle**) are 0. If any one of the vectors in the x, y, and z directions is not specified, the
+ * rotate effect is equivalent to rotating around the z axis (that is, the direction vectors are x=0, y=0, and z=1
+ * during calculation). Once any of the vectors in the x, y, and z directions is specified, the specified vector takes
+ * effect.
+ * @return Pointer to the newly created {@link ArkUI_Matrix4RotationOptions} object, which is used to set the rotation
+ *     parameters for matrix operations.
  * @since 24
  */
 ArkUI_Matrix4RotationOptions* OH_ArkUI_Matrix4RotationOptions_Create();
@@ -1410,7 +1626,9 @@ void OH_ArkUI_Matrix4RotationOptions_Dispose(ArkUI_Matrix4RotationOptions* optio
  * @brief Sets the direction vector in the x direction of the rotation parameter object for matrix operations.
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
- * @param x Value of the direction vector in the x direction. The value range is (-∞, +∞).
+ * @param x Value of the direction vector in the x direction. The value range is (-∞, +∞). It forms the rotation axis
+ *     together with the vectors in the y and z directions. For example, if x=1, y=0, and z=0, the rotation is around
+ *     the x axis.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1421,12 +1639,11 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOption
 
 /**
  * @brief Obtains the direction vector in the x direction of the rotation parameter object for matrix operations. If
- * the value of x has never been set, the value is undefined. In this case, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is
- * returned.
- *
+ * the value of **x** has never been set, the value is undefined. In this case, {@link ARKUI_ERROR_CODE_PARAM_INVALID}
+ * is returned.
  * @param options Pointer to the rotation parameter object for matrix operations.
- * @param x Pointer to the value of the direction vector in the x direction. If the value of x has never been set, the
- *     value is undefined.
+ * @param x Pointer to the value of the direction vector in the x direction. If the value of **x** has never been set,
+ *     the value is undefined. This parameter, together with the y and z direction vectors, forms the rotation axis.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1439,7 +1656,9 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4Rotation
  * @brief Sets the direction vector in the y direction of the rotation parameter object for matrix operations.
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
- * @param y Value of the direction vector in the y direction. The value range is (-∞, +∞).
+ * @param y Value of the direction vector in the y direction. The value range is (-∞, +∞). It forms the rotation axis
+ *     together with the vectors in the x and z directions. For example, if y=1, x=0, and z=0, the rotation is around
+ *     the y axis.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1450,12 +1669,11 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOption
 
 /**
  * @brief Obtains the direction vector in the y direction of the rotation parameter object for matrix operations. If
- * the value of y has never been set, the value is undefined. In this case, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is
- * returned.
- *
+ * the value of **y** has never been set, the value is undefined. In this case, {@link ARKUI_ERROR_CODE_PARAM_INVALID}
+ * is returned.
  * @param options Pointer to the rotation parameter object for matrix operations.
- * @param y Pointer to the value of the direction vector in the y direction. If the value of y has never been set, the
- *     value is undefined.
+ * @param y Pointer to the value of the direction vector in the y direction. If the value of **y** has never been set,
+ *     the value is undefined. This parameter, together with the x and z direction vectors, forms the rotation axis.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1468,7 +1686,9 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4Rotation
  * @brief Sets the direction vector in the z direction of the rotation parameter object for matrix operations.
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
- * @param z Value of the direction vector in the z direction. The value range is (-∞, +∞).
+ * @param z Value of the direction vector in the z direction. The value range is (-∞, +∞). It forms the rotation axis
+ *     together with the vectors in the x and y directions. For example, if z=1, x=0, and y=0, the rotation is around
+ *     the z axis (default behavior).
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1479,12 +1699,11 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOption
 
 /**
  * @brief Obtains the direction vector in the z direction of the rotation parameter object for matrix operations. If
- * the value of z has never been set, the value is undefined. In this case, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is
- * returned.
- *
+ * the value of **z** has never been set, the value is undefined. In this case, {@link ARKUI_ERROR_CODE_PARAM_INVALID}
+ * is returned.
  * @param options Pointer to the rotation parameter object for matrix operations.
- * @param z Pointer to the value of the direction vector in the z direction. If the value of z has never been set, the
- *     value is undefined.
+ * @param z Pointer to the value of the direction vector in the z direction. If the value of **z** has never been set,
+ *     the value is undefined. This parameter, together with the x and y direction vectors, forms the rotation axis.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1583,35 +1802,33 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4Rotation
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterY(const ArkUI_Matrix4RotationOptions* options, float* centerY);
 
 /**
- * @brief Defines a matrix translation object.
- *
+ * @brief Defines the configuration options for matrix translation.
  * @since 24
  */
 typedef struct ArkUI_Matrix4TranslationOptions ArkUI_Matrix4TranslationOptions;
 
 /**
  * @brief Creates a pointer to a translation object for matrix operations. In the newly created object, the default
- * translation distances on the x, y, and z axes are 0.
- *
- * @return Pointer to the new {@link ArkUI_Matrix4TranslationOptions} object.
+ * translation distances on the x, y, and z axes are 0. When the object is no longer used, call
+ * {@link OH_ArkUI_Matrix4TranslationOptions_Dispose} to destroy it.
+ * @return Pointer to the newly created {@link ArkUI_Matrix4TranslationOptions} object, which is used to set the
+ *     translation parameters for matrix operations.
  * @since 24
  */
 ArkUI_Matrix4TranslationOptions* OH_ArkUI_Matrix4TranslationOptions_Create();
 
 /**
- * @brief Disposes of a pointer to a translation object for matrix operations.
- *
- * @param options Pointer to the {@link ArkUI_Matrix4TranslationOptions} object to be disposed.
+ * @brief Disposes of the pointer to the translation object for matrix operations.
+ * @param options Pointer to the {@link ArkUI_Matrix4TranslationOptions} object to be disposed of.
  * @since 24
  */
 void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions* options);
 
 /**
- * @brief Sets the translation value of a translation object on the x-axis for matrix operations.
- *
+ * @brief Sets the translation value of a translation object on the x-axis for matrix operations, in px.
  * @param options Pointer to the translation parameter object for matrix operations.
- * @param x Translation value on the x-axis. The value range is (-∞, +∞). The unit is px. If the value of x has never
- *     been set, the default value is **0**.
+ * @param x Translation value on the x-axis. The value range is (-∞, +∞). The unit is px. If the value of **x** has
+ *     never been set, the default value is **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1621,10 +1838,10 @@ void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions*
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
 
 /**
- * @brief Obtains the translation value of a translation object on the x-axis for matrix operations.
- *
+ * @brief Obtains the translation value of a translation object on the x-axis for matrix operations, in px. If the
+ * value of **x** has never been set, the default value is **0**.
  * @param options Pointer to the translation parameter object for matrix operations.
- * @param x Pointer to the translation value on the x-axis.
+ * @param x Pointer to the translation value on the x-axis. The unit is px.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1634,11 +1851,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4Translation
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
 
 /**
- * @brief Sets the translation value of a translation object on the y-axis for matrix operations.
- *
+ * @brief Sets the translation value of a translation object on the y-axis for matrix operations, in px.
  * @param options Pointer to the translation parameter object for matrix operations.
- * @param y Translation value on the y-axis. The value range is (-∞, +∞). The unit is px. If the value of y has never
- *     been set, the default value is **0**.
+ * @param y Translation value on the y-axis. The value range is (-∞, +∞). The unit is px. If the value of **y** has
+ *     never been set, the default value is **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1648,10 +1864,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4Trans
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4TranslationOptions* options, const float y);
 
 /**
- * @brief Obtains the translation value of a translation object on the y-axis for matrix operations.
- *
+ * @brief Obtains the translation value of a translation object on the y-axis for matrix operations, in px. If the
+ * value of **y** has never been set, the default value is **0**.
  * @param options Pointer to the translation parameter object for matrix operations.
- * @param y Pointer to the translation value on the y-axis.
+ * @param y Pointer to the translation value on the y-axis. The unit is px.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1661,11 +1877,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4Translation
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4TranslationOptions* options, float* y);
 
 /**
- * @brief Sets the translation value of a translation object on the z-axis for matrix operations.
- *
+ * @brief Sets the translation value of a translation object on the z-axis for matrix operations, in px.
  * @param options Pointer to the translation parameter object for matrix operations.
- * @param z Translation value on the z-axis. The value range is (-∞, +∞). The unit is px. If the value of z has never
- *     been set, the default value is **0**.
+ * @param z Translation value on the z-axis. The value range is (-∞, +∞). The unit is px. If the value of **z** has
+ *     never been set, the default value is **0**.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1675,10 +1890,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4Trans
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4TranslationOptions* options, const float z);
 
 /**
- * @brief Obtains the translation value of a translation object on the z-axis for matrix operations.
- *
+ * @brief Obtains the translation value of a translation object on the z-axis for matrix operations, in px. If the
+ * value of **z** has never been set, the default value is **0**.
  * @param options Pointer to the translation parameter object for matrix operations.
- * @param z Pointer to the translation value on the z-axis.
+ * @param z Pointer to the translation value on the z-axis. The unit is px.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1699,35 +1914,35 @@ ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateIdentity();
  * @brief Creates a fourth-order matrix object by specifying each element of the matrix.
  *
  * @param elements Pointer to the array of expected matrix element data. The array length must be greater than or equal
- *     to 16. This parameter cannot be set to a null pointer.
- * @return Pointer to the created fourth-order matrix object. If the **elements** pointer is a null pointer, a null
- *     value is returned.
+ *     to 16. If the length is less than 16, undefined behavior may occur. This parameter cannot be a null pointer. If
+ *     it is a null pointer, the API returns a null value.
+ * @return Pointer to the fourth-order matrix object created using the specified matrix elements. If the **elements**
+ *     pointer is null, **NULL** is returned.
  * @since 24
  */
 ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateByElements(const float* elements);
 
 /**
- * @brief Disposes of a fourth-order matrix object.
- *
- * @param matrix Pointer to the fourth-order matrix object to be disposed.
+ * @brief Disposes of the pointer to the matrix object.
+ * @param matrix Pointer to the fourth-order matrix object to be disposed of.
  * @since 24
  */
 void OH_ArkUI_Matrix4_Dispose(ArkUI_Matrix4* matrix);
 
 /**
- * @brief Creates a copy of a fourth-order matrix object. It is used to perform operations on the same matrix to obtain
- *     different matrix objects.
- *
+ * @brief Creates a copy of a fourth-order matrix object. By copying the original matrix, you can perform operations on
+ * it independently to obtain different matrix transformation results. When the copy object is no longer used, call
+ * {@link OH_ArkUI_Matrix4_Dispose} to dispose of it.
  * @param matrix Pointer to the original fourth-order matrix object.
- * @return Pointer to the created fourth-order matrix object.
+ * @return Pointer to the copy of the fourth-order matrix object.
  * @since 24
  */
 ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
 
 /**
- * @brief Performs an inverse matrix transformation on the input matrix.
- *
- * @param matrix Pointer to the fourth-order matrix object to be inverted.
+ * @brief Performs an inverse matrix transformation on the input matrix. The input matrix object will be modified after
+ * the transformation.
+ * @param matrix Pointer to the fourth-order matrix object for which inverse matrix transformation is to be performed.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1737,10 +1952,9 @@ ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
 
 /**
- * @brief Combines another matrix with the original matrix and stores the resulting matrix in **oriMatrix**. The
- *     resulting matrix is equivalent to first applying the transformation of **oriMatrix** and then applying the
- *     transformation of **anotherMatrix**. This function modifies the **oriMatrix** object.
- *
+ * @brief Combines another matrix with the original matrix and stores the result matrix in **oriMatrix**. In this case,
+ * the result matrix applies the transformation of **oriMatrix** and then applies the transformation of
+ * **anotherMatrix**. This API will modify the **oriMatrix** object.
  * @param oriMatrix Pointer to the original fourth-order matrix object.
  * @param anotherMatrix Pointer to another matrix object to be combined.
  * @return <ul> 
@@ -1752,10 +1966,9 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_Matrix4* anotherMatrix);
 
 /**
- * @brief Applies a translation transformation to the original matrix to obtain the translated matrix. Each translation
- *     transformation is cumulative on the previous matrix. The input matrix object is modified after the
- *     transformation.
- *
+ * @brief Applies translation transformation to the original matrix to obtain the translated matrix. Each translation
+ * transformation is accumulated on the previous matrix. The input matrix object will be modified after the
+ * transformation.
  * @param matrix Pointer to the fourth-order matrix object to be translated.
  * @param translate Pointer to the translation object.
  * @return <ul> 
@@ -1767,9 +1980,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_M
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4TranslationOptions* translate);
 
 /**
- * @brief Applies a scaling transformation to the original matrix to obtain the scaled matrix. Each scaling
- *     transformation is cumulative on the previous matrix. This function modifies the input matrix object.
- *
+ * @brief Applies scaling transformation to the original matrix to obtain the scaled matrix. Each scaling
+ * transformation is accumulated on the previous matrix. This API will modify the input matrix object.
  * @param matrix Pointer to the fourth-order matrix object to be scaled.
  * @param scale Pointer to the scaling object.
  * @return <ul> 
@@ -1781,9 +1993,8 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Ma
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix4ScaleOptions* scale);
 
 /**
- * @brief Applies a rotation transformation to the original matrix to obtain the rotated matrix. Each rotation
- *     transformation is cumulative on the previous matrix. This function modifies the input matrix object.
- *
+ * @brief Applies rotation transformation to the original matrix to obtain the rotated matrix. Each rotation
+ * transformation is accumulated on the previous matrix. This API will modify the input matrix object.
  * @param matrix Pointer to the fourth-order matrix object to be rotated.
  * @param rotate Pointer to the rotation object.
  * @return <ul> 
@@ -1795,12 +2006,15 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4RotationOptions* rotate);
 
 /**
- * @brief Applies a skew transformation to the original matrix to obtain the skewed matrix. Each skew transformation is
- *     cumulative on the previous matrix. The input matrix object is modified after the transformation.
- *
+ * @brief Applies skew transformation to the original matrix to obtain the skewed matrix. Each skew transformation is
+ * accumulated on the previous matrix. The input matrix object will be modified after the transformation.
  * @param matrix Pointer to the fourth-order matrix object to be skewed.
- * @param skewX Skew coefficient in the x direction.
- * @param skewY Skew coefficient in the y direction.
+ * @param skewX Skew coefficient in the x direction. The value range is (-∞, +∞). The value **0** indicates no skew. A
+ *     positive value skews the content forward in the x direction, and a negative value skews the content backward in
+ *     the x direction.
+ * @param skewY Skew coefficient in the y direction. The value range is (-∞, +∞). The value **0** indicates no skew. A
+ *     positive value skews the content forward in the y direction, and a negative value skews the content backward in
+ *     the y direction.
  * @return <ul> 
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
@@ -1853,6 +2067,207 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
+
+/**
+ * @brief Enumerates the gradient directions for linear gradient blur.
+ *
+ * @since 26.2.0
+ */
+typedef enum {
+    /**
+     * @brief Linear gradient blur from right to left.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT = 0,
+    /**
+     * @brief Linear gradient blur from bottom to top.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_TOP = 1,
+    /**
+     * @brief Linear gradient blur from left to right.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT = 2,
+    /**
+     * @brief Linear gradient blur from top to bottom.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM = 3,
+    /**
+     * @brief Linear gradient blur from lower right to upper left.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_TOP = 4,
+    /**
+     * @brief Linear gradient blur from upper right to lower left.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_BOTTOM = 5,
+    /**
+     * @brief Linear gradient blur from lower left to upper right.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_TOP = 6,
+    /**
+     * @brief Linear gradient blur from upper left to lower right.
+     *
+     * @since 26.2.0
+     */
+    OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_BOTTOM = 7,
+} OH_ArkUI_LinearGradientBlurDirection;
+
+/**
+ * @brief Defines the options for the linear gradient blur effect.
+ *
+ * The options include the blur radius, fraction stops, and direction. When created by
+ * {@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}, the default values are:
+ * blurRadius = 0 (no blur), fractionStops = {0.0, 0.0, 0.0, 1.0} (two stops: blur value 0
+ * at position 0 and blur value 0 at position 1, meaning no blur across the entire gradient),
+ * direction = {@link OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM}.
+ *
+ * @since 26.2.0
+ */
+typedef struct OH_ArkUI_LinearGradientBlurOptions OH_ArkUI_LinearGradientBlurOptions;
+
+/**
+ * @brief Creates a linear gradient blur options object.
+ *
+ * @return Returns the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ *     The caller owns the returned object and must release it with
+ *     {@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}.
+ * @release OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy {return}
+ * @since 26.2.0
+ */
+OH_ArkUI_LinearGradientBlurOptions* OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create(void);
+
+/**
+ * @brief Destroys a linear gradient blur options object.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object
+ *     returned by {@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}. Passing <b>NULL</b> has no effect.
+ *     After this function returns for a non-NULL handle, the handle is invalid, is not
+ *     reference-counted, and must not be used or destroyed again.
+ * @since 26.2.0
+ */
+void OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy(OH_ArkUI_LinearGradientBlurOptions *options);
+
+/**
+ * @brief Sets the blur radius for the linear gradient blur options.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ * @param blurRadius [in] Indicates the blur radius, in px. A larger value indicates a higher blur degree.
+ *        If the value is <b>0</b>, the content is not blurred.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options is null, blurRadius is negative,
+ *         or blurRadius is NaN.</li>
+ *         </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius(
+    OH_ArkUI_LinearGradientBlurOptions *options, float blurRadius);
+
+/**
+ * @brief Obtains the blur radius of linear gradient blur options.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ * @param blurRadius [out] Indicates the pointer to the blur radius, in px.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options or blurRadius is null.</li>
+ *         </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius(
+    const OH_ArkUI_LinearGradientBlurOptions *options, float *blurRadius);
+
+/**
+ * @brief Sets the fraction stops for the linear gradient blur options.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ * @param fractionStops [in] Indicates the flat float array of (blur value, position) pairs.
+ *         Each pair (fractionStops[i], fractionStops[i+1]) represents one fraction stop.
+ *         The blur value (fractionStops[i]) indicates the fraction of the blur radius applied
+ *         at this position, where 0.0 means no blur and 1.0 means full blur as defined by blurRadius.
+ *         The position (fractionStops[i+1]) indicates the relative position along the gradient
+ *         direction, where 0.0 is the start and 1.0 is the end. Position values must be strictly
+ *         monotonically increasing. Each element must not be NaN and must be in the range [0.0, 1.0].
+ * @param stopsLength [in] Indicates the number of float elements in the fractionStops array.
+ *         Must be even and >= 4.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options or fractionStops is null,
+ *         stopsLength is odd, stopsLength is less than 4, positions are not strictly
+ *         monotonically increasing, or any element in fractionStops is NaN or is outside
+ *         the range [0.0, 1.0].</li>
+ *         </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops(
+    OH_ArkUI_LinearGradientBlurOptions *options, const float *fractionStops, int32_t stopsLength);
+
+/**
+ * @brief Obtains the fraction stops of linear gradient blur options.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ * @param fractionStops [out] Indicates the buffer pointer to the flat float array of
+ *         (blur value, position) pairs.
+ * @param stopsSize [in] Indicates the buffer size (number of float elements) allocated by the caller
+ *         for the fractionStops array. If the buffer is not large enough to hold all fraction stops data,
+ *         the operation returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} and sets writeLength
+ *         to the required size.
+ * @param writeLength [out] Indicates the number of float elements actually written to the
+ *         fractionStops buffer when returning {@link ARKUI_ERROR_CODE_NO_ERROR}. Indicates the
+ *         minimum buffer size required to accommodate the fractionStops when returning
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if stopsSize is less than the
+ *         actual fractionStops count.</li>
+ *         </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops(
+    const OH_ArkUI_LinearGradientBlurOptions *options, float *fractionStops, int32_t stopsSize, int32_t *writeLength);
+
+/**
+ * @brief Sets the gradient blur direction for the linear gradient blur options.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ * @param direction [in] Indicates the direction of the linear gradient blur.
+ *         The parameter type is {@link OH_ArkUI_LinearGradientBlurDirection}.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options is null or direction
+ *         is not a valid enum value.</li>
+ *         </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection(
+    OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection direction);
+
+/**
+ * @brief Obtains the gradient blur direction of linear gradient blur options.
+ *
+ * @param options [in] Indicates the pointer to the {@link OH_ArkUI_LinearGradientBlurOptions} object.
+ * @param direction [out] Indicates the pointer to the direction of the linear gradient blur.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options or direction is null.</li>
+ *         </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetDirection(
+    const OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection *direction);
 
 #ifdef __cplusplus
 }

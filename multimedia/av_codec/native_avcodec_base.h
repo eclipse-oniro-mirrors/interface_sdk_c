@@ -1400,8 +1400,8 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
  * {@link OH_VideoEncoder_GetInputDescription} (for encoding),
  * {@link OH_VideoDecoder_GetOutputDescription} (for decoding), or **OH_AVFormat** in
  * the {@link OH_AVCodecOnStreamChanged} callback, instead of assuming a fixed value.
- * For details about the example, see step 8 in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * in buffer mode or step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * For details about the example, see step 8 in [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode)
+ * in buffer mode or step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1416,8 +1416,8 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
  * You should always obtain the actual height through {@link OH_VideoEncoder_GetInputDescription} (for encoding),
  * {@link OH_VideoDecoder_GetOutputDescription} (for decoding), or **OH_AVFormat** in
  * the {@link OH_AVCodecOnStreamChanged} callback, instead of assuming a fixed value.
- * For details about the example, see step 8 in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * in buffer mode or step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * For details about the example, see step 8 in [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode)
+ * in buffer mode or step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1433,8 +1433,8 @@ extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
  * the configuration phase. The latter is a configuration hint used for pre-allocating buffers. When cropping is
  * applied, this value (rather than the stride) should be used as the actual width for displaying or saving the image.
  * For details about the image layout and usage example, see step 8 in
- * [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
- * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
+ * step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1451,8 +1451,8 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
  * for pre-allocating buffers. When cropping is applied, this value (rather than **sliceHeight**) should be used as the
  * actual height for displaying or saving the image.
  * For details about the image layout and usage example, see step 8
- * in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
- * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
+ * in [video encoding](../../../media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
+ * step 11 in [video decoding](../../../media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -2049,6 +2049,25 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_PTS_MODE;
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT;
+
+/**
+ * @brief Defines the pointer to the key for setting the suffix of the video codec DMABUF name. The value is a string.
+ *
+ * The suffix uses a colon (:) as the separator and is appended to the internal DMABUF name of the codec.
+ * The final DMABUF name format is: {System custom string}:{Suffix}.
+ * Note: The prefix is the current system custom string, which may vary with the system version.
+ *
+ * Constraints on the suffix value:
+ * 1. Only printable ASCII characters are allowed. If the suffix contains any non-ASCII characters, spaces, line breaks,
+ * tab characters, or other invisible (control) characters, {@link AV_ERR_INVALID_VAL} will be returned.
+ * 2. The suffix must contain at least one non-digit character. Otherwise, {@link AV_ERR_INVALID_VAL} will be returned.
+ *
+ * This key is optional. If it is not set, the DMABUF name remains unchanged.
+ * You can use {@link OH_VideoDecoder_Configure} or {@link OH_VideoEncoder_Configure} to configure it.
+ *
+ * @since 26.0.1
+ */
+extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
 
 /**
  * @brief Enumerates the media types.

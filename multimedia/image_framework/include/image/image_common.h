@@ -176,6 +176,11 @@ typedef enum {
     IMAGE_SUCCESS = 0,
     /** invalid parameter */
     IMAGE_BAD_PARAMETER = 401,
+    /**
+     * @error Permission verification failed. A non-system application calls a system API.
+     * @since 26.0.1
+     */
+    OH_IMAGE_ERROR_NOT_SYSTEM_APPLICATION = 202,
     /** unsupported mime type */
     IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,
     /** unknown mime type */
@@ -218,6 +223,11 @@ typedef enum {
      * @since 22
      */
     IMAGE_UNSUPPORTED_DATA_FORMAT = 7600207,
+    /**
+     * @error the decomposition process failed.
+     * @since 26.0.1
+     */
+    OH_IMAGE_ERROR_DECOMPOSE_FAILED = 7600208,
     /** failed to allocate memory */
     IMAGE_ALLOC_FAILED = 7600301,
     /** memory copy failed */
@@ -942,7 +952,7 @@ static const char *OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE = "SubjectDistance";
 static const char *OHOS_IMAGE_PROPERTY_SUBJECT_AREA = "SubjectArea";
 
 /**
- * @brief A tag for manufacturers of Exif/DCF writers to record any desired infomation.
+ * @brief A tag for manufacturers of Exif/DCF writers to record any desired information.
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
  *
  * @since 12

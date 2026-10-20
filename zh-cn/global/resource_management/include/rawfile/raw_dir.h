@@ -16,9 +16,9 @@
  * @addtogroup rawfile
  * @{
  *
- * @brief Provides native functions for the resource manager to operate raw file directories and their raw files.
- *
- * You can use the resource manager to traverse, open, seek, read, and close raw files.
+ * @brief 通过rawfile模块，开发者可以在Native层访问rawfile目录或目录下的资源文件，包括遍历、打开、读取、定位和关闭等。
+ * <br> 遍历目录：打开rawfile目录，获取目录下的文件列表，遍历文件名称，支持多级目录遍历。
+ * <br> 读取文件：打开rawfile文件，读取文件内容，调整文件偏移位置，获取文件大小和当前偏移量，获取文件描述符，支持2GB以上的大文件。
  *
  * @since 8
  * @version 1.0
@@ -26,7 +26,7 @@
 /**
  * @file raw_dir.h
  *
- * @brief 提供rawfile目录相关功能，包括遍历和关闭rawfile目录。
+ * @brief 提供rawfile目录操作相关的函数，包括遍历目录、获取文件数量、获取文件名称、关闭目录等功能。
  *
  * @syscap SystemCapability.Global.ResourceManager
  * @library librawfile.z.so
@@ -44,7 +44,8 @@ extern "C" {
 struct RawDir;
 
 /**
- * @brief 提供对rawfile目录的访问。
+ * @brief RawDir表示一个已打开的rawfile目录对象，可用于遍历目录和目录下文件。通过{@link OH_ResourceManager_OpenRawDir}函数获取，使用完后须调用
+ * {@link OH_ResourceManager_CloseRawDir}关闭并释放。
  *
  * @since 8
  * @version 1.0
@@ -52,34 +53,35 @@ struct RawDir;
 typedef struct RawDir RawDir;
 
 /**
- * @brief 通过索引获取rawfile文件名称。可以使用此方法遍历rawfile目录。
+ * @brief 通过索引获取rawfile目录中的文件名称。当需要遍历rawfile目录时，可以与{@link OH_ResourceManager_GetRawFileCount}搭配使用，通过循环遍历目录。
  *
- * @param rawDir 表示指向{@link RawDir}的指针。
- * @param index 表示文件在{@link RawDir}中的索引位置。
- * @return 通过索引返回文件名称，此返回值可以作为{@link OH_ResourceManager_OpenRawFile}的输入参数。
- *     <br>如果遍历完所有文件仍未找到，则返回NULL。
- * @see OH_ResourceManager_OpenRawFile
+ * @param rawDir 输入参数。指向RawDir对象的指针，通过{@link OH_ResourceManager_OpenRawDir}获取。
+ * @param index 输入参数。文件在rawfile目录中的索引，取值范围为[0, 文件总数量-1]。
+ * @return 返回文件名称字符串指针，可作为{@link OH_ResourceManager_OpenRawFile}的输入参数。
+ *     <br>失败时返回NULL，可能原因是rawDir为NULL、index超出有效范围或目录为空。
+ *     <br>调用{@link OH_ResourceManager_CloseRawDir}后，该指针同时会被释放，若需保存文件名，开发者需及时复制字符串内容。
+ * @see {@link OH_ResourceManager_OpenRawFile}
  * @since 8
  * @version 1.0
  */
 const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index);
 
 /**
- * @brief 获取{@link RawDir}中的rawfile数量。通过此方法可以获取{@link OH_ResourceManager_GetRawFileName}中可用的索引。
+ * @brief 获取rawfile下子目录和文件数量。当需要遍历rawfile目录时，可以与{@link OH_ResourceManager_GetRawFileName}搭配使用，通过循环遍历目录。
  *
- * @param rawDir 表示指向{@link RawDir}的指针。
- * @return 返回rawDir下的文件个数。如果rawDir为空时返回0。
- * @see OH_ResourceManager_GetRawFileName
+ * @param rawDir 输入参数。指向RawDir对象的指针，通过{@link OH_ResourceManager_OpenRawDir}获取。
+ * @return 返回rawfile子目录和文件数量，不递归统计rawfile子目录下的文件和目录数量。若rawDir为NULL或目录为空，则返回0。
+ * @see {@link OH_ResourceManager_GetRawFileName}
  * @since 8
  * @version 1.0
  */
 int OH_ResourceManager_GetRawFileCount(RawDir *rawDir);
 
 /**
- * @brief 关闭已打开的{@link RawDir}并释放所有相关联资源。
+ * @brief 关闭已打开的RawDir对象并释放所有相关资源。遍历rawfile目录后，须调用此函数关闭目录和释放资源。
  *
- * @param rawDir 表示指向{@link RawDir}的指针。
- * @see OH_ResourceManager_OpenRawDir
+ * @param rawDir 输入参数。指向RawDir对象的指针，通过{@link OH_ResourceManager_OpenRawDir}获取。关闭后，该指针失效，不可再用于其他操作。
+ * @see {@link OH_ResourceManager_OpenRawDir}
  * @since 8
  * @version 1.0
  */

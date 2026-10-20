@@ -64,7 +64,7 @@ typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
  * @param samplesBuffer Pointer to an OH_AVSamplesBuffer instance.
  * @param avBuffer Pointer to an OH_AVBuffer instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * **AV_ERR_NO_MEMORY**: The framePacketBuffer does not have sufficient remaining capacity to append an OH_AVBuffer.
  * **AV_ERR_UNKNOWN**: An unknown error occurs.
  * @since 20

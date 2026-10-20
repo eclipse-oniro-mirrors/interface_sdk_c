@@ -76,7 +76,7 @@ extern "C" {
 #define PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID "ds_instance_id"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, type of the log that need to be collected when main thread jank happened.
+ * @brief Used in MAIN_THREAD_JANK_V2, type of the log that needs to be collected when main thread jank happened.
  *
  * @since 22
  */
@@ -84,13 +84,14 @@ extern "C" {
 
 /**
  * @brief Used in MAIN_THREAD_JANK_V2, The timeout detection interval and sampling interval for the main thread.
+ * Unit: ms.
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_INTERVAL "sample_interval"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup.
+ * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup. Unit: s.
  *
  * @since 22
  */
@@ -126,7 +127,8 @@ extern "C" {
 #define OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING "extend_pc_lr_printing"
 
 /**
- * @brief Automatically truncate the cppcrash log size
+ * @brief Used to set the log specifications of the CPP_CRASH type in the APP_CRASH event, that is, truncate CPP_CRASH
+ * logs based on the configured parameter value.
  *
  * @since 24
  */
@@ -147,14 +149,21 @@ extern "C" {
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
 
 /**
- * @brief Enable collecting minidump log for cppcrash and return it via external_log in the APP_CRASH event
+ * @brief Enable minidump in the APP_CRASH event
  *
  * @since 26.0.0
  */
 #define OH_APP_CRASH_PARAM_COLLECT_MINIDUMP "collect_minidump"
+
+/**
+ * @brief Publish the APP_CRASH event when the application starts next time.
+ *
+ * @since 26.2.0
+ */
+#define OH_APP_CRASH_PARAM_PUBLISH_ON_NEXT_LAUNCH "publish_on_next_launch"
+
 #ifdef __cplusplus
 }
 #endif
-
-/** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_PARAM_H
+/** @} */

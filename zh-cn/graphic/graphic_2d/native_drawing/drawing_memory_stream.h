@@ -17,7 +17,9 @@
  * @addtogroup Drawing
  * @{
  *
- * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
+ * @brief Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
+ * <br>本模块采用屏幕物理像素单位px。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @since 12
  * @version 1.0
@@ -25,7 +27,9 @@
 /**
  * @file drawing_memory_stream.h
  *
- * @brief This file declares the functions related to the memory stream in the drawing module.
+ * @brief 文件中定义了与内存流相关的功能函数，支持基于内存数据创建和销毁内存流对象。
+ * 内存流支持数据拷贝或直接引用两种访问方式。
+ * <br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -38,19 +42,25 @@
 #define C_INCLUDE_DRAWING_MEMORY_STREAM_H
 
 #include "drawing_types.h"
+#include "drawing_error_code.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief 创建一个内存流对象。
- * 本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
- * data为NULL或者length等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * @brief 创建一个内存流对象，用于将内存中的数据封装为流，可作为数据源供图形处理接口（如图像解码）等后续绘制接口使用。
+ * 创建的内存流对象使用完毕后，需要调用
+ * {@link OH_Drawing_MemoryStreamDestroy}销毁并回收内存。
+ * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
+ * <br>data为NULL或者length等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  *
- * @return 函数会返回一个指针，指针指向创建的内存流对象{@link OH_Drawing_MemoryStream}。
- * @param data 数据段。
- * @param length 数据段长度。
+ * @return 指向创建的内存流对象{@link OH_Drawing_MemoryStream}的指针，
+ * 可作为数据源传递给后续图形处理接口（如图像解码）使用。
+ * @param data 要创建内存流的数据缓冲区，数据为二进制字节流，长度由length参数指定，单位为字节。data不能为NULL，
+ * 为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+ * 当copyData为false时，调用者还需确保data指向的数据在内存流对象生命周期内保持有效。
+ * @param length 数据段长度，单位为字节，取值必须大于0。为0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
  * @param copyData 是否拷贝数据。true表示内存流对象会拷贝一份数据段数据，false表示内存流对象直接使用数据段数据，不拷贝。
  * @since 12
  * @version 1.0
@@ -58,7 +68,8 @@ extern "C" {
 OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate(const void* data, size_t length, bool copyData);
 
 /**
- * @brief 销毁内存流对象并回收该对象占用的内存。
+ * @brief 销毁由{@link OH_Drawing_MemoryStreamCreate}创建的内存流对象并回收该对象占用的内存。
+ * 销毁后不应再访问内存流对象。
  *
  * @param memoryStream 指向内存流对象{@link OH_Drawing_MemoryStream}的指针。
  * @since 12

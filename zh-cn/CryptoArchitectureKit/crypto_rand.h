@@ -24,6 +24,7 @@
  * @file crypto_rand.h
  * @brief 定义随机数生成器接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_rand.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

@@ -24,6 +24,7 @@
  * @file crypto_asym_cipher.h
  * @brief 定义非对称加解密接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_asym_cipher.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

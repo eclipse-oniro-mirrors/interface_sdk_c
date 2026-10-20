@@ -9,6 +9,7 @@
     { "name": "gettimeofday"},
     { "name": "lseek"},
     { "name": "malloc"},
+    { "name": "memalign"},
     { "name": "memcmp"},
     { "name": "memcpy"},
     { "name": "memmove"},

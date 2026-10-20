@@ -149,7 +149,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
  *
  * @param session the OH_AVSession instance pointer.
  * @param state the {@link AVSession_ConnectionState} of output device.
- * @param outputDeviceInfo the {@link AVSession_OutputDeviceInfo} pointer variable which will be set
+ * @param outputDeviceInfothe {@link AVSession_OutputDeviceInfo} pointer variable which will be set
  * current output device info. Do not release the outputDeviceInfo pointer separately,
  * instead call {@link OH_AVSession_ReleaseOutputDevice} to release the outputDeviceInfo when it is not used anymore.
  * @since 23
@@ -164,8 +164,8 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OutputDeviceChange)(OH_A
  * @param sessionType The session type to set
  * @param sessionTag The session tag set by the application
  * @param bundleName The bundle name to set
- * @param abilityName The abilityName name to set
- * @param avsession Pointer to a viriable to receive the OH_AVSession
+ * @param abilityName The abilityName to set
+ * @param avsession Pointer to a variable to receive the OH_AVSession
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
  *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} If session already existed or internal server error.
@@ -575,7 +575,7 @@ AVSession_ErrCode OH_AVSession_UnregisterOutputDeviceChangeCallback(OH_AVSession
  * @param sessionTag The session tag set by the application
  * @param bundleName The bundle name to set
  * @param abilityName The abilityName name to set
- * @param avsession Pointer to a viriable to receive the OH_AVSession
+ * @param avsession Pointer to a variable to receive the OH_AVSession
  * @return Function result code:
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
  *         {@link AV_SESSION_ERR_CODE_SESSION_NOT_EXIST} If session is not existed.

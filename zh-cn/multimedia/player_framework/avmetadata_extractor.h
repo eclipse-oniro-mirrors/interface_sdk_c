@@ -16,7 +16,7 @@
  * @addtogroup AVMetadataExtractor
  * @{
  *
- * @brief Provides APIs of metadata capability for Media Source.
+ * @brief 提供从媒体资源中获取元数据的API。
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
@@ -24,10 +24,12 @@
 /**
  * @file avmetadata_extractor.h
  *
- * @brief 定义AVMetadataExtractor接口。使用其Native API从媒体资源中获取元数据。
+ * @brief 定义AVMetadataExtractor接口。使用其C API从媒体资源中获取元数据。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avmetadata_extractor.h>
  * @library libavmetadata_extractor.so
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 
@@ -103,6 +105,7 @@ OH_AVErrCode OH_AVMetadataExtractor_SetMediaSource(OH_AVMetadataExtractor *extra
  * 
  * @return 创建成功时返回指向OH_AVMetadataExtractor实例的指针，否则返回空指针。
  * 可能的失败原因：HstEngineFactory::CreateAVMetadataHelperEngine执行失败。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
@@ -118,6 +121,7 @@ OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
  * AV_ERR_INVALID_VAL： 输入的extractor为空指针或参数无效。
  * AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extractor,
@@ -135,6 +139,7 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
  * AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
  * AV_ERR_IO_CLEARTEXT_NOT_PERMITTED：（API version 23新增）不允许HTTP明文流量。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata);
@@ -150,6 +155,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extrac
  * AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
  * AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extractor, OH_PixelmapNative** pixelMap);
@@ -158,7 +164,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
  * @brief 从视频源中提取指定时间点的图像。该函数必须在设置资源之后使用。
  * 
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
- * @param timeUs 要从视频资源中提取图像的时间位置（单位：微秒）。
+ * @param timeUs 要从视频资源中提取图像的时间位置，单位为微秒（μs）。
  * @param seekMode 定义指定时间与关键帧之间关系的跳转模式。详见{@link OH_AVMedia_SeekMode}。
  * @param outputParam 图像的输出参数，例如图像的高度或者宽度。详见{@link OH_AVMetadataExtractor_OutputParam}。若为空指针，使用视频的原始尺寸。注意：用户需要使用{@link OH_PixelmapNative_Destroy}
  * 在使用pixelMap后将其释放。
@@ -189,7 +195,7 @@ typedef void (*OH_AVMetadataExtractor_OnFrameFetched)(OH_AVMetadataExtractor *ex
  * @brief 从视频源中异步提取多个指定时间点的图像。该函数必须在设置资源之后使用。
  * 
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
- * @param timesUs The times array expected to fetch picture from the video resource. The unit is microsecond(us).
+ * @param timesUs 从视频源提取图像时的时间点数组，单位为微秒（μs）。
  * @param timesUsSize 输入时间点数组的长度。
  * @param seekMode 定义每个给定时间与关键帧之间关系的跳转选项，详见{@link OH_AVMedia_SeekMode}。
  * @param outputParam 图像的输出参数，例如图像的高度或者宽度。详见{@link OH_AVMetadataExtractor_OutputParam}。若该参数为空指针，则获取的帧使用视频原始尺寸。
@@ -211,7 +217,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFramesByTimes(OH_AVMetadataExtractor *e
 
 /**
  * @brief 取消所有由{@link OH_AVMetadataExtractor_FetchFramesByTimes}发起的批量获取图像操作。在{@link OH_AVMetadataExtractor_OnFrameFetched}
- * 回调中，挂起的获取操作被取消，并标记结果为已取消。
+ * 回调中，挂起的获取操作被取消，回调函数的code参数将返回表示取消的错误码。
  *  
  * @param extractor 指向OH_AVMetadataExtractor实例的指针。
  * @since 23
@@ -224,6 +230,7 @@ void OH_AVMetadataExtractor_CancelAllFetchFrames(OH_AVMetadataExtractor *extract
  * @param extractor 指向OH_AVMetadataExtractor实例指针。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL： 输入的extractor为空指针或参数无效。
+ * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @since 18
  */
 OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor);
@@ -251,8 +258,8 @@ void OH_AVMetadataExtractor_OutputParam_Destroy(OH_AVMetadataExtractor_OutputPar
  * @param outputParam 指向OH_AVMetadataExtractor_OutputParam实例的指针。
  * @param width 输出图像的期望宽度，如有必要可进行缩放。
  * @param height 输出图像的期望高度，如有必要可进行缩放。
- * @return 成功返回true，失败返回false。
- * 可能失败的原因：outputParam为空指针。
+ * @return 成功返回true，失败返回false。<br>
+ * 可能失败的原因：输入的outputParam为空指针。
  * @since 23
  */
 bool OH_AVMetadataExtractor_OutputParam_SetSize(OH_AVMetadataExtractor_OutputParam* outputParam,

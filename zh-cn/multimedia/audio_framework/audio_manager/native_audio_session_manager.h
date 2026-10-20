@@ -1,0 +1,827 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @addtogroup OHAudio
+ * @{
+ *
+ * @brief 提供音频模块C接口定义，可用于实现音频播放、录制和相关的音量、设备、会话管理等功能，
+ * 服务于媒体播放、语音通话、游戏音频等音频业务开发场景。
+ *
+ * @syscap SystemCapability.Multimedia.Audio.Core
+ *
+ * @since 12
+ * @version 1.0
+ */
+
+/**
+ * @file native_audio_session_manager.h
+ *
+ * @brief 本文件提供音频会话管理功能的接口。
+ * <br>在介绍音频会话能力前，需要先了解如下概念：
+ * <br>音频焦点：系统用于管理多个音频竞争的机制，决定了音频播放的优先级，高优先级的音频可以中断或压低低优先级的音频。
+ * <br>音频会话：表示应用的音频业务，开发者可以通过音频会话管理应用内所有音频的焦点和设备选择策略。
+ * 音频会话的配置会影响应用内的所有音频流。
+ *
+ * <br>音频会话的主要使用场景：
+ * <br>a) 系统默认的焦点策略不能满足开发者要求，可使用音频会话修改策略。
+ * <br>b) 应用音频业务流程涉及切换不同音频流（如短视频切换），要保证切换过程中焦点不丢失，可使用场景级音频会话。
+ * 此类会话激活过程中，焦点不会随音频流停止而丢失。
+ * <br>c) 设置应用当前音频业务的播放输出设备或录音输入设备偏好。
+ *
+ * <br>音频会话有两种使用模式：
+ * <br>a) 音频流级会话：不使用{@link OH_AudioSessionManager_SetScene}接口设置场景时，音频系统会按会话维度管理音频流，
+ * 但音频业务的生命周期还是与音频流状态绑定。因此焦点的请求和释放，
+ * 仍是跟随音频流的启动和停止。
+ * <br>b) 场景级会话：使用{@link OH_AudioSessionManager_SetScene}接口设置场景后，
+ * 音频系统会将音频业务的生命周期与音频会话状态绑定，焦点的请求和释放，会跟随音频会话的激活和停止。
+ * <br>推荐开发者优先选择场景级音频会话，以便更灵活的控制业务生效的时机。
+ * <br>本文件提供的接口，支持的主要功能包括配置音频会话，激活/停用音频会话、监听音频会话停用事件、
+ * 设置应用输入设备偏好等。
+ *
+ * @library libohaudio.so
+ * @syscap SystemCapability.Multimedia.Audio.Core
+ * @kit AudioKit
+ * @since 12
+ * @version 1.0
+ */
+
+#ifndef NATIVE_AUDIO_SESSION_MANAGER_H
+#define NATIVE_AUDIO_SESSION_MANAGER_H
+
+#include <stdbool.h>
+#include "native_audio_common.h"
+#include "native_audio_session_base.h"
+#include "native_audiostream_base.h"
+#include "native_audio_device_base.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * @brief 声明音频会话管理结构体，该结构体用于调用音频会话控制功能接口。
+ *
+ * @since 12
+ */
+typedef struct OH_AudioSessionManager OH_AudioSessionManager;
+
+/**
+ * @brief 音频会话场景。
+ *
+ * @since 20
+ */
+typedef enum {
+    /**
+     * @brief 媒体音频会话场景。
+     *
+     */
+    AUDIO_SESSION_SCENE_MEDIA = 0,
+
+    /**
+     * @brief 游戏音频会话场景。
+     *
+     */
+    AUDIO_SESSION_SCENE_GAME = 1,
+
+    /**
+     * @brief VoIP语音通话音频会话场景。
+     *
+     */
+    AUDIO_SESSION_SCENE_VOICE_COMMUNICATION = 2,
+
+    /**
+     * @brief 语音消息音频会话场景。
+     *
+     * @since 26.0.1
+     */
+    AUDIO_SESSION_SCENE_VOICE_MESSAGE = 3,
+} OH_AudioSession_Scene;
+
+/**
+ * @brief 音频会话状态变更的提示信息。
+ *
+ * @since 20
+ */
+typedef enum {
+    /**
+     * @brief 提示音频会话恢复，应用可主动触发开始渲染等相关操作。
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_RESUME = 0,
+
+    /**
+     * @brief 提示音频会话暂停，暂时失去音频焦点。当焦点再次可用时，会收到AUDIO_SESSION_STATE_CHANGE_HINT_RESUME事件。
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE = 1,
+
+    /**
+     * @brief 提示音频会话在焦点被抢占后停止，彻底失去音频焦点。
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_STOP = 2,
+
+    /**
+     * @brief 提示长时间没有音频业务，音频会话将被系统停止，彻底失去音频焦点。
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP = 3,
+
+    /**
+     * @brief 提示音频会话躲避开始，降低音量播放。
+     * 如果已启用{@link OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers}，此时可以选择执行静音操作。
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_DUCK = 4,
+
+    /**
+     * @brief 提示音频会话躲避结束，恢复音量播放。
+     * 如果已启用{@link OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers}，此时可取消静音。
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK = 5,
+
+    /**
+     * @brief 静音播放建议。当其他应用程序开始播放不可混音的音频时，应用程序可以自行决定是否静音。
+     *
+     * @since 23
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_MUTE_SUGGESTION = 6,
+
+    /**
+     * @brief 取消静音播放建议。当其他应用程序不可混音的音频已结束，该应用程序可自行决定是否取消静音。
+     *
+     * @since 23
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION = 7,
+
+    /**
+     * @brief 提示音频会话静音。该提示仅在以下条件满足后才会收到：
+     * 通过接口{@link OH_AudioSessionManager_SetBehavior}设置参数
+     * {@link OH_AudioSession_BehaviorFlags}.MUTE_WHEN_INTERRUPTED，
+     * 并已调用{@link OH_AudioSessionManager_SetScene}，且音频会话已激活。
+     *
+     * @since 24
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_MUTE = 8,
+
+    /**
+     * @brief 提示音频会话解除静音。该提示仅在以下条件满足后才会收到：
+     * 通过接口{@link OH_AudioSessionManager_SetBehavior}设置参数
+     * {@link OH_AudioSession_BehaviorFlags}.MUTE_WHEN_INTERRUPTED，
+     * 并已调用{@link OH_AudioSessionManager_SetScene}，且音频会话已激活。
+     *
+     * @since 24
+     */
+    AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE = 9,
+} OH_AudioSession_StateChangeHint;
+
+/**
+ * @brief 输出设备变更后推荐的操作。
+ * <br>常见场景示例：耳机设备和外放设备之间进行切换。当佩戴耳机时，从外放设备切换到耳机设备，系统会推荐继续播放，
+ * 提示应用无需停止当前播放。当摘下耳机设备切换到外放设备时，系统会推荐停止播放。
+ *
+ * @since 20
+ */
+typedef enum {
+    /**
+     * @brief 推荐继续播放（该事件作为播放维持提示，作用是告知应用本次设备变动音频无需停止播放，
+     * 但不可将其作为启动音频播放的判断依据）。
+     *
+     */
+    DEVICE_CHANGE_RECOMMEND_TO_CONTINUE = 0,
+
+    /**
+     * @brief 推荐停止播放。
+     *
+     */
+    DEVICE_CHANGE_RECOMMEND_TO_STOP = 1,
+} OH_AudioSession_OutputDeviceChangeRecommendedAction;
+
+/**
+ * @brief 音频会话停用原因。
+ *
+ * @since 12
+ */
+typedef enum {
+    /**
+     * @brief 应用焦点被抢占。
+     *
+     */
+    DEACTIVATED_LOWER_PRIORITY = 0,
+
+    /**
+     * @brief 应用停流后超时。
+     *
+     */
+    DEACTIVATED_TIMEOUT = 1,
+} OH_AudioSession_DeactivatedReason;
+
+/**
+ * @brief 在使用蓝牙或星闪进行录音时，应用程序的设备偏好分类。
+ *
+ * @since 21
+ */
+typedef enum {
+    /**
+     * @brief 无指定设备偏好。
+     *
+     */
+    PREFERRED_NONE = 0,
+
+    /**
+     * @brief 更偏好使用蓝牙或星闪录音。是否使用低延迟或高质量录音取决于系统。
+     *
+     */
+    PREFERRED_DEFAULT = 1,
+
+    /**
+     * @brief 更偏好使用蓝牙或星闪低延迟模式进行录音。
+     *
+     */
+    PREFERRED_LOW_LATENCY = 2,
+
+    /**
+     * @brief 更偏好使用蓝牙或星闪高质量模式进行录音。
+     *
+     */
+    PREFERRED_HIGH_QUALITY = 3,
+} OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory;
+
+/**
+ * @brief 定义音频会话已停用事件结构体，
+ * 该结构体用于在{@link OH_AudioSession_DeactivatedCallback} 回调函数内传递会话停用事件的详细信息。
+ *
+ * @since 12
+ */
+typedef struct OH_AudioSession_DeactivatedEvent {
+    /**
+     * @brief 音频会话停用原因。
+     *
+     */
+    OH_AudioSession_DeactivatedReason reason;
+} OH_AudioSession_DeactivatedEvent;
+
+/**
+ * @brief 声明音频会话状态变更事件结构体，
+ * 该结构体用于在{@link OH_AudioSession_StateChangedCallback} 回调函数内传递会话状态变更事件的详细信息。
+ *
+ * @since 20
+ */
+typedef struct OH_AudioSession_StateChangedEvent {
+    /**
+     * @brief 音频会话状态变更提示信息。开发者需要根据提示采取相应的响应策略。
+     *
+     */
+    OH_AudioSession_StateChangeHint stateChangeHint;
+} OH_AudioSession_StateChangedEvent;
+
+/**
+ * @brief 音频会话状态变更回调函数的原型定义。
+ *
+ * @param event 音频会话状态变更事件。
+ * @since 20
+ */
+typedef void (*OH_AudioSession_StateChangedCallback) (
+    OH_AudioSession_StateChangedEvent event);
+
+/**
+ * @brief 音频可用设备设备变化回调函数的原型定义。
+ *
+ * @param type 设备连接状态类型，已连接或断开。
+ * @param audioDeviceDescriptorArray 音频设备描述符数组。
+ *     <br>不再继续使用audioDeviceDescriptorArray指针时，请使用{@link OH_AudioSessionManager_ReleaseDevices}进行释放。
+ * @since 21
+ */
+typedef void (*OH_AudioSession_AvailableDeviceChangedCallback) (
+    OH_AudioDevice_ChangeType type,
+    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
+
+/**
+ * @brief 当前输入设备变化回调函数的原型定义。
+ *
+ * @param devices 音频设备描述符数组。
+ *     <br>不再继续使用devices指针时，请使用{@link OH_AudioSessionManager_ReleaseDevices}进行释放。
+ * @param changeReason 设备变更原因。
+ * @since 21
+ */
+typedef void (*OH_AudioSession_CurrentInputDeviceChangedCallback) (
+    OH_AudioDeviceDescriptorArray *devices,
+    OH_AudioStream_DeviceChangeReason changeReason);
+
+/**
+ * @brief 当前输出设备变化回调函数的原型定义。
+ *
+ * @param devices 音频设备描述符数组。
+ *     <br>不再继续使用devices指针时，请使用{@link OH_AudioSessionManager_ReleaseDevices}进行释放。
+ * @param changeReason 指向{@link OH_AudioStream_DeviceChangeReason}，用于接收设备变更原因。
+ * @param recommendedAction 指向{@link OH_AudioSession_OutputDeviceChangeRecommendedAction}，
+ *     用于接收设备变更后推荐的操作。
+ * @since 20
+ */
+typedef void (*OH_AudioSession_CurrentOutputDeviceChangedCallback) (
+    OH_AudioDeviceDescriptorArray *devices,
+    OH_AudioStream_DeviceChangeReason changeReason,
+    OH_AudioSession_OutputDeviceChangeRecommendedAction recommendedAction);
+
+/**
+ * @brief 音频会话停用事件回调函数的原型定义。
+ *
+ * @param event 音频会话已停用事件。
+ * @since 12
+ */
+typedef int32_t (*OH_AudioSession_DeactivatedCallback) (
+    OH_AudioSession_DeactivatedEvent event);
+
+/**
+ * @brief 获取音频会话管理器实例，该实例为单例，用于调用音频会话功能接口。
+ *
+ * @param audioSessionManager [out] 用于接收获取的音频会话管理器实例。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统错误。</li>
+ *         </ul>
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(
+    OH_AudioSessionManager **audioSessionManager);
+
+/**
+ * @brief 激活音频会话。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param strategy [in] 用于设置音频会话策略。
+ * @return 函数返回值：
+ *     <br>AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+ *     <br>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+ *     <br>1. 参数audioSessionManager为空指针；
+ *     <br>2. 参数strategy无效。
+ *     <br>AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：非法状态。
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(
+    OH_AudioSessionManager *audioSessionManager, const OH_AudioSession_Strategy *strategy);
+
+/**
+ * @brief 停用音频会话。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioSessionManager为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} 非法状态。</li>
+ *         </ul>
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(
+    OH_AudioSessionManager *audioSessionManager);
+
+/**
+ * @brief 检查音频会话是否已激活。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @return 用于返回当前应用的音频会话是否已激活，true表示已激活，false表示已停用。
+ * @since 12
+ */
+bool OH_AudioSessionManager_IsAudioSessionActivated(
+    OH_AudioSessionManager *audioSessionManager);
+
+/**
+ * @brief 注册音频会话停用事件回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于接收音频会话已停用事件。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         </ul>
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback);
+
+/**
+ * @brief 取消注册音频会话停用事件回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于接收音频会话已停用事件。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         </ul>
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback);
+
+/**
+ * @brief 设置音频会话场景参数。
+ * <br>设置会话场景后，音频会话将进入场景级模式，音频业务的生命周期与音频会话状态绑定，
+ * 焦点的请求和释放会跟随音频会话的激活和停止。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param scene [in] 要设置的音频会话场景。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数scene为枚举范围外的值。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} 系统当前状态下不允许设置，例如音频会话状态异常。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SetScene(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_Scene scene);
+
+/**
+ * @brief 注册音频会话状态变更事件回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于接收音频会话状态变更事件。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 系统内存申请异常。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_RegisterStateChangeCallback(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback);
+
+/**
+ * @brief 取消音频会话状态变更事件回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于接收音频会话状态变更事件。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_UnregisterStateChangeCallback(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioSession_StateChangedCallback callback);
+
+/**
+ * @brief 设置默认本机内置发声设备。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param deviceType [in] 指向{@link OH_AudioDevice_Type}用于设置发声设备类型。可设置的设备类型包括：
+ *     <br>AUDIO_DEVICE_TYPE_EARPIECE：听筒。
+ *     <br>AUDIO_DEVICE_TYPE_SPEAKER：扬声器。
+ *     <br>AUDIO_DEVICE_TYPE_DEFAULT：系统默认设备。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数deviceType超出枚举OH_AudioDevice_Type范围。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SetDefaultOutputDevice(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type deviceType);
+
+/**
+ * @brief 获取通过{@link OH_AudioSessionManager_SetDefaultOutputDevice}设置的默认发声设备。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param deviceType [out] 用于接收获取的发声设备类型。可返回的设备类型包括：
+ *     <br>AUDIO_DEVICE_TYPE_EARPIECE：听筒。
+ *     <br>AUDIO_DEVICE_TYPE_SPEAKER：扬声器。
+ *     <br>AUDIO_DEVICE_TYPE_DEFAULT：系统默认设备。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数deviceType为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}
+ *             系统当前状态下不允许获取默认设备类型，例如例如音频会话状态异常。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_GetDefaultOutputDevice(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Type *deviceType);
+
+/**
+ * @brief 释放音频设备描述符数组对象。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param audioDeviceDescriptorArray [in] 需要释放的音频设备描述符数组。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数audioDeviceDescriptorArray为空指针。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevices(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
+
+/**
+ * @brief 注册当前输出设备变化回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于返回音频设备变更信息的回调函数。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 系统内存申请异常。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_RegisterCurrentOutputDeviceChangeCallback(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_CurrentOutputDeviceChangedCallback callback);
+
+/**
+ * @brief 取消注册当前输出设备变化回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于返回音频设备变更信息的回调函数。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 20
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentOutputDeviceChangeCallback(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_CurrentOutputDeviceChangedCallback callback);
+
+/**
+ * @brief 获取音频可选设备列表。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param deviceUsage [in] 用于设置要获取的设备种类。
+ * @param audioDeviceDescriptorArray [out] 获取的可用音频设备描述符数组。
+ *     <br>不再继续使用audioDeviceDescriptorArray指针时，请使用{@link OH_AudioSessionManager_ReleaseDevices}进行释放。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1.参数audioSessionManager为空指针；2.参数deviceUsage无效；3.参数audioDeviceDescriptorArray为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_GetAvailableDevices(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+
+/**
+ * @brief 注册可用设备更改回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param deviceUsage [in] 用于设置要获取的设备种类。
+ * @param callback [in] 用于返回可用音频设备变更信息的回调函数。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数deviceUsage无效；3. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_RegisterAvailableDevicesChangeCallback(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDevice_Usage deviceUsage,
+    OH_AudioSession_AvailableDeviceChangedCallback callback);
+
+/**
+ * @brief 取消注册可用设备更改回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于返回可用音频设备变更信息的回调函数。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_UnregisterAvailableDevicesChangeCallback(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_AvailableDeviceChangedCallback callback);
+
+/**
+ * @brief 设置媒体输入设备。此功能不适用于呼叫录音，即{@link OH_AudioStream_SourceType}
+ * 为SOURCE_TYPE_VOICE_COMMUNICATION的场景不适用。
+ * <br>在存在更高优先级的并发录音流的场景中，应用程序实际使用的输入设备可能与所选设备不同。
+ * <br>应用程序可以使用{@link OH_AudioSessionManager_RegisterCurrentInputDeviceChangeCallback}
+ * 注册一个回调来监听实际的输入设备。
+ *     
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param deviceDescriptor [in] 要设置的输入设备。可选设备必须在{@link OH_AudioSessionManager_GetAvailableDevices}
+ *     返回的数组范围内。
+ *     <br>当设置空指针时，系统将清除上一次的设置。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioSessionManager为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SelectMediaInputDevice(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDeviceDescriptor *deviceDescriptor);
+
+/**
+ * @brief 获得通过{@link OH_AudioSessionManager_SelectMediaInputDevice}设置的媒体输入设备。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param audioDeviceDescriptor [out] 通过{@link OH_AudioSessionManager_SelectMediaInputDevice}设置的媒体设备，
+ *     如果没有设置，
+ *     返回一个类型为AUDIO_DEVICE_TYPE_INVALID的设备。
+ *     <br>不再继续使用audioDeviceDescriptor指针时，请使用{@link OH_AudioSessionManager_ReleaseDevice}进行释放。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数audioDeviceDescriptor为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_GetSelectedMediaInputDevice(
+    OH_AudioSessionManager *audioSessionManager, OH_AudioDeviceDescriptor **audioDeviceDescriptor);
+
+/**
+ * @brief 设置在使用蓝牙或星闪进行录音时，应用程序的设备偏好分类。应用程序可以在蓝牙或星闪连接之前设置此分类，
+ * 系统将在设备连接时优先使用蓝牙或星闪进行录音。
+ * <br>在更高优先级的并发录音流的场景中，应用程序实际使用的输入设备可能与当前设置的偏好设备不同。
+ * <br>应用程序可以使用{@link OH_AudioSessionManager_RegisterCurrentInputDeviceChangeCallback}
+ * 注册一个回调来监听实际的输入设备。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param category [in] 在使用蓝牙或星闪进行录音时，应用程序的设备偏好分类。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数category错误。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SetBluetoothAndNearlinkPreferredRecordCategory(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory category);
+
+/**
+ * @brief 获取应用程序设置的在使用蓝牙或星闪进行录音时的设备偏好分类。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param category [out] 在使用蓝牙或星闪进行录音时，应用程序的设备偏好分类。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数category为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_GetBluetoothAndNearlinkPreferredRecordCategory(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_BluetoothAndNearlinkPreferredRecordCategory *category);
+
+/**
+ * @brief 注册音频会话管理器的输入设备更改回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于返回音频输入设备变更信息的回调函数。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} 内存不足。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_RegisterCurrentInputDeviceChangeCallback(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_CurrentInputDeviceChangedCallback callback);
+
+/**
+ * @brief 取消注册音频会话管理器的输入设备更改回调。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param callback [in] 用于返回音频输入设备变更信息的回调函数。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数callback为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentInputDeviceChangeCallback(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioSession_CurrentInputDeviceChangedCallback callback);
+
+/**
+ * @brief 释放音频设备描述符对象。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param audioDeviceDescriptor [in] 需要被释放的音频设备描述符对象。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
+ *             1. 参数audioSessionManager为空指针；2. 参数audioDeviceDescriptor为空指针。</li>
+ *         </ul>
+ * @since 21
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevice(
+    OH_AudioSessionManager *audioSessionManager,
+    OH_AudioDeviceDescriptor *audioDeviceDescriptor);
+
+/**
+ * @brief 启用混音播放下接收静音播放建议通知功能。
+ * 通常，当使用混音模式时，如果有其他应用的音频同时播放，此时两者会混合播放。
+ * 部分场景下（如游戏或广播），应用可以通过启用静音建议通知，以为用户提供更好的体验。如果启用此功能，
+ * 当订阅音频会话状态更改事件后静音建议和取消静音建议提示将通过{@link OH_AudioSession_StateChangedCallback}回调发送，
+ * 该回调由
+ * {@link OH_AudioSessionManager_RegisterStateChangeCallback}注册。
+ * <br>收到静音建议表示其他应用程序开始播放音频，且播放的音频和本应用的音频不能混音。
+ * 此功能仅支持已设置{@link OH_AudioSession_Scene}并激活模式为
+ * {@link OH_AudioSession_ConcurrencyMode}.CONCURRENCY_MIX_WITH_OTHERS的音频会话使用。
+ * <br>并且仅在激活音频会话期间生效一次，每次激活音频会话前都必须重新启用。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param enable [in] 表示是否启用静音建议回调功能。true表示启用，false表示不启用。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioSessionManager为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} 1. 未设置音频会话场景。2. 音频会话激活后调用此函数。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 23
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers(
+    OH_AudioSessionManager *audioSessionManager, bool enable);
+
+/**
+ * @brief 检查是否有其他应用正在播放音乐、视频、听书、游戏四种媒体类型的音频，已激活的媒体场景音频会话也将会被计入。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @return 是否有其他应用正在播放媒体类型的音频。true表示有，false表示没有。
+ * @since 23
+ */
+bool OH_AudioSessionManager_IsOtherMediaPlaying(OH_AudioSessionManager *audioSessionManager);
+
+/**
+ * @brief 应用将当前音频会话内录音流的自身静音状态传递给系统音频模块。
+ * <br>该接口用于向系统音频模块上报当前音频会话内录音流的静音状态，不会改变录音流的实际静音状态。
+ * <br>系统音频模块在设备底层能力支持的情况下，根据设置的状态调整策略以降低功耗。
+ * <br>该接口仅在当前音频会话存在运行中的录音流时允许调用，否则返回错误码AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE。
+ * <br>若某条录音流同时调用了流级接口和本接口，流级接口设置优先级更高，以流级接口设置值为准。
+ *
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}返回的音频会话管理实例。
+ * @param mute [in] 当应用自身已将录音流静音时，传入true，表示将当前应用下的录音流标记为静音。解除静音时，传入false。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数audioSessionManager为空指针。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} 操作状态异常，当前进程不存在运行中的录音流。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM} 系统异常，例如系统服务异常退出等。</li>
+ *         </ul>
+ * @since 24
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SetCaptureMuteHint(
+    OH_AudioSessionManager *audioSessionManager, bool mute);
+
+/**
+ * @brief 设置音频会话行为参数（支持多种标志位的组合使用）。
+ * 当音频会话在激活状态时调用此接口后，必须重新调用接口{@link OH_AudioSessionManager_ActivateAudioSession}使其生效。
+ * 若未调用此接口，系统将使用默认行为参数。
+ * 
+ * @param audioSessionManager [in] 指向{@link OH_AudioManager_GetAudioSessionManager}创建的音频会话管理实例。
+ * @param behavior [in] 音频会话行为标志，可以是单个标志，也可以是多个标志的按位OR组合。
+ *     当前支持的音频会话行为详见{@link OH_AudioSession_BehaviorFlags}。
+ * @return <ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数为空指针或超出范围。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} 非法状态。</li>
+ *         </ul>
+ * @since 24
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SetBehavior(
+    OH_AudioSessionManager *audioSessionManager, uint32_t behavior);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // NATIVE_AUDIO_SESSION_MANAGER_H
+/** @} */

@@ -39,11 +39,7 @@
 #ifndef OH_PREDICATES_H
 #define OH_PREDICATES_H
 
-#ifdef __cplusplus
-#include <cstdint>
-#else
 #include <stdint.h>
-#endif
 
 #include <stddef.h>
 #include "database/rdb/oh_value_object.h"

@@ -16,7 +16,7 @@
  * @addtogroup AVImageGenerator
  * @{
  *
- * @brief Provides APIs for generating an image at a specific time from a video resource.
+ * @brief 提供用于从视频资源中获取指定时间点视频帧的API。
  *
  * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
@@ -27,7 +27,9 @@
  * @brief 定义AVImageGenerator接口。使用其C API从视频资源中获取指定时间点视频帧。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avimage_generator.h>
  * @library libavimage_generator.so
+   @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 
@@ -57,6 +59,7 @@ typedef struct OH_AVImageGenerator OH_AVImageGenerator;
  * 
  * @return 创建成功时返回指向OH_AVImageGenerator实例的指针，否则返回空指针。
  * 可能的失败原因：HstEngineFactory未能创建AVMetadataHelperEngine。
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
@@ -72,23 +75,26 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
  * AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
  * AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
     int32_t fd, int64_t offset, int64_t size);
 
 /**
- * @brief 从视频资源中获取指定时间点视频帧。
- * 
+ * @brief 从视频资源中获取指定时间点视频帧。<br>
+ * 此函数必须在{@link OH_AVImageGenerator_SetFDSource}之后调用。
+ *
  * @param generator 指向OH_AVImageGenerator实例的指针。
  * @param timeUs 需要获取的视频帧在视频中的时间点，单位为微秒（μs）。
- * @param options 关于给定时间Us和视频帧之间关系的时间选项。
+ * @param options 指定如何根据给定时间点查找视频帧的选项。
  * @param pixelMap 获取的视频帧对象。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
  * AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
  * AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
  * AV_ERR_NO_MEMORY：内部内存分配失败。
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator,
@@ -100,6 +106,7 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
  * @param generator 指向OH_AVImageGenerator实例的指针。
  * @return AV_ERR_OK：执行成功。
  * AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator);

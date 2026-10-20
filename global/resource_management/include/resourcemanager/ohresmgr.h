@@ -16,14 +16,25 @@
  * @addtogroup resourcemanager
  * @{
  *
- * @brief Provides the c interface to obtain resources, and relies on librawfile.z.so when used.
+ * @brief Through the `resourcemanager` module, you can obtain application resources or system resources by resource ID
+ * or resource name at the Native layer, enabling resource adaptation for multilingual, multi-device, and multi-screen-
+ * density scenarios. Specifically:
+ * <br>- Obtaining basic type resources: Obtain basic type resources such as color values (in ARGB format), integers,
+ * floating-point numbers, and boolean values.
+ * <br>- Obtaining string resources: Obtain plain strings, formatted strings (supporting %d, %s, and %f placeholders),
+ * string arrays, and plural strings.
+ * <br>- Obtaining media resources: Obtain raw binary data or Base64 encoding of media resources.
+ * <br>- Resource overlay: Dynamically load and remove overlay resources at runtime to implement theme switching or
+ * resource overlay.
+ * <br>This module depends on the `rawfile` module. You must first obtain a **NativeResourceManager** object through
+ * the `rawfile` module.
  *
  * @since 12
  */
 /**
  * @file ohresmgr.h
  *
- * @brief Provides native APIs for obtaining resources.
+ * @brief Provides the capability of obtaining resources in the resource management native layer.
  *
  * @syscap SystemCapability.Global.ResourceManager
  * @library libohresmgr.so
@@ -43,23 +54,23 @@ extern "C" {
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
- * resource ID.
+ * @brief Obtains the Base64-encoded string of the media resource by the specified resource ID and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is 0, indicating that the current system screen density (in DPI) is
- *     used.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Pointer to the Base64-encoded string, which is allocated by **malloc()** and
+ *     must be released via **free()** after use.
+ * @param resultLen Output parameter. Length of the Base64 string, in bytes.
+ * @param density Input parameter, which is optional. Screen density. For details about the value range, see
+ *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density is used.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResourceManager *mgr, uint32_t resId,
@@ -67,23 +78,24 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResource
 #endif
 
 /**
- * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
- * resource ID.
+ * @brief Obtains the Base64-encoded string of the media resource by the specified resource ID and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density (in DPI) is
- *     used. If this parameter is not required, set it to **0**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Pointer to the Base64-encoded string, which is allocated by **malloc()** and
+ *     must be released via **free()** after use.
+ * @param resultLen Output parameter. Length of the Base64 string, in bytes.
+ * @param density Input parameter. Screen density. For details about the value range, see {@link ScreenDensity}. The
+ *     value **0** indicates that the current system screen density is used. If no specific density is required, set
+ *     this parameter to **0**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeResourceManager *mgr, uint32_t resId,
@@ -91,23 +103,23 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeReso
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
- * resource name.
+ * @brief Obtains the Base64-encoded string of the media resource by the specified resource name and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is 0, indicating that the current system screen density (in DPI) is
- *     used.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Pointer to the Base64-encoded string, which is allocated by **malloc()** and
+ *     must be released via **free()** after use.
+ * @param resultLen Output parameter. Length of the Base64 string, in bytes.
+ * @param density Input parameter, which is optional. Screen density. For details about the value range, see
+ *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density is used.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeResourceManager *mgr,
@@ -115,23 +127,24 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeRe
 #endif
 
 /**
- * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
- * resource name.
+ * @brief Obtains the Base64-encoded string of the media resource by the specified resource name and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density (in DPI) is
- *     used. If this parameter is not required, set it to **0**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Pointer to the Base64-encoded string, which is allocated by **malloc()** and
+ *     must be released via **free()** after use.
+ * @param resultLen Output parameter. Length of the Base64 string, in bytes.
+ * @param density Input parameter. Screen density. For details about the value range, see {@link ScreenDensity}. The
+ *     value **0** indicates that the current system screen density is used. If no specific density is required, set
+ *     this parameter to **0**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const NativeResourceManager *mgr,
@@ -139,23 +152,23 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const Nati
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
- * ID.
+ * @brief Obtains the binary data of the media resource by the specified resource ID and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is 0, indicating that the current system screen density (in DPI) is
- *     used.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Pointer to the media data, which is allocated by **malloc()** and must be
+ *     released via **free()** after use.
+ * @param resultLen Output parameter. Data length, in bytes.
+ * @param density Input parameter, which is optional. Screen density. For details about the value range, see
+ *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density is used.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManager *mgr, uint32_t resId,
@@ -163,23 +176,24 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManage
 #endif
 
 /**
- * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
- * ID.
+ * @brief Obtains the binary data of the media resource by the specified resource ID and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density (in DPI) is
- *     used. If this parameter is not required, set it to **0**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Pointer to the media data, which is allocated by **malloc()** and must be
+ *     released via **free()** after use.
+ * @param resultLen Output parameter. Data length, in bytes.
+ * @param density Input parameter. Screen density. For details about the value range, see {@link ScreenDensity}. The
+ *     value **0** indicates that the current system screen density is used. If no specific density is required, set
+ *     this parameter to **0**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceManager *mgr, uint32_t resId,
@@ -187,23 +201,23 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceMa
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
- * name.
+ * @brief Obtains the binary data of the media resource by the specified resource name and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is 0, indicating that the current system screen density (in DPI) is
- *     used.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Pointer to the media data, which is allocated by **malloc()** and must be
+ *     released via **free()** after use.
+ * @param resultLen Output parameter. Data length, in bytes.
+ * @param density Input parameter, which is optional. Screen density. For details about the value range, see
+ *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density is used.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResourceManager *mgr, const char *resName,
@@ -211,23 +225,24 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResource
 #endif
 
 /**
- * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
- * name.
+ * @brief Obtains the binary data of the media resource by the specified resource name and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of media written to **resultLen**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density (in DPI) is
- *     used. If this parameter is not required, set it to **0**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Pointer to the media data, which is allocated by **malloc()** and must be
+ *     released via **free()** after use.
+ * @param resultLen Output parameter. Data length, in bytes.
+ * @param density Input parameter. Screen density. For details about the value range, see {@link ScreenDensity}. The
+ *     value **0** indicates that the current system screen density is used. If no specific density is required, set
+ *     this parameter to **0**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeResourceManager *mgr, const char *resName,
@@ -235,22 +250,24 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeReso
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
- * specified resource ID.
+ * @brief Obtains the DrawableDescriptor object of the icon resource by the specified resource ID, screen density, and
+ * icon type.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param drawableDescriptor Result of writing **drawableDescriptor**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is 0, indicating that the current system screen density (in DPI) is
- *     used.
- * @param type Icon type. The value **0** indicates an application icon, and the value **1** indicates a theme icon.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * @param resId Input parameter. Resource ID.
+ * @param drawableDescriptor Output parameter. Pointer to the DrawableDescriptor object.
+ * @param density Input parameter, which is optional. Screen density. For details about the value range, see
+ *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density is used.
+ * @param type Input parameter, which is optional. Icon type. The default value is **0**.
+ *     <br>**0**: application icon.
+ *     <br>**1**: application theme icon.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeResourceManager *mgr,
@@ -258,23 +275,25 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeR
 #endif
 
 /**
- * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
- * specified resource ID.
+ * @brief Obtains the DrawableDescriptor object of the icon resource by the specified resource ID, screen density, and
+ * icon type.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param drawableDescriptor Result of writing **drawableDescriptor**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density (in DPI) is
- *     used. If this parameter is not required, set it to **0**.
- * @param type Icon type. This parameter is optional. The value **0** indicates an application icon, and the value **1**
- *     indicates a theme icon. If this parameter is not required, set it to **0**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * @param resId Input parameter. Resource ID.
+ * @param drawableDescriptor Output parameter. Pointer to the DrawableDescriptor object.
+ * @param density Input parameter. Screen density. For details about the value range, see {@link ScreenDensity}. The
+ *     value **0** indicates that the current system screen density is used. If no specific density is required, set
+ *     this parameter to **0**.
+ * @param type Input parameter. Icon type. If no specific icon type is required, set this parameter to **0**.
+ *     <br>**0**: application icon.
+ *     <br>**1**: application theme icon.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const NativeResourceManager *mgr,
@@ -282,23 +301,25 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const Nat
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
- * specified resource name.
+ * @brief Obtains the DrawableDescriptor object of the icon resource by the specified resource name, screen density,
+ * and icon type.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param drawableDescriptor Result of writing **drawableDescriptor**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is 0, indicating that the current system screen density (in DPI) is
- *     used.
- * @param type Icon type. This parameter is optional. The value **0** indicates an application icon, the value **1**
- *     indicates a theme icon, and the value **2** indicates a dynamic icon.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * @param resName Input parameter. Resource name.
+ * @param drawableDescriptor Output parameter. Pointer to the DrawableDescriptor object.
+ * @param density Input parameter, which is optional. Screen density. For details about the value range, see
+ *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density is used.
+ * @param type Input parameter, which is optional. Icon type. The default value is **0**.
+ *     <br>**0**: application icon.
+ *     <br>**1**: application theme icon.
+ *     <br>**2**: dynamic icon.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorByName(const NativeResourceManager *mgr,
@@ -306,59 +327,63 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorByName(const N
 #endif
 
 /**
- * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
- * specified resource name.
+ * @brief Obtains the DrawableDescriptor object of the icon resource by the specified resource name and screen density.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param drawableDescriptor Result of writing **drawableDescriptor**.
- * @param density Screen density. This parameter is optional. For details about the value range, see
- *     {@link ScreenDensity}. The default value is **0**, indicating that the current system screen density (in DPI) is
- *     used. If this parameter is not required, set it to **0**.
- * @param type Icon type. This parameter is optional. The value **0** indicates an application icon, and the value **1**
- *     indicates a theme icon. If this parameter is not required, set it to **0**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * @param resName Input parameter. Resource name.
+ * @param drawableDescriptor Output parameter. Pointer to the DrawableDescriptor object.
+ * @param density Input parameter. Screen density. For details about the value range, see {@link ScreenDensity}. The
+ *     value **0** indicates that the current system screen density is used. If no specific density is required, set
+ *     this parameter to **0**.
+ * @param type Input parameter. Icon type. If no specific icon type is required, set this parameter to **0**.
+ *     <br>**0**: application icon.
+ *     <br>**1**: application theme icon.
+ *     <br>**2**: dynamic icon.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorDataByName(const NativeResourceManager *mgr,
     const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type);
 
 /**
- * @brief Obtains a **symbol** resource based on the specified resource ID.
+ * @brief Obtains the Unicode encoding of the symbol icon corresponding to the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Unicode encoding of the symbol icon.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbol(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains a **symbol** resource based on the specified resource name.
+ * @brief Obtains the Unicode encoding of the symbol icon corresponding to the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Unicode encoding of the symbol icon.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourceManager *mgr, const char *resName,
@@ -366,19 +391,22 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourc
 
 #ifdef __cplusplus
 /**
- * @brief Obtains the language list. After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()**
- * to release the memory of **locales**.
+ * @brief Obtains the list of languages supported by an application.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of locales written to **resultLen**.
- * @param includeSystem Whether system resources are included. The default value is **false**. This parameter does not
- *     take effect if only system resources are involved when you query the list of locales.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resultValue Output parameter. Pointer to the language list array. The memory is allocated by this function
+ *     and must be released through {@link OH_ResourceManager_ReleaseStringArray} after use.
+ * @param resultLen Output parameter. Length of the language list.
+ * @param includeSystem Input parameter, which is optional.This parameter indicates whether to include system resources.
+ *     The value **true** indicates yes, and the value **false** indicates no. The default value is **false**.
+ *     <br>When the system resource manager object is used to obtain the language list, the system resource language
+ *     list is returned.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceManager *mgr, char ***resultValue,
@@ -386,155 +414,176 @@ ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceMana
 #endif
 
 /**
- * @brief Obtains the language list. After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()**
- * to release the memory of **locales**.
+ * @brief Obtains the list of languages supported by an application.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of locales written to **resultLen**.
- * @param includeSystem Whether system resources are included. If this parameter is not required, set it to **false**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resultValue Output parameter. Pointer to the language list array. The memory is allocated by this function
+ *     and must be released through {@link OH_ResourceManager_ReleaseStringArray} after use.
+ * @param resultLen Output parameter. Length of the language list.
+ * @param includeSystem Input parameter. This parameter indicates whether to include system resources. The value
+ *     **true** indicates yes, and the value **false** indicates no.
+ *     <br>When the system resource manager object is used to obtain the language list, the system resource language
+ *     list is returned.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocalesData(const NativeResourceManager *mgr, char ***resultValue,
     uint32_t *resultLen, bool includeSystem);
 
 /**
- * @brief Obtains the device configuration. After this API is used, call
- * {@link OH_ResourceManager_ReleaseConfiguration} to release the memory. If the **ResourceManager_Configuration**
- * object is created by using malloc, call **free()** to release the object.
+ * @brief Obtains the configuration information of a device, such as the screen orientation, language and region,
+ * device type, screen density, and color mode.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param configuration Device configuration. The return value of **configuration.screenDensity** is the rounded value
- *     of the device's DPI divided by 160.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - The attempt to access system resources fails.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param configuration Output parameter. Device configuration information, where **screenDensity** is the device
+ *     screen density (in dpi) divided by 160 and rounded to an integer.
+ *     <br>The memory for the locale string in **configuration** is allocated by this function, and must be released
+ *     through {@link OH_ResourceManager_ReleaseConfiguration} after use. If the memory for **configuration** is
+ *     allocated by **malloc()**, it must be released via **free()**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED**: Failed to access the system resource.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  * @deprecated since 20
- * @useinstead OH_ResourceManager_GetResourceConfiguration
+ * @useinstead {@link OH_ResourceManager_GetResourceConfiguration}
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResourceManager *mgr,
     ResourceManager_Configuration *configuration);
 
 /**
- * @brief Obtains the device configuration. After this API is used, call
- * {@link OH_ResourceManager_ReleaseConfiguration} to release the memory. If the **ResourceManager_Configuration**
- * object is created by using malloc, call **free()** to release the object.
+ * @brief Obtains the configuration information of a device, such as the screen orientation, language and region, device
+ * type, screen density, and color mode.
  *
  * @param {NativeResourceManager} mgr Indicates the pointer to {@link NativeResourceManager}
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param {ResourceManager_Configuration} configuration the result write to ResourceManager_Configuration.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - The attempt to access system resources fails.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED**: Failed to access the system resource.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 20
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,
     ResourceManager_Configuration *configuration);
 
 /**
- * @brief Releases the memory requested by using the {@link OH_ResourceManager_GetConfiguration} and
- * {@link OH_ResourceManager_GetResourceConfiguration} methods.
+ * @brief Releases the memory requested through the {@link OH_ResourceManager_GetConfiguration} or
+ * {@link OH_ResourceManager_GetResourceConfiguration} function.
  *
- * @param configuration Configuration object whose memory needs to be released.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
+ * @param configuration Input parameter. Pointer to the {@link ResourceManager_Configuration} object whose memory needs
+ *     to be deallocated.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManager_Configuration *configuration);
 
 /**
- * @brief Obtains a **string** resource based on the specified resource ID. The obtain common string resources, use **
- * OH_ResourceManager_GetString(mgr, resId, resultValue)**. The obtain formatted string resources with the **%d**, **%s*
- * *, and **%f** placeholders, use **OH_ResourceManager_GetString(mgr, resId, resultValue, 10, "format", 10.10)**.
- * After using this API, you need to call **free()** to release the memory of the strings.
+ * @brief Obtains a plain or formatted string based on the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Pointer to the string, which is allocated by **malloc()** and must be released
+ *     via **free()** after use.
+ * @param ... Input parameter, which is optional. Variable parameter list, which is used for string formatting. The
+ *     following types are supported: const char*, int, and float.
+ *     <br>You do not need to set this parameter when obtaining a plain string. This parameter is mandatory to obtain a
+ *     formatted string. The variable parameters must be passed in the order corresponding to the placeholders in the
+ *     string. The number and types of the parameters must match the placeholders in the string. For example, if the
+ *     string contains three placeholders %d, %s, and %f, the API should be called as follows:
+ *     **OH_ResourceManager_GetString(mgr, resId, resultValue, 10, "format", 10.10)**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetString(const NativeResourceManager *mgr, uint32_t resId,
     char **resultValue, ...);
 
 /**
- * @brief Obtains a **string** resource based on the specified resource name. The obtain common string resources, use **
- * OH_ResourceManager_GetString(mgr, resName, resultValue)**. The obtain formatted string resources with the **%d**, **%
- * s**, and **%f** placeholders, use **OH_ResourceManager_GetString(mgr, resName, resultValue, 10, "format", 10.10)**.
- * After using this API, you need to call **free()** to release the memory of the strings.
+ * @brief Obtains a plain or formatted string based on the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Pointer to the string, which is allocated by **malloc()** and must be released
+ *     via **free()** after use.
+ * @param ... Input parameter, which is optional. Variable parameter list, which is used for string formatting. The
+ *     following types are supported: const char*, int, and float.
+ *     <br>You do not need to set this parameter when obtaining a plain string. This parameter is mandatory to obtain a
+ *     formatted string. The variable parameters must be passed in the order corresponding to the placeholders in the
+ *     string. The number and types of the parameters must match the placeholders in the string. For example, if the
+ *     string contains three placeholders %d, %s, and %f, the API should be called as follows:
+ *     **OH_ResourceManager_GetStringByName(mgr, resName, resultValue, 10, "format", 10.10)**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringByName(const NativeResourceManager *mgr, const char *resName,
     char **resultValue, ...);
 
 /**
- * @brief Obtains a string array based on the specified resource ID. After using this API, you need to call **
- * OH_ResourceManager_ReleaseStringArray()** to release the memory of the string array.
+ * @brief Obtains the string array based on the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of **StringArray** written to **resultLen**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Pointer to the string array. The memory is allocated by this function and must
+ *     be released through {@link OH_ResourceManager_ReleaseStringArray} after use.
+ * @param resultLen Output parameter. Length of the string array.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringArray(const NativeResourceManager *mgr, uint32_t resId,
     char ***resultValue, uint32_t *resultLen);
 
 /**
- * @brief Obtains a string array based on the specified resource name. After using this API, you need to call **
- * OH_ResourceManager_ReleaseStringArray()** to release the memory of the string array.
+ * @brief Obtains the string array based on the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @param resultLen Length of **StringArray** written to **resultLen**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Pointer to the string array. The memory is allocated by this function and must
+ *     be released through {@link OH_ResourceManager_ReleaseStringArray} after use.
+ * @param resultLen Output parameter. Length of the string array.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName(const NativeResourceManager *mgr,
@@ -543,321 +592,394 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName(const NativeRe
 /**
  * @brief Releases the memory of the string array.
  *
- * @param resValue String array whose memory needs to be released.
- * @param len Length of the string array.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
+ * @param resValue Input parameter. Pointer to the string array to be released.
+ * @param len Input parameter. Length of the string array.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue, uint32_t len);
 
 /**
- * @brief Obtains singular and plural strings based on the specified resource ID. After using this API, you need to
- * call **free()** to release the memory of the strings.
+ * @brief Obtains the plural string based on the specified resource ID.
+ * <br>The Chinese language does not distinguish between singular and plural forms in strings, whereas other languages
+ * do. For details about the specific rules, see {@link language plural rules}.
+ * <br>In languages such as English and German, plural categories include cardinal forms (for example, 1, 2, 3) and
+ * ordinal forms (for example, 1st, 2nd, 3rd). This function applies only to cardinal forms.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param num Number.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param num Input parameter. Quantity value, which is used to obtain the corresponding plural string based on the
+ *     plural rules of the current language.
+ * @param resultValue Output parameter. Pointer to the string. The memory is allocated by **malloc()**, and must be
+ *     released via **free()**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  * @deprecated since 16
- * @useinstead OH_ResourceManager_GetIntPluralString
+ * @useinstead {@link OH_ResourceManager_GetIntPluralString}
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t num, char **resultValue);
 
 /**
- * @brief Obtains singular and plural strings based on the specified resource name. After using this API, you need to
- * call **free()** to release the memory of the strings.
+ * @brief Obtains the plural string based on the specified resource name.
+ * <br>The Chinese language does not distinguish between singular and plural forms in strings, whereas other languages
+ * do. For details about the specific rules, see {@link language plural rules}.
+ * <br>In languages such as English and German, plural categories include cardinal forms (for example, 1, 2, 3) and
+ * ordinal forms (for example, 1st, 2nd, 3rd). This function applies only to cardinal forms.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param num Number.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param num Input parameter. Quantity value, which is used to obtain the corresponding plural string based on the
+ *     plural rules of the current language.
+ * @param resultValue Output parameter. Pointer to the string. The memory is allocated by **malloc()**, and must be
+ *     released via **free()**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 12
  * @deprecated since 16
- * @useinstead OH_ResourceManager_GetIntPluralStringByName
+ * @useinstead {@link OH_ResourceManager_GetIntPluralStringByName}
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeResourceManager *mgr,
     const char *resName, uint32_t num, char **resultValue);
 
 /**
- * @brief Obtains singular and plural strings based on the specified resource ID. After using this API, you need to
- * call **free()** to release the memory of the strings.
+ * @brief Obtains the corresponding plural string and formats it based on the specified resource ID, integer quantity,
+ * and variable parameters.
+ * <br>The Chinese language does not distinguish between singular and plural forms in strings, whereas other languages
+ * do. For details about the specific rules, see {@link language plural rules}.
+ * <br>In languages such as English and German, plural categories include cardinal forms (for example, 1, 2, 3) and
+ * ordinal forms (for example, 1st, 2nd, 3rd). This function applies only to cardinal forms.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param num Quantity value (an integer number). Its string representation is obtained based on the current language's
- *     plural rules.
- * @param resultValue Result of writing **resultValue**.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param num Input parameter. Quantity value (integer), which is used to obtain the corresponding plural string based
+ *     on the plural rules of the current language.
+ * @param resultValue Output parameter. Pointer to the string. The memory is allocated by **malloc()**, and must be
+ *     released via **free()**.
+ * @param ... Input parameter, which is optional. Variable parameter list, which is used for string formatting. The
+ *     following types are supported: const char*, int, and float.
+ *     <br>You do not need to set this parameter when obtaining a plain string. This parameter is mandatory to obtain a
+ *     formatted string. The variable parameters must be passed in the order corresponding to the placeholders in the
+ *     string. The number and types of the parameters must match the placeholders in the string. For example, if the
+ *     string contains three placeholders %d, %s, and %f, the API should be called as follows:
+ *     **OH_ResourceManager_GetIntPluralString(mgr, resId, 10, resultValue, 10, "format", 10.10)**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t num, char **resultValue, ...);
 
 /**
- * @brief Obtains singular and plural strings based on the specified resource name. After using this API, you need to
- * call **free()** to release the memory of the strings.
+ * @brief Obtains the corresponding plural string and formats it based on the specified resource name, integer quantity,
+ * and variable parameters.
+ * <br>The Chinese language does not distinguish between singular and plural forms in strings, whereas other languages
+ * do. For details about the specific rules, see {@link language plural rules}.
+ * <br>In languages such as English and German, plural categories include cardinal forms (for example, 1, 2, 3) and
+ * ordinal forms (for example, 1st, 2nd, 3rd). This function applies only to cardinal forms.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param num Quantity value (an integer number). Its string representation is obtained based on the current language's
- *     plural rules.
- * @param resultValue Result of writing **resultValue**.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param num Input parameter. Quantity value (integer), which is used to obtain the corresponding plural string based
+ *     on the plural rules of the current language.
+ * @param resultValue Output parameter. Pointer to the string. The memory is allocated by **malloc()**, and must be
+ *     released via **free()**.
+ * @param ... Input parameter, which is optional. Variable parameter list, which is used for string formatting. The
+ *     following types are supported: const char*, int, and float.
+ *     <br>You do not need to set this parameter when obtaining a plain string. This parameter is mandatory to obtain a
+ *     formatted string. The variable parameters must be passed in the order corresponding to the placeholders in the
+ *     string. The number and types of the parameters must match the placeholders in the string. For example, if the
+ *     string contains three placeholders %d, %s, and %f, the API should be called as follows:
+ *     **OH_ResourceManager_GetIntPluralStringByName(mgr, resName, 10, resultValue, 10, "format", 10.10)**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const NativeResourceManager *mgr,
     const char *resName, uint32_t num, char **resultValue, ...);
 
 /**
- * @brief Obtains singular and plural strings based on the specified resource ID. After using this API, you need to
- * call **free()** to release the memory of the strings.
+ * @brief Obtains the corresponding plural string and formats it based on the specified resource ID, floating-point
+ * quantity, and variable parameters.
+ * <br>The Chinese language does not distinguish between singular and plural forms in strings, whereas other languages
+ * do. For details about the specific rules, see {@link language plural rules}.
+ * <br>In languages such as English and German, plural categories include cardinal forms (for example, 1, 2, 3) and
+ * ordinal forms (for example, 1st, 2nd, 3rd). This function applies only to cardinal forms.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param num Quantity value (a floating point number). Its string representation is obtained based on the current
- *     language's plural rules.
- * @param resultValue Result of writing **resultValue**.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resId Input parameter. Resource ID.
+ * @param num Input parameter. Quantity value (floating-point), which is used to obtain the corresponding plural string
+ *     based on the plural rules of the current language.
+ * @param resultValue Output parameter. Pointer to the string. The memory is allocated by **malloc()**, and must be
+ *     released via **free()**.
+ * @param ... Input parameter, which is optional. Variable parameter list, which is used for string formatting. The
+ *     following types are supported: const char*, int, and float.
+ *     <br>You do not need to set this parameter when obtaining a plain string. This parameter is mandatory to obtain a
+ *     formatted string. The variable parameters must be passed in the order corresponding to the placeholders in the
+ *     string. The number and types of the parameters must match the placeholders in the string. For example, if the
+ *     string contains three placeholders %d, %s, and %f, the API should be called as follows:
+ *     **OH_ResourceManager_GetDoublePluralString(mgr, resId, 1.1, resultValue, 10, "format", 10.10)**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeResourceManager *mgr, uint32_t resId,
     double num, char **resultValue, ...);
 
 /**
- * @brief Obtains singular and plural strings based on the specified resource name. After using this API, you need to
- * call **free()** to release the memory of the strings.
+ * @brief Obtains the corresponding plural string and formats it based on the specified resource name, floating-point
+ * quantity, and variable parameters.
+ * <br>The Chinese language does not distinguish between singular and plural forms in strings, whereas other languages
+ * do. For details about the specific rules, see {@link language plural rules}.
+ * <br>In languages such as English and German, plural categories include cardinal forms (for example, 1, 2, 3) and
+ * ordinal forms (for example, 1st, 2nd, 3rd). This function applies only to cardinal forms.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param num Quantity value (a floating point number). Its string representation is obtained based on the current
- *     language's plural rules.
- * @param resultValue Result of writing **resultValue**.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
- *     <br>{@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @param resName Input parameter. Resource name.
+ * @param num Input parameter. Quantity value (floating-point), which is used to obtain the corresponding plural string
+ *     based on the plural rules of the current language.
+ * @param resultValue Output parameter. Pointer to the string. The memory is allocated by **malloc()**, and must be
+ *     released via **free()**.
+ * @param ... Input parameter, which is optional. Variable parameter list, which is used for string formatting. The
+ *     following types are supported: const char*, int, and float.
+ *     <br>You do not need to set this parameter when obtaining a plain string. This parameter is mandatory to obtain a
+ *     formatted string. The variable parameters must be passed in the order corresponding to the placeholders in the
+ *     string. The number and types of the parameters must match the placeholders in the string. For example, if the
+ *     string contains three placeholders %d, %s, and %f, the API should be called as follows:
+ *     **OH_ResourceManager_GetDoublePluralStringByName(mgr, resName, 1.1, resultValue, 10, "format", 10.10)**.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
+ *     <br>**ERROR_CODE_OUT_OF_MEMORY**: Memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const NativeResourceManager *mgr,
     const char *resName, double num, char **resultValue, ...);
 
 /**
- * @brief Obtains a color value based on the specified resource ID.
+ * @brief Obtains the color resource value based on the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Color resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetColor(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains a color value based on the specified resource ID.
+ * @brief Obtains the color resource value based on the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Color resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetColorByName(const NativeResourceManager *mgr, const char *resName,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains an int value based on the specified resource ID.
+ * @brief Obtains the integer resource value based on the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Integer resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetInt(const NativeResourceManager *mgr, uint32_t resId,
     int *resultValue);
 
 /**
- * @brief Obtains an int value based on the specified resource name.
+ * @brief Obtains the integer resource value based on the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Integer resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntByName(const NativeResourceManager *mgr, const char *resName,
     int *resultValue);
 
 /**
- * @brief Obtains a float value based on the specified resource ID.
+ * @brief Obtains the floating-point resource value based on the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Floating-point resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetFloat(const NativeResourceManager *mgr, uint32_t resId,
     float *resultValue);
 
 /**
- * @brief Obtains a float value based on the specified resource name.
+ * @brief Obtains the floating-point resource value based on the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Floating-point resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetFloatByName(const NativeResourceManager *mgr, const char *resName,
     float *resultValue);
 
 /**
- * @brief Obtains a bool value based on the specified resource ID.
+ * @brief Obtains the Boolean resource value based on the specified resource ID.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Resource ID.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resId Input parameter. Resource ID.
+ * @param resultValue Output parameter. Boolean resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_ID_NOT_FOUND**: Invalid resource ID.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_ID**: No matching resource is found based on the resource ID.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetBool(const NativeResourceManager *mgr, uint32_t resId,
     bool *resultValue);
 
 /**
- * @brief Obtains a bool value based on the specified resource name.
+ * @brief Obtains the Boolean resource value based on the specified resource name.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Resource name.
- * @param resultValue Result of writing **resultValue**.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
- *     <br>{@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
- *     <br>{@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * @param resName Input parameter. Resource name.
+ * @param resultValue Output parameter. Boolean resource value.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_RES_NAME_NOT_FOUND**: Invalid resource name.
+ *     <br>**ERROR_CODE_RES_NOT_FOUND_BY_NAME**: No matching resource is found based on the resource name.
+ *     <br>**ERROR_CODE_RES_REF_TOO_MUCH**: The resource has a circular reference.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetBoolByName(const NativeResourceManager *mgr, const char *resName,
     bool *resultValue);
 
 /**
- * @brief Adds overlay resources when an application is running.
+ * @brief Dynamically loads overlay resources during application runtime to implement theme switching or resource
+ * overriding.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param path Resource path.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - The resource path is invalid.
+ * @param path Input parameter. Absolute path of the HSP or HAP resource package to be loaded.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_OVERLAY_RES_PATH_INVALID**: Invalid overlay path.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_AddResource(const NativeResourceManager *mgr, const char *path);
 
 /**
- * @brief Removes overlay resources when an application is running.
+ * @brief Removes the specified overlay resource during application runtime and restores the original resource before
+ * the override.
  *
- * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * @param mgr Input parameter. Pointer to the NativeResourceManager object. The pointer is obtained through
  *     {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param path Resource path.
- * @return {@link SUCCESS} 0 - The operation is successful.
- *     <br>{@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The
- *     parameter type is incorrect. 2. Parameter verification failed.
- *     <br>{@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - The resource path is invalid.
+ * @param path Input parameter. Absolute path of the HSP or HAP resource package to be removed.
+ * @return Result code.
+ *     <br>**SUCCESS**: Success.
+ *     <br>**ERROR_CODE_INVALID_INPUT_PARAMETER**: Invalid input parameter. Possible causes: 1. The parameter type is
+ *     incorrect. 2. Parameter verification failed.
+ *     <br>**ERROR_CODE_OVERLAY_RES_PATH_INVALID**: Invalid overlay path.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_RemoveResource(const NativeResourceManager *mgr, const char *path);

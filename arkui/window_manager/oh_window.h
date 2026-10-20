@@ -290,9 +290,9 @@ void OH_WindowManager_ReleaseAllWindowLayoutInfoList(WindowManager_Rect* windowL
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param touchEvent Pointer to the multimodal touch event. For details, see {@link Input_TouchEvent}. The event is
  *     defined in **oh_input_manager.h**. Certain fields in this parameter have specific constraints. Specifically, **
- *     action** should be an integer in the range [0, 3]; **id**, **displayX**, **displayY**, and **actionTime** should
+ *     action** should be an integer in the range [0, 3]; **id**, **displayX**, **displayY** should
  *     be an integer greater than or equal to 0. If these constraints are not met, the function returns **
- *     WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**, indicating that the window manager service is abnormal.
+ *     WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**, indicating that the window manager service is abnormal.
  * @param windowX X coordinate of the event relative to the target window. The value is an integer.
  * @param windowY Y coordinate of the event relative to the target window. The value is an integer.
  * @return Returns the result code.

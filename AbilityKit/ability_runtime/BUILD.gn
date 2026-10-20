@@ -18,6 +18,7 @@ ohos_ndk_headers("ability_runtime_ndk_header") {
   sources = [
     "./ability_runtime_common.h",
     "./application_context.h",
+    "./child_process_info.h",
     "./connect_options.h",
     "./context.h",
     "./context_constant.h",
@@ -40,6 +41,7 @@ ohos_ndk_library("libability_runtime") {
   system_capability_headers = [
     "AbilityKit/ability_runtime/ability_runtime_common.h",
     "AbilityKit/ability_runtime/application_context.h",
+    "AbilityKit/ability_runtime/child_process_info.h",
     "AbilityKit/ability_runtime/connect_options.h",
     "AbilityKit/ability_runtime/context.h",
     "AbilityKit/ability_runtime/context_constant.h",

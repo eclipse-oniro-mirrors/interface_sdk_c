@@ -28,8 +28,8 @@
 /**
  * @file drawing_text_font_descriptor.h
  *
- * @brief This file declares the capabilities of font information, such as obtaining font information and searching for
- * a font.
+ * @brief Defines APIs related to font information, such as obtaining font information, finding and matching specified
+ * fonts, reading font descriptor properties, and obtaining Unicode codes and font counts.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -58,22 +58,18 @@ typedef enum {
      * All font types.
      */
     ALL = 1 << 0,
-
     /**
      * System font type.
      */
     GENERIC = 1 << 1,
-
     /**
      * Style font type.
      */
     STYLISH = 1 << 2,
-
     /**
      * User-installed font type.
      */
     INSTALLED = 1 << 3,
-
     /**
      * Custom font type.
      * @since 18
@@ -93,117 +89,98 @@ typedef enum {
      * Font file path, of the {@link OH_Drawing_String} type.
      */
     FULL_DESCRIPTOR_ATTR_S_PATH = 0,
-
     /**
      * Postscript font name, of the {@link OH_Drawing_String} type.
      */
     FULL_DESCRIPTOR_ATTR_S_POSTSCRIPT_NAME = 1,
-
     /**
      * Font name, of the {@link OH_Drawing_String} type.
      */
     FULL_DESCRIPTOR_ATTR_S_FULL_NAME = 2,
-
     /**
      * Font family name, of the {@link OH_Drawing_String} type.
      */
     FULL_DESCRIPTOR_ATTR_S_FAMILY_NAME = 3,
-
     /**
      * Font subfamily name, of the {@link OH_Drawing_String} type.
      */
     FULL_DESCRIPTOR_ATTR_S_SUB_FAMILY_NAME = 4,
-
     /**
      * Font weight, of the int type.
      */
     FULL_DESCRIPTOR_ATTR_I_WEIGHT = 5,
-
     /**
      * Font width style, of the int type.
      */
     FULL_DESCRIPTOR_ATTR_I_WIDTH = 6,
-
     /**
      * Whether the font is italic, of the int type. **1** means that the font is italic; **0** otherwise.
      */
     FULL_DESCRIPTOR_ATTR_I_ITALIC = 7,
     /**
-     * Whether the font is monospace, of the bool type. **true** means yes; **false** otherwise.
+     * Whether the font is monospaced. The value is of the bool type. The value true means the font is monospaced, and
+     * false means the opposite.
      */
     FULL_DESCRIPTOR_ATTR_B_MONO = 8,
-
     /**
      * Whether the font supports the symbol font, of the bool type. **true** means yes; **false** otherwise.
      */
     FULL_DESCRIPTOR_ATTR_B_SYMBOLIC = 9,
-
     /**
      * Extracts the postscript name of the font based on the system language configuration.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_POSTSCRIPT_NAME = 10,
-
     /**
      * Extracts the full name of the font based on the system language configuration.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_FULL_NAME = 11,
-
     /**
      * Extracts the font family name based on the system language configuration.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_FAMILY_NAME = 12,
-
     /**
      * Extracts the font subfamily name based on the system language configuration.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LOCAL_SUB_FAMILY_NAME = 13,
-
     /**
      * Font version.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_VERSION = 14,
-
     /**
      * Font manufacturer information.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_MANUFACTURE = 15,
-
     /**
      * The copyright of the font
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_COPYRIGHT = 16,
-
     /**
      * Font trademark information.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_TRADEMARK = 17,
-
     /**
      * Font license information.
      * @since 23
      */
     FULL_DESCRIPTOR_ATTR_S_LICENSE = 18,
-
     /**
      * Font variable axis array.
      * @since 24
      */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_AXIS = 19,
-
     /**
      * Font variable instance array.
      * @since 24
      */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_INSTANCE = 20,
-
     /**
      * Font index.
      * @since 23
@@ -212,42 +189,36 @@ typedef enum {
 } OH_Drawing_FontFullDescriptorAttributeId;
 
 /**
-* @brief Enumerates font variable axis attributes.
-*
-* @since 24
-*/
+ * @brief Enumerates font variable axis attributes.
+ *
+ * @since 24
+ */
 typedef enum {
     /**
      * Keyword identifier of the font variable axis.
      */
     FONT_VARIATION_AXIS_ATTR_S_KEY = 0,
-
     /**
      * Minimum value of the font variable axis.
      */
     FONT_VARIATION_AXIS_ATTR_D_MIN_VALUE = 1,
-
     /**
      * Maximum value of the font variable axis.
      */
     FONT_VARIATION_AXIS_ATTR_D_MAX_VALUE = 2,
-
     /**
      * Default value of the font variable axis.
      */
     FONT_VARIATION_AXIS_ATTR_D_DEFAULT_VALUE = 3,
-
     /**
      * Flag of the font variable axis. The value **0** indicates that the axis is visible to users, and the value **1**
      * indicates that the axis should be hidden.
      */
     FONT_VARIATION_AXIS_ATTR_I_FLAGS = 4,
-
     /**
      * English name of the font variable axis.
      */
     FONT_VARIATION_AXIS_ATTR_S_NAME = 5,
-
     /**
      * Localized name of the font variable axis.
      */
@@ -264,7 +235,6 @@ typedef enum {
      * English name of the font variable instance.
      */
     FONT_VARIATION_INSTANCE_ATTR_S_NAME = 0,
-
     /**
      * Localized name of the font variable instance.
      */
@@ -296,12 +266,12 @@ typedef struct {
  * pointer when the object is no longer needed.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param desc Pointer.
- *     <br>You are advised to use {@link OH_Drawing_CreateFontDescriptor} to obtain a valid
+ * @param desc Pointer to the {@link OH_Drawing_FontDescriptor} object.
+ *     <br>It is recommended to use {@link OH_Drawing_CreateFontDescriptor} to obtain a valid
  *     {@link OH_Drawing_FontDescriptor} instance.
- *     <br>For an {@link OH_Drawing_FontDescriptor} instance created by yourself, ensure that the fields that are not
- *     used for matching are set to default values.
- * @param num Pointer to the number of elements in the array.
+ *     <br>If you create a {@link OH_Drawing_FontDescriptor} instance yourself, ensure that the fields not used for
+ *     matching are set to default values.
+ * @param num Output parameter. Used to receive the number of members in the returned array.
  * @return An array of {@link OH_Drawing_FontDescriptor} objects. Use {@link OH_Drawing_DestroyFontDescriptors} to
  *     release the array.
  * @since 18
@@ -312,17 +282,17 @@ OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors(OH_Drawing_FontDescri
  * @brief Releases an array of {@link OH_Drawing_FontDescriptor} objects.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param descriptors Array.
+ * @param descriptors Pointer to the array of {@link OH_Drawing_FontDescriptor} objects to be released.
  * @param num Number of members in an array of {@link OH_Drawing_FontDescriptor} objects.
  * @since 18
  */
 void OH_Drawing_DestroyFontDescriptors(OH_Drawing_FontDescriptor* descriptors, size_t num);
 
 /**
- * @brief Obtains a font descriptor based on the font name and type. System fonts, style fonts, and user-installed
- * fonts are supported.
- * <br>A font descriptor is a data structure that describes font features. It contains details of the font appearance
- * and properties.
+ * @brief Obtains the specified font descriptor based on the font name and font type. This API supports system fonts,
+ * style fonts, and user-installed fonts. If the acquisition fails, NULL is returned.
+ * <br>A font descriptor is a data structure that describes font characteristics. It contains detailed information that
+ * defines the appearance and properties of a font.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fullName Pointer to the font name, which is {@link OH_Drawing_String}.
@@ -346,7 +316,8 @@ OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName(const OH_Drawi
 OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType(OH_Drawing_SystemFontType fontType);
 
 /**
- * @brief Obtains the font name with the specified index in the font name array.
+ * @brief Obtains the font name at the corresponding position in the font name array by index. If the index is out of
+ * range or the array is invalid, NULL is returned.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fullNameArray Pointer to an {@link OH_Drawing_Array} object.
@@ -414,7 +385,7 @@ void OH_Drawing_DestroyFontFullDescriptors(OH_Drawing_Array* descriptorArray);
 
 /**
  * @brief Releases the memory occupied by the font descriptor pointer. This function can be used to release the font
- * descriptor pointer obtained by calling {@link OH_Drawing_GetFontFullDescriptorByFullName}.
+ * descriptor pointer obtained by the {@link OH_Drawing_GetFontFullDescriptorByFullName} API.
  *
  * @param descriptor Pointer to the font descriptor object {@link OH_Drawing_FontFullDescriptor}.
  * @since 24
@@ -422,33 +393,37 @@ void OH_Drawing_DestroyFontFullDescriptors(OH_Drawing_Array* descriptorArray);
 void OH_Drawing_DestroyFontFullDescriptor(const OH_Drawing_FontFullDescriptor* descriptor);
 
 /**
- * @brief Obtains a Unicode array from a font file.
+ * @brief Obtains the Unicode code array from a font file.
  *
  * @param fontSrc Font file path.
- * @param index Index of the font in a TTC/OTC file. This parameter shall be set to **0** for non-TTC/OTC files.
+ * @param index Index of the font in the ttc/otc file. The value ranges from 0 to Font Count minus 1. Set this
+ *     parameter to 0 for non-ttc/otc files.
  * @param unicodeArray Output parameter, which is used to receive the Unicode array. Use **free()** to release the
  *     Unicode array when the array is no longer needed.
  * @param arrayLength Output parameter, which is used to receive the length of the Unicode array.
- * @return Returns the execution result.
- *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
- *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the font path is invalid or the file is not a font file.
+ * @return Result code.
+ *     <br>Returns OH_DRAWING_SUCCESS if the operation is successful.
+ *     <br>Returns OH_DRAWING_ERROR_INCORRECT_PARAMETER if the font path is invalid, a non-font file is passed in, or
+ *     the unicodeArray or arrayLength parameter is NULL.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc, uint32_t index,
     int32_t** unicodeArray, int32_t* arrayLength);
 
 /**
- * @brief Obtains a Unicode array from a font buffer.
+ * @brief Obtains the Unicode code array from a font byte stream buffer.
  *
  * @param fontBuffer Font file data.
  * @param length Length of the font file data.
- * @param index Index of the font in a TTC/OTC file. This parameter shall be set to **0** for non-TTC/OTC files.
+ * @param index Index of the font in the ttc/otc file. The value ranges from 0 to Font Count - 1. For non-ttc/otc files,
+ *     set this parameter to 0.
  * @param unicodeArray Output parameter, which is used to receive the Unicode array. Use **free()** to release the
  *     Unicode array when the array is no longer needed.
  * @param arrayLength Output parameter, which is used to receive the length of the Unicode array.
- * @return Returns the execution result.
- *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
- *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the buffer data is invalid or not font file data.
+ * @return Result code.
+ *     <br>Returns OH_DRAWING_SUCCESS if the operation is successful.
+ *     <br>Returns OH_DRAWING_ERROR_INCORRECT_PARAMETER if the cached data is invalid, the cached data is not font file
+ *     data, or the parameters unicodeArray and arrayLength are NULL.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffer, size_t length, uint32_t index,
@@ -511,7 +486,10 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeString(const OH_Dr
  * @param descriptor Pointer to the font descriptor object {@link OH_Drawing_FontFullDescriptor}.
  * @param id Font descriptor attribute ID. You can obtain the font descriptor attribute from
  *     {@link OH_Drawing_FontFullDescriptorAttributeId}.
- * @return Object array returned.
+ * @return Array of objects returned, or NULL if the retrieval fails. When id is FULL_DESCRIPTOR_ATTR_O_VARIATION_AXIS,
+ *     use the {@link OH_Drawing_DestroyFontVariationAxis} API to release it when it is no longer needed. When id is
+ *     FULL_DESCRIPTOR_ATTR_O_VARIATION_INSTANCE, use the {@link OH_Drawing_DestroyFontVariationInstance} API to
+ *     release it when it is no longer needed.
  * @since 24
  */
 OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -520,7 +498,8 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawin
 /**
  * @brief Obtains the corresponding font variable axis from the font variable axis array by index.
  *
- * @param array Pointer to the font variable axis array {@link OH_Drawing_Array}.
+ * @param array Pointer to the font variation axis array {@link OH_Drawing_Array}, obtained through
+ *     {@link OH_Drawing_GetFontFullDescriptorAttributeArray}.
  * @param index Index of the array, starting from 0.
  * @return Returns the pointer to the font variable axis object {@link OH_Drawing_FontVariationAxis} at the specified
  *     index.
@@ -591,7 +570,8 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_Font
 /**
  * @brief Obtains the corresponding font variable instance from the font variable instance array by index.
  *
- * @param array Pointer to the font variable instance array {@link OH_Drawing_Array}.
+ * @param array Pointer to the font variation instance array {@link OH_Drawing_Array}. Obtained through
+ *     {@link OH_Drawing_GetFontFullDescriptorAttributeArray}.
  * @param index Index of the array, starting from 0.
  * @return Returns the pointer to the font variable instance object {@link OH_Drawing_FontVariationInstance} at the
  *     specified index.
@@ -634,7 +614,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(
  *
  * @param variationInstance Pointer to the font variable instance.
  * @param arrayLength Pointer to the list length of OH_Drawing_FontVariationInstanceCoordinate.
- * @return Returns the pointer to the variable font attribute list.
+ * @return Pointer to the font variation instance coordinate list. NULL if variationInstance is invalid.
  * @since 24
  */
 OH_Drawing_FontVariationInstanceCoordinate* OH_Drawing_GetFontVariationInstanceCoordinate(
@@ -663,22 +643,22 @@ const OH_Drawing_FontFullDescriptor* OH_Drawing_GetFontFullDescriptorByFullName(
 uint32_t OH_Drawing_GetFontCountFromFile(const char* fontSrc);
 
 /**
-* @brief Obtains the number of fonts contained in a font buffer.
-*
-* @param fontBuffer Font buffer data.
-* @param length Length of the font data.
-* @return Number of fonts.
-* @since 23
-*/
+ * @brief Obtains the number of fonts contained in a font buffer.
+ *
+ * @param fontBuffer Font buffer data.
+ * @param length Length of the font data.
+ * @return Number of fonts.
+ * @since 23
+ */
 uint32_t OH_Drawing_GetFontCountFromBuffer(uint8_t* fontBuffer, size_t length);
 
 /**
  * @brief Obtains all font file paths of the specified font type.
  *
  * @param fontType Enum for the system font types, which is {@link OH_Drawing_SystemFontType}.
- * @param pathCount Number of font file paths in the list returned.
- * @return Returns a list of **OH_Drawing_String** objects representing font file paths. Use **free()** to free the
- *     object pointer and the internal pointer held by each **OH_Drawing_String** object when they are no longer needed.
+ * @param pathCount Output parameter, used to receive the number of font paths returned.
+ * @return List of font paths returned. When no longer needed, use free to release the pointer to this object and the
+ *     pointer held internally by each OH_Drawing_String object.
  * @since 23
  */
 OH_Drawing_String* OH_Drawing_GetFontPathsByType(OH_Drawing_SystemFontType fontType, size_t* pathCount);

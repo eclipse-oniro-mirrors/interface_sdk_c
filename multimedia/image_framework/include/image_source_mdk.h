@@ -19,7 +19,6 @@
  *
  * @brief Provides native APIs for image sources.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 4.0
  */
@@ -31,7 +30,7 @@
  *
  * @library libimage_source_ndk.z.so
  * @kit ImageKit
- * @syscap SystemCapability.Multimedia.Image.Core
+ * @syscap SystemCapability.Multimedia.Image.ImageSource
  * @since 10
  * @version 4.0
  */
@@ -43,6 +42,7 @@
 #else
 #include <stdint.h>
 #endif
+#include <stddef.h>
 #include "napi/native_api.h"
 #include "image_mdk_common.h"
 #include "rawfile/raw_file.h"
@@ -53,7 +53,6 @@ extern "C" {
 /**
  * @brief Defines a native image source object for the image source APIs.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -62,7 +61,6 @@ struct ImageSourceNative_;
 /**
  * @brief Defines a native image source object for the image source APIs.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -73,7 +71,6 @@ typedef struct ImageSourceNative_ ImageSourceNative;
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -84,7 +81,6 @@ static const char* OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -95,7 +91,6 @@ static const char* OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -106,7 +101,6 @@ static const char* OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -117,7 +111,6 @@ static const char* OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -128,7 +121,6 @@ static const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -139,7 +131,6 @@ static const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -150,7 +141,6 @@ static const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -161,7 +151,6 @@ static const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -172,7 +161,6 @@ static const char* OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -183,7 +171,6 @@ static const char* OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -194,7 +181,6 @@ static const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -205,7 +191,6 @@ static const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -216,7 +201,6 @@ static const char* OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber";
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
  * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -227,7 +211,6 @@ static const char* OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBi
  * It is used in {@link OhosImageDecodingOps}, {@link OH_ImageSource_CreatePixelMap}, and
  * {@link OH_ImageSource_CreatePixelMapList}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -243,10 +226,9 @@ struct OhosImageRegion {
 };
 
 /**
- * @brief Defines image source options infomation
+ * @brief Defines image source options information
  * {@link OH_ImageSource_Create} and {@link OH_ImageSource_CreateIncremental}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -263,7 +245,6 @@ struct OhosImageSourceOps {
  * @brief Defines the options for decoding the image source.
  * It is used in {@link OH_ImageSource_CreatePixelMap} and {@link OH_ImageSource_CreatePixelMapList}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -289,7 +270,6 @@ struct OhosImageDecodingOps {
 /**
  * @brief Defines the image source information, which is obtained by calling {@link OH_ImageSource_GetImageInfo}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -310,102 +290,258 @@ struct OhosImageSourceInfo {
  * @brief Defines the input resource of the image source. It is obtained by calling {@link OH_ImageSource_Create}.
  * Only one type of resource is accepted at a time.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  * @deprecated since 11
  */
 struct OhosImageSource {
-    /** Pointer to the image source URI. Only a file URI or Base64 URI is accepted. */
+#ifdef __cplusplus
+    /**
+     * Pointer to the image source URI. Only a file URI or Base64 URI is accepted.
+     * @since 10
+     */
     char* uri = nullptr;
-    /** Length of the image source URI. */
+    /**
+     * Length of the image source URI.
+     * @since 10
+     */
     size_t uriSize = 0;
-    /** Descriptor of the image source. */
+    /**
+     * Descriptor of the image source.
+     * @since 10
+     */
     int32_t fd = -1;
-    /** Pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted. */
+    /**
+     * Pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.
+     * @since 10
+     */
     uint8_t* buffer = nullptr;
-    /** Size of the image source buffer. */
+    /**
+     * Size of the image source buffer.
+     * @since 10
+     */
     size_t bufferSize = 0;
+#else
+    /**
+     * Pointer to the image source URI. Only a file URI or Base64 URI is accepted.
+     * @since 10
+     */
+    char* uri;
+    /**
+     * Length of the image source URI.
+     * @since 10
+     */
+    size_t uriSize;
+    /**
+     * Descriptor of the image source.
+     * @since 10
+     */
+    int32_t fd;
+    /**
+     * Pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.
+     * @since 10
+     */
+    uint8_t* buffer;
+    /**
+     * Size of the image source buffer.
+     * @since 10
+     */
+    size_t bufferSize;
+#endif
 };
 
 /**
  * @brief Defines the delay time list of the image source. It is obtained by calling
  * {@link OH_ImageSource_GetDelayTime}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
 struct OhosImageSourceDelayTimeList {
-    /** Pointer to the head of the image source delay time list. */
+#ifdef __cplusplus
+    /**
+     * Pointer to the head of the image source delay time list.
+     * @since 10
+     */
     int32_t* delayTimeList;
-    /** Size of the image source delay time list. */
+    /**
+     * Size of the image source delay time list.
+     * @since 10
+     */
     size_t size = 0;
+#else
+    /**
+     * Pointer to the head of the image source delay time list.
+     * @since 10
+     */
+    int32_t* delayTimeList;
+    /**
+     * Size of the image source delay time list.
+     * @since 10
+     */
+    size_t size;
+#endif
 };
 
 /**
  * @brief Defines image source supported format string.
  * {@link OhosImageSourceSupportedFormatList} and {@link OH_ImageSource_GetSupportedFormats}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
 struct OhosImageSourceSupportedFormat {
-    /** Image source supported format string head.*/
+#ifdef __cplusplus
+    /**
+     * Image source supported format string head.
+     * @since 10
+     */
     char* format = nullptr;
-    /** Image source supported format string size.*/
+    /**
+     * Image source supported format string size.
+     * @since 10
+     */
     size_t size = 0;
+#else
+    /**
+     * Image source supported format string head.
+     * @since 10
+     */
+    char* format;
+    /**
+     * Image source supported format string size.
+     * @since 10
+     */
+    size_t size;
+#endif
 };
 
 /**
  * @brief Defines the format string list supported by the image source.
  * It is obtained by calling {@link OH_ImageSource_GetSupportedFormats}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
 struct OhosImageSourceSupportedFormatList {
-    /** Image source supported format string list head.*/
+#ifdef __cplusplus
+    /**
+     * Image source supported format string list head.
+     * @since 10
+     */
     struct OhosImageSourceSupportedFormat** supportedFormatList = nullptr;
-    /** Image source supported format string list size.*/
+    /**
+     * Image source supported format string list size.
+     * @since 10
+     */
     size_t size = 0;
+#else
+    /**
+     * Image source supported format string list head.
+     * @since 10
+     */
+    struct OhosImageSourceSupportedFormat** supportedFormatList;
+    /**
+     * Image source supported format string list size.
+     * @since 10
+     */
+    size_t size;
+#endif
 };
 
 /**
  * @brief Defines the property string (in key-value format) of the image source.
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
 struct OhosImageSourceProperty {
-    /** Image source property key and value string head.*/
+#ifdef __cplusplus
+    /**
+     * Image source property key and value string head.
+     * @since 10
+     */
     char* value = nullptr;
-    /** Image source property key and value string size.*/
+    /**
+     * Image source property key and value string size.
+     * @since 10
+     */
     size_t size = 0;
+#else
+    /**
+     * Image source property key and value string head.
+     * @since 10
+     */
+    char* value;
+    /**
+     * Image source property key and value string size.
+     * @since 10
+     */
+    size_t size;
+#endif
 };
 
 /**
  * @brief Defines the update data of the image source. It is obtained by calling {@link OH_ImageSource_UpdateData}.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
 struct OhosImageSourceUpdateData {
-    /** Image source update data buffer.*/
+#ifdef __cplusplus
+    /**
+     * Image source update data buffer.
+     * @since 10
+     */
     uint8_t* buffer = nullptr;
-    /** Image source update data buffer size.*/
+    /**
+     * Image source update data buffer size.
+     * @since 10
+     */
     size_t bufferSize = 0;
-    /** Image source offset of update data buffer.*/
+    /**
+     * Image source offset of update data buffer.
+     * @since 10
+     */
     uint32_t offset = 0;
-    /** Image source update data length in update data buffer.*/
+    /**
+     * Image source update data length in update data buffer.
+     * @since 10
+     */
     uint32_t updateLength = 0;
-    /** Image source update data is completed in this session.*/
+    /**
+     * Image source update data is completed in this session.
+     * @since 10
+     */
     int8_t isCompleted = 0;
+#else
+    /**
+     * Image source update data buffer.
+     * @since 10
+     */
+    uint8_t* buffer;
+    /**
+     * Image source update data buffer size.
+     * @since 10
+     */
+    size_t bufferSize;
+    /**
+     * Image source offset of update data buffer.
+     * @since 10
+     */
+    uint32_t offset;
+    /**
+     * Image source update data length in update data buffer.
+     * @since 10
+     */
+    uint32_t updateLength;
+    /**
+     * Image source update data is completed in this session.
+     * @since 10
+     */
+    int8_t isCompleted;
+#endif
 };
 
 /**
@@ -437,7 +573,6 @@ struct OhosImageSourceUpdateData {
  * returns {@link IRNdkErrCode} IMAGE_RESULT_FREAD_FAILED - if read file failed.
  * @see {@link OhosImageSource}, {@link OhosImageSourceOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  * @deprecated since 11
@@ -464,7 +599,6 @@ int32_t OH_ImageSource_Create(napi_env env, struct OhosImageSource* src,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  * @see {@link OhosImageSourceOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */
@@ -486,7 +620,6 @@ int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  * @see {@link OhosImageSourceOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */
@@ -509,7 +642,6 @@ int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  * @see {@link OhosImageSourceOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */
@@ -531,7 +663,6 @@ int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSi
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  * @see {@link OhosImageSourceOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */
@@ -569,7 +700,6 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
  * returns {@link IRNdkErrCode} IMAGE_RESULT_FREAD_FAILED - if read file failed.
  * @see {@link OhosImageSource}, {@link OhosImageSourceOps}, {@link OH_ImageSource_UpdateData}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  * @deprecated since 11
@@ -595,7 +725,6 @@ int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* s
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  * @see {@link OhosImageSourceOps}, {@link OH_ImageSource_UpdateData}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */
@@ -618,7 +747,6 @@ int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, si
  * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if decode fail.
  * @see {@link OhosImageSourceSupportedFormatList}, {@link OhosImageSourceSupportedFormat}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -634,7 +762,6 @@ int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormat
  * returns a null pointer otherwise.
  * @see {@link ImageSourceNative}, {@link OH_ImageSource_Release}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -679,7 +806,6 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -727,7 +853,6 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -762,7 +887,6 @@ int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}, {@link OhosImageSourceDelayTimeList}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -794,7 +918,6 @@ int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -827,7 +950,6 @@ int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}, {@link OhosImageSourceInfo}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -863,7 +985,6 @@ int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t ind
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}, {@link OhosImageSourceProperty}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -896,7 +1017,6 @@ int32_t OH_ImageSource_GetImageProperty(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}, {@link OhosImageSourceProperty}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -939,7 +1059,6 @@ int32_t OH_ImageSource_ModifyImageProperty(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
  * @see {@link ImageSourceNative}, {@link OhosImageSourceUpdateData}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
@@ -958,7 +1077,6 @@ int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosIm
  * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
  * @see {@link ImageSourceNative}, {@link OH_ImageSource_Create}, {@link OH_ImageSource_CreateIncremental}
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */

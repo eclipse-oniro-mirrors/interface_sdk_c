@@ -25,8 +25,8 @@
 /**
  * @file native_interface_focus.h
  *
- * @brief Declares APIs for focus management, mainly used for actively transferring focus, managing the default focus
- * transfer behavior, and controlling the focus activation state.
+ * @brief 定义焦点管理接口，主要用于主动转移焦点、清除焦点、管理焦点转移默认行为、控制焦点激活态，以及设置按键事件的处理模式。适用于页面切换、键盘导航等需要统一管理焦点状态和焦点转移行为的场景，
+ * 有助于提升焦点控制的可预测性和交互体验。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -35,11 +35,9 @@
  */
 
 #ifndef ARKUI_NATIVE_INTERFACE_FOCUS_H
-
 #define ARKUI_NATIVE_INTERFACE_FOCUS_H
 
 #include "napi/native_api.h"
-
 #include "native_type.h"
 
 #ifdef __cplusplus
@@ -117,5 +115,4 @@ void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_Key
 #endif
 
 #endif // ARKUI_NATIVE_INTERFACE_FOCUS_H
-
 /** @} */

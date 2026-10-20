@@ -15,6 +15,9 @@
         "name": "OH_LocationInfo_GetAdditionalInfo"
     },
     {
+        "name": "OH_LocationInfo_IsFromMock"
+    },
+    {
         "name": "OH_Location_CreateRequestConfig"
     },
     {

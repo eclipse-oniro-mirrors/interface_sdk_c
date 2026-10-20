@@ -19,7 +19,6 @@
  *
  * @brief The AudioEncoder module provides functions for audio encoding.
  *
- * @syscap SystemCapability.Multimedia.Media.AudioEncoder
  * @deprecated since 11
  * @since 9
  */
@@ -30,6 +29,7 @@
  * @brief The file declares the native APIs used for audio encoding.
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_avcodec_audioencoder.h>
  * @library libnative_media_aenc.so
  * @syscap SystemCapability.Multimedia.Media.AudioEncoder
  * @deprecated since 11

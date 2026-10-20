@@ -46,10 +46,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+/**
+ * @brief 提供对OH_NativeBuffer的访问功能。
+ * @since 9
+ */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
- * @brief 提供OHIPCParcel结构体声明，用于进程间通信。
+ * @brief 提供对IPC序列化对象的访问功能。
  *
  * @since 12
  * @version 1.0
@@ -248,6 +252,13 @@ typedef enum NativeWindowOperation {
      * @since 13
      */
     SET_DESIRED_PRESENT_TIMESTAMP = 24,
+    /**
+     * 设置DMA buffer名称，函数中的可变参数是
+     * [输入] const char* name，为DMA buffer名称字符串。名称必须以字母开头，
+     * 只能包含字母或数字，且长度不超过64字节。
+     * @since 26.0.1
+     */
+    OH_NATIVEWINDOW_SET_DMABUFFER_NAME = 25,
 } NativeWindowOperation;
 
 /**
@@ -332,7 +343,7 @@ typedef enum {
 } OHHDRMetadataKey;
 
 /**
- * @brief Defines the HDR metadata.
+ * @brief HDR元数据结构体定义。
  * @since 9
  * @deprecated since 10
  */
@@ -342,42 +353,42 @@ typedef struct {
 } OHHDRMetaData;
 
 /**
- * @brief Defines the ExtData Handle
+ * @brief 扩展数据句柄结构体定义。
  * @since 9
  * @deprecated since 10
  */
 typedef struct OHExtDataHandle {
-    /**< Handle fd, -1 if not supported */
+    /**< 句柄 Fd，-1代表不支持 */
     int32_t fd;
-    /**< the number of reserved integer value */
+    /**< Reserve数组的个数 */
     uint32_t reserveInts;
-    /**< the reserved data */
+    /**< Reserve数组 */
     int32_t reserve[0];
 } OHExtDataHandle;
 
 /**
- * @brief Indicates the source type of surface.
+ * @brief 本地窗口内容来源类型枚举。
  * @since 12
  */
 typedef enum {
     /*
-     * the default source type of surface.
+     * 窗口内容默认来源。
      */
     OH_SURFACE_SOURCE_DEFAULT = 0,
     /*
-     * the surface is created by ui.
+     * 窗口内容来自于UI。
      */
     OH_SURFACE_SOURCE_UI,
     /*
-     * the surface is created by game.
+     * 窗口内容来自于游戏。
      */
     OH_SURFACE_SOURCE_GAME,
     /*
-     * the surface is created by camera.
+     * 窗口内容来自于相机。
      */
     OH_SURFACE_SOURCE_CAMERA,
     /*
-     * the surface is created by video.
+     * 窗口内容来自于视频。
      */
     OH_SURFACE_SOURCE_VIDEO,
 } OHSurfaceSource;
@@ -904,6 +915,44 @@ int32_t OH_NativeWindow_LockBuffer(OHNativeWindow* window, Region region, OHNati
  * @version 1.0
  */
 int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window);
+
+/**
+ * @brief 设置OHNativeWindow的3D元数据。\n
+ * 本接口为非线程安全类型接口。\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window 一个指向OHNativeWindow的结构体实例的指针。
+ * @param metadataKey window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
+ * @param size uint8_t向量的大小。
+ * @param metadata 指向uint8_t向量的指针。
+ * @return NATIVE_ERROR_OK 0 - 成功。\n
+ *     NATIVE_ERROR_INVALID_ARGUMENTS 40001000 - window或metadata为空。\n
+ *     NATIVE_ERROR_UNKNOWN 50002000 - 设置3D元数据失败。\n
+ *     NATIVE_ERROR_UNSUPPORTED 50102000 - 不支持的metadata key。
+ * @since 26.0.0
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey,
+    int32_t size, uint8_t *metadata);
+
+/**
+ * @brief 获取OHNativeWindow的3D元数据。\n
+ * 本接口为非线程安全类型接口。\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window 一个指向OHNativeWindow的结构体实例的指针。
+ * @param metadataKey window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
+ * @param size uint8_t向量的大小。
+ * @param metadata 指向uint8_t向量的二级指针。
+ * @return NATIVE_ERROR_OK 0 - 成功。\n
+ *     NATIVE_ERROR_INVALID_ARGUMENTS 40001000 - window、metadata或size为空。\n
+ *     NATIVE_ERROR_UNKNOWN 50002000 - 内存拷贝或分配失败，或者获取3D元数据失败。\n
+ *     NATIVE_ERROR_UNSUPPORTED 50102000 - 不支持的metadata key。
+ * @since 26.0.0
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_Get3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey,
+    int32_t *size, uint8_t **metadata);
 #ifdef __cplusplus
 }
 #endif

@@ -159,6 +159,13 @@ typedef void (*OH_PhotoOutput_PhotoAvailable)(Camera_PhotoOutput* photoOutput, O
 typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset);
 
 /**
+ * @brief Defines the C2PA signature configuration.
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_Camera_C2PASignatureConfig OH_Camera_C2PASignatureConfig;
+
+/**
  * @brief The struct describes the callbacks related to photo output.
  * 
  * @see OH_PhotoOutput_RegisterCallback
@@ -588,9 +595,10 @@ Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput*
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param compressionQuality Image compression quality.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
@@ -601,9 +609,10 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param rotation Image rotation, defined in the Camera_ImageRotation enumeration.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
@@ -614,9 +623,10 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptu
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param mirror The switch of the mirror effect. **true** for enabled, **false** for disabled.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
@@ -637,9 +647,10 @@ Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCap
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param location Image location, defined in the Camera_Location enumeration.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
@@ -669,6 +680,124 @@ Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOu
  * @since 26.0.0
  */
 bool OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported(const Camera_PhotoOutput* photoOutput);
+
+/**
+ * @brief Check if the automatic auxiliary photo delivery is supported.
+ *
+ * @param photoOutput [in] Pointer to the target PhotoOutput instance.
+ * @param auxPhotoType [in] Target auxiliary photo type.
+ * @param isSupported [out] Pointer to the check result for the support of capturing auxiliary photo. **true** if
+ *     supported, **false** otherwise.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_ERROR_PARAM_OUT_OF_RANGE**: A parameter is out of the range.</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported(const Camera_PhotoOutput* photoOutput,
+    OH_Camera_AuxiliaryPhotoType auxPhotoType, bool* isSupported);
+
+/**
+ * @brief Enable or disable auto auxiliary photo delivery.
+ *
+ * @param photoOutput [in] Pointer to the target PhotoOutput instance.
+ * @param auxPhotoTypes [in] Pointer to the target auxiliary photo types array.
+ * @param size [in] The size of the auxiliary photo types array(number of elements).
+ * @param enable [in] Whether to enable or disable auxiliary photo delivery. **true** to enable, **false** otherwise.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_ERROR_PARAM_OUT_OF_RANGE**: A parameter is out of the range.</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled(Camera_PhotoOutput* photoOutput,
+    const OH_Camera_AuxiliaryPhotoType* auxPhotoTypes, uint32_t size, bool enable);
+
+/**
+ * @brief Checks whether C2PA signature is supported.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @param isSupported Pointer to the check result for the support of C2PA signature. **true** if supported, **false**
+ *     otherwise.
+ * @return <ul>
+ *         <li>**CAMERA_OK** : The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_IsC2PASignatureSupported(const Camera_PhotoOutput* photoOutput, bool* isSupported);
+
+/**
+ * @brief Creates an {@link OH_Camera_C2PASignatureConfig} instance.
+ * Release the C2PA signature configuration by calling {@link OH_Camera_C2PASignatureConfig_Destroy}.
+ *
+ * @return Returns the pointer to the {@link OH_Camera_C2PASignatureConfig} instance created,
+ *     or **NULL** if the creation fails.
+ * @release OH_Camera_C2PASignatureConfig_Destroy {return};
+ * @since 26.0.1
+ */
+OH_Camera_C2PASignatureConfig* OH_Camera_C2PASignatureConfig_Create(void);
+
+/**
+ * @brief Destroys an {@link OH_Camera_C2PASignatureConfig} instance.
+ *
+ * @param config Pointer to the {@link OH_Camera_C2PASignatureConfig} instance to destroy.
+ * @since 26.0.1
+ */
+void OH_Camera_C2PASignatureConfig_Destroy(OH_Camera_C2PASignatureConfig* config);
+
+/**
+ * @brief Sets the author name for the C2PA signature configuration.
+ *
+ * @param config Pointer to the target {@link OH_Camera_C2PASignatureConfig} instance.
+ * @param authorName Pointer to the author name string to set.
+ * @return <ul>
+ *         <li>**CAMERA_OK** : The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorName(
+    OH_Camera_C2PASignatureConfig* config, const char* authorName);
+
+/**
+ * @brief Sets the author ID for the C2PA signature configuration.
+ *
+ * @param config Pointer to the target {@link OH_Camera_C2PASignatureConfig} instance.
+ * @param authorID Pointer to the author ID string to set.
+ * @return <ul>
+ *         <li>**CAMERA_OK** : The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorID(OH_Camera_C2PASignatureConfig* config, const char* authorID);
+
+/**
+ * @brief Configures the C2PA signature settings. This function enables or disables C2PA signature
+ * and optionally sets the author information for the C2PA signature.
+ *
+ * Before calling this function, check whether C2PA signature is supported by calling
+ * {@link OH_PhotoOutput_IsC2PASignatureSupported}.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @param enableC2PA Whether to enable C2PA signature. **true** to enable, **false** to disable.
+ * @param config Pointer to the {@link OH_Camera_C2PASignatureConfig} instance, which includes the author name
+ *     and author ID. If **NULL**, the C2PA signature will be generated without author information.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_ConfigureC2PASignature(
+    Camera_PhotoOutput* photoOutput, bool enableC2PA, OH_Camera_C2PASignatureConfig* config);
+
 #ifdef __cplusplus
 }
 #endif

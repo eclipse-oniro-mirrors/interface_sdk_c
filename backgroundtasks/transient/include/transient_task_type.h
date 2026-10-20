@@ -56,51 +56,53 @@ extern "C" {
  */
 typedef enum TransientTask_ErrorCode {
     /**
-     * Operation successful.
+     * @brief Operation successful.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_OK = 0,
     /**
-     * Parameter check failed. Possible causes: 1. Mandatory parameters are not passed. 2. Incorrect parameter types.
+     * @brief Parameter check failed. Possible causes:
+     * 1. Mandatory parameters are not passed.
+     * 2. Incorrect parameter types.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_INVALID_PARAM = 401,
     /**
-     * Parcel read/write operation failed.
+     * @brief Parcel read/write operation failed.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_PARCEL_FAILED = 9800002,
     /**
-     * IPC failed.
+     * @brief IPC failed.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_TRANSACTION_FAILED = 9800003,
     /**
-     * System service failed.
+     * @brief System service failed.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_SYS_NOT_READY = 9800004,
     /**
-     * Failed to verify the client information of the transient task.
+     * @brief Failed to verify the client information of the transient task.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED = 9900001,
     /**
-     * Failed to verify the server information of the transient task.
+     * @brief Failed to verify the server information of the transient task.
      *
      * @since 13
      */
     ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002,
     /**
-     * Parcel read/write operation failed for the transient task. Possible causes:
-     *     1. The parameter is invalid.
-     *     2. Memory allocation fails.
+     * @brief Parcel read/write operation failed for the transient task. Possible causes:
+     * 1. The parameter is invalid.
+     * 2. Memory allocation fails.
      *
      * @since 13
      */
@@ -122,13 +124,13 @@ typedef enum TransientTask_ErrorCode {
  */
 typedef struct TransientTask_DelaySuspendInfo {
     /**
-     * Request ID of a transient task.
+     * @brief Request ID of a transient task.
      *
      * @since 13
      */
     int32_t requestId;
     /**
-     * Remaining time, in ms.
+     * @brief Remaining time, in ms.
      *
      * @since 13
      */
@@ -144,12 +146,12 @@ typedef struct TransientTask_DelaySuspendInfo {
  */
 typedef struct TransientTask_TransientTaskInfo {
     /**
-     * Remaining quota of the current day, in ms.
+     * @brief Remaining quota of the current day, in ms.
      *
      * @since 20
      */
     int32_t remainingQuota;
-    /** The info of delay suspend
+    /** @brief The info of delay suspend
      *
      * @since 20
      */

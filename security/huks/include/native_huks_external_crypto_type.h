@@ -27,12 +27,12 @@
 /**
  * @file native_huks_external_crypto_type.h
  *
- * @brief Defines the structs and enums for external key management extensions.
+ * @brief Defines the structs, enums, and macros for external key management extensions.
  *
  * @library libhuks_external_crypto.z.so
  * @syscap SystemCapability.Security.Huks.CryptoExtension
  *
- *     include "huks/include/native_huks_type.h"
+ * @include <huks/native_huks_external_crypto_type.h>
  * @kit UniversalKeystoreKit
  * @since 22
  * @version 1.0
@@ -111,6 +111,7 @@ typedef struct OH_Huks_ExternalCryptoParam {
         struct OH_Huks_Blob blob;
     };
 } OH_Huks_ExternalCryptoParam;
+
 /**
  * @brief Defines an external cryptographic parameter set.
  *
@@ -118,22 +119,22 @@ typedef struct OH_Huks_ExternalCryptoParam {
  */
 typedef struct OH_Huks_ExternalCryptoParamSet {
     /**
-    * @brief Memory size of the parameter set.
-    *
-    * @since 22
-    */
+     * @brief Memory size of the parameter set.
+     *
+     * @since 22
+     */
     uint32_t paramSetSize;
     /**
-    * @brief Number of parameters in the parameter set.
-    *
-    * @since 22
-    */
+     * @brief Number of parameters in the parameter set.
+     *
+     * @since 22
+     */
     uint32_t paramsCnt;
     /**
-    * @brief Parameter array.
-    *
-    * @since 22
-    */
+     * @brief Parameter array.
+     *
+     * @since 22
+     */
     OH_Huks_ExternalCryptoParam params[];
 } OH_Huks_ExternalCryptoParamSet;
 
@@ -151,7 +152,7 @@ typedef enum OH_Huks_ExternalCryptoTag {
     OH_HUKS_EXT_CRYPTO_TAG_UKEY_PIN = OH_HUKS_TAG_TYPE_BYTES | 200001,
 
     /**
-     * @brief Ability Name.
+     * @brief Ability name.
      *
      * @since 22
      */
@@ -165,21 +166,21 @@ typedef enum OH_Huks_ExternalCryptoTag {
     OH_HUKS_EXT_CRYPTO_TAG_EXTRA_DATA = OH_HUKS_TAG_TYPE_BYTES | 200003,
 
     /**
-     * @brief Calling uid.
+     * @brief UID of the caller.
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_UID = OH_HUKS_TAG_TYPE_INT | 200004,
 
     /**
-     * @brief Purpose of the cert chain.
+     * @brief Purpose of the certificate chain.
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_PURPOSE = OH_HUKS_TAG_TYPE_INT | 200005,
 
     /**
-     * @brief The timeout of get property operation.
+     * @brief Timeout interval for obtaining properties, in seconds.
      *
      * @since 22
      */
@@ -187,27 +188,27 @@ typedef enum OH_Huks_ExternalCryptoTag {
 } OH_Huks_ExternalCryptoTag;
 
 /**
- * @brief Enumerates the Ukey PIN authentication states.
+ * @brief Enumerates the UKey PIN authentication states.
  *
  * @since 22
  */
 typedef enum OH_Huks_ExternalPinAuthState {
     /**
-     * @brief Ukey PIN is not authenticated.
+     * @brief PIN code not authenticated.
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_PIN_NO_AUTH = 0,
 
     /**
-     * @brief Ukey PIN is authenticated.
+     * @brief PIN code authentication succeeded.
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_PIN_AUTH_SUCCEEDED = 1,
 
     /**
-     * @brief Ukey PIN is locked.
+     * @brief PIN code locked.
      *
      * @since 22
      */

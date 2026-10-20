@@ -79,6 +79,44 @@ Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNati
 Camera_ErrorCode OH_PhotoNative_GetUncompressedImage(OH_PhotoNative* photo, OH_PictureNative** picture);
 
 /**
+ * @brief Obtains an auxiliary image.
+ *
+ * @param photo [in] Pointer to an **OH_PhotoNative** instance.
+ * @param type [in] The auxiliary photo type.
+ * @param outImage [out] Double pointer to the auxiliary image, which is an **OH_ImageNative** instance. On success,
+ *     points to a valid image instance. On failure, may be set to NULLThe caller is responsible for releasing the
+ *     allocated memory using the appropriate release function.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_ERROR_PARAM_OUT_OF_RANGE**: A parameter is out of the range.</li>
+ *         </ul>
+ * @release OH_PhotoNative_ReleaseImage {outImage}
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_GetAuxiliaryImage(const OH_PhotoNative* photo, OH_Camera_AuxiliaryPhotoType type,
+    OH_ImageNative** outImage);
+
+/**
+ * @brief Obtains an uncompressed auxiliary image.
+ *
+ * @param photo [in] Pointer to an **OH_PhotoNative** instance.
+ * @param type [in] The auxiliary photo type.
+ * @param outImage [out] Double pointer to the uncompressed auxiliary image, which is an **OH_PictureNative** instance.
+ *     On success, points to a valid image instance. On failure, may be set to NULL. The caller is responsible for
+ *     releasing the allocated memory using the appropriate release function.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         <li>**CAMERA_ERROR_PARAM_OUT_OF_RANGE**: A parameter is out of the range.</li>
+ *         </ul>
+ * @release OH_PhotoNative_ReleasePicture {outImage}
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_GetUncompressedAuxiliaryImage(const OH_PhotoNative* photo,
+    OH_Camera_AuxiliaryPhotoType type, OH_PictureNative** outImage);
+
+/**
  * @brief Releases a full-quality image.
  * 
  * @param photo Pointer to the **OH_PhotoNative** instance to release.
@@ -88,6 +126,30 @@ Camera_ErrorCode OH_PhotoNative_GetUncompressedImage(OH_PhotoNative* photo, OH_P
  * @version 1.0
  */
 Camera_ErrorCode OH_PhotoNative_Release(OH_PhotoNative* photo);
+
+/**
+ * @brief Releases an allocated native picture instance.
+ *
+ * @param picture [in] Pointer to the **OH_PictureNative** instance to release.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_ReleasePicture(OH_PictureNative* picture);
+
+/**
+ * @brief Releases an allocated native image instance.
+ *
+ * @param image [in] Pointer to the **OH_ImageNative** instance to release.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_ReleaseImage(OH_ImageNative* image);
 
 #ifdef __cplusplus
 }

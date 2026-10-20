@@ -25,7 +25,11 @@
 /**
  * @file native_key_event.h
  *
- * @brief Declares the APIs of **NativeKeyEvent**.
+ * @brief Declares the APIs of **NativeKeyEvent** for obtaining the type, key code, key value, input device type,
+ * key intent, and Unicode value of a key event. It supports controlling key event bubbling or consumption,
+ * dispatching key events, and querying the **NumLock**, **CapsLock**, and **ScrollLock** states. It is applicable
+ * to scenarios where the native side needs fine-grained processing of key input events, enabling you to obtain
+ * detailed key event information and flexibly control event propagation and consumption behavior.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -132,7 +136,7 @@ typedef enum {
      */
     ARKUI_KEYCODE_9 = 2009,
     /**
-     * Key +
+     * Key *
      */
     ARKUI_KEYCODE_STAR = 2010,
     /**
@@ -732,7 +736,7 @@ typedef enum {
      * Select.
      */
     ARKUI_KEY_INTENSION_SELECT = 5,
-    /** Escape **/
+    /** Return. **/
     ARKUI_KEY_INTENSION_ESCAPE = 6,
     /**
      * Back.
@@ -767,7 +771,7 @@ typedef enum {
      */
     ARKUI_KEY_INTENSION_ZOOM_IN = 14,
 
-    /** Play or pause **/
+    /** Play/Pause. **/
     ARKUI_KEY_INTENTION_MEDIA_PLAY_PAUSE = 100,
     /**
      * Fast-forward.
@@ -809,10 +813,257 @@ typedef enum {
 } ArkUI_KeyIntension;
 
 /**
+ * @brief Defines the correctly spelled alias for the key event intention type.
+ *
+ * The original type name {@link ArkUI_KeyIntension} is retained for compatibility.
+ *
+ * @since 26.2.0
+ */
+typedef ArkUI_KeyIntension OH_ArkUI_KeyIntention;
+
+/**
+ * @brief Creates a key event that can be dispatched by {@link OH_ArkUI_KeyEvent_Dispatch}.
+ *
+ * @param event [out] Double pointer to the created **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>.
+ *     On success, the created event is written to **event**. The caller owns the created event and must release it
+ *     by calling {@link OH_ArkUI_KeyEvent_Destroy}.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null.</li>
+ *     </ul>
+ * @release arkui/OH_ArkUI_KeyEvent_Destroy {event}
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_Create(ArkUI_UIInputEvent** event);
+
+/**
+ * @brief Destroys a key event created by {@link OH_ArkUI_KeyEvent_Create} and sets the event pointer to null.
+ *
+ * If **event** is not null and the pointer referenced by **event** is null, this function returns successfully.
+ *
+ * @param event [in] Double pointer to the **ArkUI_UIInputEvent** object to destroy. The value must not be
+ *     <b>nullptr</b>.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or the input event was not created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_Destroy(ArkUI_UIInputEvent** event);
+
+/**
+ * @brief Sets the type of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param type [in] Key event type.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetType(ArkUI_UIInputEvent* event, ArkUI_KeyEventType type);
+
+/**
+ * @brief Sets the key code of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param keyCode [in] Key code. The value is defined by {@link ArkUI_KeyCode}.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyCode(ArkUI_UIInputEvent* event, int32_t keyCode);
+
+/**
+ * @brief Sets the key text of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * This function copies **keyText**. The caller can release or reuse the original string after this function returns.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param keyText [in] Null-terminated key text, in UTF-8 encoding. The value must not be <b>nullptr</b>.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyText(ArkUI_UIInputEvent* event, const char* keyText);
+
+/**
+ * @brief Sets the input device type of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param keySource [in] Input device type.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeySource(ArkUI_UIInputEvent* event, ArkUI_KeySourceType keySource);
+
+/**
+ * @brief Sets the device ID of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param deviceId [in] Device ID, which is a system-assigned input device identifier.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetDeviceId(ArkUI_UIInputEvent* event, int32_t deviceId);
+
+/**
+ * @brief Sets the Unicode value of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param unicode [in] Unicode value. The value must be a valid Unicode code point.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetUnicode(ArkUI_UIInputEvent* event, uint32_t unicode);
+
+/**
+ * @brief Sets the occurrence time of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param timestamp [in] Event occurrence time, in ns, using the same time base as
+ *     {@link OH_ArkUI_UIInputEvent_GetEventTime}.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetEventTime(ArkUI_UIInputEvent* event, int64_t timestamp);
+
+/**
+ * @brief Sets all pressed keys of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * This function copies **pressedKeyCodes**. The caller can release or reuse the original array after this function
+ * returns. Pass null for **pressedKeyCodes** and **0** for **length** to clear the pressed keys.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param pressedKeyCodes [in] Array of all pressed key codes. Each element is defined by {@link ArkUI_KeyCode}.
+ *     The value can be <b>nullptr</b> only when **length** is **0**.
+ * @param length [in] Number of elements in **pressedKeyCodes**. The value must be greater than or equal to **0**.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetPressedKeys(
+    ArkUI_UIInputEvent* event, const int32_t* pressedKeyCodes, int32_t length);
+
+/**
+ * @brief Sets the intention code of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param intentionCode [in] Intention code associated with the key event.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyIntentionCode(
+    ArkUI_UIInputEvent* event, OH_ArkUI_KeyIntention intentionCode);
+
+/**
+ * @brief Sets the NumLock state of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param isNumLockOn [in] Whether NumLock is activated. The value **true** indicates an activated state, and **false**
+ *     indicates an inactivated state.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetNumLockOn(ArkUI_UIInputEvent* event, bool isNumLockOn);
+
+/**
+ * @brief Sets the CapsLock state of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param isCapsLockOn [in] Whether CapsLock is activated. The value **true** indicates an activated state, and
+ *     **false** indicates an inactivated state.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetCapsLockOn(ArkUI_UIInputEvent* event, bool isCapsLockOn);
+
+/**
+ * @brief Sets the ScrollLock state of a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ *
+ * @param event [in] Pointer to the target **ArkUI_UIInputEvent** object. The value must not be <b>nullptr</b>
+ *     and must reference a key event created by {@link OH_ArkUI_KeyEvent_Create}.
+ * @param isScrollLockOn [in] Whether ScrollLock is activated. The value **true** indicates an activated state, and
+ *     **false** indicates an inactivated state.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
+ *     {@link OH_ArkUI_KeyEvent_Create}.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetScrollLockOn(ArkUI_UIInputEvent* event, bool isScrollLockOn);
+
+/**
  * @brief Obtains the type of the specified key event.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @return Key event type.
+ * @param event Pointer to the key input event, used to obtain the key event type corresponding to the event.
+ * @return Key type.
  * @since 14
  */
 ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
@@ -820,8 +1071,9 @@ ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
 /**
  * @brief Obtains the key code from the specified key event.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @return Key code.
+ * @param event Pointer to the key input event, used to obtain the code value of the key corresponding to the
+ *     event.
+ * @return Key code, corresponding to the code value defined in the **ArkUI_KeyCode** enumeration.
  * @since 14
  */
 int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
@@ -829,8 +1081,10 @@ int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
 /**
  * @brief Obtains the key value from the specified key event.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @return Key value.
+ * @param event Pointer to the key input event, used to obtain the key value text of the key corresponding
+ *     to the event.
+ * @return Pointer to the text character content corresponding to the key, that is, the key value string
+ *     generated by the key.
  * @since 14
  */
 const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
@@ -838,18 +1092,25 @@ const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
 /**
  * @brief Obtains the type of input device that triggers the specified key event.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @return Input device type.
+ * @param event Pointer to the key input event, used to obtain the input device type that triggers the key
+ *     event.
+ * @return Input device type of the current key.
  * @since 14
  */
 ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Stops the specified key event from bubbling upwards or downwards.
+ * @brief Stops event bubbling in the key event callback. This API applies to scenarios where a child component
+ * has already handled a key event in a nested component structure and does not want the parent component
+ * to respond to the same key again, for example, stopping the event from bubbling upward when handling custom
+ * shortcuts. Unlike **OH_ArkUI_KeyEvent_SetConsumed**, this API controls the bubbling of the event, whereas
+ * **OH_ArkUI_KeyEvent_SetConsumed** sets whether the event is consumed by the callback. The two APIs can be
+ * used together without affecting each other. You are advised to select the appropriate API based on whether
+ * you need to stop bubbling or mark consumption.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @param stopPropagation Whether to stop event propagation. The value **true** means to stop event propagation, and **
- *     false** means the opposite.
+ * @param event Pointer to the key input event for which the bubbling behavior is to be set.
+ * @param stopPropagation Whether to stop event bubbling. The value **true** indicates to stop event bubbling,
+ *     and **false** indicates the opposite.
  * @since 14
  */
 void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
@@ -857,38 +1118,53 @@ void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool sto
 /**
  * @brief Obtains the intention code associated with the specified key event.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @return Intention code associated with the key event.
+ * @param event Pointer to the key input event, used to obtain the key intent corresponding to the event.
+ * @return Key intent.
  * @since 14
  */
 ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the Unicode value of the specified key event. Non-space basic Latin characters in the 0x0021-0x007E
- * range are supported. Characters with a value of 0 are not supported. In the case of key combination, this API
- * returns the Unicode value of the key corresponding to the key event.
+ * @brief Obtains the Unicode value of the key. Non-space basic Latin characters in the 0x0021-0x007E range are
+ * supported. Characters with a value of 0 are not supported. In the case of key combination, this API returns
+ * the Unicode value of the key corresponding to the key event.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param event Pointer to the key input event, used to obtain the Unicode value of the key corresponding to
+ *     the event.
  * @return Unicode value.
  * @since 14
  */
 uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Sets whether the specified key event is consumed in the key event callback.
+ * @brief Sets whether the event is consumed by the callback in the key event callback. This API applies to
+ * scenarios such as shortcut key handling and custom key response of a component, where the event needs to
+ * be marked as handled to avoid repeated processing. Unlike **OH_ArkUI_KeyEvent_StopPropagation**, this API
+ * marks whether the event is consumed by the current callback rather than controlling event bubbling. To
+ * stop the event from bubbling upward, use **OH_ArkUI_KeyEvent_StopPropagation**.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @param isConsumed Whether the key event is consumed by the callback. The value **true** means that the key event is
- *     consumed, and **false** the opposite.
+ * For the process and specific timing of key event triggering, see
+ * [Key Event Data Flow](../../ui/arkts-interaction-development-guide-keyboard.md#key-event-data-flow).
+ *
+ * @param event Pointer to the key input event, indicating the key event for which whether it is consumed by
+ *     the current callback is to be set.
+ * @param isConsumed Whether the event is consumed by the callback. The value **true** indicates that the event
+ *     is consumed, and **false** indicates the opposite.
  * @since 14
  */
 void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsumed);
 
 /**
- * @brief Dispatches the specified key event to a specific node.
+ * @brief Dispatches the key event to the specified component node. After this API is called, the key event
+ * triggers the key event callback registered on the target node. This API can be used in the key event callback
+ * to forward the current key event to the specified component node for secondary processing. Unlike
+ * **StopPropagation** and **SetConsumed**, **Dispatch** does not affect the processing state of the current
+ * event.
  *
- * @param node Target node.
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param node Target component node that receives the dispatched key event. The value must be a valid non-null
+ *     **ArkUI_NodeHandle** node handle.
+ * @param event Pointer to the key input event, which indicates the key event to be dispatched to the target
+ *     component node.
  * @since 15
  */
 void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
@@ -896,9 +1172,10 @@ void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent*
 /**
  * @brief Obtains the state of the NumLock key when the specified key event occurs.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @param state Output parameter that returns the state of the NumLock key. The value **true** indicates an activated
- *     state, and **false** indicates an inactivated state.
+ * @param event Pointer to the key input event, used to obtain the NumLock key state when the key event occurs.
+ *     It must be a **UIInputEvent** of the key type.
+ * @param state Pointer to the NumLock key state, which is an output parameter. The value **true** indicates an
+ *     activated state, and **false** indicates an inactivated state.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -909,9 +1186,10 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, b
 /**
  * @brief Obtains the state of the CapsLock key when the specified key event occurs.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @param state Output parameter that returns the state of the CapsLock key. The value **true** indicates an activated
- *     state, and **false** indicates an inactivated state.
+ * @param event Pointer to the key input event, used to obtain the CapsLock key state when the key event
+ *     occurs.
+ * @param state Pointer to the CapsLock key state, which is an output parameter. The value **true** indicates
+ *     an activated state, and **false** indicates an inactivated state.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -922,9 +1200,10 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, 
 /**
  * @brief Obtains the state of the ScrollLock key when the specified key event occurs.
  *
- * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @param state Output parameter that returns the state of the ScrollLock key. The value **true** indicates an
- *     activated state, and **false** indicates an inactivated state.
+ * @param event Pointer to the key input event, used to obtain the ScrollLock key state when the key event
+ *     occurs.
+ * @param state Pointer to the ScrollLock key state, which is an output parameter. The value **true**
+ *     indicates an activated state, and **false** indicates an inactivated state.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,30 +39,34 @@
 
 #include <stdint.h>
 
+#include "common_type.h"
 #include "drawable_descriptor.h"
+#include "error_code.h"
+
+#include "node_attributes/common_attributes.h"
 #include "node_attributes/slider.h"
 #include "node_attributes/checkbox.h"
 #include "node_attributes/button.h"
-
-#include "node_attributes/common_attributes.h"
+#include "node_attributes/text_area.h"
+#include "node_attributes/text.h"
+#include "node_attributes/text_input.h"
+#include "node_attributes/text_common.h"
+#include "node_attributes/progress.h"
+#include "node_attributes/layout.h"
+#include "node_attributes/image_span.h"
+#include "node_attributes/custom_span.h"
+#include "node_attributes/rich_editor.h"
+#include "node_attributes/list_item.h"
+#include "node_attributes/grid.h"
+#include "node_attributes/list.h"
+#include "node_attributes/scroll.h"
+#include "node_attributes/water_flow.h"
+#include "node_attributes/image.h"
+#include "node_attributes/picker.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief Defines the ArkUI native component object.
- *
- * @since 12
- */
-struct ArkUI_Node;
-
-/**
- * @brief Defines the pointer type of the ArkUI node content
- *
- * @since 12
- */
-typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
 
 /**
  * @brief Defines the custom dialog box controller of ArkUI on the native side.
@@ -72,27 +76,6 @@ typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
 struct ArkUI_NativeDialog;
 
 /**
- * @brief Sets the size constraints of a component during component layout.
- *
- * @since 12
- */
-typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
-
-/**
- * @brief Defines the structure of the component drawing context.
- *
- * @since 12
- */
-typedef struct ArkUI_DrawContext ArkUI_DrawContext;
-
-/**
- * @brief Defines the pointer to the ArkUI native component object.
- *
- * @since 12
- */
-typedef struct ArkUI_Node* ArkUI_NodeHandle;
-
-/**
  * @brief Defines the pointer to the custom dialog box controller of ArkUI on the native side.
  *
  * @since 12
@@ -100,135 +83,12 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle;
 typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle;
 
 /**
- * @brief Defines information about gesture collection interception.
+ * @brief 定义手势收集拦截信息。在触摸测试收集手势的过程中，该类型用于向拦截回调提供响应链中的手势识别器和触摸识别器，并承载回调设置的手势收集干预结果。
+ * 相关接口请参见{@link native_gesture.h}中的手势收集拦截接口说明。
  *
  * @since 26.0.0
  */
 typedef struct ArkUI_GestureCollectInterceptInfo ArkUI_GestureCollectInterceptInfo;
-
-/**
- * @brief Defines the return value structure for the <b>onGetIrregularSizeByIndex</b> callback
- * in <b>Grid</b> layout options.
- *
- * @since 22
- */
-typedef struct {
-    /** Number of rows occupied by the <b>GridItem</b> component. */
-    uint32_t rowSpan;
-    /** Number of columns occupied by the <b>GridItem</b> component. */
-    uint32_t columnSpan;
-} ArkUI_GridItemSize;
-
-/**
- * @brief Defines the return value structure for the <b>onGetRectByIndex</b> callback in <b>Grid</b> layout options.
- *
- * @since 22
- */
-typedef struct {
-    /** Starting row position of the <b>GridItem</b> component. */
-    uint32_t rowStart;
-    /** Starting column position of the <b>GridItem</b> component. */
-    uint32_t columnStart;
-    /** Number of rows occupied by the <b>GridItem</b> component. */
-    uint32_t rowSpan;
-    /** Number of columns occupied by the <b>GridItem</b> component. */
-    uint32_t columnSpan;
-} ArkUI_GridItemRect;
-
-/**
- * @brief Enumerates the selected indicator type of picker.
- *
- * @since 23
- */
-typedef enum {
-    /** background. */
-    ARKUI_PICKER_INDICATOR_BACKGROUND = 0,
-    /** divider. */
-    ARKUI_PICKER_INDICATOR_DIVIDER = 1,
-} ArkUI_PickerIndicatorType;
-
-/**
- * @brief Style parameters of background indicator.
- *
- * @since 23
- */
-typedef struct {
-    /**  background color, 0xARGB format for example <b>0xFF1122FF</b> */
-    uint32_t backgroundColor;
-    /** radius of the top left corner. */
-    float topLeftRadius;
-    /** radius of the top right corner */
-    float topRightRadius;
-    /** radius of the bottom left corner */
-    float bottomLeftRadius;
-    /** radius of the bottom right corner. */
-    float bottomRightRadius;
-} ArkUI_PickerIndicatorBackground;
-
-/**
- * @brief Style parameters of divider indicator.
- *
- * @since 23
- */
-typedef struct {
-    /** stroke width */
-    float strokeWidth;
-    /** divider color, 0xARGB format for example <b>0xFF1122FF</b> */
-    uint32_t dividerColor;
-    /** the distance between the divider and the beginning of the side of the picker (unit: vp). */
-    float startMargin;
-    /** the distance between the divider and the end of the side of the picker (unit: vp). */
-    float endMargin;
-} ArkUI_PickerIndicatorDivider;
-
-/**
- * @brief Definition of indicator style.
- *
- * @since 23
- */
-typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
-
-/**
- * @brief Defines the <b>Grid</b> layout options.
- *
- * @since 22
- */
-typedef struct ArkUI_GridLayoutOptions ArkUI_GridLayoutOptions;
-
-/**
- * @brief Defines the water flow section configuration.
- *
- * @since 12
- */
-typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption;
-
-/**
- * @brief Define the configuration information of the Item within the ListitemSwipeActionOption method.
- *
- * @since 12
- */
-typedef struct ArkUI_ListItemSwipeActionItem ArkUI_ListItemSwipeActionItem;
-
-/**
- * @brief Define the configuration information for the ListitemSwipeActionOption method.
- *
- * @since 12
- */
-typedef struct ArkUI_ListItemSwipeActionOption ArkUI_ListItemSwipeActionOption;
-
-/**
- * @brief Defines the ArkUI native context object.
- *
- * @since 12
- */
-struct ArkUI_Context;
-
-/**
-  * @brief Defines the pointer to the context instance object pointer definition of ArkUI on the native side.
-  *
-  * @since 12
-  */
-typedef struct ArkUI_Context* ArkUI_ContextHandle;
 
 /**
  * @brief Defines the navigation indicator style for the swiper.
@@ -252,92 +112,47 @@ typedef struct ArkUI_SwiperDigitIndicator ArkUI_SwiperDigitIndicator;
 typedef struct ArkUI_SwiperArrowStyle ArkUI_SwiperArrowStyle;
 
 /**
-* @brief Define the data objects of styled string supported by text components.
-*
-* @since 14
-*/
-typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor;
-
-/**
-  * @brief specifies the alignment rules for subcomponents set in relative containers.
-  *
-  * @since 12
-  */
-typedef struct ArkUI_AlignmentRuleOption ArkUI_AlignmentRuleOption;
-
-/**
-  * @brief guideLine parameters, used to define the id, direction and position of the guideline.
-  *
-  * @since 12
-  */
-typedef struct ArkUI_GuidelineOption ArkUI_GuidelineOption;
-
-/**
-  * @brief barrier parameter, used to define the id,
-  * direction and components of the barrier that it depends on when generating it.
-  *
-  * @since 12
-  */
-typedef struct ArkUI_BarrierOption ArkUI_BarrierOption;
-
-/**
- * @brief Define the ChildrenMainSize class information for a List.
- *
- * @since 12
-*/
-typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
-
-/**
- * @brief Defines the image frame.
- *
- * @since 12
-*/
-typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo;
-
-/**
- * @brief Defines the accessibility state for the component.
+ * @brief 定义组件的无障碍状态，用于描述组件的选中、勾选、禁用等无障碍状态信息，适用于无障碍服务读取和交互的场景，方便无障碍用户获取组件当前状态。
  *
  * @since 12
  */
 typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState;
 
 /**
- * @brief Defines the accessibility value for the component.
+ * @brief 定义组件的无障碍信息值，用于描述组件的无障碍状态，如范围类组件的最小值、最大值、当前值以及文本描述等，适用于需要向无障碍服务提供组件当前状态信息的场景。
  *
  * @since 12
  */
 typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 
 /**
- * @brief Define the information of the Custom Property class for custom properties.
+ * @brief 定义表示组件自定义属性的 ArkUI_CustomProperty 结构体。
+ 通过相关接口，可以为 ArkUI 组件添加、移除和获取自定义属性，以及获取自定义属性的字符串值。
  *
  * @since 14
  */
 typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 
 /**
- * @brief Define the information of the HostWindowInfo class for window properties.
+ * @brief 定义窗口属性的HostWindowInfo类信息。
  *
  * @since 15
  */
 typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo;
 
 /**
- * @brief Define ActiveChildenInfo class information.
+ * @brief 定义ArkUI_ActiveChildrenInfo结构体，用于保存内部活跃状态为true的
+ * FrameNode子节点信息，支持查询子节点数量和按下标获取子节点。
+ * 该结构体实例由OH_ArkUI_NodeUtils_GetActiveChildrenInfo生成，使用完毕后
+ * 必须调用OH_ArkUI_ActiveChildrenInfo_Destroy销毁。
  *
  * @since 14
  */
 typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 
 /**
- * @brief Set the linear progress indicator style.
- *
- * @since 15
- */
-typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
-
-/**
- * @brief The cross-language option.
+ * @brief 定义跨语言配置
+ 项，用于配置目标节点的跨语言访问能力，例如是否允许跨语言修改属性；从API version 26.0.0开始，还可配置节点树跨语言操作状态。
  *
  * @since 15
  */
@@ -358,27 +173,6 @@ typedef struct AbilityBase_Want AbilityBase_Want;
 typedef struct ArkUI_EmbeddedComponentOption ArkUI_EmbeddedComponentOption;
 
 /**
- * @brief Define the Edges describing the position of a component by distances to the container's four edges.
- *
- * @since 21
- */
-typedef struct ArkUI_PositionEdges ArkUI_PositionEdges;
-
-/**
- * @brief Defines the PixelRound policy of a component's four edges.
- *
- * @since 21
- */
-typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
-
-/**
- * @brief Defines the textField's counter configuration.
- *
- * @since 22
- */
-typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
-
-/**
  * @brief Defines the matrix4 object.
  *
  * @since 24
@@ -386,294 +180,11 @@ typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
 
 /**
- * @brief Defines the text content base controller.
+ * @brief 定义选中状态下文本拖拽预览样式，适用于需要在文本拖拽过程中展示选中状态预览效果的场景，可提升用户的拖拽交互体验。
  *
- * @since 23
- */
-typedef struct ArkUI_TextContentBaseController ArkUI_TextContentBaseController;
-
-/**
- * @brief Defines the selected drag preview style configuration.
  * @since 23
  */
 typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
-
-/**
- * @brief Defines the event callback type.
- *
- * @since 12
- */
-typedef struct {
-    /** Custom type, data of a user-defined type that is passed as a parameter during callbacks. */
-    void* userData;
-    /** Event callback. */
-    void (*callback)(void* userData);
-} ArkUI_ContextCallback;
-/**
- * @brief Provides the number types of ArkUI in the native code.
- *
- * @since 12
- */
-typedef union {
-    /** Floating-point type, used to store a floating-point value. */
-    float f32;
-    /** Signed integer, used to store a signed integer value. */
-    int32_t i32;
-    /** Unsigned integer, used to store an unsigned integer value. */
-    uint32_t u32;
-} ArkUI_NumberValue;
-
-/**
- * @brief Enumerates the alignment modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Top start. */
-    ARKUI_ALIGNMENT_TOP_START = 0,
-    /** Top center. */
-    ARKUI_ALIGNMENT_TOP,
-    /** Top end. */
-    ARKUI_ALIGNMENT_TOP_END,
-    /** Vertically centered start. */
-    ARKUI_ALIGNMENT_START,
-    /** Horizontally and vertically centered. */
-    ARKUI_ALIGNMENT_CENTER,
-    /** Vertically centered end. */
-    ARKUI_ALIGNMENT_END,
-    /** Bottom start. */
-    ARKUI_ALIGNMENT_BOTTOM_START,
-    /** Horizontally centered on the bottom. */
-    ARKUI_ALIGNMENT_BOTTOM,
-    /** Bottom end. */
-    ARKUI_ALIGNMENT_BOTTOM_END,
-} ArkUI_Alignment;
-
-/**
- * @brief Enumerates the image repeat patterns.
- *
- * @since 12
- */
-typedef enum {
-    /** The image is not repeatedly drawn. */
-    ARKUI_IMAGE_REPEAT_NONE = 0,
-    /** The image is repeatedly drawn only along the x-axis. */
-    ARKUI_IMAGE_REPEAT_X,
-    /** The image is repeatedly drawn only along the y-axis. */
-    ARKUI_IMAGE_REPEAT_Y,
-    /** The image is repeatedly drawn along both axes. */
-    ARKUI_IMAGE_REPEAT_XY,
-} ArkUI_ImageRepeat;
-
-/**
- * @brief Enumerates the font styles.
- *
- * @since 12
- */
-typedef enum {
-    /** Standard font style. */
-    ARKUI_FONT_STYLE_NORMAL = 0,
-    /** Italic font style. */
-    ARKUI_FONT_STYLE_ITALIC
-} ArkUI_FontStyle;
-
-/**
- * @brief Enumerates the font weights.
- *
- * @since 12
- */
-typedef enum {
-    /** 100 */
-    ARKUI_FONT_WEIGHT_W100 = 0,
-    /** 200 */
-    ARKUI_FONT_WEIGHT_W200,
-    /** 300 */
-    ARKUI_FONT_WEIGHT_W300,
-    /** 400 */
-    ARKUI_FONT_WEIGHT_W400,
-    /** 500 */
-    ARKUI_FONT_WEIGHT_W500,
-    /** 600 */
-    ARKUI_FONT_WEIGHT_W600,
-    /** 700 */
-    ARKUI_FONT_WEIGHT_W700,
-    /** 800 */
-    ARKUI_FONT_WEIGHT_W800,
-    /** 900 */
-    ARKUI_FONT_WEIGHT_W900,
-    /** The font weight is bold. */
-    ARKUI_FONT_WEIGHT_BOLD,
-    /** The font weight is normal. */
-    ARKUI_FONT_WEIGHT_NORMAL,
-    /** The font weight is bolder. */
-    ARKUI_FONT_WEIGHT_BOLDER,
-    /** The font weight is lighter. */
-    ARKUI_FONT_WEIGHT_LIGHTER,
-    /** The font weight is medium. */
-    ARKUI_FONT_WEIGHT_MEDIUM,
-    /** The font weight is normal. */
-    ARKUI_FONT_WEIGHT_REGULAR,
-} ArkUI_FontWeight;
-
-/**
- * @brief Enumerates the text alignment mode.
- *
- * @since 12
- */
-typedef enum {
-    /** Aligned with the start. */
-    ARKUI_TEXT_ALIGNMENT_START = 0,
-    /** Horizontally centered. */
-    ARKUI_TEXT_ALIGNMENT_CENTER,
-    /** Aligned with the end. */
-    ARKUI_TEXT_ALIGNMENT_END,
-    /** Aligned with both margins. */
-    ARKUI_TEXT_ALIGNMENT_JUSTIFY,
-    /** Aligned with left to right.
-     * @since 23
-     */
-    ARKUI_TEXT_ALIGNMENT_LEFT_TO_RIGHT = 4,
-    /** Aligned with right to left.
-     * @since 23
-     */
-    ARKUI_TEXT_ALIGNMENT_RIGHT_TO_LEFT = 5,
-} ArkUI_TextAlignment;
-
-/**
- * @brief Enumerates text vertical alignment styles.
- *
- * @since 20
- */
-typedef enum {
-    /** Aligned to the baseline. */
-    ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE = 0,
-    /** Bottom aligned. */
-    ARKUI_TEXT_VERTICAL_ALIGNMENT_BOTTOM,
-    /** Center aligned. */
-    ARKUI_TEXT_VERTICAL_ALIGNMENT_CENTER,
-    /** Top aligned. */
-    ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP,
-} ArkUI_TextVerticalAlignment;
-
-/**
- * @brief Enumerates text content align styles.
- *
- * @since 21
- */
-typedef enum {
-    /** Top aligned. */
-    ARKUI_TEXT_CONTENT_ALIGN_TOP = 0,
-    /** Center aligned. */
-    ARKUI_TEXT_CONTENT_ALIGN_CENTER = 1,
-    /** Bottom aligned. */
-    ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2,
-} ArkUI_TextContentAlign;
-
-/**
- * @brief Enumerates the text text direction.
- *
- * @since 23
- */
-typedef enum {
-    /** The text direction is left to right. */
-    ARKUI_TEXT_DIRECTION_LTR = 0,
-    /** The text direction is right to left. */
-    ARKUI_TEXT_DIRECTION_RTL = 1,
-    /** The text direction follows the component layout. */
-    ARKUI_TEXT_DIRECTION_DEFAULT = 2,
-    /** The text direction follows the actual text. */
-    ARKUI_TEXT_DIRECTION_AUTO = 3,
-} ArkUI_TextDirection;
-
-/**
- * @brief Enumerates the types of the Enter key for a single-line text box.
- *
- * @since 12
- */
-typedef enum {
-    /** The Enter key is labeled "Go." */
-    ARKUI_ENTER_KEY_TYPE_GO = 2,
-    /** The Enter key is labeled "Search." */
-    ARKUI_ENTER_KEY_TYPE_SEARCH = 3,
-    /** The Enter key is labeled "Send." */
-    ARKUI_ENTER_KEY_TYPE_SEND,
-    /** The Enter key is labeled "Next." */
-    ARKUI_ENTER_KEY_TYPE_NEXT,
-    /** The Enter key is labeled "Done." */
-    ARKUI_ENTER_KEY_TYPE_DONE,
-    /** The Enter key is labeled "Previous." */
-    ARKUI_ENTER_KEY_TYPE_PREVIOUS,
-    /** The Enter key is labeled "New Line." */
-    ARKUI_ENTER_KEY_TYPE_NEW_LINE,
-} ArkUI_EnterKeyType;
-
-/**
- * @brief Enumerates the text input types.
- *
- * @since 12
- */
-typedef enum {
-    /** Normal input mode. */
-    ARKUI_TEXTINPUT_TYPE_NORMAL = 0,
-    /** Number input mode. */
-    ARKUI_TEXTINPUT_TYPE_NUMBER = 2,
-    /** Phone number input mode. */
-    ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER = 3,
-    /** Email address input mode. */
-    ARKUI_TEXTINPUT_TYPE_EMAIL = 5,
-    /** Password input mode. */
-    ARKUI_TEXTINPUT_TYPE_PASSWORD = 7,
-    /** Numeric password input mode. */
-    ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD = 8,
-    /** Lock screen password input mode. */
-    ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,
-    /** Username input mode. */
-    ARKUI_TEXTINPUT_TYPE_USER_NAME = 10,
-    /** New password input mode. */
-    ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11,
-    /** Number input mode with a decimal point. */
-    ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12,
-    /**
-     * One time code input mode.
-     * @since 20
-     */
-    ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14,
-} ArkUI_TextInputType;
-
-/**
- * @brief Enumerates the text box types.
- *
- * @since 12
- */
-typedef enum {
-    /** Normal input mode. */
-    ARKUI_TEXTAREA_TYPE_NORMAL = 0,
-    /** Number input mode. */
-    ARKUI_TEXTAREA_TYPE_NUMBER = 2,
-    /** Phone number input mode. */
-    ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3,
-    /** Email address input mode. */
-    ARKUI_TEXTAREA_TYPE_EMAIL = 5,
-    /**
-     * One time code input mode.
-     * @since 20
-     */
-    ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14,
-} ArkUI_TextAreaType;
-
-/**
- * @brief Enumerates the styles of the Cancel button.
- *
- * @since 12
- */
-typedef enum {
-    /** The Cancel button is always displayed. */
-    ARKUI_CANCELBUTTON_STYLE_CONSTANT = 0,
-    /** The Cancel button is always hidden. */
-    ARKUI_CANCELBUTTON_STYLE_INVISIBLE,
-    /** The Cancel button is displayed when there is text input. */
-    ARKUI_CANCELBUTTON_STYLE_INPUT,
-} ArkUI_CancelButtonStyle;
 
 /**
  * @brief Enumerates the types of the <b><XComponent></b> component.
@@ -690,84 +201,18 @@ typedef enum {
 } ArkUI_XComponentType;
 
 /**
- * @brief Enumerates the styles of the progress indicator.
+ * @brief 定义文本复制粘贴模式枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** Linear style. */
-    ARKUI_PROGRESS_TYPE_LINEAR = 0,
-    /** Indeterminate ring style. */
-    ARKUI_PROGRESS_TYPE_RING,
-    /** Eclipse style. */
-    ARKUI_PROGRESS_TYPE_ECLIPSE,
-    /** Determinate ring style. */
-    ARKUI_PROGRESS_TYPE_SCALE_RING,
-    /** Capsule style. */
-    ARKUI_PROGRESS_TYPE_CAPSULE,
-} ArkUI_ProgressType;
-
-/**
- * @brief Enumerates the text decoration types.
- *
- * @since 12
- */
-typedef enum {
-    /** No text decoration. */
-    ARKUI_TEXT_DECORATION_TYPE_NONE = 0,
-    /** Line under the text. */
-    ARKUI_TEXT_DECORATION_TYPE_UNDERLINE,
-    /** Line over the text. */
-    ARKUI_TEXT_DECORATION_TYPE_OVERLINE,
-    /** Line through the text. */
-    ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH,
-} ArkUI_TextDecorationType;
-
-/**
- * @brief Enumerates the text decoration styles.
- *
- * @since 12
- */
-typedef enum {
-    /** Single solid line. */
-    ARKUI_TEXT_DECORATION_STYLE_SOLID = 0,
-    /** Double solid line. */
-    ARKUI_TEXT_DECORATION_STYLE_DOUBLE,
-    /** Dotted line. */
-    ARKUI_TEXT_DECORATION_STYLE_DOTTED,
-    /** Dashed line. */
-    ARKUI_TEXT_DECORATION_STYLE_DASHED,
-    /** Wavy line. */
-    ARKUI_TEXT_DECORATION_STYLE_WAVY,
-} ArkUI_TextDecorationStyle;
-
-/**
- * @brief Enumerates the text cases.
- *
- * @since 12
- */
-typedef enum {
-    /** The original case of the text is retained. */
-    ARKUI_TEXT_CASE_NORMAL = 0,
-    /** All letters in the text are in lowercase. */
-    ARKUI_TEXT_CASE_LOWER,
-    /** All letters in the text are in uppercase. */
-    ARKUI_TEXT_CASE_UPPER,
-} ArkUI_TextCase;
-
-/**
- * @brief Enumerates the text copy and paste modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Copy is not allowed. */
+    /** 不支持复制。*/
     ARKUI_COPY_OPTIONS_NONE = 0,
-    /** Intra-application copy is allowed. */
+    /** 支持应用内复制。*/
     ARKUI_COPY_OPTIONS_IN_APP,
-    /** Intra-device copy is allowed. */
+    /** 支持设备内复制。*/
     ARKUI_COPY_OPTIONS_LOCAL_DEVICE,
-    /** Cross-device copy is allowed. */
+    /** 支持跨设备复制。*/
     ARKUI_COPY_OPTIONS_CROSS_DEVICE,
 } ArkUI_CopyOptions;
 
@@ -784,112 +229,14 @@ typedef enum {
 } ArkUI_ShadowType;
 
 /**
- * @brief Enumerates the modes of the date picker.
- *
- * @since 18
- */
-typedef enum {
-    /** A mode that displays the date in months, days of month, and years. */
-    ARKUI_DATEPICKER_MODE_DATE = 0,
-    /** A mode that displays the date in months and years. */
-    ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
-    /** A mode that displays the date in months and days of the month. */
-    ARKUI_DATEPICKER_MONTH_AND_DAY = 2,
-} ArkUI_DatePickerMode;
-
-/**
- * @brief Enumerates the types of the text picker.
- *
- * @since 12
- */
-typedef enum {
-    /** Single-column text picker. */
-    ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0,
-    /** Multi-column text picker. */
-    ARKUI_TEXTPICKER_RANGETYPE_MULTI,
-    /** Single-column text picker with image resources. */
-    ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT,
-    /** Interconnected multi-column text picker. */
-    ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT,
-} ArkUI_TextPickerRangeType;
-
-/**
- * @brief Defines the input structure of the single-column text picker with image resources.
- *
- * @since 12
- */
-typedef struct {
-    /** Image resource. */
-    const char* icon;
-    /** Text information. */
-    const char* text;
-} ARKUI_TextPickerRangeContent;
-
-/**
- * @brief Defines the input structure of the interconnected multi-column text picker.
- *
- * @since 12
- */
-typedef struct {
-    /** Text information. */
-    const char* text;
-    /** Interconnected data. */
-    const ARKUI_TextPickerRangeContent* children;
-    /** Size of the interconnected data array. */
-    int32_t size;
-} ARKUI_TextPickerCascadeRangeContent;
-
-/**
- * @brief Enumerates the effects used at the edges of the component when the boundary of the scrollable content is
- * reached.
- *
- * @since 12
- */
-typedef enum {
-    /** Spring effect. When at one of the edges, the component can move beyond the bounds based on the initial
-     *  speed or through touches, and produces a bounce effect when the user releases their finger. */
-    ARKUI_EDGE_EFFECT_SPRING = 0,
-    /** Fade effect. When at one of the edges, the component produces a fade effect. */
-    ARKUI_EDGE_EFFECT_FADE,
-    /** No effect after the scrollbar is moved to the edge. */
-    ARKUI_EDGE_EFFECT_NONE,
-} ArkUI_EdgeEffect;
-
-/**
- * @brief Enumerates the status of the scroll bar.
- *
- * @since 22
- */
-typedef enum {
-    /** Not displayed. */
-    ARKUI_BAR_STATE_OFF = 0,
-    /** On-demand display. */
-    ARKUI_BAR_STATE_AUTO = 1,
-    /** Resident display. */
-    ARKUI_BAR_STATE_ON = 2,
-} ArkUI_BarState;
-
-/**
- * @brief Enumerates the edges for which the effect takes effect when the boundary of the scrollable content is reached.
- *
- * @since 18
- */
-typedef enum {
-    /** Start edge. */
-    ARKUI_EFFECT_EDGE_START = 1,
-    /** End edge. */
-    ARKUI_EFFECT_EDGE_END = 2,
-} ArkUI_EffectEdge;
-
-/**
- * @brief Enumerates the focus wrap mode of components.
+ * @brief 组件走焦换行规则。Grid、List组件默认值为ARKUI_FOCUS_WRAP_MODE_DEFAULT。
  *
  * @since 20
  */
 typedef enum {
-    /** Default mode, where focus does not wrap when arrow keys are used. */
+    /** 默认规则，使用方向键走焦不换行。 */
     ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0,
-    /** Focus wraps automatically when arrow keys are used. */
+    /** 使用方向键走焦自动换行。 */
     ARKUI_FOCUS_WRAP_WITH_ARROW = 1,
 } ArkUI_FocusWrapMode;
 
@@ -912,146 +259,6 @@ typedef enum {
     /** 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger). */
     ARKUI_ITEMFILLPOLICY_SM2MD3LG5 = 2,
 } ArkUI_ItemFillPolicy;
-
-/**
- * @brief Enumerates the grid item alignment modes.
- *
- * @since 22
- */
-typedef enum {
-    /** Use the default alignment mode of the grid. */
-    GRID_ITEM_ALIGNMENT_DEFAULT = 0,
-    /** Set the height of all grid items in a row to match the height of the tallest item in that row. */
-    GRID_ITEM_ALIGNMENT_STRETCH = 1,
-} ArkUI_GridItemAlignment;
-
-/**
- * @brief Enumerates styles of grid items.
- *
- * @since 22
- */
-typedef enum {
-    /** No style. */
-    GRID_ITEM_STYLE_NONE = 0,
-    /** Hover or press style. */
-    GRID_ITEM_STYLE_PLAIN = 1,
-} ArkUI_GridItemStyle;
-
-/**
- * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
- *
- * @since 12
- */
-typedef enum {
-    /** Only vertical scrolling is supported. */
-    ARKUI_SCROLL_DIRECTION_VERTICAL = 0,
-    /** Only horizontal scrolling is supported. */
-    ARKUI_SCROLL_DIRECTION_HORIZONTAL,
-    /** Scrolling is not allowed. */
-    ARKUI_SCROLL_DIRECTION_NONE = 3,
-    /**
-     * Free scrolling in both directions.
-     *
-     * @since 20
-     */
-    ARKUI_SCROLL_DIRECTION_FREE = 4,
-} ArkUI_ScrollDirection;
-
-/**
- * @brief Enumerates the alignment modes of list items when scrolling ends.
- *
- * @since 12
- */
-typedef enum {
-    /** No alignment. This is the default value. */
-    ARKUI_SCROLL_SNAP_ALIGN_NONE = 0,
-    /** The first item in the view is aligned at the start of the list. */
-    ARKUI_SCROLL_SNAP_ALIGN_START,
-    /** The middle items in the view are aligned in the center of the list. */
-    ARKUI_SCROLL_SNAP_ALIGN_CENTER,
-    /** The last item in the view is aligned at the end of the list. */
-    ARKUI_SCROLL_SNAP_ALIGN_END,
-} ArkUI_ScrollSnapAlign;
-
-/**
- * @brief Enumerates the scroll snap animation speeds for lists.
- *
- * @since 22
- */
-typedef enum {
-    /** Normal scroll snap animation speed. */
-    ARKUI_SCROLL_SNAP_ANIMATION_NORMAL = 0,
-    /** Slow scroll snap animation speed. */
-    ARKUI_SCROLL_SNAP_ANIMATION_SLOW = 1,
-} ArkUI_ScrollSnapAnimationSpeed;
-
-/**
- * @brief Enumerates the scrollbar display modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Hide. */
-    ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF = 0,
-    /** Display on demand (displays when the screen is touched and disappears after 2s). */
-    ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO,
-    /** Always display. */
-    ARKUI_SCROLL_BAR_DISPLAY_MODE_ON,
-} ArkUI_ScrollBarDisplayMode;
-
-/**
- * @brief Enumerates the scroll directions for the <b><List></b> component.
- *
- * @since 12
- */
-typedef enum {
-    /** Only vertical scrolling is supported. */
-    ARKUI_AXIS_VERTICAL = 0,
-    /** Only horizontal scrolling is supported. */
-    ARKUI_AXIS_HORIZONTAL,
-} ArkUI_Axis;
-
-/**
- * @brief Enumerates the modes for pinning the header to the top or the footer to the bottom.
- *
- * @since 12
- */
-typedef enum {
-    /** In the list item group, the header is not pinned to the top, and the footer is not pinned to the bottom. */
-    ARKUI_STICKY_STYLE_NONE = 0,
-    /** In the list item group, the header is pinned to the top, and the footer is not pinned to the bottom. */
-    ARKUI_STICKY_STYLE_HEADER = 1,
-    /** In the list item group, the footer is pinned to the bottom, and the header is not pinned to the top. */
-    ARKUI_STICKY_STYLE_FOOTER = 2,
-    /** In the list item group, the footer is pinned to the bottom, and the header is pinned to the top. */
-    ARKUI_STICKY_STYLE_BOTH = 3,
-} ArkUI_StickyStyle;
-
-/**
- * @brief Enumerates the content clipping modes of scrollable components.
- *
- * @since 18
- */
-typedef enum {
-    /** clip by content */
-    ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY = 0,
-    /** clip by boundary */
-    ARKUI_CONTENT_CLIP_MODE_BOUNDARY,
-    /** clip by safe area padding */
-    ARKUI_CONTENT_CLIP_MODE_SAFE_AREA,
-} ArkUI_ContentClipMode;
-
-/**
- * @brief Enumerates the layout modes of the WaterFlow component.
- *
- * @since 18
- */
-typedef enum {
-    /** Layout items from top to viewport. */
-    ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN = 0,
-    /** Layout items in viewport. */
-    ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW,
-} ArkUI_WaterFlowLayoutMode;
 
 /**
  * @brief Enumerates the border styles.
@@ -1193,109 +400,6 @@ typedef enum {
 } ArkUI_AccessibilityMode;
 
 /**
- * @brief Defines whether copy and paste is allowed for text content.
- *
- * @since 12
- */
-typedef enum {
-    /** Copy is not allowed. */
-    ARKUI_TEXT_COPY_OPTIONS_NONE = 0,
-    /** Intra-application copy is allowed. */
-    ARKUI_TEXT_COPY_OPTIONS_IN_APP,
-    /** Intra-device copy is allowed. */
-    ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE,
-    /** Cross-device copy is allowed. */
-    ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE,
-} ArkUI_TextCopyOptions;
-
-/**
- * @brief Defines how the adaptive height is determined for the text.
- *
- * @since 12
- */
-typedef enum {
-    /** Prioritize the <b>maxLines</b> settings. */
-    ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST = 0,
-    /** Prioritize the <b>minFontSize</b> settings. */
-    ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST,
-    /** Prioritize the layout constraint settings in terms of height. */
-    ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST,
-} ArkUI_TextHeightAdaptivePolicy;
-
-/**
- * @brief Defines nested scrolling options.
- *
- * @since 12
- */
-typedef enum {
-    /** The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
-     * does not scroll when the component scrolling reaches the boundary. */
-    ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
-    /** The component scrolls first, and when it hits the boundary, the parent component scrolls.
-     *  When the parent component hits the boundary, its edge effect is displayed. If no edge
-     *  effect is specified for the parent component, the edge effect of the child component is displayed instead. */
-    ARKUI_SCROLL_NESTED_MODE_SELF_FIRST,
-    /** The parent component scrolls first, and when it hits the boundary, the component scrolls.
-     *  When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
-    ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST,
-    /** The component and its parent component scroll at the same time. When both the component and its parent component
-     *  hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
-    ARKUI_SCROLL_NESTED_MODE_PARALLEL,
-} ArkUI_ScrollNestedMode;
-
-/**
- * @brief Defines the edge to which the component scrolls.
- *
- * @since 12
- */
-typedef enum {
-    /** Top edge in the vertical direction. */
-    ARKUI_SCROLL_EDGE_TOP = 0,
-    /** Bottom edge in the vertical direction. */
-    ARKUI_SCROLL_EDGE_BOTTOM,
-    /** Start position in the horizontal direction. */
-    ARKUI_SCROLL_EDGE_START,
-    /** End position in the horizontal direction. */
-    ARKUI_SCROLL_EDGE_END,
-} ArkUI_ScrollEdge;
-
-/**
- * @brief Alignment when scrolling to specific items.
- *
- * @since 12
- */
-typedef enum {
-    /** Align the head. Align the head of the specified item with the head of the container.*/
-    ARKUI_SCROLL_ALIGNMENT_START = 0,
-    /** Center alignment. Align the axis direction of the specified item to the center of the container.*/
-    ARKUI_SCROLL_ALIGNMENT_CENTER,
-    /** Tail alignment. Align the tail of the specified item with the tail of the container.*/
-    ARKUI_SCROLL_ALIGNMENT_END,
-    /** Automatic alignment. If the specified item is completely in the display area, no adjustments will be made.
-     * Otherwise, according to the principle of the shortest sliding distance, align the head or tail of the specified
-     * item with the container, so that the specified item is completely in the display area.*/
-    ARKUI_SCROLL_ALIGNMENT_AUTO,
-} ArkUI_ScrollAlignment;
-
-/**
- * @brief Define the current scrolling state.
- *
- * @since 12
- */
-typedef enum {
-    /** Idle state. Trigger when using the method provided by the controller to control scrolling, and trigger when
-     * dragging the scroll bar to scroll.*/
-    ARKUI_SCROLL_STATE_IDLE = 0,
-    /** Scroll state. Triggered when dragging the container with fingers to scroll.*/
-    ARKUI_SCROLL_STATE_SCROLL,
-    /** Inertial rolling state. Triggered when inertia rolling and bouncing back to the edge are performed after
-     * releasing the hand quickly.*/
-    ARKUI_SCROLL_STATE_FLING,
-} ArkUI_ScrollState;
-
-/**
  * @brief Enumerates the animation playback modes.
  *
  * @since 12
@@ -1312,22 +416,6 @@ typedef enum {
      *  of times (2, 4, 6...). */
     ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE,
 } ArkUI_AnimationPlayMode;
-
-/**
- * @brief Defines the image size.
- *
- * @since 12
- */
-typedef enum {
-    /** The original image aspect ratio is retained. */
-    ARKUI_IMAGE_SIZE_AUTO = 0,
-    /** The image is scaled with its aspect ratio retained for both sides to be greater than or equal
-     *  to the display boundaries. */
-    ARKUI_IMAGE_SIZE_COVER,
-    /** The image is scaled with its aspect ratio retained for the content to be completely displayed within the display
-     *  boundaries. */
-    ARKUI_IMAGE_SIZE_CONTAIN,
-} ArkUI_ImageSize;
 
 /**
  * @brief Enumerates the adaptive color modes.
@@ -1417,175 +505,6 @@ typedef enum {
 } ArkUI_BlurStyleActivePolicy;
 
 /**
- * @brief Enumerates the vertical alignment modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Top aligned. */
-    ARKUI_VERTICAL_ALIGNMENT_TOP = 0,
-    /** Center aligned. This is the default alignment mode. */
-    ARKUI_VERTICAL_ALIGNMENT_CENTER,
-    /** Bottom aligned. */
-    ARKUI_VERTICAL_ALIGNMENT_BOTTOM,
-} ArkUI_VerticalAlignment;
-
-/**
- * @brief Enumerates the alignment mode in the horizontal direction.
- *
- * @since 12
- */
-typedef enum {
-    /** Aligned with the start edge in the same direction as the language in use. */
-    ARKUI_HORIZONTAL_ALIGNMENT_START = 0,
-    /** Center aligned. This is the default alignment mode. */
-    ARKUI_HORIZONTAL_ALIGNMENT_CENTER,
-    /** Aligned with the end edge in the same direction as the language in use. */
-    ARKUI_HORIZONTAL_ALIGNMENT_END,
-} ArkUI_HorizontalAlignment;
-
-/**
- * @brief Enumerates the display modes when the text is too long.
- *
- * @since 12
- */
-typedef enum {
-    /** Extra-long text is not clipped. */
-    ARKUI_TEXT_OVERFLOW_NONE = 0,
-    /** Extra-long text is clipped. */
-    ARKUI_TEXT_OVERFLOW_CLIP,
-    /** An ellipsis (...) is used to represent text overflow. */
-    ARKUI_TEXT_OVERFLOW_ELLIPSIS,
-    /** Text continuously scrolls when text overflow occurs. */
-    ARKUI_TEXT_OVERFLOW_MARQUEE,
-} ArkUI_TextOverflow;
-
-/**
- * @brief Enumerates the alignment mode of the image with the text.
- *
- * @since 12
- */
-typedef enum {
-    /** The image is bottom aligned with the text baseline. */
-    ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE = 0,
-    /** The image is bottom aligned with the text. */
-    ARKUI_IMAGE_SPAN_ALIGNMENT_BOTTOM,
-    /** The image is centered aligned with the text. */
-    ARKUI_IMAGE_SPAN_ALIGNMENT_CENTER,
-    /** The image is top aligned with the text. */
-    ARKUI_IMAGE_SPAN_ALIGNMENT_TOP,
-    /**
-     * The image alignment mode follows the text component's alignment mode.
-     *
-     * @since 20
-     */
-    ARKUI_IMAGE_SPAN_ALIGNMENT_FOLLOW_PARAGRAPH,
-} ArkUI_ImageSpanAlignment;
-
-/**
- * @brief Defines how the image is resized to fit its container.
- *ImageSpanAlignment
- * @since 12
- */
-typedef enum {
-    /** The image is scaled with its aspect ratio retained for the content to be completely displayed within the
-     *  display boundaries. */
-    ARKUI_OBJECT_FIT_CONTAIN = 0,
-    /** The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the
-     *  display boundaries. */
-    ARKUI_OBJECT_FIT_COVER,
-    /** The image is scaled automatically to fit the display area. */
-    ARKUI_OBJECT_FIT_AUTO,
-    /** The image is scaled to fill the display area, and its aspect ratio is not retained. */
-    ARKUI_OBJECT_FIT_FILL,
-    /** The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the
-     *  original size. */
-    ARKUI_OBJECT_FIT_SCALE_DOWN,
-    /** The original size is retained. */
-    ARKUI_OBJECT_FIT_NONE,
-    /** Not resized, the image is aligned with the start edge of the top of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP_START,
-    /** Not resized, the image is horizontally centered at the top of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP,
-    /** Not resized, the image is aligned with the end edge at the top of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP_END,
-    /** Not resized, the image is vertically centered on the start edge of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_START,
-    /** Not resized, the image is horizontally and vertically centered in the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_CENTER,
-    /** Not resized, the image is vertically centered on the end edge of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_END,
-    /** Not resized, the image is aligned with the start edge at the bottom of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_START,
-    /** Not resized, the image is horizontally centered at the bottom of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM,
-    /** Not resized, the image is aligned with the end edge at the bottom of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_END,
-    /**
-     * Not resized, and is used in conjunction with NODE_IMAGE_IMAGE_MATRIX.
-     *
-     * @since 21
-     */
-    ARKUI_OBJECT_FIT_NONE_MATRIX,
-} ArkUI_ObjectFit;
-
-/**
- * @brief Enumerates the image interpolation effect.
- *
- * @since 12
- */
-typedef enum {
-    /** No image interpolation. */
-    ARKUI_IMAGE_INTERPOLATION_NONE = 0,
-    /** Low quality interpolation. */
-    ARKUI_IMAGE_INTERPOLATION_LOW,
-    /** Medium quality interpolation. */
-    ARKUI_IMAGE_INTERPOLATION_MEDIUM,
-    /** High quality interpolation. This mode produces scaled images of the highest possible quality. */
-    ARKUI_IMAGE_INTERPOLATION_HIGH,
-} ArkUI_ImageInterpolation;
-
-/**
- * @brief Enumerates the image dynamic range mode.
- *
- * @since 21
- */
-typedef enum {
-    /** high dynamic range mode. */
-    ARKUI_DYNAMIC_RANGE_MODE_HIGH = 0,
-    /** constraint dynamic range mode. */
-    ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT,
-    /** standard dynamic range mode. */
-    ARKUI_DYNAMIC_RANGE_MODE_STANDARD,
-} ArkUI_DynamicRangeMode;
-
-/**
- * @brief Enumerates the image rotate orientation.
- *
- * @since 21
- */
-typedef enum {
-    /** Use EXIF metadata for display orientation, with support for rotation and mirroring. */
-    ARKUI_ORIENTATION_AUTO = 0,
-    /** Display original pixel data without transformation. */
-    ARKUI_ORIENTATION_UP,
-    /** Display the image after rotating it 90 degrees clockwise. */
-    ARKUI_ORIENTATION_RIGHT,
-    /** Display the image after rotating it 180 degrees clockwise. */
-    ARKUI_ORIENTATION_DOWN,
-    /** Display the image after rotating it 270 degrees clockwise. */
-    ARKUI_ORIENTATION_LEFT,
-    /** Display the image after flipping it horizontally. */
-    ARKUI_ORIENTATION_UP_MIRRORED,
-    /** Display the image after flipping it horizontally and then rotating it 90 degrees clockwise. */
-    ARKUI_ORIENTATION_RIGHT_MIRRORED,
-    /** Display the image after flipping it vertically. */
-    ARKUI_ORIENTATION_DOWN_MIRRORED,
-    /** Display the image after flipping it horizontally and then rotating it 270 degrees clockwise. */
-    ARKUI_ORIENTATION_LEFT_MIRRORED,
-} ArkUI_ImageRotateOrientation;
-
-/**
  * @brief Enumerates the blend modes.
  *
  * @since 12
@@ -1669,41 +588,6 @@ typedef enum {
 } ArkUI_BlendMode;
 
 /**
- * @brief Enumerates the modes in which components are laid out along the main axis of the container.
- *
- * @since 12
- */
-typedef enum {
-    /** Components are arranged from left to right. */
-    ARKUI_DIRECTION_LTR = 0,
-    /** Components are arranged from right to left. */
-    ARKUI_DIRECTION_RTL,
-    /** The default layout direction is used. */
-    ARKUI_DIRECTION_AUTO = 3,
-} ArkUI_Direction;
-
-/**
- * @brief Enumerates the modes in which components are laid out along the cross axis of the container.
- *
- * @since 12
- */
-typedef enum {
-    /** The default configuration in the container is used. */
-    ARKUI_ITEM_ALIGNMENT_AUTO = 0,
-    /** The items in the container are aligned with the cross-start edge. */
-    ARKUI_ITEM_ALIGNMENT_START,
-    /** The items in the container are centered along the cross axis. */
-    ARKUI_ITEM_ALIGNMENT_CENTER,
-    /** The items in the container are aligned with the cross-end edge. */
-    ARKUI_ITEM_ALIGNMENT_END,
-    /** The items in the container are stretched and padded along the cross axis. */
-    ARKUI_ITEM_ALIGNMENT_STRETCH,
-    /** The items in the container are aligned in such a manner that their text baselines are aligned along the
-     *  cross axis. */
-    ARKUI_ITEM_ALIGNMENT_BASELINE,
-} ArkUI_ItemAlignment;
-
-/**
  * @brief Enumerates the foreground colors.
  *
  * @since 12
@@ -1716,76 +600,6 @@ typedef enum {
     /** The shadow colors of the component are the primary color obtained from the component background shadow area. */
     ARKUI_COLOR_STRATEGY_PRIMARY,
 } ArkUI_ColorStrategy;
-
-/**
- * @brief Enumerates the vertical alignment modes.
- *
- * @since 12
- */
-typedef enum {
-    /** The child components are aligned with the start edge of the main axis. */
-    ARKUI_FLEX_ALIGNMENT_START = 1,
-    /** The child components are aligned in the center of the main axis. */
-    ARKUI_FLEX_ALIGNMENT_CENTER = 2,
-    /** The child components are aligned with the end edge of the main axis. */
-    ARKUI_FLEX_ALIGNMENT_END = 3,
-    /** The child components are evenly distributed along the main axis. The space between any two adjacent components
-     *  is the same. The first component is aligned with the main-start, and the last component is aligned with
-     *  the main-end. */
-    ARKUI_FLEX_ALIGNMENT_SPACE_BETWEEN = 6,
-    /** The child components are evenly distributed along the main axis. The space between any two adjacent components
-     *  is the same. The space between the first component and main-start, and that between the last component and
-     *  cross-main are both half the size of the space between two adjacent components. */
-    ARKUI_FLEX_ALIGNMENT_SPACE_AROUND = 7,
-    /** The child components are evenly distributed along the main axis. The space between the first component
-     *  and main-start, the space between the last component and main-end, and the space between any two adjacent
-     *  components are the same. */
-    ARKUI_FLEX_ALIGNMENT_SPACE_EVENLY = 8,
-} ArkUI_FlexAlignment;
-
-/**
- * @brief Enumerates the directions of the main axis in the flex container.
- *
- * @since 12
- */
-typedef enum {
-    /** The child components are arranged in the same direction as the main axis runs along the rows. */
-    ARKUI_FLEX_DIRECTION_ROW = 0,
-    /** The child components are arranged in the same direction as the main axis runs down the columns. */
-    ARKUI_FLEX_DIRECTION_COLUMN,
-    /** The child components are arranged opposite to the <b>ROW</b> direction. */
-    ARKUI_FLEX_DIRECTION_ROW_REVERSE,
-    /** The child components are arranged opposite to the <b>COLUMN</b> direction. */
-    ARKUI_FLEX_DIRECTION_COLUMN_REVERSE,
-} ArkUI_FlexDirection;
-
-/**
- * @brief Defines whether the flex container has a single line or multiple lines.
- *
- * @since 12
- */
-typedef enum {
-    /** The child components in the flex container are arranged in a single line, and they cannot overflow. */
-    ARKUI_FLEX_WRAP_NO_WRAP = 0,
-    /** The child components in the flex container are arranged in multiple lines, and they may overflow. */
-    ARKUI_FLEX_WRAP_WRAP,
-    /** The child components in the flex container are reversely arranged in multiple lines, and they may overflow. */
-    ARKUI_FLEX_WRAP_WRAP_REVERSE,
-} ArkUI_FlexWrap;
-
-/**
- * @brief Enumerates the alignment modes between the calendar picker and the entry component.
- *
- * @since 12
- */
-typedef enum {
-    /** Left aligned. */
-    ARKUI_CALENDAR_ALIGNMENT_START = 0,
-    /** Center aligned. */
-    ARKUI_CALENDAR_ALIGNMENT_CENTER,
-    /** Right aligned. */
-    ARKUI_CALENDAR_ALIGNMENT_END,
-} ArkUI_CalendarAlignment;
 
 /**
  * @brief Enumerates the mask types.
@@ -1822,16 +636,22 @@ typedef enum {
 } ArkUI_ClipType;
 
 /**
- * @brief Defines the gradient color stop structure.
+ * @brief 定义渐变色结构，用于配置组件的渐变效果，支持通过颜色数组与位置数组组合定义多种渐变样式。
  *
  * @since 12
  */
 typedef struct {
-    /** Color array. */
+    /**
+     * 颜色数组，与stops数组按索引一一对应，每个颜色对应一个渐变位置，数组长度必须与size一致。
+     */
     const uint32_t* colors;
-    /** Position array. */
+    /**
+     * 位置数组，与colors数组成对对应，取值范围为0.0~1.0，表示渐变色的位置偏移，数组长度必须与size一致。设置小于0的值时，自动修正为0。
+     */
     float* stops;
-    /** Length array. */
+    /**
+     * 数组长度，必须与colors和stops数组的实际元素个数一致，设置前需先确定colors和stops数组的实际元素个数。
+     */
     int size;
 } ArkUI_ColorStop;
 
@@ -1880,66 +700,6 @@ typedef enum {
 } ArkUI_LinearGradientDirection;
 
 /**
- * @brief Enumerates the word break rules.
- *
- * @since 12
- */
-typedef enum {
-    /** Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur
-     *  only at a space character for non-CJK text (such as English). */
-    ARKUI_WORD_BREAK_NORMAL = 0,
-    /** Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for
-     *  <b>NORMAL</b>. */
-    ARKUI_WORD_BREAK_BREAK_ALL,
-    /** This option has the same effect as <b>BREAK_ALL</b> for non-CJK text, except that if it preferentially wraps
-     *  lines at appropriate characters (for example, spaces) whenever possible.
-        CJK text behavior is the same as for <b>NORMAL</b>. */
-    ARKUI_WORD_BREAK_BREAK_WORD,
-    /**
-     * @brief Line breaks can occur between any two syllabic units for non-CJK text.
-     * CJK text behavior is the same as for <b>NORMAL</b>.
-     * @since 18
-     */
-    ARKUI_WORD_BREAK_HYPHENATION,
-} ArkUI_WordBreak;
-
-/**
- * @brief Enumerates the ellipsis positions.
- *
- * @since 12
- */
-typedef enum {
-    /** An ellipsis is used at the start of the line of text. */
-    ARKUI_ELLIPSIS_MODE_START = 0,
-    /** An ellipsis is used at the center of the line of text. */
-    ARKUI_ELLIPSIS_MODE_CENTER,
-    /** An ellipsis is used at the end of the line of text. */
-    ARKUI_ELLIPSIS_MODE_END,
-    /**
-     *@brief An ellipsis is used at the start of the line of text for multiline and single line.
-     *@since 24
-     */
-    ARKUI_ELLIPSIS_MODE_MULTILINE_START,
-    /**
-     *@brief An ellipsis is used at the center of the line of text for multiline and single line.
-     *@since 24
-     */
-    ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER,
-} ArkUI_EllipsisMode;
-
-/**
- * @brief Enumerates the image rendering modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Render image pixels as they are in the original source image. */
-    ARKUI_IMAGE_RENDER_MODE_ORIGINAL = 0,
-    /** Render image pixels to create a monochrome template image. */
-    ARKUI_IMAGE_RENDER_MODE_TEMPLATE,
-} ArkUI_ImageRenderMode;
-
-/**
  * @brief Enumerates the slide-in and slide-out positions of the component from the screen edge during transition.
  *
  * @since 12
@@ -1969,46 +729,6 @@ typedef enum {
 } ArkUI_BlendApplyType;
 
 /**
- * @brief Defines a mask area.
- *
- * @since 12
- */
-typedef struct {
-    /** X coordinate of the mask area. */
-    float x;
-    /** Y coordinate of the mask area. */
-    float y;
-    /** Width of the mask area. */
-    float width;
-    /** Height of the mask area. */
-    float height;
-} ArkUI_Rect;
-
-/**
- * @brief Describes the width and height of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Width, in px. */
-    int32_t width;
-    /** Height, in px. */
-    int32_t height;
-} ArkUI_IntSize;
-
-/**
- * @brief Describes the position of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Horizontal coordinate, in px. */
-    int32_t x;
-    /** Vertical coordinate, in px. */
-    int32_t y;
-} ArkUI_IntOffset;
-
-/**
  * @brief Enumerates the animation onFinish callback types.
  *
  * @since 12
@@ -2020,67 +740,6 @@ typedef enum {
       * long tail state. */
     ARKUI_FINISH_CALLBACK_LOGICALLY,
 } ArkUI_FinishCallbackType;
-
-/**
- * @brief Enumerates the alignment modes of items along the cross axis.
-  *
- * @since 12
- */
-typedef enum {
-    /** The list items are packed toward the start edge of the list container along the cross axis. */
-    ARKUI_LIST_ITEM_ALIGNMENT_START = 0,
-    /** The list items are centered in the list container along the cross axis. */
-    ARKUI_LIST_ITEM_ALIGNMENT_CENTER,
-    /** The list items are packed toward the end edge of the list container along the cross axis. */
-    ARKUI_LIST_ITEM_ALIGNMENT_END,
-} ArkUI_ListItemAlignment;
-
-/**
-  * @brief defines the direction of the barrier line.
-  *
-  * @since 12
-  */
-typedef enum {
-    /** The barrier is the leftmost of all its referencedIds. */
-    ARKUI_BARRIER_DIRECTION_START = 0,
-    /** The barrier is on the rightmost side of all its referencedIds. */
-    ARKUI_BARRIER_DIRECTION_END,
-    /** The barrier is at the top of all its referencedIds. */
-    ARKUI_BARRIER_DIRECTION_TOP,
-    /** The barrier is at the bottom of all its referencedIds. */
-    ARKUI_BARRIER_DIRECTION_BOTTOM
-} ArkUI_BarrierDirection;
-
-/**
-  * @brief defines the style of the chain.
-  *
-  * @since 12
-  */
-typedef enum {
-    /** Components are evenly distributed among constraint anchor points. */
-    ARKUI_RELATIVE_LAYOUT_CHAIN_STYLE_SPREAD = 0,
-    /** Except for the first and last two sub-components,
-      * other components are evenly distributed between the constraint anchor points. */
-    ARKUI_RELATIVE_LAYOUT_CHAIN_STYLE_SPREAD_INSIDE,
-    /** No gaps in subcomponents within the chain. */
-    ARKUI_RELATIVE_LAYOUT_CHAIN_STYLE_PACKED,
-} ArkUI_RelativeLayoutChainStyle;
-
-/**
- * @brief Describes the margins of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Top margin, in vp. */
-    float top;
-    /** Right margin, in vp. */
-    float right;
-    /** Bottom margin, in vp. */
-    float bottom;
-    /** Left margin, in vp. */
-    float left;
-} ArkUI_Margin;
 
 /**
  * @brief Enumerates the component units.
@@ -2172,196 +831,6 @@ typedef enum {
 } ArkUI_RenderFit;
 
 /**
- * @brief Enumerates the autofill types.
- *
- * @since 12
- */
-typedef enum {
-    /** Username. Password Vault, when enabled, can automatically save and fill in usernames. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_USER_NAME = 0,
-    /** Password. Password Vault, when enabled, can automatically save and fill in passwords. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PASSWORD,
-    /** New password. Password Vault, when enabled, can automatically generate a new password. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_NEW_PASSWORD,
-    /** Full street address. The scenario-based autofill feature, when enabled, can automatically save and fill in full
-     *  street addresses. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_FULL_STREET_ADDRESS,
-    /** House number. The scenario-based autofill feature, when enabled, can automatically save and fill in house
-     *  numbers. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_HOUSE_NUMBER,
-    /** District and county. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  districts and counties. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_DISTRICT_ADDRESS,
-    /** City. The scenario-based autofill feature, when enabled, can automatically save and fill in cities. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_CITY_ADDRESS,
-    /** Province. The scenario-based autofill feature, when enabled, can automatically save and fill in provinces. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PROVINCE_ADDRESS,
-    /** Country. The scenario-based autofill feature, when enabled, can automatically save and fill in countries. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_COUNTRY_ADDRESS,
-    /** Full name. The scenario-based autofill feature, when enabled, can automatically save and fill in full names. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PERSON_FULL_NAME,
-    /** Last name. The scenario-based autofill feature, when enabled, can automatically save and fill in last names. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PERSON_LAST_NAME,
-    /** First name. The scenario-based autofill feature, when enabled, can automatically save and fill in first names.
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PERSON_FIRST_NAME,
-    /** Phone number. The scenario-based autofill feature, when enabled, can automatically save and fill in phone
-     *  numbers. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PHONE_NUMBER,
-    /** Country code. The scenario-based autofill feature, when enabled, can automatically save and fill in country
-     *  codes. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PHONE_COUNTRY_CODE,
-    /** Phone number with country code. The scenario-based autofill feature, when enabled, can automatically save and
-     *  fill in phone numbers with country codes. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_FULL_PHONE_NUMBER,
-    /** Email address. The scenario-based autofill feature, when enabled, can automatically save and fill in email
-     *  addresses. */
-    ARKUI_TEXTINPUT_CONTENT_EMAIL_ADDRESS,
-    /** Bank card number. The scenario-based autofill feature, when enabled, can automatically save and fill in bank
-     *  card numbers. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_BANK_CARD_NUMBER,
-    /** ID card number. The scenario-based autofill feature, when enabled, can automatically save and fill in ID card
-     *  numbers. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_ID_CARD_NUMBER,
-    /** Nickname. The scenario-based autofill feature, when enabled, can automatically save and fill in nicknames. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_NICKNAME,
-    /** Address information without street address. The scenario-based autofill feature, when enabled, can automatically
-     *  save and fill in address information without street addresses. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_DETAIL_INFO_WITHOUT_STREET,
-    /** Standard address. The scenario-based autofill feature, when enabled, can automatically save and fill in standard
-     *  addresses. */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_FORMAT_ADDRESS,
-    /**
-     * Passport number. The scenario-based autofill feature, when enabled, can automatically save and fill in passport
-     * numbers.
-     * @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER,
-    /**
-     *  Passport validity. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  passport validities.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY,
-    /**
-     *  Place of issue. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  place of issues.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT,
-    /**
-     *  Tax organization. The scenario-based autofill feature, when enabled, can automatically save and fill in tax
-     *  organizations.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION,
-    /**
-     *  Tax id. The scenario-based autofill feature, when enabled, can automatically save and fill in standard Tax ids.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID,
-    /**
-     *  City name and state name or state code. The scenario-based autofill feature, when enabled, can automatically
-     *  save and fill in city names and state names or state codes.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE,
-    /**
-     *  Flight number. The scenario-based autofill feature, when enabled, can automatically save and fill in flight
-     *  numbers.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER,
-    /**
-     *  License number. The scenario-based autofill feature, when enabled, can automatically save and fill in license
-     *  numbers.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER,
-    /**
-     *  License file number. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  license file numbers.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER,
-    /**
-     *  License plate number. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  license plate numbers.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE,
-    /**
-     *  Engine number. The scenario-based autofill feature, when enabled, can automatically save and fill in engine
-     *  numbers.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER,
-    /**
-     *  License chassis number. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  license chassis numbers.
-     *  @since 18
-     */
-    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER,
-} ArkUI_TextInputContentType;
-
-/**
- * @brief Defines the text input style.
- *
- * @since 12
- */
-typedef enum {
-    /** Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and
-     *  font size of the selected text. */
-    ARKUI_TEXTINPUT_STYLE_DEFAULT = 0,
-    /** Inline input style. The background height of the selected text is the same as the height of the text box. */
-    ARKUI_TEXTINPUT_STYLE_INLINE
-} ArkUI_TextInputStyle;
-
-/**
- * @brief Defines the keyboard style of input box
- *
- * @since 15
- */
-typedef enum {
-    /**
-     * Default appearance mode, won't adopt immersive styles.
-     * @since 15
-     */
-    ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE = 0,
-    /**
-     * Immersive mode.
-     * @since 15
-     */
-    ARKUI_KEYBOARD_APPEARANCE_IMMERSIVE = 1,
-    /**
-     * Light immersive style.
-     * @since 15
-     */
-    ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE = 2,
-    /**
-     * Dark immersive style.
-     * @since 15
-     */
-    ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3,
-} ArkUI_KeyboardAppearance;
-
-/**
- * @brief Defines the entity type for text recognition.
- *
- * @since 12
- */
-typedef enum {
-    /** Phone Number.*/
-    ARKUI_TEXT_DATA_DETECTOR_TYPE_PHONE_NUMBER = 0,
-    /** Link. */
-    ARKUI_TEXT_DATA_DETECTOR_TYPE_URL,
-    /** Mailbox. */
-    ARKUI_TEXT_DATA_DETECTOR_TYPE_EMAIL,
-    /** Address. */
-    ARKUI_TEXT_DATA_DETECTOR_TYPE_ADDRESS,
-} ArkUI_TextDataDetectorType;
-
-/**
  * @brief Define the navigation indicator type of the swiper.
  *
  * @since 12
@@ -2372,256 +841,6 @@ typedef enum {
     /** digit type. */
     ARKUI_SWIPER_INDICATOR_TYPE_DIGIT,
 } ArkUI_SwiperIndicatorType;
-
-/**
- * @brief Define the pattern of element arrangement in the main axis direction of the Swiper component.
- *
- * @since 12
- */
-typedef enum {
-    /** In the folded state, when the ListItem slides in the opposite direction to the main axis,
-     * the operation item is hidden.*/
-    ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_COLLAPSED = 0,
-    /** In the folded state, when the ListItem slides in the opposite direction to the spindle,
-     * the operation item is displayed.*/
-    ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_EXPANDED,
-    /** Long distance state, the state of deleting a ListItem after it enters the long distance deletion area.*/
-    ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_ACTIONING,
-} ArkUI_ListItemSwipeActionState;
-
-/**
- * @brief Define the explicit and implicit mode of the SwipeAction method for the Listitem component.
- *
- * @since 12
- */
-typedef enum {
-    /** The ListItem can continue to be scratched after the distance exceeds the size of the scratched component.*/
-    ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0,
-    /** The sliding distance of the ListItem cannot exceed the size of the scratched component.*/
-    ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE,
-} ArkUI_ListItemSwipeEdgeEffect;
-
-/**
- * @brief Define error code enumeration values.
- *
- * @since 12
- */
-typedef enum {
-    /** @error No errors. */
-    ARKUI_ERROR_CODE_NO_ERROR = 0,
-    /** @error Parameter error. */
-    ARKUI_ERROR_CODE_PARAM_INVALID = 401,
-    /**
-     * @error CAPI init error.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500,
-    /**
-     * @error Internal error occurs, such as failure occurs because of the internal environment error,
-     * or operation failed because of the internal execution failed.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
-    /**
-     * @error The XComponent is in invalid state.
-     * @since 19
-     */
-    ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,
-    /** @error The component does not support specific properties or events. */
-    ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
-    /** @error The corresponding operation does not support nodes created by ArkTS. */
-    ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103,
-    /** @error The lazy loading adapter is not bound to the component. */
-    ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104,
-    /** @error The adapter already exists. */
-    ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105,
-    /** @error The corresponding node already has a child node and cannot add an adapter. */
-    ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106,
-    /** The parameter length in the parameter event exceeds the limit. */
-    ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,
-    /** The data does not exist in the component event. */
-    ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108,
-    /** The component event does not support return values. */
-    ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109,
-    /**
-     * @error The event type is not supported by the node.
-     * @since 21
-     */
-    ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE = 106110,
-    /** The index value is invalid. */
-    ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200,
-    /**  Failed to query route navigation information. */
-    ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,
-    /** The buffer size is not large enough. */
-    ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202,
-    /**
-     * @error The node is not on main tree.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,
-    /**
-     * @error The node is running on invalid thread.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD = 106204,
-    /**
-     * @error Force dark config is invalid.
-     * @since 20
-     */
-    ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID = 106205,
-    /**
-     * @error The node has already been adopted.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_NODE_IS_ADOPTED = 106206,
-    /**
-     * @error This node already has a parent node.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_NODE_HAS_PARENT = 106207,
-    /**
-     * @error The node cannot be adopted.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED = 106208,
-    /**
-     * @error The node cannot adopt children.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO = 106209,
-    /**
-     * @error This child node is not adopted by the parent node.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
-    /**
-     * @error The node type is not custom node.
-     * @since 20
-     */
-    ARKUI_ERROR_CODE_NOT_CUSTOM_NODE = 106401,
-    /**
-     * @error Node already has children.
-     * @since 20
-     */
-    ARKUI_ERROR_CODE_CHILD_EXISTED = 106402,
-    /**
-     * @error RenderNode parent is existed.
-     * @since 20
-     */
-    ARKUI_ERROR_CODE_RENDER_PARENT_EXISTED = 106403,
-    /**
-     * @error RenderNode child is not exist.
-     * @since 20
-     */
-    ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST = 106404,
-    /**
-     * @error Param is out of range.
-     * @since 20
-     */
-    ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE = 106405,
-    /**
-     * @error The RenderNode is obtained from a FrameNode.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE = 106406,
-    /**
-     * @error The RenderNode is obtained from a FrameNode,
-     * and its corresponding FrameNode is no longer in the adopted state.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE = 106407,
-    /**
-     * @error The node is not adopted.
-     * @since 22
-     */
-    ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
-    /**
-     * @error The node requesting focus is not focusable.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001,
-    /**
-     * @error The node requesting focus has unfocusable ancestor.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,
-    /**
-     * @error The node requesting focus does not exists.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003,
-    /**
-     * @error The snapshot taking is timeout.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002,
-    /**
-     * @error The provided color space or dynamic range mode is not supported. For details about the error codes,
-     * see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
-     * @since 23
-     */
-    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED = 160003,
-    /**
-     * @error The isAuto parameter of the color space or dynamic range mode is set to true for offscreen node snapshot.
-     * For details about the error codes, see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
-     * @since 23
-     */
-    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED = 160004,
-    /** The component is not a scroll container. */
-    ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
-    /** The buffer is not large enough. */
-    ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002,
-    /**
-     * @error The event is not a clone event.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003,
-    /**
-     * @error The component status is abnormal.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004,
-    /**
-     * @error No component hit to respond to the event.
-     * @since 15
-     */
-    ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005,
-    /**
-     * @error Input event type not supported.
-     * @since 20
-     */
-    ARKUI_ERROR_INPUT_EVENT_TYPE_NOT_SUPPORTED = 180006,
-    /**
-     * @error invalid styled string.
-     * @since 14
-     */
-    ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
-    /**
-     * @error The gesture recognizer type is not supported.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
-    /**
-     * @error The uiContext is invalid.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001,
-    /**
-     * @error The callback function is invalid.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
-    /**
-     * @error operation is not allowed for current drag drop pharse.
-     * @since 19
-     */
-    ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
-    /**
-     * @error Parameter error.
-     * @since 21
-     */
-    ARKUI_ERROR_CODE_PARAM_ERROR = 100023,
-} ArkUI_ErrorCode;
 
 /**
  * @brief Defines the playback status for the image animator.
@@ -2690,30 +909,6 @@ typedef enum {
      *  in forward direction. */
     ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE,
 } ArkUI_AnimationDirection;
-
-/**
- * @brief Define the rolling source enumeration value.
- *
- * @since 12
- */
-typedef enum {
-    /** Finger drag. */
-    ARKUI_SCROLL_SOURCE_DRAG = 0,
-    /** Inertial roll after finger drag. */
-    ARKUI_SCROLL_SOURCE_FLING,
-    /** Execute the EdgeEffect.Spring edge effect when crossing the boundary.*/
-    ARKUI_SCROLL_SOURCE_EDGE_EFFECT,
-    /** Other user input other than dragging, such as mouse wheel, keyboard events, etc.*/
-    ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,
-    /** Drag the scroll bar.*/
-    ARKUI_SCROLL_SOURCE_SCROLL_BAR,
-    /** Inertia scrolling after dragging the scroll bar.*/
-    ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING,
-    /** The scroll controller causes unanimated scrolling.*/
-    ARKUI_SCROLL_SOURCE_SCROLLER,
-    /** The scroll controller causes the scroll to drive the painting.*/
-    ARKUI_SCROLL_SOURCE_ANIMATION,
-} ArkUI_ScrollSource;
 
 /**
  * @brief Define accessible action types.
@@ -2790,27 +985,6 @@ typedef struct {
 } ArkUI_RotationOptions;
 
 /**
- * @brief Defines a struct for the measurement information of a custom span.
- *
- * @since 12
- */
-typedef struct ArkUI_CustomSpanMeasureInfo ArkUI_CustomSpanMeasureInfo;
-
-/**
- * @brief Defines a struct for the measurement metrics of a custom span.
- *
- * @since 12
- */
-typedef struct ArkUI_CustomSpanMetrics ArkUI_CustomSpanMetrics;
-
-/**
- * @brief Defines a struct for the drawing information of a custom span.
- *
- * @since 12
- */
-typedef struct ArkUI_CustomSpanDrawInfo ArkUI_CustomSpanDrawInfo;
-
-/**
  * @brief Defines the state of the NavDestination component.
  *
  * @since 12
@@ -2832,6 +1006,16 @@ typedef enum {
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR = 6,
     /** Before the NavDestination removed from the component tree. */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
+    /**
+     * The NavDestination component is active.
+     * @since 26.2.0
+     */
+    ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
+    /**
+     * The NavDestination component is inactive.
+     * @since 26.2.0
+     */
+    ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
     /** The NavDestination returns from the component.*/
     ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100,
 } ArkUI_NavDestinationState;
@@ -2855,52 +1039,18 @@ typedef enum {
 } ArkUI_RouterPageState;
 
 /**
- * @brief defines the enumerated value of the extended security zone.
+ * @brief 定义扩展安全区域的枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** The default security zone includes the status bar and navigation bar. */
+    /** 默认安全区域，包括状态栏和导航栏。 */
     ARKUI_SAFE_AREA_TYPE_SYSTEM = 1,
-    /** Non-secure areas of the device, such as bangs or hole holes. */
+    /** 设备的非安全区域，如刘海屏或挖孔屏。 */
     ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 << 1,
-    /** Soft keyboard area. */
+    /** 软键盘区域。 */
     ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 << 2,
 } ArkUI_SafeAreaType;
-
-/**
- * @brief Define an enum for the areas of the <b>ListItemGroup</b> component.
- *
- * @since 15
- */
-typedef enum {
-    /** Outside the area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0,
-    /** Area when the <b>ListItemGroup</b> component does not have the header, footer, or list item. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_NONE,
-    /** List item area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_ITEM,
-    /** Header area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_HEADER,
-    /** Footer area of the <b>ListItemGroup</b> component. */
-    ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER,
-} ArkUI_ListItemGroupArea;
-
-/**
- * @brief defines the enumerated value of the direction of the extended security zone.
- *
- * @since 12
- */
-typedef enum {
-    /** Upper area. */
-    ARKUI_SAFE_AREA_EDGE_TOP = 1,
-    /** Lower area. */
-    ARKUI_SAFE_AREA_EDGE_BOTTOM = 1 << 1,
-    /** Front area. */
-    ARKUI_SAFE_AREA_EDGE_START = 1 << 2,
-    /** Tail area. */
-    ARKUI_SAFE_AREA_EDGE_END = 1 << 3,
-} ArkUI_SafeAreaEdge;
 
 /**
  * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
@@ -2927,68 +1077,80 @@ typedef enum {
 } ArkUI_HoverModeAreaType;
 
 /**
- * @brief Enumerates the expand modes.
+ * @brief 定义子节点展开模式枚举值。
  *
  * @since 15
  */
 typedef enum {
-    /** Not expand. */
+    /**
+     * 不展开。
+     */
     ARKUI_NOT_EXPAND = 0,
-    /** Expand. */
+    /**
+     * 展开。
+     */
     ARKUI_EXPAND = 1,
-    /** Lazy expand. Expand the children of node if needed. */
+    /**
+     * 懒展开，按需展开当前节点的子节点，节点展开条件可以参考{@link LazyForEach：数据懒加载}。
+     */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
 
 /**
- * @brief Enumerates the edge direction.
+ * @brief 定义矩形边方向。
  *
  * @since 20
  */
 typedef enum {
-    /** Set all edge direction. */
+    /**
+     * 设置四个方向的内容。
+     */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** Set left edge direction. */
+    /**
+     * 设置左侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** Set right edge direction. */
+    /**
+     * 设置右侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** Set top edge direction. */
+    /**
+     * 设置上侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** Set bottom edge direction. */
+    /**
+     * 设置下侧方向内容。
+     */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
- 
+
 /**
- * @brief Enumerates the corner direction.
+ * @brief 定义角度方向。
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner direction. */
+    /**
+     * 设置四个角度方向的内容。
+     */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner direction. */
+    /**
+     * 设置左上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner direction. */
+    /**
+     * 设置右上侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner direction. */
+    /**
+     * 设置左下侧方向内容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner direction. */
+    /**
+     * 设置右下侧方向容。
+     */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
-
-/**
- * @brief Enumerates the PixelRoundPolicy.
- *
- * @since 21
- */
-typedef enum {
-    /** No Force round the component boundary coordinates to integer pixel. */
-    ARKUI_PIXELROUNDCALCPOLICY_NOFORCEROUND = 0,
-    /** Force ceil the component boundary coordinates to integer pixel. */
-    ARKUI_PIXELROUNDCALCPOLICY_FORCECEIL,
-    /** Force floor the component boundary coordinates to integer pixel. */
-    ARKUI_PIXELROUNDCALCPOLICY_FORCEFLOOR,
-} ArkUI_PixelRoundCalcPolicy;
 
 /**
  * @brief Menu pop-up strategy.
@@ -3005,80 +1167,6 @@ typedef enum {
 } ArkUI_MenuPolicy;
 
 /**
- * @brief Define the direction to expand the swipe action.
- *
- * @since 21
- */
-typedef enum {
-    /**
-     * When the List direction is vertical, it indicates the left in LTR mode and right in RTL mode.
-     * When the List direction is horizontal, it indicates the top.
-     */
-    ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_START = 0,
-    /**
-     * When the List direction is vertical, it indicates the right in LTR mode and left in RTL mode.
-     * When the List direction is horizontal, it indicates the bottom.
-     */
-    ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_END = 1,
-} ArkUI_ListItemSwipeActionDirection;
-
-/**
- * @brief Define the types for expanding the safe area in layout.
- *
- * @since 23
- */
-typedef enum {
-    /** Default non-safe area of the system, including the status bar and navigation bar. */
-    ARKUI_LAYOUT_SAFE_AREA_TYPE_SYSTEM = 1,
-} ArkUI_LayoutSafeAreaType;
-/**
- * @brief Define the edges for expanding the safe area in layout.
- *
- * @since 23
- */
-typedef enum {
-    /** Top edge of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP = 1,
-    /** Bottom edge of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_BOTTOM = 1 << 1,
-    /** Start edge of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_START = 1 << 2,
-    /** End edge of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_END = 1 << 3,
-    /** Vertical edge of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_VERTICAL = ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP | ARKUI_LAYOUT_SAFE_AREA_EDGE_BOTTOM,
-    /** Horizontal edge of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_HORIZONTAL = ARKUI_LAYOUT_SAFE_AREA_EDGE_START | ARKUI_LAYOUT_SAFE_AREA_EDGE_END,
-    /** All edges of the safe area. */
-    ARKUI_LAYOUT_SAFE_AREA_EDGE_ALL = ARKUI_LAYOUT_SAFE_AREA_EDGE_VERTICAL | ARKUI_LAYOUT_SAFE_AREA_EDGE_HORIZONTAL,
-} ArkUI_LayoutSafeAreaEdge;
-
-/**
- * @brief Enumerates the localizedAlignment modes.
- *
- * @since 23
- */
-typedef enum {
-    /** Top start. */
-    ARKUI_LOCALIZED_ALIGNMENT_TOP_START = 0,
-    /** Top center. */
-    ARKUI_LOCALIZED_ALIGNMENT_TOP,
-    /** Top end. */
-    ARKUI_LOCALIZED_ALIGNMENT_TOP_END,
-    /** Vertically centered start. */
-    ARKUI_LOCALIZED_ALIGNMENT_START,
-    /** Horizontally and vertically centered. */
-    ARKUI_LOCALIZED_ALIGNMENT_CENTER,
-    /** Vertically centered end. */
-    ARKUI_LOCALIZED_ALIGNMENT_END,
-    /** Bottom start. */
-    ARKUI_LOCALIZED_ALIGNMENT_BOTTOM_START,
-    /** Horizontally centered on the bottom. */
-    ARKUI_LOCALIZED_ALIGNMENT_BOTTOM,
-    /** Bottom end. */
-    ARKUI_LOCALIZED_ALIGNMENT_BOTTOM_END,
-} ArkUI_LocalizedAlignment;
-/**
  * @brief Enumerates the graphics rendering strategy.
  *
  * @since 23
@@ -3094,449 +1182,168 @@ typedef enum {
 } ArkUI_RenderStrategy;
 
 /**
- * @brief Enumerates the LayoutPolicy.
- *
- * @since 21
- */
-typedef enum {
-    /** The component fills its parent, which means its size is as large as its parent */
-    ARKUI_LAYOUTPOLICY_MATCHPARENT = 0,
-    /**
-     * The component fills its content, which means its size is as large as its children but it is constrained
-     * by its parent.
-     */
-    ARKUI_LAYOUTPOLICY_WRAPCONTENT,
-    /** The component fills its content which means its size is as large as its children. */
-    ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE,
-} ArkUI_LayoutPolicy;
-
-/**
- * @brief Defines parameter used by the system font style callback event.
+ * @brief 系统字体样式变更事件定义，用于在系统字体大小或字体粗细发生变化时，向已注册的系统字体样式变更回调传递事件信息。
  *
  * @since 12
  */
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
 
-/**
-  * @brief TextPicker single column selector, supports mixing text and images.
-  *
-  * @since 19
-  */
-typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray;
-
  /**
-   * @brief TextPicker multi column selector, supports mixing text and images.
-   *
-   * @since 19
-   */
-typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
-
- /**
-   * @brief Defines the options for selection operation.
+   * @brief 定义ArkUI中选择操作的配置选项，适用于应用内需要进行选择交互的场景，为开发者提供选择行为的定制能力。
    *
    * @since 23
    */
 typedef struct ArkUI_SelectionOptions ArkUI_SelectionOptions;
 
 /**
-* @brief Creates a size constraint.
+* @brief 创建一个尺寸约束。
 *
 * @since 12
 */
 ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create();
 
 /**
-* @brief Creates a deep copy of a size constraint.
+* @brief 创建一个尺寸约束的深拷贝。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the pointer to the new size constraint.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回指向新尺寸约束的指针。
 * @since 12
 */
 ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Destroys the pointer to a size constraint.
+* @brief 销毁指向尺寸约束的指针。
 *
-* @param Constraint Indicates the pointer to the size constraint.
+* @param Constraint 表示指向尺寸约束的指针。
 * @since 12
 */
 void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the maximum width for a size constraint, in px.
+* @brief 获取尺寸约束的最大宽度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the maximum width.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最大宽度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the minimum width for a size constraint, in px.
+* @brief 获取尺寸约束的最小宽度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the minimum width.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最小宽度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMinWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the maximum height for a size constraint, in px.
+* @brief 获取尺寸约束的最大高度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the maximum height.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最大高度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the minimum height for a size constraint, in px.
+* @brief 获取尺寸约束的最小高度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the minimum height.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最小高度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMinHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the width percentage reference for a size constraint, in px.
+* @brief 获取尺寸约束的宽度百分比基准，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the width percentage reference.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回宽度百分比基准。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the height percentage reference for a size constraint, in px.
+* @brief 获取尺寸约束的高度百分比基准，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the height percentage reference.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回高度百分比基准。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Sets the maximum width.
+* @brief 设置最大宽度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the maximum width, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最大宽度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMaxWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the minimum width.
+* @brief 设置最小宽度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the minimum width, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最小宽度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMinWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the maximum height.
+* @brief 设置最大高度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the maximum height, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最大高度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMaxHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the minimum height.
+* @brief 设置最小高度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the minimum height, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最小高度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMinHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the width percentage reference.
+* @brief 设置宽度百分比基准。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the width percentage reference, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示宽度百分比基准，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the height percentage reference.
+* @brief 设置高度百分比基准。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the height percentage reference, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示高度百分比基准，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Obtains the pointer to a canvas for drawing, which can be converted into the <b>OH_Drawing_Canvas</b> pointer
-* in the <b>Drawing</b> module.
+* @brief 获取用于绘制的画布指针，该指针可以转换为<b>Drawing</b>模块中的<b>OH_Drawing_Canvas</b>指针。
 *
-* @param context Indicates the pointer to the drawing context.
-* @return Returns the pointer to the canvas for drawing.
+* @param context 表示指向绘制上下文的指针。
+* @return 返回指向绘制画布的指针。
 * @since 12
 */
 void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context);
 
 /**
-* @brief Obtains the size of a drawing area.
+* @brief 获取绘制区域的大小。
 *
-* @param context Indicates the pointer to the drawing context.
-* @return Returns the size of the drawing area.
+* @param context 表示指向绘制上下文的指针。
+* @return 返回绘制区域的大小。
 * @since 12
 */
 ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context);
-
-/**
- * @brief Creates <b>Grid</b> layout options.
- *
- * @return <b>Grid</b> layout options created.
- * @since 22
- */
-ArkUI_GridLayoutOptions* OH_ArkUI_GridLayoutOptions_Create();
-
-/**
- * @brief Disposes of <b>Grid</b> layout options.
- *
- * @param option <b>Grid</b> layout options.
- * @since 22
- */
-void OH_ArkUI_GridLayoutOptions_Dispose(ArkUI_GridLayoutOptions* option);
-
-/**
- * @brief Sets the irregular grid item index array for the grid layout.
- *
- * @param option <b>Grid</b> layout options.
- * @param irregularIndexes Array of irregular grid item indexes.
- * @param size Size of the index array.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         If an error code is returned, it may be due to a failure in parameter validation;
- *         the parameter must not be null.
- * @since 22
- */
-int32_t OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(
-    ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t size);
-
-/**
- * @brief Obtains the irregular grid item index array for the grid layout.
- * When <b>OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback</b> is not set,
- * the grid item specified in <b>irregularIndexes</b> occupies an entire row of the grid that scrolls vertically or
- * an entire column of the grid that scrolls horizontally.
- *
- * @param option <b>Grid</b> layout options.
- * @param irregularIndexes Array of irregular grid item indexes.
- * @param size Size of the index array.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the provided buffer size is insufficient.
- *         If an error code is returned, it may be due to a failure in parameter validation;
- *         the parameter must not be null.
- * @since 22
- */
-int32_t OH_ArkUI_GridLayoutOptions_GetIrregularIndexes(
-    ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t* size);
-
-/**
- * @brief Registers a callback to obtain the row and column span for the grid item at the specified index.
- *
- * @param option <b>Grid</b> layout options.
- * @param userData Indicates the custom data.
- * @param callback Callback that returns the row and column span for the grid item at the specified index.
- *        itemIndex: grid item index, which must be within the range set by
- *        {@link OH_ArkUI_GridLayoutOptions_SetIrregularIndexes}.
- * @since 22
- */
-void OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback(
-    ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemSize (*callback)(int32_t itemIndex, void* userData));
-
-/**
- * @brief Registers a callback to obtain the starting row, starting column, row span,
- * and column span for the grid item at the specified index.
- *
- * @param option <b>Grid</b> layout options.
- * @param userData Indicates the custom data.
- * @param callback Callback that returns the starting row, starting column, row span,
- *        and column span for the grid item at the specified index.
- *        itemIndex: grid item index.
- * @since 22
- */
-void OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback(
-    ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemRect (*callback)(int32_t itemIndex, void* userData));
-
-/**
-* @brief Creates water flow section configuration.
-*
-* @return Returns the water flow section configuration.
-* @since 12
-*/
-ArkUI_WaterFlowSectionOption* OH_ArkUI_WaterFlowSectionOption_Create();
-
-/**
-* @brief Destroys the pointer to a water flow section configuration.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_Dispose(ArkUI_WaterFlowSectionOption* option);
-
-/**
-* @brief Sets the FlowItem block configuration information array length.
-*
-* @param option FlowItem Indicates the packet configuration.
-* @param size Array Length.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetSize(ArkUI_WaterFlowSectionOption* option, int32_t size);
-
-/**
-* @brief Gets the FlowItem grouping configuration information array length.
-*
-* @param option FlowItem Indicates the packet configuration.
-* @return Array size. If -1 is returned, the return fails.
-*         The possible cause of the failure is that the option parameter is abnormal, such as a null pointer.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetSize(ArkUI_WaterFlowSectionOption* option);
-
-/**
-* @brief Sets the number of items in a water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param itemCount Indicates the number of items in the water flow section.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetItemCount(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, int32_t itemCount);
-
-/**
-* @brief Obtains the number of items in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the number of items in the water flow section.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief The FlowItem grouping configuration information getsthe spindle size of
-* the specified Item based on flowItemIndex.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param callback Gets the spindle size of the specified Item based on index.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float(*callback)(int32_t itemIndex));
-
-/**
-* @brief The FlowItem grouping configuration information getsthe spindle size of
-* the specified Item based on flowItemIndex.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param userData FlowItem Custom data.
-* @param callback Gets the spindle size of the specified Item based on index.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData(
-    ArkUI_WaterFlowSectionOption* option, int32_t index, void* userData,
-    float (*callback)(int32_t itemIndex, void* userData));
-
-/**
-* @brief Sets the number of columns (in a vertical layout) or rows (in a horizontal layout) of a water flow.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param crossCount Indicates the number of columns or rows, depending on the layout direction.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetCrossCount(
-    ArkUI_WaterFlowSectionOption* option, int32_t index, int32_t crossCount);
-
-/**
-* @brief Obtains the number of columns (in a vertical layout) or rows (in a horizontal layout) in the water flow section
-* that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the number of columns or rows.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Sets the gap between columns in the specified water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param columnGap Indicates the gap between columns to set.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetColumnGap(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float columnGap);
-
-/**
-* @brief Obtains the gap between columns in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the gap between columns.
-* @since 12
-*/
-float OH_ArkUI_WaterFlowSectionOption_GetColumnGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Sets the gap between rows in the specified water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param rowGap Indicates the gap between rows to set.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetRowGap(ArkUI_WaterFlowSectionOption* option,
-    int32_t index, float rowGap);
-
-/**
-* @brief Obtains the gap between rows in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the gap between rows.
-* @since 12
-*/
-float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
-* @brief Sets the margins for the specified water flow section.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @param marginTop Indicates the top margin of the water flow section.
-* @param marginRight Indicates the right margin of the water flow section.
-* @param marginBottom Indicates the bottom margin of the water flow section.
-* @param marginLeft Indicates the left margin of the water flow section.
-* @since 12
-*/
-void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index,
-    float marginTop, float marginRight, float marginBottom, float marginLeft);
-
-/**
-* @brief Obtains the margins of the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the margins.
-* @since 12
-*/
-ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index);
 
 /**
  * @brief Creates a navigation indicator.
@@ -4167,977 +1974,20 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle,
 uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle);
 
 /**
- * @brief Create auxiliary line information in the RelativeContaine container.
- *
- * @param size The number of auxiliary lines.
- * @return auxiliary line information.
- * @since 12
- */
-ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size);
-
-/**
- * @brief Destroy auxiliary line information.
- *
- * @param guideline auxiliary line information.
- * @since 12
- */
-void OH_ArkUI_GuidelineOption_Dispose(ArkUI_GuidelineOption* guideline);
-
-/**
- * @brief Set the Id of the auxiliary line.
- *
- * @param guideline auxiliary line information.
- * @param value id, must be unique and cannot have the same name as the component in the container.
- * @param index auxiliary line index value.
- * @since 12
- */
-void OH_ArkUI_GuidelineOption_SetId(ArkUI_GuidelineOption* guideline, const char* value, int32_t index);
-
-/**
- * @brief Set the direction of the auxiliary line.
- *
- * @param guideline auxiliary line information.
- * @param value direction.
- * @param index auxiliary line index value.
- * @since 12
- */
-void OH_ArkUI_GuidelineOption_SetDirection(ArkUI_GuidelineOption* guideline, ArkUI_Axis value, int32_t index);
-
-/**
- * @brief Set the distance from the left or top of the container.
- *
- * @param guideline auxiliary line information.
- * @param value The distance from the left or top of the container.
- * @param index auxiliary line index value.
- * @since 12
- */
-void OH_ArkUI_GuidelineOption_SetPositionStart(ArkUI_GuidelineOption* guideline, float value, int32_t index);
-
-/**
- * @brief Set the distance from the right or bottom of the container.
- *
- * @param guideline auxiliary line information.
- * @param value The distance from the right side or bottom of the container.
- * @param index auxiliary line index value.
- * @since 12
- */
-void OH_ArkUI_GuidelineOption_SetPositionEnd(ArkUI_GuidelineOption* guideline, float value, int32_t index);
-
-/**
- * @brief Get the Id of the auxiliary line.
- *
- * @param guideline auxiliary line information.
- * @param index auxiliary line index value.
- * @return Id.
- * @since 12
- */
-const char* OH_ArkUI_GuidelineOption_GetId(ArkUI_GuidelineOption* guideline, int32_t index);
-
-/**
- * @brief Get the direction of the auxiliary line.
- *
- * @param guideline auxiliary line information.
- * @param index auxiliary line index value.
- * @return direction.
- * @since 12
- */
-ArkUI_Axis OH_ArkUI_GuidelineOption_GetDirection(ArkUI_GuidelineOption* guideline, int32_t index);
-
-/**
- * @brief Get the distance from the left or top of the container.
- *
- * @param guideline auxiliary line information.
- * @param index auxiliary line index value.
- * @return The distance from the left or top of the container.
- * @since 12
- */
-float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline, int32_t index);
-
-/**
- * @brief Get the distance from the right side or bottom of the container.
- *
- * @param guideline auxiliary line information.
- * @param index auxiliary line index value.
- * @return The distance from the right side or bottom of the container.
- * @since 12
- */
-float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, int32_t index);
-
-/**
- * @brief creates barrier information within the RelativeContaine container.
- *
- * @param size Number of barriers.
- * @return barrier information.
- * @since 12
- */
-ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create(int32_t size);
-
-/**
- * @brief Destroy barrier information.
- *
- * @param barrierStyle barrier information.
- * @since 12
- */
-void OH_ArkUI_BarrierOption_Dispose(ArkUI_BarrierOption* barrierStyle);
-
-/**
- * @brief Set the Id of the barrier.
- *
- * @param barrierStyle barrier information.
- * @param value id, must be unique and cannot have the same name as the component in the container.
- * @param index Barrier index value.
- * @since 12
- */
-void OH_ArkUI_BarrierOption_SetId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index);
-
-/**
- * @brief Set the direction of the barrier.
- *
- * @param barrierStyle barrier information.
- * @param value direction.
- * @param index Barrier index value.
- * @since 12
- */
-void OH_ArkUI_BarrierOption_SetDirection(
-    ArkUI_BarrierOption* barrierStyle, ArkUI_BarrierDirection value, int32_t index);
-
-/**
- * @brief Sets the dependent component of the barrier.
- *
- * @param barrierStyle barrier information.
- * @param value The ID of the dependent component.
- * @param index Barrier index value.
- * @since 12
- */
-void OH_ArkUI_BarrierOption_SetReferencedId(ArkUI_BarrierOption* barrierStyle, const char* value, int32_t index);
-
-/**
- * @brief Get the Id of the barrier.
- *
- * @param barrierStyle auxiliary line information.
- * @param index auxiliary line index value.
- * @return The Id of the barrier.
- * @since 12
- */
-const char* OH_ArkUI_BarrierOption_GetId(ArkUI_BarrierOption* barrierStyle, int32_t index);
-
-/**
- * @brief Gets the direction of the barrier.
- *
- * @param barrierStyle auxiliary line information.
- * @param index auxiliary line index value.
- * @return The direction of the barrier.
- * @since 12
- */
-ArkUI_BarrierDirection OH_ArkUI_BarrierOption_GetDirection(ArkUI_BarrierOption* barrierStyle, int32_t index);
-
-/**
- * @brief Get the dependent components of the barrier.
- *
- * @param barrierStyle auxiliary line information.
- * @param index auxiliary line index value.
- * @param referencedIndex dependent component Id index value.
- * @return The barrier's dependent components.
- * @since 12
- */
-const char* OH_ArkUI_BarrierOption_GetReferencedId(
-    ArkUI_BarrierOption* barrierStyle, int32_t index, int32_t referencedIndex);
-
-/**
- * @brief Gets the number of dependent components of the barrier.
- *
- * @param barrierStyle auxiliary line information.
- * @param index auxiliary line index value.
- * @return The number of dependent components of the barrier.
- * @since 12
- */
-int32_t OH_ArkUI_BarrierOption_GetReferencedIdSize(ArkUI_BarrierOption* barrierStyle, int32_t index);
-
-/**
- * @brief Set the types and parameters related to content transition effects.
+ * @brief 设置与内容转场效果相关的类型和参数。
  *
  * @since 21
  */
 typedef struct ArkUI_ContentTransitionEffect ArkUI_ContentTransitionEffect;
 
 /**
- * @brief creates content switching animation effects.
+ * @brief 创建内容切换动画效果。
  *
- * @param type content transition type: 0-identity, 1-opacity.
- * @return content transition effect.
+ * @param type 内容转场类型：0-identity，1-opacity。
+ * @return 内容转场效果。
  * @since 21
  */
 ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type);
-
-/**
- * @brief creates alignment rule information for subcomponents in relative containers.
- *
- * @return Alignment rule information.
- * @since 12
- */
-ArkUI_AlignmentRuleOption* OH_ArkUI_AlignmentRuleOption_Create();
-
-/**
- * @brief Destroys the alignment rule information of subcomponents in relative containers.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Set the start alignment parameter.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @param id The id value of the anchor component.
- * @param alignment Alignment relative to the anchor component.
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_SetStart(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment);
-
-/**
- * @brief Set the end alignment parameter.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @param id The id value of the anchor component.
- * @param alignment Alignment relative to the anchor component.
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_SetEnd(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment);
-
-/**
-* @brief Set the parameters for horizontal center alignment.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @param id The id value of the anchor component.
-* @param alignment Alignment relative to anchor component
-* @since 12
-*/
-void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_HorizontalAlignment alignment);
-
-/**
- * @brief Set the parameters for top alignment.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @param id The id value of the anchor component.
- * @param alignment Alignment relative to anchor component
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, const char* id,
-    ArkUI_VerticalAlignment alignment);
-
-/**
- * @brief Set the bottom alignment parameters.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @param id The id value of the anchor component.
- * @param alignment Alignment relative to anchor component
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_SetBottom(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_VerticalAlignment alignment);
-
-/**
-* @brief Set the parameters for vertical center alignment.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @param id The id value of the anchor component.
-* @param alignment Alignment relative to the anchor component.
-* @since 12
-*/
-void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
-    ArkUI_AlignmentRuleOption* option, const char* id, ArkUI_VerticalAlignment alignment);
-
-/**
- * @brief Sets the horizontal offset parameter of the component under the anchor point constraint.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @param horizontal bias value in the horizontal direction.
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* option, float horizontal);
-
-/**
- * @brief Set the vertical offset parameter of the component under the anchor point constraint.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @param vertical bias value in the vertical direction.
- * @since 12
- */
-void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical);
-
-/**
- * @brief Get the Id of the start-aligned parameter.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @return The id value of the anchor component.
- * @since 12
- */
-const char* OH_ArkUI_AlignmentRuleOption_GetStartId(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Gets the alignment of the start-aligned parameter.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The alignment of the parameters.
-* @since 12
-*/
-ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetStartAlignment(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Get the end alignment parameter.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @return End-aligned parameter id.
- * @since 12
- */
-const char* OH_ArkUI_AlignmentRuleOption_GetEndId(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Get the end alignment parameter.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The alignment of the end-aligned parameter.
-* @since 12
-*/
-ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetEndAlignment(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Gets the parameters of horizontal center alignment.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The id of the parameter of horizontal center alignment.
-* @since 12
-*/
-const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Gets the parameters of horizontal center alignment.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The alignment of the horizontally centered alignment parameter.
-* @since 12
-*/
-ArkUI_HorizontalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentHorizontal(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Get the top-aligned parameters.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @return Top aligned parameter id.
- * @since 12
- */
-const char* OH_ArkUI_AlignmentRuleOption_GetTopId(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Get the top-aligned parameters.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The alignment of the top-aligned parameter.
-* @since 12
-*/
-ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetTopAlignment(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Get the bottom alignment parameters.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @return The id of the bottom-aligned parameter.
- * @since 12
- */
-const char* OH_ArkUI_AlignmentRuleOption_GetBottomId(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Get the bottom alignment parameters.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The alignment of the bottom-aligned parameter.
-* @since 12
-*/
-ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetBottomAlignment(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Gets the parameters of vertical center alignment.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The id of the vertical center alignment parameter.
-* @since 12
-*/
-const char* OH_ArkUI_AlignmentRuleOption_GetCenterIdVertical(ArkUI_AlignmentRuleOption* option);
-
-/**
-* @brief Gets the parameters of vertical center alignment.
-*
-* @param option Alignment rule information of subcomponents in the relative container.
-* @return The alignment of the vertical center alignment parameter.
-* @since 12
-*/
-ArkUI_VerticalAlignment OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Get the bias value in the horizontal direction.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @return The bias value in the horizontal direction.
- * @since 12
- */
-float OH_ArkUI_AlignmentRuleOption_GetBiasHorizontal(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Get the bias value in the vertical direction.
- *
- * @param option Alignment rule information of subcomponents in the relative container.
- * @return bias value in vertical direction.
- * @since 12
-*/
-float OH_ArkUI_AlignmentRuleOption_GetBiasVertical(ArkUI_AlignmentRuleOption* option);
-
-/**
- * @brief Create a configuration item for the ListitemSwipeActionItem interface settings.
- *
- * @return List Item SwipeActionItem configuration item instance. If the object returns a null pointer,
- *         it indicates creation failure, and the reason for the failure may be that the address space is full.
- * @since 12
-*/
-ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create();
-
-/**
-* @brief Destroy the ListitemSwipeActionItem instance.
-*
-* @param item List Item SwipeActionItem instance to be destroyed.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* item);
-
-/**
-* @brief Set the layout content of ListItem SwipeActionItem.
-*
-* @param item List Item SwipeActionItem instance.
-* @param node Layout information.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* item, ArkUI_NodeHandle node);
-
-/**
-* @brief Set the threshold for long-distance sliding deletion distance of components.
-*
-* @param item List Item SwipeActionItem instance.
-* @param distance Component long-distance sliding deletion distance threshold.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item, float distance);
-
-/**
-* @brief Obtain the threshold for long-distance sliding deletion distance of components.
-*
-* @param item List Item SwipeActionItem instance.
-* @return Component long-distance sliding deletion distance threshold. If -1.0f is returned, the return fails.
-*         The possible cause of the failure is that the item parameter is abnormal, such as a null pointer.
-* @since 12
-*/
-float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item);
-
-/**
-* @brief Set the event to be called when a sliding entry enters the deletion area.
-*
-* @param item List Item SwipeActionItem instance.
-* @param callback Callback Events.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
-
-/**
- * @brief Set the event triggered when a sliding entry enters the deletion area.
- *
- * @param item List Item SwipeActionItem instance.
- * @param userData User defined data.
- * @param callback Callback Events.
- * @since 12
- */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(void* userData));
-
-/**
-* @brief Set the event to be called when a component enters the long-range deletion area and deletes a ListItem.
-*
-* @param item List Item SwipeActionItem instance.
-* @param callback Callback Events.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
-
-/**
- * @brief Set the event triggered when a component enters the long-range deletion area and deletes a ListItem.
- *
- * @param item List Item SwipeActionItem instance.
- * @param userData User defined data.
- * @param callback Callback Events.
- * @since 12
- */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(void* userData));
-
-/**
-* @brief Set the event to be called when a sliding entry exits the deletion area.
-*
-* @param item List Item SwipeActionItem instance.
-* @param callback Callback Events.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
-
-/**
- * @brief Set the event triggered when a sliding entry exits the deletion area.
- *
- * @param item List Item SwipeActionItem instance.
- * @param userData User defined data.
- * @param callback Callback Events.
- * @since 12
- */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(void* userData));
-
-/**
-* @brief Set the event triggered when the sliding state of a list item changes.
-*
-* @param item List Item SwipeActionItem instance.
-* @param callback Callback Events.
-*        swipeActionState The changed state.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeActionItem* item,
-    void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState));
-
-/**
- * @brief Set the event triggered when the sliding state of a list item changes.
- *
- * @param item List Item SwipeActionItem instance.
- * @param userData User defined data.
- * @param callback Callback Events.
- *        swipeActionState The changed state.
- * @since 12
- */
-void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(ArkUI_ListItemSwipeActionItem* item,
-    void* userData, void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState, void* userData));
-
-/**
- * @brief Create a configuration item for the ListitemSwipeActionOption interface settings.
- *
- * @return List Item SwipeActionOption configuration item instance.If the object returns a null pointer,
- *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
- * @since 12
-*/
-ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create();
-
-/**
-* @brief Destroy the ListitemSwipeActionOption instance.
-*
-* @param option List Item SwipeActionOption instance to be destroyed.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption* option);
-
-/**
-* @brief Set the layout content on the left (vertical layout) or top (horizontal layout)
-* of the ListItem SwipeActionItem.
-*
-* @param option List Item SwipeActionItem instance.
-* @param item Layout information.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption* option,
-    ArkUI_ListItemSwipeActionItem* item);
-
-/**
-* @brief Set the layout content on the right (vertical layout) or bottom (horizontal layout)
-* of the ListItem SwipeActionItem.
-*
-* @param option List Item SwipeActionItem instance.
-* @param item Layout information.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionOption_SetEnd(ArkUI_ListItemSwipeActionOption* option,
-    ArkUI_ListItemSwipeActionItem* item);
-
-/**
-* @brief Set the sliding effect.
-*
-* @param option List Item SwipeActionItem instance.
-* @param edgeEffect Sliding effect.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect(ArkUI_ListItemSwipeActionOption* option,
-    ArkUI_ListItemSwipeEdgeEffect edgeEffect);
-
-/**
-* @brief Get the sliding effect.
-*
-* @param option List Item SwipeActionItem instance.
-* @return Sliding effect. The default return value is 0. If -1 is returned, the return fails.
-*         The possible cause of the failure is that the option parameter is abnormal, such as a null pointer.
-* @since 12
-*/
-int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActionOption* option);
-
-/**
-* @brief The event called when the sliding operation offset changes.
-*
-* @param option List Item SwipeActionItem instance.
-* @param callback Callback Events.
-*        offset Slide offset.
-* @since 12
-*/
-void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeActionOption* option,
-    void (*callback)(float offset));
-
-/**
- * @brief Set the event triggered when the sliding operation offset changes.
- *
- * @param option List Item SwipeActionItem instance.
- * @param userData User defined data.
- * @param callback Callback Events.
- *        offset Slide offset.
- * @since 12
- */
-void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_ListItemSwipeActionOption* option,
-    void* userData, void (*callback)(float offset, void* userData));
-
-/**
- * @brief Create configuration items for the ListChildrenMainSize interface settings.
- *
- * @return ListChildrenMainSize configuration item instance.If the object returns a null pointer,
- *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
- * @since 12
-*/
-ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
-
-/**
-* @brief Destroy the ListChildrenMainSize instance.
-*
-* @param option The ListChildrenMainSize instance to be destroyed.
-* @since 12
-*/
-void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option);
-
-/**
- * @brief Set the default size of ChildrenMainSizeOption for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param defaultMainSize The default size of the ListItem under the List, measured in vp.
- * @return 0 represents success. If defaultMainSize is less than 0 or option is a null pointer, return 401.
- * @since 12
-*/
-int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(ArkUI_ListChildrenMainSize* option,
-    float defaultMainSize);
-
-/**
- * @brief Get the default size of ChildrenMainSizeOption for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @return The default size of the ListItem under the List is 0, measured in vp.
- *         When the option is a null pointer, it returns -1.
- * @since 12
-*/
-float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option);
-
-/**
- * @brief Reset the array size of ChildrenMainSizeOption for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param totalSize Array size.
- * @since 12
-*/
-void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize);
-
-/**
- * @brief Resize the ChildrenMainSizeOption array operation on the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param index To modify the starting position of the MainSize array.
- * @param deleteCount The number of MainSize arrays to be deleted starting from index.
- * @param addCount The number of MainSize arrays to be added starting from index.
- * @return 0 represents success. If the function parameter is abnormal, return 401.
- * @since 12
-*/
-int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(ArkUI_ListChildrenMainSize* option, int32_t index,
-    int32_t deleteCount, int32_t addCount);
-
-/**
- * @brief Update the value of the ChildrenMainSizeOption array in the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param index To modify the starting position of the MainSize array.
- * @param mainSize The actual modified value.
- * @return 0 represents success. If the function parameter is abnormal, return 401.
- * @since 12
-*/
-int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(ArkUI_ListChildrenMainSize* option,
-    int32_t index, float mainSize);
-
-/**
- * @brief Get the value of the ChildrenMainSizeOption array for the List component.
- *
- * @param option ListChildrenMainSize instance.
- * @param index The index position of the value to be obtained.
- * @return The value of the specific position of the array. If the function parameter is abnormal, return -1.
- * @since 12
-*/
-float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);
-
-/**
- * @brief Creates measurement information for this custom span.
- *
- * @return Returns a <b>CustomSpanMeasureInfo</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 12
-*/
-ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
-
-/**
- * @brief Disposes of measurement information of this custom span.
- *
- * @param info The CustomSpanMeasureInfo instance to be destroyed.
- * @since 12
-*/
-void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
-
-/**
- * @brief Obtains the font size of a custom span.
- *
- * @param info Indicates the pointer to the measurement information of a custom span.
- * @return Returns the font size. If a parameter error occurs, <b>0.0f</b> is returned.
- * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* info);
-
-/**
- * @brief Creates measurement metrics for this custom span.
- *
- * @return Returns a <b>CustomSpanMetrics</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 12
-*/
-ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
-
-/**
- * @brief Disposes of measurement metrics of this custom span.
- *
- * @param metrics The CustomSpanMetrics instance to be destroyed.
- * @since 12
-*/
-void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
-
-/**
- * @brief Sets the width for a custom span.
- *
- * @param metrics Indicates the pointer to a <b>CustomSpanMetrics</b> instance.
- * @param width Indicates the width, in px. The width should be greater than 0.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, float width);
-
-/**
- * @brief Sets the height for a custom span.
- *
- * @param metrics Indicates the pointer to a <b>CustomSpanMetrics</b> instance.
- * @param width Indicates the height, in px. The width should be greater than 0.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, float height);
-
-/**
- * @brief Creates drawing information for this custom span.
- *
- * @return Returns a <b>CustomSpanDrawInfo</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 12
-*/
-ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
-
-/**
- * @brief Disposes of drawing information for this custom span.
- *
- * @param info The CustomSpanDrawInfo instance to be destroyed.
- * @since 12
-*/
-void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
-
-/**
- * @brief Obtains the x-axis offset of the custom span relative to the mounted component.
- *
- * @param info Indicates the pointer to the drawing information of a custom span.
- * @return Returns the x-axis offset. If a parameter error occurs, <b>0.0f</b> is returned.
- * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
-
-/**
- * @brief Obtains the top margin of the custom span relative to the mounted component.
- *
- * @param info Indicates the pointer to the drawing information of a custom span.
- * @return Returns the top margin. If a parameter error occurs, <b>0.0f</b> is returned.
- * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
-
-/**
- * @brief Obtains the bottom margin of the custom span relative to the mounted component.
- *
- * @param info Indicates the pointer to the drawing information of a custom span.
- * @return Returns the bottom margin. If a parameter error occurs, <b>0.0f</b> is returned.
- * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
-
-/**
- * @brief Obtains the baseline offset of the custom span relative to the mounted component.
- *
- * @param info Indicates the pointer to the drawing information of a custom span.
- * @return Returns the baseline offset. If a parameter error occurs, <b>0.0f</b> is returned.
- * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
- * @since 12
-*/
-float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info);
-
-/**
- * @brief Create a image frame from the image path.
- * @param src Indicates the image path.
- * @return Returns the pointer to the image frame object.
- * If a null pointer is returned, the object fails to be created. The possible cause is that
- * the src parameter is abnormal, for example, the pointer is null.
- * @since 12
-*/
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src);
-
-/**
- * @brief Create a image frame from the drawable descriptor.
- *
- * @param drawable Indicates the pointer to the drawable descriptor.
- * @return Returns the pointer to the image frame object.
- * If a null pointer is returned, the object fails to be created. The possible cause is that
- * the drawable parameter is abnormal, for example, the pointer is null.
- * @since 12
-*/
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(
-    ArkUI_DrawableDescriptor* drawable);
-
-/**
- * @brief Destroy the pointer to the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the width of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param width Indicates the width of the image frame, and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width);
-
-/**
- * @brief Get the width of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Return the width of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the height of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param height Indicates the height of the image frame, and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height);
-
-/**
- * @brief Get the height of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Return the height of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the vertical coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param top Indicates the vertical coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t top);
-
-/**
- * @brief Get the vertical coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the vertical coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the horizontal coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param left Indicates the horizontal coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t left);
-
-/**
- * @brief Get the horizontal coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the horizontal coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the playback duration of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param duration Indicates the playback duration of each image frame, and the unit is milliseconds.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration);
-
-/**
- * @brief Get the playback duration of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the playback duration of the image frame, and the unit is milliseconds.
- * Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo);
 
 /**
  * @brief Create accessibility state.
@@ -5368,307 +2218,99 @@ void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const 
 const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
 
 /**
- * @brief Destroy the instance of Customs Property.
+ * @brief 销毁{@link ArkUI_CustomProperty}实例。
  *
- * @param handle The instance of Customs Property to be destroyed.
+ * @param handle 要销毁的实例。
  * @since 14
  */
 void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get custom attribute value information.
+ * @brief 获取自定义属性对象的value信息。
  *
- * @param handle Custom attribute object pointer.
- * @return Customize the value information within the attribute structure.
+ * @param handle 自定义属性对象指针。
+ * @return 自定义属性对象的value信息。
  * @since 14
  */
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
 
 /**
- * @brief Get window name from HostWindowInfo.
+ * @brief 获取{@link ArkUI_HostWindowInfo}对象中的窗口名称。
  *
- * @param info HostWindowInfo object pointer.
- * @return Window name in HostWindowInfo.
+ * @param info HostWindowInfo对象。
+ * @return {@link ArkUI_HostWindowInfo}对象中的窗口名称。
  * @since 15
  */
 const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy the instance of HostWindowInfo.
+ * @brief 销毁{@link ArkUI_HostWindowInfo}对象。
  *
- * @param info Instance of HostWindowInfo to be destroyed.
+ * @param info 要销毁的{@link ArkUI_HostWindowInfo}对象。
  * @since 15
  */
 void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
 
 /**
- * @brief Destroy ActiveChildenInfo instance.
+ * @brief 销毁{@link OH_ArkUI_ActiveChildrenInfo}实例，释放获取活跃子节点信息时分配的资源。
  *
- * @param handle ActiveChild instance to be destroyed.
+ * @param handle 要销毁的{@link ArkUI_ActiveChildrenInfo}实例。
  * @since 14
  */
 void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
+ * @brief 获取{@link OH_ArkUI_ActiveChildrenInfo}结构体的下标为index的子节点。
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @param index The index of child nodes.
- * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
+ * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
+ * @param index 子节点的下标。
+ * @return 下标对应的子节点指针，异常时返回nullptr。
  * @since 14
  */
 ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildrenInfo* handle, int32_t index);
 
 /**
- * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
+ * @brief 获取{@link ArkUI_ActiveChildrenInfo}结构体内的子节点数量，适用于遍历活跃子节点前确定数量。
  *
- * @param handle The ActiveChildenInfo instance for obtaining information.
- * @return Number of child nodes. Default value: 0.
+ * @param handle 要获取信息的{@link ArkUI_ActiveChildrenInfo}实例。
+ * @return 子节点数量，默认值0.
  * @since 14
  */
 int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
 
 /**
- * @brief Create linear progress indicator style information.
+ * @brief 创建跨语言配置项实例。
  *
- * @return Returns a <b>ProgressLinearStyleOption</b> instance.
- * <br> If the result returns nullptr, there may be out of memory.
- * @since 15
- */
-ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void);
-
-/**
- * @brief Destroy linear progress indicator style information.
- *
- * @param option Linear progress indicator style information.
- * @since 15
- */
-void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option);
-
-/**
- * @brief Set whether the scan effect is enabled.
- *
- * @param option Linear progress indicator style information.
- * @param enabled Whether to enable the scan effect. Default value: false.
- * @since 15
- */
-void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
-
-/**
- * @brief Set whether smoothing effect is enabled.
- *
- * @param option Linear progress indicator style information.
- * @param enabled Whether to enable the smooth effect. When this effect is enabled, the progress change to
- * the set value takes place gradually. Otherwise, it takes place immediately. Default value: true.
- * @since 15
- */
-void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
-
-/**
- * @brief Set linear progress indicator stroke width.
- *
- * @param option Linear progress indicator style information.
- * @param strokeWidth Stroke width of the progress indicator. It cannot be set in percentage.
- * Default value: 4.0vp.
- * @since 15
- */
-void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth);
-
-/**
- * @brief Set linear progress indicator stroke radius.
- *
- * @param option Linear progress indicator style information.
- * @param strokeRadius Rounded corner radius of the progress indicator. Value range: [0, strokeWidth/2].
- * Default value: strokeWidth/2.
- * @since 15
- */
-void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyleOption* option, float strokeRadius);
-
-/**
- * @brief Get whether scan effect is enable.
- *
- * @param option Linear progress indicator style information.
- * @return Whether to enable the scan effect.
- * @since 15
- */
-bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
-
-/**
- * @brief Get whether smoothing effect is enabled.
- *
- * @param option Linear progress indicator style information.
- * @return Whether to enable the smooth effect.
- * @since 15
- */
-bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
-
-/**
- * @brief Get linear progress indicator stroke width.
- *
- * @param option Linear progress indicator style information.
- * @return Stroke width of the progress indicator.
- * @since 15
- */
-float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option);
-
-/**
- * @brief Get linear progress indicator stroke radius.
- *
- * @param option Linear progress indicator style information.
- * @return Rounded corner radius of the progress indicator.
- * @since 15
- */
-float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
-
-/**
- * @brief Create a cross-language option instance.
- *
- * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @return 返回跨语言实例。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。
  * @since 15
  */
 ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
 
 /**
- * @brief Destroy the cross-language option instance.
+ * @brief 销毁跨语言配置项实例。
  *
- * @param option The cross-language option instance.
+ * @param option 要销毁的跨语言配置项实例。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Enable the attribute setting in the cross-language option.
+ * @brief 设置配置项中是否允许跨语言修改属性。
  *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
+ * @param option 跨语言配置项实例。
+ * @param enabled 是否允许跨语言修改属性。true表示允许跨语言修改属性，false表示不允许跨语言修改属性，默认值：false。
  * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
 
 /**
- * @brief Get the attribute setting enable of the cross-language option.
+ * @brief 获取配置项中是否允许跨语言修改属性。
  *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
+ * @param option 跨语言配置项实例。
+ * @return 是否允许跨语言修改属性。true表示允许跨语言修改属性，false表示不允许跨语言修改属性。
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
-
-/**
- * @brief Creates a TextPickerRangeContent instance.
- *
- * @param length The length of the picker array. Value range: [1, +∞).
- * @return Returns a pointer to the created instance on success. Initialize each item of the array
- *         as a null pointer;call {@link OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex} and/or
- *         {@link OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex} for each index as needed.
- *         Returns <b>nullptr</b> if <b>length</b> is not in <b>[1, +∞)</b>.
- *         When the object is no longer used, release it with {@link OH_ArkUI_TextPickerRangeContentArray_Destroy}.
- * @since 19
- */
-ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
-
-/**
- * @brief Sets the icon resource path or URI for one item in an {@link ArkUI_TextPickerRangeContentArray}.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
- *        function has no effect.
- * @param icon Null-terminated C string for the icon (path or URI). The content is copied into the array; the caller
- *        keeps ownership of <b>icon</b>. If <b>nullptr</b>, this function has no effect.
- * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
- *        does nothing.
- * @note If an icon was already set at <b>index</b>, the previous buffer is released before assigning the new value.
- * @since 19
- */
-void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
-    ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
-
-/**
- * @brief Sets the display text for one item in an {@link ArkUI_TextPickerRangeContentArray}.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
- *        function has no effect.
- * @param text Null-terminated C string shown for the item. The content is copied into the array; the caller keeps
- *        ownership of <b>text</b>. If <b>nullptr</b>, this function has no effect.
- * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
- *        does nothing.
- * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
- * @since 19
- */
-void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
-    ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
-
-/**
- * @brief Releases an {@link ArkUI_TextPickerRangeContentArray} created by
- *        {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
- *
- * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
- * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
- *       {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
- * @since 19
- */
-void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
-
-/**
- * @brief Allocates one column level of an interconnected (cascade) TextPicker range. Use with range type
- *        {@link ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT}. The returned pointer addresses a contiguous array
- *        of sibling nodes; each node may carry display text and an optional next-level range from
- *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex}.
- *
- * @param length Number of sibling entries on this column. Value range: <b>[1, +∞)</b>.
- * @return Returns a pointer to the first sibling node when <b>length</b> is in <b>[1, +∞)</b>; returns <b>nullptr</b>
- *         otherwise. The sibling count used for bounds checks equals <b>length</b>.
- * @since 19
- */
-ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
-
-/**
- * @brief Sets the display text for one sibling node on a cascade TextPicker level.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
- *        this function has no effect.
- * @param text Null-terminated C string. The content is copied; the caller keeps ownership of <b>text</b>. If
- *        <b>nullptr</b>, this function has no effect.
- * @param index Index of the sibling to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. Otherwise this
- *        function does nothing.
- * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
- * @since 19
- */
-void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
-    ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
-
-/**
- * @brief Sets the childs info of items in a multi text picker ranges.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
- *        this function has no effect.
- * @param child Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create} for the child column.
- *        If <b>nullptr</b>, this function has no effect. If a subtree already exists at <b>index</b>, it is destroyed
- *        with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} before the new <b>child</b> is stored.
- *        While <b>child</b> stays attached under the parent, the caller must not call
- *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on <b>child</b>.
- * @param index Index of the sibling that owns the subtree. Valid values are greater than or equal to <b>0</b> and less
- *        than the <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- *        Otherwise this function does nothing.
- * @since 19
- */
-void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
-    ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
-
-/**
- * @brief Releases a cascade range level allocated with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- *
- * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
- * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
- *       {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- * @note Do not call {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on a <b>child</b> while
- *       it is still stored in a parent's {@code children}.
- * @since 19
- */
-void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
 
 /**
  * @brief Create an object for the EmbeddedComponent option.
@@ -5708,314 +2350,6 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(
  */
 void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
     ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
-
-/**
- * @brief Expand the swipe action.
- *
- * @param node List Item node.
- * @param direction expand direction of swipeAction.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
- * @since 21
- */
-int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction);
-
-/**
- * @brief Collapse the swipe action.
- *
- * @param node List Item node.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
- * @since 21
- */
-int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
-
-/**
- * @brief Create an edge object for position attribute.
- *
- * @return A pointer to the edge object.
- * @since 21
- */
-ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Create();
-
-/**
- * @brief Creates a deep copy of an edge object for position attribute.
- *
- * @param edges A pointer to an edge object.
- * @return A pointer to the new edge object.
- * @since 21
- */
-ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Copy(const ArkUI_PositionEdges* edges);
-
-/**
- * @brief Dispose an edge object for position attribute.
- *
- * @param edges Pointer to the edge object to be disposed.
- * @since 21
- */
-void OH_ArkUI_PositionEdges_Dispose(ArkUI_PositionEdges* edges);
-
-/**
- * @brief Sets the top edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of top edge to the corresponding edge of parent container, in vp.
- * @since 21
- */
-void OH_ArkUI_PositionEdges_SetTop(ArkUI_PositionEdges* edges, float value);
-
-/**
- * @brief Gets the top edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of top edge to the corresponding edge of parent container, in vp.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PositionEdges_GetTop(ArkUI_PositionEdges* edges, float* value);
-
-/**
- * @brief Sets the left edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of left edge to the corresponding edge of parent container, in vp.
- * @since 21
- */
-void OH_ArkUI_PositionEdges_SetLeft(ArkUI_PositionEdges* edges, float value);
-
-/**
- * @brief Gets the left edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of left edge to the corresponding edge of parent container, in vp.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PositionEdges_GetLeft(ArkUI_PositionEdges* edges, float* value);
-
-/**
- * @brief Sets the bottom edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of bottom edge to the corresponding edge of parent container, in vp.
- * @since 21
- */
-void OH_ArkUI_PositionEdges_SetBottom(ArkUI_PositionEdges* edges, float value);
-
-/**
- * @brief Gets the bottom edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of bottom edge to the corresponding edge of parent container, in vp.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value);
-
-/**
- * @brief Sets the right edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of right edge to the corresponding edge of parent container, in vp.
- * @since 21
- */
-void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value);
-
-/**
- * @brief Gets the right edge of an edge object for position attribute.
- *
- * @param edges Pointer to the edge object.
- * @param value The distance of right edge to the corresponding edge of parent container, in vp.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value);
-
-/**
- * @brief Create a policy object for PixelRound attribute.
- *
- * @return A pointer to the policy object.
- * @since 21
- */
-ArkUI_PixelRoundPolicy* OH_ArkUI_PixelRoundPolicy_Create();
-
-/**
- * @brief Dispose a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object to be disposed.
- * @since 21
- */
-void OH_ArkUI_PixelRoundPolicy_Dispose(ArkUI_PixelRoundPolicy* policy);
-
-/**
- * @brief Sets the top edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of top edge.
- * @since 21
- */
-void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
-
-/**
- * @brief Gets the top edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of top edge.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PixelRoundPolicy_GetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
-
-/**
- * @brief Sets the start edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of start edge.
- * @since 21
- */
-void OH_ArkUI_PixelRoundPolicy_SetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
-
-/**
- * @brief Gets the start edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of start edge.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PixelRoundPolicy_GetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
-
-/**
- * @brief Sets the bottom edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of bottom edge.
- * @since 21
- */
-void OH_ArkUI_PixelRoundPolicy_SetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
-
-/**
- * @brief Gets the bottom edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of bottom edge.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PixelRoundPolicy_GetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
-
-/**
- * @brief Sets the end edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of end edge.
- * @since 21
- */
-void OH_ArkUI_PixelRoundPolicy_SetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value);
-
-/**
- * @brief Gets the end edge of a policy object for PixelRound attribute.
- *
- * @param policy Pointer to the policy object.
- * @param value The CalcPolicy of end edge.
- * @return Returns the result code.
- *      Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *      Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.
- * @since 21
- */
-int32_t OH_ArkUI_PixelRoundPolicy_GetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value);
-
-/**
- * @brief Creates a configuration object for textField's counter.
- *
- * @return A pointer to the configuration object.
- * @since 22
- */
-ArkUI_ShowCounterConfig* OH_ArkUI_ShowCounterConfig_Create();
-
-/**
- * @brief Disposes a configuration object for textField's counter.
- *
- * @param config Pointer to the configuration object to be disposed.
- * @since 22
- */
-void OH_ArkUI_ShowCounterConfig_Dispose(ArkUI_ShowCounterConfig* config);
-
-/**
- * @brief Sets the color of counter when textField hasn't wanted to exceed the maximum character count.
- *
- * @param config Pointer to the configuration object to be modified.
- * @param color The color of the counter when textField hasn't wanted to exceed the maximum character count, in 0xARGB format.
- * @since 22
- */
-void OH_ArkUI_ShowCounterConfig_SetCounterTextColor(ArkUI_ShowCounterConfig* config, uint32_t color);
-
-/**
- * @brief Sets the color of counter when textField wants to exceed the maximum character count.
- *
- * @param config Pointer to the configuration object to be modified.
- * @param color The color of the counter when textField wants to exceed the maximum character count, in 0xARGB format.
- * @since 22
- */
-void OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config, uint32_t color);
-
-/**
- * @brief Gets the color of counter when textField hasn't wanted to exceed the maximum character count.
- *
- * @param config Pointer to the configuration object.
- * @return Returns the color of the counter when textField hasn't wanted to exceed the maximum character count, in 0xARGB format.
- * @since 22
- */
-uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextColor(ArkUI_ShowCounterConfig* config);
-
-/**
- * @brief Gets the color of counter when textField wants to exceed the maximum character count.
- *
- * @param config Pointer to the configuration object.
- * @return Returns the color of the counter when textField wants to exceed the maximum character count, in 0xARGB format.
- * @since 22
- */
-uint32_t OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(ArkUI_ShowCounterConfig* config);
-
-/**
- * @brief Defines the text menu item for edit menu item.
- *
- * @since 22
- */
-typedef struct ArkUI_TextMenuItem ArkUI_TextMenuItem;
-/**
- * @brief Create an object of the text edit menu item.
- *
- * @return A pointer to the ArkUI_TextMenuItem.
- * @since 22
- */
-ArkUI_TextMenuItem* OH_ArkUI_TextMenuItem_Create();
-
-/**
- * @brief Dispose an object of the text edit menu options.
- *
- * @param textMenuItem Pointer to the ArkUI_TextMenuItem object to be disposed.
- * @since 22
- */
-void OH_ArkUI_TextMenuItem_Dispose(ArkUI_TextMenuItem* textMenuItem);
 
 /**
  * @brief Set text menu item title.
@@ -6139,13 +2473,6 @@ ArkUI_ErrorCode OH_ArkUI_TextMenuItem_SetId(ArkUI_TextMenuItem* item, int32_t id
 ArkUI_ErrorCode OH_ArkUI_TextMenuItem_GetId(const ArkUI_TextMenuItem* item, int32_t* id);
 
 /**
- * @brief Defines text menu item array.
- *
- * @since 22
- */
-typedef struct ArkUI_TextMenuItemArray ArkUI_TextMenuItemArray;
-
-/**
  * @brief Get the size of text menu items.
  *
  * @param items The text menu items.
@@ -6209,184 +2536,6 @@ ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_Erase(ArkUI_TextMenuItemArray* items,
 ArkUI_ErrorCode OH_ArkUI_TextMenuItemArray_Clear(ArkUI_TextMenuItemArray* items);
 
 /**
- * @brief Enumerates the text menu item id.
- *
- * @since 22
- */
-typedef enum {
-    /**
-     * Indicates the TextMenuItemId to copy and delete the currently selected text.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_CUT = 0,
-
-    /**
-     * Indicates the TextMenuItemId to copy the currently selected text to the clipboard.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_COPY = 1,
-
-    /**
-     * Indicates the TextMenuItemId to copy the current contents of the clipboard into the text view.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_PASTE = 2,
-
-    /**
-     * Indicates the TextMenuItemId to select all text in a text view.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_SELECT_ALL = 3,
-
-    /**
-     * Indicates the TextMenuItemId for collaboration service menu items.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_COLLABORATION_SERVICE = 4,
-
-    /**
-     * Indicates the TextMenuItemId to recognize the text in the picture and input it into the text view.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_CAMERA_INPUT = 5,
-
-    /**
-     * Indicates the TextMenuItemId to help with text creation by invoking large models.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_AI_WRITER = 6,
-
-    /**
-     * Indicates the TextMenuItemId to translate the selected content.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_TRANSLATE = 7,
-
-    /**
-     * Indicates the TextMenuItemId to search the selected content.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_SEARCH = 8,
-
-    /**
-     * Indicates the TextMenuItemId to share the selected content.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_SHARE = 9,
-
-    /**
-     * Indicates the TextMenuItemId to open url.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_URL = 10,
-
-    /**
-     * Indicates the TextMenuItemId to open email.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_EMAIL = 11,
-
-    /**
-     * Indicates the TextMenuItemId to call the phone number.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_PHONE_NUMBER = 12,
-
-    /**
-     * Indicates the TextMenuItemId to open map.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_ADDRESS = 13,
-
-    /**
-     * Indicates the TextMenuItemId to open calendar.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_DATA_TIME = 14,
-
-    /**
-     * Indicates the TextMenuItemId for asking AI.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_ASK_AI = 15,
-
-    /**
-     * 自动填充。例如自动填充账号密码。
-     * @since 24
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_AUTO_FILL = 16,
-
-    /**
-     * 密码保险箱。
-     * @since 24
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_PASSWORD_VAULT = 17,
-
-    /**
-     * Inclusive begin of app-reserved ID range.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_BEGIN = 10000,
-
-    /**
-     * Inclusive end of app-reserved ID range.
-     */
-    ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_END = 20000,
-} ArkUI_TextMenuItemId;
-
-/**
- * @brief Defines the text menu item for edit menu options.
- *
- * @since 22
- */
-typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
-/**
- * @brief Create an object of the text edit menu options.
- *
- * @return A pointer to the ArkUI_TextEditMenuOptions.
- * @since 22
- */
-ArkUI_TextEditMenuOptions* OH_ArkUI_TextEditMenuOptions_Create();
-
-/**
- * @brief Dispose an object of the text edit menu options.
- *
- * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object to be disposed.
- * @since 22
- */
-void OH_ArkUI_TextEditMenuOptions_Dispose(ArkUI_TextEditMenuOptions* editMenuOptions);
-
-/**
- * The text menu create callback function.
- *
- * @param items The framework creates and owns the array.
- *     In callback: the developer can modify the array by calling {@link OH_ArkUI_TextMenuItemArray_Insert},
- *     {@link OH_ArkUI_TextMenuItemArray_Erase}, or similar APIs.
- *     The developer must not free the array instance.
- * @param userData User defined data.
- * @since 22
- */
-typedef void (*ArkUI_TextCreateMenuCallback)(
-    ArkUI_TextMenuItemArray*    items,
-    void*                       userData
-);
-
-/**
- * The text menu prepare callback function.
- *
- * @param items The framework creates and owns the array.
- *     In callback: the developer can modify the array by calling {@link OH_ArkUI_TextMenuItemArray_Insert},
- *     {@link OH_ArkUI_TextMenuItemArray_Erase}, or similar APIs.
- *     The developer must not free the array instance.
- * @param userData User defined data.
- * @since 22
- */
-typedef void (*ArkUI_TextPrepareMenuCallback)(
-    ArkUI_TextMenuItemArray*    items,
-    void*                       userData
-);
-
-/**
- * The text menu item click callback function.
- *
- * @param item The menu item click.
- * @param start The start offset of the selected content.
- * @param end The end offset of the selected content.
- * @param userData The user data.
- * @return bool Return True, the event is consumed, false otherwise.
- * @since 22
- */
-typedef bool (*ArkUI_TextMenuItemClickCallback)(
-    const ArkUI_TextMenuItem*    item,
-    int32_t                      start,
-    int32_t                      end,
-    void*                        userData
-);
-
-/**
  * @brief Set the event to be called when text menu create.
  *
  * @param editMenuOptions Pointer to the ArkUI_TextEditMenuOptions object.
@@ -6426,250 +2575,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnPrepareMenuCallback(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
     ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb);
-
-/**
- * @brief Defines the selection menu.
- *
- * @since 22
- */
-typedef struct ArkUI_TextSelectionMenuOptions ArkUI_TextSelectionMenuOptions;
-
-/**
- * @brief 定义装饰线样式。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_DecorationStyleOptions OH_ArkUI_DecorationStyleOptions;
-
-/**
- * @brief 定义文本实体识别的配置。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextDataDetectorConfig OH_ArkUI_TextDataDetectorConfig;
-
-/**
- * @brief 定义文本编辑器的文本选择菜单选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorSelectionMenuOptions OH_ArkUI_TextEditorSelectionMenuOptions;
-
-/**
- * @brief 定义文本编辑器无输入时的提示文本选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
-
-/**
- * @brief 定义文本编辑器的属性字符串控制器。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
-
-/**
- * @brief 定义文本编辑器的段落样式。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
-
-/**
- * @brief 定义阴影选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
-
-/**
- * @brief 定义文本编辑器的文本样式。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
-
-/**
- * @brief 震动效果类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 无震动效果。
-     * @since 24
-     */
-    OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
-    /**
-     * 有震动效果。
-     * @since 24
-     */
-    OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
-    /**
-     * 跟随系统的震动效果。
-     * @since 24
-     */
-    OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
-} OH_ArkUI_HapticFeedbackMode;
-
-/**
- * @brief 自定义文本选择菜单span类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 文本span
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT = 0,
-    /**
-     * 图片span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_IMAGE = 1,
-    /**
-     * 混合span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED = 2,
-    /**
-     * 自定义布局span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER = 3,
-    /**
-     * 默认span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_DEFAULT = 4
-} OH_ArkUI_TextEditorSpanType;
-
-/**
- * @brief 自定义文本选择菜单响应类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 通过鼠标右键触发菜单弹出。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_RIGHT_CLICK = 0,
-    /**
-     * 通过长按触发菜单弹出。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_LONG_PRESS = 1,
-    /**
-     * 通过鼠标选中触发菜单弹出。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_SELECT = 2,
-    /**
-     * 默认响应类型。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_DEFAULT = 3,
-} OH_ArkUI_TextEditorResponseType;
-
-/**
- * @brief 文本菜单类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 文本选择菜单。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SELECTION_MENU = 0,
-    /**
-     * 预览菜单。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_PREVIEW_MENU = 1,
-} OH_ArkUI_TextMenuType;
-
-/**
- * @brief 换行策略类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 贪婪模式。<br>使每一行尽可能显示多的字符，直到这一行不能显示更多字符时进行折行。
-     * @since 24
-     */
-    OH_ARKUI_LINE_BREAK_STRATEGY_GREEDY = 0,
-    /**
-     * 高质量模式。<br>在平衡模式的基础上，尽可能填满行，同时最后一行的权重较低，可能出现最后一行留白较多的情形。
-     * @since 24
-     */
-    OH_ARKUI_LINE_BREAK_STRATEGY_HIGH_QUALITY = 1,
-    /**
-     * 平衡模式。<br>在不拆词的情况下，尽量使一个段落中每一行的宽度相同。
-     * @since 24
-     */
-    OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2,
-} OH_ArkUI_LineBreakStrategy;
-
-/**
- * @brief Enumerates the text span type.
- *
- * @since 22
- */
-typedef enum {
-    /** The span type only contains text. */
-    ARKUI_TEXT_SPAN_TYPE_TEXT = 0,
-    /** The span type only contains image. */
-    ARKUI_TEXT_SPAN_TYPE_IMAGE = 1,
-    /** The span type contains both text and image. */
-    ARKUI_TEXT_SPAN_TYPE_MIXED = 2,
-    /**
-     * When no other types are explicitly specified, this type will be matched.
-     * When this type is registered but TEXT, IMAGE, or MIXED types are not registered,
-     * this type will be triggered and displayed for those registered types.
-     */
-    ARKUI_TEXT_SPAN_TYPE_DEFAULT = 3,
-} ArkUI_TextSpanType;
-
-/**
- * @brief Enumerates the text response type.
- *
- * @since 22
- */
-typedef enum {
-    /** The response type of right click. */
-    ARKUI_TEXT_RESPONSE_TYPE_RIGHT_CLICK = 0,
-    /** The response type of long press. */
-    ARKUI_TEXT_RESPONSE_TYPE_LONG_PRESS = 1,
-    /** The response type of select by mouse. */
-    ARKUI_TEXT_RESPONSE_TYPE_SELECT = 2,
-    /**
-     * When no other types are explicitly specified, this type will be matched.
-     * When this type is registered but RIGHT_CLICK, LONG_PRESS, or SELECT types are not registered,
-     * this type will be triggered and displayed for right-click, long press, and mouse selection actions.
-     */
-    ARKUI_TEXT_RESPONSE_TYPE_DEFAULT = 3,
-} ArkUI_TextResponseType;
-
-/**
- * @brief Create an object of the text selection menu options.
- *
- * @return A pointer to the ArkUI_TextSelectionMenuOptions.
- * @since 22
- */
-ArkUI_TextSelectionMenuOptions* OH_ArkUI_TextSelectionMenuOptions_Create();
-
-/**
- * @brief Dispose an object of the text selection menu options.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object to be disposed.
- * @since 22
- */
-void OH_ArkUI_TextSelectionMenuOptions_Dispose(ArkUI_TextSelectionMenuOptions* selectionMenuOptions);
 
 /**
  * @brief Sets the recognition types of a configuration object for selected text recognition.
@@ -6817,43 +2722,6 @@ void OH_ArkUI_SelectionOptions_SetMenuPolicy(
 ArkUI_MenuPolicy OH_ArkUI_SelectionOptions_GetMenuPolicy(ArkUI_SelectionOptions* options);
 
 /**
- * @brief Create an object of the text content base controller.
- *
- * @return A pointer to the controller object.
- * @since 23
- */
-ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
-
-/**
- * @brief Dispose an object of the text content base controller.
- *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
- * @since 23
- */
-void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
-
-/**
- * @brief Delete the character before the caret of the input field component in editing state.
- *        Otherwise, delete the last character of the input field component.
- *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
- * @since 23
- */
-void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
-
-/**
- * @brief Scroll the input field component to make the specified content visible.
- *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the
- * configuration object to be modified.
- * @param {int32_t} start The start offset of the content to be made visible.
- * @param {int32_t} end The end offset of the content to be made visible
- * @since 23
- */
-void OH_ArkUI_TextContentBaseController_ScrollToVisible(
-    ArkUI_TextContentBaseController *controller, int32_t start, int32_t end);
-
-/**
  * @brief Defines the motion path options for path animation.
  *
  * @since 23
@@ -6996,216 +2864,6 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions*
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
 
 /**
- * @brief Enumerates the MarqueeStartPolicy.
- *
- * @since 23
- */
-typedef enum {
-    /** Start marquee in any case. This is the default policy. */
-    ARKUI_MARQUEESTARTPOLICY_DEFAULT = 0,
-    /** Start marquee only when get focus. */
-    ARKUI_MARQUEESTARTPOLICY_ONFOCUS = 1
-} ArkUI_MarqueeStartPolicy;
-
-/**
- * @brief Enumerates the MarqueeUpdatePolicy.
- *
- * @since 23
- */
-typedef enum {
-    /** Reset scroll position and restart scroll. */
-    ARKUI_MARQUEEUPDATEPOLICY_DEFAULT = 0,
-    /** Preserve scroll position, just change to new text. */
-    ARKUI_MARQUEEUPDATEPOLICY_PRESERVEPOSITION = 1
-} ArkUI_MarqueeUpdatePolicy;
-
-/**
- * @brief Defines the marquee options of text.
- *
- * @since 23
- */
-typedef struct ArkUI_TextMarqueeOptions ArkUI_TextMarqueeOptions;
-
-/**
- * @brief Create an option object for marquee animation of text.
- *
- * @return A pointer to the option object.
- * @since 23
- */
-ArkUI_TextMarqueeOptions* OH_ArkUI_TextMarqueeOptions_Create();
-
-/**
- * @brief Dispose the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be disposed.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_Dispose(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the start flag of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param start Flag of is need to start marquee. True means start marquee, false means stop marquee.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetStart(ArkUI_TextMarqueeOptions* option, bool start);
-
-/**
- * @brief Gets the start flag of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the start flag.
- * @since 23
- */
-bool OH_ArkUI_TextMarqueeOptions_GetStart(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the step size of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param step The step size of the marquee. The unit is vp.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetStep(ArkUI_TextMarqueeOptions* option, float step);
-
-/**
- * @brief Gets the step size of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the step size of the marquee. The unit is vp.
- * @since 23
- */
-float OH_ArkUI_TextMarqueeOptions_GetStep(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the spacing between two rounds of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param spacing The spacing between two rounds of marquee. The unit is vp.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetSpacing(ArkUI_TextMarqueeOptions* option, float spacing);
-
-/**
- * @brief Gets the spacing between two rounds of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the spacing between two rounds of marquee. The unit is vp.
- * @since 23
- */
-float OH_ArkUI_TextMarqueeOptions_GetSpacing(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the rounds of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param loop The rounds of the marquee.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetLoop(ArkUI_TextMarqueeOptions* option, int32_t loop);
-
-/**
- * @brief Gets the rounds of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the rounds of the marquee.
- * @since 23
- */
-int32_t OH_ArkUI_TextMarqueeOptions_GetLoop(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the fromStart flag of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param fromStart The running direction of the marquee, true means running from start.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetFromStart(ArkUI_TextMarqueeOptions* option, bool fromStart);
-
-/**
- * @brief Gets the fromStart flag of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the fromStart flag.
- * @since 23
- */
-bool OH_ArkUI_TextMarqueeOptions_GetFromStart(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the delay time between each round of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param delay The delay time between each round of the marquee.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetDelay(ArkUI_TextMarqueeOptions* option, int32_t delay);
-
-/**
- * @brief Gets the delay time between each round of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the delay time between each round of the marquee.
- * @since 23
- */
-int32_t OH_ArkUI_TextMarqueeOptions_GetDelay(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the fadeout flag of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param fadeout The flag of whether the text is faded out.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetFadeout(ArkUI_TextMarqueeOptions* option, bool fadeout);
-
-/**
- * @brief Gets the fadeout flag of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the fadeout flag.
- * @since 23
- */
-bool OH_ArkUI_TextMarqueeOptions_GetFadeout(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the start policy of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param startPolicy The start policy for marquee.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetStartPolicy(ArkUI_TextMarqueeOptions* option, ArkUI_MarqueeStartPolicy startPolicy);
-
-/**
- * @brief Gets the start policy of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the start policy for marquee.
- * @since 23
- */
-ArkUI_MarqueeStartPolicy OH_ArkUI_TextMarqueeOptions_GetStartPolicy(ArkUI_TextMarqueeOptions* option);
-
-/**
- * @brief Sets the update policy of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param updatePolicy The update policy for marquee.
- * @since 23
- */
-void OH_ArkUI_TextMarqueeOptions_SetUpdatePolicy(ArkUI_TextMarqueeOptions* option,
-    ArkUI_MarqueeUpdatePolicy updatePolicy);
-
-/**
- * @brief Gets the update policy of the option object for marquee animation of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the update policy for marquee.
- * @since 23
- */
-ArkUI_MarqueeUpdatePolicy OH_ArkUI_TextMarqueeOptions_GetUpdatePolicy(ArkUI_TextMarqueeOptions* option);
-
-/**
  * @brief Create a configuration object for selected drag preview style.
  * @return A pointer to the configuration object.
  * @since 23
@@ -7220,38 +2878,22 @@ ArkUI_SelectedDragPreviewStyle* OH_ArkUI_SelectedDragPreviewStyle_Create();
 void OH_ArkUI_SelectedDragPreviewStyle_Dispose(ArkUI_SelectedDragPreviewStyle* config);
 
 /**
- * @brief Sets the color of background for selected drag preview style.
- * @param config Pointer to the configuration object to be modified.
- * @param color Background color.
+ * @brief 设置选中态拖拽文本预览样式的背景色。
+ * @param config 指向{@link ArkUI_SelectedDragPreviewStyle}对象的指针。
+ * @param color 选中态拖拽文本预览样式的背景，格式为RGBA。
  * @since 23
  */
 void OH_ArkUI_SelectedDragPreviewStyle_SetColor(
     ArkUI_SelectedDragPreviewStyle* config, uint32_t color);
 
 /**
- * @brief Gets the color of background for selected drag preview style.
- * @param config Pointer to the configuration object.
- * @return Returns the background color.
+ * @brief 获取选中态拖拽文本预览样式的背景色。
+ * @param config 指向{@link ArkUI_SelectedDragPreviewStyle}对象的指针。
+ * @return 选中态拖拽文本预览样式的背景，格式为RGBA。
  * @since 23
  */
 uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(
     ArkUI_SelectedDragPreviewStyle* config);
-
-/**
- * @brief 创建一个装饰线样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_DecorationStyleOptions_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
- * @since 24
- */
-OH_ArkUI_DecorationStyleOptions* OH_ArkUI_DecorationStyleOptions_Create();
-
-/**
- * @brief 销毁装饰线样式对象。
- *
- * @param options 指向待销毁的选项对象的指针。
- * @since 24
- */
-void OH_ArkUI_DecorationStyleOptions_Destroy(OH_ArkUI_DecorationStyleOptions* options);
 
 /**
  * @brief 设置装饰线样式的装饰类型。
@@ -7354,22 +2996,6 @@ ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetThicknessScale(
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetThicknessScale(OH_ArkUI_DecorationStyleOptions* options,
     float* thicknessScale);
-
-/**
- * @brief 创建一个文本实体识别配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextDataDetectorConfig* OH_ArkUI_TextDataDetectorConfig_Create();
-
-/**
- * @brief 销毁文本实体识别配置对象。
- *
- * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextDataDetectorConfig_Destroy(OH_ArkUI_TextDataDetectorConfig* config);
 
 /**
  * @brief 设置文本实体识别配置的类型。
@@ -7493,27 +3119,6 @@ ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetEnablePreviewMenu(
     OH_ArkUI_TextDataDetectorConfig* config, bool* enablePreviewMenu);
 
 /**
- * @brief Defines controller for text.
- * @since 26.0.0
- */
-typedef struct OH_ArkUI_TextController OH_ArkUI_TextController;
-
-/**
- * @brief Create a controller object for text.
- * @return A pointer to the text controller object.
- * @since 26.0.0
- */
-OH_ArkUI_TextController* OH_ArkUI_TextController_Create();
-
-/**
- * @brief Destroys the text controller.
- *
- * @param controller <b>Text</b> controller.
- * @since 26.0.0
- */
-void OH_ArkUI_TextController_Destroy(OH_ArkUI_TextController* controller);
-
-/**
  * @brief Set the StyledString of the text.
  *
  * @param controller the controller of the text.
@@ -7525,22 +3130,6 @@ void OH_ArkUI_TextController_Destroy(OH_ArkUI_TextController* controller);
  */
 ArkUI_ErrorCode OH_ArkUI_TextController_SetStyledString(
     OH_ArkUI_TextController* controller, ArkUI_StyledString_Descriptor* descriptor);
-
-/**
- * @brief 创建一个无输入时的提示文本的选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorPlaceholderOptions_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorPlaceholderOptions* OH_ArkUI_TextEditorPlaceholderOptions_Create();
-
-/**
- * @brief 销毁无输入时的提示文本的选项对象。
- *
- * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorPlaceholderOptions_Destroy(OH_ArkUI_TextEditorPlaceholderOptions* options);
 
 /**
  * @brief 设置无输入时的提示文本选项的提示文字。
@@ -7705,22 +3294,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontColor(OH_ArkUI_Text
     uint32_t* fontColor);
 
 /**
- * @brief 为文本编辑器创建一个属性字符串控制器对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorStyledStringController_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorStyledStringController* OH_ArkUI_TextEditorStyledStringController_Create();
-
-/**
- * @brief 销毁属性字符串控制器。
- *
- * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorStyledStringController_Destroy(OH_ArkUI_TextEditorStyledStringController* controller);
-
-/**
  * @brief 通过属性字符串控制器设置光标偏移量。
  *
  * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
@@ -7827,22 +3400,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretRect(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_DeleteBackward(
     OH_ArkUI_TextEditorStyledStringController* controller);
-
-/**
- * @brief 为文本编辑器创建一个段落样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorParagraphStyle_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorParagraphStyle* OH_ArkUI_TextEditorParagraphStyle_Create();
-
-/**
- * @brief 销毁段落样式对象。
- *
- * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorParagraphStyle_Destroy(OH_ArkUI_TextEditorParagraphStyle* style);
 
 /**
  * @brief 设置段落样式中的文本对齐方式。
@@ -8252,22 +3809,6 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
 
 /**
- * @brief 创建一个文本样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorTextStyle_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorTextStyle* OH_ArkUI_TextEditorTextStyle_Create();
-
-/**
- * @brief 销毁文本样式对象。
- *
- * @param style 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
-
-/**
  * @brief 设置文本样式的字体颜色。
  *
  * @param style TextEditor组件文本样式。
@@ -8636,22 +4177,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetTypingStyle(
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorTextStyle* style);
 
 /**
- * @brief 创建一个文本编辑器文本选择菜单选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorSelectionMenuOptions_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions_Create();
-
-/**
- * @brief 销毁文本编辑器文本选择菜单选项对象。
- *
- * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectionMenuOptions* options);
-
-/**
  * @brief 设置文本编辑器中文本选择菜单的span的类型。
  *
  * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
@@ -8920,34 +4445,33 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(
     const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Create the ArkUI_PickerIndicatorStyle instance.
+ * @brief 通过属性字符串控制器使指定起始索引至结束索引范围内的内容滚动至可视区域。
  *
- * @param type The picker selection indicator enumeration type.
- * @return  ArkUI_PickerIndicatorStyle instance. If the instance returns a null pointer,
- *         it indicates creation failure, and the reason for the failure may be that the address space is full or
- *         the type not supported.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param start 起始内容索引值。
+ *        起始索引应小于等于结束索引，否则接口调用无效。取值范围[0, TextEditor组件内容总长度]，
+ *        起始索引小于0视为0，大于总长度视为总长度。
+ * @param end 结束内容索引值。
+ *        结束索引应大于等于起始索引，否则接口调用无效。取值范围[0, TextEditor组件内容总长度]，
+ *        结束索引小于0视为0，大于总长度视为总长度。
+ * @return 返回结果码。
+ *         若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *         若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_ScrollToVisible(
+    const OH_ArkUI_TextEditorStyledStringController* controller, int32_t start, int32_t end);
+
+/**
+ * @brief Set the parameters of background style.
+ *
+ * @param style The ArkUI_PickerIndicatorStyle instance.
+ * @param background The parameters of background style.
+ * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} The parameters set need to be consistent with
+ *         the type of the created instance. If they are not consistent, this error code will be returned.
+ *         This interface only takes effect when the type is "background".
  * @since 23
-*/
-ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerIndicatorType type);
-
-/**
-* @brief Destroy the ArkUI_PickerIndicatorStyle instance.
-*
-* @param style The ArkUI_PickerIndicatorStyle instance to be destroyed.
-* @since 23
-*/
-void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
-
-/**
-* @brief Set the parameters of background style.
-*
-* @param style The ArkUI_PickerIndicatorStyle instance.
-* @param background The parameters of background style.
-* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} The parameters set need to be consistent with
-*         the type of the created instance. If they are not consistent, this error code will be returned.
-*         This interface only takes effect when the type is "background".
-* @since 23
 */
 ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureBackground(ArkUI_PickerIndicatorStyle* style,
     ArkUI_PickerIndicatorBackground* background);
@@ -8976,7 +4500,7 @@ typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
 /**
  * @brief Create an object of ArkUI_Matrix4ScaleOptions.
  *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
- *        are 1, and the default values for centerX, centerY are 0. 
+ *        are 1, and the default values for centerX, centerY are 0.
  *
  * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
  * @since 24
@@ -8992,12 +4516,12 @@ ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
 void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
 
 /**
- * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions. 
+ * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
  *
  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
  * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. 
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
@@ -9533,7 +5057,7 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, con
 /**
  * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
  *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
- * 
+ *
  * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
  *               It must not be null.
  * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
@@ -9558,119 +5082,6 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
-
-/**
- * @brief Defines the font weight configuration of text.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_FontWeightConfigs OH_ArkUI_FontWeightConfigs;
-
-/**
- * @brief Defines the font configuration of text.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_FontConfigs OH_ArkUI_FontConfigs;
-
-/**
- * @brief Create an option object for font weight configuration of text.
- *
- * @return A pointer to the option object.
- * @since 24
- */
-OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontWeightConfigs_Create();
-
-/**
- * @brief Destroy an option object for font weight configuration of text.
- *
- * @param option Pointer to the option object to be destroyed.
- * @since 24
- */
-void OH_ArkUI_FontWeightConfigs_Destroy(OH_ArkUI_FontWeightConfigs* option);
-
-/**
- * @brief Sets the enableVariableFontWeight flag of an option object for font weight configuration of text.
- * The flag defines whether VariableFontWeight is supported. The default value is false.
- * True means enable VariableFontWeight, false means disable VariableFontWeight.
- *
- * @param option Pointer to the option object to be modified.
- * @param enable enableVariableFontWeight Flag.
- * @since 24
- */
-void OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(OH_ArkUI_FontWeightConfigs* option, bool enable);
-
-/**
- * @brief Gets the enableVariableFontWeight flag of an option object for font weight configuration of text.
- * The flag defines whether VariableFontWeight is supported. The default value is false.
- * True means enable VariableFontWeight, false means disable VariableFontWeight.
- *
- * @param option Pointer to the option object.
- * @return Returns the enableVariableFontWeight flag.
- * @since 24
- */
-bool OH_ArkUI_FontWeightConfigs_GetEnableVariableFontWeight(OH_ArkUI_FontWeightConfigs* option);
-
-/**
- * @brief Sets the enableDeviceFontWeightCategory flag of an option object for font weight configuration of text.
- * Defines whether font weight will be automatically updated when the device's font weight category changes.
- * The default value is true.
- * True means font weight will be automatically updated when the device's font weight category changes.
- * False means font weight will not be automatically updated when the device's font weight category changes.
- *
- * @param option Pointer to the option object to be modified.
- * @param enable enableDeviceFontWeightCategory Flag.
- * @since 24
- */
-void OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(OH_ArkUI_FontWeightConfigs* option, bool enable);
- 
-/**
- * @brief Gets the enableDeviceFontWeightCategory flag of an option object for font weight configuration of text.
- * Defines whether font weight will be automatically updated when the device's font weight category changes.
- * The default value is true.
- * True means font weight will be automatically updated when the device's font weight category changes.
- * False means font weight will not be automatically updated when the device's font weight category changes.
- *
- * @param option Pointer to the option object.
- * @return Returns the enableDeviceFontWeightCategory flag.
- * @since 24
- */
-bool OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory(OH_ArkUI_FontWeightConfigs* option);
-
-/**
- * @brief Create an option object for font configuration of text.
- *
- * @return A pointer to the option object.
- * @since 24
- */
-OH_ArkUI_FontConfigs* OH_ArkUI_FontConfigs_Create();
-
-/**
- * @brief Destroy an option object for font configuration of text.
- *
- * @param option Pointer to the option object to be destroyed.
- * @since 24
- */
-void OH_ArkUI_FontConfigs_Destroy(OH_ArkUI_FontConfigs* option);
-
-/**
- * @brief Sets the font weight configs of an option object for font configuration of text.
- *
- * @param option Pointer to the option object to be modified.
- * @param fontWeightConfigs font weight configs.
- * @since 24
- */
-void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,
-    OH_ArkUI_FontWeightConfigs* fontWeightConfigs);
- 
-/**
- * @brief Gets the font weight configs of an option object for font configuration of text.
- *
- * @param option Pointer to the option object.
- * @return Returns the font weight configs.
- * @since 24
- */
-OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_FontConfigs* option);
 
 /**
  * @brief Enumerates the tree operating status for the cross-language option.
@@ -9718,14 +5129,14 @@ void OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus(ArkUI_CrossLanguageOpti
 OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Defines linear gradient options.
+ * @brief 定义线性渐变效果选项，用于描述UI组件的线性颜色渐变配置，支持设置渐变方向、角度和颜色配置，帮助开发者实现灵活的线性渐变效果，提升UI视觉呈现能力，适用于需要为组件应用线性渐变样式的场景。
  *
  * @since 26.0.0
  */
 typedef struct OH_ArkUI_LinearGradientOptions OH_ArkUI_LinearGradientOptions;
 
 /**
- * @brief Defines radial gradient options.
+ * @brief 定义径向渐变选项，适用于UI组件中实现径向渐变效果的场景，可帮助开发者丰富界面的视觉层次。
  *
  * @since 26.0.0
  */

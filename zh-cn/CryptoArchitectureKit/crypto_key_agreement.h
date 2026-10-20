@@ -24,6 +24,7 @@
  * @file crypto_key_agreement.h
  * @brief 定义密钥协商接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_key_agreement.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 20

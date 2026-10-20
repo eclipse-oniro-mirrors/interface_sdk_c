@@ -29,7 +29,7 @@
 /**
  * @file udmf_err_code.h
  *
- * @brief Declaration error code information.
+ * @brief Declares the error codes used in the UDMF.
  *
  * @kit ArkData
  * @library libudmf.so
@@ -47,61 +47,83 @@ extern "C" {
 #endif
 
 /**
- * @brief Indicates the error code information.
+ * @brief Enumerates the error codes.
  *
  * @since 12
  */
 typedef enum Udmf_ErrCode {
     /**
-     * The error code in the correct case.
+     * @brief Operation successful.
+     *
+     * @since 12
      */
     UDMF_E_OK = 0,
     /**
-     * @brief The error code for common exceptions.
+     * @brief Universal error codes.
+     *
+     * @since 12
      */
     UDMF_ERR = 20400000,
     /**
-     * @brief The error code for common invalid args.
+     * @brief Invalid parameter.
+     *
+     * @since 12
      */
     UDMF_E_INVALID_PARAM = (UDMF_ERR + 1),
 } Udmf_ErrCode;
 
 /**
- * @brief Indicates the error code information.
+ * @brief Enumerates the status codes returned when data is obtained asynchronously.
  *
  * @since 15
  */
 typedef enum Udmf_ListenerStatus {
     /**
-     * brief Indicates the finished status.
+     * @brief Data is obtained successfully.
+     *
+     * @since 15
      */
     UDMF_FINISHED = 0,
     /**
-     * @brief Indicates that processing is still in progress.
+     * @brief This task is being processed.
+     *
+     * @since 15
      */
     UDMF_PROCESSING,
     /**
-     * @brief Indicates that the process has been canceled.
+     * @brief This task is canceled.
+     *
+     * @since 15
      */
     UDMF_CANCELED,
     /**
-     * @brief Indicates that an internal error has occurred.
+     * @brief An internal error occurs.
+     *
+     * @since 15
      */
     UDMF_INNER_ERROR = 200,
     /**
-     * @brief Indicates that the GetDataParams contains invalid parameters.
+     * @brief Invalid parameters are contained.
+     *
+     * @since 15
      */
     UDMF_INVALID_PARAMETERS,
     /**
-     * @brief Indicates that no data is obtained.
+     * @brief No data is obtained.
+     *
+     * @since 15
      */
     UDMF_DATA_NOT_FOUND,
     /**
-     * @brief Indicates that an error occurred in the synchronization process.
+     * @brief An error occurs during data synchronization.
+     *
+     * @since 15
      */
     UDMF_SYNC_FAILED,
     /**
-     * @brief Indicates that an error occurred during file copying.
+     * @brief Failed to copy the file.
+     *
+     * @since 15
      */
     UDMF_COPY_FILE_FAILED,
 } Udmf_ListenerStatus;

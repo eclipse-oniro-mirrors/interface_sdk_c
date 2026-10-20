@@ -24,6 +24,7 @@
  * @file crypto_signature.h
  * @brief 定义签名验签接口。
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_signature.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

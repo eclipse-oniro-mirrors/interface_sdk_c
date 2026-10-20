@@ -101,7 +101,7 @@ typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate;
 typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 
 /**
- * @brief Defines a struct used to receive the position and affinity of a glyph.
+ * @brief Receives the text position and cursor affinity.
  *
  * @since 11
  * @version 1.0
@@ -109,7 +109,7 @@ typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 
 /**
- * @brief Defines a struct used to receive the start position and end position of a glyph.
+ * @brief Used to receive the start and end positions of text.
  *
  * @since 11
  * @version 1.0
@@ -117,7 +117,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 typedef struct OH_Drawing_Range OH_Drawing_Range;
 
 /**
- * @brief Defines a struct used to parse system font files.
+ * @brief Parses system font files.
  *
  * @since 12
  * @version 1.0
@@ -157,7 +157,7 @@ typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 typedef struct OH_Drawing_Run OH_Drawing_Run;
 
 /**
- * @brief Defines a struct used to describe detailed information about a font, that is, the font descriptor.
+ * @brief Describes the detailed information about a font.
  *
  * @since 22
  */

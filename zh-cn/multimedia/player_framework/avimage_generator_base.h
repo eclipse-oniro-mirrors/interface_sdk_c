@@ -16,7 +16,7 @@
  * @addtogroup AVImageGenerator
  * @{
  *
- * @brief Provides APIs for generating an image at the specific time from a video resource.
+ * @brief 提供用于从视频资源中获取指定时间点视频帧的API。
  *
  * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
@@ -27,7 +27,9 @@
  * @brief 定义AVImageGenerator的枚举。
  * 
  * @kit MediaKit
+ * @include <multimedia/player_framework/avimage_generator_base.h>
  * @library libavimage_generator.so
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 
@@ -41,8 +43,8 @@ extern "C" {
 #endif
 
 /**
- * @brief 指定时间点与视频帧对应关系的枚举类型。
- * 
+ * @brief 指定查询视频帧时，时间点与帧对应关系选项的枚举类型。
+ * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
 typedef enum OH_AVImageGenerator_QueryOptions {

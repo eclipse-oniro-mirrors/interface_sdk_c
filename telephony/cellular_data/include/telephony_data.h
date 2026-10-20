@@ -17,7 +17,7 @@
  * @addtogroup Telephony
  * @{
  *
- * @brief Provides C interface for the telephony cellular data.
+ * @brief Defines C APIs for cellular data module.
  *
  * @since 13
  */
@@ -25,7 +25,7 @@
 /**
  * @file telephony_data.h
  *
- * @brief Provides C interface for the telephony cellular data.
+ * @brief Defines C APIs for cellular data module.
  *
  * @kit TelephonyKit
  * @syscap SystemCapability.Telephony.CellularData
@@ -43,9 +43,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Obtains the default cellular data slot id.
+ * @brief Obtains the default SIM card used for mobile data.
  *
- * @return the default cellular data slot id (0 for slot 1, 1 for slot 2).
+ * @return Default SIM card used for mobile data. The value **0** indicates card slot 1, and the value **1** indicates
+ *     card slot 2.
  * @syscap SystemCapability.Telephony.CellularData
  * @since 13
  */
@@ -55,5 +56,5 @@ int32_t OH_Telephony_GetDefaultCellularDataSlotId(void);
 }
 #endif
 
-#endif // NATIVE_TELEPHONY_DATA_API_H
 /** @} */
+#endif // NATIVE_TELEPHONY_DATA_API_H

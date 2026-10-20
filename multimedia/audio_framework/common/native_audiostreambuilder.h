@@ -590,16 +590,18 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
  * After setting playback capture mode, the {@link #OH_AudioStream_SourceType} will be ignored, so
  * caller do not need to use {@link #OH_AudioStreamBuilder_SetCapturerInfo} if you only want to capture
  * playback streams.
- * Note that playback capture is only available for specific system applications currently, others do
- * not have authorization.
+ *
+ * Note that playback capture is only available for specific system applications at first, others do
+ * not have authorization. But since API version 26.0.0, this function supports the use of any application.
  *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create().
  * @param mode The playback capture mode to set. This can be a combination of the available
- *     {@link #OH_AudioStream_PlaybackCaptureMode}.
- * @return Function result code:
- *     {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
- *     {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1.The param of builder is nullptr;
- *                                             2.The param of mode is invalid.
+ * {@link #OH_AudioStream_PlaybackCaptureMode}.
+ * @return <ul>
+ *     <li>{@link #AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *     <li>{@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1.The param of builder is nullptr;
+ *                        2.The param of mode is invalid.</li>
+ *     </ul>
  * @since 23
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStreamBuilder* builder,

@@ -17,7 +17,7 @@
  * @addtogroup NativeWindow
  * @{
  *
- * @brief 定义错误码。
+ * @brief 提供NativeWindow功能，作为数据生产者，可用来和egl对接。
  *
  * @since 12
  * @version 1.0
@@ -26,7 +26,7 @@
 /**
  * @file graphic_error_code.h
  *
- * @brief 定义错误码。
+ * @brief 定义错误码，用于标识接口调用过程中可能出现的各类错误情况，包括内存操作错误、参数无效、权限不足、缓冲区状态异常、设备不支持等，帮助开发者快速定位和排查接口调用失败的原因。
  *
  * @kit ArkGraphics2D
  * @library libnative_window.so

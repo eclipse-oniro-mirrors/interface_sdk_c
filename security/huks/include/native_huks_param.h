@@ -35,6 +35,7 @@
  * @library libhuks_ndk.z.so
  * @syscap SystemCapability.Security.Huks.Core
  *
+ * @include <huks/native_huks_param.h>
  * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0
@@ -55,25 +56,27 @@ extern "C" {
  * {@link OH_Huks_FreeParamSet}. To add parameters to a parameter set, you need to use {@link OH_Huks_AddParams} to add
  * parameters and use {@link OH_Huks_BuildParamSet} to construct the parameter set.
  *
- * @param paramSet {@link struct OH_Huks_ParamSet} Double pointer to the parameter set to initialize.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: Initialization successful.
- *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014: Insufficient memory.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **paramSet** is invalid.
+ * @param paramSet Pointer to the parameter set to initialize.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Initialization successful.
+ *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **paramSet** is invalid.
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet);
 
 /**
- * @brief Adds parameters to a parameter set.
+ * @brief Adds parameters to a parameter set. After the parameters are added, use {@link OH_Huks_BuildParamSet} to
+ * construct a parameter set.
  *
- * @param paramSet Pointer to the parameter set to which parameters are to be added.
+ * @param paramSet Pointer to the parameter set to which parameters are to be added. This parameter needs to be
+ *     initialized by using {@link OH_Huks_InitParamSet}.
  * @param params Pointer to an array of parameters to add.
  * @param paramCnt Number of parameters to add.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>{@link OH_HUKS_SUCCESS} = 0: Operation successful.
- *     <br>{@link OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} = 401: **params** is a null pointer or **paramSet** is invalid.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Operation successful.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **params** is a null pointer or **paramSet** is invalid.
  * @since 9
  * @version 1.0
  */
@@ -81,21 +84,22 @@ struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
     const struct OH_Huks_Param *params, uint32_t paramCnt);
 
 /**
- * @brief Builds a parameter set. After the parameter set is initialized and parameters are added, the parameter set is
- * serialized and the data of the BLOB type is copied to the adjacent memory area at the end of the **paramSet** struct.
+ * @brief Constructs a parameter set. After {@link OH_Huks_InitParamSet} is called to initialize the parameter set and
+ * {@link OH_Huks_AddParams} is called to add parameters, serialize the parameter set and copy the data of the BLOB
+ * type to the adjacent memory area at the end of the **paramSet** structure.
  *
  * @param paramSet Double pointer to the parameter set to build.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: Operation successful.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **paramSet** is invalid.
- *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014: Insufficient memory.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Operation successful.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **paramSet** is invalid.
+ *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet);
 
 /**
- * @brief Frees a parameter set.
+ * @brief Frees a parameter set. This function frees the memory allocated by {@link OH_Huks_InitParamSet}.
  *
  * @param paramSet Pointer to the parameter set to free.
  * @since 9
@@ -109,10 +113,11 @@ void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet);
  * @param fromParamSet Pointer to the parameter set to copy.
  * @param fromParamSetSize Size of the memory occupied by the copied parameter set.
  * @param paramSet Double pointer to the new parameter set generated.
- * @return {@link OH_Huks_ErrCode} :
- *     <br>OH_HUKS_SUCCESS = 0: Operation successful.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **fromParamSet**, **fromParamSetSize**, or **paramSet** is invalid.
- *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014: Insufficient memory.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Operation successful.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **fromParamSet**, **fromParamSetSize**, or **paramSet**
+ *     is invalid.
+ *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
  * @since 9
  * @version 1.0
  */
@@ -122,13 +127,13 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
 /**
  * @brief Obtains a parameter from a parameter set.
  *
- * @param paramSet Indicates the pointer to the target parameter set.
- * @param tag Name of the parameter to obtain.
+ * @param paramSet Pointer to the parameter set to check.
+ * @param tag Tag value of the parameter to be obtained.
  * @param param Double pointer to the obtained parameter.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: Operation successful.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **paramSet** or **param** is invalid, or **param** is not in **
- *     paramSet**.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Operation successful.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **paramSet** or **param** is invalid, or **param** is not in *
+ *     *paramSet**.
  * @since 9
  * @version 1.0
  */
@@ -141,23 +146,23 @@ struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, 
  * @param paramSet Pointer to the parameter set to check.
  * @param isCopy If the value is **true**, the address of the {@link OH_Huks_Blob} data is refreshed and copied to the
  *     parameter set. If the value is **false**, only the address of the {@link OH_Huks_Blob} data is refreshed.
- * @return (capi-hukstypeapi-oh-huks-result.md) {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: Operation successful.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **paramSet** is invalid.
- *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014: Insufficient memory.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Operation successful.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **paramSet** is invalid.
+ *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, bool isCopy);
 
 /**
- * @brief Checks whether the parameters in a parameter set are valid.
+ * @brief Checks whether the tags in a parameter set are valid.
  *
  * @param paramSet Pointer to the parameter set to check.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: All parameters in **paramSet** are valid.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **paramSet** is invalid, or the parameter set contains invalid,
- *     duplicate, or incorrect tags.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: All tags in **paramSet** are valid.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: **paramSet** is invalid, or the parameter set contains
+ *     invalid, duplicate, or incorrect tags.
  * @since 9
  * @version 1.0
  */
@@ -168,9 +173,9 @@ struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *
  *
  * @param paramSet Pointer to the parameter set to check.
  * @param size Memory size occupied by the parameter set.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: The size of the parameter set is valid.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: **paramSet** is invalid.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: The size of the parameter set is valid.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: The **paramSet** or **size** parameter is invalid.
  * @since 9
  * @version 1.0
  */
@@ -181,19 +186,19 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *par
  *
  * @param baseParam Pointer to the first parameter to compare.
  * @param param Pointer to the second parameter to compare.
- * @return {@link OH_Huks_ErrCode}:
- *     <br>OH_HUKS_SUCCESS = 0: The two parameters to be compared are the same.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401: One of the parameter sets is invalid, the parameters do not match,
- *     <br>or there is an invalid tag internally.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: The two parameters to be compared are the same.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 401: One of the parameters is invalid or the parameters do not
+ *     match.
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param);
 
 /**
- * @brief Destroys the parameter set of a key alias.
+ * @brief Frees a key alias set.
  *
- * @param keyAliasSet Pointer to the parameter set of the key alias to destroy.
+ * @param keyAliasSet Pointer to the key alias set to be destroyed.
  * @since 20
  * @version 1.0
  */

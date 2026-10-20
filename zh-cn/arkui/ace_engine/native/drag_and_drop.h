@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,7 +25,7 @@
 /**
  * @file drag_and_drop.h
  *
- * @brief Declares the APIs of **NativeDrag**.
+ * @brief 提供NativeDrag相关接口定义。
  *
  * @library libace_ndk.z.so
  * @kit ArkUI
@@ -39,6 +39,7 @@
 
 #include <stdint.h>
 
+#include "common_type.h"
 #include "native_type.h"
 
 #include "database/udmf/udmf.h"
@@ -95,7 +96,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Unknown.
+     * Unknown。
      */
     ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1,
 
@@ -175,28 +176,7 @@ typedef enum {
 } ArkUI_DragStatus;
 
 /**
- * @brief 定义组件事件的通用结构类型。
- *
- * @since 12
- */
-typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
-
-/**
- * @brief native UI的上下文实例对象。
- *
- * @since 12
- */
-typedef struct ArkUI_Context ArkUI_Context;
-
-/**
- * @brief 定义ArkUI native UI的上下文实例对象指针定义。
- *
- * @since 12
- */
-typedef struct ArkUI_Context* ArkUI_ContextHandle;
-
-/**
- * @brief 拖拽事件。
+ * @brief 拖拽事件，用于表示ArkUI组件拖拽过程中的事件信息。开发者可通过以下头文件中的拖拽事件接口获取拖拽状态和事件数据；拖拽事件绑定流程请参见{@link 绑定拖拽事件}。
  *
  * @since 12
  */
@@ -342,6 +322,21 @@ int32_t OH_ArkUI_DragEvent_GetDataTypeCount(ArkUI_DragEvent* event, int32_t* cou
  */
 int32_t OH_ArkUI_DragEvent_GetDataTypes(
     ArkUI_DragEvent *event, char *eventTypeArray[], int32_t length, int32_t maxStrLen);
+
+/**
+ * @brief 从ArkUI_DragEvent中获取统一数据摘要。
+ *
+ * @param event [in] ArkUI_DragEvent事件指针，不能为空。
+ * @param summary [out] 出参，用于接收统一数据摘要的OH_UDMF_Summary对象指针，不能为空，
+ *     调用本接口前需由调用方创建该对象，使用完毕后由调用方销毁；操作失败时，对象内容不保证有效。
+ * @return 错误码。<ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 内部错误。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+int32_t OH_ArkUI_DragEvent_GetSummary(ArkUI_DragEvent *event, OH_UDMF_Summary *summary);
 
 /**
  * @brief 从ArkUI_DragEvent中获取拖拽结果。
@@ -637,7 +632,7 @@ int32_t OH_ArkUI_SetNodeDraggable(ArkUI_NodeHandle node, bool enabled);
 int32_t OH_ArkUI_SetNodeDragPreview(ArkUI_NodeHandle node, OH_PixelmapNative* preview);
 
 /**
- * @brief Creates an ArkUI_DragPreviewOption对象。
+ * @brief 构建一个ArkUI_DragPreviewOption对象。
  *
  * @return ArkUI_DragPreviewOption对象。
  * @since 12
@@ -1013,5 +1008,4 @@ ArkUI_ErrorCode OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext
 #endif
 
 #endif // ARKUI_NATIVE_DRAG_AND_DROP_H
-
 /** @} */

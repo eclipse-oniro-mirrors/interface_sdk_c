@@ -19,7 +19,6 @@
  *
  * @brief The AudioDecoder module provides functions for audio decoding.
  *
- * @syscap SystemCapability.Multimedia.Media.AudioDecoder
  * @deprecated since 11
  * @since 9
  */
@@ -30,6 +29,7 @@
  * @brief The file declares the native APIs used for audio decoding.
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_avcodec_audiodecoder.h>
  * @library libnative_media_adec.so
  * @syscap SystemCapability.Multimedia.Media.AudioDecoder
  * @deprecated since 11

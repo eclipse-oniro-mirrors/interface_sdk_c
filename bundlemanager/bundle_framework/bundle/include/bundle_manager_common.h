@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,10 +17,9 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describes the Native Bundle.
+ * @brief The file declares the error codes defined by BundleManager.
  *
  * @since 21
- * @version 1.0
  */
 
 /**
@@ -42,25 +41,28 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
+ * @brief Enumerates the error codes. For details, see {@link Universal Error Codes}.
  *
  * @since 21
  */
 typedef enum {
     /**
-     * Operation success.
+     * @brief Operation success.
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_NO_ERROR = 0,
 
     /**
-     * No access permission.
+     * @brief No access permission.
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED = 201,
 
     /**
-     * Invalid parameter.
+     * @brief Invalid parameter.
+     *
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401

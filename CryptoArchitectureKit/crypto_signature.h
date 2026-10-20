@@ -24,6 +24,7 @@
  * @file crypto_signature.h
  * @brief Defines the signing and verification interfaces.
  * @syscap SystemCapability.Security.CryptoFramework
+ * @include <CryptoArchitectureKit/crypto_signature.h>
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
  * @since 12

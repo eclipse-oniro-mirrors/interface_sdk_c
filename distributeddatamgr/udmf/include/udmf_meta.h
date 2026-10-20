@@ -29,7 +29,7 @@
 /**
  * @file udmf_meta.h
  *
- * @brief Declaration the uniform data type information.
+ * @brief Declares the uniform data type information.
  *
  * @kit ArkData
  * @library libudmf.so
@@ -46,959 +46,1096 @@ extern "C" {
 #endif
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic type that represents all physical storage types. It is used to define physical properties of a type.
+ * This type is uncategorized.
  *
  * @since 12
  */
 #define UDMF_META_ENTITY "general.entity"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic type that represents all logical content types. It is used to define physical properties of a type.
+ * This type is uncategorized.
  *
  * @since 12
  */
 #define UDMF_META_OBJECT "general.object"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic composite content type. For example, a PDF file that contains text and image.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_COMPOSITE_OBJECT "general.composite-object"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic text type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_TEXT "general.text"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Text without specific encoding or identifier.
+ * This type belongs to TEXT.
  *
  * @since 12
  */
 #define UDMF_META_PLAIN_TEXT "general.plain-text"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief HTML.
+ * This type belongs to TEXT.
  *
  * @since 12
  */
 #define UDMF_META_HTML "general.html"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Hyperlink.
+ * This type belongs to TEXT.
  *
  * @since 12
  */
 #define UDMF_META_HYPERLINK "general.hyperlink"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief XML.
+ * This type belongs to TEXT.
  *
  * @since 12
  */
 #define UDMF_META_XML "general.xml"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic source code type.
+ * This type belongs to PLAIN_TEXT.
  *
  * @since 12
  */
 #define UDMF_META_SOURCE_CODE "general.source-code"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Source code in any scripting language.
+ * This type belongs to SOURCE_CODE.
  *
  * @since 12
  */
 #define UDMF_META_SCRIPT "general.script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Shell script.
+ * This type belongs to SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_SHELL_SCRIPT "general.shell-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief C shell script.
+ * This type belongs to SHELL_SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_CSH_SCRIPT "general.csh-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Perl script.
+ * This type belongs to SHELL_SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_PERL_SCRIPT "general.perl-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PHP script.
+ * This type belongs to SHELL_SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_PHP_SCRIPT "general.php-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Python script.
+ * This type belongs to SHELL_SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_PYTHON_SCRIPT "general.python-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Ruby script.
+ * This type belongs to SHELL_SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_RUBY_SCRIPT "general.ruby-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief TypeScript source code.
+ * This type belongs to SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_TYPE_SCRIPT "general.type-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief JavaScript source code.
+ * This type belongs to SCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_JAVA_SCRIPT "general.java-script"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Header file in C.
+ * This type belongs to SOURCE_CODE.
  *
  * @since 12
  */
 #define UDMF_META_C_HEADER "general.c-header"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Source code in C.
+ * This type belongs to SOURCE_CODE.
  *
  * @since 12
  */
 #define UDMF_META_C_SOURCE "general.c-source"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Header file in C++.
+ * This type belongs to SOURCE_CODE.
  *
  * @since 12
  */
 #define UDMF_META_C_PLUS_PLUS_HEADER "general.c-plus-plus-header"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Source code in C++.
+ * This type belongs to SOURCE_CODE.
  *
  * @since 12
  */
 #define UDMF_META_C_PLUS_PLUS_SOURCE "general.c-plus-plus-source"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Source code in Java.
+ * This type belongs to SOURCE_CODE.
  *
  * @since 12
  */
 #define UDMF_META_JAVA_SOURCE "general.java-source"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic eBook file format type.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_EBOOK "general.ebook"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Electronic publication (EPUB).
+ * This type belongs to EBOOK.
  *
  * @since 12
  */
 #define UDMF_META_EPUB "general.epub"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AZW.
+ * This type belongs to EBOOK.
  *
  * @since 12
  */
 #define UDMF_META_AZW "com.amazon.azw"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AZW3.
+ * This type belongs to EBOOK.
  *
  * @since 12
  */
 #define UDMF_META_AZW3 "com.amazon.azw3"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief KFX.
+ * This type belongs to EBOOK.
  *
  * @since 12
  */
 #define UDMF_META_KFX "com.amazon.kfx"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief MOBI.
+ * This type belongs to EBOOK.
  *
  * @since 12
  */
 #define UDMF_META_MOBI "com.amazon.mobi"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic media type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_MEDIA "general.media"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Image.
+ * This type belongs to MEDIA.
  *
  * @since 12
  */
 #define UDMF_META_IMAGE "general.image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief JPEG.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_JPEG "general.jpeg"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PNG.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_PNG "general.png"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Raw image.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_RAW_IMAGE "general.raw-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief TIFF.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_TIFF "general.tiff"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief BMP.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_BMP "com.microsoft.bmp"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows icon.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_ICO "com.microsoft.ico"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Adobe Photoshop image.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_PHOTOSHOP_IMAGE "com.adobe.photoshop-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Adobe Illustrator image (.ai).
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_AI_IMAGE "com.adobe.illustrator.ai-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Microsoft Word.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_WORD_DOC "com.microsoft.word.doc"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Microsoft Excel.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_EXCEL "com.microsoft.excel.xls"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Microsoft PowerPoint presentation format.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_PPT "com.microsoft.powerpoint.ppt"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PDF.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_PDF "com.adobe.pdf"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PostScript.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT "com.adobe.postscript"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Encapsulated PostScript.
+ * This type belongs to POSTSCRIPT.
  *
  * @since 12
  */
 #define UDMF_META_ENCAPSULATED_POSTSCRIPT "com.adobe.encapsulated-postscript"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Base video type.
+ * This type belongs to MEDIA.
  *
  * @since 12
  */
 #define UDMF_META_VIDEO "general.video"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AVI.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_AVI "general.avi"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief MPEG-1 or MPEG-2.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_MPEG "general.mpeg"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief MPEG-4.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_MPEG4 "general.mpeg-4"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief 3GP (3GPP file format).
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_VIDEO_3GPP "general.3gpp"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief 3G2 (3GPP2 file format).
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_VIDEO_3GPP2 "general.3gpp2"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WM format.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WM "com.microsoft.windows-media-wm"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WMV format.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMV "com.microsoft.windows-media-wmv"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WMP format.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMP "com.microsoft.windows-media-wmp"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic audio type.
+ * This type belongs to MEDIA.
  *
  * @since 12
  */
 #define UDMF_META_AUDIO "general.audio"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AAC.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_AAC "general.aac"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AIFF.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_AIFF "general.aiff"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief ALAC.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_ALAC "general.alac"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief FLAC.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_FLAC "general.flac"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief MP3.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_MP3 "general.mp3"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OGG.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_OGG "general.ogg"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PCM.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_PCM "general.pcm"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WMA format.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMA "com.microsoft.windows-media-wma"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows Waveform.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_WAVEFORM_AUDIO "com.microsoft.waveform-audio"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WMX format.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WMX "com.microsoft.windows-media-wmx"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WVX format.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WVX "com.microsoft.windows-media-wvx"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Windows WAX format.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_WINDOWS_MEDIA_WAX "com.microsoft.windows-media-wax"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic file type.
+ * This type belongs to ENTITY.
  *
  * @since 12
  */
 #define UDMF_META_GENERAL_FILE "general.file"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic directory type.
+ * This type belongs to ENTITY.
  *
  * @since 12
  */
 #define UDMF_META_DIRECTORY "general.directory"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic folder type.
+ * This type belongs to DIRECTORY.
  *
  * @since 12
  */
 #define UDMF_META_FOLDER "general.folder"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic symbolic type.
+ * This type belongs to ENTITY.
  *
  * @since 12
  */
 #define UDMF_META_SYMLINK "general.symlink"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic archive file type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_ARCHIVE "general.archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief BZ2.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_BZ2_ARCHIVE "general.bz2-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic type of any file that can be mounted as a volume.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_DISK_IMAGE "general.disk-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief TAR.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_TAR_ARCHIVE "general.tar-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief ZIP.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_ZIP_ARCHIVE "general.zip-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief JAR (Java archive).
+ * This type belongs to ARCHIVE and EXECUTABLE.
  *
  * @since 12
  */
 #define UDMF_META_JAVA_ARCHIVE "com.sun.java-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief GUN archive.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_GNU_TAR_ARCHIVE "org.gnu.gnu-tar-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief GZIP archive.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_GNU_ZIP_ARCHIVE "org.gnu.gnu-zip-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief GZIP TAR.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_GNU_ZIP_TAR_ARCHIVE "org.gnu.gnu-zip-tar-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic calendar type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_CALENDAR "general.calendar"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic contact type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_CONTACT "general.contact"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic database file type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_DATABASE "general.database"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic message type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_MESSAGE "general.message"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic electronic business card type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_VCARD "general.vcard"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic navigation data type.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_NAVIGATION "general.navigation"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Location data.
+ * This type belongs to NAVIGATION.
  *
  * @since 12
  */
 #define UDMF_META_LOCATION "general.location"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Widget defined for the system.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_FORM "openharmony.form"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Home screen icon defined for the system.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_APP_ITEM "openharmony.app-item"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Pixel map defined for the system.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_PIXEL_MAP "openharmony.pixel-map"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Atomic service type defined for the system.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_ATOMIC_SERVICE "openharmony.atomic-service"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Package (compressed folder) defined for the system.
+ * This type belongs to DIRECTORY.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_PACKAGE "openharmony.package"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Ability package defined for the system.
+ * This type belongs to OPENHARMONY_PACKAGE.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_HAP "openharmony.hap"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Synchronized Multimedia Integration Language (SMIL).
+ * This type belongs to XML.
  *
  * @since 12
  */
 #define UDMF_META_SMIL "com.real.smil"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Markdown.
+ * This type belongs to PLAIN_TEXT.
  *
  * @since 12
  */
 #define UDMF_META_MARKDOWN "general.markdown"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic type of the fax.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_FAX "general.fax"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief J2 jConnect fax file format.
+ * This type belongs to FAX.
  *
  * @since 12
  */
 #define UDMF_META_JFX_FAX "com.j2.jfx-fax"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief EFX file format.
+ * This type belongs to FAX.
  *
  * @since 12
  */
 #define UDMF_META_EFX_FAX "com.js.efx-fax"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief X BitMAP (XBM) used in the X Window system (X11).
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_XBITMAP_IMAGE "general.xbitmap-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Tagged Graphics (TGA) format.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_TGA_IMAGE "com.truevision.tga-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Silicon Graphics image (SGI) format.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_SGI_IMAGE "com.sgi.sgi-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenXR image format.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_OPENEXR_IMAGE "com.ilm.openexr-image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief FlashPix image format.
+ * This type belongs to IMAGE.
  *
  * @since 12
  */
 #define UDMF_META_FLASHPIX_IMAGE "com.kodak.flashpix.image"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief RealMedia format.
+ * This type belongs to VIDEO.
  *
  * @since 12
  */
 #define UDMF_META_REALMEDIA "com.real.realmedia"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AU format.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_AU_AUDIO "general.au-audio"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief AIFC.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_AIFC_AUDIO "general.aifc-audio"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Digidesign Sound Designer II (SDII).
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_SD2_AUDIO "com.digidesign.sd2-audio"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief RealAudio.
+ * This type belongs to AUDIO.
  *
  * @since 12
  */
 #define UDMF_META_REALAUDIO "com.real.realaudio"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenXML base type.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_OPENXML "org.openxmlformats.openxml"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief WordProcessingML format.
+ * This type belongs to OPENXML and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_WORDPROCESSINGML_DOCUMENT "org.openxmlformats.wordprocessingml.document"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief SpreadsheetML format.
+ * This type belongs to OPENXML and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_SPREADSHEETML_SHEET "org.openxmlformats.spreadsheetml.sheet"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PresentationML format.
+ * This type belongs to OPENXML and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_PRESENTATIONML_PRESENTATION "org.openxmlformats.presentationml.presentation"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenDocument format for Office applications.
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT "org.oasis.opendocument"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenDocument format for word processing (text) documents.
+ * This type belongs to OPENDOCUMENT and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_TEXT "org.oasis.opendocument.text"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenDocument format for spreadsheets.
+ * This type belongs to OPENDOCUMENT and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_SPREADSHEET "org.oasis.opendocument.spreadsheet"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenDocument format for presentations.
+ * This type belongs to OPENDOCUMENT and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_PRESENTATION "org.oasis.opendocument.presentation"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenDocument format for graphics.
+ * This type belongs to OPENDOCUMENT and COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_GRAPHICS "org.oasis.opendocument.graphics"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenDocument format for formula.
+ * This type belongs to OPENDOCUMENT.
  *
  * @since 12
  */
 #define UDMF_META_OPENDOCUMENT_FORMULA "org.oasis.opendocument.formula"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Stuffit compression format (stuffit archive).
+ * This type belongs to ARCHIVE.
  *
  * @since 12
  */
 #define UDMF_META_STUFFIT_ARCHIVE "com.allume.stuffit-archive"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief VCalendar (VCS) format.
+ * This type belongs to CALENDAR and TEXT.
  *
  * @since 12
  */
 #define UDMF_META_VCS "general.vcs"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Internet Calendaring and Scheduling (ICS) format.
+ * This type belongs to CALENDAR and TEXT.
  *
  * @since 12
  */
 #define UDMF_META_ICS "general.ics"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Generic type of all executable files.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_EXECUTABLE "general.executable"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Microsoft Windows portable executable format.
+ * This type belongs to EXECUTABLE.
  *
  * @since 12
  */
 #define UDMF_META_PORTABLE_EXECUTABLE "com.microsoft.portable-executable"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Java class file format.
+ * This type belongs to EXECUTABLE.
  *
  * @since 12
  */
 #define UDMF_META_SUN_JAVA_CLASS "com.sun.java-class"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Basic type of fonts.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_FONT "general.font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief TrueType font format.
+ * This type belongs to FONT.
  *
  * @since 12
  */
 #define UDMF_META_TRUETYPE_FONT "general.truetype-font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief TrueType Collection font format.
+ * This type belongs to FONT.
  *
  * @since 12
  */
 #define UDMF_META_TRUETYPE_COLLECTION_FONT "general.truetype-collection-font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief OpenType font format.
+ * This type belongs to FONT.
  *
  * @since 12
  */
 #define UDMF_META_OPENTYPE_FONT "general.opentype-font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PostScript font format.
+ * This type belongs to FONT.
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT_FONT "com.adobe.postscript-font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief PostScript Font Binary font format.
+ * This type belongs to FONT.
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT_PFB_FONT "com.adobe.postscript-pfb-font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Adobe Type 1 font format.
+ * This type belongs to FONT.
  *
  * @since 12
  */
 #define UDMF_META_POSTSCRIPT_PFA_FONT "com.adobe.postscript-pfa-font"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Memo format defined for the system.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_HDOC "openharmony.hdoc"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Note format defined for the system.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_HINOTE "openharmony.hinote"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Style string type defined for the system.
+ * This type belongs to COMPOSITE_OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_STYLED_STRING "openharmony.styled-string"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Want defined for the system.
+ * This type belongs to OBJECT.
  *
  * @since 12
  */
 #define UDMF_META_OPENHARMONY_WANT "openharmony.want"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief File address type.
+ * This type belongs to TEXT.
  *
  * @since 13
  */
 #define UDMF_META_GENERAL_FILE_URI "general.file-uri"
 
 /**
- * @brief A specific type of uniform data type.
+ * @brief Content card type.
+ * This type belongs to OBJECT.
  *
  * @since 14
  */

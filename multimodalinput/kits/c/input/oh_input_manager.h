@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,27 +17,30 @@
  * @addtogroup input
  * @{
  *
- * @brief Provides the C interface in the multi-modal input domain.
+ * @brief Provides C APIs of the multimodal input module, supporting event processing for various input devices such as
+ * touch, key, and mouse. It enables unified access to multiple devices, improving development efficiency and
+ * application interaction experience.
  *
  * @since 12
  */
 
 /**
  * @file oh_input_manager.h
- *
  * @brief Provides functions such as input event injection, key state query, device hot swapping listener, event
- * interception, hotkey management, mouse cursor management, input device information query, and injection permission
- * management.
+ * interception, hotkey management, mouse cursor management, input device information query, and injection
+ * permission management.
  *
- * @kit InputKit
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @library liboh_input.so
+ * @include <multimodalinput/oh_input_manager.h>
+ * @library libohinput.so
+ * @kit InputKit
  * @since 12
  */
 
 #ifndef OH_INPUT_MANAGER_H
 #define OH_INPUT_MANAGER_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #include "oh_axis_type.h"
@@ -48,6 +51,12 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Defines the PixelMap, used to represent and manipulate pixel image data, supporting operations such as
+ * image creation, reading, modification, and rendering.
+ *
+ * @since 22
+ */
 struct OH_PixelmapNative;
 
 /**
@@ -57,27 +66,27 @@ struct OH_PixelmapNative;
  */
 typedef enum Input_KeyStateAction {
     /**
-     * Default state.
+     * @brief Default state.
      */
     KEY_DEFAULT = -1,
 
     /**
-     * Key press.
+     * @brief Key press.
      */
     KEY_PRESSED = 0,
 
     /**
-     * Key release.
+     * @brief Key release.
      */
     KEY_RELEASED = 1,
 
     /**
-     * Key switch enabled.
+     * @brief Key switch enabled.
      */
     KEY_SWITCH_ON = 2,
 
     /**
-     * Key switch disabled.
+     * @brief Key switch disabled.
      */
     KEY_SWITCH_OFF = 3
 } Input_KeyStateAction;
@@ -89,17 +98,20 @@ typedef enum Input_KeyStateAction {
  */
 typedef enum Input_KeyEventAction {
     /**
-     * Button action canceled.
+     * @brief Key action canceled.
+     * @since 12
      */
     KEY_ACTION_CANCEL = 0,
 
     /**
-     * Key press.
+     * @brief Key press.
+     * @since 12
      */
     KEY_ACTION_DOWN = 1,
 
     /**
-     * Key release.
+     * @brief Key release.
+     * @since 12
      */
     KEY_ACTION_UP = 2
 } Input_KeyEventAction;
@@ -111,37 +123,44 @@ typedef enum Input_KeyEventAction {
  */
 typedef enum Input_MouseEventAction {
     /**
-     * Cancellation of the mouse action.
+     * @brief Cancellation of the mouse action.
+     * @since 12
      */
     MOUSE_ACTION_CANCEL = 0,
 
     /**
-     * Moving of the mouse pointer.
+     * @brief Moving of the mouse pointer.
+     * @since 12
      */
     MOUSE_ACTION_MOVE = 1,
 
     /**
-     * Pressing of the mouse button.
+     * @brief Pressing of the mouse button.
+     * @since 12
      */
     MOUSE_ACTION_BUTTON_DOWN = 2,
 
     /**
-     * Release of the mouse button.
+     * @brief Release of the mouse button.
+     * @since 12
      */
     MOUSE_ACTION_BUTTON_UP = 3,
 
     /**
-     * Beginning of the mouse axis event.
+     * @brief Beginning of the mouse axis event.
+     * @since 12
      */
     MOUSE_ACTION_AXIS_BEGIN = 4,
 
     /**
-     * Updating of the mouse axis event.
+     * @brief Updating of the mouse axis event.
+     * @since 12
      */
     MOUSE_ACTION_AXIS_UPDATE = 5,
 
     /**
-     * End of the mouse axis event.
+     * @brief End of the mouse axis event.
+     * @since 12
      */
     MOUSE_ACTION_AXIS_END = 6
 } Input_MouseEventAction;
@@ -153,12 +172,12 @@ typedef enum Input_MouseEventAction {
  */
 typedef enum InputEvent_MouseAxis {
     /**
-     * Vertical scroll axis.
+     * @brief Vertical scroll axis.
      */
     MOUSE_AXIS_SCROLL_VERTICAL = 0,
 
     /**
-     * Horizontal scroll axis.
+     * @brief Horizontal scroll axis.
      */
     MOUSE_AXIS_SCROLL_HORIZONTAL = 1
 } InputEvent_MouseAxis;
@@ -170,32 +189,32 @@ typedef enum InputEvent_MouseAxis {
  */
 typedef enum Input_MouseEventButton {
     /**
-     * Invalid button.
+     * @brief Invalid button.
      */
     MOUSE_BUTTON_NONE = -1,
 
     /**
-     * Left button.
+     * @brief Left button.
      */
     MOUSE_BUTTON_LEFT = 0,
 
     /**
-     * Middle button.
+     * @brief Middle button.
      */
     MOUSE_BUTTON_MIDDLE = 1,
 
     /**
-     * Right button.
+     * @brief Right button.
      */
     MOUSE_BUTTON_RIGHT = 2,
 
     /**
-     * Forward button.
+     * @brief Forward button.
      */
     MOUSE_BUTTON_FORWARD = 3,
 
     /**
-     * Back button.
+     * @brief Back button.
      */
     MOUSE_BUTTON_BACK = 4
 } Input_MouseEventButton;
@@ -207,22 +226,22 @@ typedef enum Input_MouseEventButton {
  */
 typedef enum Input_TouchEventAction {
     /**
-     * Touch cancellation.
+     * @brief Touch cancellation.
      */
     TOUCH_ACTION_CANCEL = 0,
 
     /**
-     * Touch press.
+     * @brief Touch press.
      */
     TOUCH_ACTION_DOWN = 1,
 
     /**
-     * Touch moving.
+     * @brief Touch moving.
      */
     TOUCH_ACTION_MOVE = 2,
 
     /**
-     * Touch release.
+     * @brief Touch release.
      */
     TOUCH_ACTION_UP = 3
 } Input_TouchEventAction;
@@ -234,32 +253,34 @@ typedef enum Input_TouchEventAction {
  */
 typedef enum Input_KeyboardType {
     /**
-     * Keyboard without keys.
+     * @brief No keyboard.
+     * @since 13
      */
     KEYBOARD_TYPE_NONE = 0,
 
     /**
-     * Keyboard with unknown keys.
+     * @brief Unknown keyboard.
+     * @since 13
      */
     KEYBOARD_TYPE_UNKNOWN = 1,
 
     /**
-     * Full keyboard.
+     * @brief Full keyboard.
      */
     KEYBOARD_TYPE_ALPHABETIC = 2,
 
     /**
-     * Numeric keypad.
+     * @brief Numeric keypad.
      */
     KEYBOARD_TYPE_DIGITAL = 3,
 
     /**
-     * Stylus.
+     * @brief Stylus.
      */
     KEYBOARD_TYPE_STYLUS = 4,
 
     /**
-     * Remote control.
+     * @brief Remote control.
      */
     KEYBOARD_TYPE_REMOTE_CONTROL = 5
 } Input_KeyboardType;
@@ -271,17 +292,20 @@ typedef enum Input_KeyboardType {
  */
 typedef enum Input_InjectionStatus {
     /**
-     * Permission not granted.
+     * @brief Permission not granted.
+     * @since 20
      */
     UNAUTHORIZED = 0,
 
     /**
-     * Permission being granted.
+     * @brief Permission being granted.
+     * @since 20
      */
     AUTHORIZING = 1,
 
     /**
-     * Permission granted.
+     * @brief Permission granted.
+     * @since 20
      */
     AUTHORIZED = 2
 } Input_InjectionStatus;
@@ -293,33 +317,43 @@ typedef enum Input_InjectionStatus {
  */
 typedef enum InputEvent_SourceType {
     /**
-     * Source that generates events similar to mouse pointer movement, button press and release, and wheel scrolling.
+     * @brief Source that generates events similar to mouse pointer movement, button press and release, and wheel
+     * scrolling.
      * @since 12
      */
     SOURCE_TYPE_MOUSE = 1,
 
     /**
-     * Source that generates a touchscreen multi-touch event.
+     * @brief Source that generates a touchscreen multi-touch event.
      * @since 12
      */
     SOURCE_TYPE_TOUCHSCREEN = 2,
 
     /**
-     * Source that generates a touchpad multi-touch event.
+     * @brief Source that generates a touchpad multi-touch event.
      * @since 12
      */
     SOURCE_TYPE_TOUCHPAD = 3
 } InputEvent_SourceType;
 
 /**
- * @brief Defines key information, which identifies a key pressing behavior. For example, the Ctrl key information contains the key value and key type.
+ * @brief Defines key information used to identify key behavior. For example, the "Ctrl" key information includes the
+ * key value and key state. It is applicable to scenarios such as hotkey processing, input event state management,
+ * and key state detection.
+ * @see {@link OH_Input_CreateKeyState} Creates a key state struct object. The struct object can be destroyed via
+ *     {@link OH_Input_DestroyKeyState}.
+ * @see {@link OH_Input_DestroyKeyState} Destroys a key state struct object.
  *
  * @since 12
  */
 typedef struct Input_KeyState Input_KeyState;
 
 /**
- * @brief The key event to be injected.
+ * @brief Defines the key event object, used to represent input events generated by user key operations, including the
+ * key code and key state. It can be used to process keyboard input and implement key response functions.
+ * @see {@link OH_Input_CreateKeyEvent} Creates a key event object. You can call {@link OH_Input_DestroyKeyEvent}
+ *     to destroy a key event object.
+ * @see {@link OH_Input_DestroyKeyEvent} Destroys a key event object.
  *
  * @since 12
  */
@@ -328,6 +362,9 @@ typedef struct Input_KeyEvent Input_KeyEvent;
  * @brief Defines the mouse event object, which is used to represent input events generated by user mouse operations,
  * including click information, coordinates, and click action events. It can be used to process mouse event input and
  * implement mouse event response.
+ * @see {@link OH_Input_CreateMouseEvent} Creates a mouse event object. You can call {@link OH_Input_DestroyMouseEvent}
+ *     to destroy a mouse event object.
+ * @see {@link OH_Input_DestroyMouseEvent} Destroys a mouse event object.
  *
  * @since 12
  */
@@ -335,6 +372,9 @@ typedef struct Input_MouseEvent Input_MouseEvent;
 /**
  * @brief Defines the touchscreen input event object, which is used to represent detailed information about touchscreen
  * input, including the touch point position, touch state, and timestamp.
+ * @see {@link OH_Input_CreateTouchEvent} Creates a touch event object. You can call {@link OH_Input_DestroyTouchEvent}
+ *     to destroy a touch event object.
+ * @see {@link OH_Input_DestroyTouchEvent} Destroys a touch event object.
  *
  * @since 12
  */
@@ -343,6 +383,9 @@ typedef struct Input_TouchEvent Input_TouchEvent;
  * @brief Defines an axis event object, which is used to represent axis event data from an input device, such as
  * joystick movement on a gamepad and mouse wheel scrolling. You can obtain axis value changes from the input device
  * through axis events to implement precise input control and enhance user interaction experience.
+ * @see {@link OH_Input_CreateAxisEvent} Creates an axis event object. You can call {@link OH_Input_DestroyAxisEvent}
+ *     to destroy an axis event object.
+ * @see {@link OH_Input_DestroyAxisEvent} Destroys an axis event object.
  *
  * @since 12
  */
@@ -350,14 +393,20 @@ typedef struct Input_AxisEvent Input_AxisEvent;
 /**
  * @brief Defines the hotkey struct, which describes the hotkey design logic such as the key combination, trigger
  * conditions, and callback handling. Applications can register and manage custom hotkeys.
+ * @see {@link OH_Input_CreateHotkey} Creates a hotkey object. You can call {@link OH_Input_DestroyHotkey}
+ *     to destroy a hotkey object.
+ * @see {@link OH_Input_DestroyHotkey} Destroys a hotkey object.
  *
  * @since 14
  */
 typedef struct Input_Hotkey Input_Hotkey;
 /**
- * @brief Defines mouse cursor information. It is used to manage and control the display behavior and appearance
- * properties of the mouse cursor in the input system, including cursor display state, cursor style, cursor size level,
- * and cursor color.
+ * @brief Defines the mouse cursor information, which is used to describe the display behavior and appearance
+ * attributes of the mouse cursor in the input system, including the cursor display state, cursor style, cursor size
+ * level, and cursor color.
+ * @see {@link OH_Input_CursorInfo_Create} Creates a mouse cursor information object. You can call
+ *     {@link OH_Input_CursorInfo_Destroy} to destroy a mouse cursor information object.
+ * @see {@link OH_Input_CursorInfo_Destroy} Destroys the mouse cursor information object.
  *
  * @since 22
  */
@@ -370,86 +419,87 @@ typedef struct Input_CursorInfo Input_CursorInfo;
  */
 typedef enum Input_Result {
     /**
-     * Operation succeeded.
+     * @brief Operation succeeded.
      */
     INPUT_SUCCESS = 0,
 
     /**
-     * Permission verification failed.
+     * @brief Permission verification failed. The application does not have the permission required to call the API.
      */
     INPUT_PERMISSION_DENIED = 201,
 
     /**
-     * Non-system application.
+     * @brief Permission verification failed. A non-system application calls a system API.
      */
     INPUT_NOT_SYSTEM_APPLICATION = 202,
 
     /**
-     * Parameter check fails.
+     * @brief Parameter check fails.
      */
     INPUT_PARAMETER_ERROR = 401,
 
     /**
-     * Function not supported.
+     * @brief Capability not supported. Possible causes: 1. The hardware does not support the capability;
+     * 2. The chip does not support the capability; 3. A dependent service feature is not supported.
      */
     INPUT_DEVICE_NOT_SUPPORTED = 801,
 
     /**
-     * Service error.
+     * @brief Service error.
      */
     INPUT_SERVICE_EXCEPTION = 3800001,
 
     /**
-     * Interceptor repeatedly created.
+     * @brief Interceptor repeatedly created.
      */
     INPUT_REPEAT_INTERCEPTOR = 4200001,
     /**
-     * Input device occupied by a system application.
+     * @brief Occupied by a system app.
      * @since 14
      */
     INPUT_OCCUPIED_BY_SYSTEM = 4200002,
     /**
-     * Input device occupied by another application.
+     * @brief Occupied by another app.
      * @since 14
      */
     INPUT_OCCUPIED_BY_OTHER = 4200003,
     /**
-     * Keyboard not connected.
+     * @brief No keyboard device is connected.
      * @since 15
      */
     INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002,
     /**
-     * Authorization in progress.
+     * @brief Authorization is in progress.
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZING = 3900005,
     /**
-     * Repeated request.
+     * @brief Repeated request.
      * @since 20
      */
     INPUT_INJECTION_OPERATION_FREQUENT = 3900006,
     /**
-     * Permission granted to the current application.
+     * @brief The current app has been authorized.
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZED = 3900007,
     /**
-     * Permission granted to other applications.
+     * @brief Other apps have been authorized.
      * @since 20
      */
     INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008,
     /**
-     * Application not in focus.
+     * @brief The current app is not the focused app.
      * @since 20
      */
     INPUT_APP_NOT_FOCUSED = 3900009,
     /**
-     * No mouse device.
+     * @brief No mouse-type input peripheral is available.
      * @since 20
      */
     INPUT_DEVICE_NO_POINTER = 3900010,
     /**
-     * Invalid window ID.
+     * @brief Invalid window ID.
      * @since 22
      */
     INPUT_INVALID_WINDOWID = 26500001
@@ -462,49 +512,49 @@ typedef enum Input_Result {
  */
 typedef enum Input_TouchEventToolType {
     /**
-     * Finger
+     * @brief Finger.
      * @since 24
      */
     TOOL_TYPE_FINGER = 0,
 
     /**
-     * Pen
+     * @brief Stylus.
      * @since 24
      */
     TOOL_TYPE_PEN = 1,
 
     /**
-     * Rubber
+     * @brief Eraser-type device.
      * @since 24
      */
     TOOL_TYPE_RUBBER = 2,
 
     /**
-     * Brush
+     * @brief Brush device.
      * @since 24
      */
     TOOL_TYPE_BRUSH = 3,
 
     /**
-     * Pencil
+     * @brief Pencil device.
      * @since 24
      */
     TOOL_TYPE_PENCIL = 4,
 
     /**
-     * Air brush
+     * @brief Airbrush device.
      * @since 24
      */
     TOOL_TYPE_AIRBRUSH = 5,
 
     /**
-     * Mouse
+     * @brief Mouse device.
      * @since 24
      */
     TOOL_TYPE_MOUSE = 6,
 
     /**
-     * lens
+     * @brief Lens device.
      * @since 24
      */
     TOOL_TYPE_LENS = 7
@@ -513,6 +563,7 @@ typedef enum Input_TouchEventToolType {
 /**
  * @brief Defines the callback used to return hotkey events.
  *
+ * @param hotkey [in] Hotkey object.
  * @since 14
  */
 typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
@@ -522,6 +573,9 @@ typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
  * characteristics of an input device, including attributes such as the device type and device ID. You can use this
  * struct to obtain and manage detailed information about input devices, facilitating device identification and
  * configuration management.
+ * @see {@link OH_Input_CreateDeviceInfo} Creates a **deviceInfo** object. You can call
+ *     {@link OH_Input_DestroyDeviceInfo} to destroy a **deviceInfo** object.
+ * @see {@link OH_Input_DestroyDeviceInfo} Destroys a **deviceInfo** object.
  *
  * @since 13
  */
@@ -529,6 +583,9 @@ typedef struct Input_DeviceInfo Input_DeviceInfo;
 
 /**
  * @brief Defines the pixel map resource of the custom mouse pointer object.
+ * @see {@link OH_Input_CustomCursor_Create} Creates a custom mouse pointer object. You can call
+ *     {@link OH_Input_CustomCursor_Destroy} to destroy a custom mouse pointer object.
+ * @see {@link OH_Input_CustomCursor_Destroy} Destroys a custom mouse pointer object.
  *
  * @since 22
  */
@@ -537,81 +594,97 @@ typedef struct Input_CustomCursor Input_CustomCursor;
  * @brief Defines custom mouse cursor configuration, which is used to define and manage the display style and
  * interaction behavior of the mouse cursor in an application. It supports different cursor styles (such as default,
  * hand, and text input), providing users with more intuitive operation feedback and enhancing user experience.
+ * @see {@link OH_Input_CursorConfig_Create} Creates a custom mouse cursor configuration object. You can call
+ *     {@link OH_Input_CursorConfig_Destroy} to destroy a custom mouse cursor configuration object.
+ * @see {@link OH_Input_CursorConfig_Destroy} Destroys a custom mouse cursor configuration object.
  *
  * @since 22
  */
 typedef struct Input_CursorConfig Input_CursorConfig;
 /**
- * @brief Defines a lifecycle callback for **keyEvent**. If the callback is triggered, **keyEvent** will be destroyed.
+ * @brief Defines a lifecycle callback for **keyEvent**. If the callback is triggered, **keyEvent** will be
+ * destroyed.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @since 12
  */
 typedef void (*Input_KeyEventCallback)(const Input_KeyEvent* keyEvent);
 
 /**
- * @brief Defines a lifecycle callback for **mouseEvent**. If the callback is triggered, **mouseEvent** will be
- * destroyed.
+ * @brief Defines a lifecycle callback for **mouseEvent**. The lifecycle of the mouseEvent is limited to the callback
+ * function.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @since 12
  */
 typedef void (*Input_MouseEventCallback)(const Input_MouseEvent* mouseEvent);
 /**
- * @brief Defines the lifecycle callback for **TouchEvent**. If the callback is triggered, **TouchEvent** will be
- * destroyed.
+ * @brief Defines the lifecycle callback for **TouchEvent**. The lifecycle of the touchEvent is limited to the
+ * callback function.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @since 12
  */
 typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent);
 /**
- * @brief Defines a lifecycle callback for **axisEvent**. If the callback is triggered, **axisEvent** will be destroyed.
+ * @brief Defines a lifecycle callback for **axisEvent**. The lifecycle of the axisEvent is limited to the callback
+ * function.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
  * @since 12
  */
 typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent);
 /**
  * @brief Callback used to receive input device hot-plug events.
  *
- * @param deviceId Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its ID
- *     may change.
+ * @param deviceId [in] Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its
+ *     ID may change.
  * @since 13
  */
 typedef void (*Input_DeviceAddedCallback)(int32_t deviceId);
 /**
  * @brief Callback used to receive input device hot-unplug events.
  *
- * @param deviceId Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its ID
- *     may change.
+ * @param deviceId [in] Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its
+ *     ID may change.
  * @since 13
  */
 typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
 /**
  * @brief Defines a callback used to receive the injection permission authorization status.
  *
- * @param authorizedStatus Injection permission authorization status.
+ * @param authorizedStatus [in] Injection permission authorization status.
  * @since 20
  */
 typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
 
 /**
- * @brief Defines the structure for the interceptor of event callbacks,
- * including mouseCallback, touchCallback, and axisCallback.
+ * @brief Defines the interceptor callback event structure, which is used to define the callback types
+ * required for input event interception. Mouse interception events, touch input events, and axis events
+ * are supported.
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
-    /** Defines a lifecycle callback for **mouseEvent**. */
+    /**
+     * @brief Callback for mouse events.
+     * @since 12
+     */
     Input_MouseEventCallback mouseCallback;
-    /** Defines a lifecycle callback for **touchEvent**. */
+    /**
+     * @brief Callback for touch input events.
+     * @since 12
+     */
     Input_TouchEventCallback touchCallback;
-    /** Defines a lifecycle callback for **axisEvent**. */
+    /**
+     * @brief Callback for axis events.
+     * @since 12
+     */
     Input_AxisEventCallback axisCallback;
 } Input_InterceptorEventCallback;
 
@@ -625,145 +698,151 @@ typedef struct Input_InterceptorEventCallback {
  */
 typedef struct Input_DeviceListener {
     /**
-     * Defines a callback used to receive device hot-plug events.
+     * @brief Defines a callback used to receive device hot-plug events.
      */
     Input_DeviceAddedCallback deviceAddedCallback;
 
     /**
-     * Defines a callback used to receive device hot-unplug events.
+     * @brief Defines a callback used to receive device hot-unplug events.
      */
     Input_DeviceRemovedCallback deviceRemovedCallback;
 } Input_DeviceListener;
 
 /**
- * @brief Defines event interceptor options.
+ * @brief Event interceptor options, which are used to configure parameters and rules for input event interception.
+ * Interception control for key events, mouse events, touchscreen events, and axis events are supported.
+ * @see {@link OH_Input_AddKeyEventInterceptor} Adds an interceptor for key events. If multiple interceptors are added,
+ *     only the first one takes effect. Key events are intercepted only when the application gains focus.
+ * @see {@link OH_Input_RemoveKeyEventInterceptor} Removes the interceptor for key events.
+ * @see {@link OH_Input_AddInputEventInterceptor} Adds an interceptor for input events, including mouse, touch, and
+ *     axis events. If multiple interceptors are added, only the first one takes effect. Input events are intercepted
+ *     only when the application window is hit.
+ * @see {@link OH_Input_RemoveInputEventInterceptor} Removes the interceptor for input events, including mouse, touch,
+ *     and axis events.
  * @since 12
  */
 typedef struct Input_InterceptorOptions Input_InterceptorOptions;
 
 /**
- * @brief Queries a key status enum object.
+ * @brief Queries the key state struct object.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
+ * @param keyState [in,out] Key state struct object. For details, see {@link Input_KeyStateAction}.
  * @return If the operation is successful, {@link INPUT_SUCCESS} is returned; if parameter verification fails,
  *     {@link INPUT_PARAMETER_ERROR} is returned.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState);
 
 /**
- * @brief Creates a key status enum object. You can call {@link OH_Input_DestroyKeyState()} to destroy a key status
- * enum object.
+ * @brief Creates a key state struct object. You can call {@link OH_Input_DestroyKeyState} to destroy a key state
+ * struct object.
  *
- * @return If the operations is successful, {@link Input_KeyState} is returned. Otherwise, a null pointer is returned.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>If the operation is successful, {@link Input_KeyState} is returned.</li>
+ *         <li>Otherwise, a null pointer is returned.</li>
+ *         </ul>
+ * @release OH_Input_DestroyKeyState {return}
  * @since 12
  */
 struct Input_KeyState* OH_Input_CreateKeyState();
 
 /**
- * @brief Destroys a key status enum object.
+ * @brief Destroys a key state struct object.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Key state struct object. For details, see {@link Input_KeyStateAction}.
  * @since 12
  */
 void OH_Input_DestroyKeyState(struct Input_KeyState** keyState);
 
 /**
- * @brief Sets the key value of a key status enum object.
+ * @brief Sets the key value of a key state object.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @param keyCode Key code. For details, see {@link KeyCode}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
+ * @param keyCode [in] Key code. For details, see {@link oh_key_code.h#Input_KeyCode}.
  * @since 12
  */
 void OH_Input_SetKeyCode(struct Input_KeyState* keyState, int32_t keyCode);
 
 /**
- * @brief Obtains the key value of a key status enum object.
+ * @brief Obtains the key value of a key state object.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @return Key value of the key status enum object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Key state struct object. For details, see {@link Input_KeyStateAction}.
+ * @return Key value of the key state object. For details, see {@link Input_KeyStateAction}.
  * @since 12
  */
 int32_t OH_Input_GetKeyCode(const struct Input_KeyState* keyState);
 
 /**
- * @brief Sets whether the key specific to a key status enum object is pressed.
+ * @brief Sets whether the key specific to a key state object is pressed.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @param keyAction Whether a key is pressed. For details, see {@link Input_KeyEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Key state struct object. For details, see {@link Input_KeyStateAction}.
+ * @param keyAction [in] Whether a key is pressed. For details, see {@link Input_KeyEventAction}.
  * @since 12
  */
 void OH_Input_SetKeyPressed(struct Input_KeyState* keyState, int32_t keyAction);
 
 /**
- * @brief Checks whether the key specific to a key status enum object is pressed.
+ * @brief Checks whether the key specific to a key state object is pressed.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @return Key pressing status of the key status enum object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
+ * @return Key pressing status of the key state object. For details, see {@link Input_KeyStateAction}.
  * @since 12
  */
 int32_t OH_Input_GetKeyPressed(const struct Input_KeyState* keyState);
 
 /**
- * @brief Sets the key switch of the key status enum object.
+ * @brief Sets the key switch of the key state object.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @param keySwitch Key switch.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Key state struct object. For details, see {@link Input_KeyStateAction}.
+ * @param keySwitch [in] Key switch.
  * @since 12
  */
 void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
 
 /**
  * @brief Injects a key event.
- * <br>This API does not take effect if the user has not granted authorization and the caller does not have the ohos.
- * permission.CONTROL_DEVICE permission.
- * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection()} to request the required
- * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus()} is
+ * <br>This API does not take effect if the user has not granted authorization and the caller does not have the
+ * ohos.permission.CONTROL_DEVICE permission.
+ * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection} to request the required
+ * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus} is
  * {@link AUTHORIZED}, then you can call this API.
- * <br>Since API version 22, if the key press event (**KEY_ACTION_DOWN**) of a modifier key (**KEYCODE_META_LEFT**, **
- * KEYCODE_META_RIGHT**, **KEYCODE_CTRL_LEFT**, **KEYCODE_CTRL_RIGHT**, **KEYCODE_ALT_LEFT**, **KEYCODE_ALT_RIGHT**, **
- * KEYCODE_SHIFT_LEFT**, **KEYCODE_SHIFT_RIGHT**, **KEYCODE_CAPS_LOCK**, **KEYCODE_SCROLL_LOCK**, or **KEYCODE_NUM_LOCK*
- * *) is injected, the release event (**KEY_ACTION_UP**) of the key needs to be injected in a timely manner to avoid
- * the key being pressed for a long time.
+ * <br>Since API version 22, if the key press event (**KEY_ACTION_DOWN**) of a modifier key
+ * (**KEYCODE_META_LEFT**, **KEYCODE_META_RIGHT**, **KEYCODE_CTRL_LEFT**, **KEYCODE_CTRL_RIGHT**,
+ * **KEYCODE_ALT_LEFT**, **KEYCODE_ALT_RIGHT**, **KEYCODE_SHIFT_LEFT**, **KEYCODE_SHIFT_RIGHT**,
+ * **KEYCODE_CAPS_LOCK**, **KEYCODE_SCROLL_LOCK**, or **KEYCODE_NUM_LOCK**) is injected, the release event
+ * (**KEY_ACTION_UP**) of the key needs to be injected in a timely manner to avoid the key being pressed
+ * for a long time.
  * <br>Since API version 26.0.0, callers that have the ohos.permission.CONTROL_DEVICE permission can use this API
  * directly.
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}. You can call
- *     {@link OH_Input_SetKeyEventKeyCode()} and {@link OH_Input_SetKeyEventAction()} to set the key value and key
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}. You can call
+ *     {@link OH_Input_SetKeyEventKeyCode} and {@link OH_Input_SetKeyEventAction} to set the key value and key
  *     event type of the key event object.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @return Return value of the **OH_Input_InjectKeyEvent** function.
- *     <br>- {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>- {@link INPUT_PERMISSION_DENIED} if the required permission is missing;
- *     <br>- {@link INPUT_PARAMETER_ERROR} if the input parameter is incorrect.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @return Return value of the OH_Input_InjectKeyEvent function.
+ *     <ul>
+ *     <li>Returns {@link INPUT_SUCCESS} if the injection is successful.</li>
+ *     <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission is missing.</li>
+ *     <li>Returns {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
 
 /**
- * @brief Obtains the key switch of the key status enum object.
+ * @brief Obtains the key switch of the key state object.
  *
- * @param keyState Key status enum object. For details, see {@link Input_KeyStateAction}.
- * @return Key switch of the key status enum object. For details, see {@link Input_KeyStateAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyState [in] Pointer to the key state struct object. For details, see {@link Input_KeyStateAction}.
+ * @return Key switch of the key state object. For details, see {@link Input_KeyStateAction}.
  * @since 12
  */
 int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
 
 /**
- * @brief Creates a key event object. You can call {@link OH_Input_DestroyKeyEvent()} to destroy a key event object.
+ * @brief Creates a key event object. You can call {@link OH_Input_DestroyKeyEvent} to destroy a key event object.
  *
  * @return {@link Input_KeyEvent} pointer object if the operation is successful; a null pointer otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_KeyEvent* OH_Input_CreateKeyEvent();
@@ -771,110 +850,99 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent();
 /**
  * @brief Destroys a key event object.
  *
- * @param keyEvent Key event object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyEvent [in] Key event object.
  * @since 12
  */
 void OH_Input_DestroyKeyEvent(struct Input_KeyEvent** keyEvent);
 /**
  * @brief Sets the key event type.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @param action Key event type. For details, see {@link Input_KeyEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @param action [in] Key event type. For details, see {@link Input_KeyEventAction}.
  * @since 12
  */
 void OH_Input_SetKeyEventAction(struct Input_KeyEvent* keyEvent, int32_t action);
 /**
  * @brief Obtains the key event action.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Key event type. For details, see {@link Input_KeyEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetKeyEventAction(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief Sets the key code value for a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @param keyCode Key value. For details, see {@link KeyCode}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @param keyCode [in] Key value. For details, see {@link oh_key_code.h#Input_KeyCode}.
  * @since 12
  */
 void OH_Input_SetKeyEventKeyCode(struct Input_KeyEvent* keyEvent, int32_t keyCode);
 /**
  * @brief Obtains the key code value of a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @return Key code of a key event. For details, see {@link Input_KeyCode}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @return Key code of a key event. For details, see {@link oh_key_code.h#Input_KeyCode}.
  * @since 12
  */
 int32_t OH_Input_GetKeyEventKeyCode(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief Sets the time when a key event occurs.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @param actionTime Time when the key event occurred, representing the number of microseconds elapsed since system
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @param actionTime [in] Time when the key event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetKeyEventActionTime(struct Input_KeyEvent* keyEvent, int64_t actionTime);
 /**
  * @brief Obtains the time when a key event occurs.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Returns the time when the key event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetKeyEventActionTime(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief Sets the window ID of a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @param windowId Window ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @param windowId [in] Window ID of the key event.
  * @since 15
  */
 void OH_Input_SetKeyEventWindowId(struct Input_KeyEvent* keyEvent, int32_t windowId);
 /**
  * @brief Obtains the window ID of a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Window ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetKeyEventWindowId(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief Sets the screen ID of a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @param displayId Screen ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
+ * @param displayId [in] Screen ID of the key event.
  * @since 15
  */
 void OH_Input_SetKeyEventDisplayId(struct Input_KeyEvent* keyEvent, int32_t displayId);
 /**
  * @brief Obtains the screen ID of a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
+ * @param keyEvent [in] **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent}.
+ *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent}.
  * @return Screen ID of the key event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
@@ -882,9 +950,9 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
 /**
  * @brief Obtains the ID of a key event.
  *
- * @param keyEvent **KeyEvent** object, which can be created through {@link OH_Input_CreateKeyEvent()}.
- *     <br>If the key event object is no longer needed, destroy it by calling {@link OH_Input_DestroyKeyEvent()}.
- * @param eventId ID of the key event.
+ * @param keyEvent [in] Key event object. You can create a key event object by calling {@link OH_Input_CreateKeyEvent}.
+ *     <br>After using it, destroy the key event object by calling {@link OH_Input_DestroyKeyEvent}.
+ * @param eventId [out] ID of the key event.
  * @return Return value of the **OH_Input_GetKeyEventId** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
@@ -894,34 +962,38 @@ Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32
 
 /**
  * @brief Adds a hook function for key event interception.
- * <br>You can call {@link OH_Input_RemoveKeyEventHook()} to remove a hook function that has been added. Multiple hook
+ * <br>You can call {@link OH_Input_RemoveKeyEventHook} to remove a hook function that has been added. Multiple hook
  * functions can be set for an application, but only one hook function can be set for a process. The most recently
  * added hook function has a higher priority.
  *
  * @permission ohos.permission.HOOK_KEY_EVENT
- * @param callback Hook function, which is used to intercept all key events to be distributed.
+ * @param callback [in] Hook function, which is used to intercept all key events to be distributed.
  * @return Return value of the **OH_Input_AddKeyEventHook** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the function is not supported.
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission verification fails;
- *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if the hook function is set repeatedly (only one hook function can be set
- *     for a process);
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.</li>
+ *     <li>{@link INPUT_DEVICE_NOT_SUPPORTED} if the function is not supported.</li>
+ *     <li>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *     <li>{@link INPUT_REPEAT_INTERCEPTOR} if the hook function is set repeatedly (only one hook function can be
+ *     set for a process).</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *     </ul>
  * @since 21
  */
 Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback);
 
 /**
  * @brief Removes the hook function for key event interception.
- * <br>This API is usually used together with {@link OH_Input_AddKeyEventHook()}.
+ * <br>This API is usually used together with {@link OH_Input_AddKeyEventHook}.
  *
- * @param callback Hook function, which is used to intercept all key events to be distributed.
- * @return Return value of the **OH_Input_RemoveKeyEventHook** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful; (if a hook is not added, a success message is also
- *     returned when the hook is removed);
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @param callback [in] Hook function, which is used to intercept all key events to be distributed.
+ * @return Return value of the OH_Input_RemoveKeyEventHook function:
+ *     <ul>
+ *     <li>Returns {@link INPUT_SUCCESS} if the operation is successful. If no corresponding hook was added before,
+ *     success is also returned upon removal.</li>
+ *     <li>Returns {@link INPUT_PARAMETER_ERROR} if the parameter check fails.</li>
+ *     <li>Returns {@link INPUT_SERVICE_EXCEPTION} if a service exception occurs. Retry.</li>
+ *     </ul>
  * @since 21
  */
 Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
@@ -939,12 +1011,14 @@ Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback);
  * <br>If the redispatched event is not intercepted by the hook function, the API call is successful, but the dispatch
  * is not actually performed.
  *
- * @param eventId ID of the key event, which can be obtained through {@link OH_Input_GetKeyEventId()}.
- * @return Return value of the **OH_Input_DispatchToNextHandler** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails; (you can call
- *     {@link OH_Input_GetKeyEventId()} to check whether the input eventId is correct);
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @param eventId [in] ID of the key event, which can be obtained through {@link OH_Input_GetKeyEventId}.
+ * @return Return value of OH_Input_DispatchToNextHandler:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure. You can use
+ *     {@link OH_Input_GetKeyEventId} to check whether the passed eventId is accurate.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 21
  */
 Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
@@ -952,22 +1026,24 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
 /**
  * @brief Injects a mouse event by using coordinates in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
- * <br>This API does not take effect if the user has not granted authorization and the caller does not have the ohos.
- * permission.CONTROL_DEVICE permission.
- * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection()} to request the required
- * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus()} is
+ * <br>This API does not take effect if the user has not granted authorization and the caller does not have the
+ * ohos.permission.CONTROL_DEVICE permission.
+ * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection} to request the required
+ * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus} is
  * {@link AUTHORIZED}, then you can call this API.
  * <br>Since API version 26.0.0, callers that have the ohos.permission.CONTROL_DEVICE permission can use this API
  * directly.
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Return value of the **OH_Input_InjectMouseEvent** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission is denied.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Return value of OH_Input_InjectMouseEvent.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates successful injection.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     <li>{@link INPUT_PERMISSION_DENIED} indicates permission missing.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
@@ -975,32 +1051,33 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief Injects a mouse event by using coordinates in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
- * <br>This API does not take effect if the user has not granted authorization and the caller does not have the ohos.
- * permission.CONTROL_DEVICE permission.
- * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection()} to request the required
- * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus()} is
+ * <br>This API does not take effect if the user has not granted authorization and the caller does not have the
+ * ohos.permission.CONTROL_DEVICE permission.
+ * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection} to request the required
+ * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus} is
  * {@link AUTHORIZED}, then you can call this API.
  * <br>Since API version 26.0.0, callers that have the ohos.permission.CONTROL_DEVICE permission can use this API
  * directly.
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Return value of the **OH_Input_InjectMouseEventGlobal** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission is denied.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Return value of OH_Input_InjectMouseEventGlobal.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates successful injection.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     <li>{@link INPUT_PERMISSION_DENIED} indicates permission missing.</li>
+ *     </ul>
  * @since 20
  */
 int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent);
 
 /**
- * @brief Creates a mouse event object. You can call {@link OH_Input_DestroyMouseEvent()} to destroy a mouse event
+ * @brief Creates a mouse event object. You can call {@link OH_Input_DestroyMouseEvent} to destroy a mouse event
  * object.
  *
  * @return {@link Input_MouseEvent} pointer object if the operation is successful; a null pointer otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_MouseEvent* OH_Input_CreateMouseEvent();
@@ -1008,30 +1085,27 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent();
 /**
  * @brief Destroys a mouse event object.
  *
- * @param mouseEvent Mouse event object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param mouseEvent [in] Mouse event object.
  * @since 12
  */
 void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent);
 /**
  * @brief Sets the action for a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param action Mouse action. For details, see {@link Input_MouseEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param action [in] Mouse action. For details, see {@link Input_MouseEventAction}.
  * @since 12
  */
 void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action);
 /**
  * @brief Obtains the action of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Mouse action.  Returns -1 if mouseEvent is NULL. For details, see {@link Input_MouseEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Mouse action. For details, see {@link Input_MouseEventAction}.
  * @since 12
  */
 int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
@@ -1040,12 +1114,11 @@ int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent);
  * @brief Sets the X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
  * specified screen as the origin.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param displayX X-coordinate in the relative coordinate system with the upper left corner of the specified screen as
- *     the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param displayX [in] X-coordinate in the relative coordinate system with the upper-left corner of the specified
+ *     screen as the origin, in px.
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX);
@@ -1054,12 +1127,11 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
  * @brief Obtains the X coordinate of the mouse event in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return The X coordinate of the mouse event in the relative coordinate system with the upper left corner of the
- *     specified screen as the origin, in pixels (px). Returns -1 if mouseEvent is NULL.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return The X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
+ *     specified screen as the origin, in px.
  * @since 12
  */
 int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent);
@@ -1068,12 +1140,11 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
  * @brief Sets the Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
  * specified screen as the origin.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param displayY Y coordinate of the mouse event in the relative coordinate system with the upper left corner of the
- *     specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param displayY [in] Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of
+ *     the specified screen as the origin, in px.
  * @since 12
  */
 void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY);
@@ -1082,35 +1153,32 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
  * @brief Obtains the Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Y-coordinate of the mouse event in the relative coordinate system with the upper left corner of the
- *     specified screen as the origin, in pixels (px). Returns -1 if mouseEvent is NULL.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Y-coordinate of the mouse event in the relative coordinate system with the upper-left corner of the
+ *     specified screen as the origin, in px.
  * @since 12
  */
 int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief Sets the button for a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param button Mouse button. For details, see {@link Input_MouseEventButton}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param button [in] Mouse button. For details, see {@link Input_MouseEventButton}.
  * @since 12
  */
 void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button);
 /**
  * @brief Obtains the button of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Mouse button. Returns -1 if mouseEvent is NULL.
- *     For details, see {@link Input_MouseEventButton}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Mouse button.
+ *     <br>For details, see {@link Input_MouseEventButton}.
  * @since 12
  */
 int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
@@ -1118,47 +1186,44 @@ int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief Sets the axis type for a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param axisType Mouse axis type, such as vertical axis and horizontal axis. For details, see
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param axisType [in] Mouse axis type, such as vertical axis and horizontal axis. For details, see
  *     {@link InputEvent_MouseAxis}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType);
 /**
  * @brief Obtains the axis type of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Enumerates mouse axis types. Returns -1 if mouseEvent is NULL.
- *     For details, see {@link InputEvent_MouseAxis}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Enumerates mouse axis types.
+ *     <br>For details, see {@link InputEvent_MouseAxis}.
  * @since 12
  */
 int32_t OH_Input_GetMouseEventAxisType(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief Sets the axis value for a mouse axis event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param axisValue Axis event value. A positive number means scrolling forward (for example, 1.0 equals one unit
- *     forward), and a negative number means scrolling backward (for example, -1.0 equals one unit backward).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param axisValue [in] Value of the axis event. A positive value indicates scrolling forward (for example, 1.0
+ *     indicates scrolling forward by one unit), a negative value indicates scrolling backward (for example, -1.0
+ *     indicates scrolling backward by one unit), and zero indicates no scrolling.
  * @since 12
  */
 void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float axisValue);
 /**
  * @brief Obtains the axis value of a mouse axis event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @return Axis event value. Returns -1 if mouseEvent is NULL.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @return Axis event value.
  * @since 12
  */
 float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent);
@@ -1166,12 +1231,11 @@ float OH_Input_GetMouseEventAxisValue(const struct Input_MouseEvent* mouseEvent)
 /**
  * @brief Sets the time when a mouse event occurs.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param actionTime Time when the mouse event occurred, representing the number of microseconds elapsed since system
- *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param actionTime [in] Time when the mouse event occurred, representing the number of microseconds elapsed since
+ *     system startup, in microseconds (μs).
  * @since 12
  */
 void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64_t actionTime);
@@ -1179,56 +1243,51 @@ void OH_Input_SetMouseEventActionTime(struct Input_MouseEvent* mouseEvent, int64
 /**
  * @brief Obtains the time when a mouse event occurs.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Returns the time when the mouse event occurred, representing the number of microseconds elapsed since system
  *     startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int64_t OH_Input_GetMouseEventActionTime(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief Sets the window ID of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param windowId Window ID of the mouse event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param windowId [in] Window ID of the mouse event.
  * @since 15
  */
 void OH_Input_SetMouseEventWindowId(struct Input_MouseEvent* mouseEvent, int32_t windowId);
 /**
  * @brief Obtains the window ID of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Window ID of the mouse event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetMouseEventWindowId(const struct Input_MouseEvent* mouseEvent);
 /**
  * @brief Sets the screen ID of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
- * @param displayId Screen ID of the mouse event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
+ * @param displayId [in] Screen ID of the mouse event.
  * @since 15
  */
 void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_t displayId);
 /**
  * @brief Obtains the screen ID of a mouse event.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return Screen ID if the operation is successful; **-1** if **mouseEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent);
@@ -1237,10 +1296,10 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
  * @brief Sets the X coordinate of the mouse event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param mouseEvent Mouse Event object, which can be created through the {@link OH_Input_CreateMouseEvent()} API.
- *     <br>After use, the Mouse Event object must be destroyed through the {@link OH_Input_DestroyMouseEvent()} API.
- * @param globalX X coordinate of the Mouse Event in the global coordinate system with the origin at the upper left
- *     corner of the primary screen, in pixels (px).
+ * @param mouseEvent [in] Mouse Event object, which can be created through the {@link OH_Input_CreateMouseEvent} API.
+ *     <br>After use, the Mouse Event object must be destroyed through the {@link OH_Input_DestroyMouseEvent} API.
+ * @param globalX [in] X coordinate of the Mouse Event in the global coordinate system with the origin at the upper left
+ *     corner of the primary screen, in px.
  * @since 20
  */
 void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX);
@@ -1249,11 +1308,11 @@ void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t 
  * @brief Obtains the X coordinate of the mouse event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return X-coordinate in the global coordinate system with the origin at the upper left corner of the primary screen,
- *     in pixels (px).
+ *     in px.
  * @since 20
  */
 int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent);
@@ -1262,10 +1321,10 @@ int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)
  * @brief Sets the Y coordinate of the mouse event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param mouseEvent Mouse Event object, which can be created through the {@link OH_Input_CreateMouseEvent()} API.
- *     <br>After use, the Mouse Event object must be destroyed through the {@link OH_Input_DestroyMouseEvent()} API.
- * @param globalY Y-coordinate of the mouse event in the global coordinate system with the origin at the upper left
- *     corner of the primary screen, in pixels (px).
+ * @param mouseEvent [in] Mouse Event object, which can be created through the {@link OH_Input_CreateMouseEvent} API.
+ *     <br>After use, the Mouse Event object must be destroyed through the {@link OH_Input_DestroyMouseEvent} API.
+ * @param globalY [in] Y-coordinate of the mouse event in the global coordinate system with the origin at the upper left
+ *     corner of the primary screen, in px.
  * @since 20
  */
 void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY);
@@ -1274,11 +1333,11 @@ void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t 
  * @brief Obtains the Y coordinate of the mouse event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
+ * @param mouseEvent [in] Mouse event object. You can call {@link OH_Input_CreateMouseEvent} to create a mouse event
  *     object.
- *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
+ *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent}.
  * @return The Y coordinate of the mouse event in the global coordinate system with the origin at the upper left corner
- *     of the primary screen, in pixels (px).
+ *     of the primary screen, in px.
  * @since 20
  */
 int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent);
@@ -1286,20 +1345,22 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
 /**
  * @brief Injects a touch event by using coordinates in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
- * <br>This API does not take effect if the user has not granted authorization and the caller does not have the ohos.
- * permission.CONTROL_DEVICE permission.
- * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection()} to request the required
- * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus()} is
+ * <br>This API does not take effect if the user has not granted authorization and the caller does not have the
+ * ohos.permission.CONTROL_DEVICE permission.
+ * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection} to request the required
+ * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus} is
  * {@link AUTHORIZED}, then you can call this API.
  * <br>Since API version 26.0.0, callers that have the ohos.permission.CONTROL_DEVICE permission can use this API
  * directly.
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Return value of the OH_Input_InjectTouchEvent function.
- *     <br>{@link INPUT_SUCCESS} indicates successful injection.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the injection is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
@@ -1307,31 +1368,32 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
 /**
  * @brief Injects a touch event by using coordinates in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
- * <br>This API does not take effect if the event injection authorization is not granted and the caller does not have
+ * <br>This API does not take effect if the user has not granted authorization and the caller does not have
  * the ohos.permission.CONTROL_DEVICE permission.
- * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection()} to request the required
- * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus()} is
+ * <br>Since API version 20, you are advised to use {@link OH_Input_RequestInjection} to request the required
+ * permission before calling this API. If the status returned by {@link OH_Input_QueryAuthorizedStatus} is
  * {@link AUTHORIZED}, then you can call this API.
  * <br>Since API version 26.0.0, callers that have the ohos.permission.CONTROL_DEVICE permission can use this API
  * directly.
  *
  * @permission ohos.permission.CONTROL_DEVICE
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @return Return value of the **OH_Input_InjectTouchEventGlobal** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
- *     <br>{@link INPUT_PERMISSION_DENIED} if the permission is denied.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @return Result code of the OH_Input_InjectTouchEventGlobal function.
+ *     <ul>
+ *     <li>Returns {@link INPUT_SUCCESS} if the injection is successful.</li>
+ *     <li>Returns {@link INPUT_PARAMETER_ERROR} if the parameter is invalid.</li>
+ *     <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission is missing.</li>
+ *     </ul>
  * @since 20
  */
 int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent);
 
 /**
- * @brief Creates a **TouchEvent** object. You can call {@link OH_Input_DestroyTouchEvent()} to destroy a touch event
+ * @brief Creates a **TouchEvent** object. You can call {@link OH_Input_DestroyTouchEvent} to destroy a touch event
  * object.
  *
  * @return {@link Input_TouchEvent} pointer object if the operation is successful; a null pointer otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 struct Input_TouchEvent* OH_Input_CreateTouchEvent();
@@ -1339,50 +1401,45 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent();
 /**
  * @brief Destroys a **TouchEvent** object.
  *
- * @param touchEvent **TouchEvent** object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object.
  * @since 12
  */
 void OH_Input_DestroyTouchEvent(struct Input_TouchEvent** touchEvent);
 /**
  * @brief Sets the action of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param action Action of the touch event. For details, see {@link Input_TouchEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param action [in] Action of the touch event. For details, see {@link Input_TouchEventAction}.
  * @since 12
  */
 void OH_Input_SetTouchEventAction(struct Input_TouchEvent* touchEvent, int32_t action);
 /**
  * @brief Obtains the action of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Action of the touch event. For details, see {@link Input_TouchEventAction}.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent);
 /**
  * @brief Sets the finger ID of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param id Finger ID of a touch event. The ID of the first finger touching the screen is 0, the second is 1, and so
- *     on incrementally.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param id [in] Finger ID of a touch event. The ID of the first finger touching the screen is 0, the second is 1, and
+ *     so on incrementally.
  * @since 12
  */
 void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id);
 /**
  * @brief Obtains the finger ID of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Finger ID of a touch event. The ID of the first finger touching the screen is 0, the second is 1, and so on
  *     incrementally.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent);
@@ -1391,11 +1448,10 @@ int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent
  * @brief Sets the X coordinate of the touch event in the relative coordinate system with the upper-left corner of the
  * specified screen as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param displayX X coordinate of the touch screen input event in the relative coordinate system with the upper left
- *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param displayX [in] X coordinate of the touch screen input event in the relative coordinate system with the
+ *     upper-left corner of the specified screen as the origin, in px.
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX);
@@ -1404,11 +1460,10 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
  * @brief Obtains the X coordinate of the touch event in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @return The X coordinate of the touch screen input event in the relative coordinate system with the upper left
- *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @return The X coordinate of the touch screen input event in the relative coordinate system with the upper-left
+ *     corner of the specified screen as the origin, in px.
  * @since 12
  */
 int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent);
@@ -1417,11 +1472,10 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
  * @brief Sets the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the
  * specified screen as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param displayY Y-coordinate of the touch screen input event in the relative coordinate system with the upper left
- *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param displayY [in] Y-coordinate of the touch screen input event in the relative coordinate system with the
+ *     upper-left corner of the specified screen as the origin, in px.
  * @since 12
  */
 void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY);
@@ -1430,72 +1484,66 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
  * @brief Obtains the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @return The Y coordinate of the touch screen input event in the relative coordinate system with the upper left
- *     corner of the specified screen as the origin, in pixels (px).
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @return The Y coordinate of the touch screen input event in the relative coordinate system with the upper-left
+ *     corner of the specified screen as the origin, in px.
  * @since 12
  */
 int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent);
 /**
  * @brief Sets the time when the touch event occurs.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param actionTime Time when the touch screen input event occurred, indicating the number of microseconds elapsed
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param actionTime [in] Time when the touch screen input event occurred, indicating the number of microseconds elapsed
  *     since system startup, in microseconds (μs).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime);
 /**
  * @brief Obtains the time when the touch event occurs.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @return Time when a touch event occurs.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @return Time when the touchscreen input event occurs, indicating the number of microseconds elapsed since system
+ *     startup, in microseconds (μs).
  * @since 12
  */
 int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent);
 /**
  * @brief Sets the window ID of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param windowId Window ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param windowId [in] Window ID of a touch event.
  * @since 15
  */
 void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId);
 /**
  * @brief Obtains the window ID of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Window ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetTouchEventWindowId(const struct Input_TouchEvent* touchEvent);
 /**
  * @brief Sets the screen ID of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param displayId Screen ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param displayId [in] Screen ID of a touch event.
  * @since 15
  */
 void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId);
 /**
  * @brief Obtains the screen ID of a touch event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Screen ID of a touch event.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent);
@@ -1504,12 +1552,12 @@ int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEven
  * @brief Sets the X coordinate of the touch event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param touchEvent Touch screen input event object, which can be created through the
- *     {@link OH_Input_CreateTouchEvent()} interface.
+ * @param touchEvent [in] Touch screen input event object, which can be created through the
+ *     {@link OH_Input_CreateTouchEvent} API.
  *     <br>After use, the touch screen input event object must be destroyed using the
- *     {@link OH_Input_DestroyTouchEvent()} interface.
- * @param globalX X coordinate of the touch screen input event in the global coordinate system with the upper left
- *     corner of the primary screen as the origin, in pixels (px).
+ *     {@link OH_Input_DestroyTouchEvent} API.
+ * @param globalX [in] X coordinate of the touch screen input event in the global coordinate system with the upper left
+ *     corner of the primary screen as the origin, in px.
  * @since 20
  */
 void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX);
@@ -1518,10 +1566,10 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
  * @brief Obtains the X coordinate of the touch event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return The X coordinate in the global coordinate system with the upper left corner of the primary screen as the
- *     origin, in pixels (px).
+ *     origin, in px.
  * @since 20
  */
 int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent);
@@ -1530,12 +1578,12 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
  * @brief Sets the Y coordinate of the touch event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param touchEvent Touch screen input event object, which can be created through the
- *     {@link OH_Input_CreateTouchEvent()} interface.
+ * @param touchEvent [in] Touch screen input event object, which can be created through the
+ *     {@link OH_Input_CreateTouchEvent} API.
  *     <br>After use, the touch screen input event object must be destroyed using the
- *     {@link OH_Input_DestroyTouchEvent()} interface.
- * @param globalY Y coordinate of the touch screen input event in the global coordinate system with the upper left
- *     corner of the primary screen as the origin, in pixels (px).
+ *     {@link OH_Input_DestroyTouchEvent} API.
+ * @param globalY [in] Y coordinate of the touch screen input event in the global coordinate system with the upper left
+ *     corner of the primary screen as the origin, in px.
  * @since 20
  */
 void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY);
@@ -1544,34 +1592,36 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
  * @brief Obtains the Y coordinate of the touch event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return The Y coordinate in the global coordinate system with the upper left corner of the primary screen as the
- *     origin for the touch screen input event, in pixels (px).
+ *     origin for the touch screen input event, in px.
  * @since 20
  */
 int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent);
 
 /**
- * @brief Sets the pressure for a touchscreen input event. If the pressure value is not set or is not within the valid
- * range, the default value **0.0** is used.
+ * @brief Sets the pressure of a touchscreen input event. If the pressure is not set, or the set value is not within
+ * [0.0, 1.0], the default value is **0.0**.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param pressure Pressure value. The value range is [0.0, 1.0]. Currently, the minimum pressure that can be sensed by
- *     the touchscreen is 0.0, and the maximum pressure is 1.0. This value has no unit.
- * @return Return value of the **OH_Input_SetTouchEventPressure** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param pressure [in] Pressure value. The value range is [0.0, 1.0]. Currently, the minimum pressure that can be
+ *     sensed by the touchscreen is 0.0, and the maximum pressure is 1.0. This value has no unit.
+ * @return Return value of the OH_Input_SetTouchEventPressure function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 24
  */
 Input_Result OH_Input_SetTouchEventPressure(struct Input_TouchEvent* touchEvent, double pressure);
 /**
  * @brief Obtains the pressure of a touchscreen input event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @return Pressure value, without a unit. When touchEvent is NULL, return the default pressure 0.0.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @return Pressure value, without a unit.
  * @since 24
  */
 double OH_Input_GetTouchEventPressure(const struct Input_TouchEvent* touchEvent);
@@ -1580,10 +1630,10 @@ double OH_Input_GetTouchEventPressure(const struct Input_TouchEvent* touchEvent)
  * @brief Sets the X coordinate of the touch event in the relative coordinate system with the upper-left corner of the
  * specified window as the origin. If the X coordinate is not set, the default value **0** is used.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param windowX X-coordinate in the relative coordinate system with the origin at the upper left corner of the
- *     specified window, in pixels (px).
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param windowX [in] X-coordinate in the relative coordinate system with the origin at the upper left corner of the
+ *     specified window, in px.
  * @since 24
  */
 void OH_Input_SetTouchEventWindowX(struct Input_TouchEvent* touchEvent, int32_t windowX);
@@ -1592,10 +1642,10 @@ void OH_Input_SetTouchEventWindowX(struct Input_TouchEvent* touchEvent, int32_t 
  * @brief Obtains the X coordinate of the touch event in the relative coordinate system with the upper-left corner of
  * the specified window as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return X coordinate in the relative coordinate system with the upper left corner of the specified window as the
- *     origin, in pixels (px). When touchEvent is NULL, return the default value 0.
+ *     origin, in px.
  * @since 24
  */
 int32_t OH_Input_GetTouchEventWindowX(const struct Input_TouchEvent* touchEvent);
@@ -1604,10 +1654,10 @@ int32_t OH_Input_GetTouchEventWindowX(const struct Input_TouchEvent* touchEvent)
  * @brief Sets the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the
  * specified window as the origin. If the Y coordinate is not set, the default value **0** is used.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param windowY Y-coordinate in the relative coordinate system with the origin at the upper left corner of the window,
- *      in pixels (px).
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param windowY [in] Y-coordinate in the relative coordinate system with the origin at the upper left corner of the
+ *     window, in px.
  * @since 24
  */
 void OH_Input_SetTouchEventWindowY(struct Input_TouchEvent* touchEvent, int32_t windowY);
@@ -1616,10 +1666,10 @@ void OH_Input_SetTouchEventWindowY(struct Input_TouchEvent* touchEvent, int32_t 
  * @brief Obtains the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of
  * the specified window as the origin.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return Y-coordinate in the relative coordinate system with the origin at the upper left corner of the window, in
- *     pixels (px). When touchEvent is NULL, return the default value 0.
+ *     px.
  * @since 24
  */
 int32_t OH_Input_GetTouchEventWindowY(const struct Input_TouchEvent* touchEvent);
@@ -1628,10 +1678,10 @@ int32_t OH_Input_GetTouchEventWindowY(const struct Input_TouchEvent* touchEvent)
  * @brief Sets the time when the most recent down event occurred for the finger or other touchscreen devices associated
  * with the current touchscreen event. If the time is not set, the default value **0** is used.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param downTime The time when the most recent press event of the finger or other touch screen peripheral
- *     corresponding to the current touch screen event occurred, representing the number of microseconds elapsed since
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param downTime [in] The time when the most recent press event of the finger or other touch screen peripheral
+ *     corresponding to the current touch event occurred, representing the number of microseconds elapsed since
  *     system startup, in microseconds (μs).
  * @since 24
  */
@@ -1641,34 +1691,36 @@ void OH_Input_SetTouchEventDownTime(struct Input_TouchEvent* touchEvent, int64_t
  * @brief Obtains the time when the most recent down event occurred for the finger or other touchscreen devices
  * associated with the current touchscreen event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
  * @return The time when the most recent press event of the finger or other touch peripherals corresponding to the
  *     current touch screen input occurred, representing the number of microseconds elapsed since system startup, in
- *     microseconds (μs). When touchEvent is NULL, return 0.
+ *     microseconds (μs).
  * @since 24
  */
 int64_t OH_Input_GetTouchEventDownTime(const struct Input_TouchEvent* touchEvent);
 
 /**
- * @brief Sets the tool type for a touchscreen input event. If **toolType** is not set, the default value **
- * Input_TouchEventToolType.TOOL_TYPE_FINGER** is used.
+ * @brief Sets the tool type for a touchscreen input event. If **toolType** is not set, the default value
+ * **Input_TouchEventToolType.TOOL_TYPE_FINGER** is used.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @param toolType Tool type.
- * @return Return value of the **OH_Input_SetTouchEventToolType** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @param toolType [in] Tool type.
+ * @return Return value of the OH_Input_SetTouchEventToolType function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 24
  */
 Input_Result OH_Input_SetTouchEventToolType(struct Input_TouchEvent* touchEvent, Input_TouchEventToolType toolType);
 /**
  * @brief Obtains the tool type of a touchscreen input event.
  *
- * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
- *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
- * @return Tool type.{@link TOOL_TYPE_FINGER} When touchEvent is NULL, return the default toolType.
+ * @param touchEvent [in] **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent}.
+ *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent}.
+ * @return Tool type.
  * @since 24
  */
 Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_TouchEvent* touchEvent);
@@ -1680,19 +1732,21 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  * request the injection permission. The behavior of this API is independent of the ohos.permission.CONTROL_DEVICE
  * permission.
  *
- * @param callback Callback used to return the permission authorization status. For details, see
+ * @param callback [in] Callback used to return the permission authorization status. For details, see
  *     {@link Input_InjectAuthorizeCallback}.
- * @return Return value. For details, see {@link Input_Result}.
- *     <br>INPUT_SUCCESS = 0: Operation success. The application waits for the user authorization result and returns
- *     the authorization status through a callback.
- *     <br>INPUT_PARAMETER_ERROR = 401: Parameter error. The callback parameter is empty.
- *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: Function not supported.
- *     <br>INPUT_SERVICE_EXCEPTION = 3800001: Service error.
- *     <br>INPUT_INJECTION_AUTHORIZING = 3900005: Permission being granted.
- *     <br>INPUT_INJECTION_OPERATION_FREQUENT = 3900006: Repeated request. The application continuously requests
- *     permission authorization at an interval of no more than 3 seconds.
- *     <br>INPUT_INJECTION_AUTHORIZED = 3900007: Permission granted.
- *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008: Permission granted to other applications.
+ * @return Return value of the function. For details, see {@link Input_Result}.
+ *     <br>INPUT_SUCCESS = 0: The authorization request succeeds, and the system waits for the user's authorization
+ *     result and invokes the callback to return the authorization state.
+ *     <br>INPUT_PARAMETER_ERROR = 401: The parameter is invalid, for example, the callback parameter is null.
+ *     <br>INPUT_DEVICE_NOT_SUPPORTED = 801: Capability not supported. Possible causes: 1. The hardware does not
+ *     support the capability; 2. The chip does not support the capability; 3. A dependent service feature is
+ *     not supported.
+ *     <br>INPUT_SERVICE_EXCEPTION = 3800001: The service is abnormal.
+ *     <br>INPUT_INJECTION_AUTHORIZING = 3900005: Authorization is in progress.
+ *     <br>INPUT_INJECTION_OPERATION_FREQUENT = 3900006: Duplicate request (the current application requests the
+ *     authorization dialog box consecutively and successfully, with an interval of no longer than 3 seconds).
+ *     <br>INPUT_INJECTION_AUTHORIZED = 3900007: The current application has been authorized.
+ *     <br>INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008: Another application has been authorized.
  * @since 20
  */
 Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
@@ -1700,7 +1754,6 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
 /**
  * @brief Stops event injection and revokes authorization.
  *
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 void OH_Input_CancelInjection();
@@ -1710,22 +1763,21 @@ void OH_Input_CancelInjection();
  * <br>Since API version 26.0.0, this API returns only the dialog authorization status. It does not indicate whether
  * the caller has injection capability due to holding the ohos.permission.CONTROL_DEVICE permission.
  *
- * @param status Injection permission authorization status of the current application. See
+ * @param status [out] Injection permission authorization status of the current application. See
  *     {@link Input_InjectionStatus}.
- * @return Return value. For details, see {@link Input_Result}.
- *     <br>INPUT_SUCCESS = 0: Operation success.
+ * @return Return value of the function. For details, see {@link Input_Result}.
+ *     <br>INPUT_SUCCESS = 0: The query succeeds.
  *     <br>INPUT_PARAMETER_ERROR = 401: Parameter error. The status parameter is empty.
- *     <br>INPUT_SERVICE_EXCEPTION = 3800001: Service error.
+ *     <br>INPUT_SERVICE_EXCEPTION = 3800001: Service exception.
  * @since 20
  */
 Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
 
 /**
- * @brief Creates an axis event object. You can call {@link OH_Input_DestroyAxisEvent()} to destroy an axis event
+ * @brief Creates an axis event object. You can call {@link OH_Input_DestroyAxisEvent} to destroy an axis event
  * object.
  *
  * @return {@link Input_AxisEvent} object if the operation is successful; **null** otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_AxisEvent* OH_Input_CreateAxisEvent(void);
@@ -1733,9 +1785,11 @@ Input_AxisEvent* OH_Input_CreateAxisEvent(void);
 /**
  * @brief Destroys an axis event object.
  *
- * @param axisEvent Pointer to the axis event object.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Pointer to the axis event object.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the destruction is successful.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if axisEvent is NULL.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
@@ -1743,11 +1797,14 @@ Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent);
 /**
  * @brief Sets the action for an axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param action Axis event action. For details, see {@link InputEvent_AxisAction}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param action [in] Axis event action. For details, see {@link oh_axis_type.h#InputEvent_AxisAction}.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action);
@@ -1755,12 +1812,15 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
 /**
  * @brief Obtains the action of an axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param action Axis event action. For details, see {@link InputEvent_AxisAction}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     action** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param action [out] Output parameter, which returns the axis event action. For details, see
+ *     {@link oh_axis_type.h#InputEvent_AxisAction}.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **action** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action);
@@ -1769,12 +1829,15 @@ Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, Input
  * @brief Sets the X coordinate of the axis event in the relative coordinate system with the upper-left corner of the
  * specified screen as the origin.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param displayX X coordinate in the relative coordinate system with the upper left corner of the specified screen as
- *     the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param displayX [in] X coordinate in the relative coordinate system with the upper-left corner of the specified
+ *     screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX);
@@ -1783,13 +1846,15 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
  * @brief Obtains the X coordinate of the axis event in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param displayX Output parameter, returns the X coordinate of the axis event in the relative coordinate system with
- *     the upper left corner of the specified screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     displayX** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param displayX [out] Output parameter, returns the X coordinate of the axis event in the relative coordinate system
+ *     with the upper-left corner of the specified screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **displayX** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX);
@@ -1798,12 +1863,15 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
  * @brief Sets the Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the
  * specified screen as the origin.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param displayY Y coordinate in the relative coordinate system with the upper left corner of the specified screen as
- *     the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param displayY [in] Y coordinate in the relative coordinate system with the upper-left corner of the specified
+ *     screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY);
@@ -1812,13 +1880,15 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
  * @brief Obtains the Y coordinate of the axis event in the relative coordinate system with the upper-left corner of
  * the specified screen as the origin.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param displayY Output parameter, returns the Y coordinate of the axis event in the relative coordinate system with
- *     the upper left corner of the specified screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     displayY** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param displayY [out] Output parameter, returns the Y coordinate of the axis event in the relative coordinate system
+ *     with the upper-left corner of the specified screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **displayY** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY);
@@ -1826,14 +1896,17 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
 /**
  * @brief Sets the axis value of the axis type specified by the axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param axisType Axis type. For details, see {@link InputEvent_AxisType}.
- * @param axisValue Value of the axis event. A positive value indicates scrolling forward (for example, 1.0 means
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param axisType [in] Axis type. For details, see {@link oh_axis_type.h#InputEvent_AxisType}.
+ * @param axisValue [in] Value of the axis event. A positive value indicates scrolling forward (for example, 1.0 means
  *     scrolling forward by one unit), a negative value indicates scrolling backward (for example, -1.0 means scrolling
  *     backward by one unit), and zero indicates no scrolling.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
@@ -1842,14 +1915,17 @@ Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,
 /**
  * @brief Obtains the axis value for the specified axis type of the axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param axisType Axis type. For details, see {@link InputEvent_AxisType}.
- * @param axisValue Axis event value. A positive number means scrolling forward (for example, 1.0 equals one unit
- *     forward), and a negative number means scrolling backward (for example, -1.0 equals one unit backward).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     axisValue** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param axisType [in] Axis type. For details, see {@link oh_axis_type.h#InputEvent_AxisType}.
+ * @param axisValue [out] Output parameter, which returns the value of the axis event. A positive value indicates
+ *     scrolling forward (for example, 1.0 indicates scrolling forward by one unit), a negative value indicates
+ *     scrolling backward (for example, -1.0 indicates scrolling backward by one unit), and zero indicates no scrolling.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **axisValue** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
@@ -1858,12 +1934,12 @@ Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,
 /**
  * @brief Sets the time when an axis event occurs.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param actionTime Time when the axis event occurred, representing the number of microseconds elapsed since system
- *     startup, in microseconds (μs).
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param actionTime [in] Time when the axis event occurred, representing the number of microseconds elapsed since
+ *     system startup, in microseconds (μs).
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime);
@@ -1871,13 +1947,13 @@ Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t
 /**
  * @brief Obtains the time when an axis event occurs.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param actionTime Output parameter, returns the time when the axis event occurred, representing the number of
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param actionTime [out] Output parameter, returns the time when the axis event occurred, representing the number of
  *     microseconds elapsed since system startup, in microseconds (μs).
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     actionTime** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
+ *     **actionTime** is null.
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, int64_t* actionTime);
@@ -1885,11 +1961,14 @@ Input_Result OH_Input_GetAxisEventActionTime(const Input_AxisEvent* axisEvent, i
 /**
  * @brief Sets the axis event type.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param axisEventType Axis event type. For details, see {@link InputEvent_AxisEventType}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param axisEventType [in] Axis event type. For details, see {@link oh_axis_type.h#InputEvent_AxisEventType}.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_AxisEventType axisEventType);
@@ -1897,12 +1976,14 @@ Input_Result OH_Input_SetAxisEventType(Input_AxisEvent* axisEvent, InputEvent_Ax
 /**
  * @brief Obtains the axis event type.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param axisEventType Axis event type. For details, see {@link InputEvent_AxisEventType}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     axisEventType** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param axisEventType [out] Axis event type. For details, see {@link oh_axis_type.h#InputEvent_AxisEventType}.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **axisEventType** is null.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEvent_AxisEventType* axisEventType);
@@ -1910,11 +1991,11 @@ Input_Result OH_Input_GetAxisEventType(const Input_AxisEvent* axisEvent, InputEv
 /**
  * @brief Sets the axis event source type.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param sourceType Axis event source type. For details, see {@link InputEvent_SourceType}.
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param sourceType [in] Axis event source type. For details, see {@link InputEvent_SourceType}.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEvent_SourceType sourceType);
@@ -1922,12 +2003,12 @@ Input_Result OH_Input_SetAxisEventSourceType(Input_AxisEvent* axisEvent, InputEv
 /**
  * @brief Obtains the axis event source type.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param sourceType Axis event source type. For details, see {@link InputEvent_SourceType}.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     sourceType** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param sourceType [out] Axis event source type. For details, see {@link InputEvent_SourceType}.
+ * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
+ *     **sourceType** is null.
  * @since 12
  */
 Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, InputEvent_SourceType* sourceType);
@@ -1935,11 +2016,11 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
 /**
  * @brief Sets the window ID of an axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param windowId Window ID of an axis event.
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param windowId [in] Window ID of an axis event.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t windowId);
@@ -1947,12 +2028,14 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
 /**
  * @brief Obtains the window ID of an axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param windowId Window ID of the axis event.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     windowId** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param windowId [out] Window ID of the axis event. This is an output parameter.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **windowId** is null.</li>
+ *         </ul>
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int32_t* windowId);
@@ -1960,11 +2043,11 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
 /**
  * @brief Sets the screen ID of an axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param displayId Screen ID of an axis event.
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param displayId [in] Screen ID of an axis event.
  * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 15
  */
 Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t displayId);
@@ -1972,12 +2055,12 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
 /**
  * @brief Obtains the screen ID of an axis event.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param displayId Screen ID of the axis event.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or **
- *     displayId** is null.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param displayId [out] Screen ID of the axis event.
+ * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PARAMETER_ERROR} if **axisEvent** or
+ *     **displayId** is null.
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId);
@@ -1986,12 +2069,14 @@ Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, in
  * @brief Sets the X coordinate of the axis event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param axisEvent Axis event object, which can be created through the {@link OH_Input_CreateAxisEvent()} API.
- *     <br>After use, the axis event object must be destroyed through the {@link OH_Input_DestroyAxisEvent()} API.
- * @param globalX X coordinate of the axis event in the global coordinate system with the upper left corner of the
- *     primary screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is a null pointer.
+ * @param axisEvent [in] Axis event object, which can be created through the {@link OH_Input_CreateAxisEvent} API.
+ *     <br>After use, the axis event object must be destroyed through the {@link OH_Input_DestroyAxisEvent} API.
+ * @param globalX [in] X coordinate of the axis event in the global coordinate system with the upper left corner of the
+ *     primary screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX);
@@ -2000,12 +2085,15 @@ Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int
  * @brief Obtains the X coordinate of the axis event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param globalX X-coordinate of the axis event in the global coordinate system with the upper left corner of the
- *     primary screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **globalX** is a null pointer.
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param globalX [out] X-coordinate of the axis event in the global coordinate system with the upper left corner of the
+ *     primary screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent or globalX is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX);
@@ -2014,12 +2102,14 @@ Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int3
  * @brief Sets the Y coordinate of the axis event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param axisEvent Axis event object, which can be created using the {@link OH_Input_CreateAxisEvent()} interface.
- *     <br>After use, the axis event object must be destroyed using the {@link OH_Input_DestroyAxisEvent()} interface.
- * @param globalY Y-coordinate of the axis event in the global coordinate system with the origin at the upper left
- *     corner of the primary screen, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **axisEvent** is a null pointer.
+ * @param axisEvent [in] Axis event object, which can be created using the {@link OH_Input_CreateAxisEvent} API.
+ *     <br>After use, the axis event object must be destroyed using the {@link OH_Input_DestroyAxisEvent} API.
+ * @param globalY [in] Y-coordinate of the axis event in the global coordinate system with the origin at the upper left
+ *     corner of the primary screen, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY);
@@ -2028,12 +2118,15 @@ Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int
  * @brief Obtains the Y coordinate of the axis event in the global coordinate system with the upper-left corner of the
  * primary screen as the origin.
  *
- * @param axisEvent Axis event object. You can call {@link OH_Input_CreateAxisEvent()} to create an axis event object.
- *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent()}.
- * @param globalY Y-coordinate of the axis event in the global coordinate system with the upper left corner of the
- *     primary screen as the origin, in pixels (px).
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **axisEvent** or **globalY** is a null pointer.
+ * @param axisEvent [in] Axis event object. You can call {@link OH_Input_CreateAxisEvent} to create an axis
+ *     event object.
+ *     <br>If the axis event object is no longer needed, destroy it by calling {@link OH_Input_DestroyAxisEvent}.
+ * @param globalY [out] Y-coordinate of the axis event in the global coordinate system with the upper left corner of the
+ *     primary screen as the origin, in px.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that axisEvent or globalY is a null pointer.</li>
+ *         </ul>
  * @since 20
  */
 Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY);
@@ -2042,12 +2135,13 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  * @brief Adds a listener for key events. Only the initial addition takes effect. Subsequent attempts will be ignored.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback used to receive key events.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PERMISSION_DENIED} if permission
- *     verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty; {@link INPUT_SERVICE_EXCEPTION} if the service is
- *     abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback used to receive key events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the key event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
@@ -2055,16 +2149,17 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
 /**
  * @brief Adds a listener for mouse events, including mouse click and movement events, but not scroll wheel events.
  * Scroll wheel events are axis events.
- * <br>This API can be called only when the screen recording scenario is in use. Otherwise, the call does not take
- * effect.
+ * <br>This API can be called only when the application is in a screen recording scenario. Otherwise, the call does
+ * not take effect.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback used to receive mouse events.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PERMISSION_DENIED} if permission
- *     verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty; {@link INPUT_SERVICE_EXCEPTION} if the service is
- *     abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback used to receive mouse events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the mouse event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
@@ -2073,41 +2168,46 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  * @brief Adds a listener for touch input events.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback used to receive touch events.
- * @return {@link INPUT_SUCCESS} if the operation is successful; {@link INPUT_PERMISSION_DENIED} if permission
- *     verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty; {@link INPUT_SERVICE_EXCEPTION} if the service is
- *     abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback used to receive touch events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the touch event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
 
 /**
- * @brief Adds a listener for all types of axis events, which are defined in {@link InputEvent_AxisEventType}.
+ * @brief Adds a listener for all types of axis events, which are defined in
+ * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback used to receive axis events.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback used to receive axis events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the axis event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback);
 
 /**
- * @brief Adds a listener for the specified type of axis events, which are defined in {@link InputEvent_AxisEventType}.
+ * @brief Adds a listener for the specified type of axis events, which are defined in
+ * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType Axis event type, which is defined in {@link InputEvent_AxisEventType}.
- * @param callback Callback used to receive axis events of a specified type.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
+ * @param callback [in] Callback used to receive axis events of a specified type.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the axis event listener is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission check fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2116,12 +2216,13 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
  * @brief Removes the listener for key events.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback for key events.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback for key events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the key event listener is removed successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
@@ -2130,12 +2231,13 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
  * @brief Removes the listener for mouse events.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback for mouse events.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback for mouse events.
+ * @return <ul>
+ *         <li>If the mouse event listener is removed successfully, {@link INPUT_SUCCESS} is returned.</li>
+ *         <li>If the permission verification fails, {@link INPUT_PERMISSION_DENIED} is returned.</li>
+ *         <li>If callback is null or no listener has been added, {@link INPUT_PARAMETER_ERROR} is returned.</li>
+ *         <li>If the service is abnormal, {@link INPUT_SERVICE_EXCEPTION} is returned.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback);
@@ -2144,12 +2246,13 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
  * @brief Removes the listener for touch events.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback for touch events.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback for touch events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the touch event listener is removed successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback);
@@ -2158,28 +2261,30 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
  * @brief Removes the listener for all types of axis events.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param callback Callback for the all types of axis events.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback for the all types of axis events.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the axis event listener is removed successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback);
 
 /**
  * @brief Removes the listener for the specified type of axis events, which are defined in
- * {@link InputEvent_AxisEventType}.
+ * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING
- * @param axisEventType Axis event type, which is defined in {@link InputEvent_AxisEventType}.
- * @param callback Callback for the specified type of axis events.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
+ * @param callback [in] Callback for the specified type of axis events.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the axis event listener is removed successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if callback is null or no listener has been added.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback);
@@ -2189,33 +2294,35 @@ Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventT
  * code {@link INPUT_REPEAT_INTERCEPTOR}. Key events are intercepted only when the application gains focus.
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @param callback Callback used to receive key events.
- * @param option Options for event interception. If **null** is passed, the default value is used.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if an interceptor is repeatedly added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param callback [in] Callback used to receive key events.
+ * @param option [in] Options for event interception. If **null** is passed, the default value is used.
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the key event interception is added successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if permission verification fails.</li>
+ *         <li>Returns {@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>Returns {@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if a service exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option);
 
 /**
  * @brief Adds an interceptor for input events, including mouse, touch, and axis events. Only the first addition takes
- * effect. Subsequent requests will return error code {@link INPUT_REPEAT_INTERCEPTOR}. Key events are intercepted only
- * when the application window is hit.
+ * effect. Subsequent requests will return error code {@link INPUT_REPEAT_INTERCEPTOR}. Input events are intercepted
+ * only when the application window is hit.
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @param callback Pointer to the structure of the interceptor event callback. For details, see
+ * @param callback [in] Pointer to the structure of the interceptor event callback. For details, see
  *     {@link Input_InterceptorEventCallback}.
- * @param option Options for event interception. If **null** is passed, the default value is used.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the callback is empty or no listener is added;
- *     <br>{@link INPUT_REPEAT_INTERCEPTOR} if an interceptor is repeatedly added;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param option [in] Options for event interception. If **null** is passed, the default value is used.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} if the input event interception is added successfully.</li>
+ *         <li>{@link INPUT_PERMISSION_DENIED} if the permission check fails.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} if callback is null.</li>
+ *         <li>{@link INPUT_REPEAT_INTERCEPTOR} if the interceptor is added repeatedly.</li>
+ *         <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback,
@@ -2225,10 +2332,11 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @brief Removes the interceptor for key events.
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the key event interception is removed successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveKeyEventInterceptor(void);
@@ -2237,10 +2345,11 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @brief Removes the interceptor for input events, including mouse, touch, and axis events.
  *
  * @permission ohos.permission.INTERCEPT_INPUT_EVENT
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PERMISSION_DENIED} if permission verification fails;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return <ul>
+ *         <li>Returns {@link INPUT_SUCCESS} if the input event interception is removed successfully.</li>
+ *         <li>Returns {@link INPUT_PERMISSION_DENIED} if the permission verification fails.</li>
+ *         <li>Returns {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *         </ul>
  * @since 12
  */
 Input_Result OH_Input_RemoveInputEventInterceptor(void);
@@ -2248,22 +2357,20 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
 /**
  * @brief Obtains the interval since the last system input event.
  *
- * @param timeInterval Time interval, in microseconds (μs).
+ * @param timeInterval [out] Time interval, in microseconds (μs).
  * @return Return value of the **OH_Input_GetIntervalSinceLastInput** function.
  *     <br>{@link INPUT_SUCCESS} if the interval is obtained successfully;
  *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect.
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
 Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
 
 /**
- * @brief Creates a hotkey object. You can call {@link OH_Input_DestroyHotkey()} to destroy a hotkey object.
+ * @brief Creates a hotkey object. You can call {@link OH_Input_DestroyHotkey} to destroy a hotkey object.
  *
- * @return If the operation is successful, a pointer to an {@link Input_Hotkey} object is returned. Otherwise, a null
- *     pointer is returned, possibly due to memory allocation failure.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return Pointer to the {@link Input_Hotkey} object if the operation is successful. Otherwise, a null pointer is
+ *     returned, possibly because memory allocation fails.
  * @since 14
  */
 Input_Hotkey *OH_Input_CreateHotkey(void);
@@ -2271,8 +2378,7 @@ Input_Hotkey *OH_Input_CreateHotkey(void);
 /**
  * @brief Destroys a hotkey object.
  *
- * @param hotkey Hotkey object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
  * @since 14
  */
 void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
@@ -2280,10 +2386,9 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
 /**
  * @brief Sets the modifier keys.
  *
- * @param hotkey Hotkey object.
- * @param preKeys List of modifier keys.
- * @param size Number of modifier keys. One or two modifier keys are supported.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param preKeys [in] List of modifier keys.
+ * @param size [in] Number of modifier keys. The value ranges from 1 to 4.
  * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
@@ -2291,13 +2396,14 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
 /**
  * @brief Obtains the modifier key.
  *
- * @param hotkey Hotkey object.
- * @param preKeys List of modifier keys.
- * @param preKeyCount Number of modifier keys.
- * @return Return value of the **OH_Input_GetPreKeys** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param preKeys [out] List of modifier keys.
+ * @param preKeyCount [out] Number of modifier keys.
+ * @return Return value of the OH_Input_GetPreKeys function.
+ *     <ul>
+ *     <li>If the operation is successful, {@link INPUT_SUCCESS} is returned.</li>
+ *     <li>If the operation fails, {@link INPUT_PARAMETER_ERROR} is returned.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount);
@@ -2305,9 +2411,8 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
 /**
  * @brief Sets the modified key.
  *
- * @param hotkey Hotkey object.
- * @param finalKey Modifier key value. Only one modifier key value is allowed.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param finalKey [in] Modifier key value. Only one modifier key value is allowed.
  * @since 14
  */
 void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
@@ -2315,25 +2420,28 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
 /**
  * @brief Obtains the modified key.
  *
- * @param hotkey Hotkey object.
- * @param finalKeyCode Modified key.
- * @return Return value of the **OH_Input_GetFinalKey** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param finalKeyCode [out] Modified key.
+ * @return Return value of the OH_Input_GetFinalKey function.
+ *     <ul>
+ *     <li>If obtained successfully, returns {@link INPUT_SUCCESS}.</li>
+ *     <li>If failed, returns {@link INPUT_PARAMETER_ERROR}.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode);
 
 /**
- * @brief Creates an {@link Input_Hotkey} array. You can call {@link OH_Input_GetAllSystemHotkeys()} to obtain a valid *
- * *count** parameter. You can call {@link OH_Input_DestroyAllSystemHotkeys()} to destroy the array of the
+ * @brief Creates an {@link Input_Hotkey} array. You can call {@link OH_Input_GetAllSystemHotkeys} to obtain a valid
+ * **count** parameter. You can call {@link OH_Input_DestroyAllSystemHotkeys} to destroy the array of the
  * {@link Input_Hotkey} instance and reclaim the memory.
  *
- * @param count Number of {@link Input_Hotkey} instances.
- * @return Return value of the **OH_Input_CreateAllSystemHotkeys** function.
- *     <br>which is {@link INPUT_SUCCESS} if the operation is successful.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param count [in] Number of {@link Input_Hotkey} instances.
+ * @return <ul>
+ *         <li>Pointer to the array of {@link Input_Hotkey} instances if the operation is successful.</li>
+ *         <li>If the operation fails, a null pointer is returned, possibly due to memory allocation failure.</li>
+ *         </ul>
+ * @release OH_Input_DestroyAllSystemHotkeys {return}
  * @since 14
  */
 Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
@@ -2341,9 +2449,8 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
 /**
  * @brief Destroys an {@link Input_Hotkey} array and reclaims the memory.
  *
- * @param hotkeys Double pointer to the {@link Input_Hotkey} array.
- * @param count Number of {@link Input_Hotkey} instances.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkeys [in] Double pointer to the {@link Input_Hotkey} array.
+ * @param count [in] Number of {@link Input_Hotkey} instances.
  * @since 14
  */
 void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
@@ -2351,13 +2458,14 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
 /**
  * @brief Obtains all configured hotkeys.
  *
- * @param hotkey {@link Input_Hotkey} array. When calling this API for the first time, you can pass **NULL** to obtain
- *     the array length.
- * @param count Number of supported hotkeys.
- * @return Return value of the **OH_Input_GetAllSystemHotkeys** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [out] {@link Input_Hotkey} array. When calling this API for the first time, you can pass **NULL** to
+ *     obtain the array length.
+ * @param count [out] Number of supported hotkeys.
+ * @return Return value of the OH_Input_GetAllSystemHotkeys function.
+ *     <ul>
+ *     <li>Returns {@link INPUT_SUCCESS} if obtained successfully.</li>
+ *     <li>Returns {@link INPUT_PARAMETER_ERROR} if the obtaining fails.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count);
@@ -2365,10 +2473,9 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
 /**
  * @brief Specifies whether to report repeated key events.
  *
- * @param hotkey Hotkey object.
- * @param isRepeat Whether to report repeated key events. The value **true** means to report repeated key events, and
- *     the value **false** means the opposite.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param isRepeat [in] Whether to report repeated key events. The value **true** means to report repeated key events,
+ *     and the value **false** means the opposite.
  * @since 14
  */
 void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
@@ -2376,30 +2483,39 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
 /**
  * @brief Checks whether to report repeated key events.
  *
- * @param hotkey Hotkey object.
- * @param isRepeat Whether the reported key event is repeated. The value **true** indicates that the key event is
+ * @param hotkey [in] Hotkey object.
+ * @param isRepeat [out] Whether the reported key event is repeated. The value **true** indicates that the key event is
  *     repeated, and the value **false** indicates that the key event is not repeated.
- * @return Return value of the **OH_Input_GetRepeat** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} otherwise.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return Return value of the OH_Input_GetRepeat function.
+ *     <ul>
+ *     <li>If obtained successfully, {@link INPUT_SUCCESS} is returned.</li>
+ *     <li>If obtaining fails, {@link INPUT_PARAMETER_ERROR} is returned.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
 
 /**
  * @brief Subscribes to hotkey events.
+ * <br> > **NOTE**
+ * >
+ * > When subscribing to hotkey events, pay attention to the following restrictions on **preKeys** and **finalKey**:
+ * > 1. **preKeys**: Modifier key set (including Ctrl, Shift, and Alt) containing 1-4 keys. There is no requirement
+ * on the key order. For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.
+ * > 2. **finalKey**: Modified key, which can be any key except the modifier keys and Meta key. For details about the
+ * keys, see {@link oh_key_code.h#Input_KeyCode}. For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.
  *
- * @param hotkey Hotkey object.
- * @param callback Defines the callback used to return hotkey events.
- * @return Return value of the **OH_Input_AddHotkeyMonitor** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if parameter verification fails;
- *     <br>{@link INPUT_OCCUPIED_BY_SYSTEM} if the hotkey has been occupied by the system (you can use
- *     {@link OH_Input_GetAllSystemHotkeys()} to query allsystem hotkeys);
- *     <br>{@link INPUT_OCCUPIED_BY_OTHER} if the hotkey has been occupied by another application;
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the function is not supported.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param callback [in] Defines the callback used to return hotkey events.
+ * @return Return value of the OH_Input_AddHotkeyMonitor function.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the hotkey subscription is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     <li>{@link INPUT_OCCUPIED_BY_SYSTEM} indicates that the hotkey is occupied by the system. You can query all
+ *     system hotkeys through the API {@link OH_Input_GetAllSystemHotkeys}.</li>
+ *     <li>{@link INPUT_OCCUPIED_BY_OTHER} indicates that the subscription has been preempted.</li>
+ *     <li>{@link INPUT_DEVICE_NOT_SUPPORTED} indicates that the feature is not supported.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2407,12 +2523,13 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
 /**
  * @brief Unsubscribes from hotkey events.
  *
- * @param hotkey Hotkey object.
- * @param callback Defines the callback used to return hotkey events.
- * @return Return value of the **OH_Input_RemoveHotkeyMonitor** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if parameter verification fails.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param hotkey [in] Hotkey object.
+ * @param callback [in] Defines the callback used to return hotkey events.
+ * @return Return value of the OH_Input_RemoveHotkeyMonitor function.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the hotkey is unsubscribed successfully.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure.</li>
+ *     </ul>
  * @since 14
  */
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
@@ -2420,13 +2537,15 @@ Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_Hotk
 /**
  * @brief Obtains the IDs of all input devices.
  *
- * @param deviceIds List of input device IDs.
- * @param inSize Size of the input device ID list.
- * @param outSize Length of the output device ID list. The value must be less than or equal to the value of **inSize**.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceIds** or **outSize** is a null pointer or **inSize** is less than
- *     **0**.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceIds [out] List of input device IDs.
+ * @param inSize [in] Size of the input device ID list.
+ * @param outSize [out] Length of the output device ID list. The value must be less than or equal to the value
+ *     of **inSize**.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceIds or outSize is a null pointer or inSize is less
+ *             than 0.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *outSize);
@@ -2434,23 +2553,23 @@ Input_Result OH_Input_GetDeviceIds(int32_t *deviceIds, int32_t inSize, int32_t *
 /**
  * @brief Obtains information about the input device.
  *
- * @param deviceId Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its ID
- *     may change.
- * @param deviceInfo Pointer to the {@link Input_DeviceInfo} object.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** is a null pointer or **deviceId** is invalid;
- *     <br>You can use {@link OH_Input_GetDeviceIds()} to query the device IDs supported by the system.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceId [in] Unique identifier of the input device. The device ID may change when the same physical device is
+ *     repeatedly plugged in and out or restarted. You can query the device IDs supported by the system through the
+ *     {@link OH_Input_GetDeviceIds} API.
+ * @param deviceInfo [out] Pointer to the {@link Input_DeviceInfo} object.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo is a null pointer or deviceId is invalid.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDevice(int32_t deviceId, Input_DeviceInfo **deviceInfo);
 /**
- * @brief Creates a **deviceInfo** object. You can call {@link OH_Input_DestroyDeviceInfo()} to destroy an input device
+ * @brief Creates a **deviceInfo** object. You can call {@link OH_Input_DestroyDeviceInfo} to destroy an input device
  * information object.
  *
  * @return Pointer to the {@link Input_DeviceInfo} object if the operation is successful; a null pointer otherwise (
  *     possibly because of a memory allocation failure).
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
 Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
@@ -2458,8 +2577,7 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo(void);
 /**
  * @brief Destroys a **deviceInfo** object.
  *
- * @param deviceInfo **deviceInfo** object.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] **deviceInfo** object.
  * @since 13
  */
 void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
@@ -2467,12 +2585,13 @@ void OH_Input_DestroyDeviceInfo(Input_DeviceInfo **deviceInfo);
 /**
  * @brief Obtains the keyboard type of the input device.
  *
- * @param deviceId Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its ID
- *     may change.
- * @param keyboardType Pointer to the keyboard type of the input device.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the device ID is invalid or **keyboardType** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceId [in] Unique ID of the input device. If a physical device is repeatedly reinstalled or restarted, its
+ *     ID may change.
+ * @param keyboardType [out] Pointer to the keyboard type of the input device.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} The operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} The device ID is invalid or keyboardType is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
@@ -2480,11 +2599,12 @@ Input_Result OH_Input_GetKeyboardType(int32_t deviceId, int32_t *keyboardType);
 /**
  * @brief Obtains the ID of an input device.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param id Pointer to the input device ID.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **ID** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param id [out] Pointer to the input device ID.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or ID is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
@@ -2492,11 +2612,12 @@ Input_Result OH_Input_GetDeviceId(Input_DeviceInfo *deviceInfo, int32_t *id);
 /**
  * @brief Obtains the name of an input device.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param name Pointer to the input device name.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **name** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param name [out] Pointer to the input device name.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or name is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
@@ -2504,11 +2625,12 @@ Input_Result OH_Input_GetDeviceName(Input_DeviceInfo *deviceInfo, char **name);
 /**
  * @brief Obtains the capabilities of an input device, for example, a touchscreen, touchpad, or keyboard.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param capabilities Pointer to the capability information of the input device.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **capabilities** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param capabilities [out] Pointer to the capability information of the input device.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or capabilities is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *capabilities);
@@ -2516,11 +2638,12 @@ Input_Result OH_Input_GetCapabilities(Input_DeviceInfo *deviceInfo, int32_t *cap
 /**
  * @brief Obtains the version information of an input device.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param version Pointer to the version information of the input device.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **version** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param version [out] Pointer to the version information of the input device.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or version is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *version);
@@ -2528,11 +2651,12 @@ Input_Result OH_Input_GetDeviceVersion(Input_DeviceInfo *deviceInfo, int32_t *ve
 /**
  * @brief Obtains the product information of an input device.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param product Pointer to the product information of the input device.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **product** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param product [out] Pointer to the product information of the input device.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or product is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *product);
@@ -2540,11 +2664,12 @@ Input_Result OH_Input_GetDeviceProduct(Input_DeviceInfo *deviceInfo, int32_t *pr
 /**
  * @brief Obtains the vendor information of an input device.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param vendor Pointer to the vendor information of the input device.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **vendor** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param vendor [out] Pointer to the vendor information of the input device.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or vendor is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor);
@@ -2552,11 +2677,12 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
 /**
  * @brief Obtains the physical address of an input device.
  *
- * @param deviceInfo Input device information. For details, see {@link Input_DeviceInfo}.
- * @param address Pointer to the physical address of the input device.
- * @return {@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **deviceInfo** or **address** is a null pointer.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param deviceInfo [in] Input device information. For details, see {@link Input_DeviceInfo}.
+ * @param address [out] Pointer to the physical address of the input device.
+ * @return <ul>
+ *         <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *         <li>{@link INPUT_PARAMETER_ERROR} indicates that deviceInfo or address is a null pointer.</li>
+ *         </ul>
  * @since 13
  */
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
@@ -2564,12 +2690,12 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
 /**
  * @brief Registers a listener for device hot swap events.
  *
- * @param listener Pointer to the {@link Input_DeviceListener} object.
- * @return Return value of the **OH_Input_RegisterDeviceListener** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the listener is null;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param listener [in] Pointer to the {@link Input_DeviceListener} object.
+ * @return Return value of OH_Input_RegisterDeviceListener.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates successful registration.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that listener is NULL.</li>
+ *     </ul>
  * @since 13
  */
 Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
@@ -2577,23 +2703,25 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
 /**
  * @brief Unregisters the listener for device hot swap events.
  *
- * @param listener Pointer to the {@link Input_DeviceListener} object.
- * @return Return value of the **OH_Input_UnregisterDeviceListener** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if **listener** is null or the listener is not registered;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param listener [in] Pointer to the {@link Input_DeviceListener} listener.
+ * @return Return value of the OH_Input_UnregisterDeviceListener function.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the unregistration is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that listener is NULL or listener is not registered.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates that the call fails due to a service exception.</li>
+ *     </ul>
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
 
 /**
- * @brief Unregisters the listener for all device hot swap events.
+ * @brief Unregisters all listeners for device hot swap events.
  *
- * @return Return value of the **OH_Input_UnregisterDeviceListener** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @return Return value of the OH_Input_UnregisterDeviceListeners function.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the call is successful.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates that the call fails due to a service exception.</li>
+ *     </ul>
  * @since 13
  */
 Input_Result OH_Input_UnregisterDeviceListeners();
@@ -2601,14 +2729,15 @@ Input_Result OH_Input_UnregisterDeviceListeners();
 /**
  * @brief Obtains the function key status.
  *
- * @param keyCode Function key. Currently, only the **CapsLock** key is supported. The key value is **1**.
- * @param state Function key status. The value **0** indicates that the function key is disabled, and the value **1**
- *     indicates that the function key is enabled.
- * @return Return value of the **OH_Input_GetFunctionKeyState** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
- *     <br>{@link INPUT_KEYBOARD_DEVICE_NOT_EXIST} if the keyboard device does not exist.
- * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @param keyCode [in] Function key. Currently, only the **CapsLock** key is supported. The key value is **1**.
+ * @param state [out] Function key status. The value **0** indicates that the function key is disabled, and the value
+ *     **1** indicates that the function key is enabled.
+ * @return Return value of the OH_Input_GetFunctionKeyState function.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the state is obtained successfully.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     <li>{@link INPUT_KEYBOARD_DEVICE_NOT_EXIST} indicates that the keyboard device does not exist.</li>
+ *     </ul>
  * @since 15
  */
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
@@ -2616,8 +2745,8 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
 /**
  * @brief Queries the maximum number of touch points supported by the device.
  *
- * @param count Maximum number of touch points supported by the device. The value range is [0, 10]. The value **-1**
- *     indicates that the number of touch points is unknown.
+ * @param count [out] Maximum number of touch points supported by the device. The value ranges from 0 to 10, and -1
+ *     indicates unknown.
  * @return Return value of the **OH_Input_QueryMaxTouchPoints** function.
  *     <br>{@link INPUT_SUCCESS} if the operation is successful;
  *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
@@ -2629,21 +2758,25 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @brief Obtains the coordinates of the mouse pointer on the current screen.
  * <br>Since API version 26.0.0, non-focused applications that have the ohos.permission.INPUT_DEVICE_CONFIGURATOR
  * permission can call this API.
+ * <br>Since API version 26.2.0, on PC devices, there are no longer focus or permission requirements for applications.
  *
- * @param displayId Screen ID of the current screen.
- * @param displayX X coordinate of the mouse on the current screen, in pixels (px).
- * @param displayY Y coordinate of the mouse on the current screen, in pixels (px).
- * @return Return value of the **GetPointerLocation** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter is incorrect;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if a service exception occurs;
- *     <br>{@link INPUT_APP_NOT_FOCUSED} if the current application is not in focus;
- *     <br>{@link INPUT_DEVICE_NO_POINTER} if no mouse device is available.
+ * @param displayId [out] Screen ID of the current screen.
+ * @param displayX [out] X coordinate of the mouse on the current screen, in px.
+ * @param displayY [out] Y coordinate of the mouse on the current screen, in px.
+ * @return Return value of the OH_Input_GetPointerLocation function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the query is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter error.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception.</li>
+ *     <li>{@link INPUT_APP_NOT_FOCUSED} indicates that the current application is not the focused application.</li>
+ *     <li>{@link INPUT_DEVICE_NO_POINTER} indicates that no mouse-type input peripheral is available.</li>
+ *     </ul>
  * @since 20
  */
 Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
+
 /**
- * @brief Creates a mouse pointer information object. You can call {@link OH_Input_CursorInfo_Destroy()} to destroy a
+ * @brief Creates a mouse pointer information object. You can call {@link OH_Input_CursorInfo_Destroy} to destroy a
  * mouse pointer information object.
  *
  * @return An {@link Input_CursorInfo} object if the operation is successful; a null pointer otherwise (possibly
@@ -2655,7 +2788,7 @@ struct Input_CursorInfo* OH_Input_CursorInfo_Create();
 /**
  * @brief Destroys the mouse pointer information object.
  *
- * @param cursorInfo Mouse pointer information object.
+ * @param cursorInfo [in] Mouse pointer information object.
  * @since 22
  */
 void OH_Input_CursorInfo_Destroy(Input_CursorInfo** cursorInfo);
@@ -2663,14 +2796,16 @@ void OH_Input_CursorInfo_Destroy(Input_CursorInfo** cursorInfo);
 /**
  * @brief Obtains the pointer visible status of the specified mouse pointer information object.
  *
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo()} to query
- *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo()} to query the
- *     current mouse pointer information.
- * @param visible Visible status of the mouse pointer. The value **true** indicates that the mouse pointer is visible,
- *     and the value **false** indicates the opposite.
- * @return Return value of the **OH_Input_CursorInfo_IsVisible** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @param cursorInfo [in] Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo} to
+ *     query the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query
+ *     the current mouse pointer information.
+ * @param visible [in] Visible status of the mouse pointer. The value **true** indicates that the mouse pointer is
+ *     visible, and the value **false** indicates the opposite.
+ * @return Return value of the OH_Input_CursorInfo_IsVisible function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* visible);
@@ -2678,84 +2813,98 @@ Input_Result OH_Input_CursorInfo_IsVisible(Input_CursorInfo* cursorInfo, bool* v
 /**
  * @brief Obtains the pointer style of the specified mouse pointer information object.
  *
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo()} to query
- *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo()} to query the
- *     current mouse pointer information.
- * @param style Cursor style of the cursorInfo.
- * @return Return value of the **OH_Input_CursorInfo_GetStyle** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails or the pointer is invisible.
+ * @param cursorInfo [in] Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo} to
+ *     query the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query
+ *     the current mouse pointer information.
+ * @param style [in] Cursor style enum of the mouse cursor information. For details, see
+ *     {@link oh_pointer_style.h#Input_PointerStyle}.
+ * @return Return value of the OH_Input_CursorInfo_GetStyle function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure or that the cursor is invisible.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_GetStyle(Input_CursorInfo* cursorInfo, Input_PointerStyle* style);
 
 /**
- * @brief Obtains the pointer size level of the specified mouse pointer information object.
+ * @brief Obtains the cursor size level of the specified mouse pointer information object.
  *
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo()} to query
- *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo()} to query the
- *     current mouse pointer information.
- * @param sizeLevel Pointer size level of the mouse pointer information object. The value is an integer ranging from 1
- *     to 7. A larger value indicates a higher pointer size level. The size of the custom pointer
- *     {@link DEVELOPER_DEFINED_ICON} is subject to the actual bitmap size.
- * @return Return value of the **OH_Input_CursorInfo_GetSizeLevel** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails or the pointer is invisible.
+ * @param cursorInfo [in] Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo} to
+ *     query the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query
+ *     the current mouse pointer information.
+ * @param sizeLevel [in] Cursor size level of the mouse cursor information. The value ranges from 1 to 7, and a larger
+ *     value indicates a larger cursor. For an app custom cursor
+ *     {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap size prevails.
+ * @return Return value of the OH_Input_CursorInfo_GetSizeLevel function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails or the cursor is invisible.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_GetSizeLevel(Input_CursorInfo* cursorInfo, int32_t* sizeLevel);
 
 /**
- * @brief Gets the cursor color corresponding to a specified mouse cursor info object, represented as a 32-bit ARGB
+ * @brief Obtains the cursor color corresponding to a specified mouse cursor info object, represented as a 32-bit ARGB
  * integer.
  *
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo()} to query
- *     the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo()} to query the
- *     current mouse pointer information.
- * @param color Cursor color of the mouse cursor info, represented by a 32-bit ARGB integer. For application-defined
- *     custom cursors {@link DEVELOPER_DEFINED_ICON}, the actual bitmap color shall prevail.
- * @return Return value of the **OH_Input_CursorInfo_GetColor** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails or the pointer is invisible.
+ * @param cursorInfo [in] Mouse pointer information object. You can call {@link OH_Input_GetMouseEventCursorInfo} to
+ *     query the mouse pointer information of a specified mouse event, or call {@link OH_Input_GetCursorInfo} to query
+ *     the current mouse pointer information.
+ * @param color [in] Cursor color of the mouse cursor info, represented by a 32-bit ARGB integer. For
+ *     application-defined custom cursors {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the actual bitmap color
+ *     shall prevail.
+ * @return Return value of the OH_Input_CursorInfo_GetColor function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails or the cursor is invisible.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorInfo_GetColor(Input_CursorInfo* cursorInfo, uint32_t* color);
 
 /**
- * @brief Obtains the mouse pointer information of the mouse event, including the pointer visible status, pointer style,
- * pointer size level, and pointer color.
+ * @brief Obtains the mouse cursor information of the mouse event, including the cursor visible status, cursor
+ * style, cursor size level, and cursor color.
  *
- * @param mouseEvent Mouse event object. You can obtain the mouse event object from the callback of
- *     {@link OH_Input_AddMouseEventMonitor()} or {@link OH_Input_AddInputEventInterceptor()}.
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create()} to create a
+ * @param mouseEvent [in] Pointer to the mouse event object. The mouse event object can be obtained from the callback
+ *     function of the {@link OH_Input_AddMouseEventMonitor} or {@link OH_Input_AddInputEventInterceptor} API.
+ * @param cursorInfo [out] Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create} to create a
  *     mouse pointer information object.
- * @return Return value of the **OH_Input_GetMouseEventCursorInfo** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @return Return value of the OH_Input_GetMouseEventCursorInfo function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} : The operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} : Parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mouseEvent, Input_CursorInfo* cursorInfo);
 
 /**
- * @brief Obtains the mouse pointer information, including the pointer visible status, pointer style, pointer size
- * level, and pointer color. If the **pixelmap** parameter is not empty and the pointer style is
- * {@link DEVELOPER_DEFINED_ICON}, the **PixelMap** object of the pointer is returned.
+ * @brief Obtains the mouse cursor information, including the cursor visible status, cursor style, cursor size
+ * level, and cursor color. If the **pixelmap** parameter is not empty and the cursor style is
+ * {@link oh_pointer_style.h#DEVELOPER_DEFINED_ICON}, the **PixelMap** object of the cursor is returned.
  *
- * @param cursorInfo Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create()} to create a
+ * @param cursorInfo [out] Mouse pointer information object. You can call {@link OH_Input_CursorInfo_Create} to create a
  *     mouse pointer information object.
- * @param pixelmap **PixelMap** object. If this parameter is not empty and the pointer is a custom one, the **PixelMap**
- *     object of the pointer is returned. Otherwise, the **PixelMap** object is not returned. Firstly, create an **
- *     OH_PixelmapInitializationOptions** object through {@link OH_PixelmapInitializationOptions_Create}. Then, set the
- *     width to a value greater than **0** through {@link OH_PixelmapInitializationOptions_SetWidth}, set the height to
- *     a value greater than **0** through {@link OH_PixelmapInitializationOptions_SetHeight}. Finally, create a **
- *     PixelMap** object by calling {@link OH_PixelmapNative_CreateEmptyPixelmap} with the **
- *     OH_PixelmapInitializationOptions** object passed in.
- *     <br>When the **PixelMap** object is no longer needed, you need to call {@link OH_PixelmapNative_Release} to
- *     release the object and then call {@link OH_PixelmapNative_Destroy} to destroy it.
- * @return Return value of the **OH_Input_GetCursorInfo** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @param pixelmap [out] **PixelMap** object. If this parameter is not empty and the pointer is a custom one, the
+ *     **PixelMap** object of the pointer is returned. Otherwise, the **PixelMap** object is not returned. Firstly,
+ *     create an **OH_PixelmapInitializationOptions** object through
+ *     {@link pixelmap_native.h#OH_PixelmapInitializationOptions_Create}. Then, set the width to a value greater than
+ *     **0** through {@link pixelmap_native.h#OH_PixelmapInitializationOptions_SetWidth}, set the height to a value
+ *     greater than **0** through {@link pixelmap_native.h#OH_PixelmapInitializationOptions_SetHeight}. Finally, create
+ *     a **PixelMap** object by calling {@link pixelmap_native.h#OH_PixelmapNative_CreateEmptyPixelmap} with the
+ *     **OH_PixelmapInitializationOptions** object passed in.
+ *     <br>When the **PixelMap** object is no longer needed, you need to call
+ *     {@link pixelmap_native.h#OH_PixelmapNative_Release} to release the object and then call
+ *     {@link pixelmap_native.h#OH_PixelmapNative_Destroy} to destroy it.
+ * @return Return value of the OH_Input_GetCursorInfo function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} : The operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} : Parameter check failed.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} : Service exception. Try again.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetCursorInfo(Input_CursorInfo* cursorInfo, OH_PixelmapNative** pixelmap);
@@ -2771,30 +2920,34 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
 /**
  * @brief Sets the visible status of the mouse pointer in the current window.
  *
- * @param visible Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is visible,
- *     and the value **false** indicates the opposite.
- * @return Return value of the **OH_Input_SetPointerVisible** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @param visible [in] Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is
+ *     visible, and the value **false** indicates the opposite.
+ * @return Return value of OH_Input_SetPointerVisible:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_DEVICE_NOT_SUPPORTED} indicates that the device is not supported.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_SetPointerVisible(bool visible);
 
 /**
- * @brief Gets the mouse cursor style of a specified window. This API only supports getting the mouse cursor style of
- * windows within the current application process.
+ * @brief Obtains the mouse cursor style of a specified window. This API only supports getting the mouse cursor style
+ * of windows within the current application process.
  *
- * @param windowId Window ID. The value is an integer greater than or equal to **-1**. The value **-1** indicates the
- *     global window.
+ * @param windowId [in] Window ID. The value is an integer greater than or equal to **-1**. The value **-1** indicates
+ *     the global window.
  *     <br>Only the ID of the current window or global window can be specified. If any other ID is specified, the
- *     default pointer style of the global window is returned. You can obtain the ID of the current window through
- *     {@link getWindowProperties}.
- * @param pointerStyle Mouse cursor style, which is an enum value of {@link Input_PointerStyle}.
- * @return Return value of the **OH_Input_GetPointerStyle** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ *     default pointer style of the global window is returned.
+ * @param pointerStyle [out] Mouse cursor style, which is an enum value of
+ *     {@link oh_pointer_style.h#Input_PointerStyle}.
+ * @return Return value of the OH_Input_GetPointerStyle function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates a parameter check failure.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Retry.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
@@ -2803,41 +2956,48 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  * @brief Sets the mouse cursor style for a specified window. This API only supports setting the mouse cursor style for
  * windows within the current application process.
  *
- * @param windowId Window ID. The value is an integer greater than or equal to 0.
- *     <br>Only the ID of the current window can be specified. If any other ID is specified, the API call is successful,
- *     but the setting does not take effect. You can obtain the ID of the current window through
- *     {@link getWindowProperties}.
- * @param pointerStyle Mouse pointer style. The value is an enumerated value of {@link Input_PointerStyle}.
- * @return Return value of the **OH_Input_SetPointerStyle** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @param windowId [in] Window ID. The value is an integer greater than or equal to 0.
+ *     <br>Only the ID of the current window can be specified. If any other ID is specified, the API call is
+ *     successful, but the setting does not take effect.
+ * @param pointerStyle [in] Mouse pointer style. The value is an enumerated value of
+ *     {@link oh_pointer_style.h#Input_PointerStyle}.
+ * @return Return value of the OH_Input_SetPointerStyle function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
 
 /**
- * @brief Creates a custom mouse pointer object. You can call {@link OH_Input_CustomCursor_Destroy()} to destroy a
- * custom mouse pointer resource object.
+ * @brief Creates a custom mouse pointer resource object. You can call {@link OH_Input_CustomCursor_Destroy} to destroy
+ * a custom mouse pointer resource object.
  *
- * @param pixelMap Pixel map of the custom mouse pointer object. For details, see {@link OH_PixelmapNative}. The
- *     minimum value is the minimum size of the resource image. The maximum value is 256 x 256 px.
- * @param anchorX Horizontal coordinate of the custom mouse cursor focus. This coordinate is limited by the size of the
- *     custom mouse cursor. The minimum value is 0, and the maximum value is the maximum width of the resource image,
- *     in pixels (px).
- * @param anchorY Vertical coordinate of the custom mouse cursor focus. This coordinate is limited by the size of the
- *     custom mouse cursor. The minimum value is 0, and the maximum value is the maximum height of the resource image,
- *     in pixels (px).
- * @return {@link Input_CustomCursor} object. The pointer to the custom mouse pointer object is returned if the
- *     operation is successful, and a null pointer is returned if an exception occurs.
+ * @param pixelMap [in] Pixel map of the custom mouse pointer object. For details, see
+ *     {@link pixelmap_native.h#OH_PixelmapNative}. The minimum value is the minimum size of the resource image. The
+ *     maximum value is 256 x 256 px.
+ * @param anchorX [in] Horizontal coordinate of the custom mouse cursor focus. This coordinate is limited by the size of
+ *     the custom mouse cursor. The minimum value is 0, and the maximum value is the maximum width of the resource
+ *     image, in px.
+ * @param anchorY [in] Vertical coordinate of the custom mouse cursor focus. This coordinate is limited by the size of
+ *     the custom mouse cursor. The minimum value is 0, and the maximum value is the maximum height of the resource
+ *     image, in px.
+ * @return <ul>
+ *         <li>{@link Input_CustomCursor} object. The pointer to the custom mouse pointer object is returned if the
+ *         operation is successful,</li>
+ *         <li>and a null pointer is returned if an exception occurs.</li>
+ *         </ul>
+ * @release OH_Input_CustomCursor_Destroy {return}
  * @since 22
  */
 Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY);
 
 /**
- * @brief Destroys a custom mouse pointer object.
+ * @brief Destroys a custom mouse pointer resource object.
  *
- * @param customCursor Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
+ * @param customCursor [in] Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
  * @since 22
  */
 void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
@@ -2845,11 +3005,14 @@ void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
 /**
  * @brief Obtains the pixel map of a custom mouse pointer object.
  *
- * @param customCursor Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
- * @param pixelMap Pixel map of the custom mouse pointer object. For details, see {@link OH_PixelmapNative}.
- * @return Return value of the **OH_Input_CustomCursor_GetPixelMap** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @param customCursor [in] Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
+ * @param pixelMap [in] Pixel map of the custom mouse pointer object. For details, see
+ *     {@link pixelmap_native.h#OH_PixelmapNative}.
+ * @return Return value of the OH_Input_CustomCursor_GetPixelMap function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor, OH_PixelmapNative** pixelMap);
@@ -2857,23 +3020,26 @@ Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor,
 /**
  * @brief Obtains the focus coordinates of a custom mouse pointer object.
  *
- * @param customCursor Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
- * @param anchorX Horizontal coordinate of the focus point of the custom mouse cursor resource, in pixels (px).
- * @param anchorY Vertical coordinate of the focus point of the custom mouse cursor resource, in pixels (px).
- * @return Return value of the **OH_Input_CustomCursor_GetAnchor** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @param customCursor [in] Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
+ * @param anchorX [in] Horizontal coordinate of the focus point of the custom mouse cursor resource, in px.
+ * @param anchorY [in] Vertical coordinate of the focus point of the custom mouse cursor resource, in px.
+ * @return Return value of the OH_Input_CustomCursor_GetAnchor function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check failed.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, int32_t* anchorX, int32_t* anchorY);
 /**
- * @brief Creates a custom mouse pointer configuration object. You can call {@link OH_Input_CursorConfig_Destroy()} to
+ * @brief Creates a custom mouse pointer configuration object. You can call {@link OH_Input_CursorConfig_Destroy} to
  * destroy a custom mouse pointer configuration object.
  *
- * @param followSystem Whether to adjust the mouse cursor size based on system settings. false means using the custom
- *     mouse cursor style size, true means adjusting the mouse cursor size based on system settings. The adjustable
- *     range is: [cursor resource image size, 256×256], in pixels (px).
+ * @param followSystem [in] Whether to adjust the mouse cursor size based on system settings. The value **false**
+ *     indicates that the custom mouse cursor style size is used, and **true** indicates that the mouse cursor size is
+ *     adjusted based on system settings. The adjustable range is [cursor resource image size, 256 × 256], in pixels.
  * @return Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
+ * @release OH_Input_CursorConfig_Destroy {return}
  * @since 22
  */
 Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
@@ -2881,7 +3047,7 @@ Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
 /**
  * @brief Destroys a custom mouse pointer configuration object.
  *
- * @param cursorConfig Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
+ * @param cursorConfig [in] Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
  * @since 22
  */
 void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
@@ -2889,13 +3055,15 @@ void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
 /**
  * @brief Queries whether the custom mouse pointer configuration follows the system setting to adjust the pointer size.
  *
- * @param cursorConfig Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
- * @param followSystem Whether to adjust the pointer size based on the system setting. The value **true** means to
+ * @param cursorConfig [in] Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
+ * @param followSystem [in] Whether to adjust the pointer size based on the system setting. The value **true** means to
  *     adjust the pointer size based on the system setting, and the value **false** means to use the size of custom
  *     mouse pointer.
- * @return Return value of the **OH_Input_CursorConfig_IsFollowSystem** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.
+ * @return Return value of the OH_Input_CursorConfig_IsFollowSystem function:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConfig, bool *followSystem);
@@ -2907,16 +3075,18 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
  * areas of the window. In these cases, the developer needs to set the cursor style again. This API only supports
  * setting the custom mouse cursor style for windows within the current application process.
  *
- * @param windowId Window ID. The value must be an integer greater than or equal to **0**. Only the pointer style of
- *     the current window can be specified.
- * @param customCursor Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
- * @param cursorConfig Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
- * @return Return value of the **OH_Input_SetCustomCursor** function.
- *     <br>{@link INPUT_SUCCESS} if the operation is successful;
- *     <br>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails;
- *     <br>{@link INPUT_INVALID_WINDOWID} if the window ID is invalid;
- *     <br>{@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported;
- *     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @param windowId [in] Window ID. The value must be an integer greater than or equal to **0**. Only the pointer style
+ *     of the current window can be specified.
+ * @param customCursor [in] Custom mouse pointer object. For details, see {@link Input_CustomCursor}.
+ * @param cursorConfig [in] Custom mouse pointer configuration object. For details, see {@link Input_CursorConfig}.
+ * @return Return value of the OH_Input_SetCustomCursor function.
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} if the operation is successful.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} if the parameter verification fails.</li>
+ *     <li>{@link INPUT_INVALID_WINDOWID} if the window ID is invalid.</li>
+ *     <li>{@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported.</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.</li>
+ *     </ul>
  * @since 22
  */
 Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* customCursor,
@@ -2926,14 +3096,16 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  * @brief Binds a specified input device to a specified screen.
  *
  * @permission ohos.permission.INPUT_DEVICE_CONFIGURATOR
- * @param inputDeviceId ID of the input device.
- * @param displayId ID of the screen.
- * @return Return values of the OH_Input_BindInputDeviceToDisplay function:
- *     <br>{@link INPUT_SUCCESS} indicates that the operation is successful.
- *     <br>{@link INPUT_PERMISSION_DENIED} indicates that the permission verification fails.
- *     <br>{@link INPUT_PARAMETER_ERROR} indicates that the parameter check fails (the input device does not exist, the
- *     display device does not exist, or the input device is not a stylus device).
- *     <br>{@link INPUT_SERVICE_EXCEPTION} indicates that the service is abnormal. Try again.
+ * @param inputDeviceId [in] ID of the input device.
+ * @param displayId [in] ID of the screen.
+ * @return Return value of OH_Input_BindInputDeviceToDisplay:
+ *     <ul>
+ *     <li>{@link INPUT_SUCCESS} indicates that the operation is successful.</li>
+ *     <li>{@link INPUT_PERMISSION_DENIED} indicates that permission verification failed.</li>
+ *     <li>{@link INPUT_PARAMETER_ERROR} indicates that parameter check failed (the input device does not exist, the
+ *     display device does not exist, or the input device is not a stylus device).</li>
+ *     <li>{@link INPUT_SERVICE_EXCEPTION} indicates a service exception. Try again.</li>
+ *     </ul>
  * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
@@ -2942,5 +3114,4 @@ Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t di
 #endif
 
 #endif /* OH_INPUT_MANAGER_H */
-
 /** @} */

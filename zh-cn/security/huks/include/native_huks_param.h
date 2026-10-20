@@ -17,11 +17,8 @@
  * @addtogroup HuksParamSetApi
  * @{
  *
- * @brief Defines the capabilities of OpenHarmony Universal KeyStore (HUKS) parameter sets.
- *    The HUKS APIs can be used to perform parameter set lifecycle management,
- *    including initializing a parameter set, adding parameters to a parameter set, constructing
- *    a parameter set, and destroying a parameter set.
- *    They can also be used to obtain parameters, copy parameter sets, and check parameter validity.
+ * @brief 通用密钥库（HUKS）参数集支持密钥管理接口的使用，包括初始化参数集、添加参数、构造参数集、释放参数集等生命周期管理函数，
+ * 还包括获取参数、复制参数集、查询参数集、检查有效性等函数。
  *
  * @since 9
  * @version 1.0
@@ -35,6 +32,7 @@
  * @library libhuks_ndk.z.so
  * @syscap SystemCapability.Security.Huks.Core
  *
+ * @include <huks/native_huks_param.h>
  * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0
@@ -50,28 +48,28 @@ extern "C" {
 #endif
 
 /**
- * @brief 初始化参数集，无参数信息，分配参数集默认可用内存空间。初始化后的参数集需要通过{@link OH_Huks_FreeParamSet}释放。添加参数的参数集需要使用{@link OH_Huks_AddParams}
- * 添加参数并且必须使用{@link OH_Huks_BuildParamSet}构造参数集。
+ * @brief 初始化参数集，无参数信息，分配参数集默认可用内存空间。初始化后的参数集需要通过{@link OH_Huks_FreeParamSet}释放。
+ * 添加参数的参数集需要使用{@link OH_Huks_AddParams}并且必须使用{@link OH_Huks_BuildParamSet}构造参数集。
  *
  * @param paramSet 指向要初始化的参数集的指针地址。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：初始化操作成功。
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 ：内存不足。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet无效。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数paramSet无效。
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet);
 
 /**
- * @brief 添加参数到参数集里面。
+ * @brief 添加参数到参数集里面。添加完成之后需要使用{@link OH_Huks_BuildParamSet}构造参数集。
  *
- * @param paramSet 指向要被添加参数的参数集的指针。
+ * @param paramSet 指向要被添加参数的参数集的指针，需要通过{@link OH_Huks_InitParamSet}初始化。
  * @param params 指向要添加的参数数组的指针。
  * @param paramCnt 待添加参数数组的参数个数。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：操作成功。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：params为null或者paramSet无效。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：params为null或者paramSet无效。
  * @since 9
  * @version 1.0
  */
@@ -79,12 +77,13 @@ struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
     const struct OH_Huks_Param *params, uint32_t paramCnt);
 
 /**
- * @brief 构造参数集，在初始化参数集和添加参数操作之后，序列化参数集，将blob类型的数据拷贝到paramSet结构尾部相邻内存区域。
+ * @brief 构造参数集，在调用{@link OH_Huks_InitParamSet}初始化参数集和{@link OH_Huks_AddParams}添加参数操作之后，序列化参数集，
+ * 将blob类型的数据拷贝到paramSet结构尾部相邻内存区域。
  *
  * @param paramSet 指向要被正式构造的参数集的指针地址。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：操作成功。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet无效。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数paramSet无效。
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 ：内存不足。
  * @since 9
  * @version 1.0
@@ -92,7 +91,7 @@ struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
 struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet);
 
 /**
- * @brief 销毁参数集。
+ * @brief 销毁参数集。销毁由{@link OH_Huks_InitParamSet}分配的内存空间。
  *
  * @param paramSet 指向要被销毁的参数集的指针地址。
  * @since 9
@@ -104,11 +103,11 @@ void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet);
  * @brief 复制参数集（深拷贝）。
  *
  * @param fromParamSet 指向要被复制的参数集的指针。
- * @param fromParamSetSize 被复制的参数集占用内存的大小。
+ * @param fromParamSetSize 被复制的参数集占用内存的大小，单位：Byte。
  * @param paramSet 指向生成新的参数集的指针地址。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：操作成功。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数fromParamSet、fromParamSetSize、paramSet有一个无效。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数fromParamSet、fromParamSetSize、paramSet有一个无效。
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 ：内存不足。
  * @since 9
  * @version 1.0
@@ -124,7 +123,7 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
  * @param param 指向获取到的参数的指针地址。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：操作成功。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet或者param无效，或者参数param不在paramSet里面。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数paramSet或者param无效，或者参数param不在paramSet里面。
  * @since 9
  * @version 1.0
  */
@@ -138,7 +137,7 @@ struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, 
  * @param isCopy 如果为true，刷新{@link OH_Huks_Blob}类型数据的地址并复制到参数集。如果为false，只会刷新{@link OH_Huks_Blob}类型数据的地址。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：操作成功。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet无效。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数paramSet无效。
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 ：内存不足。
  * @since 9
  * @version 1.0
@@ -151,7 +150,7 @@ struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, b
  * @param paramSet 指向参数集的指针。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：paramSet中的参数都有效。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet无效或者参数集中有无效、重复、不正确的标签。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数paramSet无效或者参数集中有无效、重复、不正确的标签。
  * @since 9
  * @version 1.0
  */
@@ -161,10 +160,10 @@ struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *
  * @brief 检查参数集大小是否有效。
  *
  * @param paramSet 指向参数集的指针。
- * @param size 参数集占用的内存大小。
+ * @param size 参数集占用的内存大小，单位：Byte。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：参数集大小合法。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet无效。
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：参数paramSet无效。
  * @since 9
  * @version 1.0
  */
@@ -177,7 +176,7 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *par
  * @param param 指向比较的参数的指针。
  * @return 可能的返回码（errorCode）：
  *     <br>OH_HUKS_SUCCESS = 0 ：比较的两个参数相同。
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：其中一个参数集是无效的，或者参数不匹配，
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401：其中一个参数集是无效的，或者参数不匹配，
  *     <br>或者内部有无效标签。
  * @since 9
  * @version 1.0

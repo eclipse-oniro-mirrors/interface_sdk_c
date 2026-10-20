@@ -14,15 +14,6 @@
  */
 
 /**
- * @addtogroup Telephony
- * @{
- *
- * @brief Provides C interface for the telephony radio.
- *
- * @since 13
- */
-
-/**
  * @file telephony_radio.h
  *
  * @brief Provides C interface for the telephony radio.
@@ -39,22 +30,21 @@
 
 #include "telephony_radio_type.h"
 #include "stdint.h"
-#include "stdbool.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 /**
- * @brief Obtains the radio network state.
+ * @brief Obtains the network status.
  *
- * @param state Pointer to the network state.
- * @return the result defines in {@link Telephony_RadioResult}.
- *         {@link TEL_RADIO_SUCCESS} Success.
- *         {@link TEL_RADIO_PERMISSION_DENIED} Permission denied.
- *         {@link TEL_RADIO_ERR_MARSHALLING_FAILED} Low probability Marshalling failed, try again later.
- *         {@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED} Unable to connect to telephony service, try again later.
- *         {@link TEL_RADIO_ERR_OPERATION_FAILED} Operation failed in telephony service, try again later.
- *         {@link TEL_RADIO_ERR_INVALID_PARAM} Invalid parameter.
+ * @param state Structure of the network status information received by the user.
+ * @return Result code. For details, see {@link Telephony_RadioResult}.
+ *     <br>{@link TEL_RADIO_SUCCESS}: Operation succeeded.
+ *     <br>{@link TEL_RADIO_PERMISSION_DENIED}: Permission denied.
+ *     <br>{@link TEL_RADIO_ERR_MARSHALLING_FAILED}: Marshalling failed.
+ *     <br>{@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED}: Telephony service connection failed.
+ *     <br>{@link TEL_RADIO_ERR_OPERATION_FAILED}: Telephony service operation failed.
+ *     <br>{@link TEL_RADIO_ERR_INVALID_PARAM}: Invalid parameter.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Telephony.CoreService
  * @since 13
@@ -62,17 +52,17 @@ extern "C" {
 Telephony_RadioResult OH_Telephony_GetNetworkState(Telephony_NetworkState *state);
 
 /**
- * @brief Obtains the radio network state for given slot id.
+ * @brief Obtains the network status of the SIM card in the specified slot.
  *
- * @param slotId the number of slot, 0 for card slot 1, 1 for card slot 2.
- * @param state Pointer to the network state.
- * @return the result defines in {@link Telephony_RadioResult}.
- *         {@link TEL_RADIO_SUCCESS} Success.
- *         {@link TEL_RADIO_PERMISSION_DENIED} Permission denied.
- *         {@link TEL_RADIO_ERR_MARSHALLING_FAILED} Low probability Marshalling failed, try again later.
- *         {@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED} Unable to connect to telephony service, try again later.
- *         {@link TEL_RADIO_ERR_OPERATION_FAILED} Operation failed in telephony service, try again later.
- *         {@link TEL_RADIO_ERR_INVALID_PARAM} Invalid parameter.
+ * @param slotId Card slot ID.
+ * @param state Structure of the network status information received by the user.
+ * @return Result code. For details, see {@link Telephony_RadioResult}.
+ *     <br>{@link TEL_RADIO_SUCCESS}: Operation succeeded.
+ *     <br>{@link TEL_RADIO_PERMISSION_DENIED}: Permission denied.
+ *     <br>{@link TEL_RADIO_ERR_MARSHALLING_FAILED}: Marshalling failed.
+ *     <br>{@link TEL_RADIO_ERR_SERVICE_CONNECTION_FAILED}: Telephony service connection failed.
+ *     <br>{@link TEL_RADIO_ERR_OPERATION_FAILED}: Telephony service operation failed.
+ *     <br>{@link TEL_RADIO_ERR_INVALID_PARAM}: Invalid parameter.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Telephony.CoreService
  * @since 13
@@ -83,4 +73,3 @@ Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Teleph
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_API_H
-/** @} */

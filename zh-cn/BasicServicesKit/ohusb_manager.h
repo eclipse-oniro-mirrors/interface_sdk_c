@@ -1,0 +1,595 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @addtogroup UsbManager
+ * @{
+ *
+ * @brief 提供USB管理器模块的C接口，支持USB设备枚举、连接、权限管理和管道操作。
+ *
+ * @since 26.0.1
+ */
+
+/**
+ * @file ohusb_manager.h
+ *
+ * @brief Declares the C APIs for USB device management.
+ *
+ * @include <BasicServicesKit/ohusb_manager.h>
+ * @library libohusb_manager.so
+ * @kit BasicServicesKit
+ * @syscap SystemCapability.USB.USBManager
+ * @since 26.0.1
+ */
+
+#ifndef OHUSB_MANAGER_H
+#define OHUSB_MANAGER_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * @brief 枚举USB管理器的错误码。
+ *
+ * @since 26.0.1
+ */
+typedef enum OH_UsbManager_ErrorCode {
+    /**
+     * @brief 操作成功。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_SUCCESS = 0,
+
+    /**
+     * @brief 权限被拒绝。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_ERROR_PERMISSION_DENIED = 14400001,
+
+    /**
+     * @brief 服务异常。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_ERROR_SERVICE_EXCEPTION = 14400004,
+
+    /**
+     * @brief 不存在该设备（可能已被断开连接）。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_ERROR_NO_DEVICE = 14400008,
+
+    /**
+     * @brief 内存不足。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_ERROR_NO_MEMORY = 14400009,
+
+    /**
+     * @brief 传输I/O错误。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_ERROR_IO_ERROR = 14400012,
+
+    /**
+     * @brief 无效参数。对不可为空的参数传入了空指针。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_ERROR_INVALID_PARAMETER = 14400014
+} OH_UsbManager_ErrorCode;
+
+/**
+ * @brief 枚举USB请求方向。
+ *
+ * @since 26.0.1
+ */
+typedef enum OH_UsbManager_RequestDirection {
+    /**
+     * @brief 用于从主机向设备写入数据的请求。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_REQUEST_DIR_TO_DEVICE = 0,
+
+    /**
+     * @brief 用于从设备向主机读取数据的请求。
+     *
+     * @since 26.0.1
+     */
+    OH_USBMANAGER_REQUEST_DIR_FROM_DEVICE = 0x80
+} OH_UsbManager_RequestDirection;
+
+/**
+ * @brief 定义用于发送或接收数据的USB端点。端点从{@link OH_UsbManager_UsbInterface}获取。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_UsbManager_UsbEndpoint {
+    /**
+     * @brief 端点地址。
+     *
+     * @since 26.0.1
+     */
+    uint8_t address;
+
+    /**
+     * @brief 端点属性。
+     *
+     * @since 26.0.1
+     */
+    uint8_t attributes;
+
+    /**
+     * @brief 端点数据传输间隔。对于中断端点，单位为毫秒。对于等时端点，
+     * <br>单位取决于设备速度。
+     *
+     * @since 26.0.1
+     */
+    uint8_t interval;
+
+    /**
+     * @brief 端点上数据包的最大大小，单位：字节。
+     *
+     * @since 26.0.1
+     */
+    uint16_t maxPacketSize;
+
+    /**
+     * @brief 端点方向。
+     *
+     * @since 26.0.1
+     */
+    OH_UsbManager_RequestDirection direction;
+
+    /**
+     * @brief 端点号。
+     *
+     * @since 26.0.1
+     */
+    uint8_t number;
+
+    /**
+     * @brief 端点类型。
+     *
+     * @since 26.0.1
+     */
+    uint8_t type;
+
+    /**
+     * @brief 端点所属接口的唯一标识。
+     *
+     * @since 26.0.1
+     */
+    uint8_t interfaceId;
+} OH_UsbManager_UsbEndpoint;
+
+/**
+ * @brief 定义USB接口。一个{@link OH_UsbManager_UsbConfig}可以包含多个
+ * <br>OH_UsbManager_UsbInterface实例，每个实例提供特定功能。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_UsbManager_UsbInterface {
+    /**
+     * @brief USB接口的唯一标识。
+     *
+     * @since 26.0.1
+     */
+    uint8_t id;
+
+    /**
+     * @brief 接口协议。
+     *
+     * @since 26.0.1
+     */
+    uint8_t protocol;
+
+    /**
+     * @brief 接口类。
+     *
+     * @since 26.0.1
+     */
+    uint8_t clazz;
+
+    /**
+     * @brief 接口子类。
+     *
+     * @since 26.0.1
+     */
+    uint8_t subClass;
+
+    /**
+     * @brief 此USB接口的交替设置编号，由USB接口描述符定义。值0表示
+     * <br>默认的交替设置。
+     *
+     * @since 26.0.1
+     */
+    uint8_t alternateSetting;
+
+    /**
+     * @brief 接口名称。
+     *
+     * @since 26.0.1
+     */
+    const char *name;
+
+    /**
+     * @brief 属于该USB接口的端点。
+     *
+     * @since 26.0.1
+     */
+    OH_UsbManager_UsbEndpoint *endpoints;
+
+    /**
+     * @brief 接口中的端点数量。
+     *
+     * @since 26.0.1
+     */
+    uint32_t endpointCount;
+} OH_UsbManager_UsbInterface;
+
+/**
+ * @brief 定义USB配置。一个{@link OH_UsbManager_UsbDevice}可以包含多个
+ * <br>OH_UsbManager_UsbConfig实例。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_UsbManager_UsbConfig {
+    /**
+     * @brief USB配置的唯一标识。
+     *
+     * @since 26.0.1
+     */
+    uint8_t id;
+
+    /**
+     * @brief 配置属性。
+     *
+     * @since 26.0.1
+     */
+    uint8_t attributes;
+
+    /**
+     * @brief 最大功耗，单位：mA。
+     *
+     * @since 26.0.1
+     */
+    uint8_t maxPower;
+
+    /**
+     * @brief 配置名称，可以为空。
+     *
+     * @since 26.0.1
+     */
+    const char *name;
+
+    /**
+     * @brief 是否支持远程唤醒。true表示支持远程唤醒；false表示不支持。
+     *
+     * @since 26.0.1
+     */
+    bool isRemoteWakeup;
+
+    /**
+     * @brief 是否支持独立供电。true表示支持独立供电；false表示不支持。
+     *
+     * @since 26.0.1
+     */
+    bool isSelfPowered;
+
+    /**
+     * @brief 支持的接口属性。
+     *
+     * @since 26.0.1
+     */
+    OH_UsbManager_UsbInterface *interfaces;
+
+    /**
+     * @brief 配置中的接口数量。
+     *
+     * @since 26.0.1
+     */
+    uint32_t interfaceCount;
+} OH_UsbManager_UsbConfig;
+
+/**
+ * @brief 定义USB设备的扁平化表示。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_UsbManager_UsbDevice {
+    /**
+     * @brief USB设备的总线编号。
+     *
+     * @since 26.0.1
+     */
+    uint8_t busNum;
+
+    /**
+     * @brief 设备在总线上的地址。
+     *
+     * @since 26.0.1
+     */
+    uint8_t devAddress;
+
+    /**
+     * @brief 设备名称，格式为<总线编号>-<设备地址>。
+     *
+     * @since 26.0.1
+     */
+    const char *name;
+
+    /**
+     * @brief 制造商名称。
+     *
+     * @since 26.0.1
+     */
+    const char *manufacturerName;
+
+    /**
+     * @brief 产品名称。
+     *
+     * @since 26.0.1
+     */
+    const char *productName;
+
+    /**
+     * @brief 设备版本。
+     *
+     * @since 26.0.1
+     */
+    const char *version;
+
+    /**
+     * @brief 厂商ID。
+     *
+     * @since 26.0.1
+     */
+    uint16_t vendorId;
+
+    /**
+     * @brief 产品ID。
+     *
+     * @since 26.0.1
+     */
+    uint16_t productId;
+
+    /**
+     * @brief 设备类。
+     *
+     * @since 26.0.1
+     */
+    uint8_t clazz;
+
+    /**
+     * @brief 设备子类。
+     *
+     * @since 26.0.1
+     */
+    uint8_t subClass;
+
+    /**
+     * @brief 设备协议。
+     *
+     * @since 26.0.1
+     */
+    uint8_t protocol;
+
+    /**
+     * @brief 设备配置描述符信息。
+     *
+     * @since 26.0.1
+     */
+    OH_UsbManager_UsbConfig *configs;
+
+    /**
+     * @brief 设备中的配置数量。
+     *
+     * @since 26.0.1
+     */
+    uint32_t configCount;
+} OH_UsbManager_UsbDevice;
+
+/**
+ * @brief 定义用于与已打开设备通信的USB设备管道。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_UsbManager_UsbPipe {
+    /**
+     * @brief 所连接设备的总线编号。
+     *
+     * @since 26.0.1
+     */
+    uint8_t busNum;
+
+    /**
+     * @brief 所连接设备的设备地址。
+     *
+     * @since 26.0.1
+     */
+    uint8_t devAddress;
+} OH_UsbManager_UsbPipe;
+
+/**
+ * @brief 获取所有已连接USB设备的列表。调用者必须调用{@link OH_UsbManager_FreeUsbDeviceList}
+ * <br>释放返回的数组。
+ *
+ * @param devices [出参] 指向{@link OH_UsbManager_UsbDevice}数组的二级指针。成功时，
+ *     <br>函数会分配该数组及所有内部字符串缓冲区。调用者不得单独释放各个字段；
+ *     <br>请改用{@link OH_UsbManager_FreeUsbDeviceList}。不得为空。
+ * @param deviceCount [出参] 指向返回设备数量的指针。成功时，该值被设置为数组中的
+ *     <br>元素个数。为0表示当前没有设备。不得为空。
+ * @return {@link OH_USBMANAGER_SUCCESS} 表示操作成功。
+ *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示USB服务不可用。可能原因：USB服务故障，例如服务未运行或意外停止。
+ *     <br>{@link OH_USBMANAGER_ERROR_NO_MEMORY} 表示设备数组或字符串的内存分配失败。可能原因：系统内存不足或连接的设备过多。处理建议：释放未使用的内存后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示devices或deviceCount为NULL。可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
+ * @release OH_UsbManager_FreeUsbDeviceList {devices}
+ * @since 26.0.1
+ */
+OH_UsbManager_ErrorCode OH_UsbManager_GetUsbDeviceList(OH_UsbManager_UsbDevice **devices,
+    uint32_t *deviceCount);
+
+/**
+ * @brief 释放之前由{@link OH_UsbManager_GetUsbDeviceList}返回的设备数组。
+ *
+ * <br>调用后该指针失效，不得再使用。传入null或数量为0是安全的空操作。
+ *
+ * @param devices [入参] 指向由{@link OH_UsbManager_GetUsbDeviceList}返回的数组的指针。
+ * @param deviceCount [入参] 数组中的元素个数，由{@link OH_UsbManager_GetUsbDeviceList}
+ *     <br>返回。
+ * @since 26.0.1
+ */
+void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t deviceCount);
+
+/**
+ * @brief 连接USB设备并打开用于通信的管道。返回的管道必须通过调用
+ * <br>{@link OH_UsbManager_ClosePipe}关闭，以避免资源泄漏。
+ *
+ * <br>仅需要设备结构体中的busNum和devAddress字段；其他字段将被忽略。
+ *
+ * @param device [入参] 指向要连接的{@link OH_UsbManager_UsbDevice}的指针。不得为空。
+ * @param pipe [出参] 指向{@link OH_UsbManager_UsbPipe}的指针，成功时用于接收
+ *     <br>句柄。不得为空。
+ * @return {@link OH_USBMANAGER_SUCCESS} 表示连接成功。
+ *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} 表示应用缺少设备访问权限。
+ *     <br>可能原因：尚未请求访问权限、权限已被撤销，或用户拒绝了请求。
+ *     <br>处理建议：调用{@link OH_UsbManager_RequestPermission}请求访问权限。
+ *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示USB服务打开设备失败。
+ *     <br>可能原因：USB服务故障（例如服务未运行或意外停止），或传入的device无效。
+ *     <br>处理建议：如果device无效，请先通过{@link OH_UsbManager_GetUsbDeviceList}
+ *     <br>获取有效的设备数据后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_IO_ERROR} 表示无法打开设备（如已断开连接或发生I/O失败）。
+ *     <br>可能原因：设备已断开连接或USB总线发生I/O错误。
+ *     <br>处理建议：检查物理连接和设备状态后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示device或pipe为NULL。
+ *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
+ * @since 26.0.1
+ */
+OH_UsbManager_ErrorCode OH_UsbManager_ConnectDevice(const OH_UsbManager_UsbDevice *device,
+    OH_UsbManager_UsbPipe *pipe);
+
+/**
+ * @brief 检查应用是否有权限访问指定设备。
+ *
+ * @param deviceName [入参] 设备名称，格式为<总线编号>-<设备地址>。不得为空。
+ * @param result [出参] 用于接收结果的指针。如果应用已被授予访问设备的权限
+ *     <br>则为true；如果权限未被授予或未被请求则为false。不得为空。
+ * @return {@link OH_USBMANAGER_SUCCESS} 表示操作成功。
+ *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示USB服务不可用。
+ *     <br>可能原因：USB服务故障（例如服务未运行或意外停止），或传入的deviceName无效。
+ *     <br>处理建议：如果deviceName无效，请先通过{@link OH_UsbManager_GetUsbDeviceList}
+ *     <br>获取有效的设备名称后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示deviceName或result为NULL。
+ *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
+ * @since 26.0.1
+ */
+OH_UsbManager_ErrorCode OH_UsbManager_HasPermission(const char *deviceName, bool *result);
+
+/**
+ * @brief 定义用于返回{@link OH_UsbManager_RequestPermission}结果的
+ * <br>回调类型。
+ *
+ * @param errorCode [出参] 请求的错误码。{@link OH_USBMANAGER_SUCCESS}表示请求
+ *     <br>正常完成；其他值表示服务异常。
+ * @param result [出参] 如果权限被授予则为true；如果用户拒绝请求则为false。
+ *     <br>该参数仅在errorCode为{@link OH_USBMANAGER_SUCCESS}时有意义。
+ * @param userContext [出参] 从{@link OH_UsbManager_RequestPermission}透传的用户上下文。
+ * @since 26.0.1
+ */
+typedef void (*OH_UsbManager_PermissionCallback)(OH_UsbManager_ErrorCode errorCode, bool result,
+    void *userContext);
+
+/**
+ * @brief 异步请求访问指定USB设备的权限。这可能触发系统弹窗询问用户是否授权。
+ * <br>函数立即返回，结果通过回调传递。
+ *
+ * @param deviceName [入参] 设备名称，格式为<总线编号>-<设备地址>。不得为空。
+ * @param callback [入参] 请求完成时调用的{@link OH_UsbManager_PermissionCallback}。
+ *     <br>不得为空。
+ * @param userContext [入参] 传递给回调的用户上下文指针。可以为空。
+ * @return {@link OH_USBMANAGER_SUCCESS} 表示请求成功发起。
+ *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示服务启动请求失败。
+ *     <br>可能原因：USB服务故障（例如服务未运行或意外停止），或传入的deviceName无效。
+ *     <br>处理建议：如果deviceName无效，请先通过{@link OH_UsbManager_GetUsbDeviceList}
+ *     <br>获取有效的设备名称后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示deviceName或callback为NULL。
+ *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
+ * @since 26.0.1
+ */
+OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
+    OH_UsbManager_PermissionCallback callback, void *userContext);
+
+/**
+ * @brief 获取已打开USB设备管道的文件描述符。该fd可用于基于ioctl的
+ * <br>低层USB传输。
+ *
+ * @param pipe [入参] 指向从{@link OH_UsbManager_ConnectDevice}获取的
+ *     <br>{@link OH_UsbManager_UsbPipe}的指针。不得为空。
+ * @param fd [出参] 用于在成功时接收文件描述符的指针。不得为空。
+ * @return {@link OH_USBMANAGER_SUCCESS} 表示操作成功。
+ *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} 表示应用缺少设备访问权限。
+ *     <br>可能原因：尚未请求访问权限、权限已被撤销，或用户拒绝了请求。
+ *     <br>处理建议：调用{@link OH_UsbManager_RequestPermission}请求访问权限。
+ *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示管道无效或服务失败。
+ *     <br>可能原因：USB服务故障，或管道并非通过{@link OH_UsbManager_ConnectDevice}获取、
+ *     <br>或管道已被关闭。处理建议：如果管道无效或已关闭，请通过
+ *     <br>{@link OH_UsbManager_ConnectDevice}获取有效的打开管道后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_NO_DEVICE} 表示设备不存在或已断开连接。
+ *     <br>可能原因：设备已被拔出。处理建议：使用{@link OH_UsbManager_GetUsbDeviceList}
+ *     <br>重新枚举设备并重新连接。
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示pipe或fd为NULL。
+ *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
+ * @since 26.0.1
+ */
+OH_UsbManager_ErrorCode OH_UsbManager_GetFileDescriptor(const OH_UsbManager_UsbPipe *pipe,
+    int32_t *fd);
+
+/**
+ * @brief 关闭USB设备管道并释放底层资源。该管道必须从{@link OH_UsbManager_ConnectDevice}
+ * <br>获取。
+ *
+ * @param pipe [入参] 指向要关闭的、从{@link OH_UsbManager_ConnectDevice}获取的
+ *     <br>{@link OH_UsbManager_UsbPipe}的指针。不得为空。
+ * @return {@link OH_USBMANAGER_SUCCESS} 表示管道关闭成功。
+ *     <br>{@link OH_USBMANAGER_ERROR_PERMISSION_DENIED} 表示应用缺少设备访问权限。
+ *     <br>可能原因：尚未请求访问权限、权限已被撤销，或用户拒绝了请求。
+ *     <br>处理建议：调用{@link OH_UsbManager_RequestPermission}请求访问权限。
+ *     <br>{@link OH_USBMANAGER_ERROR_SERVICE_EXCEPTION} 表示关闭操作失败。
+ *     <br>可能原因：USB服务故障，或管道无效或已被关闭。处理建议：如果管道无效或已关闭，
+ *     <br>请通过{@link OH_UsbManager_ConnectDevice}获取有效的打开管道后重试。
+ *     <br>{@link OH_USBMANAGER_ERROR_INVALID_PARAMETER} 表示pipe为NULL。
+ *     <br>可能原因：未提供必需的参数。处理建议：传入有效的非空指针。
+ * @since 26.0.1
+ */
+OH_UsbManager_ErrorCode OH_UsbManager_ClosePipe(const OH_UsbManager_UsbPipe *pipe);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  // OHUSB_MANAGER_H
+
+/** @} */
