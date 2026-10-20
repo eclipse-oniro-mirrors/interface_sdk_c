@@ -247,34 +247,31 @@ typedef struct OH_NativeBuffer_StaticMetadata {
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_MetadataKey {
-    /** value: OH_NativeBuffer_MetadataType*/
+    /** value：OH_NativeBuffer_MetadataType类型。*/
     OH_HDR_METADATA_TYPE,
-    /** value: OH_NativeBuffer_StaticMetadata*/
+    /** value：OH_NativeBuffer_StaticMetadata类型。*/
     OH_HDR_STATIC_METADATA,
-    /** byte stream of SEI in video stream*/
+    /** 视频流中SEI的字节流。*/
     OH_HDR_DYNAMIC_METADATA,
     /**
-     * Region of interest(ROI) metadata is used to configure ROI feature in video encoding. Value type is string
-     * in the format "Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];".
-     * Each "Top,Left-Bottom,Right" represents the coordinate information of one ROI.
-     * The "[=Params]" is optional.
-     * The format of "[=Params]" varies by version:
-     * 1. Prior to version 26.0.0: Only a single int32_t value representing the
-     * quantization parameter offset is supported (e.g., "=QpOffset").
-     * 2. Since version 26.0.0: A Key-Value format is additionally supported and recommended.
-     * It uses comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
-     * Supported keys:
-     * - "dqp": Quantization parameter offset.
-     * - "slb": Semantic label. The value must correspond to {@link OH_VideoMetadataRoiSemanticLabel}.
+     * 感兴趣区域（ROI）元数据用于在视频编码中配置ROI功能。值类型为字符串，
+     * 格式为"Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];"。
+     * 每个"Top,Left-Bottom,Right"表示一个ROI的坐标信息。
+     * "[=Params]"为可选内容。
+     * "[=Params]"的格式因版本而异：
+     * 1. 26.0.0版本之前：仅支持一个表示量化参数偏移的int32_t值（例如"=QpOffset"）。
+     * 2. 26.0.0版本及之后：额外支持并推荐使用键值对格式，
+     *    使用逗号分隔的键值对（例如"=dqp:-6,slb:1"）。
+     * 支持的键：
+     * - "dqp"：量化参数偏移。
+     * - "slb"：语义标签。取值必须与{@link OH_VideoMetadataRoiSemanticLabel}对应。
      *
-     * If "=Params" is omitted entirely, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=dqp:-6;",
-     * the encoder will use the default parameters to perform the ROI encoding on the first ROI and
-     * use the specified parameters on the second ROI.
-     * Note that the number of ROIs that can be applied simultaneously does not exceed six, and the total area must
-     * not exceed one-fifth of the total image area.
+     * 如果完全省略"=Params"，如"Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=dqp:-6;"，
+     * 编码器将对第一个ROI使用默认参数进行ROI编码，并对第二个ROI使用指定参数。
+     * 请注意，可同时应用的ROI数量不得超过六个，且总面积不得超过图像总面积的五分之一。
      *
-     * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoMetadata_AppendRoiString} to format
-     *     and append ROI configurations safely instead of concatenating the string manually.
+     * @note 自26.0.0版本起，强烈建议使用{@link OH_VideoMetadata_AppendRoiString}来安全地格式化
+     *     并追加ROI配置，而不是手动拼接字符串。
      *
      * @since 22
      */
