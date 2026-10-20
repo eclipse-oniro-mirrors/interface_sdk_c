@@ -291,13 +291,13 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
-     * @brief 上一次请求尚未完成。
+     * @brief 上一次命令未完成。
      *
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
     /**
-     * @brief 未找到uniqueId对应的节点。
+     * @brief 未找到目标节点。
      *
      * @since 26.2.0
      */

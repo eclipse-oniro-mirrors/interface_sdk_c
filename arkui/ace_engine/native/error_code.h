@@ -307,14 +307,12 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
-     * @brief The last request was not finished.
-     *
+     * @brief The last command was not finished.
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
     /**
-     * @brief The node corresponding to uniqueId is not found.
-     *
+     * @brief The target node was not found.
      * @since 26.2.0
      */
     ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
