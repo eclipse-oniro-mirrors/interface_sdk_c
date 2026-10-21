@@ -294,7 +294,6 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  * @since 12
- * @version 1.0
 */
 OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
     bool secureAudio);
