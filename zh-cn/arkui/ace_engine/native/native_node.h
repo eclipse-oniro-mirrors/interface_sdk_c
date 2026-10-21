@@ -10128,6 +10128,8 @@ typedef enum {
      * <li>.value[2]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}，默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}。
      * </li>
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。该参数从API version 15开始支持。</li>
+     * <li>.value[4]?.i32 快速滚动模式，用于滚动到指定索引。参数类型为{@link OH_ArkUI_FastScrollMode}，默认为<b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>。
+     * 仅当.value[1]?.i32为1时有效，从API版本26.2.0开始支持。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
