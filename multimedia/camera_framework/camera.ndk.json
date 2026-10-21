@@ -1194,5 +1194,13 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_PhotoOutput_ConfigureC2PASignature"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_MetadataOutput_SetInFrameMetadataForEncoderEnabled"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_MetadataOutput_IsInFrameMetadataForEncoderSupported"
     }
 ]
