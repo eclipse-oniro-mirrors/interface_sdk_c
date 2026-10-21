@@ -167,7 +167,7 @@ typedef enum {
     ARKUI_CONTENT_CLIP_MODE_BOUNDARY,
 
     /**
-     * Clip to the {@link safe area} configured for the component.
+     * 按组件配置的{@link safe area}裁剪。
      */
     ARKUI_CONTENT_CLIP_MODE_SAFE_AREA
 } ArkUI_ContentClipMode;
@@ -257,7 +257,7 @@ typedef enum {
     ARKUI_SCROLL_SOURCE_FLING,
 
     /**
-     * {@link EdgeEffect.Spring} for boundary crossing.
+     * 在过界时执行{@link EdgeEffect.Spring}边缘特效。
      */
     ARKUI_SCROLL_SOURCE_EDGE_EFFECT,
 
