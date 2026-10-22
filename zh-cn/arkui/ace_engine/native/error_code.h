@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建、销毁、树节点操作、属性设置、事件监听等。
  *
  * @since 12
  */
@@ -26,7 +25,7 @@
 /**
  * @file error_code.h
  *
- * @brief Defines the error code for the native module.
+ * @brief 定义ArkUI Native API的错误码枚举值，用于表示接口调用结果或失败原因。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full

@@ -25,7 +25,8 @@
 /**
  * @file ui_input_event.h
  *
- * @brief Provides ArkUI event definitions on the native side.
+ * @brief 提供ArkUI在Native侧的输入事件定义，支持触摸、鼠标、轴和按键事件，以及事件属性获取、
+ * 事件冒泡控制和事件克隆处理，用于Native组件识别和处理用户输入。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -133,17 +134,17 @@ typedef enum {
  */
 typedef enum {
     /**
-     * @brief Unknown phase of the crown event.
+     * @brief 未知的表冠事件阶段。
      */
     ARKUI_CROWNEVENT_ACTION_UNKNOWN = 0,
 
     /**
-     * @brief The crown event is updated.
+     * @brief 表冠事件更新。
      */
     ARKUI_CROWNEVENT_ACTION_UPDATE = 1,
 
     /**
-     * @brief The crown event ends.
+     * @brief 表冠事件结束。
      */
     ARKUI_CROWNEVENT_ACTION_END = 2
 } ArkUI_CrownEvent_Action;
@@ -193,73 +194,73 @@ typedef enum {
 } ArkUI_CompetitionStrategy;
 
 /**
- * @brief Defines the action types of the input event.
+ * @brief 定义输入事件的行为类型。
  *
  * @since 12
  */
 enum {
-    /** Cancellation of touch. */
+    /** 触摸取消。 */
     UI_TOUCH_EVENT_ACTION_CANCEL = 0,
 
-    /** Pressing of a touch point. */
+    /** 触摸按下。 */
     UI_TOUCH_EVENT_ACTION_DOWN = 1,
 
-    /** Moving of a touch point. */
+    /** 触摸移动。 */
     UI_TOUCH_EVENT_ACTION_MOVE = 2,
 
-    /** Lifting of a touch point. */
+    /** 触摸抬起。 */
     UI_TOUCH_EVENT_ACTION_UP = 3,
 };
 
 /**
- * @brief Defines the tool type of the touch event.
+ * @brief 产生输入事件的工具类型定义。
  *
  * @since 12
  */
 enum {
-    /** Unknown tool type. */
+    /** 不支持的工具类型。 */
     UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0,
 
-    /** Finger. */
+    /** 手指。 */
     UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1,
 
-    /** Pen. */
+    /** 触控笔。 */
     UI_INPUT_EVENT_TOOL_TYPE_PEN = 2,
 
-    /** Mouse. */
+    /** 鼠标。 */
     UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,
 
-    /** TouchPad. */
+    /** 触控板。 */
     UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4,
 
-    /** JoyStick. */
+    /** 操纵杆。 */
     UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5,
 };
 
 /**
- * @brief Defines the source type of the touch event.
+ * @brief 产生输入事件的来源类型定义。
  *
  * @since 12
  */
 enum {
-    /** Unknown source type. */
+    /** 未知输入源。 */
     UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0,
 
-    /** Mouse. */
+    /** 鼠标。 */
     UI_INPUT_EVENT_SOURCE_TYPE_MOUSE = 1,
 
-    /** Touchscreen. */
+    /** 触摸屏。 */
     UI_INPUT_EVENT_SOURCE_TYPE_TOUCH_SCREEN = 2,
 
     /**
-     * @brief The key type.
+     * @brief 按键。
      *
      * @since 22
      */
     UI_INPUT_EVENT_SOURCE_TYPE_KEY = 4,
 
     /**
-     * @brief The joystick type.
+     * @brief 手柄。
      *
      * @since 22
      */
@@ -307,51 +308,51 @@ typedef enum {
 } HitTestMode;
 
 /**
- * @brief Define the action types of the mouse event.
+ * @brief 定义鼠标事件的行为类型。
  *
  * @since 12
  */
 enum {
-    /** Unknown action. */
+    /** 无效行为。 */
     UI_MOUSE_EVENT_ACTION_UNKNOWN = 0,
 
-    /** The mouse button is pressed. */
+    /** 鼠标按键按下。 */
     UI_MOUSE_EVENT_ACTION_PRESS = 1,
 
-    /** The mouse button is released. */
+    /** 鼠标按键松开。 */
     UI_MOUSE_EVENT_ACTION_RELEASE = 2,
 
-    /** The mouse cursor moves. */
+    /** 鼠标移动。 */
     UI_MOUSE_EVENT_ACTION_MOVE = 3,
 
-    /** The mouse button action is canceled.
+    /** 鼠标按键被取消。
         * @since 18
         */
     UI_MOUSE_EVENT_ACTION_CANCEL = 13,
 };
 
 /**
- * @brief Define the button type for mouse events.
+ * @brief 定义鼠标事件的按键类型。
  *
  * @since 12
  */
 enum {
-    /** No button. */
+    /** 无按键。 */
     UI_MOUSE_EVENT_BUTTON_NONE = 0,
 
-    /** Left button. */
+    /** 鼠标左键。 */
     UI_MOUSE_EVENT_BUTTON_LEFT = 1,
 
-    /** Right button. */
+    /** 鼠标右键。 */
     UI_MOUSE_EVENT_BUTTON_RIGHT = 2,
 
-    /** Middle button. */
+    /** 鼠标中键。 */
     UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,
 
-    /** Back button on the left of the mouse. */
+    /** 鼠标左侧后退键。 */
     UI_MOUSE_EVENT_BUTTON_BACK = 4,
 
-    /** Forward button on the left of the mouse. */
+    /** 鼠标左侧前进键。 */
     UI_MOUSE_EVENT_BUTTON_FORWARD = 5,
 };
 
@@ -383,89 +384,89 @@ typedef enum {
 } ArkUI_ModifierKeyName;
 
 /**
- * @brief Defines an enum for the axis types for focus axis events.
+ * @brief 定义焦点轴事件的轴类型。
  *
  * @since 15
  */
 enum {
-    /** Game controller X-axis. */
+    /** 游戏手柄X轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_X = 0,
-    /** Game controller Y-axis. */
+    /** 游戏手柄Y轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_Y = 1,
-    /** Game controller Z-axis. */
+    /** 游戏手柄Z轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_Z = 2,
-    /** Game controller RZ-axis. */
+    /** 游戏手柄RZ轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_RZ = 3,
-    /** Game controller GAS-axis. */
+    /** 游戏手柄GAS轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_GAS = 4,
-    /** Game controller BRAKE-axis. */
+    /** 游戏手柄BRAKE轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_BRAKE = 5,
-    /** Game controller HAT0X-axis. */
+    /** 游戏手柄HAT0X轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
-    /** Game controller HAT0Y-axiS. */
+    /** 游戏手柄HAT0Y轴。 */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
     /**
-     * Game controller RX-axis.
+     * 游戏手柄RX轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_RX = 8,
     /**
-     * Game controller RY-axis.
+     * 游戏手柄RY轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_RY = 9,
     /**
-     * Game controller THROTTLE-axis.
+     * 游戏手柄THROTTLE轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_THROTTLE = 10,
     /**
-     * Game controller RUDDER-axis.
+     * 游戏手柄RUDDER轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_RUDDER = 11,
     /**
-     * Game controller WHEEL-axis.
+     * 游戏手柄WHEEL轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_WHEEL = 12,
     /**
-     * Game controller HAT1X-axis.
+     * 游戏手柄HAT1X轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_HAT1X = 13,
     /**
-     * Game controller HAT1Y-axis.
+     * 游戏手柄HAT1Y轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_HAT1Y = 14,
     /**
-     * Game controller HAT2X-axis.
+     * 游戏手柄HAT2X轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_HAT2X = 15,
     /**
-     * Game controller HAT2Y-axis.
+     * 游戏手柄HAT2Y轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_HAT2Y = 16,
     /**
-     * Game controller HAT3X-axis.
+     * 游戏手柄HAT3X轴。
      *
      * @since 23
      */
     UI_FOCUS_AXIS_EVENT_ABS_HAT3X = 17,
     /**
-     * Game controller HAT3Y-axis.
+     * 游戏手柄HAT3Y轴。
      *
      * @since 23
      */
@@ -473,16 +474,16 @@ enum {
 };
 
 /**
- * @brief Enumerates the axis types for axis events.
+ * @brief 定义轴事件的轴类型。
  *
  * @since 22
  */
 enum {
-    /** Vertical scroll axis. */
+    /** 垂直滚动轴。 */
     UI_AXIS_TYPE_VERTICAL_AXIS = 0,
-    /** Horizontal scroll axis. */
+    /** 水平滚动轴。 */
     UI_AXIS_TYPE_HORIZONTAL_AXIS = 1,
-    /** Pinch axis. */
+    /** 捏合轴。 */
     UI_AXIS_TYPE_PINCH_AXIS = 2,
 };
 
@@ -509,20 +510,20 @@ typedef enum {
 } ArkUI_InteractionHand;
 
 /**
- * @brief Enumerates the action types for axis events.
+ * @brief 定义轴事件的操作类型。
  *
  * @since 15
  */
 enum {
-    /** The axis event is abnormal. */
+    /** 轴事件异常。 */
     UI_AXIS_EVENT_ACTION_NONE = 0,
-    /** The axis event begins. */
+    /** 轴事件开始。 */
     UI_AXIS_EVENT_ACTION_BEGIN = 1,
-    /** The axis event is updated. */
+    /** 轴事件更新。 */
     UI_AXIS_EVENT_ACTION_UPDATE = 2,
-    /** The axis event ends. */
+    /** 轴事件结束。 */
     UI_AXIS_EVENT_ACTION_END = 3,
-    /** The axis event is canceled. */
+    /** 轴事件取消。 */
     UI_AXIS_EVENT_ACTION_CANCEL = 4,
 };
 
@@ -564,9 +565,9 @@ int32_t OH_ArkUI_UIInputEvent_GetType(const ArkUI_UIInputEvent* event);
  * UI_TOUCH_EVENT_ACTION_XXX，鼠标事件的action类型为UI_MOUSE_EVENT_ACTION_XXX。
  *
  * @note
- * 1. For axis events, use {@link OH_ArkUI_AxisEvent_GetAxisAction} to obtain the action type,
- *    which returns UI_AXIS_EVENT_ACTION_XXX.
- * 2. For key events, use {@link OH_ArkUI_KeyEvent_GetType} instead.
+ * 1. 对于轴事件，请使用{@link OH_ArkUI_AxisEvent_GetAxisAction}获取action类型，
+ *    返回值为UI_AXIS_EVENT_ACTION_XXX。
+ * 2. 对于按键事件，请使用{@link OH_ArkUI_KeyEvent_GetType}获取。
  *
  * @param event 表示指向当前UI输入事件的指针。
  * @return 返回当前UI输入事件的操作类型，如果参数异常则返回-1。
@@ -578,8 +579,7 @@ int32_t OH_ArkUI_UIInputEvent_GetAction(const ArkUI_UIInputEvent* event);
  * @brief 获取UI输入事件的触发源类型。输入源为产生输入事件的真实物理设备，如触摸屏，鼠标等，由{@link UI_INPUT_EVENT_SOURCE_TYPE_XXX}定义，而输入工具为操作输入源设备来产生事件的工具，如手指、
  * 触控笔。在某些情况下两者可能容易发生混淆，比如当用户在操作鼠标时，鼠标既是输入源，也是输入工具。
  *
- * @note For key events, obtaining the source type is not supported, and in such cases,
- *     the API will return an <b>unknown</b> value.
+ * @note 对于按键事件，不支持获取输入源类型，此时接口将返回<b>unknown</b>值。
  *
  * @param event 表示指向当前UI输入事件的指针。
  * @return 返回产生当前UI输入事件的来源类型。
@@ -591,8 +591,7 @@ int32_t OH_ArkUI_UIInputEvent_GetSourceType(const ArkUI_UIInputEvent* event);
  * @brief 获取UI输入事件的工具类型。输入工具为操作输入源设备来产生事件的操作方，如手指、触控笔，他们自身不真实产生事件，但可以驱动输入源设备不断产生事件。返回的类型由
  * {@link UI_INPUT_EVENT_TOOL_TYPE_XXX}枚举值定义。
  *
- * @note For key events, obtaining the tool type is not supported, and in such cases,
- *     the API will return an <b>unknown</b> value.
+ * @note 对于按键事件，不支持获取输入工具类型，此时接口将返回<b>unknown</b>值。
  *
  * @param event 表示指向当前UI输入事件的指针。
  * @return 返回产生当前UI输入事件的工具类型。
@@ -867,8 +866,8 @@ float OH_ArkUI_PointerEvent_GetTiltY(const ArkUI_UIInputEvent* event, uint32_t p
  * @param event 指向当前UI输入事件的指针。
  * @param rollAngle 触控笔绕Z轴旋转的角度，单位为deg。
  * @return 错误码。
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示成功。
+ *     <br>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示函数参数异常。
  * @since 17
  */
 int32_t OH_ArkUI_PointerEvent_GetRollAngle(const ArkUI_UIInputEvent* event, double* rollAngle);
@@ -896,8 +895,8 @@ float OH_ArkUI_PointerEvent_GetTouchAreaHeight(const ArkUI_UIInputEvent* event, 
 /**
  * @brief 获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
  *
- * @note The value is not available immediately upon press. Until the system infers the result, this API will return
- *     <b>NONE</b>. Do not rely on the return value for critical functionality.
+ * @note 该值并非在按下时就能实时获取，在系统完成结果推断之前，皆默认返回<b>NONE</b>，
+ *     因此请不要将按下阶段的返回值作为最终识别结果。
  *
  * @param event 表示指向当前UI输入事件的指针。
  * @param hand 表示触摸点是左手还是右手。
@@ -911,8 +910,8 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event
 /**
  * @brief 获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
  *
- * @note The value is not available immediately upon press. Until the system infers the result,
- *     this API will return <b>NONE</b>. Do not rely on the return value for critical functionality.
+ * @note 该值并非在按下时就能实时获取，在系统完成结果推断之前，皆默认返回<b>NONE</b>，
+ *     因此请不要将按下阶段的返回值作为最终识别结果。
  *
  * @param event 表示指向当前UI输入事件的指针。
  * @param pointerIndex 表示多点触控数据列表中目标触控点的索引。
@@ -1146,10 +1145,10 @@ double OH_ArkUI_AxisEvent_GetVerticalAxisValue(const ArkUI_UIInputEvent* event);
  * @brief 获取当前轴事件的水平滚动轴的值，通过在触控板上双指横向滑动产生。
  *
  * @note
- * 1. The reported value is in px and represents the incremental scroll amount, not the total scroll amount.
- * 2. The reported value does not include the user's scroll step configuration.
- * 3. The sign of the value indicates the direction: positive for swiping right and negative for swiping left.
- * 4. The direction is affected by the system settings for natural scrolling.
+ * 1. 上报的数值单位为px，表示单次滚动增量，非滚动总量。
+ * 2. 上报的数值不受用户配置的滚动步长的影响。
+ * 3. 数值的正负代表方向，双指从左往右滑动时上报数值为负数，双指从右往左滑动时上报数值为正数。
+ * 4. 方向会受系统设置中“自然滚动”配置的影响。
  *
  * @param event 表示指向当前UI输入事件的指针。
  * @return 返回当前轴事件的水平滚动轴的值，如果参数异常则返回0.0。

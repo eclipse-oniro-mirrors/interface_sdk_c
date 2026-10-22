@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_RenderNodeUtils
  * @{
  *
- * @brief Provides RenderNode capabilities of ArkUI on the native side, such as RenderNode creation and destruction,
- * tree node operations, and attribute setting.
+ * @brief 提供ArkUI在Native侧的RenderNode能力，如RenderNode创建、销毁、树节点操作、属性设置等。
  *
  * @since 20
  */
@@ -1667,7 +1666,7 @@ void OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(ArkUI_ColorAnimatab
  *
  * @param modifier 目标内容修改器。
  * @param userData 要传递给回调的自定义数据。
- * @param callback The draw event receiver callback.
+ * @param callback 表示绘制事件接收回调。其中context表示绘制上下文；userData表示调用本接口时传入的自定义数据。
  * @return 错误码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
