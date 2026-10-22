@@ -468,7 +468,7 @@ void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t 
  * @brief 连接USB设备并打开用于通信的管道。返回的管道必须通过调用
  * <br>{@link OH_UsbManager_ClosePipe}关闭，以避免资源泄漏。
  *
- * <br>仅需要设备结构体中的busNum和devAddress字段；其他字段将被忽略。
+ * <br>仅需要设备结构体中的**busNum**和**devAddress**字段；其他字段将被忽略。
  *
  * @param device [入参] 指向要连接的{@link OH_UsbManager_UsbDevice}的指针。不得为空。
  * @param pipe [出参] 指向{@link OH_UsbManager_UsbPipe}的指针，成功时用于接收
@@ -544,7 +544,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
 
 /**
  * @brief 获取已打开USB设备管道的文件描述符。该fd可用于基于ioctl的
- * <br>低层USB传输。
+ * <br>底层USB传输。
  *
  * @param pipe [入参] 指向从{@link OH_UsbManager_ConnectDevice}获取的
  *     <br>{@link OH_UsbManager_UsbPipe}的指针。不得为空。
