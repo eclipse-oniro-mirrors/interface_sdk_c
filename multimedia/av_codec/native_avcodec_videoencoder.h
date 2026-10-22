@@ -181,7 +181,7 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  * @deprecated since 11
- * @useinstead {@link OH_VideoEncoder_RegisterCallback}
+ * @useinstead OH_VideoEncoder_RegisterCallback
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
@@ -427,7 +427,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @deprecated since 11
- * @useinstead {@link OH_VideoEncoder_FreeOutputBuffer}
+ * @useinstead OH_VideoEncoder_FreeOutputBuffer
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
@@ -464,7 +464,7 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @deprecated since 11
- * @useinstead {@link OH_VideoEncoder_PushInputBuffer}
+ * @useinstead OH_VideoEncoder_PushInputBuffer
  * @since 10
  */
 OH_AVErrCode OH_VideoEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
@@ -626,27 +626,27 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @brief Enumerates the bit rate modes of a video encoder.
  *
  * @deprecated since 14
- * @useinstead {@link OH_BitrateMode}
+ * @useinstead OH_BitrateMode
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
     /** constant bit rate mode.
      * @deprecated since 14
-     * @useinstead {@link BITRATE_MODE_CBR}
+     * @useinstead BITRATE_MODE_CBR
      * @since 9
      */
     CBR = 0,
 
     /** variable bit rate mode.
      * @deprecated since 14
-     * @useinstead {@link BITRATE_MODE_VBR}
+     * @useinstead BITRATE_MODE_VBR
      * @since 9
      */
     VBR = 1,
 
     /** constant quality mode.
      * @deprecated since 14
-     * @useinstead {@link BITRATE_MODE_CQ}
+     * @useinstead BITRATE_MODE_CQ
      * @since 9
      */
     CQ = 2
