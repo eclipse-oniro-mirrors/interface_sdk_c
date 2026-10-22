@@ -64,8 +64,7 @@ extern "C" {
  *     4. The length of **hidEventTypes** exceeds 5 characters.
  *     5. The length of **hidKeys** exceeds 100 characters. 6. The length of **hidAbs** exceeds 26 characters. 7. The
  *     length of **hidRelBits** exceeds 13 characters. 8. The length of **hidMiscellaneous** exceeds 6 characters.
- *     {@link HID_DDK_FAILURE}: The number of devices reaches the maximum value 200. Possible causes: 1. The number of
- *     virtual devices exceeds the upper limit. 2. Device ID generatiuon failed.
+ *     {@link HID_DDK_FAILURE}: The number of devices reaches the maximum value 200. 
  * @since 11
  * @version 1.0
  */
@@ -86,8 +85,7 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  *     {@link HID_DDK_INVALID_PARAMETER}: The parameter check fails. Possible causes: 1. The device ID is less than 0.
  *     2. The length of the input parameter **length** exceeds 7 characters. 3. The input parameter **items** is a null
  *     pointer.
- *     {@link HID_DDK_NULL_PTR}: The input device is a null pointer. Possible causes: 1. The device object is empty; 2.
- *     The device does not exist.
+ *     {@link HID_DDK_NULL_PTR}: The input device is a null pointer.
  * @since 11
  * @version 1.0
  */
