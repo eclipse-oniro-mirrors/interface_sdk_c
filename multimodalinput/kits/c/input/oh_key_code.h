@@ -1870,7 +1870,12 @@ typedef enum {
      * @brief PTZ aperture right
      * @since 26.0.1
      */
-    OH_INPUT_KEYCODE_PTZ_APERTURE_RIGHT = 3243
+    OH_INPUT_KEYCODE_PTZ_APERTURE_RIGHT = 3243,
+    /**
+     * @brief Return to desktop
+     * @since 26.2.0
+     */
+    OH_INPUT_KEYCODE_DESKTOP = 3245
 } Input_KeyCode;
 
 #ifdef __cplusplus
