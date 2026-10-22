@@ -141,11 +141,10 @@ int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preference
  * @brief Sets the shared map size for a {@link OH_PreferencesOption} instance.
  * 
  * @param option [in] Pointer to the target {@link OH_PreferencesOption} instance. Must not be NULL.
- * @param sharedMapSize [in] Shared map size to set, in KB. The value ranges from 256 to 1112784, or 0. The value 0
- *     indicates that no map file is generated and cross-process sharing is not supported.
+ * @param sharedMapSize [in] Shared map size to set, in KB. The value ranges from 256 to 1112784, or 0. The value 0 indicates that no map file is generated and cross-process sharing is not supported.
  * @return Error code.
- *     **PREFERENCES_OK** indicates the operation is successful.
- *     **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ *     {@link PREFERENCES_OK} indicates the operation is successful.<br>
+ *     {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid parameters are specified.
  * @see OH_PreferencesOption
  * @since 26.2.0
  */
