@@ -1013,7 +1013,8 @@ typedef enum {
     HID_DDK_NULL_PTR = 27300002,
     /**
      * 非法操作，从API 16起，取值由-3变更为27300003。可能原因：调用API的时机或顺序不正确。请检查调用时机、以及是否初始化DDK。
-     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在调用者Token校验不匹配时，取值为-3；{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在DDK连接失败或服务未启用时，取值为27300003。
+     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在调用者Token校验不匹配时，取值为-3；{@link OH_Hid_EmitEvent}与
+     * {@link OH_Hid_DestroyDevice}在DDK连接失败或服务未启用时，取值为27300003。
      */
     HID_DDK_INVALID_OPERATION = 27300003,
     /**
