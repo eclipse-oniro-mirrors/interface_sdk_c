@@ -138,6 +138,30 @@ int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char
 int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type);
 
 /**
+ * @brief Sets the cache size for a {@link OH_PreferencesOption} instance.
+ * 
+ * @param option [in] Pointer to the target {@link OH_PreferencesOption} instance. Must not be NULL.
+ * @param cacheSize [in] Cache size to set, in KB. The value ranges from 256 to 1112784, or 0. The value 0 indicates
+ *     that no map file is generated and cross-process sharing is not supported.
+ * @return Error code.
+ *     **PREFERENCES_OK** indicates the operation is successful.
+ *     **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * @see OH_PreferencesOption
+ * @since 26.2.0
+ */
+int OH_PreferencesOption_SetCacheSize(OH_PreferencesOption *option, int32_t cacheSize);
+
+/**
+ * @brief Gets the cache size from an {@link OH_PreferencesOption} instance.
+ * 
+ * @param option [in] Pointer to the target {@link OH_PreferencesOption} instance. Must not be NULL.
+ * @return Returns the cache size in KB. Returns 0 if not set or the option is invalid.
+ * @see OH_PreferencesOption
+ * @since 26.2.0
+ */
+int32_t OH_PreferencesOption_GetCacheSize(OH_PreferencesOption *option);
+
+/**
  * @brief Destroys an {@link OH_PreferencesOption} instance.
  * 
  * @param option Pointer to the {@link OH_PreferencesOption} instance.

@@ -72,6 +72,14 @@
         "name": "OH_PreferencesOption_SetStorageType"
     },
     {
+        "first_introduced": "26.2.0",
+        "name": "OH_PreferencesOption_SetCacheSize"
+    },
+    {
+        "first_introduced": "26.2.0",
+        "name": "OH_PreferencesOption_GetCacheSize"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_PreferencesOption_Destroy"
     },
