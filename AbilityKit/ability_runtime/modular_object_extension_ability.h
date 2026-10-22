@@ -25,7 +25,11 @@
 /**
  * @file modular_object_extension_ability.h
  *
- * @brief Declares the modular object extension ability.
+ * @brief Declares the interfaces of a ModularObjectExtensionAbility instance, including the
+ * capabilities of registering lifecycle callback functions and obtaining the context. It is
+ * applicable to scenarios where the lifecycle of ModularObjectExtensionAbility is processed.
+ *
+ * **File to include:** <AbilityKit/ability_runtime/modular_object_extension_ability.h>
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -47,7 +51,8 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the struct for OH_AbilityRuntime_ModObjExtensionInstance.
+ * @brief Defines the OH_AbilityRuntime_ModularObjectExtensionInstance struct, whose type alias is
+ * OH_AbilityRuntime_ModObjExtensionInstance, representing an instance of ModularObjectExtensionAbility.
  *
  * @since 26.0.0
  */
@@ -83,10 +88,12 @@ typedef void (*OH_AbilityRuntime_ModObjExtensionAbility_OnDestroyFunc)(
     OH_AbilityRuntime_ModObjExtensionInstanceHandle instance);
 
 /**
- * @brief Callback invoked when a modular object extension is connected to an ability.
+ * @brief Callback function invoked when the ModularObjectExtensionAbility is connected.
+ * It must return an OHIPCRemoteStub object to provide cross-process communication services.
  *
  * @param instance Points to an {@link OH_AbilityRuntime_ModObjExtensionInstance} instance.
  * @param want Indicates the want of created modular object extension.
+ * @return IPC remote stub object used for cross-process communication services.
  *
  * @since 26.0.0
  */
@@ -186,10 +193,12 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjExtensionAbility_GetContextFrom
  * @param modObjExtensionInstance Represents a pointer to an {@link
  * OH_AbilityRuntime_ModObjExtensionInstanceHandle} instance that is an output parameter.
  * @return Returns a specific error code.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} success.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} parameter check failed.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE} if the ability instance is not
- *         a modular object extension.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} The API call is successful.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} Parameter validation fails.
+ *          Check whether the input parameters are valid.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE} The ExtensionAbility instance is not of the
+ *          ModularObjectExtensionAbility type. Ensure that the type of the ExtensionAbility instance passed in
+ *          is correct.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjExtensionAbility_GetInstanceFromBase(

@@ -25,7 +25,8 @@
 /**
  * @file extension_ability.h
  *
- * @brief Declare the common types for the extension ability AbilityRuntime.
+ * @brief Provides the type declaration of the ExtensionAbility callback function and
+ * the name declaration of the entry function.
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -57,7 +58,8 @@ struct AbilityRuntime_ExtensionInstance;
 typedef struct AbilityRuntime_ExtensionInstance* AbilityRuntime_ExtensionInstanceHandle;
 
 /**
- * @brief Define the function that must be in the native code to instantiate the native extension ability.
+ * @brief Defines the callback function type for ExtensionAbility creation. Callback function that must be
+ * implemented in the ExtensionAbility, which is used to instantiate the ExtensionAbility.
  *
  * @since 24
  */

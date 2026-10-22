@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @addtogroup AbilityRuntime
  * @{
  *
@@ -48,7 +48,9 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the OH_AbilityRuntime_ConnectOptions structure type.
+ * @brief Defines the OH_AbilityRuntime_ConnectOptions struct, which is used to configure the callback options when
+ * connecting to an ExtensionAbility, including the callbacks for successful connection, disconnection,
+ * and connection failure.
  *
  * @since 26.0.0
  */
