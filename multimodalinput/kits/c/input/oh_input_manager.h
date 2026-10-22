@@ -2134,7 +2134,7 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
 /**
  * @brief Adds a listener for key events. Only the initial addition takes effect. Subsequent attempts will be ignored.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
  * @param callback [in] Callback used to receive key events.
  * @return <ul>
@@ -2153,7 +2153,7 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  * <br>This API can be called only when the application is in a screen recording scenario. Otherwise, the call does
  * not take effect.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
  * @param callback [in] Callback used to receive mouse events.
  * @return <ul>
@@ -2169,7 +2169,7 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
 /**
  * @brief Adds a listener for touch input events.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
  * @param callback [in] Callback used to receive touch events.
  * @return <ul>
@@ -2186,7 +2186,7 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  * @brief Adds a listener for all types of axis events, which are defined in
  * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
  * @param callback [in] Callback used to receive axis events.
  * @return <ul>
@@ -2203,7 +2203,7 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  * @brief Adds a listener for the specified type of axis events, which are defined in
  * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
  * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback [in] Callback used to receive axis events of a specified type.
@@ -2220,7 +2220,7 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
 /**
  * @brief Removes the listener for key events.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] Callback for key events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the key event listener is removed successfully.</li>
@@ -2235,7 +2235,7 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
 /**
  * @brief Removes the listener for mouse events.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] Callback for mouse events.
  * @return <ul>
  *         <li>If the mouse event listener is removed successfully, {@link INPUT_SUCCESS} is returned.</li>
@@ -2250,7 +2250,7 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
 /**
  * @brief Removes the listener for touch events.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] Callback for touch events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the touch event listener is removed successfully.</li>
@@ -2265,7 +2265,7 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
 /**
  * @brief Removes the listener for all types of axis events.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] Callback for the all types of axis events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the axis event listener is removed successfully.</li>
@@ -2281,7 +2281,7 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
  * @brief Removes the listener for the specified type of axis events, which are defined in
  * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
- * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.1.0]
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback [in] Callback for the specified type of axis events.
  * @return <ul>
