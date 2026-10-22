@@ -25,7 +25,8 @@
 /**
  * @file image.h
  *
- * @brief 为NativeNode API提供Image节点类型定义。
+ * @brief 为NativeNode API提供Image节点类型定义，用于在Native应用中创建和配置Image组件，
+ *    支持图片重复铺设、宽高样式、填充效果、插值优化、动态范围、旋转方向和渲染模式等多种属性配置。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -42,7 +43,7 @@ extern "C" {
 
 /**
  * @brief 定义图片重复铺设枚举值。用于控制图片在背景、图案等场景下的重复铺设方式，例如壁纸应用中以小图案铺满背景。
- *
+   *
  * @since 12
  */
 typedef enum {
@@ -70,6 +71,9 @@ typedef enum {
 
 /**
  * @brief 定义图片宽高样式。
+ *    用于控制图片在显示区域内的缩放方式：
+ *    ARKUI_IMAGE_SIZE_AUTO保持原图比例；ARKUI_IMAGE_SIZE_COVER适用于需要充满容器的场景（如相册缩略图）；
+ *    ARKUI_IMAGE_SIZE_CONTAIN适用于需要完整显示图片的场景（如详情页预览）。
  *
  * @since 12
  */
@@ -92,8 +96,9 @@ typedef enum {
 } ArkUI_ImageSize;
 
 /**
- * @brief 定义Image组件的图片填充效果。ARKUI_OBJECT_FIT_CONTAIN适用于需要完整显示图片的场景，
- * ARKUI_OBJECT_FIT_COVER适用于需要充满容器的场景，ARKUI_OBJECT_FIT_SCALE_DOWN适用于图片过大时缩小显示的场景。
+ * @brief 定义{@link Image}组件的图片填充效果。
+ *    ARKUI_OBJECT_FIT_CONTAIN适用于需要完整显示图片的场景，ARKUI_OBJECT_FIT_COVER适用于需要充满容器的场景，
+ *    ARKUI_OBJECT_FIT_SCALE_DOWN适用于图片过大时缩小显示的场景。
  *
  * @since 12
  */
@@ -177,16 +182,16 @@ typedef enum {
      * 不改变图像原始大小，在Image组件中需要配合{@link ArkUI_NodeAttributeType}中的NODE_IMAGE_IMAGE_MATRIX使用，
      * 通过矩阵变换控制图像的显示效果（如缩放、旋转、平移等）。
      * 若不配合NODE_IMAGE_IMAGE_MATRIX使用，该枚举值将无法生效。
-     *
      * @since 21
      */
     ARKUI_OBJECT_FIT_NONE_MATRIX = 15
 } ArkUI_ObjectFit;
+
 /**
  * @brief 定义图片插值效果。用于优化图片缩放时的锯齿问题。SVG类型图源不支持该属性。
- * ARKUI_IMAGE_INTERPOLATION_LOW适用于性能敏感、对画质要求不高的场景（如列表缩略图快速滑动），
- * ARKUI_IMAGE_INTERPOLATION_MEDIUM适用于大多数常规场景，
- * ARKUI_IMAGE_INTERPOLATION_HIGH适用于对画质要求高的场景（如图片查看器）。
+ *    ARKUI_IMAGE_INTERPOLATION_LOW适用于性能敏感、对画质要求不高的场景（如列表缩略图快速滑动），
+ *    ARKUI_IMAGE_INTERPOLATION_MEDIUM适用于大多数常规场景，
+ *    ARKUI_IMAGE_INTERPOLATION_HIGH适用于对画质要求高的场景（如图片查看器）。
  *
  * @since 12
  */
@@ -212,6 +217,7 @@ typedef enum {
      */
     ARKUI_IMAGE_INTERPOLATION_HIGH = 3
 } ArkUI_ImageInterpolation;
+
 /**
  * @brief 定义图像动态范围模式（例如：SDR/HDR）。ARKUI_DYNAMIC_RANGE_MODE_HIGH适用于支持HDR显示的高端设备及HDR内容，
  * ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT适用于需要兼容SDR的过渡场景，ARKUI_DYNAMIC_RANGE_MODE_STANDARD适用于普通显示设备。
@@ -219,10 +225,12 @@ typedef enum {
  * @since 21
  */
 typedef enum {
-    /** 高动态范围（High Dynamic Range，简称HDR），表示图片中显示亮度（brightness）的最小值和最大值的范围（典型最大亮度可达1000尼特以上），
-     * 范围越大，图像的亮度动态范围越接近人眼在真实环境中的感知范围，
-     * 在太亮的环境下不会产生过曝（纯白），太暗的环境下不会产生过暗的效果（纯黑）。
-	 * @since 21
+    /**
+     * 高动态范围（High Dynamic Range，简称HDR），
+     * 表示图片中显示亮度（brightness）的最小值和最大值的范围（典型最大亮度可达1000尼特以上），范围越大，
+     * 图像的亮度动态范围越接近人眼在真实环境中的感知范围，在太亮的环境下不会产生过曝（纯白），
+     * 太暗的环境下不会产生过暗的效果（纯黑）。
+     * @since 21
      */
     ARKUI_DYNAMIC_RANGE_MODE_HIGH = 0,
     /**
@@ -231,21 +239,21 @@ typedef enum {
      */
     ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT = 1,
     /**
-     * 标准动态范围（Standard Dynamic Range，简称SDR），表示亮度范围有限，一般在0~100尼特（亮度单位）左右，明暗对比度较小，暗部容易糊成黑，亮部容易过曝。
+     * 标准动态范围（Standard Dynamic Range，简称SDR），
+     * 表示亮度范围有限，一般在0~100尼特（亮度单位）左右，明暗对比度较小，暗部容易糊成黑，亮部容易过曝。
      * @since 21
      */
     ARKUI_DYNAMIC_RANGE_MODE_STANDARD = 2
 } ArkUI_DynamicRangeMode;
 
 /**
- * @brief 定义图像旋转方向。用于根据图片EXIF元数据或手动指定来调整图片显示方向，
- * 适用于处理用户拍摄照片方向、校正照片显示等场景。
+ * @brief 定义图像旋转方向。用于根据图片EXIF元数据或手动指定来调整图片显示方向，适用于处理用户拍摄照片方向、校正照片显示等场景。
  *
  * @since 21
  */
 typedef enum {
     /**
-     * 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。EXIF（Exchangeable image file format）是专门为数码相机的照片设定的文件格式，可以记录数码照片的属性信息和拍摄数据。
+     * 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。
      * @since 21
      */
     ARKUI_ORIENTATION_AUTO = 0,
@@ -293,7 +301,7 @@ typedef enum {
 
 /**
  * @brief 定义图片渲染模式。ARKUI_IMAGE_RENDER_MODE_ORIGINAL适用于需要保留原图颜色的场景，
- * ARKUI_IMAGE_RENDER_MODE_TEMPLATE适用于需要单色/黑白显示的场景（如选中态图标、着色图标）。
+ *    ARKUI_IMAGE_RENDER_MODE_TEMPLATE适用于需要单色/黑白显示的场景（如选中态图标、着色图标）。
  *
  * @since 12
  */
