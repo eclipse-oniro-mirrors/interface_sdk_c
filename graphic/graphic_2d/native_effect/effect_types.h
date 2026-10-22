@@ -33,7 +33,11 @@
  * @brief Declares the data types for filter effects, used to define the matrices,
  * status codes, and tile modes for filter effects, and supports scenarios such as
  * creating custom filter effects and processing image shader tiling.
+ * <br>The status code types defined in this document are used for status returns of
+ * related APIs. For the usage instructions of status codes for specific APIs, see the
+ * corresponding API documentation.
  * @kit ArkGraphics2D
+ * @include <native_effect/effect_types.h>
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
@@ -82,7 +86,10 @@ struct OH_Filter_ColorMatrix {
 };
 
 /**
- * @brief Enumerates the status codes of the filter effect.
+ * @brief Enumerates the status codes of the filter effect. These status codes are returned when
+ * filter effect APIs are used. Developers should determine the operation result based on the
+ * returned status code and handle it accordingly. For usage instructions of the status codes
+ * for specific APIs, see the corresponding API documentation.
  *
  * @since 12
  * @version 1.0
