@@ -64,7 +64,7 @@ extern "C" {
  *     4. The length of **hidEventTypes** exceeds 5 characters.
  *     5. The length of **hidKeys** exceeds 100 characters. 6. The length of **hidAbs** exceeds 26 characters. 7. The
  *     length of **hidRelBits** exceeds 13 characters. 8. The length of **hidMiscellaneous** exceeds 6 characters.
- *     {@link HID_DDK_FAILURE}: The number of devices reaches the maximum value 200. 
+ *     {@link HID_DDK_FAILURE}: The number of devices reaches the maximum value 200.
  * @since 11
  * @version 1.0
  */
