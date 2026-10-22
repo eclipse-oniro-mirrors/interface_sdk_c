@@ -25,10 +25,14 @@
 /**
  * @file picker.h
  *
- * @brief Defines **Picker** node types for **NativeNode** APIs.
+ * @brief Provides Picker node type definitions for NativeNode APIs. It supports multiple types of selector components
+ * such as date pickers and text pickers, applies to scenarios where scroll-based selection needs to be implemented
+ * at the native layer, and provides rich style configuration and data linkage capabilities to help developers
+ * flexibly build various selection interactions.
  *
- * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/node_attributes/picker.h>
+ * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12
  */
@@ -49,19 +53,22 @@ extern "C" {
  */
 typedef enum {
     /**
-     * A mode that displays the date in months, days of month, and years.
+     * Default value. The date displays three columns for year, month, and day. It is applicable to scenarios
+     * that require complete date information, such as birth date selection and appointment date selection.
      *
      * @since 18
      */
     ARKUI_DATEPICKER_MODE_DATE = 0,
     /**
-     * A mode that displays the date in months and years.
+     * The date displays two columns for year and month. It is applicable to scenarios that require only year
+     * and month information, such as credit card expiration date selection and contract term selection.
      *
      * @since 18
      */
     ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
     /**
-     * A mode that displays the date in months and days of the month.
+     * The date displays two columns for month and day. It is applicable to scenarios that require only month
+     * and day information, such as birth date selection (without regard to the year) and anniversary selection.
      *
      * @since 18
      */
@@ -75,32 +82,40 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Single-column text picker.
+     * Single-column data picker, applicable to single-column data selection scenarios such as gender selection
+     * and education level selection.
      *
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0,
     /**
-     * Multi-column text picker.
+     * Multi-column data picker, applicable to multi-column independent data selection scenarios such as time
+     * selection (hour, minute, second) and date selection (year, month, day).
      *
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_MULTI = 1,
     /**
-     * Single-column text picker with image resources.
+     * Single-column data picker that supports image resources, applicable to single-column data selection
+     * scenarios with icons, such as city selection (with national flag icons) and product category selection.
      *
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT = 2,
     /**
-     * Interconnected multi-column text picker.
+     * Multi-column data picker that supports linkage, applicable to multi-column linkage data selection
+     * scenarios such as province-city-district three-level linkage selection and year-month-day linkage selection.
      *
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT = 3
 } ArkUI_TextPickerRangeType;
 /**
- * @brief Defines the option content supported by the single-column text picker, including text and image resources.
+ * @brief Defines the struct of the image resource supported by the single-column text picker. This struct is used
+ * to display images and text in the TextPicker component at the same time, and is applicable to scenarios where
+ * icons and text need to be displayed in a single-column scroll selector in combination.
+ * It supports customized icon paths and text content. Each item can have an independent icon and text, or only one
+ * of them, helping developers implement flexible image-text picker configurations.
  *
  * @since 12
  */
@@ -118,7 +133,11 @@ typedef struct {
 } ARKUI_TextPickerRangeContent;
 
 /**
- * @brief Defines a multi-column cascade picker.
+ * @brief Defines the struct of the multi-column cascade scroll picker, which describes the hierarchical data
+ * structure of the multi-column cascade scroll picker. This struct forms a tree structure through children members
+ * to support multi-level cascade selection. It is applicable to scenarios that require displaying hierarchical
+ * data such as province/city/district and year/month/day, and can simplify the development of multi-level cascade
+ * pickers.
  *
  * @since 12
  */
@@ -173,13 +192,14 @@ typedef enum {
  */
 typedef enum {
     /**
-     * background.
+     * Background style, applicable to scenarios such as dark-themed pickers and form selection that needs
+     * to highlight the selected item.
      *
      * @since 23
      */
     ARKUI_PICKER_INDICATOR_BACKGROUND = 0,
     /**
-     * divider.
+     * Divider style, applicable to scenarios such as lightweight pickers and divider-style UI design.
      *
      * @since 23
      */
@@ -277,14 +297,20 @@ typedef struct {
 typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
 
 /**
- * @brief Defines the data list for the text picker.
+ * @brief Defines the option content array of the text picker. This struct is used to configure the option list of
+ * the text picker. It sets the icon and text content of each option through indexes, and is applicable to scenarios
+ * such as date selection, time selection, and list selection where multiple options need to be displayed for the
+ * user to scroll and select.
  *
  * @since 19
  */
 typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray;
 
 /**
- * @brief Defines an array of multi-column cascade pickers.
+ * @brief Defines the option content array of the multi-column cascade text picker. This struct is used to configure
+ * the hierarchical data of the multi-column cascade picker. It sets the text and child-level data of each column's
+ * options through indexes, and is applicable to scenarios that require multi-column data cascade, such as
+ * province-city-district cascade and product category selection.
  *
  * @since 19
  */

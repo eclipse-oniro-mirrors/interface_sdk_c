@@ -328,11 +328,18 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationStopMode(
     const ArkUI_DrawableDescriptor* drawableDescriptor, DrawableDescriptor_AnimationStopMode* mode);
 
 /**
- * @brief Creates an animation controller for the DrawableDescriptor.
+ * @brief Creates an animation controller. When you need to manually control the playback
+ * of an animation (for example, frame-by-frame playback, pausing, seeking to a specified
+ * frame, or setting the duration of a single frame) instead of using automatic playback,
+ * call this API to obtain the controller, and then call control APIs such as
+ * StartAnimation and Pause.
  *
- * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
- * @param node Pointer to the component node.
- * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @param drawableDescriptor [in] Pointer to a DrawableDescriptor object. The value must be an
+ *     animation object created using OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap.
+ *
+ * @param node [in] Pointer to the component node. The value must be a valid ArkUI component node.
+ * @param controller [out] Pointer to the DrawableDescriptor animation controller object.
+ *     This is an output parameter, which returns the controller pointer when the call is successful.
  * @return Result code.
  *     <ul>
  *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
@@ -365,7 +372,10 @@ void OH_ArkUI_DrawableDescriptor_DisposeAnimationController(ArkUI_DrawableDescri
 int32_t OH_ArkUI_DrawableDescriptor_StartAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief Stops the DrawableDescriptor animation and returns to the first frame.
+ * @brief Stops the DrawableDescriptor animation. The position after the stop is determined by the stop mode set by
+ * {@link OH_ArkUI_DrawableDescriptor_SetAnimationStopMode}: returns to the first frame when
+ * DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME, and stays at the last frame when
+ * DRAWABLE_DESCRIPTOR_ANIMATION_LAST_FRAME.
  *
  * @param controller Pointer to a **DrawableDescriptor** animation controller.
  * @return Result code.
