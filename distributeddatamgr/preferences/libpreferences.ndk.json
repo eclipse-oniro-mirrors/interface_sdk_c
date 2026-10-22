@@ -73,11 +73,11 @@
     },
     {
         "first_introduced": "26.2.0",
-        "name": "OH_PreferencesOption_SetCacheSize"
+        "name": "OH_PreferencesOption_SetSharedMapSize"
     },
     {
         "first_introduced": "26.2.0",
-        "name": "OH_PreferencesOption_GetCacheSize"
+        "name": "OH_PreferencesOption_GetSharedMapSize"
     },
     {
         "first_introduced": "13",

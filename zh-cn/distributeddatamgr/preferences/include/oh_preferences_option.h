@@ -132,27 +132,27 @@ int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char
 int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type);
 
 /**
- * @brief 设置Preferences配置选项{@link OH_PreferencesOption}实例的缓存大小。
+ * @brief 设置Preferences配置选项{@link OH_PreferencesOption}实例的共享缓存文件大小。
  * 
  * @param option [in] 指向目标{@link OH_PreferencesOption}实例的指针。不能为NULL。
- * @param cacheSize [in] 需要设置的缓存大小，单位为KB。取值范围为[256, 1112784]或0。值为0时表示不生成map文件，且不支持进程间共享。
+ * @param sharedMapSize [in] 需要设置的共享缓存文件大小，单位为KB。取值范围为[256, 1112784]或0。值为0时表示不生成缓存文件，且不支持进程间共享。
  * @return 返回接口操作执行的状态码。
  *     <br>若状态码为PREFERENCES_OK，表示操作成功。
  *     <br>若状态码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。
  * @see OH_PreferencesOption
  * @since 26.2.0
  */
-int OH_PreferencesOption_SetCacheSize(OH_PreferencesOption *option, int32_t cacheSize);
+int OH_PreferencesOption_SetSharedMapSize(OH_PreferencesOption *option, int32_t sharedMapSize);
 
 /**
- * @brief 获取Preferences配置选项{@link OH_PreferencesOption}实例的缓存大小。
+ * @brief 获取Preferences配置选项{@link OH_PreferencesOption}实例的共享缓存文件大小。
  * 
  * @param option [in] 指向目标{@link OH_PreferencesOption}实例的指针。不能为NULL。
- * @return 返回缓存大小，单位为KB。若未设置或option无效，则返回0。
+ * @return 返回共享缓存文件大小，单位为KB。若未设置或option无效，则返回0。
  * @see OH_PreferencesOption
  * @since 26.2.0
  */
-int32_t OH_PreferencesOption_GetCacheSize(OH_PreferencesOption *option);
+int32_t OH_PreferencesOption_GetSharedMapSize(OH_PreferencesOption *option);
 
 /**
  * @brief 销毁Preferences配置选项{@link OH_PreferencesOption}实例。
