@@ -823,9 +823,11 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * 操作失败后，接口不会自动重试。
  * 写入失败时，不保证Pixelmap的像素数据保持原样。不得使用失败写入后的像素内容；
  * 排除失败原因后，应从有效源数据恢复像素内容，或重新创建Pixelmap。
- * 参数或转换错误应通过修正输入或选择受支持的格式处理；内存申请或复制错误应在再次写入前检查可用内存及缓冲区有效性。
+ * 参数或转换错误应通过修正输入或选择受支持的格式处理；拷贝错误应在再次写入前检查可用内存及缓冲区有效性。
  *
- * 如需写入与当前Pixelmap像素格式相同的源数据（包括YUV格式），请使用{@link OH_PixelmapNative_WritePixels}。
+ * 本接口支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
+ * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。<br>
+ * 如需写入与当前Pixelmap像素格式相同的源数据（包括YUV格式），请使用{@link OH_PixelmapNative_WritePixels}。<br>
  * 如需写入具有自定义行跨距或偏移量的源数据，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
  *
  * @param pixelmap [in,out] 待修改像素数据的Pixelmap指针，不能为空指针。
@@ -834,10 +836,9 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * @param bufferSize [in] 缓冲区大小。单位：字节（Byte）。所需的最小缓冲区大小可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
  * @param sourcePixelFormat [in] 源数据的像素格式，支持BGRA_8888、RGBA_8888、RGB_888、RGB_565和RGBA_F16。
  * @return IMAGE_SUCCESS：操作成功。
- *     <br>IMAGE_BAD_PARAMETER：pixelmap或source为空指针、bufferSize不足，或者sourcePixelFormat无效或不受支持。
  *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑或已锁定。
  *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
- *     <br>IMAGE_ALLOC_FAILED：内存申请失败。
+ *     <br>IMAGE_INVALID_PARAMETER：pixelmap或source为空指针、bufferSize不足，或者sourcePixelFormat无效或不受支持。
  *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
  * @since 26.2.0
  */
@@ -891,19 +892,20 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap,
  * 操作失败后，接口不会自动重试。
  * 写入失败时，不保证指定区域的像素数据保持原样。不得使用失败写入后的像素内容；
  * 排除失败原因后，应从有效源数据恢复像素内容，或重新创建Pixelmap。
- * 参数或转换错误应通过修正输入或选择受支持的格式处理；内存申请或复制错误应在再次写入前检查可用内存及缓冲区有效性。
+ * 参数或转换错误应通过修正输入或选择受支持的格式处理；拷贝错误应在再次写入前检查可用内存及缓冲区有效性。
  *
- * 如需将YUV格式的像素数据写入YUV格式的Pixelmap，请使用{@link OH_PixelmapNative_WritePixelsToArea}。
+ * 本接口支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
+ * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。<br>
+ * 如需将YUV格式的像素数据写入同一YUV格式的Pixelmap，请使用{@link OH_PixelmapNative_WritePixelsToArea}。
  *
  * @param pixelmap [in,out] 待修改像素数据的Pixelmap指针，不能为空指针。
  * @param area [in] 写入区域信息指针，area和area->pixels均不能为空指针。
  *     数据将从area->pixels拷贝至area->region指定的区域。源缓冲区大小area->pixelsSize不小于上述缓冲区的最小大小。
  * @param sourcePixelFormat [in] 源像素的像素格式，支持BGRA_8888、RGBA_8888、RGB_888、RGB_565和RGBA_F16。
  * @return IMAGE_SUCCESS：操作成功。
- *     <br>IMAGE_BAD_PARAMETER：pixelmap、area或area->pixels为空指针，缓冲区大小、偏移量、行跨距或区域无效，或者sourcePixelFormat无效或不受支持。
  *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑或已锁定。
  *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
- *     <br>IMAGE_ALLOC_FAILED：内存申请失败。
+ *     <br>IMAGE_INVALID_PARAMETER：pixelmap、area或area->pixels为空指针，缓冲区大小、偏移量、行跨距或区域无效，或者sourcePixelFormat无效或不受支持。
  *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
  * @since 26.2.0
  */
