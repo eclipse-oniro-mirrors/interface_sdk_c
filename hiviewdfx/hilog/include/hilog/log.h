@@ -28,29 +28,17 @@
 /**
  * @file log.h
  *
- * @brief Defines the logging functions of the HiLog module.
- *
- * Before outputting logs, you must define the service domain, and log tag, use the function with
- * the specified log type and level, and specify the privacy identifier.\n
- * <ul><li>Service domain: used to identify the subsystem and module of a service. Its value is a hexadecimal
- * integer ranging from 0x0 to 0xFFFF. \n
- * <li>Log tag: a string used to identify the class, file, or service.</li> \n
- * <li>Log level: <b>DEBUG</b>, <b>INFO</b>, <b>WARN</b>, <b>ERROR</b>, and <b>FATAL</b></li> \n
- * <li>Parameter format: a printf format string that starts with a % character, including format specifiers
- * and variable parameters.</li> \n
- * <li>Privacy identifier: {public} or {private} added between the % character and the format specifier in
- * each parameter. Note that each parameter has a privacy identifier. If no privacy identifier is added,
- * the parameter is considered to be <b>private</b>.</li></ul> \n
- *
- * Sample code:\n
- * Defining the service domain and log tag:\n
- *     #include <hilog/log.h>\n
- *     #define LOG_DOMAIN 0x0201\n
- *     #define LOG_TAG "MY_TAG"\n
- * Outputting logs:\n
- *     HILOG_WARN({@link LOG_APP}, "Failed to visit %{private}s, reason:%{public}d.", url, errno);\n
- * Output result:\n
- *     05-06 15:01:06.870 1051 1051 W 0201/MY_TAG: Failed to visit <private>, reason:503.\n
+ * @brief Defines the logging functions of the HiLog module. Before outputting logs, you must define the service domain,
+ *  and log tag, use the API with the specified log type and level, and specify the privacy identifier.
+ * <br>**Service domain**: service domain of logs. You can define the value as required. Its value is a hexadecimal
+ * integer ranging from 0x0 to 0xFFFF. If the value exceeds the range, logs cannot be printed.
+ * <br>**Log tag**: a string used to identify the class, file, or service behavior.
+ * <br>**Log level**: DEBUG, INFO, WARN, ERROR, or FATAL.
+ * <br>**Parameter format**: printf format string, which starts with a % character, including a parameter type
+ * identifier and a variable parameter.
+ * <br>**Privacy identifier**: **{public}** or **{private}** added between the % character and the parameter type
+ * identifier in each parameter. **Note**: If no privacy identifier is added, the parameter is considered to be **
+ * private**.
  *
  * @kit PerformanceAnalysisKit
  * @include <hilog/log.h>
@@ -69,186 +57,192 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief Defines the service domain for a log file.
- *
- * The service domain is used to identify the subsystem and module of a service. Its value is a hexadecimal integer
- * ranging from 0x0 to 0xFFFF. If the value is beyond the range, its significant bits are automatically truncated. \n
- *
- * @since 8
- */
 #ifndef LOG_DOMAIN
 #define LOG_DOMAIN 0
 #endif
-
-/**
- * @brief Defines a string constant used to identify the class, file, or service.
- *
- * @since 8
- */
 #ifndef LOG_TAG
 #define LOG_TAG NULL
 #endif
 
 /**
- * @brief Enumerates log types.
- *
- * Currently, <b>LOG_APP</b> is available. \n
+ * @brief Enumerates the log types. You can use this function to specify the type of output logs. Currently, only **
+ * LOG_APP** is available.
  *
  * @since 8
  */
 typedef enum {
-    /** Third-party application logs */
-    LOG_APP = 0,
+    /**
+     * @brief Application log.
+     */
+    LOG_APP = 0
 } LogType;
 
 /**
- * @brief Enumerates log levels.
- *
- * You are advised to select log levels based on their respective usage scenarios:\n
- * <ul><li><b>DEBUG</b>: used for debugging and disabled from commercial releases</li> \n
- * <li><b>INFO</b>: used for logging important system running status and steps in key processes</li> \n
- * <li><b>WARN</b>: used for logging unexpected exceptions that have little impact on user experience and can
- * automatically recover. Logs at this level are generally output when such exceptions are detected and
- * captured.</li> \n
- * <li><b>ERROR</b>: used for logging malfunction that affects user experience and cannot automatically
- * recover</li>\n
- * <li><b>FATAL</b>: used for logging major exceptions that have severely affected user experience and should
- * not occur.</li></ul> \n
+ * @brief Enumerates the log levels. You are advised to select log levels based on their respective use cases. Log
+ * levels:
+ * <br>**DEBUG**: provides more detailed process information than INFO logs to help developers analyze service
+ * processes and locate faults. DEBUG logs are not recorded in official versions by default. They are available in
+ * debug versions or in official versions with the debug function enabled.
+ * <br>**INFO**: indicates the key service process nodes and exceptions (for example, no network signal or login
+ * failure) that occur during service running. These logs should be recorded by the dominant module in the service to
+ * avoid repeated logging conducted by multiple invoked modules or low-level functions.
+ * <br>**WARN**: indicates a severe, unexpected fault that has little impact on users and can be rectified by the
+ * programs themselves or through simple operations.
+ * <br>**ERROR**: indicates a program or functional error that affects the normal running or use of the functionality
+ * and can be fixed at a high cost, for example, by resetting data.
+ * <br>**FATAL**: indicates that a program or functionality is about to crash and the fault cannot be rectified.
  *
  * @since 8
  */
 typedef enum {
-    /** Debug level to be used by {@link OH_LOG_DEBUG} */
+    /**
+     * @brief DEBUG level to be used by **OH_LOG_DEBUG**.
+     */
     LOG_DEBUG = 3,
-    /** Informational level to be used by {@link OH_LOG_INFO} */
+    /**
+     * @brief INFO level to be used by **OH_LOG_INFO**.
+     */
     LOG_INFO = 4,
-    /** Warning level to be used by {@link OH_LOG_WARN} */
+    /**
+     * @brief WARN level to be used by **OH_LOG_WARN**.
+     */
     LOG_WARN = 5,
-    /** Error level to be used by {@link OH_LOG_ERROR} */
+    /**
+     * @brief ERROR level to be used by **OH_LOG_ERROR**.
+     */
     LOG_ERROR = 6,
-    /** Fatal level to be used by {@link OH_LOG_FATAL} */
-    LOG_FATAL = 7,
+    /**
+     * @brief FATAL level to be used by **OH_LOG_FATAL**.
+     */
+    LOG_FATAL = 7
 } LogLevel;
 
 /**
- * @brief Enumerates preference strategy to be used in {@link OH_LOG_SetLogLevel}.
- *
- * You are advised to select preference strategy based on their respective usage scenarios.
+ * @brief Enumerates the preference strategies. This enum is used in {@link OH_LOG_SetLogLevel}. The minimum log level
+ * that takes effect varies according to the strategy.
  *
  * @since 21
  */
 typedef enum {
-    /** Used to unset SetLogLevel, then none is set
+    /**
+     * @brief The setting is cleared. The minimum log level that actually takes effect is the system-controlled minimum
+     * log level.
      */
     UNSET_LOGLEVEL = 0,
     /**
-     * The actual lowest log level is determined by
-     * the maximum level between the new level and the system-controlled level.
-     * This is equivalent to calling OH_LOG_SetMinLogLevel.
+     * @brief The minimum log level that actually takes effect is the larger value of the new log level and the system-
+     * controlled minimum log level.
      */
     PREFER_CLOSE_LOG = 1,
     /**
-     * The actual lowest log level is determined by
-     * the minimum level between the new level and the system-controlled level.
+     * @brief The minimum log level that actually takes effect is the smaller value of the new log level and the system-
+     * controlled minimum log level.
      */
-    PREFER_OPEN_LOG = 2,
+    PREFER_OPEN_LOG = 2
 } PreferStrategy;
 
 /**
- * @brief Outputs logs.
+ * @brief Outputs logs of the specified **type**, **level**, **domain**, **tag**, and variables determined by the
+ * format specifier and privacy identifier in the printf format.
  *
- * You can use this function to output logs based on the specified log type, log level, service domain, log tag,
- * and variable parameters determined by the format specifier and privacy identifier in the printf format.
- *
- * @param type Indicates the log type. The type for third-party applications is defined by {@link LOG_APP}.
- * @param level Indicates the log level, which can be <b>LOG_DEBUG</b>, <b>LOG_INFO</b>, <b>LOG_WARN</b>,
- * <b>LOG_ERROR</b>, and <b>LOG_FATAL</b>.
- * @param domain Indicates the service domain of logs. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF.
- * @param tag Indicates the log tag, which is a string used to identify the class, file, or service behavior.
- * @param fmt Indicates the format string, which is an enhancement of a printf format string and supports the privacy
- * identifier. Specifically, {public} or {private} is added between the % character and the format specifier
- * in each parameter. \n
- * @param ... Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
- * in the format string.
- * @return Returns <b>0</b> or a larger value if the operation is successful; returns a value smaller
- * than <b>0</b> otherwise.
+ * @param type Log type. The type for third-party applications is defined by **LOG_APP**.
+ * @param level Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.
+ * @param domain Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds
+ *     the range, logs cannot be printed.
+ * @param tag Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of
+ *     31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because
+ *     garbled characters or alignment problems may occur.
+ * @param fmt Format string, which is an enhancement of a printf format string and supports the privacy identifier.
+ *     Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each
+ *     parameter.
+ * @param ... Parameter list corresponding to the parameter type in the format string. The number and type of
+ *     parameters must be mapped onto the identifier in the format string.
+ * @return **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+ *     <br>Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is
+ *     out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of
+ *     logs on the device is too large.
  * @since 8
  */
 int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, ...)
     __attribute__((__format__(os_log, 5, 6)));
 
 /**
- * @brief Outputs logs.
+ * @brief Outputs constant log strings of the specified **type**, **level**, **domain**, and **tag**.
  *
- * You can use this function to output logs based on the specified log type, log level, service domain, log tag,
- * and message text.
- *
- * @param type Indicates the log type. The type for third-party applications is defined by {@link LOG_APP}.
- * @param level Indicates the log level, which can be <b>LOG_DEBUG</b>, <b>LOG_INFO</b>, <b>LOG_WARN</b>,
- * <b>LOG_ERROR</b>, and <b>LOG_FATAL</b>.
- * @param domain Indicates the service domain of logs. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF.
- * @param tag Indicates the log tag, which is a string used to identify the class, file, or service behavior.
- * @param message Indicates the log string.
- * @return Returns <b>0</b> or a larger value if the operation is successful; returns a value smaller
- * than <b>0</b> otherwise.
+ * @param type Log type. The type for third-party applications is defined by **LOG_APP**.
+ * @param level Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.
+ * @param domain Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds
+ *     the range, logs cannot be printed.
+ * @param tag Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of
+ *     31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because
+ *     garbled characters or alignment problems may occur.
+ * @param message Constant log string.
+ * @return **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+ *     <br>Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is
+ *     out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of
+ *     logs on the device is too large.
  * @since 18
  */
 int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message);
- 
+
 /**
- * @brief Outputs logs.
+ * @brief Outputs log constant strings of the specified **domain**, **tag**, and **level**. The tag and string length
+ * must be specified. Unlike **OH_LOG_PrintMsg**, this API allows strings without terminators.
  *
- * You can use this function to output logs based on the specified log type, log level, service domain, log tag,
- * message text and message length.
- *
- * @param type Indicates the log type. The type for third-party applications is defined by {@link LOG_APP}.
- * @param level Indicates the log level, which can be <b>LOG_DEBUG</b>, <b>LOG_INFO</b>, <b>LOG_WARN</b>,
- * <b>LOG_ERROR</b>, and <b>LOG_FATAL</b>.
- * @param domain Indicates the service domain of logs. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF.
- * @param tag Indicates the log tag, which is a string used to identify the class, file, or service behavior.
- * @param tagLen Indicates the length of tag.
- * @param message Indicates the log string.
- * @param messageLen Indicates the length of message.
- * @return Returns <b>0</b> or a larger value if the operation is successful; returns a value smaller
- * than <b>0</b> otherwise.
+ * @param type Log type. The type for third-party applications is defined by **LOG_APP**.
+ * @param level Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.
+ * @param domain Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds
+ *     the range, logs cannot be printed.
+ * @param tag Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of
+ *     31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because
+ *     garbled characters or alignment problems may occur.
+ * @param tagLen Length of the tag.
+ * @param message Constant log string.
+ * @param messageLen Length of the constant string, which is less than 3500 characters.
+ * @return **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+ *     <br>Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is
+ *     out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of
+ *     logs on the device is too large.
  * @since 18
  */
 int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen,
     const char *message, size_t messageLen);
- 
+
 /**
- * @brief Outputs logs.
+ * @brief Outputs logs of the specified **type**, **level**, **domain**, **tag**, and variables determined by the
+ * format specifier and privacy identifier in the printf format. The variables are of the **va_list** type.
  *
- * You can use this function to output logs based on the specified log type, log level, service domain, log tag,
- * and a va_list instead of variable parameters determined by the format specifier and privacy identifier in the printf
- * format.
- *
- * @param type Indicates the log type. The type for third-party applications is defined by {@link LOG_APP}.
- * @param level Indicates the log level, which can be <b>LOG_DEBUG</b>, <b>LOG_INFO</b>, <b>LOG_WARN</b>,
- * <b>LOG_ERROR</b>, and <b>LOG_FATAL</b>.
- * @param domain Indicates the service domain of logs. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF.
- * @param tag Indicates the log tag, which is a string used to identify the class, file, or service behavior.
- * @param fmt Indicates the format string, which is an enhancement of a printf format string and supports the privacy
- * identifier. Specifically, {public} or {private} is added between the % character and the format specifier
- * in each parameter. \n
- * @param ap Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
- * in the format string.
- * @return Returns <b>0</b> or a larger value if the operation is successful; returns a value smaller
- * than <b>0</b> otherwise.
+ * @param type Log type. The type for third-party applications is defined by **LOG_APP**.
+ * @param level Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.
+ * @param domain Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds
+ *     the range, logs cannot be printed.
+ * @param tag Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of
+ *     31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because
+ *     garbled characters or alignment problems may occur.
+ * @param fmt Format string, which is an enhancement of a printf format string and supports the privacy identifier.
+ *     Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each
+ *     parameter.
+ * @param ap Parameter list of the **va_list** type that corresponds to the parameter type in the format string. The
+ *     number and type of parameters must be mapped onto the identifier in the format string.
+ * @return **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+ *     <br>Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is
+ *     out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of
+ *     logs on the device is too large.
  * @since 18
  */
 int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap)
     __attribute__((__format__(os_log, 5, 0)));
 
 /**
- * @brief Checks whether logs of the specified service domain, log tag, and log level can be output.
+ * @brief Checks whether logs of the specified service domain, tag, and level can be printed.
  *
- * @param domain Indicates the service domain of logs.
- * @param tag Indicates the log tag.
- * @param level Indicates the log level.
- * @return Returns <b>true</b> if the specified logs can be output; returns <b>false</b> otherwise.
+ * @param domain Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds
+ *     the range, logs cannot be printed.
+ * @param tag Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of
+ *     31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because
+ *     garbled characters or alignment problems may occur.
+ * @param level Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.
+ * @return **true** if the specified logs can be output; **false** otherwise.
  * @since 8
  */
 bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
@@ -265,7 +259,7 @@ bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
  * in each parameter. \n
  * @param ... Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
  * in the format string.
- * @see OH_LOG_Print
+ * @link OH_LOG_Print
  * @since 8
  */
 #define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
@@ -282,7 +276,7 @@ bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
  * each parameter. \n
  * @param ... Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
  * in the format string.
- * @see OH_LOG_Print
+ * @link OH_LOG_Print
  * @since 8
  */
 #define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
@@ -299,7 +293,7 @@ bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
  * in each parameter. \n
  * @param ... Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
  * in the format string.
- * @see OH_LOG_Print
+ * @link OH_LOG_Print
  * @since 8
  */
 #define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
@@ -316,7 +310,7 @@ bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
  * parameter. \n
  * @param ... Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
  * in the format string.
- * @see OH_LOG_Print
+ * @link OH_LOG_Print
  * @since 8
  */
 #define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
@@ -333,18 +327,18 @@ bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level);
  * each parameter. \n
  * @param ... Indicates a list of parameters. The number and type of parameters must map onto the format specifiers
  * in the format string.
- * @see OH_LOG_Print
+ * @link OH_LOG_Print
  * @since 8
  */
 #define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
 
 /**
- * @brief Defines the function pointer type for the user-defined log processing function.
+ * @brief Customizes the processing of HiLog logs in the callback.
  *
- * @param type Indicates the log type. The type for third-party applications is defined by {@link LOG_APP}.
- * @param level Indicates the log level, which can be <b>LOG_DEBUG</b>, <b>LOG_INFO</b>, <b>LOG_WARN</b>,
- * <b>LOG_ERROR</b>, and <b>LOG_FATAL</b>.
- * @param domain Indicates the service domain of logs. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF.
+ * @param type Log type. The third-party application log type is {@link LOG_APP}.
+ * @param level Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.
+ * @param domain Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds
+ *     the range, logs cannot be printed.
  * @param tag Indicates the log tag, which is a string used to identify the class, file, or service behavior.
  * @param msg Indicates the log message itself, which is a formatted log string.
  * @since 11
@@ -353,32 +347,35 @@ typedef void (*LogCallback)(const LogType type, const LogLevel level, const unsi
     const char *msg);
 
 /**
- * @brief Set the user-defined log processing function.
+ * @brief Registers a callback function. After this function is called, the custom callback can receive all HiLog logs
+ * of the current process.
+ * <br>Note that whether this API is called or not, it does not change the default log processing of the current
+ * process.
  *
- * After calling this function, the callback function implemented by the user can receive all hilogs of the
- * current process.
- * Note that it will not change the default behavior of hilog logs of the current process, no matter whether this
- * interface is called or not. \n
- *
- * @param callback Indicates the callback function implemented by the user. If you do not need to process hilog logs,
- * you can transfer a null pointer.
+ * @param callback Custom callback function. If processing of logs is not needed, a null pointer can be transferred.
  * @since 11
  */
 void OH_LOG_SetCallback(LogCallback callback);
 
 /**
- * @brief Sets the lowest log level of the current application process.
+ * @brief Sets the minimum log level.
+ * <br>NOTE:
+ * <br>1. If the set log level is lower than the {@link global log level}, the setting does not take effect.
+ * <br>2. This function does not take effect for debug applications.
  *
- * @param level log level
+ * @param level Log level.
  * @since 15
  */
 void OH_LOG_SetMinLogLevel(LogLevel level);
 
 /**
- * @brief Sets the lowest log level of the current application process. Different preference strategy can be set.
+ * @brief Sets the minimum log level of the current application process.
+ * <br>You can configure different preference strategies using the **prefer** parameter. The **PREFER_CLOSE_LOG**
+ * strategy has the same effect as the **OH_LOG_SetMinLogLevel()** function.
+ * <br>Note: This function does not take effect for debug applications.
  *
- * @param level log level.
- * @param prefer preference strategy. See {@link PreferStrategy}.
+ * @param level Log level.
+ * @param prefer Preference strategy.
  * @since 21
  */
 void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer);
