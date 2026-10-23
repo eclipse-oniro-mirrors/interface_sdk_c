@@ -107,27 +107,19 @@ extern "C"{
  *     <br>- 避让计算：输入法根据光标高度和位置计算需要避让的区域。
  *     <br>
  *     <br>使用场景：
- *     <br>1. 在TextConfig中携带光标信息：应用在[OH_TextEditorProxy_GetTextConfigFunc]
- * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)回调中返回TextConfig时，其中包含的
+ *     <br>1. 在TextConfig中携带光标信息：应用在[OH_TextEditorProxy_GetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ *md#oh_texteditorproxy_gettextconfigfunc)回调中返回TextConfig时，其中包含的
  * CursorInfo告知输入法当前光标位置和尺寸。
  *     <br>2. 主动通知光标更新：当光标位置发生变化时（如用户移动光标、文本插入导致光标偏移），应用通过
  * [OH_InputMethodProxy_NotifyCursorUpdate](capi-inputmethod-inputmethod-proxy-capi-h.
- * md#oh_inputmethodproxy_notifycursorupdate)主动通知输入法最新的光标位置。
- *     <br>
- *     <br>相关函数：<br>
- * | 函数 | 说明 |
- * | -- | -- |
- * | [OH_CursorInfo_Create](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_create) | 创建CursorInfo实例，需
- * 传入left、top、width、height。 |
- * | [OH_CursorInfo_Destroy](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_destroy) | 销毁CursorInfo实例。 |
- * | [OH_CursorInfo_SetRect](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_setrect) | 设置光标的位置和尺寸。 |
- * | [OH_CursorInfo_GetRect](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_getrect) | 获取光标的位置和尺寸。 |
+ *md#oh_inputmethodproxy_notifycursorupdate)主动通知输入法最新的光标位置。
  *     <br>
  *     <br>与其他结构体的关系：
  *     <br>- 与InputMethod_TextConfig的关系：CursorInfo是TextConfig的子属性。应用在[OH_TextEditorProxy_GetTextConfigFunc]
- * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)回调中返回TextConfig时，TextConfig
+ *(capi-inputmethod-text-editor-proxy-capi-h.
+ *md#oh_texteditorproxy_gettextconfigfunc)回调中返回TextConfig时，TextConfig
  * 内部包含CursorInfo，输入法通过[OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.
- * md#oh_textconfig_getcursorinfo)获取光标信息。因此应用需先创建CursorInfo并设置正确的光标坐标，然后在GetTextConfig回调中将
+ *md#oh_textconfig_getcursorinfo)获取光标信息。因此应用需先创建CursorInfo并设置正确的光标坐标，然后在GetTextConfig回调中将
  * CursorInfo放入TextConfig。
  *     <br>- 与OH_InputMethodProxy_NotifyCursorUpdate的关系：CursorInfo作为NotifyCursorUpdate函数的参数直接传入，用于在光标
  * 位置变化时主动通知输入法。应用创建或更新CursorInfo后，通过NotifyCursorUpdate将最新光标信息发送给输入法。

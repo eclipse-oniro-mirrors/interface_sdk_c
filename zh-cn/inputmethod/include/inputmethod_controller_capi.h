@@ -228,7 +228,7 @@ InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProx
  *     <br>
  *     <br>线程安全：非线程安全，建议在主线程调用。
  *
- * @param context 输入指针，表示指向ArkUI_Context实例的指针。
+ * @param context 输入指针，表示指向[ArkUI_Context](../apis-arkui/capi-arkui-nativemodule-arkui-context.md)实例的指针。
  *     <br>**含义/功能：** 指定输入法绑定到哪个UI上下文（页面/窗口），使输入法服务能精确关联到当前活跃的页面。
  *     <br>**使用场景：** 在多窗口或多页面应用中，需要将输入法绑定到特定UI上下文时使用。
  *     <br>**使用后效果：** 输入法事件将发送到与此上下文关联的页面。

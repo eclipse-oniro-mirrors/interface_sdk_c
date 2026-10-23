@@ -116,20 +116,6 @@ extern "C" {
  * 动拉起。
  *     <br>- requestKeyboardReason：适用于需要向系统说明触发输入法的场景原因，帮助系统选择合适的输入策略。
  *     <br>
- *     <br>相关函数：<br>
- * | 函数 | 说明 |
- * | -- | -- |
- * | [OH_AttachOptions_Create](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_create) | 创建
- * AttachOptions实例。 |
- * | [OH_AttachOptions_CreateWithRequestKeyboardReason](capi-inputmethod-attach-options-capi-h.
- * md#oh_attachoptions_createwithrequestkeyboardreason) | 创建AttachOptions实例并指定requestKeyboardReason。 |
- * | [OH_AttachOptions_Destroy](capi-inputmethod-attach-options-capi-h.md#oh_attachoptions_destroy) | 销毁
- * AttachOptions实例。 |
- * | [OH_AttachOptions_IsShowKeyboard](capi-inputmethod-attach-options-capi-h.
- * md#oh_attachoptions_isshowkeyboard) | 获取showKeyboard值。 |
- * | [OH_AttachOptions_GetRequestKeyboardReason](capi-inputmethod-attach-options-capi-h.
- * md#oh_attachoptions_getrequestkeyboardreason) | 获取requestKeyboardReason值。 |
- *     <br>
  *     <br>与其他结构体的关系：
  *     <br>- InputMethod_AttachOptions是OH_InputMethodController_Attach和OH_InputMethodController_AttachWithUIContext的
  * 必要参数之一。Attach函数同时需要InputMethod_TextEditorProxy和InputMethod_AttachOptions两个参数。
@@ -145,7 +131,7 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
 /**
  * @brief 创建一个{@link InputMethod_AttachOptions}实例，适用于仅需控制键盘显示状态的简单场景。
  * 如需同时指定触发输入法拉起的场景原因，建议使用[OH_AttachOptions_CreateWithRequestKeyboardReason]
- * (#oh_attachoptions_createwithrequestkeyboardreason)。
+ *(#oh_attachoptions_createwithrequestkeyboardreason)。
  *     <br>
  *     <br>配对调用：必须与[OH_AttachOptions_Destroy](#oh_attachoptions_destroy)配对调用，OH_AttachOptions_Create创建的对象
  * 必须通过OH_AttachOptions_Destroy销毁，否则会导致内存泄漏。
