@@ -83,7 +83,9 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
 OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 
 /**
- * @brief 创建支持前处理的主视频编码器实例。该编码器支持以下能力：
+ * @brief 创建支持前处理的主视频编码器实例。
+ *
+ * 该编码器支持以下能力：
  *
  * 1. 前处理功能（降采样、裁剪、丢帧）。
  *
@@ -102,7 +104,9 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCodec **codec);
 
 /**
- * @brief 从主编码器创建副视频编码器实例。副编码器具有以下特性：
+ * @brief 从主编码器创建副视频编码器实例。
+ *
+ * 副编码器具有以下特性：
  *
  * 1. 与主编码器共享输入源。
  *
