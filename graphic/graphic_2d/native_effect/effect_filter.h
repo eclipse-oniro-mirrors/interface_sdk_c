@@ -38,8 +38,9 @@
  *
  * You must call {@link OH_Filter_CreateEffect} and {@link OH_Filter_Release} in pairs
  * to ensure that resources are properly released.
- * None of the APIs in this file support multi-threaded calls.
+ * <br>None of the APIs in this file support multi-threaded calls.
  * @kit ArkGraphics2D
+ * @include <native_effect/effect_filter.h>
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12

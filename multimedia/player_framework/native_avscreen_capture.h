@@ -862,7 +862,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVS
  * @return <ul><li>{@link AV_SCREEN_CAPTURE_ERR_OK} : indicates that the operation is successful.</li>
  *     <li>{@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL}: The input parameter **strategy** is nullptr
  *     or the value of **enable** is invalid.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
     OH_AVScreenCapture_CaptureStrategy *strategy, bool enable);

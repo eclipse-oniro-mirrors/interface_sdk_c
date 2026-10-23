@@ -27,8 +27,9 @@
  *
  * @brief 定义List组件相关的枚举和接口。
  *
- * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/node_attributes/list.h>
+ * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12
  */

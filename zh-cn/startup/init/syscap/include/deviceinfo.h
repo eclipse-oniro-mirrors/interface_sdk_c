@@ -42,6 +42,8 @@
 #ifndef DEVICEINFO_CSDK_H
 #define DEVICEINFO_CSDK_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -330,6 +332,27 @@ int OH_GetDistributionOSApiVersion(void);
  * @since 10
  */
 const char *OH_GetDistributionOSReleaseType(void);
+
+/**
+ * @brief 获取磁盘序列号。
+ *
+ * @param diskSn 【out】 磁盘序列号。
+ * @return <ul>
+ *         <li>如果操作成功，则返回0。</li>
+ *         <li>201如果调用者没有ohos.permission.ACCESS_DISK_PHY_INFO。</li>
+ *         </ul>
+ * @permission ohos.permission.ACCESS_DISK_PHY_INFO
+ * @since 26.1.0
+ */
+int32_t OH_GetDiskSN(char *diskSn);
+ 
+/**
+ * @brief 获取开发者匿名设备标识符。
+ *
+ * @return 返回开发者匿名设备标识符。
+ * @since 26.1.0
+ */
+const char *OH_GetOdid(void);
 
 #ifdef __cplusplus
 #if __cplusplus

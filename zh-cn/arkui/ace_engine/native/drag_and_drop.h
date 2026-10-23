@@ -334,7 +334,7 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 内部错误。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.0.1
  */
 int32_t OH_ArkUI_DragEvent_GetSummary(ArkUI_DragEvent *event, OH_UDMF_Summary *summary);
 

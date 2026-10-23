@@ -2864,7 +2864,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Visual [视效属性]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_LINEAR_GRADIENT_BLUR = 129,
 
@@ -3878,7 +3878,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_WIDTH = 1057,
 
@@ -3896,7 +3896,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_COLOR = 1058,
 
@@ -3914,7 +3914,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_JOIN_STYLE = 1059,
 
@@ -4162,7 +4162,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -7756,7 +7756,7 @@ typedef enum {
      * </ul>
      *
      * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
     /**
@@ -8259,19 +8259,19 @@ typedef enum {
     NODE_RADIO_GROUP,
 
     /**
-     * @brief Defines the image frames for the image animator. Dynamic updates are not supported.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的图片帧信息集合。不支持动态更新。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.size: number of images.</li>
-     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * <li>.size: 图片数量。</li>
+     * <li>.object: 图片数组。数组元素类型为{@link ArkUI_ImageAnimatorFrameInfo}。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.size: number of images.</li>
-     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * <li>.size: 图片数量。</li>
+     * <li>.object: 图片数组。数组元素类型为{@link ArkUI_ImageAnimatorFrameInfo}。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8279,18 +8279,18 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
 
     /**
-     * @brief Defines the playback status of the animation for the image animator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的播放状态。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback status of the animation. The parameter type is
-     * {@link ArkUI_AnimationStatus}. The default value is <b>ARKUI_ANIMATION_STATUS_INITIAL</b>.</li>
+     * <li>.value[0].i32: 动画播放状态。参数类型为
+     * {@link ArkUI_AnimationStatus}。默认值为<b>ARKUI_ANIMATION_STATUS_INITIAL</b>。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
+     * <li>.value[0].i32: 动画播放状态。参数类型为{@link ArkUI_AnimationStatus}。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8298,19 +8298,17 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_STATE = 19001,
 
     /**
-     * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
-     * The value change takes effect only at the beginning of the next cycle.
-     * When a separate duration is set in images, the setting of this attribute is invalid.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的播放时长。当设置duration为0时，表示不播放图片。属性变化只在下一帧动画开始时生效。
+     * 如果images中单独设置了duration属性，则此属性设置无效。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback duration, in ms. The default value is 1000.</li>
+     * <li>.value[0].i32: 播放时长，单位ms。默认值为1000。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback duration, in ms.</li>
+     * <li>.value[0].i32: 播放时长，单位ms。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8318,19 +8316,17 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
 
     /**
-     * @brief Defines the playback direction for the image animator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的播放方向。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
-     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * <li>.value[0].i32: 播放方向。<b>0</b>表示从首帧到尾帧播放，<b>1</b>表示从尾帧到首帧播放。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
-     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * <li>.value[0].i32: 播放方向。<b>0</b>表示从首帧到尾帧播放，<b>1</b>表示从尾帧到首帧播放。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8338,21 +8334,20 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
 
     /**
-     * @brief Defines whether the image size is the same as the component size.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置图片大小是否与组件大小一致。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
-     * the image size is the same as the component size. In this case, the width, height, top, and left
-     * attributes of the image are invalid. <b>0</b> indicates that the image size is customized. The width,
-     * height, top, and left attributes of each image must be set separately.</li>
+     * <li>.value[0].i32: 图片大小是否与组件大小一致。<b>1</b>表示图片大小与组件大小一致，
+     * 此时图片的width、height、top、left属性设置无效。<b>0</b>表示自定义图片大小，
+     * 需分别设置每张图片的width、height、top、left属性。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
-     * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
+     * <li>.value[0].i32: 图片大小是否与组件大小一致。<b>1</b>表示图片大小与组件大小一致，
+     * <b>0</b>表示自定义图片大小。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8360,20 +8355,19 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
 
     /**
-     * @brief Defines the status before and after execution of the animation in the current playback direction.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置动画执行前后在当前播放方向上的状态。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
-     * The parameter type is {@link ArkUI_AnimationFillMode}. The default value is
-     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>.</li>
+     * <li>.value[0].i32: 动画执行前后在当前播放方向上的状态。
+     * 参数类型为{@link ArkUI_AnimationFillMode}。默认值为
+     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
-     * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
+     * <li>.value[0].i32: 动画执行前后在当前播放方向上的状态。参数类型为{@link ArkUI_AnimationFillMode}。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8381,17 +8375,17 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
 
     /**
-     * @brief Defines the number of times that the animation is played.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置动画播放次数。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * <li>.value[0].i32: 动画播放次数。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * <li>.value[0].i32: 动画播放次数。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -9065,7 +9059,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_TYPE = 22031,
 
@@ -9083,7 +9077,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_PASSWORD_ICON = 22032,
 
@@ -9103,7 +9097,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_ICON = 22033,
 
@@ -9121,7 +9115,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_FILL = 22034,
 
@@ -9139,7 +9133,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_TYPE = 22035,
 
@@ -9157,7 +9151,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_RULES = 22036,
 
@@ -9175,7 +9169,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_FILL_ANIMATION = 22037,
 
@@ -9193,7 +9187,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_UNDERLINE = 22038,
 
@@ -9218,7 +9212,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_UNDERLINE_COLOR = 22039,
 
@@ -9236,7 +9230,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CARET_STYLE = 22040,
 
@@ -9255,7 +9249,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECT_ALL = 22041,
 
@@ -9274,7 +9268,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_BLUR_ON_SUBMIT = 22042,
 
@@ -9290,7 +9284,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_RECT = 22043,
 
@@ -9309,7 +9303,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECTION_MENU_HIDDEN = 22044,
 
@@ -9328,7 +9322,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_SKIP_PREVIEW_LONG_PRESS = 22045,
 
@@ -9352,7 +9346,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CANCEL_BUTTON = 22046,
 
@@ -9376,7 +9370,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      *
      */
     NODE_TEXT_EDITOR_SHOW_COUNTER = 22047,
@@ -9399,7 +9393,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_INPUT_FILTER = 22048,
 
@@ -9940,7 +9934,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32: 是否支持鼠标左键滚动。0：不支持；1：支持。
-     * API26.2.0版本之前，默认值为0。从API版本26.2.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
+     * API26.1.0版本之前，默认值为0。从API版本26.1.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
      * </ul>
      *
      * **返回值{@link ArkUI_AttributeItem}格式：**
@@ -10002,7 +9996,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_SCROLL_STATE = 1002030,
 
@@ -10021,7 +10015,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_KEYBOARD = 1002031,
 
@@ -10128,6 +10122,8 @@ typedef enum {
      * <li>.value[2]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}，默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}。
      * </li>
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。该参数从API version 15开始支持。</li>
+     * <li>.value[4]?.i32 快速滚动模式，用于滚动到指定索引。参数类型为{@link OH_ArkUI_FastScrollMode}，默认为<b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>。
+     * 仅当.value[1]?.i32为1时有效，从API版本26.1.0开始支持。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
@@ -14224,7 +14220,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SCROLL = 22009,
 
@@ -14238,7 +14234,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SIZE_CHANGE = 22010,
 
@@ -14250,7 +14246,7 @@ typedef enum {
      * <br><b>ArkUI_StringAsyncEvent.pStr</b>字段包含被拒字符的UTF-8字符串。
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_INPUT_FILTER_ERROR = 22011,
 
@@ -15215,7 +15211,7 @@ typedef enum {
 typedef struct ArkUI_NodeCustomEvent ArkUI_NodeCustomEvent;
 
 /**
- * @brief Defines the component adapter, which is used for lazy loading of elements of scrollable components.
+ * @brief 定义组件适配器对象，用于滚动类组件的元素懒加载，适用于需要按需加载大量滚动内容的场景，可避免一次性创建全部元素，降低内存占用并提升滑动性能。
  *
  * @since 12
  */
@@ -17116,6 +17112,19 @@ ArkUI_GestureCollectInterceptInfo* OH_ArkUI_NodeEvent_GetGestureCollectIntercept
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy policy);
+
+/**
+ * @brief 获取目标节点当前的子节点挂载策略。目标节点的默认子节点挂载策略为OH_ARKUI_NODE_MOUNT_POLICY_SINGLE_IF_RENDER_NODE。
+ *
+ * @param node 目标节点。
+ * @param policy 接收目标节点的子节点挂载策略的指针。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy* policy);
 
 /**
  * @brief 设置UI Dvsync开关。开启后系统会更及时地响应Vsync请求，更频繁执行渲染任务。通常在自渲染框架中动效开始时使能，结束后关闭，以确保动画效果更加流畅，同时避免频繁的Vsync影响其他业务。在非UI线程上调用此函数将导致应用退出。

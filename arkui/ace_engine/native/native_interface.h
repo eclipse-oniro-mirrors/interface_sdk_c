@@ -76,23 +76,37 @@ typedef enum {
  * a runtime check mode for each check type. The behavior upon check failure is determined by
  * the configured runtime check mode. For available modes, see {@link OH_ArkUI_NativeModule_RuntimeCheckMode}.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief UI thread check type: Some ArkUI C APIs must be called on the UI thread.
      * This type detects whether these APIs are called from a non-UI thread.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_UI_THREAD = 0,
     /**
      * @brief Node disposed check type: Detects whether the ArkUI_NodeHandle passed to a C API
      * has already been disposed.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
-    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1,
+    /**
+     * @brief Attribute match check type: Detects whether an ArkUI_NodeAttributeType passed to
+     * SetAttribute/GetAttribute/ResetAttribute matches the node's actual component type.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
+    /**
+     * @brief multi thread race condition check type: Detects whether another thread is already
+     * operating on the same component tree when a multi thread API is called.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;
 
 /**
@@ -107,25 +121,25 @@ typedef enum {
  * For applications compiled in release mode (Release build in DevEco Studio, used for production
  * release), the default is {@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED}.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Disables the specified runtime check. The C API behavior is the same as before the check was introduced.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED = 0,
     /**
      * @brief Prints diagnostic logs (check type, API name, cause, native stack trace) and continues the C API call.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_LOG = 1,
     /**
      * @brief Prints diagnostic logs and immediately terminates the application.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH = 2
 } OH_ArkUI_NativeModule_RuntimeCheckMode;
@@ -193,7 +207,7 @@ const char* OH_ArkUI_NativeModule_GetErrorMessage();
  *     <ul><li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the setting is updated successfully.
  *     </li><li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if checkType or mode is invalid.</li></ul>
  *     When an invalid parameter error is returned, the previous setting is retained.
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(
     OH_ArkUI_NativeModule_RuntimeCheckType checkType, OH_ArkUI_NativeModule_RuntimeCheckMode mode);

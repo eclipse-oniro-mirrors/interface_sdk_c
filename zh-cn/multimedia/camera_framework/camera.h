@@ -135,13 +135,13 @@ typedef enum Camera_ErrorCode {
     CAMERA_ERROR_CAPABILITY_NOT_SUPPORTED = 7400114,
 
     /**
-     * 不支持的多摄组合。当因为硬件限制或驱动约束而尝试使用不支持的多摄组合时会返回此错误。请考虑使用其他相机组合，或查看设备支持的相机配置。
+     * @brief 不支持的多摄组合。当因为硬件限制或驱动约束而尝试使用不支持的多摄组合时会返回此错误。请考虑使用其他相机组合，或查看设备支持的相机配置。
      * @since 26.0.1
      */
     CAMERA_ERROR_UNSUPPORTED_MULTI_CAMERA_COMBINATION = 7400115,
 
     /**
-     * 参数超出范围。当参数值（如ISO、曝光时间或对焦距离）超出有效范围时会返回此错误。请确保取值在当前相机配置支持的范围内。
+     * @brief 参数超出范围。当参数值（如ISO、曝光时间或对焦距离）超出有效范围时会返回此错误。请确保取值在当前相机配置支持的范围内。
      * @since 26.0.1
      */
     CAMERA_ERROR_PARAM_OUT_OF_RANGE = 7400116,
@@ -1506,13 +1506,13 @@ typedef enum Camera_QualityPrioritization {
  */
 typedef enum OH_Camera_AuxiliaryPhotoType {
     /**
-     * 血氧图。
+     * @brief 血氧图。
      * @since 26.0.1
      */
     OH_CAMERA_AUXILIARY_PHOTO_TYPE_OXYGEN = 0,
  
     /**
-     * 色斑图
+     * @brief 色斑图。
      * @since 26.0.1
      */
     OH_CAMERA_AUXILIARY_PHOTO_TYPE_PIGMENTATION = 1,

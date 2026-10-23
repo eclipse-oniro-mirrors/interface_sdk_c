@@ -27,8 +27,9 @@
  *
  * @brief Defines enumerations and APIs related to **List**.
  *
- * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/node_attributes/list.h>
+ * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12
  */

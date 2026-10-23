@@ -22,7 +22,7 @@
  * mainstream structured format for cross-language and cross-process consumption, as an alternative
  * to a large set of field accessors.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -46,7 +46,7 @@
  * @include <arkui/ui_json_wrapper.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef ARKUI_NATIVE_UI_JSON_WRAPPER_H
@@ -74,7 +74,7 @@ extern "C" {
  * independent object or an additional ownership claim. The owner must destroy the object exactly
  * once. Destruction invalidates all aliases and data pointers; do not use or destroy them again.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonWrapper;
 
@@ -118,7 +118,7 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *             be represented on the current architecture, memory allocation fails, or copying fails.</li>
  *         </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint32_t size,
     OH_ArkUI_NativeModule_UIJsonWrapper **outOwned);
@@ -136,7 +136,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  *     <li>The borrowed JSON string. The caller must not modify or free it.</li>
  *     <li>NULL if json is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
@@ -155,7 +155,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  *     <li>The byte length of the JSON string, excluding the terminating '\0' character.</li>
  *     <li>0 if json is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
@@ -175,26 +175,26 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * @param json [in] The JSON data object to destroy. NULL is allowed and has no effect.
  *     The caller must own the object. Destruction invalidates the object and all aliases immediately;
  *     they must not be used or destroyed again. Borrowed objects must not be passed to this function.
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
 /**
  * @brief Enumerated type of the JSON output format.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Produces canonical JSON without unnecessary whitespace.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_JSON_COMPACT = 0,
     /**
      * @brief Generates JSON with double-space indentation and line breaks.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_JSON_PRETTY = 1
 } OH_ArkUI_NativeModule_UIJsonFormat;

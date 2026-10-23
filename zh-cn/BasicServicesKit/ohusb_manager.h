@@ -17,8 +17,7 @@
  * @addtogroup UsbManager
  * @{
  *
- * @brief Provides the C interface for the USB Manager module, enabling USB device
- * enumeration, connection, permission management, and pipe operations.
+ * @brief 提供USB管理器模块的C接口，支持USB设备枚举、连接、权限管理和管道操作。
  *
  * @since 26.0.1
  */
@@ -151,7 +150,7 @@ typedef struct OH_UsbManager_UsbEndpoint {
     uint8_t interval;
 
     /**
-     * @brief 端点上数据包的最大大小。单位：字节。
+     * @brief 端点上数据包的最大大小，单位：字节。
      *
      * @since 26.0.1
      */
@@ -273,7 +272,7 @@ typedef struct OH_UsbManager_UsbConfig {
     uint8_t attributes;
 
     /**
-     * @brief 最大功耗。单位：mA。
+     * @brief 最大功耗，单位：mA。
      *
      * @since 26.0.1
      */
@@ -469,7 +468,7 @@ void OH_UsbManager_FreeUsbDeviceList(OH_UsbManager_UsbDevice *devices, uint32_t 
  * @brief 连接USB设备并打开用于通信的管道。返回的管道必须通过调用
  * <br>{@link OH_UsbManager_ClosePipe}关闭，以避免资源泄漏。
  *
- * <br>仅需要设备结构体中的busNum和devAddress字段；其他字段将被忽略。
+ * <br>仅需要设备结构体中的**busNum**和**devAddress**字段；其他字段将被忽略。
  *
  * @param device [入参] 指向要连接的{@link OH_UsbManager_UsbDevice}的指针。不得为空。
  * @param pipe [出参] 指向{@link OH_UsbManager_UsbPipe}的指针，成功时用于接收
@@ -545,7 +544,7 @@ OH_UsbManager_ErrorCode OH_UsbManager_RequestPermission(const char *deviceName,
 
 /**
  * @brief 获取已打开USB设备管道的文件描述符。该fd可用于基于ioctl的
- * <br>低层USB传输。
+ * <br>底层USB传输。
  *
  * @param pipe [入参] 指向从{@link OH_UsbManager_ConnectDevice}获取的
  *     <br>{@link OH_UsbManager_UsbPipe}的指针。不得为空。

@@ -262,8 +262,8 @@ typedef enum DRM_CertificateStatus {
  */
 typedef struct DRM_MediaKeyRequestInfo {
     /**
-     * 媒体密钥请求类型，指示请求的用途。常见类型包括DRM_MEDIA_KEY_REQUEST_TYPE_INITIAL（初始请求）、
-     * DRM_MEDIA_KEY_REQUEST_TYPE_RENEWAL（续期请求）等，具体类型由DRM解决方案决定。
+     * 媒体密钥类型，指定请求的密钥用途。取值为MEDIA_KEY_TYPE_ONLINE（在线流媒体）
+     * 或MEDIA_KEY_TYPE_OFFLINE（离线播放）。
      */
     DRM_MediaKeyType type;
     /**

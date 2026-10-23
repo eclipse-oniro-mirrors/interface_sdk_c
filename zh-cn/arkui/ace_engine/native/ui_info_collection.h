@@ -20,7 +20,7 @@
  * @brief 为应用内智能体和UI自动化提供ArkUI在Native侧的UI感知能力，
  * 支持监听用户交互事件并获取命中的节点。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -35,7 +35,7 @@
  * @include <arkui/ui_info_collection.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef ARKUI_NATIVE_UI_INFO_COLLECTION_H
@@ -61,67 +61,67 @@ extern "C" {
  * 各枚举值均为位标志，用于构造传给
  * {@link OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserver}的eventMask。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief 无事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_NONE = 0,
     /**
      * @brief 点击手势。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_TAP = 1 << 0,
     /**
      * @brief 点击事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_CLICK = 1 << 1,
     /**
      * @brief 长按手势。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_LONG_PRESS = 1 << 2,
     /**
      * @brief 拖动手势。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_PAN = 1 << 3,
     /**
      * @brief 捏合手势。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_PINCH = 1 << 4,
     /**
      * @brief 旋转手势。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_ROTATION = 1 << 5,
     /**
      * @brief 滑动手势。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_SWIPE = 1 << 6,
     /**
      * @brief 统一拖拽事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_DRAG = 1 << 7,
     /**
      * @brief 原始触摸按下或抬起事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_TOUCH = 1 << 8
 } OH_ArkUI_NativeModule_UIInfoCollection_InteractionEventType;
@@ -152,7 +152,7 @@ typedef enum {
  * @param json [in] 借用的JSON对象，仅在本次回调执行期间有效。
  * @param userData [in] 注册时传入的自定义用户数据，可以为NULL。框架不取得其所有权，
  *     也不会解引用或释放该指针。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback)(
     const OH_ArkUI_NativeModule_UIJsonWrapper *json, void *userData);
@@ -182,7 +182,7 @@ typedef void (*OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback)(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 必填指针参数为NULL，或eventMask未包含任何受支持的标志位。</li>
  *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} UI上下文无效。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserver(
     ArkUI_ContextHandle uiContext,
@@ -203,33 +203,33 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserve
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 注册ID无效。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionUnregisterInteractionObserver(uint32_t registerID);
 
 /**
  * @brief 声明UI树采集请求结构体。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_UIAgentTreeRequest OH_ArkUI_NativeModule_UIAgentTreeRequest;
 
 /**
  * @brief 定义UI树采集类型的枚举。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief 采集完整UI树，包括不可见、透明、离屏及被遮挡的节点。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_AGENT_TREE_FULL = 0,
     /**
      * @brief 采集经过可见性、裁剪、离屏和遮挡过滤后的可见UI树。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_AGENT_TREE_VISIBLE = 1
 } OH_ArkUI_NativeModule_UIAgentTreeType;
@@ -251,7 +251,7 @@ typedef enum {
  *     该指针被原样传回，框架不会解引用或释放其指向的数据。
  *     数据的所有权仍归调用方，调用方必须保证数据在本次回调返回前一直有效。
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIAgentJsonCallback)(ArkUI_ContextHandle context, uint64_t requestId, 
     ArkUI_ErrorCode errorCode, OH_ArkUI_NativeModule_UIJsonWrapper *json, void *userData);
@@ -267,7 +267,7 @@ typedef void (*OH_ArkUI_NativeModule_UIAgentJsonCallback)(ArkUI_ContextHandle co
  *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} 内存分配失败。</li>
  *     </ul>
  * @release OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy {request}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestCreate(OH_ArkUI_NativeModule_UIAgentTreeType treeType,
     OH_ArkUI_NativeModule_UIAgentTreeRequest **request);
@@ -277,7 +277,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestCreate(OH_ArkUI_NativeMo
  *
  * 传入NULL时不执行任何操作。
  * @param request [in] 要销毁的请求对象。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy(OH_ArkUI_NativeModule_UIAgentTreeRequest *request);
 
@@ -293,7 +293,7 @@ void OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy(OH_ArkUI_NativeModule_UIAge
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 选项设置成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} request为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -316,7 +316,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes
  *     <li>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 对完整树采集请求将enabled设置为true。
  *         此时请求对象保持不变。若需启用此选项，请使用可见树采集请求。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterOccludedNodes(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -338,7 +338,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterOccludedNodes(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} threshold超出有效范围。</li>
  *     <li>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} 请求为完整树采集请求。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetOcclusionOpacityThreshold(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, float threshold);
@@ -358,7 +358,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetOcclusionOpacityThres
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 选项设置成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} request为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetInteractionInfo(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -378,7 +378,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetInteractionInfo(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 选项设置成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} request为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetAccessibilityInfo(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -400,7 +400,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetAccessibilityInfo(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 选项设置成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} request为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectVisualProperties(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -421,7 +421,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectVisualProperti
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 选项设置成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} request为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProperties(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -451,7 +451,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 发生其他内部错误。</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle context,
     const OH_ArkUI_NativeModule_UIAgentTreeRequest *request,
@@ -482,7 +482,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  *     <li>{@link ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD} 在非UI线程上调用。</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} 上一次请求尚未完成。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandle context,
     const OH_ArkUI_NativeModule_UIAgentTreeRequest *request,
@@ -512,69 +512,69 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  *         或采集、序列化失败。</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {pageText}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetPageText(
     ArkUI_ContextHandle uiContext, OH_ArkUI_NativeModule_UIJsonWrapper** pageText);
 
 /**
  * @brief 声明ArkUI内容变化事件结构体。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_UIContentChangeEvent OH_ArkUI_NativeModule_UIContentChangeEvent;
 
 /**
  * @brief 定义UI内容变化事件类别的枚举。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
     /**
      * @brief 页面切换事件，包括Navigation、Router、Swiper和Tabs的切换事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_PAGE = 1U << 0,
     /**
      * @brief 滚动事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
      * @brief 浮层事件，例如模态、菜单或弹窗事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_OVERLAY = 1U << 2,
     /**
      * @brief 所有受支持的事件类别。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_ALL = ~0U
 } OH_ArkUI_NativeModule_UIContentChangeEventCategory;
 
 /**
  * @brief 定义可忽略的UI内容变化事件类型。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum OH_ArkUI_NativeModule_UIContentChangeIgnoreType {
     /**
      * @brief 按指定偏移量滚动（scrollBy）的事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CONTENTCHANGE_IGNORE_SCROLLBY = 1U << 0,
     /**
      * @brief 滚动到指定位置（scrollTo）的事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CONTENTCHANGE_IGNORE_SCROLLTO = 1U << 1,
     /**
      * @brief Toast提示事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CONTENTCHANGE_IGNORE_TOAST = 1U << 2
 } OH_ArkUI_NativeModule_UIContentChangeIgnoreType;
@@ -582,79 +582,79 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeIgnoreType {
 /**
  * @brief 定义ArkUI状态变化事件类型的枚举。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
     /**
      * @brief 页面切换开始。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_PAGE_CHANGE_START = 0,
     /**
      * @brief 页面切换结束。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_PAGE_CHANGE_END = 1,
     /**
      * @brief 滚动开始。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SCROLL_START = 2,
     /**
      * @brief 滚动交互及其后续的惯性滚动均已结束。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SCROLL_END = 3,
     /**
      * @brief 浮层显示完成。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_SHOW = 4,
     /**
      * @brief 浮层消失完成。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_HIDE = 5,
     /**
      * @brief Swiper切换开始。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_START = 6,
     /**
      * @brief Swiper切换完成；如果存在过渡动画，则该动画也已完成。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_END = 7,
     /**
      * @brief Swiper切换中断，并回弹到起始索引。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_CANCEL = 8,
     /**
      * @brief Tabs切换开始事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_TABS_START = 9,
     /**
      * @brief Tabs切换结束事件。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_TABS_END = 10,
     /**
      * @brief Tabs切换开始后被取消，并回弹到切换开始时的索引。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_TABS_CANCEL = 11
 } OH_ArkUI_NativeModule_UIContentChangeEventType;
@@ -668,7 +668,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
  *
  * @param event [in] 指向不可变事件快照的指针。
  * @param userData [in] 注册回调时传入的指针，可以为NULL。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, void* userData);
@@ -702,7 +702,7 @@ typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} eventMask或subscriptionId无效。</li>
  *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} Native模块尚未初始化。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_RegisterUIContentChangeEvent(
     ArkUI_ContextHandle uiContext, bool withStart, uint32_t eventMask, uint32_t ignoreMask, void* userData, 
@@ -724,7 +724,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_RegisterUIContentChangeEvent(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} subscriptionId为0、无法识别，或对应订阅已被移除。</li>
  *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} Native C接口尚未初始化。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UnRegisterUIContentChangeEvent(
     ArkUI_ContextHandle uiContext, uint64_t subscriptionId);
@@ -738,7 +738,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UnRegisterUIContentChangeEvent(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} event或type为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetType(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, OH_ArkUI_NativeModule_UIContentChangeEventType* type);
@@ -754,7 +754,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetType(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} event或nanoTimestamp为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetTimestamp(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, uint64_t* nanoTimestamp);
@@ -770,7 +770,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetTimestamp(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} event或uiContext为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, ArkUI_ContextHandle* uiContext);
@@ -794,39 +794,39 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} event或json为NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContentChangeEventJson(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, const OH_ArkUI_NativeModule_UIJsonWrapper** json);
 
 /**
  * @brief 声明ArkUI图像采集结果结构体。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_ImageCollection OH_ArkUI_NativeModule_ImageCollection;
 
 /**
  * @brief 定义用于返回ArkUI节点图像采集结果的回调函数类型。
  *
- * 对于每个被接受的请求，框架都会在UI线程上调用且仅调用一次此回调。
- * 当<b>errorCode</b>为{@link ARKUI_ERROR_CODE_NO_ERROR}时，框架将非<b>NULL</b>的
- * <b>collection</b>的所有权转移给调用方。当<b>errorCode</b>为
- * {@link ARKUI_ERROR_CODE_INTERNAL_ERROR}或{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID}时，
- * <b>collection</b>为<b>NULL</b>。
+ * 对于每个被接受的请求，框架都会在UI线程上调用且仅调用一次此回调。每个非<b>NULL</b>的
+ * <b>collection</b>都会转移给调用方。即使部分结果项失败，也会返回集合。
+ * 调用方必须调用<b>OH_ArkUI_NativeModule_ImageCollectionDestroy</b>释放每个非<b>NULL</b>集合。
  *
  * 框架将<b>userData</b>原样传回，不会解引用该指针，也不会复制或释放其指向的对象。
  * 调用方必须保证该对象在回调结束使用前一直有效。
  *
  * @param errorCode [in] 请求的整体处理结果。
  *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示采集成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} 表示采集过程中发生内部错误。</li>
- *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 表示请求被接受后，UI上下文失效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示所有结果项均成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED} 表示部分结果项采集失败。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} 表示请求被接受后，关联的UI上下文失效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} 表示集合分配失败。</li>
  *     </ul>
- * @param collection [in] 结果集合。请求整体成功时为非<b>NULL</b>值，整体失败时为<b>NULL</b>。
+ * @param collection [in] 结果集合。所有结果项均成功或部分结果项失败时为非<b>NULL</b>值；
+ *     UI上下文失效或集合分配失败时为<b>NULL</b>。
  * @param userData [in] 调用方自定义的上下文指针，可以为<b>NULL</b>。
  * @release OH_ArkUI_NativeModule_ImageCollectionDestroy {collection}
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode errorCode,
     OH_ArkUI_NativeModule_ImageCollection* collection, void* userData);
@@ -836,7 +836,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *
  * 单次请求可包含<b>1</b>到<b>20</b>个互不重复的节点ID。
  * 框架会在本函数返回前复制<b>nodeIds</b>数组。
- * 如果<b>count</b>为<b>0</b>或大于<b>20</b>，本函数返回
+ * 如果<b>count</b>小于等于<b>0</b>或大于<b>20</b>，本函数返回
  * {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}。
  *
  * 每个被接受的节点ID在结果集合中都有对应的结果项，即使未找到该节点或无法截取其图像。
@@ -847,8 +847,8 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * 如果找不到请求的节点ID对应的ArkUI节点，对应结果项会报告
  * <b>ARKUI_ERROR_CODE_NODE_NOT_FOUND</b>，调用方应检查节点ID。
  * 截图超时时，对应结果项报告<b>ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT</b>，调用方可以重试请求。
- * 发生其他内部截图错误时，对应结果项报告<b>ARKUI_ERROR_CODE_INTERNAL_ERROR</b>，
- * 调用方可以在处理该错误后重试请求。单个结果项失败不会改变请求整体成功的结果。
+ * 消费集合中的结果项时可以获取该结果项的错误码。
+ * 任一结果项失败时，回调会报告{@link ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED}，但仍会返回集合。
  *
  * 调用方可以从任意线程调用本函数。对于每个被接受的请求，
  * 框架都会在<b>context</b>关联的UI线程上调用且仅调用一次<b>callback</b>。
@@ -863,11 +863,14 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  * @param userData [in] 调用方自定义的上下文指针，会原样传给回调，可以为<b>NULL</b>。
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 框架已接受请求。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} context、nodeIds或callback为NULL。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count为0或大于20。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} context为NULL或无效。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} callback为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} nodeIds为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} count小于等于0或大于20。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_DUPLICATE_NODE_ID} 节点ID重复。</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} 上一次请求尚未完成。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle context, const int32_t* nodeIds,
     uint32_t count, OH_ArkUI_NativeModule_ImageCollectionCallback callback, void* userData);
@@ -890,17 +893,20 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle
  * @param outPixelmap [out] 用于接收所有权已转移的PixelMap的输出参数，不能为NULL。
  *     对于失败的结果项，其指向的PixelMap指针会被设置为NULL。
  * @param outItemError [out] 用于接收该结果项错误码的输出参数，不能为NULL。
- *     采集成功时写入{@link ARKUI_ERROR_CODE_NO_ERROR}；
- *     采集图像时未找到请求的节点ID对应的ArkUI节点，写入{@link ARKUI_ERROR_CODE_NODE_NOT_FOUND}；
- *     截图超时时写入{@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT}；
- *     发生其他截图错误时写入{@link ARKUI_ERROR_CODE_INTERNAL_ERROR}，调用方可以重试请求。
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 表示结果项采集成功。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_NODE_NOT_FOUND} 表示采集图像时未找到请求的节点ID对应的ArkUI节点。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} 表示生成图像结果所需的内存分配失败。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} 表示截图超时。</li>
+ *     </ul>
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功取出结果项，包括图像采集失败的结果项。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 必填指针参数为NULL、nodeId在collection中没有对应的结果项，
- *         或该结果项已被取出。请提供所有必填指针参数，并确保nodeId对应collection中尚未取出的结果项。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 必填指针参数为NULL。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND} nodeId在collection中没有对应的结果项。</li>
+ *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN} 该结果项已被取出。</li>
  *     </ul>
  * @release multimedia/image_framework/image/OH_PixelmapNative_Destroy {outPixelmap}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
     OH_ArkUI_NativeModule_ImageCollection* collection, int32_t nodeId,
@@ -917,7 +923,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
  *
  * @param collection [in] 要销毁的图像集合，可以为<b>NULL</b>。
  *     如果<b>collection</b>为<b>NULL</b>，则不执行任何操作。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_ImageCollectionDestroy(OH_ArkUI_NativeModule_ImageCollection* collection);
 

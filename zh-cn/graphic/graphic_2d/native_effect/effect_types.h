@@ -30,8 +30,10 @@
  *
  * @brief 声明滤镜效果的数据类型，用于定义滤镜效果的矩阵、状态码和平铺模式等，
  * 支持创建自定义滤镜效果、处理图像着色器平铺等场景。
+ * <br>本文档定义的状态码类型用于相关接口的状态返回，具体接口的状态码使用说明请参见对应接口文档。
  *
  * @kit ArkGraphics2D
+ * @include <native_effect/effect_types.h>
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
@@ -64,7 +66,7 @@ typedef struct OH_Filter OH_Filter;
 typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
- * @brief 定义用于创建滤镜效果的矩阵，矩阵维度为4x5，元素取值范围为浮点数。
+ * @brief 定义用于创建滤镜效果的矩阵，矩阵维度为4x5，元素类型为浮点数。
  *
  * @since 12
  * @version 1.0
@@ -80,7 +82,8 @@ struct OH_Filter_ColorMatrix {
 };
 
 /**
- * @brief 定义滤镜效果的状态码。
+ * @brief 定义滤镜效果的状态码。这些状态码在使用滤镜效果相关接口时返回，开发者应根据
+ * 返回的状态码判断操作结果并进行相应处理。具体接口的状态码使用说明请参见对应接口文档。
  *
  * @since 12
  * @version 1.0

@@ -233,73 +233,73 @@ typedef enum {
 /**
  * @brief Enumerates the text editor input types.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Normal input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_NORMAL = 0,
     /**
      * @brief Number input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_NUMBER = 2,
     /**
      * @brief Phone number input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_PHONE_NUMBER = 3,
     /**
      * @brief Email address input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_EMAIL = 5,
     /**
      * @brief Password input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_PASSWORD = 7,
     /**
      * @brief Numeric password input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_NUMBER_PASSWORD = 8,
     /**
      * @brief Lock screen password input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_SCREEN_LOCK_PASSWORD = 9,
     /**
      * @brief Username input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_USER_NAME = 10,
     /**
      * @brief New password input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_NEW_PASSWORD = 11,
     /**
      * @brief Number input mode with a decimal point.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_NUMBER_DECIMAL = 12,
     /**
      * @brief One time code input mode.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_TEXT_EDITOR_TYPE_ONE_TIME_CODE = 14,
 } OH_ArkUI_TextEditorType;

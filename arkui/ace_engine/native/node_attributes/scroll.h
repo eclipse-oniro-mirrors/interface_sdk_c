@@ -384,6 +384,41 @@ typedef enum {
     ARKUI_SCROLL_SOURCE_ANIMATION,
 } ArkUI_ScrollSource;
 
+/**
+ * @brief Enumerates the fast scroll modes for scrolling to a specified index.
+ *
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * No fast scroll optimization. All intermediate items are created and measured before the animation starts.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_FAST_SCROLL_MODE_NONE = 0,
+
+    /**
+     * Fast scroll optimization with skipping intermediate item measurement. Intermediate items are created but not
+     * measured. This mode is suitable for scenarios where the list has multiple columns and both ListItem and
+     * ListItemGroup exist. In this case, ListItem occupies only one column in a row, but ListItemGroup occupies an
+     * entire row. Therefore, the List needs to create all intermediate items to obtain the types of these items and
+     * calculate the row position of the target index.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_FAST_SCROLL_MODE_SKIP_MEASURE = 1,
+
+    /**
+     * Fast scroll optimization with skipping intermediate item creation and measurement. Intermediate items are neither
+     * created nor measured. This mode provides maximum performance optimization. However, this mode is not suitable for
+     * the scenarios where the list has multiple columns and both ListItem and ListItemGroup exist. In this scenario,
+     * use OH_ARKUI_FAST_SCROLL_MODE_SKIP_MEASURE.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_FAST_SCROLL_MODE_SKIP_CREATE_AND_MEASURE = 2
+} OH_ArkUI_FastScrollMode;
+
 #ifdef __cplusplus
 }
 #endif

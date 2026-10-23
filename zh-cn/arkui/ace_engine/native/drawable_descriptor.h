@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,7 +25,7 @@
 /**
  * @file drawable_descriptor.h
  *
- * @brief 提供NativeDrawableDescriptor接口的类型定义。
+ * @brief 提供DrawableDescriptor接口的类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -39,6 +39,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "common_type.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -51,7 +53,13 @@ extern "C" {
 typedef struct ArkUI_DrawableDescriptor ArkUI_DrawableDescriptor;
 
 /**
- * @brief 使用Image Kit定义的Native侧的OH_PixelmapNative对象。
+ * @brief OH_PixelmapNative是Native层封装的图像解码后无压缩的位图格式结构体，
+ * 支持像素数据读写、不透明度设置、缩放、平移、旋转、翻转、裁剪等操作，
+ * 适用于需要在Native层对Pixelmap进行像素级处理与变换的场景。
+ * <br>创建OH_PixelmapNative需要使用{@link OH_PixelmapNative_CreatePixelmap}系列函数，
+ * 该函数在未指定源像素格式时，会默认按BGRA_8888格式解析源像素数据。
+ * 使用完毕后，必须调用{@link OH_PixelmapNative_Release}函数释放资源，两者需配对使用，否则会导致内存泄漏。<br>
+ * OH_PixelmapNative结构体的部分相关函数和操作方式如下：
  *
  * @since 12
  */
@@ -79,25 +87,21 @@ struct ArkUI_Node;
 typedef enum {
     /**
      * 动画初始状态。
-     *
      * @since 22
      */
     DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_INITIAL = 0,
     /**
      * 动画处于播放状态。
-     *
      * @since 22
      */
     DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_RUNNING = 1,
     /**
      * 动画处于暂停状态。
-     *
      * @since 22
      */
     DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_PAUSED = 2,
     /**
      * 动画处于停止状态。
-     *
      * @since 22
      */
     DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_STOPPED = 3
@@ -111,13 +115,11 @@ typedef enum {
 typedef enum {
     /**
      * 动图停止时回到首帧。
-     *
      * @since 24
      */
     DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME = 0,
     /**
      * 动图停止时停留在最后一帧。
-     *
      * @since 24
      */
     DRAWABLE_DESCRIPTOR_ANIMATION_LAST_FRAME = 1
@@ -143,7 +145,7 @@ ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromPixelMap(OH_Pixe
  * @brief 使用PixelMap图片数组创建DrawableDescriptor对象。
  *
  * @param array PixelMap图片数组对象指针。
- * @param size PixelMap图片数组大小，单位为元素个数，必须为正整数；传入NULL数组或size <= 0时返回nullptr。
+ * @param size PixelMap图片数组大小，单位为元素个数，必须为正整数；传入 NULL 数组或 size <= 0 时返回 nullptr。
  * @return 返回DrawableDescriptor对象指针。
  * @since 12
  */
@@ -250,12 +252,10 @@ int32_t OH_ArkUI_DrawableDescriptor_SetAnimationFrameDurations(
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
  * @param durations 动图中的单帧播放时间数组。
- * @param size 数组大小（元素个数）。
+ * @param size 数组大小。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationFrameDurations(
@@ -265,14 +265,12 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationFrameDurations(
  * @brief 设置动图是否自动播放。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- * @param autoPlay 是否自动播放。
+ * @param autoPlay 控制动图是否自动播放。
  *     1表示自动播放，0表示不自动播放。
  *     默认值为1。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_SetAnimationAutoPlay(
@@ -284,10 +282,8 @@ int32_t OH_ArkUI_DrawableDescriptor_SetAnimationAutoPlay(
  * @param drawableDescriptor DrawableDescriptor对象指针。
  * @param autoPlay 是否自动播放。1表示自动播放，0表示不自动播放。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationAutoPlay(
@@ -296,14 +292,13 @@ int32_t OH_ArkUI_DrawableDescriptor_GetAnimationAutoPlay(
 /**
  * @brief 设置动图的停止模式。
  *
- * @param drawableDescriptor {@link DrawableDescriptor}对象指针。
+ * @param drawableDescriptor {@link ArkUI_DrawableDescriptor}对象指针。
  * @param mode 动图停止模式。
- *     取值为{@link DrawableDescriptor_AnimationStopMode}枚举值，默认值为{@link DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME}。
+ *     取值为{@link DrawableDescriptor_AnimationStopMode}枚举值，
+ *     默认值为{@link DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME}。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 24
  */
 int32_t OH_ArkUI_DrawableDescriptor_SetAnimationStopMode(
@@ -312,32 +307,28 @@ int32_t OH_ArkUI_DrawableDescriptor_SetAnimationStopMode(
 /**
  * @brief 获取动图的停止模式。
  *
- * @param drawableDescriptor {@link DrawableDescriptor}对象指针。
+ * @param drawableDescriptor {@link ArkUI_DrawableDescriptor}对象指针。
  * @param mode 动图停止模式。
  *     取值含义请参考{@link DrawableDescriptor_AnimationStopMode}。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 24
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationStopMode(
     const ArkUI_DrawableDescriptor* drawableDescriptor, DrawableDescriptor_AnimationStopMode* mode);
 
 /**
- * @brief 创建动图控制器。当需要手动控制动图播放而非使用自动播放时，通过本接口获取控制器，
- * 再调用StartAnimation/Pause等控制接口。
+ * @brief 创建动图控制器。当需要手动控制动图播放（如逐帧播放、暂停、跳转到指定帧、设置单帧时长）而非使用自动播放时，
+ *     通过本接口获取控制器，再调用 StartAnimation/Pause 等控制接口。
  *
  * @param drawableDescriptor DrawableDescriptor对象指针。
- *                            必须是通过{@link OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap}创建的动图对象。
+ *     必须是通过{@link OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap}创建的动图对象。
  * @param node 组件节点指针。必须是有效的ArkUI组件节点。
  * @param controller DrawableDescriptor动图控制器对象指针。输出参数，调用成功时返回控制器指针。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_CreateAnimationController(ArkUI_DrawableDescriptor *drawableDescriptor,
@@ -356,10 +347,8 @@ void OH_ArkUI_DrawableDescriptor_DisposeAnimationController(ArkUI_DrawableDescri
  *
  * @param controller DrawableDescriptor动图控制器对象指针。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_StartAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
@@ -370,10 +359,8 @@ int32_t OH_ArkUI_DrawableDescriptor_StartAnimation(ArkUI_DrawableDescriptor_Anim
  *
  * @param controller DrawableDescriptor动图控制器对象指针。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_StopAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
@@ -383,10 +370,8 @@ int32_t OH_ArkUI_DrawableDescriptor_StopAnimation(ArkUI_DrawableDescriptor_Anima
  *
  * @param controller DrawableDescriptor动图控制器对象指针。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_ResumeAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
@@ -396,10 +381,8 @@ int32_t OH_ArkUI_DrawableDescriptor_ResumeAnimation(ArkUI_DrawableDescriptor_Ani
  *
  * @param controller DrawableDescriptor动图控制器对象指针。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_PauseAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
@@ -410,10 +393,8 @@ int32_t OH_ArkUI_DrawableDescriptor_PauseAnimation(ArkUI_DrawableDescriptor_Anim
  * @param controller DrawableDescriptor动图控制器对象指针。
  * @param status DrawableDescriptor动图的播放状态。
  * @return 错误码。
- *     <ul>
- *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。</li>
- *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。</li>
- *     </ul>
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 输入参数错误。
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationStatus(
