@@ -1870,7 +1870,7 @@ typedef enum {
     OH_INPUT_KEYCODE_PTZ_APERTURE_RIGHT = 3243,
     /**
      * @brief 返回桌面
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_INPUT_KEYCODE_DESKTOP = 3245
 } Input_KeyCode;

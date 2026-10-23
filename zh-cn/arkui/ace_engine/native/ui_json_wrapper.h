@@ -20,7 +20,7 @@
  * @brief 定义UI感知与控制接口共用的不可变JSON数据对象，供应用内智能体或UI自动化采集场景使用。
  * JSON是一种主流的结构化数据格式，可供不同编程语言和进程使用，避免为各个字段提供大量访问接口。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -41,7 +41,7 @@
  * @include <arkui/ui_json_wrapper.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef ARKUI_NATIVE_UI_JSON_WRAPPER_H
@@ -66,7 +66,7 @@ extern "C" {
  * 该对象不使用引用计数。复制对象指针仅产生借用别名，不会创建独立对象或增加所有权。
  * 对象的所有者必须且只能销毁该对象一次。销毁后，所有别名及数据指针均失效，不得再次使用或销毁。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonWrapper;
 
@@ -107,7 +107,7 @@ typedef struct OH_ArkUI_NativeModule_UIJsonWrapper OH_ArkUI_NativeModule_UIJsonW
  *         或内存分配、数据复制失败。</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {outOwned}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint32_t size,
     OH_ArkUI_NativeModule_UIJsonWrapper **outOwned);
@@ -124,7 +124,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIJsonWrapperCreate(const char *data, uint
  *     <li>借用的JSON字符串指针，调用方不得修改或释放该指针。</li>
  *     <li>json为NULL时返回NULL。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
@@ -142,7 +142,7 @@ const char *OH_ArkUI_NativeModule_UIJsonWrapperGetData(const OH_ArkUI_NativeModu
  *     <li>JSON字符串的字节长度，不包含末尾的空字符。</li>
  *     <li>json为NULL时返回0。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
@@ -161,26 +161,26 @@ uint32_t OH_ArkUI_NativeModule_UIJsonWrapperGetSize(const OH_ArkUI_NativeModule_
  * @param json [in] 要销毁的JSON数据对象，可以为NULL；传入NULL时不执行任何操作。
  *     调用方必须拥有该对象的所有权。销毁后，对象及其所有别名立即失效，不得再次使用或销毁。
  *     不得将借用对象传给本函数。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_UIJsonWrapperDestroy(OH_ArkUI_NativeModule_UIJsonWrapper *json);
 
 /**
  * @brief 定义JSON输出格式的枚举类型。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief 输出不含多余空白字符的规范JSON。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_JSON_COMPACT = 0,
     /**
      * @brief 输出带有两个空格缩进和换行符的JSON。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_JSON_PRETTY = 1
 } OH_ArkUI_NativeModule_UIJsonFormat;

@@ -20,7 +20,7 @@
  * @brief Provides UI perception capabilities of ArkUI on the native side for in-app intelligent
  * agents and UI automation, enabling observation of user interaction events and hit nodes.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -37,7 +37,7 @@
  * @include <arkui/ui_info_collection.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef ARKUI_NATIVE_UI_INFO_COLLECTION_H
@@ -63,67 +63,67 @@ extern "C" {
  * The values are bit flags. They are used to build the eventMask passed to
  * {@link OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserver}.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief No event.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_NONE = 0,
     /**
      * @brief Tap gesture.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_TAP = 1 << 0,
     /**
      * @brief Click.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_CLICK = 1 << 1,
     /**
      * @brief Long press gesture.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_LONG_PRESS = 1 << 2,
     /**
      * @brief Pan gesture.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_PAN = 1 << 3,
     /**
      * @brief Pinch gesture.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_PINCH = 1 << 4,
     /**
      * @brief Rotation gesture.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_ROTATION = 1 << 5,
     /**
      * @brief Swipe gesture.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_SWIPE = 1 << 6,
     /**
      * @brief Unified drag and drop.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_DRAG = 1 << 7,
     /**
      * @brief Raw touch down or up.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_UIINFOCOLLECTION_INTERACTION_EVENT_TOUCH = 1 << 8
 } OH_ArkUI_NativeModule_UIInfoCollection_InteractionEventType;
@@ -154,7 +154,7 @@ typedef enum {
  * @param json [in] Borrowed JSON object. Valid only during the callback invocation.
  * @param userData [in] Custom user data passed during registration. It can be NULL. The framework
  *     does not own, dereference, or free it.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback)(
     const OH_ArkUI_NativeModule_UIJsonWrapper *json, void *userData);
@@ -186,7 +186,7 @@ typedef void (*OH_ArkUI_NativeModule_UIInfoCollectionInteractionJsonCallback)(
  *             contains no supported bit.</li>
  *         <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the UI context is invalid.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserver(
     ArkUI_ContextHandle uiContext,
@@ -208,33 +208,33 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserve
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if the registration ID is invalid.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionUnregisterInteractionObserver(uint32_t registerID);
 
 /**
  * @brief Declare a UI tree collection request structure.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_UIAgentTreeRequest OH_ArkUI_NativeModule_UIAgentTreeRequest;
 
 /**
  * @brief Enumeration of the collection type of the UI tree.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Collects the full UI tree, including invisible, transparent, off-screen, and blocked nodes.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_AGENT_TREE_FULL = 0,
     /**
      * @brief Collects the visible tree after visibility, clipping, off-screen, and occlusion filtering.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_AGENT_TREE_VISIBLE = 1
 } OH_ArkUI_NativeModule_UIAgentTreeType;
@@ -257,7 +257,7 @@ typedef enum {
  *     The pointer is passed through unchanged. The framework does not dereference or free the pointed-to data.
  *     The data remains owned by the caller and must remain valid until this callback returns.
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIAgentJsonCallback)(ArkUI_ContextHandle context, uint64_t requestId, 
     ArkUI_ErrorCode errorCode, OH_ArkUI_NativeModule_UIJsonWrapper *json, void *userData);
@@ -273,7 +273,7 @@ typedef void (*OH_ArkUI_NativeModule_UIAgentJsonCallback)(ArkUI_ContextHandle co
  *     <li>{@link ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED} if allocation fails.</li>
  *     </ul>
  * @release OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy {request}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestCreate(OH_ArkUI_NativeModule_UIAgentTreeType treeType,
     OH_ArkUI_NativeModule_UIAgentTreeRequest **request);
@@ -283,7 +283,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestCreate(OH_ArkUI_NativeMo
  *
  * Passing NULL has no effect.
  * @param request [in] The request to destroy.
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy(OH_ArkUI_NativeModule_UIAgentTreeRequest *request);
 
@@ -299,7 +299,7 @@ void OH_ArkUI_NativeModule_UIAgentTreeRequestDestroy(OH_ArkUI_NativeModule_UIAge
  *     <li> {@link ARKUI_ERROR_CODE_NO_ERROR} if the option is set successfully.</li>
  *     <li> {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the request is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -327,7 +327,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterPureLayoutNodes
  *         is true for a full-tree request. The request remains unchanged.
  *         Use a visible-tree request to enable this option.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterOccludedNodes(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -349,7 +349,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetFilterOccludedNodes(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the threshold is outside the valid range.</li>
  *     <li>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the request is for a full tree.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetOcclusionOpacityThreshold(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, float threshold);
@@ -372,7 +372,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetOcclusionOpacityThres
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the option is set successfully.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if request is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetInteractionInfo(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -394,7 +394,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetInteractionInfo(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the option is set successfully.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if request is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetAccessibilityInfo(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -420,7 +420,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetAccessibilityInfo(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the option is set successfully.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if request is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectVisualProperties(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -446,7 +446,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectVisualProperti
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the option is set successfully.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if request is NULL.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProperties(
     OH_ArkUI_NativeModule_UIAgentTreeRequest *request, bool enabled);
@@ -476,7 +476,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentTreeRequestSetCollectFunctionalProp
  *     <li>{@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if another internal failure occurs.</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {json}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle context,
     const OH_ArkUI_NativeModule_UIAgentTreeRequest *request,
@@ -507,7 +507,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJson(ArkUI_ContextHandle con
  *     <li>{@link ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD} if called outside the UI thread.</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if last request unfinished.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandle context,
     const OH_ArkUI_NativeModule_UIAgentTreeRequest *request,
@@ -536,69 +536,69 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetTreeJsonAsync(ArkUI_ContextHandl
  *     by uint32_t size, or collection/serialization fails.</li>
  *     </ul>
  * @release ui_json_wrapper/OH_ArkUI_NativeModule_UIJsonWrapperDestroy {pageText}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIAgentGetPageText(
     ArkUI_ContextHandle uiContext, OH_ArkUI_NativeModule_UIJsonWrapper** pageText);
 
 /**
  * @brief Declare the ArkUI content change event structure.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_UIContentChangeEvent OH_ArkUI_NativeModule_UIContentChangeEvent;
 
 /**
  * @brief UI Content Change Event Type Enumeration
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum OH_ArkUI_NativeModule_UIContentChangeEventCategory {
     /**
      * @brief Page switch events, including Navigation, Router, Swiper, and Tabs switchover events.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_PAGE = 1U << 0,
     /**
      * @brief Scroll events.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_SCROLL = 1U << 1,
     /**
      * @brief Overlay events, such as events for modals, menus, or popups.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_OVERLAY = 1U << 2,
     /**
      * @brief All supported event categories.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_CATEGORY_ALL = ~0U
 } OH_ArkUI_NativeModule_UIContentChangeEventCategory;
 
 /**
  * @brief UI Content Change Event Ignore Enumeration
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum OH_ArkUI_NativeModule_UIContentChangeIgnoreType {
     /**
      * @brief Scroll by events.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CONTENTCHANGE_IGNORE_SCROLLBY = 1U << 0,
     /**
      * @brief Scroll to events.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CONTENTCHANGE_IGNORE_SCROLLTO = 1U << 1,
     /**
      * @brief Toast events.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CONTENTCHANGE_IGNORE_TOAST = 1U << 2
 } OH_ArkUI_NativeModule_UIContentChangeIgnoreType;
@@ -606,79 +606,79 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeIgnoreType {
 /**
  * @brief Enumerates ArkUI state change event types.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
     /**
      * @brief Start of page change.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_PAGE_CHANGE_START = 0,
     /**
      * @brief End of page change
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_PAGE_CHANGE_END = 1,
     /**
      * @brief Start of scrolling events
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SCROLL_START = 2,
     /**
      * @brief A scroll interaction and any following inertial scrolling have ended.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SCROLL_END = 3,
     /**
      * @brief An overlay has finished appearing.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_SHOW = 4,
     /**
      * @brief An overlay has finished disappearing.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_OVERLAY_HIDE = 5,
     /**
      * @brief A Swiper transition has started.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_START = 6,
     /**
      * @brief A Swiper transition has completed, including its transition animation, if any.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_END = 7,
     /**
      * @brief The Swiper transition is interrupted, and Swiper springs back to the starting index.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_SWIPER_CANCEL = 8,
     /**
      * @brief Tabs Start Event
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_TABS_START = 9,
     /**
      * @brief Tabs End Event
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_TABS_END = 10,
     /**
      * @brief Cancel the event after the Tabs switch starts. Rebound to the index after the start
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_EVENT_TABS_CANCEL = 11
 } OH_ArkUI_NativeModule_UIContentChangeEventType;
@@ -691,7 +691,7 @@ typedef enum OH_ArkUI_NativeModule_UIContentChangeEventType {
  *
  * @param event [in] Pointer to the immutable event snapshot.
  * @param userData [in] Pointer supplied when the callback was registered. The pointer can be NULL.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, void* userData);
@@ -722,7 +722,7 @@ typedef void (*OH_ArkUI_NativeModule_UIContentChangeEventCallback)(
  *     <li>{@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if callback is NULL.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if eventMask or subscriptionId is invalid.</li>
  *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native module is not initialized.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_RegisterUIContentChangeEvent(
     ArkUI_ContextHandle uiContext, bool withStart, uint32_t eventMask, uint32_t ignoreMask, void* userData, 
@@ -744,7 +744,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_RegisterUIContentChangeEvent(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if subscriptionId is zero, unknown, already removed.</li>
  *     <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the native C API is not initialized.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UnRegisterUIContentChangeEvent(
     ArkUI_ContextHandle uiContext, uint64_t subscriptionId);
@@ -757,7 +757,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UnRegisterUIContentChangeEvent(
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if event or type is NULL.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetType(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, OH_ArkUI_NativeModule_UIContentChangeEventType* type);
@@ -772,7 +772,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetType(
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if event or nanoTimestamp is NULL.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetTimestamp(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, uint64_t* nanoTimestamp);
@@ -787,7 +787,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetTimestamp(
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if event or uiContext is NULL.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, ArkUI_ContextHandle* uiContext);
@@ -811,14 +811,14 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContext(
  * @return <ul>
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if event or json is NULL.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIContentChangeEventGetContentChangeEventJson(
     const OH_ArkUI_NativeModule_UIContentChangeEvent* event, const OH_ArkUI_NativeModule_UIJsonWrapper** json);
 
 /**
  * @brief Declares the ArkUI image acquisition result structure.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_NativeModule_ImageCollection OH_ArkUI_NativeModule_ImageCollection;
 
@@ -845,7 +845,7 @@ typedef struct OH_ArkUI_NativeModule_ImageCollection OH_ArkUI_NativeModule_Image
  *     items fail, and <b>NULL</b> if the ArkUI context is invalid or collection allocation fails.
  * @param userData [in] Indicates the caller-defined context pointer. The value can be <b>NULL</b>.
  * @release OH_ArkUI_NativeModule_ImageCollectionDestroy {collection}
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode errorCode,
     OH_ArkUI_NativeModule_ImageCollection* collection, void* userData);
@@ -897,7 +897,7 @@ typedef void (*OH_ArkUI_NativeModule_ImageCollectionCallback)(ArkUI_ErrorCode er
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if count is less than or equal to 0 or greater than 20.</li>
  *     <li>{@link ARKUI_ERROR_CODE_DUPLICATE_NODE_ID} if node IDs repeat.</li>
  *     <li>{@link ARKUI_ERROR_CODE_COMMAND_UNFINISHED} if the previous request has not finished.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle context, const int32_t* nodeIds,
     uint32_t count, OH_ArkUI_NativeModule_ImageCollectionCallback callback, void* userData);
@@ -938,7 +938,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetImagesByNodeIdAsync(ArkUI_ContextHandle
  *     <li>{@link ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN} if the caller has already consumed that item.</li>
  *     </ul>
  * @release multimedia/image_framework/image/OH_PixelmapNative_Destroy {outPixelmap}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
     OH_ArkUI_NativeModule_ImageCollection* collection, int32_t nodeId,
@@ -959,7 +959,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImageCollectionTakeItemByNodeId(
  * @param collection [in] Indicates the image collection to destroy. The
  *     parameter can be <b>NULL</b>. If <b>collection</b> is <b>NULL</b>, this
  *     function does nothing.
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_ImageCollectionDestroy(OH_ArkUI_NativeModule_ImageCollection* collection);
 

@@ -994,12 +994,12 @@ typedef enum {
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
     /**
      * The NavDestination component is active.
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
     /**
      * The NavDestination component is inactive.
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
     /** The NavDestination returns from the component.*/

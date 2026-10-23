@@ -342,7 +342,7 @@ const char *OH_GetDistributionOSReleaseType(void);
  *         <li>201如果调用者没有ohos.permission.ACCESS_DISK_PHY_INFO。</li>
  *         </ul>
  * @permission ohos.permission.ACCESS_DISK_PHY_INFO
- * @since 26.2.0
+ * @since 26.1.0
  */
 int32_t OH_GetDiskSN(char *diskSn);
  
@@ -350,7 +350,7 @@ int32_t OH_GetDiskSN(char *diskSn);
  * @brief 获取开发者匿名设备标识符。
  *
  * @return 返回开发者匿名设备标识符。
- * @since 26.2.0
+ * @since 26.1.0
  */
 const char *OH_GetOdid(void);
 

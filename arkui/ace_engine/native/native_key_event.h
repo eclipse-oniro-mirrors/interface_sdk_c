@@ -817,7 +817,7 @@ typedef enum {
  *
  * The original type name {@link ArkUI_KeyIntension} is retained for compatibility.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef ArkUI_KeyIntension OH_ArkUI_KeyIntention;
 
@@ -833,7 +833,7 @@ typedef ArkUI_KeyIntension OH_ArkUI_KeyIntention;
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null.</li>
  *     </ul>
  * @release arkui/OH_ArkUI_KeyEvent_Destroy {event}
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_Create(ArkUI_UIInputEvent** event);
 
@@ -850,7 +850,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_Create(ArkUI_UIInputEvent** event);
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or the input event was not created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_Destroy(ArkUI_UIInputEvent** event);
 
@@ -866,7 +866,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_Destroy(ArkUI_UIInputEvent** event);
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetType(ArkUI_UIInputEvent* event, ArkUI_KeyEventType type);
 
@@ -882,7 +882,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetType(ArkUI_UIInputEvent* event, ArkUI_KeyEv
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyCode(ArkUI_UIInputEvent* event, int32_t keyCode);
 
@@ -900,7 +900,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyCode(ArkUI_UIInputEvent* event, int32_t 
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyText(ArkUI_UIInputEvent* event, const char* keyText);
 
@@ -916,7 +916,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyText(ArkUI_UIInputEvent* event, const ch
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeySource(ArkUI_UIInputEvent* event, ArkUI_KeySourceType keySource);
 
@@ -932,7 +932,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeySource(ArkUI_UIInputEvent* event, ArkUI_
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetDeviceId(ArkUI_UIInputEvent* event, int32_t deviceId);
 
@@ -948,7 +948,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetDeviceId(ArkUI_UIInputEvent* event, int32_t
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetUnicode(ArkUI_UIInputEvent* event, uint32_t unicode);
 
@@ -965,7 +965,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetUnicode(ArkUI_UIInputEvent* event, uint32_t
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetEventTime(ArkUI_UIInputEvent* event, int64_t timestamp);
 
@@ -986,7 +986,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetEventTime(ArkUI_UIInputEvent* event, int64_
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetPressedKeys(
     ArkUI_UIInputEvent* event, const int32_t* pressedKeyCodes, int32_t length);
@@ -1003,7 +1003,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetPressedKeys(
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyIntentionCode(
     ArkUI_UIInputEvent* event, OH_ArkUI_KeyIntention intentionCode);
@@ -1021,7 +1021,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetKeyIntentionCode(
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetNumLockOn(ArkUI_UIInputEvent* event, bool isNumLockOn);
 
@@ -1038,7 +1038,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetNumLockOn(ArkUI_UIInputEvent* event, bool i
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetCapsLockOn(ArkUI_UIInputEvent* event, bool isCapsLockOn);
 
@@ -1055,7 +1055,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetCapsLockOn(ArkUI_UIInputEvent* event, bool 
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if **event** is null or is not a key event created by
  *     {@link OH_ArkUI_KeyEvent_Create}.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_SetScrollLockOn(ArkUI_UIInputEvent* event, bool isScrollLockOn);
 

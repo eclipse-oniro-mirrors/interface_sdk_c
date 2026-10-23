@@ -20,7 +20,7 @@
  * @brief Provides UI control capabilities of ArkUI on the native side for in-app intelligent
  * agents and UI automation, enabling the injection of control commands into specified UI nodes.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -33,7 +33,7 @@
  * @include <arkui/ui_event_injection.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef ARKUI_NATIVE_UI_EVENT_INJECTION_H
@@ -57,13 +57,13 @@ extern "C" {
  * (non-precise) and precise component-targeted injection. A nonzero result code indicates an
  * execution failure, and its specific value conveys the failure reason.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief The injected command was executed successfully.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_SUCCESS = 0,
     /**
@@ -72,7 +72,7 @@ typedef enum {
      * For example, the click coordinates do not hit any component, or the target required by the
      * execution mode cannot be located.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_TARGET_NOT_FOUND = 1,
     /**
@@ -81,13 +81,13 @@ typedef enum {
      * The command is structurally valid, but its type or execution mode is not supported by the
      * current UI state.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_COMMAND_NOT_SUPPORTED = 2,
     /**
      * @brief The injected command was interrupted by a user operation.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_INTERRUPTED_BY_USER = 3,
 } OH_ArkUI_NativeModule_UIEventInjection_ResultCode;
@@ -105,7 +105,7 @@ typedef enum {
  *        The framework stores only the pointer value for delivery to this callback. It does not
  *        access the pointed-to data, copy or free that data, or take ownership of it. After the
  *        request is accepted, the caller must keep non-NULL data valid until the callback returns.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
     OH_ArkUI_NativeModule_UIEventInjection_ResultCode result, void *userData);
@@ -153,7 +153,7 @@ typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
  *     parameter and UI-thread requirements. Rejected requests may be retried after the restriction
  *     is lifted; acceptance remains subject to other requests in the process.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIEventInjectCompositeCommand(
     ArkUI_ContextHandle uiContext,

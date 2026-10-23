@@ -3449,7 +3449,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Visual
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_LINEAR_GRADIENT_BLUR = 129,
 
@@ -4715,7 +4715,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_WIDTH = 1057,
 
@@ -4735,7 +4735,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_COLOR = 1058,
 
@@ -4755,7 +4755,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_JOIN_STYLE = 1059,
 
@@ -4788,9 +4788,9 @@ typedef enum {
      * <li>.value[3].f32: radius of the lower left corner, in vp.</li>
      * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
      * <li>.value[5]?.f32: border width of the text background, in vp. Optional. The default value is <b>0</b>.
-     * This parameter is supported since API version 26.2.0.</li>
+     * This parameter is supported since API version 26.1.0.</li>
      * <li>.value[6]?.u32: border color of the text background, in 0xARGB format. Optional.
-     * The default value is <b>0x00000000</b> (transparent). This parameter is supported since API version 26.2.0.</li>
+     * The default value is <b>0x00000000</b> (transparent). This parameter is supported since API version 26.1.0.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
@@ -4801,9 +4801,9 @@ typedef enum {
      * <li>.value[3].f32: radius of the lower left corner, in vp.</li>
      * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
      * <li>.value[5].f32: border width of the text background, in vp.
-     * This parameter is supported since API version 26.2.0.</li>
+     * This parameter is supported since API version 26.1.0.</li>
      * <li>.value[6].u32: border color of the text background, in 0xARGB format.
-     * This parameter is supported since API version 26.2.0.</li>
+     * This parameter is supported since API version 26.1.0.</li>
      * </ul>
      *
      * @ingroup Text Display
@@ -8270,7 +8270,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup XComponent
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_XCOMPONENT_BUFFER_QUEUE_SIZE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT + 5,
 
@@ -10521,7 +10521,7 @@ typedef enum {
      * .value[0].i32: text editor type {@link OH_ArkUI_TextEditorType}.
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_TYPE = 22031,
 
@@ -10537,7 +10537,7 @@ typedef enum {
      * .value[0].i32: The value <b>1</b> means to display the password icon, and <b>0</b> means the opposite.
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_PASSWORD_ICON = 22032,
 
@@ -10554,7 +10554,7 @@ typedef enum {
      * .value[1].string: hide icon image source.
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_ICON = 22033,
 
@@ -10573,7 +10573,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_FILL = 22034,
 
@@ -10594,7 +10594,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_TYPE = 22035,
 
@@ -10615,7 +10615,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_RULES = 22036,
 
@@ -10636,7 +10636,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_FILL_ANIMATION = 22037,
 
@@ -10656,7 +10656,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_UNDERLINE = 22038,
 
@@ -10689,7 +10689,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_UNDERLINE_COLOR = 22039,
 
@@ -10707,7 +10707,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CARET_STYLE = 22040,
 
@@ -10730,7 +10730,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECT_ALL = 22041,
 
@@ -10752,7 +10752,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_BLUR_ON_SUBMIT = 22042,
 
@@ -10768,7 +10768,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_RECT = 22043,
 
@@ -10791,7 +10791,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECTION_MENU_HIDDEN = 22044,
 
@@ -10814,7 +10814,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_SKIP_PREVIEW_LONG_PRESS = 22045,
 
@@ -10841,7 +10841,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CANCEL_BUTTON = 22046,
 
@@ -10873,7 +10873,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_COUNTER = 22047,
 
@@ -10894,7 +10894,7 @@ typedef enum {
      * <br>.string: The currently set input filter regex expression string.
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_INPUT_FILTER = 22048,
 
@@ -11843,7 +11843,7 @@ typedef enum {
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
      * <li>.value[0].i32: whether to support scrolling by pressing the left mouse button. 0: no; 1: yes.
-     * For API versions earlier than 26.2.0, the default value is 0. For API versions 26.2.0 and later,
+     * For API versions earlier than 26.1.0, the default value is 0. For API versions 26.1.0 and later,
      * the default value is 1 when the scrollable component scrolls horizontally, 0 otherwise.</li>
      * </ul>
      *
@@ -11912,7 +11912,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Scrollable Container Component
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_SCROLL_STATE = 1002030,
 
@@ -11935,7 +11935,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Scrollable Container Component
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_KEYBOARD = 1002031,
 
@@ -12059,7 +12059,7 @@ typedef enum {
      * version 15.</li>
      * <li>.value[4]?.i32: fast scroll mode for scrolling to a specified index. The parameter type is
      * {@link OH_ArkUI_FastScrollMode}, and the default value is <b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>.
-     * This parameter is valid only when .value[1]?.i32 is set to 1, and is supported since API version 26.2.0.</li>
+     * This parameter is valid only when .value[1]?.i32 is set to 1, and is supported since API version 26.1.0.</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component
@@ -13798,7 +13798,7 @@ typedef enum {
      * negative, it will offset further towards the top. This parameter is supported since API version 23.</li>
      * <li>.value[4]?.i32: fast scroll mode for scrolling to a specified index. The parameter type is
      * {@link OH_ArkUI_FastScrollMode}, and the default value is <b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>.
-     * This parameter is valid only when .value[1].i32 is set to 1, and is supported since API version 26.2.0.</li>
+     * This parameter is valid only when .value[1].i32 is set to 1, and is supported since API version 26.1.0.</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component
@@ -14309,7 +14309,7 @@ typedef enum {
      * negative, it will offset further towards the top.</li>
      * <li>.value[4]?.i32: fast scroll mode for scrolling to a specified index. The parameter type is
      * {@link OH_ArkUI_FastScrollMode}, and the default value is <b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>.
-     * This parameter is valid only when .value[1].i32 is set to 1, and is supported since API version 26.2.0.</li>
+     * This parameter is valid only when .value[1].i32 is set to 1, and is supported since API version 26.1.0.</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component
@@ -14547,7 +14547,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Calendarpicker
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
 
@@ -16922,7 +16922,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SCROLL = 22009,
 
@@ -16938,7 +16938,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SIZE_CHANGE = 22010,
 
@@ -16952,7 +16952,7 @@ typedef enum {
      * {@link ArkUI_NodeEvent} object by calling {@link OH_ArkUI_NodeEvent_GetStringAsyncEvent}.
      * <br>The **ArkUI_StringAsyncEvent.pStr** field contains the rejected characters as a UTF-8 string.
      * @ingroup Text Editor
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_INPUT_FILTER_ERROR = 22011,
 

@@ -621,7 +621,7 @@ typedef enum {
 /**
  * @brief 定义文本描边拐角样式枚举值。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /** 尖角连接，文本描边拐角处显示为尖角。*/

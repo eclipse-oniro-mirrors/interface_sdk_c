@@ -2864,7 +2864,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Visual [视效属性]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_LINEAR_GRADIENT_BLUR = 129,
 
@@ -3878,7 +3878,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_WIDTH = 1057,
 
@@ -3896,7 +3896,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_COLOR = 1058,
 
@@ -3914,7 +3914,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_JOIN_STYLE = 1059,
 
@@ -7756,7 +7756,7 @@ typedef enum {
      * </ul>
      *
      * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
     /**
@@ -9059,7 +9059,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_TYPE = 22031,
 
@@ -9077,7 +9077,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_PASSWORD_ICON = 22032,
 
@@ -9097,7 +9097,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_ICON = 22033,
 
@@ -9115,7 +9115,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_FILL = 22034,
 
@@ -9133,7 +9133,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_TYPE = 22035,
 
@@ -9151,7 +9151,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_RULES = 22036,
 
@@ -9169,7 +9169,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_FILL_ANIMATION = 22037,
 
@@ -9187,7 +9187,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_UNDERLINE = 22038,
 
@@ -9212,7 +9212,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_UNDERLINE_COLOR = 22039,
 
@@ -9230,7 +9230,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CARET_STYLE = 22040,
 
@@ -9249,7 +9249,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECT_ALL = 22041,
 
@@ -9268,7 +9268,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_BLUR_ON_SUBMIT = 22042,
 
@@ -9284,7 +9284,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_RECT = 22043,
 
@@ -9303,7 +9303,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECTION_MENU_HIDDEN = 22044,
 
@@ -9322,7 +9322,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_SKIP_PREVIEW_LONG_PRESS = 22045,
 
@@ -9346,7 +9346,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CANCEL_BUTTON = 22046,
 
@@ -9370,7 +9370,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      *
      */
     NODE_TEXT_EDITOR_SHOW_COUNTER = 22047,
@@ -9393,7 +9393,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_INPUT_FILTER = 22048,
 
@@ -9934,7 +9934,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32: 是否支持鼠标左键滚动。0：不支持；1：支持。
-     * API26.2.0版本之前，默认值为0。从API版本26.2.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
+     * API26.1.0版本之前，默认值为0。从API版本26.1.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
      * </ul>
      *
      * **返回值{@link ArkUI_AttributeItem}格式：**
@@ -9996,7 +9996,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_SCROLL_STATE = 1002030,
 
@@ -10015,7 +10015,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_SCROLL_ENABLE_SCROLL_WITH_KEYBOARD = 1002031,
 
@@ -10123,7 +10123,7 @@ typedef enum {
      * </li>
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。该参数从API version 15开始支持。</li>
      * <li>.value[4]?.i32 快速滚动模式，用于滚动到指定索引。参数类型为{@link OH_ArkUI_FastScrollMode}，默认为<b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>。
-     * 仅当.value[1]?.i32为1时有效，从API版本26.2.0开始支持。</li>
+     * 仅当.value[1]?.i32为1时有效，从API版本26.1.0开始支持。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
@@ -14220,7 +14220,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SCROLL = 22009,
 
@@ -14234,7 +14234,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SIZE_CHANGE = 22010,
 
@@ -14246,7 +14246,7 @@ typedef enum {
      * <br><b>ArkUI_StringAsyncEvent.pStr</b>字段包含被拒字符的UTF-8字符串。
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_INPUT_FILTER_ERROR = 22011,
 

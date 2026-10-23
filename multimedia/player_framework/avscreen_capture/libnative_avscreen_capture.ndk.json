@@ -213,7 +213,7 @@
         "type": "variable"
     },
     {
-        "first_introduced": "26.2.0",
+        "first_introduced": "26.1.0",
         "name": "OH_AVScreenCapture_StrategyForMicAEC"
     }
 ]

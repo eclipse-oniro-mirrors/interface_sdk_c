@@ -3379,7 +3379,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
  *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
     OH_ArkUI_ImageAttachment *imageAttachment, const char *imageTag);
@@ -3404,7 +3404,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
  *     <li>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is
  *     less than the minimum buffer size.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetImageTag(const OH_ArkUI_ImageAttachment *imageAttachment,
     int32_t bufferSize, char *buffer, int32_t *writeLength);
