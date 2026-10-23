@@ -25,7 +25,8 @@
 /**
  * @file context.h
  *
- * @brief Declare the common types for the context AbilityRuntime.
+ * @brief Provides the context data structure {@link AbilityRuntime_Context} and related APIs for obtaining
+ * information such as the app file path, data encryption level, and process name of the current context.
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -221,10 +222,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_Context_GetCloudFileDir(
     AbilityRuntime_ContextHandle context, char* buffer, const int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Obtain the area mode of the context.
+ * @brief Gets the data encryption level of the context.
  *
  * @param context The context to get the area mode from.
- * @param areaMode A pointer to the area mode.
+ * @param areaMode Pointer to receive the data encryption level.
  * @return The error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the areaMode is null.
@@ -235,10 +236,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_Context_GetAreaMode(
     AbilityRuntime_ContextHandle context, AbilityRuntime_AreaMode* areaMode);
 
 /**
- * @brief Set the area mode of the context.
+ * @brief Sets the data encryption level of the context.
  *
  * @param context The context to set the area mode for.
- * @param areaMode The area mode.
+ * @param areaMode Data encryption level.
  * @return The error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the areaMode is null.

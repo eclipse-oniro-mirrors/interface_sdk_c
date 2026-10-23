@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with License.
@@ -25,7 +25,14 @@
 /**
  * @file modular_object_dispatcher.h
  *
- * @brief Declare common types and interfaces for modular object dispatcher.
+ * @brief Declares the ModularObject dispatcher APIs, providing cross-process deferred binding
+ * invocation capabilities based on type library metadata.
+ * Through this module, developers can create a main service or sub-instance dispatcher from a
+ * remote Proxy object, query the type library metadata (interface/method/enum/struct) of the
+ * remote service, dynamically invoke remote methods by member ID (MemberID), and create and
+ * operate container types (Array/Vector/Set/Map) and structs.
+ *
+ * **File to include:** <AbilityKit/ability_runtime/modular_object_dispatcher.h>
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -45,18 +52,22 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher_TypeDescriptor.
+ * @brief Defines the type descriptor handle of the ModularObject dispatcher.
+ * The handle points to the access interface of the type library metadata, and can be used to query information
+ * such as interfaces, methods, enums, and structs defined by remote services.
+ * It can be obtained through {@link OH_AbilityRuntime_ModObjDispatcher_GetTypeDescriptor}. After use,
+ * it must be released through {@link OH_AbilityRuntime_TypeDescriptor_Release}.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher_TypeDescriptor*
     OH_AbilityRuntime_ModObjDispatcher_TypeDescriptorHandle;
 
- /**
-  * @brief Enumerates variant types.
-  *
-  * @since 26.0.0
-  */
+/**
+ * @brief Enumerates variant types.
+ *
+ * @since 26.0.0
+ */
 typedef enum {
     /**
      * @brief Empty value.
@@ -171,12 +182,18 @@ typedef enum {
 } OH_AbilityRuntime_ModObjDispatcher_ValueType;
 
 /**
- * @brief Defines the parameter type descriptor for modular object dispatcher.
- *
- * Describes the type of a parameter or return value using a tagged union.
-  * for array types, use u.arrayType.pElementType and u.arrayType.size;
-  * for vector/set types, use u.pElementType;
-  * for struct/proxy/stub/enum types, use u.idlType.
+ * @brief Defines the type information of a parameter or return value.
+ * Uses the tagged union u to describe the type information, and uses the vt field to determine which member of the
+ * union is valid.
+ * - For the map (MAP) type, use u.mapType.keyType to describe the key type and u.mapType.pValueType to describe the
+ * value type.
+ * - For the array (ARRAY) type, use u.arrayType.pElementType to describe the element type and u.arrayType.size to
+ * describe the fixed size of the array.
+ * - For the vector (VECTOR) or set (SET) type, use u.pElementType to describe the element type.
+ * - For the struct (STRUCT), remote communication object (IPC_REMOTE_PROXY, IPC_REMOTE_STUB), and enum (ENUM) types,
+ * use u.idlType to describe the IDL type name.
+ * After use, call {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfoClear} to release the heap resources held
+ * internally.
  *
  * @since 26.0.0
  */
@@ -199,9 +216,10 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
          */
         struct {
             /**
-             * @brief Key type of the map. Only basic types are supported.
-             *        Container types (ARRAY, VECTOR, SET, MAP) and complex types
-             *        (STRUCT, IPC_REMOTE_PROXY, IPC_REMOTE_STUB) are not supported.
+             * @brief key type of the map. Only basic types (BOOL, signed integer, unsigned integer,
+             *        floating-point number, STRING, and ENUM) are supported. Container types (ARRAY,
+             *        VECTOR, SET, and MAP) and complex types (STRUCT, IPC_REMOTE_PROXY, and IPC_REMOTE_STUB)
+             *        are not supported.
              *
              * @since 26.0.0
              */
@@ -212,7 +230,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
              *
              * @since 26.0.0
              */
-            OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pValueType;
+            struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pValueType;
         } mapType;
         /**
          * @brief Array type metadata.
@@ -242,7 +260,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
          *
          * @since 26.0.0
          */
-        OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pElementType;
+        struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pElementType;
         /**
          * @brief IDL type name string (heap-allocated).
          *         Used when vt is {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_STRUCT},
@@ -258,65 +276,106 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
 } OH_AbilityRuntime_ModObjDispatcher_TypeInfo;
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher.
+ * @brief Handle to a ModularObject dispatcher.
+ * This handle points to a ModularObject dispatcher instance.
+ * It can be created by {@link OH_AbilityRuntime_ModObjDispatcher_CreateMainServiceInstance} or
+ * {@link OH_AbilityRuntime_ModObjDispatcher_CreateSubInstance}, and must be released by
+ * {@link OH_AbilityRuntime_ModObjDispatcher_Release} after use.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher* OH_AbilityRuntime_ModObjDispatcherHandle;
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher_Array.
+ * @brief Array handle.
+ * This handle points to a fixed-size ordered collection of elements of the same type. It supports setting and
+ * obtaining elements by index and querying the array size.
+ * It can be created by {@link OH_AbilityRuntime_ModObjDispatcher_ArrayCreate} and must be released by
+ * {@link OH_AbilityRuntime_ModObjDispatcher_ArrayRelease} after use.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher_Array* OH_AbilityRuntime_ModObjDispatcher_ArrayHandle;
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher_Vector.
+ * @brief Vector handle.
+ * The handle points to a dynamic-sized ordered collection of elements of the same type,
+ * and supports adding elements, obtaining elements by index, querying the vector size, and clearing operations.
+ * It can be created through {@link OH_AbilityRuntime_ModObjDispatcher_VectorCreate}, and must be released through
+ * {@link OH_AbilityRuntime_ModObjDispatcher_VectorRelease} after use.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher_Vector* OH_AbilityRuntime_ModObjDispatcher_VectorHandle;
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher_Set.
+ * @brief Set handle.
+ * This handle points to an unordered set of unique elements of the same type. It supports adding elements,
+ * removing elements, querying whether a specified element exists, obtaining an element by index, querying
+ * the set size, and clearing the set.
+ * You can create it through {@link OH_AbilityRuntime_ModObjDispatcher_SetCreate}, and release it through
+ * {@link OH_AbilityRuntime_ModObjDispatcher_SetRelease} when it is no longer needed.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher_Set* OH_AbilityRuntime_ModObjDispatcher_SetHandle;
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher_Map.
+ * @brief Map handle.
+ * The handle points to an ordered collection of key-value pairs. The key and value types are specified at creation.
+ * It supports adding or updating key-value pairs, obtaining values by key, deleting key-value pairs, querying
+ * whether a specified key exists, obtaining keys or values by index, querying the map size, and clearing operations.
+ * Keys support only basic types (BOOL, signed integer, unsigned integer, floating-point number, STRING, ENUM).
+ * It can be created through {@link OH_AbilityRuntime_ModObjDispatcher_MapCreate}, and must be released through
+ * {@link OH_AbilityRuntime_ModObjDispatcher_MapRelease} after use.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher_Map* OH_AbilityRuntime_ModObjDispatcher_MapHandle;
 
 /**
- * @brief Defines a pointer to OH_AbilityRuntime_ModularObjectDispatcher_Struct.
+ * @brief Struct handle.
+ * The handle points to a struct instance with named fields, and the field types are defined by
+ * the type library metadata.
+ * It can be created by {@link OH_AbilityRuntime_ModObjDispatcher_StructCreate} and must be released by
+ * {@link OH_AbilityRuntime_ModObjDispatcher_StructRelease} after use.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectDispatcher_Struct* OH_AbilityRuntime_ModObjDispatcher_StructHandle;
 
 /**
- * @brief Defines a variant structure using union + type tag for ABI compatibility.
+ * @brief Defines a variant struct that uses a union with a type tag to distinguish the actual data type,
+ * for safely passing values of multiple types during parameter passing and return value receiving.
+ * The value of a variant is determined by the vt field, which specifies the actual stored data type and
+ * the valid member of the union.
+ * When a variant holds heap-allocated resources (such as strings and container handles), call
+ * {@link OH_AbilityRuntime_ModObjDispatcher_VariantClear}.
+ * Simple types (boolean, integer, and floating-point) do not hold heap resources and do not need to be
+ * released by calling OH_AbilityRuntime_ModObjDispatcher_VariantClear.
+ *
+ * > **NOTE**
+ * >
+ * > Do not call OH_AbilityRuntime_ModObjDispatcher_VariantClear on a shallow copy of the variant.
+ * > If Variant v2 = v1 is executed, only one of them can be cleared.
  *
  * @since 26.0.0
  */
 typedef struct {
     /**
-     * @brief Variant type.
+     * @brief Type tag of the variant, which determines the valid member in the union.
      * @since 26.0.0
      */
     OH_AbilityRuntime_ModObjDispatcher_ValueType vt;
     /**
-     * @brief Reserved field 1 for future use.
+     * @brief Reserved field 1. Reserved space for future versions. The caller should initialize it
+     * to 0 and should not read or modify it.
      * @since 26.0.0
      */
     uint64_t reserved1;
     /**
-     * @brief Reserved field 2 for future use.
+     * @brief Reserved field 2. Reserved space for future versions. The caller should initialize it
+     * to 0 and should not read or modify it.
      * @since 26.0.0
      */
     uint64_t reserved2;
@@ -326,12 +385,13 @@ typedef struct {
      */
     uint64_t reserved3;
     /**
-     * @brief Variant value data.
+     * @brief Reserved field 3. Reserved space for future versions. The caller should initialize it
+     * to 0 and should not read or modify it.
      * @since 26.0.0
      */
     union {
         /**
-         * @brief Empty value.
+         * @brief Void pointer.
          * @since 26.0.0
          */
         void *pvoidVal;
@@ -381,12 +441,12 @@ typedef struct {
          */
         uint64_t u64Val;
         /**
-         * @brief 32-bit floating point.
+         * @brief 32-bit floating-point number (single precision).
          * @since 26.0.0
          */
         float f32Val;
         /**
-         * @brief 64-bit floating point.
+         * @brief 64-bit floating-point number (double precision).
          * @since 26.0.0
          */
         double f64Val;
@@ -396,7 +456,7 @@ typedef struct {
          */
         int32_t enumVal;
         /**
-         * @brief String value (UTF-8) pointer.
+         * @brief UTF-8 string handle, pointing to a heap-allocated string.
          * @since 26.0.0
          */
         char* bstrVal;
@@ -439,7 +499,9 @@ typedef struct {
 } OH_AbilityRuntime_ModObjDispatcher_Variant;
 
 /**
- * @brief Defines a parameter structure for method invocation.
+ * @brief Defines the parameter structure for method invocation. rgvarg points to the array of parameter variants,
+ * and the array length is specified by cArgs. The parameter order must be consistent with the parameter order in
+ * the method definition.
  *
  * @since 26.0.0
  */

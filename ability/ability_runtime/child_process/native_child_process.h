@@ -17,17 +17,48 @@
  * @addtogroup ChildProcess
  * @{
  *
- * @brief Provides the APIs to manage child processes.
+ * @brief The module provides APIs to manage child processes. You can call the APIs to create a native child process
+ * and establish an IPC channel between the parent and child processes to implement multi-process application
+ * development.
+ * The created child process does not support the UI or the calling of context-related APIs.
+ * A maximum of 512 child processes can be started through this module and childProcessManager,
+ * and the child processes started by childProcessManager in SELF_FORK mode are not counted toward the total.
  *
- * @syscap SystemCapability.Ability.AbilityRuntime.Core
  * @since 12
  */
 
 /**
  * @file native_child_process.h
  *
- * @brief Declares the APIs used to create a native child process and establish an IPC channel between the parent and
- * child processes.
+ * @brief This module supports creating Native child processes and establishing IPC channels between parent and
+ * child processes. It is applicable to various scenarios where time-consuming tasks, high-risk operations, or
+ * independent business logic need to be isolated into independent processes. This module provides core capabilities
+ * such as process isolation, IPC communication, and flexible configuration, which can effectively improve
+ * application stability and security and prevent the main process from being blocked or crashing. Through
+ * the child process mechanism, developers can implement a multi-process architecture to run compute-intensive
+ * tasks, media processing, network requests, and other services independently, thereby improving application
+ * responsiveness and user experience.
+ *
+ * A maximum of 512 child processes can be started through this module and childProcessManager (non-SELF_FORK mode).
+ *
+ * **File to include:** <AbilityKit/native_child_process.h>
+ *
+ * ## Constraints
+ *
+ * ### Functional Limitations
+ *
+ * - The created child process does not support creating a UI.
+ * - The created child process does not support API calls that depend on Context (including the APIs of the Context
+ * module itself and APIs that take a Context instance as an input parameter).
+ * - Child processes can be created only in the main process. Creating a child process within a child process is not
+ * supported.
+ *
+ * ### Specification Limits
+ *
+ * - The total number of child processes started through the child process creation interfaces defined in this
+ * module and the child process creation interfaces defined in childProcessManager is up to 512 (when system
+ * resources are sufficient). Among them, child processes started by the startChildProcess interface in SELF_FORK
+ * mode are not counted in the total.
  *
  * @kit AbilityKit
  * @library libchild_process.so
@@ -177,8 +208,11 @@ typedef enum NativeChildProcess_IsolationMode {
 } NativeChildProcess_IsolationMode;
 
 /**
- * @brief The struct describes the configuration information about a child process, including the child process name
- * and the sharing mode of the data sandbox and network environment.
+ * @brief Configuration information for starting a child process, including the process name of the child process,
+ * the isolation mode (used to configure whether the data sandbox and network environment are shared or isolated),
+ * and whether the UID of the main process and the child process are isolated. Developers can use
+ * {@link OH_Ability_ChildProcessConfigs_SetProcessName}, {@link OH_Ability_ChildProcessConfigs_SetIsolationMode},
+ * and {@link OH_Ability_ChildProcessConfigs_SetIsolationUid} to modify the corresponding configuration information.
  * @since 20
  */
 typedef struct Ability_ChildProcessConfigs Ability_ChildProcessConfigs;
@@ -191,7 +225,7 @@ typedef struct Ability_ChildProcessConfigs Ability_ChildProcessConfigs;
  *      nullptr: An internal error occurs or memory allocation fails.
  * @since 20
  */
-Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
+Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs(void);
 
 /**
  * @brief Destroys a child process configuration object and releases its memory. After this function is called, do not
@@ -297,13 +331,16 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
  *      nullptr.
  * @param onProcessStarted Pointer to the callback function for notifying the child process startup result. The value
  *      cannot be nullptr. For details, see {@link OH_Ability_OnNativeChildProcessStarted}.
- * @return {@link NCP_NO_ERROR}: The call is successful, but the actual startup result is notified by the callback
- *      function.
- *      {@link NCP_ERR_INVALID_PARAM}: The dynamic library name or callback function pointer is invalid.
- *      {@link NCP_ERR_NOT_SUPPORTED}: The device does not support the creation of native child processes.
- *      {@link NCP_ERR_MULTI_PROCESS_DISABLED}: Multi-process mode is disabled on the device.
- *      {@link NCP_ERR_ALREADY_IN_CHILD}: A process cannot be created in a child process.
- *      {@link NCP_ERR_MAX_CHILD_PROCESSES_REACHED}: The number of native child processes reaches the maximum.
+ * @return <ul>
+ *      <li>{@link NCP_NO_ERROR} The call is successful, but the actual startup result is notified by the callback
+ *      function.</li>
+ *      <li>{@link NCP_ERR_INVALID_PARAM} The dynamic library name or callback function pointer is invalid.</li>
+ *      <li>{@link NCP_ERR_NOT_SUPPORTED} The device does not support the creation of native child processes.</li>
+ *      <li>{@link NCP_ERR_MULTI_PROCESS_DISABLED} Multi-process mode is disabled on the device.</li>
+ *      <li>{@link NCP_ERR_ALREADY_IN_CHILD} A process cannot be created in a child process.</li>
+ *      <li>{@link NCP_ERR_MAX_CHILD_PROCESSES_REACHED} The number of native child processes reaches the maximum.</li>
+ *      <li>{@link NCP_ERR_INTERNAL} If an internal error occurs, such as connect system service failed.</li>
+ *      </ul>
  *      For details, see {@link Ability_NativeChildProcess_ErrCode}.
  * @see OH_Ability_OnNativeChildProcessStarted
  * @since 12
@@ -330,6 +367,7 @@ int OH_Ability_CreateNativeChildProcess(const char* libName,
  *      <li>{@link NCP_ERR_ALREADY_IN_CHILD} if a process cannot be created in a child process.</li>
  *      <li>{@link NCP_ERR_MAX_CHILD_PROCESSES_REACHED} if the maximum number of native child processes has been
  *      reached.</li>
+ *      <li>{@link NCP_ERR_INTERNAL} If an internal error occurs, such as connect system service failed.</li>
  *      </ul>
  * @see OH_Ability_OnNativeChildProcessStarted
  * @since 20
@@ -343,21 +381,21 @@ Ability_NativeChildProcess_ErrCode OH_Ability_CreateNativeChildProcessWithConfig
  */
 typedef struct NativeChildProcess_Fd {
     /**
-     * Pointer to the name of the file descriptor. It contains a maximum of 20 characters.
+     * @brief Pointer to the name of the file descriptor. It contains a maximum of 20 characters.
      *
      * @since 13
      */
     char* fdName;
 
     /**
-     * Value of the file descriptor.
+     * @brief Value of the file descriptor.
      *
      * @since 13
      */
     int32_t fd;
 
     /**
-     * Pointer to the next file descriptor.
+     * @brief Pointer to the next file descriptor.
      *
      * @since 13
      */
@@ -365,13 +403,13 @@ typedef struct NativeChildProcess_Fd {
 } NativeChildProcess_Fd;
 
 /**
- * @brief The struct describes a list of file descriptors passed to the child process. The list can contain a maximum
- * of 16 entries.
+ * @brief Defines the list of file descriptor information passed to the child process. The number of
+ * file descriptor records must not exceed 16; exceeding the limit will cause the child process creation to fail.
  * @since 13
  */
 typedef struct NativeChildProcess_FdList {
     /**
-     * Pointer to the first file descriptor in the linked list passed to the child process.
+     * @brief Pointer to the first file descriptor in the linked list passed to the child process.
      *
      * @since 13
      */
@@ -384,14 +422,14 @@ typedef struct NativeChildProcess_FdList {
  */
 typedef struct NativeChildProcess_Options {
     /**
-     * Isolation mode of the child process.
+     * @brief Isolation mode of the child process.
      *
      * @since 13
      */
     NativeChildProcess_IsolationMode isolationMode;
 
     /**
-     * Reserved for future use.
+     * @brief Reserved for future use.
      *
      * @since 13
      */
@@ -404,14 +442,14 @@ typedef struct NativeChildProcess_Options {
  */
 typedef struct NativeChildProcess_Args {
     /**
-     * Pointer to the entry parameters. The size cannot exceed 150 KB.
+     * @brief Pointer to the entry parameters. The size cannot exceed 150 KB.
      *
      * @since 13
      */
     char* entryParams;
 
     /**
-     * List of file descriptors passed to the child process.
+     * @brief List of file descriptors passed to the child process.
      *
      * @since 13
      */
@@ -489,7 +527,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcessWithConfigs
  * @return Pointer to the startup parameters of the child process.
  * @since 17
  */
-NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs(void);
 
 /**
  * @brief Defines a callback to listen for child process exit.

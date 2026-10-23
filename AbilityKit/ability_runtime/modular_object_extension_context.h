@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @addtogroup AbilityRuntime
  * @{
  *
@@ -25,7 +25,10 @@
 /**
  * @file modular_object_extension_context.h
  *
- * @brief Declares the modular object extension context.
+ * @brief Declares the context APIs of ModularObjectExtensionAbility, including starting a UIAbility,
+ * destroying the ModularObjectExtensionAbility itself, and creating and destroying IPC objects.
+ *
+ * **File to include:** <AbilityKit/ability_runtime/modular_object_extension_context.h>
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -47,7 +50,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a pointer type to OH_AbilityRuntime_ModObjExtensionContextHandle.
+ * @brief Represents the handle to the ModularObjectExtensionAbility context.
  *
  * @since 26.0.0
  */

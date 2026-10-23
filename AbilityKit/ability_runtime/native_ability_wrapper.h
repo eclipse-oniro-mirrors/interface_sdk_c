@@ -25,7 +25,10 @@
 /**
  * @file native_ability_wrapper.h
  *
- * @brief Declares the native ability wrapper APIs.
+ * @brief Provides the NativeAbility data information APIs for obtaining the Ability instance ID,
+ * Ability name, and napi_env.
+ *
+ * **File to include:** <AbilityKit/ability_runtime/native_ability_wrapper.h>
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -45,14 +48,15 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the AbilityRuntime_NativeAbilityWrapper structure type.
+ * @brief Defines the AbilityRuntime_NativeAbilityWrapper struct type, which is used to
+ * encapsulate the information about {@link UIAbility}.
  *
  * @since 26.0.0
  */
 typedef struct AbilityRuntime_NativeAbilityWrapper AbilityRuntime_NativeAbilityWrapper;
 
 /**
- * @brief Get ability instance ID from NativeAbilityWrapper.
+ * @brief Obtains the Ability instance ID from the NativeAbility data information.
  *
  * @param nativeAbilityWrapper The native ability wrapper pointer.
  * @param buffer A pointer to a buffer that receives the instance ID string which is UUID format,
@@ -68,7 +72,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetAbilityInstanceId(
     const AbilityRuntime_NativeAbilityWrapper* nativeAbilityWrapper, char* buffer, const int32_t bufferSize);
 
 /**
- * @brief Get ability name from NativeAbilityWrapper.
+ * @brief Obtains the ability name from the NativeAbility data information.
  *
  * @param nativeAbilityWrapper The native ability wrapper pointer.
  * @param buffer A pointer to a buffer that receives the ability name.
@@ -89,7 +93,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetAbilityName(
     int32_t *writeLength);
 
 /**
- * @brief Get napi_env from NativeAbilityWrapper.
+ * @brief Obtains the napi_env from the NativeAbility data information.
  *
  * @param nativeAbilityWrapper The native ability wrapper pointer.
  * @param env A pointer to the receive napi_env value. napi_env is valid until the process terminates.
