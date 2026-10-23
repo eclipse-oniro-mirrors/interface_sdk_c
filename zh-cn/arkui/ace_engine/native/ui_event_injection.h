@@ -20,7 +20,7 @@
  * @brief 在Native侧提供ArkUI的UI控制能力，适用于应用内智能体和UI自动化场景，
  * 支持向指定UI节点注入控制命令。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -32,7 +32,7 @@
  * @include <arkui/ui_event_injection.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef ARKUI_NATIVE_UI_EVENT_INJECTION_H
@@ -55,13 +55,13 @@ extern "C" {
  * 所有注入接口共用此枚举，包括宽松交互注入（非精确）和面向指定组件的精确注入。
  * 非零结果码表示执行失败，其具体值表示失败原因。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief 注入的命令执行成功。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_SUCCESS = 0,
     /**
@@ -69,7 +69,7 @@ typedef enum {
      *
      * 例如，点击坐标未命中任何组件，或无法定位执行模式所需的目标。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_TARGET_NOT_FOUND = 1,
     /**
@@ -77,13 +77,13 @@ typedef enum {
      *
      * 命令结构有效，但当前UI状态不支持该命令的类型或执行模式。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_COMMAND_NOT_SUPPORTED = 2,
     /**
      * @brief 注入的命令被用户操作中断。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_INTERRUPTED_BY_USER = 3,
 } OH_ArkUI_NativeModule_UIEventInjection_ResultCode;
@@ -99,7 +99,7 @@ typedef enum {
  * @param userData [in] 注入时传入的自定义用户数据指针。如果注入时传入NULL，则此处为NULL。
  *        框架仅保存指针值以供此回调使用，不访问该指针指向的数据，也不复制、释放该数据或接管其所有权。
  *        请求受理后，调用方必须保持非NULL数据有效，直到回调返回。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
     OH_ArkUI_NativeModule_UIEventInjection_ResultCode result, void *userData);
@@ -136,7 +136,7 @@ typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
  *     可在回调中再次提交命令，仍需满足参数和UI线程要求。被拒绝的请求可在限制解除后重试，
  *     能否受理仍取决于进程内的其他请求。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIEventInjectCompositeCommand(
     ArkUI_ContextHandle uiContext,

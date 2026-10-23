@@ -19,7 +19,7 @@
  * @{
  *
  * @brief Provides group-scoped shared memory and named semaphore interfaces.
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 /**
@@ -29,7 +29,7 @@
  * @include <sys/group_ipc.h>
  * @library libc.so
  * @kit CStandardLibrary
- * @since 26.2.0
+ * @since 26.1.0
  */
 
 #ifndef _SYS_GROUP_IPC_H
@@ -40,7 +40,7 @@
 
 /**
  * @brief Requests the gid_t definition required by this header.
- * @since 26.2.0
+ * @since 26.1.0
  */
 #define __NEED_gid_t
 #include <bits/alltypes.h>
@@ -69,7 +69,7 @@ extern "C" {
  *     EACCES, EEXIST, EINVAL, ENAMETOOLONG, ENOENT, ENOTDIR, EMFILE, or ENOMEM.
  *     No module-specific error codes are defined.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 sem_t *group_sem_open(const char *name, int flags, gid_t gid, ...);
 
@@ -90,7 +90,7 @@ sem_t *group_sem_open(const char *name, int flags, gid_t gid, ...);
  *     EPERM, EINVAL, ENAMETOOLONG, ENOENT, ENOTDIR, or EROFS. No module-specific error codes
  *     are defined.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 int group_sem_unlink(const char *name, gid_t gid);
 
@@ -113,7 +113,7 @@ int group_sem_unlink(const char *name, gid_t gid);
  *     EEXIST, EINVAL, ENAMETOOLONG, ENOENT, ENOTDIR, ELOOP, EMFILE, or ENFILE.
  *     No module-specific error codes are defined.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 int group_shm_open(const char *name, int flag, mode_t mode, gid_t gid);
 
@@ -134,7 +134,7 @@ int group_shm_open(const char *name, int flag, mode_t mode, gid_t gid);
  *     EPERM, EINVAL, ENAMETOOLONG, ENOENT, ENOTDIR, or EROFS. No module-specific error codes
  *     are defined.</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 int group_shm_unlink(const char *name, gid_t gid);
 

@@ -293,49 +293,49 @@ typedef enum {
     /**
      * @brief 上一次命令未完成。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
     /**
      * @brief 未找到目标节点。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
     /**
      * @brief 结果数据过大。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
     /**
      * @brief 资源已耗尽。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
     /**
      * @brief 节点ID重复。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_DUPLICATE_NODE_ID = 106413,
     /**
      * @brief 部分集合项失败。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED = 106414,
     /**
      * @brief 集合项未找到。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND = 106415,
     /**
      * @brief 集合项已被取出使用。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN = 106416,
     /**

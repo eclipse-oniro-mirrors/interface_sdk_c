@@ -2071,55 +2071,55 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float*
 /**
  * @brief Enumerates the gradient directions for linear gradient blur.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Linear gradient blur from right to left.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT = 0,
     /**
      * @brief Linear gradient blur from bottom to top.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_TOP = 1,
     /**
      * @brief Linear gradient blur from left to right.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT = 2,
     /**
      * @brief Linear gradient blur from top to bottom.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM = 3,
     /**
      * @brief Linear gradient blur from lower right to upper left.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_TOP = 4,
     /**
      * @brief Linear gradient blur from upper right to lower left.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_LEFT_BOTTOM = 5,
     /**
      * @brief Linear gradient blur from lower left to upper right.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_TOP = 6,
     /**
      * @brief Linear gradient blur from upper left to lower right.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_RIGHT_BOTTOM = 7,
 } OH_ArkUI_LinearGradientBlurDirection;
@@ -2133,7 +2133,7 @@ typedef enum {
  * at position 0 and blur value 0 at position 1, meaning no blur across the entire gradient),
  * direction = {@link OH_ARKUI_LINEAR_GRADIENT_BLUR_DIRECTION_BOTTOM}.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_LinearGradientBlurOptions OH_ArkUI_LinearGradientBlurOptions;
 
@@ -2144,7 +2144,7 @@ typedef struct OH_ArkUI_LinearGradientBlurOptions OH_ArkUI_LinearGradientBlurOpt
  *     The caller owns the returned object and must release it with
  *     {@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy}.
  * @release OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy {return}
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_ArkUI_LinearGradientBlurOptions* OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create(void);
 
@@ -2155,7 +2155,7 @@ OH_ArkUI_LinearGradientBlurOptions* OH_ArkUI_NativeModule_LinearGradientBlurOpti
  *     returned by {@link OH_ArkUI_NativeModule_LinearGradientBlurOptions_Create}. Passing <b>NULL</b> has no effect.
  *     After this function returns for a non-NULL handle, the handle is invalid, is not
  *     reference-counted, and must not be used or destroyed again.
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy(OH_ArkUI_LinearGradientBlurOptions *options);
 
@@ -2170,7 +2170,7 @@ void OH_ArkUI_NativeModule_LinearGradientBlurOptions_Destroy(OH_ArkUI_LinearGrad
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options is null, blurRadius is negative,
  *         or blurRadius is NaN.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius(
     OH_ArkUI_LinearGradientBlurOptions *options, float blurRadius);
@@ -2184,7 +2184,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetBlurRadius(
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options or blurRadius is null.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius(
     const OH_ArkUI_LinearGradientBlurOptions *options, float *blurRadius);
@@ -2209,7 +2209,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetBlurRadius(
  *         monotonically increasing, or any element in fractionStops is NaN or is outside
  *         the range [0.0, 1.0].</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops(
     OH_ArkUI_LinearGradientBlurOptions *options, const float *fractionStops, int32_t stopsLength);
@@ -2234,7 +2234,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetFractionStops
  *         <li>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if stopsSize is less than the
  *         actual fractionStops count.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops(
     const OH_ArkUI_LinearGradientBlurOptions *options, float *fractionStops, int32_t stopsSize, int32_t *writeLength);
@@ -2250,7 +2250,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetFractionStops
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options is null or direction
  *         is not a valid enum value.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection(
     OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection direction);
@@ -2264,7 +2264,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_SetDirection(
  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if options or direction is null.</li>
  *         </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_LinearGradientBlurOptions_GetDirection(
     const OH_ArkUI_LinearGradientBlurOptions *options, OH_ArkUI_LinearGradientBlurDirection *direction);

@@ -3172,7 +3172,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
     OH_ArkUI_ImageAttachment *imageAttachment, const char *imageTag);
@@ -3197,7 +3197,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
  *     <li>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetImageTag(const OH_ArkUI_ImageAttachment *imageAttachment,
     int32_t bufferSize, char *buffer, int32_t *writeLength);

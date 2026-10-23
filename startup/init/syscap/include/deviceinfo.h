@@ -355,7 +355,7 @@ const char *OH_GetDistributionOSReleaseType(void);
  *         <li>201 if the caller does not have ohos.permission.ACCESS_DISK_PHY_INFO.</li>
  *         </ul>
  * @permission ohos.permission.ACCESS_DISK_PHY_INFO
- * @since 26.2.0
+ * @since 26.1.0
  */
 int32_t OH_GetDiskSN(char *diskSn);
  
@@ -363,7 +363,7 @@ int32_t OH_GetDiskSN(char *diskSn);
  * @brief Obtains the Open device identifier.
  *
  * @return Returns the Open device identifier.
- * @since 26.2.0
+ * @since 26.1.0
  */
 const char *OH_GetOdid(void);
 

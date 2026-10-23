@@ -2135,7 +2135,7 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
  * @brief Adds a listener for key events. Only the initial addition takes effect. Subsequent attempts will be ignored.
  *
  * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
- * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] Callback used to receive key events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the key event listener is added successfully.</li>
@@ -2154,7 +2154,7 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  * not take effect.
  *
  * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
- * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] Callback used to receive mouse events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the mouse event listener is added successfully.</li>
@@ -2170,7 +2170,7 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
  * @brief Adds a listener for touch input events.
  *
  * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
- * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] Callback used to receive touch events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the touch event listener is added successfully.</li>
@@ -2187,7 +2187,7 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
  * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
- * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] Callback used to receive axis events.
  * @return <ul>
  *         <li>{@link INPUT_SUCCESS} if the axis event listener is added successfully.</li>
@@ -2204,7 +2204,7 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
  * {@link oh_axis_type.h#InputEvent_AxisEventType}.
  *
  * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
- * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.2.0]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param axisEventType [in] Axis event type, which is defined in {@link oh_axis_type.h#InputEvent_AxisEventType}.
  * @param callback [in] Callback used to receive axis events of a specified type.
  * @return <ul>
@@ -2763,7 +2763,7 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
  * @brief Obtains the coordinates of the mouse pointer on the current screen.
  * <br>Since API version 26.0.0, non-focused applications that have the ohos.permission.INPUT_DEVICE_CONFIGURATOR
  * permission can call this API.
- * <br>Since API version 26.2.0, on PC devices, there are no longer focus or permission requirements for applications.
+ * <br>Since API version 26.1.0, on PC devices, there are no longer focus or permission requirements for applications.
  *
  * @param displayId [out] Screen ID of the current screen.
  * @param displayX [out] X coordinate of the mouse on the current screen, in px.

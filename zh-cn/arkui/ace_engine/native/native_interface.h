@@ -74,34 +74,34 @@ typedef enum {
  * 可通过{@link OH_ArkUI_NativeModule_SetRuntimeCheckMode}为每种检查类型
  * 独立配置运行时检查模式，检查失败时的行为由所配置的运行时检查模式决定，模式取值见{@link OH_ArkUI_NativeModule_RuntimeCheckMode}。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief UI线程检查类型：部分ArkUI C API要求必须在UI线程调用，
      * 此类型用于检测这些API是否被非UI线程调用。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_UI_THREAD = 0,
     /**
      * @brief 节点销毁检查类型：检测传递给C API的ArkUI_NodeHandle是否已经被销毁。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1,
     /**
      * @brief 属性匹配检查类型：检测传递给SetAttribute/GetAttribute/ResetAttribute的
      * ArkUI_NodeAttributeType是否与节点实际组件类型匹配。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
     /**
      * @brief 多线程竞争检查类型：检测调用多线程API时，是否已有其他线程
      * 正在操作同一棵组件树。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;
@@ -117,25 +117,25 @@ typedef enum {
  * 以release模式编译的应用（DevEco Studio中Release构建，用于正式发布）
  * 默认为{@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED}。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief  禁用指定的运行时检查。C API行为与引入该检查之前一致。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED = 0,
     /**
      * @brief 打印诊断日志（检查类型、API名称、原因、native堆栈）并继续C API调用。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_LOG = 1,
     /**
      * @brief 打印诊断日志并立即终止应用程序。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH = 2
 } OH_ArkUI_NativeModule_RuntimeCheckMode;
@@ -201,7 +201,7 @@ const char* OH_ArkUI_NativeModule_GetErrorMessage();
  *     <ul><li>设置更新成功返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     </li><li>checkType或mode无效时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li></ul>
  *  *     返回无效参数错误时，保留之前的设置。
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(
     OH_ArkUI_NativeModule_RuntimeCheckType checkType, OH_ArkUI_NativeModule_RuntimeCheckMode mode);

@@ -631,7 +631,7 @@ typedef enum OH_CloudDisk_CallbackType {
     /**
      * @brief Fetch range data for read.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA = 3
 } OH_CloudDisk_CallbackType;
@@ -711,31 +711,31 @@ typedef struct OH_CloudDisk_DehydrateInfo {
 /**
  * @brief A struct that encapsulates the fetch range data request information.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_CloudDisk_FetchRangeDataRequest {
     /**
      * @brief Relative file path in the sync root path.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     CloudDisk_PathInfo filePath;
     /**
      * @brief Start offset of the fetched range data, in bytes.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     uint64_t offset;
     /**
      * @brief Size of the fetched range data, in bytes.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     uint64_t size;
     /**
      * @brief The data that needs to be read.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_CloudDisk_DataBuf *data;
 } OH_CloudDisk_FetchRangeDataRequest;
@@ -791,7 +791,7 @@ typedef union OH_CloudDisk_CallbackContext {
      * @brief Fetch range data request. It takes effect when callbackType is
      * {@link OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_CloudDisk_FetchRangeDataRequest *fetchRangeData;
 } OH_CloudDisk_CallbackContext;

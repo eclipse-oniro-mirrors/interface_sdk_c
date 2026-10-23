@@ -917,7 +917,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVS
  * 默认是false。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入value为无效值。
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
     OH_AVScreenCapture_CaptureStrategy *strategy, bool enable);
