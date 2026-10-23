@@ -126,7 +126,7 @@ extern const char* VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL;
 extern const char* VIDEO_METADATA_GENERATOR_STYLE_CONTROL;
 
 /**
- * @brief Video color space information structure of querying if video color space conversion is supported.
+ * @brief The struct describes the color space information of video processing.
  *
  * @see OH_VideoProcessing_IsColorSpaceConversionSupported
  * @since 12
