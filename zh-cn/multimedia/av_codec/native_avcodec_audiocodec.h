@@ -264,7 +264,7 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param secureAudio 是否使用安全解码器。使用安全解码器为true,否则为false。
  *     <br>注意：当前音频解密尚不支持使用安全解码器。
  * @return {@link AV_ERR_OK}：执行成功。
- *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效，mediaKeySystemInfo实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效，mediaKeySession实例为nullptr或无效。
  *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
  *     <br>{@link AV_ERR_NO_MEMORY}：请求内存失败。
  * @since 12
