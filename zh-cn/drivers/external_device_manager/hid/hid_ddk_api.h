@@ -60,7 +60,7 @@ extern "C" {
  *     <br>2. 入参hidEventProperties为空指针；3. properties的长度超过7；4. hidEventTypes的长度超过5；
  *     <br>5. hidKeys的长度超过100；6. hidAbs的长度超过26；7.hidRelBits的长度超过13；
  *     <br>8. hidMiscellaneous的长度超过6。
- *     <br>{@link HID_DDK_FAILURE} 设备数量达到最大值200。
+ *     <br>{@link HID_DDK_FAILURE} 设备数量达到最大值200。可能的原因：1.虚拟设备数量超过上限 2.设备ID生成失败。
  * @since 11
  * @version 1.0
  */
@@ -80,7 +80,7 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  *     <br>{@link HID_DDK_NO_PERM} 权限校验失败。请确保应用已声明ohos.permission.ACCESS_DDK_HID权限。
  *     <br>{@link HID_DDK_INVALID_OPERATION} 连接HID DDK服务失败或者调用方不是设备的创建者。请确保调用了OH_Hid_Init完成初始化，且调用方是设备的创建者。
  *     <br>{@link HID_DDK_INVALID_PARAMETER} 参数校验失败。可能的原因：1.设备ID小于0；2.入参length长度超过7；3.入参items为空指针。请检查参数有效性。
- *     <br>{@link HID_DDK_NULL_PTR} 对应设备的注入为空。请确保使用OH_Hid_CreateDevice返回的有效设备ID，且设备未被销毁。
+ *     <br>{@link HID_DDK_NULL_PTR} 对应设备的注入为空。可能的原因：1.设备对象为空；2.设备不存在。请确保使用OH_Hid_CreateDevice返回的有效设备ID，且设备未被销毁。
  * @since 11
  * @version 1.0
  */
