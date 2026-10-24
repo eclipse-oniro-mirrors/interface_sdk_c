@@ -30,8 +30,9 @@
  * layer. It provides rich style configuration and data‑linkage capabilities for you to flexibly construct diverse
  * selection interactions.
  *
- * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/node_attributes/picker.h>
+ * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12
  */

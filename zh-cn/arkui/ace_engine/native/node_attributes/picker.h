@@ -29,8 +29,9 @@
  * 适用于需要在原生层实现滚动选择功能的场景，
  * 提供了丰富的样式配置和数据联动能力，帮助开发者灵活构建各类选择交互。
  *
- * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/node_attributes/picker.h>
+ * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12
  */
