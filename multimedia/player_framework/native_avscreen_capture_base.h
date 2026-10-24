@@ -752,6 +752,29 @@ typedef void (*OH_AVScreenCapture_OnPrivacyProtect)(OH_AVScreenCapture* capture,
 */
 extern const char *OH_SCREEN_CAPTURE_CONTENT_RECT;
 
+/**
+ * @brief Scene Enumeration for Auto Pause Screen Capture.
+ * @since 26.1.0
+ */
+typedef enum OH_AVScreenCapture_AutoPauseCaptureSceneEnum {
+    /**
+     * @brief Default value, indicating that auto-pause is not performed in any scenario.
+     * @since 26.1.0
+     */
+    OH_CAPTURE_AUTO_PAUSE_SCENE_NONE = 0,
+
+    /**
+     * @brief Scene for the folding status of the screen changes.
+     * @since 26.1.0
+     */
+    OH_CAPTURE_AUTO_PAUSE_SCENE_SCREEN_FOLD_STATE_CHANGE = 1 << 0,
+};
+
+/**
+ * @brief Conditional set declaration for auto pause screen capture.
+ * @since 26.1.0
+ */
+typedef uint32_t OH_AVScreenCapture_AutoPauseSceneSet;
 #ifdef __cplusplus
 }
 #endif
