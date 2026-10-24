@@ -215,5 +215,9 @@
     {
         "first_introduced": "26.1.0",
         "name": "OH_AVScreenCapture_StrategyForMicAEC"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AVScreenCapture_StrategyForHDRCapture"
     }
 ]
