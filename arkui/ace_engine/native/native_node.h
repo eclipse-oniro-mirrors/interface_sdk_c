@@ -20274,7 +20274,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node,
  * @param enable [in] Whether to enable Dvsync. The value true enables Dvsync, and false disables Dvsync.
  * @return Returns the result.
  *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} The operation is successful.
- *     </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR} Failed to initialize the CAPI.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} Failed to initialize the CAPI.
  *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} The function parameter is invalid.</li></ul>
  * @since 26.0.1
  */
