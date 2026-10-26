@@ -17133,7 +17133,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node,
  * @param enable [入参] 是否启用Dvsync，取值为true时开启Dvsync，取值为false时关闭Dvsync。
  * @return 返回结果。
  * <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR}成功。
- * </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
+ * </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
  * </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。</li></ul>
  * @since 26.0.1
  */
