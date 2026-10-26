@@ -200,8 +200,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserve
  *
  * After this call completes, the associated callback is no longer invoked.
  *
- * This function is thread-safe, can be called from any thread, does not block the caller, and is
- * not async-signal-safe.
+ * This function is not thread-safe and can not be called in non-main threads.
  *
  * @param registerID [in] Registration ID returned by a successful registration.
  * @return <ul>
