@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建、销毁、树节点操作、属性设置、事件监听等。
  *
  * @since 12
  */
@@ -26,7 +25,7 @@
 /**
  * @file native_interface.h
  *
- * @brief Provides a unified entry for the native module APIs.
+ * @brief 提供NativeModule接口的统一入口函数。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -46,18 +45,18 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the native API types.
+ * @brief 定义Native接口集合类型。
  *
  * @since 12
  */
 typedef enum {
-    /** API related to UI components. For details, see the struct definition in <arkui/native_node.h>. */
+    /** UI组件相关接口类型，详见{@link native_node.h}中的{@link 结构体}类型定义。 */
     ARKUI_NATIVE_NODE,
-    /** API related to dialog boxes. For details, see the struct definition in <arkui/native_dialog.h>. */
+    /** 弹窗相关接口类型，详见{@link native_dialog.h}中的{@link 结构体}类型定义。 */
     ARKUI_NATIVE_DIALOG,
-    /** API related to gestures. For details, see the struct definition in <arkui/native_gesture.h>. */
+    /** 手势相关接口类型，详见{@link native_gesture.h}中的{@link 结构体}类型定义。 */
     ARKUI_NATIVE_GESTURE,
-    /** API related to animations. For details, see the struct definition in <arkui/native_animate.h>.*/
+    /** 动画相关接口类型，详见{@link native_animate.h}中的{@link 结构体}类型定义。*/
     ARKUI_NATIVE_ANIMATE,
     /**
      * 多线程UI组件相关接口类型，详见{@link native_node.h}中的{@link 结构体}类型定义。
@@ -140,13 +139,12 @@ typedef enum {
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH = 2
 } OH_ArkUI_NativeModule_RuntimeCheckMode;
 /**
- * @brief Obtains the native API set of a specified type.
+ * @brief 需调用该函数初始化C-API环境，并获取指定类型的Native模块接口集合。
  *
- * @param type Indicates the type of the native API set provided by ArkUI, for example, <b>ARKUI_NATIVE_NODE</b>
- * and <b>ARKUI_NATIVE_GESTURE</b>.
- * @param structName Indicates the name of a native struct defined in the corresponding header file, for example,
- * <b>ArkUI_NativeNodeAPI_1</b> in <arkui/native_node.h>.
- * @return Returns the pointer to the abstract native API, which can be used after being converted into a specific type.
+ * @param type 表示ArkUI提供的Native接口集合大类，例如<b>ARKUI_NATIVE_NODE</b>、<b>ARKUI_NATIVE_GESTURE</b>。
+ * @param structName 表示Native接口结构体的名称，可通过查询对应头文件内的结构体定义获取，
+ * 例如<arkui/native_node.h>中的<b>ArkUI_NativeNodeAPI_1</b>。
+ * @return 返回Native接口抽象指针，在转换为具体类型后进行使用。
  * @code {.cpp}
  * #include<arkui/native_interface.h>
  * #include<arkui/native_node.h>
@@ -207,7 +205,8 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(
     OH_ArkUI_NativeModule_RuntimeCheckType checkType, OH_ArkUI_NativeModule_RuntimeCheckMode mode);
 
 /**
- * @brief Obtains the macro function corresponding to a struct pointer based on the struct type.
+ * @brief 初始化C-API环境，并基于结构体类型获取对应结构体指针。
+ * 适用于已确定Native接口集合类型和接口结构体类型，需要获取具体Native接口结构体指针以调用ArkUI Native C API的场景。
  *
  * @code {.cpp}
  * #include<arkui/native_interface.h>

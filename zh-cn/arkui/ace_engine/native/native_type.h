@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建、销毁、树节点操作、属性设置、事件监听等。
  *
  * @since 12
  */
@@ -26,7 +25,7 @@
 /**
  * @file native_type.h
  *
- * @brief Defines the common types for the native module.
+ * @brief 提供NativeModule公共的类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -363,18 +362,18 @@ typedef enum {
 } ArkUI_SwiperAnimationMode;
 
 /**
- * @brief Enumerates the accessibility modes.
+ * @brief 定义无障碍辅助服务模式。
  *
  * @since 12
  */
 typedef enum {
-    /** Whether the component can be identified by the accessibility service is dependent on the component. */
+    /** 根据组件不同会转换为“enabled”或者“disabled”。 */
     ARKUI_ACCESSIBILITY_MODE_AUTO = 0,
-    /** The component can be identified by the accessibility service. */
+    /** 当前组件可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_ENABLED,
-    /** The component cannot be identified by the accessibility service. */
+    /** 当前组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED,
-    /** The component and all its child components cannot be identified by the accessibility service. */
+    /** 当前组件及其所有子组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS,
 } ArkUI_AccessibilityMode;
 
@@ -423,14 +422,14 @@ typedef enum {
 } ArkUI_ColorMode;
 
 /**
- * @brief Enumerates the system color modes.
+ * @brief 定义系统深浅色模式。
  *
  * @since 12
  */
 typedef enum {
-    /** Light color mode. */
+    /** 浅色模式。 */
     ARKUI_SYSTEM_COLOR_MODE_LIGHT = 0,
-    /** Dark color mode. */
+    /** 深色模式。 */
     ARKUI_SYSTEM_COLOR_MODE_DARK,
 } ArkUI_SystemColorMode;
 
@@ -708,15 +707,15 @@ typedef enum {
 } ArkUI_BlendApplyType;
 
 /**
- * @brief Enumerates the animation onFinish callback types.
+ * @brief 在动画中定义{@link OH_ArkUI_AnimatorOption_RegisterOnFinishCallback}回调的类型。
  *
  * @since 12
  */
 typedef enum {
-    /** The callback is invoked when the entire animation is removed once it has finished. */
+    /** 当整个动画结束并立即删除时，将触发回调。 */
     ARKUI_FINISH_CALLBACK_REMOVED = 0,
-    /** The callback is invoked when the animation logically enters the falling state, though it may still be in its
-      * long tail state. */
+    /** 当动画在逻辑上已完成，但可能仍处于其长尾状态时，将触发回调。长尾状态是指动画即将完全停止前的
+      * 残余变化过程，此时动画的数值变化已非常微小，接近目标值。 */
     ARKUI_FINISH_CALLBACK_LOGICALLY,
 } ArkUI_FinishCallbackType;
 
@@ -858,14 +857,14 @@ typedef enum {
 } ArkUI_AnimationFillMode;
 
 /**
- * @brief Defines the state type for the accessibility checkbox.
+ * @brief 定义无障碍复选框状态类型枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** The Checkbox unchecked. */
+    /** 复选框未被选中。 */
     ARKUI_ACCESSIBILITY_UNCHECKED = 0,
-    /** The Checkbox checked. */
+    /** 复选框被选中。 */
     ARKUI_ACCESSIBILITY_CHECKED,
 } ArkUI_AccessibilityCheckedState;
 
@@ -890,20 +889,20 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
- * @brief Define accessible action types.
+ * @brief 定义无障碍操作类型。
  *
  * @since 12
  */
 typedef enum {
-    /** click action. */
+    /** 点击操作。 */
     ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
-    /** long click action. */
+    /** 长按操作。 */
     ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
-    /** cut action. */
+    /** 剪切操作。 */
     ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
-    /** copy action. */
+    /** 复制操作。 */
     ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
-    /** paste action. */
+    /** 粘贴操作。 */
     ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
 } ArkUI_AccessibilityActionType;
 
@@ -964,38 +963,38 @@ typedef struct {
 } ArkUI_RotationOptions;
 
 /**
- * @brief Defines the state of the NavDestination component.
+ * @brief 定义NavDestination组件的状态，用于描述NavDestination在导航过程中的生命周期状态变化。
  *
  * @since 12
  */
 typedef enum {
-    /** The NavDestination show. */
+    /** NavDestination组件显示。 */
     ARKUI_NAV_DESTINATION_STATE_ON_SHOW = 0,
-    /** The NavDestination hide. */
+    /** NavDestination组件隐藏。 */
     ARKUI_NAV_DESTINATION_STATE_ON_HIDE = 1,
-    /** The NavDestination is mounted to the component tree. */
+    /** NavDestination挂载到组件树上。 */
     ARKUI_NAV_DESTINATION_STATE_ON_APPEAR = 2,
-    /** The NavDestination removed from the component tree. */
+    /** NavDestination从组件树上卸载。 */
     ARKUI_NAV_DESTINATION_STATE_ON_DISAPPEAR = 3,
-    /** Before the NavDestination show. */
+    /** NavDestination组件显示之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_SHOW = 4,
-    /** Before the NavDestination hide. */
+    /** NavDestination组件隐藏之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_HIDE = 5,
-    /** Before the NavDestination mount to the component tree. */
+    /** NavDestination挂载到组件树之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR = 6,
-    /** Before the NavDestination removed from the component tree. */
+    /** NavDestination从组件树上卸载之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
     /**
-     * The NavDestination component is active.
+     * NavDestination组件处于激活态。
      * @since 26.1.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
     /**
-     * The NavDestination component is inactive.
+     * NavDestination组件处于非激活态。
      * @since 26.1.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
-    /** The NavDestination returns from the component.*/
+    /** NavDestination组件接收到返回操作时触发，例如用户点击返回键或调用返回导航接口。*/
     ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100,
 } ArkUI_NavDestinationState;
 
@@ -1146,16 +1145,16 @@ typedef enum {
 } ArkUI_MenuPolicy;
 
 /**
- * @brief Enumerates the graphics rendering strategy.
+ * @brief 定义图形渲染策略。
  *
  * @since 23
  */
 typedef enum {
-    /** The current component and its child components will be drawn directly onto the screen canvas. */
+    /** 在线绘制模式。当前组件及其子组件将直接绘制到屏幕画布上。 */
     ARKUI_RENDERSTRATEGY_FAST = 0,
     /**
-    * The current component and its child components will first be drawn onto an off-screen canvas,
-    *     then undergo some graphic rendering operations, and finally be drawn onto the main canvas.
+    * 离屏绘制模式。当前组件及其子组件将先绘制到离屏画布上，再经过一些图形渲染处理，
+    *     最终绘制到主画布上。
     */
     ARKUI_RENDERSTRATEGY_OFFSCREEN,
 } ArkUI_RenderStrategy;

@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建、销毁、树节点操作、属性设置、事件监听等。
  *
  * @since 23
  */
