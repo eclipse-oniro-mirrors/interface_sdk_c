@@ -165,8 +165,8 @@ typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
  * of the Web component, such as status change notifications in scenarios like page loading completion, page
  * destruction, and component visibility changes.
  *
- * @param webTag Name of the **Web** component.
- * @param userData Pointer to user-defined data.
+ * @param webTag [in] Name of the **Web** component.
+ * @param userData [in] Pointer to user-defined data.
  * @since 12
  */
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
@@ -367,8 +367,8 @@ typedef struct {
      * method. This method injects a JavaScript script into the execution context of the **Web** component and executes
      * it after the page is loaded.
      *
-     * @param webTag Name of the **Web** component.
-     * @param javascriptObject JavaScript object to inject.
+     * @param webTag [in] Name of the **Web** component.
+     * @param javascriptObject [in] JavaScript object to inject.
      */
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /**
@@ -380,8 +380,8 @@ typedef struct {
      * where a synchronous return value is required. If a synchronous return value is not needed or the operation is
      * time-consuming, you are advised to use registerAsyncJavaScriptProxy to avoid blocking the UI thread.
      *
-     * @param webTag Name of the **Web** component.
-     * @param proxyObject Pointer to the proxy object to register. The object will be injected into the window
+     * @param webTag [in] Name of the **Web** component.
+     * @param proxyObject [in] Pointer to the proxy object to register. The object will be injected into the window
      *     object and its methods can be called through JavaScript.
      */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
@@ -392,8 +392,8 @@ typedef struct {
      * example, cleaning up registered objects to avoid residue when a component is destroyed, a module is unloaded, or
      * services are switched.
      *
-     * @param webTag Name of the **Web** component.
-     * @param objName Name of the JavaScript object.
+     * @param webTag [in] Name of the **Web** component.
+     * @param objName [in] Name of the JavaScript object.
      */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /**
@@ -401,7 +401,7 @@ typedef struct {
      * cannot be navigated forward or backward. This API must be called on the UI thread by calling the
      * OH_ArkWeb_GetNativeAPI method.
      *
-     * @param webTag Name of the **Web** component.
+     * @param webTag [in] Name of the **Web** component.
      */
     void (*refresh)(const char* webTag);
     /**
@@ -412,8 +412,8 @@ typedef struct {
      * a synchronous return value is not needed. If a synchronous return value is needed, you are advised to use
      * registerJavaScriptProxy.
      *
-     * @param webTag Name of the **Web** component.
-     * @param proxyObject Object to be registered.
+     * @param webTag [in] Name of the **Web** component.
+     * @param proxyObject [in] Object to be registered.
      */
     void (*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
@@ -530,9 +530,9 @@ typedef struct {
      * the UI thread. Before calling, it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the
      * function pointer exists.
      *
-     * @param webTag Name of the **Web** component.
-     * @param callback Callback of **onControllerAttached**.
-     * @param userData User-defined data.
+     * @param webTag [in] Name of the **Web** component.
+     * @param callback [in] Callback of **onControllerAttached**.
+     * @param userData [in] User-defined data.
      */
     void (*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
@@ -540,10 +540,10 @@ typedef struct {
      * not for iframe or frameset content loading. This callback must be called in the UI thread. Before calling,
      * it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function pointer exists.
      *
-     * @param webTag Name of the **Web** component.
-     * @param callback Callback invoked when the web page starts loading, used to handle the business logic at the
+     * @param webTag [in] Name of the **Web** component.
+     * @param callback [in] Callback invoked when the web page starts loading, used to handle the business logic at the
      *     beginning of the page load.
-     * @param userData Pointer to the user-defined data. This data is passed to the callback when the callback is
+     * @param userData [in] Pointer to the user-defined data. This data is passed to the callback when the callback is
      *     triggered, and can be used to save context information or state data.
      */
     void (*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
@@ -552,19 +552,19 @@ typedef struct {
      * not for iframe or frameset content loading. This callback must be called in the UI thread. Before calling,
      * it is recommended to use the ARKWEB_MEMBER_MISSING macro to check whether the function pointer exists.
      *
-     * @param webTag Name of the **Web** component.
-     * @param callback Callback triggered when page load completes, used to handle business logic after page load
+     * @param webTag [in] Name of the **Web** component.
+     * @param callback [in] Callback triggered when page load completes, used to handle business logic after page load
      *     completes.
-     * @param userData User-defined data pointer. This data is passed to the callback function when the callback is
+     * @param userData [in] User-defined data pointer. This data is passed to the callback function when the callback is
      *     triggered, and can be used to save context information or state data.
      */
     void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
      * @brief Triggered when this **Web** component is destroyed.
      *
-     * @param webTag Name of the **Web** component.
-     * @param callback Callback of **onDestroy**.
-     * @param userData Pointer to the user-defined data.
+     * @param webTag [in] Name of the **Web** component.
+     * @param callback [in] Callback of **onDestroy**.
+     * @param userData [in] Pointer to the user-defined data.
      */
     void (*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
 } ArkWeb_ComponentAPI;

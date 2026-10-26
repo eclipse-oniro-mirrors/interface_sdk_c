@@ -486,7 +486,7 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
  * at app startup, and you want to delay kernel initialization to save startup resources; the app only needs to use
  * CookieManager without **Web** component rendering for the time being. This API is a global static method and must be
  * called before using the **Web** component and initializing the ArkWeb kernel; otherwise, the setting is invalid.
- * @param lazy - Controls whether to delay the initialization of the web engine.
+ * @param lazy [in] - Controls whether to delay the initialization of the web engine.
  * @since 22
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
