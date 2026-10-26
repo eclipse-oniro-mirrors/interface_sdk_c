@@ -331,5 +331,9 @@
     {
         "first_introduced": "26.1.0",
         "name": "napi_close_microtask_scope"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "napi_shared_module_register"
     }
 ]
