@@ -840,7 +840,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
  *     <br>IMAGE_INVALID_PARAMETER：pixelmap或source为空指针、bufferSize不足，或者sourcePixelFormat无效或不受支持。
  *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
- * @since 26.2.0
+ * @since 26.1.0
  */
 Image_ErrorCode OH_PixelmapNative_WritePixelsWithPixelFormat(OH_PixelmapNative *pixelmap, const uint8_t *source,
     uint32_t bufferSize, PIXEL_FORMAT sourcePixelFormat);
@@ -907,7 +907,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap,
  *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
  *     <br>IMAGE_INVALID_PARAMETER：pixelmap、area或area->pixels为空指针，缓冲区大小、偏移量、行跨距或区域无效，或者sourcePixelFormat无效或不受支持。
  *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
- * @since 26.2.0
+ * @since 26.1.0
  */
 Image_ErrorCode OH_PixelmapNative_WritePixelsToAreaWithPixelFormat(OH_PixelmapNative *pixelmap,
     const Image_PositionArea *area, PIXEL_FORMAT sourcePixelFormat);

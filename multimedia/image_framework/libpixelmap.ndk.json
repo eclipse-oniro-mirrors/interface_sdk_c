@@ -116,7 +116,7 @@
         "name": "OH_PixelmapNative_WritePixels"
     },
     {
-        "first_introduced": "26.2.0",
+        "first_introduced": "26.1.0",
         "name": "OH_PixelmapNative_WritePixelsWithPixelFormat"
     },
     {
@@ -128,7 +128,7 @@
         "name": "OH_PixelmapNative_WritePixelsToArea"
     },
     {
-        "first_introduced": "26.2.0",
+        "first_introduced": "26.1.0",
         "name": "OH_PixelmapNative_WritePixelsToAreaWithPixelFormat"
     },
     {

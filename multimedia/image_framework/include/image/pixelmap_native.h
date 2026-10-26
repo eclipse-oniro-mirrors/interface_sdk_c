@@ -818,16 +818,16 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * @param sourcePixelFormat [in] Pixel format of the source data.
  *     RGBA_8888, RGB_888, RGB_565, and RGBA_F16 are supported.
  * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} if the PixelMap is not editable or is locked.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_CONVERSION} if conversion between sourcePixelFormat and the PixelMap pixel
- *             format is not supported.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} if pixelmap or source is NULL, bufferSize is insufficient, or
- *             sourcePixelFormat is invalid or unsupported.</li>
- *         <li>{@link IMAGE_ALLOC_FAILED} if memory allocation fails.</li>
- *         <li>{@link IMAGE_COPY_FAILED} if the pixel data cannot be copied or converted.</li>
- *         </ul>
- * @since 26.2.0
+ *     <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
+ *     <li>{@link IMAGE_UNSUPPORTED_OPERATION} if the PixelMap is not editable or is locked.</li>
+ *     <li>{@link IMAGE_UNSUPPORTED_CONVERSION} if conversion between sourcePixelFormat and the PixelMap pixel
+ *         format is not supported.</li>
+ *     <li>{@link IMAGE_INVALID_PARAMETER} if pixelmap or source is NULL, bufferSize is insufficient, or
+ *         sourcePixelFormat is invalid or unsupported.</li>
+ *     <li>{@link IMAGE_ALLOC_FAILED} if memory allocation fails.</li>
+ *     <li>{@link IMAGE_COPY_FAILED} if the pixel data cannot be copied or converted.</li>
+ *     </ul>
+ * @since 26.1.0
  */
 Image_ErrorCode OH_PixelmapNative_WritePixelsWithPixelFormat(OH_PixelmapNative *pixelmap, const uint8_t *source,
     uint32_t bufferSize, PIXEL_FORMAT sourcePixelFormat);
@@ -891,16 +891,16 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap,
  * @param sourcePixelFormat [in] Pixel format of the source data.
  *     RGBA_8888, RGB_888, RGB_565, and RGBA_F16 are supported.
  * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} if the PixelMap is not editable or is locked.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_CONVERSION} if conversion between sourcePixelFormat and the PixelMap pixel
- *             format is not supported.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} if pixelmap, area, or area->pixels is NULL; the buffer size, offset,
- *             stride, or region is invalid; or sourcePixelFormat is invalid or unsupported.</li>
- *         <li>{@link IMAGE_ALLOC_FAILED} if memory allocation fails.</li>
- *         <li>{@link IMAGE_COPY_FAILED} if the pixel data cannot be copied or converted.</li>
- *         </ul>
- * @since 26.2.0
+ *     <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
+ *     <li>{@link IMAGE_UNSUPPORTED_OPERATION} if the PixelMap is not editable or is locked.</li>
+ *     <li>{@link IMAGE_UNSUPPORTED_CONVERSION} if conversion between sourcePixelFormat and the PixelMap pixel
+ *         format is not supported.</li>
+ *     <li>{@link IMAGE_INVALID_PARAMETER} if pixelmap, area, or area->pixels is NULL; the buffer size, offset,
+ *         stride, or region is invalid; or sourcePixelFormat is invalid or unsupported.</li>
+ *     <li>{@link IMAGE_ALLOC_FAILED} if memory allocation fails.</li>
+ *     <li>{@link IMAGE_COPY_FAILED} if the pixel data cannot be copied or converted.</li>
+ *     </ul>
+ * @since 26.1.0
  */
 Image_ErrorCode OH_PixelmapNative_WritePixelsToAreaWithPixelFormat(OH_PixelmapNative *pixelmap,
     const Image_PositionArea *area, PIXEL_FORMAT sourcePixelFormat);
