@@ -17139,6 +17139,56 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node,
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
 
+/**
+ * @brief 枚举接纳子节点的策略。
+ *
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * 被接纳节点的浮层节点基于接纳此节点的寄养父节点链计算显示位置，并在每个接纳边距应用开发者提供的补偿。
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVE_MODULE_ADOPT_POLICY_OVERLAY_POSITION_FOLLOWS_ADOPT_PARENT_CHAIN = 0,
+} OH_ArkUI_AdoptPolicy;
+
+/**
+ * @brief 当前节点接纳目标节点为附属节点。被接纳的节点不能已有父节点。调用该接口实际上不会将其添加为子节点。
+ * 而是仅允许其接收对应子节点的生命周期回调。通过策略配置被接纳节点的浮层节点渲染位置。
+ *
+ * @param node [in] ArkUI_NodeHandle指针, 指定待接纳节点的父节点。
+ * @param child [in] ArkUI_NodeHandle指针, 指定被接纳的子节点。
+ * @param policy [in] 被接纳节点的浮层节点渲染位置策略。有效值对应{@link OH_ArkUI_AdoptPolicy}。
+ * @return 返回值.
+ *     <ul><li>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果CAPI初始化失败，返回{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}。</li>
+ *     <li>如果被接纳的节点已有父节点，返回{@link ARKUI_ERROR_CODE_NODE_HAS_PARENT}。</li>
+ *     <li>如果节点无法被接纳为附属节点，返回{@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED}。</li>
+ *     <li>如果节点无法接纳其他附属节点，返回{@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO}。</li></ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_NativeModule_AdoptChildWithPolicy(
+    ArkUI_NodeHandle node, ArkUI_NodeHandle child, OH_ArkUI_AdoptPolicy policy);
+
+/**
+ * @brief 设置从被接纳的子节点到接纳其的父节点件的位置补偿。此补偿代表了它们之间的纯渲染节点树的总体影响。首先通过 compensationOffset平移
+ * 然后通过CompensationTransform 进行变换。补偿只有当子节点已通过以下策略被接纳时才生效：
+ * {@link OH_ARKUI_NATIVE_MODULE_ADOPT_POLICY_OVERLAY_POSITION_FOLLOWS_ADOPT_PARENT_CHAIN}。
+ *
+ * @param adoptedChild [in] 需要进行位置补偿的被接纳节点.
+ * @param compensationOffset [in] x/y 偏移量补偿（以像素为单位）.
+ * @param compensationTransform [in] 聚合变换补偿.
+ * @return 返回值.
+ *     <ul><li>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果CAPI初始化失败，返回{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}。</li>
+ *     <li>如果参数异常，返回 {@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+ *     <li>如果节点没有按要求的策略被接纳，返回 {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN}。</li></ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_NativeModule_SetAdoptedChildOverlayPositionCompensation(ArkUI_NodeHandle adoptedChild,
+    const ArkUI_PointF* compensationOffset, const ArkUI_Matrix4* compensationTransform);
+
 #ifdef __cplusplus
 };
 #endif
