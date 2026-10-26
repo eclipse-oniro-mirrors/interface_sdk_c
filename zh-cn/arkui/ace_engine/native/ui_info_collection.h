@@ -196,7 +196,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_UIInfoCollectionRegisterInteractionObserve
  *
  * 本次调用完成后，不再调用对应的回调函数。
  *
- * 本函数是线程安全的，可以从任意线程调用，且不会阻塞调用方，但不具备异步信号安全性。
+ * 该函数不是线程安全的，不能在非主线程中调用。
  *
  * @param registerID [in] 注册成功时返回的注册ID。
  * @return <ul>
