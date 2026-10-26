@@ -149,8 +149,8 @@ typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
 /**
  * @brief 接收Web组件事件通知的回调。用于接收Web组件生命周期事件通知，例如页面加载完成、页面销毁、组件可见性变化等场景下的状态变更通知。
  *
- * @param webTag Web组件名称。
- * @param userData 用户自定义的数据。
+ * @param webTag [in] Web组件名称。
+ * @param userData [in] 用户自定义的数据。
  * @since 12
  */
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
@@ -314,8 +314,8 @@ typedef struct {
     /**
      * 注入JavaScript脚本。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法将JavaScript脚本注入到Web组件的执行上下文中，在页面加载完成后执行。
      *
-     * @param webTag Web组件名称。
-     * @param javascriptObject 注入的JavaScript对象。
+     * @param webTag [in] Web组件名称。
+     * @param javascriptObject [in] 注入的JavaScript对象。
      */
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /**
@@ -323,30 +323,30 @@ typedef struct {
      * 例如JS调用Native能力以获取设备信息、执行 Native 业务逻辑等。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。与registerAsyncJavaScriptProxy相比，
      * 此方法适用于需要同步获取返回值的场景。若不需要同步返回值或耗时操作，建议使用registerAsyncJavaScriptProxy以避免阻塞UI线程。
      *
-     * @param webTag Web组件名称。
-     * @param proxyObject 要注册的代理对象，该对象将被注入到window对象中，并可通过JavaScript调用其方法。
+     * @param webTag [in] Web组件名称。
+     * @param proxyObject [in] 要注册的代理对象，该对象将被注入到window对象中，并可通过JavaScript调用其方法。
      */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
      * 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
      * 该方法会解除JavaScript对象与Native对象的绑定，并释放相关资源。使用场景：例如组件销毁、模块卸载或切换业务时清理注册对象以避免残留。
      *
-     * @param webTag Web组件名称。
-     * @param objName JavaScript对象名称。
+     * @param webTag [in] Web组件名称。
+     * @param objName [in] JavaScript对象名称。
      */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /**
      * 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
      *
-     * @param webTag Web组件名称。
+     * @param webTag [in] Web组件名称。
      */
     void (*refresh)(const char* webTag);
     /**
      * 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法通过消息队列机制实现异步调用，避免阻塞主线程。
      * 与registerJavaScriptProxy相比，此方法适用于耗时操作或不需要同步获取返回值的场景，若需要同步获取返回值，建议使用registerJavaScriptProxy。
      *
-     * @param webTag Web组件名称。
-     * @param proxyObject 注册的对象。
+     * @param webTag [in] Web组件名称。
+     * @param proxyObject [in] 注册的对象。
      */
     void (*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
@@ -437,33 +437,33 @@ typedef struct {
     /**
      * @brief 注册Controller绑定事件的回调监听器。说明：该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
      *
-     * @param webTag  Web组件名称。
-     * @param callback onControllerAttached的回调函数。
-     * @param userData 用户自定义数据。
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] onControllerAttached的回调函数。
+     * @param userData [in] 用户自定义数据。
      */
     void (*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
      * @brief 网页开始加载时触发该回调，该回调只在主frame触发，不会为iframe或frameset内容加载触发。该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
      *
-     * @param webTag  Web组件名称。
-     * @param callback 网页开始加载时触发的回调函数，用于处理页面加载开始时的业务逻辑。
-     * @param userData 用户自定义数据指针，该数据会在回调触发时传递给回调函数，可用于保存上下文信息或状态数据。
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] 网页开始加载时触发的回调函数，用于处理页面加载开始时的业务逻辑。
+     * @param userData [in] 用户自定义数据指针，该数据会在回调触发时传递给回调函数，可用于保存上下文信息或状态数据。
      */
     void (*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
      * @brief 网页加载完成时触发该回调，该回调只在主frame触发，不会为iframe或frameset内容加载触发。该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
      *
-     * @param webTag  Web组件名称。
-     * @param callback 网页加载完成时触发的回调函数，用于处理页面加载完成后的业务逻辑。
-     * @param userData 用户自定义数据指针，该数据会在回调触发时传递给回调函数，可用于保存上下文信息或状态数据。
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] 网页加载完成时触发的回调函数，用于处理页面加载完成后的业务逻辑。
+     * @param userData [in] 用户自定义数据指针，该数据会在回调触发时传递给回调函数，可用于保存上下文信息或状态数据。
      */
     void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
      * @brief 当前Web组件销毁时触发该回调。
      *
-     * @param webTag  Web组件名称。
-     * @param callback onDestroy的回调函数。
-     * @param userData 用户自定义数据指针。
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] onDestroy的回调函数。
+     * @param userData [in] 用户自定义数据指针。
      */
     void (*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
 } ArkWeb_ComponentAPI;
