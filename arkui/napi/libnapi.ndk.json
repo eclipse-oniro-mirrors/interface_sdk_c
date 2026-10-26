@@ -325,11 +325,15 @@
         "name": "napi_get_global_handle_count"
     },
     {
-        "first_introduced": "26.2.0",
+        "first_introduced": "26.1.0",
         "name": "napi_open_microtask_scope"
     },
     {
-        "first_introduced": "26.2.0",
+        "first_introduced": "26.1.0",
         "name": "napi_close_microtask_scope"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "napi_shared_module_register"
     }
 ]

@@ -131,7 +131,7 @@ typedef struct napi_callsite_info__* napi_callsite_info;
 
 /**
  * @brief Microtask scope provides a scope to pause the execution of microtasks in the runtime.
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct napi_microtask_scope__* napi_microtask_scope;
 
@@ -3207,11 +3207,11 @@ NAPI_EXTERN napi_status napi_get_global_handle_count(napi_env env, size_t* count
  *         <ul><li>{@link napi_ok } If the function executed successfully.</li>
  *         <li>{@link napi_invalid_arg } If env or scope is nullptr.</li>
  *         <li>{@link napi_pending_exception } If there is an uncaught exception.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  * @note This API must be called before {@link napi_close_microtask_scope}. Each call to this API must be paired
  *     with a call to {@link napi_close_microtask_scope}.
  */
-napi_status napi_open_microtask_scope(napi_env env, napi_microtask_scope* scope);
+NAPI_EXTERN napi_status napi_open_microtask_scope(napi_env env, napi_microtask_scope* scope);
 
 /**
  * @brief To destroy the microtask scope in current ArkTS runtime. After the scope is destroyed, microtasks will be
@@ -3223,10 +3223,18 @@ napi_status napi_open_microtask_scope(napi_env env, napi_microtask_scope* scope)
  *         <ul><li>{@link napi_ok } If the function executed successfully.</li>
  *         <li>{@link napi_invalid_arg } If env or scope is nullptr.</li>
  *         <li>{@link napi_pending_exception } If there is an uncaught exception.</li></ul>
- * @since 26.2.0
+ * @since 26.1.0
  * @note This API must be called after {@link napi_open_microtask_scope}.
  */
-napi_status napi_close_microtask_scope(napi_env env, napi_microtask_scope scope);
+NAPI_EXTERN napi_status napi_close_microtask_scope(napi_env env, napi_microtask_scope scope);
+
+/**
+ * @brief To register a native sendable module which will be utilized in different threads of a process.
+ * @param mod [in] Native module of type 'napi_module' to be registered.
+ *
+ * @since 26.1.0
+ */
+NAPI_EXTERN void napi_shared_module_register(napi_module* mod);
 
 #ifdef __cplusplus
 }
