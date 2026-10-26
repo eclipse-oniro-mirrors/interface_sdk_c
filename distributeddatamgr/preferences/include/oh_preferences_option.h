@@ -138,6 +138,30 @@ int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char
 int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type);
 
 /**
+ * @brief Sets the shared map size for a {@link OH_PreferencesOption} instance.
+ *
+ * @param option [in] Pointer to the target {@link OH_PreferencesOption} instance.
+ * @param sharedMapSize [in] Shared map size to set, in KB. The value ranges from 256 to 1112784, or 0.
+ *     The value 0 indicates that no map file is generated and cross-process sharing is not supported.
+ * @return Returns the status code of the execution.
+ *     <br>{@link PREFERENCES_OK} indicates the operation is successful.
+ *     <br>{@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid parameters are specified.
+ * @see OH_PreferencesOption
+ * @since 26.1.0
+ */
+int OH_PreferencesOption_SetSharedMapSize(OH_PreferencesOption *option, int32_t sharedMapSize);
+
+/**
+ * @brief Gets the shared map size from an {@link OH_PreferencesOption} instance.
+ *
+ * @param option [in] Pointer to the target {@link OH_PreferencesOption} instance.
+ * @return Returns the shared map size in KB. Returns 0 if not set or the option is invalid.
+ * @see OH_PreferencesOption
+ * @since 26.1.0
+ */
+int32_t OH_PreferencesOption_GetSharedMapSize(OH_PreferencesOption *option);
+
+/**
  * @brief Destroys an {@link OH_PreferencesOption} instance.
  * 
  * @param option Pointer to the {@link OH_PreferencesOption} instance.

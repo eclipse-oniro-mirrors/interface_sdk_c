@@ -72,6 +72,14 @@
         "name": "OH_PreferencesOption_SetStorageType"
     },
     {
+        "first_introduced": "26.1.0",
+        "name": "OH_PreferencesOption_SetSharedMapSize"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_PreferencesOption_GetSharedMapSize"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_PreferencesOption_Destroy"
     },
