@@ -67,7 +67,7 @@ typedef struct OH_AudioSuite_DownloadStatusInfo {
      */
     char installPath[256];
     /**
-     * @brief 下载进度【0-100】。
+     * @brief 下载进度[0-100]。
      *
      * @since 26.0.0
      */
@@ -113,7 +113,7 @@ typedef struct OH_AudioSuite_FeatureVersionInfo {
      */
     char featureName[256];
     /**
-     * @brief 下载状态。
+     * @brief 特性当前状态。
      *
      * @since 26.0.1
      */
@@ -125,7 +125,7 @@ typedef struct OH_AudioSuite_FeatureVersionInfo {
      */
     char version[128];
     /**
-     * @brief 特性大小以字节为单位，单位为字节。
+     * @brief 特性模块占用空间大小。单位为：字节。
      *
      * @since 26.0.1
      */
@@ -209,8 +209,6 @@ int32_t OH_AudioSuite_UnregisterDownloadCallback(
  * <li>202如果非系统应用程序调用此系统API。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET} 所需网络条件未满足。当前网络状态不可用。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_STORAGE_NOT_ENOUGH}如果存储空间不足。</li>
  * </ul>
  * @since 26.0.0
  */
@@ -302,19 +300,25 @@ int32_t OH_AudioSuite_UninstallCloudRom(
 
 /**
  * @brief 批量获取特性的安装状态。
+ * 接口返回成功，installStatus有效数量为count。失败则installStatus有效数量为0。
  * @systemapi
- * @param downloadManager 【in】下载管理器句柄。
- * @param featureNames 【in】特性名称的数组。
- * @param count 【in】输入数组中特性名称的个数。
- * @param installStatus 【out】调用者分配的接收安装状态的布尔数组。
- * @param installStatusSize 【in】调用者分配的输出数组的容量。必须至少为count。
+ * @param downloadManager [入参] 下载管理器句柄。
+ * @param featureNames [入参] 特性名称的数组。
+ * @param count [入参] featureNames数组中特性名称的个数，取值为[1, 5]。
+ * @param installStatus [出参] 调用者分配的接收安装状态的布尔数组。元素值为true，表示featureNames对应索引的特性已安装。为false，表示未安装。
+ * @param installStatusSize [入参] 调用者分配的installStatus输出数组的容量。必须大于等于count。
  * @return <ul>
- * <li>{@link}如果执行成功</li>
- * <li>202权限验证失败。非系统应用调用系统API</li>
- * <li>{@链接如果下载管理器、功能名称、
- * installStatus为nullptr, count为0，或者installStatusSize小于count。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
- * </ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 执行成功。</li>
+ *         <li>202 权限验证失败。非系统应用调用系统API。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
+ *         <ol><li>参数downloadManager为空指针。</li>
+ *         <li>参数featureNames为空指针。</li>
+ *         <li>参数featureNames中的值为空指针。</li>
+ *         <li>参数installStatus为空指针。</li>
+ *         <li>参数count为0或者大于5。</li>
+ *         <li>参数installStatusSize小于count。</li></ol>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED} IPC通信失败。</li>
+ *         </ul>
  * @since 26.0.1
  */
 int32_t OH_AudioSuite_IsFeatureInstalled(OH_AudioSuite_DownloadManager *downloadManager,
@@ -322,20 +326,26 @@ int32_t OH_AudioSuite_IsFeatureInstalled(OH_AudioSuite_DownloadManager *download
     bool *installStatus, uint32_t installStatusSize);
 
 /**
- * @brief 批量获取特性的下载状态。
+ * @brief 批量获取特性的当前状态。
+ * 接口返回成功，statusInfos有效数量为count。失败则statusInfos有效数量为0。
  * @systemapi
- * @param downloadManager 【in】下载管理器句柄。
- * @param featureNames 【in】特性名称的数组。
- * @param count 【in】输入数组中特性名称的个数。
- * @param statusInfos 【out】调用者分配的接收下载状态的数组。
- * @param statusInfosSize 【in】调用者分配的输出数组的容量。必须至少为count。
+ * @param downloadManager [入参] 下载管理器句柄。
+ * @param featureNames [入参] 特性名称的数组。
+ * @param count [入参] featureNames数组中特性名称的个数，取值为[1, 5]。
+ * @param statusInfos [出参] 调用者分配的接收特性状态的数组。
+ * @param statusInfosSize [入参] 调用者分配的statusInfos输出数组的容量。必须大于等于count。
  * @return <ul>
- * <li>{@link}如果执行成功</li>
- * <li>202权限验证失败。非系统应用调用系统API</li>
- * <li>{@链接如果downloadManager、featureNames、statusInfos都为nullptr，
- * count为0，或者statusInfosSize小于count。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
- * </ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 执行成功。</li>
+ *         <li>202 权限验证失败。非系统应用调用系统API。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
+ *         <ol><li>参数downloadManager为空指针。</li>
+ *         <li>参数featureNames为空指针。</li>
+ *         <li>参数featureNames中的值为空指针。</li>
+ *         <li>参数statusInfos为空指针。</li>
+ *         <li>参数count为0或者大于5。</li>
+ *         <li>参数statusInfosSize小于count。</li></ol>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED} IPC通信失败。</li>
+ *         </ul>
  * @since 26.0.1
  */
 int32_t OH_AudioSuite_GetFeatureStatus(
@@ -345,21 +355,26 @@ int32_t OH_AudioSuite_GetFeatureStatus(
 
 /**
  * @brief 批量获取特性的新版本信息。
+ * 接口返回成功，versionInfos有效数量为count。失败则versionInfos有效数量为0。
  * @systemapi
- * @param downloadManager 【in】下载管理器句柄。
- * @param featureNames 【in】特性名称的数组。
- * @param count 【in】输入数组中特性名称的个数。
- * @param versionInfos 【out】调用者分配的接收版本信息的数组。
- * @param versionInfosSize 【in】调用者分配的输出数组的容量。必须至少为count。
+ * @param downloadManager [入参] 下载管理器句柄。
+ * @param featureNames [入参] 特性名称的数组。
+ * @param count [入参] featureNames数组中特性名称的个数，取值为[1, 5]。
+ * @param versionInfos [出参] 调用者分配的接收版本信息的数组。
+ * @param versionInfosSize [入参] 调用者分配的输出数组的容量。必须大于等于count。
  * @return <ul>
- * <li>{@链接：执行成功</li></li>
- * <li>202权限验证失败。非系统应用程序调用系统API</li>
- * <li>{@链接如果downloadManager、featureNames、versionInfos都是nullptr，
- * count为0，或者versionInfosSize小于count。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET}要求的网络条件不满足。
- * 当前网络状态不可用</li>
- * </ul>
+ *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 执行成功。</li>
+ *         <li>202 权限验证失败。非系统应用调用系统API。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
+ *         <ol><li>参数downloadManager为空指针。</li>
+ *         <li>参数featureNames为空指针。</li>
+ *         <li>参数featureNames中的值为空指针。</li>
+ *         <li>参数versionInfos为空指针。</li>
+ *         <li>参数count为0或者大于5。</li>
+ *         <li>参数versionInfosSize小于count。</li></ol>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED} IPC通信失败。</li>
+ *         <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET} 当前网络状态不可用。</li>
+ *         </ul>
  * @since 26.0.1
  */
 int32_t OH_AudioSuite_GetNewVersionInfo(
