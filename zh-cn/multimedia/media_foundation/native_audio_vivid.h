@@ -65,26 +65,29 @@ typedef enum OH_AudioVividSignalFormat {
     /**
      * @brief Audio Vivid信号格式为多声道，编码器支持声道布局{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1、{@link OH_AudioChannelLayout}.
      * CH_LAYOUT_5POINT1POINT2、{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4、{@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_7POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2、{@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_7POINT1POINT4。
+     * CH_LAYOUT_7POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2。
      *
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
-     * @brief audio vivid编码HOA类型标识.
+     * @brief Audio Vivid编码HOA类型标识。
      * 该编码模式编码要配置声道类型，支持的声道类型如下：
-     * {@link CH_LAYOUT_AMB_ORDER1_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER1_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER1_FUMA},
-     * {@link CH_LAYOUT_AMB_ORDER2_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER2_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER2_FUMA}；
-     * 配置阶段生效 {@link OH_AudioCodec_Configure}，如果配置不支持的声道类型，则返回{@link AV_ERR_INVALID_VAL}.
-     * @since 26.2.0
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER1_ACN_N3D、
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER1_ACN_SN3D、
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER2_ACN_N3D、
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER2_ACN_SN3D。
+     * 配置阶段生效 {@link OH_AudioCodec_Configure}。
+     * 如果配置不支持的声道类型，则返回{@link AV_ERR_INVALID_VAL}。
+     *
+     * @since 26.0.1
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_HOA = 3,
     /**
      * @brief Audio Vivid信号格式为混合模式，包含声床（Bed）和对象（object）。声床的声道布局支持{@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1、
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4。
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2。
      *
      * @since 26.0.0
      */
@@ -303,12 +306,12 @@ OH_AVErrCode OH_AudioVividMetaBuilder_CreateEmptyBuilder(OH_AudioVividMetaBuilde
  * 构造器会将元数据里的音频声床和音频对象信息保留下来。
  *
  * @note 约束条件：
- * 基础元数据内音频的声床声道数 + 对象数必须小于等于16个。
+ * 基础元数据内音频的声床声道数 + 对象数必须小于等于11个。
  * @param builder 指向OH_AudioVividMetaBuilder的指针。
  * @param buffer 指向包含基础元数据的指针。
  * @param len 缓冲区长度。单位为字节（Byte）。
  * @return {@link AV_ERR_OK}：执行成功。
- *     <br>{@link AV_ERR_INVALID_VAL}：参数builder、format为空指针或无效。
+ *     <br>{@link AV_ERR_INVALID_VAL}：参数builder为空指针或无效，参数buffer为空指针或参数len无效。
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *builder, const uint8_t *buffer,
@@ -321,7 +324,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *b
  * 更新该对象的位置和对象渲染的线性增益。
  *
  * @note 约束条件：
- * 音频的声床声道数 + 对象数必须小于等于16个。
+ * 音频的声床声道数 + 对象数必须小于等于11个。
  * @param builder 指向OH_AudioVividMetaBuilder的指针。
  * @param objectIndex 输出参数，用于输出新增对象的索引。
  * @return {@link AV_ERR_OK}：执行成功。
@@ -341,7 +344,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_AddObject(OH_AudioVividMetaBuilder *builde
  * @param builder 指向OH_AudioVividMetaBuilder的指针。
  * @param objectIndex 要移除的音频对象的索引。
  * @return {@link AV_ERR_OK}：执行成功。
- *     <br>{@link AV_ERR_INVALID_VAL}：参数builder为空指针或无效,参数objectIndex无效。
+ *     <br>{@link AV_ERR_INVALID_VAL}：参数builder为空指针或无效，参数objectIndex无效。
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_RemoveObject(OH_AudioVividMetaBuilder *builder, int32_t objectIndex);

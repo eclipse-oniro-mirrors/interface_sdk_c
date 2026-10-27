@@ -1867,7 +1867,12 @@ typedef enum {
      * @brief 云台光圈右调节
      * @since 26.0.1
      */
-    OH_INPUT_KEYCODE_PTZ_APERTURE_RIGHT = 3243
+    OH_INPUT_KEYCODE_PTZ_APERTURE_RIGHT = 3243,
+    /**
+     * @brief 返回桌面
+     * @since 26.1.0
+     */
+    OH_INPUT_KEYCODE_DESKTOP = 3245
 } Input_KeyCode;
 
 #ifdef __cplusplus

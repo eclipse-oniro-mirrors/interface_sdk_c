@@ -3113,7 +3113,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttac
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachment* imageAttachment,
     float left, float top, float right, float bottom);
@@ -3129,7 +3129,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableSlice(OH_ArkUI_ImageAttachm
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageAttachment* imageAttachment,
     float* left, float* top, float* right, float* bottom);
@@ -3142,7 +3142,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableSlice(const OH_ArkUI_ImageA
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
     OH_ArkUI_ImageAttachment* imageAttachment, const OH_Drawing_Lattice* lattice);
@@ -3155,7 +3155,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResizableLattice(
  * @return 返回结果码。\n
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- * @since 26.2.0
+ * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
     const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_Lattice* lattice);
@@ -3172,7 +3172,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResizableLattice(
  *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
     OH_ArkUI_ImageAttachment *imageAttachment, const char *imageTag);
@@ -3197,7 +3197,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetImageTag(
  *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。</li>
  *     <li>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetImageTag(const OH_ArkUI_ImageAttachment *imageAttachment,
     int32_t bufferSize, char *buffer, int32_t *writeLength);

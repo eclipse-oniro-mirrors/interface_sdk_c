@@ -149,6 +149,8 @@ typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
 /**
  * @brief 接收Web组件事件通知的回调。用于接收Web组件生命周期事件通知，例如页面加载完成、页面销毁、组件可见性变化等场景下的状态变更通知。
  *
+ * @param webTag [in] Web组件名称。
+ * @param userData [in] 用户自定义的数据。
  * @since 12
  */
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
@@ -239,7 +241,7 @@ typedef struct {
  */
 typedef struct {
     /**
-     * 注入的方法名。
+     * 注入到JavaScript环境的Native方法名称，用于在Web前端调用指定的Native方法。该参数必须为非空指针，建议使用具有明确业务含义的命名，避免与JavaScript已有方法冲突。
      */
     const char* methodName;
     /**
@@ -247,7 +249,7 @@ typedef struct {
      */
     ArkWeb_OnJavaScriptProxyCallbackWithResult callback;
     /**
-     * 需要在回调中携带的自定义数据。
+     * 自定义数据，由调用方分配和释放，需确保在回调执行期间保持有效，用于在回调中传递业务上下文或状态对象。不传时为NULL。
      */
     void* userData;
 } ArkWeb_ProxyMethodWithResult;
@@ -283,7 +285,7 @@ typedef struct {
  */
 typedef struct {
     /**
-     * 注入的对象名，命名应遵循JavaScript标识符规则，不支持特殊字符。
+     * 注入的对象名，用于JavaScript调用时引用该对象。命名应遵循JavaScript标识符规则，不支持特殊字符。
      */
     const char* objName;
     /**
@@ -291,7 +293,7 @@ typedef struct {
      */
     const ArkWeb_ProxyMethodWithResult* methodList;
     /**
-     * 方法结构体数组的长度，必须与methodList数组的实际元素个数一致。
+     * 方法结构体数组的长度，即数组中元素的个数。该值必须与 methodList 数组的实际长度一致，最小值为 0，最大值取决于系统资源限制。
      */
     size_t size;
 } ArkWeb_ProxyObjectWithResult;
@@ -311,26 +313,40 @@ typedef struct {
     size_t size;
     /**
      * 注入JavaScript脚本。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法将JavaScript脚本注入到Web组件的执行上下文中，在页面加载完成后执行。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param javascriptObject [in] 注入的JavaScript对象。
      */
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /**
      * 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该方法通过桥接机制将Native对象映射到JavaScript环境，实现双向通信。使用场景：
      * 例如JS调用Native能力以获取设备信息、执行 Native 业务逻辑等。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。与registerAsyncJavaScriptProxy相比，
      * 此方法适用于需要同步获取返回值的场景。若不需要同步返回值或耗时操作，建议使用registerAsyncJavaScriptProxy以避免阻塞UI线程。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param proxyObject [in] 要注册的代理对象，该对象将被注入到window对象中，并可通过JavaScript调用其方法。
      */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
      * 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
      * 该方法会解除JavaScript对象与Native对象的绑定，并释放相关资源。使用场景：例如组件销毁、模块卸载或切换业务时清理注册对象以避免残留。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param objName [in] JavaScript对象名称。
      */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /**
      * 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
+     *
+     * @param webTag [in] Web组件名称。
      */
     void (*refresh)(const char* webTag);
     /**
      * 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法通过消息队列机制实现异步调用，避免阻塞主线程。
      * 与registerJavaScriptProxy相比，此方法适用于耗时操作或不需要同步获取返回值的场景，若需要同步获取返回值，建议使用registerJavaScriptProxy。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param proxyObject [in] 注册的对象。
      */
     void (*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
@@ -419,19 +435,35 @@ typedef struct {
      */
     size_t size;
     /**
-     * 注册Controller绑定事件的回调监听器。说明：该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
+     * @brief 注册Controller绑定事件的回调监听器。说明：该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] onControllerAttached的回调函数。
+     * @param userData [in] 用户自定义数据。
      */
     void (*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
-     * 网页开始加载时触发该回调，该回调只在主frame触发，不会为iframe或frameset内容加载触发。该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
+     * @brief 网页开始加载时触发该回调，该回调只在主frame触发，不会为iframe或frameset内容加载触发。该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] 网页开始加载时触发的回调函数，用于处理页面加载开始时的业务逻辑。
+     * @param userData [in] 用户自定义数据指针，该数据会在回调触发时传递给回调函数，可用于保存上下文信息或状态数据。
      */
     void (*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
-     * 网页加载完成时触发该回调，该回调只在主frame触发，不会为iframe或frameset内容加载触发。该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
+     * @brief 网页加载完成时触发该回调，该回调只在主frame触发，不会为iframe或frameset内容加载触发。该回调需在UI线程中调用，调用前建议通过ARKWEB_MEMBER_MISSING宏校验函数指针是否存在。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] 网页加载完成时触发的回调函数，用于处理页面加载完成后的业务逻辑。
+     * @param userData [in] 用户自定义数据指针，该数据会在回调触发时传递给回调函数，可用于保存上下文信息或状态数据。
      */
     void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
     /**
-     * 当前Web组件销毁时触发该回调。
+     * @brief 当前Web组件销毁时触发该回调。
+     *
+     * @param webTag [in] Web组件名称。
+     * @param callback [in] onDestroy的回调函数。
+     * @param userData [in] 用户自定义数据指针。
      */
     void (*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData);
 } ArkWeb_ComponentAPI;
@@ -454,7 +486,7 @@ typedef struct {
      * @param webMessagePort Post Message端口结构体指针。
      * @param webTag Web组件名称，用于标识要操作的Web组件。必须是与Web组件绑定的唯一标识符，如果未找到与webTag绑定的Web组件将返回初始化失败错误。
      * @param webMessage 需要发送的消息。
-     * @return Result code.
+     * @return 返回值错误码。
      *     <br>{@link ARKWEB_SUCCESS} 执行成功。
      *     <br>{@link ARKWEB_INVALID_PARAM} 参数无效。
      *
@@ -482,7 +514,7 @@ typedef struct {
      * @brief 关闭消息端口。
      *
      * @param webMessagePort Post Message端口结构体指针。
-     * @param webTag Name of the **Web** component.
+     * @param webTag Web组件名称。
      */
     void (*close)(const ArkWeb_WebMessagePortPtr webMessagePort, const char* webTag);
     /**
@@ -603,11 +635,10 @@ typedef struct {
         const char* cookieValue, bool incognito, bool includeHttpOnly);
 
     /**
-     * @brief Check whether cookies exist.
+     * @brief 检查cookie是否存在。用于判断用户是否已登录、检查会话是否有效、验证身份状态等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
      *
-     * @param incognito True indicates whether cookies exist in privacy mode,
-     *                  and false indicates whether cookies exist in non-privacy mode.
-     * @return True indicates that the cookie exists, and false indicates that the cookie does not exist.
+     * @param incognito true表示隐私模式下是否存在cookie，false表示非隐私模式下是否存在cookie。
+     * @return true表示cookie存在，false表示cookie不存在。
      */
     bool (*existCookies)(bool incognito);
 

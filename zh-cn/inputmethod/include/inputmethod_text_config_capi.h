@@ -71,7 +71,8 @@
  *
  * @brief 输入框配置信息的头文件，提供TextConfig实例的创建、销毁与属性读写方法。InputMethod_TextConfig承载编辑框的配置信息，
  * 包括输入类型、回车键类型、光标信息、避让信息、选区范围、窗口ID、占位文本等，在[OH_TextEditorProxy_GetTextConfigFunc]
- * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)回调中使用，开发者需在回调内对config
+ *(capi-inputmethod-text-editor-proxy-capi-h.
+ *md#oh_texteditorproxy_gettextconfigfunc)回调中使用，开发者需在回调内对config
  * 参数设置各配置项。
  *
  * @include <inputmethod/inputmethod_text_config_capi.h>
@@ -100,8 +101,8 @@ extern "C" {
  *     <br>
  *     <br>结构体用途:
  *     <br>InputMethod_TextConfig承载编辑框的配置信息，包括输入类型、回车键类型、预上屏支持、选区范围、光标信息、避让信息、窗口
- * ID、占位符文本、abilityName等。该配置信息在[OH_TextEditorProxy_GetTextConfigFunc]
- * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)回调中使用，开发者需在回调内对config
+ * ID、占位符文本、abilityName等。该配置信息在[OH_TextEditorProxy_GetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
+ *md#oh_texteditorproxy_gettextconfigfunc)回调中使用，开发者需在回调内对config
  * 参数设置各配置项，输入法框架据此调整键盘布局和输入行为。
  *     <br>
  *     <br>包含关系:
@@ -130,7 +131,7 @@ extern "C" {
  * | [OH_TextConfig_SetEnterKeyType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setenterkeytype) | 设
  * 置文本配置信息中的回车键功能类型。 |
  * | [OH_TextConfig_SetPreviewTextSupport](capi-inputmethod-text-config-capi-h.
- * md#oh_textconfig_setpreviewtextsupport) | 设置预上屏支持情况。 |
+ *md#oh_textconfig_setpreviewtextsupport) | 设置预上屏支持情况。 |
  * | [OH_TextConfig_SetSelection](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setselection) | 设置选中
  * 文本范围。 |
  * | [OH_TextConfig_SetWindowId](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setwindowid) | 设置所属窗口
@@ -140,7 +141,7 @@ extern "C" {
  * | [OH_TextConfig_SetAbilityName](capi-inputmethod-text-config-capi-h.md#oh_textconfig_setabilityname) | 设置
  * abilityName信息。 |
  * | [OH_TextConfig_SetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
- * md#oh_textconfig_setconsumekeyevents) | 将编辑框是否具有完整处理字母、字符、功能等按键的能力设
+ *md#oh_textconfig_setconsumekeyevents) | 将编辑框是否具有完整处理字母、字符、功能等按键的能力设
  * 置到文本配置信息中。<br/>**起始版本：** 26.0.0 |
  *     <br>
  *     <br>- 获取函数（Get*）：<br>
@@ -151,7 +152,7 @@ extern "C" {
  * | [OH_TextConfig_GetEnterKeyType](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getenterkeytype) | 获
  * 取回车键功能类型。 |
  * | [OH_TextConfig_IsPreviewTextSupported](capi-inputmethod-text-config-capi-h.
- * md#oh_textconfig_ispreviewtextsupported) | 获取是否支持预上屏。 |
+ *md#oh_textconfig_ispreviewtextsupported) | 获取是否支持预上屏。 |
  * | [OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getcursorinfo) | 获取光
  * 标信息（双指针，函数内部分配内存）。 |
  * | [OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_gettextavoidinfo) |
@@ -165,7 +166,7 @@ extern "C" {
  * | [OH_TextConfig_GetAbilityName](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getabilityname) | 获取
  * abilityName信息。 |
  * | [OH_TextConfig_GetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
- * md#oh_textconfig_getconsumekeyevents) | 获取文本配置中编辑框是否具有完整处理字母、字符、功能等按键的能力。<br/>**起始版本：** 26.0.0 |
+ *md#oh_textconfig_getconsumekeyevents) | 获取文本配置中编辑框是否具有完整处理字母、字符、功能等按键的能力。<br/>**起始版本：** 26.0.0 |
  *
  * @since 12
  */
@@ -173,7 +174,8 @@ typedef struct InputMethod_TextConfig InputMethod_TextConfig;
 
 /**
  * @brief 创建一个新的{@link InputMethod_TextConfig}实例。主要用于在[OH_TextEditorProxy_GetTextConfigFunc]
- * (capi-inputmethod-text-editor-proxy-capi-h.md#oh_texteditorproxy_gettextconfigfunc)回调中对config参数进行设置操作。
+ *(capi-inputmethod-text-editor-proxy-capi-h.
+ *md#oh_texteditorproxy_gettextconfigfunc)回调中对config参数进行设置操作。
  *     <br>
  *     <br>使用场景：当开发者需要在GetTextConfigFunc回调外部预先创建TextConfig对象以准备配置信息时调用此函数。通常config参数由
  * 回调框架提供，开发者直接在回调内设置即可，无需自行创建。
@@ -186,7 +188,7 @@ typedef struct InputMethod_TextConfig InputMethod_TextConfig;
  *     <br> > **说明：**
  *     <br> >
  *     <br> > 由[OH_TextEditorProxy_GetTextConfigFunc](capi-inputmethod-text-editor-proxy-capi-h.
- * md#oh_texteditorproxy_gettextconfigfunc)回调框架提供的config参数的内存由框架管理，回调返回后自动释放，不可调用Destroy销毁，
+ *md#oh_texteditorproxy_gettextconfigfunc)回调框架提供的config参数的内存由框架管理，回调返回后自动释放，不可调用Destroy销毁，
  * 仅由OH_TextConfig_Create创建的对象需要自行销毁。
  *
  * @return 如果创建成功，返回一个指向新创建的{@link InputMethod_TextConfig}实例的指针。如果创建失败，返回NULL，可能的失败原因有
@@ -440,9 +442,9 @@ InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config
  *     <br> 使用后效果：调用成功后，avoidInfo指向由函数内部分配的TextAvoidInfo对象，包含避让区域的位置和尺寸等信息。
  *     <br>
  *     <br> 内存管理：avoidInfo为双指针（输出指针），函数内部分配内存创建[InputMethod_TextAvoidInfo]
- * (capi-inputmethod-inputmethod-textavoidinfo.md)对象并通过此参数返回。
+ *(capi-inputmethod-inputmethod-textavoidinfo.md)对象并通过此参数返回。
  * 返回的TextAvoidInfo对象必须在使用完毕后调用[OH_TextAvoidInfo_Destroy](capi-inputmethod-text-avoid-info-capi-h.
- * md#oh_textavoidinfo_destroy)释放，否则会造成内存泄漏。不可使用free直接释放。
+ *md#oh_textavoidinfo_destroy)释放，否则会造成内存泄漏。不可使用free直接释放。
  *
  * @param config 输入指针，表示文本配置信息。不可为NULL。
  * @param avoidInfo 输出双指针，用于返回输入框避让信息对象。函数内部分配内存创建{@link InputMethod_TextAvoidInfo}实例，并通过

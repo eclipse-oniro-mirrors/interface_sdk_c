@@ -68,28 +68,30 @@ typedef enum OH_AudioVividSignalFormat {
      * @brief Multi-channel audio. The encoder supports the following channel layouts:
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, 
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, 
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2 and {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2.
      *
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
-     * @brief Audio VIVID encoding HOA type ID.
-     * In this encoding mode, the audio channel type needs to be configured. The supported audio channel types are
-     * as follows:
-     * {@link CH_LAYOUT_AMB_ORDER1_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER1_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER1_FUMA},
-     * {@link CH_LAYOUT_AMB_ORDER2_ACN_N3D}, {@link CH_LAYOUT_AMB_ORDER2_ACN_SN3D}, {@link CH_LAYOUT_AMB_ORDER2_FUMA}:
+     * @brief Audio Vivid encoding HOA type ID.
+     * In this encoding mode, the audio channel type needs to be configured.
+     * The supported audio channel types are as follows:
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER1_ACN_N3D,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER1_ACN_SN3D,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER2_ACN_N3D,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_AMB_ORDER2_ACN_SN3D.
      * {@link OH_AudioCodec_Configure} takes effect in the configuration phase.
      * If an unsupported audio channel type is configured, {@link AV_ERR_INVALID_VAL} is returned.
-     * @since 26.2.0
+     *
+     * @since 26.0.1
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_HOA = 3,
     /**
      * @brief Hybrid mode, including a bed and an object. The bed supports the following channel layouts:
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1,
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4,
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2 and
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2.
      *
      * @since 26.0.0
      */
@@ -332,12 +334,12 @@ OH_AVErrCode OH_AudioVividMetaBuilder_CreateEmptyBuilder(OH_AudioVividMetaBuilde
  * from the base metadata.
  *
  * @note **Constraint:**
- *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
+ *      The total number of soundbed channels plus base objects plus added objects must not exceed 11.
  * @param builder Pointer to the OH_AudioVividMetaBuilder.
  * @param buffer Pointer to the buffer containing the base metadata data.
  * @param len Length of the buffer in bytes.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, buffer is nullptr or len is invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: builder is nullptr or invalid, buffer is nullptr or len is invalid.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *builder, const uint8_t *buffer,
@@ -350,12 +352,12 @@ OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *b
  * {@link OH_AudioVividMetaBuilder_UpdateObjectPos} and {@link OH_AudioVividMetaBuilder_UpdateObjectGain}.
  *
  * @note **Constraint:**
- *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
+ *      The total number of soundbed channels plus base objects plus added objects must not exceed 11.
  * @param builder Pointer to the OH_AudioVividMetaBuilder.
  * @param objectIndex Output parameter. Pointer to receive the index of the newly added object.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is nullptr.
- *     <br>{@link AV_ERR_UNKNOWN}, add object fail with unknown error. For details, check logs.
+ *     <br>{@link AV_ERR_INVALID_VAL}: builder is nullptr or invalid, objectIndex is nullptr.
+ *     <br>{@link AV_ERR_UNKNOWN}: add object fail with unknown error. For details, check logs.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_AddObject(OH_AudioVividMetaBuilder *builder, int32_t *objectIndex);
@@ -370,7 +372,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_AddObject(OH_AudioVividMetaBuilder *builde
  * @param builder Pointer to the OH_AudioVividMetaBuilder.
  * @param objectIndex Index of the audio object to remove.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: builder is nullptr or invalid, objectIndex is invalid.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_RemoveObject(OH_AudioVividMetaBuilder *builder, int32_t objectIndex);

@@ -290,7 +290,7 @@ void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
 typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
 
 /**
- * 对指定的数个线程进行Perf采样，并在调用结束后返回采样栈内容。注意：调用该函数后会阻塞当前线程，直至采样过程完全结束。系统对该接口的调用次数有严格限制，频繁调用超出限额后，将返回
+ * @brief 对指定的数个线程进行Perf采样，并在调用结束后返回采样栈内容。注意：调用该函数后会阻塞当前线程，直至采样过程完全结束。系统对该接口的调用次数有严格限制，频繁调用超出限额后，将返回
  * {@link HIDEBUG_RESOURCE_UNAVAILABLE}错误码。
  * @param config 指向Perf采样配置结构体{@link HiDebug_ProcessSamplerConfig}的指针。配置参数决定了采样的具体行为，如采样频率、目标线程等。
  * @param stacksCallback 采样结束时的回调函数，用于返回采样结果。采样完成后，系统将调用此函数并将采样数据作为参数传递。
@@ -310,28 +310,40 @@ HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
  * <br>回调函数只在终止采集（含系统自动停止采集）时调用，其携带采集资源类型和采集文件路径。
  * <br>若采集异常，则文件路径为NULL。
  *
- * @param type 资源采集类型，决定了采集的具体资源类别（如CPU、内存、IO等）。不同类型对应不同资源采集场景：CPU采集用于分析CPU性能问题，内存采集用于分析内存泄漏和内存使用情况，IO采集用于分析IO性能瓶颈。
- *     根据分析需求选择合适的资源类型。
+ * @param type 资源采集类型，详见{@link OH_HiDebug_ResourceType}。
  * @param config 资源采集配置参数。配置参数决定了采集的具体行为，如采样频率、持续时间等。
  * @param callback 资源采集回调结果函数。采集终止时将调用此回调函数，传递采集结果和文件路径。
  * @return 返回结果码：
- *     <br>{@link HIDEBUG_RES_PROF_SUCCESS}：启动资源采集成功。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_ARG}：资源采集参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}：资源采集最大持续时间参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}：资源采集过滤大小参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}：资源采集最大回栈深度参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}：资源采集统计间隔参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}：资源采集采样大小参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}：资源采集类型参数无效。
- *     <br>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}：资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。
- *     <br>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}：资源采集重复启动。
- *     <br>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}：资源采集进程数超出 4 个限制。
- *     <br>{@link HIDEBUG_RES_PROF_CONFLICT}：资源采集与命令行工具或系统采集任务冲突。
- *     <br>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}：资源采集每日配额超出 10 次限制。
- *     <br>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}：系统 CPU 处于高负载状态，CPU 占用率超过 70%。
- *     <br>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}：内存可用空间紧张，可用空间少于 15%。
- *     <br>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}：存储可用空间紧张，可用空间少于 15%。
- *     <br>{@link HIDEBUG_RES_PROF_FAILURE}：启动资源采集失败。
+ *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS}：启动资源采集成功。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG}：资源采集参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_DURATION}：资源采集最大持续时间参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_FILTER_SIZE}：资源采集过滤大小参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH}：资源采集最大回栈深度参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL}：资源采集统计间隔参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL}：资源采集采样大小参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}：资源采集类型参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}：资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}：资源采集重复启动。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}：资源采集进程数超过4个上限。
+ *     仅对发布签名应用生效，调试签名应用不受此限制，
+ *     用于开发和调试目的。已有采集任务停止后限制释放。[since 26.0.1]
+ *     API版本26.0.0及以下，该限制对所有应用生效。[since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CONFLICT}：资源采集与命令行工具或系统采集任务冲突。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}：资源采集每日配额超出限制。
+ *     发布签名应用：每应用每日限制采集2次，整机每日限制采集4次；
+ *     调试签名应用：采集不受限制，用于开发和调试目的。配额每日重置。[since 26.0.1]
+ *     API版本26.0.0及以下，仅调试签名应用支持采集，每日限10次。[since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}：系统CPU处于高负载状态，
+ *     CPU占用率超过70%，禁止资源采集。CPU使用率恢复后可重试。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}：系统内存可用空间紧张，禁止资源采集。
+ *     可用空间不足2GB，该阈值为固定值，不随设备容量变化。
+ *     可用内存恢复后可重试。[since 26.0.1]
+ *     API版本26.0.0及以下，可用空间少于15%。[since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}：系统存储可用空间紧张，禁止资源采集。
+ *     可用空间不足总容量的3%与15GB中的较大值。
+ *     可用存储恢复后可重试。[since 26.0.1]
+ *     API版本26.0.0及以下，可用空间少于15%。[since 24 - 26.0.0]</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}：启动资源采集失败。可检查系统条件后重试。</li></ul>
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDebug_ResProfilerConfig* config,
@@ -341,9 +353,9 @@ HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDe
  * @brief 停止当前进程资源采集功能。该接口可在{@link OH_HiDebug_StartProfiler}接口调用后使用，且调用间隔不能超过最大持续时间。
  *
  * @return 返回结果码：
- *     <br>{@link HIDEBUG_RES_PROF_SUCCESS}：已成功停止资源采集。
- *     <br>{@link HIDEBUG_RES_PROF_NOT_STARTED}：资源采集未启动，停止失败。
- *     <br>{@link HIDEBUG_RES_PROF_FAILURE}：停止资源采集失败。
+ *     <ul><li>{@link HIDEBUG_RES_PROF_SUCCESS}：已成功停止资源采集。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_NOT_STARTED}：资源采集未启动，停止失败。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}：停止资源采集失败。可检查系统条件后重试。</li></ul>
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
@@ -449,7 +461,7 @@ HiDebug_ErrorCode OH_HiDebug_DestroyProfilerOptions(OH_HiDebug_ProfilerOptions *
  * @brief 设置异步调用最大嵌套深度。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param depth [in] 允许的最大异步嵌套深度。
+ * @param depth [in] 允许的最大异步嵌套深度，取值范围为[1, 16]。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -462,7 +474,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncNestingDepth(OH_HiDebug_ProfilerOptions 
  * @brief 设置异步任务函数的最大栈深。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param depth [in] 最大异步任务栈深。
+ * @param depth [in] 最大异步任务回栈深度，取值范围为[1, 256]。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -475,7 +487,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxAsyncTaskStackDepth(OH_HiDebug_ProfilerOption
  * @brief 设置采样间隔（单位：字节）。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param bytes [in] 采样间隔。
+ * @param bytes [in] 采样间隔，取值范围为[384, 4294967295]，单位为Byte。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -488,7 +500,7 @@ HiDebug_ErrorCode OH_HiDebug_SetSampleIntervalBytes(OH_HiDebug_ProfilerOptions *
  * @brief 设置统计时间间隔（单位：秒）。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param seconds [in] 统计时间间隔。
+ * @param seconds [in] 统计间隔，取值范围为[1, 3600]，单位为s。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -501,7 +513,7 @@ HiDebug_ErrorCode OH_HiDebug_SetStatisticsIntervalSec(OH_HiDebug_ProfilerOptions
  * @brief 设置最大回栈深度。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param depth [in] 最大回栈深度。
+ * @param depth [in] 最大回栈深度，取值范围为[1, 30]。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -514,7 +526,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMaxStackDepth(OH_HiDebug_ProfilerOptions *opts, 
  * @brief 设置过滤大小。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param size [in] 过滤大小（单位：字节）。
+ * @param size [in] 过滤大小阈值，取值范围为[1, 4294967295]，单位为Byte。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -527,7 +539,7 @@ HiDebug_ErrorCode OH_HiDebug_SetFilterSize(OH_HiDebug_ProfilerOptions *opts, uin
  * @brief 设置最大采集持续时间（单位：秒）。
  *
  * @param opts [in] 指向OH_HiDebug_ProfilerOptions结构体的指针，该参数须为非空指针。
- * @param seconds [in] 最大采集持续时间（单位：秒）。
+ * @param seconds [in] 最大采集时长，取值范围为[1, 3600]，单位为s。
  * @return 返回码。
  *     <ul><li>{@link HIDEBUG_SUCCESS} 成功。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_ARG} opts是一个空指针。</li>
@@ -567,16 +579,25 @@ HiDebug_ErrorCode OH_HiDebug_SetStackTraceMode(OH_HiDebug_ProfilerOptions *opts,
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_NESTING_DEPTH}最大异步嵌套深度参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_MAX_ASYNC_TASK_STACK_DEPTH}最大异步任务回栈栈深参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_INVALID_STACK_TRACE_MODE} 调用栈追踪模式参数无效。</li>
- *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}资源类型参数无效。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE}资源采集类型参数无效。</li>
  *     <li>{@link HIDEBUG_RES_PROF_PERMISSION_DENIED}资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。</li>
  *     <li>{@link HIDEBUG_RES_PROF_ALREADY_STARTED}资源采集重复启动。</li>
- *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}资源采集进程数超出限制。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT}资源采集进程数超过4个上限。
+ *     仅对发布签名应用生效，调试签名应用不受此限制，
+ *     用于开发和调试目的。已有采集任务停止后限制释放。</li>
  *     <li>{@link HIDEBUG_RES_PROF_CONFLICT}资源采集与命令行工具或系统采集任务冲突。</li>
- *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}资源采集每日配额超出限制。</li>
- *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}系统CPU高负载，禁止采集。</li>
- *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}系统内存可用空间紧张，禁止采集。</li>
- *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}存储可用空间紧张，禁止采集。</li>
- *     <li>{@link HIDEBUG_RES_PROF_FAILURE}启动资源采集失败。</li></ul>
+ *     <li>{@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED}资源采集每日配额超出限制。
+ *     发布签名应用：每应用每日限制采集2次，整机每日限制采集4次；
+ *     调试签名应用：采集不受限制，用于开发和调试目的。配额每日重置。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_CPU_OVERLOADED}系统CPU处于高负载状态，
+ *     CPU占用率超过70%，禁止资源采集。CPU使用率恢复后可重试。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL}系统内存可用空间紧张，禁止资源采集。
+ *     可用空间不足2GB，该阈值为固定值，不随设备容量变化。
+ *     可用内存恢复后可重试。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL}系统存储可用空间紧张，禁止资源采集。
+ *     可用空间不足总容量的3%与15GB中的较大值。
+ *     可用存储恢复后可重试。</li>
+ *     <li>{@link HIDEBUG_RES_PROF_FAILURE}启动资源采集失败。可检查系统条件后重试。</li></ul>
  * @since 26.0.1
  */
 HiDebug_ErrorCode OH_HiDebug_StartProfilerWithOptions(OH_HiDebug_ResourceType type,

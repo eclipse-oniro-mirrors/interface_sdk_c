@@ -25,7 +25,9 @@
 /**
  * @file image.h
  *
- * @brief Defines **Image** node types for **NativeNode** APIs.
+ * @brief Defines **Image** node types for **NativeNode** APIs, which are used to create and configure **Image**
+ * components in native applications, including image repetition patterns, width and height styles, filling effects,
+ * interpolation optimization, dynamic ranges, rotation directions, and render modes.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -41,7 +43,9 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the image repeat patterns.
+ * @brief Enumerates the image repeat patterns. This enumeration is used to control how an image is repeatedly drawn
+ * in scenarios such as backgrounds and patterns. For example, a small pattern can be used to fill the entire
+ * background in a wallpaper application.
  *
  * @since 12
  */
@@ -73,7 +77,10 @@ typedef enum {
 } ArkUI_ImageRepeat;
 
 /**
- * @brief Enumerates the image sizes.
+ * @brief Enumerates the image sizes. This enumeration is used to control how an image is scaled in a display area: **
+ * ARKUI_IMAGE_SIZE_AUTO** retains the original image aspect ratio. **ARKUI_IMAGE_SIZE_COVER** is suitable for
+ * scenarios where the image needs to fully occupy the container (such as album thumbnails). **ARKUI_IMAGE_SIZE_CONTAIN*
+ * * is used in scenarios where the image needs to be displayed completely (such as preview on a details page).
  *
  * @since 12
  */
@@ -101,7 +108,10 @@ typedef enum {
 } ArkUI_ImageSize;
 
 /**
- * @brief Enumerates the image filling effects of the {@link Image} component.
+ * @brief Enumerates the image filling effects of the {@link Image} component. **ARKUI_OBJECT_FIT_CONTAIN** is
+ * applicable to scenarios where the image needs to be displayed completely. **ARKUI_OBJECT_FIT_COVER** is applicable
+ * to scenarios where the image needs to fully occupy the container. **ARKUI_OBJECT_FIT_SCALE_DOWN** is applicable to
+ * scenarios where the image needs to be scaled down when it is too large.
  *
  * @since 12
  */
@@ -206,9 +216,13 @@ typedef enum {
      */
     ARKUI_OBJECT_FIT_NONE_MATRIX = 15
 } ArkUI_ObjectFit;
+
 /**
  * @brief Enumerates the image interpolation effects. This attribute mitigates aliasing during image scaling. This
- * attribute is not applicable to SVG images.
+ * attribute is not applicable to SVG images. **ARKUI_IMAGE_INTERPOLATION_LOW** is suitable for performance-sensitive
+ * scenarios with low image quality requirements (such as quick scrolling of list thumbnails). **
+ * ARKUI_IMAGE_INTERPOLATION_MEDIUM** is suitable for most common scenarios. **ARKUI_IMAGE_INTERPOLATION_HIGH** is
+ * suitable for scenarios with high image quality requirements (such as image viewers).
  *
  * @since 12
  */
@@ -238,9 +252,12 @@ typedef enum {
      */
     ARKUI_IMAGE_INTERPOLATION_HIGH = 3
 } ArkUI_ImageInterpolation;
+
 /**
- * @brief Enumerates the dynamic range modes (for example, SDR/HDR) for images, controlling the display range of image
- * brightness and color gamut.
+ * @brief Enumerates the dynamic range modes (for example, SDR/HDR). **ARKUI_DYNAMIC_RANGE_MODE_HIGH** is applicable to
+ * high-end devices that support HDR display and HDR content. **ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT** is applicable to
+ * transition scenarios where SDR needs to be compatible with. **ARKUI_DYNAMIC_RANGE_MODE_STANDARD** is applicable to
+ * common display devices.
  *
  * @since 21
  */
@@ -266,7 +283,9 @@ typedef enum {
 } ArkUI_DynamicRangeMode;
 
 /**
- * @brief Enumerates image rotation directions.
+ * @brief Enumerates image rotation directions. It is used to adjust the display orientation of an image based on its
+ * Exif metadata or a manually specified value, which is suitable for processing the orientation of photos taken by
+ * users or correcting the display of photos.
  *
  * @since 21
  */
@@ -328,7 +347,9 @@ typedef enum {
 } ArkUI_ImageRotateOrientation;
 
 /**
- * @brief Enumerates the image rendering modes.
+ * @brief Enumerates the image rendering modes. **ARKUI_IMAGE_RENDER_MODE_ORIGINAL** is applicable to scenarios where
+ * the original image color needs to be retained. **ARKUI_IMAGE_RENDER_MODE_TEMPLATE** is applicable to scenarios where
+ * a monochrome or black-and-white display is required (such as selected icons and colored icons).
  *
  * @since 12
  */

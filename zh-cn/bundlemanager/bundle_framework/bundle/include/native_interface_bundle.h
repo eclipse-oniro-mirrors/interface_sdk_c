@@ -17,10 +17,9 @@
  * @addtogroup Native_Bundle
  * @{
  *
- * @brief Describes the Native Bundle.
+ * @brief 提供查询应用包信息的功能，包括应用包名、应用指纹、应用appId等。
  *
  * @since 9
- * @version 1.0
  */
 
 /**
@@ -32,7 +31,6 @@
  * @library libbundle_ndk.z.so
  * @syscap SystemCapability.BundleManager.BundleFramework.Core
  * @since 9
- * @version 1.0
  */
 #ifndef FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
 #define FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
@@ -46,24 +44,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief 应用包信息数据结构，包含应用包名和应用指纹信息。
  *
- * @syscap SystemCapability.BundleManager.BundleFramework.Core
  * @since 9
  */
 struct OH_NativeBundle_ApplicationInfo {
     /**
-     * 应用包名。
-     * @syscap SystemCapability.BundleManager.BundleFramework.Core
+     * @brief 应用包名。
+     *
      * @since 9
      */
     char* bundleName;
 
     /**
-     * 应用的指纹信息，由签名证书通过SHA-256算法计算哈希值生成。使用的签名证书发生变化时，该字段也会发生变化。
-     * @syscap SystemCapability.BundleManager.BundleFramework.Core
+     * @brief 应用的指纹信息，由签名证书通过SHA-256算法计算哈希值生成。使用的签名证书发生变化时，该字段也会发生变化。
+     *
      * @since 9
      */
     char* fingerprint;
@@ -76,15 +72,21 @@ struct OH_NativeBundle_ApplicationInfo {
  */
 struct OH_NativeBundle_ElementName {
     /**
-     * 应用包名。
+     * @brief 应用包名。
+     *
+     * @since 13
      */
     char* bundleName;
     /**
-     * 模块名称。
+     * @brief 模块名称。
+     *
+     * @since 13
      */
     char* moduleName;
     /**
-     * 组件名。
+     * @brief Ability名称。
+     *
+     * @since 13
      */
     char* abilityName;
 };
@@ -98,16 +100,19 @@ typedef struct OH_NativeBundle_Metadata {
     /**
      * @brief 元数据名称。
      *
+     * @since 20
      */
     char* name;
     /**
      * @brief 元数据值。
      *
+     * @since 20
      */
     char* value;
     /**
      * @brief 元数据资源。
      *
+     * @since 20
      */
     char* resource;
 } OH_NativeBundle_Metadata;
@@ -121,16 +126,19 @@ typedef struct OH_NativeBundle_ModuleMetadata {
     /**
      * @brief 模块名称。
      *
+     * @since 20
      */
     char* moduleName;
     /**
      * @brief 模块的元数据数组。
      *
+     * @since 20
      */
     OH_NativeBundle_Metadata* metadataArray;
     /**
-     * @brief 模块的元数据数组大小。
+     * @brief 模块的元数据数组大小。需与metadataArray配合使用，应等于metadataArray数组的实际元素数量，设置错误可能导致数组越界或数据访问异常。
      *
+     * @since 20
      */
     size_t metadataArraySize;
 } OH_NativeBundle_ModuleMetadata;
@@ -139,7 +147,6 @@ typedef struct OH_NativeBundle_ModuleMetadata {
  * @brief 应用包信息数据结构，包含应用包名和应用指纹信息。
  *
  * @since 11
- * @version 1.0
  */
 typedef struct OH_NativeBundle_ApplicationInfo OH_NativeBundle_ApplicationInfo;
 
@@ -147,7 +154,6 @@ typedef struct OH_NativeBundle_ApplicationInfo OH_NativeBundle_ApplicationInfo;
  * @brief elementName信息。
  *
  * @since 13
- * @version 1.0
  */
 typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
 
@@ -157,7 +163,6 @@ typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
  * @return 返回新创建的OH_NativeBundle_ApplicationInfo对象。如果返回的对象中的属性值为NULL，则表示创建失败。
  *     <br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。
  * @since 9
- * @version 1.0
  */
 OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo();
 
@@ -167,7 +172,6 @@ OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo();
  * @return 返回一个新创建的字符串，用于指示appID信息。如果返回的对象为NULL，则表示创建失败。
  *     <br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。
  * @since 11
- * @version 1.0
  */
 char* OH_NativeBundle_GetAppId();
 
@@ -177,7 +181,6 @@ char* OH_NativeBundle_GetAppId();
  * @return 返回一个新创建的字符串，用于指示应用程序标识符信息。如果返回的对象为NULL，则表示创建失败。
  *     <br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。
  * @since 11
- * @version 1.0
  */
 char* OH_NativeBundle_GetAppIdentifier();
 
@@ -196,14 +199,13 @@ OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
  * @return 返回一个新创建的字符串，用于指示兼容设备类型。如果返回的对象为NULL，则表示创建失败。
  *     <br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。
  * @since 14
- * @version 1.0
  */
 char* OH_NativeBundle_GetCompatibleDeviceType();
 
 /**
  * @brief 查询当前应用是否处于调试模式。
  *
- * @param isDebugMode 表示应用是否处于调试模式，取值为true表示可调试模式，取值为false表示不可调试模式。
+ * @param isDebugMode [in] 表示应用是否处于调试模式，取值为true表示可调试模式，取值为false表示不可调试模式。
  * @return 如果调用成功，则返回true，否则返回false。
  * @since 20
  */
@@ -212,7 +214,7 @@ bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
 /**
  * @brief 获取当前应用程序的模块元数据数组。在使用该接口之后，为了防止内存泄漏，需要手动释放接口返回的指针。
  *
- * @param size 表示模块元数据数组大小。
+ * @param size [in] 表示模块元数据数组大小。
  * @return 返回模块元数据数组，如果返回的对象为NULL，则表示获取失败。
  *     <br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。
  * @since 20
@@ -223,10 +225,11 @@ OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
  * @brief 获取支持打开特定文件类型的组件资源信息列表。在使用完该接口之后，为了防止内存泄漏，需要调用{@link OH_AbilityResourceInfo_Destroy}进行释放。
  *
  * @permission ohos.permission.GET_ABILITY_INFO
- * @param fileType 表示待查询的特定文件类型，推荐使用{@link UTD类型}，比如：'general.plain-text'、'general.image'。目前也可以兼容使用{@link MIME type类型}
- *     和文件后缀名称，如：'text/xml' 、 '.png'等。文件后缀与文件类型的映射关系参见{@link UTD预置列表}。不支持传'\*\/\*'。
- * @param abilityResourceInfo 表示返回的组件资源信息列表。
- * @param size 表示返回的组件资源信息列表大小。
+ * @param fileType [in] 表示待查询的特定文件类型，推荐使用{@link UTD类型}，比如：'general.plain-text'、'general.image'。
+ *     目前也可以兼容使用{@link MIME type类型} 和文件后缀名称，如：'text/xml' 、 '.png'等。
+ *     文件后缀与文件类型的映射关系参见{@link UTD预置列表}。不支持传'*\/*'。
+ * @param abilityResourceInfo [in] 表示返回的组件资源信息列表。
+ * @param size [in] 表示返回的组件资源信息列表大小。
  * @return <ul><li>如果调用成功，返回{@link BUNDLE_MANAGER_ERROR_CODE_NO_ERROR}。</li><li>
  *     如果调用方没有正确的权限，返回{@link BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED}。</li></ul>
  * @since 21

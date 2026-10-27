@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @addtogroup AbilityRuntime
  * @{
  *
@@ -25,7 +25,14 @@
 /**
  * @file modular_object_extension_manager.h
  *
- * @brief Declares the modular object extension manager.
+ * @brief Declares the APIs for managing ModularObjectExtensionAbility, including querying
+ * ModularObjectExtensionAbility information, connecting to and disconnecting from it.
+ * Developers can use the APIs provided by this module to query the information of all
+ * registered ModularObjectExtensionAbility instances in the current app (including the startup mode,
+ * process mode, thread mode, component name, and disabled state), and establish or disconnect the communication
+ * connection with ModularObjectExtensionAbility as needed.
+ *
+ * **File to include:** <AbilityKit/ability_runtime/modular_object_extension_manager.h>
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -48,21 +55,30 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the pointer to OH_AbilityRuntime_ModularObjectExtensionInfo.
+ * @brief Represents the information handle of a single ModularObjectExtensionAbility. The handle points
+ * to the complete information of a ModularObjectExtensionAbility, including attributes such as
+ * the launch mode, process mode, thread mode, component name (AbilityBase_Element), and disabled state.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_ModularObjectExtensionInfo* OH_AbilityRuntime_ModObjExtensionInfoHandle;
 
 /**
- * @brief Defines the pointer to OH_AbilityRuntime_AllModularObjectExtensionInfos.
+ * @brief Represents a handle to the collection of all ModularObjectExtensionAbility information in the current app.
+ * You can obtain this handle through {@link OH_AbilityRuntime_AcquireSelfModularObjectExtensionInfos}.
+ * This handle points to a collection containing multiple {@link OH_AbilityRuntime_ModObjExtensionInfoHandle}
+ * objects. You can obtain the number of elements in the collection through
+ * {@link OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos}, and obtain the
+ * information of a single ModularObjectExtensionAbility by index through
+ * {@link OH_AbilityRuntime_GetModObjExtensionInfoByIndex}. After use, release the collection through
+ * {@link OH_AbilityRuntime_ReleaseAllExtensionInfos}.
  *
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_AllModularObjectExtensionInfos* OH_AbilityRuntime_AllModObjExtensionInfosHandle;
 
 /**
- * @brief The launch mode of a modular object extension.
+ * @brief Defines the launch mode of a ModularObjectExtensionAbility.
  * @since 26.0.0
  */
 typedef enum OH_AbilityRuntime_LaunchMode {
@@ -80,7 +96,7 @@ typedef enum OH_AbilityRuntime_LaunchMode {
 } OH_AbilityRuntime_LaunchMode;
 
 /**
- * @brief The process mode of a modular object extension.
+ * @brief Defines the process mode of a ModularObjectExtensionAbility.
  * @since 26.0.0
  */
 typedef enum OH_AbilityRuntime_ProcessMode {
@@ -104,7 +120,7 @@ typedef enum OH_AbilityRuntime_ProcessMode {
 } OH_AbilityRuntime_ProcessMode;
 
 /**
- * @brief The thread mode of a modular object extension.
+ * @brief Defines the thread mode of a ModularObjectExtensionAbility.
  * @since 26.0.0
  */
 typedef enum OH_AbilityRuntime_ThreadMode {
@@ -128,7 +144,7 @@ typedef enum OH_AbilityRuntime_ThreadMode {
 } OH_AbilityRuntime_ThreadMode;
 
 /**
- * @brief Gets the launch mode from modular object extension info.
+ * @brief Obtains the startup mode from the specified ModularObjectExtensionAbility information.
  *
  * @param extensionInfo The modular object extension info from which to get the launch mode.
  * @param launchMode The launch mode obtained from the extension info.
@@ -141,7 +157,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModularObjectExtensionInfoLaunchMo
     OH_AbilityRuntime_ModObjExtensionInfoHandle extensionInfo, OH_AbilityRuntime_LaunchMode *launchMode);
 
 /**
- * @brief Gets the process mode from modular object extension info.
+ * @brief Obtains the process mode from the specified ModularObjectExtensionAbility information.
  *
  * @param extensionInfo The modular object extension info to get the process mode from.
  * @param processMode The process mode obtained from the extension info.
@@ -154,7 +170,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModularObjectExtensionInfoProcessM
     OH_AbilityRuntime_ModObjExtensionInfoHandle extensionInfo, OH_AbilityRuntime_ProcessMode *processMode);
 
 /**
- * @brief Gets the thread mode from modular object extension info.
+ * @brief Obtains the thread mode from the specified ModularObjectExtensionAbility information.
  *
  * @param extensionInfo The modular object extension info to get the thread mode from.
  * @param threadMode The thread mode obtained from the extension info.
@@ -167,7 +183,9 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModularObjectExtensionInfoThreadMo
     OH_AbilityRuntime_ModObjExtensionInfoHandle extensionInfo, OH_AbilityRuntime_ThreadMode *threadMode);
 
 /**
- * @brief Gets elementName from modular object extension info.
+ * @brief Gets the component name (AbilityBase_Element) from the specified ModularObjectExtensionAbility information.
+ * The bundleName, moduleName, and abilityName in element are non-owning pointers that point to the internal data of
+ * extensionInfo. Do not release them separately. They are available only while extensionInfo is valid.
  *
  * @param extensionInfo The modular object extension info to get the element name from.
  * @param element The element name obtained from the extension info.
@@ -180,7 +198,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModularObjectExtensionInfoElementN
     OH_AbilityRuntime_ModObjExtensionInfoHandle extensionInfo, AbilityBase_Element *element);
 
 /**
- * @brief Gets the disable state of modular object extension.
+ * @brief Obtains the disabled state from the specified ModularObjectExtensionAbility information.
  *
  * @param extensionInfo The modular object extension info.
  * @param isDisabled Whether the extension is disabled.
@@ -193,7 +211,12 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModularObjectExtensionInfoDisableS
     OH_AbilityRuntime_ModObjExtensionInfoHandle extensionInfo, bool *isDisabled);
 
 /**
- * @brief Acquires all modular object extension infos within the self application.
+ * @brief Gets the information about all registered ModularObjectExtensionAbility instances of the current
+ * application and returns a handle to the ModularObjectExtensionAbility information set.
+ * Use {@link OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos} to obtain the information count of the set,
+ * and use {@link OH_AbilityRuntime_GetModObjExtensionInfoByIndex} to traverse each ModularObjectExtensionAbility
+ * information by index to obtain attributes such as the launch mode, process mode, and thread mode. After use,
+ * call {@link OH_AbilityRuntime_ReleaseAllExtensionInfos} to release the handle to avoid memory leaks.
  *
  * @param outOwnedAllExtensionInfos Information about all extensions within the self application.
  * @return Returns a specific error code.
@@ -207,7 +230,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_AcquireSelfModularObjectExtensionInfo
     OH_AbilityRuntime_AllModObjExtensionInfosHandle *outOwnedAllExtensionInfos);
 
 /**
- * @brief Releases the specified all modular object extension infos.
+ * @brief Releases the ModularObjectExtensionAbility information collection obtained by
+ * {@link OH_AbilityRuntime_AcquireSelfModularObjectExtensionInfos}. When the ModularObjectExtensionAbility
+ * information collection is no longer needed, you must call this API to release the related resources to
+ * avoid memory leaks.
  *
  * @param allExtensionInfos The all modular object extension infos to be released.
  * @return Returns a specific error code.
@@ -220,7 +246,11 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ReleaseAllExtensionInfos(
     OH_AbilityRuntime_AllModObjExtensionInfosHandle *allExtensionInfos);
 
 /**
- * @brief Gets the exact count of modular object extension infos present in the collection.
+ * @brief Obtains the number of ModularObjectExtensionAbility information items contained in the
+ * ModularObjectExtensionAbility information collection. The returned count can be used to determine the upper
+ * limit of the index when traversing the collection, and works with
+ * {@link OH_AbilityRuntime_GetModObjExtensionInfoByIndex} to access each ModularObjectExtensionAbility information
+ * item in the collection.
  *
  * @param allExtensionInfos The handle representing the collection of all modular object extension infos.
  * @param count Return value to receive the count of extensions in the collection.
@@ -233,7 +263,13 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos(
     OH_AbilityRuntime_AllModObjExtensionInfosHandle allExtensionInfos, size_t *count);
 
 /**
- * @brief Retrieves a specific modular object extension info handle from the collection by its index.
+ * @brief Obtains the specified ModularObjectExtensionAbility information from the ModularObjectExtensionAbility
+ * information collection by index. The valid index range is [0, count), where count can be obtained through
+ * {@link OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos}. The obtained ModularObjectExtensionAbility
+ * information handle can be used to query the startup mode, process mode, thread mode, and other attributes
+ * of the ModularObjectExtensionAbility. The returned extensionInfo is a non-owning handle that points to the
+ * internal storage of the allExtensionInfos collection. Do not release it separately. It is available only while
+ * allExtensionInfos is valid.
  *
  * @param allExtensionInfos Information about all extensions within the self application.
  * @param index The index of the extension to retrieve. Must be strictly less than the count.
@@ -248,7 +284,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModObjExtensionInfoByIndex(
     OH_AbilityRuntime_ModObjExtensionInfoHandle *extensionInfo);
 
 /**
- * @brief Connect to a modular object extension ability.
+ * @brief Connects to a ModularObjectExtensionAbility.
  *
  * @param want Indicates the modular object extension ability to connect.
  * For details, see {@link AbilityBase_Want}.
@@ -286,7 +322,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ConnectModularObjectExtensionAbility(
     OH_AbilityRuntime_ConnectOptions *connectOptions, int64_t *connectionId);
 
 /**
- * @brief Disconnect the modular object extension ability.
+ * @brief Disconnects from the ModularObjectExtensionAbility.
  *
  * @param connectionId Indicates the connection ID.
  * @return Returns a specific error code.

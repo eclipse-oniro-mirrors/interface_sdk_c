@@ -1003,14 +1003,18 @@ typedef enum {
     HID_DDK_INVALID_PARAMETER = 401,
     /**
      * DDK接口执行失败，从API 16起，取值由-1变更为27300001。可能原因：设备状态异常或通信异常。请检查设备状态和参数设置。
+     * 注：当前{@link OH_Hid_CreateDevice}在虚拟设备数量超过上限或设备ID生成失败时，取值为-1。
      */
     HID_DDK_FAILURE = 27300001,
     /**
      * 空指针异常，从API 16起，取值由-4变更为27300002。请检查传入参数的有效性。
+     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在设备不存在时，取值为-4;{@link OH_Hid_EmitEvent}在设备对象为空时，取值也为-4。
      */
     HID_DDK_NULL_PTR = 27300002,
     /**
      * 非法操作，从API 16起，取值由-3变更为27300003。可能原因：调用API的时机或顺序不正确。请检查调用时机、以及是否初始化DDK。
+     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在调用者Token校验不匹配时，取值为-3；{@link OH_Hid_EmitEvent}与
+     * {@link OH_Hid_DestroyDevice}在DDK连接失败或服务未启用时，取值为27300003。
      */
     HID_DDK_INVALID_OPERATION = 27300003,
     /**

@@ -148,7 +148,7 @@ typedef struct {
     /** buffer usage的组合 */
     int32_t usage;
     /**
-     * stride stride in bytes
+     * 本地窗口缓冲区步幅，单位是Byte
      * @since 10
      */
     int32_t stride;

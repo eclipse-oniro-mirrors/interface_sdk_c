@@ -192,7 +192,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置宽度数值，单位为vp。</li>
+     * <li>.value[0].f32：设置宽度数值，单位为vp。取值范围：[0, +∞)。设置异常值时，按默认值显示或组件尺寸异常。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -207,7 +207,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置高度数值，单位为vp。</li>
+     * <li>.value[0].f32：设置高度数值，单位为vp。取值范围：[0, +∞)。设置异常值时，按默认值显示或组件尺寸异常。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -259,14 +259,14 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1. 只传入一个参数，表示统一设置上下左右四个位置的内间距值。
      * <ul>
-     * <li>.value[0].f32：统一设置内间距数值，单位为vp。</li>
+     * <li>.value[0].f32：统一设置上下左右四个位置的内间距值，单位为vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
      * </ul>
      * 2. 传入四个参数，表示分别设置上下左右四个位置的内间距值。
      * <ul>
-     * <li>.value[0].f32：设置上内间距数值，单位为vp，默认值为0vp。</li>
-     * <li>.value[1].f32：设置右内间距数值，单位为vp，默认值为0vp。</li>
-     * <li>.value[2].f32：设置下内间距数值，单位为vp，默认值为0vp。</li>
-     * <li>.value[3].f32：设置左内间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[0].f32：设置上内间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
+     * <li>.value[1].f32：设置右内间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
+     * <li>.value[2].f32：设置下内间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
+     * <li>.value[3].f32：设置左内间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -276,7 +276,7 @@ typedef enum {
      * <li>.value[3].f32：左内间距数值，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_PADDING,
@@ -307,14 +307,14 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1. 只传入一个参数，表示统一设置上下左右四个位置的外间距值。
      * <ul>
-     * <li>.value[0].f32：统一设置上下左右四个位置的外间距值，单位为vp。</li>
+     * <li>.value[0].f32：统一设置上下左右四个位置的外间距值，单位为vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
      * </ul>
      * 2. 传入四个参数，表示分别设置上下左右四个位置的外间距值。
      * <ul>
-     * <li>.value[0].f32：设置上外间距数值，单位为vp，默认值为0vp。</li>
-     * <li>.value[1].f32：设置右外间距数值，单位为vp，默认值为0vp。</li>
-     * <li>.value[2].f32：设置下外间距数值，单位为vp，默认值为0vp。</li>
-     * <li>.value[3].f32：设置左外间距数值，单位为vp，默认值为0vp。</li>
+     * <li>.value[0].f32：设置上外间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
+     * <li>.value[1].f32：设置右外间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
+     * <li>.value[2].f32：设置下外间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
+     * <li>.value[3].f32：设置左外间距数值，单位为vp，默认值为0vp。取值范围：[0, +∞)。设置异常值时，按默认值0vp显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -324,7 +324,7 @@ typedef enum {
      * <li>.value[3].f32：左外间距数值，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_MARGIN,
@@ -471,11 +471,11 @@ typedef enum {
      * 在Stack中该属性与NODE_STACK_ALIGN_CONTENT效果一致，只能设置子组件在容器内的对齐方式。
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32： 设置对齐方式，数据类型{@link ArkUI_Alignment}，默认值ARKUI_ALIGNMENT_CENTER。</li>
+     * <li>.value[0].i32：设置对齐方式，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_CENTER。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32： 对齐方式，数据类型{@link ArkUI_Alignment}。</li>
+     * <li>.value[0].i32：对齐方式，类型为{@link ArkUI_Alignment}。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -502,24 +502,24 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1. 只传入一个参数，表示统一设置四条边的边框宽度。
      * <ul>
-     * <li>.value[0].f32：统一设置四条边的边框宽度，单位为vp。</li>
+     * <li>.value[0].f32：统一设置四条边的边框宽度，单位为vp。取值范围：[0, +∞)。默认值为0vp。</li>
      * </ul>
      * 2. 传入四个参数，表示分别设置四条边的边框宽度。
      * <ul>
-     * <li>.value[0].f32：设置上边框的边框宽度，单位为vp，默认值为0vp。</li>
-     * <li>.value[1].f32：设置右边框的边框宽度，单位为vp，默认值为0vp。</li>
-     * <li>.value[2].f32：设置下边框的边框宽度，单位为vp，默认值为0vp。</li>
-     * <li>.value[3].f32：设置左边框的边框宽度，单位为vp，默认值为0vp。</li>
+     * <li>.value[0].f32：设置上边框的边框宽度，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
+     * <li>.value[1].f32：设置右边框的边框宽度，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
+     * <li>.value[2].f32：设置下边框的边框宽度，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
+     * <li>.value[3].f32：设置左边框的边框宽度，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：上边框的边框宽度。</li>
-     * <li>.value[1].f32：右边框的边框宽度。</li>
-     * <li>.value[2].f32：下边框的边框宽度。</li>
-     * <li>.value[3].f32：左边框的边框宽度。</li>
+     * <li>.value[0].f32：上边框的边框宽度，单位为vp。</li>
+     * <li>.value[1].f32：右边框的边框宽度，单位为vp。</li>
+     * <li>.value[2].f32：下边框的边框宽度，单位为vp。</li>
+     * <li>.value[3].f32：左边框的边框宽度，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_BORDER_WIDTH,
@@ -527,26 +527,26 @@ typedef enum {
      * @brief 边框圆角属性，支持属性设置，属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
-     * 1. 只传入一个参数，表示统一设置四条边的边框圆角。
+     * 1：只传入一个参数，表示统一设置四个角的边框圆角半径。
      * <ul>
-     * <li>.value[0].f32：统一设置四条边的边框圆角。</li>
+     * <li>.value[0].f32：统一设置四个角的边框圆角半径，单位为vp。取值范围：[0, +∞)。默认值为0vp。</li>
      * </ul>
-     * 2. 传入四个参数，表示分别设置四条边的边框圆角。
+     * 2：传入四个参数，表示分别设置四个角的边框圆角半径。
      * <ul>
-     * <li>.value[0].f32：设置左上角圆角半径，单位为vp，默认值为0vp。</li>
-     * <li>.value[1].f32：设置右上角圆角半径，单位为vp，默认值为0vp。</li>
-     * <li>.value[2].f32：设置左下角圆角半径，单位为vp，默认值为0vp。</li>
-     * <li>.value[3].f32：设置右下角圆角半径，单位为vp，默认值为0vp。</li>
+     * <li>.value[0].f32：设置左上角圆角半径，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
+     * <li>.value[1].f32：设置右上角圆角半径，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
+     * <li>.value[2].f32：设置左下角圆角半径，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
+     * <li>.value[3].f32：设置右下角圆角半径，单位为vp，默认值为0vp。取值范围：[0, +∞)。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：左上角圆角半径。</li>
-     * <li>.value[1].f32：右上角圆角半径。</li>
-     * <li>.value[2].f32：左下角圆角半径。</li>
-     * <li>.value[3].f32：右下角圆角半径。</li>
+     * <li>.value[0].f32：左上角圆角半径，单位为vp。</li>
+     * <li>.value[1].f32：右上角圆角半径，单位为vp。</li>
+     * <li>.value[2].f32：左下角圆角半径，单位为vp。</li>
+     * <li>.value[3].f32：右下角圆角半径，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_BORDER_RADIUS,
@@ -556,24 +556,24 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1：统一设置四条边的边框颜色。
      * <ul>
-     * <li>.value[0].u32：统一设置四条边的边框颜色，使用0xargb表示，如`0xFFFF11FF`。</li>
+     * <li>.value[0].u32：统一设置四条边的边框颜色，使用0xARGB表示，如`0xFFFF11FF`。</li>
      * </ul>
      * 2：分别设置四条边的边框颜色。
      * <ul>
-     * <li>.value[0].u32：设置上侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
-     * <li>.value[1].u32：设置右侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
-     * <li>.value[2].u32：设置下侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
-     * <li>.value[3].u32：设置左侧边框颜色，使用0xargb表示，默认值为0xFF000000。</li>
+     * <li>.value[0].u32：设置上侧边框颜色，使用0xARGB表示，默认值为`0xFF000000`。</li>
+     * <li>.value[1].u32：设置右侧边框颜色，使用0xARGB表示，默认值为`0xFF000000`。</li>
+     * <li>.value[2].u32：设置下侧边框颜色，使用0xARGB表示，默认值为`0xFF000000`。</li>
+     * <li>.value[3].u32：设置左侧边框颜色，使用0xARGB表示，默认值为`0xFF000000`。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：上侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[1].u32：右侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[2].u32：下侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[3].u32：左侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[0].u32：上侧边框颜色，使用0xARGB表示，如`0xFFFF11FF`。</li>
+     * <li>.value[1].u32：右侧边框颜色，使用0xARGB表示，如`0xFFFF11FF`。</li>
+     * <li>.value[2].u32：下侧边框颜色，使用0xARGB表示，如`0xFFFF11FF`。</li>
+     * <li>.value[3].u32：左侧边框颜色，使用0xARGB表示，如`0xFFFF11FF`。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_BORDER_COLOR,
@@ -587,20 +587,20 @@ typedef enum {
      * </ul>
      * 2. 传入四个参数，表示分别设置四条边的边框线条样式。
      * <ul>
-     * <li>.value[0].i32：设置上侧边框线条样式，参数类型{@linkArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
+     * <li>.value[0].i32：设置上侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
      * <li>.value[1].i32：设置右侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
      * <li>.value[2].i32：设置下侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
      * <li>.value[3].i32：设置左侧边框线条样式，参数类型{@link ArkUI_BorderStyle}，默认值为ARKUI_BORDER_STYLE_SOLID。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：上侧边框线条样式对应的数值。</li>
-     * <li>.value[1].i32：右侧边框线条样式对应的数值。</li>
-     * <li>.value[2].i32：下侧边框线条样式对应的数值。</li>
-     * <li>.value[3].i32：左侧边框线条样式对应的数值。</li>
+     * <li>.value[0].i32：上侧边框线条样式，参数类型{@link ArkUI_BorderStyle}。</li>
+     * <li>.value[1].i32：右侧边框线条样式，参数类型{@link ArkUI_BorderStyle}。</li>
+     * <li>.value[2].i32：下侧边框线条样式，参数类型{@link ArkUI_BorderStyle}。</li>
+     * <li>.value[3].i32：左侧边框线条样式，参数类型{@link ArkUI_BorderStyle}。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_BORDER_STYLE,
@@ -765,16 +765,16 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置x轴坐标。</li>
-     * <li>.value[1].f32: 设置y轴坐标。</li>
+     * <li>.value[0].f32：设置x轴坐标，单位为vp。取值范围：(-∞, +∞)。</li>
+     * <li>.value[1].f32：设置y轴坐标，单位为vp。取值范围：(-∞, +∞)。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：x轴坐标。</li>
-     * <li>.value[1].f32: y轴坐标。</li>
+     * <li>.value[0].f32：x轴坐标，单位为vp。</li>
+     * <li>.value[1].f32：y轴坐标，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为2。
      * @ingroup Layout[布局]
      */
     NODE_POSITION,
@@ -1333,11 +1333,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置容器元素内主轴方向上的布局类型，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。</li>
+     * <li>.value[0].i32：主轴方向，设置容器内子组件的排列方向。参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：容器元素内主轴方向上的布局类型，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。</li>
+     * <li>.value[0].i32：主轴方向，类型为{@link ArkUI_Direction}。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1348,20 +1348,20 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置最小宽度，单位vp。</li>
-     * <li>.value[1].f32：设置最大宽度，单位vp。</li>
-     * <li>.value[2].f32：设置最小高度，单位vp。</li>
-     * <li>.value[3].f32：设置最大高度，单位vp。</li>
+     * <li>.value[0].f32：设置最小宽度，单位为vp。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[1].f32：设置最大宽度，单位为vp。取值范围：[0, +∞)。默认值：无限制。</li>
+     * <li>.value[2].f32：设置最小高度，单位为vp。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[3].f32：设置最大高度，单位为vp。取值范围：[0, +∞)。默认值：无限制。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：最小宽度，单位vp。</li>
-     * <li>.value[1].f32：最大宽度，单位vp。</li>
-     * <li>.value[2].f32：最小高度，单位vp。</li>
-     * <li>.value[3].f32：最大高度，单位vp。</li>
+     * <li>.value[0].f32：最小宽度，单位为vp。</li>
+     * <li>.value[1].f32：最大宽度，单位为vp。</li>
+     * <li>.value[2].f32：最小高度，单位为vp。</li>
+     * <li>.value[3].f32：最大高度，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_CONSTRAINT_SIZE,
@@ -1447,13 +1447,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32 设置x轴方向的偏移值, 单位为vp。</li>
-     * <li>.value[1].f32 设置y轴方向的偏移值, 单位为vp。</li>
+     * <li>.value[0].f32：设置x轴偏移量，单位为vp。取值范围：(-∞, +∞)。默认值：0。</li>
+     * <li>.value[1].f32：设置y轴偏移量，单位为vp。取值范围：(-∞, +∞)。默认值：0。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32 x轴方向的偏移值, 单位为vp。</li>
-     * <li>.value[1].f32 y轴方向的偏移值, 单位为vp。</li>
+     * <li>.value[0].f32：相对于组件自身的x轴偏移量，单位为vp。</li>
+     * <li>.value[1].f32：相对于组件自身的y轴偏移量，单位为vp。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1464,13 +1464,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32 设置锚点x坐标值, 单位为vp。</li>
-     * <li>.value[1].f32 设置锚点y坐标值, 单位为vp。</li>
+     * <li>.value[0].f32：设置锚点x轴坐标，单位为vp。取值范围：(-∞, +∞)。默认值：0。</li>
+     * <li>.value[1].f32：设置锚点y轴坐标，单位为vp。取值范围：(-∞, +∞)。默认值：0。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32 锚点x坐标值, 单位为vp。</li>
-     * <li>.value[1].f32 锚点y坐标值, 单位为vp。</li>
+     * <li>.value[0].f32：锚点在组件坐标系中的x轴坐标，单位为vp。</li>
+     * <li>.value[1].f32：锚点在组件坐标系中的y轴坐标，单位为vp。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1520,11 +1520,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置子组件在父容器交叉轴的对齐格式类型，参数类型{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_AUTO。</li>
+     * <li>.value[0].i32：设置子组件在父容器交叉轴上的对齐方式，改变子组件在交叉轴方向的位置。参数类型{@link ArkUI_ItemAlignment}，默认值为
+     * ARKUI_ITEM_ALIGNMENT_AUTO。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：子组件在父容器交叉轴的对齐格式类型，参数类型{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_AUTO。</li>
+     * <li>.value[0].i32：子组件在父容器交叉轴上的对齐方式，类型为{@link ArkUI_ItemAlignment}。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1535,11 +1536,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置父容器的剩余空间所占比例。</li>
+     * <li>.value[0].f32：设置组件在父容器剩余空间中所占比例。取值范围：[0, +∞)。默认值：0。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：父容器的剩余空间所占比例。</li>
+     * <li>.value[0].f32：组件在父容器剩余空间中所占比例。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1550,11 +1551,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置父容器压缩尺寸分配给此属性所在组件的比例数值。</li>
+     * <li>.value[0].f32：设置父容器压缩尺寸分配给当前组件的比例。取值范围：[0, +∞)。默认值：1。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：父容器压缩尺寸分配给此属性所在组件的比例数值。</li>
+     * <li>.value[0].f32：父容器压缩尺寸分配给当前组件的比例。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1565,11 +1566,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置组件在父容器主轴方向上的基准尺寸。</li>
+     * <li>.value[0].f32：设置组件在父容器主轴上的基准尺寸，单位为vp。取值范围：[0, +∞)。默认值：auto。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：组件在父容器主轴方向上的基准尺寸。</li>
+     * <li>.value[0].f32：组件在父容器主轴上的基准尺寸，单位为vp。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1674,11 +1675,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置组件的宽高比，输入值为 width/height。</li>
+     * <li>.value[0].f32：设置组件宽高比，格式为宽度/高度。取值范围：(0, +∞)。默认值：不设置宽高比约束。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：组件的宽高比，width/height的比值。</li>
+     * <li>.value[0].f32：组件宽高比，格式为宽度/高度。设置后组件将按此比例调整尺寸。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1689,11 +1690,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：设置子组件占主轴尺寸的权重。</li>
+     * <li>.value[0].u32：设置组件在主轴上的布局权重，决定组件在剩余空间中的分配比例。取值范围：[0, +∞)。默认值：0。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：子组件占主轴尺寸的权重。</li>
+     * <li>.value[0].u32：组件在主轴上的布局权重，决定组件在剩余空间中的分配比例。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1705,11 +1706,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：设置子组件在父容器中的显示优先级。</li>
+     * <li>.value[0].u32：设置组件在布局容器中的显示优先级。取值范围：[0, +∞)。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：子组件在父容器中的显示优先级。</li>
+     * <li>.value[0].u32：组件在布局容器中的显示优先级。值越大优先级越高，空间不足时优先显示高优先级组件。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -1741,7 +1742,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置宽度数值，单位为百分比。</li>
+     * <li>.value[0].f32：设置宽度数值，单位为百分比。取值范围：(0, +∞)。无默认值，不设置时由组件布局决定尺寸，使用子组件自身内容需要的宽度。传入异常值时返回错误码。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -1756,7 +1757,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置高度数值，单位为百分比。</li>
+     * <li>.value[0].f32：设置高度数值，单位为百分比。取值范围：(0, +∞)。无默认值，不设置时由组件布局决定尺寸，使用子组件自身内容需要的高度。传入异常值时返回错误码。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -1772,14 +1773,14 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1. 只传入一个参数，表示统一设置上下左右四个位置的内间距百分比数值。
      * <ul>
-     * <li>.value[0].f32：统一设置上下左右四个位置的内间距数值，单位为百分比。</li>
+     * <li>.value[0].f32：统一设置上下左右四个位置的内间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
      * </ul>
      * 2. 传入四个参数，表示分别设置上下左右四个位置的内间距百分比数值。
      * <ul>
-     * <li>.value[0].f32：设置上内间距数值，单位为百分比。</li>
-     * <li>.value[1].f32：设置右内间距数值，单位为百分比。</li>
-     * <li>.value[2].f32：设置下内间距数值，单位为百分比。</li>
-     * <li>.value[3].f32：设置左内间距数值，单位为百分比。</li>
+     * <li>.value[0].f32：设置上内间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[1].f32：设置右内间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[2].f32：设置下内间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[3].f32：设置左内间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -1789,7 +1790,7 @@ typedef enum {
      * <li>.value[3].f32：左内间距数值，单位为百分比。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_PADDING_PERCENT,
@@ -1799,14 +1800,14 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1. 只传入一个参数，表示统一设置上下左右四个位置的外间距百分比数值。
      * <ul>
-     * <li>.value[0].f32：统一设置上下左右四个位置的外间距数值，单位为百分比。</li>
+     * <li>.value[0].f32：统一设置上下左右四个位置的外间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
      * </ul>
      * 2. 传入四个参数，表示分别设置上下左右四个位置的外间距百分比数值。
      * <ul>
-     * <li>.value[0].f32：设置上外间距数值，单位为百分比。</li>
-     * <li>.value[1].f32：设置右外间距数值，单位为百分比。</li>
-     * <li>.value[2].f32：设置下外间距数值，单位为百分比。</li>
-     * <li>.value[3].f32：设置左外间距数值，单位为百分比。</li>
+     * <li>.value[0].f32：设置上外间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[1].f32：设置右外间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[2].f32：设置下外间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[3].f32：设置左外间距数值，单位为百分比。默认值为0。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -1816,7 +1817,7 @@ typedef enum {
      * <li>.value[3].f32：左外间距数值，单位为百分比。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_MARGIN_PERCENT,
@@ -1846,13 +1847,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置链的方向。枚举{@link ArkUI_Axis}。</li>
-     * <li>.value[1].i32：设置链的样式。枚举{@link ArkUI_RelativeLayoutChainStyle}。</li>
+     * <li>.value[0].i32：链的方向，设置链在水平或垂直方向上排列。枚举{@link ArkUI_Axis}。</li>
+     * <li>.value[1].i32：链的样式，设置链内组件的分布方式。枚举{@link ArkUI_RelativeLayoutChainStyle}。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：链的方向。枚举{@link ArkUI_Axis}。</li>
-     * <li>.value[1].i32：链的样式。枚举{@link ArkUI_RelativeLayoutChainStyle}。</li>
+     * <li>.value[0].i32：链的方向，类型为{@link ArkUI_Axis}。</li>
+     * <li>.value[1].i32：链的样式，类型为{@link ArkUI_RelativeLayoutChainStyle}。</li>
      * </ul>
      * @ingroup Layout[布局]
      */
@@ -1906,8 +1907,8 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置宽度数值，单位为vp。</li>
-     * <li>.value[1].f32：设置高度数值，单位为vp。</li>
+     * <li>.value[0].f32：设置宽度数值，单位为vp。取值范围：[0, +∞)。</li>
+     * <li>.value[1].f32：设置高度数值，单位为vp。取值范围：[0, +∞)。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -1915,7 +1916,7 @@ typedef enum {
      * <li>.value[1].f32：高度数值，单位为vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为2。
      * @ingroup Layout[布局]
      */
     NODE_SIZE,
@@ -1983,15 +1984,15 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置组件X轴坐标，单位为px。</li>
-     * <li>.value[1].i32：设置组件Y轴坐标，单位为px。</li>
-     * <li>.value[2].i32：设置组件宽度，单位为px。</li>
-     * <li>.value[3].i32：设置组件高度，单位为px。</li>
+     * <li>.value[0].i32：设置组件x轴坐标，单位为px。取值范围：(-∞, +∞)。</li>
+     * <li>.value[1].i32：设置组件y轴坐标，单位为px。取值范围：(-∞, +∞)。</li>
+     * <li>.value[2].i32：设置组件宽度，单位为px。取值范围：[0, +∞)。</li>
+     * <li>.value[3].i32：设置组件高度，单位为px。取值范围：[0, +∞)。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：组件X轴坐标，单位为px。</li>
-     * <li>.value[1].i32：组件Y轴坐标，单位为px。</li>
+     * <li>.value[0].i32：组件x轴坐标，单位为px。</li>
+     * <li>.value[1].i32：组件y轴坐标，单位为px。</li>
      * <li>.value[2].i32：组件宽度，单位为px。</li>
      * <li>.value[3].i32：组件高度，单位为px。</li>
      * </ul>
@@ -2022,14 +2023,14 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
      * 1: 只传入一个参数，表示统一设置四条边的边框宽度百分比数值。
      * <ul>
-     * <li>.value[0].f32：统一设置四条边的边框宽度，单位为百分比。</li>
+     * <li>.value[0].f32：统一设置四条边的边框宽度数值，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
      * </ul>
      * 2: 传入四个参数，表示分别设置四条边的边框宽度百分比数值。
      * <ul>
-     * <li>.value[0].f32：设置上边框的边框宽度，单位为百分比。</li>
-     * <li>.value[1].f32：设置右边框的边框宽度，单位为百分比。</li>
-     * <li>.value[2].f32：设置下边框的边框宽度，单位为百分比。</li>
-     * <li>.value[3].f32：设置左边框的边框宽度，单位为百分比。</li>
+     * <li>.value[0].f32：设置上边框的边框宽度，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[1].f32：设置右边框的边框宽度，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[2].f32：设置下边框的边框宽度，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[3].f32：设置左边框的边框宽度，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -2039,7 +2040,7 @@ typedef enum {
      * <li>.value[3].f32：左边框的边框宽度，单位为百分比。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_BORDER_WIDTH_PERCENT = 85,
@@ -2047,16 +2048,16 @@ typedef enum {
      * @brief 边框圆角属性，支持属性设置，属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式有两种：**
-     * 1: 只传入一个参数，表示统一设置四条边的边框圆角半径百分比数值。
+     * 1: 只传入一个参数，表示统一设置四个角的边框圆角半径百分比数值。
      * <ul>
-     * <li>.value[0].f32：统一设置四条边的边框圆角半径百分比数值，单位为百分比。</li>
+     * <li>.value[0].f32：统一设置四个角的边框圆角半径数值，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
      * </ul>
-     * 2: 传入四个参数，表示分别设置四条边的边框圆角半径百分比数值。
+     * 2: 传入四个参数，表示分别设置四个角的边框圆角半径百分比数值。
      * <ul>
-     * <li>.value[0].f32：设置左上角圆角半径，单位为百分比。</li>
-     * <li>.value[1].f32：设置右上角圆角半径，单位为百分比。</li>
-     * <li>.value[2].f32：设置左下角圆角半径，单位为百分比。</li>
-     * <li>.value[3].f32：设置右下角圆角半径，单位为百分比。</li>
+     * <li>.value[0].f32：设置左上角圆角半径，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[1].f32：设置右上角圆角半径，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[2].f32：设置左下角圆角半径，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
+     * <li>.value[3].f32：设置右下角圆角半径，单位为百分比。取值范围：[0, +∞)。默认值：0。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -2066,7 +2067,7 @@ typedef enum {
      * <li>.value[3].f32：右下角圆角半径，单位为百分比。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      */
     NODE_BORDER_RADIUS_PERCENT = 86,
@@ -2163,7 +2164,7 @@ typedef enum {
     /**
      * @brief 定义控制组件扩展其安全区域，支持属性设置，属性重置和属性获取。
      *
-     * **属性设置方法{@link ArkUI_AttributeItem}参数格式：**
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0]?.u32：设置扩展安全区域的枚举值集合{@link ArkUI_SafeAreaType}，例如：ARKUI_SAFE_AREA_TYPE_SYSTEM | ARKUI_SAFE_AREA_TYPE_CUTOUT。</li>
      * <li>.value[1]?.u32：设置扩展安全区域的方向枚举值集合{@link ArkUI_SafeAreaEdge}。例如：ARKUI_SAFE_AREA_EDGE_TOP | ARKUI_SAFE_AREA_EDGE_BOTTOM。</li>
@@ -2405,11 +2406,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置组件宽度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * <li>.value[0].i32：设置组件宽度布局策略，参数类型{@link ArkUI_LayoutPolicy}，默认值：ARKUI_LAYOUT_POLICY_WRAP_CONTENT。设置异常值时，按默认值显示。
+     * </li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：组件宽度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * <li>.value[0].i32：组件宽度布局策略，参数类型{@link ArkUI_LayoutPolicy}，默认值：ARKUI_LAYOUT_POLICY_WRAP_CONTENT。设置异常值时，按默认值显示。
+     * </li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -2422,11 +2425,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置组件高度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * <li>.value[0].i32：设置组件高度布局策略，参数类型{@link ArkUI_LayoutPolicy}，默认值：ARKUI_LAYOUT_POLICY_WRAP_CONTENT。设置异常值时，按默认值显示。
+     * </li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：组件高度布局策略；参数类型为{@link ArkUI_LayoutPolicy}。</li>
+     * <li>.value[0].i32：组件高度布局策略，参数类型{@link ArkUI_LayoutPolicy}，默认值：ARKUI_LAYOUT_POLICY_WRAP_CONTENT。设置异常值时，按默认值显示。
+     * </li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -2439,11 +2444,11 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object：设置组件相对容器内容区边界的位置；参数类型为{@link ArkUI_PositionEdges}。</li>
+     * <li>.object：设置组件相对容器内容区边界的位置，参数类型为{@link ArkUI_PositionEdges}。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object：组件相对容器内容区边界的位置；参数类型为{@link ArkUI_PositionEdges}。</li>
+     * <li>.object：组件相对容器内容区边界的位置，参数类型为{@link ArkUI_PositionEdges}。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -2649,16 +2654,16 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置组件在水平方向的布局权重，默认值：0。设置异常值时，按默认值显示。</li>
-     * <li>.value[1].f32：设置组件在竖直方向的布局权重，默认值：0。设置异常值时，按默认值显示。</li>
+     * <li>.value[0].f32：设置组件在水平方向的布局权重，默认值：0。权重值越大，组件在链中占据的空间比例越大。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
+     * <li>.value[1].f32：设置组件在竖直方向的布局权重，默认值：0。权重值越大，组件在链中占据的空间比例越大。取值范围：[0, +∞)。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：组件在水平方向的布局权重。</li>
-     * <li>.value[1].f32：组件在竖直方向的布局权重。</li>
+     * <li>.value[0].f32：组件在水平方向的布局权重，权重值越大，组件在链中占据的空间比例越大。</li>
+     * <li>.value[1].f32：组件在竖直方向的布局权重，权重值越大，组件在链中占据的空间比例越大。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为2。
      * @ingroup Layout[布局]
      * @since 23
      */
@@ -2670,15 +2675,16 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].u32：设置扩展安全区域的类型。参数类型为{@link ArkUI_LayoutSafeAreaType}，默认值：ARKUI_LAYOUT_SAFE_AREA_TYPE_SYSTEM。设置异常值时，按默认值显示。</li>
-     * <li>.value[1].u32：设置扩展安全区域的方向。参数类型为{@link ArkUI_LayoutSafeAreaEdge}，默认值：ARKUI_LAYOUT_SAFE_AREA_EDGE_ALL。例如：ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP | ARKUI_LAYOUT_SAFE_AREA_EDGE_START。设置异常值时，按默认值显示。</li>
+     * <li>.value[1].u32：设置扩展安全区域的方向。参数类型为{@link ArkUI_LayoutSafeAreaEdge}，默认值：ARKUI_LAYOUT_SAFE_AREA_EDGE_ALL，例如：
+     * ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP | ARKUI_LAYOUT_SAFE_AREA_EDGE_BOTTOM。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：扩展安全区域的类型。</li>
-     * <li>.value[1].u32：扩展安全区域的方向。</li>
+     * <li>.value[0].u32：扩展安全区域的类型，类型为{@link ArkUI_LayoutSafeAreaType}。</li>
+     * <li>.value[1].u32：扩展安全区域的方向，类型为{@link ArkUI_LayoutSafeAreaEdge}。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为2。
      * @ingroup Layout[布局]
      * @since 23
      */
@@ -2689,10 +2695,10 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置上边框虚线的长度，单位vp。</li>
-     * <li>.value[1].f32：设置右边框虚线的长度，单位vp。</li>
-     * <li>.value[2].f32：设置下边框虚线的长度，单位vp。</li>
-     * <li>.value[3].f32：设置左边框虚线的长度，单位vp。取值范围：[0, +∞)设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[0].f32：设置上边框虚线的长度，单位vp，控制虚线段的长度。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[1].f32：设置右边框虚线的长度，单位vp，控制虚线段的长度。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[2].f32：设置下边框虚线的长度，单位vp，控制虚线段的长度。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[3].f32：设置左边框虚线的长度，单位vp，控制虚线段的长度。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -2702,7 +2708,7 @@ typedef enum {
      * <li>.value[3].f32：左边框虚线的长度，单位vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      * @since 23
      */
@@ -2713,10 +2719,10 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置上边框虚线的间隙，单位vp。</li>
-     * <li>.value[1].f32：设置右边框虚线的间隙，单位vp。</li>
-     * <li>.value[2].f32：设置下边框虚线的间隙，单位vp。</li>
-     * <li>.value[3].f32：设置左边框虚线的间隙，单位vp。取值范围：[0, +∞)设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[0].f32：设置上边框虚线的间隙，单位vp，控制虚线段之间的间隔。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[1].f32：设置右边框虚线的间隙，单位vp，控制虚线段之间的间隔。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[2].f32：设置下边框虚线的间隙，单位vp，控制虚线段之间的间隔。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
+     * <li>.value[3].f32：设置左边框虚线的间隙，单位vp，控制虚线段之间的间隔。取值范围：[0, +∞)。默认值：NODE_BORDER_WIDTH属性的边框宽度值。设置异常值时，按默认的虚线效果显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
@@ -2726,7 +2732,7 @@ typedef enum {
      * <li>.value[3].f32：左边框虚线的间隙，单位vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为4。
      * @ingroup Layout[布局]
      * @since 23
      */
@@ -2737,11 +2743,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置Stack容器中子组件的对齐规则。参数类型为{@link ArkUI_LocalizedAlignment}，默认值：ARKUI_ALIGNMENT_CENTER。设置异常值时，按默认值显示。</li>
+     * <li>.value[0].i32：设置Stack容器中子组件的对齐规则，决定子组件在Stack容器中的位置。参数类型为{@link ArkUI_LocalizedAlignment}，默认值：
+     * ARKUI_LOCALIZED_ALIGNMENT_CENTER。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：Stack容器中子组件的对齐规则。参数类型为{@link ArkUI_LocalizedAlignment}。</li>
+     * <li>.value[0].i32：Stack容器中子组件的对齐规则，类型为{@link ArkUI_LocalizedAlignment}。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -2754,11 +2761,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置组件绘制圆角的模式。参数类型为{@link ArkUI_RenderStrategy}，默认值：ARKUI_RENDERSTRATEGY_FAST。设置异常值时，按默认值显示。</li>
+     * <li>.value[0].i32：设置组件绘制圆角的模式，影响圆角的渲染效果和性能。参数类型为{@link ArkUI_RenderStrategy}，默认值：ARKUI_RENDERSTRATEGY_FAST。FAST模式
+     * 直接裁剪圆角，渲染性能优先；OFFSCREEN模式使用离屏渲染优化圆角效果，可能影响性能。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：组件绘制圆角的模式。参数类型为{@link ArkUI_RenderStrategy}。</li>
+     * <li>.value[0].i32：组件绘制圆角的模式，类型为{@link ArkUI_RenderStrategy}。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -2856,7 +2864,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Visual [视效属性]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_LINEAR_GRADIENT_BLUR = 129,
 
@@ -3262,7 +3270,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>?.object：可选。指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于设置行间距选项。
-     *     从API version 26.2.0开始支持。
+     *     从API version 26.0.1开始支持。
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Create}创建对象，
      *     使用{@link OH_ArkUI_NativeModule_LineSpacingOptions_Destroy}销毁对象。</li>
      * </ul>
@@ -3271,7 +3279,7 @@ typedef enum {
      * <ul>
      * <li>.value[0].f32：表示行间距值，单位为fp。</li>
      * <li>.object：指向{@link OH_ArkUI_NativeModule_LineSpacingOptions}对象的指针，用于获取行间距选项。
-     *     从API version 26.2.0开始支持。</li>
+     *     从API version 26.0.1开始支持。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]
@@ -3870,7 +3878,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_WIDTH = 1057,
 
@@ -3888,7 +3896,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_COLOR = 1058,
 
@@ -3906,7 +3914,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_STROKE_JOIN_STYLE = 1059,
 
@@ -4154,7 +4162,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Display[文本显示]
-     * @since 26.2.0
+     * @since 26.0.1
      */
     NODE_IMAGE_SPAN_RESIZABLE = 3006,
     /**
@@ -7734,6 +7742,24 @@ typedef enum {
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
     /**
+     * @brief 设置日历选择器每周的起始日，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器每周的起始日。取值范围：[0, 7]。
+     * <br>0：跟随系统区域变化。1：周一。2：周二。3：周三。4：周四。5：周五。6：周六。7：周日。默认值：0（跟随系统区域变化）。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器每周的起始日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
+     * @since 26.1.0
+     */
+    NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
+    /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
@@ -8233,19 +8259,19 @@ typedef enum {
     NODE_RADIO_GROUP,
 
     /**
-     * @brief Defines the image frames for the image animator. Dynamic updates are not supported.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的图片帧信息集合。不支持动态更新。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.size: number of images.</li>
-     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * <li>.size: 图片数量。</li>
+     * <li>.object: 图片数组。数组元素类型为{@link ArkUI_ImageAnimatorFrameInfo}。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.size: number of images.</li>
-     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * <li>.size: 图片数量。</li>
+     * <li>.object: 图片数组。数组元素类型为{@link ArkUI_ImageAnimatorFrameInfo}。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8253,18 +8279,18 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
 
     /**
-     * @brief Defines the playback status of the animation for the image animator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的播放状态。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback status of the animation. The parameter type is
-     * {@link ArkUI_AnimationStatus}. The default value is <b>ARKUI_ANIMATION_STATUS_INITIAL</b>.</li>
+     * <li>.value[0].i32: 动画播放状态。参数类型为
+     * {@link ArkUI_AnimationStatus}。默认值为<b>ARKUI_ANIMATION_STATUS_INITIAL</b>。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
+     * <li>.value[0].i32: 动画播放状态。参数类型为{@link ArkUI_AnimationStatus}。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8272,19 +8298,17 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_STATE = 19001,
 
     /**
-     * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
-     * The value change takes effect only at the beginning of the next cycle.
-     * When a separate duration is set in images, the setting of this attribute is invalid.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的播放时长。当设置duration为0时，表示不播放图片。属性变化只在下一帧动画开始时生效。
+     * 如果images中单独设置了duration属性，则此属性设置无效。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback duration, in ms. The default value is 1000.</li>
+     * <li>.value[0].i32: 播放时长，单位ms。默认值为1000。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback duration, in ms.</li>
+     * <li>.value[0].i32: 播放时长，单位ms。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8292,19 +8316,17 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
 
     /**
-     * @brief Defines the playback direction for the image animator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置帧动画组件的播放方向。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
-     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * <li>.value[0].i32: 播放方向。<b>0</b>表示从首帧到尾帧播放，<b>1</b>表示从尾帧到首帧播放。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
-     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * <li>.value[0].i32: 播放方向。<b>0</b>表示从首帧到尾帧播放，<b>1</b>表示从尾帧到首帧播放。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8312,21 +8334,20 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
 
     /**
-     * @brief Defines whether the image size is the same as the component size.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置图片大小是否与组件大小一致。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
-     * the image size is the same as the component size. In this case, the width, height, top, and left
-     * attributes of the image are invalid. <b>0</b> indicates that the image size is customized. The width,
-     * height, top, and left attributes of each image must be set separately.</li>
+     * <li>.value[0].i32: 图片大小是否与组件大小一致。<b>1</b>表示图片大小与组件大小一致，
+     * 此时图片的width、height、top、left属性设置无效。<b>0</b>表示自定义图片大小，
+     * 需分别设置每张图片的width、height、top、left属性。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
-     * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
+     * <li>.value[0].i32: 图片大小是否与组件大小一致。<b>1</b>表示图片大小与组件大小一致，
+     * <b>0</b>表示自定义图片大小。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8334,20 +8355,19 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
 
     /**
-     * @brief Defines the status before and after execution of the animation in the current playback direction.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置动画执行前后在当前播放方向上的状态。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
-     * The parameter type is {@link ArkUI_AnimationFillMode}. The default value is
-     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>.</li>
+     * <li>.value[0].i32: 动画执行前后在当前播放方向上的状态。
+     * 参数类型为{@link ArkUI_AnimationFillMode}。默认值为
+     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
-     * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
+     * <li>.value[0].i32: 动画执行前后在当前播放方向上的状态。参数类型为{@link ArkUI_AnimationFillMode}。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8355,17 +8375,17 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
 
     /**
-     * @brief Defines the number of times that the animation is played.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置动画播放次数。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * <li>.value[0].i32: 动画播放次数。</li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
      * <ul>
-     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * <li>.value[0].i32: 动画播放次数。</li>
      * </ul>
      *
      * @ingroup ImageAnimator [图片帧动画]
@@ -8493,11 +8513,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件回车键类型，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}，默认值为ARKUI_ENTER_KEY_TYPE_NEW_LINE。
-     * <br>**返回：**
-     * <br>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}，默认值为ARKUI_ENTER_KEY_TYPE_NEW_LINE。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8506,11 +8531,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件光标颜色，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
-     * <br>**返回：**
-     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8519,11 +8549,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件滚动条颜色，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
-     * <br>**返回：**
-     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8532,11 +8567,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件滚动条显示模式，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。
-     * <br>**返回：**
-     * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8546,11 +8586,16 @@ typedef enum {
     /**
      * @brief TextEditor组件文本实体识别功能开关，启用后，文本中的电话号码、邮箱、链接等实体将被自动识别并标记为可交互内容。
      * 配合NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG属性可自定义识别类型和交互行为。支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。推荐在需要自动识别并高亮文本中实体信息的场景下设置此属性。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用了文本实体识别功能，0表示禁用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。推荐在需要自动识别并高亮文本中实体信息的场景下设置此属性。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用了文本实体识别功能，0表示禁用，1表示启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8560,10 +8605,11 @@ typedef enum {
     /**
      * @brief TextEditor组件文本实体识别配置，设置后，可配置识别类型、实体显示样式，并可选择是否开启长按预览功能。配合NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR属性使用，
      * 支持属性设置和属性重置。
-     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：文本实体识别配置，设置后可指定需要识别的文本实体类型（如电话号码、邮箱、链接等）及识别后的交互行为。仅在启用文本实体识别功能(
-     * NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR设置为1)后传入此参数以自定义识别类型，不传入时使用系统默认识别配置。参数类型{@link ArkUI_TextDataDetectorConfig}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：文本实体识别配置，设置后可指定需要识别的文本实体类型（如电话号码、邮箱、链接等）及识别后的交互行为。仅在启用文本实体识别功能(NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR设置为1)后传入此参数以自定义识别类型，不传入时使用系统默认识别配置。参数类型{@link ArkUI_TextDataDetectorConfig}。</li>
+     * </ul>
      * 
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8572,9 +8618,11 @@ typedef enum {
 
     /**
      * @brief TextEditor组件扩展菜单选项，支持属性设置和属性重置。
-     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：扩展菜单选项，设置后可自定义默认菜单项的行为，或添加自定义选项内容。参数类型{@link ArkUI_TextEditMenuOptions}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：扩展菜单选项，设置后可自定义默认菜单项的行为，或添加自定义选项内容。参数类型{@link ArkUI_TextEditMenuOptions}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8583,9 +8631,11 @@ typedef enum {
 
     /**
      * @brief TextEditor组件无输入时的提示文本选项，支持属性设置和属性重置。
-     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。不传入时，编辑器无输入状态下不显示提示文本。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。不传入时，编辑器无输入状态下不显示提示文本。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8594,9 +8644,11 @@ typedef enum {
 
     /**
      * @brief TextEditor组件属性字符串控制器，支持属性设置。设置后，可通过该控制器管理TextEditor中的内容、光标、选区、输入样式及编辑状态。
-     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：属性字符串控制器，参数类型{@link ArkUI_TextEditorStyledStringController}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：属性字符串控制器，参数类型{@link ArkUI_TextEditorStyledStringController}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8605,11 +8657,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件预上屏功能开关，启用后，组件内显示输入法输入过程中的拼音、笔画字符。支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用，默认值为1。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用，默认值为1。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8618,9 +8675,11 @@ typedef enum {
 
     /**
      * @brief TextEditor组件TextLayoutManager获取，获取后，可通过布局管理器查询文本的布局信息，如行数、行高和内容偏移等。支持属性获取。
-     * <br>作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**返回：**
-     * <br>.object：布局管理器，可通过该管理器查询文本的布局信息。参数类型{@link ArkUI_TextLayoutManager}。
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：布局管理器，可通过该管理器查询文本的布局信息。参数类型{@link ArkUI_TextLayoutManager}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8629,11 +8688,16 @@ typedef enum {
 
     /**
       * @brief TextEditor组件的AI菜单开关，用于控制选中特殊文本实体时是否弹出AI识别菜单。该功能支持属性的设置、重置与获取，启用后可基于选中文本内容提供智能识别及操作选项。
-      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-      * <br>**参数：**
-      * <br>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。
-      * <br>**返回：**
-      * <br>.value[0].i32：是否启用了文本选择识别的AI菜单，0表示禁用，1表示启用。
+      * 
+      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+      * <ul>
+      * <li>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。</li>
+      * </ul>
+      * 
+      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+      * <ul>
+      * <li>.value[0].i32：是否启用了文本选择识别的AI菜单，0表示禁用，1表示启用。</li>
+      * </ul>
       *
       * @ingroup Text Editor[富文本]
       * @since 24
@@ -8642,11 +8706,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件选中内容背景颜色，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
-     * <br>**返回：**
-     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8655,11 +8724,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件非点击获焦时拉起输入法开关，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起，默认值为1。
-     * <br>**返回：**
-     * <br>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起，默认值为1。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8668,11 +8742,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件最大字符数，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器允许输入的最大长度，取值范围为[0, +∞)，超出此限制后将阻止继续输入文本。设置为0、负数或未设置该属性时不限制输入长度。
-     * <br>**返回：**
-     * <br>.value[0].i32：文本编辑器允许输入的最大长度。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本编辑器允许输入的最大长度，取值范围为[0, +∞)，超出此限制后将阻止继续输入文本。设置为0、负数或未设置该属性时不限制输入长度。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本编辑器允许输入的最大长度。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8681,11 +8760,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件内容最大行数，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围：(0, +∞)。设置为0、负数或未设置该属性时，取默认值UINT32_MAX，不限制行数。建议在需要固定显示高度的场景下设置该参数。
-     * <br>**返回：**
-     * <br>.value[0].i32：文本编辑器最大行数限制。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本编辑器最大行数限制，取值范围：(0, +∞)。设置为0、负数或未设置该属性时，取默认值UINT32_MAX，不限制行数。建议在需要固定显示高度的场景下设置该参数。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本编辑器最大行数限制。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8694,11 +8778,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件触感反馈开关，启用后，在文本拖选等交互操作时将产生触感反馈震动响应，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否在文本编辑器中启用触感反馈，0表示不启用，1表示启用，默认值为1。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用了触感反馈，0表示不启用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在文本编辑器中启用触感反馈，0表示不启用，1表示启用，默认值为1。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用了触感反馈，0表示不启用，1表示启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8707,11 +8796,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件复制选项，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}，默认值为ARKUI_COPY_OPTIONS_LOCAL_DEVICE。
-     * <br>**返回：**
-     * <br>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}，默认值为ARKUI_COPY_OPTIONS_LOCAL_DEVICE。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8720,11 +8814,16 @@ typedef enum {
 
     /**
     * @brief TextEditor组件键盘外观，支持属性设置、属性重置和属性获取。
-    * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-    * <br>**参数：**
-    * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}，默认值为ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。
-    * <br>**返回：**
-    * <br>.value[0].i32：文本编辑器当前设置的键盘外观类型，参数类型{@link ArkUI_KeyboardAppearance}。
+    * 
+    * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+    * <ul>
+    * <li>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}，默认值为ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。</li>
+    * </ul>
+    * 
+    * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+    * <ul>
+    * <li>.value[0].i32：文本编辑器当前设置的键盘外观类型，参数类型{@link ArkUI_KeyboardAppearance}。</li>
+    * </ul>
     *
     * @ingroup Text Editor[富文本]
     * @since 24
@@ -8733,11 +8832,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件是否阻止返回键事件向上层传播，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。推荐在编辑器有未保存内容或需要拦截返回键防止意外退出的场景设置为1。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。推荐在编辑器有未保存内容或需要拦截返回键防止意外退出的场景设置为1。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8746,11 +8850,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件中西文自动间距开关，支持属性设置、属性重置和属性获取。适用于包含中英文混排内容的编辑场景，启用后可在中文与西文之间自动添加间距，改善混排文本的阅读体验。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用，默认值为0。推荐在包含中英文混排内容的编辑场景设置为1，以改善混排文本的阅读体验。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用，默认值为0。推荐在包含中英文混排内容的编辑场景设置为1，以改善混排文本的阅读体验。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8759,13 +8868,18 @@ typedef enum {
 
     /**
      * @brief TextEditor组件自定义键盘。当需要替换系统默认键盘时传入此参数（如数字键盘、表情键盘等特殊输入布局），不传入时使用系统默认键盘。支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
-     * <br>.value[0]?.i32：设置自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持，默认值为0。
-     * <br>**返回：**
-     * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
-     * <br>.value[0].i32：自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。</li>
+     * <li>.value[0]?.i32：设置自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持，默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。</li>
+     * <li>.value[0].i32：自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8774,9 +8888,11 @@ typedef enum {
 
     /**
      * @brief TextEditor组件自定义文本选择菜单绑定，支持属性设置和属性重置。
-     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：自定义选择菜单，不传入时使用系统默认文本选择菜单。参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：自定义选择菜单，不传入时使用系统默认文本选择菜单。参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8785,11 +8901,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件首行尾行防截断间距开关，启用后，在首行和尾行增加间距以避免文字截断，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加，默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加，默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8798,11 +8919,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件行高自适应开关，在多行文字叠加时，行高可以基于文字实际高度自适应，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应，默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应，默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8811,11 +8937,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件行首标点符号压缩开关，启用后，行首的标点符号将缩减占位宽度，调整文本排版对齐效果，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用，默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用，默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8824,11 +8955,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件选中拖拽预览样式，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。当需要自定义选中文本拖拽时的预览效果时传入此参数，不传入时使用系统默认拖拽预览样式。
-     * <br>**返回：**
-     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。当需要自定义选中文本拖拽时的预览效果时传入此参数，不传入时使用系统默认拖拽预览样式。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。</li>
+     * </ul>
      * 
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8837,11 +8973,16 @@ typedef enum {
 
     /**
      * @brief TextEditor组件单行模式开关，支持属性设置、属性重置和属性获取。启用单行模式后，NODE_TEXT_EDITOR_MAX_LINES属性设置的最大行数将不再生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用，默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用，默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用。</li>
+     * </ul>
      * 
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -8851,11 +8992,16 @@ typedef enum {
     /**
      * @brief TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。
      * 仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。仅在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 26.0.0
@@ -8864,11 +9010,16 @@ typedef enum {
 
     /**
      * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 26.0.0
@@ -8878,11 +9029,16 @@ typedef enum {
     /**
      * @brief 设置TextEditor组件是否启用行尾标点符号悬挂，支持属性设置、属性重置和属性获取。
      * <br>启用后，行尾单个标点符号超出排版宽度而不换行，避免行尾标点符号换行至下一行行首，从而改善文本排版效果。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用标点符号悬挂，1表示启用标点符号悬挂。默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用行尾标点符号悬挂，1表示启用行尾标点符号悬挂。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用标点符号悬挂，1表示启用标点符号悬挂。默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用行尾标点符号悬挂，1表示启用行尾标点符号悬挂。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 26.0.0
@@ -8891,210 +9047,282 @@ typedef enum {
 
     /**
      * @brief 设置TextEditor组件的文本编辑器类型，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器类型，数据类型{@link OH_ArkUI_TextEditorType}，默认值为OH_ARKUI_TEXT_EDITOR_TYPE_NORMAL。
-     * <br>**返回：**
-     * <br>.value[0].i32：文本编辑器类型，数据类型{@link OH_ArkUI_TextEditorType}。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本编辑器类型，数据类型{@link OH_ArkUI_TextEditorType}，默认值为OH_ARKUI_TEXT_EDITOR_TYPE_NORMAL。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：文本编辑器类型，数据类型{@link OH_ArkUI_TextEditorType}。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_TYPE = 22031,
 
     /**
      * @brief 设置密码输入模式下是否在文本末尾显示密码图标，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否在文本末尾显示密码图标，true表示显示密码图标，false表示不显示。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否在文本末尾显示密码图标，1表示显示密码图标，0表示不显示。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在文本末尾显示密码图标，true表示显示密码图标，false表示不显示。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在文本末尾显示密码图标，1表示显示密码图标，0表示不显示。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_PASSWORD_ICON = 22032,
 
     /**
      * @brief 设置TextEditor组件的密码图标，支持属性设置和属性重置。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].string：显示密码图标时的图片资源。
-     * <br>.value[1].string：隐藏密码图标时的图片资源。
-     * <br>**返回：**
-     * <br>.value[0].string：显示密码图标时的图片资源。
-     * <br>.value[1].string：隐藏密码图标时的图片资源。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].string：显示密码图标时的图片资源。</li>
+     * <li>.value[1].string：隐藏密码图标时的图片资源。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].string：显示密码图标时的图片资源。</li>
+     * <li>.value[1].string：隐藏密码图标时的图片资源。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_ICON = 22033,
 
     /**
      * @brief 设置TextEditor组件是否启用自动填充，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用自动填充，默认值0。0表示不启用，1表示启用。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用自动填充。1表示启用，0表示不启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充，默认值0。0表示不启用，1表示启用。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充。1表示启用，0表示不启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_FILL = 22034,
 
     /**
      * @brief 设置TextEditor组件的自动填充类型，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：参数类型{@link ArkUI_TextInputContentType}，用于自动填充场景指定内容类型。具体枚举值及适用场景请参考{@link ArkUI_TextInputContentType}枚举说明。
-     * <br>**返回：**
-     * <br>.value[0].i32：自动填充内容类型枚举{@link ArkUI_TextInputContentType}，用于确定自动填充的内容类型。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：参数类型{@link ArkUI_TextInputContentType}，用于自动填充场景指定内容类型。具体枚举值及适用场景请参考{@link ArkUI_TextInputContentType}枚举说明。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：自动填充内容类型枚举{@link ArkUI_TextInputContentType}，用于确定自动填充的内容类型。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_TYPE = 22035,
 
     /**
      * @brief 定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.string：定义生成密码的规则，用于在触发自动填充时透传给密码保险箱以控制新密码的生成。
-     * <br>**返回：**
-     * <br>.string：定义生成密码的规则。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：定义生成密码的规则，用于在触发自动填充时透传给密码保险箱以控制新密码的生成。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：定义生成密码的规则。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_PASSWORD_RULES = 22036,
 
     /**
      * @brief 设置TextEditor组件是否启用自动填充动效，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否启用自动填充动效。1表示启用，0表示不启用。默认值1。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否启用自动填充动效。1表示启用，0表示不启用。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充动效。1表示启用，0表示不启用。默认值1。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用自动填充动效。1表示启用，0表示不启用。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_FILL_ANIMATION = 22037,
 
     /**
      * @brief 设置TextEditor组件是否显示下划线，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否显示下划线，0表示不显示，1表示显示。默认值为0。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否显示下划线。1表示显示，0表示不显示。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否显示下划线，0表示不显示，1表示显示。默认值为0。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否显示下划线。1表示显示，0表示不显示。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SHOW_UNDERLINE = 22038,
 
     /**
      * @brief 开启下划线时，支持配置下划线颜色，支持属性设置、属性重置和属性获取。
      * <br>需先设置NODE_TEXT_EDITOR_SHOW_UNDERLINE属性为1以开启下划线后，本属性设置才生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。
-     * <br>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。
-     * <br>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xARGB类型。
-     * <br>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。
-     * <br>**返回：**
-     * <br>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。
-     * <br>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。
-     * <br>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xARGB类型。
-     * <br>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。</li>
+     * <li>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。</li>
+     * <li>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xARGB类型。</li>
+     * <li>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。</li>
+     * <li>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。</li>
+     * <li>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xARGB类型。</li>
+     * <li>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_UNDERLINE_COLOR = 22039,
 
     /**
      * @brief 设置TextEditor组件的光标宽度，支持属性设置、属性重置和属性获取。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].f32：光标宽度，单位vp。
-     * <br>**返回：**
-     * <br>.value[0].f32：光标宽度，单位vp。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：光标宽度，单位vp。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：光标宽度，单位vp。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CARET_STYLE = 22040,
 
     /**
      * @brief 设置TextEditor组件在初始状态时是否全选文本，支持属性设置、属性重置和属性获取。
      * <br>仅在首次获焦并完成布局阶段时触发全选。窗口恢复获焦时不执行全选。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否全选文本，默认值为0。1表示会全选文本，0表示不会全选文本。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否全选文本。1表示会全选文本，0表示不会全选文本。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否全选文本，默认值为0。1表示会全选文本，0表示不会全选文本。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否全选文本。1表示会全选文本，0表示不会全选文本。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECT_ALL = 22041,
 
     /**
      * @brief 设置TextEditor组件在提交时是否失焦，支持属性设置、属性重置和属性获取。
      * <br>仅在EnterKeyType为NEW_LINE时按Enter键生效：设置为1时关闭键盘并失焦，不插入换行；设置为0时插入换行，不失焦。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否在提交时失焦，默认值为0。1表示提交时失焦，0表示提交时不失焦。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否在提交时失焦。1表示提交时失焦，0表示提交时不失焦。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在提交时失焦，默认值为0。1表示提交时失焦，0表示提交时不失焦。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否在提交时失焦。1表示提交时失焦，0表示提交时不失焦。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_BLUR_ON_SUBMIT = 22042,
 
     /**
      * @brief 获取TextEditor组件编辑内容区域的位置和大小，仅支持属性获取。
-     * <br>作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**返回：**
-     * <br>.value[0].f32：编辑内容区域的x轴偏移。
-     * <br>.value[1].f32：编辑内容区域的y轴偏移。
-     * <br>.value[2].f32：编辑内容区域的宽度。
-     * <br>.value[3].f32：编辑内容区域的高度。
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：编辑内容区域的x轴偏移。</li>
+     * <li>.value[1].f32：编辑内容区域的y轴偏移。</li>
+     * <li>.value[2].f32：编辑内容区域的宽度。</li>
+     * <li>.value[3].f32：编辑内容区域的高度。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CONTENT_RECT = 22043,
 
     /**
      * @brief 设置TextEditor组件是否隐藏选择菜单，支持属性设置、属性重置和属性获取。
      * <br>设置为1时，长按、双击或右击时不弹出选择菜单，但不影响选区手柄。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否隐藏选择菜单，默认值为0。1表示隐藏，0表示不隐藏。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否隐藏选择菜单。1表示隐藏，0表示不隐藏。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否隐藏选择菜单，默认值为0。1表示隐藏，0表示不隐藏。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否隐藏选择菜单。1表示隐藏，0表示不隐藏。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_SELECTION_MENU_HIDDEN = 22044,
 
     /**
      * @brief 设置TextEditor组件是否跳过长按预览态直接进入编辑态，支持属性设置、属性重置和属性获取。
      * <br>设置为1时，长按后直接进入编辑态（键盘弹出、光标闪烁），跳过预览态。双击行为不受影响。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.value[0].i32：是否跳过长按预览态，默认值为0。1表示跳过预览态，0表示不跳过。
-     * <br>**返回：**
-     * <br>.value[0].i32：是否跳过长按预览态。1表示跳过预览态，0表示不跳过。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否跳过长按预览态，默认值为0。1表示跳过预览态，0表示不跳过。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否跳过长按预览态。1表示跳过预览态，0表示不跳过。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ENABLE_SKIP_PREVIEW_LONG_PRESS = 22045,
 
@@ -9118,7 +9346,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_CANCEL_BUTTON = 22046,
 
@@ -9142,7 +9370,7 @@ typedef enum {
      * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      *
      */
     NODE_TEXT_EDITOR_SHOW_COUNTER = 22047,
@@ -9153,14 +9381,19 @@ typedef enum {
      * <br>当同时设置inputFilter和maxLength时，过滤优先级为：先inputFilter过滤，再maxLength截断。
      * <br>正则表达式变更时，已有内容会被静默重新过滤（与TextInput行为一致）。
      * <br>非字符内容（ImageSpan/SymbolSpan/BuilderSpan）在正则匹配时被视为\uFFFC字符。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * <br>**参数：**
-     * <br>.string：输入过滤的正则表达式字符串。仅允许匹配正则白名单的字符输入。空字符串等效于不设置过滤。
-     * <br>**返回：**
-     * <br>.string：当前设置的输入过滤正则表达式字符串。
+     * 
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：输入过滤的正则表达式字符串。仅允许匹配正则白名单的字符输入。空字符串等效于不设置过滤。</li>
+     * </ul>
+     * 
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：当前设置的输入过滤正则表达式字符串。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_INPUT_FILTER = 22048,
 
@@ -9170,11 +9403,13 @@ typedef enum {
      * 该属性与通用属性NODE_ALIGNMENT同时设置时，后设置的属性生效。
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32： 设置子组件在Stack容器中的对齐方式，数据类型{@link ArkUI_Alignment}，默认值ARKUI_ALIGNMENT_CENTER。</li>
+     * <li>.value[0].i32：对齐方式，数据类型{@link ArkUI_Alignment}。可选取值包括TOP（顶部对齐）、BOTTOM（底部对齐）、LEFT（左侧对齐）、RIGHT（右侧对齐）、TOP_START
+     * （左上角对齐）、TOP_END（右上角对齐）、BOTTOM_START（左下角对齐）、BOTTOM_END（右下角对齐）、CENTER（居中对齐）、START（起始端对齐）、END（结束端对齐）。具体枚举值与数字对应关系请参考
+     * {@link ArkUI_Alignment}定义。当需要子组件在容器内的特定位置对齐时选择相应的对齐方式。默认值：ARKUI_ALIGNMENT_CENTER（居中对齐）。设置异常值时，按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32： 子组件在Stack容器中的对齐方式，数据类型{@link ArkUI_Alignment}。</li>
+     * <li>.value[0].i32：对齐方式的枚举值，数据类型{@link ArkUI_Alignment}。具体取值及含义参见参数说明。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -9699,7 +9934,7 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32: 是否支持鼠标左键滚动。0：不支持；1：支持。
-     * API26.2.0版本之前，默认值为0。从API版本26.2.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
+     * API26.1.0版本之前，默认值为0。从API版本26.1.0开始，当可滚动组件水平滚动时，默认值为1，否则为0。</li>
      * </ul>
      *
      * **返回值{@link ArkUI_AttributeItem}格式：**
@@ -9750,6 +9985,39 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_SCROLL_BAR_HEIGHT = 1002029,
+
+    /**
+     * @brief 获取当前滚动状态。
+     * 该属性可以根据需要通过API获取。
+     *
+     * **返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：当前滚动状态。参数类型为{@link ArkUI_ScrollState}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @since 26.1.0
+     */
+    NODE_SCROLL_STATE = 1002030,
+
+    /**
+     * @brief 设置滚动组件是否支持键盘方向键滚动。开启后，滚动组件在获焦且未激活焦点态时会响应键盘方向键滚动。支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32是否支持键盘方向键滚动，0：不支持键盘方向键滚动，1：支持键盘方向键滚动。默认值：1。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32是否支持键盘方向键滚动，0：不支持键盘方向键滚动，1：支持键盘方向键滚动。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @since 26.1.0
+     */
+    NODE_SCROLL_ENABLE_SCROLL_WITH_KEYBOARD = 1002031,
 
     /**
      * @brief 设置List组件排列方向。支持属性设置，属性重置和属性获取接口。
@@ -9854,6 +10122,8 @@ typedef enum {
      * <li>.value[2]?.i32 指定滑动到的元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}，默认值：{@link ARKUI_SCROLL_ALIGNMENT_START}。
      * </li>
      * <li>.value[3]?.f32 额外偏移量，默认值：0，单位：vp。正数表示向末尾端额外偏移，负数表示向起始端额外偏移。该参数从API version 15开始支持。</li>
+     * <li>.value[4]?.i32 快速滚动模式，用于滚动到指定索引。参数类型为{@link OH_ArkUI_FastScrollMode}，默认为<b>OH_ARKUI_FAST_SCROLL_MODE_NONE</b>。
+     * 仅当.value[1]?.i32为1时有效，从API版本26.1.0开始支持。</li>
      * </ul>
      *
      * @ingroup Scrollable Container Component[滚动容器类组件]
@@ -10861,11 +11131,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置子组件在Column容器中水平方向上的对齐方式，数据类型{@link ArkUI_HorizontalAlignment}，默认值ARKUI_HORIZONTAL_ALIGNMENT_CENTER。</li>
+     * <li>.value[0].i32：子组件在水平方向上的对齐格式，数据类型{@link ArkUI_HorizontalAlignment}。可选取值包括START（起始端对齐）、CENTER（居中对齐）、END（结束端对
+     * 齐）。具体枚举值与数字对应关系请参考{@link ArkUI_HorizontalAlignment}定义。当需要子组件在Column容器内水平方向特定位置对齐时选择相应的对齐格式。默认值：
+     * ARKUI_HORIZONTAL_ALIGNMENT_CENTER（居中对齐）。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：Column子组件在Column容器中水平方向上的对齐方式，数据类型{@link ArkUI_HorizontalAlignment}。</li>
+     * <li>.value[0].i32：子组件在水平方向上的对齐格式的枚举值，数据类型{@link ArkUI_HorizontalAlignment}。具体取值及含义参见参数说明。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -10876,11 +11148,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置子组件在Column容器中垂直方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}，默认值ARKUI_FLEX_ALIGNMENT_START。</li>
+     * <li>.value[0].i32：子组件在垂直方向上的对齐格式，数据类型{@link ArkUI_FlexAlignment}。可选取值包括START（起始端对齐）、CENTER（居中对齐）、END（结束端对齐）、
+     * SPACE_BETWEEN（两端对齐）、SPACE_AROUND（环绕对齐）、SPACE_EVENLY（均匀对齐）。具体枚举值与数字对应关系请参考{@link ArkUI_FlexAlignment}定义。当需要子元素在
+     * Column容器内垂直方向特定分布方式时选择相应的对齐格式。默认值：ARKUI_FLEX_ALIGNMENT_START（起始端对齐）。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：子组件在Column容器中垂直方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}。</li>
+     * <li>.value[0].i32：子组件在垂直方向上的对齐格式的枚举值，数据类型{@link ArkUI_FlexAlignment}。具体取值及含义参见参数说明。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -10892,11 +11166,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置Column或Row容器中子组件之间的间距，单位vp，默认值：0。取值范围：[0, +∞)设置异常值时，按默认值显示。</li>
+     * <li>.value[0].f32：子组件之间的间距，单位：vp，默认值：0。取值范围：`[0, +∞)`。当需要为Column或Row容器的子组件之间添加间隔时设置此参数，设置为0表示无间距。设置异常值时，按默认值显示。
+     * </li>
      * </ul>
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：Column或Row容器中子组件之间的间距，单位vp。</li>
+     * <li>.value[0].f32：子组件之间的间距，单位：vp。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -10909,11 +11184,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置Column或Row容器中沿主轴方向的子组件排列是否反向，默认值：false。值为true时，子组件在主轴方向上反转排列。值为false时，子组件在主轴方向上正序排列。设置异常值时，按默认值显示。</li>
+     * <li>.value[0].i32：主轴方向的子组件排列是否反向，默认值：0（false）。值为非零整数时，子组件沿主轴方向反转排列（适用于从右到左或从下到上的布局需求）；值为0时，子组件沿主轴方向正序排列（适用于常规布局）。
+     * 当需要实现反向排列效果（如列表倒序显示）时设置为非零值，否则设置为0。设置异常值时，按默认值显示。</li>
      * </ul>
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：Column或Row容器中主轴方向的子组件排列是否反向。</li>
+     * <li>.value[0].i32：主轴方向的子组件排列是否反向。返回非零值表示反向排列，返回0表示正序排列。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -10926,11 +11202,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置子组件在Row容器中垂直方向上的对齐方式，数据类型{@link ArkUI_VerticalAlignment}，默认值ARKUI_VERTICAL_ALIGNMENT_CENTER。</li>
+     * <li>.value[0].i32：子组件在垂直方向上的对齐格式，数据类型{@link ArkUI_VerticalAlignment}。可选取值包括TOP（顶部对齐）、CENTER（居中对齐）、BOTTOM（底部对齐）。具体
+     * 枚举值与数字对应关系请参考{@link ArkUI_VerticalAlignment}定义。当需要子组件在Row容器内垂直方向特定位置对齐时选择相应的对齐格式。默认值：
+     * ARKUI_VERTICAL_ALIGNMENT_CENTER（居中对齐）。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：子组件在Row容器中垂直方向上的对齐方式，数据类型{@link ArkUI_VerticalAlignment}。</li>
+     * <li>.value[0].i32：子组件在垂直方向上的对齐格式的枚举值，数据类型{@link ArkUI_VerticalAlignment}。具体取值及含义参见参数说明。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -10941,11 +11219,13 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：设置子组件在Row容器中水平方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}，默认值ARKUI_FLEX_ALIGNMENT_START。</li>
+     * <li>.value[0].i32：子组件在水平方向上的对齐格式，数据类型{@link ArkUI_FlexAlignment}。可选取值包括START（起始端对齐）、CENTER（居中对齐）、END（结束端对齐）、
+     * SPACE_BETWEEN（两端对齐）、SPACE_AROUND（环绕对齐）、SPACE_EVENLY（均匀对齐）。具体枚举值与数字对应关系请参考{@link ArkUI_FlexAlignment}定义。当需要子元素在Row
+     * 容器内水平方向特定分布方式时选择相应的对齐格式。默认值：ARKUI_FLEX_ALIGNMENT_START（起始端对齐）。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：子组件在Row容器中水平方向上的对齐方式，数据类型{@link ArkUI_FlexAlignment}。</li>
+     * <li>.value[0].i32：子组件在水平方向上的对齐格式的枚举值，数据类型{@link ArkUI_FlexAlignment}。具体取值及含义参见参数说明。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -10957,22 +11237,33 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0]?.i32：设置子组件在Flex容器上排列的方向{@link ArkUI_FlexDirection}，默认值为ARKUI_FLEX_DIRECTION_ROW。</li>
-     * <li>.value[1]?.i32：设置排列规则{@link ArkUI_FlexWrap}，默认值为ARKUI_FLEX_WRAP_NO_WRAP。</li>
-     * <li>.value[2]?.i32：设置主轴上的对齐格式{@link ArkUI_FlexAlignment}，默认值为ARKUI_FLEX_ALIGNMENT_START。</li>
-     * <li>.value[3]?.i32：设置交叉轴上的对齐格式{@link ArkUI_ItemAlignment}，默认值为ARKUI_ITEM_ALIGNMENT_START。</li>
-     * <li>.value[4]?.i32：设置交叉轴中有额外的空间时，多行内容的对齐方式{@link ArkUI_FlexAlignment}，默认值为ARKUI_FLEX_ALIGNMENT_START。</li>
+     * <li>.value[0]?.i32：子组件在Flex容器上排列的方向{@link ArkUI_FlexDirection}。可选取值包括ROW（水平方向从左到右排列）、ROW_REVERSE（水平方向从右到左排列）、
+     * COLUMN（垂直方向从上到下排列）、COLUMN_REVERSE（垂直方向从下到上排列）。具体枚举值与数字对应关系请参考{@link ArkUI_FlexDirection}定义。当需要实现水平布局时选择ROW或
+     * ROW_REVERSE，需要实现垂直布局时选择COLUMN或COLUMN_REVERSE。默认值为ARKUI_FLEX_DIRECTION_ROW（水平方向从左到右排列）。设置异常值时，按默认值显示。</li>
+     * <li>.value[1]?.i32：排列规则{@link ArkUI_FlexWrap}。可选取值包括NO_WRAP（不换行，子元素超出容器时压缩显示）、WRAP（正向换行，子元素超出容器时自动换行）、
+     * WRAP_REVERSE（反向换行，换行方向与正向相反）。具体枚举值与数字对应关系请参考{@link ArkUI_FlexWrap}定义。当需要子元素在单行/单列显示时选择NO_WRAP，需要自动换行显示时选择WRAP或
+     * WRAP_REVERSE。默认值为ARKUI_FLEX_WRAP_NO_WRAP（不换行）。设置异常值时，按默认值显示。</li>
+     * <li>.value[2]?.i32：主轴上的对齐格式{@link ArkUI_FlexAlignment}。可选取值包括START（起始端对齐）、CENTER（居中对齐）、END（结束端对齐）、SPACE_BETWEEN（两
+     * 端对齐，元素间间距相等）、SPACE_AROUND（环绕对齐，元素两侧间距相等）、SPACE_EVENLY（均匀对齐，元素间及两端间距相等）。具体枚举值与数字对应关系请参考{@link ArkUI_FlexAlignment}
+     * 定义。当需要子元素在主轴上特定分布方式时选择相应的对齐格式。默认值为ARKUI_FLEX_ALIGNMENT_START（起始端对齐）。设置异常值时，按默认值显示。</li>
+     * <li>.value[3]?.i32：交叉轴上的对齐格式{@link ArkUI_ItemAlignment}。可选取值包括START（起始端对齐）、CENTER（居中对齐）、END（结束端对齐）、STRETCH（拉伸填充）、
+     * BASELINE（基线对齐）。具体枚举值与数字对应关系请参考{@link ArkUI_ItemAlignment}定义。当需要子元素在交叉轴上特定对齐方式时选择相应的对齐格式。默认值为
+     * ARKUI_ITEM_ALIGNMENT_START（起始端对齐）。设置异常值时，按默认值显示。</li>
+     * <li>.value[4]?.i32：交叉轴中有额外的空间时，多行内容的对齐方式{@link ArkUI_FlexAlignment}。可选取值包括START（起始端对齐）、CENTER（居中对齐）、END（结束端对齐）、
+     * SPACE_BETWEEN（两端对齐，行间距相等）、SPACE_AROUND（环绕对齐，行两侧间距相等）、SPACE_EVENLY（均匀对齐，行间及两端间距相等）。具体枚举值与数字对应关系请参考
+     * {@link ArkUI_FlexAlignment}定义。当Flex容器换行时，需要控制多行在交叉轴上的分布方式时选择相应的对齐格式。默认值为ARKUI_FLEX_ALIGNMENT_START（起始端对齐）。设置异常值时，
+     * 按默认值显示。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：子组件在Flex容器上排列的方向的枚举值。</li>
-     * <li>.value[1].i32：排列规则的枚举值。</li>
-     * <li>.value[2].i32：主轴上的对齐格式的枚举值。</li>
-     * <li>.value[3].i32：交叉轴上的对齐格式的枚举值。</li>
-     * <li>.value[4].i32：交叉轴中有额外的空间时，多行内容的对齐方式的枚举值。</li>
+     * <li>.value[0].i32：子组件在Flex容器上排列的方向的枚举值，数据类型{@link ArkUI_FlexDirection}。具体取值及含义参见参数说明。</li>
+     * <li>.value[1].i32：排列规则的枚举值，数据类型{@link ArkUI_FlexWrap}。具体取值及含义参见参数说明。</li>
+     * <li>.value[2].i32：主轴上的对齐格式的枚举值，数据类型{@link ArkUI_FlexAlignment}。具体取值及含义参见参数说明。</li>
+     * <li>.value[3].i32：交叉轴上的对齐格式的枚举值，数据类型{@link ArkUI_ItemAlignment}。具体取值及含义参见参数说明。</li>
+     * <li>.value[4].i32：交叉轴中有额外的空间时，多行内容的对齐方式的枚举值，数据类型{@link ArkUI_FlexAlignment}。具体取值及含义参见参数说明。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为5。
      * @ingroup Layout[布局]
      */
     NODE_FLEX_OPTION = MAX_NODE_SCOPE_NUM * ARKUI_NODE_FLEX,
@@ -10982,16 +11273,18 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：设置Flex容器主轴方向的间距，单位vp，默认值：0。取值范围：[0, +∞)设置异常值时，按默认值显示。</li>
-     * <li>.value[1].f32：设置Flex容器交叉轴方向的间距，单位vp，默认值：0。取值范围：[0, +∞)设置异常值时，按默认值显示。</li>
+     * <li>.value[0].f32：Flex容器主轴方向的间距，单位：vp，默认值：0。取值范围：`[0, +∞)`。当需要为Flex容器内的子元素在主轴方向添加间距时设置此参数，设置为0表示无间距。设置异常值时，按默认值显
+     * 示。</li>
+     * <li>.value[1].f32：Flex容器交叉轴方向的间距，单位：vp，默认值：0。取值范围：`[0, +∞)`。当Flex容器换行时，需要为不同行之间在交叉轴方向添加间距时设置此参数，设置为0表示无间距。设置异常值时，
+     * 按默认值显示。</li>
      * </ul>
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：Flex容器主轴方向的间距，单位vp，默认值：0。</li>
-     * <li>.value[1].f32：Flex容器交叉轴方向的间距，单位vp，默认值：0。</li>
+     * <li>.value[0].f32：Flex容器主轴方向的间距，单位：vp。</li>
+     * <li>.value[1].f32：Flex容器交叉轴方向的间距，单位：vp。</li>
      * </ul>
      *
-     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值。
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}中size为无效值，实际返回的value数组长度恒为2。
      * @ingroup Layout[布局]
      * @since 23
      */
@@ -11412,15 +11705,16 @@ typedef enum {
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
     /**
-     * @brief 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。
+     * @brief 设置RelativeContainer容器内的辅助线，支持属性设置，属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: 设置RelativeContaine容器内的辅助线。</li>
+     * <li>.object: RelativeContainer容器内的辅助线，用于辅助子组件定位，参数类型为{@link ArkUI_GuidelineOption}。当需要在RelativeContainer中定义辅助定位线，
+     * 用于子组件相对辅助线定位时设置此参数。不传入时不设置辅助线。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: RelativeContaine容器内的辅助线。</li>
+     * <li>.object: RelativeContainer容器内的辅助线，参数类型为{@link ArkUI_GuidelineOption}。未设置辅助线时，获取接口返回NULL。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -11428,15 +11722,16 @@ typedef enum {
     NODE_RELATIVE_CONTAINER_GUIDE_LINE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RELATIVE_CONTAINER,
 
     /**
-     * @brief 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。
+     * @brief 设置RelativeContainer容器内的屏障，支持属性设置，属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: 设置RelativeContaine容器内的屏障。</li>
+     * <li>.object: RelativeContainer容器内的屏障，用于约束子组件的布局边界，参数类型为{@link ArkUI_BarrierOption}。当需要在RelativeContainer中定义屏障，用于约
+     * 束子组件的布局边界时设置此参数。不传入时不设置屏障。</li>
      * </ul>
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.object: RelativeContaine容器内的屏障。</li>
+     * <li>.object: RelativeContainer容器内的屏障，参数类型为{@link ArkUI_BarrierOption}。未设置屏障时，获取接口返回NULL。</li>
      * </ul>
      *
      * @ingroup Layout[布局]
@@ -13801,8 +14096,10 @@ typedef enum {
      * @brief 定义TextEditor组件中选区或光标位置发生变化时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含两个参数：
-     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：选区起始索引。
-     * <br><b>ArkUI_NodeComponentEvent.data[1].i32</b>：选区结束索引。
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：选区起始索引。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：选区结束索引。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -13835,7 +14132,9 @@ typedef enum {
      * @brief 定义TextEditor组件编辑状态发生变化时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
-     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：组件的编辑状态。
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：组件的编辑状态。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -13846,7 +14145,9 @@ typedef enum {
      * @brief 定义TextEditor组件输入法的回车键被按下时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
-     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：输入法的回车键类型{@link ArkUI_EnterKeyType}。
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：输入法的回车键类型{@link ArkUI_EnterKeyType}。</li>
+     * </ul>
      * 
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -13897,10 +14198,12 @@ typedef enum {
      * @brief 定义TextEditor组件在内容改变时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含四个参数：
-     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：文本变化前将要被替换的文本范围的起始索引。
-     * <br><b>ArkUI_NodeComponentEvent.data[1].i32</b>：文本变化前将要被替换的文本范围的结束索引。
-     * <br><b>ArkUI_NodeComponentEvent.data[2].i32</b>：文本变化后新增内容的文本范围的起始索引。
-     * <br><b>ArkUI_NodeComponentEvent.data[3].i32</b>：文本变化后新增内容的文本范围的结束索引。
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：文本变化前将要被替换的文本范围的起始索引。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：文本变化前将要被替换的文本范围的结束索引。</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].i32：文本变化后新增内容的文本范围的起始索引。</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].i32：文本变化后新增内容的文本范围的结束索引。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
      * @since 24
@@ -13911,11 +14214,13 @@ typedef enum {
      * @brief 定义TextEditor组件在文本内容滚动时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含两个参数：
-     * <br><b>ArkUI_NodeComponentEvent.data[0].f32</b>：文本在内容区域内的水平偏移量。
-     * <br><b>ArkUI_NodeComponentEvent.data[1].f32</b>：文本在内容区域内的垂直偏移量。
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32：文本在内容区域内的水平偏移量。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32：文本在内容区域内的垂直偏移量。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SCROLL = 22009,
 
@@ -13923,11 +14228,13 @@ typedef enum {
      * @brief 定义TextEditor组件在内容尺寸变化时触发的事件。
      * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      * <br>{@link ArkUI_NodeComponentEvent}包含两个参数：
-     * <br><b>ArkUI_NodeComponentEvent.data[0].f32</b>：文本内容的宽度。
-     * <br><b>ArkUI_NodeComponentEvent.data[1].f32</b>：文本内容的高度。
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32：文本内容的宽度。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32：文本内容的高度。</li>
+     * </ul>
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_CONTENT_SIZE_CHANGE = 22010,
 
@@ -13939,7 +14246,7 @@ typedef enum {
      * <br><b>ArkUI_StringAsyncEvent.pStr</b>字段包含被拒字符的UTF-8字符串。
      *
      * @ingroup Text Editor[富文本]
-     * @since 26.2.0
+     * @since 26.1.0
      */
     NODE_TEXT_EDITOR_ON_INPUT_FILTER_ERROR = 22011,
 
@@ -14904,7 +15211,7 @@ typedef enum {
 typedef struct ArkUI_NodeCustomEvent ArkUI_NodeCustomEvent;
 
 /**
- * @brief Defines the component adapter, which is used for lazy loading of elements of scrollable components.
+ * @brief 定义组件适配器对象，用于滚动类组件的元素懒加载，适用于需要按需加载大量滚动内容的场景，可避免一次性创建全部元素，降低内存占用并提升滑动性能。
  *
  * @since 12
  */
@@ -16807,17 +17114,80 @@ ArkUI_GestureCollectInterceptInfo* OH_ArkUI_NodeEvent_GetGestureCollectIntercept
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy policy);
 
 /**
+ * @brief 获取目标节点当前的子节点挂载策略。目标节点的默认子节点挂载策略为OH_ARKUI_NODE_MOUNT_POLICY_SINGLE_IF_RENDER_NODE。
+ *
+ * @param node 目标节点。
+ * @param policy 接收目标节点的子节点挂载策略的指针。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} CAPI初始化错误。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy* policy);
+
+/**
  * @brief 设置UI Dvsync开关。开启后系统会更及时地响应Vsync请求，更频繁执行渲染任务。通常在自渲染框架中动效开始时使能，结束后关闭，以确保动画效果更加流畅，同时避免频繁的Vsync影响其他业务。在非UI线程上调用此函数将导致应用退出。
  *
  * @param context [入参] ArkUI_ContextHandle指针。
  * @param enable [入参] 是否启用Dvsync，取值为true时开启Dvsync，取值为false时关闭Dvsync。
  * @return 返回结果。
  * <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR}成功。
- * </li><li>{@link RKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
+ * </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}如果CAPI初始化错误。
  * </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。</li></ul>
  * @since 26.0.1
  */
 ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context, bool enable);
+
+/**
+ * @brief 枚举接纳子节点的策略。
+ *
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * 被接纳节点的浮层节点基于接纳此节点的寄养父节点链计算显示位置，并在每个接纳边距应用开发者提供的补偿。
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVE_MODULE_ADOPT_POLICY_OVERLAY_POSITION_FOLLOWS_ADOPT_PARENT_CHAIN = 0,
+} OH_ArkUI_AdoptPolicy;
+
+/**
+ * @brief 当前节点接纳目标节点为附属节点。被接纳的节点不能已有父节点。调用该接口实际上不会将其添加为子节点。
+ * 而是仅允许其接收对应子节点的生命周期回调。通过策略配置被接纳节点的浮层节点渲染位置。
+ *
+ * @param node [in] ArkUI_NodeHandle指针, 指定待接纳节点的父节点。
+ * @param child [in] ArkUI_NodeHandle指针, 指定被接纳的子节点。
+ * @param policy [in] 被接纳节点的浮层节点渲染位置策略。有效值对应{@link OH_ArkUI_AdoptPolicy}。
+ * @return 返回值.
+ *     <ul><li>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果CAPI初始化失败，返回{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}。</li>
+ *     <li>如果被接纳的节点已有父节点，返回{@link ARKUI_ERROR_CODE_NODE_HAS_PARENT}。</li>
+ *     <li>如果节点无法被接纳为附属节点，返回{@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED}。</li>
+ *     <li>如果节点无法接纳其他附属节点，返回{@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO}。</li></ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_NativeModule_AdoptChildWithPolicy(
+    ArkUI_NodeHandle node, ArkUI_NodeHandle child, OH_ArkUI_AdoptPolicy policy);
+
+/**
+ * @brief 设置从被接纳的子节点到接纳其的父节点件的位置补偿。此补偿代表了它们之间的纯渲染节点树的总体影响。首先通过 compensationOffset平移
+ * 然后通过CompensationTransform 进行变换。补偿只有当子节点已通过以下策略被接纳时才生效：
+ * {@link OH_ARKUI_NATIVE_MODULE_ADOPT_POLICY_OVERLAY_POSITION_FOLLOWS_ADOPT_PARENT_CHAIN}。
+ *
+ * @param adoptedChild [in] 需要进行位置补偿的被接纳节点.
+ * @param compensationOffset [in] x/y 偏移量补偿（以像素为单位）.
+ * @param compensationTransform [in] 聚合变换补偿.
+ * @return 返回值.
+ *     <ul><li>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果CAPI初始化失败，返回{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}。</li>
+ *     <li>如果参数异常，返回 {@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+ *     <li>如果节点没有按要求的策略被接纳，返回 {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN}。</li></ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_NativeModule_SetAdoptedChildOverlayPositionCompensation(ArkUI_NodeHandle adoptedChild,
+    const ArkUI_PointF* compensationOffset, const ArkUI_Matrix4* compensationTransform);
 
 #ifdef __cplusplus
 };

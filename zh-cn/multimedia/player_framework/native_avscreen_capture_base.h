@@ -85,21 +85,19 @@ typedef struct OH_AVScreenCapture OH_AVScreenCapture;
 typedef struct OH_AVScreenCapture_ContentFilter OH_AVScreenCapture_ContentFilter;
 
 /**
- * @brief 枚举，表示屏幕录制的不同模式。<br>
- * 
- * 根据录制需求选择合适的模式：录制主屏幕适用于全屏录制场景；录制指定屏幕适用于多屏环境下选择特定屏幕的场景；
- * 录制指定窗口适用于仅录制单个应用窗口的场景。
+ * @brief 枚举，表示屏幕录制的不同模式。
  *
  * @since 10
  */
 typedef enum OH_CaptureMode {
-    /* 录制主屏幕。 */
+    /* 录制主屏幕。适用于全屏录制场景。 */
     OH_CAPTURE_HOME_SCREEN = 0,
-    /* 录制指定屏幕。使用此模式需在OH_AVScreenCaptureConfig中指定displayId。 */
+    /* 录制指定屏幕。适用于多屏环境下选择特定屏幕的场景。使用此模式需在OH_AVScreenCaptureConfig中指定displayId。 */
     OH_CAPTURE_SPECIFIED_SCREEN = 1,
-    /* 录制指定窗口。使用此模式需在OH_AVScreenCaptureConfig中指定windowId。 */
+    /* 录制指定窗口。适用于仅录制单个应用窗口的场景。使用此模式需在OH_AVScreenCaptureConfig中指定windowId。 */
     OH_CAPTURE_SPECIFIED_WINDOW = 2,
-    /* @brief 创建一个虚拟扩展屏幕并对其内容进行录制。
+    /**
+     * @brief 录制虚拟扩展屏幕。创建一个虚拟扩展屏幕并对其内容进行录制。
      * @since 26.0.1
      */
     OH_CAPTURE_VIRTUAL_EXTENDED_SCREEN = 3,
@@ -279,7 +277,7 @@ typedef struct OH_AudioEncInfo {
 /**
  * @brief 音频信息。<br>
  * 
- * OH_AudioInfo作为OH_ScreenCaptureConfig的音频配置成员，包含麦克风采集信息、内录采集信息和音频编码信息三个部分，开发者需根据
+ * OH_AudioInfo作为OH_AVScreenCaptureConfig的音频配置成员，包含麦克风采集信息、内录采集信息和音频编码信息三个部分，开发者需根据
  * 采集场景选择配置麦克风采集信息或内录采集信息，并在需要编码输出时配置音频编码信息。适用于需要在屏幕录制中采集音频数据的场景。<br>
  * 
  * 同时采集音频麦克风和音频内录数据时，两路音频的audioSampleRate和audioChannels采集参数需要相同，因为两路音频数据将合并为

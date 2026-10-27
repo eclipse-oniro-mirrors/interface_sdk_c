@@ -919,11 +919,9 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
 /**
  * @brief Sets event configuration parameters.
  * Configuration items vary depending on events. Currently, only the following events are supported:
- * **MAIN_THREAD_JANK**. (For details about the parameter configuration, see {@link Main Thread Jank Event Overview}.)
- * **MAIN_THREAD_JANK_V2**. (For details about the parameter configuration, see
- * {@link Main Thread Jank Event Overview}.)
- * **EVENT_APP_CRASH**. (For details about the parameter configuration, see {@link Crash Event Overview}.) This event
- * is supported since API version 24.
+ * **MAIN_THREAD_JANK**.
+ * **MAIN_THREAD_JANK_V2**.
+ * **EVENT_APP_CRASH**, is supported since API version 24.
  *
  * @param name Name of the system event.
  * @param config Pointer to the configuration object, that is, the pointer returned by
@@ -936,63 +934,6 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * @since 15
  */
 int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
-
-/**
- * @brief Enumerates the application framework types. You are advised to select an application framework type based on
- * the actual application scenario.
- *
- * @since 26.0.0
- */
-typedef enum OH_HiAppEvent_FrameworkType {
-    /**
-     * Flutter_dart type.
-     *
-     * @since 26.0.0
-     */
-    OH_FLUTTER_DART = 0,
-
-    /**
-     * React_native_hermes type.
-     *
-     * @since 26.0.0
-     */
-    OH_REACT_NATIVE_HERMES = 1,
-
-    /**
-     * Kmp_kotlin type.
-     *
-     * @since 26.0.0
-     */
-    OH_KMP_KOTLIN = 2
-} OH_HiAppEvent_FrameworkType;
-
-/**
- * @brief Reports information about abnormal memory usage of the application framework.
- * <br>This API can be called once every minute at most. If the frequency limit is exceeded, the error code
- * **HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED** will be returned.
- * <br>When the application detects that the memory usage of the application framework is abnormal and the operation is
- * successful after this API is called:
- * <br>1. If you have subscribed to the application event whose domain is **HIVIEWDFX** and name is **FW_MEM_ANOMALY**,
- * the application will receive a callback containing the information about the abnormal memory usage of the
- * application framework.
- * <br>2. If you have not subscribed to this application event, the application will not receive the callback
- * containing the information about the abnormal memory usage of the application framework.
- *
- * @param frameworkType Application framework type.
- * @param frameworkVersion Pointer to the application framework version.
- * @param description Description of the abnormal memory usage of the application framework.
- * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} Operation succeeded.</li>
- *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
- *         <li>{@link HIAPPEVENT_OPERATE_FAILED} System/application event write failed, or timestamp retrieval
- *             failed.</li>
- *         <li>{@link HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED} The reporting frequency exceeds the limit.</li>
- *         </ul>
- *     For details, see {@link HiAppEvent_ErrorCode}.
- * @since 26.0.0
- */
-int OH_HiAppEvent_ReportFrameworkMemAnomaly(
-    enum OH_HiAppEvent_FrameworkType frameworkType, const char* frameworkVersion, const char* description);
 
 /**
  * @brief System event types.
@@ -1099,6 +1040,63 @@ typedef void (*OH_HiAppEvent_ExternalLogCapacityReachedCallback)(
  * @since 26.0.1
  */
 int OH_HiAppEvent_RegExternalLogCapacityReachedCallback(OH_HiAppEvent_ExternalLogCapacityReachedCallback callback);
+
+/**
+ * @brief Enumerates the application framework types. You are advised to select an application framework type based on
+ * the actual application scenario.
+ *
+ * @since 26.0.0
+ */
+typedef enum OH_HiAppEvent_FrameworkType {
+    /**
+     * @brief Flutter_dart type.
+     *
+     * @since 26.0.0
+     */
+    OH_FLUTTER_DART = 0,
+
+    /**
+     * @brief React_native_hermes type.
+     *
+     * @since 26.0.0
+     */
+    OH_REACT_NATIVE_HERMES = 1,
+
+    /**
+     * @brief Kmp_kotlin type.
+     *
+     * @since 26.0.0
+     */
+    OH_KMP_KOTLIN = 2
+} OH_HiAppEvent_FrameworkType;
+
+/**
+ * @brief Reports information about abnormal memory usage of the application framework.
+ * <br>This API can be called once every minute at most. If the frequency limit is exceeded, the error code
+ * **HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED** will be returned.
+ * <br>When the application detects that the memory usage of the application framework is abnormal and the operation is
+ * successful after this API is called:
+ * <br>1. If you have subscribed to the application event whose domain is **HIVIEWDFX** and name is **FW_MEM_ANOMALY**,
+ * the application will receive a callback containing the information about the abnormal memory usage of the
+ * application framework.
+ * <br>2. If you have not subscribed to this application event, the application will not receive the callback
+ * containing the information about the abnormal memory usage of the application framework.
+ *
+ * @param frameworkType Application framework type.
+ * @param frameworkVersion Pointer to the application framework version.
+ * @param description Description of the abnormal memory usage of the application framework.
+ * @return <ul>
+ *         <li>{@link HIAPPEVENT_SUCCESS} Operation succeeded.</li>
+ *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid parameter value.</li>
+ *         <li>{@link HIAPPEVENT_OPERATE_FAILED} System/application event write failed, or timestamp retrieval
+ *             failed.</li>
+ *         <li>{@link HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED} The reporting frequency exceeds the limit.</li>
+ *         </ul>
+ *     For details, see {@link HiAppEvent_ErrorCode}.
+ * @since 26.0.0
+ */
+int OH_HiAppEvent_ReportFrameworkMemAnomaly(
+    enum OH_HiAppEvent_FrameworkType frameworkType, const char* frameworkVersion, const char* description);
 #ifdef __cplusplus
 }
 #endif

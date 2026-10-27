@@ -169,6 +169,18 @@ typedef enum {
      * 水印裁剪图，表示在原图中被水印覆盖的区域，该图像用于修复或移除水印影响，恢复图像的完整性和可视性。
      */
     AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5,
+    /**
+     * 血氧图
+     *
+     * @since 26.0.1
+     */
+    OH_IMAGE_NATIVEMODULE_AUXILIARY_PICTURE_TYPE_OXY_MAP = 11,
+    /**
+     * 色斑图
+     *
+     * @since 26.0.1
+     */
+    OH_IMAGE_NATIVEMODULE_AUXILIARY_PICTURE_TYPE_MEL_MAP = 12,
 } Image_AuxiliaryPictureType;
 
 /**

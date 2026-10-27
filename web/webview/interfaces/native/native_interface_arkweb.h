@@ -112,21 +112,21 @@ typedef void (*OH_ArkWeb_OnCookieFetchCallback)(ArkWeb_ErrorCode errorCode, char
  */
 typedef struct {
     /**
-     * Error code of the blankless loading. The value **0** indicates no error, and a non-zero value indicates the
-     * error type. For details, see {@link ArkWeb_BlanklessErrorCode}.
+     * @brief Error code of the blankless loading. The value **0** indicates no error, and a non-zero value indicates
+     * the error type. For details, see {@link ArkWeb_BlanklessErrorCode}.
      */
     ArkWeb_BlanklessErrorCode errCode;
     /**
-     * Similarity of the first screen. The similarity is calculated based on the first screen content of historical
-     * loads. The value ranges from [0, 1.0], where **1.0** indicates a complete match. The closer the value is to 1,
-     * the higher the similarity. This value has a lagging nature, meaning the similarity of a local load will only be
-     * reflected in the next load. It is recommended that the app does not enable the blankless loading frame insertion
-     * solution when the similarity is below a specific threshold (for example, 0.33).
+     * @brief Similarity of the first screen. The similarity is calculated based on the first screen content of
+     * historical loads. The value ranges from [0, 1.0], where **1.0** indicates a complete match. The closer the
+     * value is to 1, the higher the similarity. This value has a lagging nature, meaning the similarity of a local
+     * load will only be reflected in the next load. It is recommended that the app does not enable the blankless
+     * loading frame insertion solution when the similarity is below a specific threshold (for example, 0.33).
      */
     double similarity;
     /**
-     * Predicted loading time of the current load based on the first screen loading time of historical loads, in ms.
-     * The value must be greater than 0.
+     * @brief Predicted loading time of the current load based on the first screen loading time of historical loads,
+     * in ms. The value must be greater than 0.
      */
     int32_t loadingTime;
 } ArkWeb_BlanklessInfo;
@@ -460,20 +460,20 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
 
 /**
- * Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid and the
- * system default kernel is used (see {@link Constraints}). Used when a specific kernel version needs to be selected
- * based on app compatibility requirements, for example, when an app depends on features of an older kernel version or
- * needs to maintain compatibility on a newer system version, a specific legacy kernel version can be specified.<br>
- * This API is a global static method and must be called before **initializeWebEngine** is called. If any **Web**
- * component has been loaded, the setting of this API is invalid.
- * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb kernel version.
+ * @brief Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid
+ * and the system default kernel is used (see {@link Constraints}). Used when a specific kernel version needs to be
+ * selected based on app compatibility requirements, for example, when an app depends on features of an older kernel
+ * version or needs to maintain compatibility on a newer system version, a specific legacy kernel version can be
+ * specified.<br> This API is a global static method and must be called before **initializeWebEngine** is called.
+ * If any **Web** component has been loaded, the setting of this API is invalid.
+ * @param webEngineVersion - ArkWeb kernel version.
  *     For details, see {@link ArkWebEngineVersion}.
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
 
 /**
- * Obtains the current ArkWeb kernel version.
+ * @brief Obtains the current ArkWeb kernel version.
  *
  * @return The current ArkWeb kernel version defined by {@link ArkWebEngineVersion}.
  * @since 20
@@ -481,19 +481,19 @@ void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVers
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 
 /**
- * Sets whether to defer the initialization of the ArkWeb kernel. If this method is not called, the ArkWeb kernel is
- * not deferred for initialization by default. Typical use cases: the **Web** function is not needed immediately at app
- * startup, and you want to delay kernel initialization to save startup resources; the app only needs to use
+ * @brief Sets whether to defer the initialization of the ArkWeb kernel. If this method is not called, the ArkWeb kernel
+ * is not deferred for initialization by default. Typical use cases: the **Web** function is not needed immediately
+ * at app startup, and you want to delay kernel initialization to save startup resources; the app only needs to use
  * CookieManager without **Web** component rendering for the time being. This API is a global static method and must be
  * called before using the **Web** component and initializing the ArkWeb kernel; otherwise, the setting is invalid.
- * @param { bool } lazy - Controls whether to delay the initialization of the web engine.
+ * @param lazy [in] - Controls whether to delay the initialization of the web engine.
  * @since 22
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
 
 /**
- * Checks whether the ArkWeb kernel used by the application is the evergreen kernel, that is, the latest kernel of the
- * system.
+ * @brief Checks whether the ArkWeb kernel used by the application is the evergreen kernel, that is, the latest kernel
+ * of the system.
  * @return Whether the kernel used by the current app is the Evergreen kernel. The value **true** indicates it is the
  *     Evergreen kernel, and **false** indicates it is not.
  * @since 23

@@ -1871,7 +1871,8 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
 /**
  * @brief 添加按键事件监听。重复添加只有第一次生效，后续添加请求将被忽略。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] 回调函数，用于接收按键事件。
  * @return 若添加按键事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1883,7 +1884,8 @@ Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback);
  * @brief 添加鼠标事件监听，包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。
  * <br>应用处于录屏场景时才允许调用该接口，否则调用不生效。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] 回调函数，用于接收鼠标事件。
  * @return 若添加鼠标事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1894,7 +1896,8 @@ Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback);
 /**
  * @brief 添加触屏输入事件监听。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] 回调函数，用于接收触屏输入事件。
  * @return 若添加触屏输入事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1905,7 +1908,8 @@ Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback);
 /**
  * @brief 添加所有类型轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param callback [in] 回调函数，用于接收轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1916,7 +1920,8 @@ Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback
 /**
  * @brief 添加指定类型的轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
+ * @permission ohos.permission.INPUT_MONITORING or ohos.permission.INPUT_RECORDING [since 26.1.0]
  * @param axisEventType [in] 要监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  * @param callback [in] 回调函数，用于接收指定类型的轴事件。
  * @return 若添加轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
@@ -1928,7 +1933,7 @@ Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType
 /**
  * @brief 移除按键事件监听。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] 指定要被移除的用于按键事件监听的回调函数。
  * @return 若移除按键事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1939,7 +1944,7 @@ Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback);
 /**
  * @brief 移除鼠标事件监听。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] 指定要被移除的用于鼠标事件监听的回调函数。
  * @return 若移除鼠标事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1950,7 +1955,7 @@ Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback)
 /**
  * @brief 移除触屏输入事件监听。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] 指定要被移除的用于触屏输入事件监听的回调函数。
  * @return 若移除触屏输入事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1961,7 +1966,7 @@ Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback)
 /**
  * @brief 移除所有类型轴事件监听。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param callback [in] 指定要被移除的用于所有类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
  *     <br>若callback为空或者没有被添加监听，则返回{@link INPUT_PARAMETER_ERROR}；若服务异常，则返回{@link INPUT_SERVICE_EXCEPTION}。
@@ -1972,7 +1977,7 @@ Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callb
 /**
  * @brief 移除指定类型轴事件监听，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  *
- * @permission ohos.permission.INPUT_MONITORING
+ * @permission ohos.permission.INPUT_MONITORING [since 12 - 26.0.1]
  * @param axisEventType [in] 指定要移除监听的轴事件类型，轴事件类型定义在{@link oh_axis_type.h#InputEvent_AxisEventType}中。
  * @param callback [in] 指定要被移除的用于指定类型轴事件监听的回调函数。
  * @return 若移除轴事件监听成功，则返回{@link INPUT_SUCCESS}；若权限校验失败，则返回{@link INPUT_PERMISSION_DENIED}；
@@ -2379,6 +2384,7 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
 /**
  * @brief 获取当前屏幕上鼠标的坐标点。
  * <br>从API版本26.0.0开始，非焦点应用持有ohos.permission.INPUT_DEVICE_CONFIGURATOR权限，可调用该接口。
+ * <br>从API版本26.1.0开始，在PC设备上，应用不再有焦点或权限要求。
  *
  * @param displayId [out] 当前屏幕的屏幕ID。
  * @param displayX [out] 鼠标在当前屏幕的X坐标，单位为像素（px）。

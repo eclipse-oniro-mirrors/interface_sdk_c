@@ -802,9 +802,9 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * @brief 事件相关的配置参数设置方法。
  *
  * 不同的事件有不同的配置项，目前仅支持以下事件：
- * MAIN_THREAD_JANK（参数配置详见{@link 主线程超时事件检测}）
- * MAIN_THREAD_JANK_V2（参数配置详见{@link 主线程超时事件检测}）
- * EVENT_APP_CRASH（参数配置详见{@link 崩溃事件介绍}），从API version 24开始支持该事件。
+ * **MAIN_THREAD_JANK**。
+ * **MAIN_THREAD_JANK_V2**。
+ * **EVENT_APP_CRASH**，从API version 24开始支持该事件。
  *
  * @param name 系统事件的名称。
  * @param config 指向配置对象的指针（即{@link OH_HiAppEvent_CreateConfig}接口返回的指针）。
@@ -824,19 +824,22 @@ int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
  */
 typedef enum OH_HiAppEvent_FrameworkType {
     /**
-     * Flutter_dart类型。
+     * @brief Flutter_dart类型。
+     *
      * @since 26.0.0
      */
     OH_FLUTTER_DART = 0,
 
     /**
-     * React_native_hermes类型。
+     * @brief React_native_hermes类型。
+     *
      * @since 26.0.0
      */
     OH_REACT_NATIVE_HERMES = 1,
 
     /**
-     * Kmp_kotlin类型。
+     * @brief Kmp_kotlin类型。
+     *
      * @since 26.0.0
      */
     OH_KMP_KOTLIN = 2
@@ -862,6 +865,113 @@ typedef enum OH_HiAppEvent_FrameworkType {
  */
 int OH_HiAppEvent_ReportFrameworkMemAnomaly(
     enum OH_HiAppEvent_FrameworkType frameworkType, const char* frameworkVersion, const char* description);
+
+/**
+ * @brief 系统事件类型。
+ *
+ *建议根据不同的使用场景选择不同的系统事件类型。
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * 崩溃事件。
+     *
+     * @since 26.0.1
+     */
+    OH_APP_CRASH = 1,
+ 
+    /**
+     * 应用冻屏事件。
+     *
+     * @since 26.0.1
+     */
+    OH_APP_FREEZE = 2,
+ 
+    /**
+     * 资源泄漏事件。
+     *
+     * @since 26.0.1
+     */
+    OH_RESOURCE_OVERLIMIT = 3,
+ 
+    /**
+     * 地址越界事件。
+     *
+     * @since 26.0.1
+     */
+    OH_ADDRESS_SANITIZER = 4,
+ 
+    /**
+     * 任务执行超时事件。
+     *
+     * @since 26.0.1
+     */
+    OH_APP_HICOLLIE = 5,
+ 
+    /**
+     * CPU高负载事件。
+     *
+     * @since 26.0.1
+     */
+    OH_CPU_USAGE_HIGH = 6
+} OH_HiAppEvent_SysEvent;
+ 
+/**
+ * @brief The OH_HiAppEvent_ExternalLog 结构体用于描述外部日志信息，包括
+ *    文件路径、生成时间戳、文件大小、系统事件类型。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_HiAppEvent_ExternalLog {
+    /**
+     * 日志文件路径。
+     *
+     * @since 26.0.1
+     */
+    const char* filePath;
+    /**
+     * 文件生成的时间戳，单位为ms。
+     *
+     * @since 26.0.1
+     */
+    long long generationTs;
+    /**
+     * 文件大小（以kb为单位）。
+     *
+     * @since 26.0.1
+     */
+    long fileSize;
+    /**
+     * 系统事件类型。
+     *
+     * @since 26.0.1
+     */
+    enum OH_HiAppEvent_SysEvent event;
+} OH_HiAppEvent_ExternalLog;
+ 
+/**
+ * @brief OH_HiAppEvent_RegExternalLogCapacityReachedCallback函数的参数
+ *    当外部日志目录容量达到时，作为回调函数。
+ *
+ * @param externalLogArr 外部日志信息数组。
+ * @param arrLen 外部LogArr的长度。
+ * @since 26.0.1
+ */
+typedef void (*OH_HiAppEvent_ExternalLogCapacityReachedCallback)(
+    OH_HiAppEvent_ExternalLog* externalLogArr, uint32_t arrLen);
+ 
+/**
+ * @brief 设置外部日志目录容量达到时的回调。
+ *
+ * @param callback 当外部日志目录容量达到时的回调函数。
+ * @return <ul>
+ *         <li>{@link HIAPPEVENT_SUCCESS} 操作成功。</li>
+ *         <li>{@link HIAPPEVENT_OPERATE_FAILED} 操作失败。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+int OH_HiAppEvent_RegExternalLogCapacityReachedCallback(OH_HiAppEvent_ExternalLogCapacityReachedCallback callback);
 #ifdef __cplusplus
 }
 #endif

@@ -41,43 +41,43 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the custom component event type.
+ * @brief Enumerates custom component event types.
  *
  * @since 12
  */
 typedef enum {
     /**
-     * Measurement event.
+     * Custom measurement.
      * @since 12
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE = 1 << 0,
     /**
-     * Layout Events
+     * Custom layout.
      * @since 12
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT = 1 << 1,
     /**
-     * Draw Events
+     * Custom content layer drawing.
      * @since 12
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_DRAW = 1 << 2,
     /**
-     * Foreground Rendering Event
+     * Custom foreground drawing.
      * @since 12
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW = 1 << 3,
     /**
-     * Overlay event
+     * Custom overlay layer drawing.
      * @since 12
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW = 1 << 4,
     /**
-     * Foreground Draw Events
+     * Custom content layer foreground drawing.
      * @since 20
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT = 1 << 5,
     /**
-     * Background drawing event
+     * Custom content layer background drawing.
      * @since 20
      */
     ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND = 1 << 6,

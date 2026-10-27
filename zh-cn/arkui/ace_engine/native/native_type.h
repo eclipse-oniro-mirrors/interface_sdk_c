@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建、销毁、树节点操作、属性设置、事件监听等。
  *
  * @since 12
  */
@@ -26,7 +25,7 @@
 /**
  * @file native_type.h
  *
- * @brief Defines the common types for the native module.
+ * @brief 提供NativeModule公共的类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -159,27 +158,6 @@ typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
 
 /**
- * @brief Declares the Ability base want.
- *
- * @since 20
- */
-typedef struct AbilityBase_Want AbilityBase_Want;
-
-/**
- * @brief Define the EmbeddedComponentOption for the EmbeddedComponent.
- *
- * @since 20
- */
-typedef struct ArkUI_EmbeddedComponentOption ArkUI_EmbeddedComponentOption;
-
-/**
- * @brief Defines the matrix4 object.
- *
- * @since 24
- */
-typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
-
-/**
  * @brief 定义选中状态下文本拖拽预览样式，适用于需要在文本拖拽过程中展示选中状态预览效果的场景，可提升用户的拖拽交互体验。
  *
  * @since 23
@@ -229,14 +207,14 @@ typedef enum {
 } ArkUI_ShadowType;
 
 /**
- * @brief Enumerates the focus wrap mode of components.
+ * @brief 组件走焦换行规则。Grid、List组件默认值为ARKUI_FOCUS_WRAP_MODE_DEFAULT。
  *
  * @since 20
  */
 typedef enum {
-    /** Default mode, where focus does not wrap when arrow keys are used. */
+    /** 默认规则，使用方向键走焦不换行。 */
     ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0,
-    /** Focus wraps automatically when arrow keys are used. */
+    /** 使用方向键走焦自动换行。 */
     ARKUI_FOCUS_WRAP_WITH_ARROW = 1,
 } ArkUI_FocusWrapMode;
 
@@ -384,18 +362,18 @@ typedef enum {
 } ArkUI_SwiperAnimationMode;
 
 /**
- * @brief Enumerates the accessibility modes.
+ * @brief 定义无障碍辅助服务模式。
  *
  * @since 12
  */
 typedef enum {
-    /** Whether the component can be identified by the accessibility service is dependent on the component. */
+    /** 根据组件不同会转换为“enabled”或者“disabled”。 */
     ARKUI_ACCESSIBILITY_MODE_AUTO = 0,
-    /** The component can be identified by the accessibility service. */
+    /** 当前组件可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_ENABLED,
-    /** The component cannot be identified by the accessibility service. */
+    /** 当前组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED,
-    /** The component and all its child components cannot be identified by the accessibility service. */
+    /** 当前组件及其所有子组件不可被无障碍辅助服务所识别。 */
     ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS,
 } ArkUI_AccessibilityMode;
 
@@ -444,14 +422,14 @@ typedef enum {
 } ArkUI_ColorMode;
 
 /**
- * @brief Enumerates the system color modes.
+ * @brief 定义系统深浅色模式。
  *
  * @since 12
  */
 typedef enum {
-    /** Light color mode. */
+    /** 浅色模式。 */
     ARKUI_SYSTEM_COLOR_MODE_LIGHT = 0,
-    /** Dark color mode. */
+    /** 深色模式。 */
     ARKUI_SYSTEM_COLOR_MODE_DARK,
 } ArkUI_SystemColorMode;
 
@@ -729,15 +707,15 @@ typedef enum {
 } ArkUI_BlendApplyType;
 
 /**
- * @brief Enumerates the animation onFinish callback types.
+ * @brief 在动画中定义{@link OH_ArkUI_AnimatorOption_RegisterOnFinishCallback}回调的类型。
  *
  * @since 12
  */
 typedef enum {
-    /** The callback is invoked when the entire animation is removed once it has finished. */
+    /** 当整个动画结束并立即删除时，将触发回调。 */
     ARKUI_FINISH_CALLBACK_REMOVED = 0,
-    /** The callback is invoked when the animation logically enters the falling state, though it may still be in its
-      * long tail state. */
+    /** 当动画在逻辑上已完成，但可能仍处于其长尾状态时，将触发回调。长尾状态是指动画即将完全停止前的
+      * 残余变化过程，此时动画的数值变化已非常微小，接近目标值。 */
     ARKUI_FINISH_CALLBACK_LOGICALLY,
 } ArkUI_FinishCallbackType;
 
@@ -879,14 +857,14 @@ typedef enum {
 } ArkUI_AnimationFillMode;
 
 /**
- * @brief Defines the state type for the accessibility checkbox.
+ * @brief 定义无障碍复选框状态类型枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** The Checkbox unchecked. */
+    /** 复选框未被选中。 */
     ARKUI_ACCESSIBILITY_UNCHECKED = 0,
-    /** The Checkbox checked. */
+    /** 复选框被选中。 */
     ARKUI_ACCESSIBILITY_CHECKED,
 } ArkUI_AccessibilityCheckedState;
 
@@ -911,20 +889,20 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
- * @brief Define accessible action types.
+ * @brief 定义无障碍操作类型。
  *
  * @since 12
  */
 typedef enum {
-    /** click action. */
+    /** 点击操作。 */
     ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
-    /** long click action. */
+    /** 长按操作。 */
     ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
-    /** cut action. */
+    /** 剪切操作。 */
     ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
-    /** copy action. */
+    /** 复制操作。 */
     ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
-    /** paste action. */
+    /** 粘贴操作。 */
     ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
 } ArkUI_AccessibilityActionType;
 
@@ -985,38 +963,38 @@ typedef struct {
 } ArkUI_RotationOptions;
 
 /**
- * @brief Defines the state of the NavDestination component.
+ * @brief 定义NavDestination组件的状态，用于描述NavDestination在导航过程中的生命周期状态变化。
  *
  * @since 12
  */
 typedef enum {
-    /** The NavDestination show. */
+    /** NavDestination组件显示。 */
     ARKUI_NAV_DESTINATION_STATE_ON_SHOW = 0,
-    /** The NavDestination hide. */
+    /** NavDestination组件隐藏。 */
     ARKUI_NAV_DESTINATION_STATE_ON_HIDE = 1,
-    /** The NavDestination is mounted to the component tree. */
+    /** NavDestination挂载到组件树上。 */
     ARKUI_NAV_DESTINATION_STATE_ON_APPEAR = 2,
-    /** The NavDestination removed from the component tree. */
+    /** NavDestination从组件树上卸载。 */
     ARKUI_NAV_DESTINATION_STATE_ON_DISAPPEAR = 3,
-    /** Before the NavDestination show. */
+    /** NavDestination组件显示之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_SHOW = 4,
-    /** Before the NavDestination hide. */
+    /** NavDestination组件隐藏之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_HIDE = 5,
-    /** Before the NavDestination mount to the component tree. */
+    /** NavDestination挂载到组件树之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR = 6,
-    /** Before the NavDestination removed from the component tree. */
+    /** NavDestination从组件树上卸载之前。 */
     ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,
     /**
-     * The NavDestination component is active.
-     * @since 26.2.0
+     * NavDestination组件处于激活态。
+     * @since 26.1.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_ACTIVE = 8,
     /**
-     * The NavDestination component is inactive.
-     * @since 26.2.0
+     * NavDestination组件处于非激活态。
+     * @since 26.1.0
      */
     ARKUI_NAV_DESTINATION_STATE_ON_INACTIVE = 9,
-    /** The NavDestination returns from the component.*/
+    /** NavDestination组件接收到返回操作时触发，例如用户点击返回键或调用返回导航接口。*/
     ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100,
 } ArkUI_NavDestinationState;
 
@@ -1039,16 +1017,16 @@ typedef enum {
 } ArkUI_RouterPageState;
 
 /**
- * @brief defines the enumerated value of the extended security zone.
+ * @brief 定义扩展安全区域的枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** The default security zone includes the status bar and navigation bar. */
+    /** 默认安全区域，包括状态栏和导航栏。 */
     ARKUI_SAFE_AREA_TYPE_SYSTEM = 1,
-    /** Non-secure areas of the device, such as bangs or hole holes. */
+    /** 设备的非安全区域，如刘海屏或挖孔屏。 */
     ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 << 1,
-    /** Soft keyboard area. */
+    /** 软键盘区域。 */
     ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 << 2,
 } ArkUI_SafeAreaType;
 
@@ -1167,16 +1145,16 @@ typedef enum {
 } ArkUI_MenuPolicy;
 
 /**
- * @brief Enumerates the graphics rendering strategy.
+ * @brief 定义图形渲染策略。
  *
  * @since 23
  */
 typedef enum {
-    /** The current component and its child components will be drawn directly onto the screen canvas. */
+    /** 在线绘制模式。当前组件及其子组件将直接绘制到屏幕画布上。 */
     ARKUI_RENDERSTRATEGY_FAST = 0,
     /**
-    * The current component and its child components will first be drawn onto an off-screen canvas,
-    *     then undergo some graphic rendering operations, and finally be drawn onto the main canvas.
+    * 离屏绘制模式。当前组件及其子组件将先绘制到离屏画布上，再经过一些图形渲染处理，
+    *     最终绘制到主画布上。
     */
     ARKUI_RENDERSTRATEGY_OFFSCREEN,
 } ArkUI_RenderStrategy;
@@ -1196,152 +1174,151 @@ typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
 typedef struct ArkUI_SelectionOptions ArkUI_SelectionOptions;
 
 /**
-* @brief Creates a size constraint.
+* @brief 创建一个尺寸约束。
 *
 * @since 12
 */
 ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create();
 
 /**
-* @brief Creates a deep copy of a size constraint.
+* @brief 创建一个尺寸约束的深拷贝。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the pointer to the new size constraint.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回指向新尺寸约束的指针。
 * @since 12
 */
 ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Copy(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Destroys the pointer to a size constraint.
+* @brief 销毁指向尺寸约束的指针。
 *
-* @param Constraint Indicates the pointer to the size constraint.
+* @param Constraint 表示指向尺寸约束的指针。
 * @since 12
 */
 void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the maximum width for a size constraint, in px.
+* @brief 获取尺寸约束的最大宽度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the maximum width.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最大宽度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMaxWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the minimum width for a size constraint, in px.
+* @brief 获取尺寸约束的最小宽度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the minimum width.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最小宽度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMinWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the maximum height for a size constraint, in px.
+* @brief 获取尺寸约束的最大高度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the maximum height.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最大高度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMaxHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the minimum height for a size constraint, in px.
+* @brief 获取尺寸约束的最小高度，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the minimum height.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回最小高度。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetMinHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the width percentage reference for a size constraint, in px.
+* @brief 获取尺寸约束的宽度百分比基准，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the width percentage reference.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回宽度百分比基准。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Obtains the height percentage reference for a size constraint, in px.
+* @brief 获取尺寸约束的高度百分比基准，单位为px。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @return Returns the height percentage reference.
+* @param Constraint 表示指向尺寸约束的指针。
+* @return 返回高度百分比基准。
 * @since 12
 */
 int32_t OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(const ArkUI_LayoutConstraint* Constraint);
 
 /**
-* @brief Sets the maximum width.
+* @brief 设置最大宽度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the maximum width, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最大宽度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMaxWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the minimum width.
+* @brief 设置最小宽度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the minimum width, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最小宽度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMinWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the maximum height.
+* @brief 设置最大高度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the maximum height, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最大高度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMaxHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the minimum height.
+* @brief 设置最小高度。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the minimum height, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示最小高度，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetMinHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the width percentage reference.
+* @brief 设置宽度百分比基准。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the width percentage reference, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示宽度百分比基准，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Sets the height percentage reference.
+* @brief 设置高度百分比基准。
 *
-* @param Constraint Indicates the pointer to the size constraint.
-* @param value Indicates the height percentage reference, in px.
+* @param Constraint 表示指向尺寸约束的指针。
+* @param value 表示高度百分比基准，单位为px。
 * @since 12
 */
 void OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight(ArkUI_LayoutConstraint* Constraint, int32_t value);
 
 /**
-* @brief Obtains the pointer to a canvas for drawing, which can be converted into the <b>OH_Drawing_Canvas</b> pointer
-* in the <b>Drawing</b> module.
+* @brief 获取用于绘制的画布指针，该指针可以转换为<b>Drawing</b>模块中的<b>OH_Drawing_Canvas</b>指针。
 *
-* @param context Indicates the pointer to the drawing context.
-* @return Returns the pointer to the canvas for drawing.
+* @param context 表示指向绘制上下文的指针。
+* @return 返回指向绘制画布的指针。
 * @since 12
 */
 void* OH_ArkUI_DrawContext_GetCanvas(ArkUI_DrawContext* context);
 
 /**
-* @brief Obtains the size of a drawing area.
+* @brief 获取绘制区域的大小。
 *
-* @param context Indicates the pointer to the drawing context.
-* @return Returns the size of the drawing area.
+* @param context 表示指向绘制上下文的指针。
+* @return 返回绘制区域的大小。
 * @since 12
 */
 ArkUI_IntSize OH_ArkUI_DrawContext_GetSize(ArkUI_DrawContext* context);
@@ -2314,45 +2291,6 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Create an object for the EmbeddedComponent option.
- *
- * @return A pointer to the object of the EmbeddedComponent option.
- * @since 20
- */
-ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create();
-
-/**
- * @brief Destroy the object by EmbeddedComponent option.
- *
- * @param option Pointer to the object by the EmbeddeComponent to be destroyed.
- * @since 20
- */
-void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option);
-
-/**
- * @brief Set the onError of EmbeddedComponent.
- *
- * @param option Pointer to the object option by the EmbeddedComponent.
- * @param code Common error information about the API invoking failure.
- * @param name Common error name information about the API invoking failure.
- * @param message Common error message information about the API invoking failure.
- * @since 20
- */
-void OH_ArkUI_EmbeddedComponentOption_SetOnError(
-    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, const char* name, const char* message));
-
-/**
- * @brief Set the onTerminated of EmbeddedComponent.
- *
- * @param option Pointer to the object option by the EmbeddedComponent.
- * @param code Result code returned when the EmbeddedUIExtensionAbility exits.
- * @param want Data returned when the EmbeddedUIExtensionAbility exits.
- * @since 20
- */
-void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
-    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
-
-/**
  * @brief Set text menu item title.
  *
  * @param item The text menu item.
@@ -2578,13 +2516,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
     ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb);
 
 /**
- * @brief 定义阴影选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
-
-/**
  * @brief Sets the recognition types of a configuration object for selected text recognition.
  *
  * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
@@ -2728,148 +2659,6 @@ void OH_ArkUI_SelectionOptions_SetMenuPolicy(
  * @since 23
  */
 ArkUI_MenuPolicy OH_ArkUI_SelectionOptions_GetMenuPolicy(ArkUI_SelectionOptions* options);
-
-/**
- * @brief Defines the motion path options for path animation.
- *
- * @since 23
- */
-typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions;
-
-/**
- * @brief Create an object of the motion path options for path animation.
- *        In the newly created ArkUI_MotionPathOptions, the "path" value is an empty string, the "from" value is 0,
- *        the "to" value is 1, and the "rotatable" value is false.
- *
- * @return A pointer to the ArkUI_MotionPathOptions.
- * @since 23
- */
-ArkUI_MotionPathOptions* OH_ArkUI_MotionPathOptions_Create();
-
-/**
- * @brief Dispose the ArkUI_MotionPathOptions object.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object to be disposed.
- * @since 23
- */
-void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
-
-/**
- * @brief Sets the the motion path for the animation using an SVG path string. The path supports using "start" and
- *        "end" as placeholders for the starting and ending points, for example:
- *        "Mstart.x start.y L50 50 Lend.x end.y Z". Refer to the SVG path format for the path string.
- *        When set to an empty string, it is equivalent to not setting a path animation.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param svgPath The motion path for the path animation.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* options, const char* svgPath);
-
-/**
- * @brief Gets the motion path string in the ArkUI_MotionPathOptions object.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param svgPathBuffer Buffer pointer to the motion path string.
- * @param bufferSize The buffer size of the svgPathBuffer parameter.
- * @param writeLength Indicates the string length actually written to the buffer
- *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
- *                    Indicates the minimum buffer size that can accommodate the target
- *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is less than the minimum buffer size.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions* options, char* svgPathBuffer,
-    const int32_t bufferSize, int32_t* writeLength);
-
-/**
- * @brief Sets the starting progress in the ArkUI_MotionPathOptions. Progress refers to the ratio of the length of the
- *        path that has been traveled to the total length of the entire path. The value range is [0.0, 1.0], and the
- *        "from" value should be less than or equal to the "to" value; otherwise, an ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE
- *        error code will be returned.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param from The starting progress in the ArkUI_MotionPathOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the "from" value is out of range or the "from" value
- *                 is greater than the "to" value.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* options, const float from);
-
-/**
- * @brief Gets the starting progress in the ArkUI_MotionPathOptions object.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param from The starting progress in the ArkUI_MotionPathOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions* options, float* from);
-
-/**
- * @brief Sets the endpoint progress in the ArkUI_MotionPathOptions. Progress refers to the ratio of the length of the
- *        path that has been traveled to the total length of the entire path. The value range is [0.0, 1.0], and the
- *        "from" value should be less than or equal to the "to" value; otherwise, an ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE
- *        error code will be returned.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param to The endpoint progress in the ArkUI_MotionPathOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the "to" value is out of range or the "to" value
- *                 is less than the "from" value.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* options, const float to);
-
-/**
- * @brief Gets the endpoint progress in the ArkUI_MotionPathOptions object.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param to The endpoint progress in the ArkUI_MotionPathOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* options, float* to);
-
-/**
- * @brief Sets the rotatable parameter in the ArkUI_MotionPathOptions. It indicates whether to rotate along the path.
- *        True means rotating along the path, while false means not rotating along the path.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param rotatable The rotatable parameter in the ArkUI_MotionPathOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions* options, const bool rotatable);
-
-/**
- * @brief Gets the rotatable parameter in the ArkUI_MotionPathOptions.
- *
- * @param options Pointer to the ArkUI_MotionPathOptions object.
- * @param rotatable The rotatable parameter in the ArkUI_MotionPathOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
 
 /**
  * @brief Create a configuration object for selected drag preview style.
@@ -3657,166 +3446,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingParagraphStyl
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorParagraphStyle* style);
 
 /**
- * @brief 创建一个阴影选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_ShadowOptions_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @since 24
- */
-OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
-
-/**
- * @brief 销毁阴影选项对象。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @since 24
- */
-void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
-
-/**
- * @brief 设置阴影选项的模糊半径。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param radius 阴影的模糊半径，单位为vp。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
-
-/**
- * @brief 获取阴影选项的模糊半径。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param radius 阴影的模糊半径，单位为vp。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options, float* radius);
-
-/**
- * @brief 设置阴影选项的阴影类型。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param type 阴影类型{@link ArkUI_ShadowType}。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType type);
-
-/**
- * @brief 获取阴影选项的阴影类型。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param type 阴影类型{@link ArkUI_ShadowType}。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType* type);
-
-/**
- * @brief 设置阴影选项的阴影颜色。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param color 阴影颜色，0xARGB格式。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
-
-/**
- * @brief 获取阴影选项的阴影颜色。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param color 阴影颜色，0xARGB格式。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options, uint32_t* color);
-
-/**
- * @brief 设置阴影在x轴上的偏移量。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param offsetX 阴影在x轴上的偏移量，单位为vp。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* options, float offsetX);
-
-/**
- * @brief 获取阴影在x轴上的偏移量。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param offsetX 阴影在x轴上的偏移量，单位为vp。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* options, float* offsetX);
-
-/**
- * @brief 设置阴影在y轴上的偏移量。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param offsetY 阴影在y轴上的偏移量，单位为vp。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* options, float offsetY);
-
-/**
- * @brief 获取阴影在y轴上的偏移量。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param offsetY 阴影在y轴上的偏移量，单位为vp。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* options, float* offsetY);
-
-/**
- * @brief 设置是否用阴影填充组件内部。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。默认值为false。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, bool isFill);
-
-/**
- * @brief 获取是否用阴影填充组件内部。
- *
- * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。
- * @return 返回结果码。
- *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
-
-/**
  * @brief 设置文本样式的字体颜色。
  *
  * @param style TextEditor组件文本样式。
@@ -4497,599 +4126,6 @@ ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureBackground(ArkUI_PickerIn
 */
 ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureDivider(ArkUI_PickerIndicatorStyle* style,
     ArkUI_PickerIndicatorDivider* divider);
-
-/**
- * @brief Defines the scale options for matrix scaling.
- *
- * @since 24
- */
-typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
-
-/**
- * @brief Create an object of ArkUI_Matrix4ScaleOptions.
- *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
- *        are 1, and the default values for centerX, centerY are 0.
- *
- * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
- * @since 24
- */
-ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
-
-/**
- * @brief Disposes the ArkUI_Matrix4ScaleOptions object.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions instance to be destroyed.
- * @since 24
- */
-void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
-
-/**
- * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetX(ArkUI_Matrix4ScaleOptions* options, const float scaleX);
-
-/**
- * @brief Get the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
- *        If the value of x is never set, its default value is 1.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param scaleX The scaling factor in the x direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetX(const ArkUI_Matrix4ScaleOptions* options, float* scaleX);
-
-/**
- * @brief Set the scaling factor in the y direction in ArkUI_Matrix4ScaleOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param scaleY The scaling factor in the y direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetY(ArkUI_Matrix4ScaleOptions* options, const float scaleY);
-
-/**
- * @brief Get the scaling factor in the y direction in ArkUI_Matrix4ScaleOptions.
- *        If the value of y is never set, its default value is 1.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param scaleY The scaling factor in the y direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetY(const ArkUI_Matrix4ScaleOptions* options, float* scaleY);
-
-/**
- * @brief Set the scaling factor in the z direction in ArkUI_Matrix4ScaleOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param scaleZ The scaling factor in the z direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetZ(ArkUI_Matrix4ScaleOptions* options, const float scaleZ);
-
-/**
- * @brief Get the scaling factor in the z direction in ArkUI_Matrix4ScaleOptions.
- *        If the value of z is never set, its default value is 1.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param scaleZ The scaling factor in the z direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetZ(const ArkUI_Matrix4ScaleOptions* options, float* scaleZ);
-
-/**
- * @brief Set x offset relative to the transformation center. 0 means no additional x-direction offset from the
- *        transformation center. The unit is px.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param centerX The x offset relative to the transformation center. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOptions* options, const float centerX);
-
-/**
- * @brief Get the value of centerX from the options, which represents the x-direction offset relative to the
- *        transformation center. The unit is px. If the value of centerX is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param centerX The x-direction offset relative to the transformation center.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterX(const ArkUI_Matrix4ScaleOptions* options, float* centerX);
-
-/**
- * @brief Set y offset relative to the transformation center. 0 means no additional y-direction offset from the
- *        transformation center. The unit is px.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param centerY The y offset relative to the transformation center. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOptions* options, const float centerY);
-
-/**
- * @brief Get the value of centerY from the options, which represents the y-direction offset relative to the
- *        transformation center. The unit is px. If the value of centerY is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
- * @param centerY The y-direction offset relative to the transformation center.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterY(const ArkUI_Matrix4ScaleOptions* options, float* centerY);
-
-/**
- * @brief Defines the rotation options for matrix rotating.
- *
- * @since 24
- */
-typedef struct ArkUI_Matrix4RotationOptions ArkUI_Matrix4RotationOptions;
-
-/**
- * @brief Create an object of ArkUI_Matrix4RotationOptions.
- *        In the newly created options, the x, y, and z values in the direction vector specifying the rotation axis
- *        are undetermined; The default values for centerX, centerY are 0; The default value for angle is 0.
- *        If none of x, y, z are specified, it is equivalent to x=0, y=0, z=1, which means rotation around the z-axis.
- *        Once any one of x, y, z is specified, the remaining unspecified values are equivalent to 0.
- *
- * @return Returns a pointer to the newly created ArkUI_Matrix4RotationOptions.
- * @since 24
- */
-ArkUI_Matrix4RotationOptions* OH_ArkUI_Matrix4RotationOptions_Create();
-
-/**
- * @brief Disposes the ArkUI_Matrix4RotationOptions object.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions instance to be destroyed.
- * @since 24
- */
-void OH_ArkUI_Matrix4RotationOptions_Dispose(ArkUI_Matrix4RotationOptions* options);
-
-/**
- * @brief Set the value of the direction vector for the x-axis direction in ArkUI_Matrix4RotationOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param x The value of the direction vector for the x-axis direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOptions* options, const float x);
-
-/**
- * @brief Get the value of the direction vector for the x-axis direction in ArkUI_Matrix4RotationOptions.
- *        If the value of x is never set, its value will be undefined, so the function will return
- *        ARKUI_ERROR_CODE_PARAM_INVALID.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param x The value of the direction vector for the x-axis direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4RotationOptions* options, float* x);
-
-/**
- * @brief Set the value of the direction vector for the y-axis direction in ArkUI_Matrix4RotationOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param y The value of the direction vector for the y-axis direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOptions* options, const float y);
-
-/**
- * @brief Get the value of the direction vector for the y-axis direction in ArkUI_Matrix4RotationOptions.
- *        If the value of y is never set, its value will be undefined, so the function will return
- *        ARKUI_ERROR_CODE_PARAM_INVALID.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param y The value of the direction vector for the y-axis direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4RotationOptions* options, float* y);
-
-/**
- * @brief Set the value of the direction vector for the z-axis direction in ArkUI_Matrix4RotationOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param z The value of the direction vector for the z-axis direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOptions* options, const float z);
-
-/**
- * @brief Get the value of the direction vector for the z-axis direction in ArkUI_Matrix4RotationOptions.
- *        If the value of z is never set, its value will be undefined, so the function will return
- *        ARKUI_ERROR_CODE_PARAM_INVALID.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param z The value of the direction vector for the z-axis direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetZ(const ArkUI_Matrix4RotationOptions* options, float* z);
-
-/**
- * @brief Set the value of the rotation angle in ArkUI_Matrix4RotationOptions. The unit is degree.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param angle The value of the rotation angle in ArkUI_Matrix4RotationOptions. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetAngle(ArkUI_Matrix4RotationOptions* options, const float angle);
-
-/**
- * @brief Get the value of the rotation angle in ArkUI_Matrix4RotationOptions. The unit is degree.
- *        If the value of angle is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param angle The value of the rotation angle in ArkUI_Matrix4RotationOptions.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetAngle(const ArkUI_Matrix4RotationOptions* options, float* angle);
-
-/**
- * @brief Set x offset relative to the transformation center. 0 means no additional x-direction offset from the
- *        transformation center. The unit is px.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param centerX The x offset relative to the transformation center. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterX(ArkUI_Matrix4RotationOptions* options, const float centerX);
-
-/**
- * @brief Get the value of centerX from the options, which represents the x-direction offset relative to the
- *        transformation center. The unit is px. If the value of centerX is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param centerX The x-direction offset relative to the transformation center.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterX(const ArkUI_Matrix4RotationOptions* options, float* centerX);
-
-/**
- * @brief Set y offset relative to the transformation center. 0 means no additional y-direction offset from the
- *        transformation center. The unit is px.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param centerY The y offset relative to the transformation center. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4RotationOptions* options, const float centerY);
-
-/**
- * @brief Get the value of centerY from the options, which represents the y-direction offset relative to the
- *        transformation center. The unit is px. If the value of centerY is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
- * @param centerY The y-direction offset relative to the transformation center.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterY(const ArkUI_Matrix4RotationOptions* options, float* centerY);
-
-/**
- * @brief Defines the translation options for matrix translating.
- *
- * @since 24
- */
-typedef struct ArkUI_Matrix4TranslationOptions ArkUI_Matrix4TranslationOptions;
-
-/**
- * @brief Create an object of ArkUI_Matrix4TranslationOptions.
- *        In the newly created options, the default values for x, y and z are 0.
- *
- * @return Returns a pointer to the newly created ArkUI_Matrix4TranslationOptions.
- * @since 24
- */
-ArkUI_Matrix4TranslationOptions* OH_ArkUI_Matrix4TranslationOptions_Create();
-
-/**
- * @brief Disposes the ArkUI_Matrix4TranslationOptions object.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions instance to be destroyed.
- * @since 24
- */
-void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions* options);
-
-/**
- * @brief Set the translation value in the x-axis direction. The unit is px.
- *        If the value of x is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
- * @param x The translation value in the x-axis direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
-
-/**
- * @brief Get the translation value in the x-axis direction from ArkUI_Matrix4TranslationOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
- * @param x The translation value in the x-axis direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
-
-/**
- * @brief Set the translation value in the y-axis direction. The unit is px.
- *        If the value of y is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
- * @param y The translation value in the y-axis direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4TranslationOptions* options, const float y);
-
-/**
- * @brief Get the translation value in the y-axis direction from ArkUI_Matrix4TranslationOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
- * @param y The translation value in the y-axis direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4TranslationOptions* options, float* y);
-
-/**
- * @brief Set the translation value in the z-axis direction. The unit is px.
- *        If the value of z is never set, its default value is 0.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
- * @param z The translation value in the z-axis direction. Value range: (-∞, +∞).
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4TranslationOptions* options, const float z);
-
-/**
- * @brief Get the translation value in the z-axis direction from ArkUI_Matrix4TranslationOptions.
- *
- * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
- * @param z The translation value in the z-axis direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetZ(const ArkUI_Matrix4TranslationOptions* options, float* z);
-
-/**
- * @brief Create an identity matrix4 object.
- *
- * @return Returns the created identity matrix4 object.
- * @since 24
- */
-ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateIdentity();
-
-/**
- * @brief Specify each element of the matrix to create a matrix4 object.
- *
- * @param elements Pointer to the array of expected matrix element data. The length of array should be greater than
- *                 or equal to 16. The parameter must not be null.
- * @return Returns the newly created matrix4 object.
- *         If the pointer of elements is null, the function will return null.
- * @since 24
- */
-ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateByElements(const float* elements);
-
-/**
- * @brief Disposes a matrix4 object.
- *
- * @param matrix Pointer to the matrix4 object to be disposed.
- * @since 24
- */
-void OH_ArkUI_Matrix4_Dispose(ArkUI_Matrix4* matrix);
-
-/**
- * @brief Create a copy of the matrix4 object.
- *
- * @param matrix Pointer to the original matrix4 object.
- * @return Returns the newly created matrix4 object.
- * @since 24
- */
-ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
-
-/**
- * @brief Perform an inverse matrix transformation on the input matrix.
- *        If the matrix is invertible, this function will modify the input matrix; otherwise, the matrix will remain
- *        unchanged and an error code will be returned.
- *
- * @param matrix Pointer to the matrix4 object to be inverted.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the matrix is not invertible.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
-
-/**
- * @brief Combine another matrix with the original matrix, and storing the resulting matrix in oriMatrix.
- *        The resulting matrix is equivalent to first applying the transformation of oriMatrix and then applying
- *        the transformation of anotherMatrix. This function will alter the oriMatrix object.
- *
- * @param oriMatrix Pointer to the original matrix4 object.
- * @param anotherMatrix Pointer to another matrix object to be combined.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_Matrix4* anotherMatrix);
-
-/**
- * @brief Apply a tranlation transformation to the original matrix to obtain the translated matrix. Each translation
- *        transformation is applied cumulatively. This function will alter the input matrix object.
- *
- * @param matrix Pointer to the matrix4 object to be translated.
- * @param translate Pointer to the translation options.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4TranslationOptions* translate);
-
-/**
- * @brief Apply a scale transformation to the original matrix to obtain the scaled matrix. Each scale
- *        transformation is applied cumulatively. This function will alter the input matrix object.
- *
- * @param matrix Pointer to the matrix4 object to be scaled.
- * @param scale Pointer to the scale options.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix4ScaleOptions* scale);
-
-/**
- * @brief Apply a rotation transformation to the original matrix to obtain the rotated matrix. Each rotation
- *        transformation is applied cumulatively. This function will alter the input matrix object.
- *
- * @param matrix Pointer to the matrix4 object to be rotated.
- * @param rotate Pointer to the rotation options.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4RotationOptions* rotate);
-
-/**
- * @brief Apply a skew transformation to the original matrix to obtain the skewed matrix. Each skew
- *        transformation is applied cumulatively. This function will alter the input matrix object.
- *
- * @param matrix Pointer to the matrix4 object to be skewed. It must not be null.
- * @param skewX Skew coefficient in the x direction.
- * @param skewY Skew coefficient in the y direction.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_Skew(ArkUI_Matrix4* matrix, const float skewX, const float skewY);
-
-/**
- * @brief Calculate the new coordinate position of a point after it has been transformed by a matrix.
- *        The calculated transformed coordinate point will be filled into the ArkUI_PointF structure
- *        pointed to by result.
- *
- * @param matrix Pointer to the matrix4 object.
- * @param oriPoint Pointer to the original coordinate point.
- * @param result Pointer to the result point. It must not be null.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, const ArkUI_PointF* oriPoint, ArkUI_PointF* result);
-
-/**
- * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
- *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
- *
- * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
- *               It must not be null.
- * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
- * @param dst Pointer to the array of polygon coordinate points after mapping. The array should be at least as long as pointCount.
- * @param pointCount The number of polygon points, which must be one of the values 0, 1, 2, 3, or 4.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkUI_PointF* src, const ArkUI_PointF* dst, const uint32_t pointCount);
-
-/**
- * @brief Obtain the 16 elements of the matrix and fill them into the array pointed to by result.
- *        The array pointed to by result must have space for 16 float elements.
- *
- * @param matrix Pointer to the original matrix4 object.
- * @param result Pointer to an array that can hold 16 floating-point numbers. It must not be null.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 24
- */
-ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
 
 /**
  * @brief Enumerates the tree operating status for the cross-language option.

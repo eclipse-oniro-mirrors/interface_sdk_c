@@ -1063,6 +1063,7 @@ int32_t OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* compo
  *
  * @since 12
  * @deprecated since 20
+ * @useinstead OH_ArkUI_NodeContent_AddNode
  */
 int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root);
 
@@ -1078,6 +1079,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
  *
  * @since 12
  * @deprecated since 20
+ * @useinstead OH_ArkUI_NodeContent_RemoveNode
  */
 int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root);
 

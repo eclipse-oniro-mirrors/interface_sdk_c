@@ -661,6 +661,41 @@ Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOu
  * @since 26.0.0
  */
 bool OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported(const Camera_PhotoOutput* photoOutput);
+
+/**
+ * @brief 检查设备是否支持拍照自动输出辅助图。
+ *
+ * @param photoOutput 指向目标PhotoOutput实例的指针。
+ * @param auxPhotoType 目标辅助图类型。
+ * @param isSupported 指向检查结果的指针，表示是否支持自动输出辅助图。true表示支持，false表示不支持。
+ * @return <ul>
+ *     <br><li>CAMERA_OK: 操作成功。</li>
+ *     <br><li>CAMERA_INVALID_ARGUMENT: 缺少参数或参数类型不正确。</li>
+ *     <br><li>CAMERA_ERROR_PARAM_OUT_OF_RANGE: 参数超出范围。</li>
+ *     <br><li>CAMERA_SERVICE_FATAL_ERROR: 相机服务异常。</li>
+ *     <br></ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported(const Camera_PhotoOutput* photoOutput,
+    OH_Camera_AuxiliaryPhotoType auxPhotoType, bool* isSupported);
+
+/**
+ * @brief 启用或禁用拍照自动回传指定类型的辅助图。
+ *
+ * @param photoOutput 指向目标PhotoOutput实例的指针。
+ * @param auxPhotoTypes 指向目标辅助图类型数组的指针。
+ * @param size 辅助图类型数组的大小（元素个数）。
+ * @param enable 表示是否启用拍照自动回传指定类型的辅助图。true表示启用，false表示禁用。
+ * @return <ul>
+ *     <br><li>CAMERA_OK: 操作成功。</li>
+ *     <br><li>CAMERA_INVALID_ARGUMENT: 缺少参数或参数类型不正确。</li>
+ *     <br><li>CAMERA_ERROR_PARAM_OUT_OF_RANGE: 参数超出范围。</li>
+ *     <br><li>CAMERA_SERVICE_FATAL_ERROR: 相机服务异常。</li>
+ *     <br></ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled(Camera_PhotoOutput* photoOutput,
+    const OH_Camera_AuxiliaryPhotoType* auxPhotoTypes, uint32_t size, bool enable);
 #ifdef __cplusplus
 }
 #endif

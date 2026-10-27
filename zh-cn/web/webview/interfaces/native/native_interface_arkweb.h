@@ -103,16 +103,16 @@ typedef void (*OH_ArkWeb_OnCookieFetchCallback)(ArkWeb_ErrorCode errorCode, char
  */
 typedef struct {
     /**
-     * 无白屏加载的错误码，取值为0表示无错误，非0值表示错误类型，见{@link ArkWeb_BlanklessErrorCode}定义。
+     * @brief 无白屏加载的错误码，取值为0表示无错误，非0值表示错误类型，见{@link ArkWeb_BlanklessErrorCode}定义。
      */
     ArkWeb_BlanklessErrorCode errCode;
     /**
-     * 首屏相似度，根据历史加载首屏内容计算相似度，范围为[0, 1.0]，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似度将在下次加载时才可反映。建议当相似度低于具体阈值（如0.33）时，
-     * 应用不启用无白屏加载插帧方案。
+     * @brief 首屏相似度，根据历史加载首屏内容计算相似度，范围为[0, 1.0]，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似度将在下次加载时才可反映。
+     * 建议当相似度低于具体阈值（如0.33）时，应用不启用无白屏加载插帧方案。
      */
     double similarity;
     /**
-     * 根据历史加载首屏耗时预测本次加载耗时，单位：ms，取值范围需大于0。
+     * @brief 根据历史加载首屏耗时预测本次加载耗时，单位：ms，取值范围需大于0。
      */
     int32_t loadingTime;
 } ArkWeb_BlanklessInfo;
@@ -278,6 +278,13 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
 /**
  * @brief 设置无白屏加载是否启用。本接口必须与OH_NativeArkWeb_GetBlanklessInfoWithKey接口配套使用。
  *
+ * 使用场景：根据页面首屏加载预测信息动态决定是否启用无白屏加载时使用，例如当相似度预测值较高时启用无白屏加载优化，当相似度较低时不启用以避免资源浪费。
+ *
+ * **说明：**
+ * - 需在触发页面加载的接口之后调用。其他约束同{@link OH_NativeArkWeb_GetBlanklessInfoWithKey}。
+ * - 页面的加载必须在调用本套接口的组件中进行。
+ * - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
+ *
  * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
  * @param webTag Web组件名称。
  * @param key 唯一标识本页面的key值。必须与{@link OH_NativeArkWeb_GetBlanklessInfoWithKey}接口的key值相同。
@@ -296,6 +303,9 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
  * @brief 清除指定key值页面无白屏优化缓存，本接口只清除缓存。
  * <br>在小程序或Web应用场景中，当页面加载时内容变化显著，可能会出现一次明显的跳变。若对此跳变有所顾虑，可使用该接口清除页面缓存。
  *
+ * **说明：**
+ * - 清除之后的页面，需在第三次加载页面时才会产生优化效果。
+ *
  * @param key 清除Blankless优化方案页面的key值列表，key值为{@link OH_NativeArkWeb_GetBlanklessInfoWithKey}中指定过的。
  *     <br>合法取值范围：长度不超过2048，keys数组长度<=100。key和加载页面时输入给ArkWeb的相同。
  *     <br>非法值设置行为：key长度超过2048时该key不生效；长度超过100时，取前100个；当为NULL时，清除所有缓存。
@@ -310,6 +320,14 @@ void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size
  * @brief 获取页面首屏加载预测信息（详细说明见{@link ArkWeb_BlanklessInfo}），并开始本次加载过渡帧生成，应用根据此信息确定是否需要启用无白屏加载。必须与
  * {@link OH_NativeArkWeb_SetBlanklessLoadingWithKey}接口配套使用，并且必须在触发加载页面的接口之前调用。需在WebViewController与Web组件绑定后才能使用。
  *
+ * **说明：**
+ * - 持久缓存容量：默认大小为30MB（约30页），可以通过接口{@link OH_NativeArkWeb_SetBlanklessLoadingWithKey}设置缓存容量，具体见该接口说明。
+ * 超过容量时根据LRU（Least Recently Used，淘汰不常用缓存的策略）机制更新缓存。自动清理超过7天的持久缓存数据，缓存清除后第三次加载页面开始有优化效果。
+ * - 如果发现相似度（即{@link ArkWeb_BlanklessInfo}中的similarity）极低，请检查key值是否正确传递。
+ * - 调用本接口后，会启用页面加载快照检测及生成过渡帧计算，产生一定资源开销。
+ * - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加量约为12*w*h B。
+ * 页面打开后，内存会被回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
+ *
  * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
  * @param webTag Web组件名称。
  * @param key 唯一标识本页面的key值。
@@ -323,6 +341,8 @@ ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag,
 /**
  * @brief 设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。典型使用场景：根据应用内存占用情况调整缓存大小、优化存储空间使用、
  * 平衡无白屏效果与系统资源消耗等。
+ *
+ * 使用场景：使用者需要自定义缓存容量的场景。
  *
  * @param capacity 设置持久化缓存容量，单位MB，最大设置不超过100MB。
  *     <br>默认值：30MB。
@@ -359,31 +379,31 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
 
 /**
- * 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考{@link 约束与限制}）。需要根据应用兼容性需求选择特定内核版本时使用，例如应用依赖某些旧版本内核的特性，或需要在新版本系统上保持兼容性，
- * 可以指定使用特定的遗留内核版本。<br>该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
- * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb内核版本。
+ * @brief 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效，使用系统默认内核（可参考{@link 约束与限制}）。需要根据应用兼容性需求选择特定内核版本时使用，例如应用依赖某些旧版本内核的特性，
+ * 或需要在新版本系统上保持兼容性，可以指定使用特定的遗留内核版本。<br>该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
+ * @param webEngineVersion - ArkWeb内核版本。
  *     详细说明见 {@link ArkWebEngineVersion}.
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
 
 /**
- * 获取当前使用的ArkWeb内核版本。
+ * @brief 获取当前使用的ArkWeb内核版本。
  * @return 返回由{@link ArkWebEngineVersion}枚举所定义的当前使用的ArkWeb内核版本。
  * @since 20
  */
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 
 /**
- * 设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；
+ * @brief 设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；
  * 应用只需要使用CookieManager而暂时不需要Web组件渲染等。该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
- * @param { bool } lazy - 是否延后初始化ArkWeb内核，true：延后，false：不延后。
+ * @param lazy [in] - 是否延后初始化ArkWeb内核，true：延后，false：不延后。
  * @since 22
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
 
 /**
- * 判断应用所使用ArkWeb内核是否是常青内核，即系统的最新内核。
+ * @brief 判断应用所使用ArkWeb内核是否是常青内核，即系统的最新内核。
  * @return 返回当前应用所使用内核是否为常青内核。true表示是常青内核，false表示不是常青内核。
  * @since 23
  */

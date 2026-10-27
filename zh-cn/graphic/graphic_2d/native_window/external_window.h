@@ -127,9 +127,8 @@ typedef enum NativeWindowOperation {
      */
     SET_FORMAT,
     /**
-     * get native window buffer usage,
-     * variable parameter in function is
-     * [out] uint64_t *usage, the enumeration value refers to {@link OH_NativeBuffer_Usage}.
+     * 获取本地窗口缓冲区使用方式，函数中的可变参数是
+     * [输出] uint64_t *usage，取值具体可见OH_NativeBuffer_Usage枚举值。
      */
     GET_USAGE,
     /**
@@ -262,66 +261,62 @@ typedef enum NativeWindowOperation {
 } NativeWindowOperation;
 
 /**
- * @brief Indicates Scaling Mode.
+ * @brief 表示缩放模式。
  * @since 9
  * @deprecated since 10
  * @useinstead OHScalingModeV2
  */
 typedef enum {
     /**
-     * the window content is not updated until a buffer of
-     * the window size is received
+     * 在收到窗口大小的缓冲区之前，窗口内容不会更新
      */
     OH_SCALING_MODE_FREEZE = 0,
     /**
-     * the buffer is scaled in two dimensions to match the window size
+     * 缓冲区按两个维度进行缩放以匹配窗口大小
      */
     OH_SCALING_MODE_SCALE_TO_WINDOW,
     /**
-     * the buffer is uniformly scaled so that the smaller size of
-     * the buffer matches the window size
+     * 缓冲区等比缩放，使缓冲区较小的边与窗口大小匹配
      */
     OH_SCALING_MODE_SCALE_CROP,
     /**
-     * the window is clipped to the size of the buffer's clipping rectangle
-     * pixels outside the clipping rectangle are considered fully transparent.
+     * 窗口被裁剪为缓冲区裁剪矩形的大小，
+     * 裁剪矩形之外的像素被视为完全透明。
      */
     OH_SCALING_MODE_NO_SCALE_CROP,
 } OHScalingMode;
 
 /**
- * @brief Indicates Scaling Mode.
+ * @brief 表示缩放模式。
  * @since 12
  */
 typedef enum {
     /**
-     * the window content is not updated until a buffer of
-     * the window size is received
+     * 在收到窗口大小的缓冲区之前，窗口内容不会更新
      */
     OH_SCALING_MODE_FREEZE_V2 = 0,
     /**
-     * the buffer is scaled in two dimensions to match the window size
+     * 缓冲区按两个维度进行缩放以匹配窗口大小
      */
     OH_SCALING_MODE_SCALE_TO_WINDOW_V2,
     /**
-     * the buffer is uniformly scaled so that the smaller size of
-     * the buffer matches the window size
+     * 缓冲区等比缩放，使缓冲区较小的边与窗口大小匹配
      */
     OH_SCALING_MODE_SCALE_CROP_V2,
     /**
-     * the window is clipped to the size of the buffer's clipping rectangle
-     * pixels outside the clipping rectangle are considered fully transparent.
+     * 窗口被裁剪为缓冲区裁剪矩形的大小，
+     * 裁剪矩形之外的像素被视为完全透明。
      */
     OH_SCALING_MODE_NO_SCALE_CROP_V2,
     /**
-     * Adapt to the buffer and scale proportionally to the buffer size. Prioritize displaying all buffer content.
-     * If the size is not the same as the window size, fill the unfilled area of the window with a background color.
+     * 适配缓冲区，并按照缓冲区大小等比缩放。优先显示所有缓冲区内容。
+     * 如果缓冲区大小与窗口大小不一致，则使用背景色填充窗口中未填充的区域。
      */
     OH_SCALING_MODE_SCALE_FIT_V2,
 } OHScalingModeV2;
 
 /**
- * @brief Enumerates the HDR metadata keys.
+ * @brief 枚举HDR元数据键。
  * @since 9
  * @deprecated since 10
  */

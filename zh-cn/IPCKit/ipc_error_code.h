@@ -16,14 +16,17 @@
  * @addtogroup OHIPCErrorCode
  * @{
  *
+ * @brief 提供IPC错误码定义，用于标识和处理IPC通信过程中可能发生的各类错误。开发者可根据返回的错误码快速定位问题原因，如参数错误、序列化失败、内存分配失败、远端对象死亡等场景，从而采取相应的错误处理措施。
+ */
+/**
  * @file ipc_error_code.h
  *
  * @brief 提供IPC错误码定义，用于标识和处理IPC通信过程中可能发生的各类错误。开发者可根据返回的错误码快速定位问题原因，如参数错误、序列化失败、内存分配失败、远端对象死亡等场景，从而采取相应的错误处理措施。
  *
+ * @syscap SystemCapability.Communication.IPC.Core
  * @include <IPCKit/ipc_error_code.h>
  * @library libipc_capi.so
  * @kit IPCKit
- * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
 
@@ -87,7 +90,7 @@ typedef enum {
     /**
      * 用户自定义错误码最大值。
      */
-    OH_IPC_USER_ERROR_CODE_MAX = 1909999
+    OH_IPC_USER_ERROR_CODE_MAX = 1909999,
 } OH_IPC_ErrorCode;
 
 /** @} */

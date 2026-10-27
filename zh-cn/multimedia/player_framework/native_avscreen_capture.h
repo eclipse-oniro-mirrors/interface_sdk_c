@@ -488,7 +488,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCa
 
 /**
  * @brief 录屏时豁免隐私窗口，应在录屏启动之前被调用。<br>
- * 调用该方法可以豁免隐私窗口，windowIDs为需要豁免的隐私窗口ID指针，windowCount 为隐私窗口ID列表的长度，
+ * 应用调用该方法可以豁免本应用隐私窗口，windowIDs为需要豁免的隐私窗口ID指针，windowCount为隐私窗口ID列表的长度，
  * 目前豁免需要传入所有隐私子窗口和主窗口ID。
  * 
  * @param capture 指向OH_AVScreenCapture实例的指针。
@@ -917,7 +917,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVS
  * 默认是false。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
  * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入value为无效值。
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
     OH_AVScreenCapture_CaptureStrategy *strategy, bool enable);

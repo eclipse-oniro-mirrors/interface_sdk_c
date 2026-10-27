@@ -99,7 +99,9 @@ OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}：参数manager未通过
  *             {@link OH_AudioManager_GetAccessoryManager}进行初始化。</li>
  *         </ul>
- * @release native_audio_accessory_manager/OH_AudioAccessoryManager_Destroy {outOwnedAccessory}
+ * @release 如果音频配件已连接，应先调用{@link OH_AudioAccessoryManager_Disconnected}断开连接，
+ *     再调用{@link OH_AudioAccessoryManager_Destroy}销毁音频配件句柄。
+ *     销毁成功后，音频配件句柄失效，不得再次使用。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(

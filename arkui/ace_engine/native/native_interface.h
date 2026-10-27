@@ -46,7 +46,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the native API types.
+ * @brief Enumerates the types of native API collections.
  *
  * @since 12
  */
@@ -76,23 +76,37 @@ typedef enum {
  * a runtime check mode for each check type. The behavior upon check failure is determined by
  * the configured runtime check mode. For available modes, see {@link OH_ArkUI_NativeModule_RuntimeCheckMode}.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief UI thread check type: Some ArkUI C APIs must be called on the UI thread.
      * This type detects whether these APIs are called from a non-UI thread.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_UI_THREAD = 0,
     /**
      * @brief Node disposed check type: Detects whether the ArkUI_NodeHandle passed to a C API
      * has already been disposed.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
-    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_NODE_DISPOSED = 1,
+    /**
+     * @brief Attribute match check type: Detects whether an ArkUI_NodeAttributeType passed to
+     * SetAttribute/GetAttribute/ResetAttribute matches the node's actual component type.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
+    /**
+     * @brief multi thread race condition check type: Detects whether another thread is already
+     * operating on the same component tree when a multi thread API is called.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;
 
 /**
@@ -107,36 +121,36 @@ typedef enum {
  * For applications compiled in release mode (Release build in DevEco Studio, used for production
  * release), the default is {@link OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED}.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Disables the specified runtime check. The C API behavior is the same as before the check was introduced.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_DISABLED = 0,
     /**
      * @brief Prints diagnostic logs (check type, API name, cause, native stack trace) and continues the C API call.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_LOG = 1,
     /**
      * @brief Prints diagnostic logs and immediately terminates the application.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_MODE_CRASH = 2
 } OH_ArkUI_NativeModule_RuntimeCheckMode;
 /**
- * @brief Obtains the native API set of a specified type.
+ * @brief Initializes the C API environment and obtains the native module API collection of the specified type.
  *
- * @param type Indicates the type of the native API set provided by ArkUI, for example, <b>ARKUI_NATIVE_NODE</b>
- * and <b>ARKUI_NATIVE_GESTURE</b>.
- * @param structName Indicates the name of a native struct defined in the corresponding header file, for example,
- * <b>ArkUI_NativeNodeAPI_1</b> in <arkui/native_node.h>.
- * @return Returns the pointer to the abstract native API, which can be used after being converted into a specific type.
+ * @param type Type of the native API collection provided by ArkUI, for example, <b>ARKUI_NATIVE_NODE</b> or
+ *     <b>ARKUI_NATIVE_GESTURE</b>.
+ * @param structName Pointer to the name of a native API struct, which can be obtained by querying the struct
+ *     definition in the corresponding header file, for example, <b>ArkUI_NativeNodeAPI_1</b> in <arkui/native_node.h>.
+ * @return Pointer to the native API abstraction, which must be cast to the specific type for use.
  * @code {.cpp}
  * #include<arkui/native_interface.h>
  * #include<arkui/native_node.h>
@@ -157,17 +171,15 @@ typedef enum {
 void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName);
 
 /**
- * @brief Retrieves the latest error message, which includes the error code, method name, and error cause.
- * When other interfaces return an error code, they save the corresponding error message,
- * and this interface can retrieve the currently stored error message.
- * The information returned by this interface may evolve with versions and is intended solely for
- * output to aid in analysis and troubleshooting. It should not be used for logical decisions.
+ * @brief Obtains the latest error information, including the error codes, API names, and error causes.
+ * For details about the error code, see {@link ArkUI_ErrorCode}. When other APIs return an error code, the
+ * corresponding error information is saved, and the currently stored error information can be obtained through
+ * this API. The returned string is a thread-local global string created by the system, and its content must not be
+ * modified. If any editing is required, create a copy of the string content. The information returned by this API
+ * may change as versions evolve. It is used only for output to assist in analysis and troubleshooting, and must
+ * not be used as a basis for logical judgment. The returned error information does not need to be released manually.
  *
- * The returned string is a thread-local global string created by the system. The caller must not modify its content.
- * If any editing is required, create a copy of the string content
- * yourself. No memory deallocation is required by the caller.
- *
- * @return Returns the most recent error message.
+ * @return Pointer to the latest error information, including the error codes, API names, and error causes.
  * @since 26.0.0
  */
 const char* OH_ArkUI_NativeModule_GetErrorMessage();
@@ -195,13 +207,21 @@ const char* OH_ArkUI_NativeModule_GetErrorMessage();
  *     <ul><li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the setting is updated successfully.
  *     </li><li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if checkType or mode is invalid.</li></ul>
  *     When an invalid parameter error is returned, the previous setting is retained.
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_SetRuntimeCheckMode(
     OH_ArkUI_NativeModule_RuntimeCheckType checkType, OH_ArkUI_NativeModule_RuntimeCheckMode mode);
 
 /**
- * @brief Obtains the macro function corresponding to a struct pointer based on the struct type.
+ * @brief Initializes the C API environment and obtains the corresponding struct pointer based on the struct type.
+ *
+ * It applies to the scenario where the native API set type and the API struct type have been determined, and a
+ * specific native API struct pointer needs to be obtained to call ArkUI native C APIs. This macro function receives
+ * the enumeration parameter <b>nativeAPIVariantKind</b> of the {@link ArkUI_NativeAPIVariantKind} type, the struct
+ * type parameter <b>structType</b>, and the struct pointer variable <b>structPtr</b>. <b>structPtr</b> must match
+ * <b>structType</b>. This macro function calls {@link OH_ArkUI_QueryModuleInterfaceByName} to initialize the C API
+ * environment and obtain the abstract pointer of the native API, converts it to the <b>structType*</b> type, and
+ * assigns it to <b>structPtr</b>.
  *
  * @code {.cpp}
  * #include<arkui/native_interface.h>

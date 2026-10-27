@@ -84,7 +84,7 @@ typedef struct OH_AudioAccessoryInputStream OH_AudioAccessoryInputStream;
  */
 typedef enum {
     /**
-     * @brief 蓝牙SPP（串行端口协议）连接。
+     * @brief 蓝牙SPP（Serial Port Profile，即串口通信协议）连接。
      *
      * @since 26.0.0
      */

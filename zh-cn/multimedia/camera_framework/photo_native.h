@@ -81,6 +81,52 @@ Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNati
 Camera_ErrorCode OH_PhotoNative_GetUncompressedImage(OH_PhotoNative* photo, OH_PictureNative** picture);
 
 /**
+ * @brief 获取指定类型的辅助图。
+ *     <br>
+ *     <br>使用场景：使用本接口前需先通过{@link OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled()}
+ * 开启指定类型辅助图的自动回传功能，拍照获得的OH_PhotoNative
+ * 对象中才会包含辅助图，并通过本接口按类型获取辅助图，用于后续分析处理。支持的辅助图类型及各自用途请参考
+ * {@link OH_Camera_AuxiliaryPhotoType}。
+ *
+ * @param photo 指向OH_PhotoNative实例的指针。
+ * @param type 辅助图类型。
+ * @param outImage 指向OH_ImageNative实例的双重指针，用于接收获取的辅助图。调用成功时，指向有效的辅助图实例；调用失败时，该参数返回NULL。
+ *     该实例由调用方管理，使用完成后应调用OH_PhotoNative_ReleaseImage()释放。
+ * @return <ul>
+ *     <br><li>CAMERA_OK: 操作成功。</li>
+ *     <br><li>CAMERA_INVALID_ARGUMENT: 缺少参数或参数类型不正确。</li>
+ *     <br><li>CAMERA_ERROR_PARAM_OUT_OF_RANGE: 参数超出范围。</li>
+ *     <br></ul>
+ * @release OH_PhotoNative_ReleaseImage {outImage}
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_GetAuxiliaryImage(const OH_PhotoNative* photo, OH_Camera_AuxiliaryPhotoType type,
+    OH_ImageNative** outImage);
+
+/**
+ * @brief 获取指定类型的未压缩辅助图。
+ *     <br>
+ *     <br>使用场景：使用本接口前需先通过{@link OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled()}
+ * 开启指定类型辅助图的自动回传功能，拍照获得的OH_PhotoNative
+ * 对象中才会包含辅助图，并通过本接口按类型获取辅助图，用于后续分析处理。支持的辅助图类型及各自用途请参考
+ * {@link OH_Camera_AuxiliaryPhotoType}。
+ *
+ * @param photo 指向OH_PhotoNative实例的指针。
+ * @param type 辅助图类型。
+ * @param outImage 指向OH_PictureNative实例的双重指针，用于接收获取的未压缩辅助图。调用成功时，指向有效的辅助图实例；调用失败时，该参数返回NULL。
+ *     该实例由调用方管理，使用完成后应调用OH_PhotoNative_ReleasePicture()释放。
+ * @return <ul>
+ *     <br><li>CAMERA_OK: 操作成功。</li>
+ *     <br><li>CAMERA_INVALID_ARGUMENT: 缺少参数或参数类型不正确。</li>
+ *     <br><li>CAMERA_ERROR_PARAM_OUT_OF_RANGE: 参数超出范围。</li>
+ *     <br></ul>
+ * @release OH_PhotoNative_ReleasePicture {outImage}
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_GetUncompressedAuxiliaryImage(const OH_PhotoNative* photo,
+    OH_Camera_AuxiliaryPhotoType type, OH_PictureNative** outImage);
+
+/**
  * @brief 释放全质量图实例。
  * 
  * @param photo 要被释放的OH_PhotoNative实例。
@@ -90,6 +136,30 @@ Camera_ErrorCode OH_PhotoNative_GetUncompressedImage(OH_PhotoNative* photo, OH_P
  * @version 1.0
  */
 Camera_ErrorCode OH_PhotoNative_Release(OH_PhotoNative* photo);
+
+/**
+ * @brief 释放OH_PictureNative实例。
+ *
+ * @param picture 指向要释放的OH_PictureNative实例的指针。
+ * @return <ul>
+ *     <br><li>CAMERA_OK: 操作成功。</li>
+ *     <br><li>CAMERA_INVALID_ARGUMENT: 缺少参数或参数类型不正确。</li>
+ *     <br></ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_ReleasePicture(OH_PictureNative* picture);
+ 
+/**
+ * @brief 释放OH_ImageNative实例。
+ *
+ * @param image 指向要释放的OH_ImageNative实例的指针。
+ * @return <ul>
+ *     <br><li>CAMERA_OK: 操作成功。</li>
+ *     <br><li>CAMERA_INVALID_ARGUMENT: 缺少参数或参数类型不正确。</li>
+ *     <br></ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoNative_ReleaseImage(OH_ImageNative* image);
 
 #ifdef __cplusplus
 }

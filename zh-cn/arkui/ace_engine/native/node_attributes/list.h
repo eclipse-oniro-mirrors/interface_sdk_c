@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief ArkUI List related types and functions on the native side.
+ * @brief ArkUI在Native侧的List相关类型和函数。
  *
  * @since 12
  */
@@ -27,8 +27,9 @@
  *
  * @brief 定义List组件相关的枚举和接口。
  *
- * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/node_attributes/list.h>
+ * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12
  */
@@ -55,7 +56,7 @@ typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
  */
 typedef enum {
     /**
-     * The {@link list items} are packed toward the start edge of the **List** component along the cross axis.
+     * {@link ListItem}在List中，交叉轴方向首部对齐。
      */
     ARKUI_LIST_ITEM_ALIGNMENT_START = 0,
 
@@ -73,22 +74,22 @@ typedef enum {
  */
 typedef enum {
     /**
-     * {@link header} and {@link footer} of {@link ListItemGroup} are not pinned to the top and bottom, respectively.
+     * {@link ListItemGroup}的{@link header}不吸顶，{@link footer}不吸底。
      */
     ARKUI_STICKY_STYLE_NONE = 0,
 
     /**
-     * {@link header} of {@link ListItemGroup} is pinned to the top, and {@link footer} is not pinned to the bottom.
+     * {@link ListItemGroup}的{@link header}吸顶，{@link footer}不吸底。
      */
     ARKUI_STICKY_STYLE_HEADER = 1,
 
     /**
-     * {@link header} of {@link ListItemGroup} is not pinned to the top, and {@link footer} is pinned to the bottom.
+     * {@link ListItemGroup}的{@link header}不吸顶，{@link footer}吸底。
      */
     ARKUI_STICKY_STYLE_FOOTER = 2,
 
     /**
-     * {@link header} of {@link ListItemGroup} is pinned to the top, and {@link footer} is pinned to the bottom.
+     * {@link ListItemGroup}的{@link header}吸顶，{@link footer}吸底。
      */
     ARKUI_STICKY_STYLE_BOTH = 3,
 } ArkUI_StickyStyle;
@@ -103,7 +104,7 @@ typedef enum {
     ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0,
 
     /**
-     * Area without the {@link header}, {@link footer}, and {@link ListItem} in the **ListItemGroup** component.
+     * ListItemGroup没有{@link header}、{@link footer}和{@link ListItem}时的区域。
      */
     ARKUI_LIST_ITEM_SWIPE_AREA_NONE,
 

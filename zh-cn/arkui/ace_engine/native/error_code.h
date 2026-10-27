@@ -17,8 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
- * tree node operations, attribute setting, and event listening.
+ * @brief 提供ArkUI在Native侧的UI能力，如UI组件创建、销毁、树节点操作、属性设置、事件监听等。
  *
  * @since 12
  */
@@ -26,7 +25,7 @@
 /**
  * @file error_code.h
  *
- * @brief Defines the error code for the native module.
+ * @brief 定义ArkUI Native API的错误码枚举值，用于表示接口调用结果或失败原因。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -291,26 +290,53 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
-     * @brief 上一次请求未完成。
-     * @since 26.2.0
+     * @brief 上一次命令未完成。
+     *
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_COMMAND_UNFINISHED = 106409,
     /**
-     * @brief 找不到uniqueId对应的节点。
-     * @since 26.2.0
+     * @brief 未找到目标节点。
+     *
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_NODE_NOT_FOUND = 106410,
     /**
-     * @brief 结果太大。
-     * @since 26.2.0
+     * @brief 结果数据过大。
+     *
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_RESULT_TOO_LARGE = 106411,
     /**
-     * @brief 资源耗尽。
-     * @since 26.2.0
+     * @brief 资源已耗尽。
+     *
+     * @since 26.1.0
      */
     ARKUI_ERROR_CODE_RESOURCE_EXHAUSTED = 106412,
-
+    /**
+     * @brief 节点ID重复。
+     *
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_DUPLICATE_NODE_ID = 106413,
+    /**
+     * @brief 部分集合项失败。
+     *
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_PARTIAL_FAILED = 106414,
+    /**
+     * @brief 集合项未找到。
+     *
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_ITEM_NOT_FOUND = 106415,
+    /**
+     * @brief 集合项已被取出使用。
+     *
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_COLLECTION_ITEM_ALREADY_TAKEN = 106416,
     /**
      * @brief 当前节点无法获得焦点。错误码的详细介绍请参见{@link 150001 节点无法获得焦点}。
      *
@@ -414,12 +440,14 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
     /**
-     * 节点挂载失败导致无法打开对话框。 错误码的详细介绍请参见{@link 弹窗错误码}.
+     * @brief 节点挂载失败导致无法打开对话框。错误码的详细介绍请参见{@link 弹窗错误码}。
+     *
      * @since 26.0.1
      */
     ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE = 103306,
     /**
-     * 子窗口创建失败导致无法打开对话框. 错误码的详细介绍请参见{@link 弹窗错误码}.
+     * @brief 子窗口创建失败导致无法打开对话框。错误码的详细介绍请参见{@link 弹窗错误码}。
+     *
      * @since 26.0.1
      */
     ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE = 103308,
