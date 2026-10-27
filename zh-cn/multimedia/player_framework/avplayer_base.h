@@ -46,8 +46,6 @@
 extern "C" {
 #endif
 
-typedef struct AVPlayerCallback AVPlayerCallback;
-
 /**
  * @brief 声明OH_AVPlayer结构体类型。
  * 

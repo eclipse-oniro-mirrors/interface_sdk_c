@@ -43,6 +43,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Defines a struct for the AVPlayer.
+ * 
+ * @since 11
+ */
 typedef struct OH_AVPlayer OH_AVPlayer;
 
 /**
