@@ -10542,23 +10542,6 @@ typedef enum {
     NODE_TEXT_EDITOR_SHOW_PASSWORD_ICON = 22032,
 
     /**
-     * @brief Defines the password icon of the text editor.
-     * This attribute can be set and reset as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * .value[0].string: show icon image source.
-     * .value[1].string: hide icon image source.
-     *
-     * Format of the return value {@link ArkUI_AttributeItem}:
-     * .value[0].string: show icon image source.
-     * .value[1].string: hide icon image source.
-     *
-     * @ingroup Text Editor
-     * @since 26.1.0
-     */
-    NODE_TEXT_EDITOR_PASSWORD_ICON = 22033,
-
-    /**
      * @brief Whether to enable autofill. This attribute can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
