@@ -1197,6 +1197,14 @@
     },
     {
         "first_introduced": "26.0.1",
+        "name": "OH_MetadataOutput_SetInFrameMetadataForEncoderEnabled"
+    },
+    {
+        "first_introduced": "26.0.1",
+        "name": "OH_MetadataOutput_IsInFrameMetadataForEncoderSupported"
+    },
+    {
+        "first_introduced": "26.0.1",
         "name": "OH_CaptureSession_RegisterCameraDeviceSwitchRequestCallback"
     },
     {
