@@ -85,57 +85,58 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
 OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 
 /**
- * @brief Creates a primary video encoder with preprocessor.
+ * @brief Creates a primary video encoder instance that supports pre-processing.
+ * The encoder provides the following capabilities:
  *
- * Creates a primary video encoder instance that supports:
- * 1. Preprocessing features (downsampling, cropping, drop frame)
- * 2. Creating a secondary encoder for one-input-dual-output encoding
+ * 1. Pre-processing features (downsampling, cropping, and frame dropping).
  *
- * @param mime Mime type description string, refer to {@link AVCODEC_MIME_TYPE}.
- *             Cannot be NULL, must be a supported MIME type
- *             (e.g., {@link OH_AVCODEC_MIMETYPE_VIDEO_AVC}, {@link OH_AVCODEC_MIMETYPE_VIDEO_HEVC}).
- * @param codec Double pointer to an OH_AVCodec instance, used to receive the created encoder.
- *              Cannot be NULL. If creation is successful, the encoder needs to be released
- *              by calling {@link OH_VideoEncoder_Destroy}.
+ * 2. Creation of a secondary encoder from this primary encoder to enable dual-output encoding with one input.
  *
- * @return Returns {@link AV_ERR_OK} if the execution is successful.
- *         For other error codes, refer to {@link OH_AVErrCode}.
- *         Returns {@link AV_ERR_INVALID_VAL} if:
- *         - mime is NULL.
- *         - codec is NULL.
- *         - mime type is not supported.
- *         Returns {@link AV_ERR_NO_MEMORY} if memory allocation fails.
+ * The encoder created via this API supports only the surface mode, and does not support the buffer mode or synchronous
+ * mode. After the encoder is successfully created, it must be destroyed via {@link OH_VideoEncoder_Destroy}.
+ *
+ * @param mime MIME type string, which cannot be **NULL**.
+ *             It must be a supported type. refer to {@link AVCODEC_MIME_TYPE}.
+ * @param codec Double pointer used to receive the created codec instance. It cannot be **NULL**.
+ *              Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
+ * @return {@link AV_ERR_OK}:The operation is successful.
+ *         <br>{@link AV_ERR_INVALID_VAL}: The **mime** parameter is **NULL**, the **codec** parameter is **NULL**,
+ *          or the MIME type is not supported.
+ *         <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *
  * @since 26.0.0
  */
 OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCodec **codec);
 
 /**
- * @brief Creates a secondary video encoder from a primary video encoder.
+ * @brief Creates a secondary video encoder instance from the primary encoder. The secondary encoder:
  *
- * Creates a secondary video encoder instance from a primary encoder created by
- * {@link OH_VideoEncoder_CreatePrimaryWithPreproc}. The secondary encoder:
- * 1. Shares the input source with the primary encoder
- * 2. Can be configured with independent encoding parameters
- * 3. Can use different preprocessing parameters
- * 4. Can be started/stopped independently from the primary encoder
- * 5. The lifecycle of primary encoder must be longer than secondary encoder
- * 6. One primary encoder can only have one secondary encoder at the same time
+ * 1. Shares the input source with the primary encoder.
  *
- * @param primary Pointer to a primary OH_AVCodec instance created by
- *                {@link OH_VideoEncoder_CreatePrimaryWithPreproc}. Cannot be NULL.
- * @param codec Double pointer to an OH_AVCodec instance, used to receive the created encoder.
- *              Cannot be NULL. If creation is successful, the encoder needs to be released
- *              by calling {@link OH_VideoEncoder_Destroy}.
+ * 2. Can be configured with independent encoding parameters.
  *
- * @return Returns {@link AV_ERR_OK} if the execution is successful.
- *         For other error codes, refer to {@link OH_AVErrCode}.
- *         Returns {@link AV_ERR_INVALID_VAL} if:
- *         - primary is NULL.
- *         - codec is NULL.
- *         - primary is not a valid primary encoder.
- *         Returns {@link AV_ERR_OPERATE_NOT_PERMIT} if primary encoder already has an existing secondary encoder.
- *         Returns {@link AV_ERR_NO_MEMORY} if memory allocation fails.
+ * 3. Supports different pre-processing parameters.
+ *
+ * 4. Can be started and stopped independently (not dependent on the start/stop state of the primary encoder).
+ *
+ * 5. Has a lifecycle shorter than that of the primary encoder.
+ *
+ * 6. A primary encoder can have only one secondary encoder at a time.
+ *
+ * A secondary encoder must be created after the primary encoder is successfully created. Once a secondary encoder is
+ * successfully created, it must be destroyed via {@link OH_VideoEncoder_Destroy}.
+ * You are advised to destroy the secondary encoder before destroying the primary encoder.
+ *
+ * @param primary Handle to the primary encoder, which must be created via
+ *                {@link OH_VideoEncoder_CreatePrimaryWithPreproc} and cannot be **NULL**.
+ * @param codec Double pointer used to receive the created secondary encoder instance. It cannot be **NULL**.
+ *              Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
+ *
+ * @return {@link AV_ERR_OK}:The operation is successful.
+ *         <br>{@link AV_ERR_INVALID_VAL}: The **primary** parameter is **NULL**, the **codec** parameter is **NULL**,
+ *         or the encoder corresponding to **primary** is not a valid primary encoder.
+ *         <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The primary encoder already has an associated secondary encoder.
+ *         <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *
  * @note Lifecycle management:
  *       - The lifecycle of primary encoder must be longer than secondary encoder.
@@ -609,11 +610,11 @@ OH_AVBuffer *OH_VideoEncoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec);
 
 /**
- * @brief Checks whether the encoder service is valid when an encoder instance exists.
+ * @brief Check whether the current codec instance is valid.
  *
  * @param codec Pointer to a video encoder instance.
- * @param isValid Pointer of the Boolean type. The value indicates the validity of the encoder service only when the
- *     function returns {@link AV_ERR_OK}. The value **true** means that the encoder service is valid,
+ * @param isValid Pointer of the Boolean type. The value indicates the validity of the encoder instance only when the
+ *     function returns {@link AV_ERR_OK}. The value **true** means that the encoder instance is valid,
  *     and **false** means the opposite. It is recommended that you initialize **isValid** to **false**.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
