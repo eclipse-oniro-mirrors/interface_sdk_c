@@ -722,17 +722,17 @@ typedef struct OH_HiDebug_ResProfilerConfig {
  */
 typedef enum OH_HiDebug_MemListenerType {
     /**
-     * 默认值，无需处理。
+     * @brief 无特定操作，仅通知回调。
      * @since 26.0.0
      */
     OH_HIDEBUG_DO_NOTHING = 0,
     /**
-     * 垃圾回收（GC）操作。
+     * @brief 垃圾回收（GC）操作。
      * @since 26.0.0
      */
     OH_HIDEBUG_RUNNING_GC = 1,
     /**
-     * 导出内存快照。
+     * @brief 导出内存快照。
      * @since 26.0.0
      */
     OH_HIDEBUG_DUMP_SNAPSHOT = 2
