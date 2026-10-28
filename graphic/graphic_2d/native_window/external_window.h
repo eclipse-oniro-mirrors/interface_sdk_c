@@ -99,6 +99,7 @@ typedef struct Region {
     /** if rectNumber is 0, fill the Buffer dirty size by default */
     int32_t rectNumber;
 }Region;
+
 /**
  * @brief Describes a rectangle with int32_t coordinates and dimensions.
  *

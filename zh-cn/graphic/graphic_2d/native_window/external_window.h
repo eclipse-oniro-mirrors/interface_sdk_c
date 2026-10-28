@@ -100,7 +100,39 @@ typedef struct Region {
     int32_t rectNumber;
 }Region;
 
-
+/**
+ * @brief 定义一个包含坐标和尺寸信息的矩形描述屏幕信息
+ *
+ * 该结构体用于 {@link OH_NativeWindow_NativeWindowHandleOpt} 接口的
+ * {@link SET_SCREEN_INFO} 和 {@link GET_SCREEN_INFO} 操作码，
+ * 用来承载当前帧的偏移/尺寸以及
+ * 原始内容在屏幕中的偏移/尺寸
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @since 26.2.0
+ */
+typedef struct OH_NativeWindow_ScreenInfoRect {
+    /**
+     * x 偏移（单位：像素）
+     * @since 26.2.0
+     */
+    int32_t x;
+    /**
+     * y 偏移（单位：像素）
+     * @since 26.2.0
+     */
+    int32_t y;
+    /**
+     * 宽度（单位：像素）
+     * @since 26.2.0
+     */
+    int32_t w;
+    /**
+     * 高度（单位：像素）
+     * @since 26.2.0
+     */
+    int32_t h;
+} OH_NativeWindow_ScreenInfoRect;
 /**
  * @brief OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
  * @since 8
@@ -259,6 +291,26 @@ typedef enum NativeWindowOperation {
      * @since 26.0.1
      */
     OH_NATIVEWINDOW_SET_DMABUFFER_NAME = 25,
+    /**
+     * 设置本地窗口屏幕信息，函数中的可变参数是
+     * [输入] const OH_NativeWindow_ScreenInfoRect *currentFrameRect, 为当前帧的位置和大小，
+     * [输入] const OH_NativeWindow_ScreenInfoRect *originalRect, 为原始屏幕的位置和大小，
+     * [输入] float angle。旋转角度，用度表示。
+     *
+     * 说明：该操作始终向调用方返回GSERROR_OK，IPC远端的错误信息在其回传消息体中。
+     * @since 26.2.0
+     */
+    OH_NATIVEWINDOW_SET_SCREEN_INFO = 26,
+    /**
+     * 获取本地窗口屏幕信息，函数中的可变参数是
+     * [输出] OH_NativeWindow_ScreenInfoRect *currentFrameRect, 为当前帧的位置和大小，
+     * [输出] OH_NativeWindow_ScreenInfoRect *originalRect, 为原始屏幕的位置和大小，
+     * [输出] float *angle。旋转角度，用度表示。
+     *
+     * 说明: 和OH_NATIVEWINDOW_SET_SCREEN_INFO有相同的返回值限制。
+     * @since 26.2.0
+     */
+    OH_NATIVEWINDOW_GET_SCREEN_INFO = 27,
 } NativeWindowOperation;
 
 /**
