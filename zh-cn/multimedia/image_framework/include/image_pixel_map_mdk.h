@@ -227,7 +227,7 @@ struct OhosPixelMapCreateOps {
  * IMAGE_RESULT_DECODE_ABNORMAL：图像解码失败。<br>
  * IMAGE_RESULT_DECODE_FAILED：解码失败。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_INIT_ABNORMAL：图像初始化失败。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
@@ -237,7 +237,6 @@ struct OhosPixelMapCreateOps {
  * IMAGE_RESULT_HW_DECODE_UNSUPPORT：图像不支持硬件解码。<br>
  * IMAGE_RESULT_HW_DECODE_FAILED：硬件解码失败。<br>
  * IMAGE_RESULT_INDEX_INVALID：ipc失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -265,7 +264,7 @@ int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info,
  * IMAGE_RESULT_CHECK_FORMAT_ERROR：检查格式失败。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。
  * @since 12
  * @version 1.0
@@ -296,7 +295,7 @@ int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_DECODE_ABNORMAL：图像解码失败。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_INIT_ABNORMAL：图像初始化失败。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
@@ -306,7 +305,6 @@ int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps
  * IMAGE_RESULT_HW_DECODE_UNSUPPORT：图像不支持硬件解码。<br>
  * IMAGE_RESULT_HW_DECODE_FAILED：硬件解码失败。<br>
  * IMAGE_RESULT_INDEX_INVALID：ipc失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -336,7 +334,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source);
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -353,7 +351,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* 
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -370,7 +368,7 @@ int32_t OH_PixelMap_GetIsEditable(const NativePixelMap* native, int32_t* editabl
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -387,7 +385,7 @@ int32_t OH_PixelMap_IsSupportAlpha(const NativePixelMap* native, int32_t* alpha)
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -404,7 +402,7 @@ int32_t OH_PixelMap_SetAlphaAble(const NativePixelMap* native, int32_t alpha);
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -421,7 +419,7 @@ int32_t OH_PixelMap_GetDensity(const NativePixelMap* native, int32_t* density);
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -438,7 +436,7 @@ int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density);
  * IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。<br>
  * IMAGE_RESULT_INVALID_PARAMETER：参数无效。<br>
  * IMAGE_RESULT_DATA_ABNORMAL：图像输入数据失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。
  * @since 10
  * @version 1.0
  */
@@ -464,13 +462,12 @@ int32_t OH_PixelMap_SetOpacity(const NativePixelMap* native, float opacity);
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_INIT_ABNORMAL：图像初始化失败。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -522,12 +519,11 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x,
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -554,12 +550,11 @@ int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y);
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -587,12 +582,11 @@ int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle);
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -622,12 +616,11 @@ int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y);
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -654,12 +647,11 @@ int32_t OH_PixelMap_Crop(const NativePixelMap* native, int32_t x, int32_t y, int
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -685,12 +677,11 @@ int32_t OH_PixelMap_GetImageInfo(const NativePixelMap* native, OhosPixelMapInfos
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
@@ -716,12 +707,11 @@ int32_t OH_PixelMap_AccessPixels(const NativePixelMap* native, void** addr);
  * IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存失败。<br>
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_MALLOC_ABNORMAL：图像分配内存失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：图像数据不支持。<br>
+ * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_CROP：裁剪失败。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。<br>
  * IMAGE_RESULT_PLUGIN_REGISTER_FAILED：注册插件失败。<br>
  * IMAGE_RESULT_PLUGIN_CREATE_FAILED：创建插件失败。<br>
- * IMAGE_RESULT_DATA_UNSUPPORT：属性无效。<br>
  * IMAGE_RESULT_ALPHA_TYPE_ERROR：透明度类型错误。<br>
  * IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配类型错误。
  * @since 10
