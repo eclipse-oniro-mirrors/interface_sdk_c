@@ -1279,6 +1279,93 @@ int32_t OH_ArkUI_Accessibility_BindExportTree(ArkUI_NodeHandle owner, int64_t bi
  */
 int32_t OH_ArkUI_Accessibility_UnbindExportTree(ArkUI_NodeHandle owner, int64_t bindId);
 
+/**
+ * @brief Registers an accessibility hover event handler on a host node of a third-party framework.
+ *
+ * When the screen reader is enabled and the user touches the host node area, ArkUI synchronously
+ * invokes the registered callback with coordinates relative to the host node. The third-party
+ * framework performs its own hit test and fills the output **elementInfo** with information about
+ * the hit node before the callback returns. ArkUI then reports the corresponding accessibility
+ * hover event to the screen reader to focus the returned node. The third-party framework does not
+ * report the event itself. Hover event types, such as enter, move, and exit, are maintained by ArkUI
+ * and are not passed to the callback.
+ *
+ * While the handler is registered, hover hit testing for the host subtree uses the third-party
+ * framework's result instead of the system's node-tree hit test result. Swipe focus navigation is
+ * unchanged. Nodes without a registered handler retain their existing hover behavior.
+ * Registering again on the same node replaces the previous callback and **userData** and returns
+ * {@link ARKUI_ERROR_CODE_NO_ERROR}; subsequent callbacks use only the new registration.
+ *
+ * This function is not thread-safe. The callback runs synchronously on the UI main thread and
+ * should return promptly to avoid blocking touch processing.
+ *
+ * @param node [in] Indicates the host node of the third-party framework. Only
+ *     <b>ARKUI_NODE_XCOMPONENT</b>, <b>ARKUI_NODE_CUSTOM</b>, and
+ *     <b>ARKUI_NODE_XCOMPONENT_TEXTURE</b> nodes are supported. This parameter must not be null.
+ * @param userData [in] Indicates the custom data passed by the developer. This data will be passed back
+ *     unchanged when the callback is invoked. The caller manages its lifetime; ArkUI does not
+ *     release the memory pointed to by **userData**.
+ * @param handleAccessibilityHoverEvent [in] Indicates the callback used to determine the hit node.
+ *     This parameter must not be null. The callback parameters are as follows:
+ *     <ul>
+ *     <li><b>userData</b> [in]: Custom data supplied during registration.</li>
+ *     <li><b>x</b> [in]: X coordinate relative to the host node, in px.</li>
+ *     <li><b>y</b> [in]: Y coordinate relative to the host node, in px.</li>
+ *     <li><b>requestId</b> [in]: Identifier of the current hover request, supplied by ArkUI.</li>
+ *     <li><b>elementInfo</b> [out]: Pointer to an {@link ArkUI_AccessibilityElementInfo} object
+ *         provided by ArkUI. The third-party framework fills this object with the hit node's
+ *         information using the element-info setter APIs. ArkUI manages its allocation and
+ *         release. The pointer is valid only during the callback and must not be retained or
+ *         released by the third-party framework.</li>
+ *     </ul>
+ * @return <ul>
+ *         <li>Status code.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if **node** is a null pointer.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_ERROR} if **handleAccessibilityHoverEvent** is a null pointer.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the **node** type is not
+ *             <b>ARKUI_NODE_XCOMPONENT</b>, <b>ARKUI_NODE_CUSTOM</b>, or
+ *             <b>ARKUI_NODE_XCOMPONENT_TEXTURE</b>.</li>
+ *         </ul>
+ * @see OH_ArkUI_Accessibility_UnregisterAccessibilityHoverEventHandler
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler(ArkUI_NodeHandle node, void *userData,
+    void (*handleAccessibilityHoverEvent)(void *userData, int32_t x, int32_t y,
+    int32_t requestId, ArkUI_AccessibilityElementInfo *elementInfo));
+
+/**
+ * @brief Unregisters the accessibility hover event handler from the specified node.
+ *
+ * After unregistration, the ArkUI accessibility framework will no longer invoke the callback
+ * registered by {@link OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler}, and the
+ * node resumes its existing hover behavior. Unregistering a handler from a supported node that has no
+ * registered handler returns {@link ARKUI_ERROR_CODE_NO_ERROR} and leaves its hover behavior
+ * unchanged. ArkUI does not release the memory pointed to by **userData**; the caller manages
+ * its lifetime.
+ *
+ * This function is not thread-safe.
+ *
+ * @param node [in] Indicates the host node from which the accessibility hover event handler is to be
+ *     unregistered. This must be the same node that was passed to
+ *     {@link OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler} when the handler was
+ *     registered. Only <b>ARKUI_NODE_XCOMPONENT</b>, <b>ARKUI_NODE_CUSTOM</b>, and
+ *     <b>ARKUI_NODE_XCOMPONENT_TEXTURE</b> nodes are supported. This parameter must not be null.
+ * @return <ul>
+ *         <li>Status code.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful, including when
+ *             no handler is registered on the node.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if **node** is a null pointer.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the **node** type is not
+ *             <b>ARKUI_NODE_XCOMPONENT</b>, <b>ARKUI_NODE_CUSTOM</b>, or
+ *             <b>ARKUI_NODE_XCOMPONENT_TEXTURE</b>.</li>
+ *         </ul>
+ * @see OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_Accessibility_UnregisterAccessibilityHoverEventHandler(ArkUI_NodeHandle node);
+
+
 #ifdef __cplusplus
 };
 #endif
