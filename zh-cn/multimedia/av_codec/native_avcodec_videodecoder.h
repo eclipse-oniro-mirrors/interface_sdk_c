@@ -423,10 +423,10 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief 在解码器实例存在的情况下，检查当前解码器服务是否有效。
+ * @brief 检查当前编解码器实例是否有效。
  *
  * @param codec 指向视频解码实例的指针。
- * @param isValid 输出参数，指向布尔类型的指针。只有当接口返回AV_ERR_OK时，该值表示解码器服务的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
+ * @param isValid 输出参数，指向布尔类型的指针。只有当接口返回AV_ERR_OK时，该值表示解码器实例的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
  * @since 10
