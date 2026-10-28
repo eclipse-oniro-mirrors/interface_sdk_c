@@ -108,27 +108,27 @@ typedef struct Region {
  * and original-in-screen offset/size.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_NativeWindow_ScreenInfoRect {
     /**
      * x offset in pixels
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t x;
     /**
      * y offset in pixels
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t y;
     /**
      * width in pixels
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t w;
     /**
      * height in pixels
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t h;
 } OH_NativeWindow_ScreenInfoRect;
@@ -328,7 +328,7 @@ typedef enum NativeWindowOperation {
      * Note: the variadic entrypoint always returns GSERROR_OK to the caller;
      * IPC errors are written into the reply parcel by the consumer-side stub
      * but are NOT propagated back through the variadic handler.
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_NATIVEWINDOW_SET_SCREEN_INFO = 26,
     /**
@@ -339,7 +339,7 @@ typedef enum NativeWindowOperation {
      * [out] float *angle.
      *
      * Note: same variadic-return limitation as SET_SCREEN_INFO applies.
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_NATIVEWINDOW_GET_SCREEN_INFO = 27,
 } NativeWindowOperation;
