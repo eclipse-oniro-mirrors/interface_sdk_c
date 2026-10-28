@@ -50,7 +50,7 @@ extern "C" {
  * @brief 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection 指向{@link OH_Drawing_FontCollection}对象的指针。
  * @param fontFamily 需要注册的字体的字体名称。
  * @param familySrc 需要注册的字体文件的路径。
  * @return 函数执行结果。0表示接口执行成功，1表示文件不存在，2表示打开文件失败，3表示读取文件失败，4表示寻找文件失败，5表示获取大小失败，8表示fontCollection为NULL，9表示文件损坏。
@@ -64,7 +64,7 @@ uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection* fontCollection, cons
  * @brief 用于在字体管理器中注册字体缓冲区，支持从ttf、otf文件读取的数据。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection 指向{@link OH_Drawing_FontCollection}对象的指针。
  * @param fontFamily 需要注册的字体名称。
  * @param fontBuffer 需要注册的字体文件的缓冲区。
  * @param length 需要注册的字体文件的长度，需与fontBuffer实际长度保持一致。
