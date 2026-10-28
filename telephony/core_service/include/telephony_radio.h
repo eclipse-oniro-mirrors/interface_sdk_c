@@ -14,6 +14,15 @@
  */
 
 /**
+ * @addtogroup Telephony
+ * @{
+ *
+ * @brief Provides C interface for the telephony radio.
+ *
+ * @since 13
+ */
+
+/**
  * @file telephony_radio.h
  *
  * @brief Provides C interface for the telephony radio.
