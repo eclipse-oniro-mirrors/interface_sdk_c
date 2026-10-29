@@ -92,7 +92,7 @@ typedef enum {
 
 /**
  * @brief 根据传入的API类型，获取对应的Native API结构体。用于在Native代码中获取Controller以控制Web组件行为、获取CookieManager以管理Cookie、
- * 获取WebMessagePort以实现消息通信、获取JavaScriptValue以操作JavaScript对象等场景。
+ * 获取WebMessagePort以实现消息通信、获取JavaScriptValue以操作JavaScript对象等场景。该接口可能返回空指针，开发者在使用返回值前必须进行判空处理，避免空指针解引用导致应用崩溃。
  *
  * @param type ArkWeb支持的Native API类型，不同API类型可能需要不同系统版本支持，详见枚举类型说明。
  *     <br>返回值使用说明：返回的指针由系统管理，无需开发者手动释放；多次调用相同参数可能返回同一指针；返回的Native API结构体在Web组件生命周期内有效；使用时请确保线程安全。
