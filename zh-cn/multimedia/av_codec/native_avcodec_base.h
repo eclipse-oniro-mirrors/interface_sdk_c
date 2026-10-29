@@ -563,6 +563,13 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DTS;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_COOK;
 
 /**
+ * @brief DSD音频解码器的MIME类型。
+ *
+ * @since 26.1.0
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DSD;
+
+/**
  * @brief VVC(H.266)视频编解码器的MIME类型。
  *
  * @since 12
