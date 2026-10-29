@@ -63,7 +63,7 @@ typedef struct OH_AVCastController OH_AVCastController;
  *
  * @param avcastcontroller the OH_AVCastController instance pointer.
  * @param playbackState the {@link OH_AVSession_AVPlaybackState}
- * pointer variable which will be set the changed playback state.
+ *     pointer variable which will be set the changed playback state.
  * @param userdata userdata which is passed by register.
  * @since 23
  * @version 1.0
@@ -76,7 +76,7 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_PlaybackStateChang
  *
  * @param avcastcontroller the OH_AVCastController instance pointer.
  * @param avQueueItem the {@link OH_AVSession_AVQueueItem}
- * pointer variable which will be set the changed media item info.
+ *     pointer variable which will be set the changed media item info.
  * @param userdata userdata which is passed by register
  * @since 23
  * @version 1.0
@@ -502,7 +502,7 @@ AVSession_ErrCode OH_AVCastController_SendSetSpeedCommand(OH_AVCastController* a
  * @since 23
  */
 AVSession_ErrCode OH_AVCastController_SendVolumeCommand(OH_AVCastController* avcastcontroller, int32_t volume);
-    
+
 /**
  * @brief Request to prepare the current player item, this is needed for sink media information displaying.
  *
@@ -518,7 +518,7 @@ AVSession_ErrCode OH_AVCastController_SendVolumeCommand(OH_AVCastController* avc
  * @since 23
  */
 AVSession_ErrCode OH_AVCastController_Prepare(OH_AVCastController* avcastcontroller,
-    OH_AVSession_AVQueueItem* avqueueItem);
+    OH_AVSession_AVQueueItem *avqueueItem);
 
 /**
  * @brief Request to Play the current item, should contain media uri otherwise the playback will fail.
@@ -534,7 +534,7 @@ AVSession_ErrCode OH_AVCastController_Prepare(OH_AVCastController* avcastcontrol
  * @since 23
  */
 AVSession_ErrCode OH_AVCastController_Start(OH_AVCastController* avcastcontroller,
-    OH_AVSession_AVQueueItem* avqueueItem);
+    OH_AVSession_AVQueueItem *avqueueItem);
 
 #ifdef __cplusplus
 }

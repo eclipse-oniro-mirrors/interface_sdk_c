@@ -184,6 +184,8 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug
 /**
  * @brief 通过设置基础库C库中的MallocDispatch表，将原始内存操作函数（例如：malloc/free/calloc/realloc/mmap/munmap）临时替换为开发者自定义的内存操作函数。
  * MallocDispatch表是基础库C库中封装malloc/calloc/realloc/free等内存操作函数的结构体，HiDebug_MallocDispatch只是MallocDispatch结构体的一部分。
+ * 注意：禁止在自定义内存操作函数中直接调用libc标准库中的malloc/free/calloc/realloc/mmap/munmap等内存操作函数，否则会导致死锁。
+ * 禁止在自定义malloc方法中使用hilog打印日志，否则会导致死锁。
  *
  * @param dispatchTable 指向开发者自定义内存操作函数{@link HiDebug_MallocDispatch}结构体指针。
  * @return 返回结果具体可参考{@link HiDebug_ErrorCode}：
@@ -232,6 +234,7 @@ typedef void (*OH_HiDebug_SymbolicAddressCallback)(void* pc, void* arg, const Hi
 
 /**
  * @brief 通过给定的pc地址获取详细的符号信息，该函数非异步信号安全。不能在异步信号处理函数中使用。
+ * 注意：由于该接口涉及多次IO操作，耗时较长，建议不要在主线程中直接调用。
  *
  * @param object 由{@link OH_HiDebug_CreateBacktraceObject}接口创建的对象。
  * @param pc 由{@link OH_HiDebug_BacktraceFromFp}接口获取到的pc地址。
@@ -248,6 +251,7 @@ HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, vo
 
 /**
  * @brief 创建一个用于栈回溯及栈解析的对象，该函数非异步信号安全。
+ * 注意：由于该接口涉及多次IO操作，耗时较长，建议不要在主线程中直接调用。
  *
  * @return 返回创建的对象的指针，当创建失败时返回NULL。
  * @since 20
@@ -361,13 +365,13 @@ HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDe
 HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
 
 /**
- * @brief 触发监听的回调函数。开发者在应用中使用FD来写入内存数据，这样就可以使用hidumper命令导出数据。
+ * @brief 内存导出监听的回调函数。开发者通过应用中的文件描述符（FD）来写入内存数据，从而可利用hidumper命令导出数据。
  *
- * @param fd 开发者使用FD在应用程序中写入内存数据。
- * @param tag 回调类型。开发人员根据回调类型处理相关逻辑。
- * @param mayReportToOEM 当值为true时告知开发者该数据会上传给OEM厂商请注意数据隐私安全问题
- * @param arg 回调参数。根据type的值传递不同的参数。
- * @return 操作是否成功。
+ * @param fd 写入内存数据的应用程序文件描述符。
+ * @param tag 内存监听回调的类型。开发者根据回调类型处理相关逻辑。
+ * @param mayReportToOEM 数据上报OEM厂商的标识。true表示数据将上传至OEM厂商，请注意数据隐私与安全；false表示数据不会上报。
+ * @param arg 回调参数。根据回调类型携带不同的数据内容，供开发者使用。
+ * @return 操作结果：true：内存数据写入成功。false：写入失败。
  * @since 26.0.0
  */
 typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag,
@@ -400,6 +404,7 @@ HiDebug_ErrorCode OH_HiDebug_RegisterMemDumpListener(const char* name, OH_HiDebu
 HiDebug_ErrorCode OH_HiDebug_UnregisterMemDumpListener(const char* name);
 /**
  * @brief Profiler辅助接口，获取一个AsyncContext供后续使用。对应的释放函数为：{@link OH_HiDebug_ReleaseAsyncContext}。
+ * 注意：该接口仅支持ARM64架构，且仅可在debug版本应用中使用。
  *
  * @return AsyncContext，异步线程上下文信息。
  * @since 26.0.0

@@ -93,7 +93,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  *
  * 通过该接口创建的编码器仅支持Surface模式，不支持Buffer模式和同步模式。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  *
- * @param mime MIME类型字符串，不可为NULL。必须是支持的类型，如OH_AVCODEC_MIMETYPE_VIDEO_AVC、OH_AVCODEC_MIMETYPE_VIDEO_HEVC。
+ * @param mime MIME类型字符串，不可为NULL。必须是支持的类型。请参阅{@link AVCODEC_MIME_TYPE}。
  * @param codec 双指针，用于接收创建的编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_INVALID_VAL：mime为NULL/codec为NULL/MIME类型不支持。
@@ -483,11 +483,11 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
 OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec);
 
 /**
- * @brief 在编码器实例存在的情况下，检查当前编码器服务是否有效。
+ * @brief 检查当前编解码器实例是否有效。
  *
  * @param codec 指向视频编码实例的指针。
  * @param isValid 输出参数，指向布尔类型的指针。
- * 只有当接口返回AV_ERR_OK时，该值表示编码器服务的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
+ * 只有当接口返回AV_ERR_OK时，该值表示编码器实例的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
  * @since 10

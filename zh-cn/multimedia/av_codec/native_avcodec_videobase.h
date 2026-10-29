@@ -198,7 +198,7 @@ OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount
 * @return
 *         AV_ERR_OK：表示操作成功。
 *         <br>AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。
-* @release media_foundation/OH_AVFormat_Destroy {outOwnedFormats}。
+* @release media_foundation/OH_AVFormat_Destroy {outOwnedFormats}
 * @since 26.0.0
 */
 OH_AVErrCode OH_VideoMetadata_ParseRoiString(const char *roiStr, OH_AVFormat **outOwnedFormats, uint32_t maxCapacity,

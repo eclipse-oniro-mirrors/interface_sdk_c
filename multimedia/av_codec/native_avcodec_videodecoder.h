@@ -538,11 +538,11 @@ OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief Checks whether the decoder service is valid when a decoder instance exists.
+ * @brief Check whether the current codec instance is valid.
  *
  * @param codec Pointer to a video decoder instance.
- * @param isValid Pointer of the Boolean type. The value indicates the validity of the decoder service only when the
- *     function returns {@link AV_ERR_OK}. The value **true** means that the decoder service is valid,
+ * @param isValid Pointer of the Boolean type. The value indicates the validity of the decoder instance only when the
+ *     function returns {@link AV_ERR_OK}. The value **true** means that the decoder instance is valid,
  *     and **false** means the opposite. It is recommended that you initialize **isValid** to **false**.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.

@@ -513,6 +513,13 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DTS;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_COOK;
 
 /**
+ * @brief MIME type of the DSD audio decoder.
+ *
+ * @since 26.1.0
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DSD;
+
+/**
  * @brief Pointer to the key that describes the MIME type of the MPEG2 video codec.
  * 
  * @since 17
