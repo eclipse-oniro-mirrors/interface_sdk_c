@@ -173,3 +173,4 @@ typedef struct {
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_TYPE_H
+/** @} */
