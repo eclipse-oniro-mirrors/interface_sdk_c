@@ -109,18 +109,17 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP;
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
 
 /**
- * @brief 定义采编联合低功耗优化的使能的KEY。
+ * @brief 采编联合降低功耗的使能键。
  *
- * 该KEY是采编联合低功耗优化的配置开关。
- * 使用{@link OH_AVFormat_SetIntValue}设置启用状态：
- * -1：开启采编联合低功耗优化。
- * -0：关闭此能力（默认）。
- * 使用约束：
+ * 该KEY用于启用/禁用采编联合低功耗优化策略。
+ * 使用{@link OH_AVFormat_SetIntValue}设置使能状态：
+ * -**1**:启用采编联合低功耗优化。
+ * -**0**（默认值）：关闭此能力。
+ * 使用限制：
  * 该key仅对视频编码器有效。
- * 这是一个可选参数。可在编码器中配置
- * 通过{@link OH_VideoEncoder_Configure}初始化，或
- * 在运行时通过{@link OH_VideoEncoder_SetParameter}启用。
- * 启用后，采集侧会根据编码信息调整采集配置策略，以降低整体功耗
+ * 该key是编码的可选KEY。该key可以在编码器初始化阶段通过{@link OH_VideoEncoder_Configure}配置是否使能，或者
+ * 在运行时通过{@link OH_VideoEncoder_SetParameter}配置是否使能。
+ * 使能该功能后，相机采集模块会根据编码信息调节采集策略以降低功耗。
  * @since 26.0.1
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
