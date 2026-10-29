@@ -436,6 +436,46 @@
         "name": "OH_UdsFileUri_SetAuthPolicy"
     },
     {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualItem_CreateFile"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualItem_CreateDirectory"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualItem_Destroy"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualItem_SetFileSize"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualItem_ClearFileSize"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualItem_AddChild"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualFileInfo_Create"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdmfVirtualFileInfo_Destroy"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdsFileUri_SetVirtualEntry"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_UdsFileUri_ClearVirtualEntry"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_UdsPixelMap_Create"
     },
