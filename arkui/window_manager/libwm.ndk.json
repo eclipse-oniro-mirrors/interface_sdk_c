@@ -265,6 +265,18 @@
         "name":"OH_WindowManager_FrameMetrics_GetVsyncTimestamp"
     },
     {
+        "first_instroduced":"26.1.0",
+        "name":"OH_WindowManager_FrameMetrics_GetTotalDuration"
+    },
+    {
+        "first_instroduced":"26.1.0",
+        "name":"OH_WindowManager_FrameMetrics_GetAnimationDuration"
+    },
+    {
+        "first_instroduced":"26.1.0",
+        "name":"OH_WindowManager_FrameMetrics_GetIntendedVsyncTimestamp"
+    },
+    {
         "first_instroduced":"26.0.0",
         "name":"OH_WindowManager_RegisterFrameMetricsMeasuredCallback"
     },
