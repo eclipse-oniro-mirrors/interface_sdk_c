@@ -180,6 +180,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  * @param requestFrameSize audioData的内存字节大小，需大于0。
  * @param responseSize 管线写入audioData的音频数据大小，不会大于requestFrameSize，单位为字节(Byte)。
  * @param finishedFlag 标识当前管线是否渲染完成。
+ * true表示所有数据处理已完成，应用不应再调用此接口；false表示数据处理尚未完成。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
@@ -209,6 +210,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  * @param responseSize 管线写入audioDataArray的音频数据大小。系统会确保每个一维数组被填充的数据大小一致，
  *     单位为字节(Byte)。
  * @param finishedFlag 标记当前管线是否渲染完成。
+ * true表示所有数据处理已完成，应用不应再调用此接口；false表示数据处理尚未完成。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数为空指针或无效值。可能的原因如下：
@@ -241,6 +243,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_MultiRenderFrame(OH_AudioSuitePipeline*
  * @param responseAudioSize 接口实际写入的音频数据的大小，单位是字节(Byte)。
  * @param responseMetaSize 接口实际写入的元数据的大小，单位是字节(Byte)。
  * @param finishedFlag 该标志用于向用户指示是否已完成所有数据处理。
+ * true表示所有数据处理已完成，应用不应再调用此接口；false表示数据处理尚未完成。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
  *         <li>202 非系统应用调用了此系统API。</li>
@@ -371,7 +374,8 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(
  *     将使用{@link OH_AudioSuiteNodeBuilder_SetRequestDataCallback}接口传入的userData。
  * @param audioData 系统提供的内存地址，用于将需要处理的音频数据流写入（需由用户填充）。
  * @param audioDataSize audioData内存地址指向的音频数据大小，单位为字节(Byte)。
- * @param finished 标记audioNode节点需要处理的音频数据流是否已经写入完成。true表示已完成，false表示未完成。
+ * @param finished 标记audioNode节点需要处理的音频数据流是否已经写入完成。
+ * true表示应用的所有数据已被消费，pipeline将不再调用此接口；false表示应用仍有数据需要传递给pipeline。
  * @return 写入audioData缓冲区的有效数据长度，单位为字节(Byte)。
  *     <br>返回值范围必须在[0, audioDataSize]范围内，如果返回值小于0，系统会将其修改为0，
  *     <br>如果返回值大于audioDataSize，系统会将其修改为audioDataSize。
@@ -410,6 +414,7 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
  * @param metaFrame 音频元数据帧结构体指针。
  * @param responseMetaDataSize 应用程序实际写入的元数据的大小，单位是字节(Byte)。
  * @param finished 此布尔值表示是否已成功写入所有音频数据。
+ * true表示所有音频数据已成功写入；false表示仍有音频数据待写入。
  * @return 写入audio data缓冲区的有效音频数据长度，单位为字节(Byte)。
  *     <br>返回值范围为[0, metaFrame->AudioDataSize]。
  * @since 26.0.0
@@ -509,6 +514,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetNodeBypassStatus(
  *
  * @param audioNode 音频编创节点句柄。通过{@link OH_AudioSuiteEngine_CreateNode}获取句柄。
  * @param bypass 当前效果类节点使能状态。
+ * true表示效果节点仅将数据透传给下一个节点，不执行任何效果处理；false表示效果节点对数据正常执行效果处理。
  * @return <ul>
  *         <li>{@link AUDIOSUITE_SUCCESS} 函数执行成功。</li>
  *         <li>{@link AUDIOSUITE_ERROR_INVALID_PARAM} 参数audioNode为空指针。</li>
