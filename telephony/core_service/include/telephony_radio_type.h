@@ -17,6 +17,15 @@
 #define NATIVE_TELEPHONY_RADIO_TYPE_H
 
 /**
+ * @addtogroup Telephony
+ * @{
+ *
+ * @brief Provides the data structures for the C APIs of the the telephony radio.
+ *
+ * @since 13
+ */
+
+/**
  * @file telephony_radio_type.h
  *
  * @brief Provides the data structures for the C APIs of the the telephony radio.
@@ -164,3 +173,4 @@ typedef struct {
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_TYPE_H
+/** @} */

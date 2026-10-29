@@ -14,6 +14,15 @@
  */
 
 /**
+ * @addtogroup Telephony
+ * @{
+ *
+ * @brief Provides C interface for the telephony radio.
+ *
+ * @since 13
+ */
+ 
+/**
  * @file telephony_radio.h
  *
  * @brief Provides C interface for the telephony radio.
@@ -73,3 +82,4 @@ Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Teleph
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_API_H
+/** @} */
