@@ -46,91 +46,91 @@ extern "C" {
  */
 typedef enum {
     /**
-     * 输入节点，支持从应用程序获取音频数据。
+     * @brief 输入节点，支持从应用程序获取音频数据。
      * @since 22
      */
     INPUT_NODE_TYPE_DEFAULT = 1,
     /**
-     * 输出节点，支持向应用程序提供音频数据。
+     * @brief 输出节点，支持向应用程序提供音频数据。
      * @since 22
      */
     OUTPUT_NODE_TYPE_DEFAULT = 101,
     /**
-     * 均衡器效果节点。均衡器效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
+     * @brief 均衡器效果节点。均衡器效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_EQUALIZER = 201,
     /**
-     * 降噪效果节点。降噪效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br>
+     * @brief 降噪效果节点。降噪效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：1。
      * @since 22
      */
     EFFECT_NODE_TYPE_NOISE_REDUCTION = 202,
     /**
-     * 声场效果节点。声场效果节点支持的声场类型：{@link OH_SoundFieldType}。<br> 声场效果节点输出的音频格式如下：<br>
+     * @brief 声场效果节点。声场效果节点支持的声场类型：{@link OH_SoundFieldType}。<br> 声场效果节点输出的音频格式如下：<br>
      * 采样率：48000Hz。<br> 采样格式：
      * {@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_SOUND_FIELD = 203,
     /**
-     * 音源分离效果节点。音源分离效果节点只能连接输出节点。<br> 音源分离效果节点输出的音频格式如下：<br>
+     * @brief 音源分离效果节点。音源分离效果节点只能连接输出节点。<br> 音源分离效果节点输出的音频格式如下：<br>
      * 采样率：48000Hz。<br> 采样格式：{@link OH_Audio_SampleFormat}.
      * AUDIO_SAMPLE_F32LE。<br> 声道数：4（前2个声道用于人声，后2个声道用于伴奏）。
      * @since 22
      */
     EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION = 204,
     /**
-     * 声音美化效果节点。声音美化效果节点支持的声音美化类型：{@link OH_VoiceBeautifierType}。<br>
+     * @brief 声音美化效果节点。声音美化效果节点支持的声音美化类型：{@link OH_VoiceBeautifierType}。<br>
      * 声音美化效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br> 采样格式：
      * {@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_VOICE_BEAUTIFIER = 205,
     /**
-     * 环境效果节点。环境效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
+     * @brief 环境效果节点。环境效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT = 206,
     /**
-     * 混音效果节点。混音效果节点输出的音频格式如下：<br> 采样率：{@link OH_Audio_SampleRate}。<br>
+     * @brief 混音效果节点。混音效果节点输出的音频格式如下：<br> 采样率：{@link OH_Audio_SampleRate}。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.
      * AUDIO_SAMPLE_F32LE。<br> 声道数：2。
      * @since 22
      */
     EFFECT_NODE_TYPE_AUDIO_MIXER = 207,
     /**
-     * 空间渲染效果节点。空间渲染效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
+     * @brief 空间渲染效果节点。空间渲染效果节点输出的音频格式如下：<br> 采样率：48000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 2。
      * @since 23
      */
     EFFECT_NODE_TYPE_SPACE_RENDER = 208,
     /**
-     * 传统变声效果节点。传统变声效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br>
+     * @brief 传统变声效果节点。传统变声效果节点输出的音频格式如下：<br> 采样率：16000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 1。
      * @since 23
      */
     EFFECT_NODE_TYPE_PURE_VOICE_CHANGE = 209,
     /**
-     * 通用变声效果节点。通用变声效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br>
+     * @brief 通用变声效果节点。通用变声效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 2。
      * @since 23
      */
     EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE = 210,
     /**
-     * 变速变调效果节点。变速变调效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br>
+     * @brief 变速变调效果节点。变速变调效果节点的输出音频格式如下：<br> 采样率：48000Hz。<br>
      * 采样格式：{@link OH_Audio_SampleFormat}.AUDIO_SAMPLE_S16LE。<br> 声道数：
      * 1。
      * @since 23
      */
     EFFECT_NODE_TYPE_TEMPO_PITCH = 211,
     /**
-     * HOA（High-Order Ambisonics）转双耳空间音频节点。HOA转双耳空间音频节点输入的音频格式如下：<br>
+     * @brief HOA（High-Order Ambisonics）转双耳空间音频节点。HOA转双耳空间音频节点输入的音频格式如下：<br>
      * 采样率：{@link OH_Audio_SampleRate}.SAMPLE_RATE_16000、
      * {@link OH_Audio_SampleRate}.SAMPLE_RATE_48000。<br> 采样格式：{@link OH_Audio_SampleFormat}。<br>
      * 声道布局：1阶至3阶HOA，取值如下：<
@@ -157,12 +157,12 @@ typedef enum {
  */
 typedef enum OH_AudioSuite_SystemNodeType {
     /**
-     * 用于对话增强的系统效果节点。
+     * @brief 用于对话增强的系统效果节点。
      * @since 26.0.0
      */
     OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_DIALOGUE_ENHANCE = 301,
     /**
-     * 用于语音美化的系统效果节点。
+     * @brief 用于语音美化的系统效果节点。
      * @since 26.0.0
      */
     OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_VOICE_BEAUTIFIER = 302,
@@ -175,12 +175,12 @@ typedef enum OH_AudioSuite_SystemNodeType {
  */
 typedef enum {
     /**
-     * 编辑模式，管线处于该工作模式下可创建多种效果节点进行音频处理。
+     * @brief 编辑模式，管线处于该工作模式下可创建多种效果节点进行音频处理。
      * @since 22
      */
     AUDIOSUITE_PIPELINE_EDIT_MODE = 1,
     /**
-     * 实时预览模式，即在音频处理过程中实时预览已处理的音频。<br> 在API version 23之前，
+     * @brief 实时预览模式，即在音频处理过程中实时预览已处理的音频。<br> 在API version 23之前，
      * 实时预览模式下管线仅支持均衡器效果节点；<br> 在API version 23及以后，实时预览模式下管线支持所有效果节点。
      * @since 22
      */
@@ -193,12 +193,12 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 管线处于停止状态。
+     * @brief 管线处于停止状态。
      * @since 22
      */
     AUDIOSUITE_PIPELINE_STOPPED = 1,
     /**
-     * 管线处于运行状态。
+     * @brief 管线处于运行状态。
      * @since 22
      */
     AUDIOSUITE_PIPELINE_RUNNING = 2,
@@ -291,27 +291,27 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Unsigned 8位。
+     * @brief Unsigned 8位。
      * @since 22
      */
     AUDIO_SAMPLE_U8 = 0,
     /**
-     * Signed 16位小端。
+     * @brief Signed 16位小端。
      * @since 22
      */
     AUDIO_SAMPLE_S16LE = 1,
     /**
-     * Signed 24位小端。
+     * @brief Signed 24位小端。
      * @since 22
      */
     AUDIO_SAMPLE_S24LE = 2,
     /**
-     * Signed 32位小端。
+     * @brief Signed 32位小端。
      * @since 22
      */
     AUDIO_SAMPLE_S32LE = 3,
     /**
-     * Float 32位小端。
+     * @brief Float 32位小端。
      * @since 22
      */
     AUDIO_SAMPLE_F32LE = 4,
@@ -323,7 +323,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * PCM编码。
+     * @brief PCM编码。
      * @since 22
      */
     AUDIO_ENCODING_TYPE_RAW = 0,
@@ -336,72 +336,72 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 采样率8kHz。
+     * @brief 采样率8kHz。
      * @since 22
      */
     SAMPLE_RATE_8000 = 8000,
     /**
-     * 采样率11.025kHz。
+     * @brief 采样率11.025kHz。
      * @since 22
      */
     SAMPLE_RATE_11025 = 11025,
     /**
-     * 采样率12kHz。
+     * @brief 采样率12kHz。
      * @since 22
      */
     SAMPLE_RATE_12000 = 12000,
     /**
-     * 采样率16kHz。
+     * @brief 采样率16kHz。
      * @since 22
      */
     SAMPLE_RATE_16000 = 16000,
     /**
-     * 采样率22.05kHz。
+     * @brief 采样率22.05kHz。
      * @since 22
      */
     SAMPLE_RATE_22050 = 22050,
     /**
-     * 采样率24kHz。
+     * @brief 采样率24kHz。
      * @since 22
      */
     SAMPLE_RATE_24000 = 24000,
     /**
-     * 采样率32kHz。
+     * @brief 采样率32kHz。
      * @since 22
      */
     SAMPLE_RATE_32000 = 32000,
     /**
-     * 采样率44.1kHz。
+     * @brief 采样率44.1kHz。
      * @since 22
      */
     SAMPLE_RATE_44100 = 44100,
     /**
-     * 采样率48kHz。
+     * @brief 采样率48kHz。
      * @since 22
      */
     SAMPLE_RATE_48000 = 48000,
     /**
-     * 采样率64kHz。
+     * @brief 采样率64kHz。
      * @since 22
      */
     SAMPLE_RATE_64000 = 64000,
     /**
-     * 采样率88.2kHz。
+     * @brief 采样率88.2kHz。
      * @since 22
      */
     SAMPLE_RATE_88200 = 88200,
     /**
-     * 采样率96kHz。
+     * @brief 采样率96kHz。
      * @since 22
      */
     SAMPLE_RATE_96000 = 96000,
     /**
-     * 采样率176.4kHz。
+     * @brief 采样率176.4kHz。
      * @since 22
      */
     SAMPLE_RATE_176400 = 176400,
     /**
-     * 采样率192kHz。
+     * @brief 采样率192kHz。
      * @since 22
      */
     SAMPLE_RATE_192000 = 192000
@@ -517,7 +517,7 @@ typedef struct OH_AudioDataArray {
      */
     int32_t arraySize;
     /**
-     * @brief audioDataArray数组中每个地址指向的内存大小，单位为Byte。
+     * @brief audioDataArray数组中每个地址指向的内存大小，单位为字节（Byte）。
      * 应确保每个地址指向的内存大小均符合requestFrameSize字段定义。
      *
      * @since 22
@@ -565,22 +565,22 @@ typedef struct OH_AudioSuite_MetaFrame {
  */
 typedef enum {
     /**
-     * 前置声场效果。
+     * @brief 前置声场效果。
      * @since 22
      */
     SOUND_FIELD_FRONT_FACING = 1,
     /**
-     * 宏大声场效果。
+     * @brief 宏大声场效果。
      * @since 22
      */
     SOUND_FIELD_GRAND = 2,
     /**
-     * 聆听声场效果。
+     * @brief 聆听声场效果。
      * @since 22
      */
     SOUND_FIELD_NEAR = 3,
     /**
-     * 宽广声场效果。
+     * @brief 宽广声场效果。
      * @since 22
      */
     SOUND_FIELD_WIDE = 4,
@@ -592,22 +592,22 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 环境节点效果为广播。
+     * @brief 环境节点效果为广播。
      * @since 22
      */
     ENVIRONMENT_TYPE_BROADCAST = 1,
     /**
-     * 环境节点效果为电话听筒。
+     * @brief 环境节点效果为电话听筒。
      * @since 22
      */
     ENVIRONMENT_TYPE_EARPIECE = 2,
     /**
-     * 环境节点效果为水下。
+     * @brief 环境节点效果为水下。
      * @since 22
      */
     ENVIRONMENT_TYPE_UNDERWATER = 3,
     /**
-     * 环境节点效果为留声机。
+     * @brief 环境节点效果为留声机。
      * @since 22
      */
     ENVIRONMENT_TYPE_GRAMOPHONE = 4
@@ -619,22 +619,22 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 声音美化节点效果为清澈。
+     * @brief 声音美化节点效果为清澈。
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_CLEAR = 1,
     /**
-     * 声音美化节点效果为剧场。
+     * @brief 声音美化节点效果为剧场。
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_THEATRE = 2,
     /**
-     * 声音美化节点效果为CD。
+     * @brief 声音美化节点效果为CD。
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_CD = 3,
     /**
-     * 声音美化节点效果为录音棚。
+     * @brief 声音美化节点效果为录音棚。
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_RECORDING_STUDIO = 4
@@ -653,7 +653,7 @@ typedef enum {
  */
 typedef struct OH_EqualizerFrequencyBandGains {
     /**
-     * 均衡器频带增益配置。数组长度为10，增益输入范围为[-10, 10]，单位为dB（分贝）。
+     * @brief 均衡器频带增益配置。数组长度为10，增益输入范围为[-10, 10]，单位为dB（分贝）。
      * 频带：31Hz、62Hz、125Hz、250Hz、500Hz、1kHz、2kHz、4kHz、8kHz、16kHz。
      *
      * @since 22
@@ -662,7 +662,7 @@ typedef struct OH_EqualizerFrequencyBandGains {
 } OH_EqualizerFrequencyBandGains;
 
 /**
- * 默认均衡器频带增益效果。
+ * @brief 默认均衡器频带增益效果。
  * 各频带增益：{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}。
  *
  * @since 22
@@ -670,7 +670,7 @@ typedef struct OH_EqualizerFrequencyBandGains {
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
 
 /**
- * 均衡器节点内置民谣效果。
+ * @brief 均衡器节点内置民谣效果。
  * 各频带增益：{3, 5, 2, -4, 1, 2, -3, 1, 4, 5}。
  *
  * @since 22
@@ -678,7 +678,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
 
 /**
- * 均衡器节点内置中国风效果。
+ * @brief 均衡器节点内置中国风效果。
  * 各频带增益：{0, 0, 2, 0, 0, 4, 4, 2, 2, 5}。
  *
  * @since 22
@@ -686,7 +686,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 
 /**
- * 均衡器节点内置古典效果。
+ * @brief 均衡器节点内置古典效果。
  * 各频带增益：{2, 3, 2, 1, 0, 0, -5, -5, -5, -6}。
  *
  * @since 22
@@ -694,7 +694,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
 
 /**
- * 均衡器节点内置舞曲效果。
+ * @brief 均衡器节点内置舞曲效果。
  * 各频带增益：{4, 3, 2, -3, 0, 0, 5, 4, 2, 0}。
  *
  * @since 22
@@ -702,7 +702,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
 
 /**
- * 均衡器节点内置爵士效果。
+ * @brief 均衡器节点内置爵士效果。
  * 各频带增益：{2, 0, 2, 3, 6, 5, -1, 3, 4, 4}。
  *
  * @since 22
@@ -710,7 +710,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 
 /**
- * 均衡器节点内置流行效果。
+ * @brief 均衡器节点内置流行效果。
  * 各频带增益：{5, 2, 1, -1, -5, -5, -2, 1, 2, 4}。
  *
  * @since 22
@@ -718,7 +718,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
 
 /**
- * 均衡器节点内置R&B效果。
+ * @brief 均衡器节点内置R&B效果。
  * 各频带增益：{1, 4, 5, 3, -2, -2, 2, 3, 5, 5}。
  *
  * @since 22
@@ -726,7 +726,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_RB;
 
 /**
- * 均衡器节点内置摇滚效果。
+ * @brief 均衡器节点内置摇滚效果。
  * 各频带增益：{6, 4, 4, 2, 0, 1, 3, 3, 5, 4}。
  *
  * @since 22
@@ -770,17 +770,17 @@ typedef struct OH_AudioNodeBuilderStruct OH_AudioNodeBuilder;
  */
 typedef struct OH_AudioSuite_SpaceRenderPositionParams {
     /**
-     * 空间中的X坐标。取值范围为[-5.0, 5.0]，单位为米。
+     * @brief 空间中的X坐标。取值范围为[-5.0, 5.0]，单位为米。
      * @since 23
      */
     float x;
     /**
-     * 空间中的Y坐标。取值范围为[-5.0, 5.0]，单位为米。
+     * @brief 空间中的Y坐标。取值范围为[-5.0, 5.0]，单位为米。
      * @since 23
      */
     float y;
     /**
-     * 空间中的Z坐标。取值范围为[-5.0, 5.0]，单位为米。
+     * @brief 空间中的Z坐标。取值范围为[-5.0, 5.0]，单位为米。
      * @since 23
      */
     float z;
@@ -793,12 +793,12 @@ typedef struct OH_AudioSuite_SpaceRenderPositionParams {
  */
 typedef enum {
     /**
-     * 逆时针旋转。
+     * @brief 逆时针旋转。
      * @since 23
      */
     SPACE_RENDER_CCW = 0,
     /**
-     * 顺时针旋转。
+     * @brief 顺时针旋转。
      * @since 23
      */
     SPACE_RENDER_CW = 1,
@@ -811,27 +811,27 @@ typedef enum {
  */
 typedef struct OH_AudioSuite_SpaceRenderRotationParams {
     /**
-     * 空间中的X坐标。取值范围为[-5.0, 5.0]，单位为米。
+     * @brief 空间中的X坐标。取值范围为[-5.0, 5.0]，单位为米。
      * @since 23
      */
     float x;
     /**
-     * 空间中的Y坐标。取值范围为[-5.0, 5.0]，单位为米。
+     * @brief 空间中的Y坐标。取值范围为[-5.0, 5.0]，单位为米。
      * @since 23
      */
     float y;
     /**
-     * 空间中的Z坐标。取值范围为[-5.0, 5.0]，单位为米。
+     * @brief 空间中的Z坐标。取值范围为[-5.0, 5.0]，单位为米。
      * @since 23
      */
     float z;
     /**
-     * 单周环绕时间。取值范围为[2, 40]，单位为秒。
+     * @brief 单周环绕时间。取值范围为[2, 40]，单位为秒。
      * @since 23
      */
     int32_t surroundTime;
     /**
-     * 环绕方向。0表示逆时针旋转，1表示顺时针旋转。
+     * @brief 环绕方向。0表示逆时针旋转，1表示顺时针旋转。
      * @since 23
      */
     OH_AudioSuite_SurroundDirection surroundDirection;
@@ -844,12 +844,12 @@ typedef struct OH_AudioSuite_SpaceRenderRotationParams {
  */
 typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
     /**
-     * 扩展半径，表示声音源的空间扩散范围。取值越大，声音的空间扩散范围越宽广。取值范围为[1.0, 5.0]，单位为米（m）。
+     * @brief 扩展半径，表示声音源的空间扩散范围。取值越大，声音的空间扩散范围越宽广。取值范围为[1.0, 5.0]，单位为米（m）。
      * @since 23
      */
     float extRadius;
     /**
-     * 扩展角度，表示声音源在水平面上的扩散角度范围。取值越大，声音的扩散角度越宽。取值范围为(0, 360)，单位为度（°）。
+     * @brief 扩展角度，表示声音源在水平面上的扩散角度范围。取值越大，声音的扩散角度越宽。取值范围为(0, 360)，单位为度（°）。
      * @since 23
      */
     int32_t extAngle;
@@ -862,12 +862,12 @@ typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
  */
 typedef enum {
     /**
-     * 设置女声。
+     * @brief 设置女声。
      * @since 23
      */
     PURE_VOICE_CHANGE_FEMALE = 1,
     /**
-     * 设置男声。
+     * @brief 设置男声。
      * @since 23
      */
     PURE_VOICE_CHANGE_MALE = 2,
@@ -880,44 +880,44 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 传统变声效果节点为卡通类型。
+     * @brief 传统变声效果节点为卡通类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_CARTOON = 1,
     /**
-     * 传统变声效果节点为萝莉类型。
+     * @brief 传统变声效果节点为萝莉类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_CUTE = 2,
     /**
-     * 传统变声效果节点为女声类型。
+     * @brief 传统变声效果节点为女声类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_FEMALE = 3,
     /**
-     * 传统变声效果节点为男声类型。
+     * @brief 传统变声效果节点为男声类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_MALE = 4,
     /**
-     * 传统变声效果节点为怪兽类型。
+     * @brief 传统变声效果节点为怪兽类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_MONSTER = 5,
     /**
-     * 传统变声效果节点为机器人类型。
+     * @brief 传统变声效果节点为机器人类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_ROBOTS = 6,
     /**
-     * 传统变声效果节点为大叔类型。
+     * @brief 传统变声效果节点为大叔类型。
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_SEASONED = 7,
 } OH_AudioSuite_PureVoiceChangeType;
 
 /**
- * Use system recommended pitch.
+ * @brief Use system recommended pitch.
  * Use in {@link OH_AudioSuite_PureVoiceChangeOption}.
  *
  * @since 23
@@ -931,17 +931,17 @@ typedef enum {
  */
 typedef struct OH_AudioSuite_PureVoiceChangeOption {
     /**
-     * 指定传统变声性别。
+     * @brief 指定传统变声性别。
      * @since 23
      */
     OH_AudioSuite_PureVoiceChangeGenderOption optionGender;
     /**
-     * 指定传统变声类型。
+     * @brief 指定传统变声类型。
      * @since 23
      */
     OH_AudioSuite_PureVoiceChangeType optionType;
     /**
-     * 指定传统变声音调。如果使用系统中的默认音调以获得最佳效果，设置为{@link 宏定义}中的OH_PURE_VOICE_DEFAULT_PITCH。
+     * @brief 指定传统变声音调。如果使用系统中的默认音调以获得最佳效果，设置为{@link 宏定义}中的OH_PURE_VOICE_DEFAULT_PITCH。
      * <br> 设置自定义音调的取值范围为[0.3f, 3.0f]。
      * @since 23
      */
@@ -955,52 +955,52 @@ typedef struct OH_AudioSuite_PureVoiceChangeOption {
  */
 typedef enum {
     /**
-     * 传统变声效果节点为萝莉类型。
+     * @brief 传统变声效果节点为萝莉类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_CUTE = 1,
     /**
-     * 通用变声效果节点为赛博朋克类型。
+     * @brief 通用变声效果节点为赛博朋克类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_CYBERPUNK = 2,
     /**
-     * 传统变声效果节点为女声类型。
+     * @brief 传统变声效果节点为女声类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_FEMALE = 3,
     /**
-     * 传统变声效果节点为男声类型。
+     * @brief 传统变声效果节点为男声类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_MALE = 4,
     /**
-     * 通用变声效果节点为混响类型。
+     * @brief 通用变声效果节点为混响类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_MIX = 5,
     /**
-     * 传统变声效果节点为怪兽类型。
+     * @brief 传统变声效果节点为怪兽类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_MONSTER = 6,
     /**
-     * 传统变声效果节点为大叔类型。
+     * @brief 传统变声效果节点为大叔类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_SEASONED = 7,
     /**
-     * 通用变声效果节点为合成器类型。
+     * @brief 通用变声效果节点为合成器类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_SYNTH = 8,
     /**
-     * 通用变声效果节点为颤音类型。
+     * @brief 通用变声效果节点为颤音类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_TRILL = 9,
     /**
-     * 通用变声效果节点为战争类型。
+     * @brief 通用变声效果节点为战争类型。
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_WAR = 10,

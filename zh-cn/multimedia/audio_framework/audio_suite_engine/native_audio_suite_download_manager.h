@@ -22,7 +22,7 @@
  */
 /**
  * @file native_audio_suite_download_manager.h
- * @brief Declare audio download manager related interfaces.
+ * @brief 声明音频下载管理器相关接口。
  * @syscap SystemCapability.Multimedia.Audio.SuiteEngine
  * @library libohaudiosuite.so
  * @kit AudioKit
@@ -67,7 +67,7 @@ typedef struct OH_AudioSuite_DownloadStatusInfo {
      */
     char installPath[256];
     /**
-     * @brief 下载进度【0-100】。
+     * @brief 下载进度[0-100]。
      *
      * @since 26.0.0
      */
@@ -87,7 +87,7 @@ typedef struct OH_AudioSuite_DownloadStatusInfo {
  */
 typedef struct OH_AudioSuite_DownloadStatusInfoArray {
     /**
-     * @brief 数组大小。
+     * @brief 下载状态信息指针数组大小。
      *
      * @since 26.0.0
      */
@@ -225,7 +225,7 @@ int32_t OH_AudioSuite_StartDownload(
  * @return <ul>
  * <li>{@link AUDIOCOMMON_RESULT_SUCCESS}如果执行成功</li>
  * <li>202如果非系统应用程序调用此系统API。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM如果downloadManager或featureName为nullptr。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
  * </ul>
  * @since 26.0.0
@@ -243,7 +243,7 @@ int32_t OH_AudioSuite_PauseDownload(
  * <li>202如果非系统应用程序调用此系统API。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
- * <li>{@link AVPCOMMON_RESULT_ERROR_LINAL_STATE}如果当前状态不允许取消。</li>
+ * <li>{@link AVPCOMMON_RESULT_ERROR_ILLEGAL_STATE}如果当前状态不允许取消。</li>
  * </ul>
  * @since 26.0.0
  */
@@ -311,7 +311,7 @@ int32_t OH_AudioSuite_UninstallCloudRom(
  * @return <ul>
  * <li>{@link}如果执行成功</li>
  * <li>202权限验证失败。非系统应用调用系统API</li>
- * <li>{@链接如果下载管理器、功能名称、
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果下载管理器、功能名称、
  * installStatus为nullptr, count为0，或者installStatusSize小于count。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
  * </ul>
@@ -332,7 +332,7 @@ int32_t OH_AudioSuite_IsFeatureInstalled(OH_AudioSuite_DownloadManager *download
  * @return <ul>
  * <li>{@link}如果执行成功</li>
  * <li>202权限验证失败。非系统应用调用系统API</li>
- * <li>{@链接如果downloadManager、featureNames、statusInfos都为nullptr，
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager、featureNames、statusInfos都为nullptr，
  * count为0，或者statusInfosSize小于count。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
  * </ul>
@@ -352,9 +352,9 @@ int32_t OH_AudioSuite_GetFeatureStatus(
  * @param versionInfos 【out】调用者分配的接收版本信息的数组。
  * @param versionInfosSize 【in】调用者分配的输出数组的容量。必须至少为count。
  * @return <ul>
- * <li>{@链接：执行成功</li></li>
+ * <li>{@link AUDIOCOMMON_RESULT_SUCCESS}执行成功</li></li>
  * <li>202权限验证失败。非系统应用程序调用系统API</li>
- * <li>{@链接如果downloadManager、featureNames、versionInfos都是nullptr，
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager、featureNames、versionInfos都是nullptr，
  * count为0，或者versionInfosSize小于count。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED}如果IPC通信失败。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_NETWORK_CONDITION_NOT_MET}要求的网络条件不满足。

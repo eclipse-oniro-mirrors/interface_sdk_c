@@ -171,17 +171,17 @@ void OH_AudioConverter_Destroy(OH_AudioConverter* converter);
  */
 typedef enum {
     /**
-     * 提供的输入数据有效。
+     * @brief 提供的输入数据有效。
      * @since 26.0.0
      */
     AUDIOCONVERTER_INPUT_HAVE_DATA = 1,
     /**
-     * 暂时没有可用的输入数据。
+     * @brief 暂时没有可用的输入数据。
      * @since 26.0.0
      */
     AUDIOCONVERTER_INPUT_NO_AVAILABLE_DATA = 2,
     /**
-     * 输入数据流已完成。
+     * @brief 输入数据流已完成。
      * @since 26.0.0
      */
     AUDIOCONVERTER_INPUT_DATA_FINISHED = 3,

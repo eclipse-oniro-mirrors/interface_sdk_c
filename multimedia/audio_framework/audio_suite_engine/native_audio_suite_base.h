@@ -46,19 +46,19 @@ extern "C" {
  */
 typedef enum {
     /**
-     * default input node type, this input node type supports getting audio data from application.
+     * @brief default input node type, this input node type supports getting audio data from application.
      *
      * @since 22
      */
     INPUT_NODE_TYPE_DEFAULT = 1,
     /**
-     * default output node type, this output node type supports providing audio data to the application.
+     * @brief default output node type, this output node type supports providing audio data to the application.
      *
      * @since 22
      */
     OUTPUT_NODE_TYPE_DEFAULT = 101,
     /**
-     * Equalization node type.
+     * @brief Equalization node type.
      * The audio format output by the equalizer node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -68,7 +68,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_EQUALIZER = 201,
     /**
-     * Noise reduction node type.
+     * @brief Noise reduction node type.
      * The audio format output by the noise reduction node is as follows:
      * Sample rate: 16000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -78,7 +78,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_NOISE_REDUCTION = 202,
     /**
-     * Sound field node type. Support sound field type {@link OH_SoundFieldType}.
+     * @brief Sound field node type. Support sound field type {@link OH_SoundFieldType}.
      * The audio format output by the sound field node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -88,7 +88,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_SOUND_FIELD = 203,
     /**
-     * Audio separation node type, it can only connect to output node.
+     * @brief Audio separation node type, it can only connect to output node.
      * The audio format output by the audio separation node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_F32LE}.
@@ -98,7 +98,7 @@ typedef enum {
      */
     EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION = 204,
     /**
-     * Voice beautifier node type. Supports beautifier type {@link OH_VoiceBeautifierType}.
+     * @brief Voice beautifier node type. Supports beautifier type {@link OH_VoiceBeautifierType}.
      * The audio format output by the voice beautifier node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -108,7 +108,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_VOICE_BEAUTIFIER = 205,
     /**
-     * Scene effect node type.
+     * @brief Scene effect node type.
      * The audio format output by the environment node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -118,7 +118,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT = 206,
     /**
-     * Audio mixer node type.
+     * @brief Audio mixer node type.
      * The audio format output by the mixer node is as follows:
      * Sample rate: {@link OH_Audio_SampleRate}.
      * Sample format: {@link AUDIO_SAMPLE_F32LE}.
@@ -128,7 +128,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_AUDIO_MIXER = 207,
     /**
-     * Space render node type.
+     * @brief Space render node type.
      * The audio format output by the space render node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -138,7 +138,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_SPACE_RENDER = 208,
     /**
-     * Pure voice change node type.
+     * @brief Pure voice change node type.
      * The audio format output by the pure voice change node is as follows:
      * Sample rate: 16000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -148,7 +148,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_PURE_VOICE_CHANGE = 209,
     /**
-     * General voice change node type.
+     * @brief General voice change node type.
      * The audio format output by the general voice change node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -158,7 +158,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE = 210,
     /**
-     * Tempo and pitch node type.
+     * @brief Tempo and pitch node type.
      * The audio format output by the tempo and pitch node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -168,7 +168,7 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_TEMPO_PITCH = 211,
     /**
-     * HOA input space render node type.
+     * @brief HOA input space render node type.
      * The audio format input by the HOA space render node is as follows:
      * Sample rate: {@link SAMPLE_RATE_16000}, {@link SAMPLE_RATE_48000}.
      * Sample format: {@link OH_Audio_SampleFormat}.
@@ -195,13 +195,13 @@ typedef enum {
  */
 typedef enum OH_AudioSuite_SystemNodeType {
     /**
-     * Dialogue Algo System Effect Node.
+     * @brief Dialogue Algo System Effect Node.
      *
      * @since 26.0.0
      */
     OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_DIALOGUE_ENHANCE = 301,
     /**
-     * Voice Beautifier System Effect Node.
+     * @brief Voice Beautifier System Effect Node.
      *
      * @since 26.0.0
      */
@@ -215,13 +215,13 @@ typedef enum OH_AudioSuite_SystemNodeType {
  */
 typedef enum {
     /**
-     * The pipeline supports creating various effect nodes in suite mode.
+     * @brief The pipeline supports creating various effect nodes in suite mode.
      *
      * @since 22
      */
     AUDIOSUITE_PIPELINE_EDIT_MODE = 1,
     /**
-     * If you need to play audio after effect processing, you should select this mode.
+     * @brief If you need to play audio after effect processing, you should select this mode.
      * Before API version 23, in real-time rendering mode, the pipeline only supports EQ effect processing.
      * In API version 23 and later, in real-time rendering mode, the pipeline supports all effect processing.
      *
@@ -236,13 +236,13 @@ typedef enum {
  */
 typedef enum {
     /**
-     * The pipeline is in a stopped state.
+     * @brief The pipeline is in a stopped state.
      *
      * @since 22
      */
     AUDIOSUITE_PIPELINE_STOPPED = 1,
     /**
-     * The pipeline is in a running state.
+     * @brief The pipeline is in a running state.
      *
      * @since 22
      */
@@ -346,31 +346,31 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Unsigned 8 format.
+     * @brief Unsigned 8 format.
      *
      * @since 22
      */
     AUDIO_SAMPLE_U8 = 0,
     /**
-     * Signed 16 bit integer, little endian.
+     * @brief Signed 16 bit integer, little endian.
      *
      * @since 22
      */
     AUDIO_SAMPLE_S16LE = 1,
     /**
-     * Signed 24 bit integer, little endian.
+     * @brief Signed 24 bit integer, little endian.
      *
      * @since 22
      */
     AUDIO_SAMPLE_S24LE = 2,
     /**
-     * Signed 32 bit integer, little endian.
+     * @brief Signed 32 bit integer, little endian.
      *
      * @since 22
      */
     AUDIO_SAMPLE_S32LE = 3,
     /**
-     * 32 bit IEEE floating point, little endian.
+     * @brief 32 bit IEEE floating point, little endian.
      *
      * @since 22
      */
@@ -383,7 +383,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * PCM encoding type.
+     * @brief PCM encoding type.
      *
      * @since 22
      */
@@ -397,72 +397,72 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 8kHz sample rate.
+     * @brief 8kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_8000 = 8000,
     /**
-     * 11.025kHz sample rate.
+     * @brief 11.025kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_11025 = 11025,
     /**
-     * 12kHz sample rate.
+     * @brief 12kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_12000 = 12000,
     /**
-     * 16kHz sample rate.
+     * @brief 16kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_16000 = 16000,
     /**
-     * 22.05kHz sample rate.
+     * @brief 22.05kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_22050 = 22050,
     /**
-     * 24kHz sample rate.
+     * @brief 24kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_24000 = 24000,
     /**
-     * 32kHz sample rate.
+     * @brief 32kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_32000 = 32000,
     /**
-     * 44.1kHz sample rate.
+     * @brief 44.1kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_44100 = 44100,
     /**
-     * 48kHz sample rate.
+     * @brief 48kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_48000 = 48000,
     /**
-     * 64kHz sample rate.
+     * @brief 64kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_64000 = 64000,
     /**
-     * 88.2kHz sample rate.
+     * @brief 88.2kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_88200 = 88200,
     /**
-     * 96kHz sample rate.
+     * @brief 96kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_96000 = 96000,
     /**
-     * 176.4kHz sample rate.
+     * @brief 176.4kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_176400 = 176400,
     /**
-     * 192kHz sample rate.
+     * @brief 192kHz sample rate.
      * @since 22
      */
     SAMPLE_RATE_192000 = 192000
@@ -611,25 +611,25 @@ typedef struct OH_AudioSuite_MetaFrame {
  */
 typedef enum {
     /**
-     * Front facing sound field type.
+     * @brief Front facing sound field type.
      *
      * @since 22
      */
     SOUND_FIELD_FRONT_FACING = 1,
     /**
-     * Grand sound field type.
+     * @brief Grand sound field type.
      *
      * @since 22
      */
     SOUND_FIELD_GRAND = 2,
     /**
-     * Near sound field type.
+     * @brief Near sound field type.
      *
      * @since 22
      */
     SOUND_FIELD_NEAR = 3,
     /**
-     * Wide sound field type.
+     * @brief Wide sound field type.
      *
      * @since 22
      */
@@ -642,25 +642,25 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Broadcast environment effect type.
+     * @brief Broadcast environment effect type.
      *
      * @since 22
      */
     ENVIRONMENT_TYPE_BROADCAST = 1,
     /**
-     * Earpiece environment effect type.
+     * @brief Earpiece environment effect type.
      *
      * @since 22
      */
     ENVIRONMENT_TYPE_EARPIECE = 2,
     /**
-     * UnderWater environment effect type.
+     * @brief UnderWater environment effect type.
      *
      * @since 22
      */
     ENVIRONMENT_TYPE_UNDERWATER = 3,
     /**
-     * Gramophone environment effect type.
+     * @brief Gramophone environment effect type.
      *
      * @since 22
      */
@@ -673,25 +673,25 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Clear voice beautifier type.
+     * @brief Clear voice beautifier type.
      *
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_CLEAR = 1,
     /**
-     * Theatre voice beautifier type.
+     * @brief Theatre voice beautifier type.
      *
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_THEATRE = 2,
     /**
-     * CD voice beautifier type.
+     * @brief CD voice beautifier type.
      *
      * @since 22
      */
     VOICE_BEAUTIFIER_TYPE_CD = 3,
     /**
-     * Recording studio voice beautifier type.
+     * @brief Recording studio voice beautifier type.
      *
      * @since 22
      */
@@ -711,7 +711,7 @@ typedef enum {
  */
 typedef struct OH_EqualizerFrequencyBandGains {
     /**
-     * The equalizer supports gain adjustment for 10 specific frequencies.
+     * @brief The equalizer supports gain adjustment for 10 specific frequencies.
      * Frequencies: 31 Hz, 62 Hz, 125 Hz, 250 Hz, 500 Hz, 1 kHz, 2 kHz, 4 kHz, 8 kHz, 16 kHz.
      *
      * @since 22
@@ -720,14 +720,14 @@ typedef struct OH_EqualizerFrequencyBandGains {
 } OH_EqualizerFrequencyBandGains;
 
 /**
- * Default equalization effect band gains.
+ * @brief Default equalization effect band gains.
  * Gains is {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}.
  *
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
 /**
- * Ballad equalization effect band gains.
+ * @brief Ballad equalization effect band gains.
  * Gains is {3, 5, 2, -4, 1, 2, -3, 1, 4, 5}.
  *
  * @since 22
@@ -735,7 +735,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
 
 /**
- * Chinese style equalization effect band gains.
+ * @brief Chinese style equalization effect band gains.
  * Gains is {0, 0, 2, 0, 0, 4, 4, 2, 2, 5}.
  *
  * @since 22
@@ -743,7 +743,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_BALLADS;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 
 /**
- * Classic equalization effect band gains.
+ * @brief Classic equalization effect band gains.
  * Gains is {2, 3, 2, 1, 0, 0, -5, -5, -5, -6}.
  *
  * @since 22
@@ -751,7 +751,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CHINESE_STYLE;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
 
 /**
- * Dance music equalization effect band gains.
+ * @brief Dance music equalization effect band gains.
  * Gains is {4, 3, 2, -3, 0, 0, 5, 4, 2, 0}.
  *
  * @since 22
@@ -759,7 +759,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_CLASSICAL;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
 
 /**
- * Jazz equalization effect band gains.
+ * @brief Jazz equalization effect band gains.
  * Gains is {2, 0, 2, 3, 6, 5, -1, 3, 4, 4}.
  *
  * @since 22
@@ -767,7 +767,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DANCE_MUSIC;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 
 /**
- * Pop equalization effect band gains.
+ * @brief Pop equalization effect band gains.
  * Gains is {5, 2, 1, -1, -5, -5, -2, 1, 2, 4}.
  *
  * @since 22
@@ -775,7 +775,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_JAZZ;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
 
 /**
- * R&B equalization effect band gains.
+ * @brief R&B equalization effect band gains.
  * Gains is {1, 4, 5, 3, -2, -2, 2, 3, 5, 5}.
  *
  * @since 22
@@ -783,7 +783,7 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_POP;
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_RB;
 
 /**
- * Rock equalization effect band gains.
+ * @brief Rock equalization effect band gains.
  * Gains is {6, 4, 4, 2, 0, 1, 3, 3, 5, 4}.
  *
  * @since 22
@@ -832,21 +832,21 @@ typedef struct OH_AudioNodeBuilderStruct OH_AudioNodeBuilder;
  */
 typedef struct OH_AudioSuite_SpaceRenderPositionParams {
     /**
-     * X coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * @brief X coordinate in space, value range: [-5.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float x;
     /**
-     * Y coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * @brief Y coordinate in space, value range: [-5.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float y;
     /**
-     * Z coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * @brief Z coordinate in space, value range: [-5.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
@@ -861,13 +861,13 @@ typedef struct OH_AudioSuite_SpaceRenderPositionParams {
  */
 typedef enum {
     /**
-     * Rotate counterclockwise
+     * @brief Rotate counterclockwise
      *
      * @since 23
      */
     SPACE_RENDER_CCW = 0,
     /**
-     * Rotate clockwise
+     * @brief Rotate clockwise
      *
      * @since 23
      */
@@ -881,35 +881,35 @@ typedef enum {
  */
 typedef struct OH_AudioSuite_SpaceRenderRotationParams {
     /**
-     * X coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * @brief X coordinate in space, value range: [-5.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float x;
     /**
-     * Y coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * @brief Y coordinate in space, value range: [-5.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float y;
     /**
-     * Z coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * @brief Z coordinate in space, value range: [-5.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float z;
     /**
-     * Single-week circumnavigation time, value range: [2, 40], unit: seconds.
+     * @brief Single-week circumnavigation time, value range: [2, 40], unit: seconds.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     int32_t surroundTime;
     /**
-     * Single-week circumnavigation direction.
+     * @brief Single-week circumnavigation direction.
      *
      * @since 23
      */
@@ -923,14 +923,14 @@ typedef struct OH_AudioSuite_SpaceRenderRotationParams {
   */
 typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
     /**
-     * Expansion radius, value range: [1.0, 5.0], unit: meters.
+     * @brief Expansion radius, value range: [1.0, 5.0], unit: meters.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float extRadius;
     /**
-     * Expansion angle, value range: (0, 360), unit: degrees.
+     * @brief Expansion angle, value range: (0, 360), unit: degrees.
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
@@ -945,13 +945,13 @@ typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
  */
 typedef enum {
     /**
-     * set female voice.
+     * @brief set female voice.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_FEMALE = 1,
     /**
-     * set male voice.
+     * @brief set male voice.
      *
      * @since 23
      */
@@ -965,43 +965,43 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Cartoon voice type.
+     * @brief Cartoon voice type.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_CARTOON = 1,
     /**
-     * Cute voice type.
+     * @brief Cute voice type.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_CUTE = 2,
     /**
-     * Female voice type.
+     * @brief Female voice type.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_FEMALE = 3,
     /**
-     * Male voice type.
+     * @brief Male voice type.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_MALE = 4,
     /**
-     * Monster voice type.
+     * @brief Monster voice type.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_MONSTER = 5,
     /**
-     * Robots voice type.
+     * @brief Robots voice type.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_TYPE_ROBOTS = 6,
     /**
-     * Seasoned voice type.
+     * @brief Seasoned voice type.
      *
      * @since 23
      */
@@ -1009,7 +1009,7 @@ typedef enum {
 } OH_AudioSuite_PureVoiceChangeType;
 
 /**
- * Use system recommended pitch.
+ * @brief Use system recommended pitch.
  * Use in {@link OH_AudioSuite_PureVoiceChangeOption}.
  *
  * @since 23
@@ -1023,19 +1023,19 @@ typedef enum {
  */
 typedef struct OH_AudioSuite_PureVoiceChangeOption {
     /**
-     * Define speaker gender.
+     * @brief Define speaker gender.
      *
      * @since 23
      */
     OH_AudioSuite_PureVoiceChangeGenderOption optionGender;
     /**
-     * Define voice type.
+     * @brief Define voice type.
      *
      * @since 23
      */
     OH_AudioSuite_PureVoiceChangeType optionType;
     /**
-     * Define voice pitch.
+     * @brief Define voice pitch.
      * If using default pitch in system for best effect, set to {@link OH_PURE_VOICE_DEFAULT_PITCH}.
      * For custom pitch setting, specify a value with the valid range: [0.3f, 3.0f].
      * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
@@ -1052,61 +1052,61 @@ typedef struct OH_AudioSuite_PureVoiceChangeOption {
  */
 typedef enum {
     /**
-     * Cute voice type.
+     * @brief Cute voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_CUTE = 1,
     /**
-     * Cyberpunk voice type.
+     * @brief Cyberpunk voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_CYBERPUNK = 2,
     /**
-     * Female voice type.
+     * @brief Female voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_FEMALE = 3,
     /**
-     * Male voice type.
+     * @brief Male voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_MALE = 4,
     /**
-     * Mix voice type.
+     * @brief Mix voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_MIX = 5,
     /**
-     * Monster voice type.
+     * @brief Monster voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_MONSTER = 6,
     /**
-     * Seasoned voice type.
+     * @brief Seasoned voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_SEASONED = 7,
     /**
-     * Synth voice type.
+     * @brief Synth voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_SYNTH = 8,
     /**
-     * Trill voice type.
+     * @brief Trill voice type.
      *
      * @since 23
      */
     GENERAL_VOICE_CHANGE_TYPE_TRILL = 9,
     /**
-     * War voice type.
+     * @brief War voice type.
      *
      * @since 23
      */
