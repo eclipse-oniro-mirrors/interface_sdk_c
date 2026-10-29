@@ -413,7 +413,8 @@ typedef enum {
  * @brief 定义音频中断是否由系统强制执行。
  * <br>当用户监听到音频中断时，将获取此信息。
  * <br>此类型表示音频中断提示{@link OH_AudioInterrupt_Hint}对应的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过{@link OH_AudioInterrupt_Hint}获取。
- * <br>其中，AUDIOSTREAM_INTERRUPT_HINT_RESUME对应的{@link OH_AudioInterrupt_ForceType}一定为AUDIOSTREAM_INTERRUPT_SHARE，即恢复操作无法由系统强制执行，需应用自行触发。
+ * <br>其中，AUDIOSTREAM_INTERRUPT_HINT_RESUME对应的{@link OH_AudioInterrupt_ForceType}一定为AUDIOSTREAM_INTERRUPT_SHARE，
+ * <br>即恢复操作无法由系统强制执行，需应用自行触发。
  *
  * @since 10
  */
