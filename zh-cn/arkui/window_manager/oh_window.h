@@ -436,6 +436,47 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
     const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
 
 /**
+ * @brief 获取当前帧从开始渲染到最终提交显示子系统的总耗时。
+ *
+ * @param metrics 帧率指标数据对象。
+ * @param duration 作为出参使用，表示当前帧从开始渲染到最终提交显示子系统的总耗时，单位为纳秒。
+ * @return 返回结果代码。
+ *     返回OK，表示函数调用成功。
+ *     返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。
+ *     具体可见{@link WindowManager_ErrorCode}。
+ * @since 26.1.0
+ */
+int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
+
+/**
+ * @brief 获取当前帧执行动画回调的耗时
+ *
+ * @param metrics 帧率指标数据对象。
+ * @param duration 作为出参使用，表示当前帧执行动画回调的耗时，单位为纳秒。
+ * @return 返回结果代码。
+ *     返回OK，表示函数调用成功。
+ *     返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。
+ *     具体可见{@link WindowManager_ErrorCode}。
+ * @since 26.1.0
+ */
+int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
+
+/**
+ * @brief 获取当前帧预期的垂直同步（VSync）起始时间戳。
+ *
+ * @param metrics 帧率指标数据对象。
+ * @param timestamp 作为出参使用，表示当前帧预期的垂直同步（VSync）起始时间戳，单位为纳秒。
+ * @return 返回结果代码。
+ *     返回OK，表示函数调用成功。
+ *     返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。
+ *     具体可见{@link WindowManager_ErrorCode}。
+ * @since 26.1.0
+ */
+int32_t OH_WindowManager_FrameMetrics_GetIntendedVsyncTimestamp(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
+/**
  * @brief 订阅窗口帧率指标变更监听事件。
  *  该接口依赖窗口页面内容加载，即需要在ArkTS侧loadContent()接口或setUIContent()接口生效后调用。
  *  应用注册帧率指标变更监听后，仅当客户端UI内容发生重绘（例如页面切换、响应式组件交互、设置背景色和透明度等）时才会触发已注册回调。

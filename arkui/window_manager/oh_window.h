@@ -462,6 +462,51 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
     const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
 
 /**
+ * @brief Get the total time for this frame took to render and be issued to the display subsystem.
+ *
+ * @param metrics Frame metrics data object.
+ * @param duration This parameter is the return value of the function,
+ *     indicating the total time for this frame took to render and be issued to the display subsystem, in nanoseconds.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 26.1.0
+ */
+int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
+
+/**
+ * @brief Get the time for elapsed issuing animation callbacks in one frame.
+ *
+ * @param metrics Frame metrics data object.
+ * @param duration This parameter is the return value of the function,
+ *     indicating the time for elapsed issuing animation callbacks in one frame, in nanoseconds.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 26.1.0
+ */
+int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
+
+/**
+ * @brief Get the intended start point for the frame.
+ *
+ * @param metrics Frame metrics data object.
+ * @param timestamp This parameter is the return value of the function,
+ *     indicating the the intended start point for the frame, in nanoseconds.
+ * @return Returns the status code of the execution.
+ *         {@link WS_OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.
+ * @since 26.1.0
+ */
+int32_t OH_WindowManager_FrameMetrics_GetIntendedVsyncTimestamp(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
+
+/**
  * @brief Registers a callback for window frame metric change events.
  * This API depends on the loading of the window page content. That is, this API can be called only after the **
  * loadContent()** or **setUIContent()** API in ArkTS takes effect.
