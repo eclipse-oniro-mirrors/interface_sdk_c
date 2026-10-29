@@ -291,6 +291,28 @@ Camera_ErrorCode OH_MetadataOutput_LockMetadataObjectTracking(Camera_MetadataOut
  * @since 26.0.0
  */
 Camera_ErrorCode OH_MetadataOutput_UnlockMetadataObjectTracking(Camera_MetadataOutput* metadataOutput);
+
+/**
+ * @brief 启用或关闭编码器传递帧内元数据。
+ * @param metadataOutput [入参] 元数据输出实例的指针。
+ * @param enable [入参] 是否启用编码器传递帧内元数据。
+ *     **true**表示启用，**false**表示禁用。
+ * @return CAMERA_OK：操作成功。
+ *     <br>CAMERA_INVALID_ARGUMENT：参数缺失或参数类型错误。
+ *     <br>CAMERA_SERVICE_FATAL_ERROR：相机服务异常。
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_MetadataOutput_SetInFrameMetadataForEncoderEnabled(Camera_MetadataOutput* metadataOutput,
+    bool enable);
+
+/**
+ * @brief 查询相机设备是否支持编码器帧内元数据。
+ * @param metadataOutput [入参] 元数据输出实例的指针。
+ * @return true表示支持该功能。
+ *     <br>false表示不支持该功能。
+ * @since 26.0.1
+ */
+bool OH_MetadataOutput_IsInFrameMetadataForEncoderSupported(const Camera_MetadataOutput* metadataOutput);
 #ifdef __cplusplus
 }
 #endif
