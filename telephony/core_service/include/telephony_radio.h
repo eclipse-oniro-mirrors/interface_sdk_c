@@ -82,3 +82,4 @@ Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Teleph
 #endif
 
 #endif // NATIVE_TELEPHONY_RADIO_API_H
+/** @} */
