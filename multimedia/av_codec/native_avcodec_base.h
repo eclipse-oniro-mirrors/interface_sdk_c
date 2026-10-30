@@ -626,6 +626,12 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1;
 
 /**
+ * @brief MIME type of the WMV1 video codec.
+ * @since 26.1.0
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WMV1;
+
+/**
  * @brief Pointer to the key that describes the MIME type of the WMV3 video codec.
  * 
  * @since 22

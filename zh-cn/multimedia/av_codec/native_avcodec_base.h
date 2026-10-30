@@ -390,6 +390,12 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1;
 
 /**
+ * @brief WMV1视频编解码器的MIME类型。
+ * @since 26.1.0
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WMV1;
+
+/**
  * @brief WMV3视频编解码器的MIME类型。
  *
  * @since 22
