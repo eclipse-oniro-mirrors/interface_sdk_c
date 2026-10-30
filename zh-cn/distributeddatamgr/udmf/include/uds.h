@@ -233,7 +233,8 @@ typedef void (*OH_UdmfVirtualFile_Finalize)(void* context);
  * @brief 描述用于提供虚拟文件元数据和内容的回调。
  *
  * <code>structSize</code>必须设置为<code>sizeof(OH_UdmfVirtualFileCallbacks)</code>。
- * <code>onRead</code>和<code>onCancel</code>为必选回调，<code>onStat</code>为可选回调；所有文件必须预先声明大小。
+ * <code>onRead</code>为必选回调，<code>onStat</code>和<code>onCancel</code>为可选回调；所有文件必须预先声明大小。
+ * 不需要取消通知时，将<code>onCancel</code>设置为nullptr。
  * 不同线程可能并发调用回调，回调不得无限期阻塞。
  *
  * @since 26.1.0
@@ -245,7 +246,7 @@ typedef struct OH_UdmfVirtualFileCallbacks {
     OH_UdmfVirtualFile_OnStat onStat;
     /** 必选的内容读取回调。 */
     OH_UdmfVirtualFile_OnRead onRead;
-    /** 必选的取消回调。 */
+    /** 可选的取消回调。为nullptr时，取消操作成功，不通知提供方。 */
     OH_UdmfVirtualFile_OnCancel onCancel;
 } OH_UdmfVirtualFileCallbacks;
 
