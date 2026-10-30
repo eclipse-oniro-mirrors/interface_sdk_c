@@ -134,6 +134,32 @@ typedef enum {
 } ArkUI_ImmersiveMode;
 
 /**
+ * @brief Enumerates the handedness adaptation mode of the dialog box.
+ *
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * @brief No adaptation. The dialog box keeps the current layout.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_NONE = 0,
+    /**
+     * @brief The dialog box follows the position of the component that triggers it.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_FOLLOW_ANCHOR = 1,
+    /**
+     * @brief he dialog box follows the grip hand (the hand holding the device).
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_FOLLOW_GRIP_HAND = 2,
+} OH_ArkUI_NativeModule_HandednessMode;
+
+/**
  * @brief Enumerates the dialog display mode in subwindow.
  *
  * @since 26.0.0
@@ -1331,6 +1357,45 @@ int32_t OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterialInOptions(
   */
 int32_t OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterial(
     ArkUI_NativeDialogHandle handle, ArkUI_ImmersiveMaterialHandle material);
+
+/**
+ * @brief Sets the handedness adaptation mode of the dialog box in options.
+ *
+ * The dialog box offsets towards the trigger component position
+ * (OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_FOLLOW_ANCHOR) or the grip hand (the hand holding the device)
+ * (OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_FOLLOW_GRIP_HAND). It falls back to the current layout when
+ * no trigger component exists or the awareness service is unavailable.
+ *
+ * @param options [in] Indicates the pointer to the custom dialog options.
+ * @param mode [in] Indicates the handedness adaptation mode. The type is {@link OH_ArkUI_NativeModule_HandednessMode}.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_NativeModule_CustomDialog_SetAdaptToHandednessInOptions(
+    ArkUI_CustomDialogOptions* options, OH_ArkUI_NativeModule_HandednessMode mode);
+
+/**
+ * @brief Sets the handedness adaptation mode of the dialog box.
+ *
+ * The dialog box offsets towards the trigger component position
+ * (OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_FOLLOW_ANCHOR) or the grip hand (the hand holding the device)
+ * (OH_ARKUI_NATIVEMODULE_HANDEDNESS_MODE_FOLLOW_GRIP_HAND). It falls back to the current layout when
+ * no trigger component exists or the awareness service is unavailable.
+ * This method must be called before the <b>show</b> method.
+ *
+ * @param handle [in] Indicates the pointer to the custom dialog box controller.
+ * @param mode [in] Indicates the handedness adaptation mode. The type is {@link OH_ArkUI_NativeModule_HandednessMode}.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_NativeModule_CustomDialog_SetAdaptToHandedness(
+    ArkUI_NativeDialogHandle handle, OH_ArkUI_NativeModule_HandednessMode mode);
 
 #ifdef __cplusplus
 };

@@ -7589,5 +7589,13 @@
     {
         "first_introduced": "26.1.0",
         "name": "OH_ArkUI_NativeModule_SetAdoptedChildOverlayPositionCompensation"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_NativeModule_CustomDialog_SetAdaptToHandednessInOptions"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_NativeModule_CustomDialog_SetAdaptToHandedness"
     }
 ]
