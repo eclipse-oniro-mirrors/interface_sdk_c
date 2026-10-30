@@ -3946,6 +3946,10 @@ typedef enum {
      * <li>.value[2].f32：设置右上角圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>.value[3].f32：设置左下角圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
      * <li>.value[4].f32：设置右下角圆角半径，单位为vp。取值范围：[0, +∞)。传入负数时参数不生效。</li>
+     * <li>.value[5]?.f32：文本背景的边框宽度，单位为vp。可选。默认值为<b>0</b>。
+     * 该参数从API version 26.1.0开始支持。</li>
+     * <li>.value[6]?.u32：文本背景的边框颜色，0xargb格式。可选。
+     * 默认值为<b>0x00000000</b>（透明）。该参数从API version 26.1.0开始支持。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -3955,6 +3959,10 @@ typedef enum {
      * <li>.value[2].f32：右上角圆角半径，单位为vp。</li>
      * <li>.value[3].f32：左下角圆角半径，单位为vp。</li>
      * <li>.value[4].f32：右下角圆角半径，单位为vp。</li>
+     * <li>.value[5].f32：文本背景的边框宽度，单位为vp。
+     * 该参数从API version 26.1.0开始支持。</li>
+     * <li>.value[6].u32：文本背景的边框颜色，0xargb格式。
+     * 该参数从API version 26.1.0开始支持。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]

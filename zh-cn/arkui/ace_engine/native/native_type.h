@@ -4098,6 +4098,58 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundRadius(OH_ArkUI_Te
     float* topLeft, float* topRight, float* bottomLeft, float* bottomRight);
 
 /**
+ * @brief 设置文本样式的文本背景边框宽度。
+ *
+ * @param style [in] 指向TextEditor组件文本样式的指针。
+ * @param borderWidth [in] 文本背景边框宽度，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundBorderWidth(
+    OH_ArkUI_TextEditorTextStyle* style, float borderWidth);
+
+/**
+ * @brief 获取文本样式的文本背景边框宽度。
+ *
+ * @param style [in] 指向TextEditor组件文本样式的指针。
+ * @param borderWidth [out] 指向文本背景边框宽度的指针，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundBorderWidth(
+    OH_ArkUI_TextEditorTextStyle* style, float* borderWidth);
+
+/**
+ * @brief 设置文本样式的文本背景边框颜色。
+ *
+ * @param style [in] 指向TextEditor组件文本样式的指针。
+ * @param borderColor [in] 文本背景边框颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundBorderColor(
+    OH_ArkUI_TextEditorTextStyle* style, uint32_t borderColor);
+
+/**
+ * @brief 获取文本样式的文本背景边框颜色。
+ *
+ * @param style [in] 指向TextEditor组件文本样式的指针。
+ * @param borderColor [out] 指向文本背景边框颜色的指针，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundBorderColor(
+    OH_ArkUI_TextEditorTextStyle* style, uint32_t* borderColor);
+
+/**
  * @brief 通过属性字符串控制器设置预设输入样式。
  *
  * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。

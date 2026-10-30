@@ -4788,9 +4788,9 @@ typedef enum {
      * <li>.value[3].f32: radius of the lower left corner, in vp.</li>
      * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
      * <li>.value[5]?.f32: border width of the text background, in vp. Optional. The default value is <b>0</b>.
-     * This parameter is supported since API version 26.2.0.</li>
+     * This parameter is supported since API version 26.1.0.</li>
      * <li>.value[6]?.u32: border color of the text background, in 0xARGB format. Optional.
-     * The default value is <b>0x00000000</b> (transparent). This parameter is supported since API version 26.2.0.</li>
+     * The default value is <b>0x00000000</b> (transparent). This parameter is supported since API version 26.1.0.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
@@ -4801,9 +4801,9 @@ typedef enum {
      * <li>.value[3].f32: radius of the lower left corner, in vp.</li>
      * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
      * <li>.value[5].f32: border width of the text background, in vp.
-     * This parameter is supported since API version 26.2.0.</li>
+     * This parameter is supported since API version 26.1.0.</li>
      * <li>.value[6].u32: border color of the text background, in 0xARGB format.
-     * This parameter is supported since API version 26.2.0.</li>
+     * This parameter is supported since API version 26.1.0.</li>
      * </ul>
      *
      * @ingroup Text Display

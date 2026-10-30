@@ -2595,6 +2595,58 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundRadius(OH_ArkUI_Te
     float* topLeft, float* topRight, float* bottomLeft, float* bottomRight);
 
 /**
+ * @brief Sets the text background border width of the text style.
+ *
+ * @param style [in] Pointer to the text style of the **TextEditor** component.
+ * @param borderWidth [in] Text background border width, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundBorderWidth(
+    OH_ArkUI_TextEditorTextStyle* style, float borderWidth);
+
+/**
+ * @brief Obtains the text background border width of the text style.
+ *
+ * @param style [in] Pointer to the text style of the **TextEditor** component.
+ * @param borderWidth [out] Pointer to the text background border width, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundBorderWidth(
+    OH_ArkUI_TextEditorTextStyle* style, float* borderWidth);
+
+/**
+ * @brief Sets the text background border color of the text style.
+ *
+ * @param style [in] Pointer to the text style of the **TextEditor** component.
+ * @param borderColor [in] Text background border color, in 0xARGB format.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundBorderColor(
+    OH_ArkUI_TextEditorTextStyle* style, uint32_t borderColor);
+
+/**
+ * @brief Obtains the text background border color of the text style.
+ *
+ * @param style [in] Pointer to the text style of the **TextEditor** component.
+ * @param borderColor [out] Pointer to the text background border color, in 0xARGB format.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundBorderColor(
+    OH_ArkUI_TextEditorTextStyle* style, uint32_t* borderColor);
+
+/**
  * @brief Sets the typing style using the styled string controller.
  *
  * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
