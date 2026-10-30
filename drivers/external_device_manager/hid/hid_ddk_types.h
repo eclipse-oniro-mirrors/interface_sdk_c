@@ -86,7 +86,7 @@ typedef enum {
      */
     HID_PROP_BUTTON_PAD = 0x02,
     /**
-     * Full multi-touch device.
+     * Semi-multitouch device.
      */
     HID_PROP_SEMI_MT = 0x03,
     /**
