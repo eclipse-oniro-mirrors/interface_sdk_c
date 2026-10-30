@@ -437,43 +437,43 @@
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualItem_CreateFile"
+        "name": "OH_UDMF_CreateVirtualFileItem"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualItem_CreateDirectory"
+        "name": "OH_UDMF_CreateVirtualDirectoryItem"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualItem_Destroy"
+        "name": "OH_UDMF_DestroyVirtualItem"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualItem_SetFileSize"
+        "name": "OH_UDMF_SetVirtualFileSize"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualItem_ClearFileSize"
+        "name": "OH_UDMF_ClearVirtualFileSize"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualItem_AddChild"
+        "name": "OH_UDMF_AddVirtualItemChild"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualFileInfo_Create"
+        "name": "OH_UDMF_CreateVirtualFileInfo"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdmfVirtualFileInfo_Destroy"
+        "name": "OH_UDMF_DestroyVirtualFileInfo"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdsFileUri_SetVirtualEntry"
+        "name": "OH_UDMF_SetFileUriVirtualEntry"
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_UdsFileUri_ClearVirtualEntry"
+        "name": "OH_UDMF_ClearFileUriVirtualEntry"
     },
     {
         "first_introduced": "13",

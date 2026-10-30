@@ -141,21 +141,21 @@ typedef struct OH_UdsFileUri OH_UdsFileUri;
  *
  * @since 26.1.0
  */
-typedef struct OH_UdmfVirtualItem OH_UdmfVirtualItem;
+typedef struct OH_UDMF_VirtualItem OH_UDMF_VirtualItem;
 
 /**
  * @brief 描述虚拟文件入口及其数据回调。
  *
  * @since 26.1.0
  */
-typedef struct OH_UdmfVirtualFileInfo OH_UdmfVirtualFileInfo;
+typedef struct OH_UDMF_VirtualFileInfo OH_UDMF_VirtualFileInfo;
 
 /**
  * @brief 描述虚拟节点类型。
  *
  * @since 26.1.0
  */
-typedef enum OH_UdmfVirtualItemType {
+typedef enum OH_UDMF_VirtualItemType {
     /**
      * @brief 虚拟文件。
      *
@@ -168,19 +168,19 @@ typedef enum OH_UdmfVirtualItemType {
      * @since 26.1.0
      */
     OH_UDMF_VIRTUAL_ITEM_DIRECTORY = 1,
-} OH_UdmfVirtualItemType;
+} OH_UDMF_VirtualItemType;
 
 /**
  * @brief 需要获取虚拟文件元数据时调用。
  *
- * 返回的节点必须由{@link OH_UdmfVirtualItem_CreateFile}创建，其所有权将转移给UDMF，回调返回后不得销毁该节点。
+ * 返回的节点必须由{@link OH_UDMF_CreateVirtualFileItem}创建，其所有权将转移给UDMF，回调返回后不得销毁该节点。
  *
- * @param context 通过{@link OH_UdmfVirtualFileInfo_Create}传入的用户上下文。
+ * @param context 通过{@link OH_UDMF_CreateVirtualFileInfo}传入的用户上下文。
  * @param id 请求的虚拟文件标识。
  * @return 成功时返回虚拟文件节点，失败时返回nullptr。
  * @since 26.1.0
  */
-typedef OH_UdmfVirtualItem* (*OH_UdmfVirtualFile_OnStat)(void* context, const char* id);
+typedef OH_UDMF_VirtualItem* (*OH_UDMF_VirtualFileOnStat)(void* context, const char* id);
 
 /**
  * @brief 需要读取虚拟文件数据时调用。
@@ -188,7 +188,7 @@ typedef OH_UdmfVirtualItem* (*OH_UdmfVirtualFile_OnStat)(void* context, const ch
  * 回调最多向<code>data</code>写入<code>length</code>字节，并通过<code>bytesRead</code>返回实际写入字节数。
  * 实际字节数可以小于<code>length</code>，也可以为零。
  *
- * @param context 通过{@link OH_UdmfVirtualFileInfo_Create}传入的用户上下文。
+ * @param context 通过{@link OH_UDMF_CreateVirtualFileInfo}传入的用户上下文。
  * @param id 请求的虚拟文件标识。
  * @param offset 读取偏移量，单位为字节。
  * @param length 最大读取长度。
@@ -201,13 +201,13 @@ typedef OH_UdmfVirtualItem* (*OH_UdmfVirtualFile_OnStat)(void* context, const ch
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-typedef int (*OH_UdmfVirtualFile_OnRead)(void* context, const char* id, int64_t offset, uint32_t length,
+typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t offset, uint32_t length,
     uint8_t* data, uint32_t* bytesRead);
 
 /**
  * @brief 取消虚拟文件操作时调用。
  *
- * @param context 通过{@link OH_UdmfVirtualFileInfo_Create}传入的用户上下文。
+ * @param context 通过{@link OH_UDMF_CreateVirtualFileInfo}传入的用户上下文。
  * @param idList 被取消的虚拟文件标识列表，该数组及其中的字符串仅在回调执行期间有效。
  * @param count <code>idList</code>中的标识数量。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
@@ -217,7 +217,7 @@ typedef int (*OH_UdmfVirtualFile_OnRead)(void* context, const char* id, int64_t 
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-typedef int (*OH_UdmfVirtualFile_OnCancel)(void* context, const char* const *idList, uint32_t count);
+typedef int (*OH_UDMF_VirtualFileOnCancel)(void* context, const char* const *idList, uint32_t count);
 
 /**
  * @brief 释放UDMF持有的用户上下文。
@@ -227,28 +227,28 @@ typedef int (*OH_UdmfVirtualFile_OnCancel)(void* context, const char* const *idL
  * @param context 待释放的用户上下文。
  * @since 26.1.0
  */
-typedef void (*OH_UdmfVirtualFile_Finalize)(void* context);
+typedef void (*OH_UDMF_VirtualFileFinalize)(void* context);
 
 /**
  * @brief 描述用于提供虚拟文件元数据和内容的回调。
  *
- * <code>structSize</code>必须设置为<code>sizeof(OH_UdmfVirtualFileCallbacks)</code>。
+ * <code>structSize</code>必须设置为<code>sizeof(OH_UDMF_VirtualFileCallbacks)</code>。
  * <code>onRead</code>为必选回调，<code>onStat</code>和<code>onCancel</code>为可选回调；所有文件必须预先声明大小。
  * 不需要取消通知时，将<code>onCancel</code>设置为nullptr。
  * 不同线程可能并发调用回调，回调不得无限期阻塞。
  *
  * @since 26.1.0
  */
-typedef struct OH_UdmfVirtualFileCallbacks {
+typedef struct OH_UDMF_VirtualFileCallbacks {
     /** 结构体大小。 */
     uint32_t structSize;
     /** 可选的元数据回调。 */
-    OH_UdmfVirtualFile_OnStat onStat;
+    OH_UDMF_VirtualFileOnStat onStat;
     /** 必选的内容读取回调。 */
-    OH_UdmfVirtualFile_OnRead onRead;
+    OH_UDMF_VirtualFileOnRead onRead;
     /** 可选的取消回调。为nullptr时，取消操作成功，不通知提供方。 */
-    OH_UdmfVirtualFile_OnCancel onCancel;
-} OH_UdmfVirtualFileCallbacks;
+    OH_UDMF_VirtualFileOnCancel onCancel;
+} OH_UDMF_VirtualFileCallbacks;
 
 /**
  * @brief 描述像素图类型的统一数据结构。
@@ -907,7 +907,7 @@ int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
 /**
  * @brief 创建必须显式设置文件大小的虚拟文件节点。
  *
- * 将节点添加到目录或创建虚拟文件信息前，必须调用{@link OH_UdmfVirtualItem_SetFileSize}设置文件大小。
+ * 将节点添加到目录或创建虚拟文件信息前，必须调用{@link OH_UDMF_SetVirtualFileSize}设置文件大小。
  * 大小为零表示空文件，未设置大小时不会通过其他方式推断文件大小。
  *
  * @param name 文件名，不得包含路径分隔符。
@@ -916,7 +916,7 @@ int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
  * @return 成功时返回创建的虚拟节点；参数无效或内存分配失败时返回nullptr。
  * @since 26.1.0
  */
-OH_UdmfVirtualItem* OH_UdmfVirtualItem_CreateFile(const char* name, const char* id, int64_t modifyTime);
+OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualFileItem(const char* name, const char* id, int64_t modifyTime);
 
 /**
  * @brief 创建虚拟目录节点。
@@ -926,7 +926,7 @@ OH_UdmfVirtualItem* OH_UdmfVirtualItem_CreateFile(const char* name, const char* 
  * @return 成功时返回创建的虚拟节点；参数无效或内存分配失败时返回nullptr。
  * @since 26.1.0
  */
-OH_UdmfVirtualItem* OH_UdmfVirtualItem_CreateDirectory(const char* name, int64_t modifyTime);
+OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualDirectoryItem(const char* name, int64_t modifyTime);
 
 /**
  * @brief 销毁虚拟节点。
@@ -934,7 +934,7 @@ OH_UdmfVirtualItem* OH_UdmfVirtualItem_CreateDirectory(const char* name, int64_t
  * @param item 待销毁的虚拟节点。
  * @since 26.1.0
  */
-void OH_UdmfVirtualItem_Destroy(OH_UdmfVirtualItem* item);
+void OH_UDMF_DestroyVirtualItem(OH_UDMF_VirtualItem* item);
 
 /**
  * @brief 设置虚拟文件节点的文件大小。
@@ -947,12 +947,12 @@ void OH_UdmfVirtualItem_Destroy(OH_UdmfVirtualItem* item);
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-int OH_UdmfVirtualItem_SetFileSize(OH_UdmfVirtualItem* item, int64_t size);
+int OH_UDMF_SetVirtualFileSize(OH_UDMF_VirtualItem* item, int64_t size);
 
 /**
  * @brief 在构建过程中清除虚拟文件节点必须设置的文件大小。
  *
- * 清除后，必须再次通过{@link OH_UdmfVirtualItem_SetFileSize}设置非负文件大小，才能将节点添加到目录或用于创建
+ * 清除后，必须再次通过{@link OH_UDMF_SetVirtualFileSize}设置非负文件大小，才能将节点添加到目录或用于创建
  * 虚拟文件信息；stat回调不能替代此步骤。
  *
  * @param item 虚拟文件节点。
@@ -962,7 +962,7 @@ int OH_UdmfVirtualItem_SetFileSize(OH_UdmfVirtualItem* item, int64_t size);
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-int OH_UdmfVirtualItem_ClearFileSize(OH_UdmfVirtualItem* item);
+int OH_UDMF_ClearVirtualFileSize(OH_UDMF_VirtualItem* item);
 
 /**
  * @brief 向虚拟目录添加子节点。
@@ -977,7 +977,7 @@ int OH_UdmfVirtualItem_ClearFileSize(OH_UdmfVirtualItem* item);
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-int OH_UdmfVirtualItem_AddChild(OH_UdmfVirtualItem* directory, const OH_UdmfVirtualItem* child);
+int OH_UDMF_AddVirtualItemChild(OH_UDMF_VirtualItem* directory, const OH_UDMF_VirtualItem* child);
 
 /**
  * @brief 创建虚拟文件信息。
@@ -992,8 +992,8 @@ int OH_UdmfVirtualItem_AddChild(OH_UdmfVirtualItem* directory, const OH_UdmfVirt
  * @return 成功时返回创建的虚拟文件信息；节点或回调无效、内存分配失败时返回nullptr。
  * @since 26.1.0
  */
-OH_UdmfVirtualFileInfo* OH_UdmfVirtualFileInfo_Create(const OH_UdmfVirtualItem* itemInfo,
-    const OH_UdmfVirtualFileCallbacks* callbacks, void* context, OH_UdmfVirtualFile_Finalize finalize);
+OH_UDMF_VirtualFileInfo* OH_UDMF_CreateVirtualFileInfo(const OH_UDMF_VirtualItem* itemInfo,
+    const OH_UDMF_VirtualFileCallbacks* callbacks, void* context, OH_UDMF_VirtualFileFinalize finalize);
 
 /**
  * @brief 销毁虚拟文件信息。
@@ -1003,7 +1003,7 @@ OH_UdmfVirtualFileInfo* OH_UdmfVirtualFileInfo_Create(const OH_UdmfVirtualItem* 
  * @param info 待销毁的虚拟文件信息。
  * @since 26.1.0
  */
-void OH_UdmfVirtualFileInfo_Destroy(OH_UdmfVirtualFileInfo* info);
+void OH_UDMF_DestroyVirtualFileInfo(OH_UDMF_VirtualFileInfo* info);
 
 /**
  * @brief 为文件Uri附加虚拟文件信息。
@@ -1016,7 +1016,7 @@ void OH_UdmfVirtualFileInfo_Destroy(OH_UdmfVirtualFileInfo* info);
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-int OH_UdsFileUri_SetVirtualEntry(OH_UdsFileUri* fileUri, const OH_UdmfVirtualFileInfo* info);
+int OH_UDMF_SetFileUriVirtualEntry(OH_UdsFileUri* fileUri, const OH_UDMF_VirtualFileInfo* info);
 
 /**
  * @brief 从文件Uri移除虚拟文件信息。
@@ -1028,7 +1028,7 @@ int OH_UdsFileUri_SetVirtualEntry(OH_UdsFileUri* fileUri, const OH_UdmfVirtualFi
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-int OH_UdsFileUri_ClearVirtualEntry(OH_UdsFileUri* fileUri);
+int OH_UDMF_ClearFileUriVirtualEntry(OH_UdsFileUri* fileUri);
 
 /**
  * @brief 创建像素图片类型{@link OH_UdsPixelMap}的实例对象以及指向它的指针。当不再需要使用指针时，请使用{@link OH_UdsPixelMap_Destroy}销毁实例对象，否则会导致内存泄漏。
