@@ -33,6 +33,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/progress.h>
  * @since 12
  */
 

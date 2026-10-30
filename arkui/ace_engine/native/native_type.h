@@ -161,8 +161,9 @@ typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
 
 /**
- * @brief Defines the text drag preview style in the selected state. It is applicable to scenarios where the preview
- * effect in selected state needs to be displayed during text dragging, improving user interaction experience.
+ * @brief Defines a text drag preview style in selected state. It applies to scenarios where the selected-state preview
+ * effect needs to be displayed during text dragging, improving the user's drag interaction experience.
+ *
  * @since 23
  */
 typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
@@ -2985,18 +2986,18 @@ OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperat
     ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Defines linear gradient options, which are used to describe the linear color gradient configuration of UI
- * components. You can set the gradient direction, angle, and color to implement flexible linear gradient effects,
- * improving the visual presentation capability of the UI. This is applicable to scenarios where a linear gradient
- * style needs to be applied to components.
+ * @brief Defines the linear gradient effect options, which describe the linear color gradient configuration of a UI
+ * component. It supports setting the gradient direction, angle, and color, helping you implement flexible linear
+ * gradient effects and improve the visual presentation of the UI. It is applicable to scenarios where a linear gradient
+ * style needs to be applied to a component.
  *
  * @since 26.0.0
  */
 typedef struct OH_ArkUI_LinearGradientOptions OH_ArkUI_LinearGradientOptions;
 
 /**
- * @brief Defines radial gradient options, which are applicable to scenarios where a radial gradient effect needs to
- * be implemented in UI components. This helps you enrich the visual hierarchy of the UI.
+ * @brief Defines the radial gradient options for implementing radial gradient effects in UI components, helping you
+ * enrich the visual hierarchy of the UI.
  *
  * @since 26.0.0
  */

@@ -26,12 +26,18 @@
 /**
  * @file styled_string.h
  *
- * @brief Defines the text style and layout manager for the component whose {@link type} is set to **ARKUI_NODE_TEXT**
- * on the native side.
+ * @brief Defines text styles and text layout managers for the component whose {@link ArkUI_NodeType} is
+ * **ARKUI_NODE_TEXT** on the native side. It provides rich text style settings, including font styles (text color,
+ * size, thickness, and style), text decoration lines, text shadows, baseline offsets, character spacing, line height,
+ * and line spacing, supports embedding of special content such as images, hyperlinks, and custom drawings, enables
+ * paragraph-level layout management, including alignment, indentation, and paragraph spacing, as well as allows text
+ * gesture interaction capabilities, such as tap, long-pressing, and touch events. It is applicable to scenarios that
+ * require rich text format display, complex text layout, mixed arrangement of text and images, and text interaction.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/styled_string.h>
  * @since 12
  */
 
@@ -50,7 +56,9 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines formatted string data objects supported by the text component.
+ * @brief Defines a styled string object supported by the text component, which is used for setting multiple style
+ * attributes for text content. It is suitable for scenarios where rich text needs to be built and managed on the
+ * native side.
  *
  * @since 12
  */
@@ -3453,7 +3461,8 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(
     const OH_ArkUI_TextEditorChangeEvent* event, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Defines the layout manager of text.
+ * @brief Defines a text layout manager object used to lay out text. It is suitable for scenarios that require precise
+ * control over text display and layout effects, helping you implement custom text layout.
  *
  * @since 22
  */

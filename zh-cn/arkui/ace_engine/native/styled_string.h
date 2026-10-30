@@ -25,11 +25,15 @@
 /**
  * @file styled_string.h
  *
- * @brief 在Native侧定义{@link ArkUI_NodeType}为ARKUI_NODE_TEXT的组件的文本样式和文本布局管理器。
+ * @brief 在Native侧定义{@link ArkUI_NodeType}为ARKUI_NODE_TEXT的组件的文本样式和文本布局管理器。提供丰富的文本样式设置能力，包括字
+ * 体样式（字体颜色、大小、粗细、风格）、文本装饰线、文本阴影、基线偏移、字符间距、行高、行间距等；支持图片、超链接、自定义绘制等特殊内
+ * 容嵌入；提供段落级别的布局管理，包括对齐方式、缩进、段落间距等；支持文本手势交互能力，如点击、长按、触摸事件。适用于需要丰富文本样式
+ * 展示、复杂文本布局、图文混排、文本交互等场景。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/styled_string.h>
  * @since 12
  */
 

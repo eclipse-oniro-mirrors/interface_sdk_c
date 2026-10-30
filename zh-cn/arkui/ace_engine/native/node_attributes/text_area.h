@@ -32,6 +32,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/text_area.h>
  * @since 12
  */
 

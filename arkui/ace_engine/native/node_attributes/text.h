@@ -34,6 +34,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/text.h>
  * @since 12
  */
 
@@ -105,11 +106,19 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Prioritize the <b>maxLines</b> settings. */
+    /** Prioritize the <b>maxLines</b> settings.When the text content exceeds the display area, the <b>maxLines</b>
+     * settings are met first, and the excess may be truncated or handled in other ways.
+     */
     ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST = 0,
-    /** Prioritize the <b>minFontSize</b> settings. */
+    /** Prioritize the <b>minFontSize</b> settings.When the text content exceeds the display area, the font size is
+     * reduced first to fit the height limit, ensuring the text is fully displayed. The font size is automatically
+     * adjusted within the allowed range.
+     */
     ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST,
-    /** Prioritize the layout constraint settings in terms of height. */
+    /** Prioritize the layout constraint settings in terms of height for strictly following the height setting of the
+     * layout constraint. The text height or font size is not automatically adjusted, and the excess may be truncated
+     * or handled in other ways.
+     */
     ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST
 } ArkUI_TextHeightAdaptivePolicy;
 
@@ -121,19 +130,20 @@ typedef enum {
 typedef enum {
     /** Phone Number.*/
     ARKUI_TEXT_DATA_DETECTOR_TYPE_PHONE_NUMBER = 0,
-    /** Link. */
+    /** URL. */
     ARKUI_TEXT_DATA_DETECTOR_TYPE_URL,
-    /** Mailbox. */
+    /** Email address. */
     ARKUI_TEXT_DATA_DETECTOR_TYPE_EMAIL,
     /** Address. */
     ARKUI_TEXT_DATA_DETECTOR_TYPE_ADDRESS
 } ArkUI_TextDataDetectorType;
 
 /**
- * @brief Defines the configuration for text entity detection. By setting the entity types to be detected (such as
- * phone numbers, URLs, emails, addresses, and dates), the corresponding entity detection feature is enabled in the
- * text component, and the detected entities are presented in an interactive format. This applies to scenarios such as
- * automatically recognizing contact information in chat messages and extracting links from documents.
+ * @brief Defines the configuration for text entity detection. By setting the entity types to be detected (such
+ * as phone numbers, URLs, emails, addresses, and dates), the corresponding entity detection feature is enabled
+ * in the text component, and the detected entities are presented in an interactive format. This applies to
+ * scenarios such as automatically recognizing contact information in chat messages and extracting links from
+ * documents.
  *
  * @since 24
  */
@@ -145,9 +155,9 @@ typedef struct OH_ArkUI_TextDataDetectorConfig OH_ArkUI_TextDataDetectorConfig;
  * @since 23
  */
 typedef enum {
-    /** Start marquee in any case. This is the default policy. */
+    /** The marquee scrolls continuously by default. */
     ARKUI_MARQUEESTARTPOLICY_DEFAULT = 0,
-    /** Start marquee only when get focus. */
+    /** The marquee starts scrolling when it has focus or when the mouse hovers over it. */
     ARKUI_MARQUEESTARTPOLICY_ONFOCUS = 1
 } ArkUI_MarqueeStartPolicy;
 
@@ -157,9 +167,9 @@ typedef enum {
  * @since 23
  */
 typedef enum {
-    /** Reset scroll position and restart scroll. */
+    /** Restarts the marquee from the start position after the attributes of the marquee component are updated. */
     ARKUI_MARQUEEUPDATEPOLICY_DEFAULT = 0,
-    /** Preserve scroll position, just change to new text. */
+    /** Resumes the marquee from the current position after the attributes of the marquee component are updated. */
     ARKUI_MARQUEEUPDATEPOLICY_PRESERVEPOSITION = 1
 } ArkUI_MarqueeUpdatePolicy;
 

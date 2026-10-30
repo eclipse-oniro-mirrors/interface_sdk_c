@@ -6260,7 +6260,7 @@ typedef enum {
      * @ingroup Text Input[文本输入]
      * @since 22
      */
-     NODE_TEXT_AREA_BAR_STATE = 8032,
+    NODE_TEXT_AREA_BAR_STATE = 8032,
 
     /**
      * @brief 开启选中词文本识别。
@@ -6297,7 +6297,7 @@ typedef enum {
      * @since 22
      *
      */
-     NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
+    NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
     /**
      * @brief 设置文本输入框的自定义键盘。支持属性设置、属性重置和属性获取接口。
@@ -9006,7 +9006,7 @@ typedef enum {
      * @ingroup Text Editor[富文本]
      * @since 26.0.0
      */
-     NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
+    NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
      * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置、属性重置和属性获取。
@@ -12685,12 +12685,12 @@ typedef struct {
 } ArkUI_NodeComponentEvent;
 
 /**
- * @brief Defines the string type parameter used by the component callback event.
+ * @brief 定义组件回调事件使用字符串参数的类型，用于在组件异步事件回调中传递字符串数据，适用于组件回调事件需要携带文本信息的场景。
  *
  * @since 12
  */
 typedef struct {
-    /** String. */
+    /** 组件回调事件中传递的字符串数据。 */
     const char* pStr;
 } ArkUI_StringAsyncEvent;
 

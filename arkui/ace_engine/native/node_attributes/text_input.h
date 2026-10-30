@@ -34,6 +34,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/text_input.h>
  * @since 12
  */
 
@@ -52,28 +53,53 @@ extern "C" {
  * @since 12
  */
 typedef enum {
-    /** Normal input mode. */
+    /** Normal input type with no special restrictions. */
     ARKUI_TEXTINPUT_TYPE_NORMAL = 0,
-    /** Number input mode. */
+    /** Numeric input type. */
     ARKUI_TEXTINPUT_TYPE_NUMBER = 2,
-    /** Phone number input mode. */
+    /** Phone number input type.<br>It supports input of digits, spaces, +, -, *, #, (, ), with no length limit. */
     ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER = 3,
-    /** Email address input mode. */
+    /** Email address input type.<br>It supports digits, letters, underscores, decimal points, !, #, $, %, &, ', *, +,
+     * -, /, =, ?, ^, `, \{, \|, \}, ~, and @ (only one @ character allowed). The email address format must follow the
+     * basic specification: the part before the @ character is the username, and the part after the @ character is the
+     * domain name.
+     */
     ARKUI_TEXTINPUT_TYPE_EMAIL = 5,
-    /** Password input mode. */
+    /** Password input type.<br>By default, the input text is briefly displayed and then changed to dots. Since API
+     * version 12, on PCs/2-in-1 devices, the input text is directly displayed as dots.<br>On TV devices, the eye icon
+     * is hidden by default at the end of the input box. On other devices, the eye icon is shown by default at the end
+     * of the input box.
+     */
     ARKUI_TEXTINPUT_TYPE_PASSWORD = 7,
-    /** Numeric password input mode. */
+    /** Numeric password input type.<br>By default, the input text is briefly displayed and then changed to dots. Since
+     * API version 12, on PCs/2-in-1 devices, the input text is directly displayed as dots.<br>On TV devices, the eye
+     * icon is hidden by default at the end of the input box. On other devices, the eye icon is shown by default at the
+     * end of the input box.
+     */
     ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD = 8,
-    /** Lock screen password input mode. */
+    /** Lock screen password input type.<br>It supports input of digits, letters, underscores, spaces, and special
+     * characters. The eye icon is shown at the end of the input box and the input text changes to dots by default.
+     * Since API version 12, on wearables, the input text is directly displayed as dots. The password input type does
+     * not support the underline style.
+     */
     ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,
-    /** Username input mode. */
+    /** Username input type with no special restrictions.<br>When Password Vault is enabled, usernames can be auto-saved
+     * and auto-filled.
+     */
     ARKUI_TEXTINPUT_TYPE_USER_NAME = 10,
-    /** New password input mode. */
+    /** New password input type.<br>By default, the input text is briefly displayed and then changed to dots. Since API
+     * version 12, on PCs/2-in-1 devices, the input text is directly displayed as dots.<br>On TV devices, the eye icon
+     * is hidden by default at the end of the input box. On other devices, the eye icon is shown by default at the end
+     * of the input box.
+     */
     ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11,
-    /** Number input mode with a decimal point. */
+    /** Number input type with a decimal point.<br>It supports digits and a decimal point (only one decimal point
+     * allowed), and does not support negative numbers (including negative integers and negative decimals).
+     */
     ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12,
     /**
-     * One time code input mode.
+     * Verification code input type with no special restrictions. In this type, the system input method is shown by
+     * default when the component gains focus.
      * @since 20
      */
     ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14
@@ -106,13 +132,16 @@ typedef enum {
     /** New password. Password Vault, when enabled, can automatically generate a new password. */
     ARKUI_TEXTINPUT_CONTENT_TYPE_NEW_PASSWORD,
     /** Full street address. The scenario-based autofill feature, when enabled, can automatically save and fill in full
-     *  street addresses. */
+     * street addresses.
+     */
     ARKUI_TEXTINPUT_CONTENT_TYPE_FULL_STREET_ADDRESS,
     /** House number. The scenario-based autofill feature, when enabled, can automatically save and fill in house
-     *  numbers. */
+     * numbers.
+     */
     ARKUI_TEXTINPUT_CONTENT_TYPE_HOUSE_NUMBER,
     /** District and county. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  districts and counties. */
+     * districts and counties.
+     */
     ARKUI_TEXTINPUT_CONTENT_TYPE_DISTRICT_ADDRESS,
     /** City. The scenario-based autofill feature, when enabled, can automatically save and fill in cities. */
     ARKUI_TEXTINPUT_CONTENT_TYPE_CITY_ADDRESS,
@@ -160,49 +189,45 @@ typedef enum {
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER,
     /**
-     *  Passport validity. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  passport validities.
+     * Passport validity period. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     * passport validity periods.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY,
     /**
-     *  Place of issue. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  place of issues.
+     * Passport place of issue. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     * the place of issue for passports.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT,
     /**
-     *  Tax organization. The scenario-based autofill feature, when enabled, can automatically save and fill in tax
-     *  organizations.
+     * Invoice title. The scenario-based autofill feature, when enabled, can automatically save and fill in invoice
+     * titles.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION,
     /**
-     *  Tax id. The scenario-based autofill feature, when enabled, can automatically save and fill in standard Tax ids.
+     * Tax ID. The scenario-based autofill feature, when enabled, can automatically save and fill in tax IDs.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID,
     /**
-     *  City name and state name or state code. The scenario-based autofill feature, when enabled, can automatically
-     *  save and fill in city names and state names or state codes.
+     * Location. The scenario-based autofill feature, when enabled, can automatically save and fill in locations.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE,
     /**
-     *  Flight number. The scenario-based autofill feature, when enabled, can automatically save and fill in flight
-     *  numbers.
+     * Flight number. Currently not supported for automatic saving and auto-filling.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER,
     /**
-     *  License number. The scenario-based autofill feature, when enabled, can automatically save and fill in license
-     *  numbers.
+     * Driver's license number. Currently not supported for automatic saving and auto-filling.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER,
     /**
-     *  License file number. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  license file numbers.
+     * Driver's license file number. Currently not supported for automatic saving and auto-filling.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER,
@@ -213,15 +238,13 @@ typedef enum {
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE,
     /**
-     *  Engine number. The scenario-based autofill feature, when enabled, can automatically save and fill in engine
-     *  numbers.
+     * Vehicle registration engine number. Currently not supported for automatic saving and auto-filling.
      * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER,
     /**
-     *  License chassis number. The scenario-based autofill feature, when enabled, can automatically save and fill in
-     *  license chassis numbers.
-     *  @since 18
+     * Chassis number. Auto-save and auto-fill are not yet supported.
+     * @since 18
      */
     ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER
 } ArkUI_TextInputContentType;
