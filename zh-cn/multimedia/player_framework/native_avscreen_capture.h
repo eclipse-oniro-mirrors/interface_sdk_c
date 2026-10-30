@@ -922,6 +922,19 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVS
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
     OH_AVScreenCapture_CaptureStrategy *strategy, bool enable);
 
+/**
+ * @brief 设置自动暂停屏幕内容采集的场景集合。<br>
+ * 当指定的场景发生时，系统将自动暂停屏幕内容采集。可调用{@link OH_AVScreenCapture_ResumeScreenCapture}接口恢复屏幕内容采集。
+ * 
+ * @param strategy 指向OH_AVScreenCapture_CaptureStrategy实例的指针。
+ * @param scenes 场景集合，使用{@link OH_AVScreenCapture_AutoPauseCaptureSceneEnum}中的枚举值按位或组合而成。<br>
+ * 若传入OH_CAPTURE_AUTO_PAUSE_SCENE_NONE，则系统不会自动暂停。
+ * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或参数scenes为无效值。
+ * @since 26.1.0
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForContentAutoPauseScenes(
+    OH_AVScreenCapture_CaptureStrategy *strategy, OH_AVScreenCapture_AutoPauseSceneSet scenes);
 #ifdef __cplusplus
 }
 #endif

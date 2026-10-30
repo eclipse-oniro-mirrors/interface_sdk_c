@@ -965,6 +965,29 @@ typedef void (*OH_AVScreenCapture_OnPrivacyProtect)(OH_AVScreenCapture* capture,
 */
 extern const char *OH_SCREEN_CAPTURE_CONTENT_RECT;
 
+/**
+ * @brief 屏幕录制自动暂停场景枚举。
+ * @since 26.1.0
+ */
+typedef enum OH_AVScreenCapture_AutoPauseCaptureSceneEnum {
+    /**
+     * @brief 默认值，表示在任何场景下都不进行自动暂停。
+     * @since 26.1.0
+     */
+    OH_CAPTURE_AUTO_PAUSE_SCENE_NONE = 0,
+
+    /**
+     * @brief 屏幕折叠状态发生变化的场景。
+     * @since 26.1.0
+     */
+    OH_CAPTURE_AUTO_PAUSE_SCENE_SCREEN_FOLD_STATE_CHANGE = 1 << 0,
+};
+
+/**
+ * @brief 屏幕录制自动暂停场景条件集声明。
+ * @since 26.1.0
+ */
+typedef uint32_t OH_AVScreenCapture_AutoPauseSceneSet;
 #ifdef __cplusplus
 }
 #endif
