@@ -1,0 +1,999 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openharmony.io/schemas/api-metadata/c-api-metadata-1.0.0.json",
+  "title": "OpenHarmony C API metadata",
+  "description": "Structured metadata for C API declarations. The format supports .h generation, Doxygen comparison, error-code validation, and semantic checks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "language",
+    "source",
+    "header",
+    "apis"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "language": {
+      "const": "c"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "header": {
+      "$ref": "#/$defs/headerInfo"
+    },
+    "common": {
+      "$ref": "#/$defs/commonAttributes"
+    },
+    "apis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/apiObject"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{7,40}$"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "headerInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "library": {
+          "type": "string",
+          "minLength": 1
+        },
+        "syscap": {
+          "type": "string",
+          "minLength": 1
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "includes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "macroGuard": {
+          "type": "string",
+          "minLength": 1
+        },
+        "moduleName": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "commonAttributes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "accessLevel": {
+          "enum": [
+            "public",
+            "system",
+            "inner"
+          ]
+        },
+        "since": {
+          "type": "string",
+          "minLength": 1
+        },
+        "syscap": {
+          "type": "string",
+          "minLength": 1
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "library": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributionParts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "apiObject": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "kind",
+        "id",
+        "name",
+        "qualifiedName",
+        "declaration",
+        "filePath",
+        "startLine",
+        "endLine"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_][A-Za-z0-9_.-]*$"
+        },
+        "parentId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z0-9_][A-Za-z0-9_.-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qualifiedName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declaration": {
+          "type": "string",
+          "minLength": 1
+        },
+        "filePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "endLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "language": {
+          "const": "c"
+        },
+        "changeKind": {
+          "enum": [
+            "added",
+            "modified",
+            "removed",
+            "deprecated"
+          ]
+        },
+        "isExported": {
+          "type": "boolean"
+        },
+        "accessLevel": {
+          "enum": [
+            "public",
+            "system",
+            "inner"
+          ]
+        },
+        "kit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "library": {
+          "type": "string",
+          "minLength": 1
+        },
+        "since": {
+          "type": "string",
+          "minLength": 1
+        },
+        "syscap": {
+          "type": "string",
+          "minLength": 1
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "useInstead": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "deviceSupport": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/deviceSupport"
+          }
+        },
+        "deviceDifferences": {
+          "$ref": "#/$defs/deviceDifferences"
+        },
+        "specRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(AC|BR|SC)-[A-Za-z0-9.-]+$"
+          }
+        },
+        "confirmation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/confirmation"
+          }
+        },
+        "attributionParts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/functionKind"
+            },
+            {
+              "$ref": "#/$defs/structKind"
+            },
+            {
+              "$ref": "#/$defs/enumKind"
+            },
+            {
+              "$ref": "#/$defs/enumMemberKind"
+            },
+            {
+              "$ref": "#/$defs/typedefKind"
+            },
+            {
+              "$ref": "#/$defs/callbackKind"
+            },
+            {
+              "$ref": "#/$defs/macroKind"
+            },
+            {
+              "$ref": "#/$defs/variableKind"
+            },
+            {
+              "$ref": "#/$defs/unionKind"
+            }
+          ]
+        }
+      ]
+    },
+    "functionKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "parameters",
+        "returnType"
+      ],
+      "properties": {
+        "kind": {
+          "const": "function"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cParameter"
+          }
+        },
+        "returnType": {
+          "$ref": "#/$defs/cReturnType"
+        },
+        "errorCodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/errorCode"
+          }
+        },
+        "isVariadic": {
+          "type": "boolean"
+        },
+        "callingConvention": {
+          "enum": [
+            "cdecl",
+            "stdcall",
+            "other"
+          ]
+        },
+        "memoryOwnership": {
+          "$ref": "#/$defs/memoryOwnership"
+        },
+        "threadSafety": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "structKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "isOpaque"
+      ],
+      "properties": {
+        "kind": {
+          "const": "struct"
+        },
+        "isOpaque": {
+          "type": "boolean"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cField"
+          }
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "alignment": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "enumKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "underlyingType",
+        "members"
+      ],
+      "properties": {
+        "kind": {
+          "const": "enum"
+        },
+        "underlyingType": {
+          "enum": [
+            "int",
+            "unsigned-int",
+            "uint32",
+            "int32",
+            "other"
+          ]
+        },
+        "isFlags": {
+          "type": "boolean"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "enumMemberKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "value",
+        "valueType",
+        "ownerEnum"
+      ],
+      "properties": {
+        "kind": {
+          "const": "enumMember"
+        },
+        "value": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "initializer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valueType": {
+          "enum": [
+            "integer",
+            "string"
+          ]
+        },
+        "ownerEnum": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "typedefKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "aliasedType",
+        "typedefKind"
+      ],
+      "properties": {
+        "kind": {
+          "const": "typedef"
+        },
+        "aliasedType": {
+          "$ref": "#/$defs/cType"
+        },
+        "typedefKind": {
+          "enum": [
+            "primitive",
+            "pointer",
+            "struct",
+            "enum",
+            "union",
+            "function-pointer",
+            "array",
+            "other"
+          ]
+        },
+        "targetApi": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "callbackKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "parameters",
+        "returnType"
+      ],
+      "properties": {
+        "kind": {
+          "const": "callback"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cParameter"
+          }
+        },
+        "returnType": {
+          "$ref": "#/$defs/cReturnType"
+        },
+        "callingConvention": {
+          "enum": [
+            "cdecl",
+            "stdcall",
+            "other"
+          ]
+        }
+      }
+    },
+    "macroKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "expression"
+      ],
+      "properties": {
+        "kind": {
+          "const": "macro"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cParameter"
+          }
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1
+        },
+        "isFunctionLike": {
+          "type": "boolean"
+        }
+      }
+    },
+    "variableKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "cType",
+        "isConst"
+      ],
+      "properties": {
+        "kind": {
+          "const": "variable"
+        },
+        "cType": {
+          "$ref": "#/$defs/cType"
+        },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "initializer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "isConst": {
+          "type": "boolean"
+        },
+        "linkage": {
+          "enum": [
+            "external",
+            "internal",
+            "none"
+          ]
+        }
+      }
+    },
+    "cType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "primitive",
+            "pointer",
+            "array",
+            "struct",
+            "enum",
+            "union",
+            "function-pointer",
+            "void",
+            "other"
+          ]
+        },
+        "isConst": {
+          "type": "boolean"
+        },
+        "isPointer": {
+          "type": "boolean"
+        },
+        "pointerDepth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pointee": {
+          "$ref": "#/$defs/cType"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "arraySize": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "elementType": {
+          "$ref": "#/$defs/cType"
+        },
+        "description": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "cParameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "cType",
+        "direction"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cType": {
+          "$ref": "#/$defs/cType"
+        },
+        "direction": {
+          "enum": [
+            "input",
+            "output",
+            "input-output"
+          ]
+        },
+        "isPointer": {
+          "type": "boolean"
+        },
+        "isConst": {
+          "type": "boolean"
+        },
+        "isNullable": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "description": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/localizedText"
+          }
+        },
+        "memoryOwnership": {
+          "$ref": "#/$defs/memoryOwnership"
+        }
+      }
+    },
+    "cField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "cType"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cType": {
+          "$ref": "#/$defs/cType"
+        },
+        "description": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/localizedText"
+          }
+        }
+      }
+    },
+    "cReturnType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "semantic"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "semantic": {
+          "enum": [
+            "void",
+            "primitive",
+            "error-code",
+            "pointer",
+            "handle",
+            "boolean",
+            "other"
+          ]
+        },
+        "isConst": {
+          "type": "boolean"
+        },
+        "isPointer": {
+          "type": "boolean"
+        },
+        "pointee": {
+          "$ref": "#/$defs/cType"
+        },
+        "description": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "memoryOwnership": {
+          "$ref": "#/$defs/memoryOwnership"
+        }
+      }
+    },
+    "memoryOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allocatedBy": {
+          "enum": [
+            "caller",
+            "callee",
+            "system",
+            "none"
+          ]
+        },
+        "releasedBy": {
+          "enum": [
+            "caller",
+            "callee",
+            "system",
+            "none"
+          ]
+        },
+        "releaseFunction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lifetime": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "errorCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "constant",
+        "condition"
+      ],
+      "properties": {
+        "constant": {
+          "type": "string",
+          "minLength": 1
+        },
+        "code": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "handling": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "en",
+        "zh"
+      ],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zh": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "deviceSupport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deviceModelName",
+        "apiLevel"
+      ],
+      "properties": {
+        "deviceModelName": {
+          "enum": [
+            "phone",
+            "tablet",
+            "pc",
+            "2in1",
+            "wearable",
+            "liteWearable",
+            "tv",
+            "car",
+            "default"
+          ]
+        },
+        "deviceModelId": {
+          "type": "integer"
+        },
+        "apiLevel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "closedApiLevel": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "deviceDifferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "items"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/deviceDifference"
+          }
+        }
+      }
+    },
+    "deviceDifference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deviceModelName",
+        "diffPerformance",
+        "diffReason",
+        "diffDescription"
+      ],
+      "properties": {
+        "deviceModelName": {
+          "enum": [
+            "phone",
+            "tablet",
+            "pc",
+            "2in1",
+            "wearable",
+            "liteWearable",
+            "tv",
+            "car",
+            "default"
+          ]
+        },
+        "deviceModelId": {
+          "type": "integer"
+        },
+        "diffPerformance": {
+          "enum": [
+            "IMPLEMENT_CONSISTENT",
+            "IMPLEMENT_DIFF",
+            "RETURN_801_ERROR",
+            "RETURN_BUSINESS_ERROR",
+            "NO_RESPONSE",
+            "RETURN_DEFAULT",
+            "RETURN_EMPTY",
+            "OTHER"
+          ]
+        },
+        "diffPerformanceDesc": {
+          "type": "string"
+        },
+        "diffReason": {
+          "enum": [
+            "产品业务诉求",
+            "硬件差异导致",
+            "芯片差异导致",
+            "其他",
+            "无差异"
+          ]
+        },
+        "diffDescription": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "confirmedBy"
+      ],
+      "properties": {
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confirmedBy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "unionKind": {
+      "type": "object",
+      "required": [
+        "kind",
+        "members"
+      ],
+      "properties": {
+        "kind": {
+          "const": "union"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cField"
+          }
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "alignment": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}
