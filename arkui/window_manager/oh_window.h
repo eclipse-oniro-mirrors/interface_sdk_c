@@ -464,9 +464,10 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
 /**
  * @brief Get the total time for this frame took to render and be issued to the display subsystem.
  *
- * @param metrics Frame metrics data object.
+ * @param metrics Frame metrics data object. It must not be NULL.
  * @param duration This parameter is the return value of the function,
- *     indicating the total time for this frame took to render and be issued to the display subsystem, in nanoseconds.
+ *     indicating the total time for this frame took to render and be issued to the display subsystem,
+ *     in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
@@ -479,9 +480,9 @@ int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
 /**
  * @brief Get the time for elapsed issuing animation callbacks in one frame.
  *
- * @param metrics Frame metrics data object.
+ * @param metrics Frame metrics data object. It must not be NULL.
  * @param duration This parameter is the return value of the function,
- *     indicating the time for elapsed issuing animation callbacks in one frame, in nanoseconds.
+ *     indicating the time for elapsed issuing animation callbacks in one frame, in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
@@ -494,9 +495,9 @@ int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
 /**
  * @brief Get the intended start point for the frame.
  *
- * @param metrics Frame metrics data object.
+ * @param metrics Frame metrics data object. It must not be NULL.
  * @param timestamp This parameter is the return value of the function,
- *     indicating the the intended start point for the frame, in nanoseconds.
+ *     indicating the intended start point for the frame, in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
