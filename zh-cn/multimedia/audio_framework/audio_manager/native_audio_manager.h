@@ -79,7 +79,7 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager);
  * @brief 获取音频场景。
  * <br>音频场景主要用于表示音频通话相关的系统状态，调用者可通过音频场景识别系统是否处于语音通话或通话响铃状态。
  *
- * @param audioManager the {@link OH_AudioManager} handle received from {@link OH_GetAudioManager}.
+ * @param manager [in] 指向通过{@link OH_GetAudioManager}获取的音频管理器实例。
  * @param scene [out] 用于接收获取的音频场景。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS} 函数执行成功。</li>
