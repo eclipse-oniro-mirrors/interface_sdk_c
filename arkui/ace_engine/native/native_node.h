@@ -4519,7 +4519,7 @@ typedef enum {
      * @ingroup Text Display
      * @since 26.0.0
      */
- 	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
+    NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
 
     /**
      * @brief Whether to enable leading punctuation compression. This attribute can be set, reset, and obtained as
@@ -5628,7 +5628,8 @@ typedef enum {
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].u32: foreground color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * <li>.value[0].u32: foreground color, in 0xARGB format. For example, 0xFFFF0000 indicates red.Default value: The
+     * color follows the theme color.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
@@ -6547,7 +6548,7 @@ typedef enum {
      * @ingroup Text Input
      * @since 26.0.0
      */
- 	  NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
+    NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
 
     /**
      * @brief Whether to enable leading punctuation compression of a text line.
@@ -7420,7 +7421,7 @@ typedef enum {
      * @ingroup Text Input
      * @since 22
      */
-     NODE_TEXT_AREA_BAR_STATE = 8032,
+    NODE_TEXT_AREA_BAR_STATE = 8032,
 
     /**
      * @brief Whether to enable entity recognition for selected text, supporting the recognition of entity
@@ -7461,7 +7462,7 @@ typedef enum {
      * @ingroup Text Input
      * @since 22
      */
-     NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
+    NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
     /**
      * @brief Custom keyboard of the text box. This attribute can be set, reset, and obtained as required through
@@ -7933,12 +7934,14 @@ typedef enum {
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].f32: current value of the progress indicator.</li>
+     * <li>.value[0].f32: current value of the progress indicator.The value range is [0, **total**]. The default value
+     * is **0**. If the value is out of range, it is automatically corrected to the boundary value in the valid range.
+     * </li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].f32: current value of the progress indicator.</li>
+     * <li>.value[0].f32: Current value of the progress indicator. The value range is [0, **total**]. The default value is **0**.</li>
      * </ul>
      *
      * @ingroup Information Display
@@ -7950,12 +7953,12 @@ typedef enum {
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].f32: total value of the progress indicator.</li>
+     * <li>.value[0].f32: Total value of the progress indicator. The value range is (0, +∞). The default value is **100**. The value must be greater than 0. The setting does not take effect if a value less than or equal to 0 is passed.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].f32: total value of the progress indicator.</li>
+     * <li>.value[0].f32: Total value of the progress indicator. The value range is (0, +∞). The default value is **100**.</li>
      * </ul>
      *
      * @ingroup Information Display
@@ -7983,13 +7986,13 @@ typedef enum {
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.
+     * <li>.value[0].i32:  Type of the progress indicator. The value is an enumerated value of {@link ArkUI_ProgressType}.
      * The default value is <b>ARKUI_PROGRESS_TYPE_LINEAR</b>.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.</li>
+     * <li>.value[0].i32: Type of the progress indicator.</li>
      * </ul>
      *
      * @ingroup Information Display
@@ -10464,7 +10467,7 @@ typedef enum {
      * @ingroup Text Editor
      * @since 26.0.0
      */
-     NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
+    NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
      * @brief Whether to enable horizontal scrolling for the **TextEditor** component when the text width exceeds the
@@ -15305,9 +15308,9 @@ typedef struct {
 } ArkUI_NodeComponentEvent;
 
 /**
- * @brief Defines the type of string parameters used in component callback events. This struct is used to pass string
- * data in the asynchronous event callback of a component. It is applicable to scenarios where the component callback
- * event needs to carry text information.
+ * @brief Defines the string type parameter used by the component callback event, which is used to pass string data in 
+ * the asynchronous event callback of a component. It applies to scenarios where a component callback event needs to 
+ * carry text information.
  *
  * @since 12
  */
@@ -15317,19 +15320,24 @@ typedef struct {
 } ArkUI_StringAsyncEvent;
 
 /**
- * @brief Defines a text change event, which is used to listen to and handle text change events in text input
- * scenarios. This struct contains the text content, extended information, and numeric parameters. It allows you to
- * obtain text change data in real time, making it suitable for scenarios such as listening to text box content,
- * real-time search, and word count.
+ * @brief Defines a text change event, which is used to listen for and handle text changes in text input scenarios. 
+ * This struct contains the text content, extended information, and numeric parameters, allowing you to obtain text 
+ * change data in real time. It applies to scenarios such as input box content monitoring, real-time search, and 
+ * character count.
  *
  * @since 15
  */
 typedef struct {
-    /** String data */
+    /** Pointer to the text content string in the text change event. */
     const char* pStr;
-    /** Extended string data */
+
+    /** Pointer to the extended string in the text change event, used to store additional text information. */
     const char* pExtendStr;
-    /** Numeric data */
+
+    /**
+     * Numeric parameter value of the event, used to record the numeric information in the text change event.
+     * The value range is [-2147483648, 2147483647].
+     */
     int32_t number;
 } ArkUI_TextChangeEvent;
 

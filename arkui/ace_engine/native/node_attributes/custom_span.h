@@ -34,6 +34,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/custom_span.h>
  * @since 12
  */
 
@@ -72,7 +73,15 @@ typedef struct ArkUI_CustomSpanMetrics ArkUI_CustomSpanMetrics;
 typedef struct ArkUI_CustomSpanDrawInfo ArkUI_CustomSpanDrawInfo;
 
 /**
- * @brief Creates measurement information for a custom span.
+ * @brief Creates measurement information for a custom span.> **NOTE**
+ * >
+ * > - This API must be used in pair with **OH_ArkUI_CustomSpanMeasureInfo_Dispose()**.
+ * >
+ * > - Call flow: call **OH_ArkUI_CustomSpanMeasureInfo_Create()** > use the **info** object > call
+ * **OH_ArkUI_CustomSpanMeasureInfo_Dispose()** to release resources.
+ * >
+ * > - After the use, you must call OH_ArkUI_CustomSpanMeasureInfo_Dispose() to release memory. Otherwise it will cause
+ * a resource leak.
  *
  * @return Pointer to the **ArkUI_CustomSpanMeasureInfo** instance. It is used to provide measurement data of the
  *     component in the measurement callback of the custom span.
@@ -82,7 +91,14 @@ typedef struct ArkUI_CustomSpanDrawInfo ArkUI_CustomSpanDrawInfo;
 ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
 
 /**
- * @brief Disposes of measurement information of a custom span.
+ * @brief Disposes of measurement information of a custom span.> **NOTE**
+ * >
+ * > - This API must be used in pair with **OH_ArkUI_CustomSpanMeasureInfo_Create()**.
+ * >
+ * > - This API is only used to dispose of the measurement information object created by the
+ * **OH_ArkUI_CustomSpanMeasureInfo_Create()** API.
+ * >
+ * > - Ensure the object is no longer needed before this API is called. The object is unavailable after the call.
  *
  * @param info Pointer to the measurement information of a custom span. It is used to pass the measurement information
  *     object to dispose of. The parameter cannot be null; otherwise, it will cause parameter verification failure. The
@@ -94,7 +110,13 @@ void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
 /**
  * @brief Obtains the font size of the parent text node of a custom span. In the measurement callback of a custom span,
  * the layout size of the custom component can be calculated based on the font size of the parent text node. This API
- * is used to implement precise typesetting in scenarios such as layout of text and images and emoji embedding.
+ * is used to implement precise typesetting in scenarios such as layout of text and images and emoji
+ * embedding.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanMeasureInfo_Create()** to create a measurement information object.
+ * >
+ * > - The **info** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanMeasureInfo_Create()**
+ * API.
  *
  * @param info Pointer to the measurement information of a custom span. This parameter cannot be null; otherwise, it
  *     will cause parameter verification failure.
@@ -105,7 +127,15 @@ void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
 float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* info);
 
 /**
- * @brief Creates measurement metrics for a custom span.
+ * @brief Creates measurement metrics for a custom span.> **NOTE**
+ * >
+ * > - This API must be used in pair with **OH_ArkUI_CustomSpanMetrics_Dispose()**.
+ * >
+ * > - Call flow: call **OH_ArkUI_CustomSpanMetrics_Create()** > (optional) set the width and height > use the
+ * **metrics** object > call **OH_ArkUI_CustomSpanMetrics_Dispose()** to release resources.
+ * >
+ * > - After use, you must call **OH_ArkUI_CustomSpanMetrics_Dispose()** to release memory. Otherwise it will cause a
+ * resource leak.
  *
  * @return Pointer to the **ArkUI_CustomSpanMetrics** instance. It is used to describe layout information such as the
  *     width and height of a custom span.
@@ -115,7 +145,14 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* in
 ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
 
 /**
- * @brief Disposes of measurement metrics of a custom span.
+ * @brief Disposes of measurement metrics of a custom span.> **NOTE**
+ * >
+ * > - This API must be used in pair with **OH_ArkUI_CustomSpanMetrics_Create()**.
+ * >
+ * > - This API is only used to dispose of the measurement metric object created by the
+ * **OH_ArkUI_CustomSpanMetrics_Create()** API.
+ * >
+ * > - Ensure the object is no longer needed before this API is called. The object is unavailable after the call.
  *
  * @param metrics Pointer to the **CustomSpanMetrics** instance. It is used to pass the measurement metric object to
  *     dispose of. The parameter cannot be null; otherwise, it will cause parameter verification failure. The object
@@ -127,7 +164,12 @@ void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
 /**
  * @brief Sets the width for a custom span. In text and image layout scenarios, you need to set an appropriate width
  * for embedded images or emojis to match the text line height. In document applications, you may need to set a fixed
- * width for custom marker elements.
+ * width for custom marker elements.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanMetrics_Create()** to create the measurement metric object.
+ * >
+ * > - The **metrics** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanMetrics_Create()**
+ * API.
  *
  * @param metrics Pointer to the **CustomSpanMetrics** instance. It is used to pass the measurement metric object whose
  *     width needs to be set. The parameter cannot be null; otherwise, parameter validation fails.
@@ -145,7 +187,12 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, fl
 /**
  * @brief Sets the height for a custom span. In emoji embedding scenarios, you need to set an appropriate height based
  * on the emoji size to maintain alignment with the text. In text and image layout scenarios, you need to set a height
- * for embedded elements that matches the text line height.
+ * for embedded elements that matches the text line height.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanMetrics_Create()** to create the measurement metric object.
+ * >
+ * > - The **metrics** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanMetrics_Create()**
+ * API.
  *
  * @param metrics Pointer to the **CustomSpanMetrics** instance. It is used to pass the measurement metric object whose
  *     height needs to be set. The parameter cannot be null; otherwise, it will cause parameter verification failure.
@@ -162,7 +209,15 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, fl
 int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, float height);
 
 /**
- * @brief Creates drawing information for a custom span.
+ * @brief Creates drawing information for a custom span.> **NOTE**
+ * >
+ * > - This API must be used in pair with **OH_ArkUI_CustomSpanDrawInfo_Dispose()**.
+ * >
+ * > - Call flow: call **OH_ArkUI_CustomSpanDrawInfo_Create()** > use the **info** object > call
+ * **OH_ArkUI_CustomSpanDrawInfo_Dispose()** to release resources.
+ * >
+ * > - After use, you must call **OH_ArkUI_CustomSpanDrawInfo_Dispose()** to release memory. Otherwise it will cause a
+ * resource leak.
  *
  * @return Pointer to the **ArkUI_CustomSpanDrawInfo** instance, indicating the drawing information of the custom span.
  *     <br>If a null pointer is returned, the memory may be insufficient.
@@ -171,7 +226,14 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, f
 ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
 
 /**
- * @brief Disposes of drawing information for a custom span.
+ * @brief Disposes of drawing information for a custom span.> **NOTE**
+ * >
+ * > - This API must be used in pair with **OH_ArkUI_CustomSpanDrawInfo_Create()**.
+ * >
+ * > - This API is used only to dispose of the drawing information object created by the
+ * **OH_ArkUI_CustomSpanDrawInfo_Create()** API.
+ * >
+ * > - Ensure the object is no longer needed before this API is called. The object is unavailable after the call.
  *
  * @param info Pointer to the drawing information of a custom span. It is used to pass the drawing information object
  *     to dispose of. The parameter cannot be null, otherwise it will cause parameter verification failure. The object
@@ -183,7 +245,12 @@ void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
 /**
  * @brief Obtains the x-axis offset of the custom span relative to the mounted component. In the custom drawing
  * callback, you need to determine the drawing start position based on the offset value. This API is used to implement
- * precise drawing in scenarios such as emoji embedding and layout of text and images.
+ * precise drawing in scenarios such as emoji embedding and layout of text and images.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanDrawInfo_Create()** to create the drawing information object.
+ * >
+ * > - The **info** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanDrawInfo_Create()**
+ * API.
  *
  * @param info Pointer to the drawing information of a custom span. It is used to pass the drawing information object
  *     for which the x-axis offset value needs to be obtained. The parameter cannot be null; otherwise, parameter
@@ -197,7 +264,12 @@ float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
 /**
  * @brief Obtains the top margin of the custom span relative to the mounted component. In custom drawing, you need to
  * determine the vertical start position of the drawing area based on the top margin. This API is used for precise
- * typesetting in scenarios such as rich text editors and document applications.
+ * typesetting in scenarios such as rich text editors and document applications.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanDrawInfo_Create()** to create the drawing information object.
+ * >
+ * > - The **info** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanDrawInfo_Create()**
+ * API.
  *
  * @param info Pointer to the drawing information of a custom span. It is used to pass the drawing information object
  *     for which the top margin needs to be obtained. The parameter cannot be null; otherwise, parameter verification
@@ -211,7 +283,12 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
 /**
  * @brief Obtains the bottom margin of the custom span relative to the mounted component. In custom drawing, you need
  * to calculate the height range of the drawing area by combining the top margin and bottom margin. This API is used
- * for precise layout in scenarios such as layout of text and images and emoji embedding.
+ * for precise layout in scenarios such as layout of text and images and emoji embedding.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanDrawInfo_Create()** to create the drawing information object.
+ * >
+ * > - The **info** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanDrawInfo_Create()**
+ * API.
  *
  * @param info Pointer to the drawing information of a custom span. It is used to pass the drawing information object
  *     whose bottom margin needs to be obtained. The parameter cannot be null; otherwise, parameter verification will
@@ -225,7 +302,12 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
 /**
  * @brief Obtains the baseline offset of the custom span relative to the mounted component. In the drawing callback of
  * a custom span, use this API to obtain the baseline offset for text alignment and typesetting, achieving precise
- * drawing effects in scenarios such as rich text editors and layout of text and images.
+ * drawing effects in scenarios such as rich text editors and layout of text and images.> **NOTE**
+ * >
+ * > - You must first call **OH_ArkUI_CustomSpanDrawInfo_Create()** to create the drawing information object.
+ * >
+ * > - The **info** parameter must be a valid object pointer returned by the **OH_ArkUI_CustomSpanDrawInfo_Create()**
+ * API.
  *
  * @param info Pointer to the drawing information of a custom span. It is used to pass the drawing information object
  *     for which the baseline offset needs to be obtained. The parameter cannot be empty; otherwise, parameter

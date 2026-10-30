@@ -32,6 +32,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/text.h>
  * @since 12
  */
 
@@ -204,9 +205,11 @@ typedef enum {
 typedef struct ArkUI_TextMarqueeOptions ArkUI_TextMarqueeOptions;
 
 /**
- * @brief 定义文本组件的控制器，用于在Native侧对文本组件进行控制和交互。可通过{@link OH_ArkUI_TextController_Create}创建控制器对象，创建后必须在使用完毕后调用
- * {@link OH_ArkUI_TextController_Destroy}接口销毁对象以释放资源，二者必须成对使用，否则会导致内存泄漏。创建控制器后，可使用
- * {@link OH_ArkUI_TextController_SetStyledString}等接口设置文本组件的属性字符串，实现对文本内容的动态管理和样式控制。适用于需要在Native层操作文本组件的场景。
+ * @brief 定义文本组件的控制器，用于在Native侧对文本组件进行控制和交互。
+ *        可通过{@link OH_ArkUI_TextController_Create}创建控制器对象，创建后必须在使用完毕后调用{@link OH_ArkUI_TextController_Destroy}
+ *        接口销毁对象以释放资源，二者必须成对使用，否则会导致内存泄漏。
+ *        创建控制器后，可使用{@link OH_ArkUI_TextController_SetStyledString}等接口设置文本组件的属性字符串，
+ *        实现对文本内容的动态管理和样式控制。适用于需要在Native层操作文本组件的场景。
  *
  * @since 26.0.0
  */
@@ -226,10 +229,10 @@ typedef struct OH_ArkUI_TextController OH_ArkUI_TextController;
 typedef struct OH_ArkUI_FontWeightConfigs OH_ArkUI_FontWeightConfigs;
 
 /**
- * @brief 定义文本的字体配置，当前支持通过相关接口设置和获取字体粗细配置，适用于需要自定义字体粗细显示效果的场景。可以通过{@link OH_ArkUI_FontConfigs_Create}接口创建字体配置对象，通过
- * {@link OH_ArkUI_FontConfigs_Destroy}接口销毁字体配置对象。配置创建后，可通过以下接口进行设置和查询：通过
- * {@link OH_ArkUI_FontConfigs_SetFontWeightConfigs}接口设置字体粗细配置，通过{@link OH_ArkUI_FontConfigs_GetFontWeightConfigs}
- * 接口获取字体粗细配置。
+ * @brief 定义文本的字体配置，当前支持通过相关接口设置和获取字体粗细配置，适用于需要自定义字体粗细显示效果的场景。
+ *        可以通过{@link OH_ArkUI_FontConfigs_Create}接口创建字体配置对象，通过{@link OH_ArkUI_FontConfigs_Destroy}接口销毁字体配置对象。
+ *        配置创建后通过{@link OH_ArkUI_FontConfigs_SetFontWeightConfigs}接口设置字体粗细配置，
+ *        通过{@link OH_ArkUI_FontConfigs_GetFontWeightConfigs}接口获取字体粗细配置。
  *
  * @since 24
  */
@@ -244,7 +247,7 @@ typedef struct OH_ArkUI_FontConfigs OH_ArkUI_FontConfigs;
 ArkUI_TextMarqueeOptions* OH_ArkUI_TextMarqueeOptions_Create();
 
 /**
- * @brief 销毁文本跑马灯模式配置项对象。与{@link OH_ArkUI_TextMarqueeOptions_Create}成对使用，否则会导致内存泄漏。
+ * @brief 销毁文本跑马灯模式配置项指针。与{@link OH_ArkUI_TextMarqueeOptions_Create}成对使用，否则会导致内存泄漏。
  *
  * @param option 需要销毁的文本跑马灯模式配置项对象指针。
  * @since 23
@@ -291,7 +294,7 @@ float OH_ArkUI_TextMarqueeOptions_GetStep(ArkUI_TextMarqueeOptions* option);
  * @brief 设置文本跑马灯模式配置项的首尾间距。
  *
  * @param option 文本跑马灯模式配置项。
- * @param spacing 首尾间距。单位：vp。取值范围：[0, +∞)，小于0时取默认值48.0vp。默认值：48.0vp。设置后，跑马灯滚动一轮结束时，首尾文字之间的间隔距离为该间距值。建议根据显示区域宽度设置。
+ * @param spacing 首尾间距。单位：vp。取值范围：[0, +∞)，超出取值范围时取48.0vp。默认值：48.0vp。设置后，跑马灯滚动一轮结束时，首尾文字之间的间隔距离为该间距值。建议根据显示区域宽度设置。
  * @since 23
  */
 void OH_ArkUI_TextMarqueeOptions_SetSpacing(ArkUI_TextMarqueeOptions* option, float spacing);
@@ -421,8 +424,8 @@ ArkUI_MarqueeUpdatePolicy OH_ArkUI_TextMarqueeOptions_GetUpdatePolicy(ArkUI_Text
 /**
  * @brief 创建一个文本实体识别配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁，以释放资源避免内存泄漏。
  *
- * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。如果创建失败，返回空指针。使用后需调用
- *     {@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
+ * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。如果创建失败，返回空指针。
+ *         使用后需调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
  * @since 24
  */
 OH_ArkUI_TextDataDetectorConfig* OH_ArkUI_TextDataDetectorConfig_Create();
@@ -462,6 +465,8 @@ OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontWeightConfigs_Create();
 
 /**
  * @brief 销毁文本字体粗细配置对象。与{@link OH_ArkUI_FontWeightConfigs_Create}成对使用，否则会导致内存泄漏。
+ *        若该对象已被SetFontWeightConfigs设置到FontConfigs中，应在销毁FontConfigs之后再销毁FontWeightConfigs，
+ *        或在确保FontConfigs不再使用后再销毁FontWeightConfigs，以避免FontConfigs持有无效指针。
  *
  * @param option 指向要销毁的文本字体粗细配置对象的指针。
  * @since 24
@@ -472,8 +477,10 @@ void OH_ArkUI_FontWeightConfigs_Destroy(OH_ArkUI_FontWeightConfigs* option);
  * @brief 设置是否启用可变字重调节。可变字重调节允许字体在100到900之间以任意整数值显示字重，实现更细腻的字体粗细控制。
  *
  * @param option 指向待修改的文本字体粗细配置对象的指针。
- * @param enable 是否启用可变字重调节。默认值为false。true表示启用可变字重调节，此时若设置的字重weight为[100, 900]范围内任意整数，则取该值，否则取默认值400。false表示禁用，
- *     此时weight仅支持整百数值[100, 900]，非整百数值时取默认值400。
+ * @param enable 是否启用可变字重调节。
+ *               true表示启用可变字重调节。此时如果设置的字重weight取值为[100, 900]范围内任意整数，则字重取值为weight，否则取默认值400。
+ *               false表示禁用可变字重调节。此时如果设置的字重weight取值为[100, 900]范围内的整百数值，字重取值为weight；weight是非整百数值时，字重取默认值400。
+ *               默认值为false。
  * @since 24
  */
 void OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(OH_ArkUI_FontWeightConfigs* option, bool enable);
@@ -519,7 +526,8 @@ bool OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory(OH_ArkUI_FontW
 OH_ArkUI_FontConfigs* OH_ArkUI_FontConfigs_Create();
 
 /**
- * @brief 销毁文本字体配置对象。与{@link OH_ArkUI_FontConfigs_Create}成对使用，否则会导致内存泄漏。
+ * @brief 销毁文本字体配置对象。与{@link OH_ArkUI_FontConfigs_Create}成对使用，否则会导致内存泄漏。销毁FontConfigs前，
+ *        应先销毁通过SetFontWeightConfigs设置的FontWeightConfigs对象（如果不再使用），或确保FontWeightConfigs的生命周期长于FontConfigs，以避免悬空指针问题。
  *
  * @param option 指向要销毁的文本字体配置对象的指针。
  * @since 24
@@ -530,8 +538,9 @@ void OH_ArkUI_FontConfigs_Destroy(OH_ArkUI_FontConfigs* option);
  * @brief 设置文本字体配置对象的文本字体粗细配置。
  *
  * @param option 指向待修改的文本字体配置对象的指针。
- * @param fontWeightConfigs 文本字体粗细配置。当该配置不为空指针时，若用户未显式设置，各项配置将使用默认值（可变字重调节默认为禁用，文本字体粗细跟随设备字体粗细级别更新默认为启用）。当该配置为空指针时，
- *     不应用上述默认值，文本字体粗细行为与父组件保持一致。
+ * @param fontWeightConfigs 文本字体粗细配置。
+ *        当该配置不为空指针时，若用户未显式设置，各项配置将使用默认值（可变字重调节默认为禁用，文本字体粗细跟随设备字体粗细级别更新默认为启用）；字重weight可通过相关接口设置，取值范围为[100, 900]。
+ *        当该配置为空指针时，不应用上述默认值，文本字体粗细行为与父组件保持一致。
  * @since 24
  */
 void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,

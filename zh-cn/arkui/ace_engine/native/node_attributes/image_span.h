@@ -30,6 +30,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/image_span.h>
  * @since 12
  */
 

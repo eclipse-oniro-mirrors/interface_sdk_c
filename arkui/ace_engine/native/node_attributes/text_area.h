@@ -34,6 +34,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
+ * @include <arkui/text_area.h>
  * @since 12
  */
 
@@ -53,16 +54,19 @@ extern "C" {
  * @since 12
  */
 typedef enum {
-    /** Normal input mode. */
+    /** Normal input type with no special restrictions. */
     ARKUI_TEXTAREA_TYPE_NORMAL = 0,
     /** Number input mode. */
     ARKUI_TEXTAREA_TYPE_NUMBER = 2,
-    /** Phone number input mode. */
+    /** Phone number input type.<br>It supports digits, spaces, +, -, *, #, (, ), with no length limit. */
     ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3,
-    /** Email address input mode. */
+    /** Email address input type.<br>It supports digits, letters, underscores, dots, !, #, $, %, &amp;, ', *, +, -, /,
+     * =, ?, ^, `, \{, \|, \}, ~, and @ (only one @ allowed). The email address must follow the basic format: the part
+     * before @ is the username, and the part after @ is the domain. */
     ARKUI_TEXTAREA_TYPE_EMAIL = 5,
     /**
-     * One time code input mode.
+     * Verification code input type with no special restrictions. In this type, the system input method is shown by
+     * default when the component gains focus.
      * @since 20
      */
     ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14
