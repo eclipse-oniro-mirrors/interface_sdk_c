@@ -5,16 +5,32 @@
 OpenHarmony C API declaration repository. The repository stores public `.h`
 declaration files and the tooling used to build and validate the Native SDK.
 
-## C API 元数据格式
+## API Design Knowledge Index
 
-C API 元数据 schema、字段含义、类型分支和使用样例，详见
-[docs/AGENTS-api-metadata.md](./docs/AGENTS-api-metadata.md)。
+AI agents and tools must use this root `AGENTS.md` as the stable knowledge entry.
+They must not assume or hardcode repository-internal paths; if a document moves,
+update only the links in this index.
 
-## 相关知识库与规范
+| Knowledge area | Required when | Entry |
+|----------------|---------------|-------|
+| C API metadata format and schema | generating, validating, or consuming C metadata | [AGENTS-api-metadata.md](./docs/AGENTS-api-metadata.md) |
+| C API naming and ABI rules | naming a new symbol or reviewing public C API design | [capi_naming.md](./docs/capi_naming.md) |
+| C API declaration-comment and user-facing API rules | writing or validating Doxygen/API documentation | [user_guide.md](./docs/user_guide.md) |
+| Adding C API build targets and NDK version metadata | adding a library/header target or determining introduction version | [howto_add.md](./docs/howto_add.md) |
 
-- C API 命名规范：[docs/capi_naming.md](./docs/capi_naming.md)
-- C API 用户指导：[docs/user_guide.md](./docs/user_guide.md)
-- 新增 C API 构建目标：[docs/howto_add.md](./docs/howto_add.md)
+The C metadata guide dynamically links to:
+
+- Schema: `c-api-metadata.schema.json`
+- Example: `c-api-metadata.example.yaml`
+
+Consumers must resolve those artifacts through
+[AGENTS-api-metadata.md](./docs/AGENTS-api-metadata.md), not by hardcoding their
+paths.
+
+For API contract generation, the metadata-format entry is mandatory; also load
+the naming/comment/build entries that apply to the task. A deterministic
+repository rule must be used directly and cited as the evidence source; do not
+ask the developer to reconfirm a fact already resolved by this knowledge index.
 
 ## Important Notes
 

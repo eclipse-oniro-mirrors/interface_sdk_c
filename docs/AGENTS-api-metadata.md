@@ -1,8 +1,8 @@
 # C API 元数据格式
 
-> 本文档定义 C API 元数据的机器可读格式。schema 位于
-> [api-metadata/c-api-metadata.schema.json](./api-metadata/c-api-metadata.schema.json)，
-> 使用示例位于 [api-metadata/c-api-metadata.example.yaml](./api-metadata/c-api-metadata.example.yaml)。
+> 本文档定义 C API 元数据的机器可读格式。schema 与示例由本知识入口提供：
+> [schema](./api-metadata/c-api-metadata.schema.json)、
+> [example](./api-metadata/c-api-metadata.example.yaml)。
 >
 > 该格式属于 interface_sdk_c 仓 API 知识库的一部分，用于描述 `.h` 声明、
 > Doxygen 注释、参数方向、内存所有权、错误码和设备能力，供 spec 生成、
