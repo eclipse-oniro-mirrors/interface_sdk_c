@@ -204,9 +204,11 @@ typedef OH_UDMF_VirtualItem* (*OH_UDMF_VirtualFileOnStat)(void* context, const c
  * @param data Destination buffer provided by UDMF. It is valid only during the callback.
  * @param bytesRead Actual number of bytes written to <code>data</code>.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The data was read successfully.
- *         {@link UDMF_E_INVALID_PARAM} An input parameter is invalid.
- *         {@link UDMF_ERR} The data cannot be provided because an internal error occurred.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The data was read successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} An input parameter is invalid.</li>
+ *         <li>{@link UDMF_ERR} The data cannot be provided because an internal error occurred.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -220,9 +222,11 @@ typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t 
  * @param idList Identifiers of the cancelled virtual files. The array and strings are valid only during the callback.
  * @param count Number of identifiers in <code>idList</code>.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The operation was cancelled successfully.
- *         {@link UDMF_E_INVALID_PARAM} An input parameter is invalid.
- *         {@link UDMF_ERR} The cancellation failed because an internal error occurred.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The operation was cancelled successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} An input parameter is invalid.</li>
+ *         <li>{@link UDMF_ERR} The cancellation failed because an internal error occurred.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -250,13 +254,29 @@ typedef void (*OH_UDMF_VirtualFileFinalize)(void* context);
  * @since 26.1.0
  */
 typedef struct OH_UDMF_VirtualFileCallbacks {
-    /** Size of this structure. */
+    /**
+     * @brief Size of this structure.
+     *
+     * @since 26.1.0
+     */
     uint32_t structSize;
-    /** Optional metadata callback. */
+    /**
+     * @brief Optional metadata callback.
+     *
+     * @since 26.1.0
+     */
     OH_UDMF_VirtualFileOnStat onStat;
-    /** Required content callback. */
+    /**
+     * @brief Required content callback.
+     *
+     * @since 26.1.0
+     */
     OH_UDMF_VirtualFileOnRead onRead;
-    /** Optional cancellation callback. If nullptr, cancellation succeeds without notifying the provider. */
+    /**
+     * @brief Optional cancellation callback. If nullptr, cancellation succeeds without notifying the provider.
+     *
+     * @since 26.1.0
+     */
     OH_UDMF_VirtualFileOnCancel onCancel;
 } OH_UDMF_VirtualFileCallbacks;
 
@@ -957,6 +977,11 @@ void OH_UDMF_DestroyVirtualItem(OH_UDMF_VirtualItem* item);
  *         {@link UDMF_E_OK} The file size was set successfully.
  *         {@link UDMF_E_INVALID_PARAM} <code>item</code> is invalid, does not describe a file, or <code>size</code> is
  *             negative.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The file size was set successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} <code>item</code> is invalid, does not describe a file, or
+ *             <code>size</code> is negative.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -970,8 +995,10 @@ int OH_UDMF_SetVirtualFileSize(OH_UDMF_VirtualItem* item, int64_t size);
  *
  * @param item Virtual file item.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The file size was cleared successfully.
- *         {@link UDMF_E_INVALID_PARAM} <code>item</code> is invalid or does not describe a file.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The file size was cleared successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} <code>item</code> is invalid or does not describe a file.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -985,9 +1012,11 @@ int OH_UDMF_ClearVirtualFileSize(OH_UDMF_VirtualItem* item);
  * @param directory Virtual directory item.
  * @param child Child item to add.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The child item was added successfully.
- *         {@link UDMF_E_INVALID_PARAM} An item is invalid, <code>directory</code> does not describe a directory, or the
- *             resulting item tree violates a virtual entry constraint.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The child item was added successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} An item is invalid, <code>directory</code> does not describe a directory, 
+ *             or the resulting item tree violates a virtual entry constraint.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -1026,8 +1055,10 @@ void OH_UDMF_DestroyVirtualFileInfo(OH_UDMF_VirtualFileInfo* info);
  * @param fileUri File URI to update.
  * @param info Virtual file information to attach.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The virtual entry was attached successfully.
- *         {@link UDMF_E_INVALID_PARAM} <code>fileUri</code> or <code>info</code> is invalid.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The virtual entry was attached successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} <code>fileUri</code> or <code>info</code> is invalid.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -1038,8 +1069,10 @@ int OH_UDMF_SetFileUriVirtualEntry(OH_UdsFileUri* fileUri, const OH_UDMF_Virtual
  *
  * @param fileUri File URI to update.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The virtual entry was removed successfully.
- *         {@link UDMF_E_INVALID_PARAM} <code>fileUri</code> is invalid.
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} The virtual entry was removed successfully.</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} <code>fileUri</code> is invalid.</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
