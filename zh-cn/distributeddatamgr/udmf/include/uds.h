@@ -217,7 +217,7 @@ typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t 
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
-typedef int (*OH_UDMF_VirtualFileOnCancel)(void* context, const char* const* idList, uint32_t count);
+typedef int (*OH_UDMF_VirtualFileOnCancel)(void* context, const char* const *idList, uint32_t count);
 
 /**
  * @brief 释放UDMF持有的用户上下文。
