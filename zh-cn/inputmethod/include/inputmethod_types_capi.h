@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2024 Huawei Device Co., Ltd.
+* Copyright (c) 2024-2026 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -441,10 +441,20 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_UNDEFINED = 1,
     /**
+     * @brief 权限校验失败。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_PERMISSION_DENIED = 201,
+    /**
      * @brief 参数检查失败。可能是参数类型、范围或格式不正确，请检查输入参数是否符合接口要求。该错误码在传入参数不符合接口规格（如
      * 参数类型错误、字符串长度超出限制等）时返回。
      */
     IME_ERR_PARAMCHECK = 401,
+    /**
+     * @brief 当前设备不支持此接口。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
      * @brief 包管理异常。可能是输入法应用未正确安装或包信息异常，请检查输入法应用状态并重新安装。该错误码在系统包管理服务无法正确
      * 获取输入法应用信息时返回。

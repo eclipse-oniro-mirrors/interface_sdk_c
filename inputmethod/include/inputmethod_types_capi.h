@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2024 Huawei Device Co., Ltd.
+* Copyright (c) 2024-2026 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -318,9 +318,19 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_UNDEFINED = 1,
     /**
+     * @brief Permission verification failed.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_PERMISSION_DENIED = 201,
+    /**
      * @error Parameter check failed.
      */
     IME_ERR_PARAMCHECK = 401,
+    /**
+     * @brief The current device does not support this interface.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
      * @error Package management error.
      */
