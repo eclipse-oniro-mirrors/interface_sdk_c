@@ -343,7 +343,7 @@ typedef struct ArkUI_AccessibilityProviderCallbacks {
     * @brief 基于指定的节点，根据搜索模式查询对应的节点信息。
     * 由接入方平台实现的回调函数，注册给系统侧调用。
     *
-    * @param elementId 无障碍元素的唯一编号。
+    * @param elementId 无障碍元素的唯一编号，取值应为系统已分配的有效元素ID。
     * @param mode 表示无障碍搜索模式。具体取值及含义参见ArkUI_AccessibilitySearchMode。
     * @param requestId 表示请求ID，由系统侧生成，用于标识一次无障碍请求。
     * @param elementList 表示无障碍元素信息列表。
