@@ -469,13 +469,15 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  *     indicating the total time for this frame took to render and be issued to the display subsystem,
  *     in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
- *         {@link WS_OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
- *             1. Invalid parameter range.
+ *     <ul>
+ *         <li>{@link WS_OK} the function call is successful.</li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.</li>
+ *     </ul>
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
-    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
+    const OH_WindowManager_FrameMetrics *metrics, uint64_t *duration);
 
 /**
  * @brief Get the time for elapsed issuing animation callbacks in one frame.
@@ -484,13 +486,15 @@ int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
  * @param duration [out] This parameter is the return value of the function,
  *     indicating the time for elapsed issuing animation callbacks in one frame, in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
- *         {@link WS_OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
- *             1. Invalid parameter range.
+ *     <ul>
+ *         <li>{@link WS_OK} the function call is successful.</li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.</li>
+ *     </ul>
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
-    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
+    const OH_WindowManager_FrameMetrics *metrics, uint64_t *duration);
 
 /**
  * @brief Get the intended start point for the frame.
@@ -499,13 +503,15 @@ int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
  * @param timestamp [out] This parameter is the return value of the function,
  *     indicating the intended start point for the frame, in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
- *         {@link WS_OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
- *             1. Invalid parameter range.
+ *     <ul>
+ *         <li>{@link WS_OK} the function call is successful.</li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *             1. Invalid parameter range.</li>
+ *     </ul>
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetIntendedVsyncTimestamp(
-    const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
+    const OH_WindowManager_FrameMetrics *metrics, uint64_t *timestamp);
 
 /**
  * @brief Registers a callback for window frame metric change events.
