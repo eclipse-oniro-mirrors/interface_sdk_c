@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup OHIPCParcel
  * @{
@@ -40,7 +41,8 @@ extern "C" {
 #endif
 
 /**
- * @brief IPC序列化对象，用于在跨进程通信中序列化和反序列化数据。该对象需要通过相关函数创建和销毁，开发者需要遵循对象的生命周期管理规范，正确管理内存资源。
+ * @brief IPC序列化对象，用于在跨进程通信中序列化和反序列化数据。该对象需要通过相关函数创建和销毁，开发者需要遵循对象的生命
+ * 周期管理规范，正确管理内存资源。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -48,7 +50,8 @@ extern "C" {
 struct OHIPCParcel;
 
 /**
- * @brief IPC序列化对象，用于在跨进程通信中序列化和反序列化数据。该对象需要通过相关函数创建和销毁，开发者需要遵循对象的生命周期管理规范，正确管理内存资源。
+ * @brief IPC序列化对象，用于在跨进程通信中序列化和反序列化数据。该对象需要通过相关函数创建和销毁，开发者需要遵循对象的生命
+ * 周期管理规范，正确管理内存资源。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -56,8 +59,9 @@ struct OHIPCParcel;
 typedef struct OHIPCParcel OHIPCParcel;
 
 /**
- * @brief IPC（进程间通信）远端代理对象，用于在客户端代理远端服务的能力，实现跨进程通信。该对象封装了远端服务的引用，支持向远端服务发送请求和接收响应。适用于需要跨进程调用服务能力的场景，例如跨进程服务调用、系统服务访问、
- * 跨应用数据共享等典型应用。使用该对象可以简化跨进程通信的实现，提高开发效率。
+ * @brief IPC（进程间通信）远端代理对象，用于在客户端代理远端服务的能力，实现跨进程通信。该对象封装了远端服务的引用，支持向
+ * 远端服务发送请求和接收响应。适用于需要跨进程调用服务能力的场景，例如跨进程服务调用、系统服务访问、跨应用数据共享等典型应
+ * 用。使用该对象可以简化跨进程通信的实现，提高开发效率。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -65,8 +69,9 @@ typedef struct OHIPCParcel OHIPCParcel;
 struct OHIPCRemoteProxy;
 
 /**
- * @brief IPC（进程间通信）远端代理对象，用于在客户端代理远端服务的能力，实现跨进程通信。该对象封装了远端服务的引用，支持向远端服务发送请求和接收响应。适用于需要跨进程调用服务能力的场景，例如跨进程服务调用、系统服务访问、
- * 跨应用数据共享等典型应用。使用该对象可以简化跨进程通信的实现，提高开发效率。
+ * @brief IPC（进程间通信）远端代理对象，用于在客户端代理远端服务的能力，实现跨进程通信。该对象封装了远端服务的引用，支持向
+ * 远端服务发送请求和接收响应。适用于需要跨进程调用服务能力的场景，例如跨进程服务调用、系统服务访问、跨应用数据共享等典型应
+ * 用。使用该对象可以简化跨进程通信的实现，提高开发效率。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -74,8 +79,9 @@ struct OHIPCRemoteProxy;
 typedef struct OHIPCRemoteProxy OHIPCRemoteProxy;
 
 /**
- * @brief IPC远端服务对象。该结构体用于在服务端表示一个远端服务，作为IPC通信中服务端的服务代理，用于处理客户端的请求并实现跨进程通信。{@link OHIPCRemoteStub}是IPC Kit提供的核心结构体，
- * 使用{@link OHIPCRemoteStub}可以简化IPC服务开发流程，提供统一的请求处理机制，帮助开发者快速实现跨进程通信能力。
+ * @brief IPC远端服务对象。该结构体用于在服务端表示一个远端服务，作为IPC通信中服务端的服务代理，用于处理客户端的请求并实现
+ * 跨进程通信。OHIPCRemoteStub是IPC Kit提供的核心结构体，使用OHIPCRemoteStub可以简化IPC服务开发流程，提供统一的请求处理机
+ * 制，帮助开发者快速实现跨进程通信能力。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -83,8 +89,9 @@ typedef struct OHIPCRemoteProxy OHIPCRemoteProxy;
 struct OHIPCRemoteStub;
 
 /**
- * @brief IPC远端服务对象。该结构体用于在服务端表示一个远端服务，作为IPC通信中服务端的服务代理，用于处理客户端的请求并实现跨进程通信。{@link OHIPCRemoteStub}是IPC Kit提供的核心结构体，
- * 使用{@link OHIPCRemoteStub}可以简化IPC服务开发流程，提供统一的请求处理机制，帮助开发者快速实现跨进程通信能力。
+ * @brief IPC远端服务对象。该结构体用于在服务端表示一个远端服务，作为IPC通信中服务端的服务代理，用于处理客户端的请求并实现
+ * 跨进程通信。OHIPCRemoteStub是IPC Kit提供的核心结构体，使用OHIPCRemoteStub可以简化IPC服务开发流程，提供统一的请求处理机
+ * 制，帮助开发者快速实现跨进程通信能力。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -92,7 +99,8 @@ struct OHIPCRemoteStub;
 typedef struct OHIPCRemoteStub OHIPCRemoteStub;
 
 /**
- * @brief 内存分配函数类型，用于IPC通信中自定义内存分配策略。常用于需要特殊内存管理的场景，例如：共享内存传输、内存池管理、限制内存使用上限等。
+ * @brief 内存分配函数类型，用于IPC通信中自定义内存分配策略。常用于需要特殊内存管理的场景，例如：共享内存传输、内存池管理、
+ * 限制内存使用上限等。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param len 申请内存的长度，单位：字节。取值原则：必须大于0。
@@ -112,6 +120,7 @@ typedef void* (*OH_IPC_MemAllocator)(int32_t len);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 成功返回OHIPCParcel对象指针；失败返回NULL。
+ * @release IPCKit/OH_IPCParcel_Destroy {return}
  * @since 12
  */
 OHIPCParcel* OH_IPCParcel_Create(void);
@@ -137,7 +146,8 @@ OHIPCParcel* OH_IPCParcel_Create(void);
 void OH_IPCParcel_Destroy(OHIPCParcel *parcel);
 
 /**
- * @brief 获取{@link OHIPCParcel}对象包含的数据的大小。常用于监控数据传输进度、检查是否超过IPC序列化大小限制、调试数据读写过程等场景。
+ * @brief 获取{@link OHIPCParcel}对象包含的数据的大小。常用于监控数据传输进度、检查是否超过IPC序列化大小限制、调试数据读写
+ * 过程等场景。
  * 调用此函数：
  * - 计算Parcel对象中已写入数据的总字节数。
  * - 返回已写入数据的总大小值。
@@ -151,7 +161,8 @@ void OH_IPCParcel_Destroy(OHIPCParcel *parcel);
 int OH_IPCParcel_GetDataSize(const OHIPCParcel *parcel);
 
 /**
- * @brief 获取{@link OHIPCParcel}对象可以写入的字节数。常用于检查是否还有空间写入更多数据、防止写入溢出、批量写入前预检查等场景。
+ * @brief 获取{@link OHIPCParcel}对象可以写入的字节数。常用于检查是否还有空间写入更多数据、防止写入溢出、批量写入前预检查
+ * 等场景。
  * 调用此函数：
  * - 计算Parcel对象剩余可写入空间的大小。
  * - 返回可写字节数值。
@@ -179,7 +190,8 @@ int OH_IPCParcel_GetWritableBytes(const OHIPCParcel *parcel);
 int OH_IPCParcel_GetReadableBytes(const OHIPCParcel *parcel);
 
 /**
- * @brief 获取{@link OHIPCParcel}对象当前读取位置。常用于记录读取位置以便后续恢复、配合{@link OH_IPCParcel_RewindReadPosition()}实现重复读取、调试数据读取进度等场景。
+ * @brief 获取{@link OHIPCParcel}对象当前读取位置。常用于记录读取位置以便后续恢复、配合
+ * {@link OH_IPCParcel_RewindReadPosition()}实现重复读取、调试数据读取进度等场景。
  * 调用此函数：
  * - 返回Parcel对象当前的读取位置值。
  * - 不改变读取位置或数据内容。
@@ -192,7 +204,8 @@ int OH_IPCParcel_GetReadableBytes(const OHIPCParcel *parcel);
 int OH_IPCParcel_GetReadPosition(const OHIPCParcel *parcel);
 
 /**
- * @brief 获取{@link OHIPCParcel}对象当前写入位置。常用于记录写入位置、配合{@link OH_IPCParcel_RewindWritePosition()}修正写入错误、调试数据写入进度等场景。
+ * @brief 获取{@link OHIPCParcel}对象当前写入位置。常用于记录写入位置、配合{@link OH_IPCParcel_RewindWritePosition()}修正
+ * 写入错误、调试数据写入进度等场景。
  * 调用此函数：
  * - 返回Parcel对象当前的写入位置值。
  * - 不改变写入位置或数据内容。
@@ -221,7 +234,8 @@ int OH_IPCParcel_GetWritePosition(const OHIPCParcel *parcel);
 int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos);
 
 /**
- * @brief 重置{@link OHIPCParcel}对象的写入位置到指定位置。常用于写入数据后发现前序数据错误需要修正、实现数据的分段重写、撤销部分写入操作等场景。
+ * @brief 重置{@link OHIPCParcel}对象的写入位置到指定位置。常用于写入数据后发现前序数据错误需要修正、实现数据的分段重写、
+ * 撤销部分写入操作等场景。
  * 调用此函数：
  * - 写入位置指针移动到newWritePos指定的位置，必须在[0, 当前数据大小]范围内。
  * - 重置位置可能导致部分数据被覆盖或无效，需谨慎使用。
@@ -238,8 +252,8 @@ int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos);
 int OH_IPCParcel_RewindWritePosition(OHIPCParcel *parcel, uint32_t newWritePos);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入int8_t值。不支持多线程并发访问同一对象。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
+ * @brief 向{@link OHIPCParcel}对象写入int8_t值。不支持多线程并发访问同一对象。写入数据受IPC序列化总大小限制（参见
+ * {@link OH_IPCParcel_Create()}）。
  * - 必须与{@link OH_IPCParcel_ReadInt8()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteInt8()写入数据，接收端再调用{@link OH_IPCParcel_ReadInt8()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -269,7 +283,6 @@ int OH_IPCParcel_ReadInt8(const OHIPCParcel *parcel, int8_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入int16_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadInt16()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteInt16()写入数据，接收端再调用{@link OH_IPCParcel_ReadInt16()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -299,7 +312,6 @@ int OH_IPCParcel_ReadInt16(const OHIPCParcel *parcel, int16_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入int32_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadInt32()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteInt32()写入数据，接收端再调用{@link OH_IPCParcel_ReadInt32()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -329,7 +341,6 @@ int OH_IPCParcel_ReadInt32(const OHIPCParcel *parcel, int32_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入int64_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadInt64()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteInt64()写入数据，接收端再调用{@link OH_IPCParcel_ReadInt64()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -359,7 +370,6 @@ int OH_IPCParcel_ReadInt64(const OHIPCParcel *parcel, int64_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入uint8_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadUint8()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteUint8()写入数据，接收端再调用{@link OH_IPCParcel_ReadUint8()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -387,7 +397,6 @@ int OH_IPCParcel_ReadUint8(const OHIPCParcel *parcel, uint8_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入uint16_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadUint16()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteUint16()写入数据，接收端再调用{@link OH_IPCParcel_ReadUint16()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -415,7 +424,6 @@ int OH_IPCParcel_ReadUint16(const OHIPCParcel *parcel, uint16_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入uint32_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadUint32()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteUint32()写入数据，接收端再调用{@link OH_IPCParcel_ReadUint32()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -443,7 +451,6 @@ int OH_IPCParcel_ReadUint32(const OHIPCParcel *parcel, uint32_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入uint64_t值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadUint64()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteUint64()写入数据，接收端再调用{@link OH_IPCParcel_ReadUint64()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -471,7 +478,6 @@ int OH_IPCParcel_ReadUint64(const OHIPCParcel *parcel, uint64_t *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入float值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadFloat()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteFloat()写入数据，接收端再调用{@link OH_IPCParcel_ReadFloat()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -501,7 +507,6 @@ int OH_IPCParcel_ReadFloat(const OHIPCParcel *parcel, float *value);
 
 /**
  * @brief 向{@link OHIPCParcel}对象写入double值。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
- *
  * - 必须与{@link OH_IPCParcel_ReadDouble()}方法配对使用。
  * - 调用顺序：先调用OH_IPCParcel_WriteDouble()写入数据，接收端再调用{@link OH_IPCParcel_ReadDouble()}读取数据。
  * - 未正确配对：如果未按顺序调用或读取类型不匹配，会导致读取失败或数据错误。
@@ -530,19 +535,21 @@ int OH_IPCParcel_WriteDouble(OHIPCParcel *parcel, double value);
 int OH_IPCParcel_ReadDouble(const OHIPCParcel *parcel, double *value);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入字符串，包括字符串结束符。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
+ * @brief 向{@link OHIPCParcel}对象写入字符串，包括字符串结束符。写入数据受IPC序列化总大小限制（参见
+ * {@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将字符串内容(包括结束符'\0')写入到{@link OHIPCParcel}对象的当前写入位置。
  * - 写入位置自动后移(字符串长度+1)字节。
  * - 字符串数据被序列化存储在Parcel对象中，无需调用者管理。
  * - 写入的字符串长度受IPC序列化大小限制（参见{@link OH_IPCParcel_Create()}，最大204800字节）。
  * - str参数不能为空，否则会返回参数错误。
- * - 编码说明：字符串应为有效的UTF-8或ASCII编码。
+ * - 编码说明：字符串应为有效的UTF-8或ASCII编码
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
- * @param str 写入字符串，用于IPC通信中的字符串数据传输，不能为空。长度范围[0, 204800]，单位：字节（含结束符，实际长度受parcel已写入数据与结束符开销的动态影响）。写入的字符串长度受IPC序列化大小限制（
- *     参见{@link OH_IPCParcel_Create()}）。超出限制时返回OH_IPC_PARCEL_WRITE_ERROR错误。
+ * @param str 写入字符串，用于IPC通信中的字符串数据传输，不能为空。长度范围[0, 204800]，单位：字节（含结束符，实际长度受
+ *     parcel已写入数据与结束符开销的动态影响）。写入的字符串长度受IPC序列化大小限制（参见{@link OH_IPCParcel_Create()}）。
+ *     超出限制时返回OH_IPC_PARCEL_WRITE_ERROR错误。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
  *     <br>写入失败返回{@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR}。
@@ -553,13 +560,13 @@ int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str);
 /**
  * @brief 从{@link OHIPCParcel}对象读取字符串，用户可通过strlen获取字符串长度。
  * 调用此函数：
- * 1. 从当前读取位置读取字符串内容。
- * 2. 返回字符串的内存地址指针。
- * 3. 读取位置自动后移到字符串结束符之后。
- * 4. 返回的字符串内存由Parcel对象管理，无需调用者释放。
- * 5. 字符串有效性与Parcel对象绑定，销毁Parcel后字符串失效。
- * 6. 参数不合法或读取失败时返回NULL，需检查返回值。
- * 7. 可通过strlen获取长度，直接使用返回的指针访问字符串内容。
+ * 1.从当前读取位置读取字符串内容。
+ * 2.返回字符串的内存地址指针。
+ * 3.读取位置自动后移到字符串结束符之后。
+ * 4.返回的字符串内存由Parcel对象管理，无需调用者释放。
+ * 5.字符串有效性与Parcel对象绑定，销毁Parcel后字符串失效。
+ * 6.参数不合法或读取失败时返回NULL，需检查返回值。
+ * 7.可通过strlen获取长度，直接使用返回的指针访问字符串内容。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
@@ -569,8 +576,8 @@ int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str);
 const char* OH_IPCParcel_ReadString(const OHIPCParcel *parcel);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入指定长度的内存信息。常用于写入二进制数据、图片数据、自定义结构体、共享内存内容等场景。写入数据受IPC序列化总大小限制（参见
- * {@link OH_IPCParcel_Create()}）。
+ * @brief 向{@link OHIPCParcel}对象写入指定长度的内存信息。常用于写入二进制数据、图片数据、自定义结构体、共享内存内容等场
+ * 景。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将buffer指向的内存数据写入到{@link OHIPCParcel}对象的当前写入位置。
  * - 写入位置自动后移len字节。
@@ -583,9 +590,11 @@ const char* OH_IPCParcel_ReadString(const OHIPCParcel *parcel);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
- * @param buffer 写入内存的起始地址，要写入的数据缓冲区的起始地址，指向需要通过IPC传输的二进制数据，不能为空。缓冲区必须提前分配好足够的内存空间。
- * @param len 写入信息长度，单位：字节，取值范围[0, parcel可写字节数]。写入数据大小受IPC序列化大小限制（参见{@link OH_IPCParcel_Create()}）。
- *     传入负数时返回OH_IPC_CHECK_PARAM_ERROR；超出可写字节数时返回OH_IPC_PARCEL_WRITE_ERROR错误。
+ * @param buffer 写入内存的起始地址，要写入的数据缓冲区的起始地址，指向需要通过IPC传输的二进制数据，不能为空。缓冲区必须提
+ *     前分配好足够的内存空间。
+ * @param len 写入信息长度，单位：字节，取值范围[0, parcel可写字节数]。写入数据大小受IPC序列化大小限制（参见
+ *     {@link OH_IPCParcel_Create()}）。传入负数时返回OH_IPC_CHECK_PARAM_ERROR；超出可写字节数时返回
+ *     OH_IPC_PARCEL_WRITE_ERROR错误。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
  *     <br>写入失败返回{@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR}。
@@ -611,8 +620,8 @@ int OH_IPCParcel_WriteBuffer(OHIPCParcel *parcel, const uint8_t *buffer, int32_t
 const uint8_t* OH_IPCParcel_ReadBuffer(const OHIPCParcel *parcel, int32_t len);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入{@link OHIPCRemoteStub}对象。常用于跨进程传递服务对象、实现IPC服务端的远程调用、服务对象共享等场景。写入数据受IPC序列化总大小限制（参见
- * {@link OH_IPCParcel_Create()}）。
+ * @brief 向{@link OHIPCParcel}对象写入{@link OHIPCRemoteStub}对象。常用于跨进程传递服务对象、实现IPC服务端的远程调用、服
+ * 务对象共享等场景。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将{@link OHIPCRemoteStub}对象的引用信息写入到{@link OHIPCParcel}对象中，写入位置自动后移。
  * - Stub对象的引用信息被序列化存储。
@@ -632,7 +641,8 @@ const uint8_t* OH_IPCParcel_ReadBuffer(const OHIPCParcel *parcel, int32_t len);
 int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stub);
 
 /**
- * @brief 从{@link OHIPCParcel}对象读取{@link OHIPCRemoteStub}对象。常用于跨进程接收服务对象、实现IPC服务端的远程调用、服务对象共享等场景。
+ * @brief 从{@link OHIPCParcel}对象读取{@link OHIPCRemoteStub}对象。常用于跨进程接收服务对象、实现IPC服务端的远程调用、服
+ * 务对象共享等场景。
  * 调用此函数：
  * - 从当前读取位置读取Stub对象的引用信息。
  * - 返回{@link OHIPCRemoteStub}对象的指针。
@@ -650,8 +660,8 @@ int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stu
 OHIPCRemoteStub* OH_IPCParcel_ReadRemoteStub(const OHIPCParcel *parcel);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入{@link OHIPCRemoteProxy}对象。常用于跨进程传递代理对象、实现IPC客户端的远程调用、代理对象共享等场景。写入数据受IPC序列化总大小限制（参见
- * {@link OH_IPCParcel_Create()}）。
+ * @brief 向{@link OHIPCParcel}对象写入{@link OHIPCRemoteProxy}对象。常用于跨进程传递代理对象、实现IPC客户端的远程调用、
+ * 代理对象共享等场景。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将{@link OHIPCRemoteProxy}对象的引用信息写入到{@link OHIPCParcel}对象中。
  * - 写入位置自动后移。
@@ -672,7 +682,8 @@ OHIPCRemoteStub* OH_IPCParcel_ReadRemoteStub(const OHIPCParcel *parcel);
 int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *proxy);
 
 /**
- * @brief 从{@link OHIPCParcel}对象读取{@link OHIPCRemoteProxy}对象。常用于跨进程接收代理对象、实现IPC客户端的远程调用、代理对象共享等场景。
+ * @brief 从{@link OHIPCParcel}对象读取{@link OHIPCRemoteProxy}对象。常用于跨进程接收代理对象、实现IPC客户端的远程调用、
+ * 代理对象共享等场景。
  * 调用此函数：
  * - 从当前读取位置读取Proxy对象的引用信息。
  * - 返回{@link OHIPCRemoteProxy}对象的指针。
@@ -689,13 +700,14 @@ int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *p
 OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入文件描述符。常用于跨进程传递文件句柄、共享内存文件描述符、管道文件描述符等场景。写入数据受IPC序列化总大小限制（参见
- * {@link OH_IPCParcel_Create()}）。
+ * @brief 向{@link OHIPCParcel}对象写入文件描述符。常用于跨进程传递文件句柄、共享内存文件描述符、管道文件描述符等场景。写
+ * 入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将文件描述符的副本写入到{@link OHIPCParcel}对象中。
  * - 写入位置自动后移。
  * - 文件描述符信息被序列化存储，可在IPC通信中传递。
- * - 调用顺序：先调用OH_IPCParcel_WriteFileDescriptor()写入文件描述符，接收端再调用{@link OH_IPCParcel_ReadFileDescriptor()}读取。
+ * - 调用顺序：先调用OH_IPCParcel_WriteFileDescriptor()写入文件描述符，接收端再调用
+ * {@link OH_IPCParcel_ReadFileDescriptor()}读取。
  * - 未正确配对：如果未按顺序调用或未配对使用，会导致接收端无法获取正确的文件描述符，影响跨进程文件共享和访问。
  * - 文件描述符有效性：fd必须为有效的非负整数文件描述符。
  * - 资源管理：写入后原文件描述符仍由调用者管理，需自行关闭。
@@ -704,7 +716,8 @@ OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
- * @param fd 要写入的文件描述符，取值原则：有效的文件描述符，为非负整数。传入负数或无效文件描述符时返回OH_IPC_CHECK_PARAM_ERROR错误。
+ * @param fd 要写入的文件描述符，取值原则：有效的文件描述符，为非负整数。传入负数或无效文件描述符时返回
+ *     OH_IPC_CHECK_PARAM_ERROR错误。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
  *     <br>写入失败返回{@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR}。
@@ -713,7 +726,8 @@ OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
 int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd);
 
 /**
- * @brief 从{@link OHIPCParcel}对象读取文件描述符。常用于跨进程接收文件句柄、共享内存文件描述符、管道文件描述符等场景。不支持多线程并发访问同一对象。
+ * @brief 从{@link OHIPCParcel}对象读取文件描述符。常用于跨进程接收文件句柄、共享内存文件描述符、管道文件描述符等场景。不
+ * 支持多线程并发访问同一对象。
  * 调用此函数：
  * - 从当前读取位置读取文件描述符信息。
  * - 返回一个新的有效的文件描述符。
@@ -735,8 +749,8 @@ int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd);
 int OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_t *fd);
 
 /**
- * @brief 拼接{@link OHIPCParcel}对象数据。常用于合并多个Parcel的数据、数据包组装、分段写入数据的合并等场景。拼接数据受IPC序列化总大小限制（参见
- * {@link OH_IPCParcel_Create()}）。
+ * @brief 拼接{@link OHIPCParcel}对象数据。常用于合并多个Parcel的数据、数据包组装、分段写入数据的合并等场景。拼接数据受IPC
+ * 序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将源{@link OHIPCParcel}对象（data）中的数据复制并追加到目标{@link OHIPCParcel}对象（parcel）的当前写入位置。
  * - 写入位置自动后移追加数据的字节数。
@@ -757,14 +771,16 @@ int OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_t *fd);
 int OH_IPCParcel_Append(OHIPCParcel *parcel, const OHIPCParcel *data);
 
 /**
- * @brief 向{@link OHIPCParcel}对象写入接口描述符，用于接口身份校验。常用于IPC通信中的安全验证场景，例如：防止恶意进程发送伪造请求、确保消息发送到正确的服务接口、多接口服务中区分不同的接口调用。
- * 不支持多线程并发访问同一对象。写入数据受IPC序列化总大小限制（参见{@link OH_IPCParcel_Create()}）。
+ * @brief 向{@link OHIPCParcel}对象写入接口描述符，用于接口身份校验。常用于IPC通信中的安全验证场景，例如：防止恶意进程发送
+ * 伪造请求、确保消息发送到正确的服务接口、多接口服务中区分不同的接口调用。不支持多线程并发访问同一对象。写入数据受IPC序列
+ * 化总大小限制（参见{@link OH_IPCParcel_Create()}）。
  * 调用此函数：
  * - 将接口描述符字符串写入到{@link OHIPCParcel}对象的当前写入位置。
  * - 写入位置自动后移相应的字节数。
  * - 接口描述符数据被序列化存储在Parcel对象中。
  * - 接口描述符字符串长度不能超过Parcel剩余可写空间。
- * - 调用顺序：先调用OH_IPCParcel_WriteInterfaceToken()写入接口描述符，接收端再调用{@link OH_IPCParcel_ReadInterfaceToken()}读取并校验。
+ * - 调用顺序：先调用OH_IPCParcel_WriteInterfaceToken()写入接口描述符，接收端再调用
+ * {@link OH_IPCParcel_ReadInterfaceToken()}读取并校验。
  * - 如果未按顺序调用或未配对使用，会导致接口身份校验失败，请求可能被拒绝或发送到错误的接口，造成接口混淆。
  * - token参数不能为空，否则会返回参数错误。
  * - 建议在写入其他请求数据前先写入接口描述符。
@@ -772,8 +788,8 @@ int OH_IPCParcel_Append(OHIPCParcel *parcel, const OHIPCParcel *data);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
- * @param token 需要写入的接口描述符信息，不能为空。接口描述符通常为接口的全限定名或唯一标识字符串，用于接口身份校验。字符串长度范围(0, parcel剩余可写空间]，单位：字节。
- *     超出限制时返回OH_IPC_PARCEL_WRITE_ERROR错误。
+ * @param token 需要写入的接口描述符信息，不能为空。接口描述符通常为接口的全限定名或唯一标识字符串，用于接口身份校验。字符
+ *     串长度范围(0, parcel剩余可写空间]，单位：字节。超出限制时返回OH_IPC_PARCEL_WRITE_ERROR错误。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
  *     <br>写入失败返回{@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR}。
@@ -796,12 +812,13 @@ int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel OHIPCParcel对象的指针，不能为空。
- * @param token 用于存储接口描述符信息的内存地址，该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放，不能为空。接口返回失败时，用户依然需要判断该内存是否为空，并主动释放，否则会造成内存泄漏。
+ * @param token 用于存储接口描述符信息的内存地址，该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放，不能为空。
+ *     接口返回失败时，用户依然需要判断该内存是否为空，并主动释放，否则会造成内存泄漏。
  * @param len 存储读取接口描述符的长度（包括结束符），单位：字节，不能为空。
  * @param allocator 用户指定的用来分配token的内存分配器，不能为空。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
- *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
- *     <br>读取失败返回{@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR}。
+ *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；读取失败返回
+ *     {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR}。
  * @since 12
  */
 int OH_IPCParcel_ReadInterfaceToken(const OHIPCParcel *parcel, char **token, int32_t *len,

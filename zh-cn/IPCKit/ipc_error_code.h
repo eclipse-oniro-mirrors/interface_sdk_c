@@ -12,16 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup OHIPCErrorCode
  * @{
  *
- * @brief 提供IPC错误码定义，用于标识和处理IPC通信过程中可能发生的各类错误。开发者可根据返回的错误码快速定位问题原因，如参数错误、序列化失败、内存分配失败、远端对象死亡等场景，从而采取相应的错误处理措施。
+ * @brief 提供IPC错误码定义，用于标识和处理IPC通信过程中可能发生的各类错误。开发者可根据返回的错误码快速定位问题原因，如参
+ * 数错误、序列化失败、内存分配失败、远端对象死亡等场景，从而采取相应的错误处理措施。
  */
 /**
  * @file ipc_error_code.h
  *
- * @brief 提供IPC错误码定义，用于标识和处理IPC通信过程中可能发生的各类错误。开发者可根据返回的错误码快速定位问题原因，如参数错误、序列化失败、内存分配失败、远端对象死亡等场景，从而采取相应的错误处理措施。
+ * @brief 提供IPC错误码定义，用于标识和处理IPC通信过程中可能发生的各类错误。开发者可根据返回的错误码快速定位问题原因，如参
+ * 数错误、序列化失败、内存分配失败、远端对象死亡等场景，从而采取相应的错误处理措施。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @include <IPCKit/ipc_error_code.h>
@@ -52,11 +55,13 @@ typedef enum {
      */
     OH_IPC_CHECK_PARAM_ERROR = OH_IPC_ERROR_CODE_BASE,
     /**
-     * 序列化对象写入数据失败。当数据序列化时内存不足或数据格式不支持时可能发生此错误。开发者应检查数据大小和格式是否符合要求。
+     * 序列化对象写入数据失败。当数据序列化时内存不足或数据格式不支持时可能发生此错误。开发者应检查数据大小和格式是否符合要
+     * 求。
      */
     OH_IPC_PARCEL_WRITE_ERROR = OH_IPC_ERROR_CODE_BASE + 1,
     /**
-     * 序列化对象读取数据失败。当读取的数据长度超出实际数据长度或数据格式不匹配时可能发生此错误。开发者应检查数据读取顺序和数据格式是否正确。
+     * 序列化对象读取数据失败。当读取的数据长度超出实际数据长度或数据格式不匹配时可能发生此错误。开发者应检查数据读取顺序和
+     * 数据格式是否正确。
      */
     OH_IPC_PARCEL_READ_ERROR = OH_IPC_ERROR_CODE_BASE + 2,
     /**
@@ -64,7 +69,8 @@ typedef enum {
      */
     OH_IPC_MEM_ALLOCATOR_ERROR = OH_IPC_ERROR_CODE_BASE + 3,
     /**
-     * 命令字超出定义范围[0x01,0x00FFFFFF]。当IPC通信使用的命令字不在有效范围内时返回此错误码。开发者应检查命令字定义是否符合规范要求。
+     * 命令字超出定义范围[0x01,0x00FFFFFF]。当IPC通信使用的命令字不在有效范围内时返回此错误码。开发者应检查命令字定义是否
+     * 符合规范要求。
      */
     OH_IPC_CODE_OUT_OF_RANGE = OH_IPC_ERROR_CODE_BASE + 4,
     /**
@@ -72,7 +78,8 @@ typedef enum {
      */
     OH_IPC_DEAD_REMOTE_OBJECT = OH_IPC_ERROR_CODE_BASE + 5,
     /**
-     * 用户自定义错误码超出范围[1909000, 1909999]。当开发者设置的自定义错误码不在允许范围内时返回此错误码。开发者应确保自定义错误码在有效范围内。
+     * 用户自定义错误码超出范围[1909000, 1909999]。当开发者设置的自定义错误码不在允许范围内时返回此错误码。开发者应确保自
+     * 定义错误码在有效范围内。
      */
     OH_IPC_INVALID_USER_ERROR_CODE = OH_IPC_ERROR_CODE_BASE + 6,
     /**
