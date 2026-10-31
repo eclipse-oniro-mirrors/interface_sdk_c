@@ -441,8 +441,10 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  * @param metrics 入参，帧率指标数据对象，不能为空。
  * @param duration 作为出参使用，表示当前帧从开始渲染到最终提交显示子系统的总耗时，单位为纳秒，不能为空。
  * @return 返回结果代码。
- *     返回OK，表示函数调用成功。
- *     返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。
+ *     <ul>
+ *         <li>返回OK，表示函数调用成功。</li>
+ *         <li>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。</li>
+ *     </ul>
  *     具体可见{@link WindowManager_ErrorCode}。
  * @since 26.1.0
  */
@@ -455,8 +457,10 @@ int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
  * @param metrics 入参，帧率指标数据对象，不能为空。
  * @param duration 作为出参使用，表示当前帧执行动画回调的耗时，单位为纳秒，不能为空。
  * @return 返回结果代码。
- *     返回OK，表示函数调用成功。
- *     返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。
+ *     <ul>
+ *         <li>返回OK，表示函数调用成功。</li>
+ *         <li>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。</li>
+ *     </ul>
  *     具体可见{@link WindowManager_ErrorCode}。
  * @since 26.1.0
  */
@@ -469,8 +473,10 @@ int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
  * @param metrics 入参，帧率指标数据对象，不能为空。
  * @param timestamp 作为出参使用，表示当前帧预期的垂直同步（VSync）起始时间戳，单位为纳秒，不能为空。
  * @return 返回结果代码。
- *     返回OK，表示函数调用成功。
- *     返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。
+ *     <ul>
+ *         <li>返回OK，表示函数调用成功。</li>
+ *         <li>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误，对应参数取值范围不合理。</li>
+ *     </ul>
  *     具体可见{@link WindowManager_ErrorCode}。
  * @since 26.1.0
  */
