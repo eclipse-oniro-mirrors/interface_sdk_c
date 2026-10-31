@@ -510,6 +510,50 @@ Camera_ErrorCode OH_CaptureSession_UnregisterExposureStateChangeCallback(
     const Camera_CaptureSession* session, void* context, OH_CaptureSession_OnExposureStateChange callback);
 
 /**
+ * @brief Defines a callback function that is invoked when the camera device switch request happens.
+ *
+ * @param userContext [out] Output parameter indicating the pointer to the user-defined context.
+ * @param userSession [out] Output parameter indicating the pointer to the {@link Camera_CaptureSession} instance.
+ * @param userDevice [out] Output parameter indicating the pointer to the {@link Camera_Device} instance.
+ * @release OH_CaptureSession_Release {userSession}
+ * @release OH_CameraManager_DeleteCameraDevices {userDevice}
+ * @since 26.0.1
+ */
+typedef void (*OH_CaptureSession_OnCameraDeviceSwitchRequest)(void *userContext, Camera_CaptureSession *userSession,
+    Camera_Device *userDevice);
+
+/**
+ * @brief Registers a callback for camera device switch request.
+ *
+ * After this callback is registered, the callback is invoked when the camera device switch request happens in the
+ * capture session.
+ *
+ * @param session [in] the {@link Camera_CaptureSession} instance.
+ * @param context [in] Indicates the pointer to the user-defined context.
+ * @param callback [in] {@link OH_CaptureSession_OnCameraDeviceSwitchRequest} Indicates the callback to register.
+ * @return {@link CAMERA_OK} if the method call succeeds.
+ *         {@link CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @see OH_CaptureSession_OnCameraDeviceSwitchRequest for further information.
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterCameraDeviceSwitchRequestCallback(const Camera_CaptureSession *session,
+    void *context, OH_CaptureSession_OnCameraDeviceSwitchRequest callback);
+
+/**
+ * @brief Unregisters the callback for camera device switch request.
+ *
+ * @param session [in] the {@link Camera_CaptureSession} instance.
+ * @param context [in] Indicates the pointer to the user-defined context specified when the callback was registered.
+ * @param callback [in] {@link OH_CaptureSession_OnCameraDeviceSwitchRequest} Indicates the callback to unregister.
+ * @return {@link CAMERA_OK} if the method call succeeds.
+ *         {@link CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @see OH_CaptureSession_OnCameraDeviceSwitchRequest for further information.
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterCameraDeviceSwitchRequestCallback(const Camera_CaptureSession *session,
+    void *context, OH_CaptureSession_OnCameraDeviceSwitchRequest callback);
+
+/**
  * @brief Checks whether an exposure mode is supported.
  * 
  * @param session Pointer to the target Camera_CaptureSession instance.

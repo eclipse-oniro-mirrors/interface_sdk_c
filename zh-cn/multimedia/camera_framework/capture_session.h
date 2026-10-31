@@ -1750,6 +1750,50 @@ Camera_ErrorCode OH_CaptureSession_LockFocusTracking(Camera_CaptureSession* sess
  */
 Camera_ErrorCode OH_CaptureSession_UnlockFocusTracking(Camera_CaptureSession* session);
 
+/**
+ * @brief 定义一个回调函数，当发生相机设备切换请求时调用。
+ *
+ * @param userContext 【out】输出参数，指向自定义上下文的指针。
+ * @param userSession 【out】输出参数，指向{@link Camera_CaptureSession}实例的指针。
+ * @param userDevice 【out】输出参数，指向{@link Camera_Device}实例的指针。
+ * @release OH_CaptureSession_Release {userSession}
+ * @release OH_CameraManager_DeleteCameraDevices {userDevice}
+ * @since 26.0.1
+ */
+typedef void (*OH_CaptureSession_OnCameraDeviceSwitchRequest)(void *userContext, Camera_CaptureSession *userSession,
+    Camera_Device *userDevice);
+
+/**
+ * @brief 注册相机设备切换请求回调。
+ *
+ * 注册此回调后，当相机设备切换请求发生在
+ * 捕获会话。
+ *
+ * @param session {@link Camera_CaptureSession}实例。
+ * @param context 指向自定义上下文的指针。
+ * @param callback {@link OH_CaptureSession_OnCameraDeviceSwitchRequest}表示注册的回调。
+ * @return {@link_OK} 如果方法调用成功。
+ * 如果参数缺失或参数类型不正确，则{@link CAMERA_INVALID_ARGUMENT}。
+ * @see {@link OH_CaptureSession_OnCameraDeviceSwitchRequest} 了解更多信息。
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterCameraDeviceSwitchRequestCallback(const Camera_CaptureSession *session,
+    void *context, OH_CaptureSession_OnCameraDeviceSwitchRequest callback);
+
+/**
+ * @brief 取消注册相机设备切换请求回调。
+ *
+ * @param session {@link Camera_CaptureSession}实例。
+ * @param context 指向注册回调时指定的用户定义上下文的指针。
+ * @param callback {@link OH_CaptureSession_OnCameraDeviceSwitchRequest}取消注册回调。
+ * @return {@link_OK} 如果方法调用成功。
+ * 如果参数缺失或参数类型不正确，则{@link CAMERA_INVALID_ARGUMENT}。
+ * @see {@link OH_CaptureSession_OnCameraDeviceSwitchRequest} 了解更多信息。
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterCameraDeviceSwitchRequestCallback(const Camera_CaptureSession *session,
+    void *context, OH_CaptureSession_OnCameraDeviceSwitchRequest callback);
+
 #ifdef __cplusplus
 }
 #endif
