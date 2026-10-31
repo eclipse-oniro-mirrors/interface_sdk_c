@@ -2607,7 +2607,63 @@ ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetRadius(OH_ArkUI_BackgroundColor
  */
 ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetRadius(const OH_ArkUI_BackgroundColorStyle* style, float* topLeft,
     float* topRight, float* bottomLeft, float* bottomRight);
- 
+
+/**
+ * @brief 设置背景颜色样式的边框宽度。
+ *
+ * @note 所有入参指针需由调用方分配、管理和释放。
+ * @param style [in] 指向{@link OH_ArkUI_BackgroundColorStyle}对象的指针。
+ * @param borderWidth [in] 文本背景的边框宽度，单位为vp。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetBorderWidth(
+    OH_ArkUI_BackgroundColorStyle* style, float borderWidth);
+
+/**
+ * @brief 获取背景颜色样式的边框宽度。
+ *
+ * @note 所有入参指针需由调用方分配、管理和释放。
+ * @param style [in] 指向{@link OH_ArkUI_BackgroundColorStyle}对象的指针。
+ * @param borderWidth [out] 指向文本背景的边框宽度的指针，单位为vp。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetBorderWidth(
+    const OH_ArkUI_BackgroundColorStyle* style, float* borderWidth);
+
+/**
+ * @brief 设置背景颜色样式的边框颜色。
+ *
+ * @note 所有入参指针需由调用方分配、管理和释放。
+ * @param style [in] 指向{@link OH_ArkUI_BackgroundColorStyle}对象的指针。
+ * @param borderColor [in] 文本背景的边框颜色，0xARGB格式。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetBorderColor(
+    OH_ArkUI_BackgroundColorStyle* style, uint32_t borderColor);
+
+/**
+ * @brief 获取背景颜色样式的边框颜色。
+ *
+ * @note 所有入参指针需由调用方分配、管理和释放。
+ * @param style [in] 指向{@link OH_ArkUI_BackgroundColorStyle}对象的指针。
+ * @param borderColor [out] 指向文本背景的边框颜色的指针，0xARGB格式。
+ * @return 返回结果码。\n
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。\n
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetBorderColor(
+    const OH_ArkUI_BackgroundColorStyle* style, uint32_t* borderColor);
+
 /**
  * @brief 创建{@link OH_ArkUI_UrlStyle}对象。
  *

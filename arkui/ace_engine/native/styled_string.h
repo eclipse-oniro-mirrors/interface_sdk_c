@@ -2781,7 +2781,63 @@ ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetRadius(OH_ArkUI_BackgroundColor
  */
 ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetRadius(const OH_ArkUI_BackgroundColorStyle* style, float* topLeft,
     float* topRight, float* bottomLeft, float* bottomRight);
- 
+
+/**
+ * @brief Sets the border width for the background color style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param style [in] Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param borderWidth [in] Border width of the text background, in vp.
+ * @return Returns the result code.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetBorderWidth(
+    OH_ArkUI_BackgroundColorStyle* style, float borderWidth);
+
+/**
+ * @brief Obtains the border width of the background color style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param style [in] Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param borderWidth [out] Pointer to the border width of the text background, in vp.
+ * @return Returns the result code.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetBorderWidth(
+    const OH_ArkUI_BackgroundColorStyle* style, float* borderWidth);
+
+/**
+ * @brief Sets the border color for the background color style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param style [in] Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param borderColor [in] Border color of the text background, in 0xARGB format.
+ * @return Returns the result code.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetBorderColor(
+    OH_ArkUI_BackgroundColorStyle* style, uint32_t borderColor);
+
+/**
+ * @brief Obtains the border color of the background color style.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param style [in] Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param borderColor [out] Pointer to the border color of the text background, in 0xARGB format.
+ * @return Returns the result code.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetBorderColor(
+    const OH_ArkUI_BackgroundColorStyle* style, uint32_t* borderColor);
+
 /**
  * @brief Creates an {@link OH_ArkUI_UrlStyle} object.
  *
