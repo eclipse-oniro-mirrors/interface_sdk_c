@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief LowPowerAVSink输入数据的结构体。应用在收到DataNeeded回调后需要将数据打包装进OH_AVSamplesBuffer实例中送给对应的lowpower_avsink。
+ * @brief LowPowerAVSink输入数据的结构体。应用在收到DataNeeded回调后需要将数据打包装进OH_AVSamplesBuffer实例中送给对应的LowPowerAVSink。
  * 
  * @since 20
  */
