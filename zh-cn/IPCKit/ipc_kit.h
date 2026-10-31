@@ -12,18 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup IPCKit
  * @{
  *
+ * @brief IPC（Inter-Process Communication，进程间通信）头文件，提供IPC Kit的C API接口声明，方便开发者引用。开发者可通过此
+ * 头文件使用进程间通信能力。
+ */
+/**
  * @file ipc_kit.h
  *
- * @brief IPC（Inter-Process Communication，进程间通信）头文件，提供IPC Kit的C API接口声明，方便开发者引用。开发者可通过此头文件使用进程间通信能力。
+ * @brief IPC（Inter-Process Communication，进程间通信）头文件，提供IPC Kit的C API接口声明，方便开发者引用。开发者可通过此
+ * 头文件使用进程间通信能力。
  *
+ * @syscap SystemCapability.Communication.IPC.Core
  * @include <IPCKit/ipc_kit.h>
  * @library libipc_capi.so
  * @kit IPCKit
- * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
 

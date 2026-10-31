@@ -12,20 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup OHIPCRemoteObject
  * @{
  *
+ * @brief This file provides C APIs for remote object creation, destruction, data sending, and remote object death
+ * status listening. These APIs are suitable for Inter-Process Communication (IPC) and Remote Procedure Call (RPC)
+ * communication scenarios.
+ */
+/**
  * @file ipc_cremote_object.h
  *
  * @brief This file provides C APIs for remote object creation, destruction, data sending, and remote object death
  * status listening. These APIs are suitable for Inter-Process Communication (IPC) and Remote Procedure Call (RPC)
  * communication scenarios.
  *
+ * @syscap SystemCapability.Communication.IPC.Core
  * @include <IPCKit/ipc_cremote_object.h>
  * @library libipc_capi.so
  * @kit IPCKit
- * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
 
@@ -41,11 +47,12 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines an IPC death notification object used to listen for the death event of an IPC remote object. After an
- * **OHIPCDeathRecipient** object is created, it must be registered with an **OHIPCRemoteObject** object to take effect.
- * If not registered, the death event cannot be detected. When the remote process terminates unexpectedly or is
- * destroyed proactively, the local process that has registered the death event listener will receive a death
- * notification callback, allowing it to release related resources or perform error handling in a timely manner.
+ * @brief Defines the IPC death notification object, which is used to listen for the death event of a remote IPC object.
+ * After an **OHIPCDeathRecipient** object is created, it must be registered with the {@link OHIPCRemoteObject} object
+ * to take effect. If it is not registered, death events cannot be listened for. When a remote process terminates
+ * unexpectedly or is destroyed, the local process that has registered the death listener will receive a death
+ * notification callback. This allows the local process to release related resources or handle errors in a timely
+ * manner.
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -53,11 +60,12 @@ extern "C" {
 struct OHIPCDeathRecipient;
 
 /**
- * @brief Defines an IPC death notification object used to listen for the death event of an IPC remote object. After an
- * **OHIPCDeathRecipient** object is created, it must be registered with an **OHIPCRemoteObject** object to take effect.
- * If not registered, the death event cannot be detected. When the remote process terminates unexpectedly or is
- * destroyed proactively, the local process that has registered the death event listener will receive a death
- * notification callback, allowing it to release related resources or perform error handling in a timely manner.
+ * @brief Defines the IPC death notification object, which is used to listen for the death event of a remote IPC object.
+ * After an **OHIPCDeathRecipient** object is created, it must be registered with the {@link OHIPCRemoteObject} object
+ * to take effect. If it is not registered, death events cannot be listened for. When a remote process terminates
+ * unexpectedly or is destroyed, the local process that has registered the death listener will receive a death
+ * notification callback. This allows the local process to release related resources or handle errors in a timely
+ * manner.
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -66,7 +74,7 @@ typedef struct OHIPCDeathRecipient OHIPCDeathRecipient;
 
 /**
  * @brief Called to process the peer request at the stub. This callback is triggered when the proxy sends a request
- * through {@link OH_IPCRemoteProxy_SendRequest}. The callback is executed in the Binder thread pool. Therefore, pay
+ * through {@link OH_IPCRemoteProxy_SendRequest()}. The callback is executed in the Binder thread pool. Therefore, pay
  * attention to thread security. The callback should return as soon as possible to avoid long-time blocking. Otherwise,
  * the processing of other IPC requests may be affected.
  * - This function is used to receive and process cross-process requests from the client when the server implements a
@@ -86,9 +94,12 @@ typedef struct OHIPCDeathRecipient OHIPCDeathRecipient;
  * @param userData User private data. Pass this parameter when you need to access user-defined data in the callback
  *     function. If user data is not required, you can pass NULL. If this parameter is set to NULL, the callback
  *     function cannot access the user's private data.
- * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
- *     Returns a custom error code in the range [1909001, 1909999] or a system error code otherwise.
- *     If the custom error code is out of range, {@link OH_IPC_ErrorCode#OH_IPC_INVALID_USER_ERROR_CODE} is returned.
+ * @return <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns a custom error code in the range [1909000, 1909999] or a system error code otherwise.</li>
+ *         <li>If the custom error code is out of range, {@link OH_IPC_ErrorCode#OH_IPC_INVALID_USER_ERROR_CODE} is
+ *         returned.</li>
+ *         </ul>
  * @since 12
  */
 typedef int (*OH_OnRemoteRequestCallback)(uint32_t code, const OHIPCParcel *data,
@@ -109,24 +120,24 @@ typedef int (*OH_OnRemoteRequestCallback)(uint32_t code, const OHIPCParcel *data
 typedef void (*OH_OnRemoteDestroyCallback)(void *userData);
 
 /**
- * @brief Creates an **OHIPCRemoteStub** object, which is used on the stub side to create a server-side object for
+ * @brief Creates an {@link OHIPCRemoteStub} object, which is used on the stub side to create a server-side object for
  * processing remote data requests from the proxy side.
  * - When a server needs to provide cross-process service capabilities, it can create a stub object as the server-side
  * entity.
  * - It can also be used to implement the server side of custom IPC communication protocols, building RPC server
  * capabilities.
  * - After the stub object is created, it is typically registered with the service manager through the
- * **OH_IPCRemoteProxy** related APIs, so that the proxy side can discover and connect to it.
+ * {@link OHIPCRemoteProxy} related APIs, so that the proxy side can discover and connect to it.
  * - **requestCallback** should avoid time-consuming operations, as they may block IPC communication.
  * - If time-consuming tasks need to be handled, you can return an error code in the callback and use a thread pool to
  * process the tasks asynchronously.
  * - Ensure that the lifecycle of **userData** covers the lifecycle of the stub object to avoid dangling pointers.
- * - After the object is created via {@link OH_IPCRemoteStub_Create()}, it must be destroyed using
+ * - After the object is created by calling **OH_IPCRemoteStub_Create()**, it must be destroyed using
  * {@link OH_IPCRemoteStub_Destroy()} after use to release resources.
- * - If the object is not destroyed, memory leak occurs.
+ * - If the object is not destroyed, memory leaks may occur.
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param descriptor Pointer to the descriptor of the **OHIPCRemoteStub** object to create. It cannot be NULL. The
+ * @param descriptor Pointer to the descriptor of the {@link OHIPCRemoteStub} object to create. It cannot be NULL. The
  *     string length range is (0, 204800], in bytes. If the value is out of range, NULL is returned. You are advised to
  *     use a unique identifier string, for example, **com.example.myservice** or **MyService**. The format is typically
  *     a reverse domain name or a simple service name, used to identify different IPC service APIs.
@@ -138,15 +149,17 @@ typedef void (*OH_OnRemoteDestroyCallback)(void *userData);
  * @param userData User private data. This parameter is passed when user-defined data needs to be accessed in the
  *     callback function. If user data does not need to be accessed, this parameter can be set to NULL. If this
  *     parameter is set to NULL, the callback function cannot access the user's private data.
- * @return Returns the pointer to the **OHIPCRemoteStub** object created if the operation is successful; returns NULL
- *     otherwise.
+ * @return <ul>
+ *         <li>Returns the pointer to the **OHIPCRemoteStub** object read if the operation is successful; returns NULL
+ *         otherwise.</li>
+ *         </ul>
  * @since 12
  */
 OHIPCRemoteStub* OH_IPCRemoteStub_Create(const char *descriptor, OH_OnRemoteRequestCallback requestCallback,
     OH_OnRemoteDestroyCallback destroyCallback, void *userData);
 
 /**
- * @brief Destroys an **OHIPCRemoteStub** object.
+ * @brief Destroys an {@link OHIPCRemoteStub} object.
  * - Release the stub object when the server no longer needs to provide the IPC service.
  * - Clear IPC resources when the server exits or the module is uninstalled.
  * - This function and {@link OH_IPCRemoteStub_Create()} must be used in pairs.
@@ -161,7 +174,7 @@ OHIPCRemoteStub* OH_IPCRemoteStub_Create(const char *descriptor, OH_OnRemoteRequ
 void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub);
 
 /**
- * @brief Destroys an **OHIPCRemoteProxy** object.
+ * @brief Destroys an {@link OHIPCRemoteProxy} object.
  * - Release the proxy object when the client no longer needs to call the remote service.
  * - Clear IPC resources when the client exits or the module is uninstalled.
  * - You must call {@link OH_IPCRemoteProxy_RemoveDeathRecipient()} to remove all added death event listeners before
@@ -197,33 +210,39 @@ typedef enum {
 } OH_IPC_RequestMode;
 
 /**
- * @brief Defines the IPC message options, which are used to configure request parameters for IPC communication.
+ * @brief Defines IPC message options, which are used to configure request parameters during IPC communication.
  *
  * @since 12
  */
 #pragma pack(4)
 typedef struct {
     /**
-     * Message request mode, which specifies the request method for IPC messages. Synchronous mode is suitable for
-     * scenarios where you need to wait for the return result, while asynchronous mode is suitable for scenarios where
-     * you do not need to wait for the result. When the synchronous mode is set, the call blocks the current thread to
-     * wait for the return result. When the asynchronous mode is set, the call returns immediately without waiting for
-     * the result. In C language, this member must be explicitly initialized. It is advised to initialize it to the
-     * synchronous mode (when a return result is required) or the asynchronous mode (when no return result is required).
+     * @brief Message request mode, which is used to specify the request mode of IPC messages. You can select the
+     * synchronous or asynchronous mode. The synchronous mode is applicable to scenarios where you need to wait for the
+     * result, and the asynchronous mode is applicable to scenarios where you do not need to wait for the result. After
+     * the synchronous mode is set, the call blocks the current thread and waits for the result. After the asynchronous
+     * mode is set, the call returns immediately without waiting for the result. This member must be explicitly
+     * initialized in the C language. You are advised to initialize the synchronous mode (when the result needs to be
+     * obtained) or asynchronous mode (when the result does not need to be returned).
+     *
+     * @since 12
      */
     OH_IPC_RequestMode mode;
     /**
-     * Reserved parameter for RPC. In RPC communication scenarios, this parameter can be used to set the timeout
-     * interval. This parameter is invalid for IPC communication and can be ignored when IPC is used. The unit is
-     * seconds. The value range is [0, 4294967295]. In RPC scenarios, it is recommended to set a reasonable timeout
-     * interval based on service requirements to avoid prolonged blocking. After the timeout, the RPC call fails and
-     * returns a timeout error. In C language, this member must be explicitly initialized. It is recommended to
-     * initialize it to **0**.
+     * @brief Parameter reserved for RPC. In RPC communication, you can set the timeout interval (in seconds). This
+     * parameter is invalid for IPC communication and can be ignored when IPC is used. The value range is [0,
+     * 4294967295]. In RPC scenarios, you are advised to set a proper timeout interval based on service requirements to
+     * avoid long-time blocking. If the timeout interval expires, the RPC call fails and a timeout error is returned.
+     * This member must be explicitly initialized in the C language. The recommended initial value is **0**.
+     *
+     * @since 12
      */
     uint32_t timeout;
     /**
-     * Reserved parameter. NULL must be passed. Passing a non-null pointer may cause the API call to fail or result in
-     * undefined behavior.
+     * @brief Reserved parameter, which must be NULL. If a non-null pointer is passed, the API call may fail or
+     * undefined behavior may occur.
+     *
+     * @since 12
      */
     void* reserved;
 } OH_IPC_MessageOption;
@@ -261,12 +280,15 @@ typedef struct {
  *     asynchronous requests, the corresponding request mode must be passed and set. For synchronous requests, you may
  *     omit it or pass NULL. If omitted or NULL is passed, the synchronous mode (**OH_IPC_REQUEST_MODE_SYNC**) is used
  *     by default.
- * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the message is sent successfully.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_DEAD_REMOTE_OBJECT} if the remote **OHIPCRemoteStub** object dies.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CODE_OUT_OF_RANGE} if the code is out of range.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} or a custom error code (range: [1909001, 1909999]) in other
- *     cases.
+ * @return <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the message is sent successfully.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_DEAD_REMOTE_OBJECT} if the remote **OHIPCRemoteStub** object dies.
+ *         </li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CODE_OUT_OF_RANGE} if the code is out of range.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} or a custom error code (range: [1909000, 1909999]) in
+ *         other cases.</li>
+ *         </ul>
  * @since 12
  */
 int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy *proxy, uint32_t code, const OHIPCParcel *data,
@@ -289,27 +311,30 @@ int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy *proxy, uint32_t code, 
  *     occur. You are advised to release it immediately after use to prevent memory leaks.
  * @param len Pointer to the length of the data written to the descriptor, including the terminator. It cannot be NULL.
  * @param allocator Memory allocator specified by the user for allocating memory. It cannot be empty.
- * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the message is sent successfully.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_DEAD_REMOTE_OBJECT} if the remote **OHIPCRemoteStub** object dies.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_MEM_ALLOCATOR_ERROR} if the memory allocation fails.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} or a custom error code if the data in the serialized
- *     object fails to be read.
+ * @return <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the message is sent successfully.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_DEAD_REMOTE_OBJECT} if the remote **OHIPCRemoteStub** object dies.
+ *         </li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_MEM_ALLOCATOR_ERROR} if the memory allocation fails.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} or a custom error code if the data in the
+ *         serialized object fails to be read.</li>
+ *         </ul>
  * @since 12
  */
 int OH_IPCRemoteProxy_GetInterfaceDescriptor(OHIPCRemoteProxy *proxy, char **descriptor, int32_t *len,
     OH_IPC_MemAllocator allocator);
 
 /**
- * @brief Defines a callback to be invoked when the remote **OHIPCRemoteStub** object dies unexpectedly. When the
- * process where the remote stub object resides exits abnormally or is killed by the system, the system triggers this
- * callback to notify the client. The callback is executed in the Binder thread. Therefore, pay attention to thread
- * security. Complex IPC operations are not recommended in callback to avoid potential deadlock risks. This function is
- * commonly used when the client needs to detect abnormal exit or crash of the server, perform resource cleanup or
- * state reset when the server object dies, or implement server liveness monitoring and fault recovery mechanisms.
+ * @brief Defines a callback to be invoked when the {@link OHIPCRemoteStub} object dies unexpectedly. When the process
+ * where the remote stub object resides exits abnormally or is killed by the system, the system triggers this callback
+ * to notify the client. The callback is executed in the Binder thread. Therefore, pay attention to thread security.
+ * Complex IPC operations are not recommended in callback to avoid potential deadlock risks. This function is commonly
+ * used when the client needs to detect abnormal exit or crash of the server, perform resource cleanup or state reset
+ * when the server object dies, or implement server liveness monitoring and fault recovery mechanisms.
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param userData Pointer to user private data.Pass this parameter when user-defined data needs to be accessed in the
+ * @param userData Pointer to user private data. Pass this parameter when user-defined data needs to be accessed in the
  *     death notification callback. If user data does not need to be accessed, this parameter can be omitted or set to
  *     NULL. If this parameter is set to NULL, the callback function cannot access the user's private data.
  * @since 12
@@ -317,12 +342,12 @@ int OH_IPCRemoteProxy_GetInterfaceDescriptor(OHIPCRemoteProxy *proxy, char **des
 typedef void (*OH_OnDeathRecipientCallback)(void *userData);
 
 /**
- * @brief Defines a callback to be invoked when the **OHIPCDeathRecipient** object is destroyed. This function is
+ * @brief Defines a callback to be invoked when the {@link OHIPCDeathRecipient} object is destroyed. This function is
  * usually used to release user private data or clear resources related to death listening when the death listening
  * object is destroyed.
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param userData Pointer to user private data.Pass this parameter when user-defined data needs to be accessed in the
+ * @param userData Pointer to user private data. Pass this parameter when user-defined data needs to be accessed in the
  *     death notification callback. If user data does not need to be accessed, this parameter can be omitted or set to
  *     NULL. If this parameter is set to NULL, the callback function cannot access the user's private data.
  * @since 12
@@ -330,9 +355,9 @@ typedef void (*OH_OnDeathRecipientCallback)(void *userData);
 typedef void (*OH_OnDeathRecipientDestroyCallback)(void *userData);
 
 /**
- * @brief Creates an **OHIPCDeathRecipient** object, which triggers a notification when the **OHIPCRemoteStub** object
- * dies unexpectedly. Listens for the death status of a remote stub object. It is commonly used when the client needs
- * to listen for death events of the server object, implement a mechanism for detecting abnormal server exits, or
+ * @brief Creates an {@link OHIPCDeathRecipient} object, which triggers a notification when the {@link OHIPCRemoteStub}
+ * object dies unexpectedly. Listens for the death status of a remote stub object. It is commonly used when the client
+ * needs to listen for death events of the server object, implement a mechanism for detecting abnormal server exits, or
  * perform fault handling or automatic reconnection when the server crashes.
  * - The death callback is triggered when the remote stub object is destroyed or the process crashes. It is advised to
  * release related resources, reset state, and attempt reconnection in the callback.
@@ -352,26 +377,29 @@ typedef void (*OH_OnDeathRecipientDestroyCallback)(void *userData);
  * - After removal, the object must be destroyed by calling {@link OH_IPCDeathRecipient_Destroy()}.
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param deathRecipientCallback Callback to be invoked when the **OHIPCRemoteStub** object is dead. It cannot be NULL.
+ * @param deathRecipientCallback Callback to be invoked when the {@link OHIPCRemoteStub} object is dead. It cannot be
+ *     NULL.
  * @param destroyCallback Callback to be invoked when an object is destroyed. It can be NULL. If this parameter is NULL,
- *     the object destruction event is not listened to. Pass this parameter when you need to perform cleanup operations
- *     (such as releasing **userData** resources) when the **OHIPCDeathRecipient** object is destroyed. If cleanup is
- *     not required, you can omit it or pass NULL. If this parameter is set to NULL, no callback notifications will be
- *     triggered upon object destruction.
+ *     the object destruction event is not listened to. Pass this parameter when you need to perform cleanup
+ *     operations (such as releasing **userData** resources) when the {@link OHIPCDeathRecipient} object is destroyed.
+ *     If cleanup is not required, you can omit it or pass NULL. If this parameter is set to NULL, no callback
+ *     notifications will be triggered upon object destruction.
  * @param userData Pointer to user private data. Pass this parameter when user-defined data needs to be accessed in the
  *     death notification callback. If user data does not need to be accessed, this parameter can be omitted or set to
  *     NULL. If this parameter is set to NULL, the callback function cannot access the user's private data.
- * @return Returns the pointer to the **OHIPCDeathRecipient** object created if the operation is successful; returns
- *     NULL otherwise.
+ * @return <ul>
+ *         <li>Returns the pointer to the **OHIPCDeathRecipient** object read if the operation is successful; returns
+ *         NULL otherwise.</li>
+ *         </ul>
  * @since 12
  */
 OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback deathRecipientCallback,
     OH_OnDeathRecipientDestroyCallback destroyCallback, void *userData);
 
 /**
- * @brief Destroys an **OHIPCDeathRecipient** object. This function is commonly used to clear death listening resources
- * when the death events of remote objects no longer need to be listened for, or when the client exits or the module is
- * uninstalled.
+ * @brief Destroys an {@link OHIPCDeathRecipient} object. This function is commonly used to clear death listening
+ * resources when the death events of remote objects no longer need to be listened for, or when the client exits or the
+ * module is uninstalled.
  * - This function and {@link OH_IPCDeathRecipient_Create()} must be used in pairs.
  * - You must call {@link OH_IPCRemoteProxy_RemoveDeathRecipient()} to remove the listener object from all proxies
  * before destroying it.
@@ -386,10 +414,10 @@ OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback dea
 void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
 
 /**
- * @brief Subscribes to the death of an **OHIPCRemoteStub** object for an **OHIPCRemoteProxy** object. This function is
- * commonly used after the client starts, to register a server death listener so that server exceptions can be detected
- * in a timely manner, to implement server fault detection and automatic recovery mechanisms, and to release related
- * resources or notify the user when the server becomes unavailable.
+ * @brief Subscribes to the death of an {@link OHIPCRemoteStub} object for an {@link OHIPCRemoteProxy} object. This
+ * function is commonly used after the client starts, to register a server death listener so that server exceptions can
+ * be detected in a timely manner, to implement server fault detection and automatic recovery mechanisms, and to
+ * release related resources or notify the user when the server becomes unavailable.
  * - Destroying the listener object without removing it first may cause callback exceptions or memory leaks.
  * - First call {@link OH_IPCDeathRecipient_Create()} to create a listener object.
  * - Call {@link OH_IPCRemoteProxy_AddDeathRecipient()} to add a listener.
@@ -403,42 +431,49 @@ void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
  *     NULL.
  * @param recipient Pointer to the death recipient object used to receive death notifications of the remote object. It
  *     cannot be NULL.
- * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
+ * @return <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.</li>
+ *         </ul>
  * @since 12
  */
 int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient);
 
 /**
- * @brief Unsubscribes from the death of the **OHIPCRemoteStub** object for an **OHIPCRemoteProxy** object. This
+ * @brief Unsubscribes from the death of the **OHIPCRemoteStub** object for an {@link OHIPCRemoteProxy} object. This
  * function is commonly used to unregister the death event listener when the remote object's death events no longer
  * need to be monitored, or to remove the old death listener when switching to another service instance.
  * - If a listener object is no longer needed, call {@link OH_IPCDeathRecipient_Destroy()} to destroy it.
- * - Failure to destroy it may result in memory leaks.
+ * - If the object is not destroyed, memory leaks may occur.
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object from which the death notification needs to be removed. It
  *     cannot be NULL.
  * @param recipient Pointer to the death recipient object used to receive death notifications of the remote object. It
  *     cannot be NULL.
- * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.
+ * @return <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_INNER_ERROR} in other cases.</li>
+ *         </ul>
  * @since 12
  */
 int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient);
 
 /**
- * @brief Checks whether the **OHIPCRemoteStub** object corresponding to the **OHIPCRemoteProxy** object is dead. This
- * function is commonly used to proactively check whether the server is alive before sending an IPC request, to
- * determine whether a reconnection is needed in the reconnection mechanism, and to adopt different handling strategies
- * based on the server's liveness status in the service logic.
+ * @brief Checks whether the {@link OHIPCRemoteStub} object corresponding to the {@link OHIPCRemoteProxy} object is
+ * dead. This function is commonly used to proactively check whether the server is alive before sending an IPC request,
+ * to determine whether a reconnection is needed in the reconnection mechanism, and to adopt different handling
+ * strategies based on the server's liveness status in the service logic.
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object to check. It cannot be NULL.
- * @return Returns **1** if the **OHIPCRemoteStub** object is dead or invalid parameters are found; returns **0**
- *     otherwise. If invalid parameters are found, the **OHIPCRemoteStub** object does not exist, and **1** is returned.
+ * @return <ul>
+ *         <li>Returns **1** if the {@link OHIPCRemoteStub} object is dead or invalid parameters are found; returns
+ *         **0** otherwise. If invalid parameters are found, the {@link OHIPCRemoteStub} object does not exist, and
+ *         **1** is returned.</li>
+ *         </ul>
  * @since 12
  */
 int OH_IPCRemoteProxy_IsRemoteDead(const OHIPCRemoteProxy *proxy);

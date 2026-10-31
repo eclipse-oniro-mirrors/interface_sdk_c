@@ -12,18 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup OHIPCRemoteObject
  * @{
  *
- * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进程间通信）和
- * RPC（Remote Procedure Call，远程过程调用）通信场景。
+ * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进
+ * 程间通信）和RPC（Remote Procedure Call，远程过程调用）通信场景。
  */
 /**
  * @file ipc_cremote_object.h
  *
- * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进程间通信）和
- * RPC（Remote Procedure Call，远程过程调用）通信场景。
+ * @brief 提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口，适用于IPC（Inter-Process Communication，进
+ * 程间通信）和RPC（Remote Procedure Call，远程过程调用）通信场景。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @include <IPCKit/ipc_cremote_object.h>
@@ -44,8 +45,9 @@ extern "C" {
 #endif
 
 /**
- * @brief IPC死亡通知对象，用于监听IPC远程对象的死亡事件。创建OHIPCDeathRecipient对象后，必须注册到{@link OHIPCRemoteObject}对象才能生效；若未注册，将无法监听死亡事件。
- * 当远程进程意外终止或主动销毁时，注册了死亡监听的本地进程将收到死亡通知回调，从而及时释放相关资源或进行错误处理。
+ * @brief IPC死亡通知对象，用于监听IPC远程对象的死亡事件。创建OHIPCDeathRecipient对象后，必须注册到
+ * {@link OHIPCRemoteObject}对象才能生效；若未注册，将无法监听死亡事件。当远程进程意外终止或主动销毁时，注册了死亡监听的本
+ * 地进程将收到死亡通知回调，从而及时释放相关资源或进行错误处理。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -53,8 +55,9 @@ extern "C" {
 struct OHIPCDeathRecipient;
 
 /**
- * @brief IPC死亡通知对象，用于监听IPC远程对象的死亡事件。创建OHIPCDeathRecipient对象后，必须注册到{@link OHIPCRemoteObject}对象才能生效；若未注册，将无法监听死亡事件。
- * 当远程进程意外终止或主动销毁时，注册了死亡监听的本地进程将收到死亡通知回调，从而及时释放相关资源或进行错误处理。
+ * @brief IPC死亡通知对象，用于监听IPC远程对象的死亡事件。创建OHIPCDeathRecipient对象后，必须注册到
+ * {@link OHIPCRemoteObject}对象才能生效；若未注册，将无法监听死亡事件。当远程进程意外终止或主动销毁时，注册了死亡监听的本
+ * 地进程将收到死亡通知回调，从而及时释放相关资源或进行错误处理。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
@@ -62,18 +65,20 @@ struct OHIPCDeathRecipient;
 typedef struct OHIPCDeathRecipient OHIPCDeathRecipient;
 
 /**
- * @brief Stub端用于处理远端数据请求的回调函数。当Proxy端通过{@link OH_IPCRemoteProxy_SendRequest()}发送请求时，系统会触发此回调函数。回调函数在Binder线程池中执行，
- * 需要注意线程安全。回调函数应尽快返回，避免长时间阻塞，否则可能影响其他IPC请求的处理。
- *
+ * @brief Stub端用于处理远端数据请求的回调函数。当Proxy端通过{@link OH_IPCRemoteProxy_SendRequest()}发送请求时，系统会触发
+ * 此回调函数。回调函数在Binder线程池中执行，需要注意线程安全。回调函数应尽快返回，避免长时间阻塞，否则可能影响其他IPC请求
+ * 的处理。
  * - 服务端实现自定义IPC通信协议时，用于接收并处理来自客户端的跨进程请求。
  * - 需要跨进程调用服务端能力时，服务端通过此回调函数处理具体业务逻辑。
  * - 实现RPC服务端能力时，作为消息分发和处理的入口。
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param code 用户定义的IPC命令字，范围：[0x01, 0x00ffffff]。建议按业务模块分段定义code值，避免不同功能命令冲突。例如：0x01-0x100用于基础功能，0x101-0x200用于扩展功能。
+ * @param code 用户定义的IPC命令字，范围：[0x01, 0x00ffffff]。建议按业务模块分段定义code值，避免不同功能命令冲突。例如：
+ *     0x01-0x100用于基础功能，0x101-0x200用于扩展功能。
  * @param data 请求数据对象指针，不会为空，函数内不允许释放。
  * @param reply 响应数据对象指针，不会为空，函数内不允许释放。如果函数返回错误，该值不允许写入数据。
- * @param userData 用户私有数据，当需要在回调函数中访问用户自定义数据时传入此参数，不需要访问用户数据时可以传NULL。为NULL时回调函数无法访问用户私有数据。
+ * @param userData 用户私有数据，当需要在回调函数中访问用户自定义数据时传入此参数，不需要访问用户数据时可以传NULL。为NULL
+ *     时回调函数无法访问用户私有数据。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  *     <br>否则返回用户自定义错误码或系统错误码，自定义错误码范围：[1909000, 1909999]；
  *     <br>如果用户自定义错误码超出范围，将返回{@link OH_IPC_ErrorCode#OH_IPC_INVALID_USER_ERROR_CODE}。
@@ -84,20 +89,19 @@ typedef int (*OH_OnRemoteRequestCallback)(uint32_t code, const OHIPCParcel *data
 
 /**
  * @brief 用于监听对象销毁的回调函数。
- *
  * - 需要在Stub对象销毁时释放相关资源（如内存、文件句柄）。
  * - 需要在对象销毁时通知其他模块进行状态同步。
  * - 需要在对象销毁时清理用户私有数据。
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param userData 用户私有数据，当需要在回调函数中访问用户自定义数据时传入此参数，不需要访问用户数据时可为NULL。传入NULL时回调函数无法访问用户私有数据。
+ * @param userData 用户私有数据，当需要在回调函数中访问用户自定义数据时传入此参数，不需要访问用户数据时可为NULL。传入NULL
+ *     时回调函数无法访问用户私有数据。
  * @since 12
  */
 typedef void (*OH_OnRemoteDestroyCallback)(void *userData);
 
 /**
  * @brief 创建{@link OHIPCRemoteStub}对象，用于Stub端创建服务端对象，处理来自Proxy端的远端数据请求。
- *
  * - 服务端需要提供跨进程服务能力时，创建Stub对象作为服务端实体。
  * - 实现自定义IPC通信协议的服务端部分 - 构建RPC服务端服务能力。
  * - 创建Stub对象后，通常需要通过{@link OHIPCRemoteProxy}相关接口将Stub对象注册到服务管理器，供Proxy端发现和连接。
@@ -108,11 +112,14 @@ typedef void (*OH_OnRemoteDestroyCallback)(void *userData);
  * - 未销毁会导致内存泄漏。
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param descriptor {@link OHIPCRemoteStub}对象描述符，不能为空。字符串长度取值范围：(0, 204800]字节。超出范围时返回NULL。建议使用唯一的标识符字符串，如：“com.example.
- *     myservice”或“MyService”。格式通常为反向域名或简单服务名称，用于标识不同的IPC服务接口。
+ * @param descriptor {@link OHIPCRemoteStub}对象描述符，不能为空。字符串长度取值范围：(0, 204800]字节。超出范围时返回NULL。
+ *     建议使用唯一的标识符字符串，如：“com.example.myservice”或“MyService”。格式通常为反向域名或简单服务名称，用于标识不
+ *     同的IPC服务接口。
  * @param requestCallback 数据请求处理函数，不能为空。
- * @param destroyCallback 对象销毁回调函数，当需要在Stub对象销毁时执行清理操作（如释放userData资源）时传入此参数，不需要清理操作时可以不传或传NULL。不传入时对象销毁不会触发任何回调通知。
- * @param userData 用户私有数据，当需要在回调函数中访问用户自定义数据时传入此参数，不需要访问用户数据时可为NULL。为NULL时回调函数中无法访问用户私有数据。
+ * @param destroyCallback 对象销毁回调函数，当需要在Stub对象销毁时执行清理操作（如释放userData资源）时传入此参数，不需要清
+ *     理操作时可以不传或传NULL。不传入时对象销毁不会触发任何回调通知。
+ * @param userData 用户私有数据，当需要在回调函数中访问用户自定义数据时传入此参数，不需要访问用户数据时可为NULL。为NULL时
+ *     回调函数中无法访问用户私有数据。
  * @return 成功返回OHIPCRemoteStub对象指针；失败返回NULL。
  * @since 12
  */
@@ -121,7 +128,6 @@ OHIPCRemoteStub* OH_IPCRemoteStub_Create(const char *descriptor, OH_OnRemoteRequ
 
 /**
  * @brief 销毁{@link OHIPCRemoteStub}对象。
- *
  * - 服务端不再需要提供IPC服务时，释放Stub对象。
  * - 服务端退出或模块卸载时，清理IPC资源。
  * - 与{@link OH_IPCRemoteStub_Create()}配对使用。
@@ -137,7 +143,6 @@ void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub);
 
 /**
  * @brief 销毁{@link OHIPCRemoteProxy}对象。
- *
  * - 客户端不再需要调用远端服务时，释放Proxy对象。
  * - 客户端退出或模块卸载时，清理IPC资源。
  * - 必须先调用{@link OH_IPCRemoteProxy_RemoveDeathRecipient()}移除所有已添加的死亡监听。
@@ -151,7 +156,8 @@ void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub);
 void OH_IPCRemoteProxy_Destroy(OHIPCRemoteProxy *proxy);
 
 /**
- * @brief IPC请求模式定义。同步请求模式适用于需要等待远端响应的场景，异步请求模式适用于不需要等待远端响应或需要提高并发性能的场景。
+ * @brief IPC请求模式定义。同步请求模式适用于需要等待远端响应的场景，异步请求模式适用于不需要等待远端响应或需要提高并发性能
+ * 的场景。
  *
  * @since 12
  */
@@ -174,17 +180,25 @@ typedef enum {
 #pragma pack(4)
 typedef struct {
     /**
-     * 消息请求模式，用于指定IPC消息的请求方式。可选择同步模式或异步模式，同步模式适用于需要等待返回结果的场景，异步模式适用于不需要等待结果的场景。设置同步模式后，调用会阻塞当前线程等待返回结果；设置异步模式后，调用会立即返回，
-     * 不等待结果。在C语言中必须显式初始化此成员。推荐初始化为同步模式（当需要获取返回结果时），或异步模式（当不需要返回结果时）。
+     * @brief 消息请求模式，用于指定IPC消息的请求方式。可选择同步模式或异步模式，同步模式适用于需要等待返回结果的场景，异步
+     * 模式适用于不需要等待结果的场景。设置同步模式后，调用会阻塞当前线程等待返回结果；设置异步模式后，调用会立即返回，不等
+     * 待结果。在C语言中必须显式初始化此成员。推荐初始化为同步模式（当需要获取返回结果时），或异步模式（当不需要返回结果时）。
+     *
+     * @since 12
      */
     OH_IPC_RequestMode mode;
     /**
-     * RPC预留参数，在RPC通信场景下可设置超时时间，该参数对IPC通信无效，使用IPC时可忽略此参数，单位：s。取值范围为[0, 4294967295]。在RPC场景下，推荐根据业务需求设置合理的超时时间，避免长时间阻塞。
-     * 超时后RPC调用会失败并返回超时错误。在C语言中必须显式初始化此成员，推荐初始化为0。
+     * @brief RPC预留参数，在RPC通信场景下可设置超时时间，该参数对IPC通信无效，使用IPC时可忽略此参数，单位：s。取值范围为
+     * [0, 4294967295]。在RPC场景下，推荐根据业务需求设置合理的超时时间，避免长时间阻塞。超时后RPC调用会失败并返回超时错误。
+     * 在C语言中必须显式初始化此成员，推荐初始化为0。
+     *
+     * @since 12
      */
     uint32_t timeout;
     /**
-     * 保留参数，必须传入NULL。传入非空指针时可能导致接口调用失败或未定义行为。
+     * @brief 保留参数，必须传入NULL。传入非空指针时可能导致接口调用失败或未定义行为。
+     *
+     * @since 12
      */
     void* reserved;
 } OH_IPC_MessageOption;
@@ -192,7 +206,6 @@ typedef struct {
 
 /**
  * @brief IPC消息发送函数，用于Proxy端向远端Stub发送IPC消息请求，支持同步和异步两种通信模式。
- *
  * - 客户端需要跨进程调用服务端能力时，发送请求并获取响应。
  * - 实现客户端与服务端的IPC通信交互。
  * - 调用远端服务的业务接口。
@@ -205,12 +218,13 @@ typedef struct {
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy OHIPCRemoteProxy对象指针，不能为空。
- * @param code 用户定义的IPC命令字，范围：[0x01, 0x00ffffff]。超出范围时返回OH_IPC_CODE_OUT_OF_RANGE错误码。建议按业务模块分段定义code值，
- *     确保Proxy端和Stub端使用相同的命令字定义。同一服务接口的不同操作使用不同的code值区分。
+ * @param code 用户定义的IPC命令字，范围：[0x01, 0x00ffffff]。超出范围时返回OH_IPC_CODE_OUT_OF_RANGE错误码。建议按业务模块
+ *     分段定义code值，确保Proxy端和Stub端使用相同的命令字定义。同一服务接口的不同操作使用不同的code值区分。
  * @param data 请求数据对象指针，不能为空。
  * @param reply 响应数据对象指针。同步请求时不能为空，用于存储响应结果；异步请求时可以为空，为空时不存储响应结果。
- * @param option 消息选项指针，用于配置IPC消息发送模式（同步/异步）。当需要使用异步模式或自定义消息选项时传入此参数。异步请求时必须传入并设置相应的请求模式，同步请求时可以不传或传NULL。
- *     不传入或传NULL时默认使用同步模式（OH_IPC_REQUEST_MODE_SYNC）。
+ * @param option 消息选项指针，用于配置IPC消息发送模式（同步/异步）。当需要使用异步模式或自定义消息选项时传入此参数。异步请
+ *     求时必须传入并设置相应的请求模式，同步请求时可以不传或传NULL。不传入或传NULL时默认使用同步模式
+ *    （OH_IPC_REQUEST_MODE_SYNC）。
  * @return 发送成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
  *     <br>参数不合法时返回{@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR}；
  *     <br>远端OHIPCRemoteStub对象死亡返回{@link OH_IPC_ErrorCode#OH_IPC_DEAD_REMOTE_OBJECT}；
@@ -222,15 +236,15 @@ int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy *proxy, uint32_t code, 
     OHIPCParcel *reply, const OH_IPC_MessageOption *option);
 
 /**
- * @brief 从Stub端获取接口描述符。接口描述符是Stub对象的唯一标识，用于识别远端服务类型、进行服务版本兼容性检查或者验证远端服务是否实现了特定接口。函数通过IPC调用从远端Stub获取描述符字符串，
- * 并使用用户提供的内存分配器存储结果。
- *
- * - 返回的描述符字符串内存由用户提供的allocator分配，用户使用完毕后必须主动释放，否则会造成内存泄漏。即使函数调用失败，也需要检查descriptor是否非空并释放。
+ * @brief 从Stub端获取接口描述符。接口描述符是Stub对象的唯一标识，用于识别远端服务类型、进行服务版本兼容性检查或者验证远端
+ * 服务是否实现了特定接口。函数通过IPC调用从远端Stub获取描述符字符串，并使用用户提供的内存分配器存储结果。
+ * - 返回的描述符字符串内存由用户提供的allocator分配，用户使用完毕后必须主动释放，否则会造成内存泄漏。即使函数调用失败，也
+ * 需要检查descriptor是否非空并释放。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy OHIPCRemoteProxy对象指针，不能为空。
- * @param descriptor 用于存储描述符的内存地址，该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放，不能为空。接口返回失败时，用户依然需要判断该内存是否为空，并主动释放，否则会造成内存泄漏。
- *     建议使用完成后立即释放，避免内存泄漏。
+ * @param descriptor 用于存储描述符的内存地址，该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放，不能为空。接
+ *     口返回失败时，用户依然需要判断该内存是否为空，并主动释放，否则会造成内存泄漏。建议使用完成后立即释放，避免内存泄漏。
  * @param len 写入descriptor的数据长度，包含结束符，不能为空。
  * @param allocator 用户指定的用来分配descriptor的内存分配器，不能为空。
  * @return 发送成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}；
@@ -244,28 +258,31 @@ int OH_IPCRemoteProxy_GetInterfaceDescriptor(OHIPCRemoteProxy *proxy, char **des
     OH_IPC_MemAllocator allocator);
 
 /**
- * @brief 远端{@link OHIPCRemoteStub}对象死亡通知的回调函数类型。当远端Stub对象所在进程异常退出或被系统杀死时，系统会触发此回调通知客户端。回调函数在Binder线程中执行，注意线程安全。
- * 回调中不建议进行复杂的IPC操作，避免潜在的死锁风险。常用于客户端需要感知服务端异常退出或崩溃、需要在服务端对象死亡时进行资源清理或状态重置以及需要实现服务端存活监控和故障恢复机制。
+ * @brief 远端{@link OHIPCRemoteStub}对象死亡通知的回调函数类型。当远端Stub对象所在进程异常退出或被系统杀死时，系统会触发此
+ * 回调通知客户端。回调函数在Binder线程中执行，注意线程安全。回调中不建议进行复杂的IPC操作，避免潜在的死锁风险。常用于客户端
+ * 需要感知服务端异常退出或崩溃、需要在服务端对象死亡时进行资源清理或状态重置以及需要实现服务端存活监控和故障恢复机制。
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param userData 用户私有数据指针，当需要在死亡通知回调中访问用户自定义数据时传入此参数，不需要访问用户数据时可以不传或传NULL。为NULL时回调函数中无法访问用户私有数据。
+ * @param userData 用户私有数据指针，当需要在死亡通知回调中访问用户自定义数据时传入此参数，不需要访问用户数据时可以不传或传
+ *     NULL。为NULL时回调函数中无法访问用户私有数据。
  * @since 12
  */
 typedef void (*OH_OnDeathRecipientCallback)(void *userData);
 
 /**
- * @brief {@link OHIPCDeathRecipient}对象销毁回调函数类型。常用于需要在死亡监听对象销毁时释放用户私有数据或需要清理死亡监听相关的资源。
+ * @brief {@link OHIPCDeathRecipient}对象销毁回调函数类型。常用于需要在死亡监听对象销毁时释放用户私有数据或需要清理死亡监听
+ * 相关的资源。
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param userData 用户私有数据指针，当需要在死亡通知回调中访问用户自定义数据时传入此参数，不需要访问用户数据时可以不传或传NULL。为NULL时回调函数无法访问用户私有数据。
+ * @param userData 用户私有数据指针，当需要在死亡通知回调中访问用户自定义数据时传入此参数，不需要访问用户数据时可以不传或传
+ *     NULL。为NULL时回调函数无法访问用户私有数据。
  * @since 12
  */
 typedef void (*OH_OnDeathRecipientDestroyCallback)(void *userData);
 
 /**
- * @brief 创建远端{@link OHIPCRemoteStub}对象死亡通知对象{@link OHIPCDeathRecipient}。用于监听远端Stub对象的死亡状态。常用于客户端需要监听服务端对象的死亡事件、
- * 需要实现服务端异常退出的感知机制以及需要在服务端崩溃时进行故障处理或自动重连。
- *
+ * @brief 创建远端{@link OHIPCRemoteStub}对象死亡通知对象{@link OHIPCDeathRecipient}。用于监听远端Stub对象的死亡状态。常用
+ * 于客户端需要监听服务端对象的死亡事件、需要实现服务端异常退出的感知机制以及需要在服务端崩溃时进行故障处理或自动重连。
  * - 死亡回调会在远端Stub对象销毁或进程崩溃时触发，建议在回调中释放相关资源、重置状态、尝试重连。
  * - 死亡回调可能在任意线程执行，需注意线程安全，避免在回调中进行耗时操作。
  * - 建议在回调中不要直接销毁{@link OHIPCDeathRecipient}对象，应在回调外进行销毁操作。
@@ -278,9 +295,11 @@ typedef void (*OH_OnDeathRecipientDestroyCallback)(void *userData);
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param deathRecipientCallback 远端{@link OHIPCRemoteStub}对象死亡通知的回调处理函数，不能为空。
- * @param destroyCallback 对象销毁回调处理函数，可以为NULL。为NULL时不监听对象销毁事件。当需要在{@link OHIPCDeathRecipient}对象销毁时执行清理操作（如释放userData资源）
- *     时传入此参数，不需要清理操作时可以不传或传NULL。传NULL时对象销毁不会触发任何回调通知。
- * @param userData 用户私有数据指针，当需要在死亡通知回调中访问用户自定义数据时传入此参数，不需要访问用户数据时可以不传或传NULL。为NULL时回调函数无法访问用户私有数据。
+ * @param destroyCallback 对象销毁回调处理函数，可以为NULL。为NULL时不监听对象销毁事件。当需要在{@link OHIPCDeathRecipient}
+ *     对象销毁时执行清理操作（如释放userData资源）时传入此参数，不需要清理操作时可以不传或传NULL。传NULL时对象销毁不会触发
+ *     任何回调通知。
+ * @param userData 用户私有数据指针，当需要在死亡通知回调中访问用户自定义数据时传入此参数，不需要访问用户数据时可以不传或传
+ *     NULL。为NULL时回调函数无法访问用户私有数据。
  * @return 成功返回OHIPCDeathRecipient对象指针；失败返回NULL。
  * @since 12
  */
@@ -288,13 +307,12 @@ OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback dea
     OH_OnDeathRecipientDestroyCallback destroyCallback, void *userData);
 
 /**
- * @brief 销毁{@link OHIPCDeathRecipient}对象。常用于不再需要监听远端对象死亡事件以及客户端退出或模块卸载时，清理死亡监听资源。
- *
+ * @brief 销毁{@link OHIPCDeathRecipient}对象。常用于不再需要监听远端对象死亡事件以及客户端退出或模块卸载时，清理死亡监听
+ * 资源。
  * - 与{@link OH_IPCDeathRecipient_Create()}配对使用。
  * - 必须先调用{@link OH_IPCRemoteProxy_RemoveDeathRecipient()}从所有Proxy中移除该监听对象。
  * - 死亡监听对象不再需要时销毁。
  * - 未移除监听直接销毁将导致回调异常或内存泄漏。
- * - 销毁后会自动触发destroyCallback释放userData。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param recipient 要销毁的OHIPCDeathRecipient对象指针，不能为空。
@@ -303,9 +321,9 @@ OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback dea
 void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
 
 /**
- * @brief 向{@link OHIPCRemoteProxy}对象添加死亡监听，用于接收远端{@link OHIPCRemoteStub}对象死亡的回调通知。常用于客户端启动后，注册服务端死亡监听以便及时感知服务端异常、
- * 需要实现服务端故障检测和自动恢复机制以及需要在服务端不可用时及时释放相关资源或通知用户。
- *
+ * @brief 向{@link OHIPCRemoteProxy}对象添加死亡监听，用于接收远端{@link OHIPCRemoteStub}对象死亡的回调通知。常用于客户端
+ * 启动后，注册服务端死亡监听以便及时感知服务端异常、需要实现服务端故障检测和自动恢复机制以及需要在服务端不可用时及时释放相
+ * 关资源或通知用户。
  * - 未移除监听直接销毁对象可能导致回调异常或内存泄漏。
  * - 先调用{@link OH_IPCDeathRecipient_Create()}创建监听对象。
  * - 调用{@link OH_IPCRemoteProxy_AddDeathRecipient()}添加监听。
@@ -324,8 +342,8 @@ void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
 int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient);
 
 /**
- * @brief 移除向{@link OHIPCRemoteProxy}对象已经添加的死亡监听。常用于不再需要监听远端对象死亡事件时取消注册或切换到其他服务实例时移除旧的死亡监听。
- *
+ * @brief 移除向{@link OHIPCRemoteProxy}对象已经添加的死亡监听。常用于不再需要监听远端对象死亡事件时取消注册或切换到其他服
+ * 务实例时移除旧的死亡监听。
  * - 如果不再需要该监听对象，应调用{@link OH_IPCDeathRecipient_Destroy()}销毁。
  * - 未销毁会导致内存泄漏。
  *
@@ -340,12 +358,13 @@ int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecip
 int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecipient *recipient);
 
 /**
- * @brief 判断{@link OHIPCRemoteProxy}对象对应的远端{@link OHIPCRemoteStub}对象是否死亡。常用于在发送IPC请求前，主动检查服务端是否存活、
- * 在重连机制中判断是否需要重新建立连接以及在业务逻辑中需要根据服务端存活状态采取不同处理策略。
+ * @brief 判断{@link OHIPCRemoteProxy}对象对应的远端{@link OHIPCRemoteStub}对象是否死亡。常用于在发送IPC请求前，主动检查服
+ * 务端是否存活、在重连机制中判断是否需要重新建立连接以及在业务逻辑中需要根据服务端存活状态采取不同处理策略。
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy 需要判断远端是否死亡的OHIPCRemoteProxy对象指针，不能为空。
- * @return 远端{@link OHIPCRemoteStub}对象死亡返回1；否则，返回0。参数非法时，说明其远端{@link OHIPCRemoteStub}对象不存在，返回1。
+ * @return 远端{@link OHIPCRemoteStub}对象死亡返回1；否则，返回0。参数非法时，说明其远端{@link OHIPCRemoteStub}对象不存在，
+ *     返回1。
  * @since 12
  */
 int OH_IPCRemoteProxy_IsRemoteDead(const OHIPCRemoteProxy *proxy);

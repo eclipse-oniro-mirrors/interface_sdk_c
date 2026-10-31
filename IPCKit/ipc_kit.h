@@ -12,19 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup IPCKit
  * @{
  *
+ * @brief The IPC header file provides C API declarations of IPC Kit, facilitating developer references. You can use
+ * inter-process communication capabilities through this header file.
+ */
+/**
  * @file ipc_kit.h
  *
  * @brief The IPC header file provides C API declarations of IPC Kit, facilitating developer references. You can use
  * inter-process communication capabilities through this header file.
  *
+ * @syscap SystemCapability.Communication.IPC.Core
  * @include <IPCKit/ipc_kit.h>
  * @library libipc_capi.so
  * @kit IPCKit
- * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
 
