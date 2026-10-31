@@ -334,7 +334,7 @@ typedef struct ArkUI_AccessibilityElementInfoList ArkUI_AccessibilityElementInfo
 
 /**
  * @brief 第三方{@link provider}回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。
- * 适用于读屏软件、语音控制、开关控制等无障碍辅助场景，第三方平台通过实现这些回调响应系统的无障碍查询和操作请求。
+ * 适用于读屏软件、语音控制、开关控制等无障碍辅助场景，第三方平台通过实现这些回调响应系统的无障碍查询和操作请求。所有的回调函数执行线程为IPC线程，非UI线程。
  *
  * @since 13
  */
@@ -416,7 +416,7 @@ typedef struct ArkUI_AccessibilityProviderCallbacks {
     * 例如，当无障碍服务需要重置焦点高亮或用户切换到其他交互区域时触发。由接入方平台实现的回调函数，注册给系统侧调用。
     *
     * @return ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL，表示操作成功。
-    *         ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER，表示参数错误。
+    *         ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED，表示操作失败。
     */
     int32_t (*clearFocusedFocusAccessibilityNode)();
     /**
@@ -450,6 +450,7 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallback(
 /**
  * @brief 适配多实例场景第三方操作{@link provider}回调函数结构定义，包含节点信息查询、焦点查找与清除、操作执行、光标位置获取等无障碍相关回调函数。
  * 该结构需由第三方平台实现，并通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧，以支持第三方平台接入系统无障碍服务。
+ * 所有的回调函数执行线程为IPC线程，非UI线程。
  *
  * @since 15
  */
@@ -537,7 +538,7 @@ typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
     * @param instanceId 第三方平台接入的实例ID，用于区分多实例场景中不同的第三方实例，ID由第三方平台指定与维护。
     *
     * @return 成功返回ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL。
-    *         参数错误返回ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER。
+    *         操作失败返回ARKUI_ACCESSIBILITY_NATIVE_RESULT_FAILED。
     */
     int32_t (*clearFocusedFocusAccessibilityNode)(const char* instanceId);
     /**
@@ -1611,6 +1612,141 @@ int32_t OH_ArkUI_NativeModule_GetNativeAccessibilityProvider(
  */
 int32_t OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier(
     ArkUI_AccessibilityElementInfo *elementInfo, const char *identifier);
+
+/**
+ * @brief 将外部ArkUI子树绑定到第三方平台无障碍树中的指定占位节点上。
+ *
+ * 当第三方平台（例如CMP）使用RenderNode渲染页面，且RenderNode树上混用ArkUI原生组件时，这些ArkUI原生组件会形成一颗外部子树，
+ * 该子树对无障碍服务不可见。本接口将该外部ArkUI子树绑定到第三方平台无障碍树中的占位节点上，使无障碍焦点遍历能够进入这颗混用的ArkUI子树，
+ * 遍历其内部组件后，再返回第三方平台的无障碍树继续遍历。
+ *
+ * 本接口必须在UI主线程调用。调用同步执行，不会向调用方回调任何函数，且不得在信号处理函数中调用。
+ * 若调用本接口时第三方平台的无障碍树尚未注册到无障碍服务，则绑定在注册完成后异步生效。
+ *
+ * 绑定关系通过(owner, bindId)键值对标识。同一owner上支持多个不同bindId的绑定，每颗被导出的子树最多存在一个生效的绑定。
+ * 使用相同的(owner, bindId)对再次调用本接口不会替换或合并原绑定：原绑定保持不变，并返回ARKUI_ERROR_CODE_NO_ERROR；
+ * 若exportedRoot已经存在生效的绑定，则返回ARKUI_ERROR_CODE_PARAM_INVALID拒绝绑定。
+ * 当OH_ArkUI_Accessibility_UnbindExportTree执行完成后，被绑定的子树会完全从无障碍树中分离，所有绑定资源被释放，
+ * 此时再次使用相同的(owner, bindId)对绑定会执行完整的注册流程。
+ *
+ * @param owner 第三方平台在ArkUI中的宿主节点指针。该节点是RenderNode树上第三方平台的挂载节点（例如XComponent或Custom节点），
+ *         必须为有效的ArkUI_NodeHandle。该句柄为借入而非持有：本接口不会获取节点所有权或延长其生命周期。若节点在绑定存续期间被销毁或替换，
+ *         则绑定立即失效（无障碍服务不再遍历进入被绑定的子树），其剩余内部资源在宿主窗口销毁时释放。
+ *         为保证绑定持续有效，该节点必须保持有效直到调用OH_ArkUI_Accessibility_UnbindExportTree。
+ * @param bindId 第三方平台内部无障碍树中占位节点的无障碍ID。该节点是第三方平台无障碍树中将要挂载混用ArkUI子树的位置，
+ *         无障碍服务遍历到该节点时会进入被绑定的ArkUI子树。取值为第三方平台为该节点分配的无障碍ID，任意ID均可接受，无保留值。
+ *         该ID必须标识第三方平台无障碍树中已存在的节点，但调用本接口时该节点无需已上报给无障碍服务，绑定在第三方平台树注册后即生效。
+ *         该ID在同一owner的生效绑定中必须唯一。
+ * @param exportedRoot 待绑定的混用ArkUI子树的根节点指针。该节点及其后代节点将作为一颗子树注册到bindId指定占位节点下的无障碍树中。
+ *         该句柄为借入而非持有：本接口不会获取节点所有权或延长其生命周期。若节点在绑定存续期间被销毁或替换，则绑定立即失效；
+ *         其剩余内部资源在调用相同(owner, bindId)对的OH_ArkUI_Accessibility_UnbindExportTree或宿主窗口销毁时释放。
+ *         为保证绑定持续有效，该节点及其子树必须保持有效直到调用OH_ArkUI_Accessibility_UnbindExportTree。
+ * @return <ul>
+ *         <li>状态码。</li>
+ *         <li>成功时返回ARKUI_ERROR_CODE_NO_ERROR。</li>
+ *         <li>参数错误时返回ARKUI_ERROR_CODE_PARAM_INVALID。</li>
+ *         <li><br>参数错误：1. 输入参数owner或exportedRoot为空指针或无效句柄。</li>
+ *         <li><br>2. exportedRoot已经存在生效的绑定。</li>
+ *         <li><br>上述两种错误均为确定性的校验结果，无副作用：不会创建绑定，也不会修改已有绑定。修正参数后（对于错误2，
+ *             需先调用OH_ArkUI_Accessibility_UnbindExportTree或改用其他子树）可安全重试。</li>
+ *         </ul>
+ * @see OH_ArkUI_Accessibility_UnbindExportTree
+ * @since 26.0.1
+ */
+int32_t OH_ArkUI_Accessibility_BindExportTree(ArkUI_NodeHandle owner, int64_t bindId, ArkUI_NodeHandle exportedRoot);
+
+/**
+ * @brief 从第三方平台的无障碍树中解绑之前绑定的外部ArkUI子树。
+ *
+ * 当混用的ArkUI子树被销毁或替换时，应调用本接口移除由OH_ArkUI_Accessibility_BindExportTree建立的绑定关系。
+ * 解绑后，无障碍服务将不再遍历进入之前绑定的ArkUI子树。
+ *
+ * 本接口必须在UI主线程调用。调用同步执行，不会向调用方回调任何函数，且不得在信号处理函数中调用。
+ * 仅移除由(owner, bindId)对标识的绑定，同一owner上的其他绑定不受影响。解绑未知或已解绑的(owner, bindId)对是幂等的，返回成功。
+ * 当存在绑定时，本接口返回ARKUI_ERROR_CODE_NO_ERROR后，被绑定的子树已完全从无障碍树中分离，所有绑定资源被释放；
+ * 相同的(owner, bindId)对可再次通过调用OH_ArkUI_Accessibility_BindExportTree绑定，此时执行完整注册流程。
+ *
+ * @param owner 第三方平台在ArkUI中的宿主节点指针。必须与创建绑定时传给OH_ArkUI_Accessibility_BindExportTree的节点相同。
+ *         该节点必须为有效的ArkUI_NodeHandle。该句柄仅用于本次调用中标识绑定关系，调用返回后不会被保留，调用后无需继续保持有效。
+ *         若节点已被销毁，则其绑定已自动失效，无需显式解绑，其剩余内部资源在宿主窗口销毁时释放。
+ * @param bindId 第三方平台内部无障碍树中占位节点的无障碍ID。必须与创建绑定时传给OH_ArkUI_Accessibility_BindExportTree的bindId相同。
+ *         无保留值；解绑不存在生效绑定的(owner, bindId)对是幂等的，返回ARKUI_ERROR_CODE_NO_ERROR。
+ * @return <ul>
+ *         <li>状态码。</li>
+ *         <li>成功时返回ARKUI_ERROR_CODE_NO_ERROR。</li>
+ *         <li>参数错误时返回ARKUI_ERROR_CODE_PARAM_INVALID。</li>
+ *         <li><br>参数错误：1. 输入参数owner为空指针或无效句柄。</li>
+ *         <li><br>该错误为确定性的校验结果，无副作用：不会移除绑定，也不会修改已有绑定。修正参数后可安全重试。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+int32_t OH_ArkUI_Accessibility_UnbindExportTree(ArkUI_NodeHandle owner, int64_t bindId);
+
+/**
+ * @brief 在第三方平台的宿主节点上注册无障碍hover事件处理函数。
+ *
+ * 当屏幕阅读器开启且用户触摸宿主节点区域时，ArkUI以相对宿主节点的坐标同步调用已注册的回调。
+ * 第三方平台执行自身的命中测试，并在回调返回前向输出参数elementInfo填充命中节点的信息。
+ * 随后ArkUI向屏幕阅读器上报对应的无障碍hover事件，使返回的节点获得焦点。第三方平台不自行上报该事件。
+ * hover事件类型（如进入、移动、退出）由ArkUI维护，不会传递给回调。
+ *
+ * 处理函数注册期间，宿主子树的hover命中测试使用第三方平台的返回结果，而非系统的节点树命中测试结果。
+ * 滑动焦点导航不受影响。未注册处理函数的节点保持原有hover行为。
+ * 在同一节点上重复注册会替换之前的回调和userData，并返回ARKUI_ERROR_CODE_NO_ERROR；后续仅使用新的注册。
+ *
+ * 本接口非线程安全。回调在UI主线程同步执行，应尽快返回以避免阻塞触摸处理。
+ *
+ * @param node 第三方平台的宿主节点。仅支持ARKUI_NODE_XCOMPONENT、ARKUI_NODE_CUSTOM和ARKUI_NODE_XCOMPONENT_TEXTURE节点。
+ *         该参数不能为空指针。
+ * @param userData 开发者传入的自定义数据。回调触发时该数据将原样回调给调用方。调用方负责管理其生命周期，ArkUI不会释放userData指向的内存。
+ * @param handleAccessibilityHoverEvent 用于确定命中节点的回调。该参数不能为空指针。回调参数如下：
+ *     <ul>
+ *     <li>userData [in]：注册时提供的自定义数据。</li>
+ *     <li>x [in]：相对宿主节点的X坐标，单位为px。</li>
+ *     <li>y [in]：相对宿主节点的Y坐标，单位为px。</li>
+ *     <li>requestId [in]：当前hover请求的标识，由ArkUI提供。</li>
+ *     <li>elementInfo [out]：指向ArkUI提供的{@link ArkUI_AccessibilityElementInfo}对象的指针。
+ *         第三方平台使用element-info的设置接口向该对象填充命中节点的信息。ArkUI负责该对象的分配和释放。
+ *         该指针仅在回调执行期间有效，第三方平台不得保留或释放它。</li>
+ *     </ul>
+ * @return <ul>
+ *         <li>状态码。</li>
+ *         <li>成功时返回ARKUI_ERROR_CODE_NO_ERROR。</li>
+ *         <li>node为空指针时返回ARKUI_ERROR_CODE_PARAM_INVALID。</li>
+ *         <li>handleAccessibilityHoverEvent为空指针时返回ARKUI_ERROR_CODE_PARAM_ERROR。</li>
+ *         <li>node类型不是ARKUI_NODE_XCOMPONENT、ARKUI_NODE_CUSTOM或ARKUI_NODE_XCOMPONENT_TEXTURE时
+ *             返回ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED。</li>
+ *         </ul>
+ * @see OH_ArkUI_Accessibility_UnregisterAccessibilityHoverEventHandler
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler(ArkUI_NodeHandle node, void *userData,
+    void (*handleAccessibilityHoverEvent)(void *userData, int32_t x, int32_t y,
+    int32_t requestId, ArkUI_AccessibilityElementInfo *elementInfo));
+
+/**
+ * @brief 从指定节点注销无障碍hover事件处理函数。
+ *
+ * 注销后，ArkUI无障碍框架将不再调用由OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler注册的回调，
+ * 该节点恢复原有hover行为。对未注册处理函数的受支持节点执行注销返回ARKUI_ERROR_CODE_NO_ERROR，且其hover行为保持不变。
+ * ArkUI不会释放userData指向的内存，调用方负责管理其生命周期。
+ *
+ * 本接口非线程安全。
+ *
+ * @param node 待注销无障碍hover事件处理函数的宿主节点。必须与注册处理函数时传给OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler的节点相同。
+ *         仅支持ARKUI_NODE_XCOMPONENT、ARKUI_NODE_CUSTOM和ARKUI_NODE_XCOMPONENT_TEXTURE节点。
+ *         该参数不能为空指针。
+ * @return <ul>
+ *         <li>状态码。</li>
+ *         <li>成功时返回ARKUI_ERROR_CODE_NO_ERROR，包括节点上未注册处理函数的情况。</li>
+ *         <li>node为空指针时返回ARKUI_ERROR_CODE_PARAM_INVALID。</li>
+ *         <li>node类型不是ARKUI_NODE_XCOMPONENT、ARKUI_NODE_CUSTOM或ARKUI_NODE_XCOMPONENT_TEXTURE时
+ *             返回ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED。</li>
+ *         </ul>
+ * @see OH_ArkUI_Accessibility_RegisterAccessibilityHoverEventHandler
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_Accessibility_UnregisterAccessibilityHoverEventHandler(ArkUI_NodeHandle node);
 
 #ifdef __cplusplus
 };
