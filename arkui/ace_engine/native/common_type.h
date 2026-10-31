@@ -29,6 +29,7 @@
  * @brief Defines the common types for ArkUI native APIs.
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/common_type.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12

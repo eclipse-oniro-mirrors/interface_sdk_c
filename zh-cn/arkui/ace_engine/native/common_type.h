@@ -28,6 +28,7 @@
  * @brief 定义ArkUI Native API的公共类型。
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/common_type.h>
  * @library libace_ndk.z.so
  * @kit ArkUI
  * @since 12

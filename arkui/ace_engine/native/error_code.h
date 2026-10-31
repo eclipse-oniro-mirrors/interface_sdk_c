@@ -30,6 +30,7 @@
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/error_code.h>
  * @kit ArkUI
  * @since 12
  */
