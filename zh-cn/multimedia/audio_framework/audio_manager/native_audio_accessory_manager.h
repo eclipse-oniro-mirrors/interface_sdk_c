@@ -90,6 +90,9 @@ OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
  * @param openInputStream [in] 音频配件打开输入流的回调函数，不可为NULL。
  *     此回调仅在应用请求从该音频配件采集音频时调用，而非在调用此函数时调用。
  * @param outOwnedAccessory [out] 指向OH_AudioAccessory指针的地址，用于接收创建好的音频配件实例。
+ * @release 如果音频配件已连接，应先调用{@link OH_AudioAccessoryManager_Disconnected}断开连接，
+ *     再调用{@link OH_AudioAccessoryManager_Destroy}销毁音频配件句柄。
+ *     销毁成功后，音频配件句柄失效，不得再次使用。
  * @return <ul>
  *         <li>{@link AUDIOCOMMON_RESULT_SUCCESS}：函数执行成功。</li>
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}：参数无效，包括info为NULL、capabilities为NULL、
@@ -99,9 +102,6 @@ OH_AudioCommon_Result OH_AudioManager_GetAccessoryManager(
  *         <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}：参数manager未通过
  *             {@link OH_AudioManager_GetAccessoryManager}进行初始化。</li>
  *         </ul>
- * @release 如果音频配件已连接，应先调用{@link OH_AudioAccessoryManager_Disconnected}断开连接，
- *     再调用{@link OH_AudioAccessoryManager_Destroy}销毁音频配件句柄。
- *     销毁成功后，音频配件句柄失效，不得再次使用。
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioAccessoryManager_CreateInput(
