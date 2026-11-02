@@ -104,6 +104,12 @@ typedef enum ArkWeb_JavaScriptValueType {
 /**
  * @brief ArkWeb_WebMessage是用于跨上下文消息通信的Web消息结构体，定义了消息的基本格式和数据承载能力。该结构体是Web消息通信的基础数据单元，支持在Native代码和Web页面之间传递字符串和二进制数据。
  *
+ * **使用场景：**
+ * 用于在Native端和Web页面之间进行消息通信，例如：
+ * - Native端向Web页面发送控制指令或数据。
+ * - Web页面向Native端发送用户操作结果或请求数据。
+ * - 跨上下文的异步消息传递和数据同步。
+ *
  * @since 12
  */
 typedef struct ArkWeb_WebMessage* ArkWeb_WebMessagePtr;
@@ -120,6 +126,9 @@ typedef struct ArkWeb_JavaScriptValue* ArkWeb_JavaScriptValuePtr;
 /**
  * @brief 注入的JavaScript执行完成的回调。用于获取JavaScript代码在Web组件中的执行结果，例如在需要根据JavaScript返回的数据更新原生UI或执行后续逻辑的场景中使用。
  *
+ * @param webTag [in] Web组件名称。
+ * @param data [in] JavaScriptBridge数据。
+ * @param userData [in] 用户自定义的数据。
  * @since 12
  */
 typedef void (*ArkWeb_OnJavaScriptCallback)(
@@ -128,6 +137,10 @@ typedef void (*ArkWeb_OnJavaScriptCallback)(
 /**
  * @brief Proxy方法被执行的回调。Proxy方法用于Native侧与JavaScript侧的对象交互和自定义操作。
  *
+ * @param webTag [in] Web组件名称。
+ * @param dataArray [in] 数组数据。
+ * @param arraySize [in] 数组大小。
+ * @param userData [in] 用户自定义的数据。
  * @since 12
  */
 typedef void (*ArkWeb_OnJavaScriptProxyCallback)(
@@ -312,14 +325,14 @@ typedef struct {
      */
     size_t size;
     /**
-     * 注入JavaScript脚本。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法将JavaScript脚本注入到Web组件的执行上下文中，在页面加载完成后执行。
+     * @brief 注入JavaScript脚本。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法将JavaScript脚本注入到Web组件的执行上下文中，在页面加载完成后执行。
      *
      * @param webTag [in] Web组件名称。
      * @param javascriptObject [in] 注入的JavaScript对象。
      */
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /**
-     * 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该方法通过桥接机制将Native对象映射到JavaScript环境，实现双向通信。使用场景：
+     * @brief 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该方法通过桥接机制将Native对象映射到JavaScript环境，实现双向通信。使用场景：
      * 例如JS调用Native能力以获取设备信息、执行 Native 业务逻辑等。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。与registerAsyncJavaScriptProxy相比，
      * 此方法适用于需要同步获取返回值的场景。若不需要同步返回值或耗时操作，建议使用registerAsyncJavaScriptProxy以避免阻塞UI线程。
      *
@@ -328,7 +341,7 @@ typedef struct {
      */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
-     * 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
+     * @brief 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
      * 该方法会解除JavaScript对象与Native对象的绑定，并释放相关资源。使用场景：例如组件销毁、模块卸载或切换业务时清理注册对象以避免残留。
      *
      * @param webTag [in] Web组件名称。
@@ -336,14 +349,14 @@ typedef struct {
      */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /**
-     * 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
+     * @brief 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
      *
      * @param webTag [in] Web组件名称。
      */
     void (*refresh)(const char* webTag);
     /**
-     * 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法通过消息队列机制实现异步调用，避免阻塞主线程。
-     * 与registerJavaScriptProxy相比，此方法适用于耗时操作或不需要同步获取返回值的场景，若需要同步获取返回值，建议使用registerJavaScriptProxy。
+     * @brief 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法通过消息队列机制实现异步调用，
+     * 避免阻塞主线程。与registerJavaScriptProxy相比，此方法适用于耗时操作或不需要同步获取返回值的场景，若需要同步获取返回值，建议使用registerJavaScriptProxy。
      *
      * @param webTag [in] Web组件名称。
      * @param proxyObject [in] 注册的对象。
@@ -353,13 +366,25 @@ typedef struct {
      * @brief 创建Post Message端口。Post Message端口提供双向通信机制，允许Native层与Web层安全地交换数据消息。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
      * 使用场景：例如实现跨上下文消息通道，支持iframe与主页面、Web与Worker之间的数据传递。
      *
+     * <br> **配对调用：**
+     * <br>- 调用createWebMessagePorts()创建的端口，在使用完毕后必须调用destroyWebMessagePorts()销毁。未销毁端口会导致资源泄漏，影响应用性能。
+     * <br> **组合使用：**
+     * <br>创建端口后，需通过postWebMessage()将端口发送到HTML主页面，建立通信通道。典型使用流程：createWebMessagePorts() → postWebMessage()
+     *  → 通信交互 → destroyWebMessagePorts()。
+     *
      * @param webTag Web组件名称。
      * @param size 出参，端口数量。
+     * @return Post Message端口结构体指针。
      */
     ArkWeb_WebMessagePortPtr* (*createWebMessagePorts)(const char* webTag, size_t* size);
 
     /**
-     * @brief 销毁端口。该方法会关闭端口连接，释放相关系统资源，停止消息传输。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。使用场景：例如通信结束、组件生命周期结束时释放端口资源以避免泄漏。
+     * @brief 销毁端口。该方法会关闭端口连接，释放相关系统资源，停止消息传输。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
+     * 使用场景：例如通信结束、组件生命周期结束时释放端口资源以避免泄漏。
+     *
+     * <br> **配对调用：**
+     * <br>- 必须与createWebMessagePorts()成对使用，用于销毁已创建的Post Message端口。只能销毁通过createWebMessagePorts()创建的端口。销毁后端口将无法使用，
+     * 不能继续进行消息传递。建议在通信结束后及时销毁端口，释放资源。如果销毁未正确创建的端口，可能导致未定义行为。
      *
      * @param ports Post Message端口结构体指针数组。
      * @param size 端口数量，必须等于ports数组中的端口数量。
@@ -372,6 +397,7 @@ typedef struct {
      *
      * @param webTag Web组件名称。需要与已绑定的Web组件匹配，否则会返回ARKWEB_INIT_ERROR。
      * @param name 发送给HTML的消息名称。
+     * @param webMessagePorts Post Message端口结构体指针。
      * @param size 端口数量。
      * @param url 接收到消息的页面url。
      * @return 返回值错误码。
@@ -590,7 +616,8 @@ typedef struct {
 /**
  * @brief ArkWeb_CookieManagerAPI是Cookie管理相关Native API结构体。该结构体提供了Cookie的读取、设置、清除和同步等操作能力，适用于需要在WebView组件中管理用户会话、
  * 跟踪用户首选项等场景，能够帮助开发者便捷地实现数据持久化和状态同步。<br>CookieManager相关接口需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取，调用前建议通过
- * {@link ARKWEB_MEMBER_MISSING}校验函数指针的可用性，避免SDK与设备ROM不匹配导致崩溃。
+ * {@link ARKWEB_MEMBER_MISSING}校验函数指针的可用性，避免SDK与设备ROM不匹配导致崩溃。从API版本26.0.1开始，
+ * 调用{@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager}设置为true后，CookieManager相关接口支持在非UI线程使用。
  *
  * @since 12
  */
@@ -602,6 +629,7 @@ typedef struct {
 
     /**
      * @brief 获取指定URL对应的cookie值。用于用户登录状态维护、会话管理、个性化配置读取等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
+     * 从API版本26.0.1开始，调用{@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager}设置为true后，支持在非UI线程调用。
      *
      * @param url 要获取的cookie所属的URL，建议使用完整的URL。
      * @param incognito true表示获取隐私模式下WebView的内存cookie（应用退出后自动清除），false表示获取非隐私模式下的cookie（持久化存储）。
@@ -618,6 +646,7 @@ typedef struct {
 
     /**
      * @brief 设置指定URL的cookie值。用于保存用户偏好设置、维持登录状态、会话信息保存等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
+     * 从API版本26.0.1开始，调用{@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager}设置为true后，支持在非UI线程调用。
      *
      * @param url 指定cookie所属的URL，建议填写完整的URL。
      * @param cookieValue 要设置的cookie的值。格式为name=value，其中name和value分别为cookie的名称和值。
@@ -636,6 +665,7 @@ typedef struct {
 
     /**
      * @brief 检查cookie是否存在。用于判断用户是否已登录、检查会话是否有效、验证身份状态等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
+     * 从API版本26.0.1开始，调用{@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager}设置为true后，支持在非UI线程调用。
      *
      * @param incognito true表示隐私模式下是否存在cookie，false表示非隐私模式下是否存在cookie。
      * @return true表示cookie存在，false表示cookie不存在。
@@ -645,6 +675,7 @@ typedef struct {
     /**
      * @brief 清除所有cookies（包括持久化cookies和会话cookies）。用于用户退出登录、清除隐私数据、重置用户状态等场景。若仅需清除会话cookies，建议使用
      * {@link clearSessionCookiesSync}。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
+     * 从API版本26.0.1开始，调用{@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager}设置为true后，支持在非UI线程调用。
      *
      * @param incognito true表示清除隐私模式下的所有cookies，false表示清除非隐私模式下的所有cookies。
      */
@@ -652,6 +683,7 @@ typedef struct {
 
     /**
      * @brief 清除所有会话cookies。用于清除临时会话数据、关闭所有会话、会话超时清理等场景。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
+     * 从API版本26.0.1开始，调用{@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager}设置为true后，支持在非UI线程调用。
      *
      */
     void (*clearSessionCookiesSync)();

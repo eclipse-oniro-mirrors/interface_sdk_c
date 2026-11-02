@@ -484,8 +484,19 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
  * @brief Sets whether to defer the initialization of the ArkWeb kernel. If this method is not called, the ArkWeb kernel
  * is not deferred for initialization by default. Typical use cases: the **Web** function is not needed immediately
  * at app startup, and you want to delay kernel initialization to save startup resources; the app only needs to use
- * CookieManager without **Web** component rendering for the time being. This API is a global static method and must be
- * called before using the **Web** component and initializing the ArkWeb kernel; otherwise, the setting is invalid.
+ * CookieManager without **Web** component rendering for the time being.
+ *
+ * > **NOTE**
+ * >
+ * > - This API is a global static method and must be called before using the **Web** component and initializing
+ * > the ArkWeb kernel; otherwise, the setting is invalid.
+ * > - This API applies only to APIs that initialize CookieManager when called, such as those in the
+ * > {@link ArkWeb_CookieManagerAPI} module. After this API is called, calling the applicable APIs skips the
+ * > initialization of the ArkWeb kernel when initializing CookieManager, and you need to initialize the ArkWeb
+ * > kernel later.
+ * > - Starting from API version 26.0.1, when calling this interface and setting it to true, the interface in the
+ * > {@link ArkWeb_CookieManagerAPI} module supports non-UI thread usage.
+ *
  * @param lazy [in] - Controls whether to delay the initialization of the web engine.
  * @since 22
  */
