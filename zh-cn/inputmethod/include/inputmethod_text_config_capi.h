@@ -108,11 +108,11 @@ extern "C" {
  *     <br>包含关系:
  *     <br>InputMethod_TextConfig内部包含以下子结构体信息：
  *     <br>- [InputMethod_CursorInfo](capi-inputmethod-inputmethod-cursorinfo.md)：光标信息，包括光标位置、高度等。可通过
- * [OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getcursorinfo)获取，返回双指针（函
- * 数内部分配内存）。
+ * [OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getcursorinfo)获取，通过输出双指针返回
+ * 内嵌光标信息的可写借用视图，不分配新对象，也不转移所有权。
  *     <br>- [InputMethod_TextAvoidInfo](capi-inputmethod-inputmethod-textavoidinfo.md)：避让信息，包括避让区域的位置和尺
  * 寸。可通过[OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_gettextavoidinfo)获
- * 取，返回双指针（函数内部分配内存）。
+ * 取，通过输出双指针返回内嵌避让信息的可写借用视图，不分配新对象，也不转移所有权。
  *     <br>
  *     <br>相关函数：<br>
  *     <br>- 创建/销毁函数：<br>
@@ -154,9 +154,9 @@ extern "C" {
  * | [OH_TextConfig_IsPreviewTextSupported](capi-inputmethod-text-config-capi-h.
  *md#oh_textconfig_ispreviewtextsupported) | 获取是否支持预上屏。 |
  * | [OH_TextConfig_GetCursorInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getcursorinfo) | 获取光
- * 标信息（双指针，函数内部分配内存）。 |
+ * 标信息（通过输出双指针返回内嵌对象的可写借用视图，不分配新对象）。 |
  * | [OH_TextConfig_GetTextAvoidInfo](capi-inputmethod-text-config-capi-h.md#oh_textconfig_gettextavoidinfo) |
- *  获取避让信息（双指针，函数内部分配内存）。 |
+ *  获取避让信息（通过输出双指针返回内嵌对象的可写借用视图，不分配新对象）。 |
  * | [OH_TextConfig_GetSelection](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getselection) | 获取选区
  * 范围信息。 |
  * | [OH_TextConfig_GetWindowId](capi-inputmethod-text-config-capi-h.md#oh_textconfig_getwindowid) | 获取所属窗口
@@ -167,6 +167,12 @@ extern "C" {
  * abilityName信息。 |
  * | [OH_TextConfig_GetConsumeKeyEvents](capi-inputmethod-text-config-capi-h.
  *md#oh_textconfig_getconsumekeyevents) | 获取文本配置中编辑框是否具有完整处理字母、字符、功能等按键的能力。<br/>**起始版本：** 26.0.0 |
+ *     <br>
+ *     <br>句柄与所有权：仅可使用本API创建的有效句柄或框架提供的借用句柄；仅可销毁独立创建的对象。
+ *     回调提供的对象和TextConfig的子对象视图均为借用对象。访问接口对未注册或已失效的句柄返回IME_ERR_PARAMCHECK，
+ *     NULL参数仍按原有规则返回错误。
+ *     <br>保护边界：生命周期检查不保证对象成员的线程安全，也不能在地址复用后识别所有失效地址。
+ *     对象销毁后应将指针置空；不得在回调结束后保留回调对象。
  *
  * @since 12
  */
@@ -206,10 +212,12 @@ InputMethod_TextConfig *OH_TextConfig_Create(void);
  *     <br>
  *     <br>生命周期管理：与[OH_TextConfig_Create](#oh_textconfig_create)配对使用。同一个实例只能被销毁一次，不可重复销毁。若
  * config为NULL，函数不做任何处理。
+ *     <br>仅可销毁独立创建的对象。框架回调提供的是借用对象，即使在回调执行期间也不可销毁。
+ *     对借用对象或未注册对象的销毁请求会被拒绝并记录日志。
  *
  * @param config 输入指针，表示指向即将被销毁的{@link InputMethod_TextConfig}实例的指针。若传入NULL，函数不做任何处理，不会导
  * 致崩溃。销毁后该指针失效，建议设置为NULL。注意：由GetTextConfigFunc回调框架提供的config参数的内存由框架管理，回调返回后自动释
- * 放，不可在回调外部调用Destroy销毁。
+ * 放，不可在回调内部或外部调用Destroy销毁。
  * @since 12
  */
 void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
@@ -230,6 +238,7 @@ void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
  * 不同的键盘布局。
  * @return 返回一个特定的错误码。
  *     <br>IME_ERR_OK = 0：表示成功。
+ *     <br>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。
  *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -247,6 +256,7 @@ InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config,
  * 同的回车键行为和显示标签。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -267,6 +277,7 @@ InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
  *     必须设置。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -285,6 +296,7 @@ InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig
  * 选中文本时start与end相等表示光标位置。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -301,6 +313,7 @@ InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config,
  * @param windowId 输入参数，绑定输入法的应用所属窗口的窗口id。此参数为必需参数，必须设置。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -320,8 +333,10 @@ InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, 
  * @param length 输入参数，placeholder指针指向的UTF-16字符个数（不包含结尾符）。取值范围：0到255。1. 如果长度为0，占位文本信息
  * 会被设置为空字符串。2. UTF-16编码的最大长度为255个字符（
  *     不包含结尾符），超过255个字符会被截断。
- * @return {@link InputMethod_ErrorCode}：IME_ERR_OK = 0：表示成功。IME_ERR_NULL_POINTER = 12802000：非预期的空指针，
- * config为NULL。
+ * @return {@link InputMethod_ErrorCode}：
+ *     <br>IME_ERR_OK = 0：表示成功。
+ *     <br>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。
+ *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *config, const char16_t *placeholder,
@@ -338,8 +353,10 @@ InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *confi
  * @param abilityName 输入指针，指向UTF-16编码的双字节字符串。若传NULL指针，则会将abilityName设置为空字符串。函数仅读取该数据。
  * @param length 输入参数，abilityName指针指向的UTF-16字符个数（不包含结尾符）。取值范围：0到127。1. 如果长度为0，abilityName
  * 会被设置为空字符串。2. UTF-16编码的最大长度为127个字符（不包含结尾符），超过127个字符会被截断。
- * @return {@link InputMethod_ErrorCode}：IME_ERR_OK = 0：表示成功。IME_ERR_NULL_POINTER = 12802000：非预期的空指针，
- * config为NULL。
+ * @return {@link InputMethod_ErrorCode}：
+ *     <br>IME_ERR_OK = 0：表示成功。
+ *     <br>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。
+ *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *config, const char16_t *abilityName,
@@ -364,6 +381,7 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *confi
  * 按键事件将由输入法框架处理。此参数为必需参数，必须设置。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.0.0
@@ -380,6 +398,7 @@ InputMethod_ErrorCode OH_TextConfig_SetConsumeKeyEvents(InputMethod_TextConfig *
  * 地址。不可为NULL。取值范围：{@link InputMethod_TextInputType}枚举值。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或inputType为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -394,6 +413,7 @@ InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config,
  * @param enterKeyType 输出指针，表示指向{@link InputMethod_EnterKeyType}变量的指针。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或enterKeyType为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -410,24 +430,26 @@ InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
  * 持预上屏。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或supported为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfig *config, bool *supported);
 /**
- * @brief 获取文本配置信息中的光标信息。此接口使用双指针参数，函数内部分配内存返回CursorInfo对象。
+ * @brief 获取文本配置信息中光标信息的可写借用视图，不分配新对象，不转移所有权。
  *     <br>
  *     <br>使用场景：当需要读取已设置的光标信息时调用此函数。
  *     <br>
- *     <br>使用后效果：调用成功后，cursorInfo指向由函数内部分配的CursorInfo对象，包含光标位置和高度等信息。
+ *     <br>使用后效果：cursorInfo指向config内嵌的光标信息，通过该视图修改信息会同步更新config。
+ *     <br>生命周期：视图仅在config有效期间有效。若config由回调提供，视图仅在该回调执行期间有效。
  *
- * @param config 输入指针，指向即将被获取值的TextConfig实例的指针。不可为NULL。
- * @param cursorInfo 输出双指针，用于返回光标信息对象。函数内部分配内存创建{@link InputMethod_CursorInfo}实例，并通过此双指针
- * 返回。不可为NULL。返回的对象必须在使用完毕后调用{@link OH_CursorInfo_Destroy}释放，不可使用free直接释放，否则会造成内存泄
- * 漏。
+ * @param config [in] 输入指针，指向即将被获取值的TextConfig实例的指针。不可为NULL。
+ * @param cursorInfo [out] 输出双指针，不可为NULL。返回config内嵌的{@link InputMethod_CursorInfo}的可写借用视图。
+ *     不可调用{@link OH_CursorInfo_Destroy}或free释放该视图，也不可在config失效后继续访问。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或cursorInfo为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -435,23 +457,24 @@ InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfi
 InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config, InputMethod_CursorInfo **cursorInfo);
 
 /**
- * @brief 获取文本配置信息中的避让信息。此接口使用双指针参数，函数内部分配内存返回TextAvoidInfo对象。
+ * @brief 获取文本配置信息中避让信息的可写借用视图，不分配新对象，不转移所有权。
  *     <br>
  *     <br> 使用场景：当需要读取已设置的避让信息时调用此函数。
  *     <br>
- *     <br> 使用后效果：调用成功后，avoidInfo指向由函数内部分配的TextAvoidInfo对象，包含避让区域的位置和尺寸等信息。
+ *     <br> 使用后效果：avoidInfo指向config内嵌的避让信息，通过该视图修改信息会同步更新config。
  *     <br>
- *     <br> 内存管理：avoidInfo为双指针（输出指针），函数内部分配内存创建[InputMethod_TextAvoidInfo]
- *(capi-inputmethod-inputmethod-textavoidinfo.md)对象并通过此参数返回。
- * 返回的TextAvoidInfo对象必须在使用完毕后调用[OH_TextAvoidInfo_Destroy](capi-inputmethod-text-avoid-info-capi-h.
- *md#oh_textavoidinfo_destroy)释放，否则会造成内存泄漏。不可使用free直接释放。
+ *     <br> 内存管理：avoidInfo返回config内嵌的{@link InputMethod_TextAvoidInfo}的可写借用视图，不分配新对象，
+ *     不转移所有权。不可调用{@link OH_TextAvoidInfo_Destroy}或free释放该视图。
+ *     <br>
+ *     <br> 生命周期：视图仅在config有效期间有效。若config由回调提供，视图仅在该回调执行期间有效。
+ *     不可调用OH_TextAvoidInfo_Destroy或free释放该视图。
  *
- * @param config 输入指针，表示文本配置信息。不可为NULL。
- * @param avoidInfo 输出双指针，用于返回输入框避让信息对象。函数内部分配内存创建{@link InputMethod_TextAvoidInfo}实例，并通过
- * 此双指针返回。不可为NULL。返回的对象必须在使用完毕后调用{@link OH_TextAvoidInfo_Destroy}释放，不可使用free直接释放，否则会造
- * 成内存泄漏。
+ * @param config [in] 输入指针，表示文本配置信息。不可为NULL。
+ * @param avoidInfo [out] 输出双指针，不可为NULL。返回config内嵌的{@link InputMethod_TextAvoidInfo}的可写借用视图。
+ *     不可调用{@link OH_TextAvoidInfo_Destroy}或free释放该视图，也不可在config失效后继续访问。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或avoidInfo为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -469,6 +492,7 @@ InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
  * @param end 输出指针，所选文本的结束位置（单位：字符偏移量）。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config、start或end为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -483,6 +507,7 @@ InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config,
  * @param windowId 输出指针，绑定输入法的应用所属窗口的窗口id。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或windowId为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -504,9 +529,11 @@ InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, 
  * @param length 输入/输出指针，占位文本信息长度（单位：UTF-16字符个数，不包含结尾符）。作为入参时，表示placeholder指向的内存可
  * 用长度（最大支持255个字符）；作为出参时，表示实际的占位文本长度。
  *     不可为NULL。
- * @return {@link InputMethod_ErrorCode}：IME_ERR_OK = 0：表示成功。IME_ERR_PARAMCHECK = 401：参数检查失败，
- * 可能是placeholder为NULL或length不足，此时length会被设置为实际长度。IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config
- * 或length为NULL。
+ * @return {@link InputMethod_ErrorCode}：
+ *     <br>IME_ERR_OK = 0：表示成功。
+ *     <br>IME_ERR_PARAMCHECK = 401：参数检查失败，可能是placeholder为NULL或length不足，此时length会被设置为实际长度；
+ *     也可能是对象句柄未注册或已失效。
+ *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config或length为NULL。
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t *placeholder,
@@ -529,7 +556,7 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
  *     表示实际的abilityName长度。不可为NULL。
  * @return {@link InputMethod_ErrorCode}：
  *     <br>IME_ERR_OK = 0：表示成功。
- *     <br>IME_ERR_PARAMCHECK = 401：参数检查失败。
+ *     <br>IME_ERR_PARAMCHECK = 401：参数检查失败，或对象句柄未注册或已失效。
  *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针。
  * @since 20
  */
@@ -552,6 +579,7 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *confi
  *     字符、功能等按键的处理；false表示编辑框不具备此能力，按键事件将由输入法框架处理。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或consumeKeyEvents为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.0.0
