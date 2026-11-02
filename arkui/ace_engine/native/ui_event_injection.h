@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides UI control capabilities of ArkUI on the native side for in-app intelligent
- * agents and UI automation, enabling the injection of control commands into specified UI nodes or UI instances.
+ * agents and UI automation, enabling the injection of control commands into specified UI nodes.
  *
  * @since 26.1.0
  */
@@ -27,7 +27,7 @@
  * @file ui_event_injection.h
  *
  * @brief Declares the APIs used by in-app intelligent agents and UI automation to inject control
- * commands into specified UI nodes or UI instances.
+ * commands into specified UI nodes.
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_event_injection.h>
@@ -96,11 +96,8 @@ typedef enum {
  * @brief Callback for injection completion.
  *
  * Reports the results of command dispatch and immediate component handling, without waiting for
- * deferred effects or rendering. For {@link OH_ArkUI_NativeModule_UIEventInjectCompositeCommand},
- * each accepted request receives exactly one callback on the originating UI thread after the injection
- * function returns. For relaxed injection timing, see
- * {@link OH_ArkUI_NativeModule_UIEventInjectRelaxedInteraction}.
- * Callbacks on different UI threads are not globally serialized.
+ * deferred effects or rendering. Each accepted request receives exactly one callback on the originating
+ * UI thread after the injection function returns. Callbacks on different UI threads are not globally serialized.
  *
  * @param result [in] Result code of the injection execution. For details, see
  *     {@link OH_ArkUI_NativeModule_UIEventInjection_ResultCode}.

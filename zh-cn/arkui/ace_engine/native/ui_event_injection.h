@@ -18,7 +18,7 @@
  * @{
  *
  * @brief 在Native侧提供ArkUI的UI控制能力，适用于应用内智能体和UI自动化场景，
- * 支持向指定UI节点或UI实例注入控制命令。
+ * 支持向指定UI节点注入控制命令。
  *
  * @since 26.1.0
  */
@@ -26,7 +26,7 @@
 /**
  * @file ui_event_injection.h
  *
- * @brief 声明供应用内智能体和UI自动化使用的接口，用于向指定UI节点或UI实例注入控制命令。
+ * @brief 声明供应用内智能体和UI自动化使用的接口，用于向指定UI节点注入控制命令。
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_event_injection.h>
@@ -92,9 +92,7 @@ typedef enum {
  * @brief 注入完成回调。
  *
  * 用于通知命令的派发结果和组件对命令的即时处理结果，不等待组件延迟效果或渲染完成。
- * {@link OH_ArkUI_NativeModule_UIEventInjectCompositeCommand}的每个已受理请求在注入函数返回后，
- * 在原UI线程恰好回调一次。宽松注入的回调时机参见
- * {@link OH_ArkUI_NativeModule_UIEventInjectRelaxedInteraction}。不同UI线程上的回调不保证全局串行执行。
+ * 每个已受理请求在注入函数返回后，在原UI线程恰好回调一次。不同UI线程上的回调不保证全局串行执行。
  *
  * @param result [in] 注入执行的结果码。详情参见
  *     {@link OH_ArkUI_NativeModule_UIEventInjection_ResultCode}。
