@@ -977,9 +977,6 @@ void OH_UDMF_DestroyVirtualItem(OH_UDMF_VirtualItem* item);
  * @param item [in,out] Virtual file item.
  * @param size [in] File size in bytes.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} The file size was set successfully.
- *         {@link UDMF_E_INVALID_PARAM} <code>item</code> is invalid, does not describe a file, or <code>size</code> is
- *             negative.
  *         <ul>
  *         <li>{@link UDMF_E_OK} The file size was set successfully.</li>
  *         <li>{@link UDMF_E_INVALID_PARAM} <code>item</code> is invalid, does not describe a file, or
@@ -1017,7 +1014,7 @@ int OH_UDMF_ClearVirtualFileSize(OH_UDMF_VirtualItem* item);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         <ul>
  *         <li>{@link UDMF_E_OK} The child item was added successfully.</li>
- *         <li>{@link UDMF_E_INVALID_PARAM} An item is invalid, <code>directory</code> does not describe a directory, 
+ *         <li>{@link UDMF_E_INVALID_PARAM} An item is invalid, <code>directory</code> does not describe a directory,
  *             or the resulting item tree violates a virtual entry constraint.</li>
  *         </ul>
  * @see Udmf_ErrCode

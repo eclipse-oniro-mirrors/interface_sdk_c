@@ -185,7 +185,7 @@ typedef OH_UDMF_VirtualItem* (*OH_UDMF_VirtualFileOnStat)(void* context, const c
 /**
  * @brief 需要读取虚拟文件数据时调用。
  *
- * 回调最多向<code>data</code>写入<code>length</code>字节，并通过<code>bytesRead</code>返回实际写入字节数。
+ * 回调最多将<code>length</code>字节写入<code>data</code>，并通过<code>bytesRead</code>返回实际写入字节数。
  * 实际字节数可以小于<code>length</code>，也可以为零。
  *
  * @param context [in] 通过{@link OH_UDMF_CreateVirtualFileInfo}传入的用户上下文。
@@ -195,9 +195,11 @@ typedef OH_UDMF_VirtualItem* (*OH_UDMF_VirtualFileOnStat)(void* context, const c
  * @param data [out] UDMF提供的目标缓冲区，仅在回调执行期间有效。
  * @param bytesRead [out] 实际写入<code>data</code>的字节数。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示数据读取成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示传入了无效参数。
- *         {@link UDMF_ERR} 表示发生内部错误，无法提供数据。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示数据读取成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示传入了无效参数。</li>
+ *         <li>{@link UDMF_ERR} 表示发生内部错误，无法提供数据。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -208,12 +210,15 @@ typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t 
  * @brief 取消虚拟文件操作时调用。
  *
  * @param context [in] 通过{@link OH_UDMF_CreateVirtualFileInfo}传入的用户上下文。
- * @param idList [in] 被取消的虚拟文件标识列表，该数组及其中的字符串仅在回调执行期间有效。
+ * @param idList [in] 被取消的虚拟文件标识列表。
+ *                   该数组及其中的字符串仅在回调执行期间有效。
  * @param count [in] <code>idList</code>中的标识数量。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示取消成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示传入了无效参数。
- *         {@link UDMF_ERR} 表示发生内部错误，取消失败。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示取消成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示传入了无效参数。</li>
+ *         <li>{@link UDMF_ERR} 表示发生内部错误，取消失败。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -240,13 +245,29 @@ typedef void (*OH_UDMF_VirtualFileFinalize)(void* context);
  * @since 26.1.0
  */
 typedef struct OH_UDMF_VirtualFileCallbacks {
-    /** 结构体大小。 */
+    /**
+     * @brief 结构体大小。
+     *
+     * @since 26.1.0
+     */
     uint32_t structSize;
-    /** 可选的元数据回调。 */
+    /**
+     * @brief 可选的元数据回调。
+     *
+     * @since 26.1.0
+     */
     OH_UDMF_VirtualFileOnStat onStat;
-    /** 必选的内容读取回调。 */
+    /**
+     * @brief 必选的内容读取回调。
+     *
+     * @since 26.1.0
+     */
     OH_UDMF_VirtualFileOnRead onRead;
-    /** 可选的取消回调。为nullptr时，取消操作成功，不通知提供方。 */
+    /**
+     * @brief 可选的取消回调。为nullptr时，取消操作成功，不通知提供方。
+     *
+     * @since 26.1.0
+     */
     OH_UDMF_VirtualFileOnCancel onCancel;
 } OH_UDMF_VirtualFileCallbacks;
 
@@ -944,8 +965,10 @@ void OH_UDMF_DestroyVirtualItem(OH_UDMF_VirtualItem* item);
  * @param item [in,out] 虚拟文件节点。
  * @param size [in] 文件大小，单位为字节。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示设置成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示<code>item</code>无效、不是文件节点或<code>size</code>为负数。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示设置成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示<code>item</code>无效、不是文件节点或<code>size</code>为负数。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -959,8 +982,10 @@ int OH_UDMF_SetVirtualFileSize(OH_UDMF_VirtualItem* item, int64_t size);
  *
  * @param item [in,out] 虚拟文件节点。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示清除成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示<code>item</code>无效或不是文件节点。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示清除成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示<code>item</code>无效或不是文件节点。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -974,8 +999,10 @@ int OH_UDMF_ClearVirtualFileSize(OH_UDMF_VirtualItem* item);
  * @param directory [in,out] 虚拟目录节点。
  * @param child [in] 待添加的子节点。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示添加成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示节点无效、<code>directory</code>不是目录，或结果违反虚拟文件树约束。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示添加成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示节点无效、<code>directory</code>不是目录，或结果违反虚拟文件树约束。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -1014,8 +1041,10 @@ void OH_UDMF_DestroyVirtualFileInfo(OH_UDMF_VirtualFileInfo* info);
  * @param fileUri [in,out] 待更新的文件Uri实例。
  * @param info [in] 待附加的虚拟文件信息。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示附加成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示<code>fileUri</code>或<code>info</code>无效。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示附加成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示<code>fileUri</code>或<code>info</code>无效。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
@@ -1026,8 +1055,10 @@ int OH_UDMF_SetFileUriVirtualEntry(OH_UdsFileUri* fileUri, const OH_UDMF_Virtual
  *
  * @param fileUri [in,out] 待更新的文件Uri实例。
  * @return 返回执行状态码。具体请参阅{@link Udmf_ErrCode}。
- *         {@link UDMF_E_OK} 表示移除成功。
- *         {@link UDMF_E_INVALID_PARAM} 表示<code>fileUri</code>无效。
+ *         <ul>
+ *         <li>{@link UDMF_E_OK} 表示移除成功。</li>
+ *         <li>{@link UDMF_E_INVALID_PARAM} 表示<code>fileUri</code>无效。</li>
+ *         </ul>
  * @see Udmf_ErrCode
  * @since 26.1.0
  */
