@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides UI control capabilities of ArkUI on the native side for in-app intelligent
- * agents and UI automation, enabling the injection of control commands into specified UI nodes.
+ * agents and UI automation, enabling the injection of control commands into specified UI nodes or UI instances.
  *
  * @since 26.1.0
  */
@@ -27,7 +27,7 @@
  * @file ui_event_injection.h
  *
  * @brief Declares the APIs used by in-app intelligent agents and UI automation to inject control
- * commands into specified UI nodes.
+ * commands into specified UI nodes or UI instances.
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_event_injection.h>
@@ -96,8 +96,11 @@ typedef enum {
  * @brief Callback for injection completion.
  *
  * Reports the results of command dispatch and immediate component handling, without waiting for
- * deferred effects or rendering. Each accepted request receives exactly one callback on the originating
- * UI thread after the injection function returns. Callbacks on different UI threads are not globally serialized.
+ * deferred effects or rendering. For {@link OH_ArkUI_NativeModule_UIEventInjectCompositeCommand},
+ * each accepted request receives exactly one callback on the originating UI thread after the injection
+ * function returns. For relaxed injection timing, see
+ * {@link OH_ArkUI_NativeModule_UIEventInjectRelaxedInteraction}.
+ * Callbacks on different UI threads are not globally serialized.
  *
  * @param result [in] Result code of the injection execution. For details, see
  *     {@link OH_ArkUI_NativeModule_UIEventInjection_ResultCode}.
@@ -158,6 +161,52 @@ typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
 ArkUI_ErrorCode OH_ArkUI_NativeModule_UIEventInjectCompositeCommand(
     ArkUI_ContextHandle uiContext,
     uint32_t uniqueId,
+    const OH_ArkUI_NativeModule_UIJsonWrapper *command,
+    OH_ArkUI_NativeModule_UIEventInjectionCallback callback,
+    void *userData);
+
+/**
+ * @brief Injects a relaxed interaction command into a UI instance asynchronously, without a node ID.
+ *
+ * Supports click, content_switch, scroll, backpress, and key commands. The command is carried by an
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapper} created with
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapperCreate}. Its top-level structure is:
+ * {"schemaVersion": 1, "cmd": {"type": "<command type>", "action_info": { ... }}}
+ * schemaVersion must be the number 1.
+ *
+ * This function can be called from any thread. JSON validation and copying finish before return;
+ * execution and callback run on the target instance's UI thread. Returning 0 means the request was
+ * accepted; its execution result is reported by callback. A nonzero return value means the request
+ * was rejected without command execution or callback.
+ *
+ * When callback is non-NULL, each accepted request invokes it once when command execution completes,
+ * without waiting for animation or rendering. For calls from the target UI thread, callback runs
+ * after this function returns. For calls from another thread, callback may run before return.
+ * Multiple commands may be queued; their execution and callback order are not guaranteed.
+ * If the instance becomes unavailable after acceptance, callback reports
+ * {@link OH_ARKUI_NATIVE_MODULE_UI_EVENT_INJECTION_RESULT_TARGET_NOT_FOUND}.
+ *
+ * @param uiContext [in] Target UI instance handle. Must not be NULL and must remain valid throughout
+ *     this call. The caller must synchronize destruction of the handle itself.
+ * @param command [in] Configured JSON command object. Must not be NULL and must remain valid
+ *     throughout this call. The caller retains ownership and may destroy it after return.
+ * @param callback [in] Completion callback. Can be NULL. When non-NULL, it must remain callable
+ *     until it returns.
+ * @param userData [in] Custom user data pointer passed to callback. Can be NULL. The framework only
+ *     stores the pointer value; it does not access, copy, free, or take ownership of the pointed-to
+ *     data. When callback is non-NULL, data must be ready before the call and remain valid until
+ *     callback returns. The caller must synchronize shutdown with callback completion.
+ * @return <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the request is accepted.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if command is NULL, the JSON or command parameters
+ *     are invalid, required fields are missing, or command submission fails.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if uiContext is NULL, or the target instance
+ *     or its task executor is unavailable.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_UIEventInjectRelaxedInteraction(
+    ArkUI_ContextHandle uiContext,
     const OH_ArkUI_NativeModule_UIJsonWrapper *command,
     OH_ArkUI_NativeModule_UIEventInjectionCallback callback,
     void *userData);
