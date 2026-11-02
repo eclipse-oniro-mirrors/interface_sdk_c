@@ -97,6 +97,7 @@ struct OhosImageReceiverInfo {
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_CREATE_SURFACE_FAILED：创建surface失败。
  *     <br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED：surface分配内存失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
@@ -132,7 +133,7 @@ ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative(napi_env env, nap
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
  *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
  *     <br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT：媒体类型不支持。
@@ -154,7 +155,7 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId(const ImageReceiverNative* nativ
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_CREATE_SURFACE_FAILED：创建surface失败。
  *     <br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED：surface分配内存失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
@@ -179,7 +180,7 @@ int32_t OH_Image_Receiver_ReadLatestImage(const ImageReceiverNative* native, nap
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_CREATE_SURFACE_FAILED：创建surface失败。
  *     <br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED：surface分配内存失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
@@ -202,10 +203,10 @@ int32_t OH_Image_Receiver_ReadNextImage(const ImageReceiverNative* native, napi_
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
  *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
- *     <br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT：媒体类型不支持。
+ *     <br>IMAGE_RESULT_REGISTER_LISTENER_FAILED：注册监听器失败。
+ *     <br>IMAGE_RESULT_REGISTER_BUFFER_FAILED：注册缓冲区失败。
  * @see ImageReceiverNative
  * @since 10
  * @version 2.0
@@ -247,15 +248,16 @@ int32_t OH_Image_Receiver_GetSize(const ImageReceiverNative* native, struct Ohos
 int32_t OH_Image_Receiver_GetCapacity(const ImageReceiverNative* native, int32_t* capacity);
 
 /**
- * @brief Obtains the format of the image receiver through an {@link ImageReceiverNative} object.
+ * @brief 通过{@link ImageReceiverNative}对象获取图像接收器的格式。
  *
- * @param native Indicates the pointer to an {@link ImageReceiverNative} object at the native layer.
- * @param format Indicates the pointer to the format obtained.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image type unsupported.
+ * @param native native层的ImageReceiverNative指针。
+ * @param format 表示获取到的格式的指针。
+ * @return {@link IRNdkErrCode}：
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
+ *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
+ *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
  * @see ImageReceiverNative
 
  * @since 10
@@ -271,8 +273,8 @@ int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* 
  * @return {@link IRNdkErrCode}：
  *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
  * @see ImageReceiverNative
  * @since 10
  * @version 2.0
