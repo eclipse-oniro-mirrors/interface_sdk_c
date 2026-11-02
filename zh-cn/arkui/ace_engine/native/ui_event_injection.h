@@ -17,8 +17,8 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides UI control capabilities of ArkUI on the native side for in-app intelligent
- * agents and UI automation, enabling the injection of control commands into specified UI nodes.
+ * @brief 在Native侧提供ArkUI的UI控制能力，适用于应用内智能体和UI自动化场景，
+ * 支持向指定UI节点注入控制命令。
  *
  * @since 26.1.0
  */
@@ -26,8 +26,7 @@
 /**
  * @file ui_event_injection.h
  *
- * @brief Declares the APIs used by in-app intelligent agents and UI automation to inject control
- * commands into specified UI nodes.
+ * @brief 声明供应用内智能体和UI自动化使用的接口，用于向指定UI节点注入控制命令。
  *
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @include <arkui/ui_event_injection.h>
