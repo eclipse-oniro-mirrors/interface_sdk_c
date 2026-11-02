@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup InputMethod
  * @{
@@ -41,76 +42,77 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Represents the information used by the input box to avoid the keyboard.
+ * @brief Information used by the input box to avoid the keyboard.
  *
  * @since 12
  */
 typedef struct InputMethod_TextAvoidInfo InputMethod_TextAvoidInfo;
 
 /**
- * @brief Create a new {@link InputMethod_TextAvoidInfo} instance.
+ * @brief Creates an {@link InputMethod_TextAvoidInfo} instance.
  *
  * @param positionY Y coordinate of the text box, in px.
  * @param height Height of the text box, in px.
- * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_TextAvoidInfo}
- * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
+ * @return If the operation is successful, a pointer to the created {@link InputMethod_TextAvoidInfo} instance is
+ *     returned.
+ *     <br>If the operation failed, **NULL** is returned, which may be caused by insufficient application address space.
  * @since 12
  */
 InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double height);
 /**
- * @brief Destroy a {@link InputMethod_TextAvoidInfo} instance.
+ * @brief Destroys an {@link InputMethod_TextAvoidInfo} instance.
  *
- * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be destroyed.
+ * @param info Pointer to the {@link InputMethod_TextAvoidInfo} instance to be destroyed.
  * @since 12
  */
 void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
 /**
- * @brief Set positionY value into {@link InputMethod_TextAvoidInfo}.
+ * @brief Sets the Y coordinate in {@link InputMethod_TextAvoidInfo}.
  *
- * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be set value.
- * @param positionY Y coordinate, that is,
- *  the absolute value of the distance between the text box's top vertex and the top edge of the physical screen, in px.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param info Pointer to the {@link InputMethod_TextAvoidInfo} instance whose value is to be set.
+ * @param positionY Y coordinate, that is, the absolute value of the distance between the text box's top vertex and the
+ *     top edge of the physical screen, in px.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *info, double positionY);
 /**
- * @brief Set height value into {@link InputMethod_TextAvoidInfo}.
+ * @brief Sets the height in {@link InputMethod_TextAvoidInfo}.
  *
- * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be set value.
+ * @param info Pointer to the {@link InputMethod_TextAvoidInfo} instance whose value is to be set.
  * @param height Height, in px.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info, double height);
 /**
- * @brief Get positionY value from {@link InputMethod_TextAvoidInfo}.
+ * @brief Obtains the Y coordinate from {@link InputMethod_TextAvoidInfo}.
  *
- * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be get value from.
- * @param positionY Y coordinate, that is,
- *  the absolute value of the distance between the text box's top vertex and the top edge of the physical screen, in px.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param info Pointer to the {@link InputMethod_TextAvoidInfo} instance whose value is to be obtained.
+ * @param positionY Y coordinate, that is, the absolute value of the distance between the text box's top vertex and the
+ *     top edge of the physical screen, in px.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *info, double *positionY);
 /**
- * @brief Get height value from {@link InputMethod_TextAvoidInfo}.
+ * @brief Obtains the height from {@link InputMethod_TextAvoidInfo}.
  *
- * @param info Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be get value from.
+ * @param info Pointer to the {@link InputMethod_TextAvoidInfo} instance whose value is to be obtained.
  * @param height Height of the text box, in px.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_GetHeight(InputMethod_TextAvoidInfo *info, double *height);
@@ -118,4 +120,4 @@ InputMethod_ErrorCode OH_TextAvoidInfo_GetHeight(InputMethod_TextAvoidInfo *info
 }
 #endif /* __cplusplus */
 /** @} */
-#endif // OHOS_INPUTMETHOD_TEXT_AVOID_INFO_CAP_H
+#endif // OHOS_INPUTMETHOD_TEXT_AVOID_INFO_CAPI_H
