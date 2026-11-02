@@ -940,13 +940,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForContentAutoPauseScenes
  * @brief 录屏是否以HDR格式输出图像。<br>
  * 此功能需要使用{@link OH_AVScreenCapture_SetCaptureStrategy}在录屏启动前完成配置。<br>
  * 
- * 说明：<br>
+ * @note 该接口设置为true时：
  *
- * 1. 该接口设置为true时，在存文件模式下，需要设置{@link OH_VideoEncInfo}的videoCodec为H265编码格式，
+ * 在存文件模式下，需要设置{@link OH_VideoEncInfo}的videoCodec为H265编码格式，
  * 否则会导致文件存储失败。<br>
  * 
- * 2. 该接口设置为true时，视频像素格式为RGBA1010102，
- * 需要使用{@link OH_AVCapability_GetVideoSupportedPixelFormats}查看设备是否支持该格式的数据。
+ * 视频像素格式为RGBA1010102，需要使用{@link OH_AVCapability_GetVideoSupportedPixelFormats}
+ * 查看设备是否支持该格式的数据。
  * 
  * @param strategy 指向OH_AVScreenCapture_CaptureStrategy实例的指针。
  * @param enable 录屏是否以HDR格式输出图像。<br> true表示图像为HDR格式，false表示图像为SDR格式。<br> 默认值为false。
