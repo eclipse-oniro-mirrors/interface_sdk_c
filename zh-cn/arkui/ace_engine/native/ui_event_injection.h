@@ -105,6 +105,59 @@ typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
     OH_ArkUI_NativeModule_UIEventInjection_ResultCode result, void *userData);
 
 /**
+ * @brief 异步向UI注入宽松的交互命令。
+ *
+ * 该命令表达了一个高层次的交互意图(点击、content_switch、scroll、backpress、
+ * 或关键)，而不针对特定的组件；系统根据
+ * 模式。
+ *
+ * 该命令由使用创建的{@链接OH_ArkUI_NativeModule_UIJsonWrapper}对象携带
+ * {@链接OH_ArkUI_NativeModule_UIJsonWrapper_Create}。命令负载的顶层结构是：
+ *
+ * { "schemaVersion": 1, "cmd": { "type": "<命令类型>","mode":"<执行模式>","action_info":{...}}}
+ *
+ * 命令特定的参数如下；除非标记为必需，否则action_info字段
+ * 可选：
+ * -单击：模式（可选，默认为“auto”）;action_info.坐标与x1和y1（都是必需的）。
+ * - content_switch: mode必须为“target”；action_info.count必须为正整数(可选，
+ * default 1); action_info.direct（"前向"|"后向"，可选，默认"前向"）；
+ * 带有x和y的action_info.codices.pos（必需）。
+ * - scroll：模式（可选，默认为“auto”）;action_info.direct(“向前”|“向后”|“向左”
+ * | "right" | "up" | "down"，可选，默认"forward";action_info.mote，非负
+ * 物理像素值（可选，默认为窗口高度的三分之一）;action_info.坐标
+ * 其中x1和y1是必需的，x2和y2是可选的。
+ * - backpress：无参数。
+ * - key: action_info.code，密钥的虚拟密钥代码，必须是有效的密钥代码
+ * （必填项）。
+ *
+ * 所有位置坐标都是相对于窗口的，以物理像素（px）为单位。如果需要
+ * 字段缺失或值超出其有效范围，
+ * 返回{@link RKUI_ERROR_CODE_PARAM_INVALID}。
+ *
+ * 这个函数是线程安全的，可以从任何线程调用，不会阻塞调用者，并且是
+ * 而不是async-signal-safe。
+ *
+ * @param uiContext 【in】指向UI实例的指针。不能为空。
+ * @param command 【in】配置的JSON命令。它不能为空，并且必须对
+ * 呼叫的持续时间。被调用方不保留。
+ * @param callback 【in】可选回调，当注入的命令执行完成时调用一次。
+ * 可以为空。
+ * @param userData 【in】传递给回调的自定义用户数据。可以为空。框架做了
+ * 而不是取得它的所有权；调用者必须保持它有效，直到回调完成。
+ * @return <ul>
+ * <li>{@link RKUI_ERROR_CODE_NO_ERROR}如果命令排队成功。</li>
+ * <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}如果参数无效或缺少必填字段。</li>
+ * 如果UI上下文无效，则<li>{@link RKUI_ERROR_CODE_UI_CONTEXT_INVALID}。</li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_UIEventInjectRelaxedInteraction(
+    ArkUI_ContextHandle uiContext,
+    const OH_ArkUI_NativeModule_UIJsonWrapper *command,
+    OH_ArkUI_NativeModule_UIEventInjectionCallback callback,
+    void *userData);
+
+/**
  * @brief 向目标UI节点异步注入控制命令。
  *
  * 本接口不提供取消操作或固定的完成超时，完成依赖UI线程的任务处理。

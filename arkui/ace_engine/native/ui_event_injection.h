@@ -111,6 +111,59 @@ typedef void (*OH_ArkUI_NativeModule_UIEventInjectionCallback)(
     OH_ArkUI_NativeModule_UIEventInjection_ResultCode result, void *userData);
 
 /**
+ * @brief Injects a relaxed interaction command into the UI asynchronously.
+ *
+ * The command expresses a high-level interaction intent (click, content_switch, scroll, backpress,
+ * or key) without targeting a specific component; the system decides how to execute it based on the
+ * mode.
+ *
+ * The command is carried by a {@link OH_ArkUI_NativeModule_UIJsonWrapper} object created with
+ * {@link OH_ArkUI_NativeModule_UIJsonWrapper_Create}. The command payload's top-level structure is:
+ *
+ * { "schemaVersion": 1, "cmd": { "type": "<command type>", "mode": "<execution mode>", "action_info": { ... } } }
+ *
+ * The command-specific parameters are as follows; unless marked required, the action_info fields
+ * are optional:
+ * - click: mode (optional, default "auto"); action_info.coordinates with x1 and y1 (both required).
+ * - content_switch: mode must be "target"; action_info.count must be a positive integer (optional,
+ * default 1); action_info.direction ("forward" | "backward", optional, default "forward");
+ * action_info.coordinates.pos with x and y (required).
+ * - scroll: mode (optional, default "auto"); action_info.direction ("forward" | "backward" | "left"
+ * | "right" | "up" | "down", optional, default "forward"); action_info.distance, a non-negative
+ * physical-pixel value (optional, default one third of the window height); action_info.coordinates
+ * with x1 and y1 required, and x2 and y2 optional.
+ * - backpress: no parameters.
+ * - key: action_info.code, the virtual key code of the key, which must be a valid key code
+ * (required).
+ *
+ * All positional coordinates are relative to the window, in physical pixels (px). If a required
+ * field is missing or a value is outside its valid range,
+ * {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ *
+ * This function is thread-safe, can be called from any thread, does not block the caller, and is
+ * not async-signal-safe.
+ *
+ * @param uiContext [in] Pointer to a UI instance. It must not be NULL.
+ * @param command [in] Configured JSON command. It must not be NULL and must remain valid for the
+ *     duration of the call. The callee does not retain it.
+ * @param callback [in] Optional callback, invoked once when the injected command finishes executing.
+ *     It can be NULL.
+ * @param userData [in] Custom user data passed to the callback. It can be NULL. The framework does
+ *     not take ownership of it; the caller must keep it valid until the callback completes.
+ * @return <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the command is queued successfully.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid or a required field is missing.</li>
+ *     <li>{@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the UI context is invalid.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_UIEventInjectRelaxedInteraction(
+    ArkUI_ContextHandle uiContext,
+    const OH_ArkUI_NativeModule_UIJsonWrapper *command,
+    OH_ArkUI_NativeModule_UIEventInjectionCallback callback,
+    void *userData);
+
+/**
  * @brief Injects a control command into a target UI node asynchronously.
  *
  * This API provides no cancellation operation or fixed completion timeout. Completion depends on
