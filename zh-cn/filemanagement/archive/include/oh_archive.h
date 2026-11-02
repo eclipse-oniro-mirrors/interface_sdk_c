@@ -207,6 +207,7 @@ typedef uint64_t (*OH_Archive_Stream_OutputHandler)(const void* data, uint64_t s
 
 /**
  * @brief 打开文件进行读取。
+ * @note 返回的上下文必须通过调用OH_Archive_Reader_Close()释放相关资源。
  * @param infile 源文件的路径，应用需要有读取权限，绝对路径长度需不超过4096bytes。
  * @return 返回文件读取器的上下文结构体，操作失败时返回NULL。
  * @since 26.0.0
@@ -220,6 +221,8 @@ OH_Archive_Reader_Ctx OH_Archive_Reader_OpenFile(const char *infile);
  * @param progressHandler 用于处理进度更新的回调函数。
  * @param userData 用户处理进度回调时自定义的上下文数据。
  * @return 返回接口执行的结果。成功返回OH_ARCHIVE_OK，失败返回对应错误码。
+ *         {@link OH_ARCHIVE_OK} - 操作成功。
+ *         {@link OH_ARCHIVE_PARAM_ERROR} - 无效入参。
  * @since 26.0.0
  */
 OH_Archive_ErrCode OH_Archive_Reader_SetProgressHandlerWithData(OH_Archive_Reader_Ctx arc,
@@ -244,6 +247,7 @@ OH_Archive_ErrCode OH_Archive_Reader_Close(OH_Archive_Reader_Ctx arc);
 
 /**
  * @brief 创建并打开压缩文件。
+ * @note 返回的上下文必须通过调用OH_Archive_Writer_Close()释放相关资源。
  * @param outfile 目标压缩文件的路径，应用需有写入权限，绝对路径长度需不超过4096bytes。
  * @param openMode 文件打开模式。
  * @param fmt 压缩包格式。
@@ -259,8 +263,11 @@ OH_Archive_Writer_Ctx OH_Archive_Writer_OpenFile(const char *outfile,
  * @brief 设置压缩文件的压缩算法。
  * @param arc 文件压缩器的上下文句柄。
  * @param method 压缩算法。
- * @param compressLevel 压缩等级。对于OH_ARCHIVE_COMPRESS_DEFLATE，压缩级别为0到9，默认等级为6。0表示不压缩，压缩等级越高，压缩率越高，速度越慢。
+ * @param compressLevel 压缩等级。-1表示默认压缩级别。对于OH_ARCHIVE_COMPRESS_DEFLATE，压缩级别为0到9，默认等级为6。
+ *     0表示不压缩，1提供最快速度，9提供最高压缩率，压缩等级越高，压缩率越高，速度越慢。
  * @return 返回接口执行的结果。成功返回OH_ARCHIVE_OK，失败返回对应错误码。
+ *         {@link OH_ARCHIVE_OK} - 操作成功。
+ *         {@link OH_ARCHIVE_PARAM_ERROR} - 无效入参。
  * @since 26.0.0
  */
 OH_Archive_ErrCode OH_Archive_Writer_SetCompressMethod(OH_Archive_Writer_Ctx arc,
@@ -272,6 +279,8 @@ OH_Archive_ErrCode OH_Archive_Writer_SetCompressMethod(OH_Archive_Writer_Ctx arc
  * @param progressHandler 用于处理进度更新的回调函数。
  * @param userData 用户处理进度回调时自定义的上下文数据。
  * @return 返回接口执行的结果。成功返回OH_ARCHIVE_OK，失败返回对应错误码。
+ *         {@link OH_ARCHIVE_OK} - 操作成功。
+ *         {@link OH_ARCHIVE_PARAM_ERROR} - 无效入参。
  * @since 26.0.0
  */
 OH_Archive_ErrCode OH_Archive_Writer_SetProgressHandlerWithData(OH_Archive_Writer_Ctx arc,
@@ -313,7 +322,8 @@ uint64_t OH_Archive_BufferWriteCompressBound(OH_Archive_CompressMethod method, u
  * @param srcBuffer 指向包含待压缩数据的源缓冲区的指针。
  * @param srcSize 源缓冲区数据的大小，单位为bytes。
  * @param method 压缩算法类型。当前仅支持OH_ARCHIVE_COMPRESS_DEFLATE。
- * @param compressLevel 压缩等级。对于OH_ARCHIVE_COMPRESS_DEFLATE，压缩级别为0到9，默认等级为6。0表示不压缩，压缩等级越高，压缩率越高，速度越慢。
+ * @param compressLevel 压缩等级。-1表示默认压缩级别。对于OH_ARCHIVE_COMPRESS_DEFLATE，压缩级别为0到9，默认等级为6。
+ *     0表示不压缩，1提供最快速度，9提供最高压缩率，压缩等级越高，压缩率越高，速度越慢。
  * @return 返回接口执行的结果。成功返回OH_ARCHIVE_OK，失败返回对应错误码。
  * @since 26.0.0
  */
@@ -366,7 +376,7 @@ OH_Archive_ErrCode OH_Archive_StreamWrite_Start(OH_Archive_StreamWrite_Ctx ctx,
 OH_Archive_ErrCode OH_Archive_StreamWrite_SetCompressLevel(OH_Archive_StreamWrite_Ctx ctx, int32_t compressLevel);
 
 /**
- * @brief 强制取消当前压缩操作。
+ * @brief 强制取消当前阻塞的压缩操作，并唤醒所有等待中的线程。
  * @param ctx 流式压缩的上下文结构体。
  * @return 返回接口执行的结果。取消成功返回OH_ARCHIVE_OK，失败返回对应错误码。
  * @since 26.0.0
@@ -374,7 +384,7 @@ OH_Archive_ErrCode OH_Archive_StreamWrite_SetCompressLevel(OH_Archive_StreamWrit
 OH_Archive_ErrCode OH_Archive_StreamWrite_Cancel(OH_Archive_StreamWrite_Ctx ctx);
 
 /**
- * @brief 提交压缩数据。
+ * @brief 提交压缩数据。该接口在内存池已满时会阻塞等待。
  * @param ctx 流式压缩的上下文结构体。
  * @param data 待压缩的原始数据。
  * @param size 待压缩数据的大小，单位为bytes。
@@ -421,7 +431,7 @@ OH_Archive_ErrCode OH_Archive_StreamRead_Start(OH_Archive_StreamRead_Ctx ctx,
                                                OH_Archive_Stream_OutputHandler outputHandler, void* userData);
 
 /**
- * @brief 强制取消当前解压缩操作。
+ * @brief 强制取消当前阻塞的解压缩操作，并唤醒所有等待中的线程。
  * @param ctx 流式解压缩的上下文结构体。
  * @return 返回接口执行的结果。取消成功返回OH_ARCHIVE_OK，失败返回对应错误码。
  * @since 26.0.0
@@ -429,7 +439,7 @@ OH_Archive_ErrCode OH_Archive_StreamRead_Start(OH_Archive_StreamRead_Ctx ctx,
 OH_Archive_ErrCode OH_Archive_StreamRead_Cancel(OH_Archive_StreamRead_Ctx ctx);
 
 /**
- * @brief 提交解压缩数据。
+ * @brief 提交解压缩数据。该接口在内存池已满时会阻塞等待。
  * @param ctx 流式解压缩的上下文结构体。
  * @param data 待解压缩的数据。
  * @param size 数据大小，单位为bytes。
