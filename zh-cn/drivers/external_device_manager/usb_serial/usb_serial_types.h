@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,8 +17,8 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief 提供USB Serial DDK（USB串口驱动开发工具包）接口，包括枚举类型和USB Serial DDK API使用的数据结构。串口通信常见于工业用途及一些老旧设备，如：发卡机、身份证读卡器等。
- * 开发者通过使用USB Serial DDK，可以开发USB串口外设扩展驱动。
+ * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
+ * data structures required by the USB SERIAL DDK APIs.
  *
  * @since 18
  */
@@ -93,7 +93,7 @@ typedef enum {
     /**
      * 未找到设备。请检查参数和设备连接状态。
      */
-    USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006,
+    USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006
 } UsbSerial_DdkRetCode;
 
 /**
@@ -139,7 +139,7 @@ typedef enum {
     /**
      * 硬件流控。使用RTS/CTS信号线，适用于高速数据传输，可靠性高。
      */
-    USB_SERIAL_HARDWARE_FLOW_CONTROL = 2,
+    USB_SERIAL_HARDWARE_FLOW_CONTROL = 2
 } UsbSerial_FlowControl;
 
 /**
@@ -160,12 +160,11 @@ typedef enum {
     /**
      * 偶校验。适用于对数据完整性要求较高的场景。
      */
-    USB_SERIAL_PARITY_EVEN = 2,
+    USB_SERIAL_PARITY_EVEN = 2
 } UsbSerial_Parity;
 
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 #endif // DDK_USB_SERIAL_TYPES_H
 /** @} */
-

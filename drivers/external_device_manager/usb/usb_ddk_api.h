@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,19 +22,20 @@
  *
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 /**
  * @file usb_ddk_api.h
  *
- * @brief Declares the USB DDK APIs used by the USB host to access USB devices.
+ * @brief Declares the USB DDK APIs used by the host to access the device. These APIs provide functions such as USB
+ * device management, configuration, and data transmission, helping developers implement underlying interaction and
+ * data communication with the USB device.
  *
+ * @include <usb/usb_ddk_api.h>
  * @kit DriverDevelopmentKit
  * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 #ifndef USB_DDK_API_H
@@ -50,20 +51,23 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Initializes the USB DDK.
+ * @brief Initializes the USB DDK. This method must be called before all other USB DDK methods. After using the DDK,
+ * call {@link OH_Usb_Release} or {@link OH_Usb_ReleaseResource} to release resources.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails, or an internal error occurs.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_MEMORY_ERROR}: The memory allocation fails.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails, or an internal error occurs.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The memory allocation fails. Check the memory size and validity.
  * @since 10
  * @version 1.0
  */
 int32_t OH_Usb_Init(void);
 
 /**
- * @brief Releases the USB DDK.
+ * @brief Releases the USB DDK. This method is used to correctly release resources when the USB DDK is no longer used.
+ * It can only be called after {@link OH_Usb_Init} is called to complete initialization.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @since 10
@@ -72,48 +76,60 @@ int32_t OH_Usb_Init(void);
 void OH_Usb_Release(void);
 
 /**
- * @brief Releases the USB DDK.
+ * @brief Releases the USB DDK. This method is used to correctly release resources when the USB DDK is no longer used.
+ * It can only be called after {@link OH_Usb_Init} is called to complete initialization. This method returns an integer
+ * value, which can be used to determine the execution result.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
  * @since 18
  * @version 1.0
  */
 int32_t OH_Usb_ReleaseResource(void);
 
 /**
- * @brief Obtains the device descriptor.
+ * @brief Obtains the device descriptor. Ensure that the input pointer parameter is valid.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param deviceId Device ID.
- * @param desc Device descriptor. For details, see {@link UsbDeviceDescriptor}.
+ * @param deviceId Device ID, which can be obtained by calling {@link OH_Usb_GetDevices}. It identifies the device
+ *     whose descriptor is to be obtained.
+ * @param desc Output parameter, which is used to receive the device descriptor. For details, see
+ *     {@link UsbDeviceDescriptor}.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **desc** is a null pointer.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **desc** is a null pointer. Check the parameter validity.
  * @since 10
  * @version 1.0
  */
 int32_t OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc);
 
 /**
- * @brief Obtains the configuration descriptor. To avoid memory leakage, use {@link OH_Usb_FreeConfigDescriptor} to
+ * @brief Obtains the configuration descriptor. To prevent memory leak, use {@link OH_Usb_FreeConfigDescriptor()} to
  * release a descriptor after use.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param deviceId Device ID.
+ * @param deviceId Device ID, which can be obtained by calling {@link OH_Usb_GetDevices}. It identifies the device
+ *     whose configuration descriptor is to be obtained.
  * @param configIndex Configuration index, which corresponds to the **bConfigurationValue** field in the USB
  *     configuration descriptor.
- * @param config Configuration descriptor, which includes the standard configuration descriptor defined in the USB
- *     protocol and the associated interface descriptor and endpoint descriptor.
+ * @param config Output parameter, which is used to receive the configuration descriptor, including the standard
+ *     configuration descriptor defined in the USB protocol and the associated interface descriptor and endpoint
+ *     descriptor.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **config** is a null pointer.
- *     {@link USB_DDK_IO_FAILED}: An I/O exception occurs.
- *     {@link USB_DDK_MEMORY_ERROR}: The memory allocation fails.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **config** is a null pointer. Check the parameter validity.
+ *     <br>{@link USB_DDK_IO_FAILED}: An I/O exception occurs. Check the parameters and device specifications.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The memory allocation fails. Check the memory size and validity.
  * @since 10
  * @version 1.0
  */
@@ -121,58 +137,71 @@ int32_t OH_Usb_GetConfigDescriptor(
     uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor ** const config);
 
 /**
- * @brief Releases a configuration descriptor after use to prevent memory leakage.
+ * @brief Releases the configuration descriptor. To prevent memory leak, use this API to release the configuration
+ * descriptor after use.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param config Configuration descriptor, which is obtained by calling {@link OH_Usb_GetConfigDescriptor}.
+ * @param config Configuration descriptor obtained by calling {@link OH_Usb_GetConfigDescriptor}.
  * @since 10
  * @version 1.0
  */
 void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
 
 /**
- * @brief Claims a USB interface.
+ * @brief Claims a USB interface exclusively. After calling this method, you must call {@link OH_Usb_ReleaseInterface}
+ * to release the interface after use. Otherwise, the interface resources cannot be released.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param deviceId Device ID.
- * @param interfaceIndex Interface index, which corresponds to {@link bInterfaceNumber} in the USB protocol.
- * @param interfaceHandle Interface operation handle. After the interface is claimed successfully, a value will be
- *     assigned to this parameter.
+ * @param deviceId Device ID, which can be obtained by calling {@link OH_Usb_GetDevices}. It identifies the device to
+ *     be operated.
+ * @param interfaceIndex Interface index, which corresponds to **bInterfaceNumber** in the USB protocol.
+ * @param interfaceHandle Output parameter, which is used to receive the declared interface operation handle. After the
+ *     interface is claimed successfully, a value will be assigned to this parameter.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **interfaceHandle** is a null pointer.
- *     {@link USB_DDK_MEMORY_ERROR}: The memory to be allocated exceeds the limit.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **interfaceHandle** is a null pointer. Check the parameter
+ *     validity.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The memory to be allocated exceeds the limit. Check the memory size and
+ *     validity.
  * @since 10
  * @version 1.0
  */
 int32_t OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle);
 
 /**
- * @brief Releases a USB interface.
+ * @brief Releases the USB interface that is claimed exclusively. Before calling this method, you must call
+ * {@link OH_Usb_ClaimInterface} to claim the interface and obtain the interface handle.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param interfaceHandle Interface operation handle.
+ * @param interfaceHandle Interface operation handle, which needs to be obtained through {@link OH_Usb_ClaimInterface}.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: One or more parameters are invalid.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: One or more parameters are invalid. Check the parameter validity.
  * @since 10
  * @version 1.0
  */
 int32_t OH_Usb_ReleaseInterface(uint64_t interfaceHandle);
 
 /**
- * @brief Activates the alternate setting of a USB interface.
+ * @brief Activates the alternate setting of a USB interface. Call this method when the interface working mode needs to
+ * be changed.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param interfaceHandle Interface operation handle.
+ * @param interfaceHandle Interface operation handle, which needs to be obtained through {@link OH_Usb_ClaimInterface}.
  * @param settingIndex Alternate setting index, which corresponds to the **bAlternateSetting** field of the interface
  *     descriptor in the USB protocol.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: One or more parameters are invalid.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: One or more parameters are invalid. Check the parameter validity.
  * @since 10
  * @version 1.0
  */
@@ -182,13 +211,16 @@ int32_t OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingI
  * @brief Obtains the activated alternate setting of a USB interface.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param interfaceHandle Interface operation handle.
- * @param settingIndex Alternate setting index, which corresponds to the **bAlternateSetting** field of the interface
- *     descriptor in the USB protocol.
+ * @param interfaceHandle Interface operation handle, which needs to be obtained through {@link OH_Usb_ClaimInterface}.
+ * @param settingIndex Output parameter, which is used to receive the alternate setting index corresponding to the
+ *     **bAlternateSetting** field of the interface descriptor in the USB protocol.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **settingIndex** is a null pointer.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **settingIndex** is a null pointer. Check the parameter
+ *     validity.
  * @since 10
  * @version 1.0
  */
@@ -198,19 +230,25 @@ int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *set
  * @brief Sends a control read transfer request. This API works in a synchronous manner.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param interfaceHandle Interface operation handle.
+ * @param interfaceHandle Interface operation handle, which needs to be obtained through {@link OH_Usb_ClaimInterface}.
  * @param setup Request parameters. For details, see {@link UsbControlRequestSetup}.
- * @param timeout Timeout duration, in ms.
- * @param data Data to transfer.
- * @param dataLen Data length. The return value indicates the length of the actually read data.
+ * @param timeout Timeout interval, in milliseconds, which is the maximum waiting time before a response is received.
+ *     The value **0** indicates that the waiting time is unlimited.
+ * @param data Data buffer to be read, which is used to store the data read from the device.
+ * @param dataLen Data length. The value must be greater than or equal to the data length specified by the **wLength**
+ *     field in the setup data. The return value indicates the length of the actually read data.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **setup**, **data**, or **dataLen** is a null pointer, or the value
- *     of **datalen** is less than the length of the read data.
- *     {@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails.
- *     {@link USB_DDK_IO_FAILED}: An I/O exception occurs.
- *     {@link USB_DDK_TIMEOUT}: The operation times out.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **setup**, **data**, or **dataLen** is a null pointer, or the
+ *     value of **dataLen** is less than the length of the read data. Ensure that the pointer parameters are valid and
+ *     the value of **dataLen** is large enough.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails. Check the
+ *     memory size and validity.
+ *     <br>{@link USB_DDK_IO_FAILED}: An I/O exception occurs. Check the parameters and device specifications.
+ *     <br>{@link USB_DDK_TIMEOUT}: The operation times out. Check the transmission parameters and device status.
  * @since 10
  * @version 1.0
  */
@@ -221,18 +259,24 @@ int32_t OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct Usb
  * @brief Sends a control write transfer request. This API works in a synchronous manner.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param interfaceHandle Interface operation handle.
+ * @param interfaceHandle Interface operation handle, which needs to be obtained through {@link OH_Usb_ClaimInterface}.
  * @param setup Request parameters. For details, see {@link UsbControlRequestSetup}.
- * @param timeout Timeout duration, in ms.
- * @param data Data to transfer.
- * @param dataLen Data length.
+ * @param timeout Timeout interval, in milliseconds, which is the maximum waiting time before a response is received.
+ *     The value **0** indicates that the waiting time is unlimited.
+ * @param data Data buffer to be written, which points to the data to be sent to the device.
+ * @param dataLen Data length. The value must be the same as that of the **wLength** field in the setup data and cannot
+ *     exceed 1024 bytes.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **setup** or **data** is a null pointer.
- *     {@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails.
- *     {@link USB_DDK_IO_FAILED}: An I/O exception occurs.
- *     {@link USB_DDK_TIMEOUT}: The operation times out.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **setup** or **data** is a null pointer. Check the parameter
+ *     validity.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails. Check the
+ *     memory size and validity.
+ *     <br>{@link USB_DDK_IO_FAILED}: An I/O exception occurs. Check the parameters and device specifications.
+ *     <br>{@link USB_DDK_TIMEOUT}: The operation times out. Check the transmission parameters and device status.
  * @since 10
  * @version 1.0
  */
@@ -245,15 +289,18 @@ int32_t OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct Us
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param pipe Pipe used to transfer data.
- * @param devMmap Data buffer, which can be obtained by calling {@link OH_Usb_CreateDeviceMemMap}.
+ * @param devMmap Device memory map, which can be obtained by calling {@link OH_Usb_CreateDeviceMemMap}.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **pipe** or **devMmap** is a null pointer, or the **devMmap**
- *     address is null.
- *     {@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails.
- *     {@link USB_DDK_IO_FAILED}: An I/O exception occurs.
- *     {@link USB_DDK_TIMEOUT}: The operation times out.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **pipe** or **devMmap** is a null pointer, or the **devMmap**
+ *     address is null. Check the parameter validity.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails. Check the
+ *     memory size and validity.
+ *     <br>{@link USB_DDK_IO_FAILED}: An I/O exception occurs. Check the parameters and device specifications.
+ *     <br>{@link USB_DDK_TIMEOUT}: The operation times out. Check the transmission parameters and device status.
  * @since 10
  * @version 1.0
  */
@@ -267,39 +314,46 @@ int32_t OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMa
  * @param pipe Pipe used to transfer data.
  * @param ashmem Shared memory, which can be obtained through {@link OH_DDK_CreateAshmem}.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **pipe** or **ashmem** is a null pointer, or the **ashmem** address
- *     is null.
- *     {@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails.
- *     {@link USB_DDK_IO_FAILED}: An I/O exception occurs.
- *     {@link USB_DDK_TIMEOUT}: The operation times out.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **pipe** or **ashmem** is a null pointer, or the **ashmem**
+ *     address is null. Check the parameter validity.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails. Check the
+ *     memory size and validity.
+ *     <br>{@link USB_DDK_IO_FAILED}: An I/O exception occurs. Check the parameters and device specifications.
+ *     <br>{@link USB_DDK_TIMEOUT}: The operation times out. Check the transmission parameters and device status.
  * @since 12
  */
 int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
 
 /**
- * @brief Creates a buffer. To avoid resource leakage, use {@link OH_Usb_DestroyDeviceMemMap} to destroy a buffer after
+ * @brief Creates a buffer. To prevent resource leaks, use {@link OH_Usb_DestroyDeviceMemMap} to destroy a buffer after
  * use.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param deviceId Device ID.
- * @param size Buffer size.
- * @param devMmap Data memory map, through which the created buffer is returned to the caller.
+ * @param deviceId Device ID, which can be obtained by calling {@link OH_Usb_GetDevices}. It identifies the device for
+ *     which a buffer is to be created.
+ * @param size Buffer size, in bytes.
+ * @param devMmap Output parameter, which is used to return the pointer to the created buffer to the caller.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input parameter **devMmap** or ***devMmap** is a null pointer.
- *     {@link USB_DDK_MEMORY_ERROR}: The memory mapping fails, or the memory allocation of **devMmap** fails.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **devMmap** is a null pointer, or ***devMmap** is a null
+ *     pointer. Check the parameter validity.
+ *     <br>{@link USB_DDK_MEMORY_ERROR}: The memory mapping fails, or the memory allocation of **devMmap** fails. Check
+ *     the memory size and validity.
  * @since 10
  * @version 1.0
  */
 int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap);
 
 /**
- * @brief Destroys a buffer. To prevent resource leakage, destroy a buffer in time after use.
+ * @brief Destroys a buffer. To prevent resource leaks, use this API to destroy a buffer after use.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param devMmap Destroys the buffer created by calling {@link OH_Usb_CreateDeviceMemMap}.
+ * @param devMmap Destroys the buffer created by {@link OH_Usb_CreateDeviceMemMap}.
  * @since 10
  * @version 1.0
  */
@@ -312,49 +366,59 @@ void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
  * device ID has been filtered by **vid** in the driver configuration information.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param devices Device memory address, which is used to store the obtained device ID list and quantity.
+ * @param devices Device memory address, which is used to store the obtained device ID list and quantity. After using
+ *     it, release the memory of its members; otherwise, resource leaks may occur.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_NO_PERM}: The permission check fails.
- *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
- *     {@link USB_DDK_INVALID_PARAMETER}: The input **devices** is a null pointer.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **devices** is a null pointer. Check the parameter validity.
  * @since 18
  */
 int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
 
 /**
- * @brief Performs a USB control transfer. This API works in a synchronous manner.
+ * @brief Performs USB control transfer. This API returns the result synchronously.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param deviceID An ID for the device to communicate with
- * @param setupPacket Configuration parameters for the setup packet in control transfer requests
- * @param data A suitably-sized data buffer for either input or output based on the direction bits
- *     within bmRequestType.
- * @param timeout Timeout (in milliseconds) that this function should wait before giving up due to no response being
- *     received. For an unlimited timeout, use value 0.
- * @return on success, the number of bytes actually transferred.
- *     {@link USB_DDK_NO_PERM} Permission authentication failed.
- *     {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke {@link OH_Usb_Init} to complete the
- *     initialization process first.
- *     {@link USB_DDK_INVALID_PARAMETER} The setupPacket or data parameters are invalid.
- *     {@link USB_DDK_TIMEOUT} The control transfer timed out.
- *     {@link USB_DDK_IO_FAILED} Control transfer request I/O exception.
+ * @param deviceID Device ID, which can be obtained by calling {@link OH_Usb_GetDevices}. It identifies the device to
+ *     be communicated with.
+ * @param setupPacket Setup parameter that controls the transfer request, including the transfer direction and data
+ *     length.
+ * @param data Requested buffer for storing input or output data. The buffer size must be the same as the value of the
+ *     **wLength** field in the setup packet and cannot exceed 1,024 bytes. Otherwise, the data will be truncated.
+ * @param timeout Timeout interval, in milliseconds, which is the maximum waiting time before a response is received.
+ *     The value **0** indicates that the waiting time is not limited.
+ * @return Number of actually transferred bytes upon success (a non-negative number).
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: **setupPacket** or **data** is a null pointer. Check the parameter
+ *     validity.
+ *     <br>{@link USB_DDK_TIMEOUT}: Controls transfer timeout. Check the transmission parameters and device status.
+ *     <br>{@link USB_DDK_IO_FAILED}: Controls transfer request I/O exceptions. Check the parameters and device
+ *     specifications.
  * @since 26.0.0
  */
 int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket, uint8_t *data,
     uint32_t timeout);
 
 /**
- * @brief Queries and returns the list of non-root hubs. Ensure that the pointer parameters passed in are valid. To
- * avoid excessive memory usage, the size of the requested non-root hub ID array is recommended not to exceed 128.
- * After using the struct, release the memory of its members; otherwise, resource leaks may occur.
+ * @brief Queries and returns the non-root hub list. Ensure that the input pointer is valid. It is recommended that the
+ * number of non-root hub IDs do not exceed 128 to prevent excessive memory usage. After using the struct, release the
+ * memory of its members; otherwise, resource leaks may occur.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
- * @param nonRootHub Returns the list of queried non-root hubs.
- * @return {@link USB_DDK_SUCCESS} Query operation successful.
- *     {@link USB_DDK_NO_PERM} Permission authentication failed.
- *     {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke {@link OH_Usb_Init} to complete the
- *     initialization process first.
- *     {@link USB_DDK_INVALID_PARAMETER} The parameter nonRootHub is null.
+ * @param nonRootHub Requested non-root hub memory address, which is used to store the queried non-root hub ID list and
+ *     quantity. After using it, release the memory of its members; otherwise, resource leaks may occur.
+ * @return {@link USB_DDK_SUCCESS}: The query is successful.
+ *     <br>{@link USB_DDK_NO_PERM}: The permission check fails. Check whether the app has obtained the
+ *     **ohos.permission.ACCESS_DDK_USB** permission.
+ *     <br>{@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails. Call {@link OH_Usb_Init} to
+ *     complete initialization first.
+ *     <br>{@link USB_DDK_INVALID_PARAMETER}: The input **nonRootHub** is a null pointer. Check the parameter validity.
  * @since 26.0.0
  */
 int32_t OH_Usb_GetNonRootHubs(struct Usb_NonRootHubArray *nonRootHub);

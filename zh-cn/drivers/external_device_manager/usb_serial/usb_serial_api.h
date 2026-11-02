@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,8 +17,8 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief 提供USB Serial DDK（USB串口驱动开发工具包）接口，包括枚举类型和USB Serial DDK API使用的数据结构。串口通信常见于工业用途及一些老旧设备，如：发卡机、身份证读卡器等。
- * 开发者通过使用USB Serial DDK，可以开发USB串口外设扩展驱动。
+ * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
+ * data structures required by the USB SERIAL DDK APIs.
  *
  * @since 18
  */
@@ -79,7 +79,7 @@ int32_t OH_UsbSerial_Release(void);
  * @param dev 设备句柄，输出参数，用于返回打开后的USB串口设备句柄，使用完毕后需调用{@link OH_UsbSerial_Close}释放。
  * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。请检查应用是否正确获取了ohos.permission.ACCESS_DDK_USB_SERIAL权限。
- *     <br>{@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因为：dev为空指针或\*dev为空指针。请检查参数的有效性。
+ *     <br>{@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因为：dev为空指针或*dev为空指针。请检查参数的有效性。
  *     <br>{@link USB_SERIAL_DDK_INIT_ERROR} 未初始化DDK。请先调用{@link OH_UsbSerial_Init}初始化DDK。
  *     <br>{@link USB_SERIAL_DDK_SERVICE_ERROR} DDK服务执行失败。请检查参数和设备状态。
  *     <br>{@link USB_SERIAL_DDK_MEMORY_ERROR} 内存不足。
@@ -96,7 +96,7 @@ int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_D
  * @param dev 设备句柄，输入输出参数，关闭后该指针会置空。
  * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。请检查应用是否正确获取了ohos.permission.ACCESS_DDK_USB_SERIAL权限。
- *     <br>{@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因：dev为空指针或\*dev为空指针。请检查参数的有效性。
+ *     <br>{@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因：dev为空指针或*dev为空指针。请检查参数的有效性。
  *     <br>{@link USB_SERIAL_DDK_INIT_ERROR} 未初始化DDK。请先调用{@link OH_UsbSerial_Init}初始化DDK。
  *     <br>{@link USB_SERIAL_DDK_SERVICE_ERROR} DDK服务执行失败。请检查参数和设备状态。
  *     <br>{@link USB_SERIAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备规格和参数。
@@ -113,11 +113,11 @@ int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
  * @param buff 从USB串口设备读取数据的缓冲区，需由调用方分配且容量不小于bufferSize。
  * @param bufferSize 缓冲区的大小。
  * @param bytesRead 实际读取的字节数，如果设置了阻塞模式，则实际读取到的数据等于bufferSize后才会返回；如果设置了超时，则返回值可能小于bufferSize。
- *     详见{@link OH_UsbSerial_SetTimeout}。
+ *     <br>详见{@link OH_UsbSerial_SetTimeout}。
  * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。请检查应用是否正确获取了ohos.permission.ACCESS_DDK_USB_SERIAL权限。
  *     <br>{@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因：1. dev为空指针；2. buff为空指针；3. bufferSize等于0；4.
- *     <br>bytesRead为空指针。请检查参数的有效性。
+ *     bytesRead为空指针。请检查参数的有效性。
  *     <br>{@link USB_SERIAL_DDK_INIT_ERROR} 未初始化DDK。请先调用{@link OH_UsbSerial_Init}初始化DDK。
  *     <br>{@link USB_SERIAL_DDK_SERVICE_ERROR} DDK服务执行失败。请检查参数和设备状态。
  *     <br>{@link USB_SERIAL_DDK_MEMORY_ERROR} buff地址无效。
@@ -138,7 +138,7 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。请检查应用是否正确获取了ohos.permission.ACCESS_DDK_USB_SERIAL权限。
  *     <br>{@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因：1. dev为空指针；2. buff为空指针；3. bufferSize等于0；4.
- *     <br>bytesWritten为空指针。请检查参数的有效性。
+ *     bytesWritten为空指针。请检查参数的有效性。
  *     <br>{@link USB_SERIAL_DDK_INIT_ERROR} 未初始化DDK。请先调用{@link OH_UsbSerial_Init}初始化DDK。
  *     <br>{@link USB_SERIAL_DDK_SERVICE_ERROR} DDK服务执行失败。请检查参数和设备状态。
  *     <br>{@link USB_SERIAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备规格和参数。
@@ -268,10 +268,8 @@ int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
  * @since 18
  */
 int32_t OH_UsbSerial_FlushOutput(UsbSerial_Device *dev);
-
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 #endif // DDK_USB_SERIAL_API_H
 /** @} */
-

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef DDK_API_H
-#define DDK_API_H
 
 /**
  * @addtogroup Ddk
  * @{
  *
- * @brief 提供Base DDK接口，包括创建、映射、取消映射以及销毁共享内存。
+ * @brief Provides Base DDK APIs, including creating the shared memory, mapping the shared memory,\n
+ * unmapping the shared memory, and destroying the shared memory.
  *
  * @since 12
  */
@@ -35,6 +34,9 @@
  * @syscap SystemCapability.Driver.DDK.Extension
  * @since 12
  */
+
+#ifndef DDK_API_H
+#define DDK_API_H
 
 #include <stdint.h>
 #include "ddk_types.h"

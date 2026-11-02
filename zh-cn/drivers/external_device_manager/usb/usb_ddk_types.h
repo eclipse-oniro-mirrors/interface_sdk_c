@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,11 +17,11 @@
  * @addtogroup UsbDdk
  * @{
  *
- * @brief 提供USB DDK接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等，适用于需要与USB设备进行底层交互和数据通信的场景，帮助开发者实现高效的USB设备驱动开发。
+ * @brief Provides USB DDK types and declares the macros, enumerated variables, and
+ * data structures required by the USB DDK APIs.
  *
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 /**
@@ -29,11 +29,11 @@
  *
  * @brief 提供USB DDK中的枚举类型与结构体定义，包括USB设备描述、控制传输、请求管道等核心数据结构，帮助开发者便捷地进行驱动开发。
  *
+ * @include <usb/usb_ddk_types.h>
  * @kit DriverDevelopmentKit
  * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 #ifndef USB_DDK_TYPES_H
@@ -280,7 +280,7 @@ typedef struct UsbDdkEndpointDescriptor {
     /**
      * 未做解析的描述符指针，包含特定于类或供应商的描述符。
      */
-    const uint8_t* extra;
+    const uint8_t *extra;
     /**
      * 未做解析的描述符长度。
      */
@@ -305,7 +305,7 @@ typedef struct UsbDdkInterfaceDescriptor {
     /**
      * 未做解析的描述符指针，包含特定于类或供应商的描述符。
      */
-    const uint8_t* extra;
+    const uint8_t *extra;
     /**
      * 未做解析的描述符长度。
      */
@@ -347,7 +347,7 @@ typedef struct UsbDdkConfigDescriptor {
     /**
      * 未做解析的描述符指针，包含特定于类或供应商的描述符。
      */
-    const uint8_t* extra;
+    const uint8_t *extra;
     /**
      * 未做解析的描述符长度。
      */
@@ -416,12 +416,12 @@ typedef enum {
      */
     USB_DDK_SUCCESS = 0,
     /**
-     * @brief 操作失败。
+     * 操作失败。 <br> **废弃版本：** 16
      * @deprecated since 16
      */
     USB_DDK_FAILED = -1,
     /**
-     * @brief 没有权限。请检查确保应用已获取ohos.permission.ACCESS_DDK_USB权限。
+     * 没有权限。请检查确保应用已获取ohos.permission.ACCESS_DDK_USB权限。
      * @since 14
      */
     USB_DDK_NO_PERM = 201,
@@ -434,12 +434,12 @@ typedef enum {
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /**
-     * @brief 空指针异常，如传入的指针参数为空。请检查传入的指针参数是否有效。
+     * 空指针异常，如传入的指针参数为空。请检查传入的指针参数是否有效。 <br> **废弃版本：** 16
      * @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
     /**
-     * @brief 设备忙，如设备正在执行其他操作或设备资源被占用。请等待设备空闲后重试，或释放已占用的设备资源。
+     * 设备忙，如设备正在执行其他操作或设备资源被占用。请等待设备空闲后重试，或释放已占用的设备资源。 <br> **废弃版本：** 16
      * @deprecated since 16
      */
     USB_DDK_DEVICE_BUSY = -6,
@@ -448,14 +448,14 @@ typedef enum {
      */
     USB_DDK_INVALID_OPERATION = 27400002,
     /**
-     * @brief 设备I/O操作失败。请检查设备连接是否正常、设备是否支持该操作。
+     * 设备I/O操作失败。请检查设备连接是否正常、设备是否支持该操作。
      * @since 14
      */
     USB_DDK_IO_FAILED = 27400003,
     /**
      * 传输超时。请检查设备响应是否正常或适当增加超时时间，在API version 16之前值为-7。
      */
-    USB_DDK_TIMEOUT = 27400004,
+    USB_DDK_TIMEOUT = 27400004
 } UsbDdkErrCode;
 
 /**
@@ -476,22 +476,26 @@ typedef struct Usb_DeviceArray {
 
 /**
  * @brief 非根集线器数组，用于存放{@link OH_Usb_GetNonRootHubs}接口获取到的非根集线器设备ID数组和数量。开发者申请非根集线器ID数组，使用完结构体后需释放申请的内存，否则会造成资源泄漏。
+ *
  * @since 26.0.0
  */
 typedef struct Usb_NonRootHubArray {
     /**
-     * @brief 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
+     * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
      * @since 26.0.0
      */
     uint64_t* nonRootHubIds;
+
     /**
-     * @brief 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
+     * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
      * @since 26.0.0
      */
     uint32_t num;
 } Usb_NonRootHubArray;
 #ifdef __cplusplus
 }
-/** @} */
 #endif /* __cplusplus */
+
+/** @} */
+
 #endif // USB_DDK_TYPES_H

@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,8 +17,8 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序的套件，提供了初始化DDK、释放DDK、打开关闭设备、读写设备等接口，并声明了SCSI设备驱动的开发所需的宏、枚举变量和数据结构，
- * 使用场景包括存储设备驱动开发、磁盘阵列管理等。
+ * @brief Provides ScsiPeripheral DDK types and declares macros, enumerations, and data structures used by the
+ * ScsiPeripheral DDK.
  * @since 18
  */
 
@@ -37,12 +37,13 @@
 #ifndef SCSI_PERIPHERAL_TYPES_H
 #define SCSI_PERIPHERAL_TYPES_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 /**
  * @brief 描述符格式感知数据的最小长度。
@@ -103,7 +104,7 @@ typedef enum {
     /**
      * 设备未找到。请确保传入的设备信息正确。
      */
-    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007,
+    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007
 } ScsiPeripheral_DdkErrCode;
 
 /**
@@ -143,7 +144,7 @@ typedef enum {
     /**
      * 任务已中止。
      */
-    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40,
+    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40
 } ScsiPeripheral_Status;
 
 /**
@@ -162,7 +163,7 @@ typedef struct ScsiPeripheral_DeviceMemMap {
     /**
      * 设备内存映射的缓冲区起始地址，指向映射的设备内存空间。该缓冲区用于存储SCSI设备数据，提供高性能的内存访问能力。
      */
-    uint8_t* const address;
+    uint8_t * const address;
     /**
      * 缓冲区大小，单位：Byte。取值原则：必须大于0。
      */
@@ -210,7 +211,7 @@ typedef struct ScsiPeripheral_IORequest {
     /**
      * 数据传输的缓冲区。
      */
-    ScsiPeripheral_DeviceMemMap* data;
+    ScsiPeripheral_DeviceMemMap *data;
     /**
      * 超时时间（单位：ms）。
      */
@@ -243,9 +244,9 @@ typedef struct ScsiPeripheral_Request {
      */
     int8_t dataTransferDirection;
     /**
-     * 数据传输缓冲区的指针。
+     * 数据传输的缓冲区。
      */
-    ScsiPeripheral_DeviceMemMap* data;
+    ScsiPeripheral_DeviceMemMap *data;
     /**
      * 超时时间（单位：ms）。
      */
@@ -310,7 +311,7 @@ typedef struct ScsiPeripheral_Response {
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /**
-     * Control字段，用于指定SCSI命令的控制信息。
+     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
      */
     uint8_t control;
     /**
@@ -327,7 +328,7 @@ typedef struct ScsiPeripheral_TestUnitReadyRequest {
 typedef struct ScsiPeripheral_InquiryRequest {
     /**
      * Page code字段。获取设备的某些特定类型的信息时使用。当发出带有特定页面代码的 Inquiry 命令时，设备会返回与该页面代码相关的详细信息。如果 page code 设置为 0x00，则表示请求的是标准的
-     * Inquiry数据，而非特定页面的数据。
+     * Inquiry 数据，而非特定页面的数据。
      */
     uint8_t pageCode;
     /**
@@ -335,11 +336,11 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint16_t allocationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制信息。
+     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
      */
     uint8_t control;
     /**
-     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
+     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
      */
     uint8_t byte1;
     /**
@@ -394,7 +395,7 @@ typedef struct ScsiPeripheral_InquiryInfo {
     /**
      * 指向设备内存映射的指针，用于存储查询得到的数据。
      */
-    ScsiPeripheral_DeviceMemMap* data;
+    ScsiPeripheral_DeviceMemMap *data;
 } ScsiPeripheral_InquiryInfo;
 
 /**
@@ -408,7 +409,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
      */
     uint32_t lbAddress;
     /**
-     * Control字段，用于指定SCSI命令的控制信息。
+     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
      */
     uint8_t control;
     /**
@@ -428,7 +429,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
  */
 typedef struct ScsiPeripheral_CapacityInfo {
     /**
-     * 返回的逻辑块地址，表示可寻址的最后一块逻辑块的编号，逻辑块总数为该值加1。
+     * 逻辑块地址，用于指定读取容量的起始逻辑块位置。取值为0时获取设备整体容量信息。
      */
     uint32_t lbAddress;
     /**
@@ -444,15 +445,15 @@ typedef struct ScsiPeripheral_CapacityInfo {
  */
 typedef struct ScsiPeripheral_RequestSenseRequest {
     /**
-     * Allocation length字段，指定了请求发起者（通常是主机）为响应数据准备的缓冲区大小，单位：Byte。
+     * Allocation length字段，用于指定请求发起者（通常是主机）为响应数据准备的缓冲区大小。单位：Byte。
      */
     uint8_t allocationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制信息。
+     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
      */
     uint8_t control;
     /**
-     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
+     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
      */
     uint8_t byte1;
     /**
@@ -509,15 +510,15 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint16_t verificationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制信息。
+     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
      */
     uint8_t control;
     /**
-     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
+     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
      */
     uint8_t byte1;
     /**
-     * CDB（Command Descriptor Block，命令描述符块）的第六个字节。
+     * SCSI命令描述符块（CDB）的第六个字节，根据命令类型包含不同的参数或标志信息。
      */
     uint8_t byte6;
     /**
@@ -527,7 +528,6 @@ typedef struct ScsiPeripheral_VerifyRequest {
 } ScsiPeripheral_VerifyRequest;
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 #endif // SCSI_PERIPHERAL_TYPES_H
 /** @} */
-

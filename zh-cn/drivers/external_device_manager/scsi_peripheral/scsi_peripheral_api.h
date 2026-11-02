@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License"),
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,8 +17,8 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序的套件，提供了初始化DDK、释放DDK、打开关闭设备、读写设备等接口，并声明了SCSI设备驱动的开发所需的宏、枚举变量和数据结构，
- * 使用场景包括存储设备驱动开发、磁盘阵列管理等。
+ * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading and
+ * writing devices, etc.
  * @since 18
  */
 
@@ -42,7 +42,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 /**
  * @brief 初始化SCSI Peripheral DDK。必须在调用其他所有SCSI Peripheral DDK方法之前调用此方法。使用完毕后必须调用OH_ScsiPeripheral_Release释放资源，否则会导致资源泄漏。
@@ -79,7 +79,7 @@ int32_t OH_ScsiPeripheral_Release(void);
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。请确保应用已正确获取 ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL 权限。
  *     <br>{@link SCSIPERIPHERAL_DDK_INIT_ERROR} 未初始化DDK。请先调用OH_ScsiPeripheral_Init进行初始化。
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或\*dev为空。请检查指针参数是否正确。
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或*dev为空。请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} 与DDK服务通信失败。请检查DDK服务是否初始化并正常运行。
  *     <br>{@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} 内存操作失败。请检查内存状态以及是否存在越界操作。
  *     <br>{@link SCSIPERIPHERAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备状态是否正常、参数是否正确。
@@ -97,7 +97,7 @@ int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPe
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。请确保应用已正确获取 ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL 权限。
  *     <br>{@link SCSIPERIPHERAL_DDK_INIT_ERROR} 未初始化DDK。请先调用OH_ScsiPeripheral_Init进行初始化。
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或\*dev为空。请检查指针参数是否正确。
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空或*dev为空。请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} 与DDK服务通信失败。请检查DDK服务是否初始化并正常运行。
  *     <br>{@link SCSIPERIPHERAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备状态是否正常、参数是否正确。
  * @since 18
@@ -137,7 +137,7 @@ int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripher
  *     <br>{@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。请确保应用已正确获取 ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL 权限。
  *     <br>{@link SCSIPERIPHERAL_DDK_INIT_ERROR} 未初始化DDK。请先调用OH_ScsiPeripheral_Init进行初始化。
  *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空、 request为空、inquiryInfo为空、inquiryInfo->data或者response为空。
- *     <br>请检查指针参数是否正确。
+ *     请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} 与DDK服务通信失败。请检查DDK服务是否初始化并正常运行。
  *     <br>{@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} 内存操作失败。请检查内存状态以及是否存在越界操作。
  *     <br>{@link SCSIPERIPHERAL_DDK_IO_ERROR} DDK发生I/O错误。请检查设备状态是否正常、参数是否正确。
@@ -283,7 +283,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
  * @param size 缓冲区的大小，单位：Byte。
  * @param devMmap 创建的缓冲区通过该参数返回给调用者，详情参见{@link ScsiPeripheral_DeviceMemMap}。
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空、devMmap为空或\*devMmap为空。请检查指针参数是否正确。
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev为空、devMmap为空或*devMmap为空。请检查指针参数是否正确。
  *     <br>{@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} 内存操作失败。请检查内存状态以及是否存在越界操作。
  * @since 18
  */
@@ -310,14 +310,13 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} senseData格式不是描述符或固定格式、senseDataLen小于
  *     <br>{@link SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE}或者senseDataLen小于
- *     <br>{@link SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE}。
+ *     {@link SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE}。
  * @since 18
  */
 int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen,
     ScsiPeripheral_BasicSenseInfo *senseInfo);
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 #endif // SCSI_PERIPHERAL_API_H
 /** @} */
-
