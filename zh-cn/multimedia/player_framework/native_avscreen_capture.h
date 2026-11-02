@@ -942,7 +942,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForContentAutoPauseScenes
  * 
  * @note 该接口设置为true时：
  *
- * 在存文件模式下，需要设置{@link OH_VideoEncInfo}的videoCodec为H265编码格式，
+ * 当{@link OH_DataType}为OH_CAPTURE_FILE时，需要设置{@link OH_VideoEncInfo}的videoCodec为H265编码格式，
  * 否则会导致文件存储失败。<br>
  * 
  * 视频像素格式为RGBA1010102，需要使用{@link OH_AVCapability_GetVideoSupportedPixelFormats}
