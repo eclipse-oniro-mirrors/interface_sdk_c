@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_grid.h
+ * @file grid.h
  *
  * @brief Defines enumerations and APIs related to **Grid**.
  *
