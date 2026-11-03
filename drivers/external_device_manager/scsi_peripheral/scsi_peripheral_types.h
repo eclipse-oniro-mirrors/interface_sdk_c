@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,6 +27,7 @@
  *
  * @brief Provides the enum variables, structures, and macros used in the SCSI Peripheral DDK APIs.
  *
+ * @include <scsi_peripheral/scsi_peripheral_types.h>
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
@@ -45,31 +46,31 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Defines the minimum length of the sensing data in the descriptor format.
+ * @brief Defines the minimum length of the sense data in the descriptor format.
  *
  * @since 18
  */
 #define SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE 8
 
 /**
- * @brief Defines the minimum length of the sensing data in the fixed format.
+ * @brief Defines the minimum length of the sense data in the fixed format.
  *
  * @since 18
  */
 #define SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE 18
 
 /**
- * @brief SCSI Peripheral DDK error codes.
+ * @brief Enumerates the SCSI Peripheral DDK error codes.
  *
  * @since 18
  */
 typedef enum {
     /**
-     * Permission denied.
+     * Permission denied. Ensure that you have correctly declared the required permissions.
      */
     SCSIPERIPHERAL_DDK_NO_PERM = 201,
     /**
-     * Invalid parameter.
+     * Invalid parameter. Check whether the parameters meet the requirements.
      */
     SCSIPERIPHERAL_DDK_INVALID_PARAMETER = 401,
     /**
@@ -78,32 +79,33 @@ typedef enum {
     SCSIPERIPHERAL_DDK_SUCCESS = 31700000,
     /**
      * Memory-related errors, such as insufficient memory, memory data replication failure, or memory request failure.
+     * Check the memory status and related parameters.
      */
     SCSIPERIPHERAL_DDK_MEMORY_ERROR = 31700001,
     /**
-     * Invalid operation.
+     * Invalid operation. Check whether the operation logic is correct.
      */
     SCSIPERIPHERAL_DDK_INVALID_OPERATION = 31700002,
     /**
-     * Device input/output operation failed.
+     * Device input/output operation failed. Check the transfer parameters and device specifications.
      */
     SCSIPERIPHERAL_DDK_IO_ERROR = 31700003,
     /**
-     * Transfer timeout.
+     * Transfer timeout. Check the timeout parameters and device status.
      */
     SCSIPERIPHERAL_DDK_TIMEOUT = 31700004,
     /**
-     * DDK initialization error, or DDK uninitialized.
+     * DDK initialization error, or DDK uninitialized. Initialize the DDK service first.
      */
     SCSIPERIPHERAL_DDK_INIT_ERROR = 31700005,
     /**
-     * Communication with the SCSI Peripheral DDK failed.
+     * Communication with the SCSI Peripheral DDK failed. Check whether the DDK service is running properly.
      */
     SCSIPERIPHERAL_DDK_SERVICE_ERROR = 31700006,
     /**
-     * Device not found.
+     * Device not found. Ensure that the input device information is correct.
      */
-    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007,
+    SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND = 31700007
 } ScsiPeripheral_DdkErrCode;
 
 /**
@@ -143,11 +145,12 @@ typedef enum {
     /**
      * Task aborted.
      */
-    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40,
+    SCSIPERIPHERAL_STATUS_TASK_ABORTED = 0x40
 } ScsiPeripheral_Status;
 
 /**
- * @brief Opaque SCSI device structure.
+ * @brief Defines the opaque SCSI device struct, which is used to represent the device handle that interacts with SCSI
+ * peripherals.
  *
  * @since 18
  */
@@ -161,53 +164,64 @@ typedef struct ScsiPeripheral_Device ScsiPeripheral_Device;
  */
 typedef struct ScsiPeripheral_DeviceMemMap {
     /**
-     * Buffer address.
+     * Start address of the buffer mapped to the device memory, pointing to the mapped device memory space. This buffer
+     * is used to store SCSI device data and provides high-performance memory access capabilities.
      */
     uint8_t * const address;
     /**
-     * Buffer size.
+     * Buffer size, in bytes. The value must be greater than 0.
      */
     const size_t size;
     /**
-     * Offset of the used buffer. The default value is **0**, indicating that there is no offset and the buffer starts
-     * from the specified address.
+     * Read/write start offset of the buffer, in bytes. The default value is **0**, indicating that there is no offset
+     * and the buffer starts from the specified address. The value range is [0, **size**]. Set this parameter when you
+     * need to start reading/writing data from a specific position in the buffer. Different offset values correspond to
+     * different start positions for reading/writing.
      */
     uint32_t offset;
     /**
-     * Length of the used buffer. By default, the value is equal to the size of the buffer, indicating that the entire
-     * buffer is used.
+     * Length of the used buffer, in bytes. By default, the value is equal to the size of the buffer, indicating that
+     * the entire buffer is used. Set this parameter when only a part of the buffer is used. The sum of **bufferLength**
+     *  and **offset** must be less than or equal to the value of **size**.
      */
     uint32_t bufferLength;
     /**
-     * Length of the transferred data.
+     * Length of the transferred data, in bytes. The initial value is **0**, indicating that no data has been
+     * transferred. This field is updated after SCSI data transfer is complete. It indicates the actual amount of data
+     * transferred and can be used to monitor the transfer progress.
      */
     uint32_t transferredLength;
 } ScsiPeripheral_DeviceMemMap;
 
 /**
- * @brief Defines the read/write operation request.
+ * @brief Defines the read/write operation request. This struct defines the request parameters required for the SCSI
+ * peripheral to perform read/write operations, including the start address of the logical block, transfer length, and
+ * control information.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_IORequest {
     /**
-     * Start address of a logical block.
+     * Start address of a logical block, which specifies the start position for read/write operations of the SCSI
+     * peripheral.
      */
     uint32_t lbAddress;
     /**
-     * Number of consecutive logical blocks to be operated.
+     * Number of consecutive logical blocks to be operated. The value must be a positive integer and cannot exceed the
+     * maximum number of logical blocks that can be transferred at a time.
      */
     uint16_t transferLength;
     /**
-     * **Control** field used to specify control information.
+     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
      */
     uint8_t control;
     /**
-     * First byte of the CDB.
+     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
+     * group information.
      */
     uint8_t byte1;
     /**
-     * Sixth byte of the CDB.
+     * Sixth byte of the SCSI CDB, which contains different parameters or flag information based on the command type.
      */
     uint8_t byte6;
     /**
@@ -215,13 +229,13 @@ typedef struct ScsiPeripheral_IORequest {
      */
     ScsiPeripheral_DeviceMemMap *data;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_IORequest;
 
 /**
- * @brief Maximum length of a command description block.
+ * @brief Defines the maximum length of a CDB.
  *
  * @since 18
  */
@@ -250,41 +264,45 @@ typedef struct ScsiPeripheral_Request {
      */
     ScsiPeripheral_DeviceMemMap *data;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_Request;
 
 /**
- * @brief Defines the maximum length of the sensing data.
+ * @brief Defines the maximum length of the sense data.
  *
  * @since 18
  */
 #define SCSIPERIPHERAL_MAX_SENSE_DATA_LEN 252
 
 /**
- * @brief Defines the response structure.
+ * @brief Defines the SCSI response parameters, including the status, error diagnosis data, and transfer result. It is
+ * used to receive the response data from the SCSI device and determine whether the command is successful.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_Response {
-    /** Sense data. */
+    /**
+     * Sense data, which is the status, error, and diagnosis information returned by the SCSI device to the host.
+     */
     uint8_t senseData[SCSIPERIPHERAL_MAX_SENSE_DATA_LEN];
     /**
-     * Status when the call is complete, for example, **Good** or **Busy**.
+     * Status when the call is complete. The options include **SCSIPERIPHERAL_STATUS_GOOD** (normal) and
+     * **SCSIPERIPHERAL_STATUS_BUSY** (busy).
      */
     ScsiPeripheral_Status status;
     /**
-     * Masked status, which is used in SCSI Generic (SG) interfaces of Linux to store the processed SCSI status for
-     * easy access by applications.
+     * In the SCSI generic driver, this field is used to store the masked SCSI status.
      */
     uint8_t maskedStatus;
     /**
-     * Message status.
+     * Message status, indicating the message result after the SCSI command is executed.
      */
     uint8_t msgStatus;
     /**
-     * Number of bytes that are actually written to the sense buffer.
+     * Number of valid bytes actually written to the sense buffer, which is used to determine the length of valid data
+     * in the **senseData** array. If the value is **0**, there is no sense data.
      */
     uint8_t sbLenWr;
     /**
@@ -300,55 +318,59 @@ typedef struct ScsiPeripheral_Response {
      */
     int32_t resId;
     /**
-     * Command execution duration, in ms.
+     * SCSI command execution duration, in ms.
      */
     uint32_t duration;
 } ScsiPeripheral_Response;
 
 /**
- * @brief Defines the request structure of the **test unit ready** command.
+ * @brief Defines the SCSI command (**TEST UNIT READY**) request struct, which is usually used to check whether the
+ * logical unit is ready. A logical unit is an I/O operation entity that can be independently addressed in a SCSI
+ * device.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /**
-     * **Control** field used to specify control information.
+     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
      */
     uint8_t control;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_TestUnitReadyRequest;
 
 /**
- * @brief Defines the request structure of the **inquiry** command.
+ * @brief Defines the SCSI command (**INQUIRY**) request struct, which is usually used to query basic device
+ * information.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_InquiryRequest {
     /**
-     * **Page code** field. Set this field if you want to obtain certain types of device information. When an
-     * **Inquiry** command with a specific page code is run, the device returns details related to the page code.
-     * If the page code is set to **0x00**, it indicates that the standard inquiry data rather than the data of
-     * specific pages is requested.
+     * **Page code** field. Set this field if you want to obtain certain types of device information. When an **Inquiry*
+     * * command with a specific page code is run, the device returns details related to the page code. If the page
+     * code is set to **0x00**, it indicates that the standard inquiry data rather than the data of specific pages is
+     * requested.
      */
     uint8_t pageCode;
     /**
      * **Allocation length** field used to specify the size of the buffer prepared by the request initiator (usually
-     * the host) for the response data.
+     * the host) for the response data, in bytes.
      */
     uint16_t allocationLength;
     /**
-     * **Control** field used to specify control information.
+     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
      */
     uint8_t control;
     /**
-     * First byte of the CDB.
+     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
+     * group information.
      */
     uint8_t byte1;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_InquiryRequest;
@@ -375,13 +397,14 @@ typedef struct ScsiPeripheral_InquiryRequest {
 #define SCSIPERIPHERAL_PRODUCT_REV_LEN 4
 
 /**
- * @brief Defines the SCSI inquiry data.
+ * @brief Defines the SCSI **INQUIRY** data, which is used to store the query result of the **INQUIRY** command of SCSI
+ * peripherals.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_InquiryInfo {
     /**
-     * Device type.
+     * Device type of the SCSI peripheral. For details about the type values, see the SCSI protocol.
      */
     uint8_t deviceType;
     /**
@@ -397,110 +420,126 @@ typedef struct ScsiPeripheral_InquiryInfo {
      */
     char revProduct[SCSIPERIPHERAL_PRODUCT_REV_LEN + 1];
     /**
-     * Inquiry data.
+     * Pointer to the device memory mapping, which is used to store the queried data.
      */
     ScsiPeripheral_DeviceMemMap *data;
 } ScsiPeripheral_InquiryInfo;
 
 /**
- * @brief Request structure of the **read capacity** command.
+ * @brief Defines the SCSI command (**READ CAPACITY**) request struct, which is used to send a command for reading the
+ * storage capacity. It helps obtain the logical block size and total number of blocks of a device.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_ReadCapacityRequest {
     /**
-     * Address of the logical unit.
+     * Logical block address, which specifies the start position for reading the capacity. If the value is **0**, the
+     * overall capacity of the device is obtained.
      */
     uint32_t lbAddress;
     /**
-     * **Control** field used to specify control information.
+     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
      */
     uint8_t control;
     /**
-     * Eighth byte of the CDB.
+     * Eighth byte of the command descriptor block (CDB).
      */
     uint8_t byte8;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_ReadCapacityRequest;
 
 /**
- * @brief Defines the SCSI read capacity.
+ * @brief Defines the SCSI **READ CAPACITY** struct. It is used to obtain the storage capacity of a device during SCSI
+ * driver development. It supports operations such as partition management, available space check, and store resource
+ * allocation.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_CapacityInfo {
     /**
-     * Address of the logical unit.
+     * Logical block address, which specifies the start position for reading the capacity. If the value is **0**, the
+     * overall capacity of the device is obtained.
      */
     uint32_t lbAddress;
     /**
-     * Length of a single logical unit, in bytes.
+     * Length of a single logical unit, in bytes. Size of each logical block, in bytes. The value is usually a standard
+     * value such as **512**, **2048**, or **4096**, depending on the device type and formatting mode.
      */
     uint32_t lbLength;
 } ScsiPeripheral_CapacityInfo;
 
 /**
- * @brief Defines the request structure of the **Request Sense** command.
+ * @brief Defines the SCSI **REQUEST SENSE** request struct. This command is usually used to obtain device error
+ * information.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_RequestSenseRequest {
     /**
      * **Allocation length** field used to specify the size of the buffer prepared by the request initiator (usually
-     * the host) for the response data.
+     * the host) for the response data, in bytes.
      */
     uint8_t allocationLength;
     /**
-     * **Control** field used to specify control information.
+     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
      */
     uint8_t control;
     /**
-     * First byte of the CDB.
+     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
+     * group information.
      */
     uint8_t byte1;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_RequestSenseRequest;
 
 /**
- * @brief Defines the basic information about the sense data.
+ * @brief Defines the basic information struct of SCSI sense data, which is used to encapsulate the sense data returned
+ * after a SCSI command is executed. This struct contains the response code, status flag, and various information
+ * fields, which are used by the driver to obtain and analyze the error status and command execution result of the SCSI
+ * device.
  *
  * @since 18
  */
 typedef struct ScsiPeripheral_BasicSenseInfo {
     /**
-     * Response code.
+     * Response code. It is automatically set by the driver layer when the sense data is received.
      */
     uint8_t responseCode;
     /**
-     * Information validity flag.
+     * Information validity flag. If the value is **true**, the **information** and **commandSpecific** fields are
+     * valid. If the value is **false**, these fields should be ignored. Before using this flag, check it to avoid
+     * reading invalid data.
      */
     bool valid;
     /**
-     * **Information** field.
+     * **information** field. The value must comply with the SCSI protocol.
      */
     uint64_t information;
     /**
-     * **Command-specific information** field.
+     * **commandSpecific** field. The value must comply with the SCSI protocol.
      */
     uint64_t commandSpecific;
     /**
-     * Flag of the **Sense key specific** field.
+     * Flag of the **senseKeySpecific** field. If the value is **true**, the **senseKeySpecific** field is valid and
+     * contains sense key specific data. If the value is **false**, the **senseKeySpecific** field should be ignored.
+     * Before using this flag, check it to avoid reading invalid data.
      */
     bool sksv;
     /**
-     * **Sense key specific** field.
+     * **senseKeySpecific** field. The value must comply with the SCSI protocol.
      */
     uint32_t senseKeySpecific;
 } ScsiPeripheral_BasicSenseInfo;
 
 /**
- * @brief Defines the request structure of the **verify** command.
+ * @brief Defines the SCSI command (**VERIFY**) request struct, which is usually used to verify the data integrity of
+ * logical blocks.
  *
  * @since 18
  */
@@ -510,23 +549,24 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint32_t lbAddress;
     /**
-     * Number of consecutive logical blocks.
+     * Number of consecutive logical blocks to be verified.
      */
     uint16_t verificationLength;
     /**
-     * **Control** field used to specify control information.
+     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
      */
     uint8_t control;
     /**
-     * First byte of the CDB.
+     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
+     * group information.
      */
     uint8_t byte1;
     /**
-     * Sixth byte of the CDB.
+     * Sixth byte of the SCSI CDB, which contains different parameters or flag information based on the command type.
      */
     uint8_t byte6;
     /**
-     * Timeout duration, in ms.
+     * Timeout interval, in milliseconds.
      */
     uint32_t timeout;
 } ScsiPeripheral_VerifyRequest;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,11 +17,11 @@
  * @addtogroup UsbDdk
  * @{
  *
- * @brief 提供USB DDK接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等，适用于需要与USB设备进行底层交互和数据通信的场景，帮助开发者实现高效的USB设备驱动开发。
+ * @brief Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous
+ * data transfer over USB pipes, and implement control transfer and interrupt transfer, etc.
  *
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 /**
@@ -29,11 +29,11 @@
  *
  * @brief 声明用于主机侧访问设备的USB DDK接口，提供USB设备管理、配置和数据传输等功能，帮助开发者实现与USB设备的底层交互和数据通信。
  *
+ * @include <usb/usb_ddk_api.h>
  * @kit DriverDevelopmentKit
  * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 #ifndef USB_DDK_API_H
@@ -127,7 +127,7 @@ int32_t OH_Usb_GetConfigDescriptor(
 void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
 
 /**
- * @brief 声明USB接口，申请USB接口的独占使用权。调用此方法声明接口后，在使用完毕后必须调用OH_Usb_ReleaseInterface释放接口，否则会导致接口资源无法释放。
+ * @brief 声明USB接口，申请USB接口的独占使用权。调用此方法声明接口后，在使用完毕后必须调用{@link OH_Usb_ReleaseInterface}释放接口，否则会导致接口资源无法释放。
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId 设备ID，可通过{@link OH_Usb_GetDevices}获取，代表要操作的设备。
@@ -275,7 +275,7 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
  * @param devMmap 输出参数，创建的缓冲区指针通过该参数返回给调用者。
  * @return {@link USB_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_DDK_NO_PERM} 权限检查失败，请检查应用已获取了ohos.permission.ACCESS_DDK_USB权限。
- *     <br>{@link USB_DDK_INVALID_PARAMETER} 入参devMmap为空指针或\*devMmap为空指针，请检查参数有效性。
+ *     <br>{@link USB_DDK_INVALID_PARAMETER} 入参devMmap为空指针或*devMmap为空指针，请检查参数有效性。
  *     <br>{@link USB_DDK_MEMORY_ERROR} 内存映射失败或devMmap的内存分配失败，请检查内存大小和有效性。
  * @since 10
  * @version 1.0
@@ -322,8 +322,8 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
  *     <br>{@link USB_DDK_IO_FAILED} 控制传输请求I/O异常，请检查参数和设备规格。
  * @since 26.0.0
  */
-int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket,
-    uint8_t *data, uint32_t timeout);
+int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequestSetup *setupPacket, uint8_t *data,
+    uint32_t timeout);
 
 /**
  * @brief 查询并返回非根集线器列表。请保证传入的指针参数是有效的，申请的非根集线器ID数组的大小建议不超过128，以避免过度占用内存。在使用完结构体之后，需释放成员内存，否则会造成资源泄漏。

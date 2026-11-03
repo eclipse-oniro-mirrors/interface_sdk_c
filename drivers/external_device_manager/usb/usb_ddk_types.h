@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,19 +22,19 @@
  *
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 /**
  * @file usb_ddk_types.h
  *
- * @brief Provides the enumerated variables, structures, and macros used in USB DDK APIs.
+ * @brief Provides the enumeration types and structures used in USB DDK APIs, including core data structures such as
+ * USB device description, control transfer, and request pipe, to facilitate driver development.
  *
+ * @include <usb/usb_ddk_types.h>
  * @kit DriverDevelopmentKit
  * @library libusb_ndk.z.so
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
- * @version 1.0
  */
 
 #ifndef USB_DDK_TYPES_H
@@ -85,7 +85,7 @@ typedef struct UsbControlRequestSetup {
  */
 typedef struct UsbDeviceDescriptor {
     /**
-     * Size of the descriptor, in bytes.
+     * Size of this descriptor, in bytes.
      */
     uint8_t bLength;
     /**
@@ -110,7 +110,7 @@ typedef struct UsbDeviceDescriptor {
      */
     uint8_t bDeviceProtocol;
     /**
-     * Maximum packet size of endpoint 0. Only values 8, 16, 32, and 64 are valid.
+     * Maximum packet size of endpoint 0 (control endpoint). Only values 8, 16, 32, and 64 are valid.
      */
     uint8_t bMaxPacketSize0;
     /**
@@ -152,7 +152,7 @@ typedef struct UsbDeviceDescriptor {
  */
 typedef struct UsbConfigDescriptor {
     /**
-     * Size of the descriptor, in bytes.
+     * Size of this descriptor, in bytes.
      */
     uint8_t bLength;
     /**
@@ -160,8 +160,8 @@ typedef struct UsbConfigDescriptor {
      */
     uint8_t bDescriptorType;
     /**
-     * Total length of the configuration descriptor, including the configuration, interface, endpoint, and class- or
-     * vendor-specific descriptors.
+     * Total length of the configuration descriptor, in bytes, including the configuration, interface, endpoint, and
+     * class- or vendor-specific descriptors.
      */
     uint16_t wTotalLength;
     /**
@@ -195,7 +195,7 @@ typedef struct UsbConfigDescriptor {
  */
 typedef struct UsbInterfaceDescriptor {
     /**
-     * Size of the descriptor, in bytes.
+     * Size of this descriptor, in bytes.
      */
     uint8_t bLength;
     /**
@@ -242,7 +242,7 @@ typedef struct UsbInterfaceDescriptor {
  */
 typedef struct UsbEndpointDescriptor {
     /**
-     * Size of the descriptor, in bytes.
+     * Size of this descriptor, in bytes.
      */
     uint8_t bLength;
     /**
@@ -258,7 +258,7 @@ typedef struct UsbEndpointDescriptor {
      */
     uint8_t bmAttributes;
     /**
-     * Maximum packet size supported by an endpoint.
+     * Maximum packet size supported by an endpoint, in bytes.
      */
     uint16_t wMaxPacketSize;
     /**
@@ -276,7 +276,7 @@ typedef struct UsbEndpointDescriptor {
 } __attribute__((packed)) UsbEndpointDescriptor;
 
 /**
- * @brief Defines endpoint descriptors.
+ * @brief Defines endpoint descriptors, including standard endpoint descriptors and descriptors that are not parsed.
  *
  * @since 10
  * @version 1.0
@@ -287,7 +287,7 @@ typedef struct UsbDdkEndpointDescriptor {
      */
     struct UsbEndpointDescriptor endpointDescriptor;
     /**
-     * Unresolved descriptor, including class- or vendor-specific descriptors.
+     * Pointer to the unresolved descriptor, including class- or vendor-specific descriptors.
      */
     const uint8_t *extra;
     /**
@@ -297,7 +297,7 @@ typedef struct UsbDdkEndpointDescriptor {
 } UsbDdkEndpointDescriptor;
 
 /**
- * @brief Defines USB interface descriptors.
+ * @brief Defines interface descriptors, including standard interface descriptors and endpoint descriptors.
  *
  * @since 10
  * @version 1.0
@@ -308,11 +308,12 @@ typedef struct UsbDdkInterfaceDescriptor {
      */
     struct UsbInterfaceDescriptor interfaceDescriptor;
     /**
-     * Endpoint descriptor contained in the interface.
+     * Endpoint descriptor contained in the interface. This parameter can be a null pointer, indicating that there is
+     * no endpoint (excluding control endpoint 0).
      */
     struct UsbDdkEndpointDescriptor *endPoint;
     /**
-     * Unresolved descriptor, including class- or vendor-specific descriptors.
+     * Pointer to the unresolved descriptor, including class- or vendor-specific descriptors.
      */
     const uint8_t *extra;
     /**
@@ -333,13 +334,14 @@ typedef struct UsbDdkInterface {
      */
     uint8_t numAltsetting;
     /**
-     * Alternate setting of the USB interface.
+     * Pointer to the array of alternate settings of the USB interface. The length of the array is specified by **
+     * numAltsetting**.
      */
     struct UsbDdkInterfaceDescriptor *altsetting;
 } UsbDdkInterface;
 
 /**
- * @brief Defines configuration descriptors.
+ * @brief Defines configuration descriptors, including standard configuration descriptors and interface descriptors.
  *
  * @since 10
  * @version 1.0
@@ -354,7 +356,7 @@ typedef struct UsbDdkConfigDescriptor {
      */
     struct UsbDdkInterface *interface;
     /**
-     * Unresolved descriptor, including class- or vendor-specific descriptors.
+     * Pointer to the unresolved descriptor, including class- or vendor-specific descriptors.
      */
     const uint8_t *extra;
     /**
@@ -364,18 +366,23 @@ typedef struct UsbDdkConfigDescriptor {
 } UsbDdkConfigDescriptor;
 
 /**
- * @brief Defines a USB request pipe.
+ * @brief Defines a request pipe, which is actually a USB data transfer request. It describes the basic configuration
+ * parameters for USB data transfer, including the interface handle, endpoint address, and timeout interval. This API
+ * applies to scenarios where USB data transfer is required.
  *
  * @since 10
  * @version 1.0
  */
 typedef struct UsbRequestPipe {
     /**
-     * Interface operation handle.
+     * Interface handle, which identifies an interface on the USB device. The handle is obtained by calling
+     * {@link OH_Usb_ClaimInterface}.
      */
     uint64_t interfaceHandle;
     /**
-     * Timeout duration, in milliseconds.
+     * Timeout interval, in milliseconds. The value **0** indicates that the operation is performed until it is
+     * complete. A non-zero value indicates that the operation times out if it is not complete within the specified
+     * milliseconds.
      */
     uint32_t timeout;
     /**
@@ -385,8 +392,8 @@ typedef struct UsbRequestPipe {
 } __attribute__((aligned(8))) UsbRequestPipe;
 
 /**
- * @brief Device memory map created by calling {@link OH_Usb_CreateDeviceMemMap}. A buffer using the device memory map
- * can improve data transmission performance.
+ * @brief Defines the device memory map created by calling {@link OH_Usb_CreateDeviceMemMap}. A buffer using the device
+ * memory map can provide better data transfer performance.
  *
  * @since 10
  * @version 1.0
@@ -397,27 +404,28 @@ typedef struct UsbDeviceMemMap {
      */
     uint8_t * const address;
     /**
-     * Buffer size.
+     * Buffer size, in bytes. The value must be greater than 0.
      */
     const size_t size;
     /**
-     * Offset of the used buffer. The default value is **0**, indicating that there is no offset and the offset starts
-     * from the buffer address.
+     * Offset of the used buffer. The default value is **0**, indicating that there is no offset. The offset is
+     * calculated from the buffer address. The sum of **offset** and **bufferLength** must be less than or equal to **
+     * size**.
      */
     uint32_t offset;
     /**
      * Length of the used buffer. By default, the value is equal to the buffer size, indicating that the entire buffer
-     * is used.
+     * is used. The sum of **offset** and **bufferLength** must be less than or equal to **size**.
      */
     uint32_t bufferLength;
     /**
-     * Length of the transferred data.
+     * Length of the data actually transferred, in bytes.
      */
     uint32_t transferedLength;
 } UsbDeviceMemMap;
 
 /**
- * @brief USB DDK error code definitions.
+ * @brief Enumerates the USB DDK error code definitions.
  *
  * @since 10
  * @version 1.0
@@ -428,85 +436,97 @@ typedef enum {
      */
     USB_DDK_SUCCESS = 0,
     /**
-     * The operation failed.
+     * Operation failed.<br> **Deprecated from**: 16
      * @deprecated since 16
      */
     USB_DDK_FAILED = -1,
     /**
-     * No permission.
+     * No permission. Ensure that you have obtained the **ohos.permission.ACCESS_DDK_USB** permission.
      * @since 14
      */
     USB_DDK_NO_PERM = 201,
     /**
-     * Invalid parameter. The value is **-2** before API version 16.
+     * Invalid parameter. Check the validity of the input parameter, including whether the pointer is null and whether
+     * the value range is valid. The value is **-2** in versions earlier than API version 16.
      */
     USB_DDK_INVALID_PARAMETER = 401,
     /**
-     * Memory errors, such as insufficient memory, memory data copy failure, or memory allocation failure.
-     * The value is **-3** before API version 16.
+     * Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.
+     * Check whether the available system memory is sufficient and whether the memory operation parameters are correct.
+     * The value is **-3** in versions earlier than API version 16.
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /**
-     * Null pointer.
+     * Null pointer error. For example, the input pointer parameter is null. Check whether the input pointer parameter
+     * is valid.<br> **Deprecated from**: 16
      * @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
     /**
-     * Device busy.
+     * The device is busy. For example, the device is performing other operations or the device resources are occupied.
+     * Wait until the device is idle and try again, or release the occupied device resources.<br> **Deprecated from**:
+     * 16
      * @deprecated since 16
      */
     USB_DDK_DEVICE_BUSY = -6,
     /**
-     * Invalid operation. The value is **-4** before API version 16.
+     * Invalid operation, for example, calling an API before the device is initialized or performing an operation when
+     * the device is in an incorrect state. Check whether the DDK has been initialized and whether the API handle is
+     * valid. The value is **-4** in versions earlier than API version 16.
      */
     USB_DDK_INVALID_OPERATION = 27400002,
     /**
-     * Device I/O operation failure.
+     * Device I/O operation failure. Check whether the device connection is normal and whether the device supports the
+     * operation.
      * @since 14
      */
     USB_DDK_IO_FAILED = 27400003,
     /**
-     * Transmission timeout. The value is **-7** before API version 16.
+     * Transfer timed out. Check whether the device response is normal or increase the timeout interval. The value is **
+     * -7** in versions earlier than API version 16.
      */
-    USB_DDK_TIMEOUT = 27400004,
+    USB_DDK_TIMEOUT = 27400004
 } UsbDdkErrCode;
 
 /**
- * @brief Defines the device ID list, which is used to store the device IDs and device quantity obtained using
- * {@link OH_Usb_GetDevices}.
+ * @brief Defines the device ID array, which is used to store the device IDs and device quantity obtained using
+ * {@link OH_Usb_GetDevices}. After using the structure, you must release the memory allocated for the device ID array.
+ * Otherwise, resource leaks may occur.
  *
  * @since 18
  */
 typedef struct Usb_DeviceArray {
     /**
      * Pointer to the start address of the device ID array that you have applied for. To avoid excessive memory
-     * consumption, the recommended maximum size of the allocated array is generally 128.
+     * consumption, it is recommended that the maximum size of the allocated array be 128.
      */
     uint64_t* deviceIds;
     /**
-     * Defines the device quantity. Device IDs are obtained by traversing **deviceIds** based on the value of this
-     * parameter. If the value is **0**, there is no USB device.
+     * Device quantity. Device IDs are obtained by traversing **deviceIds** based on the value of this parameter. If
+     * the value is **0**, there is no USB device.
      */
     uint32_t num;
 } Usb_DeviceArray;
 
 /**
- * @brief The list of non-root hubs, which is used to store the non-root hub IDs and quantity obtained using
- * {@link OH_Usb_GetNonRootHubs}.
+ * @brief Defines the non-root hub array, which is used to store the non-root hub IDs and quantity obtained using
+ * {@link OH_Usb_GetNonRootHubs}. After using the structure, you must release the memory allocated for the non-root hub
+ * ID array. Otherwise, resource leaks may occur.
  *
  * @since 26.0.0
  */
 typedef struct Usb_NonRootHubArray {
-
     /**
-     * Array of non-root hub device IDs. The non-root USB hub device ID is constructed by left-shifting the bus number
-     * by 32 bits and adding the device address.
+     * Start address of the non-root hub ID array. It is recommended that the number of non-root hub IDs not exceed 128
+     * to prevent excessive memory usage. The device ID of a non-root USB hub is constructed by left-shifting its bus
+     * number by 32 bits and adding it to its device address.
      * @since 26.0.0
      */
     uint64_t* nonRootHubIds;
 
     /**
-     * Number of non-root hubs. If the value is 0, no non-root hubs are present.
+     * Number of returned non-root hubs. The system traverses **nonRootHubIds** to obtain the non-root hub ID based on
+     * the number. If the value is **0**, no non-root hub exists.
      * @since 26.0.0
      */
     uint32_t num;

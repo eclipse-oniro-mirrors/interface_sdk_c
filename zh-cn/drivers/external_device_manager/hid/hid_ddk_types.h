@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,12 +17,11 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief 提供HID DDK接口，包括创建设备、发送事件、销毁设备等功能，用于HID设备的驱动开发。
+ * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
  *
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
- * @version 1.0
  */
 
 /**
@@ -31,10 +30,10 @@
  * @brief 提供HID DDK中的枚举变量与结构体定义，支持开发者在驱动开发中定义和操作HID设备，适用于与鼠标、键盘、触摸屏等输入设备交互的场景，提供了设备特性、事件类型、键值编码、坐标轴等完整定义，
  * 帮助开发者快速实现HID设备的驱动开发。
  *
+ * @include <hid/hid_ddk_types.h>
  * @library libhid.z.so
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
- * @version 1.0
  */
 
 #ifndef HID_DDK_TYPES_H
@@ -44,7 +43,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 /**
  * @brief 表示HID事件信息结构体，包含事件类型、事件编码和事件值，用于描述输入设备的上报事件。在驱动开发场景中，该结构体用于传递和识别各类HID设备产生的事件。
@@ -114,7 +113,7 @@ typedef struct Hid_Device {
     /**
      * 设备名称，最大长度128字符，不能为NULL。超出长度或为NULL时返回错误。
      */
-    const char* deviceName;
+    const char *deviceName;
     /**
      * 厂商ID。
      */
@@ -646,7 +645,7 @@ typedef enum {
 
 /**
  * @brief 绝对坐标编码。
- *
+ * 
  * @since 11
  * @version 1.0
  */
@@ -797,14 +796,14 @@ typedef enum {
      */
     HID_REL_DIAL = 0x07,
     /**
-     * 垂直滚轮，表示鼠标垂直滚轮的滚动方向和距离，用于垂直方向的滚动操作。
+     * 滚轮。
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * 其他类型的相对坐标事件，用于不适合归入上述分类的特殊相对坐标事件。
+     * 其他类型的绝对坐标轴，用于不适合归入上述分类的特殊轴类型。
      */
     HID_REL_MISC = 0x09,
-    /*
+    /**
      * 预留。
      */
     HID_REL_RESERVED = 0x0a,
@@ -880,7 +879,7 @@ typedef struct Hid_KeyCodeArray {
      */
     Hid_KeyCode *hidKeyCode;
     /**
-     * 数组的有效长度，不超过hidKeyCode数组的实际长度。
+     * 数组的有效长度，不超过hidEventType数组的实际长度。
      */
     uint16_t length;
 } Hid_KeyCodeArray;
@@ -897,7 +896,7 @@ typedef struct Hid_AbsAxesArray {
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：[0, 65535]。
+     * 数组的有效长度，不超过hidEventType数组的实际长度。
      */
     uint16_t length;
 } Hid_AbsAxesArray;
@@ -914,7 +913,7 @@ typedef struct Hid_RelAxesArray {
      */
     Hid_RelAxes *hidRelAxes;
     /**
-     * 数组的有效长度，不超过hidRelAxes数组的实际长度。
+     * 数组的有效长度，不超过hidEventType数组的实际长度。
      */
     uint16_t length;
 } Hid_RelAxesArray;
@@ -931,7 +930,7 @@ typedef struct Hid_MscEventArray {
      */
     Hid_MscEvent *hidMscEvent;
     /**
-     * 数组的有效长度，不超过hidMscEvent数组的实际长度。
+     * 数组的有效长度，不超过hidEventType数组的实际长度。
      */
     uint16_t length;
 } Hid_MscEventArray;
@@ -944,7 +943,7 @@ typedef struct Hid_MscEventArray {
  */
 typedef struct Hid_EventProperties {
     /**
-     * 事件类型属性编码数组，包含设备支持的事件类型集合，用于配置HID设备可触发的事件。
+     * 事件类型编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
      */
     struct Hid_EventTypeArray hidEventTypes;
     /**
@@ -1003,18 +1002,14 @@ typedef enum {
     HID_DDK_INVALID_PARAMETER = 401,
     /**
      * DDK接口执行失败，从API 16起，取值由-1变更为27300001。可能原因：设备状态异常或通信异常。请检查设备状态和参数设置。
-     * 注：当前{@link OH_Hid_CreateDevice}在虚拟设备数量超过上限或设备ID生成失败时，取值为-1。
      */
     HID_DDK_FAILURE = 27300001,
     /**
      * 空指针异常，从API 16起，取值由-4变更为27300002。请检查传入参数的有效性。
-     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在设备不存在时，取值为-4;{@link OH_Hid_EmitEvent}在设备对象为空时，取值也为-4。
      */
     HID_DDK_NULL_PTR = 27300002,
     /**
      * 非法操作，从API 16起，取值由-3变更为27300003。可能原因：调用API的时机或顺序不正确。请检查调用时机、以及是否初始化DDK。
-     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在调用者Token校验不匹配时，取值为-3；{@link OH_Hid_EmitEvent}与
-     * {@link OH_Hid_DestroyDevice}在DDK连接失败或服务未启用时，取值为27300003。
      */
     HID_DDK_INVALID_OPERATION = 27300003,
     /**
@@ -1022,27 +1017,27 @@ typedef enum {
      */
     HID_DDK_TIMEOUT = 27300004,
     /**
-     * @brief 初始化DDK失败或DDK未初始化。请检查系统服务状态，确保在调用API前先初始化DDK。
+     * 初始化DDK失败或DDK未初始化。请检查系统服务状态，确保在调用API前先初始化DDK。
      * @since 18
      */
     HID_DDK_INIT_ERROR = 27300005,
     /**
-     * @brief 服务通信过程中错误。可能原因：服务内部错误。请检查当前操作和设备状态。
+     * 服务通信过程中错误。可能原因：服务内部错误。请检查当前操作和设备状态。
      * @since 18
      */
     HID_DDK_SERVICE_ERROR = 27300006,
     /**
-     * @brief 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。请检查内存使用情况和相关参数。
+     * 内存相关的错误，包括：内存数据拷贝失败、内存申请失败等。请检查内存使用情况和相关参数。
      * @since 18
      */
-    HID_DDK_MEMORY_ERROR = 27300007,
+    HID_DDK_MEMORY_ERROR  = 27300007,
     /**
-     * @brief I/O操作失败。请检查设备状态和传输参数。
+     * I/O操作失败。请检查设备状态和传输参数。
      * @since 18
      */
     HID_DDK_IO_ERROR = 27300008,
     /**
-     * @brief 设备未找到。可能原因：设备未连接或设备ID错误。请检查设备是否连接、设备ID是否正确。
+     * 设备未找到。可能原因：设备未连接或设备ID错误。请检查设备是否连接、设备ID是否正确。
      * @since 18
      */
     HID_DDK_DEVICE_NOT_FOUND = 27300009
@@ -1089,11 +1084,11 @@ typedef enum {
  */
 typedef struct Hid_RawDevInfo {
     /**
-     * 总线类型，用于标识HID设备的物理连接方式。
+     * 总线类型，取值含义参考标准HID协议的总线类型定义。
      */
     uint32_t busType;
     /**
-     * 供应商ID。
+     * 厂商ID。
      */
     uint16_t vendor;
     /**
@@ -1101,9 +1096,8 @@ typedef struct Hid_RawDevInfo {
      */
     uint16_t product;
 } Hid_RawDevInfo;
-
 #ifdef __cplusplus
 }
-#endif
-#endif // HID_DDK_TYPES_H
 /** @} */
+#endif /* __cplusplus */
+#endif // HID_DDK_TYPES_H
