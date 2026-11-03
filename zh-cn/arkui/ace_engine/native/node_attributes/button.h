@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief ArkUI Button Node types on the native side.
+ * @brief 为NativeNode API提供Button节点类型定义。
  *
  * @since 12
  */
@@ -25,7 +25,7 @@
 /**
  * @file button.h
  *
- * @brief Provides Button node type definitions for <b>NativeNode</b> APIs.
+ * @brief 为NativeNode API提供Button节点类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full

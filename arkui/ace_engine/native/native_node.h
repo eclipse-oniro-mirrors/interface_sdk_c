@@ -9420,11 +9420,11 @@ typedef enum {
     /**
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
-     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
      * <ul>
      * <li>.value[0].i32: check status of an option button. The default value is false.</li>
      * </ul>
-     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
      * <ul>
      * <li>.value[0].i32: selection status of an option button.</li>
      * </ul>
