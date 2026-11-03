@@ -396,7 +396,15 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 
 /**
  * @brief 设置是否延后初始化ArkWeb内核，不调用该方法时，默认不延后初始化ArkWeb内核。典型使用场景：应用启动时暂不需要使用Web功能，希望延迟内核初始化以节省启动资源；
- * 应用只需要使用CookieManager而暂时不需要Web组件渲染等。该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
+ * 应用只需要使用CookieManager而暂时不需要Web组件渲染等。
+ *
+ * > **NOTE**
+ * >
+ * > - 该接口为全局静态方法，须在使用ArkWeb组件和初始化ArkWeb内核前调用，否则该设置无效。
+ * > - 该接口仅适用于调用后会初始化CookieManager的接口，比如{@link ArkWeb_CookieManagerAPI}模块中的接口。调用本接口后，再调用适用的接口，
+ * > 会在初始化CookieManager时跳过初始化ArkWeb内核，后续需自行初始化ArkWeb内核。
+ * > - 从API版本26.0.1开始，调用本接口设置为true后，{@link ArkWeb_CookieManagerAPI}模块中的接口支持在非UI线程使用。
+ *
  * @param lazy [in] - 是否延后初始化ArkWeb内核，true：延后，false：不延后。
  * @since 22
  */

@@ -292,7 +292,11 @@ typedef struct ArkWeb_RequestHeaderList_ ArkWeb_RequestHeaderList;
 typedef struct ArkWeb_HttpBodyStream_ ArkWeb_HttpBodyStream;
 
 /**
- * @brief The error info for setting response error details.
+ * @brief ArkWeb_ErrorInfo is a structure that details response errors, used to set error information for responses
+ * in custom scheme request interception scenarios. Developers can use this structure to configure the error code,
+ * custom error code, and whether to automatically generate a response when no response is received. This structure
+ * is typically used in conjunction with ArkWeb_ResourceHandler to pass error information via
+ * OH_ArkWebResourceHandler_DidFailWithErrorInfo when a request fails.
  *
  * @since 26.0.1
  */
@@ -733,6 +737,11 @@ int32_t OH_ArkWeb_RegisterCustomSchemes(const char* scheme, int32_t option);
  * <br>You can use **WebviewController.initializeWebEngine** to initialize **BrowserContext** without creating the
  * **Web** component.
  *
+ * > **NOTE**
+ * >
+ * > - Redirected URLs cannot be intercepted individually. To intercept a redirected URL, you must also intercept
+ * > the original request URL.
+ *
  * @param scheme Scheme to be intercepted, which must comply with RFC 3986.
  * @param schemeHandler **ArkWeb_SchemeHandler** of the scheme. Only requests triggered by **ServiceWorker** are
  *     notified through this **schemeHandler**.
@@ -748,6 +757,11 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
  * be set after **BrowserContext** is created.
  * <br>You can use **WebviewController.initializeWebEngine** to initialize **BrowserContext** without creating the
  * **Web** component.
+ *
+ * > **NOTE**
+ * >
+ * > - Redirected URLs cannot be intercepted individually. To intercept a redirected URL, you must also intercept
+ * > the original request URL.
  *
  * @param scheme Scheme to be intercepted.
  * @param webTag Tag name of the Web component, used to identify a unique component. The developer must ensure the
@@ -1095,7 +1109,7 @@ int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourc
  * client of the specific failure reason through an error code.
  *
  * @param resourceHandler Handler for intercepted URL requests. You can use **ArkWeb_ResourceHandler** to send custom
- *     request headers and bodies.
+ *     response headers and bodies.
  * @param errorCode Error code of the request. For details, see {@link arkweb_net_error_list.h}.
  * @return **0** is returned when the operation is successful; **17100101** is returned when the parameter is invalid.
  * @syscap SystemCapability.Web.Webview.Core
@@ -1113,7 +1127,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
  * and pass the response.
  *
  * @param resourceHandler Handler for intercepted URL requests. You can use **ArkWeb_ResourceHandler** to send custom
- *     request headers and bodies.
+ *     response headers and bodies.
  * @param errorCode Error code of the request. For details, see {@link arkweb_net_error_list.h}.
  * @param completeIfNoResponse Whether the network request is complete when
  *     {@link OH_ArkWebResourceHandler_DidFailWithErrorV2} is called if
@@ -1129,11 +1143,11 @@ int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler
                                                     bool completeIfNoResponse);
 
 /**
- * @brief Creates an ArkWeb_ErrorInfo object.
- * @param errorInfo The created ArkWeb_ErrorInfo object. If errorInfo is nullptr, this function does nothing.
- *                  If the creation succeeds, *errorInfo points to the newly created object, which must be destroyed
- *                  using {@link OH_ArkWeb_DestroyErrorInfo} when no longer needed.
- *                  If the creation fails, *errorInfo is set to NULL.
+ * @brief Creates an ArkWeb_ErrorInfo object. If errorInfo is nullptr, this function does nothing.
+ * If the creation succeeds, *errorInfo points to the newly created object, which must be destroyed using
+ * {@link OH_ArkWeb_DestroyErrorInfo} when no longer needed. If the creation fails, *errorInfo is set to NULL.
+ * @param errorInfo The created ArkWeb_ErrorInfo object.
+ *
  * @since 26.0.1
  */
 void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
@@ -1147,7 +1161,10 @@ void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
 void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
 
 /**
- * @brief Sets whether to automatically generate a response if no response has been received.
+ * @brief Sets whether to automatically generate a response if no response has been received. If completeIfNoResponse
+ * is set to true, when calling {@link OH_ArkWebResourceHandler_DidFailWithErrorInfo},
+ * if {@link OH_ArkWebResourceHandler_DidReceiveResponse} has not been called before, a response will be automatically
+ * constructed to complete the request.
  * @param errorInfo The ArkWeb_ErrorInfo.
  * @param completeIfNoResponse If true, a response will be automatically constructed when no response has been
  *                             received.
@@ -1233,7 +1250,9 @@ int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorIn
 ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response);
 
 /**
- * @brief Notify the web engine that this request should fail with error info.
+ * @brief Notifies the Web engine that the request should fail with error information. Compared to
+ * {@link OH_ArkWebResourceHandler_DidFailWithErrorV2}, this interface uses an ArkWeb_ErrorInfo object to carry
+ * the error code, custom error code, and the completeIfNoResponse setting.
  * @param resourceHandler The ArkWeb_ResourceHandler for the request.
  * @param errorInfo The error info for this request.
  * @return {@link ARKWEB_NET_OK} 0 - Success.

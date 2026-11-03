@@ -268,7 +268,8 @@ typedef struct ArkWeb_RequestHeaderList_ ArkWeb_RequestHeaderList;
 typedef struct ArkWeb_HttpBodyStream_ ArkWeb_HttpBodyStream;
 
 /**
- * @brief OH_ArkWebResourceHandler_DidFailWithErrorInfo的错误信息；
+ * @brief ArkWeb_ErrorInfo是响应错误详情结构体，用于在自定义Scheme请求拦截场景中设置响应的错误信息。开发者可以通过该结构体设置错误码、自定义错误码以及是否在未收到响应时自动生成响应。
+ * 该结构体通常与ArkWeb_ResourceHandler配合使用，在请求失败时通过OH_ArkWebResourceHandler_DidFailWithErrorInfo传递错误信息。
  *
  * @since 26.0.1
  */
@@ -276,6 +277,10 @@ typedef struct ArkWeb_ErrorInfo_ ArkWeb_ErrorInfo;
 
 /**
  * @brief 请求开始的回调，这将在IO线程上被调用。用于在请求开始时拦截和处理指定scheme的网络请求，开发者可通过此回调实现自定义协议处理、本地资源替换、数据加密传输等功能。
+ *
+ * > **说明**
+ * >
+ * > - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
  *
  * @param schemeHandler ArkWeb_SchemeHandler。
  * @param resourceRequest 通过该对象获取请求的信息。
@@ -662,6 +667,10 @@ int32_t OH_ArkWeb_RegisterCustomSchemes(const char* scheme, int32_t option);
  * @brief 为指定scheme设置一个ArkWeb_SchemeHandler以拦截ServiceWorker触发的该scheme类型的请求。应该在创建BrowserContext之后设置SchemeHandler。
  * <br>可以使用WebviewController.initializeWebEngine来初始化BrowserContext而无需创建ArkWeb。
  *
+ * > **说明**
+ * >
+ * > - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
+ *
  * @param scheme 需要被拦截的scheme，需符合RFC 3986规范。
  * @param schemeHandler 该scheme的拦截器ArkWeb_SchemeHandler。只有通过ServiceWorker触发的请求才会通过这个schemeHandler进行通知。
  * @return 如果为指定scheme设置SchemeHandler成功，则返回true，否则返回false。
@@ -673,6 +682,10 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
 /**
  * @brief 为指定scheme设置一个ArkWeb_SchemeHandler以拦截该scheme类型的请求。应该在创建BrowserContext之后设置SchemeHandler。
  * <br>可以使用WebviewController.initializeWebEngine来初始化BrowserContext而无需创建ArkWeb。
+ *
+ * > **说明**
+ * >
+ * > - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
  *
  * @param scheme 需要被拦截的scheme。
  * @param webTag Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。建议长度不超过256字符。
@@ -742,10 +755,6 @@ void* OH_ArkWebSchemeHandler_GetUserData(const ArkWeb_SchemeHandler* schemeHandl
 
 /**
  * @brief 为SchemeHandler设置OnRequestStart回调。
- *
- * > **说明**
- * >
- * > - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
  *
  * @param schemeHandler 该scheme的SchemeHandler。
  * @param onRequestStart OnRequestStart回调函数。
@@ -990,7 +999,7 @@ int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourc
 /**
  * @brief 通知ArkWeb内核，被拦截的请求应该失败。在权限验证失败、资源不存在、网络错误等场景下调用，用于标记请求失败并通过错误码告知客户端具体失败原因。
  *
- * @param resourceHandler 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。
+ * @param resourceHandler 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义响应头以及自定义响应体。
  * @param errorCode 该请求的错误码。请参考{@link arkweb_net_error_list.h}。
  * @return 如果返回0，表示成功；返回17100101，表示参数无效。
  * @syscap SystemCapability.Web.Webview.Core
@@ -1004,7 +1013,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
  * 若之前未调用过{@link OH_ArkWebResourceHandler_DidReceiveResponse}，则会自动生成一个response以完成此次网络请求，网络错误码为-104；值为false时，将等待应用调用
  * {@link OH_ArkWebResourceHandler_DidReceiveResponse}并传入response，不会直接完成此次网络请求。
  *
- * @param resourceHandler 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。
+ * @param resourceHandler 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义响应头以及自定义响应体。
  * @param errorCode 该请求的错误码。请参考{@link arkweb_net_error_list.h}。
  * @param completeIfNoResponse 若之前未调用过{@link OH_ArkWebResourceHandler_DidReceiveResponse}，调用
  *     {@link OH_ArkWebResourceHandler_DidFailWithErrorV2}时，此次网络请求是否完成；值为true时，若之前未调用过
@@ -1019,10 +1028,10 @@ int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler
 
 /**
  * @brief 创建一个ArkWeb_ErrorInfo对象。
- * @param errorInfo 返回创建的ArkWeb_ErrorInfo。
  * 如果errorInfo为空，则不做任何操作。
  * 如果创建成功，则*errorInfo指向新创建的对象。当不再需要时，必须使用OH_ArkWeb_DestroyErrorInfo进行销毁。
  * 如果创建失败，*errorInfo将被设置为NULL。
+ * @param errorInfo 返回创建的ArkWeb_ErrorInfo。
  * @since 26.0.1
  */
 void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
@@ -1036,7 +1045,8 @@ void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
 void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
 
 /**
- * @brief 设置是否在未收到响应时自动生成响应。
+ * @brief 设置是否在未收到响应时自动生成响应。如果completeIfNoResponse设置为true，当调用{@link OH_ArkWebResourceHandler_DidFailWithErrorInfo}时，
+ * 若之前未调用过{@link OH_ArkWebResourceHandler_DidReceiveResponse}，则会自动构造一个响应来完成请求。
  * @param errorInfo ArkWeb_ErrorInfo。
  * @param completeIfNoResponse 如果为true，将在尚未收到响应时构造响应。
  * @return {@link ARKWEB_NET_OK} 0 -成功。
@@ -1049,15 +1059,15 @@ int32_t OH_ArkWebErrorInfo_SetCompleteIfNoResponse(ArkWeb_ErrorInfo* errorInfo, 
 /**
  * @brief 获取是否在未收到响应时自动生成响应。
  * @param errorInfo ArkWeb_ErrorInfo。
- * @return 如果启用如果没有收到响应，则自动生成响应，则返回true，否则返回false。
+ * @return 如果启用了未收到响应时自动生成响应的功能，则返回true，否则返回false。
  *
  * @since 26.0.1
  */
 bool OH_ArkWebErrorInfo_GetCompleteIfNoResponse(const ArkWeb_ErrorInfo* errorInfo);
 
 /**
- * @brief 设置自定义错误码。Web引擎将通过以下方式将自定义错误代码直接传递给应用程序
- * onErrorReceive.
+ * @brief 设置自定义错误码。web引擎将通过onErrorReceive将自定义错误代码直接传递给应用程序。
+ *
  * @param errorInfo ArkWeb_ErrorInfo。
  * @param errorCode 自定义错误码。
  * @return {@link ARKWEB_NET_OK} 0 -成功。
@@ -1097,9 +1107,10 @@ int32_t OH_ArkWebErrorInfo_SetErrorCode(ArkWeb_ErrorInfo* errorInfo, ArkWeb_NetE
 ArkWeb_NetError OH_ArkWebErrorInfo_GetErrorCode(const ArkWeb_ErrorInfo* errorInfo);
 
 /**
- * @brief 将错误信息设置为ArkWebRespons。
+ * @brief 为ArkWeb_Response设置错误信息。所有权不会转移，调用方必须确保errorInfo在{@link ArkWeb_OnRequestStop}触发之前保持有效。
+ *
  * @param response ArkWeb_Response。
- * @param errorInfo 响应的ArkWeb_ErrorInfo。
+ * @param errorInfo 要设置的ArkWeb_ErrorInfo。
  * @return {@link ARKWEB_NET_OK} 0 -成功。
  * {@link ARKWEB_INVALID_PARAM} 17100101 -参数无效。
  *
@@ -1118,7 +1129,8 @@ int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorIn
 ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response);
 
 /**
- * @brief 通知ArkWeb此请求应该失败。
+ * @brief 通知Web引擎该请求应携带错误信息而失败。与{@link OH_ArkWebResourceHandler_DidFailWithErrorV2}相比，此接口使用ArkWeb_ErrorInfo对象
+ * 来携带错误码、自定义错误码和completeIfNoResponse设置。
  * @param resourceHandler 请求的ArkWeb_ResourceHandler。
  * @param errorInfo 此请求的错误信息。
  * @return 如果成功，则为0；否则，则为失败。请参阅arkweb_error_code.h。

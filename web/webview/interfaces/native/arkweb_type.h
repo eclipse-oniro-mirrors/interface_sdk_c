@@ -111,6 +111,12 @@ typedef enum ArkWeb_JavaScriptValueType {
  * format and data carrying capability of messages. This struct serves as the fundamental data unit for web message
  * communication, supporting the transfer of strings and binary data between native code and web pages.
  *
+ * **Usage scenario**
+ * Used for message communication between the native side and web pages, for example:
+ * - The native side sends control instructions or data to the web page.
+ * - The web page sends user operation results or requested data to the native side.
+ * - Asynchronous message passing and data synchronization across contexts.
+ *
  * @since 12
  */
 typedef struct ArkWeb_WebMessage* ArkWeb_WebMessagePtr;
@@ -131,6 +137,9 @@ typedef struct ArkWeb_JavaScriptValue* ArkWeb_JavaScriptValuePtr;
  * result of JavaScript code in the Web component, for example, in scenarios where the native UI needs to be updated or
  * subsequent logic needs to be executed based on the data returned by JavaScript.
  *
+ * @param webTag [in] Name of the **Web** component.
+ * @param data [in] JavaScriptBridge data.
+ * @param userData [in] Pointer to user-defined data.
  * @since 12
  */
 typedef void (*ArkWeb_OnJavaScriptCallback)(
@@ -140,6 +149,10 @@ typedef void (*ArkWeb_OnJavaScriptCallback)(
  * @brief Callback invoked when a Proxy method is executed. Proxy methods are used for object interaction and custom
  * operations between the native side and the JavaScript side.
  *
+ * @param webTag [in] Name of the **Web** component.
+ * @param dataArray [in] Pointer to data array.
+ * @param arraySize [in] Array size.
+ * @param userData [in] Pointer to user-defined data.
  * @since 12
  */
 typedef void (*ArkWeb_OnJavaScriptProxyCallback)(
@@ -363,17 +376,17 @@ typedef struct {
      */
     size_t size;
     /**
-     * Injects a JavaScript script. This API must be called on the UI thread by calling the OH_ArkWeb_GetNativeAPI
-     * method. This method injects a JavaScript script into the execution context of the **Web** component and executes
-     * it after the page is loaded.
+     * @brief Injects a JavaScript script. This API must be called on the UI thread by calling the
+     * OH_ArkWeb_GetNativeAPI method. This method injects a JavaScript script into the execution context of the
+     * **Web** component and executes it after the page is loaded.
      *
      * @param webTag [in] Name of the **Web** component.
      * @param javascriptObject [in] JavaScript object to inject.
      */
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /**
-     * Injects a JavaScript object into the window object and calls the synchronous methods of this object in the
-     * window object. This method maps native objects to the JavaScript environment through a bridging mechanism to
+     * @brief Injects a JavaScript object into the window object and calls the synchronous methods of this object in
+     * the window object. This method maps native objects to the JavaScript environment through a bridging mechanism to
      * implement bidirectional communication. Use Cases: for example, JS calls native capabilities to obtain device
      * information or execute native business logic. This API must be called on the UI thread by calling the
      * OH_ArkWeb_GetNativeAPI method. Compared with registerAsyncJavaScriptProxy, this method is suitable for scenarios
@@ -386,7 +399,7 @@ typedef struct {
      */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
     /**
-     * Deletes the app-side JavaScript object with the specified name that is registered with the window through
+     * @brief Deletes the app-side JavaScript object with the specified name that is registered with the window through
      * registerJavaScriptProxy. This API must be called on the UI thread by calling the OH_ArkWeb_GetNativeAPI method.
      * This method unbinds the JavaScript object from the native object and releases related resources. Use Cases: for
      * example, cleaning up registered objects to avoid residue when a component is destroyed, a module is unloaded, or
@@ -397,16 +410,16 @@ typedef struct {
      */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /**
-     * Refreshes the current web page. The page stack is cleared during the refresh, as a result, the current page
-     * cannot be navigated forward or backward. This API must be called on the UI thread by calling the
+     * @brief Refreshes the current web page. The page stack is cleared during the refresh, as a result, the current
+     * page cannot be navigated forward or backward. This API must be called on the UI thread by calling the
      * OH_ArkWeb_GetNativeAPI method.
      *
      * @param webTag [in] Name of the **Web** component.
      */
     void (*refresh)(const char* webTag);
     /**
-     * Injects a JavaScript object into the window object and calls the asynchronous methods of this object in the
-     * window object. This API must be called on the UI thread by calling the OH_ArkWeb_GetNativeAPI method. This
+     * @brief Injects a JavaScript object into the window object and calls the asynchronous methods of this object in
+     * the window object. This API must be called on the UI thread by calling the OH_ArkWeb_GetNativeAPI method. This
      * method implements asynchronous calls through a message queue mechanism to avoid blocking the main thread.
      * Compared with registerJavaScriptProxy, this method is suitable for time-consuming operations or scenarios where
      * a synchronous return value is not needed. If a synchronous return value is needed, you are advised to use
@@ -422,8 +435,17 @@ typedef struct {
      * UI thread by calling the OH_ArkWeb_GetNativeAPI method. Use Cases: for example, implementing cross-context
      * message channels to support data transfer between iframes and the main page, and between Web and Worker.
      *
+     * <br> **Paired call:**
+     * <br>- Ports created by calling createWebMessagePorts() must be destroyed by calling destroyWebMessagePorts()
+     * <br> after use. Undestroyed ports will cause resource leaks and affect app performance.
+     * <br> **Combined usage:**
+     * <br>- After creating ports, you need to send the ports to the HTML main page through postWebMessage() to
+     * <br> establish a communication channel. Typical usage flow: createWebMessagePorts() → postWebMessage()
+     * <br> → communication interaction → destroyWebMessagePorts().
+     *
      * @param webTag Name of the **Web** component.
      * @param size Number of ports, which is an output parameter.
+     * @return Pointer to the message port.
      */
     ArkWeb_WebMessagePortPtr* (*createWebMessagePorts)(const char* webTag, size_t* size);
 
@@ -432,6 +454,12 @@ typedef struct {
      * message transmission. This API must be called on the UI thread by calling the OH_ArkWeb_GetNativeAPI method. Use
      * Cases: for example, releasing port resources to avoid leaks when communication ends or the component lifecycle
      * ends.
+     *
+     * <br> **Paired call:**
+     * <br>- Must be used in pair with createWebMessagePorts() to destroy the created Post Message ports. Only ports
+     * created through createWebMessagePorts() can be destroyed. After destruction, the ports will be unusable and
+     * message delivery cannot continue. You are advised to destroy ports in a timely manner after communication ends
+     * to release resources. Destroying ports that are not properly created may lead to undefined behavior.
      *
      * @param ports Array of pointers to the Post Message port struct.
      * @param size Number of ports. Must be equal to the number of ports in the ports array.
@@ -447,6 +475,7 @@ typedef struct {
      * @param webTag Name of the Web component. It must match the bound Web component; otherwise, ARKWEB_INIT_ERROR is
      *     returned.
      * @param name Name of the message sent to the HTML page.
+     * @param webMessagePorts Pointer to the message port.
      * @param size Number of ports.
      * @param url URL of the page that receives the message.
      * @return Result code.
@@ -721,6 +750,8 @@ typedef struct {
  * OH_ArkWeb_GetNativeAPI method in the UI thread. Before calling, you are advised to use {@link ARKWEB_MEMBER_MISSING}
  * to check the availability of function pointers, so as to avoid crashes caused by mismatch between the SDK and the
  * device ROM.
+ * Starting from API version 26.0.1, when calling {@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager} and
+ * setting it to true, CookieManager related interfaces are supported for use in non-UI threads.
  *
  * @since 12
  */
@@ -733,7 +764,9 @@ typedef struct {
     /**
      * @brief Obtains the cookie value of a specified URL. This method is used in scenarios such as user login state
      * maintenance, session management, and personalized configuration reading. This method must be called in the UI
-     * thread. Before calling, you are advised to check the availability of the function pointer.
+     * thread. Before calling, you are advised to check the availability of the function pointer. Starting from API
+     * version 26.0.1, when calling {@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager} and setting it
+     * to true, it supports calling on non-UI threads.
      *
      * @param url URL of the cookie to obtain. A complete URL is recommended.
      * @param incognito Whether to obtain the in-memory cookies of the Web component in privacy mode. The value true
@@ -757,7 +790,9 @@ typedef struct {
     /**
      * @brief Sets the cookie value of a specified URL. This method is used in scenarios such as saving user preference
      * settings, maintaining login state, and saving session information. This method must be called in the UI thread.
-     * Before calling, you are advised to check the availability of the function pointer.
+     * Before calling, you are advised to check the availability of the function pointer. Starting from API
+     * version 26.0.1, when calling {@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager} and setting it
+     * to true, it supports calling on non-UI threads.
      *
      * @param url URL of the specified cookie. It must be a complete URL.
      * @param cookieValue Value of the cookie to set, in the format of name=value, where name and value are the name
@@ -782,7 +817,9 @@ typedef struct {
     /**
      * @brief Checks whether cookies exist. This method is used in scenarios such as determining whether a user is
      * logged in, checking whether a session is valid, and verifying identity status. This method must be called in
-     * the UI thread. Before calling, you are advised to check the availability of the function pointer.
+     * the UI thread. Before calling, you are advised to check the availability of the function pointer. Starting from
+     * API version 26.0.1, when calling {@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager} and setting it
+     * to true, it supports calling on non-UI threads.
      *
      * @param incognito True indicates whether cookies exist in privacy mode,
      *                  and false indicates whether cookies exist in non-privacy mode.
@@ -794,7 +831,9 @@ typedef struct {
      * @brief Clears all cookies (including persistent cookies and session cookies). This method is used in scenarios
      * such as user logout, clearing privacy data, and resetting user state. If you only need to clear session cookies,
      * you are advised to use {@link clearSessionCookiesSync}. This method must be called in the UI thread. Before
-     * calling, you are advised to check the availability of the function pointer.
+     * calling, you are advised to check the availability of the function pointer. Starting from API version 26.0.1,
+     * when calling {@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager} and setting it to true, it supports
+     * calling on non-UI threads.
      *
      * @param incognito Whether to clear all cookies in incognito mode. The value **true** means to clear all cookies
      *     in incognito mode, and **false** means the opposite.
@@ -804,7 +843,9 @@ typedef struct {
     /**
      * @brief Clears all session cookies. This method is used in scenarios such as clearing temporary session data,
      * closing all sessions, and cleaning up session timeouts. This method must be called in the UI thread. Before
-     * calling, you are advised to check the availability of the function pointer.
+     * calling, you are advised to check the availability of the function pointer. Starting from API version 26.0.1,
+     * when calling {@link OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager} and setting it to true, it supports
+     * calling on non-UI threads.
      *
      */
     void (*clearSessionCookiesSync)();
