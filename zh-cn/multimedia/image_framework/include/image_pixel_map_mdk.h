@@ -112,7 +112,7 @@ enum {
      */
     OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL = 2,
     /**
-     * 预除的格式。
+     * 非预乘的格式。
      */
     OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL = 3
 };
