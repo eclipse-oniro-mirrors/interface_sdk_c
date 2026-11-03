@@ -1,0 +1,349 @@
+# Illustrative C metadata example based on the Sensor API shape. It is documentation-only and does not change the public header.
+schemaVersion: "1.0.0"
+language: c
+source:
+  repository: interface_sdk_c
+  branch: master
+  commit: "f42daf66c5a70bd5c3f19d4d48d3cfd1e2b19e5f"
+  path: sensors/sensor
+header:
+  path: sensors/sensor/oh_sensor.h
+  kit: SensorServiceKit
+  library: libohsensor.so
+  syscap: SystemCapability.Sensors.Sensor
+  license: Apache-2.0
+  includes:
+    - sensors/sensor/oh_sensor_type.h
+  macroGuard: OH_SENSOR_H
+  moduleName: Sensor
+common:
+  accessLevel: public
+  since: "11"
+  syscap: SystemCapability.Sensors.Sensor
+  permissions: []
+  library: libohsensor.so
+  attributionParts:
+    - SensorSubsys
+apis:
+  - kind: function
+    id: sensor.get_infos
+    parentId: null
+    name: OH_Sensor_GetInfos
+    qualifiedName: OH_Sensor_GetInfos
+    declaration: "Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count)"
+    filePath: sensors/sensor/oh_sensor.h
+    startLine: 48
+    endLine: 49
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    kit: SensorServiceKit
+    library: libohsensor.so
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    permissions: []
+    description:
+      en: Obtains information about all sensors on the device.
+      zh: 获取设备上的全部传感器信息。
+    parameters:
+      - name: infos
+        cType:
+          text: Sensor_Info **
+          kind: pointer
+          isPointer: true
+          pointerDepth: 2
+          pointee:
+            text: Sensor_Info *
+            kind: pointer
+            isPointer: true
+            pointerDepth: 1
+            pointee:
+              text: Sensor_Info
+              kind: struct
+        direction: output
+        isPointer: true
+        isConst: false
+        isNullable: false
+        required: true
+        defaultValue: null
+        description:
+          en: Output pointer to the sensor information array. The array is allocated by the API and released by the caller.
+          zh: 输出参数，指向传感器信息数组。数组由接口分配，由调用方释放。
+        memoryOwnership:
+          allocatedBy: callee
+          releasedBy: caller
+          lifetime: Valid until the caller releases the returned array.
+      - name: count
+        cType:
+          text: uint32_t *
+          kind: pointer
+          isPointer: true
+          pointerDepth: 1
+          pointee:
+            text: uint32_t
+            kind: primitive
+        direction: output
+        isPointer: true
+        isConst: false
+        isNullable: false
+        required: true
+        defaultValue: null
+        description:
+          en: Output pointer to the number of sensors.
+          zh: 输出参数，指向传感器数量。
+    returnType:
+      text: Sensor_Result
+      semantic: error-code
+      isConst: false
+      isPointer: false
+      description:
+        en: Returns SENSOR_SUCCESS on success, or an error defined by Sensor_Result on failure.
+        zh: 成功返回 SENSOR_SUCCESS，失败返回 Sensor_Result 中定义的错误码。
+    errorCodes:
+      - constant: SENSOR_SUCCESS
+        code: 0
+        condition: The sensor information is successfully obtained.
+        message:
+          en: Operation is successful.
+          zh: 操作成功。
+      - constant: SENSOR_PARAMETER_ERROR
+        code: 401
+        condition: Parameter verification fails, for example a null pointer is passed.
+        message:
+          en: Parameter error.
+          zh: 参数错误。
+      - constant: SENSOR_SERVICE_EXCEPTION
+        code: 14500101
+        condition: The sensor service is abnormal or unavailable.
+        message:
+          en: Sensor service exception.
+          zh: 传感器服务异常。
+    isVariadic: false
+    callingConvention: cdecl
+    memoryOwnership:
+      allocatedBy: callee
+      releasedBy: caller
+      lifetime: The caller must release the returned sensor information array.
+    threadSafety:
+      en: See the SensorServiceKit API documentation for concurrent-call restrictions.
+      zh: 并发调用限制以 SensorServiceKit API 文档为准。
+    deviceSupport:
+      - deviceModelName: phone
+        apiLevel: "11"
+      - deviceModelName: tablet
+        apiLevel: "11"
+      - deviceModelName: 2in1
+        apiLevel: "11"
+    deviceDifferences:
+      enabled: false
+      items: []
+    specRefs:
+      - AC-1.1
+    confirmation:
+      - field: since
+        confirmedBy: sensor-owner
+        date: "2026-10-29"
+        evidence: Sensor API review record
+
+  - kind: enum
+    id: sensor.result
+    parentId: null
+    name: Sensor_Result
+    qualifiedName: Sensor_Result
+    declaration: "typedef enum Sensor_Result"
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 134
+    endLine: 160
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    description:
+      en: Defines sensor result codes.
+      zh: 定义传感器返回结果码。
+    underlyingType: int32
+    isFlags: false
+    members:
+      - sensor.result.success
+      - sensor.result.permission_denied
+      - sensor.result.parameter_error
+      - sensor.result.service_exception
+
+  - kind: enumMember
+    id: sensor.result.success
+    parentId: sensor.result
+    name: SENSOR_SUCCESS
+    qualifiedName: Sensor_Result.SENSOR_SUCCESS
+    declaration: "SENSOR_SUCCESS = 0"
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 139
+    endLine: 141
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    value: 0
+    initializer: "0"
+    valueType: integer
+    ownerEnum: sensor.result
+    description:
+      en: Operation succeeded.
+      zh: 操作成功。
+
+  - kind: enumMember
+    id: sensor.result.parameter_error
+    parentId: sensor.result
+    name: SENSOR_PARAMETER_ERROR
+    qualifiedName: Sensor_Result.SENSOR_PARAMETER_ERROR
+    declaration: "SENSOR_PARAMETER_ERROR = 401"
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 149
+    endLine: 151
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    value: 401
+    initializer: "401"
+    valueType: integer
+    ownerEnum: sensor.result
+    description:
+      en: Parameter verification failed.
+      zh: 参数校验失败。
+
+
+  - kind: enumMember
+    id: sensor.result.permission_denied
+    parentId: sensor.result
+    name: SENSOR_PERMISSION_DENIED
+    qualifiedName: Sensor_Result.SENSOR_PERMISSION_DENIED
+    declaration: SENSOR_PERMISSION_DENIED = 201
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 144
+    endLine: 146
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    value: 201
+    initializer: "201"
+    valueType: integer
+    ownerEnum: sensor.result
+    description:
+      en: Permission verification failed.
+      zh: 权限校验失败。
+
+  - kind: enumMember
+    id: sensor.result.service_exception
+    parentId: sensor.result
+    name: SENSOR_SERVICE_EXCEPTION
+    qualifiedName: Sensor_Result.SENSOR_SERVICE_EXCEPTION
+    declaration: SENSOR_SERVICE_EXCEPTION = 14500101
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 158
+    endLine: 160
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    value: 14500101
+    initializer: "14500101"
+    valueType: integer
+    ownerEnum: sensor.result
+    description:
+      en: Sensor service exception.
+      zh: 传感器服务异常。
+  - kind: struct
+    id: sensor.subscription_id
+    parentId: null
+    name: Sensor_SubscriptionId
+    qualifiedName: Sensor_SubscriptionId
+    declaration: "typedef struct Sensor_SubscriptionId Sensor_SubscriptionId"
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 421
+    endLine: 422
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    description:
+      en: Opaque type that identifies a sensor subscription.
+      zh: 标识传感器订阅的不透明类型。
+    isOpaque: true
+    fields: []
+
+  - kind: union
+    id: sensor.value_union
+    parentId: null
+    name: Sensor_ValueUnion
+    qualifiedName: Sensor_ValueUnion
+    declaration: "typedef union Sensor_ValueUnion Sensor_ValueUnion"
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 425
+    endLine: 442
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    description:
+      en: Defines a union that carries one sensor value payload.
+      zh: 定义承载单个传感器负载数据的联合体。
+    members:
+      - name: intValue
+        cType:
+          text: int32_t
+          kind: primitive
+      - name: floatValue
+        cType:
+          text: float
+          kind: primitive
+
+  - kind: callback
+    id: sensor.event_callback
+    parentId: null
+    name: Sensor_EventCallback
+    qualifiedName: Sensor_EventCallback
+    declaration: "typedef void (*Sensor_EventCallback)(Sensor_Event *event)"
+    filePath: sensors/sensor/oh_sensor_type.h
+    startLine: 544
+    endLine: 545
+    changeKind: added
+    isExported: true
+    accessLevel: public
+    since: "11"
+    syscap: SystemCapability.Sensors.Sensor
+    description:
+      en: Callback invoked when sensor data is reported.
+      zh: 传感器数据上报时触发的回调。
+    parameters:
+      - name: event
+        cType:
+          text: Sensor_Event *
+          kind: pointer
+          isPointer: true
+          pointerDepth: 1
+          pointee:
+            text: Sensor_Event
+            kind: struct
+        direction: input
+        isPointer: true
+        isConst: false
+        isNullable: false
+        required: true
+        defaultValue: null
+        description:
+          en: Pointer to the sensor data event.
+          zh: 指向传感器数据事件的指针。
+    returnType:
+      text: void
+      semantic: void
+      isConst: false
+      isPointer: false
+    callingConvention: cdecl
