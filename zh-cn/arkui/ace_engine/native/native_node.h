@@ -9054,26 +9054,6 @@ typedef enum {
     NODE_TEXT_EDITOR_SHOW_PASSWORD_ICON = 22032,
 
     /**
-     * @brief 设置TextEditor组件的密码图标，支持属性设置和属性重置。
-     * 
-     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
-     * <ul>
-     * <li>.value[0].string：显示密码图标时的图片资源。</li>
-     * <li>.value[1].string：隐藏密码图标时的图片资源。</li>
-     * </ul>
-     * 
-     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
-     * <ul>
-     * <li>.value[0].string：显示密码图标时的图片资源。</li>
-     * <li>.value[1].string：隐藏密码图标时的图片资源。</li>
-     * </ul>
-     *
-     * @ingroup Text Editor[富文本]
-     * @since 26.1.0
-     */
-    NODE_TEXT_EDITOR_PASSWORD_ICON = 22033,
-
-    /**
      * @brief 设置TextEditor组件是否启用自动填充，支持属性设置、属性重置和属性获取。
      * 
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
