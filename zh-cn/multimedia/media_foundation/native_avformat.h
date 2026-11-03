@@ -180,6 +180,7 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * <br>1. 输入format为空指针。
  * <br>2. 输入format参数结构校验失败。
  * <br>3. 输入key为空指针。
+ * <br>4. 设置的key对应的value类型错误。
  * @since 23
  */
 bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value);
@@ -301,6 +302,7 @@ bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * <br>2. 输入format参数结构校验失败。
  * <br>3. 输入key为空指针。
  * <br>4. 输入out为空指针。
+ * <br>5. 获取的key不存在或者未设置。
  * @since 23
  */
 bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out);
@@ -420,7 +422,7 @@ bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32
  * @brief 返回OH_AVFormat中包含的key-value组成的字符串。最大可返回1024字节的字符串，销毁format时释放字符串指针。
  *
  * @param format 指向OH_AVFormat实例的指针。
- * @return 如果创建成功，返回一个由key-value组成的字符串，如果失败，则返回NULL。
+ * @return 如果获取成功，返回一个由key-value组成的字符串，如果失败，则返回NULL。
  * 可能的失败原因：
  * <br>1.  传入的format为NULL。
  * <br>2. 系统资源不足。

@@ -200,7 +200,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
  *         <br>AV_ERR_UNKNOWN：未知错误。
  *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
+ *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Configure接口前调用，如果在其他状态时调用，则返回此错误码。
  * @since 12
  */
 OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,

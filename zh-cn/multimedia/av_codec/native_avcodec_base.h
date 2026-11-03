@@ -194,11 +194,11 @@ typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int6
 */
 typedef struct OH_AVDataSource {
     /**
-     * @brief 数据源的总大小。
+     * @brief 数据源的总大小，单位为字节。
      */
     int64_t size;
     /**
-     * @brief 数据源的数据回调。
+     * @brief 数据源的数据读取回调。
      */
     OH_AVDataSourceReadAt readAt;
 } OH_AVDataSource;
@@ -222,11 +222,11 @@ typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, i
 */
 typedef struct OH_AVDataSourceExt {
     /**
-     * @brief 数据源的总大小。
+     * @brief 数据源的总大小，单位为字节。
      */
     int64_t size;
     /**
-     * @brief 数据源的数据回调。
+     * @brief 数据源的数据读取回调。
      */
     OH_AVDataSourceReadAtExt readAt;
 } OH_AVDataSourceExt;
@@ -285,7 +285,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
 
 /**
- * @brief 视频MPEG4 Part2编解码器的MIME类型。
+ * @brief MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
  *
  * @since 17
  */
@@ -671,7 +671,7 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
  *
  * 对于视频编码，该键用于设置目标编码分辨率。对于视频解码，该键是解码器预分配内部缓冲区的分辨率提示。实际解码输出尺寸由OH_MD_KEY_VIDEO_PIC_WIDTH提供。
  *
- * 虽然该键主要用于控制内存分配，但可参考{@link OH_AVCapability_GetVideoWidthRange}获取推荐值范围，该接口定义了编码器支持的解码宽度范围。
+ * 虽然该键主要用于控制内存分配，但可参考{@link OH_AVCapability_GetVideoWidthRange}获取推荐值范围，该接口定义了编解码器支持的解码宽度范围。
  *
  * @since 9
  */
@@ -1300,7 +1300,7 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
  */
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
 /**
- * @brief 媒体文件创建时间的元数据，值类型为char *。使用ISO 8601标准的时间格式且为UTC时间，时间格式参考："2024-12-28T00:00:00:000000Z"。
+ * @brief 媒体文件创建时间的元数据，值类型为char *。使用ISO 8601标准的时间格式且为UTC时间，时间格式参考："2024-12-28T00:00:00.000000Z"。
  *
  * @since 14
  */
@@ -2312,7 +2312,7 @@ typedef enum OH_BitsPerSample {
      */
     SAMPLE_U8 = 0,
     /**
-     * @brief 16位有符号整数交样。
+     * @brief 16位有符号整数采样。
      * @since 10
      */
     SAMPLE_S16LE = 1,

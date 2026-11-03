@@ -206,12 +206,12 @@ typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int6
  */
 typedef struct OH_AVDataSource {
     /**
-     * Size of the data source.
+     * Total size of the data source, in bytes.
      * @since 12
      */
     int64_t size;
     /**
-     * Callback of the data source.
+     * Callback for reading data from the data source.
      * @since 12
      */
     OH_AVDataSourceReadAt readAt;
@@ -237,12 +237,12 @@ typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, i
  */
 typedef struct OH_AVDataSourceExt {
     /**
-     * Size of the data source.
+     * Total size of the data source, in bytes.
      * @since 20
      */
     int64_t size;
     /**
-     * Callback of the data source.
+     * Callback for reading data from the data source.
      * @since 20
      */
     OH_AVDataSourceReadAtExt readAt;
@@ -1599,7 +1599,7 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
 
 /**
  * @brief Pointer to the key that describes the media file creation time. The value type is char *. The value must be
- * in the UTC time format complying with ISO 8601. Time format example: 2024-12-28T00:00:00:000000Z
+ * in the UTC time format complying with ISO 8601. Time format example: 2024-12-28T00:00:00.000000Z
  * 
  * @since 14
  */
