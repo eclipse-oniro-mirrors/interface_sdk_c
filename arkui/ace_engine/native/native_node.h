@@ -14659,6 +14659,53 @@ typedef enum {
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
+    /**
+     * @brief Number of displayed items in the <b>Picker</b> container. The semantics is the same as that of
+     * {@link displayedItemCount} in {@link UIPickerComponent} on the ArkTS side. If this attribute is not set,
+     * the value <b>7</b> is used. When <b>Picker</b> is in a three-dimensional wheel style, all items except the
+     * selected ones rotate at an angle, and the actual visible height is less than the item line height. To
+     * increase the number of visible lines or the line height, increase the container height accordingly. For
+     * details, see {@link UIPickerComponent}. This attribute can be set, reset, and obtained as required through
+     * APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: number of displayed items. The value is an integer within the range of [2, 9]. If a
+     * number with a decimal is passed, it is rounded down. If an even number is passed, it is rounded up to the
+     * nearest odd number (for example, 2 becomes 3 and 8 becomes 9). If a number is not within the range, the
+     * default value <b>7</b> is used.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of displayed items in the <b>Picker</b> container, which is an integer in the
+     * range [2, 9].</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     */
+    NODE_PICKER_DISPLAYED_ITEM_COUNT = 1018004,
+
+    /**
+     * @brief Height of each item in the <b>Picker</b> container. The semantics is the same as that of
+     * {@link itemHeight} in {@link UIPickerComponent} on the ArkTS side. If this attribute is not set, the
+     * height of each item is 40 vp. C APIs pass the height value in vp. This attribute can be set, reset, and
+     * obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: item height, in vp. The valid range is [40, 64]. If the value is less than 40 vp or
+     * greater than 64 vp, the default value <b>40</b> vp is used. The value cannot be in percentage.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: item height, in vp.</li>
+     * </ul>
+     *
+     * @since 26.0.0
+     */
+    NODE_PICKER_ITEM_HEIGHT = 1018005,
 
     /**
      * @brief Crown sensitivity of the **ArcList** component, which can be set, reset, and obtained as required through
@@ -15043,54 +15090,6 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_ARC_SCROLL_BAR_DISPLAY_MODE = 1021001,
-
-    /**
-     * @brief Number of displayed items in the <b>Picker</b> container. The semantics is the same as that of
-     * {@link displayedItemCount} in {@link UIPickerComponent} on the ArkTS side. If this attribute is not set,
-     * the value <b>7</b> is used. When <b>Picker</b> is in a three-dimensional wheel style, all items except the
-     * selected ones rotate at an angle, and the actual visible height is less than the item line height. To
-     * increase the number of visible lines or the line height, increase the container height accordingly. For
-     * details, see {@link UIPickerComponent}. This attribute can be set, reset, and obtained as required through
-     * APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].i32: number of displayed items. The value is an integer within the range of [2, 9]. If a
-     * number with a decimal is passed, it is rounded down. If an even number is passed, it is rounded up to the
-     * nearest odd number (for example, 2 becomes 3 and 8 becomes 9). If a number is not within the range, the
-     * default value <b>7</b> is used.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].i32: number of displayed items in the <b>Picker</b> container, which is an integer in the
-     * range [2, 9].</li>
-     * </ul>
-     *
-     * @since 26.0.0
-     */
-    NODE_PICKER_DISPLAYED_ITEM_COUNT = 1018004,
-
-    /**
-     * @brief Height of each item in the <b>Picker</b> container. The semantics is the same as that of
-     * {@link itemHeight} in {@link UIPickerComponent} on the ArkTS side. If this attribute is not set, the
-     * height of each item is 40 vp. C APIs pass the height value in vp. This attribute can be set, reset, and
-     * obtained as required through APIs.
-     *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
-     * <ul>
-     * <li>.value[0].f32: item height, in vp. The valid range is [40, 64]. If the value is less than 40 vp or
-     * greater than 64 vp, the default value <b>40</b> vp is used. The value cannot be in percentage.</li>
-     * </ul>
-     *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
-     * <ul>
-     * <li>.value[0].f32: item height, in vp.</li>
-     * </ul>
-     *
-     * @since 26.0.0
-     */
-    NODE_PICKER_ITEM_HEIGHT = 1018005,
 
     /**
      * @brief Defines the index of the child component currently displayed in the ArcSwiper.
@@ -17469,103 +17468,6 @@ typedef enum {
     NODE_LIST_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
     /**
-     * @brief Defines the event triggered when a child component enters or leaves the ArcList display area.
-     *
-     * Conditions for triggering the event:\n
-     * This event is triggered once when the list is initialized and when the index value of the first or last child
-     * component in the ArcList display area changes.\n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.\n
-     * {@link ArkUI_NodeComponentEvent} contains 3 parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index value of the first child component in the ArcList display
-     * area.\n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index value of the last child component in the ArcList display
-     * area.\n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index value of the child component in the middle position of the
-     * ArcList display area.\n
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
-
-    /**
-     * @brief Event triggered when the **ArcList** component reaches the start position.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_REACH_START = 1019001,
-
-    /**
-     * @brief Event triggered when the **ArcList** component reaches the end position.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_REACH_END = 1019002,
-
-    /**
-     * @brief Event triggered when the **ArcList** component starts scrolling.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_SCROLL_START = 1019003,
-
-    /**
-     * @brief Event triggered when the **ArcList** component stops scrolling.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_SCROLL_STOP = 1019004,
-
-    /**
-     * @brief Event triggered when the **ArcList** component is about to scroll. This event is triggered in the
-     * following scenarios:
-     * <br>1. The **ArcList** component is about to scroll.
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: distance of this scrolling, in vp. A positive value indicates
-     * that the content scrolls upwards, and a negative value indicates that the content scrolls downwards.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The data type is
-     * {@link ArkUI_ScrollState}.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: scroll source. The parameter type is
-     * {@link ArkUI_ScrollSource}.
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_WILL_SCROLL = 1019005,
-
-    /**
-     * @brief Event triggered when the **ArcList** component scrolls. This event is triggered in the following
-     * scenarios:
-     * <br>1. The **ArcList** component scrolls.
-     * <br>2. Scrolling is initiated by calling the controller API.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scrolling distance of this frame, in vp. A positive value
-     * indicates that the content scrolls upwards, and a negative value indicates that the content scrolls
-     * downwards.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The data type is
-     * {@link ArkUI_ScrollState}.
-     *
-     * @since 26.0.0
-     */
-    NODE_ARC_LIST_ON_DID_SCROLL = 1019006,
-
-    /**
      * @brief Event triggered when the refresh state of the **ARKUI_NODE_REFRESH** object changes. When the event
      * callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}.
      * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
@@ -17881,6 +17783,103 @@ typedef enum {
      * @since 23
      */
     NODE_PICKER_EVENT_ON_SCROLL_STOP = 1018001,
+
+    /**
+     * @brief Defines the event triggered when a child component enters or leaves the ArcList display area.
+     *
+     * Conditions for triggering the event:\n
+     * This event is triggered once when the list is initialized and when the index value of the first or last child
+     * component in the ArcList display area changes.\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * {@link ArkUI_NodeComponentEvent} contains 3 parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index value of the first child component in the ArcList display
+     * area.\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index value of the last child component in the ArcList display
+     * area.\n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index value of the child component in the middle position of the
+     * ArcList display area.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_ARC_LIST,
+
+    /**
+     * @brief Event triggered when the **ArcList** component reaches the start position.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_REACH_START = 1019001,
+
+    /**
+     * @brief Event triggered when the **ArcList** component reaches the end position.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_REACH_END = 1019002,
+
+    /**
+     * @brief Event triggered when the **ArcList** component starts scrolling.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_SCROLL_START = 1019003,
+
+    /**
+     * @brief Event triggered when the **ArcList** component stops scrolling.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_SCROLL_STOP = 1019004,
+
+    /**
+     * @brief Event triggered when the **ArcList** component is about to scroll. This event is triggered in the
+     * following scenarios:
+     * <br>1. The **ArcList** component is about to scroll.
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: distance of this scrolling, in vp. A positive value indicates
+     * that the content scrolls upwards, and a negative value indicates that the content scrolls downwards.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The data type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_WILL_SCROLL = 1019005,
+
+    /**
+     * @brief Event triggered when the **ArcList** component scrolls. This event is triggered in the following
+     * scenarios:
+     * <br>1. The **ArcList** component scrolls.
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scrolling distance of this frame, in vp. A positive value
+     * indicates that the content scrolls upwards, and a negative value indicates that the content scrolls
+     * downwards.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The data type is
+     * {@link ArkUI_ScrollState}.
+     *
+     * @since 26.0.0
+     */
+    NODE_ARC_LIST_ON_DID_SCROLL = 1019006,
 
     /**
      * @brief Defines the event triggered when the index of the currently displayed element of this
