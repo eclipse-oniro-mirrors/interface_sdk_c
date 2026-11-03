@@ -421,6 +421,12 @@ typedef enum {
      */
     ARKUI_TEXT_MENU_ITEM_ID_PASSWORD_VAULT = 17,
 
+    /**
+     * Quick translation.
+     * @since 26.1.0
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_TRANSLATE_INPUT = 18,
+
     /** Start ID of a custom menu item. In addition to the built-in menu item IDs, you can also customize menu item IDs.
      */
     ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_BEGIN = 10000,

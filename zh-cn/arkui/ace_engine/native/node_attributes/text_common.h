@@ -520,6 +520,12 @@ typedef enum {
     ARKUI_TEXT_MENU_ITEM_ID_PASSWORD_VAULT = 17,
 
     /**
+     * 快捷翻译。
+     * @since 26.1.0
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_TRANSLATE_INPUT = 18,
+
+    /**
      * 应用自定义菜单项起始id，除了系统内置的菜单项id，应用还可以自定义菜单项id。
      */
     ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_BEGIN = 10000,
