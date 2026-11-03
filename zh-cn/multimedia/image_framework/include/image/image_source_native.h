@@ -672,7 +672,6 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSource
  * @param size 数组长度。 用户可以使用{@link OH_ImageSourceNative_GetFrameCount}获取。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：source为空，或者options为空，或者resVecPixMap为空。
- *     <br>IMAGE_UNSUPPORTED_OPERATION：操作不支持。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *source, OH_DecodingOptions *options,

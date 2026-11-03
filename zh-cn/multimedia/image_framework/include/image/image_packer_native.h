@@ -170,7 +170,7 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
  * @param options 指向 OH_PackingOptions 结构体的指针。
  * @param format 指向 MIME 类型的指针。你可以传入一个空指针，并将大小设置为零。在这种情况下，系统会分配内存，但你用完后必须释放内存。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：options或format为空。
+ *     <br>IMAGE_BAD_PARAMETER：options为空，或者format为空。
  *     <br>IMAGE_ALLOC_FAILED：内存分配失败。
  *     <br>IMAGE_COPY_FAILED：内存拷贝失败。
  * @since 12
@@ -199,7 +199,7 @@ Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options
  * @param options 指向 OH_PackingOptions 结构体的指针。
  * @param format 指向 MIME 类型字符串的指针，格式type/subtype"。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：options或format为空。
+ *     <br>IMAGE_BAD_PARAMETER：options为空，或者format为空。
  *     <br>IMAGE_ALLOC_FAILED：内存分配失败。
  *     <br>IMAGE_COPY_FAILED：内存拷贝失败。
 
