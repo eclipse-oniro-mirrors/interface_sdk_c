@@ -63,6 +63,7 @@ extern "C" {
  *     <br>返回9900001，表示短时任务客户端信息校验失败。
  *     <br>返回9900002，表示短时任务服务端校验失败。
  *     <br>错误码的具体信息请参考[TransientTask_ErrorCode](capi-transient-task-type-h.md#transienttask_errorcode)。
+ * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 13
  * @version 1.0
  */
@@ -84,6 +85,7 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay(const char* reason,
  *     <br>返回9900002，表示短时任务服务端校验失败。
  *     <br>错误码的具体信息请参考[TransientTask_ErrorCode](capi-transient-task-type-h.md#transienttask_errorcode)。
  * @since 13
+ * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @version 1.0
  */
 int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_t *delayTime);
@@ -102,6 +104,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_
  *     <br>返回9900002，表示短时任务服务端校验失败。
  *     <br>错误码的具体信息请参考[TransientTask_ErrorCode](capi-transient-task-type-h.md#transienttask_errorcode)。
  * @since 13
+ * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @version 1.0
  */
 int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
@@ -117,6 +120,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
  *     <br>返回9900004，表示系统服务失败。
  *     <br>错误码的具体信息请参考[TransientTask_ErrorCode](capi-transient-task-type-h.md#transienttask_errorcode)。
  * @since 20
+ * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @version 1.0
  */
 int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo *transientTaskInfo);
