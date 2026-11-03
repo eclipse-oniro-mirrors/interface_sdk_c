@@ -12,6 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 /**
  * @addtogroup InputMethod
  * @{
@@ -24,8 +25,8 @@
 /**
  * @file inputmethod_inputmethod_proxy_capi.h
  *
- * @brief Provides methods for using the input method,
- * allowing requests and notifications to be sent to the input method application.
+ * @brief Provides methods for using the input method, allowing requests and notifications to be sent to the input
+ * method application.
  *
  * @include <inputmethod/inputmethod_inputmethod_proxy_capi.h>
  * @library libohinputmethod.so
@@ -46,151 +47,144 @@
 extern "C"{
 #endif /* __cplusplus */
 /**
- * @brief A struct that serves as the proxy between an application and the input method.
- * The application can call APIs of the input method through this proxy and receive event callbacks from the
- *  input method.
+ * @brief Provides an interaction proxy object between the app and the input method service. The app can call relevant
+ * APIs of the input method service and receive event callbacks from the input method service through this object. This
+ * struct is an opaque type. Its internal members shall not be accessed directly. Operations can only be performed
+ * through the function interfaces provided by this module.
  *
  * @since 12
  */
 typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
 
 /**
- * @brief Show keyboard.
+ * @brief Displays the keyboard.
  *
- * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
- *     The inputMethodProxy is obtained from [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br>{@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
 /**
  * @brief Displays the text box.
  *
- * @param inputMethodProxy Pointer to the [InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.
- * md) instance obtained by calling [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @param options Pointer to the [InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md) instance,
- * which is used to obtain the configuration options.<br>In this API, you only need to pay attention to
- *  [InputMethod_RequestKeyboardReason](capi-inputmethod-types-capi-h.md#inputmethod_requestkeyboardreason), which
- *  indicates the reason for requesting the keyboard.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br>{@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer. If inputMethodProxy is NULL, or options is NULL.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @param options Pointer to the {@link InputMethod_AttachOptions} instance, which is used to obtain the configuration
+ *     options.
+ *     <br>In this API, you only need to pay attention to {@link InputMethod_RequestKeyboardReason}, which indicates
+ *     the reason for requesting the keyboard.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 15
  */
 InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
     InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_AttachOptions *options);
 /**
- * @brief Hide keyboard.
+ * @brief Hides the keyboard.
  *
- * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
- *     The inputMethodProxy is obtained from [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br>{@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
 
 /**
- * @brief Notify selection change.
+ * @brief Notifies the input method application of the change in the selected text area, including the change of text
+ * content, cursor position, or the selected text.
  *
- * Notify selection change when text or cursor position or selected text changed.
- *
- * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
- *  The inputMethodProxy is obtained from [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @param text The whole input text.
- * @param length The length of text. Max length is 8K.
- * @param start The start position of selected text.
- * @param end The end position of selected text.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br>{@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @param text Entire input text.
+ * @param length Length of the **text** parameter. Maximum length: 8 KB.
+ * @param start Start position of the selected text.
+ * @param end End position of the selected text.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - Parameter error.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
     InputMethod_InputMethodProxy *inputMethodProxy, char16_t text[], size_t length, int start, int end);
 
 /**
- * @brief Notify text editor configuration change.
+ * @brief Notifies the change of the text box configuration.
  *
- * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
- *     The inputMethodProxy is obtained from [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @param enterKey The enter key type.
- * @param textType The text input type.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br> {@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @param enterKey Enter key type.
+ * @param textType Text box type.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - Parameter error.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_InputMethodProxy *inputMethodProxy,
     InputMethod_EnterKeyType enterKey, InputMethod_TextInputType textType);
 
 /**
- * @brief Notify cursor update.
+ * @brief Notifies the cursor position change.
  *
- * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
- *     The inputMethodProxy is obtained from [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance.
- *     The cursor information.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br>{@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @param cursorInfo Pointer to the {@link InputMethod_CursorInfo} instance, indicating the cursor information.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - Parameter error.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
     InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_CursorInfo *cursorInfo);
 
 /**
- * @brief Send private command.
+ * @brief Sends a private data command.
  *
- * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
- *     The inputMethodProxy is obtained from [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- * md#oh_inputmethodcontroller_attach).
- * @param privateCommand The private commands, which is defined in {@link InputMethod_PrivateCommand}. Max size 32KB.
- * @param size The size of privateCommand. Max is 5.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - success.
- *     <br>{@link IME_ERR_PARAMCHECK} - parameter check failed.
- *     <br>{@link IME_ERR_IMCLIENT} - input method client error.
- *     <br>{@link IME_ERR_IMMS} - input method manager service error.
- *     <br>{@link IME_ERR_DETACHED} - input method client detached.
- *     <br>{@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     <br>Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param inputMethodProxy Pointer to the {@link InputMethod_InputMethodProxy} instance obtained by calling
+ *     {@link OH_InputMethodController_Attach}.
+ * @param privateCommand Private command that is defined in {@link InputMethod_PrivateCommand}. The maximum size is 32
+ *     KB.
+ * @param size Size of the private command array. The maximum size is 5.
+ * @return An error code.
+ *     <br>{@link IME_ERR_OK} - Success.
+ *     <br>{@link IME_ERR_PARAMCHECK} - Parameter error.
+ *     <br>{@link IME_ERR_IMCLIENT} - Client error in input method.
+ *     <br>{@link IME_ERR_IMMS} - Input method service error.
+ *     <br>{@link IME_ERR_DETACHED} - Input method not bound.
+ *     <br>{@link IME_ERR_NULL_POINTER} - An unexpected null pointer.
+ *     <br>For details about the error codes, see {@link InputMethod_ErrorCode}.
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
@@ -199,4 +193,4 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
 }
 #endif /* __cplusplus */
 /** @} */
-#endif // INPUTMETHOD_INPUTMETHOD_PROXY_CAP_H
+#endif // INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
