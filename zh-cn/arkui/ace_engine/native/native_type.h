@@ -68,14 +68,14 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the custom dialog box controller of ArkUI on the native side.
+ * @brief 提供ArkUI在Native侧的自定义弹窗控制器对象定义。
  *
  * @since 12
  */
 struct ArkUI_NativeDialog;
 
 /**
- * @brief Defines the pointer to the custom dialog box controller of ArkUI on the native side.
+ * @brief 指向ArkUI Native侧自定义弹窗控制器对象的指针类型，用于标识和操作自定义弹窗实例。
  *
  * @since 12
  */
@@ -396,28 +396,28 @@ typedef enum {
 } ArkUI_AnimationPlayMode;
 
 /**
- * @brief Enumerates the adaptive color modes.
+ * @brief 定义取色模式。
  *
  * @since 12
  */
 typedef enum {
-    /** Adaptive color mode is not used. */
+    /** 不使用取色模糊。 */
     ARKUI_ADAPTIVE_COLOR_DEFAULT = 0,
-    /** Adaptive color mode is used. */
+    /** 使用取色模糊。 */
     ARKUI_ADAPTIVE_COLOR_AVERAGE,
 } ArkUI_AdaptiveColor;
 
 /**
- * @brief Enumerates the color modes.
+ * @brief 定义深浅色模式。
  *
  * @since 12
  */
 typedef enum {
-    /** Following the system color mode. */
+    /** 跟随系统深浅色模式。 */
     ARKUI_COLOR_MODE_SYSTEM = 0,
-    /** Light color mode. */
+    /** 固定使用浅色模式。 */
     ARKUI_COLOR_MODE_LIGHT,
-    /** Dark color mode. */
+    /** 固定使用深色模式。 */
     ARKUI_COLOR_MODE_DARK,
 } ArkUI_ColorMode;
 
@@ -566,34 +566,34 @@ typedef enum {
 } ArkUI_BlendMode;
 
 /**
- * @brief Enumerates the foreground colors.
+ * @brief 前景和阴影颜色的枚举值。
  *
  * @since 12
  */
 typedef enum {
-    /** The foreground colors are the inverse of the component background colors. */
+    /** 前景色为控件背景色的反色。 */
     ARKUI_COLOR_STRATEGY_INVERT = 0,
-    /** The shadow colors of the component are the average color obtained from the component background shadow area. */
+    /** 控件背景阴影色为控件背景阴影区域的平均色。 */
     ARKUI_COLOR_STRATEGY_AVERAGE,
-    /** The shadow colors of the component are the primary color obtained from the component background shadow area. */
+    /** 控件背景阴影色为控件背景阴影区域的主色。 */
     ARKUI_COLOR_STRATEGY_PRIMARY,
 } ArkUI_ColorStrategy;
 
 /**
- * @brief Enumerates the mask types.
+ * @brief 遮罩类型枚举。遮罩是一种用于限制组件显示区域的手段，它利用特定的形状对组件内容进行裁剪，从而实现只有遮罩区域内的内容才可见的效果。
  *
  * @since 12
  */
 typedef enum {
-    /** Rectangle. */
+    /** 矩形类型。 */
     ARKUI_MASK_TYPE_RECTANGLE = 0,
-    /** Circle. */
+    /** 圆形类型。 */
     ARKUI_MASK_TYPE_CIRCLE,
-    /** Ellipse. */
+    /** 椭圆形类型。 */
     ARKUI_MASK_TYPE_ELLIPSE,
-    /** Path. */
+    /** 路径类型。 */
     ARKUI_MASK_TYPE_PATH,
-    /** Progress indicator. */
+    /** 进度类型。 */
     ARKUI_MASK_TYPE_PROGRESS,
 } ArkUI_MaskType;
 
@@ -1031,26 +1031,26 @@ typedef enum {
 } ArkUI_SafeAreaType;
 
 /**
- * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
+ * @brief 键盘避让模式。
  *
  * @since 15
  */
 typedef enum {
-    /** Defines avoid keyboard when keyboard shows. */
+    /** 默认避让软键盘并在到达极限高度之后进行高度压缩。 */
     ARKUI_KEYBOARD_AVOID_MODE_DEFAULT = 0,
-    /** Defines not avoid keyboard when keyboard shows. */
+    /** 不避让键盘。 */
     ARKUI_KEYBOARD_AVOID_MODE_NONE,
 } ArkUI_KeyboardAvoidMode;
 
 /**
- * @brief defines the enumerated value of area in hover mode.
+ * @brief 悬停态显示区域。
  *
  * @since 15
  */
 typedef enum {
-    /** Layout top half screen when the phone in hover mode. */
+    /** 上半屏。 */
     ARKUI_HOVER_MODE_AREA_TYPE_TOP = 0,
-    /** Layout bottom half screen when the phone in hover mode. */
+    /** 下半屏。 */
     ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM,
 } ArkUI_HoverModeAreaType;
 
@@ -1131,16 +1131,16 @@ typedef enum {
 } ArkUI_CornerDirection;
 
 /**
- * @brief Menu pop-up strategy.
+ * @brief 菜单弹出策略。
  *
  * @since 23
  */
 typedef enum {
-    /** Determine whether to pop up the menu according to the underlying default logic. */
+    /** 根据底层默认逻辑确定是否弹出菜单。 */
     ARKUI_MENU_POLICY_DEFAULT = 0,
-    /** Never pop up the menu. */
+    /** 不弹出菜单。 */
     ARKUI_MENU_POLICY_HIDE = 1,
-    /** Always pop up the menu. */
+    /** 弹出菜单。 */
     ARKUI_MENU_POLICY_SHOW = 2,
 } ArkUI_MenuPolicy;
 

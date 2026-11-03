@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief ArkUI Checkbox Node types on the native side.
+ * @brief 为NativeNode API提供Checkbox节点类型定义。
  *
  * @since 12
  */
@@ -25,7 +25,7 @@
 /**
  * @file checkbox.h
  *
- * @brief Provides Checkbox node type definitions for <b>NativeNode</b> APIs.
+ * @brief 为NativeNode API提供Checkbox节点类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full

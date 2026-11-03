@@ -4622,50 +4622,48 @@ typedef enum {
      */
     NODE_IMAGE_ANTIALIASED = 4025,
     /**
-     * @brief Defines the color of the component when it is selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件打开状态的背景颜色属性。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * <li>.value[0].u32: 背景色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * <li>.value[0].u32: 背景色数值，0xARGB格式。</li> \n
      * </ul>
      * 
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
-     * @brief Defines the color of the circular slider for the component of the switch type.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Switch类型的圆形滑块颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * <li>.value[0].u32: 圆形滑块颜色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the circular slider, in 0xARGB format.</li> \n
+     * <li>.value[0].u32: 圆形滑块颜色数值，0xARGB格式。</li> \n
      * </ul>
      * 
      * @ingroup Toggle[切换按钮]
      */
     NODE_TOGGLE_SWITCH_POINT_COLOR,
     /**
-     * @brief Defines the toggle switch value. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Switch类型的开关值，支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle.</li> \n
+     * <li>.value[0].i32: 设置开关的值，true表示开启。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether to enable the toggle.</li> \n
+     * <li>.value[0].i32: 设置开关的值。</li> \n
      * </ul>
      * 
      * @ingroup Toggle[切换按钮]
@@ -4673,17 +4671,16 @@ typedef enum {
     NODE_TOGGLE_VALUE,
 
     /**
-     * @brief Defines the color of the component when it is deselected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 组件关闭状态的背景颜色属性，支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     *<li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     *<li>.value[0].u32: 背景色数值，0xARGB格式，形如 0xFFFF0000 表示红色。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * <li>.value[0].u32: 背景色数值，0xARGB格式。</li> \n
      * </ul>
      * 
      * @ingroup Toggle[切换按钮]
@@ -6603,16 +6600,16 @@ typedef enum {
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
 
     /**
-     * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Button按钮的文本内容属性，支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: default text content.</li> \n
+     * <li>.string: 默认文本的内容。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: default text content.</li> \n
+     * <li>.string: 默认文本的内容。</li> \n
      * </ul>
      * 
      * @ingroup Button[按钮]
@@ -6620,18 +6617,18 @@ typedef enum {
     NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_BUTTON,
 
     /**
-     * @brief Sets the button type. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Button按钮的类型属性，支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * <li>.value[0].i32: 设置Button按钮的类型，参数类型[ArkUI_ButtonType](capi-button-h.md#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * <li>.value[0].i32: 获取Button按钮的类型，参数类型[ArkUI_ButtonType](capi-button-h.md#arkui_buttontype)，默认值为ARKUI_BUTTON_TYPE_CAPSULE。
+     * </li> \n
      * </ul>
      * 
      * @ingroup Button[按钮]
@@ -6639,16 +6636,16 @@ typedef enum {
     NODE_BUTTON_TYPE,
 
     /**
-    * @brief Defines the minimum font scale attribute, which can be set, reset, and obtained as required through APIs.
+    * @brief Button按钮的最小字体缩放倍数属性，支持属性设置，属性重置和属性获取。
     *
-    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
     * <ul>
-    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * <li>.value[0].f32: 设置Button按钮的最小字体缩放倍数，默认单位fp。</li>
     * </ul>
     * \n
-    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
     * <ul>
-    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * <li>.value[0].f32: 获取Button按钮的最小字体缩放倍数，默认单位fp。</li>
     * </ul>
     * 
     * @ingroup Button[按钮]
@@ -6657,16 +6654,16 @@ typedef enum {
     NODE_BUTTON_MIN_FONT_SCALE,
 
     /**
-    * @brief Defines the maximum font scale attribute, which can be set, reset, and obtained as required through APIs.
+    * @brief Button按钮的最大字体缩放倍数属性，支持属性设置，属性重置和属性获取。
     *
-    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
     * <ul>
-    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * <li>.value[0].f32: 设置Button按钮的最大字体缩放倍数，默认单位fp。</li>
     * </ul>
     * \n
-    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
     * <ul>
-    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * <li>.value[0].f32: 获取Button按钮的最大字体缩放倍数，默认单位fp。</li>
     * </ul>
     * 
     * @ingroup Button[按钮]
@@ -6757,18 +6754,17 @@ typedef enum {
     NODE_PROGRESS_LINEAR_STYLE,
 
     /**
-     * @brief Defines whether the check box is selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBox多选框是否选中，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether the check box is selected.
-     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * <li>.value[0].i32: 1表示选中，0表示不选中。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * <li>.value[0].i32: 1表示选中，0表示不选中。</li> \n
      * </ul>
      * 
      * @ingroup Checkbox[复选框]
@@ -6776,17 +6772,16 @@ typedef enum {
     NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
     /**
-     * @brief Defines the color of the check box when it is selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBox多选框选中状态颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * <li>.value[0].u32: 多选框选中状态颜色，类型为0xARGB，如0xFF1122FF。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 多选框选中状态颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup Checkbox[复选框]
@@ -6794,17 +6789,16 @@ typedef enum {
     NODE_CHECKBOX_SELECT_COLOR,
 
     /**
-     * @brief Defines the border color of the check box when it is not selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBox多选框非选中状态边框颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup Checkbox[复选框]
@@ -6812,21 +6806,23 @@ typedef enum {
     NODE_CHECKBOX_UNSELECT_COLOR,
 
     /**
-     * @brief Defines the internal icon style of the check box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBox多选框内部图标样式，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
-     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
-     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
+
+     * <li>.value[1]?.f32: 可选，内部图标大小，单位vp。</li>\n
+     * <li>.value[2]?.f32: 可选，内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
-     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
-     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
+
+     * <li>.value[1].f32: 内部图标大小，单位vp。</li> \n
+
+     * <li>.value[2].f32: 内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
      * 
      * @ingroup Checkbox[复选框]
@@ -6834,17 +6830,16 @@ typedef enum {
     NODE_CHECKBOX_MARK,
 
     /**
-     * @brief Defines the shape of the check box.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBox组件形状，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * <li>.value[0].i32: 组件形状，参数类型[ArkUI_CheckboxShape](capi-checkbox-h.md#arkui_checkboxshape)。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * <li>.value[0].i32: 组件形状，参数类型[ArkUI_CheckboxShape](capi-checkbox-h.md#arkui_checkboxshape)。</li>
      * </ul>
      * 
      * @ingroup Checkbox[复选框]
@@ -6852,17 +6847,16 @@ typedef enum {
     NODE_CHECKBOX_SHAPE,
 
     /**
-     * @brief Defines the name of the checkbox.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义复选框的名称，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: component name.</li> \n
+     * <li>.string: 组件名称。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: component name.</li> \n
+     * <li>.string: 组件名称。</li> \n
      * </ul>
      * 
      * @ingroup Checkbox[复选框]
@@ -6871,17 +6865,16 @@ typedef enum {
     NODE_CHECKBOX_NAME,
 
     /**
-     * @brief Defines the name of the checkbox.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义复选框的组的名称，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: component name.</li> \n
+     * <li>.string: 组名称。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: component name.</li> \n
+     * <li>.string: 组名称。</li> \n
      * </ul>
      *
      * @ingroup Checkbox[复选框]
@@ -7768,16 +7761,16 @@ typedef enum {
      */
     NODE_CALENDAR_PICKER_FIRST_DAY_OF_WEEK = 16008,
     /**
-     * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Slider滑块的颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 滑块的颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 滑块的颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7785,17 +7778,16 @@ typedef enum {
     NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
     /**
-     * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Slider滑轨的背景颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * <li>.value[0].u32: 背景颜色，类型为0xARGB，如0xFF1122FF。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 背景颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7803,17 +7795,16 @@ typedef enum {
     NODE_SLIDER_TRACK_COLOR,
 
     /**
-     * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
-     * as required through APIs.
+     * @brief Slider滑轨的已滑动部分颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * <li>.value[0].u32: 已滑动部分颜色，类型为0xARGB，如0xFF1122FF。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 已滑动部分颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7821,19 +7812,18 @@ typedef enum {
     NODE_SLIDER_SELECTED_COLOR,
 
     /**
-     * @brief Sets whether to display the stepping value. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置是否显示步长刻度值，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite.</li> \n
+     * <li>.value[0].i32: 是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite.</li> \n
+     * <li>.value[0].i32: 是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。
+     * </li> \n
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7841,9 +7831,9 @@ typedef enum {
     NODE_SLIDER_SHOW_STEPS,
 
     /**
-     * @brief Defines the slider shape, which can be set, reset, and obtained as required through APIs.
+     * @brief Slider滑块形状参数，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
      * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
      * <li>.string?: depending on the shape. Optional.</li> \n
@@ -7875,7 +7865,7 @@ typedef enum {
      * .value[3].f32: height of the path.\n
      * .string: command for drawing the path.\n
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式:**\n
      * <ul>
      * <li>.value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}.</li> \n
      * <li>.string?: depending on the shape. Optional.</li> \n
@@ -7912,17 +7902,16 @@ typedef enum {
     NODE_SLIDER_BLOCK_STYLE,
 
     /**
-     * @brief Defines the current value of the slider. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Slider进度值，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: current value.</li> \n
+     * <li>.value[0].f32: 进度值。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: current value.</li>
+     * <li>.value[0].f32: 进度值。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7930,17 +7919,16 @@ typedef enum {
     NODE_SLIDER_VALUE,
 
     /**
-     * @brief Defines the minimum value of the slider. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Slider最小值，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: minimum value.</li> \n
+     * <li>.value[0].f32: 进度值的最小值。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: minimum value.</li>
+     * <li>.value[0].f32: 进度值的最小值。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7948,17 +7936,16 @@ typedef enum {
     NODE_SLIDER_MIN_VALUE,
 
     /**
-     * @brief Defines the maximum value of the slider. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Slider最大值，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: maximum value.</li> \n
+     * <li>.value[0].f32: 进度值的最大值。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: maximum value.</li>
+     * <li>.value[0].f32: 进度值的最大值。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7966,16 +7953,16 @@ typedef enum {
     NODE_SLIDER_MAX_VALUE,
 
     /**
-     * @brief Defines the step of the slider. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Slider滑动步长，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: step. The value range is [0.01, 100].</li> \n
+     * <li>.value[0].f32: 滑动步长，取值范围：[0.01, 100]。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: step. The value range is [0.01, 100].</li>
+     * <li>.value[0].f32: 滑动步长，取值范围：[0.01, 100]。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7983,18 +7970,17 @@ typedef enum {
     NODE_SLIDER_STEP,
 
     /**
-     * @brief Defines whether the slider moves horizontally or vertically. This attribute can be set, reset, and
-     * obtained as required through APIs.
+     * @brief Slider滑动条滑动方向，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether the slider moves horizontally or vertically.
-     * The parameter type is {@link ArkUI_SliderDirection}.</li> \n
+     * <li>.value[0].i32: 滑动方向，参数类型[ArkUI_SliderDirection](capi-slider-h.md#arkui_sliderdirection)。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether the slider moves horizontally or vertically.</li>
+     * <li>.value[0].i32: 滑动方向，参数类型[ArkUI_SliderDirection](capi-slider-h.md#arkui_sliderdirection)。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8002,19 +7988,18 @@ typedef enum {
     NODE_SLIDER_DIRECTION,
 
     /**
-     * @brief Defines whether the slider values are reversed. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Slider滑动条取值范围是否反向，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite.</li> \n
+     * <li>.value[0].i32: 是否反向，1表示反向，0表示不反向。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite.</li>
+     * <li>.value[0].i32: 是否反向，1表示反向，0表示不反向。
+     * </li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8022,17 +8007,16 @@ typedef enum {
     NODE_SLIDER_REVERSE,
 
     /**
-     * @brief Defines the style of the slider thumb and track. This attribute can be set, reset, and obtained
-     * as required through APIs.
+     * @brief Slider的滑块与滑轨显示样式，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li> \n
+     * <li>.value[0].i32: 显示样式，参数类型[ArkUI_SliderStyle](capi-slider-h.md#arkui_sliderstyle)。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li>
+     * <li>.value[0].i32: 显示样式，参数类型[ArkUI_SliderStyle](capi-slider-h.md#arkui_sliderstyle)。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8040,19 +8024,18 @@ typedef enum {
     NODE_SLIDER_STYLE,
 
     /**
-     * @brief Sets the track thickness of the slider.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Slider滑块的滑轨粗细属性，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
-     * is set to <b>ARKUI_SLIDER_STYLE_OUT_SET</b> and 20.0 vp when <b>NODE_SLIDER_STYLE</b> is set to
-     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>.</li> \n
+     * <li>.value[0].f32: 滑轨的粗细，单位为vp；当参数NODE_SLIDER_STYLE的值设置为ARKUI_SLIDER_STYLE_OUT_SET时为4.0vp，设置为ARKUI_SLIDER_STYLE_IN_SET时为20.0vp。
+     * 
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: track thickness of the slider, in vp.</li> \n
+     * <li>.value[0].f32: 滑轨的粗细，单位为vp。</li> \n
      * </ul>
      *
      * @ingroup Slider[滑动条]
@@ -8060,20 +8043,17 @@ typedef enum {
     NODE_SLIDER_TRACK_THICKNESS,
 
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置是否开启触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.</li>\n
+     * <li>.value[0].i32: 是否开启触控反馈。默认值：true，true表示开启触控反馈，false则表示不开启触控反馈。
+     * </li>\n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>value[0].i32: whether to feedback.\n
-     * When enabling haptic feedback, you need to add "ohos.permission.VIBRATE" in the
-     * requestPermissions field of the module.json5 file to enable vibration permission.</li>\n
+     * <li>value[0].i32: 是否开启触控反馈。</li>\n
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8082,11 +8062,11 @@ typedef enum {
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
 
     /**
-     * @brief Sets a custom component on the leading side of the Slider component.
+     * @brief 在Slider组件的前端设置自定义组件。
      *
-     * **Attribute setting method {@link ArkUI_AttributeItem} parameter format:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * <li>.object: 参数类型 [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md)。前缀组件将放置在Slider组件的起始位置，通常在LTR布局的左侧。</li>
      * </ul>
      * The prefix component will be placed at the start position of the Slider，
      * typically on the left side in LTR layouts.
@@ -8097,11 +8077,11 @@ typedef enum {
     NODE_SLIDER_PREFIX,
 
     /**
-     * @brief Sets a custom component on the trailing side of the Slider component.
+     * @brief 在Slider组件的后端设置自定义组件。
      *
-     * **Attribute setting method {@link link ArkUI_AttributeItem} parameter format:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * <li>.object: 参数类型 [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md)。后缀组件将放置在Slider组件的尾侧位置，通常在LTR布局的右侧。</li>
      * </ul>
      * The suffix component will be placed at the end position of the Slider,
      * typically on the right side in LTR layouts.
@@ -8112,24 +8092,24 @@ typedef enum {
     NODE_SLIDER_SUFFIX,
 
     /**
-     * @brief Defines the color of the slider block. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Slider滑块的线性渐变颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
-     * <li>colors: colors of the color stops.</li> \n
-     * <li>stops: stop positions of the color stops.</li> \n
-     * <li>size: number of colors.</li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
+     * </li> \n
+     * <li>colors: 渐变色颜色。</li> \n
+     * <li>stops: 渐变位置。</li> \n
+     * <li>size: 颜色个数。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
-     * <li>colors: colors of the color stops.</li> \n
-     * <li>stops: stop positions of the color stops.</li> \n
-     * <li>size: number of colors.</li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
+     * </li> \n
+     * <li>colors: 渐变色颜色。</li> \n
+     * <li>stops: 渐变位置。</li> \n
+     * <li>size: 颜色个数。</li> \n
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8138,25 +8118,24 @@ typedef enum {
     NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR,
 
     /**
-     * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief Slider滑轨的背景线性渐变颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
-     * <li>colors: colors of the color stops.</li> \n
-     * <li>stops: stop positions of the color stops.</li> \n
-     * <li>size: number of colors.</li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
+     * </li> \n
+     * <li>colors: 渐变色颜色。</li> \n
+     * <li>stops: 渐变位置。</li> \n
+     * <li>size: 颜色个数。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
-     * <li>colors: colors of the color stops.</li> \n
-     * <li>stops: stop positions of the color stops.</li> \n
-     * <li>size: number of colors.</li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
+     * </li> \n
+     * <li>colors: 渐变色颜色。</li> \n
+     * <li>stops: 渐变位置。</li> \n
+     * <li>size: 颜色个数。</li> \n
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8165,25 +8144,24 @@ typedef enum {
     NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR,
 
     /**
-     * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
-     * as required through APIs.
+     * @brief Slider滑轨的已滑动部分线性渐变颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
-     * <li>colors: colors of the color stops.</li> \n
-     * <li>stops: stop positions of the color stops.</li> \n
-     * <li>size: number of colors.</li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
+     * </li> \n
+     * <li>colors: 渐变色颜色。</li> \n
+     * <li>stops: 渐变位置。</li> \n
+     * <li>size: 颜色个数。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
-     * <li>colors: colors of the color stops.</li> \n
-     * <li>stops: stop positions of the color stops.</li> \n
-     * <li>size: number of colors.</li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
+     * </li> \n
+     * <li>colors: 渐变色颜色。</li> \n
+     * <li>stops: 渐变位置。</li> \n
+     * <li>size: 颜色个数。</li> \n
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8192,74 +8170,64 @@ typedef enum {
     NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR,
 
     /**
-     * @brief Set the selection status of an option button. Attribute setting,
-     * attribute resetting, and attribute obtaining are supported.
-     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * @brief 设置单选框的选中状态，支持属性设置，属性重置和属性获取。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: check status of an option button. The default value is false.</li>
+     * <li>.value[0].i32: 单选框的选中状态，默认值false。值为true时，单选框被选中。值为false时，单选框不被选中。</li>
      * </ul>
-     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: selection status of an option button.</li>
+     * <li>.value[0].i32: 单选框的选中状态。</li>
      * </ul>
      * 
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_CHECKED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
     /**
-     * @brief Set the styles of the selected and deselected states of the option button.
-     * The attribute setting, attribute resetting, and attribute obtaining are supported.
-     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * @brief 设置单选框选中状态和非选中状态的样式，支持属性设置，属性重置和属性获取。
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0]?. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
-     * <li>.value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431.</li> \n
-     * <li>.value[2]?. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFFF.</li> \n
+     * <li>.value[0]?. u32: 开启状态底板颜色，类型为0xARGB，默认值为0xFF007DFF。</li> \n
+     * <li>.value[1]?. u32: 关闭状态描边颜色，类型为0xARGB，默认值为0xFF182431。</li> \n
+     * <li>.value[2]?. u32: 开启状态内部圆饼颜色，类型为0xARGB，默认值为0xFFFFFFFF。</li> \n
      * </ul>
-     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0]. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
-     * <li>.value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431.</li> \n
-     * <li>.value[2]. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFF.</li> \n
+     * <li>.value[0]. u32: 开启状态底板颜色，类型为0xARGB，默认值为0xFF007DFF。</li> \n
+     * <li>.value[1]. u32: 关闭状态描边颜色，类型为0xARGB，默认值为0xFF182431。</li> \n
+     * <li>.value[2]. u32: 开启状态内部圆饼颜色，类型为0xARGB，默认值为0xFFFFFFFF。</li> \n
      * </ul>
      * 
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_STYLE,
     /**
-     * @brief Sets the value of the current radio.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置当前单选框的值，支持属性设置、重置和获取。
      *
-     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: radio value.</li>\n
+     * <li>.string: 单选框的值。</li>\n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: radio value.</li>\n
+     * <li>.string: 单选框的值。</li>\n
      * </ul>
      * 
      * @ingroup Radio[单选框]
      */
     NODE_RADIO_VALUE,
     /**
-     * @brief Set the group name of the current Radio group, only one radio of the same group can be selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置当前单选框的所属群组名称，相同group的Radio只能有一个被选中，支持属性设置、重置和获取。
      *
-     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * <li>.string: 当前单选框的所属群组名称。</li>\n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * <li>.string: 当前单选框的所属群组名称。</li>\n
      * </ul>
      * 
      * @ingroup Radio[单选框]
@@ -8401,17 +8369,16 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
     /**
-     * @brief Defines the name of the checkboxgroup.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义复选框组的名称，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: component name.</li> \n
+     * <li>.string: 组件名称。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.string: component name.</li> \n
+     * <li>.string: 组件名称。</li> \n
      * </ul>
      * 
      * @ingroup CheckboxGroup[复选框群组]
@@ -8420,18 +8387,17 @@ typedef enum {
     NODE_CHECKBOX_GROUP_NAME  = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
 
     /**
-     * @brief Defines whether the checkboxgroup is selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBoxGroup多选框组是否全选，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: whether the checkboxgroup is selected.
-     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * <li>.value[0].i32: 是否设置全选1表示选中，0表示不选中。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * <li>.value[0].i32: 1表示选中，0表示不选中。</li> \n
      * </ul>
      * 
      * @ingroup CheckboxGroup[复选框群组]
@@ -8440,18 +8406,17 @@ typedef enum {
     NODE_CHECKBOX_GROUP_SELECT_ALL,
 
     /**
-     * @brief Defines the color of the checkboxgroup when it is selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBoxGroup多选框选中状态颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
-     * for example, <b>0xFF1122FF</b>.</li> \n
+     * <li>.value[0].u32: CheckBoxGroup多选框选中状态颜色，0xARGB格式。例如0xFF1122FF。
+     * </li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: [CheckBoxGroup](arkui-ts/ts-basic-components-checkboxgroup.md)多选框选中状态颜色，0xARGB格式。例如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup CheckboxGroup[复选框群组]
@@ -8459,17 +8424,16 @@ typedef enum {
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
     /**
-     * @brief Defines the border color of the checkboxgroup when it is not selected.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBoxGroup多选框未选中边框颜色，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>
      * </ul>
      * 
      * @ingroup CheckboxGroup[复选框群组]
@@ -8478,21 +8442,22 @@ typedef enum {
     NODE_CHECKBOX_GROUP_UNSELECTED_COLOR,
 
     /**
-     * @brief Defines the internal icon style of the checkboxgroup.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBoxGroup多选框内部图标样式，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
-     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
-     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
+
+     * <li>.value[1]?.f32: 可选，内部图标大小，单位vp。</li>\n
+     * <li>.value[2]?.f32: 可选，内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
-     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
-     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
+
+     * <li>.value[1].f32: 可选，内部图标大小，单位vp。</li> \n
+     * <li>.value[2].f32: 可选，内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
      * 
      * @ingroup CheckboxGroup[复选框群组]
@@ -8501,17 +8466,16 @@ typedef enum {
     NODE_CHECKBOX_GROUP_MARK,
 
     /**
-     * @brief Defines the shape of the checkboxgroup.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief CheckBoxGroup组件形状，支持属性设置，属性重置和属性获取。
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * <li>.value[0].i32: 组件形状，参数类型[ArkUI_CheckboxShape](capi-checkbox-h.md#arkui_checkboxshape)。</li> \n
      * </ul>
      * \n
-     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * <li>.value[0].i32: 组件形状，参数类型[ArkUI_CheckboxShape](capi-checkbox-h.md#arkui_checkboxshape)。</li>
      * </ul>
      * 
      * @ingroup CheckboxGroup[复选框群组]
@@ -10793,7 +10757,7 @@ typedef enum {
     * <ul>
     * <li>.value[0].i32: number of cached items in the swiper adapter.</li>
     * <li>.value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 19.
-    * </li>
+     * </li>
     * <li>.value[2].i32: whether the cachedCount is independent of group calculation.
     * This parameter is supported from API version 24.</li>
     * </ul>

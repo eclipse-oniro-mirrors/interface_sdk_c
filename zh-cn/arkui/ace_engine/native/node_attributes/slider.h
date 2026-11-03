@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief ArkUI Slider Node types on the native side.
+ * @brief 为NativeNode API提供Slider节点类型定义。
  *
  * @since 12
  */
@@ -25,7 +25,7 @@
 /**
  * @file slider.h
  *
- * @brief Provides Slider node type definitions for <b>NativeNode</b> APIs.
+ * @brief 为NativeNode API提供Slider节点类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
