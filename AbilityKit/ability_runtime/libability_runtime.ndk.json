@@ -742,5 +742,9 @@
     {
         "first_introduced": "26.0.1",
         "name": "OH_AbilityRuntime_ReleaseChildProcessInfos"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AbilityRuntime_NotifyChildProcessState"
     }
 ]
