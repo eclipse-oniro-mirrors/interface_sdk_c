@@ -298,7 +298,7 @@ typedef enum NativeWindowOperation {
      * [输入] float angle。旋转角度，用度表示。
      *
      * 说明：该操作始终向调用方返回GSERROR_OK，IPC远端的错误信息在其回传消息体中。
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_NATIVEWINDOW_SET_SCREEN_INFO = 26,
     /**
@@ -308,7 +308,7 @@ typedef enum NativeWindowOperation {
      * [输出] float *angle。旋转角度，用度表示。
      *
      * 说明: 和OH_NATIVEWINDOW_SET_SCREEN_INFO有相同的返回值限制。
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_NATIVEWINDOW_GET_SCREEN_INFO = 27,
 } NativeWindowOperation;
