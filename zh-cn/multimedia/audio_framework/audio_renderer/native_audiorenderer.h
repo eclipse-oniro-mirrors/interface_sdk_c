@@ -701,6 +701,27 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatency(OH_AudioRenderer* renderer,
 OH_AudioStream_Result OH_AudioRenderer_SetIndependentAudioSessionStrategy(
     OH_AudioRenderer* renderer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
 
+/**
+ * 进入或退出音频standby状态。
+ * standby状态主要用于音频播放过程中短暂无数据的情况，如流媒体播放等待网络下载。
+ * 进入standby状态后，音频通路保持不变，仅向应用请求数据的循环线程暂停，也不接受主动写入数据，已写入系统的数据会继续播放。
+ * 只有在播放流状态为{@link AUDIOFLOW_STATE_RUNNING}时可以调用此接口进入standby状态。standby状态下才能再次调用接口退出。
+ * standby状态下也可以直接调用{@link OH_AudioRenderer_Pause}, {@link OH_AudioRenderer_Stop},
+ * {@link OH_AudioRenderer_Release}停止播放，但不可调用{@link OH_AudioRenderer_Start}。
+ * 注意，此接口并不会改变通过{@link OH_AudioRenderer_GetCurrentState}获取的状态。
+ * @param renderer [in] 指向通过{@link OH_AudioStreamBuilder_GenerateRenderer}创建的音频播放流
+ * @param on [in] 进入或退出standby状态，true表示进入，false表示退出。
+ * @return <ul>
+ *         <li>{@link #AUDIOSTREAM_SUCCESS} 接口调用成功。 </li>
+ *         <li>{@link #AUDIOSTREAM_ERROR_INVALID_PARAM} builder参数为空指针。 </li>
+ *         <li>{@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE}
+ *             1. 非running状态不能进入；
+ *             2. 非standby状态不能调用退出。 </li>
+ *         </ul>
+ * @since 26.1.0
+ */
+OH_AudioStream_Result OH_AudioRenderer_Standby(OH_AudioRenderer* renderer, bool on);
+
 #ifdef __cplusplus
 }
 #endif
