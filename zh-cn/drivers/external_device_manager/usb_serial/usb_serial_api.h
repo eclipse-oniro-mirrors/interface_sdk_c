@@ -133,7 +133,7 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev 设备句柄，需调用{@link OH_UsbSerial_Open}接口打开设备并获取。
  * @param buff 写入USB串口设备数据的缓冲区，需由调用方分配且容量不小于bufferSize。
- * @param bufferSize 缓冲区的大小。最大4096字节，超出内容被截断。 
+ * @param bufferSize 缓冲区的大小。最大4096字节，超出内容会被截断。 
  * @param bytesWritten 实际写入的字节数。仅在接口返回成功时有效，且可能小于bufferSize。
  * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。请检查应用是否正确获取了ohos.permission.ACCESS_DDK_USB_SERIAL权限。
