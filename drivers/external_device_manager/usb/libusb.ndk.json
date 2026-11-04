@@ -74,5 +74,21 @@
     {
         "first_introduced":"26.0.0",
         "name": "OH_Usb_GetNonRootHubs"
+    },
+    {
+        "first_introduced":"26.1.0",
+        "name": "OH_Usb_CreateDeviceMemBuffer"
+    },
+    {
+        "first_introduced":"26.1.0",
+        "name": "OH_Usb_DestroyDeviceMemBuffer"
+    },
+    {
+        "first_introduced":"26.1.0",
+        "name": "OH_Usb_WritePipe"
+    },
+    {
+        "first_introduced":"26.1.0",
+        "name": "OH_Usb_ReadPipe"
     }
 ]
