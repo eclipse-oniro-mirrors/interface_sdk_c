@@ -1375,14 +1375,14 @@ int OH_UdsDetails_Remove(OH_UdsDetails* pThis, const char* key);
 int OH_UdsDetails_Clear(OH_UdsDetails* pThis);
 
 /**
- * @brief Set key-value data to the {@link OH_UdsDetails}.
+ * @brief Add key-value pair data to the dictionary type {@link OH_UdsDetails}.
  *
- * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
- * @param key Represents the key data to be written.
- * @param value [in] Represents the value data to be written.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @param pThis Represents a pointer to an instance of the dictionary type {@link OH_UdsDetails}.
+ * @param key Represents the key of a key-value pair in a dictionary type.
+ * @param value [in] indicates the value of the key-value pair in the dictionary type.
+ * @returnReturns the status code of the execution.
+ * <br>If UDMF_E_OK is returned, the operation is successful.
+ * <br>If UDMF_E_INVALID_PARAM is returned, an invalid parameter is transferred. For details, see {@link Udmf_ErrCode}.
  * @since 22
  * @see OH_UdsDetails Udmf_ErrCode
  */
