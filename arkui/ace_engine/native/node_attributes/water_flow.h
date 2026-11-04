@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_water_flow.h
+ * @file water_flow.h
  *
  * @brief Defines enumerations and APIs related to **WaterFlow**.
  *
