@@ -916,7 +916,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVS
  * true表示开启麦克风回声消除功能，false表示关闭麦克风回声消除功能。<br>
  * 默认是false。
  * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
- * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入value为无效值。
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入enable为无效值。
  * @since 26.1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
@@ -935,6 +935,27 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForMicAEC(
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForContentAutoPauseScenes(
     OH_AVScreenCapture_CaptureStrategy *strategy, OH_AVScreenCapture_AutoPauseSceneSet scenes);
+
+/**
+ * @brief 录屏是否以HDR格式输出图像。<br>
+ * 此功能需要使用{@link OH_AVScreenCapture_SetCaptureStrategy}在录屏启动前完成配置。<br>
+ * 
+ * @note 该接口设置为true时：
+ *
+ * 若{@link OH_DataType}取值为OH_CAPTURE_FILE，需要设置{@link OH_VideoEncInfo}的videoCodec为H265编码格式，
+ * 否则会导致文件存储失败。<br>
+ * 
+ * 获取到的视频像素格式为RGBA1010102，需要使用{@link OH_AVCapability_GetVideoSupportedPixelFormats}
+ * 查看设备是否支持该格式的数据。
+ * 
+ * @param strategy 指向OH_AVScreenCapture_CaptureStrategy实例的指针。
+ * @param enable 录屏是否以HDR格式输出图像。<br> true表示图像为HDR格式，false表示图像为SDR格式。<br> 默认值为false。
+ * @return AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>
+ * AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针或输入enable为无效值。
+ * @since 26.1.0
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForHDRCapture(
+    OH_AVScreenCapture_CaptureStrategy *strategy, bool enable);
 #ifdef __cplusplus
 }
 #endif
