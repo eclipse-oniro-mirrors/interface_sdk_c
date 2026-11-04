@@ -516,8 +516,7 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options);
  * @param uriSize URI长度。
  * @param res 指向c++本地层创建的OH_ImageSourceNative对象的指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_BAD_SOURCE：解码数据源异常。
+ *     <br>IMAGE_BAD_PARAMETER：uri是空指针。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreateFromUri(char *uri, size_t uriSize, OH_ImageSourceNative **res);
@@ -528,7 +527,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromUri(char *uri, size_t uriSize, OH
  * @param fd 文件描述符fd。
  * @param res 指向c++本地层创建的OH_ImageSourceNative对象的指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：fd无效。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreateFromFd(int32_t fd, OH_ImageSourceNative **res);
@@ -546,8 +545,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromFd(int32_t fd, OH_ImageSourceNati
  * @param dataSize 图像缓冲区数据长度。
  * @param res 指向c++本地层创建的OH_ImageSourceNative对象的指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_BAD_SOURCE：解码数据源异常。
+ *     <br>IMAGE_BAD_PARAMETER：data是空指针，或者dataSize为0。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreateFromData(uint8_t *data, size_t dataSize, OH_ImageSourceNative **res);
@@ -624,7 +622,7 @@ Image_ErrorCode OH_ImageSourceNative_GetSvgResourceLimitLevel(OH_ImageSourceNati
  * @param  options 解码参数。
  * @param pixelmap 指向c++本地层创建的OH_PixelmapNative对象的指针。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：source为空。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_OPTIONS：不支持的选项。例如，无法将图像转换为所需的像素格式。
  * @since 12
  */
@@ -673,8 +671,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSource
  *     It cannot be a null pointer.
  * @param size 数组长度。 用户可以使用{@link OH_ImageSourceNative_GetFrameCount}获取。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_UNSUPPORTED_OPERATION：操作不支持。
+ *     <br>IMAGE_BAD_PARAMETER：source为空，或者options为空，或者resVecPixMap为空。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *source, OH_DecodingOptions *options,
@@ -746,7 +743,9 @@ Image_ErrorCode OH_ImageSourceNative_GetImageInfo(OH_ImageSourceNative *source, 
  * @param value 指向获取的值的指针（输出参数）。调用本接口前，用户应将value->data置为空指针，并将value->size设为0。接口会为value->data自动分配所需内存，并对value->size赋值。
  *     完成对该内存的使用后，用户必须使用C标准库提供的free()函数释放value->data指向的内存，否则会出现内存泄漏。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：source为空，或者key为空，或者value为空。
+ *     <br>IMAGE_ALLOC_FAILED：内存分配失败。
+ *     <br>IMAGE_COPY_FAILED：内存拷贝失败。
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceNative_GetImageProperty(OH_ImageSourceNative *source, Image_String *key,
@@ -1031,7 +1030,7 @@ Image_ErrorCode OH_ImageSourceNative_GetImagePropertyDouble(OH_ImageSourceNative
  * @param key 被查询的属性。
  * @param size 数组类型属性的数组长度，字符串类型属性的字符串长度。输出参数。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key或value为nullptr。
+ *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key或size为nullptr。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE：不支持查询当前mimetype的图像属性。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_METADATA：指定的元数据不存在，或者不是数组或字符串类型的值。
  * @since 23
@@ -1061,9 +1060,9 @@ Image_ErrorCode OH_ImageSourceNative_GetImagePropertyString(OH_ImageSourceNative
  * @param source 被查询属性的ImageSource。
  * @param key 被查询的属性。
  * @param value 被查询属性的查询结果。输出参数。调用者需要管理内存并释放。
- * @param size 字符串长度。
+ * @param size 数组长度。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key或value为nullptr。
+ *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key、value或size为nullptr。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE：不支持查询当前mimetype的图像属性。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_METADATA：指定的元数据不存在，或者不是整型数组类型的值。
  * @since 23
@@ -1079,7 +1078,7 @@ Image_ErrorCode OH_ImageSourceNative_GetImagePropertyIntArray(OH_ImageSourceNati
  * @param value 被查询属性的查询结果。输出参数。调用者需要管理内存并释放。
  * @param size 数组长度。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key或value为nullptr。
+ *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key、value或size为nullptr。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE：不支持查询当前mimetype的图像属性。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_METADATA：指定的元数据不存在，或者不是浮点型数组类型的值。
  * @since 23
@@ -1095,7 +1094,7 @@ Image_ErrorCode OH_ImageSourceNative_GetImagePropertyDoubleArray(OH_ImageSourceN
  * @param value 被查询属性的查询结果。输出参数。调用者需要管理内存并释放。
  * @param size 数组长度。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key或value为nullptr。
+ *     <br>IMAGE_SOURCE_INVALID_PARAMETER：source、key、value或size为nullptr。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE：不支持查询当前mimetype的图像属性。
  *     <br>IMAGE_SOURCE_UNSUPPORTED_METADATA：指定的元数据不存在，或者不是二进制对象类型的值。
  * @since 23
