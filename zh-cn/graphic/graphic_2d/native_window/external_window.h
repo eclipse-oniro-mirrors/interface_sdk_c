@@ -114,22 +114,22 @@ typedef struct Region {
 typedef struct OH_NativeWindow_ScreenInfoRect {
     /**
      * x 偏移（单位：像素）
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t x;
     /**
      * y 偏移（单位：像素）
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t y;
     /**
      * 宽度（单位：像素）
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t w;
     /**
      * 高度（单位：像素）
-     * @since 26.2.0
+     * @since 26.1.0
      */
     int32_t h;
 } OH_NativeWindow_ScreenInfoRect;
