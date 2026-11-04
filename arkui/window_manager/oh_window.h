@@ -475,7 +475,7 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
-    const OH_WindowManager_FrameMetrics *metrics, uint64_t *duration);
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
 
 /**
  * @brief Get the time for elapsed issuing animation callbacks in one frame.
@@ -490,7 +490,7 @@ int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
-    const OH_WindowManager_FrameMetrics *metrics, uint64_t *duration);
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
 
 /**
  * @brief Get the intended start point for the frame.
@@ -505,7 +505,7 @@ int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetIntendedVsyncTimestamp(
-    const OH_WindowManager_FrameMetrics *metrics, uint64_t *timestamp);
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
 
 /**
  * @brief Registers a callback for window frame metric change events.
