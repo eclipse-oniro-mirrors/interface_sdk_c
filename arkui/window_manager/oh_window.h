@@ -497,10 +497,10 @@ int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
  *
  * @param metrics [in] Frame metrics data object. It must not be NULL.
  * @param timestamp [out] This parameter is the return value of the function,
- *     indicating the intended start point for the frame, in nanoseconds. It must not be NULL.
+ *     indicating the the intended start point for the frame, in nanoseconds. It must not be NULL.
  * @return Returns the status code of the execution.
  *     <ul><li>{@link WS_OK} the function call is successful.</li>
- *     <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
+ *     <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause: 
  *     Invalid parameter range.</li></ul>
  * @since 26.1.0
  */
