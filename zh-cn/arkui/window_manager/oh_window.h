@@ -449,7 +449,7 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
-    const OH_WindowManager_FrameMetrics *metrics, uint64_t *duration);
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
 
 /**
  * @brief 获取当前帧执行动画回调的耗时
@@ -465,7 +465,7 @@ int32_t OH_WindowManager_FrameMetrics_GetTotalDuration(
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
-    const OH_WindowManager_FrameMetrics *metrics, uint64_t *duration);
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
 
 /**
  * @brief 获取当前帧预期的垂直同步（VSync）起始时间戳。
@@ -481,7 +481,7 @@ int32_t OH_WindowManager_FrameMetrics_GetAnimationDuration(
  * @since 26.1.0
  */
 int32_t OH_WindowManager_FrameMetrics_GetIntendedVsyncTimestamp(
-    const OH_WindowManager_FrameMetrics *metrics, uint64_t *timestamp);
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
 /**
  * @brief 订阅窗口帧率指标变更监听事件。
  *  该接口依赖窗口页面内容加载，即需要在ArkTS侧loadContent()接口或setUIContent()接口生效后调用。
