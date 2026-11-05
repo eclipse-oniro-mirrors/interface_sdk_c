@@ -29,6 +29,7 @@
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @include <arkui/native_node_ani.h>
  * @kit ArkUI
  * @since 23
  */
