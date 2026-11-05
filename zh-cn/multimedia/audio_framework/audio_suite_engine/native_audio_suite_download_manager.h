@@ -241,7 +241,7 @@ int32_t OH_AudioSuite_PauseDownload(
  * <li>202如果非系统应用程序调用此系统API。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
- * <li>{@link AVPCOMMON_RESULT_ERROR_ILLEGAL_STATE}如果当前状态不允许取消。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}如果当前状态不允许取消。</li>
  * </ul>
  * @since 26.0.0
  */

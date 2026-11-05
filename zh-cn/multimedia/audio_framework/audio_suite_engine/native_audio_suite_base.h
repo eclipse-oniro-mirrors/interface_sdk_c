@@ -917,8 +917,8 @@ typedef enum {
 } OH_AudioSuite_PureVoiceChangeType;
 
 /**
- * @brief Use system recommended pitch.
- * Use in {@link OH_AudioSuite_PureVoiceChangeOption}.
+ * @brief 使用系统推荐的音调。
+ * 用于 {@link OH_AudioSuite_PureVoiceChangeOption}.
  *
  * @since 23
  */
