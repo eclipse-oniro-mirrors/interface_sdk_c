@@ -163,6 +163,8 @@ typedef struct OH_AVCodecAsyncCallback {
  * @brief OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，
  * 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
  *
+ * 使用指导请参见[视频编码](../../../media/avcodec/video-encoding.md)中的“Surface模式步骤-4或Buffer模式步骤-3”。
+ *
  * @param onError 监控编解码器操作错误，详情参考{@link OH_AVCodecOnError}。
  * @param onStreamChanged 监控编解码器流变化，详情参考{@link OH_AVCodecOnStreamChanged}。
  * @param onNeedInputBuffer 监控编解码器需要输入数据，详情参考{@link OH_AVCodecOnNeedInputData}。
@@ -654,7 +656,7 @@ extern const char *OH_MD_KEY_CODEC_MIME;
  */
 extern const char *OH_MD_KEY_DURATION;
 /**
- * @brief 比特率的键，值类型为int64_t。
+ * @brief 比特率的键，单位为bps，值类型为int64_t。
  * 可以通过能力查询接口{@link OH_AVCapability_GetEncoderBitrateRange}接口来获取取值范围。
  *
  * @since 9
@@ -994,7 +996,7 @@ extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER;
 extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA;
 
 /**
- * @brief 在视频编码中获取长期参考帧（LTR）的最大个数的键，值类型为int32_t。
+ * @brief 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。
  *
  * 可以通过{@link OH_AVCapability_GetFeatureProperties}接口和
  * 枚举值{@link OH_AVCapabilityFeature}中的VIDEO_ENCODER_LONG_TERM_REFERENCE来查询这个最大值。
@@ -1007,6 +1009,8 @@ extern const char *OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT;
  *
  * 使用前可以通过{@link OH_AVCapability_IsFeatureSupported}接口和枚举值{@link OH_AVCapabilityFeature}中的
  * VIDEO_ENCODER_TEMPORAL_SCALABILITY来查询当前视频编码器是否支持分层编码。
+ *
+ * 详情请参见：[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
  *
  * 该键是可选的且只用于视频编码，在Configure阶段使用。
  *
@@ -1034,9 +1038,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  *
  * 时域层号为0时，表示基础层，1及以上时表示增强层，
  *
- * 最大时域层号与{@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE}参数,
+ * 最大时域层号与{@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE}参数和
  *
- * 和{@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE}相关。
+ * {@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE}参数相关。
  *
  * 该键目前仅用于查询编码器输出的AVBuffer中携带的时域层号。
  *
@@ -1052,10 +1056,10 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
 /**
- * @brief 描述长期参考帧（LTR）个数的键，值类型为int32_t，必须在支持的值范围内使用。
+ * @brief 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。
  *
  * 使用前可以通过{@link OH_AVCapability_GetFeatureProperties}接口和
- * 枚举值{@link OH_AVCapabilityFeature}中的VIDEO_ENCODER_LONG_TERM_REFERENCE来查询支持的长期参考帧（LTR）数目。
+ * 枚举值{@link OH_AVCapabilityFeature}中的VIDEO_ENCODER_LONG_TERM_REFERENCE来查询支持的LTR数目。
  *
  * 该键是可选的且只用于视频编码，在Configure阶段使用。
  * @since 12
@@ -1063,30 +1067,35 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
 
 /**
- * @brief 标记当前帧为长期参考帧（LTR）的键，值类型为int32_t，
+ * @brief 标记当前帧为长期参考帧的键，值类型为int32_t，
  * 1表示被标记，0表示未被标记，默认值为0。
  * 配置非0值将按照配置1处理，表示被标记。
  *
- * 只在长期参考帧（LTR）个数被配置后生效。
+ * 只在长期参考帧个数被配置后生效。
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
+ *
+ * 详情请参见：[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
+ *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
 
 /**
- * @brief 描述当前帧参考的长期参考帧（LTR）的POC号的键，值类型为int32_t。
+ * @brief 描述当前帧参考的长期参考帧POC号的键，值类型为int32_t。
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
+ *
+ * 详情请参见：[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
  *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR;
 
 /**
- * @brief 当前{@link OH_AVBuffer}中输出的码流对应的帧是否为长期参考帧（LTR）的键，
- * 值类型为int32_t，1表示是长期参考帧（LTR），0表示不是长期参考帧（LTR），
- * 默认值为0。配置非0值将按照配置1处理，表示是长期参考帧（LTR）。
+ * @brief 当前{@link OH_AVBuffer}中输出的码流对应的帧是否为长期参考帧的键，
+ * 值类型为int32_t，1表示是LTR，0表示不是LTR，
+ * 默认值为0。配置非0值将按照配置1处理，表示是LTR。
  *
  * 该键是可选的且只用于视频编码输出轮转中。
  *
@@ -1399,7 +1408,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
 
 /**
- * @brief 指定SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好。
+ * @brief 指定SQR码控模式的质量参数，仅支持H265（HEVC）。取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好。
  *
  * 在Configure/SetParameter阶段使用。
  *
@@ -1407,7 +1416,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
  */
 extern const char *OH_MD_KEY_SQR_FACTOR;
 /**
- * @brief 指定SQR码控模式的最大码率，使用{@link OH_AVCapability_GetEncoderBitrateRange}方法获取取值范围（同OH_MD_KEY_BITRATE），
+ * @brief 指定SQR码控模式的最大码率，仅支持H265（HEVC）。使用{@link OH_AVCapability_GetEncoderBitrateRange}方法获取取值范围（同OH_MD_KEY_BITRATE），
  * 单位bps，值类型为int64_t。
  *
  * 在Configure/SetParameter阶段使用。
@@ -1448,7 +1457,7 @@ extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
 */
 extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
 /**
- * @brief 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选。
+ * @brief 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的。
  *
  * 如果使能，需要注意：
  *
@@ -1489,24 +1498,32 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
 extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 
 /**
- * @brief OH_AVBuffer中携带的键，仅解封装支持。在解封装输出音频的起始、末尾帧可能携带此键。
+ * @brief OH_AVBuffer中携带的键，用于跳过音频解码输出的数据。以采样点为单位，值类型为uint8_t*，当使用mp3、vorbis、opus解码器解码时，可设置该键。
  *
- * 此键对应一个10字节的uint8_t[]类型的数组，记录的是音频文件元数据中解码后需跳过的音频采样点数。
+ * 仅音频的起始、末尾帧携带该键，该键是可选的。使用方法一：解封装时获取该信息并设置到解码输入的OH_AVBuffer。
  *
- * 具体结构如下：
+ * 1. 从{@link OH_AVCodecCallback}的回调函数{@link OH_AVCodecOnNeedInputBuffer}里获取解码用的{@link OH_AVBuffer}。
+ *
+ * 2. 调用{@link OH_AVDemuxer_ReadSampleBuffer}接口读取音频数据，该接口会自行设置OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO。
+ *
+ * 3. 调用{@link OH_AudioCodec_PushInputBuffer}输入{@link OH_AVBuffer}进行解码。
+ *
+ * 使用方法二：构造该键需要的数据并设置到解码输入的OH_AVBuffer。
+ *
+ * 开发者需要先创建一个10字节uint8_t[]类型的数组，具体结构如下：
  *
  * 1. 数组0~3，这4个字节表示从当前帧第一个采样点开始往后跳过的采样点数，以小端序存储uint32_t值。
  *
  * 2. 数组4~7，这4个字节表示从当前帧最后一个采样点开始往前跳过的采样点数（不大于1帧采样点数），以小端序存储uint32_t值。
  *
- * 3. 数组8~9，这2个字节表示保留位，默认输出为0。
+ * 3. 数组8~9，这2个字节填0即可。
  *
  * @since 23
  */
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
- * @brief 在音频解码器中使能OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO功能的键，值类型为int32_t。
+ * @brief 在音频解码器中使能OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO的键，值类型为int32_t。
  * 1表示使能，0表示不使能，默认值为0。配置非1值将按照配置0处理，表示不使能。
  *
  * 该键是可选的。仅用于音频解码器。
@@ -1524,7 +1541,7 @@ extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES;
 extern const char *OH_MD_KEY_LATITUDE;
 
 /**
- * @brief 经度的键, 值类型为float，范围为[-180.0, 180.0]。
+ * @brief 经度的键，值类型为float，范围为[-180.0, 180.0]。
  * 表示地理位置信息中的经度。
  *
  * @since 24
@@ -1532,7 +1549,7 @@ extern const char *OH_MD_KEY_LATITUDE;
 extern const char *OH_MD_KEY_LONGITUDE;
 
 /**
- * @brief 海拔的键, 值类型为float。
+ * @brief 海拔的键，值类型为float，
  * 该键是可选的。表示地理位置信息中的海拔。
  *
  * @since 24
@@ -1743,15 +1760,16 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
 /**
 * @brief 设置视频编解码器DMABUF名称后缀的键，值类型为字符串。
 *
-* 该后缀使用':'作为分隔符，拼接在编解码器内部DMABUF名称之后。最终的DMABUF名称格式为：{系统自定义字符串}:{后缀}。
-* 注意：前缀为当前系统自定义字符串，可能会随系统版本变化。
+* 后缀使用英文冒号`:`作为分隔符，拼接在编解码器内部DMABUF名称之后。最终的DMABUF名称格式为：{系统自定义字符串}:{后缀}。
 *
-* 后缀值的约束：
-* 1. 仅允许ASCII可打印字符，若后缀包含任何非ASCII字符、空格、换行、制表符或其他不可见（控制）字符。将返回 {@link AV_ERR_INVALID_VAL}。
-* 2. 后缀必须至少包含一个非数字字符，否则将返回 {@link AV_ERR_INVALID_VAL}。
+* 后缀值的约束条件如下：
+*
+* 1. 仅允许ASCII可打印字符，若后缀包含任何非ASCII字符、空格、换行、制表符或其他不可见（控制）字符，将返回 {@link AV_ERR_INVALID_VAL}。
+*
+* 2. 后缀必须至少包含一个非数字字符，否则将返回{@link AV_ERR_INVALID_VAL}。
 *
 * 该键是可选项，未设置时DMABUF名称保持不变。
-* 可通过{@link OH_VideoDecoder_Configure}或{@link OH_VideoEncoder_Configure}进行配置。
+* 可通过{@link OH_VideoDecoder_Configure()}或{@link OH_VideoEncoder_Configure()}进行配置。
 *
 * @since 26.0.1
 */
@@ -3376,17 +3394,17 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE;
 /**
  * @brief 设置视频解码帧保留比例的键。取值类型为double。
  *
- * 当{@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE}设置为
- * {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_UNIFORM}时，
- * 或者未配置保留模式（隐式默认走到均匀逻辑）时，该参数生效。
+ * 当OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE设置为
+ * OH_FRAME_RETENTION_MODE_UNIFORM时，
+ * 或者未配置保留模式（隐式默认采用均匀逻辑）时，该参数生效。
  *
- * 仅当保留模式显式设置为{@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_ADAPTIVE}
- * 或{@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_FULL}时，此配置才会被忽略。
+ * 仅当保留模式显式设置为OH_FRAME_RETENTION_MODE_ADAPTIVE
+ * 或OH_FRAME_RETENTION_MODE_FULL时，此配置才会被忽略。
  *
  * 有效范围是[0.01, 1.0]（其中1.0表示保留所有帧，0.01为最小限制），
  * 任何超出此范围的值都将被视为无效并被忽略。
  *
- * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。
+ * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。每种模式的详细说明及其行为请参考枚举定义{@link OH_FrameRetentionMode}。
  *
  * @since 26.0.0
  */
@@ -3396,13 +3414,13 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO;
  * @brief 配置视频解码器播放倍速的键。取值类型为double。
  *
  * 该键用于指定视频的目标播放倍速。主要推荐与
- * {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_ADAPTIVE}模式结合使用，
+ * OH_FRAME_RETENTION_MODE_ADAPTIVE模式结合使用，
  * 以辅助感知自适应算法准确评估丢帧对视觉感知的影响。
  *
  * 取值必须严格大于0.0，推荐的标准值包括0.5、0.75、1.0（正常速度）、1.25、1.5、2.0 和 3.0，
  * 任何小于或等于0.0的值都会被视为无效。
  *
- * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。
+ * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。每种模式的详细说明及其行为请参考枚举定义{@link OH_FrameRetentionMode}。
  *
  * @since 26.0.0
  */

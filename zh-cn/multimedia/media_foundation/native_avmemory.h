@@ -98,7 +98,7 @@ uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem);
 int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem);
 
 /**
- * @brief 释放OH_AVMemory实例指针的资源。
+ * @brief 释放OH_AVMemory实例占用的资源。
  *
  * @param mem 指向OH_AVMemory实例的指针。
  * @return AV_ERR_OK：释放成功。

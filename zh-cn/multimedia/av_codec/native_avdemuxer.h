@@ -176,7 +176,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
 /**
  * @brief 获取指定轨道的sample及相关信息。
  *
- * 注意，读取轨道sample前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
+ * 注意，读取轨道sample前，轨道必须被选中，可使用OH_AVDemuxer_SelectTrackByID。调用接口后解封装器将自动前进到下一帧。
  *
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param trackIndex 本次读取压缩帧的轨道的索引。

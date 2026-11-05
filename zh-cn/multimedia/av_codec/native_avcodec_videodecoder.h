@@ -152,7 +152,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * | OH_MD_KEY_HEIGHT     | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
  * | OH_MD_KEY_PIXEL_FORMAT 请参阅{@link OH_AVPixelFormat}    | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK      |
  * | OH_MD_KEY_FRAME_RATE | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK     |
- * | OH_MD_KEY_ROTATION 请参阅{@link OH_MD_KEY_ROTATION} | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
+ * | OH_MD_KEY_ROTATION | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
  * @note 建议按照该实例需要支持的最大分辨率来配置，否则可能会出现高于该分辨率的码流解码会触发异常。该设置直接影响应用的内存使用情况。
  *
  * @param codec 指向视频解码实例的指针。
@@ -275,7 +275,7 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  *
  * 输入回调将报告可用的输入缓冲区和相应的index值，请参阅{@link OH_AVCodecOnNeedInputData}。
  * 一旦具有指定index的缓冲区提交到视频解码器，则无法再次访问缓冲区，直到再次收到输入回调，报告具有相同index的缓冲区可用。
- * 此外，对于某些解码器，需要在开始时向解码器输入编解码特定数据，以初始化解码器的解码过程，如H.264格式的PPS/SPS数据。
+ * 此外，如果所使用的编码格式或解码器能力说明要求输入编解码特定数据，则需要在开始时向解码器输入该数据，以初始化解码器的解码过程，如H.264格式的PPS/SPS数据。
  *
  * @param codec 指向视频解码实例的指针。
  * @param index 输入Buffer对应的索引值。由{@link OH_AVCodecOnNeedInputData}给出。
@@ -339,7 +339,7 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  *
  * 输入回调将报告可用的输入缓冲区和相应的index值，请参阅{@link OH_AVCodecOnNeedInputBuffer}。
  * 一旦具有指定index的缓冲区提交到视频解码器，则无法再次访问缓冲区，直到再次收到输入回调，报告具有相同index的缓冲区可用。
- * 此外，对于某些解码器，需要在开始时向解码器输入编解码特定数据，以初始化解码器的解码过程，如H.264格式的PPS/SPS数据。
+ * 此外，如果所使用的编码格式或解码器能力说明要求输入编解码特定数据，则需要在开始时向解码器输入该数据，以初始化解码器的解码过程，如H.264格式的PPS/SPS数据。
  *
  * 开发者可以使用该接口把解码需要的参数集如H.264格式的PPS/SPS传递给解码器，该参数集可以单独送入解码器也可以和要解码的数据一起传入。
  *
@@ -359,7 +359,7 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
 OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief 将index对应的输出缓冲返回给解码器，缓冲区中携带解码输出数据，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。
+ * @brief 将index对应的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染其中的解码数据。
  *
  * 如果之前没有配置输出surface，则调用此接口仅将指定index对应的输出缓冲区返回给解码器。
  *
@@ -408,7 +408,9 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
 OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
 
 /**
- * @brief 将处理后的输出缓冲区返回到解码器。用户使用完需要及时调用此接口释放输出缓存区，否则会阻塞解码流程。
+ * @brief 将处理后的输出缓冲区返回到解码器。用户使用完需要及时调用此接口释放输出缓冲区，否则会阻塞解码流程。
+ *
+ * 详情请参见：[视频解码](../../../media/avcodec/video-decoding.md)“Surface模式的步骤-12或Buffer模式步骤-10”。
  *
  * @param codec 指向视频解码实例的指针
  * @param index 输出buffer对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
