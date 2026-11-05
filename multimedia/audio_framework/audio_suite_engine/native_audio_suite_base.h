@@ -46,13 +46,13 @@ extern "C" {
  */
 typedef enum {
     /**
-     * @brief default input node type, this input node type supports getting audio data from application.
+     * @brief Default input node type, this input node type supports getting audio data from application.
      *
      * @since 22
      */
     INPUT_NODE_TYPE_DEFAULT = 1,
     /**
-     * @brief default output node type, this output node type supports providing audio data to the application.
+     * @brief Default output node type, this output node type supports providing audio data to the application.
      *
      * @since 22
      */
@@ -945,13 +945,13 @@ typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
  */
 typedef enum {
     /**
-     * @brief set female voice.
+     * @brief Set female voice.
      *
      * @since 23
      */
     PURE_VOICE_CHANGE_FEMALE = 1,
     /**
-     * @brief set male voice.
+     * @brief Set male voice.
      *
      * @since 23
      */
