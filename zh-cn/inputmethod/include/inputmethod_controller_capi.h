@@ -138,7 +138,10 @@ extern "C" {
  * OH_InputMethodController_Detach之前需保持inputMethodProxy有效，OH_InputMethodController_Detach后该指针不可继续使用。
  *     <br>
  *     <br>线程安全：非线程安全，建议在主线程调用。
- * @param textEditorProxy 输入指针，表示指向InputMethod_TextEditorProxy实例的指针。
+ *     Controller与InputMethodProxy操作必须串行执行。并发或回调重入的C接口会话操作会在影响当前会话之前被拒绝，
+ *     并返回IME_ERR_IMCLIENT。此保护不代表对原生层、ArkTS或服务端操作的一般线程安全保证。
+ *     <br>原生会话任务准入失败或等待超时时，返回IME_ERR_IMCLIENT，且不会执行该任务。
+ * @param textEditorProxy [in] 输入指针，表示指向InputMethod_TextEditorProxy实例的指针。
  *     <br>**含义/功能：** 作为应用接收输入法回调通知的通道载体，绑定后输入法将通过此对象中注册的回调函数与应用交互。
  *     <br>**使用场景：** 在绑定输入法前，应用需先创建TextEditorProxy并注册必要的回调函数。
  *     <br>**使用后效果：** 若OH_InputMethodController_Attach成功，输入法将通过此对象中的回调函数向应用发送通知；若失败，此对象
@@ -149,16 +152,17 @@ extern "C" {
  *     在下次OH_InputMethodController_Attach或OH_InputMethodController_Detach完成之前不可释放textEditorProxy，
  *     否则输入法回调时将访问已释放的内存导致未定义行为。
  *     <br>**内存分配责任：** 由调用者通过OH_TextEditorProxy_Create分配，通过OH_TextEditorProxy_Destroy释放。
- * @param options 输入指针，表示指向InputMethod_AttachOptions实例的指针。
+ * @param options [in] 输入指针，表示指向InputMethod_AttachOptions实例的指针。
  *     <br>**含义/功能：** 指定绑定输入法时的行为配置，包括是否在绑定时显示键盘以及请求键盘的原因。
  *     <br>**使用场景：** 在绑定前创建并配置好AttachOptions，用于控制绑定时的键盘显示行为。
  *     <br>**使用后效果：** OH_InputMethodController_Attach函数将读取options中的配置参数来决定绑定行为。
  *     <br>**前置条件：** 必须通过OH_AttachOptions_Create或OH_AttachOptions_CreateWithRequestKeyboardReason创建。
+ *     options必须是有效的AttachOptions句柄；未注册或已失效的值对象句柄返回IME_ERR_PARAMCHECK。
  *     <br>**NULL指针处理：** 不可为NULL，传入NULL将返回IME_ERR_NULL_POINTER。
  *     <br>**生命周期管理：** OH_InputMethodController_Attach完成后options可立即销毁，因为绑定过程已读取完配置信息。
  *     建议在OH_InputMethodController_Attach成功后调用OH_AttachOptions_Destroy释放内存。
  *     <br>**内存分配责任：** 由调用者通过Create函数分配，通过OH_AttachOptions_Destroy释放。
- * @param inputMethodProxy 输出双指针，表示指向InputMethod_InputMethodProxy指针的指针。
+ * @param inputMethodProxy [out] 输出双指针，表示指向InputMethod_InputMethodProxy指针的指针。
  *     <br>**含义/功能：** 用于接收OH_InputMethodController_Attach成功后返回的InputMethodProxy实例，该实例是应用主动向输入法
  * 发送请求和通知的交互通道。
  *     <br>**使用场景：** OH_InputMethodController_Attach成功后，调用者通过此指针获取InputMethodProxy，后续调用
@@ -227,23 +231,25 @@ InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProx
  * 数可确保输入法与正确的页面关联，避免输入法事件发送到错误的窗口。
  *     <br>
  *     <br>线程安全：非线程安全，建议在主线程调用。
+ *     <br>原生会话任务准入失败或等待超时时，返回IME_ERR_IMCLIENT，且不会执行该任务。
  *
- * @param context 输入指针，表示指向[ArkUI_Context](../apis-arkui/capi-arkui-nativemodule-arkui-context.md)实例的指针。
+ * @param context [in] 输入指针，表示指向[ArkUI_Context](../apis-arkui/capi-arkui-nativemodule-arkui-context.md)实例的指针。
  *     <br>**含义/功能：** 指定输入法绑定到哪个UI上下文（页面/窗口），使输入法服务能精确关联到当前活跃的页面。
  *     <br>**使用场景：** 在多窗口或多页面应用中，需要将输入法绑定到特定UI上下文时使用。
  *     <br>**使用后效果：** 输入法事件将发送到与此上下文关联的页面。
  *     <br>**前置条件：** 必须通过ArkUI模块获取有效的ArkUI_ContextHandle。
  *     <br>**NULL指针处理：** 不可为NULL，传入NULL将返回IME_ERR_NULL_POINTER。
  *     <br>**生命周期管理：** 需在绑定期间保持ArkUI_Context有效，OH_InputMethodController_Detach前不可销毁对应的UI上下文。
- * @param textEditorProxy 输入指针，表示指向InputMethod_TextEditorProxy实例的指针。
+ * @param textEditorProxy [in] 输入指针，表示指向InputMethod_TextEditorProxy实例的指针。
  *     <br>**含义/功能：** 与OH_InputMethodController_Attach中的textEditorProxy参数相同，作为应用接收输入法回调通知的通道载
  * 体。使用场景、前置条件、NULL指针处理、
  * 生命周期管理均与OH_InputMethodController_Attach中textEditorProxy参数一致。
- * @param options 输入指针，表示指向InputMethod_AttachOptions实例的指针。含义/功能：与OH_InputMethodController_Attach中的
+ * @param options [in] 输入指针，表示指向InputMethod_AttachOptions实例的指针。含义/功能：与OH_InputMethodController_Attach中的
  * options参数相同，
  *     用于指定绑定时的行为配置。使用场景、前置条件、NULL指针处理、生命周期管理均与OH_InputMethodController_Attach中options参数
  * 一致。
- * @param inputMethodProxy 输出双指针，表示指向InputMethod_InputMethodProxy指针的指针。含义/功能、使用场景、双指针说明、NULL
+ *     options必须是有效的AttachOptions句柄；未注册或已失效的值对象句柄返回IME_ERR_PARAMCHECK。
+ * @param inputMethodProxy [out] 输出双指针，表示指向InputMethod_InputMethodProxy指针的指针。含义/功能、使用场景、双指针说明、NULL
  * 指针处理、内存管理、
  *     相关参数制约均与OH_InputMethodController_Attach中的inputMethodProxy参数一致。
  * @return 返回一个特定的错误码。
@@ -277,8 +283,8 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  *     <br>- OH_InputMethodController_Detach完成后，可安全销毁TextEditorProxy（通过OH_TextEditorProxy_Destroy）。
  *     <br>
  *     <br>错误处理：
- *     <br>- 如果inputMethodProxy无效或未绑定，调用OH_InputMethodController_Detach会返回IME_ERR_NULL_POINTER或
- * IME_ERR_IMCLIENT。
+ *     <br>- inputMethodProxy为NULL时返回IME_ERR_NULL_POINTER；无已绑定客户端时返回IME_ERR_DETACHED；
+ *     inputMethodProxy与当前代理不匹配时返回IME_ERR_PARAMCHECK。客户端内部错误返回IME_ERR_IMCLIENT。
  *     <br>- 重复调用OH_InputMethodController_Detach使用同一个inputMethodProxy可能导致未定义行为，应避免。
  *     <br>- OH_InputMethodController_Detach失败后不应继续使用inputMethodProxy。
  *     <br>
@@ -289,8 +295,9 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  * 创建的对象。
  *     <br>
  *     <br>线程安全：非线程安全，建议在主线程调用。
+ *     <br>原生会话任务准入失败或等待超时时，返回IME_ERR_IMCLIENT，且不会执行该任务。
  *
- * @param inputMethodProxy 输入指针，表示指向InputMethod_InputMethodProxy实例的指针。含义/功能：指定要解除绑定的输入法代理实
+ * @param inputMethodProxy [in] 输入指针，表示指向InputMethod_InputMethodProxy实例的指针。含义/功能：指定要解除绑定的输入法代理实
  * 例，
  *     OH_InputMethodController_Detach将关闭此代理对应的交互通道并释放相关资源。使用场景：在应用不再需要输入法交互时调用，如应用
  * 退出、输入框失去焦点等。使用后效果：
@@ -305,6 +312,8 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  * 同一inputMethodProxy不可重复调用OH_InputMethodController_Detach。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。解绑完成，inputMethodProxy不再有效。
+ *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。
+ *     <br>{@link IME_ERR_DETACHED} - 当前无已绑定的输入法客户端。
  *     <br>{@link IME_ERR_IMCLIENT} - 表示输入法客户端错误。可能是客户端连接异常或已断开。
  *     <br>{@link IME_ERR_IMMS} - 表示输入法服务错误。可能是服务端异常。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。inputMethodProxy为NULL时返回。

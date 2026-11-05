@@ -126,6 +126,12 @@ extern "C"{
  *
  *     <br>- 与InputMethod_InputMethodProxy的关系：NotifyCursorUpdate函数需要InputMethod_InputMethodProxy参数（由Attach返
  * 回）和InputMethod_CursorInfo参数配合使用，inputMethodProxy标识交互通道，cursorInfo携带光标信息。
+ *     <br>
+ *     <br>句柄与所有权：仅可使用本API创建的有效句柄或框架提供的借用句柄；仅可销毁独立创建的对象。
+ *     回调提供的对象和TextConfig的子对象视图均为借用对象。访问接口对未注册或已失效的句柄返回IME_ERR_PARAMCHECK，
+ *     NULL参数仍按原有规则返回错误。
+ *     <br>保护边界：生命周期检查不保证对象成员的线程安全，也不能在地址复用后识别所有失效地址。
+ *     对象销毁后应将指针置空；不得在回调结束后保留回调对象。
  *
  * @since 12
  */
@@ -196,6 +202,8 @@ InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double wid
  *     <br>- 不可对同一个cursorInfo指针调用两次Destroy，否则会导致重复释放（double-free）。
  *     <br>- 若cursorInfo正在被输入法回调使用（如处于GetTextConfig回调执行期间），不可在此期间调用Destroy，应在回调返回后再销
  * 毁。
+ *     <br>- 仅独立创建的对象归调用者所有。TextConfig获取接口返回的是借用视图，不可将其传入本接口。
+ *     对借用视图的销毁请求会被拒绝，且不会释放其所属的TextConfig。销毁后不可继续使用原指针。
  *
  * @param cursorInfo 输入指针，表示指向即将被销毁的InputMethod_CursorInfo实例的指针。
  *     <br>**含义/功能：** 指定要销毁的CursorInfo实例，Destroy将释放该实例占用的内存资源。
@@ -210,12 +218,13 @@ void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
 /**
  * @brief 设置光标信息内容，更新光标的位置和尺寸。适用于在已有的CursorInfo实例上修改光标信息，无需重新创建实例。
  *     <br>
- *     <br>前置条件：cursorInfo必须是通过OH_CursorInfo_Create创建的有效实例。
+ *     <br>前置条件：cursorInfo必须是通过OH_CursorInfo_Create创建的有效实例，
+ *     或TextConfig返回且仍有效的借用视图。
  *
  * @param cursorInfo 输入指针，表示指向InputMethod_CursorInfo实例的指针。
  *     <br>**含义/功能：** 指定要修改的CursorInfo实例。
  *     <br>**NULL指针处理：** 不可为NULL，传入NULL将返回IME_ERR_NULL_POINTER。
- *     <br>**前提条件：** 必须通过OH_CursorInfo_Create创建的有效实例。
+ *     <br>**前提条件：** 必须为OH_CursorInfo_Create创建的有效实例，或TextConfig返回且仍有效的借用视图。
  * @param left 输入参数，光标靠左点与物理屏幕左侧距离的绝对值。
  *     <br>**含义/功能：** 定义光标矩形区域的左边界在物理屏幕上的水平位置。
  *     <br>**参数单位：** px（物理像素）。
@@ -241,6 +250,7 @@ void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
  *     <br>**取值原则：** 通常设置为光标的实际显示高度，与文本行高一致。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。光标信息已更新。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。cursorInfo为NULL时返回，调用前需确保cursorInfo为有效指针。
  *     <br>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查cursorInfo是否为有效指针。具体错误码可以参考
  * {@link InputMethod_ErrorCode}。
@@ -253,13 +263,14 @@ InputMethod_ErrorCode OH_CursorInfo_SetRect(
 /**
  * @brief 获取光标信息内容，读取光标的位置和尺寸。
  *     <br>
- *     <br>前置条件：cursorInfo必须是通过OH_CursorInfo_Create创建的有效实例。left、top、width、height必须指向有效的double变
+ *     <br>前置条件：cursorInfo必须是通过OH_CursorInfo_Create创建的有效实例，
+ *     或TextConfig返回且仍有效的借用视图。left、top、width、height必须指向有效的double变
  * 量。
  *
  * @param cursorInfo 输入指针，表示指向InputMethod_CursorInfo实例的指针。
  *     <br>**含义/功能：** 指定要读取的CursorInfo实例。
  *     <br>**NULL指针处理：** 不可为NULL，传入NULL将返回IME_ERR_NULL_POINTER。
- *     <br>**前提条件：** 必须通过OH_CursorInfo_Create创建的有效实例。
+ *     <br>**前提条件：** 必须为OH_CursorInfo_Create创建的有效实例，或TextConfig返回且仍有效的借用视图。
  * @param left 输出指针，靠左点与物理屏幕左侧距离的绝对值。
  *     <br>**含义/功能：** 接收光标左边界的水平坐标值。
  *     <br>**参数单位：** px（物理像素）。
@@ -286,6 +297,7 @@ InputMethod_ErrorCode OH_CursorInfo_SetRect(
  *     <br>**内存分配责任：** 由调用者分配double变量的内存。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。left、top、width、height已被赋值为正确的光标信息。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。cursorInfo、left、top、width或height为NULL时返回，调用前需确保所有
  * 参数均为有效指针。
  *     <br>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查所有参数是否为有效指针；若返回IME_ERR_OK，四个输出参数即为正确的

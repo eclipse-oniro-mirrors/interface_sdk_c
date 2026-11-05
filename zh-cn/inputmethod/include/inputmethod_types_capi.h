@@ -421,7 +421,7 @@ typedef enum InputMethod_CommandValueType {
  * 理：IME_ERR_NULL_POINTER检查参数是否为NULL；IME_ERR_PARAMCHECK检查参数类型和范围；IME_ERR_IMCLIENT/IME_ERR_DETACHED检查输
  * 入框与输入法服务的连接状态；IME_ERR_IMENGINE检查输入法应用运行状态；IME_ERR_QUERY_FAILED检查查询条件和数据状态。
  *     <br>
- *     <br>枚举值间关系：枚举值分为三组：通用错误码（0, 1, 401）、框架服务错误码（12800001-12800009）、C API专用错误码
+ *     <br>枚举值间关系：枚举值分为三组：通用错误码（0, 1, 401）、框架服务错误码（12800001-12800016）、C API专用错误码
  * （12802000-12802001）。通用错误码适用于所有接口；
  * 框架服务错误码与系统服务状态相关；C API专用错误码针对C语言接口特有的空指针和查询失败场景。IME_ERR_OK（0）为成功标识，其余值为
  * 错误标识。
@@ -485,6 +485,10 @@ typedef enum InputMethod_ErrorCode {
      * OH_InputMethodController_Attach绑定输入法服务时调用需要绑定关系的接口时返回。
      */
     IME_ERR_DETACHED = 12800009,
+    /**
+     * @brief 输入框处于非编辑态。输入框可能仍已绑定，不能将此错误等同于已解绑。
+     */
+    IME_ERR_EDITABLE = 12800016,
     /**
      * @brief 空指针异常。可能是传入的参数为空指针，请检查输入参数是否正确初始化。该错误码在C API接口收到NULL指针参数时返回，属于
      * C语言特有的参数错误类型。开发者应在调用接口前确保所有指针参数均为非NULL。

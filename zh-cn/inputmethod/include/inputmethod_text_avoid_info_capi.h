@@ -125,6 +125,12 @@ extern "C" {
  * | --- | --- |
  * | [InputMethod_TextConfig](capi-inputmethod-inputmethod-textconfig.md) | 文本输入框配置结构体，TextAvoidInfo作
  * 为其子属性被包含 |
+ *     <br>
+ *     <br>句柄与所有权：仅可使用本API创建的有效句柄或框架提供的借用句柄；仅可销毁独立创建的对象。
+ *     回调提供的对象和TextConfig的子对象视图均为借用对象。访问接口对未注册或已失效的句柄返回IME_ERR_PARAMCHECK，
+ *     NULL参数仍按原有规则返回错误。
+ *     <br>保护边界：生命周期检查不保证对象成员的线程安全，也不能在地址复用后识别所有失效地址。
+ *     对象销毁后应将指针置空；不得在回调结束后保留回调对象。
  *
  * @since 12
  */
@@ -162,6 +168,8 @@ InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double heig
  * Destroy调用，否则会导致内存泄漏。调用Destroy后，原指针变为无效指针，不应再被使用。
  *     <br>
  *     <br>前置条件：info参数应为OH_TextAvoidInfo_Create成功返回的非NULL指针。
+ *     <br>仅独立创建的对象归调用者所有。TextConfig获取接口返回的是借用视图，不可将其传入本接口。
+ *     对借用视图的销毁请求会被拒绝，且不会释放其所属的TextConfig。销毁后不可继续使用原指针。
  *     <br>
  *     <br>使用后效果：info指向的内存被释放，info指针变为无效指针。对已销毁指针的任何后续访问均为未定义行为。
  *
@@ -176,7 +184,8 @@ void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
  *     <br>使用场景：当编辑框位置发生变化时（如窗口移动、布局调整），需要更新避让信息中的Y坐标值，使输入法框架能够根据最新位置重新
  * 计算避让区域。
  *     <br>
- *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针。
+ *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针，
+ *     或TextConfig返回且仍有效的借用视图。
  *
  * @param info 指向即将被设置值的{@link InputMethod_TextAvoidInfo}实例的指针。不允许传入NULL指针，否则返回
  * IME_ERR_NULL_POINTER。
@@ -184,6 +193,7 @@ void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
  * 会报错，但在实际避让计算中无意义。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info参数为NULL。
  *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
@@ -195,13 +205,15 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *i
  *     <br>使用场景：当编辑框高度发生变化时（如布局调整、窗口缩放），需要更新避让信息中的高度值，使输入法框架能够根据最新高度重新
  * 计算避让区域。避让区域计算依赖于positionY和height的组合，确保编辑框在键盘弹起时不被遮挡。
  *     <br>
- *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针。
+ *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针，
+ *     或TextConfig返回且仍有效的借用视图。
  *
  * @param info 指向即将被设置值的{@link InputMethod_TextAvoidInfo}实例的指针。不允许传入NULL指针，否则返回
  * IME_ERR_NULL_POINTER。
  * @param height 高度值，单位px。取值范围≥0，建议使用编辑框的实际像素高度。传入负值不会报错，但在实际避让计算中无意义。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info参数为NULL。
  *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
@@ -213,7 +225,8 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info
  *     <br>使用场景：输入法应用在处理避让逻辑时，需要获取编辑框的Y坐标值，以确定编辑框在屏幕上的垂直位置，从而判断是否需要调整编辑
  * 框位置或布局。
  *     <br>
- *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针；positionY输出参数必须为非NULL的double类型指
+ *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针，
+ *     或TextConfig返回且仍有效的借用视图；positionY输出参数必须为非NULL的double类型指
  * 针，且由调用方分配内存。
  *
  * @param info 指向即将被获取值的{@link InputMethod_TextAvoidInfo}实例的指针。不允许传入NULL指针，否则返回
@@ -222,6 +235,7 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info
  * double类型变量的内存并将其地址传入。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，positionY指针指向的内存已被写入Y坐标值。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info或positionY参数为NULL。
  *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
@@ -233,7 +247,8 @@ InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *i
  *     <br>使用场景：输入法应用在处理避让逻辑时，需要获取编辑框的高度值，结合Y坐标值确定编辑框在屏幕上的完整垂直范围（positionY到
  * positionY+height），从而判断编辑框是否会被键盘遮挡。
  *     <br>
- *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针；height输出参数必须为非NULL的double类型指针，且
+ *     <br>前置条件：info参数必须为OH_TextAvoidInfo_Create成功返回的非NULL指针，
+ *     或TextConfig返回且仍有效的借用视图；height输出参数必须为非NULL的double类型指针，且
  * 由调用方分配内存。
  *
  * @param info 指向即将被获取值的{@link InputMethod_TextAvoidInfo}实例的指针。不允许传入NULL指针，否则返回
@@ -242,6 +257,7 @@ InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *i
  * 入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，height指针指向的内存已被写入高度值。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info或height参数为NULL。
  *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12

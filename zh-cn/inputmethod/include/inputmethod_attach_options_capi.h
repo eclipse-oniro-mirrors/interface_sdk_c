@@ -123,6 +123,12 @@ extern "C" {
  * [inputmethod_types_capi.h](capi-inputmethod-types-capi-h.md)中。
  *     <br>- OH_InputMethodProxy_ShowTextInput函数也接受InputMethod_AttachOptions作为参数，用于在已绑定的状态下重新请求显示
  * 键盘并指定请求原因。
+ *     <br>
+ *     <br>句柄与所有权：仅可使用本API创建的有效句柄或框架提供的借用句柄；仅可销毁独立创建的对象。
+ *     回调提供的对象和TextConfig的子对象视图均为借用对象。访问接口对未注册或已失效的句柄返回IME_ERR_PARAMCHECK，
+ *     NULL参数仍按原有规则返回错误。
+ *     <br>保护边界：生命周期检查不保证对象成员的线程安全，也不能在地址复用后识别所有失效地址。
+ *     对象销毁后应将指针置空；不得在回调结束后保留回调对象。
  *
  * @since 12
  */
@@ -233,6 +239,7 @@ void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options);
  *     <br>**内存分配责任：** 由调用者分配bool变量的内存，IsShowKeyboard仅写入值，不分配内存。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。*showKeyboard已被赋值为正确的布尔值。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。表示options或showKeyboard为空指针，调用前需确保这两个参数已正确初始
  * 化且不为NULL。
  *     <br>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查options和showKeyboard是否为有效指针；
@@ -263,6 +270,7 @@ InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions 
  *     <br>**内存分配责任：** 由调用者分配变量的内存，GetRequestKeyboardReason仅写入值，不分配内存。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。*requestKeyboardReason已被赋值为正确的枚举值。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。表示options或requestKeyboardReason为空指针，调用前需确保这两个参数
  * 已正确初始化且不为NULL。
  *     <br>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查options和requestKeyboardReason是否为有效指针；若返回IME_ERR_OK，

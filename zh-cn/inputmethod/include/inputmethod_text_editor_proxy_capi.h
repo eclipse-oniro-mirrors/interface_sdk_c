@@ -163,9 +163,13 @@ typedef struct InputMethod_TextEditorProxy InputMethod_TextEditorProxy;
  * 到TextEditorProxy中，并通过[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
  *md#oh_inputmethodcontroller_attach)完成注册。此回调的执行线程由调用Attach的线程决定，不受
  * [OH_TextEditorProxy_SetCallbackInMainThread](#oh_texteditorproxy_setcallbackinmainthread)影响。
+ *     <br>
+ *     <br>回调管理：必须在绑定编辑器前注册回调，并串行执行回调替换与对象销毁操作。
+ *     正在执行的回调可能仍使用旧的函数指针，必须保证其代码和状态在该回调返回前有效。
+ *     更新单个回调不会原子地更新整组回调。
  *
- * @param textEditorProxy 输入指针，指向当前被回调的{@link InputMethod_TextEditorProxy}实例。用于标识触发回调的代理对象。
- * @param config 输出指针，表示指向{@link InputMethod_TextConfig}实例的指针。需要在函数实现中对其设置各配置属性（输入类型、回车
+ * @param textEditorProxy [in] 输入指针，指向当前被回调的{@link InputMethod_TextEditorProxy}实例。用于标识触发回调的代理对象。
+ * @param config [out] 输出指针，表示指向{@link InputMethod_TextConfig}实例的指针。需要在函数实现中对其设置各配置属性（输入类型、回车
  * 键类型、光标信息等）以填充输入框配置。此指针仅在回调执行期间有效，回调返回后该内存将被释放，不可再访问。开发者必须在回调内部完成
  * 所有设置操作，不得在回调外部继续使用此指针。
  * @since 12

@@ -152,15 +152,19 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
  *  OH_InputMethodProxy_HideKeyboard → OH_InputMethodController_Detach
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象，如需多线程访问请自行加锁保护。
+ *     Controller与InputMethodProxy操作必须串行执行。并发或回调重入的C接口会话操作会在影响当前会话之前被拒绝，
+ *     并返回IME_ERR_IMCLIENT。此保护不代表对原生层、ArkTS或服务端操作的一般线程安全保证。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
- * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该指针不
- * 可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效，不可再用于调用任何InputMethodProxy相关函数。
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该指针不
+ *     可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效，不可再用于调用任何InputMethodProxy相关函数。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，键盘已请求显示。
+ *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误，可能是客户端内部异常。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误，可能是输入法管理服务不可用。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，表示已调用Detach，需重新Attach后再使用。
+ *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，传入的inputMethodProxy为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -185,14 +189,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodPr
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
  * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param options 输入指针，表示指向{@link InputMethod_AttachOptions}实例的指针，用于获取配置选项。该指针不可为NULL，
+ * @param options [in] 输入指针，表示指向{@link InputMethod_AttachOptions}实例的指针，用于获取配置选项。该指针不可为NULL，
  *     若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。此接口中只需关注{@link InputMethod_RequestKeyboardReason}属性，表示请
  * 求键盘输入的原因。AttachOptions中的ShowKeyboard属性在此接口中始终为true，无需额外关注。
+ *     options必须是有效的AttachOptions句柄；未注册或已失效的值对象句柄返回IME_ERR_PARAMCHECK。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配，或options句柄未注册或已失效。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
@@ -217,14 +223,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
- * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ *     指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，键盘已请求隐藏。
+ *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
+ *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -252,24 +260,24 @@ InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodPr
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
- * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param text 输入指针，整个输入文本，采用UTF-16编码。由调用者分配内存，函数仅读取该数据。该指针不可为NULL。长度最大限制为
- * 8K（8192个char16_t字符，对应16384字节），超出此限制将返回IME_ERR_PARAMCHECK。
- * @param length 输入参数，text参数的字符数量（单位：char16_t字符个数）。取值范围：大于0且不超过8192。超过8192将返回
- * IME_ERR_PARAMCHECK错误码。
- * @param start 输入参数，所选文本的起始位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于0且小于等于end。取值原则：start
- * 应小于等于end，且不超过text的实际长度。
- * @param end 输入参数，所选文本的结束位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于start且小于等于text的实际长度。取
- * 值原则：当无选中文本时，start与end相等，表示光标位置。
+ *     指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ * @param text [in] 输入指针，整个输入文本，采用UTF-16编码。由调用者分配内存，函数仅读取该数据。该指针不可为NULL。长度最大限制为
+ *     8K（8192个char16_t字符，对应16384字节），超出此限制将返回IME_ERR_PARAMCHECK。
+ * @param length [in] 输入参数，text参数的字符数量（单位：char16_t字符个数）。取值范围：大于0且不超过8192。超过8192将返回
+ *     IME_ERR_PARAMCHECK错误码。
+ * @param start [in] 输入参数，所选文本的起始位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于0且小于等于end。取值原则：start
+ *     应小于等于end，且不超过text的实际长度。
+ * @param end [in] 输入参数，所选文本的结束位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于start且小于等于text的实际长度。取
+ *     值原则：当无选中文本时，start与end相等，表示光标位置。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是length超过8K限制、start/end范围不合法等，请检查参数值是否在有效范围
- * 内。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是length超过8K限制、start/end范围不合法等， 请检查参数值是否在有效范围内。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
+ *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -293,21 +301,22 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
- * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param enterKey 输入参数，回车键类型。取值范围：{@link InputMethod_EnterKeyType}枚举值，如IME_ENTER_KEY_UNSPECIFIED、
- * IME_ENTER_KEY_GO、IME_ENTER_KEY_SEARCH等。使用后效果：输入法将据此调整回车键的显示标签和功能。
- * @param textType 输入参数，输入框类型。取值范围：{@link InputMethod_TextInputType}枚举值，如
- * IME_TEXT_INPUT_TYPE_UNSPECIFIED、
+ *     指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
+ * @param enterKey [in] 输入参数，回车键类型。取值范围：{@link InputMethod_EnterKeyType}枚举值，如IME_ENTER_KEY_UNSPECIFIED、
+ *     IME_ENTER_KEY_GO、IME_ENTER_KEY_SEARCH等。使用后效果：输入法将据此调整回车键的显示标签和功能。
+ * @param textType [in] 输入参数，输入框类型。取值范围：{@link InputMethod_TextInputType}枚举值，如
+ *     IME_TEXT_INPUT_TYPE_UNSPECIFIED、
  *     IME_TEXT_INPUT_TYPE_TEXT、IME_TEXT_INPUT_TYPE_NUMBER等。使用后效果：输入法将据此切换键盘布局（如数字键盘、文本键盘
- * 等）。
+ *     等）。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
  *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是enterKey或textType值不合法，请检查枚举值是否在有效范围内。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
+ *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -324,29 +333,29 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_
  *     <br>使用后效果：调用成功后，输入法应用将接收到新的光标信息，并据此调整候选词窗口的定位；调用失败后，返回对应的错误码。
  *     <br>
  *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
- *md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例。cursorInfo需先通过[OH_CursorInfo_Create]
- *(capi-inputmethod-cursor-info-capi-h.
- *md#oh_cursorinfo_create)创建并设置相关属性。
+ *md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例。cursorInfo须为通过{@link OH_CursorInfo_Create}创建的有效
+ *     CursorInfo句柄，或TextConfig返回且仍有效的子对象借用视图，并已设置相关属性。
  *     <br>
- *     <br>生命周期管理：inputMethodProxy由Attach创建输出，不可手动销毁，Detach后失效。cursorInfo的生命周期由调用者管理，使用完
- * 毕后需调用[OH_CursorInfo_Destroy](capi-inputmethod-cursor-info-capi-h.md#oh_cursorinfo_destroy)销毁。
+ *     <br>生命周期管理：inputMethodProxy由Attach创建输出，不可手动销毁，Detach后失效。独立创建的cursorInfo由调用者管理，
+ *     使用完毕后需调用{@link OH_CursorInfo_Destroy}销毁。TextConfig的子对象视图仅为借用，不可销毁或在其失效后继续使用。
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     {@link OH_InputMethodController_Attach}获取。该指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。
- * Detach后该指针失效。
- * @param cursorInfo 输入指针，指向{@link InputMethod_CursorInfo}实例的指针，表示光标信息。该指针不可为NULL，若传入NULL指针将
- * 返回IME_ERR_NULL_POINTER错误码。
- *     cursorInfo由调用者通过[OH_CursorInfo_Create](capi-inputmethod-cursor-info-capi-h.
- *md#oh_cursorinfo_create)创建，函数仅读取其内部数据，不会修改或释放。使用完毕后调用者需调用
- * {@link OH_CursorInfo_Destroy}释放cursorInfo。
+ *     Detach后该指针失效。
+ * @param cursorInfo [in] 输入指针，指向{@link InputMethod_CursorInfo}实例的指针，表示光标信息。该指针不可为NULL，若传入NULL指针将
+ *     返回IME_ERR_NULL_POINTER错误码。
+ *     cursorInfo必须是有效的CursorInfo句柄或TextConfig子对象借用视图；未注册或已失效的值对象句柄返回IME_ERR_PARAMCHECK。
+ *     函数仅读取其内部数据，不会修改或释放。通过{@link OH_CursorInfo_Create}独立创建的对象由调用者在使用完毕后通过
+ *     {@link OH_CursorInfo_Destroy}释放；借用视图不可销毁。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是cursorInfo内部数据不合法，请检查光标信息参数。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是cursorInfo内部数据不合法，或其句柄未注册或已失效，请检查光标信息参数。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
+ *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
  *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或cursorInfo为NULL。
  *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 12
@@ -367,24 +376,27 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  *     <br>前置条件：必须先调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.
  *md#oh_inputmethodcontroller_attach)获取inputMethodProxy实例，且当前处于已绑定（Attached）状态。
  *     <br>
- *     <br>生命周期管理：inputMethodProxy由Attach创建输出，不可手动销毁，Detach后失效。privateCommand数组中每个元素的生命周期
- * 由调用者管理，使用完毕后需调用[OH_PrivateCommand_Destroy](capi-inputmethod-private-command-capi-h.md#oh_privatecommand_destroy)逐个销毁。
+ *     <br>生命周期管理：inputMethodProxy由Attach创建输出，不可手动销毁，Detach后失效。privateCommand数组中的自有对象由调用者
+ *     管理，使用完毕后需调用{@link OH_PrivateCommand_Destroy}逐个销毁；回调提供的借用对象不可销毁，也不可在回调结束后保留。
  *     <br>
  *     <br>性能建议：privateCommand数组最多包含5个命令对象（size最大为5），超出此限制将返回IME_ERR_PARAMCHECK。单个命令对象最大
  * 大小为32KB，超出限制可能导致数据传输失败。
  *     <br>
  *     <br>线程安全：此函数非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象。
  *
- * @param inputMethodProxy 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
+ * @param inputMethodProxy [in] 输入指针，表示指向{@link InputMethod_InputMethodProxy}实例的指针。inputMethodProxy由调用
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
  * 指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
- * @param privateCommand 输入指针，私有命令数组，每个元素为指向InputMethod_PrivateCommand实例的指针。由调用者创建并分配内存，
- * 函数仅读取数据。该指针不可为NULL。单个命令对象最大大小为32KB（包含key和value的总大小），超出可能导致传输失败。数组最大长度为5
+ * @param privateCommand [in] 输入指针，私有命令数组，每个元素必须为有效的自有命令对象或回调提供的借用命令对象，指向
+ *     InputMethod_PrivateCommand实例；未注册或已失效的值对象句柄返回IME_ERR_PARAMCHECK。
+ *     自有对象由调用者创建并分配内存，函数仅读取数据。该指针不可为NULL。单个命令对象最大大小为32KB（包含key和value的总大小），
+ *     超出可能导致传输失败。数组最大长度为5
  * （即size参数最大为5）。
- * @param size 输入参数，私有命令数组的元素个数。取值范围：大于0且不超过5。超过5将返回IME_ERR_PARAMCHECK错误码。
+ * @param size [in] 输入参数，私有命令数组的元素个数。取值范围：大于0且不超过5。超过5将返回IME_ERR_PARAMCHECK错误码。
  * @return 返回一个特定的错误码。
  *     <br>{@link IME_ERR_OK} - 表示成功，私有命令已发送。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是size超过5、privateCommand为NULL、或单个命令超过32KB，请检查参数值。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是size超过5、privateCommand为NULL、单个命令超过32KB，
+ *     或数组中的对象句柄未注册或已失效，请检查参数值。
  *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
  *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
  *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
