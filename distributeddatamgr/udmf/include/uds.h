@@ -145,6 +145,20 @@ typedef struct OH_UdsAppItem OH_UdsAppItem;
 typedef struct OH_UdsFileUri OH_UdsFileUri;
 
 /**
+ * @brief Describes a virtual file or virtual directory node.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_UDMF_VirtualItem OH_UDMF_VirtualItem;
+
+/**
+ * @brief Describes virtual file entries and their data callbacks.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_UDMF_VirtualFileInfo OH_UDMF_VirtualFileInfo;
+
+/**
  * @brief Describes the type of a virtual node.
  *
  * @since 26.1.0
@@ -164,6 +178,73 @@ typedef enum OH_UDMF_VirtualItemType {
      */
     OH_UDMF_VIRTUAL_ITEM_DIRECTORY = 1
 } OH_UDMF_VirtualItemType;
+
+/**
+ * @brief This interface is invoked when virtual file metadata needs to be obtained.
+ *
+ * The returned node must be created by {@link OH_UDMF_CreateVirtualFileItem}, its ownership is transferred to UDMF, and
+ * the node cannot be destroyed after the callback returns.
+ *
+ * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
+ * @param id [in] ID of the requested virtual file.
+ * @returnReturns the virtual file node on success and nullptr on failure.
+ * @since 26.1.0
+ */
+typedef OH_UDMF_VirtualItem* (*OH_UDMF_VirtualFileOnStat)(void* context, const char* id);
+
+/**
+ * @brief This function is invoked when virtual file data needs to be read.
+ *
+ * A maximum of <code>length</code> bytes can be written to <code>data</code> and the actual number of written bytes can
+ * be returned through <code>bytesRead</code>.
+ * The actual number of bytes can be less than <code>length</code> or zero.
+ *
+ * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
+ * @param id [in] ID of the requested virtual file.
+ * @param offset [in] Read offset, in bytes.
+ * @param length [in] Maximum read length.
+ * @param data [out] Target buffer provided by the UDMF, valid only during callback execution.
+ * @param bytesRead [out] Number of bytes actually written to <code>data</code>.
+ * @returnReturn the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the data is successfully read. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that an invalid parameter is transferred. </li>
+ * <li>{@link UDMF_ERR} indicates that an internal error occurs and data cannot be provided. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t offset, uint32_t length,
+    uint8_t* data, uint32_t* bytesRead);
+
+/**
+ * @brief Called when a virtual file operation is canceled.
+ *
+ * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
+ * @param idList [in] ID list of canceled virtual files.
+ * This array and the strings in it are valid only during the execution of the callback.
+ * @param count [in] Number of identifiers in <code>idList</code>.
+ * @returnReturn the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the cancellation is successful. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that an invalid parameter is transferred. </li>
+ * <li>{@link UDMF_ERR} indicates that an internal error occurs and the cancellation fails. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+typedef int (*OH_UDMF_VirtualFileOnCancel)(void* context, const char* const *idList, uint32_t count);
+
+/**
+ * @brief Releases the user contexts held by the UDMF.
+ *
+ * This callback is executed only once after all virtual file objects referencing the context are freed. The callback
+ * may be executed on any thread.
+ *
+ * @param context [in] UE contexts to be released.
+ * @since 26.1.0
+ */
+typedef void (*OH_UDMF_VirtualFileFinalize)(void* context);
 
 /**
  * @brief Describes the callbacks used to provide virtual file metadata and content.
