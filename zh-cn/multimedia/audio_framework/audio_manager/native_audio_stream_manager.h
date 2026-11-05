@@ -135,6 +135,44 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source);
 
 /**
+ * @brief 查询当前设备在特定音频流信息和使用场景下是否支持超低时延播放。
+ * @param streamManager [in] 音频流管理器句柄。通过{@link OH_AudioManager_GetAudioStreamManager}获取句柄。
+ * @param streamInfo [in] 音频流信息指针。
+ * @param usage [in] 音频流使用场景。
+ * @param supported [out] 指向接收是否支持超低时延播放结果的变量。仅当函数返回
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS}时，该值有效，true表示支持，false表示不支持。
+ * @return <ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：查询成功。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：streamManager, streamInfo, supported参数为空指针
+ * 或usage参数无效。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED：音频服务进程异常退出。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+OH_AudioCommon_Result OH_AudioStreamManager_IsUltraFastPlaybackSupported(
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage,
+    bool *supported);
+
+/**
+ * @brief 查询当前设备在特定音频流信息和使用场景下是否支持超低时延录制。
+ * @param streamManager [in] 音频流管理器句柄。通过{@link OH_AudioManager_GetAudioStreamManager}获取句柄。
+ * @param streamInfo [in] 音频流信息指针。
+ * @param source [in] 音频流使用场景。
+ * @param supported [out] 指向接收是否支持超低时延录音结果的变量。仅当函数返回
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS}时，该值有效，true表示支持，false表示不支持。
+ * @return <ul>
+ *         <li>AUDIOCOMMON_RESULT_SUCCESS：查询成功。
+ *         <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：streamManager, streamInfo, supported参数为空指针
+ * 或source参数无效。</li>
+ *         <li>AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED：音频服务进程异常退出。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+OH_AudioCommon_Result OH_AudioStreamManager_IsUltraFastRecordingSupported(
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source,
+    bool *supported);
+
+/**
  * @brief 查询在当前音频设备连接状态下，特定使用场景录音流的智能降噪开关是否已开启。
  *
  * @param streamManager [in] 通过 {@link OH_AudioManager_GetAudioStreamManager}获取的音频流管理器实例。

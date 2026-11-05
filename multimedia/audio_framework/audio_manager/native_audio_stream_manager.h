@@ -139,6 +139,51 @@ bool OH_AudioStreamManager_IsFastPlaybackSupported(
 bool OH_AudioStreamManager_IsFastRecordingSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source);
 
+/**
+ * @brief This API is used to query whether the current device supports ultra-low latency playback in
+ * specific audio stream information and application scenarios.
+ * @param streamManager [in] Handle of the audio stream manager. Obtain the handle through
+ *     {@link OH_AudioManager_GetAudioStreamManager}.
+ * @param streamInfo [in] Pointer to audio stream information.
+ * @param usage [in] Audio stream usage scenario.
+ * @param supported [out] indicates the variable indicating whether the ultra-low latency playback result is
+ *     supported. Only if the function returns
+ * {@link AUDIOCOMMON_RESULT_SUCCESS}: This parameter is valid. The value true indicates that this parameter is
+ * supported, and the value false indicates that this parameter is not supported.
+ * @return<ul>
+ * <li>AUDIOCOMMON_RESULT_SUCCESS: The query is successful. </li>
+ * <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM: streamManager, streamInfo, supported parameter null pointer
+The * or usage parameter is invalid. </li>
+ * <li>AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED: The audio service process exits unexpectedly. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+OH_AudioCommon_Result OH_AudioStreamManager_IsUltraFastPlaybackSupported(
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage,
+    bool *supported);
+
+/**
+ * @brief This API is used to query whether the current device supports ultra-low latency recording in
+ * specific audio stream information and application scenarios.
+ * @param streamManager [in] Handle of the audio stream manager. Obtain the handle through
+ *     {@link OH_AudioManager_GetAudioStreamManager}.
+ * @param streamInfo [in] Pointer to audio stream information.
+ * @param source [in] Audio stream usage scenario.
+ * @param supported [out] indicates whether to receive the result of ultra-low-latency recording. Only if the
+ *     function returns
+ * {@link AUDIOCOMMON_RESULT_SUCCESS}: This parameter is valid. The value true indicates that this parameter is
+ * supported, and the value false indicates that this parameter is not supported.
+ * @return<ul>
+ * <li>AUDIOCOMMON_RESULT_SUCCESS: The query is successful. </li>
+ * <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM: streamManager, streamInfo, supported parameter null pointer
+The * or source parameter is invalid. </li>
+ * <li>AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED: The audio service process exits unexpectedly. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+OH_AudioCommon_Result OH_AudioStreamManager_IsUltraFastRecordingSupported(
+    OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_SourceType source,
+    bool *supported);
 
 /**
  * @brief Return if the system recording enables intelligent noise reduction for current device.

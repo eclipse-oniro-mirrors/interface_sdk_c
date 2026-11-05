@@ -813,6 +813,14 @@
     },
     {
         "first_introduced": "26.1.0",
+        "name": "OH_AudioStreamManager_IsUltraFastPlaybackSupported"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioStreamManager_IsUltraFastRecordingSupported"
+    },
+    {
+        "first_introduced": "26.1.0",
         "name": "OH_AudioRenderer_Standby"
     }
 ]

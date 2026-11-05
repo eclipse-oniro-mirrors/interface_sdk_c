@@ -285,6 +285,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  * @brief 创建音频播放流实例。
  * <br>创建的播放流会使用所有已设置的音频参数和回调函数，相关的参数支持范围和权限要求也会在此时进行校验。
  *
+ * 在26.1.0与更高API版本，支持应用创建超低时延音频流，在创建超低时延音频流时，应用必须具备
+ * `ohos.permission.USE_ULTRA_FAST_AUDIO_STREAM`权限。
+ * 未具备权限时， 函数返回{@link AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED}；
+ * 当前硬件不支持超低时延时，函数返回{@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY}。
+ *
  * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
  * @param audioRenderer [out] 用来接收创建的音频播放流实例。
  * @return <ul>
@@ -292,6 +297,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}
  *             1. 参数builder为空指针；2. builder不是播放流类型；
  *             3. 创建OHAudioRenderer失败，可能是音频服务异常或系统资源不足。</li>
+ *         <li>{@link AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED} 权限缺失。[since 26.1.0]</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY} 当前硬件不支持超低时延。[since 26.1.0]</li>
  *         </ul>
  * @since 10
  */
@@ -302,6 +309,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
  * @brief 创建音频录制流实例。
  * <br>创建的录制流会使用所有已设置的音频参数和回调函数，相关的参数支持范围和权限要求也会在此时进行校验。
  *
+ * 在26.1.0与更高API版本，支持应用创建超低时延音频流，在创建超低时延音频流时，应用必须具备
+ * `ohos.permission.USE_ULTRA_FAST_AUDIO_STREAM`权限。
+ * 未具备权限时， 函数返回{@link AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED}；
+ * 当前硬件不支持超低时延时，函数返回{@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY}。
+ *
  * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的构造器实例。
  * @param audioCapturer [out] 指向音频录制流实例的指针，将被用来接收函数创建的结果。
  * @return <ul>
@@ -309,6 +321,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
  *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}
  *             1. 参数builder为空指针；2. builder不是录制流类型；
  *             3. 创建OHAudioCapturer失败，可能是音频服务异常、系统资源不足或权限不足。</li>
+ *         <li>{@link AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED} 权限缺失。[since 26.1.0]</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY} 当前硬件不支持超低时延。[since 26.1.0]</li>
  *         </ul>
  * @since 10
  */
