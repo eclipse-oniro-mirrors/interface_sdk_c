@@ -109,7 +109,7 @@ typedef struct Region {
  * 原始内容在屏幕中的偏移/尺寸
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_NativeWindow_ScreenInfoRect {
     /**
