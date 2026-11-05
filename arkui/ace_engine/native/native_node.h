@@ -6989,16 +6989,21 @@ typedef enum {
      */
     NODE_TEXT_AREA_SELECTION_MENU_HIDDEN,
     /**
-     * @brief Sets whether the multi-line text box loses focus after the Enter key is pressed to submit information.
+     * @brief Sets whether the multi-line text box loses focus after the **Enter** key is pressed to submit information.
      * 
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].i32: whether the text box loses focus.</li>
+     * <li>.value[0].i32: Whether the multi-line text box loses focus after the **Enter** key is pressed to submit 
+     * information. **0**: The multi-line text box does not lose focus. **1**: The multi-line text box loses focus.
+     * When {@link NODE_TEXT_AREA_ENTER_KEY_TYPE} is **ARKUI_ENTER_KEY_TYPE_NEW_LINE**, the default value is **0**;
+     * for other Enter key types, the default value is **1**.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].i32: whether the text box loses focus.</li>
+     * <li>.value[0].i32: Whether the multi-line text box loses focus after the **Enter** key is pressed to submit
+     * information. The value **0** indicates the multi-line text box does not lose focus, and **1** indicates
+     * the multi-line text box loses focus.</li>
      * </ul>
      *
      * @ingroup Text Input
@@ -7048,7 +7053,7 @@ typedef enum {
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
      * <ul>
-     * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>.</li>
+     * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_NEW_LINE</b>.</li>
      * </ul>
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
@@ -7941,7 +7946,7 @@ typedef enum {
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].f32: Current value of the progress indicator. The value range is [0, **total**]. The default value is **0**.</li>
+     * <li>.value[0].f32: Current value of the progress indicator. The value range is [0, **total**].</li>
      * </ul>
      *
      * @ingroup Information Display
@@ -7958,7 +7963,7 @@ typedef enum {
      *
      * **Format of the return value {@link ArkUI_AttributeItem}:**
      * <ul>
-     * <li>.value[0].f32: Total value of the progress indicator. The value range is (0, +∞). The default value is **100**.</li>
+     * <li>.value[0].f32: Total value of the progress indicator. The value range is (0, +∞).</li>
      * </ul>
      *
      * @ingroup Information Display

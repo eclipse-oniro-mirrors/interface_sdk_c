@@ -5860,13 +5860,13 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.value[0].i32：触发回车键后是否失焦。\n
-     * 0表示触发回车键后不失焦，1表示触发回车键后失焦。\n
-     * 默认值0。</li>
+     * 0表示不失焦，1表示失焦。\n
+     * 当{@link NODE_TEXT_AREA_ENTER_KEY_TYPE}为**ARKUI_ENTER_KEY_TYPE_NEW_LINE**时默认值0；其他回车键类型时默认值1。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：触发回车键后是否失焦。0表示触发回车键后不失焦，1表示触发回车键后失焦。</li>
+     * <li>.value[0].i32：触发回车键后是否失焦。0表示不失焦，1表示失焦。</li>
      * </ul>
      *
      * @ingroup Text Input[文本输入]
@@ -5910,7 +5910,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32：回车键类型枚举{@link ArkUI_EnterKeyType}，默认值为ARKUI_ENTER_KEY_TYPE_DONE。</li>
+     * <li>.value[0].i32：回车键类型枚举{@link ArkUI_EnterKeyType}，默认值ARKUI_ENTER_KEY_TYPE_NEW_LINE，显示为换行样式。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -6681,7 +6681,7 @@ typedef enum {
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：进度条当前值，取值范围为[0, total]，默认值为0。</li>
+     * <li>.value[0].f32：进度条当前值，取值范围为[0, total]。</li>
      * </ul>
      *
      * @ingroup Information Display[信息展示]
@@ -6697,7 +6697,7 @@ typedef enum {
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].f32：进度条总长，取值范围为(0, +∞)，默认值为100。</li>
+     * <li>.value[0].f32：进度条总长，取值范围为(0, +∞)。</li>
      * </ul>
      *
      * @ingroup Information Display[信息展示]
