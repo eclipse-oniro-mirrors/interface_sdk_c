@@ -153,7 +153,7 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(
  * @return<ul>
  * <li>AUDIOCOMMON_RESULT_SUCCESS: The query is successful. </li>
  * <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM: streamManager, streamInfo, supported parameter null pointer
- * or usage parameter is invalid. </li>
+The * or usage parameter is invalid. </li>
  * <li>AUDIOCOMMON_RESULT_ERROR_SERVICE_DIED: The audio service process exits unexpectedly. </li>
  * </ul>
  * @since 26.1.0
