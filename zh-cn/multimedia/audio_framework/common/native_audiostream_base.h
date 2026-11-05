@@ -80,6 +80,13 @@ typedef enum {
     AUDIOSTREAM_ERROR_UNSUPPORTED_FORMAT = 4,
 
     /**
+     * @brief 权限被拒绝。
+     *
+     * @since 26.1.0
+     */
+    AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED = 201,
+
+    /**
      * @error 不支持的音频流功能，包括功能和配置。
      *
      * @since 26.0.0
@@ -316,6 +323,29 @@ typedef enum {
      * @since 10
      */
     AUDIOSTREAM_LATENCY_MODE_FAST = 1,
+
+    /**
+     * @brief 超低时延音频流模式。
+     * <br>该模式每次回调数据长度为2.5ms，而低时延模式则为5ms。
+     * <br>该模式的性能要求和功耗影响明显高于低时延模式，从而可能带来音频卡顿风险和功耗的升高，所以
+     * 推荐只在对时延极度敏感且{@link AUDIOSTREAM_LATENCY_MODE_FAST}模式也无法满足时延要求的场景
+     * 下再使用该模式，比如K歌软耳返等场景。
+     * <br>该模式推荐在连续音频播放或录制场景使用，不建议使用在短音频的场景，否则可能会影响用户体验。
+     * <br>应用创建该模式的音频流前，必须具备`ohos.permission.USE_ULTRA_FAST_AUDIO_STREAM`权限。
+     * <br>该模式支持的{@link OH_AudioDevice_Type}比{@link AUDIOSTREAM_LATENCY_MODE_FAST}少，
+     * 所以设置该模式前，请使用{@link OH_AudioStreamManager_IsUltraFastPlaybackSupported}或
+     * {@link OH_AudioStreamManager_IsUltraFastRecordingSupported}查询当前设备是否支持。
+     * <br>未具备权限时，创建音频流返回{@link AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED}；当前硬件
+     * 不支持时，创建音频流返回{@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY}。
+     * <br>音频流成功启动后，可通过{@link OH_AudioRenderer_GetFastStatus}或
+     * {@link OH_AudioCapturer_GetFastStatus}查询是否实际运行在该模式。
+     * <br>如果希望可以及时获取到运行模式的变化，可通过{@link
+     * OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback}或{@link
+     * OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback}注册回调。
+     *
+     * @since 26.1.0
+     */
+    AUDIOSTREAM_LATENCY_MODE_ULTRA_FAST = 2
 } OH_AudioStream_LatencyMode;
 
 /**
@@ -614,7 +644,12 @@ typedef enum {
      * 低时延音频流状态。
      * @since 20
      */
-    AUDIOSTREAM_FASTSTATUS_FAST = 1
+    AUDIOSTREAM_FASTSTATUS_FAST = 1,
+    /**
+     * @brief 超低时延音频流状态。
+     * @since 26.1.0
+     */
+    AUDIOSTREAM_FASTSTATUS_ULTRA_FAST = 2
 } OH_AudioStream_FastStatus;
 
 /**

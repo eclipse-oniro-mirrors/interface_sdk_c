@@ -89,6 +89,13 @@ typedef enum {
     AUDIOSTREAM_ERROR_UNSUPPORTED_FORMAT = 4,
 
     /**
+     * @brief Permission denied.
+     *
+     * @since 26.1.0
+     */
+    AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED = 201,
+
+    /**
      * @error Unsupported audio stream ability, including function and configuration.
      *
      * @since 26.0.0
@@ -332,7 +339,38 @@ typedef enum {
      *
      * @since 10
      */
-    AUDIOSTREAM_LATENCY_MODE_FAST = 1
+    AUDIOSTREAM_LATENCY_MODE_FAST = 1,
+    /**
+     * @brief Indicates the ultra-low latency audio stream mode.
+     * <br>In this mode, the length of each callback data is 2.5 ms, and the length of each callback data is 5 ms in
+     * low-latency mode.
+     * <br>The performance requirements and power consumption impact of this mode are significantly higher than those of
+     * the low-latency mode, which may cause audio freeze risks and increased power consumption.
+     * Recommended only in scenarios where delay is extremely sensitive and the {@link AUDIOSTREAM_LATENCY_MODE_FAST}
+     * mode cannot meet delay requirements.
+     * Use this mode again, for example, in scenarios such as K song soft ear return.
+     * <br>This mode is recommended for continuous audio playback or recording. It is not recommended for short audio.
+     * Otherwise, user experience may be affected.
+     * <br>Before creating audio streams in this mode, you must have the `ohos.permission.USE_ULTRA_FAST_AUDIO_STREAM`
+     * permission.
+     * <br>This mode supports less {@link OH_AudioDevice_Type} than {@link AUDIOSTREAM_LATENCY_MODE_FAST},
+     * So before setting this mode, use {@link OH_AudioStreamManager_IsUltraFastPlaybackSupported} or
+     * {@link OH_AudioStreamManager_IsUltraFastRecordingSupported} Queries whether the current device supports this
+     * function.
+     * <br>If you do not have the permission, {@link AUDIOSTREAM_RESULT_ERROR_PERMISSION_DENIED} is returned when you
+     * create an audio stream. The current hardware is used.
+     * If this function is not supported, {@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY} is returned when an audio stream
+     * is created.
+     * <br>After the audio stream is successfully started, the audio stream can be started through
+     * {@link OH_AudioRenderer_GetFastStatus} or
+     * {@link OH_AudioCapturer_GetFastStatus} Check whether the system is running in this mode.
+     * <br>If you want to obtain the change of the running mode in a timely manner, click {@link}
+     * OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback} or {@link
+     * OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback} Register callback.
+     *
+     * @since 26.1.0
+     */
+    AUDIOSTREAM_LATENCY_MODE_ULTRA_FAST = 2
 } OH_AudioStream_LatencyMode;
 
 /**
@@ -629,7 +667,12 @@ typedef enum {
     /**
      * fast status
      */
-    AUDIOSTREAM_FASTSTATUS_FAST = 1
+    AUDIOSTREAM_FASTSTATUS_FAST = 1,
+    /**
+     * @brief Indicates the status of the ultra-low latency audio stream.
+     * @since 26.1.0
+     */
+    AUDIOSTREAM_FASTSTATUS_ULTRA_FAST = 2
 } OH_AudioStream_FastStatus;
 
 /**
