@@ -183,8 +183,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  * @param requestFrameSize Size of audio data user specified, unit is byte.
  * @param responseSize Size of audio data the system really writes.
  * @param finishedFlag This flag is used to indicate to the user whether all data processing has been completed.
- * True means all data processing has been completed and the application should no longer call this interface.
- * False means data processing is not yet completed.
+ *     True means all data processing has been completed and the application should no longer call this interface.
+ *     False means data processing is not yet completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
  * or {@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} if pipeline does not exist or has already been destroyed.
@@ -216,8 +216,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  * @param responseSize Size of audio data the system really writes,
  * The system ensures that the data size filled for each one-dimensional array is consistent, unit is byte.
  * @param finishedFlag This flag is used to indicate to the user whether all data processing has been completed.
- * True means all data processing has been completed and the application should no longer call this interface.
- * False means data processing is not yet completed.
+ *     True means all data processing has been completed and the application should no longer call this interface.
+ *     False means data processing is not yet completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
  * or {@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} if pipeline does not exist or has already been destroyed.
@@ -243,8 +243,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_MultiRenderFrame(OH_AudioSuitePipeline*
  * @param responseAudioSize Size of audio data the interface really write, unit is byte.
  * @param responseMetaSize Size of meta data the interface really write, unit is byte.
  * @param finishedFlag This flag is used to indicate to the user whether all data processing has been completed.
- * True means all data processing has been completed and the application should no longer call this interface.
- * False means data processing is not yet completed.
+ *     True means all data processing has been completed and the application should no longer call this interface.
+ *     False means data processing is not yet completed.
  * @return <ul>
  *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
  *         <li>202 if a non-system application calls this system API.</li>
@@ -391,8 +391,8 @@ int32_t OH_AudioSuiteNodeBuilderSystem_SetFormat(
  * @param audioDataSize Size of audio data that user should fill in, unit is byte.
  * @param finished This boolean value indicates that all data
  * of the application has been consumed since last execute {@link OH_AudioSuiteEngine_StartPipeline}.
- * True means all data of the application has been consumed and the pipeline will no longer call this interface.
- * False means the application still has data to be passed to the pipeline.
+ *     True means all data of the application has been consumed and the pipeline will no longer call this interface.
+ *     False means the application still has data to be passed to the pipeline.
  * @return Length of the valid data that has written into audioData buffer.
  * The return value must be in range of
  * [0, audioDataSize]. If the return value is less than 0,
@@ -430,8 +430,8 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
  * @param metaFrame Pointer to audio meta data frame structure.
  * @param responseMetaDataSize Size of meta data the application really write, unit is byte.
  * @param finished This Boolean value indicates whether all audio data was successfully written.
- * True means all audio data has been successfully written.
- * False means there is still audio data to be written.
+ *     True means all audio data has been successfully written.
+ *     False means there is still audio data to be written.
  * @return <ul>
  *         <li>Length of the valid audio data that has written into audioData buffer.
  *             The return value must be in range of [0, metaFrame->audioDataSize].</li>
@@ -536,8 +536,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetNodeBypassStatus(
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param bypass This parameter determines whether the node merely forwards data transparently.
- * True means the effect node only passes data to the next node without performing any effect processing.
- * False means the effect node performs normal effect processing on the data.
+ *     True means the effect node only passes data to the next node without performing any effect processing.
+ *     False means the effect node performs normal effect processing on the data.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
  * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
