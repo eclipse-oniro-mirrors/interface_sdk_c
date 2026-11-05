@@ -1271,18 +1271,22 @@ int32_t OH_ArkUI_XComponent_UnregisterOnFrameCallback(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool needSoftKeyboard);
 
 /**
- * @brief Create a <b>ArkUI_AccessibilityProvider</b> object from an XComponent node.
+ * @brief Creates an {@link ArkUI_AccessibilityProvider} instance for this **XComponent** instance.
+ * Only supports being called on the UI thread.
  *
- * @param node Indicates the pointer to the XComponent node.
- * @return Returns the created <b>ArkUI_AccessibilityProvider</b> object's pointer.
+ * @param node XComponent instance.
+ * @return Pointer to the created {@link ArkUI_AccessibilityProvider} object, which is used for accessibility access.
  * @since 20
  */
 ArkUI_AccessibilityProvider* OH_ArkUI_AccessibilityProvider_Create(ArkUI_NodeHandle node);
 
 /**
- * @brief Disposes of an <b>ArkUI_AccessibilityProvider</b> object.
+ * @brief Disposes of the {@link ArkUI_AccessibilityProvider} instance created using
+ * {@link OH_ArkUI_AccessibilityProvider_Create}.
+ * Only supports being called on the UI thread.
  *
- * @param provider Indicates the pointer to <b>ArkUI_AccessibilityProvider</b> object needed to dispose.
+ * @param provider {@link ArkUI_AccessibilityProvider} instance created using
+ *     {@link OH_ArkUI_AccessibilityProvider_Create}.
  * @since 20
  */
 void OH_ArkUI_AccessibilityProvider_Dispose(ArkUI_AccessibilityProvider* provider);
