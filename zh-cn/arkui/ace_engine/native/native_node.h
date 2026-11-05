@@ -16556,42 +16556,20 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
 /**
- * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
- * tree or is not rendered yet.
- * Note: the pixelmap should be released through OH_PixelmapNative_Release when it's not used any more.
+ * @brief 同步获取给定节点的快照像素图。如果该节点不在树中或者尚未渲染，则会返回错误。
+ * 注意：当不再使用该像素图时，应通过 OH_PixelmapNative_Release 释放它。
  *
- * @param node Indicates the target node.
- * @param snapshotOptions the given configuration for taking snapshot, can be null for using default.
- * @param pixelmap Pixelmap pointer created by system, it's the out result.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the snapshot taking failed will null pixelmap returned.
- *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot taking is timeout.
+ * @param node 待截图的目标节点
+ * @param snapshotOptions 用于截图的给定配置，可以为空以使用默认值。
+ * @param pixelmap 截图结果位图
+ * @return 返回结果码。
+ * 如果操作成功，返回 {@link ARKUI_ERROR_CODE_NO_ERROR}。
+ * 如果发生参数错误，返回 {@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * 如果截图失败，返回空像素图，返回结果码为 {@link ARKUI_ERROR_CODE_INTERNAL_ERROR}。
+ * 如果截图超时，返回结果码为 {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT}。
+ * 如果截图选项中的色彩空间或动态范围模式不被支持，返回结果码为 {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED}。
+ * 如果设置了 isAuto(true) 但不被支持，返回结果码为 {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED}。
  * @since 15
- */
-/**
- * @brief Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered,
- * the snapshot operation will fail. When the <b>Pixelmap</b> object created is no longer in use, it should be released
- * by calling {@link OH_PixelmapNative_Release}.
- *
- * @param node Target node.
- * @param snapshotOptions Snapshot settings. If the value is null, the default settings are used.
- *         Snapshot settings include scaling, color space, and dynamic range configuration.
- *         Scaling: floating-point value greater than 0.
- *         Color space: <b>3</b> (DISPLAY_P3), <b>4</b> (SRGB), <b>27</b> (DISPLAY_BT2020_SRGB).
- *         Dynamic range: {@link ArkUI_DynamicRangeMode}.
- * @param pixelmap Pointer to the <b>Pixelmap</b> object created by the system.
- * @return Result code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the snapshot fails, returning a null pointer.
- *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot operation times out.
- *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED} if the provided color space or
- *         dynamic range mode is not supported.
- *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED} if the isAuto parameter of the color
- *         space or dynamic range mode is set to true for offscreen node snapshot.
- * @since 23
  */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);
