@@ -217,7 +217,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoEncoder_Configure}.
+ *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoEncoder_Prepare}.
  * @since 12
  */
 OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,

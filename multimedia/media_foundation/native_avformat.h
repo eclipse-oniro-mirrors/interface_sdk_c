@@ -184,7 +184,6 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
  *     <br>1. The value of **format** is nullptr.
  *     <br>2. The value of **format** fails parameter structure verification.
  *     <br>3. The value of **key** is nullptr.
- *     <br>4. The value type corresponding to the key is incorrect.
  * @since 23
  */
 bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value);
@@ -313,7 +312,6 @@ bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_
  *     <br>2. The value of **format** fails parameter structure verification.
  *     <br>3. The value of **key** is nullptr.
  *     <br>4. The value of **out** is nullptr.
- *     <br>5. The obtained key does not exist or is not set.
  * @since 23
  */
 bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out);
