@@ -340,6 +340,16 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_DETACHED = 12800009,
     /**
+     * @brief Error code when the current input method is not the default input method preset in the system.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_NOT_DEFAULT_IME = 12800010,
+    /**
+     * @brief Error code when the input capability type is not supported.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_INPUT_CAPABILITY_TYPE_NOT_SUPPORTED = 12800029,
+    /**
      * @error Null pointer.
      */
     IME_ERR_NULL_POINTER = 12802000,
@@ -376,6 +386,48 @@ typedef enum InputMethod_RequestKeyboardReason {
      */
     IME_REQUEST_REASON_OTHER = 20
 } InputMethod_RequestKeyboardReason;
+
+/**
+ * @brief Pre-screen text underline style enumeration.
+ *
+ * @since 26.1.0
+ */
+typedef enum OH_InputMethod_UnderlineStyle {
+    /**
+     * @brief No underline.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_NONE = 0,
+    /**
+     * @brief Solid underline.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_SOLID = 1,
+    /**
+     * @brief Wavy lines underline.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_WAVY = 2,
+    /**
+     * @brief Dotted underline.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_DASHED = 3,
+} OH_InputMethod_UnderlineStyle;
+
+/**
+ * @brief Input capability type enumeration.
+ *
+ * @since 26.1.0
+ */
+typedef enum OH_InputMethod_InputCapabilityType {
+    /**
+     * @brief Set Capability Type to Translation.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_INPUT_CAPABILITY_TYPE_TRANSLATION = 0,
+} OH_InputMethod_InputCapabilityType;
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -20,10 +20,11 @@ ohos_ndk_library("libohinputmethod") {
   min_compact_version = "12"
   system_capability = "SystemCapability.MiscServices.InputMethodFramework"
   system_capability_headers = [
-    "inputmethod/inputmethod_controller_capi.h",
     "inputmethod/inputmethod_attach_options_capi.h",
+    "inputmethod/inputmethod_controller_capi.h",
     "inputmethod/inputmethod_cursor_info_capi.h",
     "inputmethod/inputmethod_inputmethod_proxy_capi.h",
+    "inputmethod/inputmethod_preview_text_style_capi.h",
     "inputmethod/inputmethod_private_command_capi.h",
     "inputmethod/inputmethod_text_avoid_info_capi.h",
     "inputmethod/inputmethod_text_config_capi.h",
@@ -39,6 +40,7 @@ ohos_ndk_headers("libohinputmethod_header") {
     "./include/inputmethod_controller_capi.h",
     "./include/inputmethod_cursor_info_capi.h",
     "./include/inputmethod_inputmethod_proxy_capi.h",
+    "./include/inputmethod_preview_text_style_capi.h",
     "./include/inputmethod_private_command_capi.h",
     "./include/inputmethod_text_avoid_info_capi.h",
     "./include/inputmethod_text_config_capi.h",

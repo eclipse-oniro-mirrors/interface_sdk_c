@@ -189,6 +189,27 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  */
 InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
     InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_PrivateCommand *privateCommand[], size_t size);
+
+/**
+ * @brief Request system input capability.
+ *
+ * @param inputMethodProxy [Input parameter] indicates the pointer to the {@link InputMethod_InputMethodProxy} instance.
+ * The value of inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
+ * @param type [Input parameter] indicates the input capability type. {@link OH_InputMethod_InputCapabilityType}
+ * @returnReturns a specific error code.
+ * <br>{@link IME_ERR_OK} - Success.
+ * <br>{@link IME_ERR_PARAMCHECK} - Parameter verification failed.
+ * <br>{@link IME_ERR_IMMS} - Input method management service error.
+ * <br>{@link IME_ERR_DETAACHE} - The input method client is disconnected.
+ * <br>{@link OH_INPUT METHOD_ERR_NOT_DEFAULT_IME} - The current input method is not the default input method configured
+ * in the system.
+ * <br>{@link OH_INPUT METHOD_ERR_INPUT_CAPABLE_TYPE_NOT_SUPPORTED} - The input capability type is not supported.
+ * <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
+ * For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_InputMethodProxy_RequestSystemInputCapability(
+    InputMethod_InputMethodProxy *inputMethodProxy, OH_InputMethod_InputCapabilityType type);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

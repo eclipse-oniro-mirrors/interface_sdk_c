@@ -40,12 +40,14 @@
 #define OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAPI_H
 #include <stddef.h>
 
+#include "inputmethod_preview_text_style_capi.h"
 #include "inputmethod_private_command_capi.h"
 #include "inputmethod_text_config_capi.h"
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+
 /**
  * @brief Represents the proxy class for the input method text editor. It handles the interaction between the input
  * method app and the text editor, provides methods for receiving input method requests and notifications, and is
@@ -359,6 +361,52 @@ typedef int32_t (*OH_TextEditorProxy_ReceivePrivateCommandFunc)(
 typedef int32_t (*OH_TextEditorProxy_SetPreviewTextFunc)(
     InputMethod_TextEditorProxy *textEditorProxy, const char16_t text[], size_t length, int32_t start, int32_t end);
 /**
+ * @brief Callback function triggered when the input method sets pre-screen text with style. Similar to
+ * {@link OH_TextEditorProxy_SetPreviewTextFunc} but with extra pre-screen
+ * Text style information. Developers need to implement this function to insert the text content specified by the text
+ * parameter to the cursor position of the edit box in the specified style.
+ * When working with {@link OH_TextEditorProxy_FinishTextPreviewFunc}, call SetPreviewTextWithStyleFunc to set the
+ * pre-screen content with style,
+ * When a user selects a candidate word or cancels the input, the FinishTextPreviewFunc interface is invoked to end the
+ * pre-screen display.
+ * <br>
+ * <br>Application scenario: When an input method application needs to display candidate text with styles(such as
+ * pre-screen text during pinyin input), the system automatically invokes this callback.
+ * <br>
+ * <br>Effect after use: After the callback is executed, the text content should be displayed in the pre-screen style in
+ * the range from start to end and rendered according to the style specified by the style parameter,
+ * The return value is also fed back to the input method.
+ * <br>
+ * <br>Prerequisite: The [OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc] must be passed.
+ * (#oh_inputmethod_texteditorproxy_setsetpreviewtextwithstylefunc) Set this callback into TextEditorProxy and use the
+ * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) completes
+ * registration.
+ *
+ * <br>**Note: * *
+ * <br>When an input method application sets pre-screen text with a style, {@link OH_TextEditorProxy_SetPreviewTextFunc}
+ * is also called back. Developers need to avoid repetition.
+ * <br>Processes pre-screen text content.
+ *
+ * @param textEditorProxy [in] Input pointer to the {@link InputMethod_TextEditorProxy} instance that is called back.
+ * @param text [in] Input pointer, which is used to request the text content in the pre-screen format. The UTF-16
+ *     encoding mode is used. This pointer is valid only during the callback execution. After the callback is returned,
+ *     the memory is
+ * Released, no longer accessible.
+ * @param length [in] Input parameter, which indicates the number of characters in the text to be displayed on the
+ *     screen. The unit is char16_t.
+ * @param start [in] Start cursor position of the text on the screen.(Unit: character offset, relative to the
+ *     beginning of the text).
+ * @param end [in] Input parameter, end cursor position of the text on the screen.(Unit: character offset, relative
+ *     to the beginning of the text).
+ * @param style [in] Input pointer, indicating the style of the pre-screen text. For details, see
+ *     {@link OH_InputMethod_PreviewTextStyle}.
+ * @return Return the processing result. The value 0 indicates success, and other values indicate failure.
+ * @since 26.1.0
+ */
+typedef int32_t (*OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc)(
+    InputMethod_TextEditorProxy *textEditorProxy, const char16_t text[], uint32_t length, int32_t start, int32_t end,
+    const OH_InputMethod_PreviewTextStyle *style);
+/**
  * @brief Callback triggered when the input method finishes preview text. This function is used to clear the preview
  * text state, and is typically invoked when the user selects a candidate word (confirms input) or cancels input. It is
  * used together with {@link OH_TextEditorProxy_SetPreviewTextFunc}.
@@ -629,6 +677,23 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc(
 InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
     InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc setPreviewTextFunc);
 /**
+ * @brief Set the function {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc} to
+ * in {@link InputMethod_TextEditorProxy}. If this function is registered, both SetPreviewTextFunc and PreviewTextFunc
+ * are called back when the pre-screen is triggered,
+ * Please be careful not to process the pre-screen content repeatedly.
+ *
+ * @param proxy [in] Input pointer to the {@link InputMethod_TextEditorProxy} instance to be set. Cannot be NULL.
+ * @param setPreviewTextWithStyleFunc [in] Input parameter, indicating the callback function that is set to the proxy.
+ * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}. Cannot be NULL.
+ * @return Returns a specific error code.
+ * <br>{@link IME_ERR_OK} - indicates success.
+ * <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
+ * <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
+    OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc setPreviewTextWithStyleFunc);
+/**
  * @brief Sets the {@link OH_TextEditorProxy_FinishTextPreviewFunc} function for {@link InputMethod_TextEditorProxy}.
  * This setting must be completed before **Attach**.
  *
@@ -846,6 +911,21 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
     InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc *setPreviewTextFunc);
+/**
+ * @brief Obtained from {@link InputMethod_TextEditorProxy}
+ * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc} function.
+ *
+ * @param proxy [in] Input pointer to the {@link InputMethod_TextEditorProxy} instance to be read. Cannot be NULL.
+ * @param setPreviewTextWithStyleFunc [out] Output pointer, indicating the function pointer obtained from the proxy.
+ * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}. Cannot be NULL.
+ * @return Returns a specific error code.
+ * <br>{@link IME_ERR_OK} - indicates success.
+ * <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
+ * <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_GetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
+    OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc *setPreviewTextWithStyleFunc);
 /**
  * @brief Obtains the {@link OH_TextEditorProxy_FinishTextPreviewFunc} function from
  * {@link InputMethod_TextEditorProxy}.

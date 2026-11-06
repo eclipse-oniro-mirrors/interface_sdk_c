@@ -231,6 +231,50 @@
         "first_introduced": "12",
         "name": "OH_TextEditorProxy_GetFinishTextPreviewFunc"
     },
+	{
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetSetPreviewTextWithStyleFunc"
+    },
+	{
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetSetPreviewTextWithStyleFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_SetUnderlineStyle"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_GetUnderlineStyle"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_SetUnderlineColor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_GetUnderlineColor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_PreviewTextStyle_HasUnderlineColor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethod_InputMethodProxy_RequestSystemInputCapability"
+    },
+	{
+        "first_introduced": "12",
+        "name": "OH_InputMethod_InputMethodController_GetCurrentInputMethod"
+    },
     {
         "first_introduced": "12",
         "name": "OH_AttachOptions_Create"
