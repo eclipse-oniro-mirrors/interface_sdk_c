@@ -934,7 +934,7 @@ int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
  * @param modifyTime [in] Time when the file is modified.
  * @return If the operation is successful, the created virtual node is returned. Returns nullptr when the parameter
  *     is invalid or memory allocation fails.
- * @release OH_UDMF_DestroyVirtualItem {return}
+ * @release uds/OH_UDMF_DestroyVirtualItem {return}
  * @since 26.1.0
  */
 OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualFileItem(const char* name, const char* id, int64_t modifyTime);
@@ -946,7 +946,7 @@ OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualFileItem(const char* name, const char*
  * @param modifyTime [in] Directory modification time.
  * @return If the operation is successful, the created virtual node is returned. Returns nullptr when the parameter
  *     is invalid or memory allocation fails.
- * @release OH_UDMF_DestroyVirtualItem {return}
+ * @release uds/OH_UDMF_DestroyVirtualItem {return}
  * @since 26.1.0
  */
 OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualDirectoryItem(const char* name, int64_t modifyTime);
@@ -1024,7 +1024,7 @@ int OH_UDMF_AddVirtualItemChild(OH_UDMF_VirtualItem* directory, const OH_UDMF_Vi
  * @param finalize [in] Callback for releasing <code>context</code>.
  * @return If the operation is successful, the information about the created virtual file is returned. Returns
  *     nullptr when the node or callback is invalid or memory allocation fails.
- * @release OH_UDMF_DestroyVirtualFileInfo {return}
+ * @release uds/OH_UDMF_DestroyVirtualFileInfo {return}
  * @since 26.1.0
  */
 OH_UDMF_VirtualFileInfo* OH_UDMF_CreateVirtualFileInfo(const OH_UDMF_VirtualItem* itemInfo,
