@@ -9959,7 +9959,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32是否支持键盘方向键滚动，0：不支持键盘方向键滚动，1：支持键盘方向键滚动。默认值：1。</li>
+     * <li>.value[0].i32是否支持键盘方向键滚动，0：不支持键盘方向键滚动，1：支持键盘方向键滚动。默认值：0。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
