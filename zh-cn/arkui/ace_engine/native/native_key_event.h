@@ -1690,6 +1690,56 @@ OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey
     const OH_ArkUI_KeyboardShortcutKey* key);
 
 /**
+ * @brief 定义组件级键盘快捷键触发时调用的回调函数。
+ *
+ * @param userData [out] 注册快捷键时传入的用户自定义数据。该值不会被复制，在快捷键注销前必须保持有效。
+ * @since 26.2.0
+ */
+typedef void (*OH_ArkUI_KeyboardShortcutCallback)(void* userData);
+
+/**
+ * @brief 为组件注册键盘快捷键。同一组件重复注册相同快捷键时，以最后一次注册为准。组件级快捷键的触发优先级
+ * 高于相同的应用级快捷键。
+ *
+ * @param node [in] 目标组件节点。
+ * @param key [in] 指向键盘快捷键按键对象的指针，不能为<b>nullptr</b>。该对象通过
+ *     {@link OH_ArkUI_KeyboardShortcutKey_Create}创建。字符键通过
+ *     {@link OH_ArkUI_KeyboardShortcutKey_SetCharacter}设置的字符必须为单个可通过键盘输入的字符。
+ * @param modifierKeys [in] 修饰键位掩码。使用{@link OH_ArkUI_KeyboardShortcutModifierKey}中的值进行按位或组合。功能键可使用
+ *     {@link OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_NONE}注册不带修饰键的快捷键，字符键至少需要指定一个修饰键。
+ *     仅接受{@link OH_ArkUI_KeyboardShortcutModifierKey}中定义的位，设置其他位时返回
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param userData [in] 传递给回调函数的用户自定义数据，可以为<b>nullptr</b>。该值不会被复制，
+ *     在快捷键注销前必须保持有效。
+ * @param callback [in] 快捷键触发时调用的回调函数。如果为<b>nullptr</b>，则触发组件的点击事件。
+ * @return 返回执行结果。
+ *     <ul>
+ *     <li>如果操作成功，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果参数无效，则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Register(ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key,
+    uint32_t modifierKeys, void* userData, OH_ArkUI_KeyboardShortcutCallback callback);
+
+/**
+ * @brief 注销组件的键盘快捷键。如果没有注册匹配的快捷键，该操作仍然成功。
+ *
+ * @param node [in] 目标组件节点。
+ * @param key [in] 指向注册时所用键盘快捷键按键对象的指针，不能为<b>nullptr</b>。
+ * @param modifierKeys [in] 注册时使用的修饰键位掩码。仅接受{@link OH_ArkUI_KeyboardShortcutModifierKey}
+ *     中定义的位，设置其他位时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 返回执行结果。
+ *     <ul>
+ *     <li>如果操作成功，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果参数无效，则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Unregister(
+    ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key, uint32_t modifierKeys);
+
+/**
  * @brief 定义应用级键盘快捷键的回调信息。
  *
  * @since 26.2.0
@@ -1702,15 +1752,13 @@ typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShor
  * @param info [out] 指向触发快捷键的UI实例回调信息对象的指针，不能为空。使用
  *     {@link OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext}获取对应的UI上下文。该对象仅在回调执行期间
  *     有效，不得持有。
- * @param userData [out] 注册快捷键时传入的用户自定义数据。该值不会被复制，在快捷键注销且本次事件中已选取的所有回调执行完毕前必须保持有效。
+ * @param userData [out] 注册快捷键时传入的用户自定义数据。该值不会被复制，在快捷键注销前必须保持有效。
  * @since 26.2.0
  */
-typedef void (*OH_ArkUI_ApplicationShortcutCallback)(
-    const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
+typedef void (*OH_ArkUI_ApplicationShortcutCallback)(const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
 
 /**
  * @brief 获取触发应用级键盘快捷键的UI实例对应的UI上下文。
- * 返回的句柄由框架持有，仅在当前回调执行期间有效；调用方不得保存或释放该句柄。
  *
  * @param info [in] 指向{@link OH_ArkUI_ApplicationShortcutCallback}接收到的单个回调信息对象的指针，
  *     不能为空。
@@ -1726,16 +1774,11 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
 
 /**
  * @brief 注册应用级键盘快捷键。该快捷键在应用内全局生效。
- * 组件级快捷键优先处理；仅当事件未被组件级快捷键处理时，才触发应用级快捷键。
+ * 如果存在匹配的组件级快捷键，则优先触发组件级快捷键。
  *
  * 每次注册生成一个应用内唯一的正整数注册标识符，即使快捷键和回调相同，标识符也不同。
- * 同一个快捷键的多次注册均被保留，所有匹配回调按注册标识符递增顺序执行。
- * 本次事件开始分发时确定回调集合；回调中的注册和注销操作从下次事件起生效。
- * 功能键仅支持Esc、F1-F12、Tab、方向键和Space；其他功能键枚举值返回参数错误。
- * 注册和注销必须在UI线程调用，非UI线程调用将终止进程。
- * 卡片和动态渲染场景不支持注册、注销和触发；注册返回内部错误，注销不执行操作。
- *
- * 注册时复制按键数据，不保存key指针；注册调用结束后可销毁按键对象。
+ * 同一个快捷键的多次注册均被保留，仅最近一次未注销的注册生效。
+ * 注册标识符在应用运行期间不复用。
  *
  * @param key [in] 指向键盘快捷键按键对象的指针，不能为<b>nullptr</b>。该对象通过
  *     {@link OH_ArkUI_KeyboardShortcutKey_Create}创建。字符键通过
@@ -1745,7 +1788,7 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
  *     仅接受{@link OH_ArkUI_KeyboardShortcutModifierKey}中定义的位，设置其他位时返回
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @param userData [in] 传递给回调函数的用户自定义数据，可以为<b>nullptr</b>。该值不会被复制，
- *     在快捷键注销且本次事件中已选取的所有回调执行完毕前必须保持有效。
+ *     在快捷键注销前必须保持有效。
  * @param callback [in] 快捷键触发时调用的回调函数，不能为<b>nullptr</b>。
  * @param registrationId [out] 用于接收本次快捷键绑定注册标识符的输出指针，不能为<b>nullptr</b>。
  *     仅在注册成功时写入，注册失败时保持原值。
@@ -1753,7 +1796,6 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
  *     <ul>
  *     <li>如果操作成功，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
  *     <li>如果参数无效，则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
- *     <li>实现不可用、不支持当前渲染场景或注册失败时，返回{@link ARKUI_ERROR_CODE_INTERNAL_ERROR}。</li>
  *     </ul>
  * @since 26.2.0
  */
@@ -1763,15 +1805,12 @@ ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Register(const OH_ArkUI_KeyboardSho
 /**
  * @brief 注销指定注册标识符对应的应用级键盘快捷键绑定。
  *
- * 仅移除该标识符对应的绑定，同快捷键的其他绑定仍然有效。
- * 已进入当前事件回调集合的回调仍可执行，后续事件不再调用已注销的回调。
- * 标识符不存在或已注销时，不执行任何操作，仍返回成功。
- * 必须在UI线程调用，非UI线程调用将终止进程。卡片和动态渲染场景下不执行注销。
+ * 仅移除该标识符对应的绑定，其他绑定不受影响。如果移除的是当前生效的绑定，
+ * 则最近一次仍未注销的同快捷键绑定恢复生效。标识符不存在或已注销时，不执行任何操作，仍返回成功。
  *
  * @param registrationId [in] 注册快捷键时获得的注册标识符。
  * @return 返回执行结果。
  *     <br>如果操作成功或注册标识符不存在，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- *     <br>实现不可用时返回{@link ARKUI_ERROR_CODE_INTERNAL_ERROR}。
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Unregister(int32_t registrationId);

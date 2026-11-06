@@ -1569,6 +1569,64 @@ OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey
     const OH_ArkUI_KeyboardShortcutKey* key);
 
 /**
+ * @brief Defines the callback invoked when a component-level keyboard shortcut is triggered.
+ *
+ * @param userData [out] User-defined data passed when the shortcut is registered. The value is not copied and
+ *     must remain valid until the shortcut is unregistered.
+ * @since 26.2.0
+ */
+typedef void (*OH_ArkUI_KeyboardShortcutCallback)(void* userData);
+
+/**
+ * @brief Registers a keyboard shortcut for a component. If the same shortcut is registered again for the same
+ * component, the latest registration takes effect. Component-level shortcuts take precedence over matching
+ * application-level shortcuts.
+ *
+ * @param node [in] Target component node.
+ * @param key [in] Pointer to a keyboard shortcut key object created by {@link OH_ArkUI_KeyboardShortcutKey_Create}.
+ *     The value must not be <b>nullptr</b>. For a character key, the character set through
+ *     {@link OH_ArkUI_KeyboardShortcutKey_SetCharacter} must be a single keyboard-input character.
+ * @param modifierKeys [in] Modifier key bitmask. Use a bitwise OR combination of values in
+ *     {@link OH_ArkUI_KeyboardShortcutModifierKey}. For a function key, use
+ *     {@link OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_NONE} to register the shortcut without a modifier key. At least one
+ *     modifier key must be specified for a character key. Only the bits defined in
+ *     {@link OH_ArkUI_KeyboardShortcutModifierKey} are accepted; if any other bit is set,
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ * @param userData [in] User-defined data passed to the callback. The value can be <b>nullptr</b>. The value is
+ *     not copied and must remain valid until the shortcut is unregistered.
+ * @param callback [in] Callback invoked when the shortcut is triggered. If <b>callback</b> is <b>nullptr</b>, the click
+ *     event of the component is triggered.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Register(ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key,
+    uint32_t modifierKeys, void* userData, OH_ArkUI_KeyboardShortcutCallback callback);
+
+/**
+ * @brief Unregisters a keyboard shortcut from a component. If no matching shortcut is registered, the operation still
+ * succeeds.
+ *
+ * @param node [in] Target component node.
+ * @param key [in] Pointer to a keyboard shortcut key object used during registration. The value must not be
+ *     <b>nullptr</b>.
+ * @param modifierKeys [in] Modifier key bitmask used during registration. Only the bits defined in
+ *     {@link OH_ArkUI_KeyboardShortcutModifierKey} are accepted; if any other bit is set,
+ *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
+ *     </ul>
+ * @since 26.2.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Unregister(
+    ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key, uint32_t modifierKeys);
+
+/**
  * @brief Defines the callback information for an application-level keyboard shortcut.
  *
  * @since 26.2.0
@@ -1584,15 +1642,13 @@ typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShor
  *     {@link OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext} to obtain its UI context. The object is valid only
  *     during the callback and must not be retained.
  * @param userData [out] User-defined data passed when the shortcut is registered. The value is not copied and
- *     must remain valid until unregistration and completion of all callbacks already selected for the current event.
+ *     must remain valid until the shortcut is unregistered.
  * @since 26.2.0
  */
-typedef void (*OH_ArkUI_ApplicationShortcutCallback)(
-    const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
+typedef void (*OH_ArkUI_ApplicationShortcutCallback)(const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
 
 /**
  * @brief Obtains the UI context of the UI instance where an application-level keyboard shortcut is triggered.
- * The framework owns the returned handle, which is valid only during this callback. Do not retain or release it.
  *
  * @param info [in] Pointer to the callback information object received by {@link OH_ArkUI_ApplicationShortcutCallback}.
  *     The value must not be <b>nullptr</b>.
@@ -1608,17 +1664,12 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
 
 /**
  * @brief Registers an application-level keyboard shortcut. The shortcut takes effect globally in the application.
- * Component-level shortcuts handle the event first. Application shortcuts run only when the event
- * has not been handled by a component-level shortcut.
+ * A matching component-level shortcut is triggered before the application-level shortcut.
  *
  * Each registration generates a positive integer registration ID unique within the application, even when the
- * shortcut and callback are identical. All matching callbacks run in increasing registration ID order.
- * Callbacks are selected before dispatch. Registration and unregistration during a callback affect subsequent events.
- * Function keys support only Esc, F1-F12, Tab, arrow keys, and Space; other enum values return a parameter error.
- * Registration and unregistration must run on the UI thread. Calls on other threads terminate the process.
- * Form rendering and dynamic rendering do not support registration, unregistration, or dispatch.
- * Registration returns an internal error in these rendering modes; unregistration has no effect.
- * Key data is copied during registration. The caller can destroy the key object after this call returns.
+ * shortcut and callback are identical. Multiple registrations of the same shortcut are retained, and only the
+ * latest registration that has not been unregistered takes effect. Registration IDs are not reused during the
+ * application lifetime.
  *
  * @param key [in] Pointer to a keyboard shortcut key object created by {@link OH_ArkUI_KeyboardShortcutKey_Create}.
  *     The value must not be <b>nullptr</b>. For a character key, the character set through
@@ -1630,8 +1681,7 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
  *     {@link OH_ArkUI_KeyboardShortcutModifierKey} are accepted; if any other bit is set,
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param userData [in] User-defined data passed to the callback. The value can be <b>nullptr</b>. The value is
- *     not copied and must remain valid until unregistration and completion of all callbacks already selected
- *     for the current event.
+ *     not copied and must remain valid until the shortcut is unregistered.
  * @param callback [in] Callback invoked when the shortcut is triggered. The value must not be <b>nullptr</b>.
  * @param registrationId [out] Output pointer that receives the registration ID of this shortcut binding. The value must
  *     not be <b>nullptr</b>. The ID is written only on success; the output is unchanged on failure.
@@ -1639,8 +1689,6 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
  *     <ul>
  *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the implementation is unavailable,
- *     the rendering mode is unsupported, or registration fails.</li>
  *     </ul>
  * @since 26.2.0
  */
@@ -1650,16 +1698,13 @@ ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Register(const OH_ArkUI_KeyboardSho
 /**
  * @brief Unregisters the application-level keyboard shortcut binding identified by the registration ID.
  *
- * Only the specified binding is removed. Other bindings of the same shortcut remain active.
- * Callbacks already selected for the current event can still run; subsequent events skip the removed binding.
- * If the ID does not exist or has already been unregistered, this method does nothing and succeeds.
- * This API must run on the UI thread. Calls on other threads terminate the process.
- * Unregistration has no effect in form rendering or dynamic rendering.
+ * Only the specified binding is removed. Other bindings are unaffected. If the active binding is removed,
+ * the most recent remaining registration of the same shortcut takes effect. If the ID does not exist or has
+ * already been unregistered, this method does nothing and still succeeds.
  *
  * @param registrationId [in] Registration ID obtained when registering the shortcut.
  * @return Result code.
  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation succeeds or the registration ID does not exist.
- *     <br>Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the implementation is unavailable.
  * @since 26.2.0
  */
 ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Unregister(int32_t registrationId);
