@@ -1339,31 +1339,31 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event
  *
  * 枚举值为位标志，可以使用按位或运算符进行组合。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief 不使用修饰键。该值仅可与功能键一起使用。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_NONE = 0,
     /**
      * @brief Ctrl键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_CTRL = 1,
     /**
      * @brief Shift键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_SHIFT = 2,
     /**
      * @brief Alt键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_ALT = 4,
 } OH_ArkUI_KeyboardShortcutModifierKey;
@@ -1371,199 +1371,199 @@ typedef enum {
 /**
  * @brief 枚举键盘快捷键支持的功能键。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief Esc键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_ESC = 0,
     /**
      * @brief F1键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F1 = 1,
     /**
      * @brief F2键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F2 = 2,
     /**
      * @brief F3键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F3 = 3,
     /**
      * @brief F4键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F4 = 4,
     /**
      * @brief F5键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F5 = 5,
     /**
      * @brief F6键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F6 = 6,
     /**
      * @brief F7键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F7 = 7,
     /**
      * @brief F8键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F8 = 8,
     /**
      * @brief F9键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F9 = 9,
     /**
      * @brief F10键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F10 = 10,
     /**
      * @brief F11键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F11 = 11,
     /**
      * @brief F12键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_F12 = 12,
     /**
      * @brief Tab键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_TAB = 13,
     /**
      * @brief 向上方向键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_DPAD_UP = 14,
     /**
      * @brief 向下方向键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_DPAD_DOWN = 15,
     /**
      * @brief 向左方向键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_DPAD_LEFT = 16,
     /**
      * @brief 向右方向键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_DPAD_RIGHT = 17,
     /**
      * @brief CapsLock键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_CAPS_LOCK = 18,
     /**
      * @brief PrintScreen键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_PRINT_SCREEN = 19,
     /**
      * @brief ScrollLock键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_SCROLL_LOCK = 20,
     /**
      * @brief Pause/Break键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_PAUSE_BREAK = 21,
     /**
      * @brief NumLock键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_NUM_LOCK = 22,
     /**
      * @brief Insert键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_INSERT = 23,
     /**
      * @brief Delete键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_DELETE = 24,
     /**
      * @brief Home键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_HOME = 25,
     /**
      * @brief End键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_END = 26,
     /**
      * @brief Page Up键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_PAGE_UP = 27,
     /**
      * @brief Page Down键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_PAGE_DOWN = 28,
     /**
      * @brief Enter键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_ENTER = 29,
     /**
      * @brief Backspace键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_BACKSPACE = 30,
     /**
      * @brief Space键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_SPACE = 31,
 } OH_ArkUI_KeyboardShortcutFunctionKey;
@@ -1571,19 +1571,19 @@ typedef enum {
 /**
  * @brief 枚举键盘快捷键支持的按键类型。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
      * @brief 字符键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_KEY_TYPE_CHARACTER = 0,
     /**
      * @brief 功能键。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_KEYBOARD_SHORTCUT_KEY_TYPE_FUNCTION_KEY = 1,
 } OH_ArkUI_KeyboardShortcutKeyType;
@@ -1593,7 +1593,7 @@ typedef enum {
  * @see OH_ArkUI_KeyboardShortcutKey_Create
  * @see OH_ArkUI_KeyboardShortcutKey_Destroy
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_KeyboardShortcutKey OH_ArkUI_KeyboardShortcutKey;
 
@@ -1607,7 +1607,7 @@ typedef struct OH_ArkUI_KeyboardShortcutKey OH_ArkUI_KeyboardShortcutKey;
  *     <li>操作失败时（例如内存分配失败）返回<b>nullptr</b>。</li>
  *     </ul>
  * @release arkui/OH_ArkUI_KeyboardShortcutKey_Destroy {return}
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_ArkUI_KeyboardShortcutKey* OH_ArkUI_KeyboardShortcutKey_Create(void);
 
@@ -1615,7 +1615,7 @@ OH_ArkUI_KeyboardShortcutKey* OH_ArkUI_KeyboardShortcutKey_Create(void);
  * @brief 销毁键盘快捷键按键对象。
  *
  * @param key [in] 键盘快捷键按键对象。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_KeyboardShortcutKey_Destroy(OH_ArkUI_KeyboardShortcutKey** key);
 
@@ -1624,7 +1624,7 @@ void OH_ArkUI_KeyboardShortcutKey_Destroy(OH_ArkUI_KeyboardShortcutKey** key);
  *
  * @param key [in] 键盘快捷键按键对象指针。
  * @param type [in] 按键类型。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_KeyboardShortcutKey_SetType(OH_ArkUI_KeyboardShortcutKey* key, OH_ArkUI_KeyboardShortcutKeyType type);
 
@@ -1637,7 +1637,7 @@ void OH_ArkUI_KeyboardShortcutKey_SetType(OH_ArkUI_KeyboardShortcutKey* key, OH_
  *     <li>按键类型。</li>
  *     <li>如果<b>key</b>为<b>nullptr</b>，则返回{@link OH_ARKUI_KEYBOARD_SHORTCUT_KEY_TYPE_CHARACTER}。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_ArkUI_KeyboardShortcutKeyType OH_ArkUI_KeyboardShortcutKey_GetType(const OH_ArkUI_KeyboardShortcutKey* key);
 
@@ -1647,7 +1647,7 @@ OH_ArkUI_KeyboardShortcutKeyType OH_ArkUI_KeyboardShortcutKey_GetType(const OH_A
  *
  * @param key [in] 键盘快捷键按键对象指针。
  * @param character [in] 可通过键盘输入的单个字符。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_KeyboardShortcutKey_SetCharacter(OH_ArkUI_KeyboardShortcutKey* key, char character);
 
@@ -1660,7 +1660,7 @@ void OH_ArkUI_KeyboardShortcutKey_SetCharacter(OH_ArkUI_KeyboardShortcutKey* key
  *     <li>字符。</li>
  *     <li>如果<b>key</b>为<b>nullptr</b>，则返回<b>'\\0'</b>。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 char OH_ArkUI_KeyboardShortcutKey_GetCharacter(const OH_ArkUI_KeyboardShortcutKey* key);
 
@@ -1670,7 +1670,7 @@ char OH_ArkUI_KeyboardShortcutKey_GetCharacter(const OH_ArkUI_KeyboardShortcutKe
  *
  * @param key [in] 键盘快捷键按键对象指针。
  * @param functionKey [in] 功能键。
- * @since 26.2.0
+ * @since 26.1.0
  */
 void OH_ArkUI_KeyboardShortcutKey_SetFunctionKey(
     OH_ArkUI_KeyboardShortcutKey* key, OH_ArkUI_KeyboardShortcutFunctionKey functionKey);
@@ -1684,7 +1684,7 @@ void OH_ArkUI_KeyboardShortcutKey_SetFunctionKey(
  *     <li>功能键。</li>
  *     <li>如果<b>key</b>为<b>nullptr</b>，则返回{@link OH_ARKUI_KEYBOARD_SHORTCUT_FUNCTION_KEY_ESC}。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey(
     const OH_ArkUI_KeyboardShortcutKey* key);
@@ -1692,7 +1692,7 @@ OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey
 /**
  * @brief 定义应用级键盘快捷键的回调信息。
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShortcutCallbackInfo;
 
@@ -1703,7 +1703,7 @@ typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShor
  *     {@link OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext}获取对应的UI上下文。该对象仅在回调执行期间
  *     有效，不得持有。
  * @param userData [out] 注册快捷键时传入的用户自定义数据。该值不会被复制，在快捷键注销前必须保持有效。
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef void (*OH_ArkUI_ApplicationShortcutCallback)(const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
 
@@ -1717,7 +1717,7 @@ typedef void (*OH_ArkUI_ApplicationShortcutCallback)(const OH_ArkUI_ApplicationS
  *     <li>触发快捷键的UI实例对应的UI上下文。</li>
  *     <li>如果<b>info</b>无效，则返回<b>nullptr</b>。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
     const OH_ArkUI_ApplicationShortcutCallbackInfo* info);
@@ -1747,7 +1747,7 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
  *     <li>如果操作成功，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
  *     <li>如果参数无效，则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
  *     </ul>
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Register(const OH_ArkUI_KeyboardShortcutKey* key, uint32_t modifierKeys,
     void* userData, OH_ArkUI_ApplicationShortcutCallback callback, int32_t* registrationId);
@@ -1761,7 +1761,7 @@ ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Register(const OH_ArkUI_KeyboardSho
  * @param registrationId [in] 注册快捷键时获得的注册标识符。
  * @return 返回执行结果。
  *     <br>如果操作成功或注册标识符不存在，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
- * @since 26.2.0
+ * @since 26.1.0
  */
 ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Unregister(int32_t registrationId);
 
