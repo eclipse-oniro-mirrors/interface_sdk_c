@@ -1082,7 +1082,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
 
 /**
- * @brief 描述当前帧参考的长期参考帧POC号的键，值类型为int32_t。
+ * @brief 描述当前帧参考的长期参考帧（LTR）的POC号的键，值类型为int32_t。
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
  *
