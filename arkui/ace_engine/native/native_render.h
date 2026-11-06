@@ -481,14 +481,14 @@ int32_t OH_ArkUI_RenderNodeUtils_InsertChildAfter(
  */
 typedef enum {
     /**
-     * The child and its render node subtree not inherit the parent
+     * @brief The child and its render node subtree not inherit the parent
      * render node's instance.
      *
      * @since 26.1.0
      */
     OH_ARKUI_RENDER_NODE_UTILS_ATTACH_POLICY_NOT_INHERIT_PARENT_INSTANCE = 0,
     /**
-     * The child and its render node subtree inherit the parent
+     * @brief The child and its render node subtree inherit the parent
      * render node's instance.
      *
      * @since 26.1.0
