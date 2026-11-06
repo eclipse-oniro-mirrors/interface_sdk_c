@@ -176,6 +176,12 @@ typedef struct OH_Drawing_FontVariationAxis OH_Drawing_FontVariationAxis;
  * @since 24
  */
 typedef struct OH_Drawing_FontVariationInstance OH_Drawing_FontVariationInstance;
+
+/**
+* @brief Describes the font family mapping.
+* @since 26.1.0
+*/
+typedef struct OH_Drawing_FontFamilyMapping OH_Drawing_FontFamilyMapping;
 #ifdef __cplusplus
 }
 #endif

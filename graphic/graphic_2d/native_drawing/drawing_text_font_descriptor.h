@@ -662,6 +662,93 @@ uint32_t OH_Drawing_GetFontCountFromBuffer(uint8_t* fontBuffer, size_t length);
  * @since 23
  */
 OH_Drawing_String* OH_Drawing_GetFontPathsByType(OH_Drawing_SystemFontType fontType, size_t* pathCount);
+
+/**
+* @brief Copies the content of the font family mapping table.
+* @param outCopiedMappings [out] Content of the font family mapping table, populated on success.
+*         Call {@link OH_Drawing_FreeFontFamilyMappings} to free the memory after use.
+* @param outBorrowedCount [out] Number of entries in the font family mapping table, populated on success.
+* @return <ul>
+*         <li>{@link OH_DRAWING_SUCCESS} is returned if the operation is successful. </li>
+*         <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} is returned if the **outCopiedMappings** or **outBorrowedCount**
+* parameter is a null pointer. </li>
+*         </ul>
+* @since 26.1.0
+* @release OH_Drawing_FreeFontFamilyMappings {outCopiedMappings}
+*/
+OH_Drawing_ErrorCode OH_Drawing_CopyFontFamilyMappings(const OH_Drawing_FontFamilyMapping ***outCopiedMappings,
+    uint32_t *outBorrowedCount);
+ 
+/**
+* @brief Releases a font family mapping table.
+* @param mappings [in] Pointer to the font family mapping table.
+* @since 26.1.0
+*/
+void OH_Drawing_FreeFontFamilyMappings(const OH_Drawing_FontFamilyMapping **mappings);
+ 
+/**
+* @brief Obtains the source font family name from a specified font family mapping object.
+*
+* @param mapping [in] Pointer to a single font family mapping object. The pointer cannot be null and must remain
+* valid during the call. The callee does not retain this reference, so the caller does not need to release it after
+* the call.
+* @param outBorrowedSourceFamily [out] Source font family name encoded in UTF-8, populated on success. The value of
+* this parameter remains unchanged if the call fails.
+* This parameter cannot be left empty and does not need to be initialized before the call. The string is owned by the
+* **mapping** object and must not be released by the caller. It becomes invalid after the **mapping** object is
+* modified or destroyed.
+* @return <ul>
+*         <li>{@link OH_DRAWING_SUCCESS} is returned if the operation is successful. </li>
+*         <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} is returned if the **mapping** or **outBorrowedSourceFamily**
+* parameter is a null pointer. </li>
+*         </ul>
+* @since 26.1.0
+*/
+OH_Drawing_ErrorCode OH_Drawing_GetSourceFamilyFromMapping(const OH_Drawing_FontFamilyMapping *mapping,
+    const char **outBorrowedSourceFamily);
+ 
+/**
+* @brief Obtains the number of target font families contained in a specified font family mapping object.
+*
+* @param mapping [in] Pointer to a single font family mapping object. The pointer cannot be null and must remain
+* valid during the call. The callee does not retain this reference, so the caller does not need to release it after
+* the call.
+* @param outBorrowedTargetCount [out] Number of target font family names, populated on success. The value of this
+* parameter remains unchanged if the call fails.
+* @return <ul>
+*         <li>{@link OH_DRAWING_SUCCESS} is returned if the operation is successful. </li>
+*         <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} is returned if the **mapping** or **outBorrowedTargetCount**
+* parameter is a null pointer. </li>
+*         </ul>
+* @since 26.1.0
+*/
+OH_Drawing_ErrorCode OH_Drawing_GetTargetCountFromMapping(const OH_Drawing_FontFamilyMapping *mapping,
+    uint32_t *outBorrowedTargetCount);
+ 
+
+/**
+* @brief Obtains the target font family name from a specified font family mapping object based on the index.
+*
+* @param mapping [in] Pointer to a single font family mapping object. The pointer cannot be null and must remain
+* valid during the call. The callee does not retain this reference, so the caller does not need to release it after
+* the call.
+* @param index [in] Index of the target font family name. The value range is [0, **targetCount** – 1].
+*         You can obtain **targetCount** by calling {@link OH_Drawing_GetTargetCountFromMapping}.
+* @param outBorrowedTargetFamily [out] Target font family name encoded in UTF-8, populated on success. The value of
+* this parameter remains unchanged if the call fails.
+* This parameter cannot be left empty and does not need to be initialized before the call. The string is owned by
+* the **mapping** object and must not be released by the caller. It becomes invalid after the **mapping** object is
+* modified or destroyed.
+* @return <ul>
+*         <li>{@link OH_DRAWING_SUCCESS} is returned if the operation is successful. </li>
+*         <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} is returned if the **mapping** or **outBorrowedTargetFamily**
+* parameter is a null pointer. </li>
+*         <li>{@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} is returned if the value of **index** is out of range. </li>
+*         </ul>
+* @since 26.1.0
+*/
+OH_Drawing_ErrorCode OH_Drawing_GetTargetFamilyFromMapping(const OH_Drawing_FontFamilyMapping *mapping,
+    uint32_t index, const char **outBorrowedTargetFamily);
 #ifdef __cplusplus
 }
 #endif

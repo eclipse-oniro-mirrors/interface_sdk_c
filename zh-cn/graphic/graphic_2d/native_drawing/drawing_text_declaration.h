@@ -176,6 +176,13 @@ typedef struct OH_Drawing_FontVariationAxis OH_Drawing_FontVariationAxis;
  * @since 24
  */
 typedef struct OH_Drawing_FontVariationInstance OH_Drawing_FontVariationInstance;
+
+/**
+ * @brief 字体家族映射对象，用于描述字体家族映射关系。
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_Drawing_FontFamilyMapping OH_Drawing_FontFamilyMapping;
 #ifdef __cplusplus
 }
 #endif
