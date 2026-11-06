@@ -17026,6 +17026,39 @@ int32_t OH_ArkUI_Swiper_ShowPrevious(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
 
 /**
+ * @brief 显示ArcSwiper节点的上一页。
+ *
+ * @param node ArkUI_NodeHandle指针。
+ * @return 错误码。
+ * {@link ARKUI_ERROR_CODE_NO_ERROR}成功。
+ * {@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。
+ * @since 26.0.1
+ */
+int32_t OH_ArkUI_ArcSwiper_ShowPrevious(ArkUI_NodeHandle node);
+
+/**
+ * @brief 显示ArcSwiper节点的下一页。
+ *
+ * @param node ArkUI_NodeHandle指针。
+ * @return 错误码。
+ * {@link ARKUI_ERROR_CODE_NO_ERROR}成功。
+ * {@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。
+ * @since 26.0.1
+ */
+int32_t OH_ArkUI_ArcSwiper_ShowNext(ArkUI_NodeHandle node);
+
+/**
+ * @brief 停止ArcSwiper节点执行的动画。
+ *
+ * @param node ArkUI_NodeHandle指针。
+ * @return 错误码。
+ * {@link ARKUI_ERROR_CODE_NO_ERROR}成功。
+ * {@link ARKUI_ERROR_CODE_PARAM_INVALID}函数参数异常。
+ * @since 26.0.1
+ */
+int32_t OH_ArkUI_ArcSwiper_FinishAnimation(ArkUI_NodeHandle node);
+
+/**
  * @brief 获取指定实例的页面的根节点。
  *
  * @param context UI实例对象指针。\n
