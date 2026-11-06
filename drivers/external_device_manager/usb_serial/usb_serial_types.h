@@ -132,8 +132,8 @@ typedef struct UsbSerial_Params {
 
 /**
  * @brief Defines the flow control mode for the USB Serial DDK. When using the USB serial port for data transfer, you
- * need to select a proper flow control mode based on the communication scenario. For example, in high-speed and large-
- * volume data transmission scenarios, hardware flow control is recommended to avoid data loss. In low-speed or
+ * need to select a proper flow control mode based on the communication scenario. For example, in high-speed and
+ * large-volume data transmission scenarios, hardware flow control is recommended to avoid data loss. In low-speed or
  * scenarios that do not require high real-time performance, software flow control can be used. In short-range and
  * reliable point-to-point communication scenarios, no flow control can be selected.
  *

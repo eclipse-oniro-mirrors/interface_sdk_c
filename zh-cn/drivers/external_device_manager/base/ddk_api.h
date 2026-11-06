@@ -17,8 +17,7 @@
  * @addtogroup Ddk
  * @{
  *
- * @brief Provides Base DDK APIs, including creating the shared memory, mapping the shared memory,\n
- * unmapping the shared memory, and destroying the shared memory.
+ * @brief 提供Base DDK接口，包括创建、映射、取消映射以及销毁共享内存。
  *
  * @since 12
  */

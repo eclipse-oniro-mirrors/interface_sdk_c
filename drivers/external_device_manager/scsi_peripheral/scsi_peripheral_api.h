@@ -17,8 +17,10 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading and
- * writing devices, etc.
+ * @brief The SCSI Peripheral DDK is a suite dedicated to SCSI device driver development at the application layer.
+ * It provides APIs for initializing the DDK, releasing the DDK, enabling and disabling devices, and reading data
+ * from and writing data to devices. It also declares the macros, enum variables, and data structures required for
+ * SCSI device driver development. The use scenarios include storage device driver development and disk array management.
  * @since 18
  */
 
@@ -176,8 +178,8 @@ int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripher
  *     **ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL** permission.
  *     <br>{@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized. Call **OH_ScsiPeripheral_Init** to
  *     complete the initialization first.
- *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **inquiryInfo**, **inquiryInfo-
- *     >data**, or **response** is null. Check whether the pointer parameter is correct.
+ *     <br>{@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **inquiryInfo**, **inquiryInfo->data**,
+ *     or **response** is null. Check whether the pointer parameter is correct.
  *     <br>{@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails. Check whether the
  *     DDK service is initialized and running properly.
  *     <br>{@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails. Check the memory status and whether

@@ -17,7 +17,7 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
+ * @brief 提供HID DDK接口，包括创建设备、发送事件、销毁设备等功能，用于HID设备的驱动开发。
  *
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11

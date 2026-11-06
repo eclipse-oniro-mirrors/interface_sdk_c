@@ -17,7 +17,7 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
+ * @brief 
  *
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.HID.Extension
@@ -820,11 +820,12 @@ typedef enum {
      */
     HID_REL_DIAL = 0x07,
     /**
-     * Scroll wheel.
+     * Vertical scroll wheel, indicating the scroll direction and distance of the mouse vertical scroll wheel. It is
+     * used for vertical scrolling operations.
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * Miscellaneous absolute coordinate axes, which are used to identify miscellaneous axis types that do not fit into
+     * Miscellaneous relative coordinate events, which are used to identify miscellaneous axis types that do not fit into
      * the preceding categories.
      */
     HID_REL_MISC = 0x09,
@@ -911,7 +912,7 @@ typedef struct Hid_KeyCodeArray {
      */
     Hid_KeyCode *hidKeyCode;
     /**
-     * Valid length of the array, which cannot exceed the actual length of the **hidEventType** array.
+     * Valid length of the array, which cannot exceed the actual length of the **hidKeyCode** array.
      */
     uint16_t length;
 } Hid_KeyCodeArray;
@@ -933,7 +934,8 @@ typedef struct Hid_AbsAxesArray {
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * Valid length of the array, which cannot exceed the actual length of the **hidEventType** array.
+     * Valid length of the array, indicating the number of valid elements to which the **hidAbsAxes** pointer points.
+     * The value range is [0, 65535].
      */
     uint16_t length;
 } Hid_AbsAxesArray;
@@ -952,7 +954,7 @@ typedef struct Hid_RelAxesArray {
      */
     Hid_RelAxes *hidRelAxes;
     /**
-     * Valid length of the array, which cannot exceed the actual length of the **hidEventType** array.
+     * Valid length of the array, which cannot exceed the actual length of the **hidRelBits** array.
      */
     uint16_t length;
 } Hid_AbsAxesArray;
@@ -971,7 +973,7 @@ typedef struct Hid_MscEventArray {
      */
     Hid_MscEvent *hidMscEvent;
     /**
-     * Valid length of the array, which cannot exceed the actual length of the **hidEventType** array.
+     * Valid length of the array, which cannot exceed the actual length of the **hidMscEvent** array.
      */
     uint16_t length;
 } Hid_MscEventArray;
@@ -987,8 +989,8 @@ typedef struct Hid_MscEventArray {
  */
 typedef struct Hid_EventProperties {
     /**
-     * Pointer to the array of event type codes, which points to the array pre-allocated by the caller. The pointer
-     * cannot be null. The array size must be greater than or equal to the value of length.
+     * Array of event types, which contains the set of event types supported by the device. This parameter is used to
+     * configure the events that can be triggered by the HID device.
      */
     struct Hid_EventTypeArray hidEventTypes;
     /**
@@ -1110,7 +1112,7 @@ typedef enum {
 } Hid_DdkErrCode;
 
 /**
- * @brief
+ * @brief Defines the maximum size of the report buffer.
  * @since 18
  */
 #define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)
@@ -1154,7 +1156,7 @@ typedef enum {
  */
 typedef struct Hid_RawDevInfo {
     /**
-     * Bus type. For details about the value, see the bus type definition in the standard HID protocol.
+     * Bus type, which identifies the physical connection method of the HID device.
      */
     uint32_t busType;
     /**

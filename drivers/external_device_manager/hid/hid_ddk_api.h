@@ -17,7 +17,8 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
+ * @brief Provides HID driver development kit (DDK) interfaces, including those for creating a device, sending
+ * events to a device, and destroying a device, for HID driver development.
  *
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
@@ -116,8 +117,8 @@ int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t 
  * the current caller can be destroyed.
  *
  * @permission ohos.permission.ACCESS_DDK_HID
- * @param deviceId Device ID, which must be the ID of the device created by the current caller. The value must be a non-
- *     negative integer.
+ * @param deviceId Device ID, which must be the ID of the device created by the current caller. The value must be a
+ *     non-negative integer.  
  * @return {@link HID_DDK_SUCCESS}: The API call is successful.
  *     <br>{@link HID_DDK_NO_PERM}: The permission verification fails. Ensure that you have declared the
  *     **ohos.permission.ACCESS_DDK_HID** permission.

@@ -17,8 +17,11 @@
  * @addtogroup UsbDdk
  * @{
  *
- * @brief Provides USB DDK types and declares the macros, enumerated variables, and
- * data structures required by the USB DDK APIs.
+ * @brief Provides USB DDK APIs to open and close USB interfaces, perform
+ * non-isochronous and isochronous data transfer over USB pipes, and implement
+ * control transfer and interrupt transfer. This module is applicable to scenarios
+ * where underlying interaction and data communication with USB devices are required,
+ * helping you efficiently develop USB device drivers.
  *
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
@@ -85,7 +88,7 @@ typedef struct UsbControlRequestSetup {
  */
 typedef struct UsbDeviceDescriptor {
     /**
-     * Size of this descriptor, in bytes.
+     * Size of the descriptor, in bytes.
      */
     uint8_t bLength;
     /**
@@ -334,8 +337,8 @@ typedef struct UsbDdkInterface {
      */
     uint8_t numAltsetting;
     /**
-     * Pointer to the array of alternate settings of the USB interface. The length of the array is specified by **
-     * numAltsetting**.
+     * Pointer to the array of alternate settings of the USB interface. The length of the array is specified
+     * by **numAltsetting**.
      */
     struct UsbDdkInterfaceDescriptor *altsetting;
 } UsbDdkInterface;
@@ -409,8 +412,8 @@ typedef struct UsbDeviceMemMap {
     const size_t size;
     /**
      * Offset of the used buffer. The default value is **0**, indicating that there is no offset. The offset is
-     * calculated from the buffer address. The sum of **offset** and **bufferLength** must be less than or equal to **
-     * size**.
+     * calculated from the buffer address. The sum of **offset** and **bufferLength** must be less than or equal 
+     * to **size**.
      */
     uint32_t offset;
     /**
@@ -436,7 +439,7 @@ typedef enum {
      */
     USB_DDK_SUCCESS = 0,
     /**
-     * Operation failed.<br> **Deprecated from**: 16
+     * Operation failed.
      * @deprecated since 16
      */
     USB_DDK_FAILED = -1,
@@ -458,14 +461,13 @@ typedef enum {
     USB_DDK_MEMORY_ERROR = 27400001,
     /**
      * Null pointer error. For example, the input pointer parameter is null. Check whether the input pointer parameter
-     * is valid.<br> **Deprecated from**: 16
+     * is valid.
      * @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
     /**
      * The device is busy. For example, the device is performing other operations or the device resources are occupied.
-     * Wait until the device is idle and try again, or release the occupied device resources.<br> **Deprecated from**:
-     * 16
+     * Wait until the device is idle and try again, or release the occupied device resources.
      * @deprecated since 16
      */
     USB_DDK_DEVICE_BUSY = -6,
@@ -482,8 +484,8 @@ typedef enum {
      */
     USB_DDK_IO_FAILED = 27400003,
     /**
-     * Transfer timed out. Check whether the device response is normal or increase the timeout interval. The value is **
-     * -7** in versions earlier than API version 16.
+     * Transfer timed out. Check whether the device response is normal or increase the timeout interval. The value is **-7**
+     * in versions earlier than API version 16.
      */
     USB_DDK_TIMEOUT = 27400004
 } UsbDdkErrCode;

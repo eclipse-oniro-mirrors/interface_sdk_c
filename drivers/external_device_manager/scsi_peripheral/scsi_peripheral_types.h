@@ -242,7 +242,8 @@ typedef struct ScsiPeripheral_IORequest {
 #define SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN 16
 
 /**
- * @brief Defines the request structure.
+ * @brief Defines the request structure.Defines the SCSI request parameters. It is used to construct the request parameters
+ * for interacting with SCSI devices, including the CDB, data buffer, and timeout interval.
  *
  * @since 18
  */
@@ -250,7 +251,8 @@ typedef struct ScsiPeripheral_Request {
     /** Command descriptor block. */
     uint8_t commandDescriptorBlock[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN];
     /**
-     * Length of the command descriptor block.
+     * Length of the command descriptor block. Ensure that the length matches the actual command. The maximum length cannot
+     * exceed {@link SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN}.
      */
     uint8_t cdbLength;
     /**
@@ -332,7 +334,7 @@ typedef struct ScsiPeripheral_Response {
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -361,7 +363,7 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint16_t allocationLength;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -438,7 +440,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
      */
     uint32_t lbAddress;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -484,7 +486,7 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
      */
     uint8_t allocationLength;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -553,7 +555,7 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint16_t verificationLength;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
