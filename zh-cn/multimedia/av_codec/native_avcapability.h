@@ -194,11 +194,11 @@ OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_
 bool OH_AVCapability_IsHardware(OH_AVCapability *capability);
 
 /**
- * @brief 检查能力实例是否描述了一个安全解码器。
+ * @brief 检查能力实例是否描述了一个DRM(Digital Rights Management)解码器。
  *
  * @param capability 编解码能力指针。
- * @return 如果能力实例描述的是安全解码器，则返回true。\n
- *         如果能力实例描述的是非安全解码器，则为false。
+ * @return 如果能力实例描述的是DRM解码器，则返回true。
+ *         如果能力实例描述的是非DRM解码器，则为false。
  * @since 24
  */
 bool OH_AVCapability_IsSecure(OH_AVCapability *capability);
