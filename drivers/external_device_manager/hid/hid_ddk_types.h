@@ -957,7 +957,7 @@ typedef struct Hid_RelAxesArray {
      * Valid length of the array, which cannot exceed the actual length of the **hidRelBits** array.
      */
     uint16_t length;
-} Hid_AbsAxesArray;
+} Hid_RelAxesArray;
 
 /**
  * @brief Defines an array of miscellaneous events, which stores information about the miscellaneous events supported
