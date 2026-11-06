@@ -337,6 +337,80 @@ int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequest
  * @since 26.0.0
  */
 int32_t OH_Usb_GetNonRootHubs(struct Usb_NonRootHubArray *nonRootHub);
+
+/**
+ * @brief 创建设备内存缓冲区。为避免资源泄漏，请在缓冲区使用完成后调用{@link OH_Usb_DestroyDeviceMemBuffer}销毁缓冲区。
+ *
+ * @permission ohos.permission.ACCESS_DDK_USB
+ * @param deviceId [in] 设备ID。
+ * @param size [in] 缓冲区大小，单位：Byte。
+ * @param buffer [out] 数据缓冲区，通过该参数将创建的缓冲区返回给调用者。
+ * @return {@link USB_DDK_SUCCESS} 调用接口成功。
+ *     <br>{@link USB_DDK_NO_PERM} 权限检查失败，请检查应用已获取了ohos.permission.ACCESS_DDK_USB权限。
+ *     <br>{@link USB_DDK_INVALID_OPERATION} 连接USB DDK服务失败或设备驱动无效，请先调用{@link OH_Usb_Init}完成初始化，并检查**deviceId**对应的设备状态。
+ *     <br>{@link USB_DDK_INVALID_PARAMETER} 入参**buffer**为空指针，请检查参数有效性。
+ *     <br>{@link USB_DDK_MEMORY_ERROR} 内存分配失败，请检查内存大小和有效性。
+ * @release OH_Usb_DestroyDeviceMemBuffer {buffer}
+ * @since 26.1.0
+ */
+UsbDdkErrCode OH_Usb_CreateDeviceMemBuffer(uint64_t deviceId, uint32_t size, uint8_t **buffer);
+ 
+/**
+ * @brief 销毁设备内存缓冲区。为防止资源泄漏，请在使用完成后及时销毁缓冲区。
+ *
+ * @param buffer [in,out] 销毁通过{@link OH_Usb_CreateDeviceMemBuffer}创建的缓冲区。
+ * @return {@link USB_DDK_SUCCESS} 调用接口成功。
+ *     <br>{@link USB_DDK_INVALID_PARAMETER} 入参**buffer**或***buffer**为空指针，或***buffer**无效，请检查参数有效性。
+ *     <br>{@link USB_DDK_MEMORY_ERROR} 解除内存映射失败，请检查缓冲区和设备状态。
+ * @since 26.1.0
+ */
+UsbDdkErrCode OH_Usb_DestroyDeviceMemBuffer(uint8_t **buffer);
+ 
+/**
+ * @brief 发送管道写请求。该接口以同步方式工作，适用于中断传输和批量传输。
+ *
+ * @permission ohos.permission.ACCESS_DDK_USB
+ * @param pipe [in] 用于传输数据的管道。
+ * @param buffer [in] 数据缓冲区，即设备内存映射缓冲区。
+ * @param bufferSize [in] 缓冲区大小，单位：Byte。
+ * @param offset [in] 缓冲区中数据的起始位置，单位：Byte。
+ * @param writeLength [in] 待使用的缓冲区长度，表示从offset位置开始写入的数据长度，单位：Byte。
+ * @param transferredLength [out] 输出参数，表示实际传输的数据长度，单位：Byte。仅当函数返回0时有效。
+ * @return {@link USB_DDK_SUCCESS} 调用接口成功。
+ *     <br>{@link USB_DDK_NO_PERM} 权限检查失败，请检查应用已获取了ohos.permission.ACCESS_DDK_USB权限。
+ *     <br>{@link USB_DDK_INVALID_OPERATION} 连接USB DDK服务失败，请先调用{@link OH_Usb_Init}完成初始化。
+ *     <br>{@link USB_DDK_INVALID_PARAMETER} 参数校验失败，请检查参数有效性。可能原因：1. **pipe**、**buffer**或**transferredLength**为空指针；
+ *     <br>2. **offset**大于**bufferSize**或**offset**与**writeLength**之和大于**bufferSize**；3. **pipe**中端点的方向错误。
+ *     <br>{@link USB_DDK_MEMORY_ERROR} 拷贝存储写数据的内存失败，请检查内存大小和有效性。
+ *     <br>{@link USB_DDK_IO_FAILED} 数据I/O异常，请检查参数和设备规格。
+ *     <br>{@link USB_DDK_TIMEOUT} 操作超时，请检查传输参数和设备状态。
+ * @since 26.1.0
+ */
+UsbDdkErrCode OH_Usb_WritePipe(const struct UsbRequestPipe *pipe, uint8_t *buffer, uint32_t bufferSize,
+    uint32_t offset, uint32_t writeLength, uint32_t *transferredLength);
+ 
+/**
+ * @brief 发送管道读请求。该接口以同步方式工作，适用于中断传输和批量传输。
+ *
+ * @permission ohos.permission.ACCESS_DDK_USB
+ * @param pipe [in] 用于传输数据的管道。
+ * @param buffer [in] 数据缓冲区，即设备内存映射缓冲区。
+ * @param bufferSize [in] 缓冲区大小，单位：Byte。
+ * @param offset [in] 缓冲区中数据的起始位置，单位：Byte。
+ * @param readLength [in] 待使用的缓冲区长度，表示从offset位置开始读取的数据长度，单位：Byte。
+ * @param transferredLength [out] 输出参数，表示实际传输的数据长度，单位：Byte。仅当函数返回0时有效。
+ * @return {@link USB_DDK_SUCCESS} 调用接口成功。
+ *     <br>{@link USB_DDK_NO_PERM} 权限检查失败，请检查应用已获取了ohos.permission.ACCESS_DDK_USB权限。
+ *     <br>{@link USB_DDK_INVALID_OPERATION} 连接USB DDK服务失败，请先调用{@link OH_Usb_Init}完成初始化。
+ *     <br>{@link USB_DDK_INVALID_PARAMETER} 参数校验失败，请检查参数有效性。可能原因：1. **pipe**、**buffer**或**transferredLength**为空指针；
+ *     <br>2. **offset**大于**bufferSize**或**offset**与**readLength**之和大于**bufferSize**；3. **pipe**中端点的方向错误。
+ *     <br>{@link USB_DDK_MEMORY_ERROR} 拷贝存储读数据的内存失败，请检查内存大小和有效性。
+ *     <br>{@link USB_DDK_IO_FAILED} 数据I/O异常，请检查参数和设备规格。
+ *     <br>{@link USB_DDK_TIMEOUT} 操作超时，请检查传输参数和设备状态。
+ * @since 26.1.0
+ */
+UsbDdkErrCode OH_Usb_ReadPipe(const struct UsbRequestPipe *pipe, uint8_t *buffer, uint32_t bufferSize,
+    uint32_t offset, uint32_t readLength, uint32_t *transferredLength);
 /** @} */
 #ifdef __cplusplus
 }
