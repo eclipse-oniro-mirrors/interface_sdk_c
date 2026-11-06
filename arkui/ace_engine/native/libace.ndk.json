@@ -7656,14 +7656,6 @@
     },
     {
         "first_introduced": "26.2.0",
-        "name": "OH_ArkUI_NodeKeyboardShortcut_Register"
-    },
-    {
-        "first_introduced": "26.2.0",
-        "name": "OH_ArkUI_NodeKeyboardShortcut_Unregister"
-    },
-    {
-        "first_introduced": "26.2.0",
         "name": "OH_ArkUI_KeyboardShortcutKey_Create"
     },
     {

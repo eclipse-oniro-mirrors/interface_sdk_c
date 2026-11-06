@@ -1569,64 +1569,6 @@ OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey
     const OH_ArkUI_KeyboardShortcutKey* key);
 
 /**
- * @brief Defines the callback invoked when a component-level keyboard shortcut is triggered.
- *
- * @param userData [out] User-defined data passed when the shortcut is registered. The value is not copied and
- *     must remain valid until the shortcut is unregistered.
- * @since 26.2.0
- */
-typedef void (*OH_ArkUI_KeyboardShortcutCallback)(void* userData);
-
-/**
- * @brief Registers a keyboard shortcut for a component. If the same shortcut is registered again for the same
- * component, the latest registration takes effect. Component-level shortcuts take precedence over matching
- * application-level shortcuts.
- *
- * @param node [in] Target component node.
- * @param key [in] Pointer to a keyboard shortcut key object created by {@link OH_ArkUI_KeyboardShortcutKey_Create}.
- *     The value must not be <b>nullptr</b>. For a character key, the character set through
- *     {@link OH_ArkUI_KeyboardShortcutKey_SetCharacter} must be a single keyboard-input character.
- * @param modifierKeys [in] Modifier key bitmask. Use a bitwise OR combination of values in
- *     {@link OH_ArkUI_KeyboardShortcutModifierKey}. For a function key, use
- *     {@link OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_NONE} to register the shortcut without a modifier key. At least one
- *     modifier key must be specified for a character key. Only the bits defined in
- *     {@link OH_ArkUI_KeyboardShortcutModifierKey} are accepted; if any other bit is set,
- *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @param userData [in] User-defined data passed to the callback. The value can be <b>nullptr</b>. The value is
- *     not copied and must remain valid until the shortcut is unregistered.
- * @param callback [in] Callback invoked when the shortcut is triggered. If <b>callback</b> is <b>nullptr</b>, the click
- *     event of the component is triggered.
- * @return Result code.
- *     <ul>
- *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
- *     </ul>
- * @since 26.2.0
- */
-ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Register(ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key,
-    uint32_t modifierKeys, void* userData, OH_ArkUI_KeyboardShortcutCallback callback);
-
-/**
- * @brief Unregisters a keyboard shortcut from a component. If no matching shortcut is registered, the operation still
- * succeeds.
- *
- * @param node [in] Target component node.
- * @param key [in] Pointer to a keyboard shortcut key object used during registration. The value must not be
- *     <b>nullptr</b>.
- * @param modifierKeys [in] Modifier key bitmask used during registration. Only the bits defined in
- *     {@link OH_ArkUI_KeyboardShortcutModifierKey} are accepted; if any other bit is set,
- *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <ul>
- *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
- *     </ul>
- * @since 26.2.0
- */
-ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Unregister(
-    ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key, uint32_t modifierKeys);
-
-/**
  * @brief Defines the callback information for an application-level keyboard shortcut.
  *
  * @since 26.2.0

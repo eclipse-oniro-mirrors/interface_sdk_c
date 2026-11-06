@@ -1690,56 +1690,6 @@ OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey
     const OH_ArkUI_KeyboardShortcutKey* key);
 
 /**
- * @brief 定义组件级键盘快捷键触发时调用的回调函数。
- *
- * @param userData [out] 注册快捷键时传入的用户自定义数据。该值不会被复制，在快捷键注销前必须保持有效。
- * @since 26.2.0
- */
-typedef void (*OH_ArkUI_KeyboardShortcutCallback)(void* userData);
-
-/**
- * @brief 为组件注册键盘快捷键。同一组件重复注册相同快捷键时，以最后一次注册为准。组件级快捷键的触发优先级
- * 高于相同的应用级快捷键。
- *
- * @param node [in] 目标组件节点。
- * @param key [in] 指向键盘快捷键按键对象的指针，不能为<b>nullptr</b>。该对象通过
- *     {@link OH_ArkUI_KeyboardShortcutKey_Create}创建。字符键通过
- *     {@link OH_ArkUI_KeyboardShortcutKey_SetCharacter}设置的字符必须为单个可通过键盘输入的字符。
- * @param modifierKeys [in] 修饰键位掩码。使用{@link OH_ArkUI_KeyboardShortcutModifierKey}中的值进行按位或组合。功能键可使用
- *     {@link OH_ARKUI_KEYBOARD_SHORTCUT_MODIFIER_NONE}注册不带修饰键的快捷键，字符键至少需要指定一个修饰键。
- *     仅接受{@link OH_ArkUI_KeyboardShortcutModifierKey}中定义的位，设置其他位时返回
- *     {@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @param userData [in] 传递给回调函数的用户自定义数据，可以为<b>nullptr</b>。该值不会被复制，
- *     在快捷键注销前必须保持有效。
- * @param callback [in] 快捷键触发时调用的回调函数。如果为<b>nullptr</b>，则触发组件的点击事件。
- * @return 返回执行结果。
- *     <ul>
- *     <li>如果操作成功，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
- *     <li>如果参数无效，则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
- *     </ul>
- * @since 26.2.0
- */
-ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Register(ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key,
-    uint32_t modifierKeys, void* userData, OH_ArkUI_KeyboardShortcutCallback callback);
-
-/**
- * @brief 注销组件的键盘快捷键。如果没有注册匹配的快捷键，该操作仍然成功。
- *
- * @param node [in] 目标组件节点。
- * @param key [in] 指向注册时所用键盘快捷键按键对象的指针，不能为<b>nullptr</b>。
- * @param modifierKeys [in] 注册时使用的修饰键位掩码。仅接受{@link OH_ArkUI_KeyboardShortcutModifierKey}
- *     中定义的位，设置其他位时返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
- * @return 返回执行结果。
- *     <ul>
- *     <li>如果操作成功，则返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
- *     <li>如果参数无效，则返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
- *     </ul>
- * @since 26.2.0
- */
-ArkUI_ErrorCode OH_ArkUI_NodeKeyboardShortcut_Unregister(
-    ArkUI_NodeHandle node, const OH_ArkUI_KeyboardShortcutKey* key, uint32_t modifierKeys);
-
-/**
  * @brief 定义应用级键盘快捷键的回调信息。
  *
  * @since 26.2.0
