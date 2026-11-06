@@ -996,7 +996,7 @@ extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER;
 extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA;
 
 /**
- * @brief 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。
+ * @brief 在视频编码中获取长期参考帧（LTR）的最大个数的键，值类型为int32_t。
  *
  * 可以通过{@link OH_AVCapability_GetFeatureProperties}接口和
  * 枚举值{@link OH_AVCapabilityFeature}中的VIDEO_ENCODER_LONG_TERM_REFERENCE来查询这个最大值。
@@ -1056,10 +1056,10 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
 /**
- * @brief 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。
+ * @brief 描述长期参考帧（LTR）个数的键，值类型为int32_t，必须在支持的值范围内使用。
  *
  * 使用前可以通过{@link OH_AVCapability_GetFeatureProperties}接口和
- * 枚举值{@link OH_AVCapabilityFeature}中的VIDEO_ENCODER_LONG_TERM_REFERENCE来查询支持的LTR数目。
+ * 枚举值{@link OH_AVCapabilityFeature}中的VIDEO_ENCODER_LONG_TERM_REFERENCE来查询支持的长期参考帧（LTR）数目。
  *
  * 该键是可选的且只用于视频编码，在Configure阶段使用。
  * @since 12
@@ -1067,11 +1067,11 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
 
 /**
- * @brief 标记当前帧为长期参考帧的键，值类型为int32_t，
+ * @brief 标记当前帧为长期参考帧（LTR）的键，值类型为int32_t，
  * 1表示被标记，0表示未被标记，默认值为0。
  * 配置非0值将按照配置1处理，表示被标记。
  *
- * 只在长期参考帧个数被配置后生效。
+ * 只在长期参考帧（LTR）个数被配置后生效。
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
  *
@@ -1093,9 +1093,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR;
 
 /**
- * @brief 当前{@link OH_AVBuffer}中输出的码流对应的帧是否为长期参考帧的键，
- * 值类型为int32_t，1表示是LTR，0表示不是LTR，
- * 默认值为0。配置非0值将按照配置1处理，表示是LTR。
+ * @brief 当前{@link OH_AVBuffer}中输出的码流对应的帧是否为长期参考帧（LTR）的键，
+ * 值类型为int32_t，1表示是长期参考帧（LTR），0表示不是长期参考帧（LTR），
+ * 默认值为0。配置非0值将按照配置1处理，表示是长期参考帧（LTR）。
  *
  * 该键是可选的且只用于视频编码输出轮转中。
  *
