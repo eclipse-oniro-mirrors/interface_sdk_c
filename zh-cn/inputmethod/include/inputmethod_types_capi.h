@@ -486,9 +486,19 @@ typedef enum InputMethod_ErrorCode {
      */
     IME_ERR_DETACHED = 12800009,
     /**
+     * @brief 当前输入法应用非系统预置的默认输入法。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_NOT_DEFAULT_IME = 12800010,
+    /**
      * @brief 输入框处于非编辑态。输入框可能仍已绑定，不能将此错误等同于已解绑。
      */
     IME_ERR_EDITABLE = 12800016,
+    /**
+     * @brief 输入能力类型不支持。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_INPUT_CAPABILITY_TYPE_NOT_SUPPORTED = 12800029,
     /**
      * @brief 空指针异常。可能是传入的参数为空指针，请检查输入参数是否正确初始化。该错误码在C API接口收到NULL指针参数时返回，属于
      * C语言特有的参数错误类型。开发者应在调用接口前确保所有指针参数均为非NULL。
@@ -542,6 +552,48 @@ typedef enum InputMethod_RequestKeyboardReason {
      */
     IME_REQUEST_REASON_OTHER = 20
 } InputMethod_RequestKeyboardReason;
+
+/**
+ * @brief 预上屏文本下划线样式枚举。
+ *
+ * @since 26.1.0
+ */
+typedef enum OH_InputMethod_UnderlineStyle {
+    /**
+     * @brief 无下划线。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_NONE = 0,
+    /**
+     * @brief 实线下划线。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_SOLID = 1,
+    /**
+     * @brief 波浪线下划线。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_WAVY = 2,
+    /**
+     * @brief 虚线下划线。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_UNDERLINE_STYLE_DASHED = 3,
+} OH_InputMethod_UnderlineStyle;
+
+/**
+ * @brief 枚举输入能力类型。
+ *
+ * @since 26.1.0
+ */
+typedef enum OH_InputMethod_InputCapabilityType {
+    /**
+     * @brief 系统输入能力。
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_INPUT_CAPABILITY_TYPE_SYSTEM = 0,
+} OH_InputMethod_InputCapabilityType;
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

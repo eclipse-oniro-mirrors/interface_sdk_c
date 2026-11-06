@@ -86,12 +86,14 @@
 #define OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAPI_H
 #include <stddef.h>
 
+#include "inputmethod_preview_text_style_capi.h"
 #include "inputmethod_private_command_capi.h"
 #include "inputmethod_text_config_capi.h"
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+
 /**
  * @brief 输入法文本编辑器代理类。用于处理输入法应用与文本编辑器之间的交互，提供接收输入法请求和通知的方法，适用于需要实现输入法与
  * 编辑器双向通信的场景。该结构体为不透明类型（opaque type），调用者不可直接访问其内部成员，
@@ -417,6 +419,38 @@ typedef int32_t (*OH_TextEditorProxy_ReceivePrivateCommandFunc)(
 typedef int32_t (*OH_TextEditorProxy_SetPreviewTextFunc)(
     InputMethod_TextEditorProxy *textEditorProxy, const char16_t text[], size_t length, int32_t start, int32_t end);
 /**
+ * @brief 输入法设置带样式的预上屏文本时触发的回调函数。与{@link OH_TextEditorProxy_SetPreviewTextFunc}类似，但额外携带预上屏
+ * 文本样式信息。开发者需实现此函数，在函数中将text参数指定的文本内容以指定的样式插入到编辑框的光标位置。
+ * 与{@link OH_TextEditorProxy_FinishTextPreviewFunc}配合使用：先调用SetPreviewTextWithStyleFunc设置带样式的预上屏内容，
+ * 当用户选择候选词或取消输入时，调用FinishTextPreviewFunc结束预上屏。
+ *     <br>
+ *     <br> 使用场景：当输入法应用需要展示带有样式的候选文本（如拼音输入时的预上屏文本）时，系统将自动调用此回调。
+ *     <br>
+ *     <br> 使用后效果：回调执行后，编辑框应将text内容以预上屏样式显示在start到end范围内，并按照style参数指定的样式进行渲染，
+ * 同时将返回值反馈给输入法。
+ *     <br>
+ *     <br> 前置条件：须通过[OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc]
+ * (#oh_inputmethod_texteditorproxy_setsetpreviewtextwithstylefunc)将此回调设置到TextEditorProxy中，并通过
+ * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)完成注册。
+*
+ * <br>**说明：**
+ * <br>当输入法应用设置带有样式的预上屏文本时，会同时回调{@link OH_TextEditorProxy_SetPreviewTextFunc}，开发者需要注意避免重复
+ * <br>处理预上屏文本内容。
+ *
+ * @param textEditorProxy [in] 输入指针，指向当前被回调的{@link InputMethod_TextEditorProxy}实例。
+ * @param text [in] 输入指针，请求设置为预上屏样式的文本内容，采用UTF-16编码。此指针仅在回调执行期间有效，回调返回后该内存将被释放，
+ * 不可再访问。
+ * @param length [in] 输入参数，预上屏文本的字符数量（单位：char16_t字符个数）。
+ * @param start [in] 输入参数，预上屏文本起始光标位置（单位：字符偏移量，相对于文本开头）。
+ * @param end [in] 输入参数，预上屏文本结束光标位置（单位：字符偏移量，相对于文本开头）。
+ * @param style [in] 输入指针，表示预上屏文本的样式，参见{@link OH_InputMethod_PreviewTextStyle}。
+ * @return 返回处理结果。0表示成功，非0表示失败。
+ * @since 26.1.0
+ */
+typedef int32_t (*OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc)(
+    InputMethod_TextEditorProxy *textEditorProxy, const char16_t text[], uint32_t length, int32_t start, int32_t end,
+    const OH_InputMethod_PreviewTextStyle *style);
+/**
  * @brief 输入法结束预上屏时触发的回调函数。此函数用于清理预上屏状态，通常在用户选择候选词（确定输入）或取消输入时调用。
  * 与{@link OH_TextEditorProxy_SetPreviewTextFunc}配合使用。
  *     <br>
@@ -684,6 +718,24 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc(
 InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
     InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc setPreviewTextFunc);
 /**
+ * @brief 将函数{@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}设置到
+ * {@link InputMethod_TextEditorProxy}中。如果注册此函数，触发预上屏时与SetPreviewTextFunc都会回调，
+ * 请注意不要重复处理预上屏内容。
+ *
+ * @param proxy [in] 输入指针，指向即将被设置的{@link InputMethod_TextEditorProxy}实例的指针。不可为NULL。
+ * @param setPreviewTextWithStyleFunc [in] 输入参数，表示被设置到proxy的回调函数
+ * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
+* @param setPreviewTextWithStyleFunc [in] 输入参数，表示被设置到proxy的回调函数
+ *     {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
+ *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
+    OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc setPreviewTextWithStyleFunc);
+/**
  * @brief 将函数{@link OH_TextEditorProxy_FinishTextPreviewFunc}设置到{@link InputMethod_TextEditorProxy}中。此设置须在
  * Attach之前完成。
  *
@@ -881,6 +933,21 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
     InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc *setPreviewTextFunc);
+/**
+ * @brief 从{@link InputMethod_TextEditorProxy}中获取
+ * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}函数。
+ *
+ * @param proxy [in] 输入指针，指向被读取的{@link InputMethod_TextEditorProxy}实例的指针。不可为NULL。
+ * @param setPreviewTextWithStyleFunc [out] 输出指针，表示从proxy获取到的函数指针
+ *     {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
+ *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_GetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
+    OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc *setPreviewTextWithStyleFunc);
 /**
  * @brief 从{@link InputMethod_TextEditorProxy}中获取{@link OH_TextEditorProxy_FinishTextPreviewFunc}函数。
  *

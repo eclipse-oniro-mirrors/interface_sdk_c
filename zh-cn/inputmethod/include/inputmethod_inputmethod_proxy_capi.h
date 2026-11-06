@@ -406,6 +406,26 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  */
 InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
     InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_PrivateCommand *privateCommand[], size_t size);
+
+/**
+ * @brief 请求系统输入能力。
+ *
+ * @param inputMethodProxy [输入参数] 表示指向{@link InputMethod_InputMethodProxy}实例的指针。
+ *     inputMethodProxy由{@link OH_InputMethodController_Attach}获取。
+ * @param type [输入参数] 表示输入能力类型。{@link OH_InputMethod_InputCapabilityType}
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 成功。
+ *     <br>{@link IME_ERR_PARAMCHECK} - 参数校验失败。
+ *     <br>{@link IME_ERR_IMMS} - 输入法管理服务错误。
+ *     <br>{@link IME_ERR_DETACHED} - 输入法客户端断开连接。
+ *     <br>{@link OH_INPUTMETHOD_ERR_NOT_DEFAULT_IME} - 当前输入法应用不是系统配置的默认输入法。
+ *     <br>{@link OH_INPUTMETHOD_ERR_INPUT_CAPABILITY_TYPE_NOT_SUPPORTED} - 输入能力类型不支持。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
+ *     具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_InputMethodProxy_RequestSystemInputCapability(
+    InputMethod_InputMethodProxy *inputMethodProxy, OH_InputMethod_InputCapabilityType type);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
