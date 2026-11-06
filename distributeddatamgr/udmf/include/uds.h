@@ -201,7 +201,7 @@ typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t 
  *
  * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
  * @param idList [in] ID list of canceled virtual files.
- * This array and the strings in it are valid only during the execution of the callback.
+ *    This array and the strings in it are valid only during the execution of the callback.
  * @param count [in] Number of identifiers in <code>idList</code>.
  * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
  * <ul>
