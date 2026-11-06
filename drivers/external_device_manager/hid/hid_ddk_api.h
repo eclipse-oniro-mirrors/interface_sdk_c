@@ -38,7 +38,6 @@
  * @kit DriverDevelopmentKit
  * @library libhid.z.so
  * @syscap SystemCapability.Driver.HID.Extension
- *     File to include: <hid/hid_ddk_api.h>
  * @since 11
  */
 

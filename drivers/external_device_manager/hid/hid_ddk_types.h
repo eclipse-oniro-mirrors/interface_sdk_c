@@ -840,8 +840,8 @@ typedef enum {
      */
     HID_REL_WHEEL_HI_RES = 0x0b,
     /**
-     * High-resolution horizontal scroll wheel, indicating the scroll direction and distance of the mouse high-
-     * resolution horizontal scroll wheel. It provides higher resolution and precision than a common horizontal scroll
+     * High-resolution horizontal scroll wheel, indicating the scroll direction and distance of the mouse high-resolution
+     * horizontal scroll wheel. It provides higher resolution and precision than a common horizontal scroll
      * wheel.
      */
     HID_REL_HWHEEL_HI_RES = 0x0c
