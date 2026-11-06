@@ -416,7 +416,7 @@ typedef enum {
      */
     USB_DDK_SUCCESS = 0,
     /**
-     * 操作失败。 <br> **废弃版本：** 16
+     * 操作失败。
      * @deprecated since 16
      */
     USB_DDK_FAILED = -1,
@@ -434,12 +434,12 @@ typedef enum {
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /**
-     * 空指针异常，如传入的指针参数为空。请检查传入的指针参数是否有效。 <br> **废弃版本：** 16
+     * 空指针异常，如传入的指针参数为空。请检查传入的指针参数是否有效。
      * @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
     /**
-     * 设备忙，如设备正在执行其他操作或设备资源被占用。请等待设备空闲后重试，或释放已占用的设备资源。 <br> **废弃版本：** 16
+     * 设备忙，如设备正在执行其他操作或设备资源被占用。请等待设备空闲后重试，或释放已占用的设备资源。
      * @deprecated since 16
      */
     USB_DDK_DEVICE_BUSY = -6,
@@ -482,13 +482,11 @@ typedef struct Usb_DeviceArray {
 typedef struct Usb_NonRootHubArray {
     /**
      * 开发者申请好的非根集线器设备ID数组首地址，申请的数组大小建议不超过128，以避免过度占用内存。非根USB集线器设备ID由总线号左移32位加上设备地址构造而成。
-     * @since 26.0.0
      */
     uint64_t* nonRootHubIds;
 
     /**
      * 实际返回的非根集线器数量，根据数量遍历nonRootHubIds获得非根集线器设备ID。当该值为0时，表示不存在非根集线器设备。
-     * @since 26.0.0
      */
     uint32_t num;
 } Usb_NonRootHubArray;

@@ -796,11 +796,11 @@ typedef enum {
      */
     HID_REL_DIAL = 0x07,
     /**
-     * 滚轮。
+     * 垂直滚轮，表示鼠标垂直滚轮的滚动方向和距离，用于垂直方向的滚动操作。
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * 其他类型的绝对坐标轴，用于不适合归入上述分类的特殊轴类型。
+     * 其他类型的相对坐标事件，用于不适合归入上述分类的特殊相对坐标事件。
      */
     HID_REL_MISC = 0x09,
     /**
@@ -879,7 +879,7 @@ typedef struct Hid_KeyCodeArray {
      */
     Hid_KeyCode *hidKeyCode;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，不超过hidKeyCode数组的实际长度。
      */
     uint16_t length;
 } Hid_KeyCodeArray;
@@ -896,7 +896,7 @@ typedef struct Hid_AbsAxesArray {
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 	数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：[0, 65535]。
      */
     uint16_t length;
 } Hid_AbsAxesArray;
@@ -913,7 +913,7 @@ typedef struct Hid_RelAxesArray {
      */
     Hid_RelAxes *hidRelAxes;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，不超过hidRelAxes数组的实际长度。
      */
     uint16_t length;
 } Hid_RelAxesArray;
@@ -930,7 +930,7 @@ typedef struct Hid_MscEventArray {
      */
     Hid_MscEvent *hidMscEvent;
     /**
-     * 数组的有效长度，不超过hidEventType数组的实际长度。
+     * 数组的有效长度，不超过hidMscEvent数组的实际长度。
      */
     uint16_t length;
 } Hid_MscEventArray;
@@ -943,7 +943,7 @@ typedef struct Hid_MscEventArray {
  */
 typedef struct Hid_EventProperties {
     /**
-     * 事件类型编码数组的指针，指向调用方预先分配的数组（不允许为空指针），数组大小不小于length。
+     * 事件类型属性编码数组，包含设备支持的事件类型集合，用于配置HID设备可触发的事件。
      */
     struct Hid_EventTypeArray hidEventTypes;
     /**
@@ -1002,14 +1002,18 @@ typedef enum {
     HID_DDK_INVALID_PARAMETER = 401,
     /**
      * DDK接口执行失败，从API 16起，取值由-1变更为27300001。可能原因：设备状态异常或通信异常。请检查设备状态和参数设置。
+     * 注：当前{@link OH_Hid_CreateDevice}在虚拟设备数量超过上限或设备ID生成失败时，取值为-1。
      */
     HID_DDK_FAILURE = 27300001,
     /**
      * 空指针异常，从API 16起，取值由-4变更为27300002。请检查传入参数的有效性。
+     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在设备不存在时，取值为-4;{@link OH_Hid_EmitEvent}在设备对象为空时，取值也为-4。
      */
     HID_DDK_NULL_PTR = 27300002,
     /**
      * 非法操作，从API 16起，取值由-3变更为27300003。可能原因：调用API的时机或顺序不正确。请检查调用时机、以及是否初始化DDK。
+     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在调用者Token校验不匹配时，取值为-3；{@link OH_Hid_EmitEvent}与
+     * {@link OH_Hid_DestroyDevice}在DDK连接失败或服务未启用时，取值为27300003。
      */
     HID_DDK_INVALID_OPERATION = 27300003,
     /**
@@ -1084,11 +1088,11 @@ typedef enum {
  */
 typedef struct Hid_RawDevInfo {
     /**
-     * 总线类型，取值含义参考标准HID协议的总线类型定义。
+     * 总线类型，用于标识HID设备的物理连接方式。
      */
     uint32_t busType;
     /**
-     * 厂商ID。
+     * 供应商ID。
      */
     uint16_t vendor;
     /**
