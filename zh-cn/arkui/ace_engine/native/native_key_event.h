@@ -1705,7 +1705,10 @@ typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShor
  * @param userData [out] 注册快捷键时传入的用户自定义数据。该值不会被复制，在快捷键注销前必须保持有效。
  * @since 26.1.0
  */
-typedef void (*OH_ArkUI_ApplicationShortcutCallback)(const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
+typedef void (*OH_ArkUI_ApplicationShortcutCallback)(
+    const OH_ArkUI_ApplicationShortcutCallbackInfo* info,
+    void* userData
+);
 
 /**
  * @brief 获取触发应用级键盘快捷键的UI实例对应的UI上下文。

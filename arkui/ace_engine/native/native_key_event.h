@@ -1587,7 +1587,10 @@ typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShor
  *     must remain valid until the shortcut is unregistered.
  * @since 26.1.0
  */
-typedef void (*OH_ArkUI_ApplicationShortcutCallback)(const OH_ArkUI_ApplicationShortcutCallbackInfo* info, void* userData);
+typedef void (*OH_ArkUI_ApplicationShortcutCallback)(
+    const OH_ArkUI_ApplicationShortcutCallbackInfo* info,
+    void* userData
+);
 
 /**
  * @brief Obtains the UI context of the UI instance where an application-level keyboard shortcut is triggered.
