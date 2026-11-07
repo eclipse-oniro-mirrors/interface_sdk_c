@@ -7684,5 +7684,6 @@
     },
     {
         "first_introduced": "26.1.0",
-        "name": "OH_ArkUI_KeyboardShortcutKey_GetFunctionKey"    }
+        "name": "OH_ArkUI_KeyboardShortcutKey_GetFunctionKey"
+    }
 ]
