@@ -276,7 +276,7 @@ typedef struct OH_AudioSession_DeactivatedEvent {
  */
 typedef struct OH_AudioSession_StateChangedEvent {
     /**
-     * @brief 音频会话状态变更提示信息。开发者需要根据提示采取相应的响应策略。
+     * @brief 音频会话状态变更提示，用于表示状态变化的类型，如静音、取消静音、暂停、恢复等。
      *
      */
     OH_AudioSession_StateChangeHint stateChangeHint;
