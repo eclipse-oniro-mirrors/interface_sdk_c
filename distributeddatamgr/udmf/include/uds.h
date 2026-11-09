@@ -42,6 +42,7 @@
 #define UDS_H
 
 #include <stdbool.h>
+#include <inttypes.h>
 #include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
@@ -142,6 +143,129 @@ typedef struct OH_UdsAppItem OH_UdsAppItem;
  * @since 13
  */
 typedef struct OH_UdsFileUri OH_UdsFileUri;
+
+/**
+ * @brief Describes a virtual file or virtual directory node.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_UDMF_VirtualItem OH_UDMF_VirtualItem;
+
+/**
+ * @brief Describes virtual file entries and their data callbacks.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_UDMF_VirtualFileInfo OH_UDMF_VirtualFileInfo;
+
+/**
+ * @brief This interface is invoked when virtual file metadata needs to be obtained.
+ *
+ * The returned node must be created by {@link OH_UDMF_CreateVirtualFileItem}, its ownership is transferred to UDMF, and
+ * the node cannot be destroyed after the callback returns.
+ *
+ * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
+ * @param id [in] ID of the requested virtual file.
+ * @return Returns the virtual file node on success and nullptr on failure.
+ * @since 26.1.0
+ */
+typedef OH_UDMF_VirtualItem* (*OH_UDMF_VirtualFileOnStat)(void* context, const char* id);
+
+/**
+ * @brief This function is invoked when virtual file data needs to be read.
+ *
+ * A maximum of <code>length</code> bytes can be written to <code>data</code> and the actual number of written bytes can
+ * be returned through <code>bytesRead</code>.
+ * The actual number of bytes can be less than <code>length</code> or zero.
+ *
+ * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
+ * @param id [in] ID of the requested virtual file.
+ * @param offset [in] Read offset, in bytes.
+ * @param length [in] Maximum read length.
+ * @param data [out] Target buffer provided by the UDMF, valid only during callback execution.
+ * @param bytesRead [out] Number of bytes actually written to <code>data</code>.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the data is successfully read. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that an invalid parameter is transferred. </li>
+ * <li>{@link UDMF_ERR} indicates that an internal error occurs and data cannot be provided. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+typedef int (*OH_UDMF_VirtualFileOnRead)(void* context, const char* id, int64_t offset, uint32_t length,
+    uint8_t* data, uint32_t* bytesRead);
+
+/**
+ * @brief Called when a virtual file operation is canceled.
+ *
+ * @param context [in] User context transferred through {@link OH_UDMF_CreateVirtualFileInfo}.
+ * @param idList [in] ID list of canceled virtual files.
+ *    This array and the strings in it are valid only during the execution of the callback.
+ * @param count [in] Number of identifiers in <code>idList</code>.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the cancellation is successful. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that an invalid parameter is transferred. </li>
+ * <li>{@link UDMF_ERR} indicates that an internal error occurs and the cancellation fails. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+typedef int (*OH_UDMF_VirtualFileOnCancel)(void* context, const char* const *idList, uint32_t count);
+
+/**
+ * @brief Releases the user contexts held by the UDMF.
+ *
+ * This callback is executed only once after all virtual file objects referencing the context are freed. The callback
+ * may be executed on any thread.
+ *
+ * @param context [in] UE contexts to be released.
+ * @since 26.1.0
+ */
+typedef void (*OH_UDMF_VirtualFileFinalize)(void* context);
+
+/**
+ * @brief Describes the callbacks used to provide virtual file metadata and content.
+ *
+ * <code>structSize</code> must be set to <code>sizeof(OH_UDMF_VirtualFileCallbacks)</code>.
+ * <code>onRead</code> is mandatory, and <code>onStat</code> and <code>onCancel</code> are optional. All files must be
+ * pre-declared in size.
+ * Set <code>onCancel</code> to nullptr if you do not need to cancel the notification.
+ * Different threads may invoke callbacks concurrently. Callbacks cannot be blocked indefinitely.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_UDMF_VirtualFileCallbacks {
+    /**
+     * @brief Structure size.
+     *
+     * @since 26.1.0
+     */
+    uint32_t structSize;
+
+    /**
+     * @brief Optional metadata callback.
+     *
+     * @since 26.1.0
+     */
+    OH_UDMF_VirtualFileOnStat onStat;
+
+    /**
+     * @brief Mandatory content read callback.
+     *
+     * @since 26.1.0
+     */
+    OH_UDMF_VirtualFileOnRead onRead;
+
+    /**
+     * @brief Optional cancel callback. If the value is nullptr, the cancellation is successful and the provider is not
+     * notified.
+     *
+     * @since 26.1.0
+     */
+    OH_UDMF_VirtualFileOnCancel onCancel;
+} OH_UDMF_VirtualFileCallbacks;
 
 /**
  * @brief Describes the unified data struct of open harmony pixel map.
@@ -798,6 +922,155 @@ int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details)
 int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
 
 /**
+ * @brief Create a virtual file node that must explicitly set the file size.
+ *
+ * Before adding a node to a directory or creating virtual file information, you must call
+ * {@link OH_UDMF_SetVirtualFileSize} to set the file size.
+ * A size of zero indicates an empty file, and the file size will not be inferred by other means when the size is not
+ * set.
+ *
+ * @param name [in] File name, which cannot contain path separators.
+ * @param id [in] File ID transferred to the virtual file callback.
+ * @param modifyTime [in] Time when the file is modified.
+ * @return If the operation is successful, the created virtual node is returned. Returns nullptr when the parameter
+ *     is invalid or memory allocation fails.
+ * @release uds/OH_UDMF_DestroyVirtualItem {return}
+ * @since 26.1.0
+ */
+OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualFileItem(const char* name, const char* id, int64_t modifyTime);
+
+/**
+ * @brief Create a virtual directory node.
+ *
+ * @param name [in] Directory name, which cannot contain path separators.
+ * @param modifyTime [in] Directory modification time.
+ * @return If the operation is successful, the created virtual node is returned. Returns nullptr when the parameter
+ *     is invalid or memory allocation fails.
+ * @release uds/OH_UDMF_DestroyVirtualItem {return}
+ * @since 26.1.0
+ */
+OH_UDMF_VirtualItem* OH_UDMF_CreateVirtualDirectoryItem(const char* name, int64_t modifyTime);
+
+/**
+ * @brief Destroy a virtual node.
+ *
+ * @param item [in] Virtual node to be destroyed.
+ * @since 26.1.0
+ */
+void OH_UDMF_DestroyVirtualItem(OH_UDMF_VirtualItem* item);
+
+/**
+ * @brief Set the file size of a virtual file node.
+ *
+ * @param item [in,out] Virtual file node.
+ * @param size [in] File size, in bytes.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the setting is successful. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that <code>item</code> is invalid, is not a file node, or
+ * <code>size</code> is a negative number. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+int OH_UDMF_SetVirtualFileSize(OH_UDMF_VirtualItem* item, int64_t size);
+
+/**
+ * @brief The file size that must be set for the virtual file node is cleared during the build process.
+ *
+ * After clearing, the non-negative file size must be set again via {@link OH_UDMF_SetVirtualFileSize} before the node
+ * can be added to the directory or used to create
+ * Virtual file information; The stat callback cannot replace this step.
+ *
+ * @param item [in,out] Virtual file node.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the deletion is successful. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that <code>item</code> is invalid or is not a file node. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+int OH_UDMF_ClearVirtualFileSize(OH_UDMF_VirtualItem* item);
+
+/**
+ * @brief Adds a child node to the virtual directory.
+ *
+ * This interface copies <code>child</code>, and the caller still retains the ownership of the original node.
+ *
+ * @param directory [in,out] Virtual directory node.
+ * @param child [in] Subnode to be added.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the user is added successfully. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that the node is invalid, <code>directory</code> is not a directory, or
+ * the result violates a virtual file tree constraint. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+int OH_UDMF_AddVirtualItemChild(OH_UDMF_VirtualItem* directory, const OH_UDMF_VirtualItem* child);
+
+/**
+ * @brief Create virtual file information.
+ *
+ * This interface copies the node tree and callback table. <code>finalize</code> must be provided when
+ * <code>context</code> is not nullptr.
+ * After the interface is successfully executed, the UDMF holds the context until the last reference is released.
+ *
+ * @param itemInfo [in] Virtual root node. Each file in the tree must explicitly set a non-negative file size.
+ * @param callbacks [in] Virtual file callback.
+ * @param context [in] User context passed to each callback.
+ * @param finalize [in] Callback for releasing <code>context</code>.
+ * @return If the operation is successful, the information about the created virtual file is returned. Returns
+ *     nullptr when the node or callback is invalid or memory allocation fails.
+ * @release uds/OH_UDMF_DestroyVirtualFileInfo {return}
+ * @since 26.1.0
+ */
+OH_UDMF_VirtualFileInfo* OH_UDMF_CreateVirtualFileInfo(const OH_UDMF_VirtualItem* itemInfo,
+    const OH_UDMF_VirtualFileCallbacks* callbacks, void* context, OH_UDMF_VirtualFileFinalize finalize);
+
+/**
+ * @brief Destroy virtual file information.
+ *
+ * When virtual file information has been attached to a file URI or unified data record, the callback state remains in
+ * effect until all related references are released.
+ *
+ * @param info [in] Information about the virtual file to be destroyed.
+ * @since 26.1.0
+ */
+void OH_UDMF_DestroyVirtualFileInfo(OH_UDMF_VirtualFileInfo* info);
+
+/**
+ * @brief Appends virtual file information to the file URI.
+ *
+ * @param fileUri [in,out] URI instance of the file to be updated.
+ * @param info [in] Information about the virtual file to be attached.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the attachment is successful. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that <code>fileUri</code> or <code>info</code> is invalid. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+int OH_UDMF_SetFileUriVirtualEntry(OH_UdsFileUri* fileUri, const OH_UDMF_VirtualFileInfo* info);
+
+/**
+ * @brief Removes virtual file information from file URI.
+ *
+ * @param fileUri [in,out] URI instance of the file to be updated.
+ * @return Return the execution status code. For details, see {@link Udmf_ErrCode}.
+ * <ul>
+ * <li>{@link UDMF_E_OK} indicates that the deletion is successful. </li>
+ * <li>{@link UDMF_E_INVALID_PARAM} indicates that <code>fileUri</code> is invalid. </li>
+ * </ul>
+ * @see Udmf_ErrCode
+ * @since 26.1.0
+ */
+int OH_UDMF_ClearFileUriVirtualEntry(OH_UdsFileUri* fileUri);
+
+/**
  * @brief Creates a pointer to the instance of the {@link OH_UdsPixelMap}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPixelMap}
@@ -1162,14 +1435,14 @@ int OH_UdsDetails_Remove(OH_UdsDetails* pThis, const char* key);
 int OH_UdsDetails_Clear(OH_UdsDetails* pThis);
 
 /**
- * @brief Set key-value data to the {@link OH_UdsDetails}.
+ * @brief Add key-value pair data to the dictionary type {@link OH_UdsDetails}.
  *
- * @param pThis Represents a pointer to an instance of {@link OH_UdsDetails}.
- * @param key Represents the key data to be written.
- * @param value Represents the value data to be written.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @param pThis Represents a pointer to an instance of the dictionary type {@link OH_UdsDetails}.
+ * @param key Represents the key of a key-value pair in a dictionary type.
+ * @param value [in] indicates the value of the key-value pair in the dictionary type.
+ * @returnReturns the status code of the execution.
+ * <br>If UDMF_E_OK is returned, the operation is successful.
+ * <br>If UDMF_E_INVALID_PARAM is returned, an invalid parameter is transferred. For details, see {@link Udmf_ErrCode}.
  * @since 22
  * @see OH_UdsDetails Udmf_ErrCode
  */
