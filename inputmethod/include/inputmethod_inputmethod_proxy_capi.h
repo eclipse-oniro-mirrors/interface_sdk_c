@@ -193,19 +193,21 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
 /**
  * @brief Request system input capability.
  *
- * @param inputMethodProxy [Input parameter] indicates the pointer to the {@link InputMethod_InputMethodProxy} instance.
+ * @param inputMethodProxy [in] indicates the pointer to the {@link InputMethod_InputMethodProxy} instance.
  * The value of inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
- * @param type [Input parameter] indicates the input capability type. {@link OH_InputMethod_InputCapabilityType}
+ * @param type [out] indicates the input capability type. {@link OH_InputMethod_InputCapabilityType}
  * @returnReturns a specific error code.
- * <br>{@link IME_ERR_OK} - Success.
- * <br>{@link IME_ERR_PARAMCHECK} - Parameter verification failed.
- * <br>{@link IME_ERR_IMMS} - Input method management service error.
- * <br>{@link IME_ERR_DETAACHE} - The input method client is disconnected.
- * <br>{@link OH_INPUT METHOD_ERR_NOT_DEFAULT_IME} - The current input method is not the default input method configured
- * in the system.
- * <br>{@link OH_INPUT METHOD_ERR_INPUT_CAPABLE_TYPE_NOT_SUPPORTED} - The input capability type is not supported.
- * <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- * For details about the error code, see {@link InputMethod_ErrorCode}.
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - Success.</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - Parameter verification failed.</li>
+ *     <li>{@link IME_ERR_IMMS} - Input method management service error.</li>
+ *     <li>{@link IME_ERR_DETAACHE} - The input method client is disconnected.</li>
+ *     <li>{@link OH_INPUT METHOD_ERR_NOT_DEFAULT_IME} - The current input method is not the default input method configured
+ *     in the system.</li>
+ *     <li>{@link OH_INPUT METHOD_ERR_INPUT_CAPABLE_TYPE_NOT_SUPPORTED} - The input capability type is not supported.</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.</li>
+ *     <li>For details about the error code, see {@link InputMethod_ErrorCode}.</li>
+ *     <ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_InputMethodProxy_RequestSystemInputCapability(
