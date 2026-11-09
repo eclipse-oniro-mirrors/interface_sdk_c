@@ -206,19 +206,19 @@ void OH_AudioConverter_Destroy(OH_AudioConverter* converter);
  */
 typedef enum {
     /**
-     * Valid input data is available and provided.
+     * @brief Valid input data is available and provided.
      *
      * @since 26.0.0
      */
     AUDIOCONVERTER_INPUT_HAVE_DATA = 1,
     /**
-     * No input data is available temporarily.
+     * @brief No input data is available temporarily.
      *
      * @since 26.0.0
      */
     AUDIOCONVERTER_INPUT_NO_AVAILABLE_DATA = 2,
     /**
-     * The input data stream is complete.
+     * @brief The input data stream is complete.
      *
      * @since 26.0.0
      */

@@ -22,7 +22,7 @@
  */
 /**
  * @file native_audio_suite_download_manager.h
- * @brief Declare audio download manager related interfaces.
+ * @brief 声明音频下载管理器相关接口。
  * @syscap SystemCapability.Multimedia.Audio.SuiteEngine
  * @library libohaudiosuite.so
  * @kit AudioKit
@@ -87,7 +87,7 @@ typedef struct OH_AudioSuite_DownloadStatusInfo {
  */
 typedef struct OH_AudioSuite_DownloadStatusInfoArray {
     /**
-     * @brief 数组大小。
+     * @brief 下载状态信息指针数组大小。
      *
      * @since 26.0.0
      */
@@ -223,7 +223,7 @@ int32_t OH_AudioSuite_StartDownload(
  * @return <ul>
  * <li>{@link AUDIOCOMMON_RESULT_SUCCESS}如果执行成功</li>
  * <li>202如果非系统应用程序调用此系统API。</li>
- * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM如果downloadManager或featureName为nullptr。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
  * </ul>
  * @since 26.0.0
@@ -241,7 +241,7 @@ int32_t OH_AudioSuite_PauseDownload(
  * <li>202如果非系统应用程序调用此系统API。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}如果downloadManager或featureName为nullptr。</li>
  * <li>{@link AUDIOCOMMON_RESULT_ERROR_SYSTEM}如果IPC通信失败或操作失败。</li>
- * <li>{@link AVPCOMMON_RESULT_ERROR_LINAL_STATE}如果当前状态不允许取消。</li>
+ * <li>{@link AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE}如果当前状态不允许取消。</li>
  * </ul>
  * @since 26.0.0
  */

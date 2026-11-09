@@ -87,7 +87,7 @@ typedef struct OH_AudioSuite_DownloadStatusInfo {
  */
 typedef struct OH_AudioSuite_DownloadStatusInfoArray {
     /**
-     * @brief Array size.
+     * @brief Download status Info Array size.
      *
      * @since 26.0.0
      */
