@@ -325,6 +325,27 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodProxy *inputMethodProxy);
+
+/**
+ * @brief 获取当前输入法。
+ *
+ * @param bundleName [out] 该参数作为出参使用，表示指向获取到的bundleName字符串的二级指针。调用者需在使用完毕后通过free()释放，
+ *     避免内存泄漏。
+ * @param bundleNameLength [out] 该参数作为出参使用，表示获取到的bundleName字符串长度的指针。
+ * @param abilityName [out] 该参数作为出参使用，表示指向获取到的abilityName字符串的二级指针。调用者需在使用完毕后通过free()释放，
+ *     避免内存泄漏。
+ * @param abilityNameLength [out] 该参数作为出参使用，表示获取到的abilityName字符串长度的指针。
+ * @return 返回一个特定的错误码。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 成功。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法管理服务错误。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_InputMethodController_GetCurrentInputMethod(
+    char **bundleName, uint32_t *bundleNameLength, char **abilityName, uint32_t *abilityNameLength);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

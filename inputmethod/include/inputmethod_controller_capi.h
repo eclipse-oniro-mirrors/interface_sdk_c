@@ -106,6 +106,32 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodProxy *inputMethodProxy);
+
+/**
+ * @brief Obtains the current input method.
+ *
+ * @param bundleName [out] This parameter is used as an output parameter and indicates the level-2 pointer that
+ *     points to the obtained bundleName character string. The caller needs to use free() to release the call after
+ *     using the caller,
+ * Avoid memory leakage.
+ * @param bundleNameLength [out] Pointer to the length of the obtained bundleName string. This parameter is used as
+ *     an output parameter.
+ * @param abilityName [out] This parameter is used as an output parameter and indicates the level-2 pointer to the
+ *     obtained abilityName character string. The caller needs to use free() to release the call after using the caller,
+ * Avoid memory leakage.
+ * @param abilityNameLength [out] Pointer to the length of the obtained abilityName character string. This parameter
+ *     is used as an output parameter.
+ * @returnReturns a specific error code.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - Success. </li>
+ * <li>{@link IME_ERR_IMMS} - Input method management service error. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethod_InputMethodController_GetCurrentInputMethod(
+    char **bundleName, uint32_t *bundleNameLength, char **abilityName, uint32_t *abilityNameLength);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
