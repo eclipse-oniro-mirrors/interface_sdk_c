@@ -250,7 +250,7 @@ typedef struct HiDebug_ThreadCpuUsage {
 } HiDebug_ThreadCpuUsage;
 
 /**
- * @brief Defines pointer of HiDebug_ThreadCpuUsage.
+ * @brief 定义HiDebug_ThreadCpuUsage的指针类型。
  *
  * @since 12
  */
@@ -390,11 +390,29 @@ typedef void (*OH_HiDebug_RequestTraceCallback)(HiDebug_ErrorCode errorCode, con
  * @since 20
  */
 typedef struct HiDebug_MallocDispatch {
+    /**
+     * 开发者自定义malloc函数指针。用于替代系统默认的内存分配函数，在分配内存时记录分配信息或执行自定义逻辑，可用于内存泄漏追踪和性能监控。
+     */
     void* (*malloc)(size_t);
+    /**
+     * 开发者自定义calloc函数指针。用于替代系统默认的calloc函数，在分配并初始化零内存时记录分配信息或执行自定义逻辑，可用于追踪大块内存分配和内存初始化监控。
+     */
     void* (*calloc)(size_t, size_t);
+    /**
+     * 开发者自定义realloc函数指针。用于替代系统默认的realloc函数，在调整已分配内存大小时记录操作信息或执行自定义逻辑，可用于监控内存重分配行为和内存碎片分析。
+     */
     void* (*realloc)(void*, size_t);
+    /**
+     * 开发者自定义free函数指针。用于替代系统默认的free函数，在释放内存时记录释放信息，或执行自定义处理逻辑。使用时需确保传入的指针有效，避免重复释放或释放野指针。
+     */
     void  (*free)(void*);
+    /**
+     * 开发者自定义mmap函数指针。用于替代系统默认的mmap函数，在内存映射时记录映射信息或执行自定义逻辑，可用于监控大块内存映射操作和共享内存使用情况。
+     */
     void* (*mmap)(void*, size_t, int, int, int, off_t);
+    /**
+     * 开发者自定义munmap函数指针。用于替代系统默认的munmap函数，在取消内存映射时记录操作信息或执行自定义逻辑，可配合mmap函数进行映射内存的生命周期管理。
+     */
     int   (*munmap)(void*, size_t);
 } HiDebug_MallocDispatch;
 
