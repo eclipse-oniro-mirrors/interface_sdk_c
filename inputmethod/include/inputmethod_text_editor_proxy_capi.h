@@ -913,7 +913,7 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
     InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_SetPreviewTextFunc *setPreviewTextFunc);
-/**
+ /**
  * @brief Obtained from {@link InputMethod_TextEditorProxy}
  * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc} function.
  *
@@ -921,9 +921,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
  * @param setPreviewTextWithStyleFunc [out] Output pointer, indicating the function pointer obtained from the proxy.
  * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}. Cannot be NULL.
  * @return Returns a specific error code.
- * <br>{@link IME_ERR_OK} - indicates success.
- * <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- * <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - indicates success.</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.</li>
+ *     <li>For details about the error code, see {@link InputMethod_ErrorCode}.</li>
+ *     <ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_GetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
