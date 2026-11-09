@@ -24,7 +24,7 @@
 /**
  * @file native_avcodec_audiobase.h
  *
- * @brief 声明用于基础音频编解码功能以及音频特定配置和参数的Native API。
+ * @brief 声明用于基础音频编解码功能、音频特定配置和参数的Native API。
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avcodec_audiobase.h>
@@ -51,25 +51,25 @@ extern "C" {
 extern const char *OH_MD_KEY_AUDIO_DSD_CODEC_TYPE;
 
 /**
- * @brief DSD编解码类型。
+ * @brief DSD（Direct Stream Digital）编解码类型。
  *
  * @since 26.1.0
  */
 typedef enum OH_AVCodec_DSDCodecType {
     /**
-     * @brief 适用于LSB first和平面排布的dsf容器格式。
+     * @brief 适用于低位先行（LSB first）和平面排布的dsf容器格式。
      *
      * @since 26.1.0
      */
     OH_AVCODEC_DSD_CODEC_LSBF_PLANAR = 0,
     /**
-     * @brief MSB first和平面排布的dsf容器格式。
+     * @brief 适用于高位先行（MSB first）和平面排布的dsf容器格式。
      *
      * @since 26.1.0
      */
     OH_AVCODEC_DSD_CODEC_MSBF_PLANAR = 1,
     /**
-     * @brief MSB first和交织排布的dff容器格式。
+     * @brief 适用于高位先行（MSB first）和交织排布的dff容器格式。
      *
      * @since 26.1.0
      */
