@@ -400,7 +400,7 @@ typedef int32_t (*OH_TextEditorProxy_SetPreviewTextFunc)(
  *     to the beginning of the text).
  * @param style [in] Input pointer, indicating the style of the pre-screen text. For details, see
  *     {@link OH_InputMethod_PreviewTextStyle}.
- * @return Return the processing result. The value 0 indicates success, and other values indicate failure.
+ * @returnReturn the processing result. The value 0 indicates success, and other values indicate failure.
  * @since 26.1.0
  */
 typedef int32_t (*OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc)(
@@ -685,10 +685,12 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
  * @param proxy [in] Input pointer to the {@link InputMethod_TextEditorProxy} instance to be set. Cannot be NULL.
  * @param setPreviewTextWithStyleFunc [in] Input parameter, indicating the callback function that is set to the proxy.
  * {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}. Cannot be NULL.
- * @return Returns a specific error code.
- * <br>{@link IME_ERR_OK} - indicates success.
- * <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- * <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @returnReturns a specific error code.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - indicates success. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
