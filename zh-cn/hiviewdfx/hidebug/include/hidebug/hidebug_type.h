@@ -19,9 +19,9 @@
  * @addtogroup HiDebug
  * @{
  *
- * @brief Provides debug code define.
+ * @brief 提供调试错误码定义。
  *
- * For example, you can use these code for check result or parameter of HiDebug function.
+ * 例如，可以使用这些错误码校验HiDebug函数的返回结果或参数。
  *
  * @since 12
  */
@@ -29,7 +29,7 @@
 /**
  * @file hidebug_type.h
  *
- * @brief Defines the code of the HiDebug module.
+ * @brief HiDebug模块代码结构体定义。
  *
  * @kit PerformanceAnalysisKit
  * @library libohhidebug.so
@@ -522,11 +522,11 @@ typedef struct HiDebug_StackFrame {
      */
     HiDebug_StackFrameType type;
 
-    /** frame content. */
+    /** 栈帧内容。 */
     union {
-        /** Js stack frame defined in {@link HiDebug_JsStackFrame} */
+        /** js栈帧，见{@link HiDebug_JsStackFrame}。 */
         struct HiDebug_JsStackFrame js;
-        /** Native frame defined in {@link HiDebug_NativeStackFrame} */
+        /** native栈帧，见{@link HiDebug_NativeStackFrame}。 */
         struct HiDebug_NativeStackFrame native;
     } frame;
 } HiDebug_StackFrame;
@@ -679,7 +679,7 @@ typedef enum OH_HiDebug_ResourceType {
  */
 typedef struct OH_HiDebug_ProfilingResult {
     /**
-     * @brief Profiled resource type.
+     * @brief 采集的资源类型。
      * @since 24
      */
     OH_HiDebug_ResourceType resourceType;
@@ -779,193 +779,193 @@ typedef enum {
 #endif // __cplusplus
 
 /**
- * @brief FFRT tasks.
+ * @brief FFRT任务标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_FFRT (1ULL << 13)
 /**
- * @brief Common library subsystem tag.
+ * @brief 公共库子系统标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_COMMON_LIBRARY (1ULL << 16)
 /**
- * @brief HDF subsystem tag.
+ * @brief HDF子系统标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_HDF (1ULL << 18)
 /**
- * @brief Net tag.
+ * @brief 网络标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_NET (1ULL << 23)
 /**
- * @brief NWeb tag.
+ * @brief NWeb标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_NWEB (1ULL << 24)
 /**
- * @brief Distributed audio tag.
+ * @brief 分布式音频标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_AUDIO (1ULL << 27)
 /**
- * @brief File management tag.
+ * @brief 文件管理标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_FILE_MANAGEMENT (1ULL << 29)
 /**
- * @brief OHOS generic tag.
+ * @brief OHOS通用标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_OHOS (1ULL << 30)
 /**
- * @brief Ability Manager tag.
+ * @brief Ability Manager标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_ABILITY_MANAGER (1ULL << 31)
 /**
- * @brief Camera module tag.
+ * @brief 相机模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_CAMERA (1ULL << 32)
 /**
- * @brief Media module tag.
+ * @brief 媒体模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_MEDIA (1ULL << 33)
 /**
- * @brief Image module tag.
+ * @brief 图像模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_IMAGE (1ULL << 34)
 /**
- * @brief Audio module tag.
+ * @brief 音频模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_AUDIO (1ULL << 35)
 /**
- * @brief Distributed data manager module tag.
+ * @brief 分布式数据管理器模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_DATA (1ULL << 36)
 /**
- * @brief Graphics module tag.
+ * @brief 图形模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_GRAPHICS (1ULL << 38)
 /**
- * @brief ARKUI development framework tag.
+ * @brief ArkUI开发框架标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_ARKUI (1ULL << 39)
 /**
- * @brief Notification module tag.
+ * @brief 通知模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_NOTIFICATION (1ULL << 40)
 /**
- * @brief MISC module tag.
+ * @brief MISC模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_MISC (1ULL << 41)
 /**
- * @brief Multimodal input module tag.
+ * @brief 多模态输入模块标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_MULTIMODAL_INPUT (1ULL << 42)
 /**
- * @brief RPC tag.
+ * @brief RPC标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_RPC (1ULL << 46)
 /**
- * @brief ARK tag.
+ * @brief JSVM虚拟机标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_ARK (1ULL << 47)
 /**
- * @brief Window manager tag.
+ * @brief 窗口管理器标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_WINDOW_MANAGER (1ULL << 48)
 /**
- * @brief Distributed screen tag.
+ * @brief 分布式屏幕标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_SCREEN (1ULL << 50)
 /**
- * @brief Distributed camera tag.
+ * @brief 分布式相机标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_CAMERA (1ULL << 51)
 /**
- * @brief Distributed hardware framework tag.
+ * @brief 分布式硬件框架标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_FRAMEWORK (1ULL << 52)
 /**
- * @brief Global resource manager tag.
+ * @brief 全局资源管理器标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_GLOBAL_RESOURCE_MANAGER (1ULL << 53)
 /**
- * @brief Distributed hardware device manager tag.
+ * @brief 分布式硬件设备管理器标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_DEVICE_MANAGER (1ULL << 54)
 /**
- * @brief SA tag.
+ * @brief SA标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_SAMGR (1ULL << 55)
 /**
- * @brief Power manager tag.
+ * @brief 电源管理器标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_POWER_MANAGER (1ULL << 56)
 /**
- * @brief Distributed scheduler tag.
+ * @brief 分布式调度程序标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_SCHEDULER (1ULL << 57)
 /**
- * @brief Distributed input tag.
+ * @brief 分布式输入标签。
  *
  * @since 12
  */
 #define HIDEBUG_TRACE_TAG_DISTRIBUTED_INPUT (1ULL << 59)
 /**
- * @brief bluetooth tag.
+ * @brief 蓝牙标签。
  *
  * @since 12
  */
