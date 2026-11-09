@@ -94,7 +94,7 @@ typedef struct OH_InputMethod_PreviewTextStyle OH_InputMethod_PreviewTextStyle;
  * [OH_InputMethod_PreviewTextStyle_Destroy](#oh_inputmethod_previewtextstyle_destroy).
  * Destroy. Create and Destroy must be used in pairs. If the memory is not destroyed, a memory leak occurs.
  *
- * @return If the creation is successful, a pointer to the newly created {@link OH_InputMethod_PreviewTextStyle}
+ * @returnIf the creation is successful, a pointer to the newly created {@link OH_InputMethod_PreviewTextStyle}
  *     instance is returned. If the creation fails, NULL is returned,
  * Possible failure causes are insufficient memory.
  * @since 26.1.0
@@ -110,8 +110,8 @@ OH_InputMethod_PreviewTextStyle *OH_InputMethod_PreviewTextStyle_Create(void);
  * <br>
  * <br>Life cycle management: When NULL is input, the function does not perform any processing and does not break down.
  *
- * @param style Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be destroyed. If NULL is
- *     input, the function does not perform any processing.
+ * @param style [in] Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be destroyed. If NULL
+ *     is input, the function does not perform any processing.
  * @since 26.1.0
  */
 void OH_InputMethod_PreviewTextStyle_Destroy(OH_InputMethod_PreviewTextStyle *style);
@@ -119,12 +119,15 @@ void OH_InputMethod_PreviewTextStyle_Destroy(OH_InputMethod_PreviewTextStyle *st
 /**
  * @brief Sets the underline style of the pre-screen text.
  *
- * @param style Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be set. Cannot be NULL.
- * @param underlineStyle Input parameter in the underline style. For details, see {@link OH_InputMethod_UnderlineStyle}.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - indicates success.
- *     <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- *     <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @param style [in] Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be set. Cannot be NULL.
+ * @param underlineStyle [in] Input parameter. The value is underlined. For details, see
+ *     {@link OH_InputMethod_UnderlineStyle}.
+ * @returnReturns a specific error code.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - indicates success. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineStyle(
@@ -133,12 +136,14 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineStyle(
 /**
  * @brief Gets the underline style of the pre-screen text.
  *
- * @param style Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be read. Cannot be NULL.
- * @param underlineStyle Output pointer, which is used to return the underline style. Cannot be NULL.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - indicates success.
- *     <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- *     <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @param style [in] Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be read. Cannot be NULL.
+ * @param underlineStyle [out] Output pointer, which is used to return the underline style. Cannot be NULL.
+ * @returnReturns a specific error code.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - indicates success. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineStyle(
@@ -151,12 +156,14 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineStyle(
  * {@link OH_InputMethod_PreviewTextStyle_HasUnderlineColor} is called later, its hasUnderlineColor output parameter
  * will be true.
  *
- * @param style Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be set. Cannot be NULL.
- * @param underlineColor Input parameter, underlined, in the format of 0xRRGGBB.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - indicates success.
- *     <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- *     <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @param style [in] Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be set. Cannot be NULL.
+ * @param underlineColor [in] Input parameter, underlined, in the format of 0xRRGGBB.
+ * @returnReturns a specific error code.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - indicates success. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineColor(
@@ -165,13 +172,15 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineColor(
 /**
  * @brief Obtains the underline color of the pre-screen text.
  *
- * @param style Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be read. Cannot be NULL.
- * @param underlineColor Output pointer, which is used to return the underline color. The format is 0xRRGGBB. Cannot
- *     be NULL.
+ * @param style [in] Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be read. Cannot be NULL.
+ * @param underlineColor [out] Output pointer, which is used to return the underline color. The format is 0xRRGGBB.
+ *     Cannot be NULL.
  * @returnReturns a specific error code.
- *     <br>{@link IME_ERR_OK} - indicates success.
- *     <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- *     <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - indicates success. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineColor(
@@ -183,12 +192,15 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineColor(
  * The result is determined by whether {@link OH_InputMethod_PreviewTextStyle_SetUnderlineColor} has been invoked. If
  * hasUnderlineColor has been called, the output value is true. Otherwise, the output value is false.
  *
- * @param style Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be read. Cannot be NULL.
- * @param hasUnderlineColor Output pointer, which is used to return whether the underline color is set. Cannot be NULL.
- * @return Returns a specific error code.
- *     <br>{@link IME_ERR_OK} - indicates success.
- *     <br>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer.
- *     <br>For details about the error code, see {@link InputMethod_ErrorCode}.
+ * @param style [in] Input pointer to the {@link OH_InputMethod_PreviewTextStyle} instance to be read. Cannot be NULL.
+ * @param hasUnderlineColor [out] Output pointer, which is used to return whether the underline color is set. Cannot
+ *     be NULL.
+ * @returnReturns a specific error code.
+ * <ul>
+ * <li>{@link IME_ERR_OK} - indicates success. </li>
+ * <li>{@link IME_ERR_NULL_POINTER} - Unexpected null pointer. </li>
+ * <li>For details about the error code, see {@link InputMethod_ErrorCode}. </li>
+ * </ul>
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_HasUnderlineColor(
