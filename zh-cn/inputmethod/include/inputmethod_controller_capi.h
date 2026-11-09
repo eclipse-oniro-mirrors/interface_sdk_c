@@ -337,11 +337,11 @@ InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodPro
  * @param abilityNameLength [out] 该参数作为出参使用，表示获取到的abilityName字符串长度的指针。
  * @return 返回一个特定的错误码。
  *     <ul>
- *         <li>{@link IME_ERR_OK} - 成功。</li>
- *         <li>{@link IME_ERR_IMMS} - 输入法管理服务错误。</li>
- *         <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>{@link IME_ERR_OK} - 成功。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法管理服务错误。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
  *     </ul>
- *     具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_InputMethodController_GetCurrentInputMethod(
