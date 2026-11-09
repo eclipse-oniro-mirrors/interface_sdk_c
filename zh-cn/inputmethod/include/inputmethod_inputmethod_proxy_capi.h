@@ -415,15 +415,15 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
  * @param type [in] 输入参数，表示输入能力类型。{@link OH_InputMethod_InputCapabilityType}
  * @return 返回一个特定的错误码。
  *     <ul>
- *         <li>{@link IME_ERR_OK} - 成功。</li>
- *         <li>{@link IME_ERR_PARAMCHECK} - 参数校验失败。</li>
- *         <li>{@link IME_ERR_IMMS} - 输入法管理服务错误。</li>
- *         <li>{@link IME_ERR_DETACHED} - 输入法客户端断开连接。</li>
- *         <li>{@link OH_INPUTMETHOD_ERR_NOT_DEFAULT_IME} - 当前输入法应用不是系统配置的默认输入法。</li>
- *         <li>{@link OH_INPUTMETHOD_ERR_INPUT_CAPABILITY_TYPE_NOT_SUPPORTED} - 输入能力类型不支持。</li>
- *         <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>{@link IME_ERR_OK} - 成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 参数校验失败。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法管理服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 输入法客户端断开连接。</li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_NOT_DEFAULT_IME} - 当前输入法应用不是系统配置的默认输入法。</li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_INPUT_CAPABILITY_TYPE_NOT_SUPPORTED} - 输入能力类型不支持。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
  *     </ul>
- *     具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_InputMethodProxy_RequestSystemInputCapability(
