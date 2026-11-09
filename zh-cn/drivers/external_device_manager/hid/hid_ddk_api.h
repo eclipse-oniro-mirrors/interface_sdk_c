@@ -59,7 +59,7 @@ extern "C" {
  *     <br>2. 入参hidEventProperties为空指针；3. properties的长度超过7；4. hidEventTypes的长度超过5；
  *     <br>5. hidKeys的长度超过100；6. hidAbs的长度超过26；7.hidRelBits的长度超过13；
  *     <br>8. hidMiscellaneous的长度超过6。
- *     <br>{@link HID_DDK_FAILURE} 设备数量达到最大值200。可能的原因：1.虚拟设备数量超过上限 2.设备ID生成失败。
+ *     <br>{@link HID_DDK_FAILURE} 设备数量达到最大值200。
  * @since 11
  * @version 1.0
  */
