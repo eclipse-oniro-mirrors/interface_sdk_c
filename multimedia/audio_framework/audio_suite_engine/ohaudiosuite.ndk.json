@@ -326,5 +326,30 @@
         "api_type":"system",
         "first_introduced": "26.0.1",
         "name": "OH_AudioSuite_GetNewVersionInfo"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioSuite_ConverterCreateEx"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioSuite_ConverterGetMinInOutSizes"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioSuite_ConverterDirectProcess"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioSuite_ConverterGetDelaySize"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioSuite_ConverterFlush"
     }
 ]
