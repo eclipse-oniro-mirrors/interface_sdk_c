@@ -4998,18 +4998,18 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：typing下划线颜色，必填，表示键入时的下划线颜色，0xargb类型。</li>
-     * <li>.value[1].u32：normal下划线颜色，必填，表示非特殊状态时下划线颜色，0xargb类型。</li>
-     * <li>.value[2].u32：error下划线颜色，必填，表示错误时下划线颜色，0xargb类型。</li>
-     * <li>.value[3].u32：disable下划线颜色，必填，表示禁用时下划线颜色，0xargb类型。</li>
+     * <li>.value[0].u32：必填，表示键入时的下划线颜色，0xargb类型。</li>
+     * <li>.value[1].u32：必填，表示非特殊状态时下划线颜色，0xargb类型。</li>
+     * <li>.value[2].u32：必填，表示错误时下划线颜色，0xargb类型。</li>
+     * <li>.value[3].u32：必填，表示禁用时下划线颜色，0xargb类型。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xargb类型。</li>
-     * <li>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xargb类型。</li>
-     * <li>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xargb类型。</li>
-     * <li>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xargb类型。</li>
+     * <li>.value[0].u32：表示键入时的下划线颜色，0xargb类型。</li>
+     * <li>.value[1].u32：表示非特殊状态时下划线颜色，0xargb类型。</li>
+     * <li>.value[2].u32：表示错误时下划线颜色，0xargb类型。</li>
+     * <li>.value[3].u32：表示禁用时下划线颜色，0xargb类型。</li>
      * </ul>
      *
      * @ingroup Text Input[文本输入]
@@ -9150,18 +9150,18 @@ typedef enum {
      * 
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。</li>
-     * <li>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。</li>
-     * <li>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xARGB类型。</li>
-     * <li>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。</li>
+     * <li>.value[0].u32：表示键入时的下划线颜色，0xARGB类型。</li>
+     * <li>.value[1].u32：表示非特殊状态时下划线颜色，0xARGB类型。</li>
+     * <li>.value[2].u32：表示错误时下划线颜色，0xARGB类型。</li>
+     * <li>.value[3].u32：表示禁用时下划线颜色，0xARGB类型。</li>
      * </ul>
      * 
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].u32：typing下划线颜色，表示键入时的下划线颜色，0xARGB类型。</li>
-     * <li>.value[1].u32：normal下划线颜色，表示非特殊状态时下划线颜色，0xARGB类型。</li>
-     * <li>.value[2].u32：error下划线颜色，表示错误时下划线颜色，0xARGB类型。</li>
-     * <li>.value[3].u32：disable下划线颜色，表示禁用时下划线颜色，0xARGB类型。</li>
+     * <li>.value[0].u32：表示键入时的下划线颜色，0xARGB类型。</li>
+     * <li>.value[1].u32：表示非特殊状态时下划线颜色，0xARGB类型。</li>
+     * <li>.value[2].u32：表示错误时下划线颜色，0xARGB类型。</li>
+     * <li>.value[3].u32：表示禁用时下划线颜色，0xARGB类型。</li>
      * </ul>
      *
      * @ingroup Text Editor[富文本]
