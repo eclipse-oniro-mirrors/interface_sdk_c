@@ -6759,8 +6759,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 1表示选中，0表示不选中。
-     * </li> \n
+     * <li>.value[0].i32: 1表示选中，0表示不选中。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
@@ -6812,7 +6811,6 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
      * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
-
      * <li>.value[1]?.f32: 可选，内部图标大小，单位vp。</li>\n
      * <li>.value[2]?.f32: 可选，内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
@@ -6820,9 +6818,7 @@ typedef enum {
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
      * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
-
      * <li>.value[1].f32: 内部图标大小，单位vp。</li> \n
-
      * <li>.value[2].f32: 内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
      * 
@@ -7817,14 +7813,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。
-     * </li> \n
+     * <li>.value[0].i32: 是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。
-     * </li> \n
+     * <li>.value[0].i32: 是否显示步长刻度值，1表示显示，0表示不显示，默认值为0。</li> \n
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -7975,8 +7969,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 滑动方向，参数类型[ArkUI_SliderDirection](capi-slider-h.md#arkui_sliderdirection)。
-     * </li> \n
+     * <li>.value[0].i32: 滑动方向，参数类型[ArkUI_SliderDirection](capi-slider-h.md#arkui_sliderdirection)。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
@@ -7993,14 +7986,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 是否反向，1表示反向，0表示不反向。
-     * </li> \n
+     * <li>.value[0].i32: 是否反向，1表示反向，0表示不反向。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 是否反向，1表示反向，0表示不反向。
-     * </li>
+     * <li>.value[0].i32: 是否反向，1表示反向，0表示不反向。</li>
      * </ul>
      * 
      * @ingroup Slider[滑动条]
@@ -8029,9 +8020,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].f32: 滑轨的粗细，单位为vp；当参数NODE_SLIDER_STYLE的值设置为ARKUI_SLIDER_STYLE_OUT_SET时为4.0vp，设置为ARKUI_SLIDER_STYLE_IN_SET时为20.0vp。
-     * 
-     * </li> \n
+     * <li>.value[0].f32: 滑轨的粗细，单位为vp；当参数NODE_SLIDER_STYLE的值设置为ARKUI_SLIDER_STYLE_OUT_SET时为4.0vp，设置为ARKUI_SLIDER_STYLE_IN_SET时为20.0vp。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
@@ -8048,8 +8037,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 是否开启触控反馈。默认值：true，true表示开启触控反馈，false则表示不开启触控反馈。
-     * </li>\n
+     * <li>.value[0].i32: 是否开启触控反馈。默认值：true，true表示开启触控反馈，false则表示不开启触控反馈。</li>\n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
@@ -8097,8 +8085,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
-     * </li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。</li> \n
      * <li>colors: 渐变色颜色。</li> \n
      * <li>stops: 渐变位置。</li> \n
      * <li>size: 颜色个数。</li> \n
@@ -8106,8 +8093,7 @@ typedef enum {
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
-     * </li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。</li> \n
      * <li>colors: 渐变色颜色。</li> \n
      * <li>stops: 渐变位置。</li> \n
      * <li>size: 颜色个数。</li> \n
@@ -8123,8 +8109,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
-     * </li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。</li> \n
      * <li>colors: 渐变色颜色。</li> \n
      * <li>stops: 渐变位置。</li> \n
      * <li>size: 颜色个数。</li> \n
@@ -8132,8 +8117,7 @@ typedef enum {
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
-     * </li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。</li> \n
      * <li>colors: 渐变色颜色。</li> \n
      * <li>stops: 渐变位置。</li> \n
      * <li>size: 颜色个数。</li> \n
@@ -8149,8 +8133,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
-     * </li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色，设置非法颜色直接跳过：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。</li> \n
      * <li>colors: 渐变色颜色。</li> \n
      * <li>stops: 渐变位置。</li> \n
      * <li>size: 颜色个数。</li> \n
@@ -8158,8 +8141,7 @@ typedef enum {
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。
-     * </li> \n
+     * <li>.object: 参数类型为[ArkUI_ColorStop](capi-arkui-nativemodule-arkui-colorstop.md)。指定相对比例位置处的渐变色颜色：<br>- colors：渐变色颜色。<br>- stops：渐变位置。<br>- size：颜色个数。</li> \n
      * <li>colors: 渐变色颜色。</li> \n
      * <li>stops: 渐变位置。</li> \n
      * <li>size: 颜色个数。</li> \n
@@ -8392,8 +8374,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].i32: 是否设置全选1表示选中，0表示不选中。
-     * </li> \n
+     * <li>.value[0].i32: 是否设置全选1表示选中，0表示不选中。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
@@ -8411,8 +8392,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
-     * <li>.value[0].u32: CheckBoxGroup多选框选中状态颜色，0xARGB格式。例如0xFF1122FF。
-     * </li> \n
+     * <li>.value[0].u32: CheckBoxGroup多选框选中状态颜色，0xARGB格式。例如0xFF1122FF。</li> \n
      * </ul>
      * \n
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
@@ -8448,7 +8428,6 @@ typedef enum {
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
      * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
-
      * <li>.value[1]?.f32: 可选，内部图标大小，单位vp。</li>\n
      * <li>.value[2]?.f32: 可选，内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
@@ -8456,7 +8435,6 @@ typedef enum {
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**\n
      * <ul>
      * <li>.value[0].u32: 边框颜色，类型为0xARGB，如0xFF1122FF。</li>\n
-
      * <li>.value[1].f32: 可选，内部图标大小，单位vp。</li> \n
      * <li>.value[2].f32: 可选，内部图标粗细，单位vp，默认值2。</li> \n
      * </ul>
