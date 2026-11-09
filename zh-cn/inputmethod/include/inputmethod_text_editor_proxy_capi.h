@@ -726,11 +726,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
  * @param setPreviewTextWithStyleFunc [in] 输入参数，表示被设置到proxy的回调函数
  *     {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
  * @return 返回一个特定的错误码。
- * <ul>
- *     <li>{@link IME_ERR_OK} - 表示成功。</li>
- *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
- * </ul>
- * 具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *         <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *         <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     </ul>
+ *     具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
@@ -941,11 +941,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
  * @param setPreviewTextWithStyleFunc [out] 输出指针，表示从proxy获取到的函数指针
  *     {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
  * @return 返回一个特定的错误码。
- * <ul>
- *     <li>{@link IME_ERR_OK} - 表示成功。</li>
- *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
- * </ul>
- * 具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *         <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *         <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     </ul>
+ *     具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_GetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
