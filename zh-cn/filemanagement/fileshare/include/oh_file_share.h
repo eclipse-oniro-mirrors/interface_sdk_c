@@ -127,7 +127,7 @@ typedef struct FileShare_PolicyInfo {
 
     /**
      * 授予或激活权限的URI访问模式。READ_MODE表示读取权限，WRITE_MODE表示写入权限。\n
-     * 示例：FileShare_OperationMode.READ_MODE、FileShare_OperationMode.WRITE_MODE。\n
+     * 示例：FileShare_OperationMode.READ_MODE\n
      * 或者FileShare_OperationMode.READ_MODE|FileShare_OperationMode.WRITE_MODE。
      */
     unsigned int operationMode;
