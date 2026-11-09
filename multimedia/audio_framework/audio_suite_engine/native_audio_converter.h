@@ -74,6 +74,111 @@ typedef struct OH_AudioConverter_Format {
 } OH_AudioConverter_Format;
 
 /**
+ * @brief Defines the format information of the extended audio converter, which is used to describe the audio format
+ * that supports any sampling rate.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_AudioSuite_ConverterFormatEx {
+    /**
+     * @brief Audio encoding format type.
+     *
+     * @since 26.1.0
+     */
+    OH_Audio_EncodingType encodingType;
+    /**
+     * @brief Audio sampling rate, in Hz.
+     * The sampling rate is an integer multiple of 10 Hz in the range [8000, 5644800] and 11025 Hz.
+     *
+     * @since 26.1.0
+     */
+    int32_t samplingRate;
+    /**
+     * @brief Audio channel layout.
+     * The supported value range is {@link OH_AudioChannelLayout}.CH_LAYOUT_MONO,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO, {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO_DOWNMIX,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_2POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_3POINT0,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_SURROUND, {@link OH_AudioChannelLayout}.CH_LAYOUT_3POINT1,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_4POINT0, {@link OH_AudioChannelLayout}.CH_LAYOUT_QUAD_SIDE,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_QUAD, {@link OH_AudioChannelLayout}.CH_LAYOUT_2POINT0POINT2,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_4POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT0,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT0_BACK, {@link OH_AudioChannelLayout}.CH_LAYOUT_2POINT1POINT2,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_3POINT0POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1_BACK, {@link OH_AudioChannelLayout}.CH_LAYOUT_6POINT0,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_3POINT1POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_6POINT0_FRONT,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_HEXAGONAL, {@link OH_AudioChannelLayout}.CH_LAYOUT_6POINT1,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_6POINT1_BACK, {@link OH_AudioChannelLayout}.CH_LAYOUT_6POINT1_FRONT,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT0, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT0_FRONT,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_OCTAGONAL,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1_WIDE,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1_WIDE_BACK.
+     *
+     * @since 26.1.0
+     */
+    OH_AudioChannelLayout channelLayout;
+    /**
+     * @brief Audio sampling format.
+     *
+     * @since 26.1.0
+     */
+    OH_Audio_SampleFormat sampleFormat;
+} OH_AudioSuite_ConverterFormatEx;
+
+/**
+ * @brief Defines the input data structure of the audio converter.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_AudioSuite_ConverterInputInfo {
+    /**
+     * @brief Pointer to the input audio data buffer, which points to the original audio data and is allocated by the
+     * caller.
+     * The specific data type is determined by the sampling format {@link OH_Audio_SampleFormat}.
+     * Must remain valid during a call to {@link OH_AudioSuite_ConverterDirectProcess}. The value cannot be NULL.
+     *
+     * @since 26.1.0
+     */
+    const void *data;
+    /**
+     * @brief Indicates the size of the input buffer, in bytes. Must be greater than 0.
+     *
+     * @since 26.1.0
+     */
+    uint32_t size;
+} OH_AudioSuite_ConverterInputInfo;
+
+/**
+ * @brief Defines the output data structure of the audio converter, which is used to receive the converted audio data in
+ * direct processing mode.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_AudioSuite_ConverterOutputInfo {
+    /**
+     * @brief Pointer to the buffer of the output audio data, which is allocated by the caller.
+     * Conversion results will be written to this buffer.
+     * The specific data type is determined by the sampling format {@link OH_Audio_SampleFormat}.
+     * Must remain valid during a call to {@link OH_AudioSuite_ConverterDirectProcess}. The value cannot be NULL.
+     *
+     * @since 26.1.0
+     */
+    void *data;
+    /**
+     * @brief Size of the output buffer, in bytes. The value must be greater than 0.
+     *
+     * @since 26.1.0
+     */
+    uint32_t size;
+    /**
+     * @brief Output parameter, which returns the number of bytes actually written to the output buffer.
+     * No initialization is required before invoking. No content is written when the call fails.
+     *
+     * @since 26.1.0
+     */
+    uint32_t writeSize;
+} OH_AudioSuite_ConverterOutputInfo;
+
+/**
  * @brief Declare the audio converter.
  * The handle of audio converter is used for audio converter related functions.
  *
@@ -141,6 +246,16 @@ typedef enum {
      * @since 26.0.0
      */
     AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET = 8,
+    /**
+     * @brief Permission verification failed. A non-system application invokes the system API.
+     * @since 26.1.0
+     */
+    AUDIOCONVERTER_ERROR_NOT_SYSTEM_APP = 202,
+    /**
+     * @brief The operation is not supported.
+     * @since 26.1.0
+     */
+    AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION = 6800104,
 } OH_AudioConverter_Result;
 
 /**
@@ -254,15 +369,22 @@ typedef int32_t (*OH_AudioConverter_RequestDataCallback)(
  * @param callback Callback function that will be invoked during {@link OH_AudioConverter_Process}
  * to actively request input audio data.
  * @param userData Pointer to an application data structure that will be passed to the callback functions.
- * @return <ul>
- *         <li>{@link #AUDIOCONVERTER_SUCCESS} if execution succeeds.</li>
- *         <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if parameter is invalid,
- *             e.g. converter is nullptr, e.t.c.</li>
- *         <li>{@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZED} if the converter instance is not initialized</li>
- *         <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} if callback is invalid,
- *             e.g. invalid callback return, e.t.c.</li>
- *         <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities</li>
- *         </ul>
+ * @return<ul>
+ * <li>{@link #AUDIOCONVERTER_SUCCESS} Succeeded in setting the input callback function, and subsequent processes can be
+ * properly executed. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} The input parameter of the function is invalid,
+ * Check whether the input audio format converter pointer is a non-null pointer. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZATION}The audio format converter is not initialized,
+ * Check whether the current audio format converter is valid. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} The callback function is invalid,
+ * Check whether the amount of data returned by the input callback function is within the allowed range. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET}The callback function is not set. Check whether the callback
+ * function pointer is empty. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} System error. Check whether the format conversion is performed using the
+ * destroyed audio format converter. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION} The current processing process does not support callback
+ * setting. [since 26.1.0]</li>
+ * </ul>
  * @since 26.0.0
  */
 OH_AudioConverter_Result OH_AudioConverter_SetInputCallback(
@@ -304,6 +426,164 @@ OH_AudioConverter_Result OH_AudioConverter_Process(
     int32_t outputCapacity,
     int32_t* outputSize
 );
+
+/**
+ * @brief Create an audio converter that supports extended formats.
+ *
+ * @systemapi
+ * @param inputFormat [Input parameter] Pointer to the input audio format. Cannot be NULL and must remain valid for
+ *     the duration of the call.
+ * @param outputFormat [Input parameter] Pointer to the output audio format. Cannot be NULL and must remain valid
+ *     for the duration of the call.
+ * @param outOwnedConverter [Output parameter] Pointer to the created audio converter instance. The caller owns the
+ *     result and must use the
+ * {@link OH_AudioConverter_Destroy} Release. The value cannot be NULL and does not need to be initialized. No content
+ * is written when the call fails.
+ * @return<ul>
+ * <li>{@link #AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
+ * <li>202 Permission verification failed because a non-system application uses the system API. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM}The parameter is invalid. The possible causes are as follows:
+ * <br>1. The value of inputFormat is NULL.
+ * <br>2. The value of outputFormat is NULL.
+ * <br>3. outOwnedConverter is NULL. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT}The audio format in inputFormat/outputFormat is not supported.
+ * </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} Memory allocation failed. </li>
+ * </ul>
+ * @release ohaudiosuite/OH_AudioConverter_Destroy {outOwnedConverter}
+ * @since 26.1.0
+ */
+OH_AudioConverter_Result OH_AudioSuite_ConverterCreateEx(
+    const OH_AudioSuite_ConverterFormatEx *inputFormat,
+    const OH_AudioSuite_ConverterFormatEx *outputFormat,
+    OH_AudioConverter **outOwnedConverter);
+
+/**
+ * @brief Calculate the minimum number of input bytes and the corresponding number of output bytes to ensure that the
+ * output is an integer sample number.
+ *
+ * The minimum number of bytes is determined by the input and output formats set when the converter was created, and is
+ * related to the sampling rate, number of channels, and bit depth.
+ * @systemapi
+ * @param converter [Input parameter] Converter instance created by the {@link OH_AudioSuite_ConverterCreateEx} or
+ *     {@link OH_AudioConverter_Create}.
+ * cannot be null and must remain valid during the call.
+ * @param inputMinSize [Output parameter] Minimum number of input bytes, in bytes. The value cannot be NULL and does
+ *     not need to be initialized. No content is written when the call fails.
+ * @param outputMinSize [Output parameter] Minimum number of output bytes, in bytes. The value cannot be NULL and
+ *     does not need to be initialized. No content is written when the call fails.
+ * @return<ul>
+ * <li>{@link #AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
+ * <li>202 Permission verification failed because a non-system application uses the system API. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM}The parameter is invalid. The possible causes are as follows:
+ * <br>1. The converter is NULL.
+ * <br>2. The value of inputMinSize is NULL.
+ * <br>3. The value of outputMinSize is NULL. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+OH_AudioConverter_Result OH_AudioSuite_ConverterGetMinInOutSizes(
+    OH_AudioConverter *converter, uint32_t *inputMinSize, uint32_t *outputMinSize);
+
+/**
+ * @brief Converts the audio format and transfers the input data to the invoking party.
+ *
+ * This interface processes the input data directly transferred by the invoker. A maximum of 1000 ms audio data can be
+ * input each time the interface is invoked.
+ * The same converter instance cannot set callback through {@link OH_AudioConverter_SetInputCallback} or transfer data
+ * through this interface at the same time.
+ * When the input and output sampling rates are different, the first call and the first call after each call
+ * {@link OH_AudioSuite_ConverterFlush} are called,
+ * The output data is preceded by a certain length of silence data. No padding is performed when the sampling rate is
+ * the same.
+ * The number of bytes to fill in the silence data can be obtained from {@link OH_AudioSuite_ConverterGetDelaySize}.
+ * @systemapi
+ * @param converter [Input parameter] Converter instance created by the {@link OH_AudioSuite_ConverterCreateEx} or
+ *     {@link OH_AudioConverter_Create}.
+ * cannot be null and must remain valid during the call.
+ * @param inData [Input parameter] Pointer to the input audio data descriptor. Cannot be NULL and must remain valid
+ *     for the duration of the call.
+ * **inData->size** indicates the number of input bytes, which must be an integer multiple of the minimum number of
+ * input bytes returned by the {@link OH_AudioSuite_ConverterGetMinInOutSizes}.
+ * @param outData [Input parameter, output parameter] Pointer to the output audio data descriptor. Cannot be NULL
+ *     and must remain valid for the duration of the call.
+ * <br>The caller needs to allocate the output buffer and set **outData->data** and **outData->size**.
+ * If **inData->size** is k times the minimum number of input bytes, **outData->size** must be greater than k times the
+ * minimum number of output bytes,
+ * The minimum number of input bytes and the minimum number of output bytes are obtained from
+ * {@link OH_AudioSuite_ConverterGetMinInOutSizes}.
+ * <br>The conversion result is written to **outData->data**. The actual number of written bytes is returned through
+ * **outData->writeSize**.
+ * <br>No content is written when the call fails.
+ * @return<ul>
+ * <li>{@link #AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
+ * <li>202 Permission verification failed because a non-system application uses the system API. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM}The parameter is invalid. The possible causes are as follows:
+ * <br>1. The converter is NULL.
+ * <br>2. The value of inData is NULL.
+ * <br>3. **inData->data** is NULL.
+ * <br>4. **inData->size** is 0.
+ * <br>5. **inData->size** is not an integer multiple of the minimum number of input bytes returned by the
+ * {@link OH_AudioSuite_ConverterGetMinInOutSizes}.
+ * <br>6. **inData->size** The audio duration exceeds 1000 ms.
+ * <br>7. The value of outData is NULL.
+ * <br>8. **outData->data** is NULL. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION} The callback has been set through
+ * {@link OH_AudioConverter_SetInputCallback}. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL}The output buffer is insufficient. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} An internal system error occurs. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+OH_AudioConverter_Result OH_AudioSuite_ConverterDirectProcess(
+    OH_AudioConverter *converter,
+    const OH_AudioSuite_ConverterInputInfo *inData,
+    OH_AudioSuite_ConverterOutputInfo *outData);
+
+/**
+ * @brief Obtains the number of silent data bytes padded before the first output data during sampling rate conversion.
+ *
+ * This interface is invoked after the {@link OH_AudioSuite_ConverterDirectProcess} generates mute filling.
+ * The mute padding is re-created after {@link OH_AudioSuite_ConverterFlush} is called.
+ * If the sampling rates are the same, 0 is returned.
+ * @systemapi
+ * @param converter [Input parameter] Converter instance created by the {@link OH_AudioSuite_ConverterCreateEx} or
+ *     {@link OH_AudioConverter_Create}.
+ * cannot be null and must remain valid during the call.
+ * @param delaySize [Output parameter] Number of bytes filled before the first output data, in bytes.
+ * cannot be NULL and does not need to be initialized. No content is written when the call fails.
+ * @return<ul>
+ * <li>{@link #AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
+ * <li>202 Permission verification failed because a non-system application uses the system API. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM}The parameter is invalid. The possible causes are as follows:
+ * <br>1. The converter is NULL.
+ * <br>2. The value of delaySize is NULL. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+OH_AudioConverter_Result OH_AudioSuite_ConverterGetDelaySize(OH_AudioConverter *converter, uint32_t *delaySize);
+
+/**
+ * @brief Clears the internal buffer and processing status of the audio converter.
+ *
+ * when the audio data is discontinuous(e.g., fast forward, fast rewind scene), or when a new audio stream is restarted
+ * before the processing of an audio stream is completed,
+ * This interface needs to be called to clear the internal cache and processing status of the converter. Restore the
+ * converter to its original state.
+ * After the call, the converter can continue to receive new audio data for conversion without destroying and
+ * rebuilding.
+ * @systemapi
+ * @param converter [Input parameter] Converter instance created by the {@link OH_AudioSuite_ConverterCreateEx} or
+ *     {@link OH_AudioConverter_Create}.
+ * cannot be null and must remain valid during the call.
+ * @return<ul>
+ * <li>{@link #AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
+ * <li>202 Permission verification failed because a non-system application uses the system API. </li>
+ * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} The parameter is invalid. The converter is NULL. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+OH_AudioConverter_Result OH_AudioSuite_ConverterFlush(OH_AudioConverter *converter);
 
 #ifdef __cplusplus
 }
