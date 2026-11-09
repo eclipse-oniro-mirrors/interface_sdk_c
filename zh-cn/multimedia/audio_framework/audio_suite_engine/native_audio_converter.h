@@ -143,6 +143,7 @@ typedef enum {
  *     <br>AUDIOCONVERTER_ERROR_INVALID_PARAM：函数输入参数无效，需要检查传入的音频格式转换器指针是否非空指针。
  *     <br>AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT：音频输入/输出格式组合不支持，输入或输出格式超出允许范围，
  *     需要检查配置的音频格式。
+ *     <br>AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED：音频格式转换器内存分配失败，
  *     <br>AUDIOCONVERTER_ERROR_SYSTEM：系统错误，需要检查是否使用已销毁的音频格式转换器执行格式转换。
  * @release OH_AudioConverter_Destroy {converter}
  * @since 26.0.0
