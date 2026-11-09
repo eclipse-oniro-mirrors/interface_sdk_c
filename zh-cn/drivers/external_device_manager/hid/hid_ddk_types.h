@@ -896,7 +896,7 @@ typedef struct Hid_AbsAxesArray {
      */
     Hid_AbsAxes *hidAbsAxes;
     /**
-     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。取值范围：[0, 65535]。
+     * 数组的有效长度，表示hidAbsAxes指针指向的有效元素个数。
      */
     uint16_t length;
 } Hid_AbsAxesArray;
@@ -1007,7 +1007,7 @@ typedef enum {
     HID_DDK_FAILURE = 27300001,
     /**
      * 空指针异常，从API 16起，取值由-4变更为27300002。请检查传入参数的有效性。
-     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在设备不存在时，取值为-4;{@link OH_Hid_EmitEvent}在设备对象为空时，取值也为-4。
+     * 注：当前{@link OH_Hid_EmitEvent}与{@link OH_Hid_DestroyDevice}在设备不存在时，取值为-4；{@link OH_Hid_EmitEvent}在设备对象为空时，取值也为-4。
      */
     HID_DDK_NULL_PTR = 27300002,
     /**

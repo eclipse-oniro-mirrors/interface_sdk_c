@@ -55,7 +55,7 @@ extern "C" {
  * @since 11
  * @version 1.0
  */
-typedef struct Hid_EmitItem { 
+typedef struct Hid_EmitItem {
     /**
      * HID event type, which is used to identify the event type, such as key press and movement. For details, see the
      * HID protocol specifications.
@@ -71,7 +71,7 @@ typedef struct Hid_EmitItem {
      * event, this parameter indicates the movement distance.
      */
     uint32_t value;
-} Hid_EmitIte; 
+} Hid_EmitItem;
 
 /**
  * @brief Enumerates the properties of input devices.
@@ -825,8 +825,8 @@ typedef enum {
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * Miscellaneous relative coordinate events, which are used to identify miscellaneous axis types that do not fit into
-     * the preceding categories.
+     * Miscellaneous relative coordinate events, which are used to identify miscellaneous axis types that do not fit
+     * into the preceding categories.
      */
     HID_REL_MISC = 0x09,
     /**
@@ -839,9 +839,9 @@ typedef enum {
      */
     HID_REL_WHEEL_HI_RES = 0x0b,
     /**
-     * High-resolution horizontal scroll wheel, indicating the scroll direction and distance of the mouse high-resolution
-     * horizontal scroll wheel. It provides higher resolution and precision than a common horizontal scroll
-     * wheel.
+     * High-resolution horizontal scroll wheel, indicating the scroll direction and distance of the mouse
+     * high-resolution horizontal scroll wheel. It provides higher resolution and precision than a common horizontal
+     * scroll wheel.
      */
     HID_REL_HWHEEL_HI_RES = 0x0c
 } Hid_RelAxes;
@@ -954,7 +954,7 @@ typedef struct Hid_RelAxesArray {
      */
     Hid_RelAxes *hidRelAxes;
     /**
-     * Valid length of the array, which cannot exceed the actual length of the **hidRelBits** array.
+     * Valid length of the array, which cannot exceed the actual length of the **hidRelAxes** array.
      */
     uint16_t length;
 } Hid_RelAxesArray;

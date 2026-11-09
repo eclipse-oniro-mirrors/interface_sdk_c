@@ -118,7 +118,7 @@ int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t 
  *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param deviceId Device ID, which must be the ID of the device created by the current caller. The value must be a
- *     non-negative integer.  
+ *     non-negative integer.
  * @return {@link HID_DDK_SUCCESS}: The API call is successful.
  *     <br>{@link HID_DDK_NO_PERM}: The permission verification fails. Ensure that you have declared the
  *     **ohos.permission.ACCESS_DDK_HID** permission.

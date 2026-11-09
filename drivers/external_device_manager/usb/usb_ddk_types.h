@@ -484,8 +484,8 @@ typedef enum {
      */
     USB_DDK_IO_FAILED = 27400003,
     /**
-     * Transfer timed out. Check whether the device response is normal or increase the timeout interval. The value is **-7**
-     * in versions earlier than API version 16.
+     * Transfer timed out. Check whether the device response is normal or increase the timeout interval. The value
+     * is **-7** in versions earlier than API version 16.
      */
     USB_DDK_TIMEOUT = 27400004
 } UsbDdkErrCode;
