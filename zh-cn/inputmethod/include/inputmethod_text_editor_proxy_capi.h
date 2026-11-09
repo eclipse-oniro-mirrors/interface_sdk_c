@@ -423,23 +423,23 @@ typedef int32_t (*OH_TextEditorProxy_SetPreviewTextFunc)(
  * 文本样式信息。开发者需实现此函数，在函数中将text参数指定的文本内容以指定的样式插入到编辑框的光标位置。
  * 与{@link OH_TextEditorProxy_FinishTextPreviewFunc}配合使用：先调用SetPreviewTextWithStyleFunc设置带样式的预上屏内容，
  * 当用户选择候选词或取消输入时，调用FinishTextPreviewFunc结束预上屏。
- *     <br>
- *     <br> 使用场景：当输入法应用需要展示带有样式的候选文本（如拼音输入时的预上屏文本）时，系统将自动调用此回调。
- *     <br>
- *     <br> 使用后效果：回调执行后，编辑框应将text内容以预上屏样式显示在start到end范围内，并按照style参数指定的样式进行渲染，
+ * <br>
+ * <br> 使用场景：当输入法应用需要展示带有样式的候选文本（如拼音输入时的预上屏文本）时，系统将自动调用此回调。
+ * <br>
+ * <br> 使用后效果：回调执行后，编辑框应将text内容以预上屏样式显示在start到end范围内，并按照style参数指定的样式进行渲染，
  * 同时将返回值反馈给输入法。
- *     <br>
- *     <br> 前置条件：须通过[OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc]
+ * <br>
+ * <br> 前置条件：须通过[OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc]
  * (#oh_inputmethod_texteditorproxy_setsetpreviewtextwithstylefunc)将此回调设置到TextEditorProxy中，并通过
  * [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)完成注册。
-*
+ *
  * <br>**说明：**
  * <br>当输入法应用设置带有样式的预上屏文本时，会同时回调{@link OH_TextEditorProxy_SetPreviewTextFunc}，开发者需要注意避免重复
  * <br>处理预上屏文本内容。
- *
+ * 
  * @param textEditorProxy [in] 输入指针，指向当前被回调的{@link InputMethod_TextEditorProxy}实例。
- * @param text [in] 输入指针，请求设置为预上屏样式的文本内容，采用UTF-16编码。此指针仅在回调执行期间有效，回调返回后该内存将被释放，
- * 不可再访问。
+ * @param text [in] 输入指针，请求设置为预上屏样式的文本内容，采用UTF-16编码。此指针仅在回调执行期间有效，回调返回后该内存将被
+ *     释放，不可再访问。
  * @param length [in] 输入参数，预上屏文本的字符数量（单位：char16_t字符个数）。
  * @param start [in] 输入参数，预上屏文本起始光标位置（单位：字符偏移量，相对于文本开头）。
  * @param end [in] 输入参数，预上屏文本结束光标位置（单位：字符偏移量，相对于文本开头）。
@@ -727,10 +727,10 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
  *     {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
  * @return 返回一个特定的错误码。
  *     <ul>
- *         <li>{@link IME_ERR_OK} - 表示成功。</li>
- *         <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
  *     </ul>
- *     具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
@@ -942,10 +942,10 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
  *     {@link OH_InputMethod_TextEditorProxy_SetPreviewTextWithStyleFunc}。不可为NULL。
  * @return 返回一个特定的错误码。
  *     <ul>
- *         <li>{@link IME_ERR_OK} - 表示成功。</li>
- *         <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
  *     </ul>
- *     具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_GetSetPreviewTextWithStyleFunc(InputMethod_TextEditorProxy *proxy,
