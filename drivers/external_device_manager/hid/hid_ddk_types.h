@@ -17,7 +17,7 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief 
+ * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
  *
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.HID.Extension
