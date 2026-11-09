@@ -94,7 +94,7 @@ OH_InputMethod_PreviewTextStyle *OH_InputMethod_PreviewTextStyle_Create(void);
  * <br>
  * <br>生命周期管理：传入NULL时函数不做任何处理，不会导致崩溃。
  *
- * @param style 输入指针，表示指向即将被销毁的{@link OH_InputMethod_PreviewTextStyle}实例的指针。若传入NULL，函数不做任何处理。
+ * @param style [in] 输入指针，表示指向即将被销毁的{@link OH_InputMethod_PreviewTextStyle}实例的指针。若传入NULL，函数不做任何处理。
  * @since 26.1.0
  */
 void OH_InputMethod_PreviewTextStyle_Destroy(OH_InputMethod_PreviewTextStyle *style);
@@ -102,12 +102,14 @@ void OH_InputMethod_PreviewTextStyle_Destroy(OH_InputMethod_PreviewTextStyle *st
 /**
  * @brief 设置预上屏文本的下划线样式。
  *
- * @param style 输入指针，指向即将被设置的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
- * @param underlineStyle 输入参数，下划线样式，参见{@link OH_InputMethod_UnderlineStyle}。
+ * @param style [in] 输入指针，指向即将被设置的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
+ * @param underlineStyle [in] 输入参数，下划线样式，参见{@link OH_InputMethod_UnderlineStyle}。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ * </ul>
+ * 具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineStyle(
@@ -116,12 +118,14 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineStyle(
 /**
  * @brief 获取预上屏文本的下划线样式。
  *
- * @param style 输入指针，指向被读取的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
- * @param underlineStyle 输出指针，用于返回下划线样式。不可为NULL。
+ * @param style [in] 输入指针，指向被读取的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
+ * @param underlineStyle [out] 输出指针，用于返回下划线样式。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ * </ul>
+ * 具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineStyle(
@@ -131,12 +135,14 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineStyle(
  * @brief 设置预上屏文本的下划线颜色。颜色格式为0xRRGGBB，透明度通道（AA）无效，将被编辑器忽略。
  * 调用此函数后，下划线颜色将被标记为已显式指定；之后调用{@link OH_InputMethod_PreviewTextStyle_HasUnderlineColor}时，其hasUnderlineColor输出参数将为true。
  *
- * @param style 输入指针，指向即将被设置的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
- * @param underlineColor 输入参数，下划线颜色，格式为0xRRGGBB。
+ * @param style [in] 输入指针，指向即将被设置的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
+ * @param underlineColor [in] 输入参数，下划线颜色，格式为0xRRGGBB。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ * </ul>
+ * 具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineColor(
@@ -145,12 +151,14 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_SetUnderlineColor(
 /**
  * @brief 获取预上屏文本的下划线颜色。
  *
- * @param style 输入指针，指向被读取的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
- * @param underlineColor 输出指针，用于返回下划线颜色，格式为0xRRGGBB。不可为NULL。
+ * @param style [in] 输入指针，指向被读取的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
+ * @param underlineColor [out] 输出指针，用于返回下划线颜色，格式为0xRRGGBB。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ * </ul>
+ * 具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineColor(
@@ -161,12 +169,14 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_GetUnderlineColor(
  *
  * 结果由是否调用过{@link OH_InputMethod_PreviewTextStyle_SetUnderlineColor}决定。若已调用过则hasUnderlineColor输出true，否则输出false。
  *
- * @param style 输入指针，指向被读取的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
- * @param hasUnderlineColor 输出指针，用于返回是否设置了下划线颜色。不可为NULL。
+ * @param style [in] 输入指针，指向被读取的{@link OH_InputMethod_PreviewTextStyle}实例的指针。不可为NULL。
+ * @param hasUnderlineColor [out] 输出指针，用于返回是否设置了下划线颜色。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ * <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ * </ul>
+ * 具体错误码可以参考{@link InputMethod_ErrorCode}。
  * @since 26.1.0
  */
 InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_HasUnderlineColor(
