@@ -20,7 +20,8 @@
  * @brief The SCSI Peripheral DDK is a suite dedicated to SCSI device driver development at the application layer.
  * It provides APIs for initializing the DDK, releasing the DDK, enabling and disabling devices, and reading data
  * from and writing data to devices. It also declares the macros, enum variables, and data structures required for
- * SCSI device driver development. The use scenarios include storage device driver development and disk array management.
+ * SCSI device driver development. The use scenarios include storage device driver development and disk array
+ * management.
  * @since 18
  */
 
