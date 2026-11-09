@@ -1095,12 +1095,6 @@ ArkUI_ErrorCode OH_ArkUI_LongPressGesture_SetAllowableMovement(
  */
 ArkUI_ErrorCode OH_ArkUI_GestureCollectInterceptInfo_GetResponseRecognizers(
     const ArkUI_GestureCollectInterceptInfo* info, ArkUI_GestureRecognizerHandleArray* array, int32_t* size);
-/**
- * @brief Defines information about gesture collection interception.
- *
- * @since 26.0.0
- */
-typedef struct ArkUI_GestureCollectInterceptInfo ArkUI_GestureCollectInterceptInfo;
 
 /**
  * @brief 从手势收集拦截信息中获取触摸识别器句柄。
