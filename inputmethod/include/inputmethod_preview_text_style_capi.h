@@ -35,11 +35,11 @@
  * <br>Usage scenario: When the input method app sets preview text with style via the SetPreviewTextWithStyleFunc
  * callback, the system constructs a PreviewTextStyle object and passes it to the app, which reads the style
  * information via Get methods for rendering.
- *
+ * 
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
  * @include <inputmethod/inputmethod_preview_text_style_capi.h>
  * @library libohinputmethod.so
  * @kit IMEKit
- * @syscap SystemCapability.MiscServices.InputMethodFramework
  * @since 26.1.0
  */
 #ifndef OHOS_INPUTMETHOD_PREVIEW_TEXT_STYLE_CAPI_H
@@ -198,4 +198,4 @@ InputMethod_ErrorCode OH_InputMethod_PreviewTextStyle_HasUnderlineColor(
 }
 #endif /* __cplusplus */
 /** @} */
-#endif // OHOS_INPUTMETHOD_PREVIEW_TEXT_STYLE_CAPI_H
+#endif // OHOS_INPUTMETHOD_PREVIEW_TEXT_STYLE_CAPI_H
