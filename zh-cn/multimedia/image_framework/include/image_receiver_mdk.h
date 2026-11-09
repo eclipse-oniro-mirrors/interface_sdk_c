@@ -97,6 +97,7 @@ struct OhosImageReceiverInfo {
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_CREATE_SURFACE_FAILED：创建surface失败。
  *     <br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED：surface分配内存失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
@@ -132,7 +133,7 @@ ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative(napi_env env, nap
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
  *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
  *     <br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT：媒体类型不支持。
@@ -154,7 +155,7 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId(const ImageReceiverNative* nativ
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_CREATE_SURFACE_FAILED：创建surface失败。
  *     <br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED：surface分配内存失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
@@ -179,7 +180,7 @@ int32_t OH_Image_Receiver_ReadLatestImage(const ImageReceiverNative* native, nap
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
+ *     <br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED：从surface获取参数失败。
  *     <br>IMAGE_RESULT_CREATE_SURFACE_FAILED：创建surface失败。
  *     <br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED：surface分配内存失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
@@ -202,10 +203,10 @@ int32_t OH_Image_Receiver_ReadNextImage(const ImageReceiverNative* native, napi_
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_INVALID_PARAMETER：从surface获取参数失败。
  *     <br>IMAGE_RESULT_GET_SURFACE_FAILED：获取surface失败。
  *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
- *     <br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT：媒体类型不支持。
+ *     <br>IMAGE_RESULT_REGISTER_LISTENER_FAILED：注册监听器失败。
+ *     <br>IMAGE_RESULT_REGISTER_BUFFER_FAILED：注册缓冲区失败。
  * @see ImageReceiverNative
  * @since 10
  * @version 2.0
@@ -271,8 +272,8 @@ int32_t OH_Image_Receiver_GetFormat(const ImageReceiverNative* native, int32_t* 
  * @return {@link IRNdkErrCode}：
  *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
- *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图像类型不支持。
  * @see ImageReceiverNative
  * @since 10
  * @version 2.0

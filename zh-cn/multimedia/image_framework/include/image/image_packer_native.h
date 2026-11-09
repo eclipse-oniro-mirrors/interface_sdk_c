@@ -174,7 +174,9 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
  * @param format 图像格式。format无需手动初始化，系统将分配内存，但必须在使用后释放内存。
  *     <br>该接口获取到的format.data缺少字符串结束符'\0'，需要检查实际数据长度是否超出了申请缓冲区的长度。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：options为空，或者format为空。
+ *     <br>IMAGE_ALLOC_FAILED：内存分配失败。
+ *     <br>IMAGE_COPY_FAILED：内存拷贝失败。
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
@@ -534,11 +536,8 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker);
  * @param outData 用于存储打包图像输出数据的缓冲区。
  * @param size 用于存储打包图像输出数据的缓冲区大小。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
- *     <br>IMAGE_ALLOC_FAILED：申请内存失败。
- *     <br>IMAGE_TOO_LARGE：数据或图片过大。
- *     <br>IMAGE_UNKNOWN_ERROR：未知错误。
+ *     <br>IMAGE_BAD_PARAMETER：imagePacker为空，或者options为空，或者imageSource为空，或者outData为空。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNative *imagePacker,
@@ -557,11 +556,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
  * @param outData 用于存储打包图像输出数据的缓冲区。
  * @param size 用于存储打包图像输出数据的缓冲区大小。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
- *     <br>IMAGE_ALLOC_FAILED：申请内存失败。
- *     <br>IMAGE_TOO_LARGE：数据或图片过大。
- *     <br>IMAGE_UNKNOWN_ERROR：未知错误。
+ *     <br>IMAGE_BAD_PARAMETER：imagePacker为空，或者options为空，或者pixelmap为空，或者outData为空。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative *imagePacker,
@@ -579,8 +575,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
  * @param outData 用于存储打包图像输出数据的缓冲区。
  * @param size 用于存储打包图像输出数据的缓冲区大小。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
+ *     <br>IMAGE_BAD_PARAMETER：imagePacker为空，或者options为空，或者picture为空，或者size无效。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative *imagePacker,
@@ -601,8 +597,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
  * @param outDataSize 用于存储编码后图像输出数据缓冲区大小的指针，不允许为NULL。调用前，*outDataSize应设置为outData可写缓冲区大小；调用成功后，*
  *     outDataSize会更新为实际写入的编码数据长度。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
+ *     <br>IMAGE_BAD_PARAMETER：其中一个指针类型的参数是空，或者size/length无效。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 18
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
@@ -621,8 +617,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
  * @param fd 可写的文件描述符。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
- *     <br>IMAGE_UNKNOWN_ERROR：未知错误。
+ *     <br>IMAGE_BAD_PARAMETER：imagePacker为空，或者options为空，或者imageSource为空，或者fd无效。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNative *imagePacker,
@@ -640,8 +636,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
  * @param fd 可写的文件描述符。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
- *     <br>IMAGE_UNKNOWN_ERROR：未知错误。
+ *     <br>IMAGE_BAD_PARAMETER：imagePacker为空，或者options为空，或者pixelmap为空，或者fd无效。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
   * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative *imagePacker,
@@ -658,8 +654,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
  * @param fd 可写的文件描述符。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
- *     <br>IMAGE_UNKNOWN_ERROR：未知错误。
+ *     <br>IMAGE_BAD_PARAMETER：imagePacker为空，或者picture为空，或者fd无效。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative *imagePacker,
@@ -677,8 +673,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
  * @param sequenceLength 用于编码的Pixelmap序列长度，必须大于0。
  * @param fd 文件描述符，必须为可写文件描述符。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
- *     <br>IMAGE_DECODE_FAILED：解码失败。
+ *     <br>IMAGE_BAD_PARAMETER：其中一个指针类型的参数是空，或者length无效。
+ *     <br>IMAGE_ENCODE_FAILED：编码失败。
  * @since 18
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker,

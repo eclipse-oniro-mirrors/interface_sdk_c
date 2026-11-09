@@ -557,7 +557,7 @@ struct OhosImageSourceUpdateData {
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -596,7 +596,7 @@ int32_t OH_ImageSource_Create(napi_env env, struct OhosImageSource* src,
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -616,7 +616,7 @@ int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -637,7 +637,7 @@ int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -657,7 +657,7 @@ int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSi
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -679,7 +679,7 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -703,7 +703,7 @@ int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* s
  * @param ops 表明创建一个图像源的选项。
  * @param res 表明JavaScript native层API ImageSource对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -724,7 +724,7 @@ int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, si
  *     <br>第二次调用前，需完成内存初始化，首先将res->supportedFormatList初始化为包含res->size个{@link OhosImageSourceSupportedFormat}的列表，再为每个
  *     {@link OhosImageSourceSupportedFormat}申请内存，确保其format属性有足够的空间获取图片格式信息。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -757,7 +757,7 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  * @param ops 表明为了解码图像源的选项。
  * @param res 表明JavaScript native层PixelMap对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -801,7 +801,7 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  * @param ops 表明为了解码图像源的选项。
  * @param res 表明JavaScript native层PixelMap列表对象的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -847,7 +847,7 @@ int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,
  * @param res 表明延迟时间列表OhosImageSourceDelayTimeList的指针。
  *     <br>当输入的res中delayTimeList是空指针并且size是0时，将通过res的size中返回延迟时间列表大小为了获取延迟时间，需要比返回的delayTimeList大小值大的足够空间。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -879,7 +879,7 @@ int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,
  * @param native 表明native层ImageSourceNative值的指针。
  * @param res 表明帧计数的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -911,7 +911,7 @@ int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *
  * @param index 表明帧计数的指针。
  * @param info 表明图像源信息OhosImageSourceInfo的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -945,7 +945,7 @@ int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t ind
  * @param value 表明作为结果的属性值OhosImageSourceProperty的指针。当输入的value中value是空指针并且size是0时，将通过value中的size返回属性值的大小。为了获取属性值，
  *     需要比value中的结果大小大的足够的空间。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -978,7 +978,7 @@ int32_t OH_ImageSource_GetImageProperty(const ImageSourceNative* native,
  * @param key 表明属性关键字OhosImageSourceProperty的指针。
  * @param value 为了修改表明属性值OhosImageSourceProperty的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -1010,7 +1010,7 @@ int32_t OH_ImageSource_ModifyImageProperty(const ImageSourceNative* native,
  * @param native 表明native层ImageSourceNative值的指针。
  * @param data 表明更新数据信息OhosImageSourceUpdateData的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
@@ -1052,7 +1052,7 @@ int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosIm
  *
  * @param native 表明native层ImageSourceNative值的指针。
  * @return 参考{@link IRNdkErrCode}：
- *     <br>OHOS_IMAGE_RESULT_SUCCESS：操作成功。
+ *     <br>IMAGE_RESULT_SUCCESS：操作成功。
  *     <br>IMAGE_RESULT_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_RESULT_JNI_ENV_ABNORMAL：JNI 环境异常。
  *     <br>IMAGE_RESULT_INVALID_PARAMETER：参数无效。
