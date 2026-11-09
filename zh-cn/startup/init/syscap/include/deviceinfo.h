@@ -340,6 +340,7 @@ const char *OH_GetDistributionOSReleaseType(void);
  * @return <ul>
  *         <li>如果操作成功，则返回0。</li>
  *         <li>201如果调用者没有ohos.permission.ACCESS_DISK_PHY_INFO。</li>
+ *         <li>401如果调用者传入的入参非法。</li>
  *         </ul>
  * @permission ohos.permission.ACCESS_DISK_PHY_INFO
  * @since 26.1.0
