@@ -129,28 +129,55 @@ typedef enum EventType {
  * @since 12
  */
 typedef struct HiAppEvent_AppEventInfo {
-    /* 事件领域。表示事件所属的业务领域或功能模块，用于事件分类和管理。 */
+    /**
+     * 事件领域。表示事件所属的业务领域或功能模块，用于事件分类和管理。
+     *
+     * @since 12
+     */
     const char* domain;
-    /* 事件名称。与domain配合使用唯一标识具体的事件。 */
+    /**
+     * 事件名称。与domain配合使用唯一标识具体的事件。
+     *
+     * @since 12
+     */
     const char* name;
-    /* 事件的类型。*/
+    /**
+     * 事件的类型。
+     *
+     * @since 12
+     */
     enum EventType type;
-    /* JSON格式字符串类型的事件参数列表。 */
+    /**
+     * JSON格式字符串类型的事件参数列表。
+     *
+     * @since 12
+     */
     const char* params;
 } HiAppEvent_AppEventInfo;
 
 /**
  * @brief 一组事件信息，用于管理和组织具有相同名称的事件信息。该结构体包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。
  *
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  */
 typedef struct HiAppEvent_AppEventGroup {
-    /* 事件数组中相同的事件名称。 */
+    /**
+     * 事件数组中相同的事件名称。
+     *
+     * @since 12
+     */
     const char* name;
-    /* 具有相同事件名称的事件数组。*/
+    /**
+     * 具有相同事件名称的事件数组。
+     *
+     * @since 12
+     */
     const struct HiAppEvent_AppEventInfo* appEventInfos;
-    /* 具有相同事件名称的事件数组的长度。 */
+    /**
+     * 具有相同事件名称的事件数组的长度。
+     *
+     * @since 12
+     */
     uint32_t infoLen;
 } HiAppEvent_AppEventGroup;
 
@@ -164,7 +191,6 @@ typedef struct ParamListNode* ParamList;
 /**
  * @brief 接收应用事件的事件观察者。用于对应用事件进行监听和处理。
  *
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  */
 typedef struct HiAppEvent_Watcher HiAppEvent_Watcher;

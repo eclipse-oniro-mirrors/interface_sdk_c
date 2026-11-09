@@ -142,13 +142,29 @@ typedef enum EventType {
  * @version 1.0
  */
 typedef struct HiAppEvent_AppEventInfo {
-    /* The domain of the event. */
+    /**
+     * The domain of the event.
+     *
+     * @since 12
+     */
     const char* domain;
-    /* The name of the event. */
+    /**
+     * The name of the event.
+     *
+     * @since 12
+     */
     const char* name;
-    /* The type of the event. */
+    /**
+     * The type of the event.
+     *
+     * @since 12
+     */
     enum EventType type;
-    /* The JSON string of the parameter. */
+    /**
+     * The JSON string of the parameter.
+     *
+     * @since 12
+     */
     const char* params;
 } HiAppEvent_AppEventInfo;
 
@@ -156,16 +172,27 @@ typedef struct HiAppEvent_AppEventInfo {
  * @brief Defines the information of an event group, including its name, the array of event information grouped by name,
  * and the length of the event array.
  *
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  * @version 1.0
  */
 typedef struct HiAppEvent_AppEventGroup {
-    /* The name of the event. */
+    /**
+     * The name of the event.
+     *
+     * @since 12
+     */
     const char* name;
-    /* The event array which is grouped by the name. */
+    /**
+     * The event array which is grouped by the name.
+     *
+     * @since 12
+     */
     const struct HiAppEvent_AppEventInfo* appEventInfos;
-    /* The length of appEventInfos array. */
+    /**
+     * The length of appEventInfos array.
+     *
+     * @since 12
+     */
     uint32_t infoLen;
 } HiAppEvent_AppEventGroup;
 
@@ -180,7 +207,6 @@ typedef struct ParamListNode* ParamList;
 /**
  * @brief Defines the watcher for application events.
  *
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  * @version 1.0
  */
