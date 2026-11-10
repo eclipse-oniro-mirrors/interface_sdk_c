@@ -189,7 +189,7 @@ typedef enum {
 /**
  * @brief Defines the USB headset type.
  *
- * @since 26.2.0
+ * @since 26.1.0
  */
 typedef enum {
     /**
@@ -373,7 +373,7 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescr
  * <br>1. The parameter audioDeviceDescriptor is nullptr;
  * <br>2. The parameter usbHeadsetType is nullptr;
  * <br>3. The device type corresponding to audioDeviceDescriptor is not {@link AUDIO_DEVICE_TYPE_USB_HEADSET}.
- * @since 26.2.0
+ * @since 26.1.0
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetUsbHeadsetType(
     OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_UsbHeadsetType *usbHeadsetType);
