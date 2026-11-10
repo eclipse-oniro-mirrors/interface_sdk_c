@@ -194,11 +194,11 @@ OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_
 bool OH_AVCapability_IsHardware(OH_AVCapability *capability);
 
 /**
- * @brief Check if the capability instance is describing a secure codec.
+ * @brief Checks whether the capability instance describes a DRM decoder.
  *
  * @param capability Codec capability pointer
- * @return Returns true if the capability instance is describing a secure codec,
- * false if the capability instance is describing a non-secure codec
+ * @return Returns true if the capability instance describes a DRM decoder,
+ * false if the capability instance does not describe a DRM decoder
  * @since 24
  */
 bool OH_AVCapability_IsSecure(OH_AVCapability *capability);
@@ -496,9 +496,9 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capa
                                                            uint32_t *pixelFormatNum);
 
 /**
- * @brief Get the native buffer formats supported by the video codec.
- *
- * This function provides information about the native buffer formats that the video codec can handle.
+ * @brief Obtains the OH_NativeBuffer formats supported by a video codec.
+ * This function provides the OH_NativeBuffer formats that can be processed by a video codec.
+ * For details, see OH_NativeBuffer_Format.
  *
  * @param capability A pointer to a valid video codec capability instance.
  * @param nativeBufferFormats Output parameter. A pointer to the native buffer format array,

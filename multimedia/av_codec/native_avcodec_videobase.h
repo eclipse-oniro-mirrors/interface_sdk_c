@@ -87,11 +87,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT;
 
 /**
- * @brief Key for describing the quantization parameter offset of a single ROI, value type is int32_t.
- *
- * The value range is [-51, 51].
- * This is an optional key used when configuring ROI parameters.
- * If this key is not set, the encoder uses its default quantization parameter strategy for this region.
+ * @brief Pointer to the key that describes the relative quantization parameter (QP) offset value of a single ROI.
+ * The value type is int32_t. The value range is [-51, 51]. This key is optional for ROI configuration. If
+ * this key is not set, the encoder will use its default quantization parameter strategy for this region.
  *
  * @since 26.0.0
  */

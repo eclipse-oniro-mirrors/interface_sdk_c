@@ -293,11 +293,12 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
 /**
  * @brief Pushes the input buffer filled with data to a video decoder.
  *
- * The input callback reports the available input buffer and the index. For details,
- * see {@link OH_AVCodecOnNeedInputData}.
- * After being pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported
- * again through the input callback. In addition, some decoders require the input of codec-specific data, such as PPS/
- * SPS data in H.264 format, to initialize the decoding process.
+ * The input callback reports the available input buffer and the index. For details, see
+ * {@link OH_AVCodecOnNeedInputData}. After being pushed to the decoder, a buffer is not accessible until the
+ * buffer with the same index is reported again through the input callback. In addition, if the encoding
+ * format or decoder capability description requires codec-specific data to be input, such as PPS/SPS data in
+ * the H.264 format, the data must be provided to the decoder at the beginning to initialize the decoding
+ * process.
  *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an input buffer. The value is provided by {@link OH_AVCodecOnNeedInputData}.
@@ -358,14 +359,16 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
 /**
  * @brief Notifies a video decoder that the buffer corresponding to the index has been filled with input data.
  *
- * The input callback reports the available input buffer and the index.
- * For details, see {@link OH_AVCodecOnNeedInputBuffer}.
- * After being pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported
- * again through the input callback. In addition, some decoders require the input of codec-specific data, such as PPS/
- * SPS data in H.264 format, to initialize the decoding process.
+ * The input callback reports the available input buffer and the index. For details, see
+ * {@link OH_AVCodecOnNeedInputBuffer}. After being pushed to the decoder, a buffer is not accessible until
+ * the buffer with the same index is reported again through the input callback. In addition, if the encoding
+ * format or decoder capability description requires codec-specific data to be input, such as PPS/SPS data in
+ * the H.264 format, the data must be provided to the decoder at the beginning to initialize the decoding
+ * process.
  *
- * This function is used to transfer the parameters (such as H.264 PPS/SPS) required for decoding to the decoder. The
- * parameters can be transferred to the decoder separately or together with the data to be decoded.
+ * This function is used to transfer the parameters (such as H.264 PPS/SPS) required for decoding to the
+ * decoder. The parameters can be transferred to the decoder separately or together with the data to be
+ * decoded.
  *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an input buffer. The value is provided by {@link OH_AVCodecOnNeedInputBuffer}.

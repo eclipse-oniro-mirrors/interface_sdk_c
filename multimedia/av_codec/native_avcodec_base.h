@@ -65,7 +65,7 @@ typedef struct OH_AVCodec OH_AVCodec;
  * | Use Case| Error Code|
  * | -------- | -------- |
  * | Audio encoding/decoding| **AV_ERR_DRM_DECRYPT_FAILED**: DRM decryption failed. |
- * | Video encoding/decoding| **AV_ERROR_NO_MEMORY**: System resources are insufficient.<br>**AV_ERROR_UNKNOWN**: An unknown error occurs. Analyze the error based on specific logs.<br>**AV_ERR_SERVICE_DIED**: The service is dead. |
+ * | Video encoding/decoding| **AV_ERR_NO_MEMORY**: System resources are insufficient.<br>**AV_ERR_UNKNOWN**: An unknown error occurs. Analyze the error based on specific logs.<br>**AV_ERR_SERVICE_DIED**: The service is dead. |
  * | Video decoding| **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION**: The current input does not support CSC. |
  * <!--RP1--><!--RP1End-->
  * 
@@ -1163,133 +1163,130 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
 
 /**
- * @brief Key for describing the downsampling width in video encoder preprocess, value type is int32_t.
+ * @brief Pointer to the key that describes the target width for downsampling in video encoding pre-processing.
+ * The value type is int32_t. This key is optional, and the downsampling feature is disabled by default. This key
+ * must be used together with **OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT**.
+ * When both are set to **0**, the downsampling feature is disabled. You can use
+ * {@link OH_AVCapability_IsVideoSizeSupported} to query the supported range of downsampling widths and heights.
+ * Downsampling parameters are mutually exclusive with cropping parameters. Downsampling and cropping cannot be
+ * enabled simultaneously.
  *
- * It is used in configure or set parameter.
- * This key must be used with {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT} together.
- *
- * Using restrictions:
- * 1. The downsampling width and height must be configured or set together.
- *    If only one of them is configured, {@link AV_ERR_INVALID_VAL} will be returned.
- * 2. When the downsampling width and height are the same and qualified as zero, the downsampling is disabled.
- * 3. When the downsampling width and height are within the supported range, the downsampling is enabled.
- *    It's recommended to query the supported downsampling range through
- *    the interface {@link OH_AVCapability_IsVideoSizeSupported}.
- * 4. When the downsampling width and height are not within the supported range,
- *    {@link AV_ERR_INVALID_VAL} will be returned.
- * 5. Cannot be used together with crop parameters ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP}, {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}).
- *    If both downsampling and crop parameters are set through {@link OH_VideoEncoder_Configure} or
- *    {@link OH_VideoEncoder_SetParameter}, {@link AV_ERR_INVALID_VAL} will be returned.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output encoding
+ * scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime via
+ * **SetParameter**.
  *
  * @since 26.0.0
  */
+
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH;
 
 /**
- * @brief Key for describing the downsampling height in video encoder preprocess, value type is int32_t.
+ * @brief Target height for downsampling in video encoding pre-processing. The value type is int32_t.
+ * This key is optional, and the downsampling feature is disabled by default.
+ * This key must be used together with **OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH**.
+ * When both are set to **0**, the downsampling feature is disabled. You can use
+ * {@link OH_AVCapability_IsVideoSizeSupported} to query the supported range of downsampling widths and heights.
+ * Downsampling parameters are mutually exclusive with cropping parameters.
+ * Downsampling and cropping cannot be enabled simultaneously.
  *
- * It is used in configure or set parameter.
- * This key must be used with {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH} together.
- * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH} for more details on usage and restrictions.
+ * This key is applicable only to video encoders that support pre-processing or
+ * to one-input-two-output encoding scenarios.
+ * It can be configured during the configuration phase or dynamically adjusted at runtime via **SetParameter**.
  *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT;
 
 /**
- * @brief Key for describing the left-coordinate (x) of the crop rectangle in video encoder preprocess,
- * value type is int32_t.
+ * @brief Pointer to the key that describes the left coordinate (x) of the cropping region in video encoding
+ * pre-processing. The value type is int32_t. This key is optional, and the cropping feature is disabled by
+ * default. The four parameters **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT**,
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP**, **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT**, and
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM** must be set together. When all are set to **0**, the
+ * cropping feature is disabled. The default coordinate origin is the upper-left corner of the input video
+ * frame (0, 0). The coordinate values must not exceed the width and height of the input video frame, and must
+ * satisfy **(0, 0) <= (LEFT, TOP) < (RIGHT, BOTTOM) < (input video frame width, input video frame height)**.
+ * Downsampling parameters are mutually exclusive with cropping parameters. Downsampling and cropping cannot
+ * be enabled simultaneously.
  *
- * The value represents the left-most column included in the crop frame, where column indices start at 0.
- * The Caller must use "left, top, right, bottom" together to define the crop rectangle, corresponding to:
- * - {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT}
- * - {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP}
- * - {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT}
- * - {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}
- * (left, top) is the coordinate of the top-left corner of the crop rectangle.
- * (right, bottom) is the coordinate of the bottom-right corner of the crop rectangle.
- * The width and height of the crop rectangle can be calculated as:
- * - width = right - left + 1
- * - height = bottom - top + 1
- *
- * Using restrictions:
- * 1. Crop left, top, right, bottom must be configured together. If only part of them is configured,
- *    {@link AV_ERR_INVALID_VAL} will be returned.
- * 2. When crop left, top, right, bottom are all 0, the crop is disabled.
- * 3. When the crop width, height are within the supported range, the crop is enabled.
- *    It's recommended to query the supported crop range through
- *    the interface {@link OH_AVCapability_IsVideoSizeSupported}.
- * 4. When the crop values are not within the supported range,
- *    {@link AV_ERR_INVALID_VAL} will be returned.
- * 5. Cannot be used together with downsampling parameters
- *    ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT}).
- *    If both crop and downsampling parameters are set through {@link OH_VideoEncoder_Configure} or
- *    {@link OH_VideoEncoder_SetParameter}, {@link AV_ERR_INVALID_VAL} will be returned.
- * 6. When crop is enabled, the encoder will only encode the cropped area of the input frame.
- *    The content outside the crop rectangle will be discarded and not participate in encoding.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output
+ * encoding scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime
+ * via **SetParameter**.
  *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT;
 
 /**
- * @brief Key for describing the top-coordinate (y) of the crop rectangle in video encoder preprocess,
- * value type is int32_t.
+ * @brief Pointer to the key that describes the top coordinate (y) of the cropping region in video encoding
+ * pre-processing. The value type is int32_t. This key is optional, and the cropping feature is disabled by
+ * default. The four parameters **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT**,
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP**, **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT**, and
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM** must be set together. When all are set to **0**, the
+ * cropping feature is disabled. The default coordinate origin is the upper-left corner of the input video
+ * frame (0, 0). The coordinate values must not exceed the width and height of the input video frame, and must
+ * satisfy **(0, 0) <= (LEFT, TOP) < (RIGHT, BOTTOM) < (input video frame width, input video frame height)**.
+ * Downsampling parameters are mutually exclusive with cropping parameters. Downsampling and cropping cannot
+ * be enabled simultaneously.
  *
- * The value represents the top-most row included in the crop frame, where row indices start at 0.
- * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT} for more details on usage and restrictions.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output
+ * encoding scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime
+ * via **SetParameter**.
  *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP;
 
 /**
- * @brief Key for describing the right-coordinate (x) of the crop rectangle in video encoder preprocess,
- * value type is int32_t.
+ * @brief Pointer to the key that describes the right coordinate (x) of the cropping region in video encoding
+ * pre-processing. The value type is int32_t. This key is optional, and the cropping feature is disabled by
+ * default. The four parameters **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT**,
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP**, **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT**, and
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM** must be set together. When all are set to **0**, the
+ * cropping feature is disabled. The default coordinate origin is the upper-left corner of the input video
+ * frame (0, 0). The coordinate values must not exceed the width and height of the input video frame, and must
+ * satisfy **(0, 0) <= (LEFT, TOP) < (RIGHT, BOTTOM) < (input video frame width, input video frame height)**.
+ * Downsampling parameters are mutually exclusive with cropping parameters. Downsampling and cropping cannot
+ * be enabled simultaneously.
  *
- * The value represents the right-most column included in the crop frame, where column indices start at 0.
- * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT} for more details on usage and restrictions.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output
+ * encoding scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime
+ * via **SetParameter**.
  *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT;
 
 /**
- * @brief Key for describing the bottom-coordinate (y) of the crop rectangle in video encoder preprocess,
- * value type is int32_t.
+ * @brief Pointer to the key that describes the bottom coordinate (y) of the cropping region in video encoding
+ * pre-processing. The value type is int32_t. This key is optional, and the cropping feature is disabled by
+ * default. The four parameters **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT**,
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP**, **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT**, and
+ * **OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM** must be set together. When all are set to **0**, the
+ * cropping feature is disabled. The default coordinate origin is the upper-left corner of the input video
+ * frame (0, 0). The coordinate values must not exceed the width and height of the input video frame, and must
+ * satisfy **(0, 0) <= (LEFT, TOP) < (RIGHT, BOTTOM) < (input video frame width, input video frame height)**.
+ * Downsampling parameters are mutually exclusive with cropping parameters. Downsampling and cropping cannot
+ * be enabled simultaneously.
  *
- * The value represents the bottom-most row included in the crop frame, where row indices start at 0.
- * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT} for more details on usage and restrictions.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output
+ * encoding scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime
+ * via **SetParameter**.
  *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 
 /**
- * @brief Key for describing the drop frame rate in video encoder preprocess, value type is double.
+ * @brief Pointer to the key that describes the target frame rate for frame dropping in video encoding
+ * pre-processing. The value type is double, and the value is accurate to two decimal places. This key is
+ * optional, and the frame dropping feature is disabled by default. Setting it to **0.00** disables the
+ * feature. When a value is set, it is automatically rounded to two decimal places. This key can be used
+ * independently or in combination with downsampling or cropping.
  *
- * It is used in configure or set parameter.
- * The caller must ensure original frame rate is set, refer to {@link OH_MD_KEY_FRAME_RATE}.
- * The value precision is retained to 2 decimal places using round half up.
- *
- * Using restrictions:
- * 1. When value is set to 0.0, the drop frame is disabled.
- * 2. When value is set to positive value and less than original frame rate,
- *    it will drop frames to match the set frame rate.
- * 3. When value is set to negative value or equal to or greater than original frame rate,
- *    {@link AV_ERR_INVALID_VAL} will be returned.
- * 4. Can be used together with downsampling parameters
- *    ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT}).
- * 5. Can be used together with crop parameters
- *    ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT},
- *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}).
- * 6. Processing order when combined: drop frame will be executed first, then downsampling or crop.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output
+ * encoding scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime
+ * via **SetParameter**.
  *
  * @since 26.0.0
  */
@@ -1493,8 +1490,9 @@ extern const char *OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY;
  * @brief Pointer to the key that describes the maximum Quantization Parameter (QP) allowed by the video encoder. The
  * value type is int32_t.
  *
- * Tt is used in configure/setparameter or takes effect immediately with the frame.
- * 
+ * This key is used in the configuration or parameter setting phase or takes effect immediately with each
+ * frame.
+ *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX;
@@ -1502,8 +1500,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX;
 /**
  * @brief Pointer to the key that describes the minimum QP allowed by the video encoder. The value type is int32_t.
  *
- * It is used in configure/setparameter or takes effect immediately with the frame.
- * 
+ * This key is used in the configuration or parameter setting phase or takes effect immediately with each
+ * frame.
+ *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MIN;
@@ -1574,16 +1573,16 @@ extern const char *OH_MD_KEY_TRACK_START_TIME;
  *
  * It is used in {@link OH_VideoDecoder_Configure}.
  *
- * Before calling {@link OH_VideoDecoder_Start}, you must call {@link OH_VideoDecoder_Prepare}.
+ * Before calling **OH_VideoDecoder_Start**, you must call **OH_VideoDecoder_Prepare**.
  *
- * If Color Space Conversion (CSC) is supported and this key is configured, the video decoder automatically transcodes
- * the HDR Vivid video to the specified color space.
+ * If Color Space Conversion (CSC) is supported and this key is configured, the video decoder automatically
+ * transcodes the HDR Vivid video to the specified color space.
  *
- * If CSC is not supported, the error code **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION** in {@link OH_AVErrCode}
- * is returned when {@link OH_VideoDecoder_Configure} is called. If the input video is not an HDR Vivid video,
- * the callback function {@link OH_AVCodecOnError} is invoked to report the error code
+ * If CSC is not supported, the error code **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION** in
+ * {@link OH_AVErrCode} is returned when {@link OH_VideoDecoder_Configure} is called. If the input video is
+ * not an HDR Vivid video, the callback function {@link OH_AVCodecOnError} is invoked to report the error code
  * **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION** in {@link OH_AVErrCode}.
- * 
+ *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
@@ -1934,13 +1933,11 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT;
 
 /**
- * @brief Pointer to the key that describes whether to repeat headers before sync frames. The value type is
- * int32_t (0 or 1): 1 is enabled, 0 disabled.
- *
- * This is an optional key that applies only to video encoder and is used only in the Configure phase.
- * The default value is 0, which means this feature is disabled by default.
- * When enabled, the encoder inserts codec-specific configuration data (such as SPS/PPS for H.264/H.265) before each
- * sync frame.
+ * @brief Pointer to the key that describes whether to enable the parameter set before the sync frame in the
+ * bitstream. The value type is int32_t, with the value being either **0** or **1**. **1** means to enable,
+ * and **0** means to disable. The default value is **0**. This key is optional and applies only to video
+ * encoding. It can be configured only during the configuration phase. When enabled, the encoder inserts
+ * parameter set data (such as SPS and PPS for H.264/H.265 formats) before each sync frame.
  *
  * @since 26.0.0
  */
@@ -1998,16 +1995,20 @@ extern const char *OH_MD_KEY_AUDIO_OBJECT_BITRATE;
 extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE;
 
 /**
- * @brief Key for setting the video decoding frame retention ratio. The value type is double.
+ * @brief Pointer to the key that describes the frame retention ratio of video decoding. The value type is double.
+ * This key takes effect if **OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE** is set to
+ * **OH_FRAME_RETENTION_MODE_UNIFORM** or the retention mode is not configured (even logic is implicitly used
+ * by default).
  *
- * This parameter takes effect when {@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE} is set to
- * {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_UNIFORM}, or when the retention mode is not
- * configured (implicitly defaulting to uniform behavior). This configuration is ignored ONLY when
- * the retention mode is explicitly set to {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_ADAPTIVE}
- * or {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_FULL}.
- * The valid range is [0.01, 1.0] (where 1.0 means all frames retained and 0.01 is the minimum limit);
- * any value outside this range is considered invalid and will be ignored. This key can be configured
- * via the {@link OH_VideoDecoder_Configure} and {@link OH_VideoDecoder_SetParameter} interfaces.
+ * This key is ignored only when the retention mode is explicitly set to **OH_FRAME_RETENTION_MODE_ADAPTIVE**
+ * or **OH_FRAME_RETENTION_MODE_FULL**.
+ *
+ * The valid range is [0.01, 1.0] (where **1.0** indicates that all frames are retained, and **0.01** is the
+ * minimum limit). Any value beyond this range is considered invalid and ignored.
+ *
+ * You can configure this key through {@link OH_VideoDecoder_Configure} and
+ * {@link OH_VideoDecoder_SetParameter}. For details about each mode and its behavior, see the enumeration
+ * definition of {@link OH_FrameRetentionMode}.
  *
  * @since 26.0.0
  */
