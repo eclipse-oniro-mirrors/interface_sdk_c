@@ -114,7 +114,7 @@ bool OH_MediaKeySystem_IsSupported(const char *name);
  * 
  * @param name Pointer to the DRM solution name.
  * @param mimeType Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
- * video/avc and video/hevc.
+ *     video/avc and video/hevc.
  * @return Check result for the support of the combination. **true** if supported, **false** otherwise.
  * @since 11
  * @version 1.0
@@ -126,7 +126,7 @@ bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType);
  * 
  * @param name Pointer to the DRM solution name.
  * @param mimeType Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
- * video/avc and video/hevc.
+ *     video/avc and video/hevc.
  * @param contentProtectionLevel Content protection level.
  * @return Check result for the support of the combination. **true** if supported, **false** otherwise.
  * @since 11
