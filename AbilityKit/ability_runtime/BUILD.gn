@@ -17,6 +17,7 @@ ohos_ndk_headers("ability_runtime_ndk_header") {
   dest_dir = "$ndk_headers_out_dir/AbilityKit/ability_runtime"
   sources = [
     "./ability_runtime_common.h",
+    "./app_memory_optimizer.h",
     "./application_context.h",
     "./child_process_info.h",
     "./connect_options.h",
@@ -40,6 +41,7 @@ ohos_ndk_library("libability_runtime") {
   min_compact_version = "13"
   system_capability_headers = [
     "AbilityKit/ability_runtime/ability_runtime_common.h",
+    "AbilityKit/ability_runtime/app_memory_optimizer.h",
     "AbilityKit/ability_runtime/application_context.h",
     "AbilityKit/ability_runtime/child_process_info.h",
     "AbilityKit/ability_runtime/connect_options.h",
