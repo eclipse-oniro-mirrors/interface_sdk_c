@@ -1900,7 +1900,7 @@ static const char *OHOS_DNG_PROPERTY_BASELINE_NOISE = "BaselineNoise";
 static const char *OHOS_DNG_PROPERTY_BASELINE_SHARPNESS = "BaselineSharpness";
 
 /**
- * @brief Bayer图像中两个绿色通道的分离程度。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyShort}获取。
+ * @brief Bayer图像中两个绿色通道的分离程度。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyLong}获取。
  *
  * @since 24
  */
@@ -2149,7 +2149,7 @@ static const char *OHOS_DNG_PROPERTY_PROFILE_HUE_SAT_MAP_DATA2 = "ProfileHueSatM
 static const char *OHOS_DNG_PROPERTY_PROFILE_TONE_CURVE = "ProfileToneCurve";
 
 /**
- * @brief 配置文件嵌入策略。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyShort}获取。
+ * @brief 配置文件嵌入策略。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyLong}获取。
  *
  * @since 24
  */
@@ -2212,7 +2212,7 @@ static const char *OHOS_DNG_PROPERTY_PREVIEW_SETTINGS_NAME = "PreviewSettingsNam
 static const char *OHOS_DNG_PROPERTY_PREVIEW_SETTINGS_DIGEST = "PreviewSettingsDigest";
 
 /**
- * @brief 预览颜色空间。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyShort}获取。
+ * @brief 预览颜色空间。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyLong}获取。
  *
  * @since 24
  */
@@ -2331,14 +2331,14 @@ static const char *OHOS_DNG_PROPERTY_ORIGINAL_BEST_QUALITY_FINAL_SIZE = "Origina
 static const char *OHOS_DNG_PROPERTY_ORIGINAL_DEFAULT_CROP_SIZE = "OriginalDefaultCropSize";
 
 /**
- * @brief 配置文件色调、饱和度映射编码。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyShort}获取。
+ * @brief 配置文件色调、饱和度映射编码。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyLong}获取。
  *
  * @since 24
  */
 static const char *OHOS_DNG_PROPERTY_PROFILE_HUE_SAT_MAP_ENCODING = "ProfileHueSatMapEncoding";
 
 /**
- * @brief 配置文件查找表编码。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyShort}获取。
+ * @brief 配置文件查找表编码。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyLong}获取。
  *
  * @since 24
  */
@@ -2352,7 +2352,7 @@ static const char *OHOS_DNG_PROPERTY_PROFILE_LOOK_TABLE_ENCODING = "ProfileLookT
 static const char *OHOS_DNG_PROPERTY_BASELINE_EXPOSURE_OFFSET = "BaselineExposureOffset";
 
 /**
- * @brief 默认黑色渲染。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyShort}获取。
+ * @brief 默认黑色渲染。取值可以通过{@link OH_ImageSourceNative_GetImagePropertyLong}获取。
  *
  * @since 24
  */
