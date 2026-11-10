@@ -359,20 +359,20 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescr
 
 /**
  * @brief Queries the USB headset type of a USB headset device descriptor.
- * <br>The caller should first confirm that the device type is
+ * The caller should first confirm that the device type is
  * {@link AUDIO_DEVICE_TYPE_USB_HEADSET} via {@link OH_AudioDeviceDescriptor_GetDeviceType},
  * and then call this API.
- * <br>When the device type is {@link AUDIO_DEVICE_TYPE_USB_HEADSET}, this API returns a HIFI USB headset
+ * When the device type is {@link AUDIO_DEVICE_TYPE_USB_HEADSET}, this API returns a HIFI USB headset
  * or ARM USB headset; otherwise, it returns an invalid value.
  *
  * @param audioDeviceDescriptor USB headset device descriptor. Obtained via {@link OH_AudioRoutingManager_GetDevices} or
  * {@link OH_AudioRoutingManager_OnDeviceChangedCallback}.
  * @param usbHeadsetType Pointer to the variable used to receive the USB headset type.
  * @return AUDIOCOMMON_RESULT_SUCCESS: The function is executed successfully.
- * <br>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM:
- * <br>1. The parameter audioDeviceDescriptor is nullptr;
- * <br>2. The parameter usbHeadsetType is nullptr;
- * <br>3. The device type corresponding to audioDeviceDescriptor is not {@link AUDIO_DEVICE_TYPE_USB_HEADSET}.
+ * AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM:
+ * 1. The parameter audioDeviceDescriptor is nullptr;
+ * 2. The parameter usbHeadsetType is nullptr;
+ * 3. The device type corresponding to audioDeviceDescriptor is not {@link AUDIO_DEVICE_TYPE_USB_HEADSET}.
  * @since 26.1.0
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetUsbHeadsetType(
