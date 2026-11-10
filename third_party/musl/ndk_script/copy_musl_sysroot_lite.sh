@@ -32,7 +32,7 @@ if [ ! -d "${OUT_DIR}/sys" ];then
     mkdir -p ${OUT_DIR}/sys
 fi
 
-cp -rp ${SOURCE_DIR}/fortify/  ${OUT_DIR}
+cp -rp ${SOURCE_DIR}/fortify  ${OUT_DIR}
 cp ${SOURCE_DIR}/sys/select.h  ${OUT_DIR}/sys/
 cp ${SOURCE_DIR}/sys/stat.h    ${OUT_DIR}/sys/
 cp ${SOURCE_DIR}/sys/time.h    ${OUT_DIR}/sys/
