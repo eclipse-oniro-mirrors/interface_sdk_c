@@ -777,7 +777,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
  * 但考虑到后续系统版本的可扩展性，建议使用0作为返回值。
  *
  * @deprecated since 20
- * @useinstead Use the callback type: OH_AudioCapturer_OnReadDataCallback, OH_AudioCapturer_OnDeviceChangeCallback,
+ * @useinstead 请分别使用以下的回调类型替代: OH_AudioCapturer_OnReadDataCallback, OH_AudioCapturer_OnDeviceChangeCallback,
  * OH_AudioCapturer_OnInterruptCallback and OH_AudioCapturer_OnErrorCallback separately.
  * @since 10
  */
