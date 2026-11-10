@@ -17,7 +17,8 @@
  * @addtogroup Ddk
  * @{
  *
- * @brief Provides BASE DDK APIs for creating, mapping, unmapping, and destroying the shared memory.
+ * @brief Provides Base DDK types and declares the macros, enums, and data structs used by the Base
+ * DDK APIs.
  *
  * @since 12
  */
