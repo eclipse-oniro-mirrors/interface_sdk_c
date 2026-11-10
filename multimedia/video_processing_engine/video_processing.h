@@ -233,7 +233,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Start(OH_VideoProcessing* videoProc
  * @brief To stop video processing instance.
  *
  * After the video processing instance is stopped successfully, the state {@link VIDEO_PROCESSING_STATE_STOPPED} is
- * reported by callback function {@link OH_VideoProcessing_OnState}.
+ * reported by callback function {@link OH_VideoProcessingCallback_OnState}.
  *
  * @param videoProcessor A video processing instance pointer.
  * @return {@link VIDEO_PROCESSING_SUCCESS} if the operation is successful. \n

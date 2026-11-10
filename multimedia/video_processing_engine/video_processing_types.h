@@ -225,7 +225,7 @@ typedef enum VideoProcessing_ErrorCode {
 /**
  * @brief Video processing states.
  *
- * The state is reported to user by callback function {@link OH_VideoProcessing_OnState}.
+ * The state is reported to user by callback function {@link OH_VideoProcessingCallback_OnState}.
  *
  * @since 12
  */
