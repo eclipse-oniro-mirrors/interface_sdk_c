@@ -50,7 +50,7 @@ extern "C" {
 /**
  * @brief The struct describes a native object for the media memory interface.
  *
- * @since 12
+ * @since 11
  * @version 1.0
  */
 typedef struct OH_AVBuffer OH_AVBuffer;

@@ -1723,8 +1723,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
 extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
 
 /**
- * @brief Pointer to the key that describes the quality parameter in SQR mode. The value range is [0, 51] (same as the
- * QP value in encoding). A smaller value indicates a higher output bit rate and better quality.
+ * @brief Pointer to the key that describes the quality parameter in SQR mode. Only H.265 (HEVC) is supported.
+ * The value range is [0, 51] (same as the QP value in encoding). A smaller value indicates a higher output bit rate
+ * and better quality.
  *
  * It is used in the configuration or parameter setting phase.
  * 
@@ -1733,9 +1734,9 @@ extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
 extern const char *OH_MD_KEY_SQR_FACTOR;
 
 /**
- * @brief Pointer to the key that describes the maximum bit rate in SQR mode. The value range can be obtained by
- * calling {@link OH_AVCapability_GetEncoderBitrateRange} and is the same as that of **OH_MD_KEY_BITRATE**. The unit is
- * bit/s. The value type is int64_t.
+ * @brief Pointer to the key that describes the maximum bit rate in SQR mode. Only H.265 (HEVC) is supported.
+ * The value range can be obtained by calling {@link OH_AVCapability_GetEncoderBitrateRange} and is the same as that of
+ * **OH_MD_KEY_BITRATE**. The unit is bit/s. The value type is int64_t.
  *
  * It is used in the configuration or parameter setting phase.
  * 
@@ -1943,7 +1944,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES;
 
 /**
- * @brief Key for setting the Audio Vivid signal input format.
+ * @brief Key for setting the Audio Vivid signal input format. The value type is int32_t.
  *
  * Required for Audio Vivid encoder. Specifies the signal format of input data.
  * The value should be from {@link OH_AudioVividSignalFormat}.
@@ -1953,7 +1954,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES;
 extern const char *OH_MD_KEY_AUDIO_VIVID_SIGNAL_FORMAT;
 
 /**
- * @brief Key for setting the soundbed channel layout.
+ * @brief Key for setting the soundbed channel layout. The value type is int64_t.
  *
  * Configures the channel layout for soundbed. The value should be from {@link OH_AudioChannelLayout}.
  *
@@ -1962,7 +1963,7 @@ extern const char *OH_MD_KEY_AUDIO_VIVID_SIGNAL_FORMAT;
 extern const char *OH_MD_KEY_AUDIO_SOUNDBED_LAYOUT;
 
 /**
- * @brief Key for setting the soundbed bitrate in bits per second.
+ * @brief Key for setting the soundbed bitrate in bits per second. The value type is int64_t.
  *
  * Configures the bitrate for soundbed channels. The actual bitrate may be adjusted by the encoder
  * based on codec capabilities and constraints.
@@ -1972,7 +1973,7 @@ extern const char *OH_MD_KEY_AUDIO_SOUNDBED_LAYOUT;
 extern const char *OH_MD_KEY_AUDIO_SOUNDBED_BITRATE;
 
 /**
- * @brief Key for setting the audio object bitrate in bits per second.
+ * @brief Key for setting the audio object bitrate in bits per second. The value type is int64_t.
  *
  * Configures the bitrate for audio objects. The actual bitrate may be adjusted by the encoder
  * based on codec capabilities and constraints.
@@ -3705,12 +3706,12 @@ typedef enum OH_BitrateMode {
      */
     BITRATE_MODE_CQ = 2,
     /**
-     * Stable Quality RateControl.
+     * Stable quality. It is supported only for H.265 (HEVC).
      * @since 20
      */
     BITRATE_MODE_SQR = 3,
     /**
-     * @brief CBR for High Quality.
+     * @brief High-quality constant bit rate. It is supported only for H.265 (HEVC).
      * 
      * @since 26.0.0
      */

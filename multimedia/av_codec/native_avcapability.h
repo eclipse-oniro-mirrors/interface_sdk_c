@@ -158,7 +158,7 @@ typedef enum OH_AVCapabilityFeature {
 /**
  * @brief Get a system-recommended codec's capability.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param mime Mime type
+ * @param mime Pointer to a string that describes the MIME type. For details, see {@link AVCODEC_MIME_TYPE}.
  * @param isEncoder True for encoder, false for decoder
  * @return Returns a capability instance if an existing codec matches,
  * if the specified mime type doesn't match any existing codec, returns NULL.
@@ -170,7 +170,7 @@ OH_AVCapability *OH_AVCodec_GetCapability(const char *mime, bool isEncoder);
  * @brief Get a codec's capability within the specified category. By specifying the category,
  * the matched codec is limited to either hardware codecs or software codecs.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @param mime Mime type
+ * @param mime Pointer to a string that describes the MIME type. For details, see {@link AVCODEC_MIME_TYPE}.
  * @param isEncoder True for encoder, false for decoder
  * @param category The codec category
  * @return Returns a capability instance if an existing codec matches,
