@@ -1181,17 +1181,17 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH;
 
 /**
- * @brief Target height for downsampling in video encoding pre-processing. The value type is int32_t.
- * This key is optional, and the downsampling feature is disabled by default.
- * This key must be used together with **OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH**.
+ * @brief Pointer to the key that describes the target height for downsampling in video encoding
+ * pre-processing. The value type is int32_t. This key is optional, and the downsampling feature is disabled by
+ * default. This key must be used together with **OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH**.
  * When both are set to **0**, the downsampling feature is disabled. You can use
  * {@link OH_AVCapability_IsVideoSizeSupported} to query the supported range of downsampling widths and heights.
- * Downsampling parameters are mutually exclusive with cropping parameters.
- * Downsampling and cropping cannot be enabled simultaneously.
+ * Downsampling parameters are mutually exclusive with cropping parameters. Downsampling and cropping cannot be
+ * enabled simultaneously.
  *
- * This key is applicable only to video encoders that support pre-processing or
- * to one-input-two-output encoding scenarios.
- * It can be configured during the configuration phase or dynamically adjusted at runtime via **SetParameter**.
+ * This key is applicable only to video encoders that support pre-processing or to one-input-two-output encoding
+ * scenarios. It can be configured during the configuration phase or dynamically adjusted at runtime via
+ * **SetParameter**.
  *
  * @since 26.0.0
  */
@@ -1573,16 +1573,16 @@ extern const char *OH_MD_KEY_TRACK_START_TIME;
  *
  * It is used in {@link OH_VideoDecoder_Configure}.
  *
- * Before calling **OH_VideoDecoder_Start**, you must call **OH_VideoDecoder_Prepare**.
+ * Before calling {@link OH_VideoDecoder_Start}, you must call {@link OH_VideoDecoder_Prepare}.
  *
- * If Color Space Conversion (CSC) is supported and this key is configured, the video decoder automatically
- * transcodes the HDR Vivid video to the specified color space.
+ * If Color Space Conversion (CSC) is supported and this key is configured, the video decoder automatically transcodes
+ * the HDR Vivid video to the specified color space.
  *
- * If CSC is not supported, the error code **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION** in
- * {@link OH_AVErrCode} is returned when {@link OH_VideoDecoder_Configure} is called. If the input video is
- * not an HDR Vivid video, the callback function {@link OH_AVCodecOnError} is invoked to report the error code
+ * If CSC is not supported, the error code **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION** in {@link OH_AVErrCode}
+ * is returned when {@link OH_VideoDecoder_Configure} is called. If the input video is not an HDR Vivid video,
+ * the callback function {@link OH_AVCodecOnError} is invoked to report the error code
  * **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION** in {@link OH_AVErrCode}.
- *
+ * 
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
