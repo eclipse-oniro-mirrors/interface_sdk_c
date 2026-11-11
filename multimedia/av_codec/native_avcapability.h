@@ -60,7 +60,13 @@ typedef struct OH_AVCapability OH_AVCapability;
  * @since 10
  */
 typedef struct OH_AVRange {
+    /**
+     * Minimum value.
+     */
     int32_t minVal;
+    /**
+     * Maximum value.
+     */
     int32_t maxVal;
 } OH_AVRange;
 
@@ -70,7 +76,13 @@ typedef struct OH_AVRange {
  * @since 10
  */
 typedef enum OH_AVCodecCategory {
+    /**
+     * Hardware codec.
+     */
     HARDWARE = 0,
+    /**
+     * Software codec.
+     */
     SOFTWARE
 } OH_AVCodecCategory;
 

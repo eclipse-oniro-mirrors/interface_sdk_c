@@ -93,26 +93,32 @@ typedef struct OH_AVCencInfo OH_AVCencInfo;
 typedef enum DrmCencAlgorithm {
     /**
      * Unencrypted.
+     * @since 12
      */
     DRM_ALG_CENC_UNENCRYPTED = 0x0,
     /**
-     * Aes ctr.
+     * AES CTR algorithm.
+     * @since 12
      */
     DRM_ALG_CENC_AES_CTR = 0x1,
     /**
-     * Aes wv.
+     * AES WV algorithm.
+     * @since 12
      */
     DRM_ALG_CENC_AES_WV = 0x2,
     /**
-     * Aes cbc.
+     * AES CBC algorithm.
+     * @since 12
      */
     DRM_ALG_CENC_AES_CBC = 0x3,
     /**
-     * Sm4 cbc.
+     * SM4 CBC algorithm.
+     * @since 12
      */
     DRM_ALG_CENC_SM4_CBC = 0x4,
     /**
-     * Sm4 ctr.
+     * SM4 CTR algorithm.
+     * @since 12
      */
     DRM_ALG_CENC_SM4_CTR = 0x5
 } DrmCencAlgorithm;
@@ -124,9 +130,15 @@ typedef enum DrmCencAlgorithm {
  * @version 1.0
  */
 typedef enum DrmCencInfoMode {
-    /* key/iv/subsample set. */
+    /**
+     * The key ID, IV, and subsample are set.
+     * @since 12
+     */
     DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET = 0x0,
-    /* key/iv/subsample not set. */
+    /**
+     * The key ID, IV, and subsample are not set.
+     * @since 12
+     */
     DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET = 0x1
 } DrmCencInfoMode;
 
@@ -137,9 +149,15 @@ typedef enum DrmCencInfoMode {
  * @version 1.0
  */
 typedef struct DrmSubsample {
-    /* Length of the clear header. */
+    /**
+     * Length of the clear header.
+     * @since 12
+     */
     uint32_t clearHeaderLen;
-    /* Length of the encrypted payload. */
+    /**
+     * Length of the encrypted payload.
+     * @since 12
+     */
     uint32_t payLoadLen;
 } DrmSubsample;
 
