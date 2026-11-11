@@ -510,18 +510,21 @@ typedef enum OH_VideoEncodeBitrateMode {
      * @brief 恒定码率模式。
      * @deprecated since 14
      * @useinstead {@link BITRATE_MODE_CBR}
+     * @since 9
     */
     CBR = 0,
     /**
      * @brief 可变码率模式。
      * @deprecated since 14
      * @useinstead {@link BITRATE_MODE_VBR}
+     * @since 9
     */
     VBR = 1,
     /**
      * @brief 恒定QP模式。
      * @deprecated since 14
      * @useinstead {@link BITRATE_MODE_CQ}
+     * @since 9
     */
     CQ = 2,
 } OH_VideoEncodeBitrateMode;
