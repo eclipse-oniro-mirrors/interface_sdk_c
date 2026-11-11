@@ -93,7 +93,7 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  * @brief 设置异步回调函数，让应用可以响应视频解码器生成的事件。在调用OH_VideoDecoder_Prepare接口之前，必须调用此接口。
  *
  * @param codec 指向视频解码实例的指针。
- * @param callback 所有回调函数的集合。
+ * @param callback 视频解码器异步回调函数集合。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
@@ -110,7 +110,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @brief 注册异步回调函数，让应用可以响应视频解码器生成的事件。在调用OH_VideoDecoder_Prepare接口之前，必须调用此接口。
  *
  * @param codec 指向视频解码器实例的指针。
- * @param callback 所有回调函数的集合。
+ * @param callback 视频解码器异步回调函数集合。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
  *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。

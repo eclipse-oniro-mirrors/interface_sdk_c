@@ -116,8 +116,8 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBuff
  * 需要注意的是，返回值指向的OH_AVFormat实例需要开发者主动释放，请参阅{@link OH_AVFormat_Destroy}。
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
- * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：可能的原因：
+ * @return 如果成功，则返回OH_AVFormat实例的指针，如果失败，则返回NULL。
+ * <br>可能的失败原因：
  * <br>1. 输入的buffer为空指针。
  * <br>2. 输入buffer的meta为空指针。
  * <br>3. buffer结构校验失败。

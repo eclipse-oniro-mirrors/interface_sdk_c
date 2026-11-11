@@ -77,7 +77,7 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeyS
  *
  * 需要使用{@link OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback}接口将其设置为回调，推荐使用。
  *
- * @param demuxer 播放器所用的OH_AVDemuxer实例。
+ * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param mediaKeySystemInfo DRM信息。
  * @since 12
 */

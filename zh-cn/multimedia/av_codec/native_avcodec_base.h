@@ -289,7 +289,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
 
 /**
- * @brief MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
+ * @brief 视频MPEG4 Part2编解码器的MIME类型。
  *
  * @since 17
  */
@@ -908,7 +908,7 @@ extern const char *OH_MD_KEY_TRACK_COUNT;
  */
 extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
 /**
- * @brief 每个编码样本位数的键，值类型为int32_t。
+ * @brief 每个编码样本位数的键，值类型为int32_t。该键是可选的。
  *
  * API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。
  *

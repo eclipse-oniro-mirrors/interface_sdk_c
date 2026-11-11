@@ -78,7 +78,7 @@ typedef enum OH_AVCodecBufferFlags {
      */
     AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 << 3,
     /**
-     * @brief 表示缓冲区被解码依赖，解码之后的数据可丢弃。
+     * @brief 表示缓冲区被解码器依赖，解码之后的数据可丢弃。
      * @since 12
      */
     AVCODEC_BUFFER_FLAGS_DISCARD = 1 << 4,
