@@ -137,9 +137,9 @@ typedef enum DrmCencInfoMode {
  * @version 1.0
  */
 typedef struct DrmSubsample {
-    /* Clear header len. */
+    /* Length of the clear header. */
     uint32_t clearHeaderLen;
-    /* Payload Len. */
+    /* Length of the encrypted payload. */
     uint32_t payLoadLen;
 } DrmSubsample;
 

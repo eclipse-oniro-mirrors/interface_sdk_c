@@ -527,8 +527,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DSD;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
 
 /**
- * @brief Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for
- * multiplexing MPEG4 video streams.
+ * @brief Pointer to the key that describes the MIME type of the MPEG4 Part2 video codec.
  * 
  * @since 17
  */

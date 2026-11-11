@@ -70,7 +70,7 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_IO = 4,
     /**
-     * @brief network timeout.
+     * @brief timeout.
      * @since 9
      */
     AV_ERR_TIMEOUT = 5,
@@ -213,7 +213,7 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_SUPER_RESOLUTION_UNSUPPORTED = 5410003,
     /**
-     * @brief No PlaybackStrategy set to enable super-resolution feature.
+     * @brief Super resolution is not enabled.
      * @since 23
      */
     AV_ERR_SUPER_RESOLUTION_NOT_ENABLED = 5410004,
