@@ -1485,10 +1485,10 @@ typedef struct OH_ArkUI_KeyboardShortcutKey OH_ArkUI_KeyboardShortcutKey;
  *     release with {@link OH_ArkUI_KeyboardShortcutKey_Destroy}.</li>
  *     <li>Returns <b>nullptr</b> if the operation fails, for example, due to a memory allocation failure.</li>
  *     </ul>
- * @release arkui/OH_ArkUI_KeyboardShortcutKey_Destroy {return}
+ * @release arkui/native/native_key_event.h/OH_ArkUI_KeyboardShortcutKey_Destroy {return}
  * @since 26.1.0
  */
-OH_ArkUI_KeyboardShortcutKey* OH_ArkUI_KeyboardShortcutKey_Create(void);
+OH_ArkUI_KeyboardShortcutKey *OH_ArkUI_KeyboardShortcutKey_Create(void);
 
 /**
  * @brief Destroys a keyboard shortcut key object.
@@ -1496,7 +1496,7 @@ OH_ArkUI_KeyboardShortcutKey* OH_ArkUI_KeyboardShortcutKey_Create(void);
  * @param key [in] Keyboard shortcut key object.
  * @since 26.1.0
  */
-void OH_ArkUI_KeyboardShortcutKey_Destroy(OH_ArkUI_KeyboardShortcutKey** key);
+void OH_ArkUI_KeyboardShortcutKey_Destroy(OH_ArkUI_KeyboardShortcutKey ** key);
 
 /**
  * @brief Sets the type of a keyboard shortcut key.
@@ -1505,7 +1505,7 @@ void OH_ArkUI_KeyboardShortcutKey_Destroy(OH_ArkUI_KeyboardShortcutKey** key);
  * @param type [in] Key type.
  * @since 26.1.0
  */
-void OH_ArkUI_KeyboardShortcutKey_SetType(OH_ArkUI_KeyboardShortcutKey* key, OH_ArkUI_KeyboardShortcutKeyType type);
+void OH_ArkUI_KeyboardShortcutKey_SetType(OH_ArkUI_KeyboardShortcutKey *key, OH_ArkUI_KeyboardShortcutKeyType type);
 
 /**
  * @brief Obtains the type of a keyboard shortcut key.
@@ -1518,7 +1518,7 @@ void OH_ArkUI_KeyboardShortcutKey_SetType(OH_ArkUI_KeyboardShortcutKey* key, OH_
  *     </ul>
  * @since 26.1.0
  */
-OH_ArkUI_KeyboardShortcutKeyType OH_ArkUI_KeyboardShortcutKey_GetType(const OH_ArkUI_KeyboardShortcutKey* key);
+OH_ArkUI_KeyboardShortcutKeyType OH_ArkUI_KeyboardShortcutKey_GetType(const OH_ArkUI_KeyboardShortcutKey *key);
 
 /**
  * @brief Sets the character for a character keyboard shortcut key. The key type must be set to
@@ -1528,7 +1528,7 @@ OH_ArkUI_KeyboardShortcutKeyType OH_ArkUI_KeyboardShortcutKey_GetType(const OH_A
  * @param character [in] Single character that can be entered through the keyboard.
  * @since 26.1.0
  */
-void OH_ArkUI_KeyboardShortcutKey_SetCharacter(OH_ArkUI_KeyboardShortcutKey* key, char character);
+void OH_ArkUI_KeyboardShortcutKey_SetCharacter(OH_ArkUI_KeyboardShortcutKey *key, char character);
 
 /**
  * @brief Obtains the character of a character keyboard shortcut key.
@@ -1541,7 +1541,7 @@ void OH_ArkUI_KeyboardShortcutKey_SetCharacter(OH_ArkUI_KeyboardShortcutKey* key
  *     </ul>
  * @since 26.1.0
  */
-char OH_ArkUI_KeyboardShortcutKey_GetCharacter(const OH_ArkUI_KeyboardShortcutKey* key);
+char OH_ArkUI_KeyboardShortcutKey_GetCharacter(const OH_ArkUI_KeyboardShortcutKey *key);
 
 /**
  * @brief Sets the function key for a function keyboard shortcut key. The key type must be set to
@@ -1552,7 +1552,7 @@ char OH_ArkUI_KeyboardShortcutKey_GetCharacter(const OH_ArkUI_KeyboardShortcutKe
  * @since 26.1.0
  */
 void OH_ArkUI_KeyboardShortcutKey_SetFunctionKey(
-    OH_ArkUI_KeyboardShortcutKey* key, OH_ArkUI_KeyboardShortcutFunctionKey functionKey);
+    OH_ArkUI_KeyboardShortcutKey *key, OH_ArkUI_KeyboardShortcutFunctionKey functionKey);
 
 /**
  * @brief Obtains the function key of a function keyboard shortcut key.
@@ -1566,7 +1566,7 @@ void OH_ArkUI_KeyboardShortcutKey_SetFunctionKey(
  * @since 26.1.0
  */
 OH_ArkUI_KeyboardShortcutFunctionKey OH_ArkUI_KeyboardShortcutKey_GetFunctionKey(
-    const OH_ArkUI_KeyboardShortcutKey* key);
+    const OH_ArkUI_KeyboardShortcutKey *key);
 
 /**
  * @brief Defines the callback information for an application-level keyboard shortcut.
@@ -1579,17 +1579,17 @@ typedef struct OH_ArkUI_ApplicationShortcutCallbackInfo OH_ArkUI_ApplicationShor
  * @brief Defines the callback invoked when an application-level keyboard shortcut is triggered. The callback is
  * invoked on the UI thread of the UI instance where the shortcut is triggered.
  *
- * @param info [out] Pointer to the callback information object for the UI instance where the shortcut is triggered. The
+ * @param info [in] Pointer to the callback information object for the UI instance where the shortcut is triggered. The
  *     value must not be <b>nullptr</b>. Use
  *     {@link OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext} to obtain its UI context. The object is valid only
  *     during the callback and must not be retained.
- * @param userData [out] User-defined data passed when the shortcut is registered. The value is not copied and
+ * @param userData [in] User-defined data passed when the shortcut is registered. The value is not copied and
  *     must remain valid until the shortcut is unregistered.
  * @since 26.1.0
  */
 typedef void (*OH_ArkUI_ApplicationShortcutCallback)(
-    const OH_ArkUI_ApplicationShortcutCallbackInfo* info,
-    void* userData
+    const OH_ArkUI_ApplicationShortcutCallbackInfo *info,
+    void *userData
 );
 
 /**
@@ -1605,16 +1605,20 @@ typedef void (*OH_ArkUI_ApplicationShortcutCallback)(
  * @since 26.1.0
  */
 ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
-    const OH_ArkUI_ApplicationShortcutCallbackInfo* info);
+    const OH_ArkUI_ApplicationShortcutCallbackInfo *info);
 
 /**
  * @brief Registers an application-level keyboard shortcut. The shortcut takes effect globally in the application.
  * A matching component-level shortcut is triggered before the application-level shortcut.
+ * This function must be called on the UI thread. This API does not support Form render and Dynamic render containers.
  *
  * Each registration generates a positive integer registration ID unique within the application, even when the
- * shortcut and callback are identical. Multiple registrations of the same shortcut are retained, and only the
- * latest registration that has not been unregistered takes effect. Registration IDs are not reused during the
- * application lifetime.
+ * shortcut and callback are identical. Multiple registrations of the same shortcut are retained, and all matching
+ * registrations are invoked in increasing registration ID order when the shortcut is triggered.
+ * Registration IDs are not reused during the application lifetime. The registration ID is a positive int32 value;
+ * if the ID space is exhausted, 0 is returned to indicate failure.
+ * Callbacks already collected for the current event can still run after the corresponding registration is
+ * unregistered; <b>userData</b> must remain valid until the current event completes.
  *
  * @param key [in] Pointer to a keyboard shortcut key object created by {@link OH_ArkUI_KeyboardShortcutKey_Create}.
  *     The value must not be <b>nullptr</b>. For a character key, the character set through
@@ -1629,23 +1633,26 @@ ArkUI_ContextHandle OH_ArkUI_ApplicationShortcutCallbackInfo_GetUIContext(
  *     not copied and must remain valid until the shortcut is unregistered.
  * @param callback [in] Callback invoked when the shortcut is triggered. The value must not be <b>nullptr</b>.
  * @param registrationId [out] Output pointer that receives the registration ID of this shortcut binding. The value must
- *     not be <b>nullptr</b>. The ID is written only on success; the output is unchanged on failure.
+ *     not be <b>nullptr</b>. The ID is written only on success; the output is unchanged on failure. Returns 0 if
+ *     registration fails.
  * @return Result code.
  *     <ul>
  *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
  *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter is invalid.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if an internal error occurs, such as ID exhaustion.</li>
  *     </ul>
  * @since 26.1.0
  */
-ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Register(const OH_ArkUI_KeyboardShortcutKey* key, uint32_t modifierKeys,
-    void* userData, OH_ArkUI_ApplicationShortcutCallback callback, int32_t* registrationId);
+ArkUI_ErrorCode OH_ArkUI_ApplicationShortcut_Register(const OH_ArkUI_KeyboardShortcutKey *key, uint32_t modifierKeys,
+    void *userData, OH_ArkUI_ApplicationShortcutCallback callback, int32_t *registrationId);
 
 /**
  * @brief Unregisters the application-level keyboard shortcut binding identified by the registration ID.
+ * This function must be called on the UI thread.
  *
- * Only the specified binding is removed. Other bindings are unaffected. If the active binding is removed,
- * the most recent remaining registration of the same shortcut takes effect. If the ID does not exist or has
- * already been unregistered, this method does nothing and still succeeds.
+ * Only the specified binding is removed. Other bindings are unaffected. Callbacks already collected for the
+ * current event can still run. If the ID does not exist or has already been unregistered, this method does
+ * nothing and still succeeds.
  *
  * @param registrationId [in] Registration ID obtained when registering the shortcut.
  * @return Result code.
