@@ -78,22 +78,13 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
 OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
 
 /**
- * @brief Sets format data to the muxer. This API must be called before {@link OH_AVMuxer_Start}.
- * Since API version 14, setting the creation time {@link OH_MD_KEY_CREATION_TIME} is supported. If the creation time
- * fails to be written, check whether the {@link OH_MD_KEY_CREATION_TIME} string conforms to the ISO 8601 standard time
- * format and is in UTC time.
- * Since API version 20, the following are supported:
- * - Setting the descriptive text information of the file {@link OH_MD_KEY_COMMENT}. If the file description information
- * fails to be written, check whether {@link OH_MD_KEY_COMMENT} is of the string type or has a character length greater
- * than or equal to 1 and less than or equal to 256.
- * - Setting the position of MP4 moov {@link OH_MD_KEY_ENABLE_MOOV_FRONT}. When {@link OH_MD_KEY_ENABLE_MOOV_FRONT} is 0,
- * moov is placed at the end; when it is 1, moov is placed at the front. The default is at the end.
+ * @brief Set format to the muxer.
  *
- * @param muxer Pointer to an OH_AVMuxer instance.
- * @param format Pointer to an OH_AVFormat instance. File-level metadata set.
- * @return {@link AV_ERR_OK}: The format parameter is set correctly.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer is a null pointer or the format is invalid.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The API is not allowed to be called. Check the API call sequence.
+ * @param muxer Pointer to an OH_AVMuxer instance
+ * @param format OH_AVFormat handle pointer contain format
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: the muxer or format is invalid
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: not permit to call the interface, it was called in invalid state
  * @since 14
  */
 OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);

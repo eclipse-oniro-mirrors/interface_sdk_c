@@ -134,7 +134,6 @@ struct OH_AVFormat *OH_AVFormat_CreateVideoFormat(const char *mimeType,
  * @brief Destroys an OH_AVFormat instance. The instance cannot be destroyed repeatedly.
  *
  * @param format Pointer to an OH_AVFormat instance.
- * @return void
  * @since 9
  * @version 1.0
  */
