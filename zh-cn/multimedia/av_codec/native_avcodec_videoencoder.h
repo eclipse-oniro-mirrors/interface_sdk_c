@@ -75,8 +75,6 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
 /**
  * @brief 根据视频编码器名称创建视频编码器实例。使用此接口的前提是知道编码器的确切名称，编码器的名称可以通过能力查询获取。
  *
- * 详情请参见：[获取支持的编解码能力](../../../media/avcodec/obtain-supported-codecs.md#创建指定名称的编解码器)。
- *
  * @param name 视频编码器名称。
  * @return 成功则返回一个指向视频编码实例的指针。
  * 如果输入是不支持编码器名称或者内存资源不足，则返回NULL。
@@ -457,8 +455,6 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
 
 /**
  * @brief 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓冲区，否则会阻塞编码流程。
- *
- * 详情请参见：[视频编码](../../../media/avcodec/video-encoding.md)“Surface模式的步骤-13或Buffer模式步骤-11”。
  *
  * @param codec 指向视频编码实例的指针。
  * @param index 输出缓冲区对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。

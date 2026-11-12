@@ -410,8 +410,6 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 /**
  * @brief 将处理后的输出缓冲区返回到解码器。用户使用完需要及时调用此接口释放输出缓冲区，否则会阻塞解码流程。
  *
- * 详情请参见：[视频解码](../../../media/avcodec/video-decoding.md)“Surface模式的步骤-12或Buffer模式步骤-10”。
- *
  * @param codec 指向视频解码实例的指针
  * @param index 输出buffer对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
  * @return AV_ERR_OK：执行成功。

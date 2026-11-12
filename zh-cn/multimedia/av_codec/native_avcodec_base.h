@@ -163,12 +163,10 @@ typedef struct OH_AVCodecAsyncCallback {
  * @brief OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，
  * 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
  *
- * 使用指导请参见[视频编码](../../../media/avcodec/video-encoding.md)中的“Surface模式步骤-4或Buffer模式步骤-3”。
- *
  * @param onError 监控编解码器操作错误，详情参考{@link OH_AVCodecOnError}。
  * @param onStreamChanged 监控编解码器流变化，详情参考{@link OH_AVCodecOnStreamChanged}。
- * @param onNeedInputBuffer 监控编解码器需要输入数据，详情参考{@link OH_AVCodecOnNeedInputData}。
- * @param onNewOutputBuffer 监控编解码器已生成输出数据，详情参考{@link OH_AVCodecOnNewOutputData}。
+ * @param onNeedInputBuffer 监控编解码器需要输入数据，详情参考{@link OH_AVCodecOnNeedInputBuffer}。
+ * @param onNewOutputBuffer 监控编解码器已生成输出数据，详情参考{@link OH_AVCodecOnNewOutputBuffer}。
  * @since 11
  */
 typedef struct OH_AVCodecCallback {
@@ -1012,8 +1010,6 @@ extern const char *OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT;
  * 使用前可以通过{@link OH_AVCapability_IsFeatureSupported}接口和枚举值{@link OH_AVCapabilityFeature}中的
  * VIDEO_ENCODER_TEMPORAL_SCALABILITY来查询当前视频编码器是否支持分层编码。
  *
- * 详情请参见：[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
- *
  * 该键是可选的且只用于视频编码，在Configure阶段使用。
  *
  * @since 12
@@ -1077,8 +1073,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
  *
- * 详情请参见：[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
- *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
@@ -1087,8 +1081,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
  * @brief 描述当前帧参考的长期参考帧（LTR）的POC号的键，值类型为int32_t。
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
- *
- * 详情请参见：[时域可分层视频编码](../../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
  *
  * @since 12
  */
