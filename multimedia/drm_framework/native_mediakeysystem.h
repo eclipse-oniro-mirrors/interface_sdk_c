@@ -112,21 +112,22 @@ bool OH_MediaKeySystem_IsSupported(const char *name);
 /**
  * @brief Checks whether the device supports the combination of the DRM solution and MIME type.
  * 
- * @param name [in] Pointer to the DRM solution name.
- * @param mimeType [in] Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
+ * @param name Pointer to the DRM solution name.
+ * @param mimeType Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
  *     video/avc and video/hevc.
  * @return Check result for the support of the combination. **true** if supported, **false** otherwise.
  * @since 11
+ * @version 1.0
  */
 bool OH_MediaKeySystem_IsSupported2(const char *name, const char *mimeType);
 /**
  * @brief Checks whether the device supports the combination of the DRM solution, MIME type, and content protection
  * level.
  * 
- * @param name [in] Pointer to the DRM solution name.
- * @param mimeType [in] Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
+ * @param name Pointer to the DRM solution name.
+ * @param mimeType Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are
  *     video/avc and video/hevc.
- * @param contentProtectionLevel [in] Content protection level.
+ * @param contentProtectionLevel Content protection level.
  * @return Check result for the support of the combination. **true** if supported, **false** otherwise.
  * @since 11
  * @version 1.0
