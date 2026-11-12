@@ -681,8 +681,8 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
  * 避免未初始化的回调函数被系统调用，引起不可预知的行为。可参考开发指南-推荐使用OHAudio开发音频播放功能(C/C++)。
  *
  * @deprecated since 20
- * @useinstead 请分别使用以下回调类型替代: [OH_AudioRenderer_OnWriteDataCallback]、[OH_AudioRenderer_OutputDeviceChangeCallback]、
- * [OH_AudioRenderer_OnInterruptCallback] 以及 [OH_AudioRenderer_OnErrorCallback]。
+ * @useinstead 请分别使用以下回调类型替代: OH_AudioRenderer_OnWriteDataCallback, OH_AudioRenderer_OutputDeviceChangeCallback,
+ * OH_AudioRenderer_OnInterruptCallback, OH_AudioRenderer_OnErrorCallback separately.
  * @since 10
  */
 typedef struct OH_AudioRenderer_Callbacks_Struct {
