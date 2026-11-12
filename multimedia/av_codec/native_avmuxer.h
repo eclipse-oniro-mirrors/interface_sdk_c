@@ -161,8 +161,7 @@ OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex
     const OH_AVBuffer *sample);
 
 /**
- * @brief Stops a muxer. This API must be called after {@link OH_AVMuxer_Start}. Once the muxer is stopped, it cannot be
- * restarted.
+ * @brief Stops a muxer. Once the muxer is stopped, it cannot be restarted.
  *
  * @param muxer Pointer to an OH_AVMuxer instance.
  * @return {@link AV_ERR_OK}: The operation is successful.

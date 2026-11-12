@@ -683,9 +683,9 @@ extern const char *OH_MD_KEY_CODEC_MIME;
 extern const char *OH_MD_KEY_DURATION;
 
 /**
- * @brief Pointer to the key that describes the bit rate. The value type is int64_t.
+ * @brief Pointer to the key that describes the bit rate, in bps. The value type is int64_t.
  * You can call {@link OH_AVCapability_GetEncoderBitrateRange} to obtain the value range.
- * 
+ *
  * @since 9
  */
 extern const char *OH_MD_KEY_BITRATE;
@@ -982,13 +982,14 @@ extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
 
 /**
  * @brief Pointer to the key that describes the number of bits per sample. The value type is int32_t.
+ * This key is optional.
  *
  * In versions earlier than API version 20, this parameter must be set to **1** for FLAC encoding. Otherwise,
- * {@link OH_AudioCodec_Configure} returns the error code {@link AV_ERR_INVALID_VAL}.
- * However, this parameter has no actual effect and does not affect the encoding result.
+ * {@link OH_AudioCodec_Configure} returns the error code {@link AV_ERR_INVALID_VAL}. However, this parameter has no
+ * actual effect and does not affect the encoding result.
  *
  * Starting from API version 20, you do not need to set it anymore.
- * 
+ *
  * @since 10
  */
 extern const char *OH_MD_KEY_BITS_PER_CODED_SAMPLE;
@@ -2015,15 +2016,17 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE;
 extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO;
 
 /**
- * @brief Key for configuring the video decoder playback speed. The value type is double.
+ * @brief Pointer to the key that describes the playback speed of the video decoder. The value type is double.
  *
- * This key specifies the target playback speed of the video. It is primarily recommended
- * for use in conjunction with {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_ADAPTIVE}
- * to assist the adaptive algorithm in accurately evaluating the perceptual impact of frame
- * drops. The value must be strictly greater than 0.0, with recommended standard values
- * including 0.5, 0.75, 1.0 (normal speed), 1.25, 1.5, 2.0, and 3.0; any value less than
- * or equal to 0.0 is considered invalid. This key can be configured via the
- * {@link OH_VideoDecoder_Configure} and {@link OH_VideoDecoder_SetParameter} interfaces.
+ * This key is used to specify the target playback speed of the video. It is recommended that this key be used together
+ * with the **OH_FRAME_RETENTION_MODE_ADAPTIVE** mode to assist the perceptual adaptive algorithm in accurately
+ * evaluating the impact of frame loss on visual perception.
+ *
+ * The value must be strictly greater than 0.0. The recommended standard values include 0.5, 0.75, 1.0 (normal speed),
+ * 1.25, 1.5, 2.0, and 3.0. Any value less than or equal to 0.0 is considered invalid.
+ *
+ * You can configure this key through {@link OH_VideoDecoder_Configure} and {@link OH_VideoDecoder_SetParameter}. For
+ * details about each mode and its behavior, see the enumeration definition of {@link OH_FrameRetentionMode}.
  *
  * @since 26.0.0
  */
