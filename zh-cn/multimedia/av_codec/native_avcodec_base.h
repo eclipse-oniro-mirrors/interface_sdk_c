@@ -1872,13 +1872,11 @@ typedef enum OH_HEVCProfile {
     /**
      * @brief HEVC编码档次为HDR10主档次。
      * @deprecated since 14
-     * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
     /**
      * @brief HEVC编码档次为HDR10+主档次。
      * @deprecated since 14
-     * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
 } OH_HEVCProfile;
@@ -2304,14 +2302,12 @@ typedef enum OH_ScalingMode {
      * @brief 根据窗口尺寸自适应调整图像大小。
      * @deprecated since 14
      * @useinstead {@link OH_SCALING_MODE_SCALE_TO_WINDOW_V2}
-     * @since 10
     */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
     /** 
      * 根据窗口尺寸裁剪图像大小。
      * @deprecated since 14
      * @useinstead {@link OH_SCALING_MODE_SCALE_CROP_V2}
-     * @since 10
     */
     SCALING_MODE_SCALE_CROP = 2,
 } OH_ScalingMode;
