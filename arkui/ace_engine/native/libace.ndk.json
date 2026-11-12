@@ -7729,5 +7729,13 @@
     {
         "first_introduced": "26.1.0",
         "name": "OH_ArkUI_XComponent_EnableSurfaceVisibilityLifecycle"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_NodeKeyboardShortcut_Register"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_NodeKeyboardShortcut_Unregister"
     }
 ]
