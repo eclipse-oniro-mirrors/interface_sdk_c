@@ -24,7 +24,6 @@
  * applications.
  *
  * @since 8
- * @version 1.0
  */
 
 /**
@@ -41,22 +40,25 @@
  * @library libhiappevent_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 8
- * @version 1.0
  */
+
 #ifndef HIVIEWDFX_HIAPPEVENT_H
 #define HIVIEWDFX_HIAPPEVENT_H
+
 #include <stdbool.h>
 #include <stdint.h>
+
 #include "hiappevent_cfg.h"
 #include "hiappevent_event.h"
 #include "hiappevent_param.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
  * @brief Enumerates the error codes used in the HiAppEvent module.
- *
+ * 
  * @since 15
  */
 typedef enum {
@@ -65,50 +67,43 @@ typedef enum {
      * @since 15
      */
     HIAPPEVENT_SUCCESS = 0,
-
     /**
      * The parameter value length is invalid.
      * @since 18
      */
     HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4,
-
     /**
      * The processor is null.
      * @since 18
      */
     HIAPPEVENT_PROCESSOR_IS_NULL = -7,
-
     /**
      * The processor is not found.
      * @since 18
      */
     HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,
-
     /**
      * The parameter value is invalid.
      * @since 15
      */
     HIAPPEVENT_INVALID_PARAM_VALUE = -9,
-
     /**
      * The event configuration is null.
      * @since 15
      */
     HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10,
-
     /**
      * The operation failed.
      * @since 18
      */
     HIAPPEVENT_OPERATE_FAILED = -100,
-
     /**
      * The user ID is invalid.
      * @since 18
      */
     HIAPPEVENT_INVALID_UID = -200,
     /**
-     * The reporting frequency exceeds the limit.
+     * @brief The reporting frequency exceeds the limit.
      * @since 26.0.0
      */
     HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED = -300
@@ -118,19 +113,30 @@ typedef enum {
  * @brief Enumerates the event types. You are advised to select different event types based on application scenarios.
  *
  * @since 8
- * @version 1.0
  */
 typedef enum EventType {
-    /* Fault event type */
+    /**
+     * @brief Fault event type.
+     * @since 8
+     */
     FAULT = 1,
 
-    /* Statistic event type */
+    /**
+     * @brief Statistics event type.
+     * @since 8
+     */
     STATISTIC = 2,
 
-    /* Security event type */
+    /**
+     * @brief Security event type.
+     * @since 8
+     */
     SECURITY = 3,
 
-    /* Behavior event type */
+    /**
+     * @brief Behavior event type.
+     * @since 8
+     */
     BEHAVIOR = 4
 } EventType;
 
@@ -139,30 +145,26 @@ typedef enum EventType {
  * parameter list in JSON string format.
  *
  * @since 12
- * @version 1.0
  */
 typedef struct HiAppEvent_AppEventInfo {
     /**
-     * The domain of the event.
-     *
+     * @brief Event domain: indicates the service domain or functional module to which an event belongs, which is used
+     * for event classification and management.
      * @since 12
      */
     const char* domain;
     /**
-     * The name of the event.
-     *
+     * @brief Event name, which is used together with domain to uniquely identify an event.
      * @since 12
      */
     const char* name;
     /**
-     * The type of the event.
-     *
+     * @brief Indicates the type of the event.
      * @since 12
      */
     enum EventType type;
     /**
-     * The JSON string of the parameter.
-     *
+     * @brief List of event parameters in JSON string format.
      * @since 12
      */
     const char* params;
@@ -173,24 +175,20 @@ typedef struct HiAppEvent_AppEventInfo {
  * and the length of the event array.
  *
  * @since 12
- * @version 1.0
  */
 typedef struct HiAppEvent_AppEventGroup {
     /**
-     * The name of the event.
-     *
+     * @brief The same event name in the event array.
      * @since 12
      */
     const char* name;
     /**
-     * The event array which is grouped by the name.
-     *
+     * @brief Array of events with the same event name.
      * @since 12
      */
     const struct HiAppEvent_AppEventInfo* appEventInfos;
     /**
-     * The length of appEventInfos array.
-     *
+     * @brief Length of an array of events with the same event name.
      * @since 12
      */
     uint32_t infoLen;
@@ -200,7 +198,6 @@ typedef struct HiAppEvent_AppEventGroup {
  * @brief Defines the event parameter list node.
  *
  * @since 8
- * @version 1.0
  */
 typedef struct ParamListNode* ParamList;
 
@@ -208,7 +205,6 @@ typedef struct ParamListNode* ParamList;
  * @brief Defines the watcher for application events.
  *
  * @since 12
- * @version 1.0
  */
 typedef struct HiAppEvent_Watcher HiAppEvent_Watcher;
 
@@ -235,7 +231,6 @@ typedef struct HiAppEvent_Config HiAppEvent_Config;
  * @param appEventGroups Event group array.
  * @param groupLen Length of the event group array.
  * @since 12
- * @version 1.0
  */
 typedef void (*OH_HiAppEvent_OnReceive)(
     const char* domain, const struct HiAppEvent_AppEventGroup* appEventGroups, uint32_t groupLen);
@@ -250,7 +245,6 @@ typedef void (*OH_HiAppEvent_OnReceive)(
  * @param size Total size of events newly received by the watcher, in bytes. The size of a single event is the length
  *     of the JSON string converted from the event.
  * @since 12
- * @version 1.0
  */
 typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
 
@@ -263,7 +257,6 @@ typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
  * @param events The event JSON string array.
  * @param eventLen Size of the event array.
  * @since 12
- * @version 1.0
  */
 typedef void (*OH_HiAppEvent_OnTake)(const char* const *events, uint32_t eventLen);
 
@@ -273,7 +266,6 @@ typedef void (*OH_HiAppEvent_OnTake)(const char* const *events, uint32_t eventLe
  *
  * @return Pointer to the parameter list object.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_CreateParamList(void);
 
@@ -282,7 +274,6 @@ ParamList OH_HiAppEvent_CreateParamList(void);
  *
  * @param list Pointer to the parameter list object.
  * @since 8
- * @version 1.0
  */
 void OH_HiAppEvent_DestroyParamList(ParamList list);
 
@@ -294,7 +285,6 @@ void OH_HiAppEvent_DestroyParamList(ParamList list);
  * @param boolean Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddBoolParam(ParamList list, const char* name, bool boolean);
 
@@ -307,7 +297,6 @@ ParamList OH_HiAppEvent_AddBoolParam(ParamList list, const char* name, bool bool
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddBoolArrayParam(ParamList list, const char* name, const bool* booleans, int arrSize);
 
@@ -319,7 +308,6 @@ ParamList OH_HiAppEvent_AddBoolArrayParam(ParamList list, const char* name, cons
  * @param num Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt8Param(ParamList list, const char* name, int8_t num);
 
@@ -332,7 +320,6 @@ ParamList OH_HiAppEvent_AddInt8Param(ParamList list, const char* name, int8_t nu
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt8ArrayParam(ParamList list, const char* name, const int8_t* nums, int arrSize);
 
@@ -344,7 +331,6 @@ ParamList OH_HiAppEvent_AddInt8ArrayParam(ParamList list, const char* name, cons
  * @param num Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt16Param(ParamList list, const char* name, int16_t num);
 
@@ -357,7 +343,6 @@ ParamList OH_HiAppEvent_AddInt16Param(ParamList list, const char* name, int16_t 
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt16ArrayParam(ParamList list, const char* name, const int16_t* nums, int arrSize);
 
@@ -369,7 +354,6 @@ ParamList OH_HiAppEvent_AddInt16ArrayParam(ParamList list, const char* name, con
  * @param num Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt32Param(ParamList list, const char* name, int32_t num);
 
@@ -382,7 +366,6 @@ ParamList OH_HiAppEvent_AddInt32Param(ParamList list, const char* name, int32_t 
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt32ArrayParam(ParamList list, const char* name, const int32_t* nums, int arrSize);
 
@@ -394,7 +377,6 @@ ParamList OH_HiAppEvent_AddInt32ArrayParam(ParamList list, const char* name, con
  * @param num Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt64Param(ParamList list, const char* name, int64_t num);
 
@@ -407,7 +389,6 @@ ParamList OH_HiAppEvent_AddInt64Param(ParamList list, const char* name, int64_t 
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddInt64ArrayParam(ParamList list, const char* name, const int64_t* nums, int arrSize);
 
@@ -419,7 +400,6 @@ ParamList OH_HiAppEvent_AddInt64ArrayParam(ParamList list, const char* name, con
  * @param num Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddFloatParam(ParamList list, const char* name, float num);
 
@@ -432,7 +412,6 @@ ParamList OH_HiAppEvent_AddFloatParam(ParamList list, const char* name, float nu
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddFloatArrayParam(ParamList list, const char* name, const float* nums, int arrSize);
 
@@ -444,7 +423,6 @@ ParamList OH_HiAppEvent_AddFloatArrayParam(ParamList list, const char* name, con
  * @param num Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddDoubleParam(ParamList list, const char* name, double num);
 
@@ -457,7 +435,6 @@ ParamList OH_HiAppEvent_AddDoubleParam(ParamList list, const char* name, double 
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddDoubleArrayParam(ParamList list, const char* name, const double* nums, int arrSize);
 
@@ -469,7 +446,6 @@ ParamList OH_HiAppEvent_AddDoubleArrayParam(ParamList list, const char* name, co
  * @param str Value of the parameter to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddStringParam(ParamList list, const char* name, const char* str);
 
@@ -482,7 +458,6 @@ ParamList OH_HiAppEvent_AddStringParam(ParamList list, const char* name, const c
  * @param arrSize Size of the parameter array to be added.
  * @return Pointer to the parameter list that contains the parameters added.
  * @since 8
- * @version 1.0
  */
 ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, const char * const *strs, int arrSize);
 
@@ -524,7 +499,6 @@ ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, co
  *     <br>**6**: Invalid event parameter array length.
  *     <br>**8**: Duplicate event parameter name.
  * @since 8
- * @version 1.0
  */
 int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType type, const ParamList list);
 
@@ -542,7 +516,6 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
  * @return Configuration result. The value **true** indicates that the configuration is successful, and the
  *     value **false** indicates the opposite.
  * @since 8
- * @version 1.0
  */
 bool OH_HiAppEvent_Configure(const char* name, const char* value);
 
@@ -554,7 +527,6 @@ bool OH_HiAppEvent_Configure(const char* name, const char* value);
  * @return Pointer to the new watcher if the API is called successfully; **NULL** if the **name** parameter is
  *     invalid.
  * @since 12
- * @version 1.0
  */
 HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
 
@@ -564,7 +536,6 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
  *
  * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @since 12
- * @version 1.0
  */
 void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
 
@@ -589,7 +560,6 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  *     **timeOut** is less than or equal to 0, the **onTrigger** callback is not enabled.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int size, int timeOut);
 
@@ -613,7 +583,6 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
  * @return **0** if the API is called successfully; **-1** if the **names** parameter is invalid; **-4** if the **
  *     domain** parameter is invalid; **-5** if the pointer to an input parameter is null.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* domain, uint8_t eventTypes,
     const char* const *names, int namesLen);
@@ -628,7 +597,6 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * @param onTrigger Callback to be set.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent_OnTrigger onTrigger);
 
@@ -640,7 +608,6 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @param onReceive Pointer to the callback function.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent_OnReceive onReceive);
 
@@ -655,7 +622,6 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if
  *     {@link OH_HiAppEvent_AddWatcher} has not been called to add a watcher.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum, OH_HiAppEvent_OnTake onTake);
 
@@ -673,7 +639,6 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
  * @param watcher Pointer to the watcher (that is, the pointer returned by {@link OH_HiAppEvent_CreateWatcher}).
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
 
@@ -686,7 +651,6 @@ int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if
  *     {@link OH_HiAppEvent_AddWatcher} has not been called to add a watcher.
  * @since 12
- * @version 1.0
  */
 int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
 
@@ -694,7 +658,6 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
  * @brief Clears the events saved by all watchers.
  *
  * @since 12
- * @version 1.0
  */
 void OH_HiAppEvent_ClearData();
 
@@ -928,10 +891,10 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
 /**
  * @brief Sets the items in the configuration object.
  *
- * @param config Pointer to the configuration object, that is, the pointer returned by
+ * @param config Pointer to the configuration object, that is, the pointer returned by 
  *     the {@link OH_HiAppEvent_CreateConfig} API.
  * @param itemName Name of the configuration item.
- * @param itemValue Value of the configuration item.
+ * @param itemValue Value of the configuration item. 
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
  *         <li>{@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The input pointer to the configuration object is null.</li>
@@ -943,11 +906,12 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
 int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName, const char* itemValue);
 
 /**
- * @brief Sets event configuration parameters.
- * Configuration items vary depending on events. Currently, only the following events are supported:
+ * @brief This topic describes how to set event-related parameters.
+ *
+ * Different events have different configuration items. Currently, only the following events are supported:
  * **MAIN_THREAD_JANK**.
  * **MAIN_THREAD_JANK_V2**.
- * **EVENT_APP_CRASH**, is supported since API version 24.
+ * **EVENT_APP_CRASH** This event is supported in API version 24 and later versions.
  *
  * @param name Name of the system event.
  * @param config Pointer to the configuration object, that is, the pointer returned by
@@ -970,76 +934,65 @@ int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
  */
 typedef enum {
     /**
-     * App crash event type.
-     *
+     * @brief Crash event.
      * @since 26.0.1
      */
     OH_APP_CRASH = 1,
 
     /**
-     * App freeze event type.
-     *
+     * @brief Apply the screen freezing event.
      * @since 26.0.1
      */
     OH_APP_FREEZE = 2,
 
     /**
-     * Resource overlimit event type.
-     *
+     * @brief Resource leakage event.
      * @since 26.0.1
      */
     OH_RESOURCE_OVERLIMIT = 3,
 
     /**
-     * Address sanitizer event type.
-     *
+     * @brief Address out-of-bounds event.
      * @since 26.0.1
      */
     OH_ADDRESS_SANITIZER = 4,
 
     /**
-     * App hicollie event type.
-     *
+     * @brief Task execution timeout event.
      * @since 26.0.1
      */
     OH_APP_HICOLLIE = 5,
 
     /**
-     * CPU usage high event type.
-     *
+     * @brief The CPU is overloaded.
      * @since 26.0.1
      */
     OH_CPU_USAGE_HIGH = 6
 } OH_HiAppEvent_SysEvent;
 
 /**
- * @brief The OH_HiAppEvent_ExternalLog structure is used to describe external log information, including
- * the file path, the generation timestamp, file size, and type of system event.
- *
+ * @brief This structure is used to describe external log information, including the file path, generation timestamp,
+ * file size, and system event type.
  * @since 26.0.1
  */
 typedef struct OH_HiAppEvent_ExternalLog {
     /**
-     * The log file path.
-     *
+     * @brief Log file path.
      * @since 26.0.1
      */
     const char* filePath;
     /**
-     * The timestamp of the file generation in ms.
-     *
+     * @brief Timestamp when a file is generated, in ms.
      * @since 26.0.1
      */
     long long generationTs;
     /**
-     * The file size in kb.
-     *
+     * @brief File size in KB.
      * @since 26.0.1
      */
     long fileSize;
     /**
-     * The system event type.
-     *
+     * @brief System event type.
      * @since 26.0.1
      */
     OH_HiAppEvent_SysEvent event;
@@ -1089,7 +1042,7 @@ typedef enum OH_HiAppEvent_FrameworkType {
     OH_REACT_NATIVE_HERMES = 1,
 
     /**
-     * @brief Kmp_kotlin type.
+     * @brief Indicates the Kmp_kotlin type.
      *
      * @since 26.0.0
      */

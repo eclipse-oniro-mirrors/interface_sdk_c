@@ -31,9 +31,9 @@
  * @brief HiAppEvent模块为应用开发者提供的事件订阅和事件打点函数定义。在执行应用事件打点之前，开发者必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：
  * 用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。
  *
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
- * @library libhiappevent_ndk.z.so
  * @kit PerformanceAnalysisKit
+ * @library libhiappevent_ndk.z.so
+ * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 8
  */
 
@@ -53,7 +53,7 @@ extern "C" {
 
 /**
  * @brief 错误码定义。
- *
+ * 
  * @since 15
  */
 typedef enum {
@@ -110,16 +110,32 @@ typedef enum {
  * @since 8
  */
 typedef enum EventType {
-    /* 故障事件类型 */
+    /**
+     * @brief 故障事件类型。
+     *
+     * @since 8
+     */
     FAULT = 1,
 
-    /* 统计事件类型 */
+    /**
+     * @brief 统计事件类型。
+     *
+     * @since 8
+     */
     STATISTIC = 2,
 
-    /* 安全事件类型 */
+    /**
+     * @brief 安全事件类型。
+     *
+     * @since 8
+     */
     SECURITY = 3,
 
-    /* 行为事件类型 */
+    /**
+     * @brief 行为事件类型。
+     *
+     * @since 8
+     */
     BEHAVIOR = 4
 } EventType;
 
@@ -130,25 +146,25 @@ typedef enum EventType {
  */
 typedef struct HiAppEvent_AppEventInfo {
     /**
-     * 事件领域。表示事件所属的业务领域或功能模块，用于事件分类和管理。
+     * @brief 事件领域。表示事件所属的业务领域或功能模块，用于事件分类和管理。
      *
      * @since 12
      */
     const char* domain;
     /**
-     * 事件名称。与domain配合使用唯一标识具体的事件。
+     * @brief 事件名称。与domain配合使用唯一标识具体的事件。
      *
      * @since 12
      */
     const char* name;
     /**
-     * 事件的类型。
+     * @brief 事件的类型。
      *
      * @since 12
      */
     enum EventType type;
     /**
-     * JSON格式字符串类型的事件参数列表。
+     * @brief JSON格式字符串类型的事件参数列表。
      *
      * @since 12
      */
@@ -162,19 +178,19 @@ typedef struct HiAppEvent_AppEventInfo {
  */
 typedef struct HiAppEvent_AppEventGroup {
     /**
-     * 事件数组中相同的事件名称。
+     * @brief 事件数组中相同的事件名称。
      *
      * @since 12
      */
     const char* name;
     /**
-     * 具有相同事件名称的事件数组。
+     * @brief 具有相同事件名称的事件数组。
      *
      * @since 12
      */
     const struct HiAppEvent_AppEventInfo* appEventInfos;
     /**
-     * 具有相同事件名称的事件数组的长度。
+     * @brief 具有相同事件名称的事件数组的长度。
      *
      * @since 12
      */
@@ -844,6 +860,112 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
 int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
 
 /**
+ * @brief 系统事件类型。
+ *
+ *建议根据不同的使用场景选择不同的系统事件类型。
+ *
+ * @since 26.0.1
+ */
+typedef enum {
+    /**
+     * @brief 崩溃事件。
+     *
+     * @since 26.0.1
+     */
+    OH_APP_CRASH = 1,
+
+    /**
+     * @brief 应用冻屏事件。
+     *
+     * @since 26.0.1
+     */
+    OH_APP_FREEZE = 2,
+
+    /**
+     * @brief 资源泄漏事件。
+     *
+     * @since 26.0.1
+     */
+    OH_RESOURCE_OVERLIMIT = 3,
+
+    /**
+     * @brief 地址越界事件。
+     *
+     * @since 26.0.1
+     */
+    OH_ADDRESS_SANITIZER = 4,
+
+    /**
+     * @brief 任务执行超时事件。
+     *
+     * @since 26.0.1
+     */
+    OH_APP_HICOLLIE = 5,
+
+    /**
+     * @brief CPU高负载事件。
+     *
+     * @since 26.0.1
+     */
+    OH_CPU_USAGE_HIGH = 6
+} OH_HiAppEvent_SysEvent;
+
+/**
+ * @brief 该结构体用于描述外部日志信息，包括文件路径、生成时间戳、文件大小、系统事件类型。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_HiAppEvent_ExternalLog {
+    /**
+     * @brief 日志文件路径。
+     *
+     * @since 26.0.1
+     */
+    const char* filePath;
+    /**
+     * @brief 文件生成的时间戳，单位为ms。
+     *
+     * @since 26.0.1
+     */
+    long long generationTs;
+    /**
+     * @brief 文件大小（以KB为单位）。
+     *
+     * @since 26.0.1
+     */
+    long fileSize;
+    /**
+     * @brief 系统事件类型。
+     *
+     * @since 26.0.1
+     */
+    OH_HiAppEvent_SysEvent event;
+} OH_HiAppEvent_ExternalLog;
+
+/**
+ * @brief OH_HiAppEvent_RegExternalLogCapacityReachedCallback函数的参数
+ *    当外部日志目录容量达到时，作为回调函数。
+ *
+ * @param externalLogArr 外部日志信息数组。
+ * @param arrLen 外部LogArr的长度。
+ * @since 26.0.1
+ */
+typedef void (*OH_HiAppEvent_ExternalLogCapacityReachedCallback)(
+    OH_HiAppEvent_ExternalLog* externalLogArr, uint32_t arrLen);
+
+/**
+ * @brief 设置外部日志目录容量达到时的回调。
+ *
+ * @param callback 当外部日志目录容量达到时的回调函数。
+ * @return <ul>
+ *         <li>{@link HIAPPEVENT_SUCCESS} 操作成功。</li>
+ *         <li>{@link HIAPPEVENT_OPERATE_FAILED} 操作失败。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+int OH_HiAppEvent_RegExternalLogCapacityReachedCallback(OH_HiAppEvent_ExternalLogCapacityReachedCallback callback);
+
+/**
  * @brief 应用框架类型。建议开发者根据实际的使用场景选择对应的应用框架类型。
  *
  * @since 26.0.0
@@ -891,113 +1013,6 @@ typedef enum OH_HiAppEvent_FrameworkType {
  */
 int OH_HiAppEvent_ReportFrameworkMemAnomaly(
     enum OH_HiAppEvent_FrameworkType frameworkType, const char* frameworkVersion, const char* description);
-
-/**
- * @brief 系统事件类型。
- *
- *建议根据不同的使用场景选择不同的系统事件类型。
- *
- * @since 26.0.1
- */
-typedef enum {
-    /**
-     * 崩溃事件。
-     *
-     * @since 26.0.1
-     */
-    OH_APP_CRASH = 1,
- 
-    /**
-     * 应用冻屏事件。
-     *
-     * @since 26.0.1
-     */
-    OH_APP_FREEZE = 2,
- 
-    /**
-     * 资源泄漏事件。
-     *
-     * @since 26.0.1
-     */
-    OH_RESOURCE_OVERLIMIT = 3,
- 
-    /**
-     * 地址越界事件。
-     *
-     * @since 26.0.1
-     */
-    OH_ADDRESS_SANITIZER = 4,
- 
-    /**
-     * 任务执行超时事件。
-     *
-     * @since 26.0.1
-     */
-    OH_APP_HICOLLIE = 5,
- 
-    /**
-     * CPU高负载事件。
-     *
-     * @since 26.0.1
-     */
-    OH_CPU_USAGE_HIGH = 6
-} OH_HiAppEvent_SysEvent;
- 
-/**
- * @brief The OH_HiAppEvent_ExternalLog 结构体用于描述外部日志信息，包括
- *    文件路径、生成时间戳、文件大小、系统事件类型。
- *
- * @since 26.0.1
- */
-typedef struct OH_HiAppEvent_ExternalLog {
-    /**
-     * 日志文件路径。
-     *
-     * @since 26.0.1
-     */
-    const char* filePath;
-    /**
-     * 文件生成的时间戳，单位为ms。
-     *
-     * @since 26.0.1
-     */
-    long long generationTs;
-    /**
-     * 文件大小（以kb为单位）。
-     *
-     * @since 26.0.1
-     */
-    long fileSize;
-    /**
-     * 系统事件类型。
-     *
-     * @since 26.0.1
-     */
-    enum OH_HiAppEvent_SysEvent event;
-} OH_HiAppEvent_ExternalLog;
- 
-/**
- * @brief OH_HiAppEvent_RegExternalLogCapacityReachedCallback函数的参数
- *    当外部日志目录容量达到时，作为回调函数。
- *
- * @param externalLogArr 外部日志信息数组。
- * @param arrLen 外部LogArr的长度。
- * @since 26.0.1
- */
-typedef void (*OH_HiAppEvent_ExternalLogCapacityReachedCallback)(
-    OH_HiAppEvent_ExternalLog* externalLogArr, uint32_t arrLen);
- 
-/**
- * @brief 设置外部日志目录容量达到时的回调。
- *
- * @param callback 当外部日志目录容量达到时的回调函数。
- * @return <ul>
- *         <li>{@link HIAPPEVENT_SUCCESS} 操作成功。</li>
- *         <li>{@link HIAPPEVENT_OPERATE_FAILED} 操作失败。</li>
- *         </ul>
- * @since 26.0.1
- */
-int OH_HiAppEvent_RegExternalLogCapacityReachedCallback(OH_HiAppEvent_ExternalLogCapacityReachedCallback callback);
 #ifdef __cplusplus
 }
 #endif
