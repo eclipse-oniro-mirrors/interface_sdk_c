@@ -17,8 +17,10 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
- * data structures required by the USB SERIAL DDK APIs.
+ * @brief Provides USB Serial Driver Development Kit (USB Serial DDK) APIs, including the enum types and 
+ * data structs used by USB Serial DDK APIs. Serial port communication is often used in industrial scenarios
+ * and some legacy devices,such as card issuers and ID card readers. By using the USB Serial DDK, you can
+ * develop USB serial port peripherals extension drivers.
  *
  * @since 18
  */
@@ -132,8 +134,8 @@ typedef struct UsbSerial_Params {
 
 /**
  * @brief Defines the flow control mode for the USB Serial DDK. When using the USB serial port for data transfer, you
- * need to select a proper flow control mode based on the communication scenario. For example, in high-speed and large-
- * volume data transmission scenarios, hardware flow control is recommended to avoid data loss. In low-speed or
+ * need to select a proper flow control mode based on the communication scenario. For example, in high-speed and
+ * large-volume data transmission scenarios, hardware flow control is recommended to avoid data loss. In low-speed or
  * scenarios that do not require high real-time performance, software flow control can be used. In short-range and
  * reliable point-to-point communication scenarios, no flow control can be selected.
  *

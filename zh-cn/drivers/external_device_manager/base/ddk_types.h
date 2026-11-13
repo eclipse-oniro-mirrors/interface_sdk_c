@@ -17,8 +17,7 @@
  * @addtogroup Ddk
  * @{
  *
- * @brief Provides Base DDK types and declares the macros, enums, and\n
- * data structs used by the Base DDK APIs.
+ * @brief 提供Base DDK接口，包括创建、映射、取消映射以及销毁共享内存。
  *
  * @since 12
  */

@@ -17,8 +17,12 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief Provides ScsiPeripheral DDK types and declares macros, enumerations, and data structures used by the
- * ScsiPeripheral DDK.
+ * @brief The SCSI Peripheral DDK is a suite dedicated to SCSI device driver development at the application layer.
+ * It provides APIs for initializing the DDK, releasing the DDK, enabling and disabling devices, and reading data
+ * from and writing data to devices. It also declares the macros, enum variables, and data structures required for
+ * SCSI device driver development. The use scenarios include storage device driver development and disk array
+ * management.
+ * 
  * @since 18
  */
 
@@ -332,7 +336,7 @@ typedef struct ScsiPeripheral_Response {
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -361,7 +365,7 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint16_t allocationLength;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -438,7 +442,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
      */
     uint32_t lbAddress;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -484,7 +488,7 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
      */
     uint8_t allocationLength;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**
@@ -553,7 +557,7 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint16_t verificationLength;
     /**
-     * **Control** field, which specifies the control flags of a SCSI command, such as the priority and linked command.
+     * **Control** field used to specify the control information of the SCSI command.
      */
     uint8_t control;
     /**

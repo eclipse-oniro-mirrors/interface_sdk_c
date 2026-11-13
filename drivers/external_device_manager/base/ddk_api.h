@@ -17,8 +17,7 @@
  * @addtogroup Ddk
  * @{
  *
- * @brief Provides Base DDK APIs, including creating the shared memory, mapping the shared memory,\n
- * unmapping the shared memory, and destroying the shared memory.
+ * @brief Provides BASE DDK APIs for creating, mapping, unmapping, and destroying the shared memory.
  *
  * @since 12
  */

@@ -17,8 +17,8 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
- * data structures required by the USB SERIAL DDK APIs.
+ * @brief 提供USB Serial DDK（USB串口驱动开发工具包）接口，包括枚举类型和USB Serial DDK API使用的数据结构。串口通信常见于工业用途及一些老旧设备，如：发卡机、
+ * 身份证读卡器等。开发者通过使用USB Serial DDK，可以开发USB串口外设扩展驱动。
  *
  * @since 18
  */
@@ -97,8 +97,8 @@ typedef enum {
 } UsbSerial_DdkRetCode;
 
 /**
- * @brief 定义USB Serial DDK使用的USB串口参数，用于USB转串口设备的通信参数配置，需与目标通信设备的配置保持一致，否则可能无法正常通信。常见于工业控制设备、调试工具、
- * 传感器数据采集等需要通过USB串口与设备通信的场景。
+ * @brief 定义USB Serial DDK使用的USB串口参数，用于USB转串口设备的通信参数配置，需与目标通信设备的配置保持一致，否则可能无法正常通信。常见于工业控制设备、调试工具、传
+ * 感器数据采集等需要通过USB串口与设备通信的场景。
  *
  * @since 18
  */
@@ -122,8 +122,8 @@ typedef struct UsbSerial_Params {
 } __attribute__((aligned(8))) UsbSerial_Params;
 
 /**
- * @brief 定义USB Serial DDK中的流量控制。在使用USB串口进行数据传输时，需要根据通信场景选择合适的流量控制方式。例如，在高速大数据量传输场景下，建议使用硬件流控以避免数据丢失；在低速或对实时性要求不高的场景下，
- * 可使用软件流控；在短距离、可靠的点对点通信场景下，可选择无流控。
+ * @brief 定义USB Serial DDK中的流量控制。在使用USB串口进行数据传输时，需要根据通信场景选择合适的流量控制方式。例如，在高速大数据量传输场景下，建议使用硬件流控以避免数据丢失；在低速或对实时性要求不高的场景
+ * 下，可使用软件流控；在短距离、可靠的点对点通信场景下，可选择无流控。
  *
  * @since 18
  */

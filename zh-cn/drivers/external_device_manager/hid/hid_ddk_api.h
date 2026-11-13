@@ -17,7 +17,7 @@
  * @addtogroup HidDdk
  * @{
  *
- * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
+ * @brief 提供HID DDK接口，包括创建设备、发送事件、销毁设备等功能，用于HID设备的驱动开发。
  *
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
@@ -33,7 +33,6 @@
  * @kit DriverDevelopmentKit
  * @library libhid.z.so
  * @syscap SystemCapability.Driver.HID.Extension
- *     File to include: <hid/hid_ddk_api.h>
  * @since 11
  */
 
@@ -72,15 +71,14 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param deviceId 设备ID，必须是当前调用者通过{@link OH_Hid_CreateDevice}创建的设备，取值为非负数。
- * @param items List of the events to send. The event information includes the event type (**Hid_EventType**), code
- *     (**Hid_SynEvent**, **Hid_KeyCode**, **Hid_AbsAxes**, **Hid_RelAxes**, or **Hid_MscEvent**),
- *     and value (depending on the actual device input).
+ * @param items 发送的事件列表，事件包括类型（取值来源事件类型Hid_EventType）、编码（取值来源同步事件编码Hid_SynEvent、键值编码Hid_KeyCode、绝对坐标编码Hid_AbsAxes、
+ *      相对坐标编码Hid_RelAxes、其他类型的输入事件编码Hid_MscEvent）、值（根据实际设备输入决定）。发送的事件将被注入到指定设备，模拟设备产生相应的输入行为。
  * @param length 发送事件列表长度（一次发送事件个数），取值范围为[1, 7]。
  * @return {@link HID_DDK_SUCCESS} 调用接口成功。
  *     <br>{@link HID_DDK_NO_PERM} 权限校验失败。请确保应用已声明ohos.permission.ACCESS_DDK_HID权限。
  *     <br>{@link HID_DDK_INVALID_OPERATION} 连接HID DDK服务失败或者调用方不是设备的创建者。请确保调用了OH_Hid_Init完成初始化，且调用方是设备的创建者。
  *     <br>{@link HID_DDK_INVALID_PARAMETER} 参数校验失败。可能的原因：1.设备ID小于0；2.入参length长度超过7；3.入参items为空指针。请检查参数有效性。
- *     <br>{@link HID_DDK_NULL_PTR} 对应设备的注入为空。请确保使用OH_Hid_CreateDevice返回的有效设备ID，且设备未被销毁。
+ *     <br>{@link HID_DDK_NULL_PTR} 对应设备的注入为空。可能的原因：1.设备对象为空；2.设备不存在。请确保使用OH_Hid_CreateDevice返回的有效设备ID，且设备未被销毁。
  * @since 11
  * @version 1.0
  */

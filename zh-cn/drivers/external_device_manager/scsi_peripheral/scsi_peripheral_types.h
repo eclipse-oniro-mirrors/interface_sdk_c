@@ -17,8 +17,9 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief Provides ScsiPeripheral DDK types and declares macros, enumerations, and data structures used by the
- * ScsiPeripheral DDK.
+ * @brief SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序的套件，提供了初始化DDK、释放DDK、打开关闭设备、
+ * 读写设备等接口，并声明了SCSI设备驱动的开发所需的宏、枚举变量和数据结构，使用场景包括存储设备驱动开发、磁盘阵列管理等。
+ * 
  * @since 18
  */
 
@@ -244,7 +245,7 @@ typedef struct ScsiPeripheral_Request {
      */
     int8_t dataTransferDirection;
     /**
-     * 数据传输的缓冲区。
+     * 数据传输缓冲区的指针。
      */
     ScsiPeripheral_DeviceMemMap *data;
     /**
@@ -311,7 +312,7 @@ typedef struct ScsiPeripheral_Response {
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
@@ -336,11 +337,11 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint16_t allocationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
-     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
      */
     uint8_t byte1;
     /**
@@ -409,7 +410,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
      */
     uint32_t lbAddress;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
@@ -429,7 +430,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
  */
 typedef struct ScsiPeripheral_CapacityInfo {
     /**
-     * 逻辑块地址，用于指定读取容量的起始逻辑块位置。取值为0时获取设备整体容量信息。
+     * 返回的逻辑块地址，表示可寻址的最后一块逻辑块的编号，逻辑块总数为该值加1。
      */
     uint32_t lbAddress;
     /**
@@ -449,11 +450,11 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
      */
     uint8_t allocationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
-     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
      */
     uint8_t byte1;
     /**
@@ -510,15 +511,15 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint16_t verificationLength;
     /**
-     * Control字段，用于指定SCSI命令的控制标志，如优先级、链接命令等控制选项。
+     * Control字段，用于指定SCSI命令的控制信息。
      */
     uint8_t control;
     /**
-     * SCSI命令描述符块（CDB）的第一个字节，通常包含操作码和操作组信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第一个字节。
      */
     uint8_t byte1;
     /**
-     * SCSI命令描述符块（CDB）的第六个字节，根据命令类型包含不同的参数或标志信息。
+     * CDB（Command Descriptor Block，命令描述符块）的第六个字节。
      */
     uint8_t byte6;
     /**
