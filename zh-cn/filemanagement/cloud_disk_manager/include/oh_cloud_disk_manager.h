@@ -500,7 +500,8 @@ typedef struct OH_CloudDisk_SyncFolderEx {
  */
 typedef struct OH_CloudDisk_PlaceholderInfo {
     /**
-     * @brief 占位符文件的逻辑大小，以字节为单位，反映云文件的实际大小。
+     * @brief 占位符文件的预设逻辑大小，以字节为单位。系统将本地文件大小设置为该预设值，
+     * 不保障该预设值与云端文件实际大小的一致性。
      * @since 26.0.1
      */
     uint64_t logicalSize;
@@ -743,7 +744,8 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief 云端文件总大小，以字节为单位。
+     * @brief 水合数据总大小，以字节为单位。由首次调用OH_CloudDisk_Execute()回传时决定，
+     * 后续回传需保持一致。
      *
      * @since 26.0.1
      */
@@ -986,6 +988,8 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
 
 /**
  * @brief 响应回调请求。
+ *
+ * 水合总量以首次Execute调用回传的totalSize为准，后续回传需保持一致。
  *
  * @param reqHead [in] 回调请求头。
  * @param reqContext [in] 回调请求上下文。
