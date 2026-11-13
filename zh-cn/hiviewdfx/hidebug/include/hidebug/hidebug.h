@@ -17,9 +17,9 @@
  * @addtogroup HiDebug
  * @{
  *
- * @brief Provides debug functions.
+ * @brief 提供调试功能。
  *
- * For example, you can use these functions to obtain cpu uage, memory, heap, capture trace.
+ * 例如，可以使用这些函数获取CPU使用率、内存、堆信息，以及抓取trace。
  *
  * @since 12
  */
