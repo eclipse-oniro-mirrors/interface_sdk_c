@@ -559,13 +559,7 @@ typedef enum OH_CloudDisk_CallbackType {
      *
      * @since 26.0.1
      */
-    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2,
-    /**
-     * @brief 获取指定范围数据，用于读取。
-     *
-     * @since 26.1.0
-     */
-    OH_CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA = 3
+    OH_CLOUD_DISK_CALLBACK_TYPE_DEHYDRATE = 2
 } OH_CloudDisk_CallbackType;
 
 /**
@@ -641,38 +635,6 @@ typedef struct OH_CloudDisk_DehydrateInfo {
 } OH_CloudDisk_DehydrateInfo;
 
 /**
- * @brief 获取范围数据请求信息。
- *
- * @since 26.1.0
- */
-typedef struct OH_CloudDisk_FetchRangeDataRequest {
-    /**
-     * @brief 同步根内相对文件路径。
-     *
-     * @since 26.1.0
-     */
-    CloudDisk_PathInfo filePath;
-    /**
-     * @brief 获取范围数据的起始偏移，以字节为单位。
-     *
-     * @since 26.1.0
-     */
-    uint64_t offset;
-    /**
-     * @brief 获取范围数据的大小，以字节为单位。
-     *
-     * @since 26.1.0
-     */
-    uint64_t size;
-    /**
-     * @brief 需要读取的数据。
-     *
-     * @since 26.1.0
-     */
-    OH_CloudDisk_DataBuf *data;
-} OH_CloudDisk_FetchRangeDataRequest;
-
-/**
  * @brief 获取数据请求信息。
  *
  * @since 26.0.1
@@ -716,12 +678,6 @@ typedef union OH_CloudDisk_CallbackContext {
      * @since 26.0.1
      */
     OH_CloudDisk_DehydrateInfo *dehydrateData;
-    /**
-     * @brief 获取范围数据请求。当callbackType为{@link CLOUD_DISK_CALLBACK_TYPE_FETCH_RANGE_DATA}时生效。
-     *
-     * @since 26.1.0
-     */
-    OH_CloudDisk_FetchRangeDataRequest *fetchRangeData;
 } OH_CloudDisk_CallbackContext;
 
 /**
