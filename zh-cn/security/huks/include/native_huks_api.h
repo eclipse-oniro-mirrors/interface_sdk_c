@@ -254,6 +254,39 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem(const struct OH_Huks_Blob *keyAlias,
     const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
 
 /**
+ * @brief 离线获取匿名密钥证书。离线密钥证明依赖于网络,用户需要定期连接网络使用该接口更新离线证书。
+ * 离线匿名密钥证明要求本地时间准确。否则，可能导致对端验证证书过期无法正常工作。
+ *
+ * @param keyAlias 指向密钥别名的指针。
+ * @param paramSet 获取证书链参数指针。
+ * @param certChain 获取到的证书链指针。
+ * @return 可能的错误代码(**errorCode**):<ul>
+ *     <li>OH_HUKS_SUCCESS 0：操作成功。</li>
+ *     <li>OH_HUKS_ERR_CODE_NOT_SUPPORTED_API 801：不支持的功能。可能原因：
+ *     1.硬件不支持该能力。
+ *     2.芯片不支持该能力。
+ *     3.不支持依赖的服务特性。</li>
+ *     <li>OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED 12000001：算法模式不支持。</li>
+ *     <li>OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL 12000004：文件操作失败。</li>
+ *     <li>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL 12000005：IPC通信失败。</li>
+ *     <li>OH_HUKS_ERR_CODE_CRYPTO_FAIL 12000006：加密引擎故障。</li>
+ *     <li>OH_HUKS_ERR_CODE_ITEM_NOT_EXIST 12000011：密钥文件不存在。</li>
+ *     <li>OH_HUKS_ERR_CODE_INTERNAL_ERROR 12000012：设备环境或输入参数异常。</li>
+ *     <li>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014：内存不足。</li>
+ *     <li>OH_HUKS_ERR_CODE_INVALID_ARGUMENT 12000018：参数错误。可能原因：
+ *     1.必填参数为空。
+ *     2.参数类型错误。
+ *     3.参数校验失败。
+ *     4.访问组标记指定的组ID无效。</li>
+ *     <li>OH_HUKS_ERR_CODE_BUSY 12000024：操作超时，可能是网络抖动造成的。</li>
+ *     <li>OH_HUKS_ERR_CODE_NETWORK_UNAVAILABLE 12000027：网络不可用，请检查网络连接。</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+struct OH_Huks_Result OH_Huks_AnonAttestKeyItemOffline(const struct OH_Huks_Blob *keyAlias,
+    const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
+
+/**
  * @brief 获取密钥证书链。这是一个涉及网络的耗时接口，调用方可以通过异步线程获取证书链。
  *
  * @param keyAlias 要获取证书的密钥的别名。
