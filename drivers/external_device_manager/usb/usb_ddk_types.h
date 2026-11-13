@@ -88,7 +88,7 @@ typedef struct UsbControlRequestSetup {
  */
 typedef struct UsbDeviceDescriptor {
     /**
-     * Size of the descriptor, in bytes.
+     * Size of this descriptor, in bytes.
      */
     uint8_t bLength;
     /**

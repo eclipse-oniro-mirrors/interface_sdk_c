@@ -246,8 +246,7 @@ typedef struct ScsiPeripheral_IORequest {
 #define SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN 16
 
 /**
- * @brief Defines the request structure.Defines the SCSI request parameters. It is used to construct the request
- * parameters for interacting with SCSI devices, including the CDB, data buffer, and timeout interval.
+ * @brief Defines the request structure.
  *
  * @since 18
  */
@@ -255,8 +254,7 @@ typedef struct ScsiPeripheral_Request {
     /** Command descriptor block. */
     uint8_t commandDescriptorBlock[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN];
     /**
-     * Length of the command descriptor block. Ensure that the length matches the actual command. The maximum length
-     * cannot exceed {@link SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN}.
+     * Length of the command descriptor block.
      */
     uint8_t cdbLength;
     /**
