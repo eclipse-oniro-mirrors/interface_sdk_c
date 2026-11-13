@@ -34,6 +34,7 @@
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @include <native_drawing/drawing_text_font_descriptor.h>
  * @since 14
  * @version 1.0
  */
