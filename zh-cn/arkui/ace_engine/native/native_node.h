@@ -12597,6 +12597,29 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_PICKER_ITEM_HEIGHT = 1018005,
+
+    /**
+     * @brief <b>Picker</b>组件选中项的文本样式。此属性支持按需设置、重置和获取。
+     *
+     * **设置属性时的{@link ArkUI_AttributeItem}参数格式：**
+     * <ul>
+     * <li>.object：选中项的文本样式。参数类型为{@link ArkUI_PickerComponentTextStyle}。
+     * 使用{@link OH_ArkUI_PickerComponentTextStyle_Create}创建实例，通过{@link OH_ArkUI_PickerComponentTextStyle_SetColor}、
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetFontSize}、{@link OH_ArkUI_PickerComponentTextStyle_SetFontWeight}、
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetMinFontSize}、{@link OH_ArkUI_PickerComponentTextStyle_SetMaxFontSize}、
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetOverflow}设置属性后，将指针传入**.object**。
+     * 设置完成后，调用{@link OH_ArkUI_PickerComponentTextStyle_Dispose}销毁实例。未设置时使用系统默认样式。</li>
+     * </ul>
+     *
+     * **返回值{@link ArkUI_AttributeItem}的格式：**
+     * <ul>
+     * <li>.object：选中项的文本样式。参数类型为{@link ArkUI_PickerComponentTextStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
+     * @since 26.1.0
+     */
+    NODE_PICKER_SELECTED_TEXT_STYLE = 1018007,
 } ArkUI_NodeAttributeType;
 
 /**

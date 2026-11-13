@@ -40,6 +40,8 @@
 #define ARKUI_NATIVE_NODE_ATTRIBUTES_PICKER_H
 
 #include <stdint.h>
+#include "text.h"
+#include "text_common.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -376,6 +378,127 @@ ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerInd
  * @since 23
  */
 void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
+
+/**
+ * @brief 定义选择器组件的文本样式。
+ *
+ * @since 26.1.0
+ */
+typedef struct ArkUI_PickerComponentTextStyle ArkUI_PickerComponentTextStyle;
+/**
+ * @brief 创建选择器组件的文本样式实例。使用完毕后，请调用{@link OH_ArkUI_PickerComponentTextStyle_Dispose}销毁实例。
+ *
+ * @return 指向{@link ArkUI_PickerComponentTextStyle}实例的指针。如果返回空指针，表示创建失败。
+ * @release OH_ArkUI_PickerComponentTextStyle_Dispose {return}
+ * @since 26.1.0
+ */
+ArkUI_PickerComponentTextStyle* OH_ArkUI_PickerComponentTextStyle_Create(void);
+
+/**
+ * @brief 销毁选择器组件的文本样式实例。与{@link OH_ArkUI_PickerComponentTextStyle_Create}成对使用，否则会导致内存泄漏。
+ *
+ * @param style [in] 指向要销毁的{@link ArkUI_PickerComponentTextStyle}实例的指针。如果传入空指针，则不执行任何操作。
+ * @since 26.1.0
+ */
+void OH_ArkUI_PickerComponentTextStyle_Dispose(ArkUI_PickerComponentTextStyle* style);
+
+/**
+ * @brief 设置选择器组件文本样式的字体颜色。
+ *
+ * @param style [in] 指向{@link ArkUI_PickerComponentTextStyle}实例的指针，
+ *              通过{@OH_ArkUI_PickerComponentTextStyle_Create}获取。如果传入空指针，则不执行任何操作。
+ * @param color [in] 字体颜色，采用0xARGB格式，例如<b>0xFF182431</b>。默认值：sys.color.font_primary。
+ * @return 返回结果。
+ *      <ul>
+ *      <li>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示操作成功。</li>
+ *      <li>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示**style**参数为空指针。</li>
+ *      </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetColor(
+    ArkUI_PickerComponentTextStyle* style, uint32_t color);
+
+/**
+ * @brief 设置选择器组件文本样式的字号。
+ *
+ * @param style [in] 指向{@link ArkUI_PickerComponentTextStyle}实例的指针，
+ *              通过{@OH_ArkUI_PickerComponentTextStyle_Create}获取。如果传入空指针，则不执行任何操作。
+ * @param fontSize [in] 字号，单位为fp。默认值：20.0。
+ * @return 返回结果。
+ *      <ul>
+ *      <li>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示操作成功。</li>
+ *      <li>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示**style**参数为空指针。</li>
+ *      </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetFontSize(
+    ArkUI_PickerComponentTextStyle* style, float fontSize);
+
+/**
+ * @brief 设置选择器组件文本样式的字体粗细。
+ *
+ * @param style [in] 指向{@link ArkUI_PickerComponentTextStyle}实例的指针，
+ *              通过{@OH_ArkUI_PickerComponentTextStyle_Create}获取。如果传入空指针，则不执行任何操作。
+ * @param fontWeight [in] 字体粗细。取值为{@link ArkUI_FontWeight}的枚举值。默认值：ArkUI_FontWeight.Normal。
+ * @return 返回结果。
+ *      <ul>
+ *      <li>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示操作成功。</li>
+ *      <li>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示**style**参数为空指针。</li>
+ *      </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetFontWeight(
+    ArkUI_PickerComponentTextStyle* style, ArkUI_FontWeight fontWeight);
+
+/**
+ * @brief 设置选择器组件文本样式的最小字号。与**maxFontSize**配合使用以启用字号缩放。当**minFontSize**与
+ * **maxFontSize**同时设置时，**fontSize**不生效。
+ *
+ * @param style [in] 指向{@link ArkUI_PickerComponentTextStyle}实例的指针，
+ *              通过{@OH_ArkUI_PickerComponentTextStyle_Create}获取。如果传入空指针，则不执行任何操作。
+ * @param minFontSize [in] 最小字号，单位为fp。
+ * @return 返回结果。
+ *      <ul>
+ *      <li>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示操作成功。</li>
+ *      <li>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示**style**参数为空指针。</li>
+ *      </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetMinFontSize(
+    ArkUI_PickerComponentTextStyle* style, float minFontSize);
+
+/**
+ * @brief 设置选择器组件文本样式的最大字号。与**minFontSize**配合使用以启用字号缩放。当**minFontSize**与
+ * **maxFontSize**同时设置时，**fontSize**不生效。
+ *
+ * @param style [in] 指向{@link ArkUI_PickerComponentTextStyle}实例的指针，
+ *              通过{@OH_ArkUI_PickerComponentTextStyle_Create}获取。如果传入空指针，则不执行任何操作。
+ * @param maxFontSize [in] 最大字号，单位为fp。
+ * @return 返回结果。
+ *      <ul>
+ *      <li>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示操作成功。</li>
+ *      <li>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示**style**参数为空指针。</li>
+ *      </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetMaxFontSize(
+    ArkUI_PickerComponentTextStyle* style, float maxFontSize);
+
+/**
+ * @brief 设置选择器组件文本样式的文本溢出处理方式。设置为<b>ARKUI_TEXT_OVERFLOW_MARQUEE</b>时不生效。
+ *
+ * @param style [in] 指向{@link ArkUI_PickerComponentTextStyle}实例的指针，
+ *              通过{@OH_ArkUI_PickerComponentTextStyle_Create}获取。如果传入空指针，则不执行任何操作。
+ * @param overflow [in] 文本溢出处理方式。取值为{@link ArkUI_TextOverflow}的枚举值。
+ * @return 返回结果。
+ *      <ul>
+ *      <li>返回{@link ARKUI_ERROR_CODE_NO_ERROR}表示操作成功。</li>
+ *      <li>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}表示**style**参数为空指针。</li>
+ *      </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetOverflow(
+    ArkUI_PickerComponentTextStyle* style, ArkUI_TextOverflow overflow);
 
 #ifdef __cplusplus
 }
