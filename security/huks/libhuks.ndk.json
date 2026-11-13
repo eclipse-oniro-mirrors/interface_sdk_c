@@ -110,5 +110,9 @@
     {
         "first_introduced": "20",
         "name": "OH_Huks_UnwrapKey"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Huks_AsyncAnonAttestKeyItem"
     }
 ]

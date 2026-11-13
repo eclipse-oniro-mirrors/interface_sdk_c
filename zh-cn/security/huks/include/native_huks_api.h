@@ -278,6 +278,42 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAl
     const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
 
 /**
+ * @brief 接收异步匿名证明结果的回调函数指针。
+ *
+ * @param outOwnedCtxData [出参] 指向用户定义的上下文数据的指针，在调用回调时传回。
+ * @param result [出参] 表示异步操作执行结果的状态码。
+ * @param outBorrowedCertChain [出参] 指向异步生成的返回证书链结构的指针。
+ * @since 26.1.0
+ */
+typedef void (*OH_Huks_AsyncAnonAttestCallback)(
+    void *outOwnedCtxData, int32_t result, const struct OH_Huks_CertChain *outBorrowedCertChain);
+
+/**
+ * @brief 获取密钥的证书链。异步对指定密钥执行匿名证明。
+ * 这是一个涉及网络的耗时接口。
+ *
+ * @param keyAlias [入参] 指向目标密钥别名的指针。
+ * @param paramSet [入参] 获取证书链参数指针。
+ * @param callback [入参] 异步操作完成时调用的回调函数指针。
+ * @param ctxData [入参] 指向用户定义的上下文数据的指针，直接传递给回调函数。
+ * @return 可能的错误码（**errorCode**）：
+ * <br>OH_HUKS_SUCCESS 0：操作成功。
+ * <br>OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED 12000001：该特性暂不支持。
+ * <br>OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT 12000002：获取密钥参数失败。
+ * <br>OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT 12000003：密钥参数非法。
+ * <br>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL 12000005: IPC通信失败。
+ * <br>OH_HUKS_ERR_CODE_CRYPTO_FAIL 12000006：加密引擎故障。
+ * <br>OH_HUKS_ERR_CODE_ITEM_NOT_EXIST 12000011：密钥文件不存在。
+ * <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR 12000012：设备环境或输入参数异常。
+ * <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMOR 12000014：内存不足。
+ * <br>OH_HUKS_ERR_CODE_INVALID_ARGUMENT 12000018：访问组标签指定的组名无效.（API 23版本新增）
+ * @since 26.1.0
+ */
+struct OH_Huks_Result OH_Huks_AsyncAnonAttestKeyItem(const struct OH_Huks_Blob *keyAlias, 
+    const struct OH_Huks_ParamSet *paramSet,
+    const OH_Huks_AsyncAnonAttestCallback callback, void *ctxData);
+
+/**
  * @brief 初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）。需配合{@link OH_Huks_UpdateSession}、
  * {@link OH_Huks_FinishSession}接口使用，如果操作失败则调用{@link OH_Huks_AbortSession}接口中止会话。
  *

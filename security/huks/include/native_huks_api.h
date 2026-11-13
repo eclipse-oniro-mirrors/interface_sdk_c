@@ -309,6 +309,42 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAl
     const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
 
 /**
+ * @brief Callback function pointer for receiving the asynchronous anonymous attestation result.
+ *
+ * @param outOwnedCtxData [out] Pointer to the user-defined context data, passed back when the callback is invoked.
+ * @param result [out] Status code indicating the execution result of the asynchronous operation.
+ * @param outBorrowedCertChain [out] Pointer to the returned certificate chain structure generated asynchronously.
+ * @since 26.1.0
+ */
+typedef void (*OH_Huks_AsyncAnonAttestCallback)(
+    void *outOwnedCtxData, int32_t result, const struct OH_Huks_CertChain *outBorrowedCertChain);
+
+/**
+ * @brief Obtains the certificate chain of a key. Asynchronously performs anonymous attestation for a specified key.
+ * This is a time-consuming network interface.
+ *
+ * @param keyAlias [in] Pointer to the alias of the target key.
+ * @param paramSet [in] Pointer to the parameters for obtaining the certificate chain.
+ * @param callback [in] Pointer to the callback function invoked when the asynchronous operation completes.
+ * @param ctxData [in] Pointer to user-defined context data, passed directly to the callback function.
+ * @return Possible error codes (**errorCode**):
+ *     <br>OH_HUKS_SUCCESS 0: Operation successful.
+ *     <br>OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED 12000001: This feature is not supported currently.
+ *     <br>OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT 12000002: Failed to obtain the key parameter.
+ *     <br>OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT 12000003: The key parameter is invalid.
+ *     <br>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL 12000005: IPC communication failed.
+ *     <br>OH_HUKS_ERR_CODE_CRYPTO_FAIL 12000006: The encryption engine fails.
+ *     <br>OH_HUKS_ERR_CODE_ITEM_NOT_EXIST 12000011: The key file does not exist.
+ *     <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR 12000012: The device environment or input parameters are abnormal.
+ *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
+ *     <br>OH_HUKS_ERR_CODE_INVALID_ARGUMENT 12000018: The group name specified by accessing the group tag is invalid.
+ * @since 26.1.0
+ */
+struct OH_Huks_Result OH_Huks_AsyncAnonAttestKeyItem(const struct OH_Huks_Blob *keyAlias, 
+    const struct OH_Huks_ParamSet *paramSet,
+    const OH_Huks_AsyncAnonAttestCallback callback, void *ctxData);
+
+/**
  * @brief Initializes a key session. This function returns a session handle (mandatory) and a challenge value (optional)
  * .
  *
