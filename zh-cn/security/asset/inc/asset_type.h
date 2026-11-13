@@ -17,7 +17,7 @@
  * @addtogroup AssetType
  * @{
  *
- * @brief Provides the enums, structs, and error codes used in the Asset APIs.
+ * @brief 提供关键资产存储服务中通用的枚举值、数据结构和错误码。
  *
  * @since 11
  */
@@ -25,7 +25,7 @@
 /**
  * @file asset_type.h
  *
- * @brief Defines the enums, structs, and error codes used in the asset store service.
+ * @brief 定义关键资产存储服务中通用的枚举值、数据结构和错误码。
  *
  * @library libasset_ndk.z.so
  * @kit AssetStoreKit
@@ -256,7 +256,10 @@ typedef enum {
     ASSET_PERMISSION_DENIED = 201,
 
     /**
-     * 表示参数错误。
+     * 表示参数错误。可能原因：
+     * 1. 必选参数未指定。
+     * 2. 参数类型错误。
+     * 3. 参数校验失败。
      */
     ASSET_INVALID_ARGUMENT = 401,
 
@@ -510,15 +513,15 @@ typedef struct {
  */
 typedef union {
     /**
-     * 该字段用于传入bool类型的关键资产。
+     * 该字段用于传入bool类型的属性值。
      */
     bool boolean;
     /**
-     * 该字段用于传入uint32类型的关键资产。
+     * 该字段用于传入uint32类型的属性值。
      */
     uint32_t u32;
     /**
-     * 该字段用于传入bytes类型的关键资产。
+     * 该字段用于传入bytes类型的属性值。
      */
     Asset_Blob blob;
 } Asset_Value;
@@ -540,7 +543,7 @@ typedef struct {
 } Asset_Attr;
 
 /**
- * @brief 单条关键资的产查询结果。
+ * @brief 单条关键资产的查询结果。
  *
  * @since 11
  */
