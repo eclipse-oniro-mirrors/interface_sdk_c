@@ -816,7 +816,8 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief Total size of the cloud file, in bytes.
+     * @brief Total size of the cloud file, in bytes. It is determined by the first
+     * OH_CloudDisk_Execute call and must stay the same in subsequent calls.
      *
      * @since 26.0.1
      */
