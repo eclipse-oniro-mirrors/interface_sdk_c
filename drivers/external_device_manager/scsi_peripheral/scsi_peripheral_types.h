@@ -255,8 +255,8 @@ typedef struct ScsiPeripheral_Request {
     /** Command descriptor block. */
     uint8_t commandDescriptorBlock[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN];
     /**
-     *Length of the command descriptor block. Ensure that the length matches
-     *the actual command. The maximum length cannot exceed [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN].
+     * Length of the command descriptor block. Ensure that the length matches
+     * the actual command. The maximum length cannot exceed {@link SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN}.
      */
     uint8_t cdbLength;
     /**
