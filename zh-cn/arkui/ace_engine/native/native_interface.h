@@ -94,14 +94,14 @@ typedef enum {
      * @brief 属性匹配检查类型：检测传递给SetAttribute/GetAttribute/ResetAttribute的
      * ArkUI_NodeAttributeType是否与节点实际组件类型匹配。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
     /**
      * @brief 多线程竞争检查类型：检测调用多线程API时，是否已有其他线程
      * 正在操作同一棵组件树。
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;

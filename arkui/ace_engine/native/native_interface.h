@@ -97,14 +97,14 @@ typedef enum {
      * @brief Attribute match check type: Detects whether an ArkUI_NodeAttributeType passed to
      * SetAttribute/GetAttribute/ResetAttribute matches the node's actual component type.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_ATTRIBUTE_MATCH = 2,
     /**
      * @brief multi thread race condition check type: Detects whether another thread is already
      * operating on the same component tree when a multi thread API is called.
      *
-     * @since 26.2.0
+     * @since 26.1.0
      */
     OH_ARKUI_NATIVEMODULE_CHECK_TYPE_MULTI_THREAD = 3,
 } OH_ArkUI_NativeModule_RuntimeCheckType;
