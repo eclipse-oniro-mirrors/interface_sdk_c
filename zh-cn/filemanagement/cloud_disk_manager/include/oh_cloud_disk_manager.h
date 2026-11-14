@@ -744,7 +744,7 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief 云端文件总大小，以字节为单位。由首次调用OH_CloudDisk_Execute()回传时决定，
+     * @brief 云侧文件总大小，以字节为单位。由首次调用OH_CloudDisk_Execute()回传时决定，
      * 后续回传需保持一致。
      *
      * @since 26.0.1
