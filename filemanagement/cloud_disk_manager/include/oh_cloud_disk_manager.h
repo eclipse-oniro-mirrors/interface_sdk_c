@@ -515,8 +515,9 @@ typedef struct OH_CloudDisk_SyncFolderEx {
  */
 typedef struct OH_CloudDisk_PlaceholderInfo {
     /**
-     * @brief Preset logical size of the placeholder file, in bytes. The system sets the local file size
-     * to this preset value and does not guarantee its consistency with the actual size of the cloud file.
+     * @brief Logical size of the placeholder file, in bytes, which reflects the actual size of the
+     * cloud file. The system does not guarantee the consistency between the local placeholder file
+     * size and the cloud file size.
      * @since 26.0.1
      */
     uint64_t logicalSize;
