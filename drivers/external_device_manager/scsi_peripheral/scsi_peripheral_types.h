@@ -255,12 +255,14 @@ typedef struct ScsiPeripheral_Request {
     /** Command descriptor block. */
     uint8_t commandDescriptorBlock[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN];
     /**
-     * Length of the command descriptor block.
+     *Length of the command descriptor block. Ensure that the length matches
+     *the actual command. The maximum length cannot exceed [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN].
      */
     uint8_t cdbLength;
     /**
-     *Length of the command descriptor block. Ensure that the length matches
-     *the actual command. The maximum length cannot exceed [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN].
+     * Data transfer direction: **–1** indicates no data transfer, **–2** indicates data transfer (write) from the host
+     * to the device, **–3** indicates data transfer (read) from the device to the host, and **–4** indicates
+     * bidirectional data transfer.
      */
     int8_t dataTransferDirection;
     /**
