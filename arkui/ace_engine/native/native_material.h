@@ -248,6 +248,40 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor(
     ArkUI_ImmersiveMaterialHandle material, uint32_t* color);
 
 /**
+ * @brief Sets the color mode for immersive material objects. The color mode fixes the dark light color mode of the
+ * material object, which takes precedence over withTheme, colorInvert, and system dark light color themes. This setting
+ * affects only material effects, not subassemblies and other properties. If this parameter is not set, the default
+ * value is {@link ARKUI_COLOR_MODE_SYSTEM}.
+ *
+ * @param material [Input parameter] Pointer to a material object. The type is {@link ArkUI_ImmersiveMaterialHandle}.
+ * @param colorMode [Input parameter] Theme color mode of the material. The default value is
+ *     {@link ARKUI_COLOR_MODE_SYSTEM}.
+ * @return Return result code.
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR}: Operation succeeded. </li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}: The parameter is abnormal. </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_SetColorMode(
+    ArkUI_ImmersiveMaterialHandle material, ArkUI_ColorMode colorMode);
+
+/**
+ * @brief Gets the color mode of the immersive material object.
+ *
+ * @param material [Input parameter] Pointer to a material object. The type is {@link ArkUI_ImmersiveMaterialHandle}.
+ * @param colorMode [Output parameter] Pointer to the variable that receives the theme color mode.
+ * @return Return result code.
+ *     <ul>
+ *     <li>{@link ARKUI_ERROR_CODE_NO_ERROR}: Operation succeeded. </li>
+ *     <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID}: The parameter is abnormal. </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_ImmersiveMaterial_GetColorMode(
+    ArkUI_ImmersiveMaterialHandle material, ArkUI_ColorMode *colorMode);
+
+/**
  * @brief Sets whether to apply a shadow to an immersive material object. This parameter takes effect for materials of
  * all levels.
  * @param material Pointer to the immersive material object.
