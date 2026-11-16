@@ -272,6 +272,10 @@
         "name": "OH_AudioDeviceDescriptor_GetDeviceType"
     },
     {
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioDeviceDescriptor_GetUsbHeadsetType"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_AudioDeviceDescriptor_GetDeviceId"
     },
