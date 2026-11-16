@@ -746,7 +746,7 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
 
 /**
  * @brief 注入按键事件。
- * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
+ * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
  * <br>从API version 22开始，如果注入了修饰键（KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_CTRL_LEFT、
@@ -754,8 +754,10 @@ void OH_Input_SetKeySwitch(struct Input_KeyState* keyState, int32_t keySwitch);
  * KEYCODE_CAPS_LOCK、KEYCODE_SCROLL_LOCK、KEYCODE_NUM_LOCK）的按压事件（KEY_ACTION_DOWN）时，请及时注入该按键的抬起事件
  * （KEY_ACTION_UP），以避免该按键长时间处于按压状态。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
+ * <br>从API版本26.1.0开始，持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限的调用方可以直接使用本接口。
  *
- * @permission ohos.permission.CONTROL_DEVICE
+ * @permission ohos.permission.CONTROL_DEVICE [since 26.0.0 - 26.0.1]
+ * @permission ohos.permission.CONTROL_DEVICE or ohos.permission.ENTERPRISE_CONTROL_DEVICE [since 26.1.0]
  * @param keyEvent [in] 按键事件对象，通过{@link OH_Input_CreateKeyEvent}接口可以创建按键事件对象。并通过{@link OH_Input_SetKeyEventKeyCode}、
  *     {@link OH_Input_SetKeyEventAction}接口可以设置按键事件的键值和按键事件的类型。
  *     <br>使用完需使用{@link OH_Input_DestroyKeyEvent}接口销毁按键事件对象。
@@ -945,12 +947,14 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
 
 /**
  * @brief 使用以指定屏幕左上角为原点的相对坐标系的坐标注入鼠标事件。
- * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
+ * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
+ * <br>从API版本26.1.0开始，持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限的调用方可以直接使用本接口。
  *
- * @permission ohos.permission.CONTROL_DEVICE
+ * @permission ohos.permission.CONTROL_DEVICE [since 26.0.0 - 26.0.1]
+ * @permission ohos.permission.CONTROL_DEVICE or ohos.permission.ENTERPRISE_CONTROL_DEVICE [since 26.1.0]
  * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return OH_Input_InjectMouseEvent 函数返回值。
@@ -963,12 +967,14 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
 
 /**
  * @brief 使用以主屏左上角为原点的全局坐标系的坐标注入鼠标事件。
- * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
+ * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
+ * <br>从API版本26.1.0开始，持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限的调用方可以直接使用本接口。
  *
- * @permission ohos.permission.CONTROL_DEVICE
+ * @permission ohos.permission.CONTROL_DEVICE [since 26.0.0 - 26.0.1]
+ * @permission ohos.permission.CONTROL_DEVICE or ohos.permission.ENTERPRISE_CONTROL_DEVICE [since 26.1.0]
  * @param mouseEvent [in] 鼠标事件对象，通过{@link OH_Input_CreateMouseEvent}接口可以创建鼠标事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyMouseEvent}接口销毁鼠标事件对象。
  * @return OH_Input_InjectMouseEventGlobal 函数返回值。
@@ -1206,12 +1212,14 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
 
 /**
  * @brief 使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏输入事件。
- * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
+ * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
+ * <br>从API版本26.1.0开始，持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限的调用方可以直接使用本接口。
  *
- * @permission ohos.permission.CONTROL_DEVICE
+ * @permission ohos.permission.CONTROL_DEVICE [since 26.0.0 - 26.0.1]
+ * @permission ohos.permission.CONTROL_DEVICE or ohos.permission.ENTERPRISE_CONTROL_DEVICE [since 26.1.0]
  * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return OH_Input_InjectTouchEvent 函数返回值。
@@ -1223,12 +1231,14 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief 使用以主屏左上角为原点的全局坐标系的坐标注入触屏输入事件。
- * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE权限，调用该接口注入事件不生效。
+ * <br>如果当前处于用户未授权状态，且调用方未持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限，调用该接口注入事件不生效。
  * <br>从API version 20开始，建议先使用{@link OH_Input_RequestInjection}请求授权。然后通过{@link OH_Input_QueryAuthorizedStatus}查询授权状态，
  * 当授权状态为{@link AUTHORIZED}时，再使用该接口。
  * <br>从API版本26.0.0开始，持有ohos.permission.CONTROL_DEVICE权限的调用方也可以直接使用本接口。
+ * <br>从API版本26.1.0开始，持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限的调用方可以直接使用本接口。
  *
- * @permission ohos.permission.CONTROL_DEVICE
+ * @permission ohos.permission.CONTROL_DEVICE [since 26.0.0 - 26.0.1]
+ * @permission ohos.permission.CONTROL_DEVICE or ohos.permission.ENTERPRISE_CONTROL_DEVICE [since 26.1.0]
  * @param touchEvent [in] 触屏输入事件对象，通过{@link OH_Input_CreateTouchEvent}接口可以创建触屏输入事件对象。
  *     <br>使用完需使用{@link OH_Input_DestroyTouchEvent}接口销毁触屏输入事件对象。
  * @return OH_Input_InjectTouchEventGlobal 函数返回值。
@@ -1533,6 +1543,7 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
  * @brief 当前应用申请注入权限，包括申请注入按键事件{@link OH_Input_InjectKeyEvent}、注入触屏输入事件{@link OH_Input_InjectTouchEvent}、注入鼠标事件
  * {@link OH_Input_InjectMouseEvent}等注入操作的权限。
  * <br>从API版本26.0.0开始，在已授予ohos.permission.CONTROL_DEVICE权限的情况下，无需再申请注入授权。本接口的行为与ohos.permission.CONTROL_DEVICE权限无关。
+ * <br>从API版本26.1.0开始，在已授予ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限的情况下，无需再申请注入授权。本接口的行为与上述权限无关。
  *
  * @param callback [in] 授权状态回调，具体请参考{@link Input_InjectAuthorizeCallback}。
  * @return 函数返回值，参见{@link Input_Result}。
@@ -1558,6 +1569,7 @@ void OH_Input_CancelInjection();
 /**
  * @brief 查询当前应用注入的权限状态。
  * <br>从API版本26.0.0开始，本接口仅返回弹窗授权状态，不表示调用方是否因持有ohos.permission.CONTROL_DEVICE权限而具备注入能力。
+ * <br>从API版本26.1.0开始，本接口仅返回弹窗授权状态，不表示调用方是否因持有ohos.permission.CONTROL_DEVICE或ohos.permission.ENTERPRISE_CONTROL_DEVICE权限而具备注入能力。
  *
  * @param status [out] 当前应用注入权限状态。参见{@link Input_InjectionStatus}。
  * @return 函数返回值，参见{@link Input_Result}。
