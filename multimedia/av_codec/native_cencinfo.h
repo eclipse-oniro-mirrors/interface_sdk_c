@@ -27,15 +27,15 @@
  * @since 12
  */
  /**
- * @file native_cencinfo.h
- *
- * @brief The file declares the native APIs used to set decryption parameters.
- *
- * @kit AVCodecKit
- * @library libnative_media_avcencinfo.so
- * @syscap SystemCapability.Multimedia.Media.Spliter
- * @since 12
- */
+  * @file native_cencinfo.h
+  *
+  * @brief The file declares the native APIs used to set decryption parameters.
+  *
+  * @kit AVCodecKit
+  * @library libnative_media_avcencinfo.so
+  * @syscap SystemCapability.Multimedia.Media.Spliter
+  * @since 12
+  */
 
 #ifndef NATIVE_AVCENCINFO_H
 #define NATIVE_AVCENCINFO_H
@@ -92,32 +92,38 @@ typedef struct OH_AVCencInfo OH_AVCencInfo;
  */
 typedef enum DrmCencAlgorithm {
     /**
-     * Unencrypted.
+     * @brief Unencrypted.
+     *
      * @since 12
      */
     DRM_ALG_CENC_UNENCRYPTED = 0x0,
     /**
-     * AES CTR algorithm.
+     * @brief AES CTR algorithm.
+     *
      * @since 12
      */
     DRM_ALG_CENC_AES_CTR = 0x1,
     /**
-     * AES WV algorithm.
+     * @brief AES WV algorithm.
+     *
      * @since 12
      */
     DRM_ALG_CENC_AES_WV = 0x2,
     /**
-     * AES CBC algorithm.
+     * @brief AES CBC algorithm.
+     *
      * @since 12
      */
     DRM_ALG_CENC_AES_CBC = 0x3,
     /**
-     * SM4 CBC algorithm.
+     * @brief SM4 CBC algorithm.
+     *
      * @since 12
      */
     DRM_ALG_CENC_SM4_CBC = 0x4,
     /**
-     * SM4 CTR algorithm.
+     * @brief SM4 CTR algorithm.
+     *
      * @since 12
      */
     DRM_ALG_CENC_SM4_CTR = 0x5
@@ -131,12 +137,14 @@ typedef enum DrmCencAlgorithm {
  */
 typedef enum DrmCencInfoMode {
     /**
-     * The key ID, IV, and subsample are set.
+     * @brief The key ID, IV, and subsample are set.
+     *
      * @since 12
      */
     DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET = 0x0,
     /**
-     * The key ID, IV, and subsample are not set.
+     * @brief The key ID, IV, and subsample are not set.
+     *
      * @since 12
      */
     DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET = 0x1
@@ -150,12 +158,14 @@ typedef enum DrmCencInfoMode {
  */
 typedef struct DrmSubsample {
     /**
-     * Length of the clear header.
+     * @brief Length of the clear header.
+     *
      * @since 12
      */
     uint32_t clearHeaderLen;
     /**
-     * Length of the encrypted payload.
+     * @brief Length of the encrypted payload.
+     *
      * @since 12
      */
     uint32_t payLoadLen;

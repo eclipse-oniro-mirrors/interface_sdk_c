@@ -46,174 +46,207 @@ extern "C" {
 typedef enum OH_AVErrCode {
     /**
      * @brief the operation completed successfully.
+     *
      * @since 9
      */
     AV_ERR_OK = 0,
     /**
      * @brief no memory.
+     *
      * @since 9
      */
     AV_ERR_NO_MEMORY = 1,
     /**
      * @brief operation not permitted.
+     *
      * @since 9
      */
     AV_ERR_OPERATE_NOT_PERMIT = 2,
     /**
      * @brief invalid argument.
+     *
      * @since 9
      */
     AV_ERR_INVALID_VAL = 3,
     /**
      * @brief IO error.
+     *
      * @since 9
      */
     AV_ERR_IO = 4,
     /**
      * @brief timeout.
+     *
      * @since 9
      */
     AV_ERR_TIMEOUT = 5,
     /**
      * @brief unknown error.
+     *
      * @since 9
      */
     AV_ERR_UNKNOWN = 6,
     /**
      * @brief media service died.
+     *
      * @since 9
      */
     AV_ERR_SERVICE_DIED = 7,
     /**
      * @brief the state is not support this operation.
+     *
      * @since 9
      */
     AV_ERR_INVALID_STATE = 8,
     /**
      * @brief unsupport interface.
+     *
      * @since 9
      */
     AV_ERR_UNSUPPORT = 9,
     /**
      * @brief input data error.
+     *
      * @since 12
      */
     AV_ERR_INPUT_DATA_ERROR = 10,
     /**
      * @brief unsupported format.
+     *
      * @since 18
      */
     AV_ERR_UNSUPPORTED_FORMAT = 11,
     /**
      * @brief extend err start.
+     *
      * @since 9
      */
     AV_ERR_EXTEND_START = 100,
     /**
      * @brief drm error base.
+     *
      * @since 12
      */
     AV_ERR_DRM_BASE = 200,
     /**
      * @brief drm decrypt failed.
+     *
      * @since 12
      */
     AV_ERR_DRM_DECRYPT_FAILED = 201,
     /**
      * @brief video error base.
+     *
      * @since 12
      */
     AV_ERR_VIDEO_BASE = 300,
     /**
      * @brief video unsupported color space conversion.
+     *
      * @since 12
      */
     AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301,
     /**
      * @brief can not find host, maybe the address of server is incorrect.
+     *
      * @since 14
      */
     AV_ERR_IO_CANNOT_FIND_HOST = 5411001,
     /**
      * @brief network connection timeout.
+     *
      * @since 14
      */
     AV_ERR_IO_CONNECTION_TIMEOUT = 5411002,
     /**
      * @brief failed link due to abnormal network.
+     *
      * @since 14
      */
     AV_ERR_IO_NETWORK_ABNORMAL = 5411003,
     /**
      * @brief failed link due to unavailable network.
+     *
      * @since 14
      */
     AV_ERR_IO_NETWORK_UNAVAILABLE = 5411004,
     /**
      * @brief network permission dennied.
+     *
      * @since 14
      */
     AV_ERR_IO_NO_PERMISSION = 5411005,
     /**
      * @brief the client request parameters are incorrect or exceed the processing capacity.
+     *
      * @since 14
      */
     AV_ERR_IO_NETWORK_ACCESS_DENIED = 5411006,
     /**
      * @brief cannot find available network resources.
+     *
      * @since 14
      */
     AV_ERR_IO_RESOURCE_NOT_FOUND = 5411007,
     /**
      * @brief the server failed to verify the client certificate because the certificate is not carried,
-     *  the certificate is invalid, or the certificate is expired.
+     * the certificate is invalid, or the certificate is expired.
+     *
      * @since 14
      */
     AV_ERR_IO_SSL_CLIENT_CERT_NEEDED = 5411008,
     /**
      * @brief the client failed to verify the server certificate because the certificate is not carried,
-     *  the certificate is invalid, or the certificate is expired.
+     * the certificate is invalid, or the certificate is expired.
+     *
      * @since 14
      */
     AV_ERR_IO_SSL_CONNECT_FAIL = 5411009,
     /**
      * @brief SSL server cert untrusted.
+     *
      * @since 14
      */
     AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED = 5411010,
     /**
      * @brief unsupported request due to network protocols.
+     *
      * @since 14
      */
     AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011,
     /**
      * @brief Http clear text not permitted.
+     *
      * @since 23
      */
     AV_ERR_IO_CLEARTEXT_NOT_PERMITTED = 5411012,
     /**
      * @brief Signals a stream format change in synchronous mode.
      * Required follow-up actions:
-     *    - For video encoders: Call {@link OH_VideoEncoder_GetOutputDescription}
-     *    - For video decoders: Call {@link OH_VideoDecoder_GetOutputDescription}
-     *    - For audio decoders : Call {@link OH_AudioCodec_GetOutputDescription}
+     * - For video encoders: Call {@link OH_VideoEncoder_GetOutputDescription}
+     * - For video decoders: Call {@link OH_VideoDecoder_GetOutputDescription}
+     * - For audio decoders : Call {@link OH_AudioCodec_GetOutputDescription}
      * to retrieve updated stream configuration.
+     *
      * @since 20
      */
     AV_ERR_STREAM_CHANGED = 5410005,
     /**
      * @brief Indicates temporary buffer query failure in synchronous mode,
      * it's recommended to wait and retry the operation after a short interval.
+     *
      * @since 20
      */
     AV_ERR_TRY_AGAIN_LATER = 5410006,
     /**
      * @brief Super-resolution unsupported.
+     *
      * @since 23
      */
     AV_ERR_SUPER_RESOLUTION_UNSUPPORTED = 5410003,
     /**
      * @brief Super resolution is not enabled.
+     *
      * @since 23
      */
     AV_ERR_SUPER_RESOLUTION_NOT_ENABLED = 5410004,

@@ -96,13 +96,13 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * mode. After the encoder is successfully created, it must be destroyed via {@link OH_VideoEncoder_Destroy}.
  *
  * @param mime MIME type string, which cannot be **NULL**.
- *             It must be a supported type. refer to {@link AVCODEC_MIME_TYPE}.
+ *     It must be a supported type. refer to {@link AVCODEC_MIME_TYPE}.
  * @param codec Double pointer used to receive the created codec instance. It cannot be **NULL**.
- *              Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
+ *     Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
  * @return {@link AV_ERR_OK}:The operation is successful.
- *         <br>{@link AV_ERR_INVALID_VAL}: The **mime** parameter is **NULL**, the **codec** parameter is **NULL**,
- *          or the MIME type is not supported.
- *         <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **mime** parameter is **NULL**, the **codec** parameter is **NULL**,
+ *     or the MIME type is not supported.
+ *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *
  * @since 26.0.0
  */
@@ -128,25 +128,25 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  * You are advised to destroy the secondary encoder before destroying the primary encoder.
  *
  * @param primary Handle to the primary encoder, which must be created via
- *                {@link OH_VideoEncoder_CreatePrimaryWithPreproc} and cannot be **NULL**.
+ *     {@link OH_VideoEncoder_CreatePrimaryWithPreproc} and cannot be **NULL**.
  * @param codec Double pointer used to receive the created secondary encoder instance. It cannot be **NULL**.
- *              Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
+ *     Once successfully created, the instance must be destroyed via {@link OH_VideoEncoder_Destroy}.
  *
  * @return {@link AV_ERR_OK}:The operation is successful.
- *         <br>{@link AV_ERR_INVALID_VAL}: The **primary** parameter is **NULL**, the **codec** parameter is **NULL**,
- *         or the encoder corresponding to **primary** is not a valid primary encoder.
- *         <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The primary encoder already has an associated secondary encoder.
- *         <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **primary** parameter is **NULL**, the **codec** parameter is **NULL**,
+ *     or the encoder corresponding to **primary** is not a valid primary encoder.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The primary encoder already has an associated secondary encoder.
+ *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *
  * @note Lifecycle management:
- *       - The lifecycle of primary encoder must be longer than secondary encoder.
- *       - Recommended destruction order: destroy secondary encoder first, then primary encoder.
- *       - If primary encoder is destroyed before secondary encoder, the system will automatically
- *         destroy the secondary encoder before releasing the primary encoder.
- *       - Both encoders must be destroyed by calling {@link OH_VideoEncoder_Destroy}.
- *       - One primary encoder can only have one secondary encoder at the same time.
- *         After the secondary encoder is destroyed, a new secondary encoder can be created
- *         from the same primary encoder again.
+ *     - The lifecycle of primary encoder must be longer than secondary encoder.
+ *     - Recommended destruction order: destroy secondary encoder first, then primary encoder.
+ *     - If primary encoder is destroyed before secondary encoder, the system will automatically
+ *     destroy the secondary encoder before releasing the primary encoder.
+ *     - Both encoders must be destroyed by calling {@link OH_VideoEncoder_Destroy}.
+ *     - One primary encoder can only have one secondary encoder at the same time.
+ *     After the secondary encoder is destroyed, a new secondary encoder can be created
+ *     from the same primary encoder again.
  *
  * @since 26.0.0
  */
@@ -266,7 +266,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  *
  * @param codec Pointer to a video encoder instance.
  * @param format Pointer to an OH_AVFormat instance, which provides the description information about the video track
- * to be encoded.
+ *     to be encoded.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
  *     an unexpected nullptr.
@@ -275,7 +275,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoEncoder_Prepare}.
-  *    <br>{@link AV_ERR_UNSUPPORT}: The pixel format is not supported.
+ *     <br>{@link AV_ERR_UNSUPPORT}: The pixel format is not supported.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
@@ -536,7 +536,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
  * @param codec Pointer to a video encoder instance.
  * @param index Pointer to the index of the input buffer.
  * @param timeoutUs Timeout duration, in microseconds. A negative value means to wait infinitely. The value **0** means
- *  to return immediately. A positive value means to wait for the specified time before exiting.
+ *     to return immediately. A positive value means to wait for the specified time before exiting.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The encoder instance has been destroyed.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
@@ -630,23 +630,32 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
-    /** constant bit rate mode.
+    /**
+     * @brief constant bit rate mode.
+     *
      * @deprecated 14
      * @useinstead BITRATE_MODE_CBR
+     *
      * @since 9
      */
     CBR = 0,
 
-    /** variable bit rate mode.
+    /**
+     * @brief variable bit rate mode.
+     *
      * @deprecated 14
      * @useinstead BITRATE_MODE_VBR
+     *
      * @since 9
      */
     VBR = 1,
 
-    /** constant quality mode.
+    /**
+     * @brief constant quality mode.
+     *
      * @deprecated 14
      * @useinstead BITRATE_MODE_CQ
+     *
      * @since 9
      */
     CQ = 2

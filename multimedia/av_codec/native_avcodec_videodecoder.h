@@ -62,7 +62,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  * of the decoder. The decoder name can be obtained through capability query.
  *
  * For details, see [Obtaining Supported Codecs](../../../media/avcodec/obtain-supported-codecs.md#Creating a Codec with the Specified Name).
- * 
+ *
  * @param name Pointer to a video decoder name.
  * @return Pointer to the video decoder instance.
  *     <br>If the decoder name is not supported or the memory is insufficient, NULL is returned.
@@ -158,8 +158,8 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * | OH_MD_KEY_FRAME_RATE | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK     |
  * | {@link OH_MD_KEY_ROTATION}| AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
  * @note You are advised to set the parameters based on the maximum resolution supported by the instance.
- * Otherwise, an exception may occur when streams with the resolution higher than the maximum resolution
- * are to be decoded. This setting directly affects the memory usage of the application.
+ *     Otherwise, an exception may occur when streams with the resolution higher than the maximum resolution
+ *     are to be decoded. This setting directly affects the memory usage of the application.
  *
  * @param codec Pointer to a video decoder instance.
  * @param format Pointer to an OH_AVFormat instance, which provides the description information about the video track
@@ -263,10 +263,10 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
  *
  * For details, see {@link OH_AVFormat}. You must call {@link OH_AVFormat_Destroy} to
  * release the {@link OH_AVFormat} instance when its lifecycle ends.
- * 
+ *
  * @param codec Pointer to a video decoder instance.
  * @return Pointer to an OH_AVFormat instance.
- *    <br>If the value of **codec** is nullptr or does not point to a decoder instance, NULL is returned.
+ *     <br>If the value of **codec** is nullptr or does not point to a decoder instance, NULL is returned.
  * @since 9
  */
 OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
@@ -321,7 +321,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  *
  * If no output surface is configured, calling this API only returns the output buffer corresponding to
  * the specified index to the decoder.
- * 
+ *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputData}.
  * @return {@link AV_ERR_OK}: The operation is successful.
@@ -390,7 +390,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  *
  * If no output surface is configured, calling this API only returns the output buffer corresponding to
  * the specified index to the decoder.
- * 
+ *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputBuffer}.
  * @return {@link AV_ERR_OK}: The operation is successful.
@@ -531,7 +531,7 @@ OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 
 /**
  * @brief Obtains the instance of the available output buffer. Note that this function works only in synchronous mode.
- * 
+ *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of the output buffer. It can be obtained by calling {@link OH_VideoDecoder_QueryOutputBuffer}.
  * @return Pointer to the OH_AVBuffer instance created. If the operation fails, NULL is returned.
