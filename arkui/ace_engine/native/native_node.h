@@ -15098,6 +15098,34 @@ typedef enum {
     NODE_ARC_SCROLL_BAR_DISPLAY_MODE = 1021001,
 
     /**
+     * @brief Text style of the selected item of the <b>Picker</b> component. This property can be set, reset, and
+     * fetched on demand.
+     *
+     * ** Parameter format of {@link ArkUI_AttributeItem} when setting attributes: * *
+     * <ul>
+     * <li>.object: text style of the selected item. The parameter type is {@link ArkUI_PickerComponentTextStyle}.
+     * Use {@link OH_ArkUI_PickerComponentTextStyle_Create} to create an instance. Use
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetColor},
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetFontSize}, {@link OH_ArkUI_PickerComponentTextStyle_SetFontWeight},
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetMinFontSize},
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetMaxFontSize},
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetOverflow} After the attribute is set, pass the pointer to
+     * **.object**.
+     * After the setting is complete, call {@link OH_ArkUI_PickerComponentTextStyle_Dispose} to destroy the instance. If
+     * this parameter is not set, the default style is used. </li>
+     * </ul>
+     *
+     * ** Format of the return value {@link ArkUI_AttributeItem}: * *
+     * <ul>
+     * <li>.object: text style of the selected item. The parameter type is {@link ArkUI_PickerComponentTextStyle}. </li>
+     * </ul>
+     *
+     * @ingroup Picker[Container Slide Selector]
+     * @since 26.1.0
+     */
+    NODE_PICKER_SELECTED_TEXT_STYLE = 1018007,
+
+    /**
      * @brief Defines the index of the child component currently displayed in the ArcSwiper.
      * The attribute can be set, reset, and obtained as required through APIs.
      *
