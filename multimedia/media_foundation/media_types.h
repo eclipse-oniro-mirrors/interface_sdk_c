@@ -54,12 +54,10 @@ extern "C" {
 typedef enum OH_Core_HdrType {
     /**
      * This option is used to mark none HDR type.
-     * @since 18
      */
     OH_CORE_HDR_TYPE_NONE = 0,
     /**
      * This option is used to mark HDR Vivid type.
-     * @since 18
      */
     OH_CORE_HDR_TYPE_VIVID = 1,
 } OH_Core_HdrType;
@@ -69,4 +67,4 @@ typedef enum OH_Core_HdrType {
 #endif
 
 #endif // MEDIA_TYPES_H
-/** @} */
+/** @} */

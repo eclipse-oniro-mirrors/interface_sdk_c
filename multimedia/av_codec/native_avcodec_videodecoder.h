@@ -96,7 +96,7 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoDecoder_RegisterCallback
  * @since 9
  */
@@ -309,7 +309,7 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current decoder state.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoDecoder_PushInputBuffer
  * @since 9
  */
@@ -331,7 +331,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current decoder state.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoDecoder_RenderOutputBuffer
  * @since 9
  */
@@ -349,7 +349,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current decoder state.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoDecoder_FreeOutputBuffer
  * @since 9
  */

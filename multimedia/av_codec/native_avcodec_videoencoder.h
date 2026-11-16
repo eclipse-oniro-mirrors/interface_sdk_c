@@ -180,7 +180,7 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoEncoder_RegisterCallback
  * @since 9
  */
@@ -426,7 +426,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoEncoder_FreeOutputBuffer
  * @since 9
  */
@@ -463,7 +463,7 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_VideoEncoder_PushInputBuffer
  * @since 10
  */
@@ -625,27 +625,27 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
 /**
  * @brief Enumerates the bit rate modes of a video encoder.
  *
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead OH_BitrateMode
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
     /** constant bit rate mode.
-     * @deprecated since 14
+     * @deprecated 14
      * @useinstead BITRATE_MODE_CBR
      * @since 9
      */
     CBR = 0,
 
     /** variable bit rate mode.
-     * @deprecated since 14
+     * @deprecated 14
      * @useinstead BITRATE_MODE_VBR
      * @since 9
      */
     VBR = 1,
 
     /** constant quality mode.
-     * @deprecated since 14
+     * @deprecated 14
      * @useinstead BITRATE_MODE_CQ
      * @since 9
      */

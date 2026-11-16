@@ -61,7 +61,7 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
  *
  * You need to call {@link OH_AVDemuxer_SetMediaKeySystemInfoCallback} to set the callback function as a callback.
  *
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead Demuxer_MediaKeySystemInfoCallback
  * @since 11
  */
@@ -168,7 +168,7 @@ OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trac
  *     <br>2. The demuxer is not correctly initialized.
  *     <br>{@link AV_ERR_NO_MEMORY}: The sample capacity is insufficient to store all frame data.
  *     <br>{@link AV_ERR_UNKNOWN}: Failed to read or parse the frame from the file.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVDemuxer_ReadSampleBuffer
  * @since 10
  */
@@ -230,7 +230,7 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The demuxer is not correctly initialized.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **demuxer** is nullptr or does not point to a demuxer instance.
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback
  * @since 11
  */

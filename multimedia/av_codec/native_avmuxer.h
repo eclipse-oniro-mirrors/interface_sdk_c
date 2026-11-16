@@ -135,7 +135,7 @@ OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVMuxer_WriteSampleBuffer
  * @since 10
  */

@@ -102,7 +102,7 @@ typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format
  * @param index Index of the new input buffer.
  * @param data Pointer to the data to fill in the new input buffer.
  * @param userData Pointer to the data on which the caller depends when executing the callback.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVCodecOnNeedInputBuffer
  * @since 9
  */
@@ -119,7 +119,7 @@ typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_
  * @param data Pointer to the data filled in the new output buffer.
  * @param attr Pointer to the description information about the new output buffer.
  * @param userData Pointer to the data on which the caller depends when executing the callback.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVCodecOnNewOutputBuffer
  * @since 9
  */
@@ -159,7 +159,7 @@ typedef void (*OH_AVCodecOnNewOutputBuffer)(OH_AVCodec *codec, uint32_t index, O
  * @param onStreamChanged Monitor codec stream information, refer to {@link OH_AVCodecOnStreamChanged}
  * @param onNeedInputData Monitoring codec requires input data, refer to {@link OH_AVCodecOnNeedInputData}
  * @param onNeedOutputData Monitor codec to generate output data, refer to {@link OH_AVCodecOnNewOutputData}
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVCodecCallback
  * @since 9
  */
@@ -294,7 +294,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
  * @brief Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for
  * multiplexing MPEG4 video streams.
  * 
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
  * @since 10
  */
@@ -647,7 +647,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MJPEG;
 /**
  * @brief Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type.
  * 
- * @deprecated since 14
+ * @deprecated 14
  * @since 9
  */
 extern const char *OH_ED_KEY_TIME_STAMP;
@@ -655,7 +655,7 @@ extern const char *OH_ED_KEY_TIME_STAMP;
 /**
  * @brief Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t.
  * 
- * @deprecated since 14
+ * @deprecated 14
  * @since 9
  */
 extern const char *OH_ED_KEY_EOS;
@@ -1041,7 +1041,7 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
  * You are advised to set the scaling mode by calling {@link OH_NativeWindow_NativeWindowSetScalingModeV2}. This key is
  * optional and is used only for video decoding in surface mode.
  * 
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  * @since 10
  */
@@ -2198,13 +2198,13 @@ typedef enum OH_HEVCProfile {
 
     /**
      * HEVC profile of the main 10 HDR10 level.
-     * @deprecated since 14
+     * @deprecated 14
      * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
     /**
      * HEVC profile of the main 10 HDR10+ level.
-     * @deprecated since 14
+     * @deprecated 14
      * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4
@@ -2635,21 +2635,21 @@ typedef enum OH_AVSeekMode {
 /**
  * @brief Enumerates the scaling modes. This enum is used only in surface mode.
  * 
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead OHScalingModeV2
  * @since 10
  */
 typedef enum OH_ScalingMode {
     /**
      * @brief Scales the image based on the window size.
-     * @deprecated since 14
+     * @deprecated 14
      * @useinstead OH_SCALING_MODE_SCALE_TO_WINDOW_V2
      * @since 10
      */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
     /**
      * @brief Crops the image based on the window size.
-     * @deprecated since 14
+     * @deprecated 14
      * @useinstead OH_SCALING_MODE_SCALE_CROP_V2
      * @since 10
      */
