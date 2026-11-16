@@ -54,13 +54,13 @@ const char *OH_BoardInfo_GetCpuId(void);
  *
  * **所需权限**:ohos.permission.ACCESS_BOARD_INFO
  *
- * @param boardSn 【out】 单板序列号。
+ * @param boardSn 【out】单板序列号。
  *
  * @return <ul>
- *    <li>如果操作成功，则返回0。</li>
- *    <li>201如果调用者没有ohos.permission.ACCESS_BOARD_INFO。</li>
- *    <li>401如果调用者传入的入参为空或非法。</li>
- *    </ul>
+ * <li>如果操作成功，则返回0。</li>
+ * <li>201如果调用者没有ohos.permission.ACCESS_BOARD_INFO。</li>
+ * <li>401如果调用者传入的入参为空或非法。</li>
+ * </ul>
  * @permission ohos.permission.ACCESS_BOARD_INFO
  * @since 26.1.0
  */
