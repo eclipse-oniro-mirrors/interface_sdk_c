@@ -212,7 +212,7 @@ OH_AVCapability *OH_AVCodec_GetCapabilityByCategory(const char *mime, bool isEnc
  * @param codecType 指定要查询的编解码器类型。
  * @param count 输出参数。指向一个uint32_t变量的指针，用于存储匹配到的编解码器能力数量。
  * @return 如果找到匹配项，则返回指向OH_AVCapability实例数组的指针。
- *     如果未找到匹配的编解码器或发生错误，则返回NULL。
+ *     <br>如果未找到匹配的编解码器或发生错误，则返回NULL。
  * @since 24
  */
 OH_AVCapability **OH_AVCodec_GetCapabilityList(OH_AVCodecType codecType, uint32_t *count);
@@ -279,7 +279,7 @@ int32_t OH_AVCapability_GetMaxSupportedInstances(OH_AVCapability *capability);
  * @param capability 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。
  * @param bitrateRange 输出参数。编码器码率范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向编码器码率范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向编码器码率范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange(OH_AVCapability *capability, OH_AVRange *bitrateRange);
@@ -300,7 +300,7 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, 
  * @param capability 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。
  * @param qualityRange 输出参数。编码器质量范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向编码器质量范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向编码器质量范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability, OH_AVRange *qualityRange);
@@ -311,7 +311,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability,
  * @param capability 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。
  * @param complexityRange 输出参数。编码器复杂度范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向编码器复杂度范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向编码器复杂度范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capability, OH_AVRange *complexityRange);
@@ -323,28 +323,13 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capabili
  * @param sampleRates 输出参数。指向采样率数组的指针。
  * @param sampleRateNum 输出参数。采样率数组的元素数目。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向采样率数组的指针为空指针，或者指向采样率数组的元素数目的指针为空指针。
- *     AV_ERR_UNKNOWN：未知错误。
- *     AV_ERR_NO_MEMORY：内部使用内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向采样率数组的指针为空指针，或者指向采样率数组的元素数目的指针为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_NO_MEMORY：内部使用内存分配失败。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates,
                                                           uint32_t *sampleRateNum);
-
-/**
- * @brief 获取音频编解码器支持的采样率范围。
- *
- * @param capability 音频编解码能力指针。如果给的是视频编解码器能力指针，会导致未定义行为。
- * @param sampleRateRanges 输出参数。指向采样率范围数组的指针。
- * @param rangesNum 输出参数。采样率范围数组的元素数目。
- * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向采样率范围数组的指针为空指针，或者指向采样率范围数组的元素数目的指针为空指针。
- *     AV_ERR_UNKNOWN：未知错误。
- *     AV_ERR_NO_MEMORY：内部使用内存分配失败。
- * @since 20
- */
-OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability,
-                                                               OH_AVRange **sampleRateRanges, uint32_t *rangesNum);
 
 /**
  * @brief 获取音频编解码器支持的音频通道计数范围。
@@ -352,7 +337,7 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *
  * @param capability 音频编解码能力指针。如果给的是视频编解码器能力指针，会导致未定义行为。
  * @param channelCountRange 输出参数。音频通道计数范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向音频通道计数范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向音频通道计数范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capability, OH_AVRange *channelCountRange);
@@ -363,7 +348,7 @@ OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capabili
  * @param capability 视频编解码能力指针。如果给的是音频编解码器能力指针，会导致未定义行为。
  * @param widthAlignment 输出参数。视频宽度对齐。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向视频宽度对齐的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向视频宽度对齐的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability, int32_t *widthAlignment);
@@ -374,7 +359,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability,
  * @param capability 视频编解码能力指针。如果给的是音频编解码器能力指针，会导致未定义行为。
  * @param heightAlignment 输出参数。视频高度对齐。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向视频高度对齐的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向视频高度对齐的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability, int32_t *heightAlignment);
@@ -386,7 +371,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability
  * @param height 视频垂直像素数。
  * @param widthRange 输出参数。视频宽度范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者高度不在通过{@link OH_AVCapability_GetVideoHeightRange}获取支持的高度范围中，或者指向宽度范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者高度不在通过{@link OH_AVCapability_GetVideoHeightRange}获取支持的高度范围中，或者指向宽度范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capability, int32_t height,
@@ -399,7 +384,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capabi
  * @param width 视频水平像素数。
  * @param heightRange 输出参数。视频高度范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者宽度不在通过{@link OH_AVCapability_GetVideoWidthRange}获取支持的宽度范围中，或者指向高度范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者宽度不在通过{@link OH_AVCapability_GetVideoWidthRange}获取支持的宽度范围中，或者指向高度范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capability, int32_t width,
@@ -411,7 +396,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capabi
  * @param capability 视频编解码能力指针。如果给的是音频编解码器能力指针，会导致未定义行为。
  * @param widthRange 输出参数。视频宽度范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向视频宽度范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向视频宽度范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_AVRange *widthRange);
@@ -422,7 +407,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_
  * @param capability 视频编解码能力指针。如果给的是音频编解码器能力指针，会导致未定义行为。
  * @param heightRange 输出参数。视频高度范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向视频高度范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向视频高度范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoHeightRange(OH_AVCapability *capability, OH_AVRange *heightRange);
@@ -444,7 +429,7 @@ bool OH_AVCapability_IsVideoSizeSupported(OH_AVCapability *capability, int32_t w
  * @param capability 视频编解码能力指针。如果给的是音频编解码器能力指针，会导致未定义行为。
  * @param frameRateRange 输出参数。视频帧率范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向视频帧率范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向视频帧率范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange(OH_AVCapability *capability, OH_AVRange *frameRateRange);
@@ -457,7 +442,7 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange(OH_AVCapability *capability,
  * @param height 视频垂直像素数。
  * @param frameRateRange 输出参数。视频帧率范围。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者宽度和高度组合不支持，或者指向帧率范围的指针为空指针。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者宽度和高度组合不支持，或者指向帧率范围的指针为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize(OH_AVCapability *capability, int32_t width, int32_t height,
@@ -483,27 +468,25 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported(OH_AVCapability *capabili
  * @param pixelFormats 输出参数。指向视频像素格式数组的指针。
  * @param pixelFormatNum 输出参数。像素格式数组的元素数目。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向视频像素格式数组的指针为空指针，或者指向像素格式数组的元素数目的指针为空指针。
- *     AV_ERR_UNKNOWN：未知错误。
- *     AV_ERR_NO_MEMORY：内部使用内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向视频像素格式数组的指针为空指针，或者指向像素格式数组的元素数目的指针为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_NO_MEMORY：内部使用内存分配失败。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capability, const int32_t **pixelFormats,
                                                            uint32_t *pixelFormatNum);
 
 /**
- * @brief 获取视频编解码器支持的OH_NativeBuffer格式。
- *
- * 该函数提供了视频编解码器能够处理的OH_NativeBuffer格式信息，具体取值可见OH_NativeBuffer_Format。
+ * @brief 获取视频编解码器支持的OH_NativeBuffer格式。该函数提供了视频编解码器能够处理的OH_NativeBuffer格式信息，具体取值可见OH_NativeBuffer_Format。
  *
  * @param capability 视频编解码能力指针。
  * @param nativeBufferFormats 输出参数。指向OH_NativeBuffer_Format数组的指针。
  * @param nativeBufferFormatNum 输出参数。OH_NativeBuffer_Format数组的元素数目。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效、能力实例是音频编码解码器能力、指向NativeBuffer格式数组的指针为空指针、
- *     或指向NativeBuffer格式数组的元素数目的指针为空指针。
- *     AV_ERR_UNKNOWN：未知错误。
- *     AV_ERR_NO_MEMORY：内部使用内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效、能力实例是音频编解码器能力、指向NativeBuffer格式数组的指针为空指针、
+ *     <br>或指向NativeBuffer格式数组的元素数目的指针为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_NO_MEMORY：内部使用内存分配失败。
  * @since 22
  */
 OH_AVErrCode OH_AVCapability_GetVideoSupportedNativeBufferFormats(OH_AVCapability *capability,
@@ -517,9 +500,9 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedNativeBufferFormats(OH_AVCapabilit
  * @param profiles 输出参数。指向档次数组的指针。
  * @param profileNum 输出参数。档次数组的元素数目。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者指向档次数组的指针为空指针，或者指向档次数组的元素数目的指针为空指针。
- *     AV_ERR_UNKNOWN：未知错误。
- *     AV_ERR_NO_MEMORY：内部使用内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向档次数组的指针为空指针，或者指向档次数组的元素数目的指针为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_NO_MEMORY：内部使用内存分配失败。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetSupportedProfiles(OH_AVCapability *capability, const int32_t **profiles,
@@ -533,10 +516,10 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles(OH_AVCapability *capability, c
  * @param levels 输出参数。指向级别数组的指针。
  * @param levelNum 输出参数。级别数组的元素数目。
  * @return AV_ERR_OK：执行成功。
- *     AV_ERR_INVALID_VAL：能力实例无效，或者档次不在通过{@link OH_AVCapability_GetSupportedProfiles}获取支持的档次数组中，
- *     或者指向级别数组的指针为空指针，或者指向级别数组的元素数目的指针为空指针。
- *     AV_ERR_UNKNOWN：未知错误。
- *     AV_ERR_NO_MEMORY：内部使用内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者档次不在通过{@link OH_AVCapability_GetSupportedProfiles}获取支持的档次数组中，或者指向级别数组的指针为空指针，
+ *     或者指向级别数组的元素数目的指针为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_NO_MEMORY：内部使用内存分配失败。
  * @since 10
  */
 OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile(OH_AVCapability *capability, int32_t profile,
@@ -564,8 +547,7 @@ bool OH_AVCapability_AreProfileAndLevelSupported(OH_AVCapability *capability, in
 bool OH_AVCapability_IsFeatureSupported(OH_AVCapability *capability, OH_AVCapabilityFeature feature);
 
 /**
- * @brief 获取指定特性的属性。
- * 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。
+ * @brief 获取指定特性的属性。需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。
  *
  * @param capability 编解码能力指针。
  * @param feature 编解码特性。
@@ -574,8 +556,22 @@ bool OH_AVCapability_IsFeatureSupported(OH_AVCapability *capability, OH_AVCapabi
  */
 OH_AVFormat *OH_AVCapability_GetFeatureProperties(OH_AVCapability *capability, OH_AVCapabilityFeature feature);
 
+/**
+ * @brief 获取音频编解码器支持的采样率范围。
+ *
+ * @param capability 音频编解码能力指针。如果给的是视频编解码器能力指针，会导致未定义行为。
+ * @param sampleRateRanges 输出参数。指向采样率范围数组的指针。
+ * @param rangesNum 输出参数。采样率范围数组的元素数目。
+ * @return AV_ERR_OK：执行成功。
+ *     <br>AV_ERR_INVALID_VAL：能力实例无效，或者指向采样率范围数组的指针为空指针，或者指向采样率范围数组的元素数目的指针为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_NO_MEMORY：内部使用内存分配失败。
+ * @since 20
+ */
+OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability,
+                                                               OH_AVRange **sampleRateRanges, uint32_t *rangesNum);
+
 #ifdef __cplusplus
 }
 #endif
 #endif // NATIVE_AVCAPABILITY_H
-/** @} */
