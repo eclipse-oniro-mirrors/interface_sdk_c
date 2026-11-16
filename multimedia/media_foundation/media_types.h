@@ -67,4 +67,4 @@ typedef enum OH_Core_HdrType {
 #endif
 
 #endif // MEDIA_TYPES_H
-/** @} */
+/** @} */
