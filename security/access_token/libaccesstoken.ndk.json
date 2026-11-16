@@ -1,5 +1,8 @@
 [
     {
         "name": "OH_AT_CheckSelfPermission"
+    },
+    {
+        "name": "OH_AT_RequestPermissionsFromUser"
     }
 ]
