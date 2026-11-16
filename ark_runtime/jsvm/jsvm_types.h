@@ -1060,6 +1060,13 @@ typedef enum {
 } JSVM_DebugOption;
 
 /**
+ * @brief To represent a SharedArrayBuffer BackingStore, which can be shared across multiple VM environments.
+ *
+ * @since 26.1.0
+ */
+typedef struct JSVM_BackingStore__* JSVM_BackingStore;
+
+/**
  * @brief Function pointer type for heap threshold callback.
  *
  * @param vm The VM instance whose heap usage is observed at or above the threshold.
