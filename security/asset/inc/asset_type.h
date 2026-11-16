@@ -421,7 +421,8 @@ typedef enum {
     ASSET_SYNC_TYPE_TRUSTED_DEVICE = 1 << 1,
 
     /**
-     * Asset sync is allowed only between the devices that are logged in with trusted accounts, for example, in cloud sync scenarios.
+     * Asset sync is allowed only between the devices that are logged in with trusted accounts,
+     * for example, in cloud sync scenarios.
      * @since 12
      */
     ASSET_SYNC_TYPE_TRUSTED_ACCOUNT = 1 << 2
