@@ -187,6 +187,30 @@ typedef enum {
 } OH_AudioDevice_Type;
 
 /**
+ * @brief Defines the USB headset subtype.
+ * @since 26.1.0
+ */
+typedef enum OH_AudioDevice_UsbHeadsetType {
+    /**
+     * @brief Invalid USB headset subtype.
+     * @since 26.1.0
+     */
+    OH_AUDIO_DEVICE_USB_HEADSET_TYPE_INVALID = 0,
+
+    /**
+     * @brief HiFi USB headset.
+     * @since 26.1.0
+     */
+    OH_AUDIO_DEVICE_USB_HEADSET_TYPE_HIFI = 1,
+
+    /**
+     * @brief ARM USB headset.
+     * @since 26.1.0
+     */
+    OH_AUDIO_DEVICE_USB_HEADSET_TYPE_ARM = 2
+} OH_AudioDevice_UsbHeadsetType;
+
+/**
  * @brief Defines the audio device flag.
  *
  * @since 12
@@ -334,6 +358,28 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescr
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
     OH_AudioDevice_Type *deviceType);
+
+/**
+ * @brief Queries the USB headset subtype of the USB headset device descriptor.
+ * <br>The caller should first confirm through {@link OH_AudioDeviceDescriptor_GetDeviceType} that the device type is
+ * {@link AUDIO_DEVICE_TYPE_USB_HEADSET} and then call this API.
+ * <br>When the device type is {@Link Audio Device Type USB Headset}, this interface returns the HiFi USB headset,
+ * ARM USB headset. Otherwise, an invalid value is returned.
+ * @param audioDeviceDescriptor [in] USB headset device descriptor. {@link OH_AudioRoutingManager_GetDevices} or
+ *     {@link to OH_AudioRoutingManager_OnDeviceChangedCallback}.
+ * @param usbHeadsetType [out] Point to the variable used to receive the USB headset subtype.
+ * @return <ul>
+ *     <li>AUDIOCOMMON_RESULT_SUCCESS: The function is executed successfully. </li>
+ *     <li>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM:
+ *         <br>1. The value of audioDeviceDescriptor is nullptr.
+ *         <br>2. The usbHeadsetType parameter is nullptr.
+ *         <br>3. The device type corresponding to audioDeviceDescriptor is
+ *             not {@link AUDIO_DEVICE_TYPE_USB_HEADSET}. </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetUsbHeadsetType(
+    OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_UsbHeadsetType *usbHeadsetType);
 
 /**
  * @brief Query the device id of the target audio device descriptor.
