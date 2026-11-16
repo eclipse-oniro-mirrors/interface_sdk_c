@@ -444,6 +444,20 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 ArkUI_ErrorCode OH_ArkUI_EnableEventPassthrough(ArkUI_ContextHandle uiContext, bool enabled,
     ArkUI_RawInputEventType type);
 
+/**
+ * @brief Sets whether touchpad events are reported for the application.
+ *
+ * @param enabled [in] Whether to enable application-level touchpad event reporting. The value **true** enables
+ *     reporting, and **false** disables reporting. The default value is **false**.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the C API is not initialized.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_EnableTouchPadEvent(bool enabled);
+
 #ifdef __cplusplus
 };
 #endif

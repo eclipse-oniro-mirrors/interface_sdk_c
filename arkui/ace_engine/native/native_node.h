@@ -15867,6 +15867,35 @@ typedef enum {
     NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,
 
     /**
+     * @brief Defines the event triggered when a raw touchpad event is reported.
+     *
+     * When the event callback occurs, the {@link ArkUI_UIInputEvent} object can be obtained from the
+     * {@link ArkUI_NodeEvent} object through {@link OH_ArkUI_NodeEvent_GetInputEvent}. The input event type is
+     * {@link ARKUI_UIINPUTEVENT_TYPE_TOUCHPAD}.
+     *
+     * @ingroup Interaction Event
+     *
+     * @since 26.1.0
+     */
+    NODE_ON_TOUCH_PAD_EVENT = 38,
+ 
+    /**
+     * @brief Defines the interception event for touchpad event hit testing.
+     *
+     * When the event callback occurs, the {@link ArkUI_UIInputEvent} object can be obtained from the
+     * {@link ArkUI_NodeEvent} object through {@link OH_ArkUI_NodeEvent_GetInputEvent}. The input event type is
+     * {@link ARKUI_UIINPUTEVENT_TYPE_TOUCHPAD}. Call {@link OH_ArkUI_PointerEvent_SetInterceptHitTestMode} with the
+     * obtained input event to set the hit test mode. The specified mode determines the hit test behavior of the
+     * component for the current touchpad event chain and does not affect touch, mouse, axis, or system gesture event
+     * chains.
+     *
+     * @ingroup Interaction Event
+     *
+     * @since 26.1.0
+     */
+    NODE_ON_TOUCH_PAD_EVENT_INTERCEPT = 39,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
