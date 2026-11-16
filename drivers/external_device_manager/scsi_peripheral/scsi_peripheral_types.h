@@ -246,7 +246,8 @@ typedef struct ScsiPeripheral_IORequest {
 #define SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN 16
 
 /**
- * @brief Defines the request structure.
+ * @brief Defines the SCSI request parameters. It is used to construct the request parameters for interacting
+ * with SCSI devices, including the CDB, data buffer, and timeout interval.
  *
  * @since 18
  */
@@ -254,7 +255,8 @@ typedef struct ScsiPeripheral_Request {
     /** Command descriptor block. */
     uint8_t commandDescriptorBlock[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN];
     /**
-     * Length of the command descriptor block.
+     * Length of the command descriptor block. Ensure that the length matches
+     * the actual command. The maximum length cannot exceed {@link SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN}.
      */
     uint8_t cdbLength;
     /**
@@ -268,7 +270,7 @@ typedef struct ScsiPeripheral_Request {
      */
     ScsiPeripheral_DeviceMemMap *data;
     /**
-     * Timeout interval, in milliseconds.
+     * Timeout duration, in ms.
      */
     uint32_t timeout;
 } ScsiPeripheral_Request;
@@ -369,8 +371,7 @@ typedef struct ScsiPeripheral_InquiryRequest {
      */
     uint8_t control;
     /**
-     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
-     * group information.
+     * First byte of the command descriptor block (CDB).
      */
     uint8_t byte1;
     /**
@@ -464,8 +465,8 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
  */
 typedef struct ScsiPeripheral_CapacityInfo {
     /**
-     * Logical block address, which specifies the start position for reading the capacity. If the value is **0**, the
-     * overall capacity of the device is obtained.
+     * Logical block address returned, indicating the number of the last addressable logical block. The total number
+     * of logical blocks is the value of this parameter plus 1.
      */
     uint32_t lbAddress;
     /**
@@ -484,7 +485,7 @@ typedef struct ScsiPeripheral_CapacityInfo {
 typedef struct ScsiPeripheral_RequestSenseRequest {
     /**
      * **Allocation length** field used to specify the size of the buffer prepared by the request initiator (usually
-     * the host) for the response data, in bytes.
+     * the host) for the response data.The unit is byte.
      */
     uint8_t allocationLength;
     /**
@@ -492,8 +493,7 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
      */
     uint8_t control;
     /**
-     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
-     * group information.
+     * First byte of the command descriptor block (CDB).
      */
     uint8_t byte1;
     /**
@@ -561,12 +561,11 @@ typedef struct ScsiPeripheral_VerifyRequest {
      */
     uint8_t control;
     /**
-     * First byte of the SCSI command descriptor block (CDB), which usually contains the operation code and operation
-     * group information.
+     * First byte of the command descriptor block (CDB).
      */
     uint8_t byte1;
     /**
-     * Sixth byte of the SCSI CDB, which contains different parameters or flag information based on the command type.
+     * Sixth byte of the CDB.
      */
     uint8_t byte6;
     /**
