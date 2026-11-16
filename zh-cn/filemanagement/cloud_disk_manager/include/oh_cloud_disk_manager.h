@@ -500,8 +500,8 @@ typedef struct OH_CloudDisk_SyncFolderEx {
  */
 typedef struct OH_CloudDisk_PlaceholderInfo {
     /**
-     * @brief 占位符文件的逻辑大小，以字节为单位，反映云端文件的实际大小。
-     * 系统不保障本地占位符文件与云端文件大小的一致性。
+     * @brief 占位符文件的逻辑大小，以字节为单位，反映云文件的实际大小。
+     * 系统不保障本地占位符文件与云文件大小的一致性。
      * @since 26.0.1
      */
     uint64_t logicalSize;
