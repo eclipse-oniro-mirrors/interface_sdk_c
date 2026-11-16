@@ -1137,7 +1137,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
 /**
  * @brief Responds to a callback request.
  *
- * The hydration total size is determined by the totalSize of the first Execute call
+ * The total hydration size is determined by the totalSize of the first Execute call
  * and must stay the same in subsequent calls.
  *
  * @param reqHead [in] Callback request header.
