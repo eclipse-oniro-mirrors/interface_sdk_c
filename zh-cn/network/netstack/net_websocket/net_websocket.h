@@ -13,12 +13,19 @@
  * limitations under the License.
  */
 
+#ifndef NET_WEBSOCKET_H
+#define NET_WEBSOCKET_H
+
+#include <signal.h>
+#include <stdint.h>
+#include <string.h>
+
 /**
  * @addtogroup netstack
  * @{
  *
  * @brief 提供WebSocket客户端模块的接口。
-
+ *
  * @since 11
  * @version 1.0
  */
@@ -35,18 +42,12 @@
  * @version 1.0
  */
 
-#ifndef NET_WEBSOCKET_H
-#define NET_WEBSOCKET_H
-
-#include <signal.h>
-#include <stdint.h>
-#include <string.h>
-
 #include "net_websocket_type.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
  * @brief WebSocket客户端的构造函数。
  *
@@ -61,6 +62,7 @@ extern "C" {
  */
 struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage,
                                                  WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose);
+
 /**
  * @brief 将header头信息添加到client客户端request中。
  *
@@ -72,6 +74,7 @@ struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen
  * @version 1.0
  */
 int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Header header);
+
 /**
  * @brief 客户端连接服务端。
  *
@@ -85,6 +88,7 @@ int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Head
  * @version 1.0
  */
 int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct WebSocket_RequestOptions options);
+
 /**
  * @brief 客户端向服务端发送数据。
  *
@@ -98,6 +102,7 @@ int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct
  * @version 1.0
  */
 int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length);
+
 /**
  * @brief Closes the connection on the 客户端。
  *
@@ -110,8 +115,14 @@ int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length)
  * @version 1.0
  */
 int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOption options);
+
 /**
- * @brief 释放WebSocket连接上下文和资源。使用方式如下：
+ * @brief 释放WebSocket连接上下文和资源。
+ *
+ * **注意**
+ * - 调用WebSocket_OnCloseCallback订阅WebSocket连接关闭事件，并在该回调函数中调用OH_WebSocketClient_Destroy方法。
+ * - 调用OH_WebSocketClient_Close关闭WebSocket连接。
+ * - 确保触发WebSocket_OnCloseCallback回调后再调用该接口，否则系统内存资源被释放后可能出现socket泄露以及连接未关闭的情况。
  *
  * @param client 客户端。
  * @return 返回值为0表示执行成功，返回值不为0表示失败。返回值详细信息可以查看OH_Websocket_ErrCode。
@@ -127,4 +138,5 @@ int OH_WebSocketClient_Destroy(struct WebSocket *client);
 #endif
 
 /** @} */
+
 #endif // NET_WEBSOCKET_H

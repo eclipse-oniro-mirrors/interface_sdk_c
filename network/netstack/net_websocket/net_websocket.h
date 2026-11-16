@@ -25,7 +25,7 @@
  * @{
  *
  * @brief Provides C APIs for the websocket client module.
-
+ *
  * @since 11
  * @version 1.0
  */
@@ -47,6 +47,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
  * @brief Constructor used to create a WebSocket client.
  *
@@ -61,6 +62,7 @@ extern "C" {
  */
 struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage,
                                                  WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose);
+
 /**
  * @brief Adds the header information to the client request.
  *
@@ -73,6 +75,7 @@ struct WebSocket *OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen
  * @version 1.0
  */
 int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Header header);
+
 /**
  * @brief Connects the WebSocket client to the server.
  *
@@ -87,6 +90,7 @@ int OH_WebSocketClient_AddHeader(struct WebSocket *client, struct WebSocket_Head
  * @version 1.0
  */
 int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct WebSocket_RequestOptions options);
+
 /**
  * @brief Sends data from the WebSocket client to the server.
  *
@@ -101,6 +105,7 @@ int OH_WebSocketClient_Connect(struct WebSocket *client, const char *url, struct
  * @version 1.0
  */
 int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length);
+
 /**
  * @brief Closes the connection on the WebSocket client.
  *
@@ -114,12 +119,23 @@ int OH_WebSocketClient_Send(struct WebSocket *client, char *data, size_t length)
  * @version 1.0
  */
 int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOption options);
+
 /**
- * @brief Destroys the WebSocket client and releases the context and resources of the WebSocket connection. Usage:
+ * @brief Releases the WebSocket connection context and resources.
+ *
+ * Usage:
+ * 1. Call {@link WebSocket_OnCloseCallback} to subscribe to the WebSocket connection close event, and call the
+ *    {@link OH_WebSocketClient_Destroy} method in the callback.
+ * 2. Call {@link OH_WebSocketClient_Close} to close the WebSocket connection.
+ *
+ * > **NOTE**
+ * >
+ * > Ensure that this API is called after the {@link WebSocket_OnCloseCallback} callback is triggered. Otherwise,
+ * > socket leaks may occur and the connection may not be closed after the system memory resources are released.
  *
  * @param client WebSocket client.
- * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see **
- *     OH_Websocket_ErrCode**.
+ * @return **0** if the operation is successful; a non-0 value otherwise. For details about the return values, see
+ *     **OH_Websocket_ErrCode**.
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
@@ -132,4 +148,5 @@ int OH_WebSocketClient_Destroy(struct WebSocket *client);
 #endif
 
 /** @} */
+
 #endif // NET_WEBSOCKET_H
