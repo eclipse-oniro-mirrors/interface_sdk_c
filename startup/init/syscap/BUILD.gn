@@ -22,6 +22,7 @@ ohos_ndk_library("libdeviceinfo_ndk") {
   system_capability_headers = [
     "deviceinfo.h",
     "syscap_ndk.h",
+    "boardinfo.h",
   ]
 }
 
@@ -30,5 +31,6 @@ ohos_ndk_headers("deviceinfo_header") {
   sources = [
     "./include/deviceinfo.h",
     "./include/syscap_ndk.h",
+    "./include/boardinfo.h",
   ]
 }
