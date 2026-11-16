@@ -821,7 +821,7 @@ typedef struct OH_TrafficFilter_PacketDesc {
  *     across versions.
  * @since 26.0.1
  */
-typedef struct OH_TrafficFilter_PacketDesc {
+typedef struct OH_TrafficFilter_Config {
      /**
       * @brief Actual size of the struct allocated by the caller.
       * @since 26.0.1
@@ -851,7 +851,7 @@ typedef struct OH_TrafficFilter_PacketDesc {
       * @since 26.0.1
       */
      uint32_t nfqueueFlags;
-} OH_TrafficFilter_PacketDesc;
+} OH_TrafficFilter_Config;
 
 /**
  * @brief Enumerates the packet processing decision types.
@@ -993,7 +993,7 @@ typedef struct OH_TrafficFilter_ConntrackMatch {
  *     versions.
  * @since 26.0.1
  */
-typedef struct OH_TrafficFilter_ConntrackMatch {
+typedef struct OH_TrafficFilter_FilterRule {
      /**
       * @brief Actual size of the struct allocated by the caller.
       * @since 26.0.1
@@ -1069,7 +1069,7 @@ typedef struct OH_TrafficFilter_ConntrackMatch {
       * @since 26.0.1
       */
      OH_TrafficFilter_ConntrackMatch conntrackMatch;
-} OH_TrafficFilter_ConntrackMatch;
+} OH_TrafficFilter_FilterRule;
 
 /**
  * @brief Defines the packet controller.
