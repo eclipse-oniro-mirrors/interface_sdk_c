@@ -45,7 +45,6 @@ extern "C" {
  * @brief Obtains the device CPUID.
  *
  * @return Returns a device CPUID.The value is of the string type.
- *
  * @since 26.1.0
  */
 const char *OH_BoardInfo_GetCpuId(void);
@@ -60,7 +59,7 @@ const char *OH_BoardInfo_GetCpuId(void);
  * @return <ul>
  *    <li>0 if the operation is successful.</li>
  *    <li>201 if the caller does not have ohos.permission.ACCESS_BOARD_INFO.</li>
- *    <li>401 If the caller passes null or invalid parameters</li>
+ *    <li>401 If the caller passes null or invalid parameters.</li>
  *    </ul>
  * @permission ohos.permission.ACCESS_BOARD_INFO
  * @since 26.1.0

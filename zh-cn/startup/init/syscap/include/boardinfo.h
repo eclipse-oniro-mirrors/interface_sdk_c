@@ -45,7 +45,6 @@ extern "C" {
  * @brief 获取设备CPUID。
  *
  * @return 返回设备CPUID。字符串类型。
- *
  * @since 26.1.0
  */
 const char *OH_BoardInfo_GetCpuId(void);
