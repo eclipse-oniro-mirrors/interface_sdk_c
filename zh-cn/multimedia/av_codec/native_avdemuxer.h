@@ -77,7 +77,7 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeyS
  *
  * 需要使用{@link OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback}接口将其设置为回调，推荐使用。
  *
- * @param demuxer 播放器所用的OH_AVDemuxer实例。
+ * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param mediaKeySystemInfo DRM信息。
  * @since 12
 */
@@ -92,8 +92,8 @@ typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_Me
  * @return 返回一个指向OH_AVDemuxer实例的指针。
  * <br>如果执行成功，则返回指向OH_AVDemuxer实例的指针，否则返回NULL。
  * <br>可能的失败原因：
- * <br>1. source无效，即空指针或非OH_AVSource实例。
- * <br>2. 非OH_AVSource实例。
+ * <br> 1. source为空指针。
+ * <br> 2. source为非OH_AVSource实例。
  * @since 10
 */
 OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
@@ -176,7 +176,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
 /**
  * @brief 获取指定轨道的sample及相关信息。
  *
- * 注意，读取轨道sample前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
+ * 注意，读取轨道sample前，轨道必须被选中，可使用OH_AVDemuxer_SelectTrackByID。调用接口后解封装器将自动前进到下一帧。
  *
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param trackIndex 本次读取压缩帧的轨道的索引。
@@ -186,7 +186,6 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
  *                           <br>1. 输入的demuxer指针为空或为非解封装器实例。
  *                           <br>2. sample为空指针。
  *                           <br>3. 轨道的索引超出范围。
- *                           <br>4. 输入sample为空。
  *         <br>AV_ERR_OPERATE_NOT_PERMIT：
  *                           <br>1. 轨道的索引没有被选中。
  *                           <br>2. demuxer没有正确的初始化。
@@ -198,7 +197,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
     OH_AVBuffer *sample);
 
 /**
- * @brief 根据设定的跳转模式，将所有选中的轨道到指定时间附近。
+ * @brief 根据设定的跳转模式，将所有选中的轨道跳转到指定时间附近。调用前需先通过OH_AVDemuxer_SelectTrackByID选中轨道。
  *
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param millisecond 期望跳转位置对应的时间，单位为ms，该时间戳是相对文件开始的位置。

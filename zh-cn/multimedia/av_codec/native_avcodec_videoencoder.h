@@ -188,9 +188,9 @@ OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
 OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
 
 /**
- * @brief 注册OH_VideoEncoder_OnNeedInputParameter输入参数回调函数，让应用可以响应视频编码器生成的事件。编码Surface模式，
+ * @brief 注册OH_VideoEncoder_OnNeedInputParameter输入参数回调函数，让应用可以响应视频编码器生成的事件。在Surface编码模式下，需要设置随帧参数时，须使用该接口。
  *
- * 需要设置随帧参数时，须使用该接口。如果使用该接口，必须在{@link OH_VideoEncoder_Configure}之前调用该接口。
+ * 如果使用该接口，必须在{@link OH_VideoEncoder_Configure}之前调用该接口。
  *
  * @param codec 指向视频编码实例的指针。
  * @param onInputParameter 输入参数回调指针。
@@ -200,7 +200,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
  *         <br>AV_ERR_UNKNOWN：未知错误。
  *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
+ *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Configure接口前调用，如果在其他状态时调用，则返回此错误码。
  * @since 12
  */
 OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
@@ -454,7 +454,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
 OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
+ * @brief 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓冲区，否则会阻塞编码流程。
  *
  * @param codec 指向视频编码实例的指针。
  * @param index 输出缓冲区对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。

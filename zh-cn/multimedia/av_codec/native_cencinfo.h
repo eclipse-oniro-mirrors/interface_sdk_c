@@ -45,8 +45,8 @@ extern "C" {
 #endif
 
 /**
- * @brief AVBuffer结构。
- * @since 12
+ * @brief 为媒体内存接口定义native层对象。
+ * @since 11
  */
 typedef struct OH_AVBuffer OH_AVBuffer;
 /**

@@ -111,7 +111,7 @@ OH_AVSource *OH_AVSource_CreateWithURI(char *uri);
 /**
  * @brief 为文件描述符对应的资源对象创建OH_AVSource实例。可以通过调用{@link OH_AVSource_Destroy}接口释放实例。
  *
- * 接口如果传入offset不为文件起始位置，或size不为文件大小时，可能会因数据获取不完整导致 OH_AVSource创建失败、后续解封装失败等未定义错误。
+ * 调用该接口时，如果传入的offset不是文件起始位置，或size不是文件大小，可能会因数据获取不完整导致OH_AVSource创建失败或后续解封装失败。
  *
  * @param fd 数据资源的文件描述符。
  * @param offset 开始读取数据的位置。
@@ -175,7 +175,7 @@ OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex
 /**
  * @brief 获取自定义元数据的基础信息。
  *
- * 需要注意的是，指向的OH_AVFormat实例在生命周期结束时需开发者通过调用接口{@link OH_AVFormat_Destroy}释放。
+ * 需要注意的是，指向的OH_AVFormat实例在生命周期结束时需调用者通过调用接口{@link OH_AVFormat_Destroy}释放。
  *
  * @param source 指向OH_AVSource实例的指针。
  * @return 执行成功返回元数据的基础信息，否则返回NULL。

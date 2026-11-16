@@ -62,13 +62,13 @@ typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
  * @brief 创建OH_AVBuffer实例。
- * 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要开发者主动调用接口释放，请参阅{@link OH_AVBuffer_Destroy}。
+ * 需要注意的是，返回值指向的OH_AVBuffer实例需要开发者主动调用接口释放，请参阅{@link OH_AVBuffer_Destroy}。
  *
  * @param capacity 创建内存的大小，单位字节。
  * @return 如果创建成功，则返回OH_AVBuffer实例的指针，如果失败，则返回NULL。
  * <br>可能的失败原因：
  * <br>1.capacity <= 0。
- * <br>2.出现内部错误，系统没有资源等。
+ * <br>2.出现内部错误或系统资源不足。
  * @since 11
  */
 OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
@@ -113,11 +113,11 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBuff
 
 /**
  * @brief 获取除基础属性外的其他参数，信息在OH_AVFormat中承载。
- * 需要注意的是，返回值指向的创建OH_AVFormat的实例需要开发者主动释放，请参阅{@link OH_AVFormat_Destroy}。
+ * 需要注意的是，返回值指向的OH_AVFormat实例需要开发者主动释放，请参阅{@link OH_AVFormat_Destroy}。
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
- * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：可能的原因：
+ * @return 如果成功，则返回OH_AVFormat实例的指针，如果失败，则返回NULL。
+ * <br>可能的失败原因：
  * <br>1. 输入的buffer为空指针。
  * <br>2. 输入buffer的meta为空指针。
  * <br>3. buffer结构校验失败。
@@ -167,7 +167,7 @@ int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
 
 /**
  * @brief 获取OH_NativeBuffer实例的指针。
- * 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要开发者主动调用接口释放，请参阅{@link OH_NativeBuffer_Unreference}。
+ * 需要注意的是，返回值指向的OH_NativeBuffer实例需要开发者主动调用接口释放，请参阅{@link OH_NativeBuffer_Unreference}。
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return 如果成功，则返回OH_NativeBuffer实例的指针，如果失败，则返回NULL。
