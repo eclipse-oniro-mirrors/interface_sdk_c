@@ -643,9 +643,9 @@ typedef struct Http_Request {
 } Http_Request;
 
 /**
- * @brief Callback function that is invoked when response is received.
- * @param response Http response struct, see {@link Http_Response}. 
- * @param errCode Response error code.
+ * @brief Callback invoked when an HTTP response is received.
+ * @param response Pointer to the HTTP response. For details, see {@link Http_Response}.
+ * @param errCode Response code.
  * @since 20
  */
 typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t errCode);
@@ -667,8 +667,8 @@ typedef void (*Http_OnDataReceiveCallback)(const char *data, size_t length);
 typedef void (*Http_OnProgressCallback)(uint64_t totalSize, uint64_t transferredSize);
 
 /**
- * @brief Callback called when header are received.
- * @param headers Headers of the received requests, which points to the pointer of {@link Http_Headers}.
+ * @brief Callback invoked when an HTTP response header is received.
+ * @param headers Pointer to the received request header. For details, see {@link Http_Headers}.
  * @since 20
  */
 typedef void (*Http_OnHeaderReceiveCallback)(Http_Headers *headers);
