@@ -721,7 +721,7 @@ Camera_ErrorCode OH_PhotoOutput_IsC2PASignatureSupported(const Camera_PhotoOutpu
  * @brief 创建{@link OH_Camera_C2PASignatureConfig}实例。
  * 通过调用{@link OH_Camera_C2PASignatureConfig_Destroy}销毁C2PA签名配置。
  *
- * @return 返回创建的{@link OH_Camera_C2PASignatureConfig}实例的指针，如果创建失败则返回**NULL**。
+ * @return 返回指向已创建的{@link OH_Camera_C2PASignatureConfig}实例的指针，如果创建失败则返回**NULL**。
  * @release OH_Camera_C2PASignatureConfig_Destroy {return};
  * @since 26.0.1
  */
