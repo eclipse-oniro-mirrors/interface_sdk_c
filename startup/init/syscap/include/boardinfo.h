@@ -16,13 +16,13 @@
  *@addtogroup BoardInfo
  *@{
  *
- * @brief Provides APIs for query hardware device information.The default size of the parameter buffer is 256.
+ * @brief Provides APIs for query hardware device information.
  * 
  * @since 26.0.1
  */
 /*
  * @file boardinfo.h
- * @brief Declares the APIs for query hardware device information.The default size of the parameter buffer is 256.
+ * @brief Declares the APIs for query hardware device information.
  * @kit BasicServiceKit
  * 
  * @library libboardinfo_ndk.z.so
@@ -51,7 +51,7 @@ const char *OH_BoardInfo_GetCpuId(void);
  
 /**
  * @brief Obtains the device Board Sn.value len is 16.
- *
+ * The default size of the parameter buffer is 256.
  * **Required permission**: ohos.permission.ACCESS_BOARD_INFO
  *
  * @param boardSn [out] Board Serial Number.

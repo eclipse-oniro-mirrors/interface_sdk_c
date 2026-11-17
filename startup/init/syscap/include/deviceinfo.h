@@ -21,7 +21,7 @@
  * manufacturer, brand, model, and version. It can be used to adapt device features, collect device
  * information, or manage devices. These APIs obtain device information by reading system properties.
  * The return value is a pointer to a constant string. The pointer points to the data stored in the
- * system. The caller does not need to release the memory.The default size of the parameter buffer is 256.
+ * system. The caller does not need to release the memory.
  *
  * @since 10
  */
@@ -34,7 +34,7 @@
  * manufacturer, brand, model, and version. It can be used to adapt device features, collect device
  * information, or manage devices. These APIs obtain device information by reading system properties.
  * The return value is a pointer to a constant string. The pointer points to the data stored in the
- * system. The caller does not need to release the memory.The default size of the parameter buffer is 256.
+ * system. The caller does not need to release the memory.
  *
  * @library libdeviceinfo_ndk.z.so
  * @syscap SystemCapability.Startup.SystemInfo
@@ -348,7 +348,7 @@ const char *OH_GetDistributionOSReleaseType(void);
 
 /**
  * @brief Obtains the Disk Serial Number.
- *
+ * The default size of the parameter buffer is 256.
  * @param diskSn [out] Disk Serial Number.
  * @return <ul>
  *         <li>0 if the operation is successful.</li>

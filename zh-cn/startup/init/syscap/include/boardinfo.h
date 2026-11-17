@@ -16,13 +16,13 @@
  *@addtogroup BoardInfo
  *@{
  *
- * @brief 提供用于查询硬件设备信息的API。参数缓冲区默认为256。
+ * @brief 提供用于查询硬件设备信息的API。
  * 
  * @since 26.0.1
  */
 /*
  * @file boardinfo.h
- * @brief 声明用于查询硬件设备信息的API。参数缓冲区默认为256。
+ * @brief 声明用于查询硬件设备信息的API。
  * @kit BasicServiceKit
  * 
  * @library libboardinfo_ndk.z.so
@@ -51,7 +51,7 @@ const char *OH_BoardInfo_GetCpuId(void);
  
 /**
  * @brief 获取设备Sn.value len为16。
- *
+ * 参数缓冲区默认为256。
  * **所需权限**:ohos.permission.ACCESS_BOARD_INFO
  *
  * @param boardSn 【out】单板序列号。
