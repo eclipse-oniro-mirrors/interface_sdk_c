@@ -2029,12 +2029,12 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO;
 extern const char *OH_MD_KEY_VIDEO_DECODER_SPEED;
 
 /**
- * @brief Key for setting or querying the maximum input buffer size (in bytes) for audio codec, value type is int32_t.
+ * @brief Key for setting or querying the maximum input buffer size (in bytes) for audio encoder, value type is int32_t.
  *
- * This key is used to configure or retrieve the maximum size of the input buffer for audio codec.
- * The actual buffer size is limited by the codec implementation. Setting a value larger than the
- * codec's maximum supported size can not take effect.
- * This configuration is optional. If not set, the codec will use its default buffer size.
+ * This key is used to configure or retrieve the maximum size of the input buffer for audio encoder.
+ * The actual buffer size is limited by the encoder implementation. Setting a value larger than the
+ * encoder's maximum supported size can not take effect.
+ * This configuration is optional. If not set, the encoder will use its default buffer size.
  *
  * @since 26.0.0
  */
