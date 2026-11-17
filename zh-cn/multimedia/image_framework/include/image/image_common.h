@@ -66,51 +66,64 @@ struct Image_Size {
 typedef struct Image_Size Image_Size;
 
 /**
- * @brief 待解码的图像源区域结构体。
+ * @brief 待解码的图像源区域结构体。区域坐标以图像左上角像素为原点（即(0, 0)），X轴正方向向右，Y轴正方向向下。
  *
  * @since 12
  */
 struct Image_Region {
     /**
-     * 区域横坐标，不能大于原图的宽度。
+     * 区域左上角像素的横坐标（X坐标），以图像左上角像素为原点。单位：像素（px）。
      */
     uint32_t x;
     /**
-     * 区域纵坐标，不能大于原图的高度。
+     * 区域左上角像素的纵坐标（Y坐标），以图像左上角像素为原点。单位：像素（px）。
      */
     uint32_t y;
     /**
-     * 输出图片的宽，单位：像素。
+     * 区域的宽度。单位：像素（px）。
      */
     uint32_t width;
     /**
-     * 输出图片的高，单位：像素。
+     * 区域的高度。单位：像素（px）。
      */
     uint32_t height;
 };
 
 /**
- * @brief 待解码的图像源区域结构体。
+ * @brief 待解码的图像源区域结构体。区域坐标以图像左上角像素为原点（即(0, 0)），X轴正方向向右，Y轴正方向向下。
  *
  * @since 12
  */
 typedef struct Image_Region Image_Region;
 
 /**
- * @brief Defines the area of the image pixels to read or write.
+ * @brief 要读取或写入的图像像素区域。
  *
  * @since 22
  */
 typedef struct Image_PositionArea {
-    /** Image pixels data that will be read or written. */
+    /**
+     * 读取或写入的图像像素数据。
+     */
     uint8_t *pixels;
-    /** Length of the image pixels data. */
+    /**
+     * 图像像素数据的长度（单位：字节）。
+     */
     size_t pixelsSize;
-    /** Offset for data reading or writing. */
+    /**
+     * pixels缓冲区内第一个像素的字节偏移量，即区域像素数据在缓冲区中的起始位置。单位为字节（Byte）。
+     * <br>读写区域数据时，从pixels[offset]处开始读取或写入。
+     */
     uint32_t offset;
-    /** Number of bytes per row of the region. */
+    /**
+     * 区域的跨距，即区域中每行像素（含行末填充字节）所占的空间。单位为字节（Byte）。
+     */
     uint32_t stride;
-    /** Region to read or write. */
+    /**
+     * 读取或写入的区域。
+     * <br>指定区域的宽度加X坐标不能大于原图的宽度。
+     * <br>指定区域的高度加Y坐标不能大于原图的高度。
+     */
     Image_Region region;
 } Image_PositionArea;
 
