@@ -56,38 +56,32 @@ typedef struct OH_AVFormat OH_AVFormat;
  */
 typedef enum OH_AVPixelFormat {
     /**
-     * @brief YUV 420 Planar.
-     *
+     * YUV 420 Planar.
      * @since 9
      */
     AV_PIXEL_FORMAT_YUVI420 = 1,
     /**
-     * @brief NV12. YUV 420 semi-planar.
-     *
+     * NV12. YUV 420 semi-planar.
      * @since 9
      */
     AV_PIXEL_FORMAT_NV12 = 2,
     /**
-     * @brief NV21. YVU 420 semi-planar.
-     *
+     * NV21. YVU 420 semi-planar.
      * @since 9
      */
     AV_PIXEL_FORMAT_NV21 = 3,
     /**
-     * @brief Pixel format obtained from the surface. This value takes effect only in surface mode.
-     *
+     * Pixel format obtained from the surface. This value takes effect only in surface mode.
      * @since 9
      */
     AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,
     /**
-     * @brief RGBA8888
-     *
+     * RGBA8888
      * @since 9
      */
     AV_PIXEL_FORMAT_RGBA = 5,
     /**
-     * @brief RGBA1010102
-     *
+     * RGBA1010102
      * @since 20
      */
     AV_PIXEL_FORMAT_RGBA1010102 = 6

@@ -57,7 +57,7 @@ typedef struct OH_AVMemory OH_AVMemory;
  *     <br>1. The value of **size** is less than or equal to **0**.
  *     <br>2. The OH_AVMemory instance fails to be created.
  *     <br>3. Memory allocation fails.
- * @deprecated 11
+ * @deprecated since 11
  * @useinstead OH_AVBuffer_Create
  * @since 10
  */
@@ -72,7 +72,7 @@ OH_AVMemory *OH_AVMemory_Create(int32_t size);
  *     <br>1. The value of **mem** is nullptr.
  *     <br>2. The value of **mem** fails parameter structure verification.
  *     <br>3. The memory in the passed-in value of **mem** is nullptr.
- * @deprecated 11
+ * @deprecated since 11
  * @useinstead OH_AVBuffer_GetAddr
  * @since 9
  * @version 1.0
@@ -88,7 +88,7 @@ uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem);
  *     <br>1. The value of **mem** is nullptr.
  *     <br>2. The value of **mem** fails parameter structure verification.
  *     <br>3. The memory in the passed-in value of **mem** is nullptr.
- * @deprecated 11
+ * @deprecated since 11
  * @useinstead OH_AVBuffer_GetCapacity
  * @since 9
  * @version 1.0
@@ -104,7 +104,7 @@ int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem);
  *     <br>1. The value of **mem** is nullptr.
  *     <br>2. The value of **mem** fails parameter structure verification.
  *     <br>3. The value of **mem** is not created by the caller.
- * @deprecated 11
+ * @deprecated since 11
  * @useinstead OH_AVBuffer_Destroy
  * @since 10
  */

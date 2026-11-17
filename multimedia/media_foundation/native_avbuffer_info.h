@@ -46,8 +46,7 @@ extern "C" {
  */
 typedef enum OH_AVCodecBufferFlags {
     /**
-     * @brief Common frame.
-     *
+     * Common frame.
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_NONE = 0,
@@ -92,26 +91,22 @@ typedef enum OH_AVCodecBufferFlags {
  */
 typedef struct OH_AVCodecBufferAttr {
     /**
-     * @brief Display timestamp of the buffer, in microseconds.
-     *
+     * Display timestamp of the buffer, in microseconds.
      * @since 9
      */
     int64_t pts;
     /**
-     * @brief Size of data contained in the buffer, in bytes.
-     *
+     * Size of data contained in the buffer, in bytes.
      * @since 9
      */
     int32_t size;
     /**
-     * @brief Offset of valid data in the buffer.
-     *
+     * Offset of valid data in the buffer.
      * @since 9
      */
     int32_t offset;
     /**
-     * @brief Flags of the buffer. For details, see {@link OH_AVCodecBufferFlags}.
-     *
+     * Flags of the buffer. For details, see {@link OH_AVCodecBufferFlags}.
      * @since 9
      */
     uint32_t flags;
