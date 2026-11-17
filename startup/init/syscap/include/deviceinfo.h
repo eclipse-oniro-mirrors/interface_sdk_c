@@ -348,6 +348,7 @@ const char *OH_GetDistributionOSReleaseType(void);
 
 /**
  * @brief Obtains the Disk Serial Number.The parameter buffer capacity can't be less than 65 bytes.
+ *
  * @param diskSn [out] Disk Serial Number.The buffer capacity must not be less than 65 bytes.
  * @return <ul>
  *         <li>0 if the operation is successful.</li>
