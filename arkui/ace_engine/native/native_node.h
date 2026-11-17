@@ -960,7 +960,7 @@ typedef enum {
      * .value[4]?.i32: shadow type. The parameter type is {@link ArkUI_ShadowType}. The default value is
      * **ARKUI_SHADOW_TYPE_COLOR**.\n
      * .value[5]?.u32: it specifies the shadow color when the coloring strategy is disabled (**.value[1]** is set
-     * to **0**), in 0xARGB format. For example, **0xFFFF0000** indicates red. If not passed, the default value
+     * to **0**), in 0xAARRGGBB format. For example, **0xFFFF0000** indicates red. If not passed, the default value
      * is **0xFF000000** (black). It specifies the coloring strategy when the coloring strategy is enabled
      * (**.value[1]** is set to **1**), and the parameter type is {@link ArkUI_ColorStrategy}.\n
      * .value[6]?.u32: whether to fill the shadow. The value **1** means to fill the shadow, and **0** means the
@@ -975,7 +975,7 @@ typedef enum {
      * .value[4].i32: shadow type. The parameter type is {@link ArkUI_ShadowType}, and the default value is
      * **ARKUI_SHADOW_TYPE_COLOR**. The enumerated values include: **ARKUI_SHADOW_TYPE_COLOR** (color shadow) and
      * **ARKUI_SHADOW_TYPE_BLUR** (blur shadow).\n
-     * .value[5].u32: shadow color, in 0xARGB format. For example, **0xFFFF0000** indicates red.\n
+     * .value[5].u32: shadow color, in 0xAARRGGBB format. For example, **0xFFFF0000** indicates red.\n
      * .value[6].u32: whether the shadow is filled. The value **1** means that the shadow is filled, and **0**
      * means the opposite.\n
      *
@@ -1465,8 +1465,8 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute, which supports five types of
      * shapes:\n
      * 1. Rectangle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
      * The value is <b>ARKUI_MASK_TYPE_RECTANGLE</b> for the rectangle shape.\n
@@ -1479,24 +1479,24 @@ typedef enum {
      * .value[10]?.f32: radius of the top right corner of the rectangular shape.\n
      * .value[11]?.f32: radius of the bottom right corner of the rectangular shape.\n
      * 2. Circle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
      * The value is <b>ARKUI_MASK_TYPE_CIRCLE</b> for the circle shape.\n
      * .value[4].f32: width of the circle.\n
      * .value[5].f32: height of the circle.\n
      * 3. Ellipse:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
      * The value is <b>ARKUI_MASK_TYPE_ELLIPSE</b> for the ellipse shape.\n
      * .value[4].f32: width of the ellipse.\n
      * .value[5].f32: height of the ellipse.\n
      * 4. Path:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
      * The value is <b>ARKUI_MASK_TYPE_PATH</b> for the path shape.\n
@@ -1508,12 +1508,12 @@ typedef enum {
      * The value is <b>ARKUI_MASK_TYPE_PROGRESS</b> for the progress shape.\n
      * .value[1].f32: current value of the progress indicator.\n
      * .value[2].f32: maximum value of the progress indicator.\n
-     * .value[3].u32: color of the progress indicator, in 0xARGB format.\n
+     * .value[3].u32: color of the progress indicator, in 0xAARRGGBB format.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}, which supports five types of shapes:\n
      * 1. Rectangle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type.\n
      * .value[4].f32: width of the rectangle.\n
@@ -1525,22 +1525,22 @@ typedef enum {
      * .value[10].f32: radius of the top right corner of the rectangular shape.\n
      * .value[11].f32: radius of the bottom right corner of the rectangular shape.\n
      * 2. Circle:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type.\n
      * .value[4].f32: width of the circle.\n
      * .value[5].f32: height of the circle.\n
      * 3. Ellipse:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type.\n
      * .value[4].f32: width of the ellipse.\n
      * .value[5].f32: height of the ellipse.\n
      * 4. Path:\n
-     * .value[0].u32 fill color, in 0xARGB format. \n
-     * .value[1].u32: stroke color, in 0xARGB format. \n
+     * .value[0].u32 fill color, in 0xAARRGGBB format. \n
+     * .value[1].u32: stroke color, in 0xAARRGGBB format. \n
      * .value[2].f32: stroke width, in vp. \n
      * .value[3].i32: mask type.\n
      * .value[4].f32: width of the path.\n
@@ -1701,7 +1701,7 @@ typedef enum {
      * .value[0].i32: coloring strategy. The value is an enumerated value of {@link ArkUI_ColorStrategy}.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color, in 0xARGB format.\n
+     * .value[0].u32: color, in 0xAARRGGBB format.\n
      *
      * @ingroup Visual
      */
@@ -2248,19 +2248,19 @@ typedef enum {
      * return value **ArkUI_AttributeItem** are as follows.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the four outlines, in 0xARGB format, for example, **0xFFFF11FF**. This parameter
+     * .value[0].u32: color of the four outlines, in 0xAARRGGBB format, for example, **0xFFFF11FF**. This parameter
      * takes effect only when **.value[0]** is passed.\n
-     * .value[0].u32: color of the top outline, in 0xARGB format, for example, **0xFFFF11FF**. This parameter
+     * .value[0].u32: color of the top outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**. This parameter
      * takes effect when the four values from **.value[0]** to **.value[3]** are passed.\n
-     * .value[1].u32: color of the right outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
-     * .value[2].u32: color of the bottom outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
-     * .value[3].u32: color of the left outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
+     * .value[1].u32: color of the right outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
+     * .value[2].u32: color of the bottom outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
+     * .value[3].u32: color of the left outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the top outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
-     * .value[1].u32: color of the right outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
-     * .value[2].u32: color of the bottom outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
-     * .value[3].u32: color of the left outline, in 0xARGB format, for example, **0xFFFF11FF**.\n
+     * .value[0].u32: color of the top outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
+     * .value[1].u32: color of the right outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
+     * .value[2].u32: color of the bottom outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
+     * .value[3].u32: color of the left outline, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
      *
      * @ingroup Visual
      */
@@ -2316,10 +2316,10 @@ typedef enum {
      * return value **ArkUI_AttributeItem** are as follows.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color to blend with the component, in 0xARGB format. The default value is **0x00000000**.\n
+     * .value[0].u32: color to blend with the component, in 0xAARRGGBB format. The default value is **0x00000000**.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color to blend with the component, in 0xARGB format, for example, **0xFFFF11FF**.\n
+     * .value[0].u32: color to blend with the component, in 0xAARRGGBB format, for example, **0xFFFF11FF**.\n
      *
      * @ingroup Visual
      */
