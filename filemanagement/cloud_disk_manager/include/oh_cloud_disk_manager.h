@@ -515,9 +515,7 @@ typedef struct OH_CloudDisk_SyncFolderEx {
  */
 typedef struct OH_CloudDisk_PlaceholderInfo {
     /**
-     * @brief Logical size of the placeholder file, in bytes, which reflects the actual size of the
-     * cloud file. The system does not guarantee the consistency between the local placeholder file
-     * size and the cloud file size.
+     * @brief Logical size of the placeholder file, in bytes, which reflects the actual size of the cloud file.
      * @since 26.0.1
      */
     uint64_t logicalSize;
@@ -995,7 +993,11 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
 
 /**
- * @brief Creates a placeholder in a registered sync folder.
+ * @brief Creates a placeholder in a registered sync folder. Upon creation, the system sets the local
+ * file size to the logicalSize preset in placeholderInfo. The system does not guarantee consistency
+ * between the local placeholder file size and the cloud file size; the application must use
+ * OH_CloudDisk_UpdatePlaceholder() to keep the local placeholder file metadata consistent with the
+ * cloud file metadata.
  *
  * @param syncFolderPath [in] Indicates the registered sync folder path.
  * @param relativePathInfo [in] Indicates the relative path in the sync folder.
@@ -1137,7 +1139,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
 /**
  * @brief Responds to a callback request.
  *
- * The total hydration size is determined by the totalSize of the first Execute call
+ * The total hydration size is determined by the fetchData.totalSize of the first Execute call
  * and must stay the same in subsequent calls.
  *
  * @param reqHead [in] Callback request header.
