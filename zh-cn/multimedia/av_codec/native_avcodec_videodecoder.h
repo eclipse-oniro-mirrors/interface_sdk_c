@@ -16,7 +16,7 @@
 /**
  * @addtogroup VideoDecoder
  * @{
- * 
+ *
  * @brief VideoDecoder模块提供用于视频解码的函数。
  *
  * @since 9
@@ -24,10 +24,9 @@
 
 /**
  * @file native_avcodec_videodecoder.h
- * 
+ *
  * @brief 声明用于视频解码的Native API。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avcodec_videodecoder.h>
  * @library libnative_media_vdec.so
@@ -58,7 +57,7 @@ typedef struct MediaKeySession MediaKeySession;
  *
  * @param mime MIME类型描述字符串，请参阅{@link AVCODEC_MIME_TYPE}。
  * @return 返回一个指向视频解码实例的指针。
- * 当传入的解码器类型不支持或者内存资源耗尽时，返回NULL。
+ *     当传入的解码器类型不支持或者内存资源耗尽时，返回NULL。
  * @since 9
  */
 OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
@@ -70,20 +69,20 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  *
  * @param name 视频解码器名称。
  * @return 返回指向视频解码实例的指针。
- * 当输入的解码器名称不支持或者内存资源耗尽时，返回NULL。
+ *     当输入的解码器名称不支持或者内存资源耗尽时，返回NULL。
  * @since 9
  */
 OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
 
 /**
  * @brief 清理解码器内部资源，销毁解码器实例。不能重复销毁。
- * 
+ *
  * @param codec 指向视频解码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 
@@ -96,12 +95,12 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  * @param callback 视频解码器异步回调函数集合。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- * @deprecated since 11
- * @useinstead {@link OH_VideoDecoder_RegisterCallback}
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ * @deprecated 11
+ * @useinstead OH_VideoDecoder_RegisterCallback
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
@@ -113,10 +112,10 @@ OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @param callback 视频解码器异步回调函数集合。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
@@ -129,11 +128,11 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * @param codec 指向视频解码实例的指针。
  * @param window 指向OHNativeWindow实例的指针，请参阅{@link OHNativeWindow}。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：本接口仅支持在Surface模式下调用, 如果在Buffer模式调用, 则返回此错误码。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. window为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：本接口仅支持在Surface模式下调用, 如果在Buffer模式调用, 则返回此错误码。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. window为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *window);
@@ -158,13 +157,13 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * @param codec 指向视频解码实例的指针。
  * @param format 指向OH_AVFormat的指针，用于给出要解码的视频轨道的描述。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. 输入format参数不支持。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
- *         <br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
- *         <br>AV_ERR_UNSUPPORT：不支持的像素格式。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. 输入format参数不支持。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
+ *     <br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
+ *     <br>AV_ERR_UNSUPPORT：不支持的像素格式。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
@@ -174,11 +173,11 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  *
  * @param codec 指向视频解码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：<br>1. 操作不允许；<br>2. 配置了色彩空间转换功能，但解码器处于Buffer模式。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：<br>1. 操作不允许；<br>2. 配置了色彩空间转换功能，但解码器处于Buffer模式。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
@@ -188,11 +187,11 @@ OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
  *
  * @param codec 指向视频解码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：<br>1. 操作不允许；<br>2. 视频色彩空间转换功能已配置，但是没有调用OH_VideoDecoder_Prepare接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：<br>1. 操作不允许；<br>2. 视频色彩空间转换功能已配置，但是没有调用OH_VideoDecoder_Prepare接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
@@ -204,11 +203,11 @@ OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
  *
  * @param codec 指向视频解码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
@@ -219,11 +218,11 @@ OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
  *
  * @param codec 指向视频解码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
@@ -233,10 +232,10 @@ OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
  *
  * @param codec 指向视频解码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
@@ -248,7 +247,7 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
  *
  * @param codec 指向视频解码实例的指针。
  * @return 返回指向OH_AVFormat实例的指针。
- * 当输入的codec指针非解码器实例，或者为空指针，则返回NULL。
+ *     当输入的codec指针非解码器实例，或者为空指针，则返回NULL。
  * @since 9
  */
 OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
@@ -261,11 +260,11 @@ OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
  * @param codec 指向视频解码实例的指针。
  * @param format 指向OH_AVFormat实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. 输入format参数不支持。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. 输入format参数不支持。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
@@ -281,15 +280,15 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * @param index 输入Buffer对应的索引值。由{@link OH_AVCodecOnNeedInputData}给出。
  * @param attr 描述缓冲区中包含的数据的信息。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- * @deprecated since 11
- * @useinstead {@link OH_VideoDecoder_PushInputBuffer}
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非解码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ * @deprecated 11
+ * @useinstead OH_VideoDecoder_PushInputBuffer
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
@@ -302,15 +301,15 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @param codec 指向视频解码实例的指针。
  * @param index 输出Buffer对应的索引值。由{@link OH_AVCodecOnNewOutputData}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- * @deprecated since 11
- * @useinstead {@link OH_VideoDecoder_RenderOutputBuffer}
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非解码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ * @deprecated 11
+ * @useinstead OH_VideoDecoder_RenderOutputBuffer
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index);
@@ -321,15 +320,15 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
  * @param codec 指向视频解码实例的指针。
  * @param index 输出buffer对应的索引值。由{@link OH_AVCodecOnNewOutputData}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- * @deprecated since 11
- * @useinstead {@link OH_VideoDecoder_FreeOutputBuffer}
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非解码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ * @deprecated 11
+ * @useinstead OH_VideoDecoder_FreeOutputBuffer
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
@@ -346,14 +345,14 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * @param codec 指向视频解码实例的指针。
  * @param index 输入buffer对应的索引值。由{@link OH_AVCodecOnNeedInputBuffer}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_DRM_DECRYPT_FAILED: 受DRM保护的视频缓冲区解密失败，建议查看日志。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非解码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_DRM_DECRYPT_FAILED: 受DRM保护的视频缓冲区解密失败，建议查看日志。
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -366,13 +365,13 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param codec 指向视频解码实例的指针。
  * @param index 输出buffer对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非解码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -396,13 +395,13 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
  * @param index 输出buffer对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
  * @param renderTimestampNs 输出buffer被发送到surface的时间戳，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非解码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非解码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 12
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
@@ -413,11 +412,11 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
  * @param codec 指向视频解码实例的指针
  * @param index 输出buffer对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. index非法或者连续给同一个index，该错误不影响后续解码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例，或者为空指针；<br>2. index非法或者连续给同一个index，该错误不影响后续解码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -428,7 +427,7 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
  * @param codec 指向视频解码实例的指针。
  * @param isValid 输出参数，指向布尔类型的指针。只有当接口返回AV_ERR_OK时，该值表示解码器实例的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
  * @since 10
  */
 OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
@@ -439,13 +438,13 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param codec 指向视频解码实例的指针。
  * @param mediaKeySession 指向带有解密功能的DRM会话实例的指针。
  * @param secureVideoPath 安全视频通路。指定安全视频通路为true，非安全视频通路为false。
- * 在Surface模式下，既支持安全视频通路，也支持非安全视频通路。在Buffer模式下，仅支持非安全视频通路。
+ *     在Surface模式下，既支持安全视频通路，也支持非安全视频通路。在Buffer模式下，仅支持非安全视频通路。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：<br>1. 操作不允许；<br>2. 解码服务进程异常；<br>3. 媒体密钥会话服务处于错误状态。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例或为空指针；<br>2. mediaKeySession为nullptr或无效。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：<br>1. 操作不允许；<br>2. 解码服务进程异常；<br>3. 媒体密钥会话服务处于错误状态。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非解码器实例或为空指针；<br>2. mediaKeySession为nullptr或无效。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
  * @since 11
-*/
+ */
 OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
     bool secureVideoPath);
 
@@ -460,12 +459,12 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySess
  * @param index 输入buffer对应的索引值。
  * @param timeoutUs 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
- *         <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+ *     <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
  * @since 20
  */
 OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
@@ -499,13 +498,13 @@ OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  * @param index 输出buffer对应的索引值。
  * @param timeoutUs 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
- *         <br>AV_ERR_STREAM_CHANGED：流格式已变更，可以通过调用{@link OH_VideoDecoder_GetOutputDescription}接口获取新的流信息。
- *         <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+ *     <br>AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前解码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+ *     <br>AV_ERR_STREAM_CHANGED：流格式已变更，可以通过调用{@link OH_VideoDecoder_GetOutputDescription}接口获取新的流信息。
+ *     <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
  * @since 20
  */
 OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
