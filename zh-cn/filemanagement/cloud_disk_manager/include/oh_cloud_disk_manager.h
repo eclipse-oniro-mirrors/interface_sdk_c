@@ -988,9 +988,9 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
 CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFolderPath syncFolderPath);
 
 /**
- * @brief 响应回调请求。
- *
- * 水合总量以首次回传的fetchData.totalSize为准，后续回传需保持一致。
+ * @brief 响应回调请求，将获取的数据块写入活跃的占位符水合任务。单个数据块不能超过128KiB。
+ * 函数在返回前会拷贝所有输入字段和数据。水合总量以首次回传的fetchData.totalSize为准，
+ * 后续回传需保持一致。
  *
  * @param reqHead [in] 回调请求头。
  * @param reqContext [in] 回调请求上下文。
