@@ -334,8 +334,7 @@ int OH_GetDistributionOSApiVersion(void);
 const char *OH_GetDistributionOSReleaseType(void);
 
 /**
- * @brief 获取磁盘序列号。
- * 参数缓冲区默认为256。
+ * @brief 获取磁盘序列号。参数缓冲区默认为65。
  * @param diskSn 【out】 磁盘序列号。
  * @return <ul>
  *         <li>如果操作成功，则返回0。</li>

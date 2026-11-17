@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 /*
- *@addtogroup BoardInfo
- *@{
+ * @addtogroup BoardInfo
+ * @{
  *
  * @brief Provides APIs for query hardware device information.
  * 
- * @since 26.0.1
+ * @since 26.1.0
  */
 /*
  * @file boardinfo.h
  * @brief Declares the APIs for query hardware device information.
- * @kit BasicServiceKit
- * 
- * @library libboardinfo_ndk.z.so
  * @syscap SystemCapability.Startup.BoardInfo
- * @since 26.0.1
+ * @include <boardinfo.h>
+ * @library libboardinfo_ndk.z.so
+ * @kit BasicServicesKit
+ * @since 26.1.0
  */
 
 #ifndef DEVICEINFO_CSDK_H
@@ -50,8 +50,7 @@ extern "C" {
 const char *OH_BoardInfo_GetCpuId(void);
  
 /**
- * @brief Obtains the device Board Sn.value len is 16.
- * The default size of the parameter buffer is 256.
+ * @brief Obtains the device Board Sn.value len is 16.The default size of the parameter buffer is 256.
  * **Required permission**: ohos.permission.ACCESS_BOARD_INFO
  *
  * @param boardSn [out] Board Serial Number.
