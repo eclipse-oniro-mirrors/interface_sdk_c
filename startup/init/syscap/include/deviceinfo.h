@@ -347,8 +347,8 @@ int OH_GetDistributionOSApiVersion(void);
 const char *OH_GetDistributionOSReleaseType(void);
 
 /**
- * @brief Obtains the Disk Serial Number.The default size of the parameter buffer is 65.
- * @param diskSn [out] Disk Serial Number.
+ * @brief Obtains the Disk Serial Number.The default capacity of the parameter buffer is 65bytes.
+ * @param diskSn [out] Disk Serial Number.The buffer capacity is 65 bytes by default.
  * @return <ul>
  *         <li>0 if the operation is successful.</li>
  *         <li>201 if the caller does not have ohos.permission.ACCESS_DISK_PHY_INFO.</li>
