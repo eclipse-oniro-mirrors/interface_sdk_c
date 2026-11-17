@@ -993,7 +993,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
 
 /**
- * @brief Creates a placeholder in a registered sync folder. Upon creation, the system sets the local
+ * @brief Creates a placeholder file under a registered sync root path. Upon creation, the system sets the local
  * file size to the logicalSize preset in placeholderInfo. The system does not guarantee consistency
  * between the local placeholder file size and the cloud file size; the application must use
  * OH_CloudDisk_UpdatePlaceholder() to keep the local placeholder file metadata consistent with the

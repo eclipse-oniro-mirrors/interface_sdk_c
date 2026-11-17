@@ -908,7 +908,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
 
 /**
- * @brief 在已注册的同步文件夹中创建占位符。创建时系统将本地文件大小设置为placeholderInfo中
+ * @brief 在已注册的同步根路径下创建占位符文件。创建时系统将本地文件大小设置为placeholderInfo中
  * 预设的logicalSize，系统不保障本地占位符文件与云端文件大小的一致性，应用需通过
  * OH_CloudDisk_UpdatePlaceholder()接口保障本地占位符文件的元数据与云端文件元数据的一致性。
  *
