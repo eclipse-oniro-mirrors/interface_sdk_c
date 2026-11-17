@@ -548,7 +548,7 @@ Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput
 typedef struct OH_Camera_PhotoCaptureSettingExt OH_Camera_PhotoCaptureSettingExt;
 
 /**
- * @brief C2PA签名配置。
+ * @brief C2PA（Coalition for Content Provenance and Authenticity）签名配置。
  *
  * @since 26.0.1
  */
@@ -730,7 +730,7 @@ OH_Camera_C2PASignatureConfig* OH_Camera_C2PASignatureConfig_Create(void);
 /**
  * @brief 销毁{@link OH_Camera_C2PASignatureConfig}实例。
  *
- * @param config 待销毁的{@link OH_Camera_C2PASignatureConfig}实例的指针。
+ * @param config 指向待销毁的{@link OH_Camera_C2PASignatureConfig}实例的指针。
  * @since 26.0.1
  */
 void OH_Camera_C2PASignatureConfig_Destroy(OH_Camera_C2PASignatureConfig* config);
@@ -739,7 +739,7 @@ void OH_Camera_C2PASignatureConfig_Destroy(OH_Camera_C2PASignatureConfig* config
  * @brief 设置C2PA签名配置中的作者名称。
  *
  * @param config 目标{@link OH_Camera_C2PASignatureConfig}实例的指针。
- * @param authorName 待设置的作者名称字符串的指针。
+ * @param authorName 指向待设置的作者名称字符串的指针。
  * @return <ul>
  *         <li>**CAMERA_OK**：操作成功。</li>
  *         <li>**CAMERA_INVALID_ARGUMENT**：参数缺失或参数类型不正确。</li>
@@ -753,7 +753,7 @@ Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorName(
  * @brief 设置C2PA签名配置中的作者ID。
  *
  * @param config 目标{@link OH_Camera_C2PASignatureConfig}实例的指针。
- * @param authorID 待设置的作者ID字符串的指针。
+ * @param authorID 指向待设置的作者ID字符串的指针。
  * @return <ul>
  *         <li>**CAMERA_OK**：操作成功。</li>
  *         <li>**CAMERA_INVALID_ARGUMENT**：参数缺失或参数类型不正确。</li>
@@ -765,7 +765,7 @@ Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorID(OH_Camera_C2PASignatu
 /**
  * @brief 配置C2PA签名设置。该函数用于启用或禁用C2PA签名，并可选地设置C2PA签名的作者信息。
  *
- * 调用该函数前，请先通过{@link OH_PhotoOutput_IsC2PASignatureSupported}检查是否支持C2PA签名。
+ * 调用该函数前，需先通过{@link OH_PhotoOutput_IsC2PASignatureSupported}检查是否支持C2PA签名。
  *
  * @param photoOutput 目标PhotoOutput实例的指针。
  * @param enableC2PA 是否启用C2PA签名。**true**表示启用，**false**表示禁用。
