@@ -77,6 +77,7 @@ typedef struct OH_AudioConverter_Format {
  * @brief Defines the format information of the extended audio converter, which is used to describe the audio format
  * that supports any sampling rate.
  *
+ * @systemapi
  * @since 26.1.0
  */
 typedef struct OH_AudioSuite_ConverterFormatEx {
@@ -127,6 +128,7 @@ typedef struct OH_AudioSuite_ConverterFormatEx {
 /**
  * @brief Defines the input data structure of the audio converter.
  *
+ * @systemapi
  * @since 26.1.0
  */
 typedef struct OH_AudioSuite_ConverterInputInfo {
@@ -151,6 +153,7 @@ typedef struct OH_AudioSuite_ConverterInputInfo {
  * @brief Defines the output data structure of the audio converter, which is used to receive the converted audio data in
  * direct processing mode.
  *
+ * @systemapi
  * @since 26.1.0
  */
 typedef struct OH_AudioSuite_ConverterOutputInfo {
@@ -432,25 +435,26 @@ OH_AudioConverter_Result OH_AudioConverter_Process(
  *
  * @systemapi
  * @param inputFormat [Input parameter] Pointer to the input audio format. Cannot be NULL and must remain valid for
- *     the duration of the call.
+ *         the duration of the call.
  * @param outputFormat [Input parameter] Pointer to the output audio format. Cannot be NULL and must remain valid
- *     for the duration of the call.
+ *         for the duration of the call.
  * @param outOwnedConverter [Output parameter] Pointer to the created audio converter instance. The caller owns the
- *     result and must use the
- * {@link OH_AudioConverter_Destroy} Release. The value cannot be NULL and does not need to be initialized. No content
- * is written when the call fails.
- * @return<ul>
- * <li>{@link #AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
- * <li>202 Permission verification failed because a non-system application uses the system API. </li>
- * <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM}The parameter is invalid. The possible causes are as follows:
- * <br>1. The value of inputFormat is NULL.
- * <br>2. The value of outputFormat is NULL.
- * <br>3. outOwnedConverter is NULL. </li>
- * <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT}The audio format in inputFormat/outputFormat is not supported.
- * </li>
- * <li>{@link #AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} Memory allocation failed. </li>
- * </ul>
- * @release ohaudiosuite/OH_AudioConverter_Destroy {outOwnedConverter}
+ *         result and must use the
+ *     {@link OH_AudioConverter_Destroy} Release. The value cannot be NULL and does not need to be initialized. No
+ *     content
+ *     is written when the call fails.
+ * @return <ul>
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} Execution succeeded. </li>
+ *     <li>202 Permission verification failed because a non-system application uses the system API. </li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} The parameter is invalid. The possible causes are as follows:
+ *     <br>1. The value of inputFormat is NULL.
+ *     <br>2. The value of outputFormat is NULL.
+ *     <br>3. outOwnedConverter is NULL. </li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT} The audio format in inputFormat/outputFormat is not
+ *     supported. </li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} Memory allocation failed. </li>
+ *     </ul>
+ * @release OH_AudioConverter_Destroy {outOwnedConverter}
  * @since 26.1.0
  */
 OH_AudioConverter_Result OH_AudioSuite_ConverterCreateEx(
