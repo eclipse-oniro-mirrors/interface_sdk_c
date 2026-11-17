@@ -802,8 +802,8 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if the alpha type is incorrect.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if the memory allocator type is incorrect.
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
  *
  * @since 10
@@ -847,8 +847,8 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if the alpha type is incorrect.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if the memory allocator type is incorrect.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_EXIF_UNSUPPORT - if image decode exif unsupport.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_PROPERTY_NOT_EXIST - if image property not exist.
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
@@ -1055,8 +1055,8 @@ int32_t OH_ImageSource_ModifyImageProperty(const ImageSourceNative* native,
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if the alpha type is incorrect.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if the memory allocator type is incorrect.
  * @see {@link ImageSourceNative}, {@link OhosImageSourceUpdateData}
  *
  * @since 10
