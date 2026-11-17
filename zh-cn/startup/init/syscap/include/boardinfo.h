@@ -16,13 +16,13 @@
  *@addtogroup BoardInfo
  *@{
  *
- * @brief 提供用于查询硬件设备信息的API。
+ * @brief 提供用于查询硬件设备信息的API。参数缓冲区默认为256。
  * 
  * @since 26.0.1
  */
 /*
  * @file boardinfo.h
- * @brief 声明用于查询硬件设备信息的API。
+ * @brief 声明用于查询硬件设备信息的API。参数缓冲区默认为256。
  * @kit BasicServiceKit
  * 
  * @library libboardinfo_ndk.z.so
