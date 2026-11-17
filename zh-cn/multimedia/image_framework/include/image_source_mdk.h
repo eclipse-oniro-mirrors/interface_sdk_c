@@ -784,8 +784,8 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  *     <br>IMAGE_RESULT_HW_DECODE_FAILED：硬解码失败。
  *     <br>IMAGE_RESULT_ERR_IPC：ipc失败。
  *     <br>IMAGE_RESULT_INDEX_INVALID：索引无效。
- *     <br>IMAGE_RESULT_ALPHA_TYPE_ERROR：硬解码失败。
- *     <br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR：硬解码失败。
+ *     <br>IMAGE_RESULT_ALPHA_TYPE_ERROR：Alpha类型错误。
+ *     <br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配器类型错误。
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
  *
  * @since 10
@@ -828,8 +828,8 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  *     <br>IMAGE_RESULT_HW_DECODE_FAILED：硬解码失败。
  *     <br>IMAGE_RESULT_ERR_IPC：ipc失败。
  *     <br>IMAGE_RESULT_INDEX_INVALID：索引无效。
- *     <br>IMAGE_RESULT_ALPHA_TYPE_ERROR：硬解码失败。
- *     <br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR：硬解码失败。
+ *     <br>IMAGE_RESULT_ALPHA_TYPE_ERROR：Alpha类型错误。
+ *     <br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR：内存分配器类型错误。
  *     <br>IMAGE_RESULT_DECODE_EXIF_UNSUPPORT：解码的EXIF不支持。
  *     <br>IMAGE_RESULT_PROPERTY_NOT_EXIST：图片属性不存在。
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
