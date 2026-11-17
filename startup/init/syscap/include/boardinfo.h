@@ -50,11 +50,11 @@ extern "C" {
 const char *OH_BoardInfo_GetCpuId(void);
  
 /**
- * @brief Obtains the device Board Sn.value len is 16.The default capacity of the parameter buffer is 256 bytes.
+ * @brief Obtains the device Board Sn.value len is 16.The parameter buffer capacity can't be less than 16 bytes.
  * 
  * **Required permission**: ohos.permission.ACCESS_BOARD_INFO
  *
- * @param boardSn [out] Board Serial Number.The buffer capacity is 256 bytes by default.
+ * @param boardSn [out] Board Serial Number.The buffer capacity must not be less than 16 bytes.
  *
  * @return <ul>
  *         <li>0 if the operation is successful.</li>

@@ -50,11 +50,11 @@ extern "C" {
 const char *OH_BoardInfo_GetCpuId(void);
  
 /**
- * @brief 获取设备Sn.value len为16。参数缓冲区容量默认为256。
+ * @brief 获取设备Sn.value len为16。参数缓冲区容量不能低于16字节。
  * 
  * **所需权限**:ohos.permission.ACCESS_BOARD_INFO
  *
- * @param boardSn 【out】单板序列号。缓冲区容量默认为256字节。
+ * @param boardSn 【out】单板序列号。缓冲区容量不能低于16字节。
  *
  * @return <ul>
  * <li>如果操作成功，则返回0。</li>
