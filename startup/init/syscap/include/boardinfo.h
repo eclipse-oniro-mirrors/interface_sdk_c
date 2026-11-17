@@ -25,7 +25,7 @@
  * @brief Declares the APIs for query hardware device information.
  * @kit BasicServiceKit
  * 
- * @library libdeviceinfo_ndk.z.so
+ * @library libboardinfo_ndk.z.so
  * @syscap SystemCapability.Startup.BoardInfo
  * @since 26.0.1
  */

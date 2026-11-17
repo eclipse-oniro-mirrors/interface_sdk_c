@@ -16,16 +16,16 @@
  *@addtogroup BoardInfo
  *@{
  *
- * @brief Provides APIs for query hardware device information.
+ * @brief 提供用于查询硬件设备信息的API。
  * 
  * @since 26.0.1
  */
 /*
  * @file boardinfo.h
- * @brief Declares the APIs for query hardware device information.
+ * @brief 声明用于查询硬件设备信息的API。
  * @kit BasicServiceKit
  * 
- * @library libdeviceinfo_ndk.z.so
+ * @library libboardinfo_ndk.z.so
  * @syscap SystemCapability.Startup.BoardInfo
  * @since 26.0.1
  */
