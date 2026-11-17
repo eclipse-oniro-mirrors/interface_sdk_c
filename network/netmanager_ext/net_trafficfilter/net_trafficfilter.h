@@ -70,7 +70,8 @@ extern "C" {
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK}: Success.</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED}: Permission denied.</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_GROUP_ID_IN_USE}: group_id already exists.</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}: Invalid parameter.</li></ul>
+ *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}: Invalid parameter.</li>
+ *     <li>{@link OH_TRAFFICFILTER_ERROR_NFQUEUE_ERROR}: NFQueue initialization failed.</li></ul>
  * @release TrafficFilter/OH_TrafficFilter_DestroyRedirector {redirector}
  * @permission ohos.permission.kernel.TRAFFIC_FILTER
  * @since 26.0.0
