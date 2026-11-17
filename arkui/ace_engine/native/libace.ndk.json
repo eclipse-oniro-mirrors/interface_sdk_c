@@ -7725,5 +7725,9 @@
     {
         "first_introduced": "26.1.0",
         "name": "OH_ArkUI_PickerComponentTextStyle_SetOverflow"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_XComponent_EnableSurfaceVisibilityLifecycle"
     }
 ]
