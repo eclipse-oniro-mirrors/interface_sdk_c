@@ -70,14 +70,15 @@ typedef enum {
 } OH_Drawing_CornerPos;
 
 /**
- * @brief Creates an **OH_Drawing_RoundRect** object. This API may return an error code. For details, call
- * {@link OH_Drawing_ErrorCodeGet}
+ * @brief Creates an **OH_Drawing_RoundRect** object. This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}
  * .
  * If **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
- *
+ * 
  * @param rect Pointer to an **OH_Drawing_Rect** object.
- * @param xRad Radius of the rounded corner on the X axis. A negative number is invalid.
- * @param yRad Radius of the rounded corner on the Y axis. A negative number is invalid.
+ * @param xRad Corner radius on the X-axis. The value is invalid when it is less than or equal to 0. The unit is
+ *     physical pixels (px).
+ * @param yRad Corner radius on the Y-axis. The value is invalid when it is less than or equal to 0. The unit is
+ *     physical pixels (px).
  * @return Returns the pointer to the **OH_Drawing_RoundRect** object created.
  * @since 11
  * @version 1.0

@@ -592,7 +592,7 @@ typedef enum {
      */
     BLEND_MODE_DIFFERENCE,
     /**
-     * @brief 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d。
+     * @brief 排除模式，rc = s + d - 2 * (s * d), ra = s + (1 - sa) * d。
      *
      * @since 11
      */

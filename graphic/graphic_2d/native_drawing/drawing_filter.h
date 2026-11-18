@@ -71,7 +71,7 @@ void OH_Drawing_FilterSetImageFilter(OH_Drawing_Filter* filter, OH_Drawing_Image
  * If **filter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
  * @param filter Pointer to an {@link OH_Drawing_Filter} object.
- * @param maskFilter Pointer to an {@link OH_Drawing_ColorFilter} object. If NULL is passed in, the mask filter effect
+ * @param maskFilter Pointer to an {@link OH_Drawing_MaskFilter} object. If NULL is passed in, the mask filter effect
  * of the object will be cleared.
  * @since 11
  * @version 1.0

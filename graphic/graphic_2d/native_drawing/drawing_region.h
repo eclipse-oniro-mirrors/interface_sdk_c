@@ -112,14 +112,16 @@ OH_Drawing_Region* OH_Drawing_RegionCopy(const OH_Drawing_Region* region);
 bool OH_Drawing_RegionContains(OH_Drawing_Region* region, int32_t x, int32_t y);
 
 /**
- * @brief Combines two regions based on the specified operation mode.
- * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
- * If either **region** or **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
- * If **op** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
+ * @brief Merges two regions based on the specified region operation type.
+ * <br>This API generates an error code, which can be obtained through {@link OH_Drawing_ErrorCodeGet}.
+ * <br>Returns OH_DRAWING_ERROR_INVALID_PARAMETER if either region or other is NULL.
+ * <br>Returns OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE if op is not within the enum range.
  *
- * @param region Pointer to an {@link OH_Drawing_Region} object, in which the resulting region is saved.
- * @param other Pointer to the {@link OH_Drawing_Region} object.
- * @param op Operation mode of the region. For details about the available options, see {@link OH_Drawing_RegionOpMode}.
+ * @param region Pointer to the region object OH_Drawing_Region. The region result after the operation is stored in
+ *     this region object.
+ * @param other Pointer to another region object OH_Drawing_Region that participates in the merge operation. It is
+ *     merged with the region specified by the region parameter according to the operation type op.
+ * @param op Region operation enum type. For the supported modes, see the OH_Drawing_RegionOpMode enum.
  * @return Returns **true** if the resulting region is not empty; returns false otherwise.
  * @since 12
  * @version 1.0
