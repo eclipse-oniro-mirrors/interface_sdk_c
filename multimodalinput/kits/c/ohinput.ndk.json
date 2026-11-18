@@ -705,5 +705,45 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_Input_BindInputDeviceToDisplay"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_EventHandler_Create"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_EventHandler_Destroy"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_EventHandler_Enable"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_EventHandler_IsEnabled"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_EventHandler_GetMask"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_Event_GetType"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_Event_AsKeyEvent"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_Event_AsMouseEvent"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_Event_AsTouchEvent"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_Input_Event_AsAxisEvent"
     }
 ]

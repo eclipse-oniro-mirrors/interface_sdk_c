@@ -450,6 +450,13 @@ typedef enum Input_Result {
     INPUT_SERVICE_EXCEPTION = 3800001,
 
     /**
+     * @brief A handler already exists in this process.
+     *
+     * @since 26.1.0
+     */
+    INPUT_REPEAT_HANDLER = 3800002,
+
+    /**
      * @brief Interceptor repeatedly created.
      */
     INPUT_REPEAT_INTERCEPTOR = 4200001,
@@ -3114,6 +3121,279 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
+
+/**
+ * @brief Defines the input event handler object.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_Input_EventHandler OH_Input_EventHandler;
+
+/**
+ * @brief Defines the unified input event object received by the handler.
+ * The object is read-only in the current version.
+ *
+ * @since 26.1.0
+ */
+typedef struct OH_Input_Event OH_Input_Event;
+
+/**
+ * @brief the input event types received by the handler.
+ *
+ * @since 26.1.0
+ */
+typedef enum OH_Input_EventType {
+    /**
+     * @brief Key event.
+     *
+     * @since 26.1.0
+     */
+    OH_INPUT_EVENT_KEY = 0,
+    /**
+     * @brief Mouse event.
+     *
+     * @since 26.1.0
+     */
+    OH_INPUT_EVENT_MOUSE = 1,
+    /**
+     * @brief Touch event.
+     *
+     * @since 26.1.0
+     */
+    OH_INPUT_EVENT_TOUCH = 2,
+    /**
+     * @brief Axis events.
+     *
+     * @since 26.1.0
+     */
+    OH_INPUT_EVENT_AXIS = 3
+} OH_Input_EventType;
+
+/**
+ * @brief Defines the bit mask that specifies the set of input event types to be observed by the handler.
+ *
+ * @since 26.1.0
+ */
+typedef uint64_t OH_Input_EventTypeMask;
+
+/**
+ * @brief Bit mask for key event.
+ *
+ * @since 26.1.0
+ */
+#define OH_INPUT_EVENT_TYPE_MASK_KEY   (1ULL << OH_INPUT_EVENT_KEY)
+/**
+ * @brief Bit mask for mouse events.
+ *
+ * @since 26.1.0
+ */
+#define OH_INPUT_EVENT_TYPE_MASK_MOUSE (1ULL << OH_INPUT_EVENT_MOUSE)
+/**
+ * @brief Bit mask for touch events.
+ *
+ * @since 26.1.0
+ */
+#define OH_INPUT_EVENT_TYPE_MASK_TOUCH (1ULL << OH_INPUT_EVENT_TOUCH)
+/**
+ * @brief Bit mask for axis events.
+ *
+ * @since 26.1.0
+ */
+#define OH_INPUT_EVENT_TYPE_MASK_AXIS  (1ULL << OH_INPUT_EVENT_AXIS)
+
+/**
+ * @brief Defines the function invoked when the handler receives an input event.
+ *
+ * @param handler [in] The handler object that receives the event.
+ * @param event [in] The incoming event. Always non-NULL.
+ * @return Returns the event to pass it through, or NULL to delete it.
+ * @since 26.1.0
+ */
+typedef const OH_Input_Event* (*OH_Input_EventHandler_OnEventFunc)(OH_Input_EventHandler* handler,
+    const OH_Input_Event* event);
+
+/**
+ * @brief Defines the function invoked when the handler is disabled. When this function is invoked,
+ * the handler has already been disabled and input events are no longer intercepted.
+ *
+ * @param handler [in] The handler object that was disabled.
+ * @since 26.1.0
+ */
+typedef void (*OH_Input_EventHandler_OnDisabledFunc)(OH_Input_EventHandler* handler);
+
+/**
+ * @brief Creates an input event handler.
+ *
+ * @permission ohos.permission.HOOK_INPUT_EVENT
+ * @param mask [in] Bit mask that specifies the set of input event types to be observed.
+ *                         See {@link OH_Input_EventTypeMask}.
+ * @param onEventFunc [in] Function invoked when an observed event is received.
+ *                         See {@link OH_Input_EventHandler_OnEventFunc}.
+ * @param onDisabledFunc [in] Function invoked when the handler is disabled due to timeout.
+ *                         See {@link OH_Input_EventHandler_OnDisabledFunc}.
+ * @param handler [out] Pointer to the {@link OH_Input_EventHandler} object. On success,
+ *                       handler points to the newly created handler.
+ * @return Return value of the OH_Input_EventHandler_Create function.
+ *     <br>{@link INPUT_SUCCESS}Creating the handler succeeded.
+ *     <br>{@link INPUT_PERMISSION_DENIED}Permission verification failed.
+ *     <br>{@link INPUT_PARAMETER_ERROR}Parameter check failed. Cause: The mask is 0.
+ *     OnEventFunc is NULL, onDisabledFunc is NULL, and handler is NULL,
+ *     or mask contains unsupported bits.
+ *     The <br>{@link INPUT_DEVICE_NOT_SUPPORTED} function is not supported.
+ *     <br>{@link INPUT_SERVICE_EXCEPTION}The input service is abnormal. Please try again.
+ * @release OH_Input_EventHandler_Destroy {handler}
+ * @since 26.1.0
+ */
+Input_Result OH_Input_EventHandler_Create(OH_Input_EventTypeMask mask,
+    OH_Input_EventHandler_OnEventFunc onEventFunc,
+    OH_Input_EventHandler_OnDisabledFunc onDisabledFunc,
+    OH_Input_EventHandler** handler);
+
+/**
+ * @brief Destroys an input event handler and releases resources.
+ *
+ * @param handler [in] The {@link OH_Input_EventHandler} object to destroy.
+ *     Passing in NULL does not perform any operation.
+ * @since 26.1.0
+ */
+void OH_Input_EventHandler_Destroy(OH_Input_EventHandler* handler);
+
+/**
+ * @brief Enables or disables an input event handler. Only one handler is allowed per process.
+ *
+ * @permission ohos.permission.HOOK_INPUT_EVENT
+ * @param handler [in] The {@link OH_Input_EventHandler} object.
+ * @param enable [in] Whether to enable the handler. The value true means to enable the handler,
+ *                and false means to disable it.
+ * @return OH_Input_EventHandler_Enable function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: handler is NULL.
+ *         <br>{@link INPUT_PERMISSION_DENIED} Permission verification failed.
+ *         <br>{@link INPUT_SERVICE_EXCEPTION} Input service exception, please try again.
+ *         <br>{@link INPUT_REPEAT_HANDLER} A handler already exists in this process.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_EventHandler_Enable(OH_Input_EventHandler* handler, bool enable);
+
+/**
+ * @brief Queries whether an input event handler is enabled.
+ *
+ * @param handler [in] The {@link OH_Input_EventHandler} object.
+ * @param enabled [out] Pointer to the enabled state. The value true means the handler is enabled,
+ *                and false means the handler is disabled.
+ * @return OH_Input_EventHandler_IsEnabled function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: handler is NULL
+ *             or enabled is NULL.
+ *         <br>{@link INPUT_SERVICE_EXCEPTION} Input service exception, please try again.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_EventHandler_IsEnabled(const OH_Input_EventHandler* handler, bool* enabled);
+
+/**
+ * @brief Queries the event type mask of an input event handler.
+ *
+ * @param handler [in] The {@link OH_Input_EventHandler} object.
+ * @param mask [out] Pointer to the event type mask. On success, Its value is the value passed to
+ *                {@link OH_Input_EventHandler_Create}. See {@link OH_Input_EventTypeMask}.
+ * @return OH_Input_EventHandler_GetMask function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: handler is NULL
+ *             or mask is NULL.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_EventHandler_GetMask(const OH_Input_EventHandler* handler,
+    OH_Input_EventTypeMask* mask);
+
+/**
+ * @brief Obtains the type of an input event.
+ *
+ * @param event [in] The {@link OH_Input_Event} object.
+ * @param type [out] Pointer to the event type. See {@link OH_Input_EventType}.
+ * @return OH_Input_Event_GetType function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: event is NULL
+ *             or type is NULL.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_Event_GetType(const OH_Input_Event* event, OH_Input_EventType* type);
+
+/**
+ * @brief Obtains a read-only {@link Input_KeyEvent} view from a unified input event.
+ * Only valid when the event type is {@link OH_INPUT_EVENT_KEY}.
+ * The returned keyEvent is a non-owning, read-only view borrowed from event.
+ * It is valid only during the current invocation (while event is alive).
+ * Do not free it with {@link OH_Input_DestroyKeyEvent}; do not call Set* functions on it.
+ * Use the existing Get* accessors (for example, {@link OH_Input_GetKeyEventKeyCode}) to
+ * read key event fields.
+ *
+ * @param event [in] The {@link OH_Input_Event} object obtained in the handler function.
+ * @param keyEvent [out] Pointer to the borrowed {@link Input_KeyEvent} view.
+ * @return OH_Input_Event_AsKeyEvent function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: event is NULL,
+ *             keyEvent is NULL, or the event type is not {@link OH_INPUT_EVENT_KEY}.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_Event_AsKeyEvent(const OH_Input_Event* event, const Input_KeyEvent** keyEvent);
+
+/**
+ * @brief Obtains a read-only {@link Input_MouseEvent} view from a unified input event.
+ * Only valid when the event type is {@link OH_INPUT_EVENT_MOUSE}.
+ * The returned pointer is a non-owning, read-only view borrowed from event.
+ * It is valid only during the current invocation (while event is alive).
+ * Do NOT free it with {@link OH_Input_DestroyMouseEvent}; do NOT call Set* functions on it.
+ * Use the existing Get* accessors (for example, {@link OH_Input_GetMouseEventAction}) to
+ * read mouse event fields.
+ *
+ * @param event [in] The {@link OH_Input_Event} object obtained in the handler function.
+ * @param mouseEvent [out] Pointer to the borrowed {@link Input_MouseEvent} view.
+ * @return OH_Input_Event_AsMouseEvent function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: event is NULL,
+ *             mouseEvent is NULL, or the event type is not {@link OH_INPUT_EVENT_MOUSE}.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_Event_AsMouseEvent(const OH_Input_Event* event, const Input_MouseEvent** mouseEvent);
+
+/**
+ * @brief Obtains a read-only {@link Input_TouchEvent} view from a unified input event.
+ * Only valid when the event type is {@link OH_INPUT_EVENT_TOUCH}.
+ * The returned pointer is a non-owning, read-only view borrowed from event.
+ * It is valid only during the current invocation (while event is alive).
+ * Do NOT free it with {@link OH_Input_DestroyTouchEvent}; do NOT call Set* functions on it.
+ * Use the existing Get* accessors (for example, {@link OH_Input_GetTouchEventAction}) to
+ * read touch event fields.
+ *
+ * @param event [in] The {@link OH_Input_Event} object obtained in the handler function.
+ * @param touchEvent [out] Pointer to the borrowed {@link Input_TouchEvent} view.
+ * @return OH_Input_Event_AsTouchEvent function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: event is NULL,
+ *             touchEvent is NULL, or the event type is not {@link OH_INPUT_EVENT_TOUCH}.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_Event_AsTouchEvent(const OH_Input_Event* event, const Input_TouchEvent** touchEvent);
+
+/**
+ * @brief Obtains a read-only {@link Input_AxisEvent} view from a unified input event.
+ * Only valid when the event type is {@link OH_INPUT_EVENT_AXIS}.
+ * The returned pointer is a non-owning, read-only view borrowed from event.
+ * It is valid only during the current invocation (while event is alive).
+ * Do NOT free it with {@link OH_Input_DestroyAxisEvent}; do NOT call Set* functions on it.
+ * Use the existing Get* accessors (for example, {@link OH_Input_GetAxisEventAction}) to
+ * read axis event fields.
+ *
+ * @param event [in] The {@link OH_Input_Event} object obtained in the handler function.
+ * @param axisEvent [out] Pointer to the borrowed {@link Input_AxisEvent} view.
+ * @return OH_Input_Event_AsAxisEvent function result code.
+ *         <br>{@link INPUT_SUCCESS} Operation successful.
+ *         <br>{@link INPUT_PARAMETER_ERROR} Parameter check failed. Reason: event is NULL,
+ *             axisEvent is NULL, or the event type is not {@link OH_INPUT_EVENT_AXIS}.
+ * @since 26.1.0
+ */
+Input_Result OH_Input_Event_AsAxisEvent(const OH_Input_Event* event, const Input_AxisEvent** axisEvent);
+
 #ifdef __cplusplus
 }
 #endif
