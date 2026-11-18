@@ -807,7 +807,6 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
  *
  * @since 10
- * @version 4.0
  */
 int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
     struct OhosImageDecodingOps* ops, napi_value *res);
@@ -854,7 +853,6 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  * @see {@link ImageSourceNative}, {@link OhosImageDecodingOps}
  *
  * @since 10
- * @version 4.0
  */
 int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,
     struct OhosImageDecodingOps* ops, napi_value *res);
@@ -1060,7 +1058,6 @@ int32_t OH_ImageSource_ModifyImageProperty(const ImageSourceNative* native,
  * @see {@link ImageSourceNative}, {@link OhosImageSourceUpdateData}
  *
  * @since 10
- * @version 4.0
  */
 int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosImageSourceUpdateData* data);
 

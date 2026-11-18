@@ -109,27 +109,27 @@ typedef enum {
 Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
 
 /**
- * @brief Gets the MIME type in the encoding parameter. The format.data obtained through this interface does not contain
- * the character string terminator '\ 0'. Exercise caution when running this command. <br>Restriction: Both options and
- * format cannot be null pointers. If the value of format->size is not 0, the value of format->size must be greater than
- * or equal to the length of the current MIME type. When the interface returns a failure, format.data should not be
- * read. <br>Resource management: After the interface is successfully executed, the format.data is allocated by the
- * interface. After the interface is used, the caller should use free() to release the format.data. The format.data
- * returned by this interface does not end with the character string terminator '\ 0'. To process the character string
- * as a C character string, you are advised to use {@link OH_PackingOptions_GetMimeTypeWithNull}.
- 
- * @param options Pointer to OH_PackingOptions to be operated.
- * @param format Image format. The format does not need to be manually initialized. The system allocates memory, but
- *     the memory must be released after use. <br>The format.data obtained through this interface does not contain the
- *     character string terminator '\ 0'. Check whether the actual data length exceeds the length of the applied buffer.
- * @return <ul>
- *     <li>{@link IMAGE_SUCCESS} Execution succeeded. </li>
- *     <li>{@link IMAGE_BAD_PARAMETER} The parameter is incorrect. </li>
- *     <li>{@link IMAGE_ALLOC_FAILED} Memory allocation failed. </li>
- *     <li>{@link IMAGE_COPY_FAILED} Memory copy failed. </li>
- *     </ul>
- * @since 12
- */
+* @brief Gets the MIME type in the encoding parameter. The format.data obtained through this interface does not contain
+* the character string terminator '\ 0'. Exercise caution when running this command. <br>Restriction: Both options and
+* format cannot be null pointers. If the value of format->size is not 0, the value of format->size must be greater than
+* or equal to the length of the current MIME type. When the interface returns a failure, format.data should not be
+* read. <br>Resource management: After the interface is successfully executed, the format.data is allocated by the
+* interface. After the interface is used, the caller should use free() to release the format.data. The format.data
+* returned by this interface does not end with the character string terminator '\ 0'. To process the character string
+* as a C character string, you are advised to use {@link OH_PackingOptions_GetMimeTypeWithNull}.
+
+* @param options Pointer to OH_PackingOptions to be operated.
+* @param format Image format. The format does not need to be manually initialized. The system allocates memory, but
+*     the memory must be released after use. <br>The format.data obtained through this interface does not contain the
+*     character string terminator '\ 0'. Check whether the actual data length exceeds the length of the applied buffer.
+* @return <ul>
+*     <li>{@link IMAGE_SUCCESS} Execution succeeded. </li>
+*     <li>{@link IMAGE_BAD_PARAMETER} The parameter is incorrect. </li>
+*     <li>{@link IMAGE_ALLOC_FAILED} Memory allocation failed. </li>
+*     <li>{@link IMAGE_COPY_FAILED} Memory copy failed. </li>
+*     </ul>
+* @since 12
+*/
 Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
     Image_MimeType *format);
 
