@@ -772,7 +772,7 @@ ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source);
  *     <br>IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存错误。
  *     <br>IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据异常。
  *     <br>IMAGE_RESULT_DECODE_ABNORMAL：图片解码异常。
- *     <br>IMAGE_RESULT_MALLOC_ABNORMAL：图像错误。
+ *     <br>IMAGE_RESULT_MALLOC_ABNORMAL：图像内存分配异常。
  *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图片初始化错误。
  *     <br>IMAGE_RESULT_INIT_ABNORMAL：图片输入数据错误。
  *     <br>IMAGE_RESULT_CROP：裁剪错误。
@@ -815,7 +815,7 @@ int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,
  *     <br>IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST：共享内存错误。
  *     <br>IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据异常。
  *     <br>IMAGE_RESULT_DECODE_ABNORMAL：图片解码异常。
- *     <br>IMAGE_RESULT_MALLOC_ABNORMAL：图像错误。
+ *     <br>IMAGE_RESULT_MALLOC_ABNORMAL：图像内存分配异常。
  *     <br>IMAGE_RESULT_DATA_UNSUPPORT：图片初始化错误。
  *     <br>IMAGE_RESULT_INIT_ABNORMAL：图片输入数据错误。
  *     <br>IMAGE_RESULT_CROP：裁剪错误。
