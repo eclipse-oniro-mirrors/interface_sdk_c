@@ -543,7 +543,7 @@ typedef enum {
      */
     BLEND_MODE_DARKEN,
     /**
-     * Lighten mode. rc = rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d.
+     * Lighten mode. rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d.
      *
      * @since 11
      */
@@ -579,7 +579,7 @@ typedef enum {
      */
     BLEND_MODE_DIFFERENCE,
     /**
-     * Exclusion mode. rc = s + d - two(s * d), ra = s + (1 - sa) * d.
+     * Exclusion mode. rc = s + d - 2 * (s * d), ra = s + (1 - sa) * d.
      *
      * @since 11
      */
