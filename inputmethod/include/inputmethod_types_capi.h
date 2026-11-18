@@ -289,8 +289,22 @@ typedef enum InputMethod_CommandValueType {
 } InputMethod_CommandValueType;
 
 /**
- * @brief Enumerates the input method error codes.
- *
+ * @brief Enumeration of error codes of the input method, which defines the error codes that may occur in the input
+ * method framework, covering various error scenarios such as parameter check failure, package management exception,
+ * input method application exception, and text box client exception. Developers need to determine the error type based
+ * on the specific error code and take corresponding measures to rectify the error. For details, see
+ * [Input Method Framework Error Codes](errorcode-inputmethod-framework.md). <br> <br>Function: Identifies the execution
+ * results and error types of various operations in the input method framework, which is used to determine interface
+ * return values and handle errors. <br> <br>Suggested value: After invoking the input method C API, check whether the
+ * return value is IME_ERR_OK(0). If a value other than IME_ERR_OK is returned, rectify the fault based on the error
+ * code: IME_ERR_NULL_POINTER checks whether the parameter value is NULL. IME_ERR_PARAMCHECK checks the parameter type
+ * and range. The IME_ERR_IMCLIENT/IME_ERR_DETACHED checks the connection between the input box and the input method
+ * service. IME_ERR_IMENGINE checks the running status of the input method application. IME_ERR_QUERY_FAILED checks the
+ * query conditions and data status. <br> <br> Relationship between enumerated values: Enumerated values are classified
+ * into three groups: common error codes(0, 1, 401), framework service error codes(12800001-12800029), and C API error
+ * codes(12802000-12802001). Common error codes are applicable to all interfaces. Framework service error codes are
+ * related to system service status. Error codes dedicated to C APIs apply to null pointers and query failure scenarios
+ * specific to C language interfaces. IME_ERR_OK(0) indicates success, and other values indicate error.
  * @since 12
  */
 typedef enum InputMethod_ErrorCode {
@@ -344,6 +358,12 @@ typedef enum InputMethod_ErrorCode {
      * @since 26.1.0
      */
     OH_INPUTMETHOD_ERR_NOT_DEFAULT_IME = 12800010,
+    /**
+     * @brief The text box is in the non-editing state. The text box may still be bound. This error cannot be equated
+     * with unbound.
+     * @since 26.1.0
+     */
+    OH_INPUTMETHOD_ERR_EDITABLE = 12800016,
     /**
      * @brief Error code when the input capability type is not supported.
      * @since 26.1.0

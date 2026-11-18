@@ -249,11 +249,13 @@ void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
  *     <br>**取值范围：** ≥0。
  *     <br>**取值原则：** 通常设置为光标的实际显示高度，与文本行高一致。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。光标信息已更新。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。cursorInfo为NULL时返回，调用前需确保cursorInfo为有效指针。
- *     <br>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查cursorInfo是否为有效指针。具体错误码可以参考
- * {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。光标信息已更新。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。cursorInfo为NULL时返回，调用前需确保cursorInfo为有效指针。</li>
+ *     <li>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查cursorInfo是否为有效指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  *
  * @since 12
  */
@@ -296,12 +298,15 @@ InputMethod_ErrorCode OH_CursorInfo_SetRect(
  *     <br>**NULL指针处理：** 不可为NULL。
  *     <br>**内存分配责任：** 由调用者分配double变量的内存。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。left、top、width、height已被赋值为正确的光标信息。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。cursorInfo、left、top、width或height为NULL时返回，调用前需确保所有
- * 参数均为有效指针。
- *     <br>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查所有参数是否为有效指针；若返回IME_ERR_OK，四个输出参数即为正确的
- * 光标信息值。具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。left、top、width、height已被赋值为正确的光标信息。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。cursorInfo、left、top、width或height为NULL时返回，调用前需确保所有
+ *     参数均为有效指针。</li>
+ *     <li>**错误处理建议：** 若返回IME_ERR_NULL_POINTER，检查所有参数是否为有效指针；若返回IME_ERR_OK，四个输出参数即为正确的
+ *     光标信息值。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  *
  * @since 12
  */

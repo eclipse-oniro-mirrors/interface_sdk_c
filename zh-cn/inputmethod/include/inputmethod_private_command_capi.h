@@ -230,10 +230,12 @@ void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command);
  * key，便于接收方解析和处理。
  * @param keyLength key值的字节长度，不包括结尾空字符。必须大于0。单次所有私有数据与key值的大小限制32KB。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 传入的command参数或key参数为空指针。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 传入的command参数或key参数为空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *command, char key[], size_t keyLength);
@@ -254,10 +256,12 @@ InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *comma
  * IME_ERR_NULL_POINTER。
  * @param value 布尔类型value值，true或false。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_BOOL。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_BOOL。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand *command, bool value);
@@ -278,10 +282,12 @@ InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand 
  * IME_ERR_NULL_POINTER。
  * @param value 整数类型的value值，32位带符号整数。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_INT32。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_INT32。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *command, int32_t value);
@@ -308,10 +314,12 @@ InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *
  * 内部存储中，调用方无需在SetStrValue调用后保持value指针有效。
  * @param valueLength 表示字符串数据值的字节长度，不包括结尾空字符。必须大于0。单次所有私有数据与key值的大小限制32KB。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_STRING。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数或value参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_STRING。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数或value参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
@@ -336,10 +344,12 @@ InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
  *     不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @param keyLength 输出参数，用于接收key值的字节长度。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，key和keyLength已被写入值。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command、key或keyLength参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，key和keyLength已被写入值。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command、key或keyLength参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetKey(
@@ -366,10 +376,12 @@ InputMethod_ErrorCode OH_PrivateCommand_GetKey(
  * IME_COMMAND_VALUE_TYPE_NONE表示未设置value；IME_COMMAND_VALUE_TYPE_STRING表示字符串类型；IME_COMMAND_VALUE_TYPE_BOOL表
  * 示布尔类型；IME_COMMAND_VALUE_TYPE_INT32表示32位带符号整数类型。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，type已被写入当前value的数据类型。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或type参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，type已被写入当前value的数据类型。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或type参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
@@ -391,12 +403,14 @@ InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
  * @param value 输出参数，用于接收布尔类型的value值。此参数为输出指针，调用方需分配bool类型变量的内存并将其地址传入。不允许传入
  * NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，value指针指向的内存已被写入布尔值。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或value参数为NULL。
- *     <br>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有布尔值，即当前value类型不是IME_COMMAND_VALUE_TYPE_BOOL（类型不
- * 匹配）。建议先调用OH_PrivateCommand_GetValueType确认类型。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，value指针指向的内存已被写入布尔值。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或value参数为NULL。</li>
+ *     <li>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有布尔值，即当前value类型不是IME_COMMAND_VALUE_TYPE_BOOL（类型不
+ *     匹配）。建议先调用OH_PrivateCommand_GetValueType确认类型。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand *command, bool *value);
@@ -418,12 +432,14 @@ InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand 
  * @param value 输出参数，用于接收整数类型的value值。此参数为输出指针，调用方需分配int32_t类型变量的内存并将其地址传入。不允许传
  * 入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，value指针指向的内存已被写入整数值。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或value参数为NULL。
- *     <br>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有整数值，即当前value类型不是IME_COMMAND_VALUE_TYPE_INT32（类型
- * 不匹配）。 建议先调用OH_PrivateCommand_GetValueType确认类型。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，value指针指向的内存已被写入整数值。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或value参数为NULL。</li>
+ *     <li>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有整数值，即当前value类型不是IME_COMMAND_VALUE_TYPE_INT32（类型
+ *     不匹配）。 建议先调用OH_PrivateCommand_GetValueType确认类型。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *command, int32_t *value);
@@ -451,12 +467,14 @@ InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *
  * IME_ERR_NULL_POINTER。
  * @param valueLength 输出参数，用于返回字符串类型value值的字节长度。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，value和valueLength已被写入值。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command、value或valueLength参数为NULL。
- *     <br>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有字符串值，即当前value类型不是IME_COMMAND_VALUE_TYPE_STRING（类
- * 型不匹配）。建议先调用OH_PrivateCommand_GetValueType确认类型。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，value和valueLength已被写入值。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command、value或valueLength参数为NULL。</li>
+ *     <li>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有字符串值，即当前value类型不是IME_COMMAND_VALUE_TYPE_STRING（类
+ *     型不匹配）。建议先调用OH_PrivateCommand_GetValueType确认类型。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetStrValue(
