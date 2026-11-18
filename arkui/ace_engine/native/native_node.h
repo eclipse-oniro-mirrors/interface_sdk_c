@@ -11904,22 +11904,23 @@ typedef enum {
     NODE_SCROLL_STATE = 1002030,
 
     /**
-     * @brief Sets whether to enable scrolling with keyboard arrow keys. When enabled, the component will scroll
-     * in response to arrow key presses when focused but not in active focus state.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
+     * @brief Sets whether the scrolling component supports scrolling by arrow keys. After this function is enabled, the
+     * scrolling component responds to the arrow keys on the keyboard when the focus is obtained and the focus is not
+     * activated. Interfaces for setting, resetting, and obtaining attributes are supported.
+     * as the attribute setting method parameter, attribute obtaining method return value {@link ArkUI_AttributeItem}
+     * format is as follows:
      *
-     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * **Set the attribute {@link ArkUI_AttributeItem} format: * *
      * <ul>
-     * <li>.value[0].i32: Whether to enable scrolling with keyboard arrow keys, 0: no, 1: yes. The default value is 0.
+     * <li>.value[0].i32 Whether to support keyboard scrolling. 0: no; 1: yes. The default value is 0.
      * </li>
      * </ul>
      *
-     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * **Return value {@link ArkUI_AttributeItem} Format: * *
      * <ul>
-     * <li>.value[0].i32: Whether to enable scrolling with keyboard arrow keys, 0: no, 1: yes.</li>
+     * <li>.value[0].i32 Whether to support keyboard scrolling. 0: no; 1: yes. </li>
      * </ul>
+     *
      *
      * @ingroup Scrollable Container Component
      * @since 26.1.0
