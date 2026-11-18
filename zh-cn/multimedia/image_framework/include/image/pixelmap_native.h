@@ -173,22 +173,22 @@ typedef enum {
 typedef enum {
     /**
      * 最近邻插值算法。
-     * 速度最快，放大时会有明显的马赛克/锯齿感，适合对性能要求高、对画质要求低的快速缩放场景。
+     * <br>速度最快，放大时会有明显的马赛克/锯齿感，适合对性能要求高、对画质要求低的快速缩放场景。
      */
     OH_PixelmapNative_AntiAliasing_NONE = 0,
     /**
      * 双线性插值算法。
-     * 适合一般缩放场景。
+     * <br>适合一般缩放场景。
      */
     OH_PixelmapNative_AntiAliasing_LOW = 1,
     /**
      * 双线性插值算法，同时开启Mipmap。
-     * 适合缩小图片的场景，能极好地消除大幅缩小时的混叠与纹理闪烁。
+     * <br>适合缩小图片的场景，能极好地消除大幅缩小时的混叠与纹理闪烁。
      */
     OH_PixelmapNative_AntiAliasing_MEDIUM = 2,
     /**
      * 三次卷积插值算法。
-     * 适合对画质要求较高的放大场景。
+     * <br>适合对画质要求较高的放大场景。
      */
     OH_PixelmapNative_AntiAliasing_HIGH = 3,
 } OH_PixelmapNative_AntiAliasingLevel;
@@ -506,7 +506,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
 /**
  * @brief 获取行跨距。
  * <br>跨距，图像每行像素占用的真实内存大小。单位：字节（Byte）。
- * 跨距 = 图像宽度 \* 每像素字节数 + 填充（padding），填充是每行像素的末尾为内存对齐所增加的空白区域。
+ * 跨距 = 图像宽度 × 每像素字节数 + 填充（padding），填充是每行像素的末尾为内存对齐所增加的空白区域。
  *
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param rowStride 跨距，单位：字节（Byte）。
@@ -521,7 +521,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
 /**
  * @brief 设置行跨距。
  * <br>跨距，图像每行像素占用的真实内存大小。单位：字节（Byte）。
- * 跨距 = 图像宽度 \* 每像素字节数 + 填充（padding），填充是每行像素的末尾为内存对齐所增加的空白区域。
+ * 跨距 = 图像宽度 × 每像素字节数 + 填充（padding），填充是每行像素的末尾为内存对齐所增加的空白区域。
  *
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param rowStride 跨距，单位：字节（Byte）。
@@ -647,6 +647,8 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, i
 
 /**
  * @brief 获取行跨距。
+ * <br>跨距，图像每行像素占用的真实内存大小。单位：字节（Byte）。
+ * 跨距 = 图像宽度 × 每像素字节数 + 填充（padding），填充是每行像素的末尾为内存对齐所增加的空白区域。
  *
  * @param info 被操作的OH_Pixelmap_ImageInfo指针。
  * @param rowStride 跨距，内存中每行像素所占的空间。单位：字节（Byte）。
@@ -704,8 +706,8 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info);
  * <br>此接口不支持创建以下像素格式的Pixelmap：PIXEL_FORMAT_RGBA_1010102、PIXEL_FORMAT_YCBCR_P010和PIXEL_FORMAT_YCRCB_P010。
  *
  * @param data 像素数据的数组。
- *     传入的像素数据默认按BGRA_8888格式解析，如果需要设置为其他格式，请参考{@link OH_PixelmapInitializationOptions_SetSrcPixelFormat}。
- *     如果像素数据中含有用于内存对齐的行末填充字节，则必须使用{@link OH_PixelmapInitializationOptions_SetRowStride}设置行跨距。
+ *     <br>传入的像素数据默认按BGRA_8888格式解析，如果需要设置为其他格式，请参考{@link OH_PixelmapInitializationOptions_SetSrcPixelFormat}。
+ *     <br>如果像素数据中含有用于内存对齐的行末填充字节，则必须使用{@link OH_PixelmapInitializationOptions_SetRowStride}设置行跨距。
  * @param dataLength 像素数组的长度。单位：字节（Byte）。
  * @param options 创建图像的初始化属性。
  * @param pixelmap 被创建的OH_PixelmapNative对象指针。
@@ -724,8 +726,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
  * 请参考{@link OH_PixelmapInitializationOptions_GetRowStride}获取详细说明。
  *
  * @param data 像素数据的数组。
- *     传入的像素数据默认按BGRA_8888格式解析，如果需要设置为其他格式，请参考{@link OH_PixelmapInitializationOptions_SetSrcPixelFormat}。
- *     如果像素数据中含有用于内存对齐的行末填充字节，则必须使用{@link OH_PixelmapInitializationOptions_SetRowStride}设置行跨距。
+ *     <br>传入的像素数据默认按BGRA_8888格式解析，如果需要设置为其他格式，请参考{@link OH_PixelmapInitializationOptions_SetSrcPixelFormat}。
+ *     <br>如果像素数据中含有用于内存对齐的行末填充字节，则必须使用{@link OH_PixelmapInitializationOptions_SetRowStride}设置行跨距。
  * @param dataLength 像素数组的长度。单位：字节（Byte）。
  * @param options 创建图像的初始化属性。
  * @param allocator 决定Pixelmap内存分配的类型。
@@ -781,7 +783,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, na
  * @brief 读取图像像素数据，并按照Pixelmap的像素格式存入缓冲区中。
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
- * @param destination 目标缓冲区，获取的像素数据会被拷贝至该缓冲区。缓冲区内像素的格式与PixelMap相同，不包含内存对齐填充字节。
+ * @param destination 目标缓冲区，获取的像素数据会被拷贝至该缓冲区。缓冲区内像素的格式与Pixelmap相同，不包含内存对齐填充字节。
  * @param bufferSize 缓冲区大小。单位：字节（Byte）。可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
  *     RGBA格式的缓冲区大小等于width \* height \* 4，
  *     NV21与NV12格式的缓冲区大小等于width \* height + ((width+1)/2) \* ((height+1)/2) \* 2。
@@ -812,33 +814,32 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
 /**
  * @brief 将缓冲区内指定像素格式的像素数据写入整个Pixelmap。
  *
- * 支持的源像素格式为{@link PIXEL_FORMAT_BGRA_8888}、{@link PIXEL_FORMAT_RGBA_8888}、{@link PIXEL_FORMAT_RGB_888}、
- * {@link PIXEL_FORMAT_RGB_565}和{@link PIXEL_FORMAT_RGBA_F16}。
+ * > **说明**
+ * >
+ * > - 本接口仅支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
+ * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。
+ * > - 如需写入与当前Pixelmap像素格式相同的源数据（包括[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式），
+ * 请使用{@link OH_PixelmapNative_WritePixels}。
+ * > - 如需写入具有自定义行跨距或偏移量的源数据，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
  *
- * 本接口同步执行，可能申请内存并转换像素数据，耗时与像素数量及像素格式有关。
- * 对于大图，建议在工作线程调用，避免阻塞UI线程。源缓冲区在接口返回前必须保持有效，且不能被修改。
- * 调用方必须串行访问同一个Pixelmap，包括读取、写入、访问像素及释放操作。
- * 不得对同一个Pixelmap重入调用本接口，也不得在信号处理函数中调用本接口。
- * Pixelmap已锁定或不可编辑时，接口直接返回IMAGE_UNSUPPORTED_OPERATION，不等待其变为可写状态。
- * 操作失败后，接口不会自动重试。
- * 写入失败时，不保证Pixelmap的像素数据保持原样。不得使用失败写入后的像素内容；
- * 排除失败原因后，应从有效源数据恢复像素内容，或重新创建Pixelmap。
- * 参数或转换错误应通过修正输入或选择受支持的格式处理；拷贝错误应在再次写入前检查可用内存及缓冲区有效性。
+ * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
  *
- * 本接口支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
- * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。<br>
- * 如需写入与当前Pixelmap像素格式相同的源数据（包括YUV格式），请使用{@link OH_PixelmapNative_WritePixels}。<br>
- * 如需写入具有自定义行跨距或偏移量的源数据，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
+ * Pixelmap宽度 × Pixelmap高度 × 每像素字节数
  *
- * @param pixelmap [in,out] 待修改像素数据的Pixelmap指针，不能为空指针。
+ * 公式中每像素字节数取决于sourcePixelFormat，
+ * 各格式的每像素占用字节数见[PixelMapFormat](docroot://reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)。
+ *
+ * @param pixelmap [in][out] 待修改像素数据的Pixelmap指针，不能为空指针。
  * @param source [in] 源像素数据缓冲区指针，不能为空指针，该缓冲区内的像素数据会被拷贝至Pixelmap。
- *     缓冲区内的像素数据必须是整个PixelMap的像素数据，且不包含内存对齐填充字节。
- * @param bufferSize [in] 缓冲区大小。单位：字节（Byte）。所需的最小缓冲区大小可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
- * @param sourcePixelFormat [in] 源数据的像素格式，支持BGRA_8888、RGBA_8888、RGB_888、RGB_565和RGBA_F16。
+ *     缓冲区内的像素数据必须至少包含整个Pixelmap的像素数据，且不包含内存对齐填充字节。
+ * @param bufferSize [in] 缓冲区大小。单位：字节（Byte）。所需的最小缓冲区大小请参考上方说明中的计算公式。
+ * @param sourcePixelFormat [in] 源数据的像素格式。支持的值为PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、
+ *     PIXEL_FORMAT_RGB_888、PIXEL_FORMAT_RGB_565和PIXEL_FORMAT_RGBA_F16。
  * @return IMAGE_SUCCESS：操作成功。
  *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑或已锁定。
  *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
  *     <br>IMAGE_INVALID_PARAMETER：pixelmap或source为空指针、bufferSize不足，或者sourcePixelFormat无效或不受支持。
+ *     <br>IMAGE_ALLOC_FAILED：内存申请失败。
  *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
  * @since 26.1.0
  */
@@ -846,12 +847,33 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsWithPixelFormat(OH_PixelmapNative *
     uint32_t bufferSize, PIXEL_FORMAT sourcePixelFormat);
 
 /**
- * @brief 从Pixelmap的指定区域中读取像素数据并存入缓冲区。如果Pixelmap的像素格式为YUV类型，则会按照Pixelmap的像素格式存入缓冲区，
- * 否则会按照BGRA_8888格式存入缓冲区。
+ * @brief 从Pixelmap的指定区域中读取像素数据并存入缓冲区。
+ * 如果Pixelmap的像素格式为[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式，
+ * 则会按照Pixelmap的像素格式存入缓冲区，否则会按照BGRA_8888格式存入缓冲区。
+ *
+ * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
+ *
+ * - [RGB](docroot://media/image/image-glossary.md#rgb-pixel-formatrgb像素格式)格式：
+ * offset + (height - 1) × stride + width × 每像素字节数
+ * （其中stride ≥ width × 每像素字节数且stride为每像素字节数的整数倍，当stride等于width × 每像素字节数（无行末填充）时，
+ * 该公式可化简为offset + width × height × 每像素字节数）
+ * - [YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式：
+ * offset + width × height × 每像素字节数（此类格式不使用stride）
+ *
+ * 公式中各符号的含义如下：
+ *
+ * | 符号 | 含义 | 对应字段 |
+ * | --- | --- | --- |
+ * | offset | 缓冲区内第一个像素的字节偏移量。 | area->offset |
+ * | stride | 内存中每行像素（含行末填充字节）所占的字节数。 | area->stride |
+ * | width | 读取区域的宽度，单位为像素（px）。 | area->region.size.width |
+ * | height | 读取区域的高度，单位为像素（px）。 | area->region.size.height |
+ * | 每像素字节数 | 各格式的每像素占用字节数见
+ * [PixelMapFormat](docroot://reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)。 | - |
  *
  * @param pixelmap 被读取的Pixelmap。
  * @param area 读取数据的Pixelmap指定区域，该区域的像素数据会被读取并拷贝至area->pixels。
- *     如果PixelMap的像素格式为YUV类型，则获取的像素数据格式与Pixelmap相同，否则会被转换为BGRA_8888格式。
+ *     如果Pixelmap的像素格式为YUV格式，则获取的像素数据格式与Pixelmap相同，否则会被转换为BGRA_8888格式。
  * @return IMAGE_SUCCESS：操作成功。
  *     <br>IMAGE_BAD_PARAMETER：参数无效，例如：pixelmap或area有误。
  *     <br>IMAGE_UNKNOWN_ERROR：未知的内部错误，例如：不支持的像素格式。
@@ -860,12 +882,33 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsWithPixelFormat(OH_PixelmapNative *
 Image_ErrorCode OH_PixelmapNative_ReadPixelsFromArea(OH_PixelmapNative *pixelmap, Image_PositionArea *area);
 
 /**
- * @brief 将缓冲区中的像素数据写入Pixelmap的指定区域。如果Pixelmap的像素格式为YUV类型，则数据源的格式需与Pixelmap相同，
- * 否则数据源需要为BGRA_8888格式。
+ * @brief 将缓冲区中的像素数据写入Pixelmap的指定区域。
+ * 如果Pixelmap的像素格式为[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式，
+ * 则数据源的格式需与Pixelmap相同，否则数据源需要为BGRA_8888格式。
+ *
+ * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
+ *
+ * - [RGB](docroot://media/image/image-glossary.md#rgb-pixel-formatrgb像素格式)格式：
+ * offset + (height - 1) × stride + width × 每像素字节数
+ * （其中stride ≥ width × 每像素字节数且stride为每像素字节数的整数倍，当stride等于width × 每像素字节数（无行末填充）时，
+ * 该公式可化简为offset + width × height × 每像素字节数）
+ * - [YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式：
+ * offset + width × height × 每像素字节数（此类格式不使用stride）
+ *
+ * 公式中各符号的含义如下：
+ *
+ * | 符号 | 含义 | 对应字段 |
+ * | --- | --- | --- |
+ * | offset | 缓冲区内第一个像素的字节偏移量。 | area->offset |
+ * | stride | 内存中每行像素（含行末填充字节）所占的字节数。 | area->stride |
+ * | width | 写入区域的宽度，单位为像素（px）。 | area->region.size.width |
+ * | height | 写入区域的高度，单位为像素（px）。 | area->region.size.height |
+ * | 每像素字节数 | 各格式的每像素占用字节数见
+ * [PixelMapFormat](docroot://reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)。 | - |
  *
  * @param pixelmap 被写入的Pixelmap。
  * @param area 写入数据的Pixelmap指定区域，area->pixels中的像素数据会被写入Pixelmap的该区域。
- *     如果PixelMap的像素格式为YUV类型，则area->pixels中的像素数据格式需与PixelMap相同，否则需要为BGRA_8888格式。
+ *     如果Pixelmap的像素格式为YUV格式，则area->pixels中的像素数据格式需与Pixelmap相同，否则需要为BGRA_8888格式。
  * @return IMAGE_SUCCESS：操作成功。
  *     <br>IMAGE_BAD_PARAMETER：参数无效，例如：pixelmap或area有误。
  *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑。
@@ -876,36 +919,40 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap,
 
 /**
  * @brief 将缓冲区内指定像素格式的像素数据写入Pixelmap的指定区域。
+ * 
+ * > **说明**
+ * >
+ * > - 本接口仅支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
+ * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。
+ * > - 如需向[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式的Pixelmap中写入相同格式的像素数据，
+ * 请使用{@link OH_PixelmapNative_WritePixelsToArea}。
  *
- * 支持的源像素格式为{@link PIXEL_FORMAT_BGRA_8888}、{@link PIXEL_FORMAT_RGBA_8888}、{@link PIXEL_FORMAT_RGB_888}、
- * {@link PIXEL_FORMAT_RGB_565}和{@link PIXEL_FORMAT_RGBA_F16}。
+ * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
  *
- * 所需的最小缓冲区大小计算公式为：area->offset + (area->region.height - 1) * area->stride +
- * area->region.width * sourcePixelFormat的每像素字节数。
- * 其中area->stride的值必须大于或等于area->region.width乘以sourcePixelFormat的每像素字节数。
+ * offset + (height - 1) × stride + width × 每像素字节数
+ * （其中stride ≥ width × 每像素字节数且stride为每像素字节数的整数倍，当stride等于width × 每像素字节数（无行末填充）时，
+ * 该公式可化简为offset + width × height × 每像素字节数）
  *
- * 本接口同步执行，可能申请内存并转换像素数据，耗时与区域内像素数量及像素格式有关。
- * 对于较大区域，建议在工作线程调用，避免阻塞UI线程。区域信息及源像素缓冲区在接口返回前必须保持有效，且不能被修改。
- * 调用方必须串行访问同一个Pixelmap，包括读取、写入、访问像素及释放操作。
- * 不得对同一个Pixelmap重入调用本接口，也不得在信号处理函数中调用本接口。
- * Pixelmap已锁定或不可编辑时，接口直接返回IMAGE_UNSUPPORTED_OPERATION，不等待其变为可写状态。
- * 操作失败后，接口不会自动重试。
- * 写入失败时，不保证指定区域的像素数据保持原样。不得使用失败写入后的像素内容；
- * 排除失败原因后，应从有效源数据恢复像素内容，或重新创建Pixelmap。
- * 参数或转换错误应通过修正输入或选择受支持的格式处理；拷贝错误应在再次写入前检查可用内存及缓冲区有效性。
+ * 公式中各符号的含义如下：
  *
- * 本接口支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
- * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。<br>
- * 如需将YUV格式的像素数据写入同一YUV格式的Pixelmap，请使用{@link OH_PixelmapNative_WritePixelsToArea}。
+ * | 符号 | 含义 | 对应字段 |
+ * | --- | --- | --- |
+ * | offset | 缓冲区内第一个像素的字节偏移量。 | area->offset |
+ * | stride | 内存中每行像素（含行末填充字节）所占的字节数。 | area->stride |
+ * | width | 写入区域的宽度，单位为像素（px）。 | area->region.size.width |
+ * | height | 写入区域的高度，单位为像素（px）。 | area->region.size.height |
+ * | 每像素字节数 | 取决于sourcePixelFormat，各格式的每像素占用字节数见
+ * [PixelMapFormat](docroot://reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7) | - |
  *
- * @param pixelmap [in,out] 待修改像素数据的Pixelmap指针，不能为空指针。
- * @param area [in] 写入区域信息指针，area和area->pixels均不能为空指针。
- *     数据将从area->pixels拷贝至area->region指定的区域。源缓冲区大小area->pixelsSize不小于上述缓冲区的最小大小。
- * @param sourcePixelFormat [in] 源像素的像素格式，支持BGRA_8888、RGBA_8888、RGB_888、RGB_565和RGBA_F16。
+ * @param pixelmap [in][out] 待修改像素数据的Pixelmap指针，不能为空指针。
+ * @param area [in] 写入的区域数据。<br>数据将从area->pixels拷贝至area->region指定的区域。
+ * @param sourcePixelFormat [in] 源数据的像素格式。支持的值为PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、
+ *     PIXEL_FORMAT_RGB_888、PIXEL_FORMAT_RGB_565和PIXEL_FORMAT_RGBA_F16。
  * @return IMAGE_SUCCESS：操作成功。
  *     <br>IMAGE_UNSUPPORTED_OPERATION：Pixelmap不可编辑或已锁定。
  *     <br>IMAGE_UNSUPPORTED_CONVERSION：不支持从sourcePixelFormat转换为Pixelmap的像素格式。
  *     <br>IMAGE_INVALID_PARAMETER：pixelmap、area或area->pixels为空指针，缓冲区大小、偏移量、行跨距或区域无效，或者sourcePixelFormat无效或不受支持。
+ *     <br>IMAGE_ALLOC_FAILED：内存申请失败。
  *     <br>IMAGE_COPY_FAILED：像素数据复制或转换失败。
  * @since 26.1.0
  */
@@ -981,9 +1028,9 @@ Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rat
  *
  * @param pixelmap 被缩放的OH_PixelmapNative的指针。
  * @param scaleX 宽度的缩放倍数。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param scaleY 高度的缩放倍数。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_GET_IMAGE_DATA_FAILED：获取图像数据失败。可能的原因：内部数据损坏。详情请检查日志。
  *     <br>IMAGE_PIXELMAP_RELEASED：Pixelmap已被释放。
@@ -1000,9 +1047,9 @@ Image_ErrorCode OH_PixelmapNative_ApplyScale(OH_PixelmapNative *pixelmap, float 
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
  * @param scaleX 宽度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param scaleY 高度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
  * @since 12
@@ -1014,9 +1061,9 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
  *
  * @param pixelmap 被缩放的OH_PixelmapNative的指针。
  * @param scaleX 宽度的缩放倍数。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param scaleY 高度的缩放倍数。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param level 采用的缩放算法。该参数对于ASTC格式的Pixelmap不生效。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_GET_IMAGE_DATA_FAILED：获取图像数据失败。可能的原因：内部数据损坏。详情请检查日志。
@@ -1035,9 +1082,9 @@ Image_ErrorCode OH_PixelmapNative_ApplyScaleWithAntiAliasing(OH_PixelmapNative *
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
  * @param scaleX 宽度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param scaleY 高度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param level 缩放算法。该参数对于ASTC格式的Pixelmap不生效。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
@@ -1055,9 +1102,9 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
  * @param srcPixelmap 被操作的OH_PixelmapNative指针，源Pixelmap对象指针。
  * @param dstPixelmap 被操作的OH_PixelmapNative指针，目标Pixelmap对象指针。
  * @param scaleX 宽度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param scaleY 高度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
  * @since 18
@@ -1072,9 +1119,9 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
  * @param srcPixelmap 被操作的OH_PixelmapNative指针，源Pixelmap对象指针。
  * @param dstPixelmap 被操作的OH_PixelmapNative指针，目标Pixelmap对象指针。
  * @param scaleX 宽度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param scaleY 高度的缩放比例。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param level 缩放算法。该参数对于ASTC格式的Pixelmap不生效。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
@@ -1118,7 +1165,7 @@ Image_ErrorCode OH_PixelmapNative_Clone(OH_PixelmapNative *srcPixelmap, OH_Pixel
  * @param srcPixelmap 源Pixelmap。
  * @param region 裁剪区域。
  * @param scale 宽和高的缩放倍数。
- *     取值不能为0，建议取正数，否则会产生翻转效果。
+ *     <br>取值不能为0，建议取正数，否则会产生翻转效果。
  * @param level 要使用的缩放插值算法。该参数对于ASTC格式的Pixelmap不生效。
  * @param dstPixelmap 被创建的目标Pixelmap。
  * @return IMAGE_SUCCESS：操作成功。
@@ -1135,12 +1182,15 @@ Image_ErrorCode OH_PixelmapNative_CreateCroppedAndScaledPixelMap(OH_PixelmapNati
 /**
  * @brief 根据指定的横向和纵向距离对Pixelmap进行水平或垂直方向的平移。
  * <br>平移后的图像尺寸将变为：宽度 = 原宽度 + x，高度 = 原高度 + y。
+ * <br>如果平移造成图像尺寸扩大，新增的区域（原图范围之外）以空白填充：
+ * 非[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式填充为透明黑色（所有分量为0），
+ * YUV格式填充为白色（Y分量为255、UV分量为128）。
  *
  * @param pixelmap 被平移的OH_PixelmapNative的指针。
  * @param x 横向平移的距离。方向为正数向右，负数向左。取值范围是(-图像宽度, +∞)。单位：像素（px）。
- *     取值为负数时，平移的效果等同于裁剪掉自图像左侧起的x列像素。
+ *     <br>取值为负数时，平移的效果等同于裁剪掉自图像左侧起的x列像素。
  * @param y 纵向平移的距离。方向为正数向下，负数向上。取值范围是(-图像高度, +∞)。单位：像素（px）。
- *     取值为负数时，平移的效果等同于裁剪掉自图像上方起的y行像素。
+ *     <br>取值为负数时，平移的效果等同于裁剪掉自图像上方起的y行像素。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_GET_IMAGE_DATA_FAILED：获取图像数据失败。可能的原因：内部数据损坏。详情请检查日志。
  *     <br>IMAGE_PIXELMAP_RELEASED：Pixelmap已被释放。
@@ -1154,13 +1204,16 @@ Image_ErrorCode OH_PixelmapNative_ApplyTranslate(OH_PixelmapNative *pixelmap, fl
 /**
  * @brief 根据输入的平移距离对图片进行位置变换。
  * <br>平移后的图像尺寸将变为：宽度 = 原宽度 + x，高度 = 原高度 + y。
+ * <br>如果平移造成图像尺寸扩大，新增的区域（原图范围之外）以空白填充：
+ * 非[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式填充为透明黑色（所有分量为0），
+ * YUV格式填充为白色（Y分量为255、UV分量为128）。
  * <br>从API版本26.0.0开始，建议使用{@link OH_PixelmapNative_ApplyTranslate}代替，以获得更完善的异常报错信息。
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
  * @param x 横向平移的距离。方向为正数向右，负数向左。取值范围是(-图像宽度, +∞)。单位：像素（px）。
- *     取值为负数时，平移的效果等同于裁剪掉自图像左侧起的x列像素。
+ *     <br>取值为负数时，平移的效果等同于裁剪掉自图像左侧起的x列像素。
  * @param y 纵向平移的距离。方向为正数向下，负数向上。取值范围是(-图像高度, +∞)。单位：像素（px）。
- *     取值为负数时，平移的效果等同于裁剪掉自图像上方起的y行像素。
+ *     <br>取值为负数时，平移的效果等同于裁剪掉自图像上方起的y行像素。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
  * @since 12
@@ -1168,10 +1221,12 @@ Image_ErrorCode OH_PixelmapNative_ApplyTranslate(OH_PixelmapNative *pixelmap, fl
 Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x, float y);
 
 /**
- * @brief 根据指定的角度对Pixelmap进行旋转。YUV格式仅支持90°倍数的旋转角。
+ * @brief 根据指定的角度对Pixelmap进行旋转。
+ * <br>旋转角度入参无限制，超出[0, 360]时将根据圆周360°自动矫正（例如，-100°与260°效果相同）；
+ * [YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式仅支持90°倍数的旋转角。
  *
  * @param pixelmap 被旋转的OH_PixelmapNative的指针。
- * @param angle 旋转的角度。单位：角度（°）。
+ * @param angle 旋转的角度。方向为正数顺时针，负数逆时针。单位：角度（°）。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_GET_IMAGE_DATA_FAILED：获取图像数据失败。可能的原因：内部数据损坏。详情请检查日志。
  *     <br>IMAGE_PIXELMAP_RELEASED：Pixelmap已被释放。
@@ -1183,11 +1238,13 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
 Image_ErrorCode OH_PixelmapNative_ApplyRotate(OH_PixelmapNative *pixelmap, float angle);
 
 /**
- * @brief 根据输入的角度对图片进行旋转，YUV格式仅支持90°倍数的旋转角。
+ * @brief 根据输入的角度对图片进行旋转。
+ * <br>旋转角度入参无限制，超出[0, 360]时将根据圆周360°自动矫正（例如，-100°与260°效果相同）；
+ * [YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式仅支持90°倍数的旋转角。
  * <br>从API版本26.0.0开始，建议使用{@link OH_PixelmapNative_ApplyRotate}代替，以获得更完善的异常报错信息。
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
- * @param angle 图片旋转的角度。单位：角度（°）。
+ * @param angle 图片旋转的角度。方向为正数顺时针，负数逆时针。单位：角度（°）。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
  * @since 12
@@ -1373,8 +1430,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromSurface(const char *surfaceI
  * @param length 对应Surface的ID字符串长度。单位：字节（Byte）。
  * @param transformEnabled 是否对携带变换信息的Surface预先进行逆变换来消除Pixelmap的旋转或翻转效果，即是否进行方向校正。
  *     如果Surface未携带变换信息，则本参数不生效。
- *     true表示进行逆变换，变换的角度与Surface携带的角度一致且方向相反，输出的Pixelmap无旋转或翻转效果。
- *     false表示不进行逆变换，输出的Pixelmap会根据Surface中的变换信息而带有旋转或翻转效果。
+ *     <br>true表示进行逆变换，变换的角度与Surface携带的角度一致且方向相反，输出的Pixelmap无旋转或翻转效果。
+ *     <br>false表示不进行逆变换，输出的Pixelmap会根据Surface中的变换信息而带有旋转或翻转效果。
  * @param pixelmap 被创建的Pixelmap。
  * @return IMAGE_SUCCESS：操作成功。
  *     <br>IMAGE_INVALID_PARAMETER：参数无效，例如：surfaceId或pixelmap有误。
@@ -1423,7 +1480,7 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, O
  * @param pixelmap 被操作的OH_PixelmapNative指针，Pixelmap的内存类型必须是DMA。
  * @param key 元数据的关键字。
  * @param value 元数据的值。
- *     如果获取的是动态元数据（HDR_DYNAMIC_METADATA）且接口调用成功，使用完成后必须调用free(value->dynamicMetadata.data)释放内存。
+ *     <br>如果获取的是动态元数据（HDR_DYNAMIC_METADATA）且接口调用成功，使用完成后必须调用free(value->dynamicMetadata.data)释放内存。
  * @return IMAGE_SUCCESS：执行成功。
  *     <br>IMAGE_BAD_PARAMETER：参数错误。
  *     <br>IMAGE_DMA_NOT_EXIST：不存在DMA内存。
@@ -1475,7 +1532,7 @@ Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelma
 
 /**
  * @brief 设置Pixelmap的内存标识符，便于在内存调试或问题定位时识别该内存。
- * <br>仅支持DMA和SHARE_MEMORY内存类型的PixelMap设置内存标识符。
+ * <br>仅支持DMA和SHARE_MEMORY内存类型的Pixelmap设置内存标识符。
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
  * @param name 需要设置的内存标识符。DMA内存标识符的字符串长度取值范围为[1, 255]字节，
