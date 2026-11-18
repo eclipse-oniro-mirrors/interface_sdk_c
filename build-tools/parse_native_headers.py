@@ -178,7 +178,7 @@ class HeaderProcessor:
 
 
     def _add_version_include(self, content: str) -> str:
-        """在头文件保护宏后添加#include "info/application_target_sdk_version.h"，无保护宏则在第一个#include前添加"""
+        """在头文件保护宏后添加版本头文件 #include，无保护宏则在第一个#include前添加"""
         target_include = '#include "info/application_target_sdk_version.h"'
 
         # 尝试在头文件保护宏后添加
@@ -514,7 +514,6 @@ def main():
     parser.add_argument('--input', required=True, help="头文件目录路径（就地修改）")
     parser.add_argument('--sdk-api-version', required=True, help="当前构建API版本")
     parser.add_argument('--sdk-build-public', default='false', help="是否公共SDK构建（true则裁剪@systemapi）")
-    parser.add_argument('--skip-version-macro', action='store_true', help="跳过版本宏添加（lite构建使用）")
     parser.add_argument('--sdk-build-check-level', default='0', help="API版本校验级别（0：不校验，非0：校验）")
     args = parser.parse_args()
 
@@ -535,11 +534,8 @@ def main():
     if int(check_level) != 0:
         check_api_version_method(args)
 
-    # 第三步：添加版本宏（就地修改），lite构建跳过此步骤
-    if not args.skip_version_macro:
-        add_files_to_process(args.input)
-    else:
-        print("skip version macro addition for lite build")
+    # 第三步：添加版本宏（就地修改）
+    add_files_to_process(args.input)
 
 
 if __name__ == '__main__':
