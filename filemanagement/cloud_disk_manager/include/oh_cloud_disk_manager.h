@@ -960,7 +960,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
  * @param relativePathInfo Relative path in the sync root.
  * @param placeholderInfo Placeholder metadata information.
  * @param customInfo Optional opaque custom information. **NULL** indicates that the information is not provided.
- * @return {@link_DISK_OK} is returned if the operation is successful.
+ * @return {@link CLOUD_DISK_OK} is returned if the operation is successful.
  *     <br>{@link CloudDisk_ErrorCode} is returned otherwise.
  * @since 26.0.1
  */
@@ -1103,7 +1103,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
  * @param reqHead Callback request header.
  * @param reqContext Callback request context.
  * @param rsp Callback response.
- * @return {@link_DISK_OK} is returned if the operation is successful.
+ * @return {@link CLOUD_DISK_OK} is returned if the operation is successful.
  *     <br>{@link CloudDisk_ErrorCode} is returned otherwise.
  * @since 26.0.1
  */
