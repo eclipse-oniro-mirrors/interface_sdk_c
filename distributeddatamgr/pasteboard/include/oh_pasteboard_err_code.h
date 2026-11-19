@@ -17,7 +17,7 @@
  * @addtogroup Pasteboard
  * @{
  *
- * @brief Provides the copy and paste support for the system Pasteboard.
+ * @error Provides the copy and paste support for the system Pasteboard.
  * You can use the APIs of this module to operate the Pasteboard content of the plain text, HTML,
  * URI, Want, pixel map, and other types.
  *
@@ -27,7 +27,7 @@
 /**
  * @file oh_pasteboard_err_code.h
  *
- * @brief Declaration error code information.
+ * @error Declaration error code information.
  *
  * @kit BasicServicesKit
  * @include <database/pasteboard/oh_pasteboard_err_code.h>
@@ -52,46 +52,46 @@ extern "C" {
  */
 typedef enum PASTEBOARD_ErrCode {
     /**
-     * @brief Operation successful.
+     * @error Operation successful.
      */
     ERR_OK = 0,
     /**
-     * @brief Permission verification failed.
+     * @error Permission verification failed.
      */
     ERR_PERMISSION_ERROR = 201,
     /**
-     * @brief Invalid parameter.
+     * @error Invalid parameter.
      */
     ERR_INVALID_PARAMETER = 401,
     /**
-     * @brief Device capability not supported.
+     * @error Device capability not supported.
      */
     ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * @brief Internal error.
+     * @error Internal error.
      */
     ERR_INNER_ERROR = 12900000,
     /**
-     * @brief System busy.
+     * @error System busy.
      */
     ERR_BUSY = 12900003,
     /**
-     * @brief Failed to copy files.
+     * @error Failed to copy files.
      * @since 15
      */
     ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007,
     /**
-     * @brief Failed to display the progress.
+     * @error Failed to display the progress.
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008,
     /**
-     * @brief Abnormal progress.
+     * @error Abnormal progress.
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009,
     /**
-     * @brief Failed to obtain the pasteboard data.
+     * @error Failed to obtain the pasteboard data.
      * @since 15
      */
     ERR_PASTEBOARD_GET_DATA_FAILED = 12900010
