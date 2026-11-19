@@ -20377,8 +20377,9 @@ int32_t OH_ArkUI_NativeModule_UnregisterInspectorTreeGetter(ArkUI_NodeHandle nod
  */
 typedef enum {
     /**
-     * The position of the adopted node's overlays follows the adopt-parent chain and applies the developer-provided
-     * compensation at each adoption boundary.
+     * @brief The floating layer node of the admitted node calculates the display position based on the chain of foster
+     * parent nodes that admitted the node, and applies the compensation provided by the developer calling the {@link OH_ArkUI_NativeModule_SetAdoptedChildOverlayPositionCompensation}
+     * interface at each admission boundary.
      *
      * @since 26.1.0
      */
@@ -20386,43 +20387,48 @@ typedef enum {
 } OH_ArkUI_AdoptPolicy;
 
 /**
- * @brief Adopts the target node as an affiliated node. The adopted node must not have an existing parent. This API is
- * not used to add a node as a child node. Instead, it only allows the node to receive lifecycle callbacks of the
- * corresponding child node. Configure the render position of the overlay node of the adopted node by policy.
+ * @brief The current node accepts the target node as the auxiliary node. An admitted node cannot have a parent node.
+ * Calling this interface does not actually add it as a child node,
+ * Instead, it is only allowed to receive lifecycle callbacks for the corresponding child nodes. Configure the floating
+ * layer node rendering position of the admitted node through the policy.
  *
- * @param node [in] **ArkUI_NodeHandle** pointer, which specifies the parent node of the node to be adopted.
- * @param child [in] **ArkUI_NodeHandle** pointer, which specifies the child node to be adopted.
+ * @param node [in] ArkUI_NodeHandle Pointer to the parent node of the node to be admitted.
+ * @param child [in] ArkUI_NodeHandle Pointer to the subnode to be accepted.
  * @param policy [in] Rendering position policy of overlay nodes of adopted node.
- *     Valid values correspond to {@link OH_ArkUI_AdoptPolicy}.
- * @return Result code.
- *     <ul><li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if C API initialization failed.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_NODE_HAS_PARENT} if the adopted node already has a parent node.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED} if the node cannot be
- *     adopted as an affiliated node.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO} if the node cannot adopt
- *     other affiliated nodes.</li></ul>
+ *         Valid values correspond to {@link OH_ArkUI_AdoptPolicy}.
+ * @return Return value.
+ *     <ul><li>If the operation is successful, {@link ARKUI_ERROR_CODE_NO_ERROR} is returned. </li>
+ *     <li>If the parameter is abnormal, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned. </li>
+ *     <li>If CAPI initialization fails, {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} is returned. </li>
+ *     <li>If the admitted node has a parent node, {@link ARKUI_ERROR_CODE_NODE_HAS_PARENT} is returned. </li>
+ *     <li>If the node cannot be accepted as a subsidiary node, {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED} is
+ *     returned. </li>
+ *     <li>If the node cannot accept other auxiliary nodes, return {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO}.
+ *     </li></ul>
  * @since 26.1.0
  */
+
 int32_t OH_ArkUI_NativeModule_AdoptChildWithPolicy(
     ArkUI_NodeHandle node, ArkUI_NodeHandle child, OH_ArkUI_AdoptPolicy policy);
 
 /**
- * @brief Sets the position compensation from an adopted child to its adopt parent. The compensation
- * represents the aggregate effect of the pure rendering node tree between them. First, the translation is performed
- * using compensationOffset, and then the transformation is performed using compensationTransform. Compensation only
- * takes effect if the child node has been adopted using the following policy
+ * @brief Sets the position compensation from the accepted child node to the accepted parent node. This compensation
+ * represents the overall impact of the tree of pure render nodes between them.
+ * CompensationOffset is the accumulated offset compensation of pure rendering nodes, including only the offset of each
+ * node. The compensationTransform is the accumulative transformation compensation matrix of the pure render node,
+ * Contains transformations such as offset, rotation, and scaling for each node. Compensation takes effect only when the
+ * child node has been admitted through the following policies:
  * {@link OH_ARKUI_NATIVE_MODULE_ADOPT_POLICY_OVERLAY_POSITION_FOLLOWS_ADOPT_PARENT_CHAIN}.
  *
  * @param adoptedChild [in] The adopted node that require location compensation.
- * @param compensationOffset [in] x/y offset compensation, in px.
- * @param compensationTransform [in] Aggregation transformation compensation.
- * @return Result code.
- *     <ul><li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if C API initialization failed.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the parameter is invalid.</li>
- *     <li>Returns {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN} if the child is not adopted
- *         with the required policy.</li></ul>
+ * @param compensationOffset [in] x/y compensation offset (in pixels).
+ * @param compensationTransform [in] Aggregate transform compensation matrix.
+ * @returnReturn value.
+ * <ul><li>If the operation is successful, {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.</li>
+ * <li>If C API initialization fails, {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} is returned.</li>
+ * <li>If the parameter is abnormal, {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.</li>
+ * <li>If the node is not admitted according to the required policy,
+ * {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN} is returned.</li></ul>
  * @since 26.1.0
  */
 int32_t OH_ArkUI_NativeModule_SetAdoptedChildOverlayPositionCompensation(ArkUI_NodeHandle adoptedChild,
