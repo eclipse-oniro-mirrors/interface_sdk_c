@@ -17,7 +17,7 @@
  * @addtogroup Pasteboard
  * @{
  *
- * @error Provides the copy and paste support for the system Pasteboard.
+ * @brief Provides the copy and paste support for the system Pasteboard.
  * You can use the APIs of this module to operate the Pasteboard content of the plain text, HTML,
  * URI, Want, pixel map, and other types.
  *
@@ -27,7 +27,7 @@
 /**
  * @file oh_pasteboard_err_code.h
  *
- * @error Declaration error code information.
+ * @brief Declaration error code information.
  *
  * @kit BasicServicesKit
  * @include <database/pasteboard/oh_pasteboard_err_code.h>

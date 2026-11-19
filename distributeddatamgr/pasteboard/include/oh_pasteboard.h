@@ -602,9 +602,11 @@ int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo
 
 /**
  * @brief Defines a function for canceling the ongoing paste operation. This function is used to interrupt data
- * transfer during the execution of {@link OH_Pasteboard_GetDataWithProgress}. After this function is called, the current paste operation will be terminated. The transferred data may be retained or cleared, depending on the specific operation status. If you need to obtain the pasteboard data after the operation is canceled, call {@link OH_Pasteboard_GetDataWithProgress}
- * again. This function can be used when the user cancels the operation, the transfer is interrupted due to an error,
- * or the paste operation times out.
+ * transfer during the execution of {@link OH_Pasteboard_GetDataWithProgress}. After this function is called,
+ * the current paste operation will be terminated. The transferred data may be retained or cleared,
+ * depending on the specific operation status. If you need to obtain the pasteboard data after the operation
+ * is canceled, call {@link OH_Pasteboard_GetDataWithProgress} again. This function can be used when the user
+ * cancels the operation, the transfer is interrupted due to an error, or the paste operation times out.
  *
  * - The cancellation operation is asynchronous and may not take effect immediately.
  * - The cancellation operation is irreversible. Once the operation is canceled, you need to restart the pasting
