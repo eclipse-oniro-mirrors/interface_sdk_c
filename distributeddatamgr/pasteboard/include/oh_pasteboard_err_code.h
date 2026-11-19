@@ -45,55 +45,56 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
- *
+ * @brief Enumerates pasteboard error codes, which are used to identify the pasteboard operation results. You can
+ * determine whether an operation is successful and find the cause of a failure based on the error codes.
+ * 
  * @since 13
  */
 typedef enum PASTEBOARD_ErrCode {
     /**
-     * @error The operation is successful.
+     * @brief Operation successful.
      */
     ERR_OK = 0,
     /**
-     * @error Permission verification failed.
+     * @brief Permission verification failed.
      */
     ERR_PERMISSION_ERROR = 201,
     /**
-     * @error Invalid parameter is detected.
+     * @brief Invalid parameter.
      */
     ERR_INVALID_PARAMETER = 401,
     /**
-     * @error The capability is not supported.
+     * @brief Device capability not supported.
      */
     ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * @error Inner error.
+     * @brief Internal error.
      */
     ERR_INNER_ERROR = 12900000,
     /**
-     * @error Another copy is in progress.
+     * @brief System busy.
      */
     ERR_BUSY = 12900003,
     /**
-     * @error Copy file failed.
+     * @brief Failed to copy files.
      * @since 15
      */
     ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007,
     /**
-     * @error Failed to start progress.
+     * @brief Failed to display the progress.
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008,
     /**
-     * @error Progress exits abnormally.
+     * @brief Abnormal progress.
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009,
     /**
-     * @error Get Data failed.
+     * @brief Failed to obtain the pasteboard data.
      * @since 15
      */
-    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,
+    ERR_PASTEBOARD_GET_DATA_FAILED = 12900010
 } PASTEBOARD_ErrCode;
 #ifdef __cplusplus
 };
