@@ -629,7 +629,6 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  * see {@link PASTEBOARD_ErrCode}.
  * @return Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful;
  * returns a null pointer otherwise.
- * @see OH_Pasteboard.
  * @see OH_Pasteboard OH_PasteData PASTEBOARD_ErrCode.
  * @since 15
  */
