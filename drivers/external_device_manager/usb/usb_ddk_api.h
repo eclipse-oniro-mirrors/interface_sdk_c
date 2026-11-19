@@ -143,7 +143,6 @@ int32_t OH_Usb_GetConfigDescriptor(
  * @brief Releases the configuration descriptor. To prevent memory leak, use this API to release the configuration
  * descriptor after use.
  *
- * @permission ohos.permission.ACCESS_DDK_USB
  * @param config Configuration descriptor obtained by calling {@link OH_Usb_GetConfigDescriptor}.
  * @since 10
  * @version 1.0
@@ -355,7 +354,6 @@ int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMa
 /**
  * @brief Destroys a buffer. To prevent resource leaks, use this API to destroy a buffer after use.
  *
- * @permission ohos.permission.ACCESS_DDK_USB
  * @param devMmap Destroys the buffer created by {@link OH_Usb_CreateDeviceMemMap}.
  * @since 10
  * @version 1.0
