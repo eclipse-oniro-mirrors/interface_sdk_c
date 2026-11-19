@@ -770,7 +770,7 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief Total size of the cloud file, in bytes. It is determined when **OH_CloudDisk_Execute** is called for the
+     * @brief Total size of the cloud file, in bytes. It is determined when **OH_CloudDisk_Execute()** is called for the
      * first time.
      * The size must be the same for subsequent calls.
      *
@@ -951,8 +951,8 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
 /**
  * @brief Creates a placeholder file in the registered sync root path. When the placeholder file is created, the system
  * sets the local file size to the value of **logicalSize** in **placeholderInfo**.
- * The system does not guarantee the consistency between the size of local placeholder file and that of the cloud
- * file. The application need to
+ * The system does not guarantee the consistency between the size of the local placeholder file and that of the cloud
+ * file. The app needs to
  * ensure the consistency between the metadata of the local placeholder file and that of the cloud file using
  * **OH_CloudDisk_UpdatePlaceholder()**.
  *
@@ -1096,9 +1096,9 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFol
 /**
  * @brief Responds to a callback request and writes the obtained data block to the active placeholder hydration task.
  * The size of a single data block cannot exceed 128 KiB.
- * Before running a result, the function copies all input fields and data. The total amount of data to be hydrated is
- * subject to the **fetchData.totalSize** returned for the first time.
- * The size must be the same in subsequent calls.
+ * Before returning a result, the function copies all input fields and data. The total amount of data to be hydrated is
+ * subject to the **fetchData.totalSize** returned in the first time.
+ * The size must be the same for subsequent calls.
  *
  * @param reqHead [in] Callback request header.
  * @param reqContext [in] Callback request context.
