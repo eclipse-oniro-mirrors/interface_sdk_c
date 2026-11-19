@@ -295,7 +295,7 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative* re
  * Only visible ASCII characters are supported. Spaces, newlines, tabs, and other control
  * characters will be filtered out. If the filtered result consists entirely of digits,
  * a prefix "ImageReceiver:" will be automatically prepended. The filtered size must not
- * exceed 256 bytes (including the null terminator).
+ * exceed 255 bytes (including the null terminator).
  *
  * @param receiver [in] Pointer to an OH_ImageReceiverNative object. It must not be NULL.
  * @param name [in] Pointer to the memory name string to set. It must not be NULL.
@@ -305,7 +305,7 @@ Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative* re
  * @return <ul> 
  *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
  *         <li>{@link IMAGE_RECEIVER_INVALID_PARAMETER} if receiver or name is NULL, or size is 0,
- *             or name contains no visible characters after filtering, or filtered size exceeds 256 bytes.</li>
+ *             or name contains no visible characters after filtering, or filtered size exceeds 255 bytes.</li>
  *         </ul>
  * @since 26.0.1
  */

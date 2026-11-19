@@ -19,7 +19,6 @@
  *
  * @brief Core模块提供用于媒体系统的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */
 
@@ -27,7 +26,6 @@
  * @file native_avformat.h
  *
  * @brief 声明了OH_AVFormat相关的函数和枚举。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avformat.h>
@@ -48,6 +46,7 @@ extern "C" {
 #endif
 /**
  * @brief 为OH_AVFormat接口定义native层对象。
+ *
  * @since 9
  */
 typedef struct OH_AVFormat OH_AVFormat;
@@ -59,32 +58,38 @@ typedef struct OH_AVFormat OH_AVFormat;
  */
 typedef enum OH_AVPixelFormat {
     /**
-     * yuv 420 planar。
+     * @brief yuv 420 planar。
+     *
      * @since 9
      */
     AV_PIXEL_FORMAT_YUVI420 = 1,
     /**
-     * NV12. yuv 420 semiplanar。
+     * @brief NV12. yuv 420 semiplanar。
+     *
      * @since 9
      */
     AV_PIXEL_FORMAT_NV12 = 2,
     /**
-     * NV21. yvu 420 semiplanar。
+     * @brief NV21. yvu 420 semiplanar。
+     *
      * @since 9
      */
     AV_PIXEL_FORMAT_NV21 = 3,
     /**
-     * 像素格式从surface获取。只作用于Surface模式，Buffer模式不生效。
+     * @brief 像素格式从surface获取。只作用于Surface模式，Buffer模式不生效。
+     *
      * @since 9
      */
     AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,
     /**
-     * RGBA8888。
+     * @brief RGBA8888。
+     *
      * @since 9
      */
     AV_PIXEL_FORMAT_RGBA = 5,
     /**
      * @brief RGBA1010102。
+     *
      * @since 20
      */
     AV_PIXEL_FORMAT_RGBA1010102 = 6,
@@ -105,9 +110,9 @@ struct OH_AVFormat *OH_AVFormat_Create(void);
  * @param sampleRate 采样率，单位Hz。
  * @param channelCount 声道个数，如1为单声道，2为双声道。
  * @return 如果创建成功，返回指向OH_AVFormat实例的指针，如果失败，则返回NULL。
- * <br>可能的失败原因：
- * <br>1. 传入的mimeType为NULL。
- * <br>2. 系统资源不足。
+ *     <br>可能的失败原因：
+ *     <br>1. 传入的mimeType为NULL。
+ *     <br>2. 系统资源不足。
  * @since 10
  */
 struct OH_AVFormat *OH_AVFormat_CreateAudioFormat(const char *mimeType,
@@ -121,9 +126,9 @@ struct OH_AVFormat *OH_AVFormat_CreateAudioFormat(const char *mimeType,
  * @param width 图像的宽度，单位为pixel。
  * @param height 图像的高度，单位为pixel。
  * @return 如果创建成功，返回指向OH_AVFormat实例的指针，如果失败，则返回NULL。
- * <br>可能的失败原因：
- * <br>1. 传入的mimeType为NULL。
- * <br>2. 系统资源不足。
+ *     <br>可能的失败原因：
+ *     <br>1. 传入的mimeType为NULL。
+ *     <br>2. 系统资源不足。
  * @since 10
  */
 struct OH_AVFormat *OH_AVFormat_CreateVideoFormat(const char *mimeType,
@@ -144,9 +149,9 @@ void OH_AVFormat_Destroy(struct OH_AVFormat *format);
  * @param to OH_AVFormat实例，用于接收数据。
  * @param from 指向复制数据的OH_AVFormat实例的指针。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入参数为空指针。
- * <br>2. 输入的OH_AVFormat参数结构校验失败。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入参数为空指针。
+ *     <br>2. 输入的OH_AVFormat参数结构校验失败。
  * @since 9
  */
 bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
@@ -159,11 +164,11 @@ bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
  * @param key 写入数据的键。
  * @param value 写入数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 设置的key对应的value类型错误。
  * @since 9
  */
 bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_t value);
@@ -176,11 +181,11 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * @param key 写入数据的键。
  * @param value 写入数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 设置的key对应的value类型错误。
  * @since 23
  */
 bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value);
@@ -193,11 +198,11 @@ bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint3
  * @param key 写入数据的键。
  * @param value 写入数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 设置的key对应的value类型错误。
  * @since 9
  */
 bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64_t value);
@@ -210,11 +215,11 @@ bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64
  * @param key 写入数据的键。
  * @param value 写入数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 设置的key对应的value类型错误。
  * @since 9
  */
 bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, float value);
@@ -227,11 +232,11 @@ bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, floa
  * @param key 写入数据的键。
  * @param value 写入数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 设置的key对应的value类型错误。
  * @since 9
  */
 bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, double value);
@@ -244,12 +249,12 @@ bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, dou
  * @param key 写入数据的键。
  * @param value 写入字符串数据（使用建议：设置字符长度不超过256字节）。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入value为空指针。
- * <br>5. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入value为空指针。
+ *     <br>5. 设置的key对应的value类型错误。
  * @since 9
  */
 bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, const char *value);
@@ -263,13 +268,13 @@ bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, con
  * @param addr 写入数据的地址，生命周期由开发者管理。
  * @param size 	写入数据的长度，范围为(0, 1]MB。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入addr为空指针。
- * <br>5. size为0或超过限制1MB。
- * <br>6. 设置的key对应的value类型错误。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入addr为空指针。
+ *     <br>5. size为0或超过限制1MB。
+ *     <br>6. 设置的key对应的value类型错误。
  * @since 9
  */
 bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size);
@@ -281,28 +286,29 @@ bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const ui
  * @param key 读取数据的键。
  * @param out 读取数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入out为空指针。
- * <br>5. 获取的key不存在或者未设置。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入out为空指针。
+ *     <br>5. 获取的key不存在或者未设置。
  * @since 9
  */
 bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out);
 
 /**
  * @brief 从OH_AVFormat的key获取unsigned int类型的值。参数类型定义详见[媒体数据键值对](capi-codecbase.md#媒体数据键值对)。
+ *
  * @param format 指向OH_AVFormat实例的指针。
  * @param key 读取数据的键。
  * @param out 读取数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入out为空指针。
- * <br>5. 获取的key不存在或者未设置。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入out为空指针。
+ *     <br>5. 获取的key不存在或者未设置。
  * @since 23
  */
 bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out);
@@ -314,12 +320,12 @@ bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint3
  * @param key 读取数据的键。
  * @param out 读取数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入out为空指针。
- * <br>5. 获取的key不存在或者未设置。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入out为空指针。
+ *     <br>5. 获取的key不存在或者未设置。
  * @since 9
  */
 bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64_t *out);
@@ -331,12 +337,12 @@ bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64
  * @param key 读取数据的键。
  * @param out 读取数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入out为空指针。
- * <br>5. 获取的key不存在或者未设置。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入out为空指针。
+ *     <br>5. 获取的key不存在或者未设置。
  * @since 9
  */
 bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, float *out);
@@ -348,12 +354,12 @@ bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, floa
  * @param key 读取数据的键。
  * @param out 读取数据的值。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入out为空指针。
- * <br>5. 获取的key不存在或者未设置。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入out为空指针。
+ *     <br>5. 获取的key不存在或者未设置。
  * @since 9
  */
 bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, double *out);
@@ -365,14 +371,14 @@ bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, dou
  * @param key 读取数据的键。
  * @param out 读取string指针，out数据的生命周期与format内string对应，如果开发者需要长时间保持它，必须进行拷贝内存。out最大输出字符串长度为256字节，如果长度超过256字节，会报false。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入out为空指针。
- * <br>5. malloc出的out字符串资源不足。
- * <br>6. 获取的key不存在或者未设置。
- * <br>7. 输出out的长度超过256字节。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入out为空指针。
+ *     <br>5. malloc出的out字符串资源不足。
+ *     <br>6. 获取的key不存在或者未设置。
+ *     <br>7. 输出out的长度超过256字节。
  * @since 9
  */
 bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, const char **out);
@@ -385,13 +391,13 @@ bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, con
  * @param addr 生命周期与format相同，与format一同销毁。如果开发者需要长时间保持它，必须进行内存拷贝。
  * @param size 读到数据的长度。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入addr为空指针。
- * <br>5. 输入size为空指针。
- * <br>6. 获取的key不存在或者未设置。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入addr为空指针。
+ *     <br>5. 输入size为空指针。
+ *     <br>6. 获取的key不存在或者未设置。
  * @since 9
  */
 bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t **addr, size_t *size);
@@ -408,12 +414,12 @@ bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t 
  * @param addr 保存数据内存的指针。
  * @param size 读到数据的元素数量。
  * @return 返回值为true表示成功，为false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入addr为空指针。
- * <br>5. 输入size为空指针。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入addr为空指针。
+ *     <br>5. 输入size为空指针。
  * @since 20
  */
 bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size);
@@ -423,9 +429,9 @@ bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32
  *
  * @param format 指向OH_AVFormat实例的指针。
  * @return 如果获取成功，返回一个由key-value组成的字符串，如果失败，则返回NULL。
- * 可能的失败原因：
- * <br>1.  传入的format为NULL。
- * <br>2. 系统资源不足。
+ *     可能的失败原因：
+ *     <br>1.  传入的format为NULL。
+ *     <br>2. 系统资源不足。
  * @since 9
  */
 const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format);
@@ -438,38 +444,40 @@ const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format);
  * @param addr 写入数据的地址，生命周期由开发者管理。
  * @param size 写入数据的长度（以元素为单位，不是字节数）。
  * @return 返回true表示成功，返回false表示失败。
- * <br>可能的失败原因：
- * <br>1. 输入format为空指针。
- * <br>2. 输入format参数结构校验失败。
- * <br>3. 输入key为空指针。
- * <br>4. 输入addr为空指针。
- * <br>5. 输入size为0。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入format为空指针。
+ *     <br>2. 输入format参数结构校验失败。
+ *     <br>3. 输入key为空指针。
+ *     <br>4. 输入addr为空指针。
+ *     <br>5. 输入size为0。
  * @since 20
  */
 bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size);
 
 /**
  * @brief 获取OH_AVFormat中包含的键总数。
+ *
  * @param format 指向一个OH_AVFormat实例的指针。
  * @return 成功时返回键的数量；失败时返回 0。
  * @details 可能的失败原因：
- * <br>1. 输入的format为空指针;
- * <br>2. 系统资源不足。
+ *     <br>1. 输入的format为空指针;
+ *     <br>2. 系统资源不足。
  * @since 23
  */
 uint32_t OH_AVFormat_GetKeyCount(OH_AVFormat *format);
 
 /**
  * @brief 通过索引从OH_AVFormat中获取键名字符串。
+ *
  * @param format 指向一个OH_AVFormat实例的指针。
  * @param index 要查询键的索引值，取值范围为[0, OH_AVFormat_GetKeyCount(format))。
  * @param key 用于接收键名字符串的输出指针；该字符串的生命周期与format绑定。
  * @return 成功时返回true，失败时返回false。
  * @details 可能的失败原因：
- * <br>1. 输入的format为空指针;
- * <br>2. index超出有效范围;
- * <br>3. key为空指针;
- * <br>4. 系统资源不足。
+ *     <br>1. 输入的format为空指针;
+ *     <br>2. index超出有效范围;
+ *     <br>3. key为空指针;
+ *     <br>4. 系统资源不足。
  * @since 23
  */
 bool OH_AVFormat_GetKey(OH_AVFormat *format, uint32_t index, const char **key);

@@ -1659,6 +1659,20 @@ void OH_ArkUI_XComponentSurfaceConfig_SetIsOpaque(ArkUI_XComponentSurfaceConfig*
 int32_t OH_ArkUI_SurfaceHolder_SetSurfaceConfig(
     OH_ArkUI_SurfaceHolder *surfaceHolder,
     ArkUI_XComponentSurfaceConfig *config);
+
+/**
+ * @brief 为XComponent启用表面可见性生命周期。
+ * 仅支持UI线程调用。
+ *
+ * @param component 表示指向{@link OH_NativeXComponent}实例的指针。
+ * @param isVisibilityLifecycle 表示是否启用surface可见性生命周期。
+ * @return 返回执行结果。
+ *         返回 ARKUI_ERROR_CODE_NO_ERROR - 执行成功。
+ *         返回 ARKUI_ERROR_CODE_PARAM_INVALID - 传入参数异常。
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_XComponent_EnableSurfaceVisibilityLifecycle(
+    OH_NativeXComponent *component, bool isVisibilityLifecycle);
 #ifdef __cplusplus
 };
 #endif

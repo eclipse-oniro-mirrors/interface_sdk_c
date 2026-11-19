@@ -17,16 +17,15 @@
  * @addtogroup HiTrace
  * @{
  *
- * @brief hiTraceMeter provides APIs for system performance trace.
+ * @brief HiTraceMeter为开发者提供系统性能打点接口。
  *
- * You can call the APIs provided by hiTraceMeter in your own service logic to effectively
- * track service processes and check the system performance.
+ * 开发者通过在业务逻辑的关键位置调用HiTraceMeter的API接口，能够有效进行关键执行流程耗时度量和问题定位，
+ * 适用于需要分析应用性能瓶颈、优化关键路径执行效率的场景。
  *
- * @brief hitraceChain provides APIs for cross-thread and cross-process distributed tracing.
- * hiTraceChain generates a unique chain ID for a service process and passes it to various information (including
- * application events, system events, and logs) specific to the service process.
- * During debugging and fault locating, you can use the unique chain ID to quickly correlate various information
- * related to the service process.
+ * @brief HiTraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。
+ * HiTraceChain支持在业务执行流程中生成和传递唯一跟踪标识，在业务流程中输出的各类调试信息中
+ * （包括HiTraceMeter打点、应用事件、hilog日志等）记录该跟踪标识。
+ * 在调试、问题定位过程中，开发人员可以通过该标识将本次业务流程端到端的各类信息快速关联起来。
  *
  * @since 10
  */
@@ -285,6 +284,12 @@ typedef enum HiTrace_Output_Level {
 
 /**
  * @brief 用于标识调用链的结构体。
+ *
+ * 使用场景：
+ * - 跨服务调用追踪：在分布式系统中，用于标识和关联同一业务请求在不同服务间的调用链路。
+ * - 性能分析：配合HiTrace链路追踪功能，分析应用性能瓶颈和调用耗时。
+ * - 日志关联：在日志系统中，通过HiTraceId将同一请求的不同阶段日志关联起来，便于问题排查。
+ * - 调用链可视化：通过HiTraceId实现端到端的调用链路可视化，帮助理解系统行为。
  *
  * @since 12
  */

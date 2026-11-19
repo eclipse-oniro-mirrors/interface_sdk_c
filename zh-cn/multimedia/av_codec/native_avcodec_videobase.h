@@ -18,7 +18,6 @@
  *
  * @brief CodecBase模块提供了用于音视频封装、解封装、编解码基础功能的变量、属性以及函数。
  *
- * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @since 9
  */
 /**
@@ -48,9 +47,9 @@ extern "C" {
  * 坐标系的原点位于视频的左上角。
  * 取值范围为[0, {@link OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM})。
  * 这是配置ROI参数时的必填键。
-*
-* @since 26.0.0
-*/
+ *
+ * @since 26.0.0
+ */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_TOP;
 
 /**
@@ -59,9 +58,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_TOP;
  * 坐标系的原点位于视频的左上角。
  * 取值范围为[0, {@link OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT})。
  * 这是配置ROI参数时的必填键。
-*
-* @since 26.0.0
-*/
+ *
+ * @since 26.0.0
+ */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_LEFT;
 
 /**
@@ -70,9 +69,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_LEFT;
  * 坐标系的原点位于视频的左上角。
  * 取值范围为({@link OH_MD_KEY_VIDEO_METADATA_ROI_TOP}, {@link OH_MD_KEY_VIDEO_HEIGHT}]。
  * 这是配置ROI参数时的必填键。
-*
-* @since 26.0.0
-*/
+ *
+ * @since 26.0.0
+ */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
 
 /**
@@ -81,9 +80,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
  * 坐标系的原点位于视频的左上角。
  * 取值范围为({@link OH_MD_KEY_VIDEO_METADATA_ROI_LEFT}, {@link OH_MD_KEY_VIDEO_WIDTH}]。
  * 这是配置ROI参数时的必填键。
-*
-* @since 26.0.0
-*/
+ *
+ * @since 26.0.0
+ */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT;
 
 /**
@@ -92,9 +91,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT;
  * 该变量取值范围为[-51, 51]。
  * 这是配置ROI参数时的可选键。
  * 如果未设置此键，编码器将对此区域使用其默认的量化参数策略。
-*
-* @since 26.0.0
-*/
+ *
+ * @since 26.0.0
+ */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP;
 
 /**
@@ -103,9 +102,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP;
  * 该变量值必须与{@link OH_VideoMetadataRoiSemanticLabel}对应。
  * 这是配置ROI参数时的可选键。
  * 如果未设置此键，该区域将采用默认的语义处理策略。
-*
-* @since 26.0.0
-*/
+ *
+ * @since 26.0.0
+ */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
 
 /**
@@ -113,7 +112,8 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
  *
  * 使用{@link OH_AVFormat_SetIntValue}设置启用状态：1表示开启采编联合低功耗优化，0表示关闭此能力（默认）。
  *
- * 使用约束：该键仅对视频编码器有效，为可选参数。可通过{@link OH_VideoEncoder_Configure}初始化时配置，或在运行时通过{@link OH_VideoEncoder_SetParameter}启用。启用后，采集侧会根据编码信息调整采集配置策略，以降低整体功耗。
+ * 使用约束：该键仅对视频编码器有效，为可选参数。可通过{@link OH_VideoEncoder_Configure}初始化时配置，或在运行时通过{@link OH_VideoEncoder_SetParameter}
+ * 启用。启用后，采集侧会根据编码信息调整采集配置策略，以降低整体功耗。
  *
  * @since 26.0.1
  */
@@ -147,16 +147,16 @@ typedef enum OH_VideoMetadataRoiSemanticLabel {
  * 如果*roiStrInOut为NULL，则会分配一个新字符串，如果不为NULL，则会重新分配现有字符串的内存以追加新配置。
  *
  * @note 调用者拥有为*roiStrInOut分配内存的所有权。
- * 内存是通过标准C库分配器（malloc/realloc）分配的。
- * 当不再需要该字符串时，调用者必须使用匹配的标准C库释放器（free）释放该字符串，
- * 并将指针设置为NULL以防止重复释放。
+ *     内存是通过标准C库分配器（malloc/realloc）分配的。
+ *     当不再需要该字符串时，调用者必须使用匹配的标准C库释放器（free）释放该字符串，
+ *     并将指针设置为NULL以防止重复释放。
  *
  * @param roiStrInOut 指向目标字符串的双重指针。指针本身不能为NULL。如果*roiStrInOut为NULL，则分配一个新字符串。
  * @param format 包含要追加的ROI参数的OH_AVFormat句柄，不能为NULL。
  * @return
- *         AV_ERR_OK：表示字符串成功格式化并追加。
- *         <br>AV_ERR_INVALID_VAL：表示roiStrInOut指针或format句柄为NULL，或者格式缺少必需的ROI键。
- *         <br>AV_ERR_NO_MEMORY：表示内部内存分配或重新分配失败。
+ *     AV_ERR_OK：表示字符串成功格式化并追加。
+ *     <br>AV_ERR_INVALID_VAL：表示roiStrInOut指针或format句柄为NULL，或者格式缺少必需的ROI键。
+ *     <br>AV_ERR_NO_MEMORY：表示内部内存分配或重新分配失败。
  * @release free {roiStrInOut}
  * @since 26.0.0
  */
@@ -170,31 +170,31 @@ OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *f
  * @param roiStr 输入的ROI配置字符串。
  * @param outCount 返回从字符串中解析出的有效ROI区域的数量。
  * @return
- *         AV_ERR_OK：表示操作成功。
- *         <br>AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。
+ *     AV_ERR_OK：表示操作成功。
+ *     <br>AV_ERR_INVALID_VAL：表示roiStr或outCount指针为NULL。
  * @since 26.0.0
-*/
+ */
 OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount);
 
 /**
-* @brief 解析ROI字符串并填充调用者提供的OH_AVFormat数组。
-*
-* @note 调用者拥有每个成功创建的OH_AVFormat句柄的所有权。返回时，
-* 有效的句柄存储在outOwnedFormats数组的前*outCount个元素中。
-* - 完全或部分成功时（*outCount > 0），调用者必须使用{@link OH_AVFormat_Destroy}逐个销毁
-* 有效句柄，以防止内存泄漏。
-* - 完全失败时（*outCount == 0），不会创建任何句柄，也无需销毁。
-*
-* @param roiStr 输入的ROI配置字符串。
-* @param outOwnedFormats 由调用者分配的指针数组，用于接收解析后的OH_AVFormat句柄。调用者拥有此数组中每个非NULL句柄的所有权。
-* @param maxCapacity 指示outOwnedFormats数组的最大物理容量，以防止越界写入。
-* @param outCount 返回成功解析并填充到数组中的实际ROI数量。
-* @return
-*         AV_ERR_OK：表示操作成功。
-*         <br>AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。
-* @release media_foundation/OH_AVFormat_Destroy {outOwnedFormats}
-* @since 26.0.0
-*/
+ * @brief 解析ROI字符串并填充调用者提供的OH_AVFormat数组。
+ *
+ * @note 调用者拥有每个成功创建的OH_AVFormat句柄的所有权。返回时，
+ *     有效的句柄存储在outOwnedFormats数组的前*outCount个元素中。
+ *     - 完全或部分成功时（*outCount > 0），调用者必须使用{@link OH_AVFormat_Destroy}逐个销毁
+ *     有效句柄，以防止内存泄漏。
+ *     - 完全失败时（*outCount == 0），不会创建任何句柄，也无需销毁。
+ *
+ * @param roiStr 输入的ROI配置字符串。
+ * @param outOwnedFormats 由调用者分配的指针数组，用于接收解析后的OH_AVFormat句柄。调用者拥有此数组中每个非NULL句柄的所有权。
+ * @param maxCapacity 指示outOwnedFormats数组的最大物理容量，以防止越界写入。
+ * @param outCount 返回成功解析并填充到数组中的实际ROI数量。
+ * @return
+ *     AV_ERR_OK：表示操作成功。
+ *     <br>AV_ERR_INVALID_VAL：表示roiStr、outOwnedFormats或outCount为NULL。
+ * @release media_foundation/OH_AVFormat_Destroy {outOwnedFormats}
+ * @since 26.0.0
+ */
 OH_AVErrCode OH_VideoMetadata_ParseRoiString(const char *roiStr, OH_AVFormat **outOwnedFormats, uint32_t maxCapacity,
                                              uint32_t *outCount);
 

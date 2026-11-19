@@ -45,7 +45,7 @@ extern "C" {
 /**
  * @brief Enumerates the audio channels.
  *
- * Each channel is mapped to a variable of uint64_t.
+ * A 64-bit integer represents a channel position.
  *
  * @since 11
  */

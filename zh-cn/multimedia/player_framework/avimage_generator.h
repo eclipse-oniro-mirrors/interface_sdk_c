@@ -58,11 +58,10 @@ typedef struct OH_AVImageGenerator OH_AVImageGenerator;
  * @brief 创建OH_AVImageGenerator实例，用于生成指定时间点视频帧。
  * 
  * @return 创建成功时返回指向OH_AVImageGenerator实例的指针，否则返回空指针。
- * 可能的失败原因：HstEngineFactory未能创建AVMetadataHelperEngine。
  * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
-OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
+OH_AVImageGenerator *OH_AVImageGenerator_Create(void);
 
 /**
  * @brief 通过媒体文件描述符设置数据源。

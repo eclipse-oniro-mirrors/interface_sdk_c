@@ -61,7 +61,7 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
  *
  * You need to call {@link OH_AVDemuxer_SetMediaKeySystemInfoCallback} to set the callback function as a callback.
  *
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead Demuxer_MediaKeySystemInfoCallback
  * @since 11
  */
@@ -90,8 +90,8 @@ typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_Me
  * @return Pointer to an OH_AVDemuxer instance.
  *     <br>If the operation fails, NULL is returned.
  *     <br>The possible causes of an operation failure are as follows:
- *     <br>1. The value of **source** is invalid (either nullptr or a pointer to a non-OH_AVSource instance).
- *     <br>2. The value of **source** does not point to an OH_AVSource instance.
+ *     <br> 1. `source` is a null pointer.
+ *     <br> 2. `source` is not an OH_AVSource instance.
  * @since 10
  */
 OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
@@ -168,7 +168,7 @@ OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trac
  *     <br>2. The demuxer is not correctly initialized.
  *     <br>{@link AV_ERR_NO_MEMORY}: The sample capacity is insufficient to store all frame data.
  *     <br>{@link AV_ERR_UNKNOWN}: Failed to read or parse the frame from the file.
- * @deprecated since 11
+ * @deprecated 11
  * @useinstead OH_AVDemuxer_ReadSampleBuffer
  * @since 10
  */
@@ -189,7 +189,6 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
  *     <br>1. The value of **demuxer** is nullptr or does not point to a demuxer instance.
  *     <br>2. The value of **sample** is nullptr.
  *     <br>3. The track index is out of range.
- *     <br>4. The value of **sample** is null.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}:
  *     <br>1. The track with the specified index is not selected.
  *     <br>2. The demuxer is not correctly initialized.
@@ -202,6 +201,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
 
 /**
  * @brief Seeks to the specified time for all the selected tracks based on a seek mode.
+ * Before calling this function, call **OH_AVDemuxer_SelectTrackByID** to select a track.
  *
  * @param demuxer Pointer to an OH_AVDemuxer instance.
  * @param millisecond Time to seek to, in milliseconds. The timestamp is relative to the start position of the file.
@@ -230,7 +230,7 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The demuxer is not correctly initialized.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **demuxer** is nullptr or does not point to a demuxer instance.
- * @deprecated since 14
+ * @deprecated 14
  * @useinstead OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback
  * @since 11
  */

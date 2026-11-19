@@ -62,7 +62,7 @@ typedef enum {
      */
     TRANSPARENT,
     /**
-     * Draws the colors from the **fColors** array of the rectangular lattice object into the lattice.
+     * Draws the colors from the colors array of the rectangular lattice object into the lattice.
      *
      * @since 23
      */

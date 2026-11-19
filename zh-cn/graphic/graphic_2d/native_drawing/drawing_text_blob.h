@@ -80,12 +80,12 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t 
  * 每段使用相同字体（当前字体或回退字体）的连续字形片段会创建一个对应的TextBlob对象。
  * 所有文本对象共享整个字符串的坐标系：每个文本对象的字形位置已包含前序文本的宽度，因此所有文本对象应在同一原点绘制。
  *
- * @param text [in] 指向文本的指针。
- * @param byteLength [in] 文本长度，单位为字节。
- * @param font [in] 指向字型对象OH_Drawing_Font的指针。
- * @param textEncoding [in] 文本编码类型OH_Drawing_TextEncoding。
- * @param textBlobs [out] 指向OH_Drawing_TextBlob对象数组的指针。作为出参使用。当不再需要时，使用{@link OH_Drawing_TextBlobsArrayDestroy}释放该数组。
- * @param textBlobsCount [out] 返回数组中文本对象的数量。作为出参使用。
+ * @param text [入参] 指向文本的指针。
+ * @param byteLength [入参] 文本长度，单位为字节。
+ * @param font [入参] 指向字型对象OH_Drawing_Font的指针。
+ * @param textEncoding [入参] 文本编码类型OH_Drawing_TextEncoding。
+ * @param textBlobs [出参] 指向OH_Drawing_TextBlob对象数组的指针。作为出参使用。当不再需要时，使用{@link OH_Drawing_TextBlobsArrayDestroy}释放该数组。
+ * @param textBlobsCount [出参] 返回数组中文本对象的数量。作为出参使用。
  * @return 返回{@link OH_DRAWING_SUCCESS} 表示执行成功。
  *     <br>返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示参数text、font、textBlobs、textBlobsCount任意一个为空，或者byteLength为0。
  *     <br>返回{@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} 表示textEncoding不在枚举范围内。
@@ -122,13 +122,13 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText(const void* text, size
  * 每段使用相同字体（当前字体或回退字体）的连续字形片段会创建一个对应的TextBlob对象。
  * 文本对象中每个字符的坐标由OH_Drawing_Point2D数组中对应的坐标信息决定。
  *
- * @param text [in] 指向文本的指针。
- * @param byteLength [in] 文本长度，单位为字节。
- * @param point2D [in] 二维点OH_Drawing_Point2D数组首地址，数组个数由{@link OH_Drawing_FontCountText}的计算结果决定。
- * @param font [in] 指向字型对象OH_Drawing_Font的指针。
- * @param textEncoding [in] 文本编码类型OH_Drawing_TextEncoding。
- * @param textBlobs [out] 指向OH_Drawing_TextBlob对象数组的指针。作为出参使用。当不再需要时，使用{@link OH_Drawing_TextBlobsArrayDestroy}释放该数组。
- * @param textBlobsCount [out] 返回数组中文本对象的数量。作为出参使用。
+ * @param text [入参] 指向文本的指针。
+ * @param byteLength [入参] 文本长度，单位为字节。
+ * @param point2D [入参] 二维点OH_Drawing_Point2D数组首地址，数组个数由{@link OH_Drawing_FontCountText}的计算结果决定。
+ * @param font [入参] 指向字型对象OH_Drawing_Font的指针。
+ * @param textEncoding [入参] 文本编码类型OH_Drawing_TextEncoding。
+ * @param textBlobs [出参] 指向OH_Drawing_TextBlob对象数组的指针。作为出参使用。当不再需要时，使用{@link OH_Drawing_TextBlobsArrayDestroy}释放该数组。
+ * @param textBlobsCount [出参] 返回数组中文本对象的数量。作为出参使用。
  * @return 返回{@link OH_DRAWING_SUCCESS} 表示执行成功。
  *     <br>返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示参数text、point2D、font、textBlobs、textBlobsCount任意一个为空，
  *     或者byteLength为0。
@@ -164,11 +164,11 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString(const char* str,
  * 每段使用相同字体（当前字体或回退字体）的连续字形片段会创建一个对应的TextBlob对象。
  * 所有文本对象共享整个字符串的坐标系：每个文本对象的字形位置已包含前序文本的宽度，因此所有文本对象应在同一原点绘制。
  *
- * @param str [in] 指向字符串的指针。
- * @param font [in] 指向字型对象{@link OH_Drawing_Font}的指针。
- * @param textEncoding [in] 文本编码类型{@link OH_Drawing_TextEncoding}。
- * @param textBlobs [out] 指向OH_Drawing_TextBlob对象数组的指针。作为出参使用。当不再需要时，使用{@link OH_Drawing_TextBlobsArrayDestroy}释放该数组。
- * @param textBlobsCount [out] 返回数组中文本对象的数量。作为出参使用。
+ * @param str [入参] 指向字符串的指针。
+ * @param font [入参] 指向字型对象{@link OH_Drawing_Font}的指针。
+ * @param textEncoding [入参] 文本编码类型{@link OH_Drawing_TextEncoding}。
+ * @param textBlobs [出参] 指向OH_Drawing_TextBlob对象数组的指针。作为出参使用。当不再需要时，使用{@link OH_Drawing_TextBlobsArrayDestroy}释放该数组。
+ * @param textBlobsCount [出参] 返回数组中文本对象的数量。作为出参使用。
  * @return 返回{@link OH_DRAWING_SUCCESS} 表示执行成功。
  *     <br>返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示参数str、font、textBlobs、textBlobsCount任意一个为空。
  *     <br>返回{@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} 表示textEncoding不在枚举范围内。
@@ -278,8 +278,8 @@ void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuild
  * @brief 销毁OH_Drawing_TextBlob对象数组并回收该数组占用的内存。
  * 本函数会销毁数组中的文本对象，并释放数组本身。count必须与创建数组时返回的数量完全一致，传入其他值将导致未定义行为。
  *
- * @param textBlobs [in] 指向OH_Drawing_TextBlob对象数组的指针。
- * @param count [in] 数组的大小。
+ * @param textBlobs [入参] 指向OH_Drawing_TextBlob对象数组的指针。
+ * @param count [入参] 数组的大小。
  * @return 返回{@link OH_DRAWING_SUCCESS} 表示执行成功。
  * 返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} 表示textBlobs为空或者count为0。
  * @since 26.0.1

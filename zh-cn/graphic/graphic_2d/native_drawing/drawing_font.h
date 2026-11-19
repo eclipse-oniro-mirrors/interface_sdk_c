@@ -302,13 +302,13 @@ uint32_t OH_Drawing_FontTextToGlyphs(const OH_Drawing_Font* font, const void* te
  * @brief 将文本转换为字形索引，支持字体回退。若当前字型的字体不支持某些字符时，会自动从系统中查找回退字体。
  * 文本会被切分为多个使用相同字体的分段。如果未找到任何回退字体，则仍使用当前字型的字体。
  *
- * @param font [in] 指向字型对象OH_Drawing_Font的指针。
- * @param text [in] 文本存储首地址。
- * @param byteLength [in] 文本长度，单位为字节。
- * @param encoding [in] 文本编码类型OH_Drawing_TextEncoding。
- * @param typefaceFallbackInfo [out] 指向OH_Drawing_TypefaceFallbackInfo数组首元素的指针。
+ * @param font [入参] 指向字型对象OH_Drawing_Font的指针。
+ * @param text [入参] 文本存储首地址。
+ * @param byteLength [入参] 文本长度，单位为字节。
+ * @param encoding [入参] 文本编码类型OH_Drawing_TextEncoding。
+ * @param typefaceFallbackInfo [出参] 指向OH_Drawing_TypefaceFallbackInfo数组首元素的指针。
  * 作为出参使用。当不再需要时，使用{@link OH_Drawing_FontTypefaceFallbackInfoDestroy}释放该数组。
- * @param infosCount [out] 存储OH_Drawing_TypefaceFallbackInfo对象数组的大小。作为出参使用。
+ * @param infosCount [出参] 存储OH_Drawing_TypefaceFallbackInfo对象数组的大小。作为出参使用。
  * @return 返回OH_DRAWING_SUCCESS，表示执行成功。
  *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数font、text、typefaceFallbackInfo、infosCount任意一个为空，或者byteLength为0。
  *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示encoding不在枚举范围内。
@@ -388,12 +388,12 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureText(const OH_Drawing_Font* font, con
  * @brief 获取文本的宽度和边界框，支持字体回退。
  * 若当前字型的字体不支持某些字符时，会自动从系统中查找回退字体。如果未找到任何回退字体，则仍使用当前字型的字体。
  *
- * @param font [in] 指向字型对象OH_Drawing_Font的指针。
- * @param text [in] 指向文本的指针。
- * @param byteLength [in] 文本长度，单位为字节。
- * @param encoding [in] 文本编码类型。
- * @param bounds [out] 用于承载获取的边界框，可以为NULL，为NULL时不返回边界框信息，仅返回文本宽度。作为出参使用。
- * @param textWidth [out] 用于存储得到的文本宽度，单位为物理像素px。作为出参使用。
+ * @param font [入参] 指向字型对象OH_Drawing_Font的指针。
+ * @param text [入参] 指向文本的指针。
+ * @param byteLength [入参] 文本长度，单位为字节。
+ * @param encoding [入参] 文本编码类型。
+ * @param bounds [出参] 用于承载获取的边界框，可以为NULL，为NULL时不返回边界框信息，仅返回文本宽度。作为出参使用。
+ * @param textWidth [出参] 用于存储得到的文本宽度，单位为物理像素px。作为出参使用。
  * @return 返回OH_DRAWING_SUCCESS，表示执行成功。
  *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数font、text、textWidth至少有一个为空，或者byteLength为0。
  *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示encoding不在枚举范围内。
@@ -429,14 +429,14 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_F
  * 若当前字型的字体不支持文本中的某些字符（无对应字形）时，会自动从系统字体中查找能支持该字符的回退字体，
  * 并使用回退字体测量该字符宽度；若未找到回退字体，则仍使用当前字型的字体进行测量。
  *
- * @param font [in] 指向字型对象OH_Drawing_Font的指针。
- * @param text [in] 指向文本的指针。
- * @param byteLength [in]  文本长度，单位为字节。如果此字节长度大于text字符串的字节长度，会发生未定义行为。
- * @param encoding [in] 文本编码类型。
- * @param brush [in] 指向画刷对象OH_Drawing_Brush的指针。
- * @param pen [in] 指向画笔对象OH_Drawing_Pen的指针。
- * @param bounds [out] 用于承载获取的边界框，可以为NULL，为NULL时不返回边界框信息，仅返回文本宽度。作为出参使用。
- * @param textWidth [out] 用于存储得到的文本宽度，单位为物理像素px。作为出参使用。
+ * @param font [入参] 指向字型对象OH_Drawing_Font的指针。
+ * @param text [入参] 指向文本的指针。
+ * @param byteLength [入参]  文本长度，单位为字节。如果此字节长度大于text字符串的字节长度，会发生未定义行为。
+ * @param encoding [入参] 文本编码类型。
+ * @param brush [入参] 指向画刷对象OH_Drawing_Brush的指针。
+ * @param pen [入参] 指向画笔对象OH_Drawing_Pen的指针。
+ * @param bounds [出参] 用于承载获取的边界框，可以为NULL，为NULL时不返回边界框信息，仅返回文本宽度。作为出参使用。
+ * @param textWidth [出参] 用于存储得到的文本宽度，单位为物理像素px。作为出参使用。
  * @return 返回OH_DRAWING_SUCCESS，表示执行成功。
  *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数font、text、textWidth至少有一个为空，或者byteLength为0，或者brush和pen同时存在。
  *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示encoding不在枚举范围内。
@@ -902,8 +902,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fon
  * @brief 释放OH_Drawing_TypefaceFallbackInfo对象数组并回收该数组占用的内存。
  * 本函数会销毁数组中的字体和字形IDs，并释放数组本身。count必须与创建数组时返回的数量完全一致，传入其他值将导致未定义行为。
  *
- * @param infos [in] 指向OH_Drawing_TypefaceFallbackInfo对象数组的指针。
- * @param count [in] 数组的大小。
+ * @param infos [入参] 指向OH_Drawing_TypefaceFallbackInfo对象数组的指针。
+ * @param count [入参] 数组的大小。
  * @return 返回{@link OH_DRAWING_SUCCESS}，表示执行成功。
  *     <br>返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}，表示infos为空或者count为0。
  * @since 26.0.1

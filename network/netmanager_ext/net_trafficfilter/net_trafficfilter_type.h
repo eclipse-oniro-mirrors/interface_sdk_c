@@ -25,11 +25,12 @@
 /**
  * @file net_trafficfilter_type.h
  * @brief Declares the common types and error codes required for network traffic filtering and redirection. This header
- * file defines the match condition structs (such as IP addresses, ports, and interfaces) used in traffic filtering and
- * redirection, configuration structs (such as packet filter rules and redirection rules), and error codes returned by
- * operations.
- * <br>This header file is used to construct parameters and parse return values when APIs such as
- * {@link OH_TrafficFilter_CreateRedirector} are called.
+ * file defines the matching condition structs for IP address, port, MAC address, interface, TCP flags, and connection
+ * tracking used in traffic filtering and redirection, the configuration structs for packet filtering rules,
+ * redirection rules, and NFQueue configuration, as well as the packet descriptor, packet processing decision, packet
+ * copy mode, and error codes returned by operations.
+ * <br>Applicable to constructing parameters and parsing return values when calling APIs such as
+ * {@link OH_TrafficFilter_CreateRedirector} or {@link OH_TrafficFilter_CreatePacketController}.
  *
  * @library libnet_trafficfilter.so
  * @kit NetworkKit
@@ -98,7 +99,7 @@ extern "C" {
 #define OH_TRAFFICFILTER_NFQUEUE_FLAG_FAIL_OPEN  0x1
 
 /**
- * @brief Maximum length of MAC address string (XX:XX:XX:XX:XX:XX)
+ * @brief Maximum length of a MAC address string (in the XX:XX:XX:XX:XX:XX format).
  * @since 26.0.1
  */
 #define OH_TRAFFICFILTER_MAC_ADDRSTRLEN       18
@@ -178,7 +179,7 @@ typedef enum OH_TrafficFilter_ErrCode {
     OH_TRAFFICFILTER_E_BASE = 29410000,
 
     /**
-     * @brief Missing permissions.
+     * @brief Permission denied.
      * @since 26.0.0
      */
     OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED = 201,
@@ -335,25 +336,21 @@ typedef enum OH_TrafficFilter_HookPoint {
 } OH_TrafficFilter_HookPoint;
 
 /**
- * @brief IP address in binary form, supports both IPv4 and IPv6
+ * @brief Defines an IP address in binary form, supporting both IPv4 and IPv6.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_IPAddress {
     /**
-     * @brief Address family, If not explicitly set, IPv4 is used by default.
+     * @brief Address family. If **OH_TRAFFICFILTER_IP_FAMILY_UNSPEC** is specified, IPv4 is used by default.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPFamily family;
     /**
-     * @brief IP address bytes.
-     *
-     * The bytes must be stored in network byte order.
-     * For IPv4, {@link addr}[0] to {@link addr}[3] store the IPv4 address,
-     * and {@link addr}[4] to {@link addr}[15] must be set to 0.
-     * For IPv6, {@link addr}[0] to {@link addr}[15] store the IPv6 address.
-     *
-     * If the bytes do not match the address layout required by {@link family},
-     * APIs using this structure return {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}.
+     * @brief IP address bytes. The bytes must be stored in network byte order.
+     * For IPv4, {@link addr}[0] to {@link addr}[3] store the IPv4 address, and {@link addr}[4] to {@link addr}[15] must
+     * be set to **0**. For IPv6, {@link addr}[0] to {@link addr}[15] store the IPv6 address.
+     * If the bytes do not match the address layout required by {@link family}, the interface that uses this struct
+     * returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}.
      *
      * @since 26.0.0
      */
@@ -361,73 +358,76 @@ typedef struct OH_TrafficFilter_IPAddress {
 } OH_TrafficFilter_IPAddress;
 
 /**
- * @brief IP match value for CIDR match
+ * @brief Defines the IP match value for Classless Inter-Domain Routing (CIDR) matching.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_IPCidr {
     /**
-     * @brief Base IP address of the CIDR block
+     * @brief Base IP address of the CIDR block.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress base;
     /**
-     * @brief CIDR prefix length
+     * @brief CIDR prefix length, which indicates the number of leading 1 bits in the network mask (for example, **24**
+     * indicates the subnet mask 255.255.255.0).
      * @since 26.0.0
      */
     uint8_t prefixLen;
 } OH_TrafficFilter_IPCidr;
 
 /**
- * @brief IP match value for range match
+ * @brief Defines the IP match value for range matching.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_IPRange {
     /**
-     * @brief Start IP address of the range
+     * @brief Start IP address of the range.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress start;
     /**
-     * @brief End IP address of the range
+     * @brief End IP address of the range.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress end;
 } OH_TrafficFilter_IPRange;
 
 /**
- * @brief IP match value for multi-IP match
+ * @brief Defines the IP match value for multi-IP matching.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_IPMulti {
     /**
-     * @brief Number of IP addresses in the array
+     * @brief Number of IP addresses in the array.
      * @since 26.0.0
      */
     uint32_t ipCount;
     /**
-     * @brief IP address array
+     * @brief Array of IP addresses.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress ips[OH_TRAFFICFILTER_MAX_MULTI_IP_COUNT];
 } OH_TrafficFilter_IPMulti;
 
 /**
- * @brief IP match condition
+ * @brief Defines the IP match condition.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_IPMatch {
     /**
-     * @brief Match type
+     * @brief Match type.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPMatchType type;
     /**
-     * @brief Whether to invert the match result
+     * @brief Whether to invert the match result.
      * @since 26.0.0
      */
     bool invert;
     /**
-     * @brief Match rule
+     * @brief Match rule. ({@link OH_TrafficFilter_IPAddress} single, {@link OH_TrafficFilter_IPCidr} cidr,
+     * {@link OH_TrafficFilter_IPRange} range, {@link OH_TrafficFilter_IPMulti} multi).
+     *
      * @since 26.0.0
      */
     union {
@@ -455,41 +455,39 @@ typedef struct OH_TrafficFilter_IPMatch {
 } OH_TrafficFilter_IPMatch;
 
 /**
- * @brief interface match condition
+ * @brief Defines the interface match condition.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_InterfaceMatch {
     /**
-     * @brief Whether interface matching is enabled
+     * @brief Whether to enable interface match.
+     * The value **true** means to enable interface match,and **false** means not to enable interface match.
+     *
      * @since 26.0.0
      */
     bool enabled;
     /**
-     * @brief Whether to invert the match result
+     * @brief Whether to invert the match result.
+     * The value **true** means to invert the match result, and **false** means not to invert the match result.
      * @since 26.0.0
      */
     bool invert;
     /**
-     * @brief Whether the interface name is matched by prefix
+     * @brief Whether to match the interface name by prefix.
+     * The value **true** means to match by prefix, and **false** means not to match by prefix.
+     *
      * @since 26.0.0
      */
     bool isPrefix;
     /**
-     * @brief Interface name.
-     *
-     * The string must be encoded in UTF-8 and must be NUL-terminated.
-     * The capacity of this buffer is {@link OH_TRAFFICFILTER_IFNAMSIZ} bytes,
-     * including the terminating NUL character. Therefore, the maximum length
-     * of the interface name is {@link OH_TRAFFICFILTER_IFNAMSIZ} - 1 bytes,
-     * excluding the terminating NUL character.
-     *
-     * If {@link enabled} is true, this string must not be empty.
-     * If the string is not NUL-terminated within {@link OH_TRAFFICFILTER_IFNAMSIZ}
-     * bytes, or if its length exceeds {@link OH_TRAFFICFILTER_IFNAMSIZ} - 1 bytes,
-     * APIs using this structure return {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}.
-     *
-     * If {@link enabled} is false, this field is ignored. It is recommended to set
-     * this buffer to all zeros when interface matching is disabled.
+     * @brief Interface name. The string must be UTF-8 encoded and NULL-terminated.
+     * The buffer capacity is {@link OH_TRAFFICFILTER_IFNAMSIZ} bytes, including the terminating NULL character.
+     * Therefore, the maximum length of the interface name is {@link OH_TRAFFICFILTER_IFNAMSIZ} - 1 bytes,
+     * excluding the terminating NULL character. If {@link enabled} is **true**, the string cannot be empty.
+     * If the string is not NULL-terminated within {@link OH_TRAFFICFILTER_IFNAMSIZ} bytes, or its length exceeds
+     * {@link OH_TRAFFICFILTER_IFNAMSIZ} - 1 bytes, the API that uses this struct returns
+     * {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link enabled} is **false**, this field is ignored.
+     * It is recommended to set the entire buffer to zero when interface match is disabled.
      *
      * @since 26.0.0
      */
@@ -497,56 +495,60 @@ typedef struct OH_TrafficFilter_InterfaceMatch {
 } OH_TrafficFilter_InterfaceMatch;
 
 /**
- * @brief Port match value for range match
+ * @brief Defines the port matching value for range matching.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_PortRange {
     /**
-     * @brief Start port of the range
+     * @brief Start port of the range.
      * @since 26.0.0
      */
     uint16_t startPort;
     /**
-     * @brief End port of the range
+     * @brief End port of the range.
      * @since 26.0.0
      */
     uint16_t endPort;
 } OH_TrafficFilter_PortRange;
 
 /**
- * @brief Port match value for multi-port match
+ * @brief Defines the port matching value for multi-port matching.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_PortMulti {
     /**
-     * @brief Number of ports in the array
+     * @brief Number of ports in the array.
      * @since 26.0.0
      */
     uint32_t portCount;
     /**
-     * @brief Port array
+     * @brief Port array.
      * @since 26.0.0
      */
     uint16_t ports[OH_TRAFFICFILTER_MAX_MULTI_PORT_COUNT];
 } OH_TrafficFilter_PortMulti;
 
 /**
- * @brief Port match condition
+ * @brief Defines the port match condition.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_PortMatch {
     /**
-     * @brief Match type
+     * @brief Match type.
      * @since 26.0.0
      */
     OH_TrafficFilter_PortMatchType type;
     /**
-     * @brief Whether to invert the match result
+     * @brief Whether to invert the match result.
+     * The value true means to invert the match result, and false means the opposite.
+     *
      * @since 26.0.0
      */
     bool invert;
     /**
-     * @brief Match rule
+     * @brief Match rule.
+     * (uint16_t single, {@link OH_TrafficFilter_PortRange} range, {@link OH_TrafficFilter_PortMulti} multi)
+     *
      * @since 26.0.0
      */
     union {
@@ -569,47 +571,45 @@ typedef struct OH_TrafficFilter_PortMatch {
 } OH_TrafficFilter_PortMatch;
 
 /**
- * @brief Connection information structure
- *
- * Describes five-tuple connection information used to query process information.
- *
- * Initialization rule:
- * Before calling {@link OH_TrafficFilter_QueryProcess}, the caller must clear this structure
- * to zero, for example by using memset, and then set {@link size} to the actual size of the
- * structure allocated by the caller, usually sizeof(OH_TrafficFilter_ConnectionInfo).
- *
- * ABI compatibility rule:
- * The library uses {@link size} to determine which fields can be safely read.
- * If {@link size} is smaller than the minimum size required by the current API, the function
- * returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the
- * size known by the library, the extra fields are ignored. Newly added fields in future
- * versions should remain zero-initialized when not used.
+ * @brief Defines the connection information struct.
+ * It describes the five-tuple information of a network connection (source IP, destination IP, source port,
+ * destination port, and protocol type), which is used to query the process that initiates the connection.
+ * Initialization rule: Before calling {@link OH_TrafficFilter_QueryProcess}, the caller must clear this struct
+ * to zero (for example, using **memset**), and then set {@link size} to the actual size of the struct allocated
+ * by the caller, which is usually **sizeof(OH_TrafficFilter_ConnectionInfo)**.
+ * Binary compatibility rule (ABI, that is, Application Binary Interface, which ensures that code compiled by old
+ * and new versions can recognize each other's struct layout): The system determines which fields can be safely
+ * read based on {@link size}. If {@link size} is smaller than the minimum size required by the current interface,
+ * the interface returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the size known
+ * to the system, the extra fields are ignored.
  *
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_ConnectionInfo {
     /**
-     * @brief the actual size of the structure allocated by the caller.
+     * @brief Actual size of the struct allocated by the caller.
      * @since 26.0.0
      */
     uint32_t size;
     /**
-     * @brief Source IP address, supports IPv4 and IPv6.
+     * @brief Source IP address, which supports IPv4 and IPv6.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress srcIp;
     /**
-     * @brief Source port. 0 means any source port.
+     * @brief Source port. 0 indicates any source port.
      * @since 26.0.0
      */
     uint16_t srcPort;
     /**
-     * @brief Destination IP address, supports IPv4 and IPv6.
+     * @brief Destination IP address, which supports IPv4 and IPv6.
+     * It must be in the same address family as the source IP address.
+     *
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress dstIp;
     /**
-     * @brief Destination port. 0 means any destination port.
+     * @brief Destination port. **0** indicates any destination port.
      * @since 26.0.0
      */
     uint16_t dstPort;
@@ -624,216 +624,247 @@ typedef struct OH_TrafficFilter_ConnectionInfo {
 } OH_TrafficFilter_ConnectionInfo;
 
 /**
- * @brief Process information structure.
- *
- * Stores process information returned by {@link OH_TrafficFilter_QueryProcess}.
- *
- * Initialization rule:
- * Before calling {@link OH_TrafficFilter_QueryProcess}, the caller must clear this structure
- * to zero, for example by using memset, and then set {@link size} to the actual size of the
- * structure allocated by the caller, usually sizeof(OH_TrafficFilter_ProcessInfo).
- *
- * ABI compatibility rule:
- * The library uses {@link size} to determine which output fields can be safely written.
- * Only fields fully covered by {@link size} are written by the library. If {@link size} is
- * smaller than the minimum size required to read the {@link size} field itself, the function
- * returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the
- * size known by the library, the extra fields are ignored.
- *
- * Output validity rule:
- * When {@link OH_TrafficFilter_QueryProcess} returns {@link OH_TRAFFICFILTER_OK}, fields
- * covered by {@link size} contain valid output values. When the function returns an error,
- * the caller must not rely on the values of output fields other than {@link size}.
+ * @brief Defines the process information struct.
+ * Stores the process information returned by {@link OH_TrafficFilter_QueryProcess}.
+ * Initialization rule: Before calling {@link OH_TrafficFilter_QueryProcess}, the caller must clear this struct to
+ * zero (for example, using memset), and then set {@link size} to the actual size of the struct allocated by the caller,
+ * which is usually **sizeof(OH_TrafficFilter_ProcessInfo)**.
+ * Binary compatibility rule (ABI, that is, Application Binary Interface, which ensures that code compiled by old and
+ * new versions can recognize each other's struct layout): The system uses {@link size} to determine which output fields
+ * can be safely written. Only fields fully covered by {@link size} are written by the system.
+ * If {@link size} is smaller than the minimum size required to read the {@link size} field itself,
+ * the API returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the size known to
+ * the system, the extra fields are ignored. Output validity rule: When {@link OH_TrafficFilter_QueryProcess}
+ * returns {@link OH_TRAFFICFILTER_OK}, the fields covered by {@link size} contain valid output values.
+ * When the API returns an error, the caller must not rely on the values of output fields other than {@link size}.
  *
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_ProcessInfo {
     /**
-     * @brief the actual size of the structure allocated by the caller.
+     * @brief Actual size of the struct allocated by the caller.
      * @since 26.0.0
      */
     uint32_t size;
     /**
-     * @brief Process ID
+     * @brief Process ID.
      * @since 26.0.0
      */
     uint32_t pid;
     /**
-     * @brief User ID
+     * @brief App UID.
      * @since 26.0.0
      */
     uint32_t uid;
 } OH_TrafficFilter_ProcessInfo;
 
 /**
- * @brief Traffic redirector
+ * @brief Defines a traffic redirector.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_Redirector OH_TrafficFilter_Redirector;
 
 /**
- * @brief Traffic redirection rule.
- *
- * Defines a TCP traffic redirection rule to redirect matched traffic to the specified proxy server.
- *
- * Initialization rule:
- * Before calling {@link OH_TrafficFilter_AddRedirectRule}, the caller must clear this structure
- * to zero, for example by using memset, and then set {@link size} to the actual size of the
- * structure allocated by the caller, usually sizeof(OH_TrafficFilter_RedirectRule).
- *
- * ABI compatibility rule:
- * The library uses {@link size} to determine which fields can be safely read.
- * If {@link size} is smaller than the minimum size required by the current API, the function
- * returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the
- * size known by the library, the extra fields are ignored. Newly added fields in future
- * versions should remain zero-initialized when not used.
- *
- * Failure rule:
- * If {@link OH_TrafficFilter_AddRedirectRule} returns an error, the rule is not guaranteed
- * to be added or applied. The caller should check the return value before assuming that the
- * rule takes effect.
- *
+ * @brief Defines the traffic redirection rule. Defines a TCP traffic redirection rule to redirect matching traffic to
+ * a specified proxy server. Initialization rule: Before calling {@link OH_TrafficFilter_AddRedirectRule},
+ * the caller must clear this struct to zero (for example, using **memset**), and then set {@link size} to the actual
+ * size of the struct allocated by the caller, usually **sizeof(OH_TrafficFilter_RedirectRule)**. Binary compatibility
+ * rule (ABI, that is, application binary interface, which ensures that code compiled by old and new versions can
+ * recognize each other's struct layout): The system determines which fields can be safely read based on {@link size}.
+ * If {@link size} is smaller than the minimum size required by the current API, the API returns
+ * {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the size known to the system,
+ * the extra fields are ignored. Failure rule: If {@link OH_TrafficFilter_AddRedirectRule} returns an error, it is not
+ * guaranteed that the rule has been added or taken effect. The caller should check the return value before assuming
+ * that the rule has taken effect.
  * @since 26.0.0
  */
 typedef struct OH_TrafficFilter_RedirectRule {
     /**
-     * @brief the actual size of the structure allocated by the caller.
+     * @brief Actual size of the struct allocated by the caller.
      * @since 26.0.0
      */
     uint32_t size;
     /**
-     * @brief Priority (smaller number means higher priority, same rule as packet filter)
+     * @brief Priority. A smaller value indicates a higher priority. The rule is the same as that of the packet filter.
      * @since 26.0.0
      */
     uint32_t priority;
     /**
-     * @brief Hook point (only PREROUTING and OUTPUT are supported)
+     * @brief Hook point, which specifies where the rule takes effect in the network protocol stack.
+     * Only **PREROUTING** and **OUTPUT** are supported. For details, see {@link OH_TrafficFilter_HookPoint}.
      * @since 26.0.0
      */
     OH_TrafficFilter_HookPoint hookPoint;
     /**
-     * @brief Protocol (fixed to TCP=6)
+     * @brief Protocol, fixed to TCP=6.
      * @since 26.0.0
      */
     uint8_t protocol;
     /**
-     * @brief Source IP match condition
+     * @brief Source IP matching condition.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPMatch srcIp;
     /**
-     * @brief Source port match condition
+     * @brief Source port matching condition.
      * @since 26.0.0
      */
     OH_TrafficFilter_PortMatch srcPort;
     /**
-     * @brief Destination IP match condition
+     * @brief Destination IP matching condition.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPMatch dstIp;
     /**
-     * @brief Destination port match condition
+     * @brief Destination port matching condition.
      * @since 26.0.0
      */
     OH_TrafficFilter_PortMatch dstPort;
     /**
-     * @brief Incoming interface match condition
+     * @brief Inbound interface matching condition.
      * @since 26.0.0
      */
     OH_TrafficFilter_InterfaceMatch inInterface;
     /**
-     * @brief Outgoing interface match condition
+     * @brief Outbound interface matching condition.
      * @since 26.0.0
      */
     OH_TrafficFilter_InterfaceMatch outInterface;
     /**
-     * @brief Application UID range start (UINT32_MAX means any)
+     * @brief Start value of the app UID range. The value range is [0, UINT32_MAX], where **UINT32_MAX** indicates any
+     * UID.
      * @since 26.0.0
      */
     uint32_t uidStart;
     /**
-     * @brief Application UID range end (UINT32_MAX means any)
+     * @brief End value of the app UID range. The value range is [0, UINT32_MAX], where **UINT32_MAX** indicates any
+     * UID. Generally, this value must be greater than or equal to **uidStart** (the start value of the app UID range).
      * @since 26.0.0
      */
     uint32_t uidEnd;
     /**
-     * @brief Proxy server IP address (supports IPv4 and IPv6)
+     * @brief IP address of the proxy server. Both IPv4 and IPv6 are supported.
      * @since 26.0.0
      */
     OH_TrafficFilter_IPAddress proxyIp;
     /**
-     * @brief Proxy server port
+     * @brief Port of the proxy server.
      * @since 26.0.0
      */
     uint16_t proxyPort;
 } OH_TrafficFilter_RedirectRule;
 
 /**
- * @brief Packet descriptor
- *
- * Contains five-tuple information and packet data
+ * @brief Defines the packet descriptor.
  * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_PacketDesc {
     /**
-     * @brief Packet ID (assigned by kernel when packet arrives at netfilter)
+     * @brief Packet ID (assigned by the kernel when the packet arrives at netfilter (Network Filter)).
      * @since 26.0.1
      */
     uint32_t packetId;
     /**
-     * @brief Protocol type
+     * @brief Protocol type.
      * @since 26.0.1
      */
     uint8_t protocol;
     /**
-     * @brief Source IP address (supports IPv4 and IPv6)
+     * @brief Source IP address (supports IPv4 and IPv6).
      * @since 26.0.1
      */
     OH_TrafficFilter_IPAddress srcIp;
     /**
-     * @brief Source port
+     * @brief Source port.
      * @since 26.0.1
      */
     uint16_t srcPort;
     /**
-     * @brief Destination IP address (supports IPv4 and IPv6)
+     * @brief Destination IP address (supports IPv4 and IPv6).
      * @since 26.0.1
      */
     OH_TrafficFilter_IPAddress dstIp;
     /**
-     * @brief Destination port
+     * @brief Destination port.
      * @since 26.0.1
      */
     uint16_t dstPort;
     /**
-     * @brief Packet length
+     * @brief Packet length.
      * @since 26.0.1
      */
     uint32_t packetLen;
     /**
-     * @brief Packet data pointer (user can modify, memory managed by system, valid only during callback)
+     * @brief Pointer to the packet data (modifiable by the user; the memory is managed by the system, and **it is
+     * valid only during the callback. Do not access this pointer after the callback returns**).
      * @since 26.0.1
      */
     uint8_t* data;
     /**
-     * @brief User data (used in callback)
+     * @brief Pointer to the user data (used in the callback).
      * @since 26.0.1
      */
     void* userData;
 } OH_TrafficFilter_PacketDesc;
 
 /**
- * @brief Packet decision type
+ * @brief Defines the configuration struct of an NFQueue (a packet queuing channel in the Netfilter framework).
+ * Initialization rule: Before calling {@link OH_TrafficFilter_CreatePacketController}, the caller must clear this
+ * struct to zero (for example, using **memset**), and then set {@link size} to the actual size of the struct allocated
+ * by the caller, which is usually **sizeof(OH_TrafficFilter_Config)**.
+ * Binary compatibility rule (ABI, that is, application binary interface, which ensures that code compiled by old
+ * and new versions can recognize each other's struct layout): The system determines which fields can be safely read
+ * based on {@link size}. If {@link size} is smaller than the minimum size required by the current API,
+ * the API returns {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the size known to the
+ * system, the extra fields are ignored.
+ * @note Failure to follow this initialization contract may lead to undefined behavior or binary incompatibility
+ *     across versions.
+ * @since 26.0.1
+ */
+typedef struct OH_TrafficFilter_Config {
+     /**
+      * @brief Actual size of the struct allocated by the caller.
+      * @since 26.0.1
+      */
+     uint32_t size;
+     /**
+      * @brief Packet copy mode. For details, see {@link OH_TrafficFilter_PacketCopyMode}. The default value is **2**.
+      * @since 26.0.1
+      */
+     uint32_t packetCopyMode;
+     /**
+      * @brief Length (in bytes) of the packet copied by the NFQueue.
+      * The value ranges from 0 to 0xFFFF. 0xFFFF means copying the entire packet,
+      * and other values mean copying the packet header of the specified length. The default value is 0xFFFF.
+      * @since 26.0.1
+      */
+     uint32_t packetCopyLen;
+     /**
+      * @brief Maximum queue length (number of packets) of the NFQueue.
+      * **0** means using the system default value (1024).
+      * @since 26.0.1
+      */
+     uint32_t nfqueueMaxlen;
+     /**
+      * @brief NFQueue queue flag.
+      * For details, see {@link OH_TRAFFICFILTER_NFQUEUE_FLAG_FAIL_OPEN}. The default value is **0x1**.
+      * @since 26.0.1
+      */
+     uint32_t nfqueueFlags;
+} OH_TrafficFilter_Config;
+
+/**
+ * @brief Enumerates the packet processing decision types.
  * @since 26.0.1
  */
 typedef enum OH_TrafficFilter_PacketDecision {
     /**
-     * @brief Accept packet
+     * @brief Accepts the packet.
      * @since 26.0.1
      */
     OH_TRAFFICFILTER_DECISION_ACCEPT = 0,
     /**
-     * @brief Drop packet
+     * @brief Drops the packet.
      * @since 26.0.1
      */
     OH_TRAFFICFILTER_DECISION_DROP
@@ -853,257 +884,195 @@ typedef OH_TrafficFilter_PacketDecision (*OH_TrafficFilter_PacketCallback)(
 );
 
 /**
- * @brief Packet copy mode enumeration
+ * @brief Enumerates the packet copy modes.
  * @since 26.0.1
  */
 typedef enum OH_TrafficFilter_PacketCopyMode {
-    /**
-     * @brief Copy only metadata (no packet data)
-     * @since 26.0.1
-     */
-    OH_TRAFFICFILTER_COPY_MODE_META = 0,
-    /**
-     * @brief Copy packet header only (specified by packetCopyLen)
-     * @since 26.0.1
-     */
-    OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
-    /**
-     * @brief Copy entire packet
-     * @since 26.0.1
-     */
-    OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
-    /**
-     * @brief Copy packet with specified maximum length
-     * @since 26.0.1
-     */
-    OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
+     /**
+      * @brief Copies only the metadata (without copying the packet data).
+      * @since 26.0.1
+      */
+     OH_TRAFFICFILTER_COPY_MODE_META = 0,
+     /**
+      * @brief Copies only the packet header (specified by **packetCopyLen**).
+      * @since 26.0.1
+      */
+     OH_TRAFFICFILTER_COPY_MODE_HEADER = 1,
+     /**
+      * @brief Copies the entire packet.
+      * @since 26.0.1
+      */
+     OH_TRAFFICFILTER_COPY_MODE_FULL = 2,
+     /**
+      * @brief Copies the packet of the specified maximum length.
+      * @since 26.0.1
+      */
+     OH_TRAFFICFILTER_COPY_MODE_MAXLEN = 3
 } OH_TrafficFilter_PacketCopyMode;
 
 /**
- * @brief NFQueue configuration structure
- * - If `config` is **NULL**, the implementation applies the following default values:
- * - `packetCopyLen` = 0xFFFF (copy entire packet)
- * - `nfqueueMaxlen` = 0    (use system default, which is 1024)
- * - `nfqueueFlags`  = OH_TRAFFICFILTER_NFQUEUE_FLAG_FAIL_OPEN
- * - If `config` is **non-NULL**, the caller **must**:
- * 1. Zero-initialize the entire structure (e.g., `memset(&cfg, 0, sizeof(cfg))`).
- * 2. Set `size` = `sizeof(OH_TrafficFilter_Config)`.
- * 3. Set all other fields to valid values within the defined ranges (see below).
- * - **Failure** to follow this contract (e.g., incorrect `size`, out-of-range field values)
- * will cause the API to return `OH_TRAFFICFILTER_ERROR_INVALID_PARAM`.
- *
- * @note Failure to follow this initialization contract may lead to undefined behavior or binary incompatibility
- *     across versions.
- * @since 26.0.1
- */
-typedef struct OH_TrafficFilter_Config {
-    /**
-     * @brief Must be set to `sizeof(OH_TrafficFilter_Config)` by the caller.
-     * The caller is required to zero-initialize the structure first, then set this field.
-     * The implementation uses this value to determine the valid data range for binary compatibility.
-     * @since 26.0.1
-     */
-    uint32_t size;
-    /**
-     * @brief NFQueue packet copy mode, see OH_TrafficFilter_PacketCopyMode
-     * @since 26.0.1
-     */
-    uint32_t packetCopyMode;
-    /**
-     * @brief NFQueue packet copy length in bytes, 0xFFFF means entire packet, smaller values copy only header
-     * @since 26.0.1
-     */
-    uint32_t packetCopyLen;
-    /**
-     * @brief NFQueue maximum queue length (number of packets), 0 means system default (1024)
-     * @since 26.0.1
-     */
-    uint32_t nfqueueMaxlen;
-    /**
-     * @brief NFQueue queue flags, see OH_TRAFFICFILTER_NFQUEUE_FLAG_* definitions
-     * @since 26.0.1
-     */
-    uint32_t nfqueueFlags;
-} OH_TrafficFilter_Config;
-
-/**
- * @brief MAC address match condition
- *
- * Matches packets based on MAC address
- * Only source MAC is supported
+ * @brief Defines the MAC address matching condition.
  * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_MACMatch {
     /**
-     * @brief Enable MAC address matching
+     * @brief Whether to enable MAC address matching.
+     * The value **true** means to enable MAC address matching, and **false** means the opposite.
      * @since 26.0.1
      */
     bool enable;
     /**
-     * @brief Whether to invert the match result
+     * @brief Whether to invert the matching result.
+     * The value **true** means to invert the matching result, and **false** means the opposite.
      * @since 26.0.1
      */
     bool invert;
     /**
-     * @brief Source MAC address in "XX:XX:XX:XX:XX:XX" format.
-     * ASCII/UTF-8 encoded, must be null-terminated.
-     * OH_TRAFFICFILTER_MAC_ADDRSTRLEN includes the null terminator;
-     * maximum valid string length is 17 characters.
-     * Invalid format will cause the rule-setting API to return OH_TRAFFICFILTER_ERROR_INVALID_PARAM.
+     * @brief Source MAC address (in the XX:XX:XX:XX:XX:XX format).
      * @since 26.0.1
      */
     char srcMac[OH_TRAFFICFILTER_MAC_ADDRSTRLEN];
 } OH_TrafficFilter_MACMatch;
 
 /**
- * @brief TCP flags match condition
- *
- * Matches TCP packets based on TCP flag settings
+ * @brief Defines the TCP flag matching condition. It is valid only for the TCP protocol.
  * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_TCPFlagsMatch {
     /**
-     * @brief Enable TCP flags matching
+     * @brief Whether to enable TCP flag matching.
+     * The value **true** means to enable TCP flag matching, and **false** means not to enable TCP flag matching.
      * @since 26.0.1
      */
     bool enable;
     /**
-     * @brief Flag mask (which flags to check, use OH_TRAFFICFILTER_TCP_FLAG_* constants)
+     * @brief Flag mask (specifies the flags to check).
      * @since 26.0.1
      */
     uint8_t flagMask;
     /**
-     * @brief Flag to compare (which flags must be set)
+     * @brief Flag comparison value (value to compare against the flags).
      * @since 26.0.1
      */
     uint8_t flagComp;
 } OH_TrafficFilter_TCPFlagsMatch;
 
 /**
- * @brief Connection tracking match condition
- *
- * Matches packets based on connection tracking states
+ * @brief Defines the connection tracking match condition.
  * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_ConntrackMatch {
     /**
-     * @brief Enable conntrack matching
+     * @brief Whether to enable connection tracking match. The value **true** means to enable connection tracking
+     * match, and **false** means not to enable it.
      * @since 26.0.1
      */
     bool enable;
     /**
-     * @brief Connection states (use OH_TRAFFICFILTER_CT_STATE_* bitmap)
+     * @brief Connection state.
      * @since 26.0.1
      */
     uint8_t stateMask;
 } OH_TrafficFilter_ConntrackMatch;
 
 /**
- * @brief Packet filter rule
- *
- * Defines conditions for matching packets.
- * 1. **Initialization Contract (Caller Side)**:
- * - The caller must **zero-initialize** the entire structure (e.g., via `memset`) before use.
- * - The `size` field **must** be explicitly set to `sizeof(OH_TrafficFilter_FilterRule)`.
- * - If `size` is less than `sizeof(OH_TrafficFilter_FilterRule)`, the implementation will only read the stable
- * prefix fields up to `size`, ignoring subsequent bytes.
- *
- * 2. **Read Contract (Implementation Side)**:
- * - The implementation strictly determines the valid field range based on the `size` value.
- * - If `size` < `sizeof(OH_TrafficFilter_FilterRule)`, the implementation treats it as an older version and reads
- * only the prefix fields compatible with that size.
- * - If `size` is 0 or the pointer is NULL, the implementation must return an error.
+ * @brief Defines a packet filtering rule. The conditions within a single **OH_TrafficFilter_FilterRule** struct are
+ * in a logical AND relationship, and multiple rules added to the same **OH_TrafficFilter_PacketController** are in a
+ * logical OR relationship. Initialization rule: Before calling {@link OH_TrafficFilter_AddPacketRule}, the caller must
+ * clear this struct to zero (for example, using **memset**), and then set {@link size} to the actual size of the struct
+ * allocated by the caller, usually **sizeof(OH_TrafficFilter_FilterRule)**. Binary compatibility rule (ABI, that is,
+ * application binary interface, which ensures that code compiled by old and new versions can recognize each
+ * other's struct layout): The system determines which fields can be safely read based on {@link size}. If {@link size}
+ * is smaller than the minimum size required by the current API, the API returns
+ * {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}. If {@link size} is larger than the size known to the system,
+ * the extra fields are ignored. Failure rule: If {@link OH_TrafficFilter_AddPacketRule} returns an error,
+ * it is not guaranteed that the rule has been added or taken effect. The caller should check the return value
+ * before assuming that the rule has taken effect.
  *
  * @note Failure to follow this initialization contract may lead to undefined behavior or binary incompatibility across
  *     versions.
  * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_FilterRule {
-    /**
-     * @brief Must be set to `sizeof(OH_TrafficFilter_FilterRule)` by the caller.
-     * The caller is required to zero-initialize the structure first, then set this field.
-     * The implementation uses this value to determine the valid data range for binary compatibility.
-     * @since 26.0.1
-     */
-    uint32_t size;
-    /**
-     * @brief Priority (smaller number means higher priority)
-     * @since 26.0.1
-     */
-    uint32_t priority;
-    /**
-     * @brief Hook point
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_HookPoint hookPoint;
-    /**
-     * @brief Protocol (0=any, 6=TCP, 17=UDP)
-     * @since 26.0.1
-     */
-    uint8_t protocol;
-    /**
-     * @brief Source IP match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_IPMatch srcIp;
-    /**
-     * @brief Source port match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_PortMatch srcPort;
-    /**
-     * @brief Destination IP match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_IPMatch dstIp;
-    /**
-     * @brief Destination port match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_PortMatch dstPort;
-    /**
-     * @brief Incoming interface match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_InterfaceMatch inInterface;
-    /**
-     * @brief Outgoing interface match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_InterfaceMatch outInterface;
-    /**
-     * @brief Application UID range start (inclusive). Valid range: 0 to UINT32_MAX.
-     * To match any UID, set both uidStart and uidEnd to UINT32_MAX.
-     * If uidStart > uidEnd, the rule-setting API returns OH_TRAFFICFILTER_ERROR_INVALID_PARAM.
-     * After zero-initialization, uidStart=0 and uidEnd=0, which matches UID 0 only.
-     * @since 26.0.1
-     */
-    uint32_t uidStart;
-    /**
-     * @brief Application UID range end (inclusive). Valid range: 0 to UINT32_MAX.
-     * See uidStart for usage details.
-     * @since 26.0.1
-     */
-    uint32_t uidEnd;
-    /**
-     * @brief MAC address match condition (only source MAC)
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_MACMatch macMatch;
-    /**
-     * @brief TCP flags match condition (valid only for TCP protocol)
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
-    /**
-     * @brief Connection tracking match condition
-     * @since 26.0.1
-     */
-    OH_TrafficFilter_ConntrackMatch conntrackMatch;
+     /**
+      * @brief Actual size of the struct allocated by the caller.
+      * @since 26.0.1
+      */
+     uint32_t size;
+     /**
+      * @brief Priority. A smaller value indicates a higher priority.
+      * @since 26.0.1
+      */
+     uint32_t priority;
+     /**
+      * @brief Hook point. Adds the rule to the chain of a different hook point.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_HookPoint hookPoint;
+     /**
+      * @brief Protocol type. **0** indicates no restriction, **6** indicates TCP, and **17** indicates UDP.
+      * @since 26.0.1
+      */
+     uint8_t protocol;
+     /**
+      * @brief Source IP matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_IPMatch srcIp;
+     /**
+      * @brief Source port matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_PortMatch srcPort;
+     /**
+      * @brief Destination IP matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_IPMatch dstIp;
+     /**
+      * @brief Destination port matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_PortMatch dstPort;
+     /**
+      * @brief Inbound interface matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_InterfaceMatch inInterface;
+     /**
+      * @brief Outbound interface matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_InterfaceMatch outInterface;
+     /**
+      * @brief Start value of the application UID range. **UINT32_MAX** indicates any value.
+      * @since 26.0.1
+      */
+     uint32_t uidStart;
+     /**
+      * @brief End value of the application UID range. **UINT32_MAX** indicates any value.
+      * @since 26.0.1
+      */
+     uint32_t uidEnd;
+     /**
+      * @brief MAC address matching condition. Applies to the source MAC address only.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_MACMatch macMatch;
+     /**
+      * @brief TCP flag matching condition. Valid only for the TCP protocol.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_TCPFlagsMatch tcpFlagsMatch;
+     /**
+      * @brief Connection tracking matching condition.
+      * @since 26.0.1
+      */
+     OH_TrafficFilter_ConntrackMatch conntrackMatch;
 } OH_TrafficFilter_FilterRule;
 
 /**
- * @brief Packet controller
+ * @brief Defines the packet controller.
  * @since 26.0.1
  */
 typedef struct OH_TrafficFilter_PacketController OH_TrafficFilter_PacketController;
