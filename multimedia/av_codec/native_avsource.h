@@ -98,7 +98,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource,
  *
  * @param uri URI of the media resource.
  * @return Pointer to the OH_AVSource instance created. If the operation fails, NULL is returned.
- *  The possible causes of an operation failure are as follows:
+ *     The possible causes of an operation failure are as follows:
  *     <br>1. The network is abnormal.
  *     <br>2. The resource is invalid.
  *     <br>3. The file format is not supported.
