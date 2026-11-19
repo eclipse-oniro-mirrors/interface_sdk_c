@@ -357,7 +357,7 @@ bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
  * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
  * Returns **ERR_OK** if the operation is successful.
  * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
- * @see OH_Pasteboard.
+ * @see OH_Pasteboard
  * @see PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -567,8 +567,7 @@ void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, co
  *
  * @param params Pointer to a **Pasteboard_GetDataParams** instance.
  * @param option Options used to resolve file copy conflicts. The default value is **PASTEBOARD_OVERWRITE**.
- * @see Pasteboard_GetDataParams.
- * @see Pasteboard_FileConflictOptions.
+ * @see Pasteboard_GetDataParams Pasteboard_FileConflictOptions.
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams* params,
@@ -631,8 +630,7 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  * @return Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful;
  * returns a null pointer otherwise.
  * @see OH_Pasteboard.
- * @see OH_PasteData.
- * @see PASTEBOARD_ErrCode.
+ * @see OH_Pasteboard OH_PasteData PASTEBOARD_ErrCode.
  * @since 15
  */
 OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params,
