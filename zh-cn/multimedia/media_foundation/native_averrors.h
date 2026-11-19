@@ -120,6 +120,11 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_UNSUPPORTED_FORMAT = 11,
     /**
+     * @brief 实例已被系统回收。
+     * @since 26.1.0
+     */
+    AV_ERR_RECLAIM = 13,
+    /**
      * @brief 扩展错误码初始值。
      *
      * @since 9

@@ -106,6 +106,9 @@
     {
         "first_introduced": "20",
         "name": "OH_VideoDecoder_GetOutputBuffer"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_VideoDecoder_RegisterReclaimCallback"
     }
-
 ]

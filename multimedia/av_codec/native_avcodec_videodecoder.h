@@ -573,6 +573,46 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  */
 OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
     bool secureVideoPath);
+
+/**
+ * @brief The OH_AVCodec instance is reclaimed by the system due to resource pressure, for example,
+ * high hardware decoding resources or memory usage. The system experience is affected.
+ * This function pointer will be invoked.
+ * After this callback is invoked, {@link OH_VideoDecoder_Destroy} can be invoked normally,
+ * Any other interface calls to the codec return {@link AV_ERR_RECLAIM}.
+ * After receiving the callback, the user needs to release the service object in time.
+ * If decoding is still required, re-create a decoder instance.
+ * @param codec [in] OH_AV codec instance.
+ *     The value cannot be NULL. Ensure that the codec is valid during function execution.
+ * @param userData [in] Data used by users to execute callbacks,
+ *     The value can be NULL.
+ * @since 26.1.0
+ */
+typedef void (*OH_AVCodecOnReclaim)(OH_AVCodec *codec, void *userData);
+
+/**
+ * @brief The video decoder registers the recycling callback function so that the application can receive a notification
+ * when the decoding instance is reclaimed by the system.
+ * This interface must be called before {@link OH_VideoDecoder_Prepare}. After a successful registration, duplicate
+ * registration is not allowed, but re-registration is allowed after a successful {@link OH_VideoDecoder_Reset}.
+ * Only instances that have registered recycling callbacks enter the recycling candidate and call back notifications
+ * after the instance is reclaimed.
+ * @param codec [in] Pointer to the OH_AVCodec instance. NULL is not allowed. The codec must be valid during execution.
+ * @param onReclaim [in] Callback function [in]. For details, see {@link OH_AVCodecReclaimCallback}.
+ *         The value cannot be NULL.
+ * @param userData [in] Data used by the user to execute the callback[in],
+ *         The value can be NULL.
+ * @return If the interface is successfully executed, {@link AV_ERR_OK} is returned,
+ *     Otherwise, an error code is returned. For details, see {@link OH_AVErrCode}.
+ *     The different return values and their possible causes are as follows:
+ *     <ul><li>{@link AV_ERR_RECLAIM}: The instance has been reclaimed by the system.
+ *     {@link AV_ERR_INVALID_STATE}: This interface is called in invalid state.
+ *     {@link AV_ERR_INVALID_VAL}. Error cause: 1. The input codec pointer is not a decoder instance or is empty.
+ *     2. The callback value is NULL.
+ *     {@link AV_ERR_OPERATE_NOT_PERMIT}: indicates repeated registration. </li></ul>
+ * @since 26.1.0
+ */
+OH_AVErrCode OH_VideoDecoder_RegisterReclaimCallback(OH_AVCodec *codec, OH_AVCodecOnReclaim onReclaim, void *userData);
 #ifdef __cplusplus
 }
 #endif
