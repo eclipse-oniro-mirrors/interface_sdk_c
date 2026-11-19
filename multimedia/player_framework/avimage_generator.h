@@ -57,10 +57,9 @@ typedef struct OH_AVImageGenerator OH_AVImageGenerator;
  * @brief Creates an OH_AVImageGenerator instance, which is used to generate video frames at given time points.
  * 
  * @return Returns a pointer to an OH_AVImageGenerator instance for success, nullptr for failure.
- * Possible failure causes: HstEngineFactory failed to CreateAVMetadataHelperEngine.
  * @since 18
  */
-OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
+OH_AVImageGenerator *OH_AVImageGenerator_Create(void);
 
 /**
  * @brief Sets a data source based on the media file descriptor.
