@@ -815,8 +815,9 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief Total size of the cloud file, in bytes. It is determined by the first
-     * OH_CloudDisk_Execute call and must stay the same in subsequent calls.
+     * @brief Total size of the cloud file, in bytes. It is determined when **OH_CloudDisk_Execute** is called for the
+     * first time.
+     * The size must be the same for subsequent calls.
      *
      * @since 26.0.1
      */
@@ -993,11 +994,12 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
 
 /**
- * @brief Creates a placeholder file under a registered sync root path. Upon creation, the system sets the local
- * file size to the logicalSize preset in placeholderInfo. The system does not guarantee consistency
- * between the local placeholder file size and the cloud file size; the application must use
- * OH_CloudDisk_UpdatePlaceholder() to keep the local placeholder file metadata consistent with the
- * cloud file metadata.
+ * @brief Creates a placeholder file in the registered sync root path. When the placeholder file is created, the system
+ * sets the local file size to the value of **logicalSize** in **placeholderInfo**.
+ * The system does not guarantee the consistency between the size of local placeholder file and that of the cloud
+ * file. The application need to
+ * ensure the consistency between the metadata of the local placeholder file and that of the cloud file using
+ * **OH_CloudDisk_UpdatePlaceholder()**.
  *
  * @param syncFolderPath [in] Indicates the registered sync folder path.
  * @param relativePathInfo [in] Indicates the relative path in the sync folder.
@@ -1137,10 +1139,11 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
 CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFolderPath syncFolderPath);
 
 /**
- * @brief Responds to a callback request and writes the obtained data block into the active
- * placeholder hydration task. A single data block cannot exceed 128 KiB. The function copies all
- * input fields and data before returning. The total hydration size is determined by the
- * fetchData.totalSize of the first Execute call and must stay the same in subsequent calls.
+ * @brief Responds to a callback request and writes the obtained data block to the active placeholder hydration task.
+ * The size of a single data block cannot exceed 128 KiB.
+ * Before running a result, the function copies all input fields and data. The total amount of data to be hydrated is
+ * subject to the **fetchData.totalSize** returned for the first time.
+ * The size must be the same in subsequent calls.
  *
  * @param reqHead [in] Callback request header.
  * @param reqContext [in] Callback request context.
