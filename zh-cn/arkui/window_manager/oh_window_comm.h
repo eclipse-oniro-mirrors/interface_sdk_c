@@ -233,25 +233,25 @@ typedef enum {
 } WindowManager_WindowType;
 
 /**
- * @brief The struct describes the window rectangle, including the window position, width, and height.
+ * @brief 定义窗口矩形结构体，包含窗口位置和宽高信息。
  *
  * @since 15
  */
 typedef struct {
     /**
-     * X coordinate of the window, in px. The value is an integer.
+     * 窗口的x坐标，单位为px，该参数为整数。
      */
     int32_t posX;
     /**
-     * Y coordinate of the window, in px. The value is an integer.
+     * 窗口的y坐标，单位为px，该参数为整数。
      */
     int32_t posY;
     /**
-     * Window width, in px. The value is an integer.
+     * 窗口的宽度，单位为px，该参数为整数。
      */
     uint32_t width;
     /**
-     * Window height, in px. The value is an integer.
+     * 窗口的高度，单位为px，该参数为整数。
      */
     uint32_t height;
 } WindowManager_Rect;
@@ -362,25 +362,25 @@ typedef struct {
 } WindowManager_WindowProperties;
 
 /**
- * @brief The struct describes the avoid area.
+ * @brief 定义避让区域结构体。
  *
  * @since 15
  */
 typedef struct {
     /**
-     * Top rectangle of the avoid area.
+     * 避让区域的顶部矩形。
      */
     WindowManager_Rect topRect;
     /**
-     * Left rectangle of the avoid area.
+     * 避让区域的左侧矩形。
      */
     WindowManager_Rect leftRect;
     /**
-     * Right rectangle of the avoid area.
+     * 避让区域的右侧矩形。
      */
     WindowManager_Rect rightRect;
     /**
-     * Bottom rectangle of the avoid area.
+     * 避让区域的底部矩形。
      */
     WindowManager_Rect bottomRect;
 } WindowManager_AvoidArea;
