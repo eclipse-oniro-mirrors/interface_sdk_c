@@ -112,8 +112,9 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBuff
  * You must call {@link OH_AVFormat_Destroy} to manually release the OH_AVFormat instance returned.
  *
  * @param buffer Pointer to an OH_AVBuffer instance.
- * @return {@link AV_ERR_OK}: The operation is successful.
- *     {@link AV_ERR_INVALID_VAL}: The possible causes are as follows:
+ * @return If the operation is successful, the pointer to the OH_AVFormat instance is returned.
+ *     Otherwise, NULL is returned.
+ *     <br>The possible causes are as follows:
  *     <br>1. The value of **buffer** is nullptr.
  *     <br>2. The meta of the buffer is nullptr.
  *     <br>3. The value of **buffer** fails parameter structure verification.

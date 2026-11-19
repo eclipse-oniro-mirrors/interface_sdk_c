@@ -826,8 +826,8 @@ typedef enum {
      */
     HID_REL_WHEEL = 0x08,
     /**
-     * Miscellaneous relative coordinate events, which are used to identify miscellaneous axis types that do not fit
-     * into the preceding categories.
+     * Miscellaneous relative coordinate events, which are used to identify miscellaneous relative coordinate events
+     * that do not fit into the preceding categories.
      */
     HID_REL_MISC = 0x09,
     /**

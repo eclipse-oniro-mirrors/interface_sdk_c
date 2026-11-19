@@ -19,7 +19,6 @@
  *
  * @brief Core模块提供用于媒体系统的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */
 
@@ -28,7 +27,6 @@
  * @file native_avbuffer.h
  *
  * @brief 声明了媒体数据结构AVBuffer的函数接口。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avbuffer.h>
@@ -51,24 +49,26 @@ extern "C" {
 #endif
 /**
  * @brief 为媒体内存接口定义native层对象。
+ *
  * @since 11
  */
 typedef struct OH_AVBuffer OH_AVBuffer;
 /**
  * @brief 为图形内存接口定义native层对象。
+ *
  * @since 11
  */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
  * @brief 创建OH_AVBuffer实例。
- * 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要开发者主动调用接口释放，请参阅{@link OH_AVBuffer_Destroy}。
+ * 需要注意的是，返回值指向的OH_AVBuffer实例需要开发者主动调用接口释放，请参阅{@link OH_AVBuffer_Destroy}。
  *
  * @param capacity 创建内存的大小，单位字节。
  * @return 如果创建成功，则返回OH_AVBuffer实例的指针，如果失败，则返回NULL。
- * <br>可能的失败原因：
- * <br>1.capacity <= 0。
- * <br>2.出现内部错误，系统没有资源等。
+ *     <br>可能的失败原因：
+ *     <br>1.capacity <= 0。
+ *     <br>2.出现内部错误或系统资源不足。
  * @since 11
  */
 OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
@@ -78,8 +78,8 @@ OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：输入的buffer为空指针或者buffer格式校验失败。
- * <br>AV_ERR_OPERATE_NOT_PERMIT：输入的buffer不是用户创建的。
+ *     <br>AV_ERR_INVALID_VAL：输入的buffer为空指针或者buffer格式校验失败。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：输入的buffer不是用户创建的。
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer);
@@ -90,9 +90,9 @@ OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer);
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @param attr 指向OH_AVCodecBufferAttr实例的指针。
  * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：可能的原因：
- * <br>1. 输入的buffer或attr为空指针。
- * <br>2. buffer结构校验失败。
+ *     <br>AV_ERR_INVALID_VAL：可能的原因：
+ *     <br>1. 输入的buffer或attr为空指针。
+ *     <br>2. buffer结构校验失败。
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr *attr);
@@ -103,24 +103,24 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @param attr 指向OH_AVCodecBufferAttr实例的指针。
  * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：可能的原因：
- * <br>1. 输入的buffer或attr为空指针。
- * <br>2. buffer结构校验失败。
- * <br>3. 输入buffer中内存的size或offset是无效值。
+ *     <br>AV_ERR_INVALID_VAL：可能的原因：
+ *     <br>1. 输入的buffer或attr为空指针。
+ *     <br>2. buffer结构校验失败。
+ *     <br>3. 输入buffer中内存的size或offset是无效值。
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBufferAttr *attr);
 
 /**
  * @brief 获取除基础属性外的其他参数，信息在OH_AVFormat中承载。
- * 需要注意的是，返回值指向的创建OH_AVFormat的实例需要开发者主动释放，请参阅{@link OH_AVFormat_Destroy}。
+ * 需要注意的是，返回值指向的OH_AVFormat实例需要开发者主动释放，请参阅{@link OH_AVFormat_Destroy}。
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
- * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：可能的原因：
- * <br>1. 输入的buffer为空指针。
- * <br>2. 输入buffer的meta为空指针。
- * <br>3. buffer结构校验失败。
+ * @return 如果成功，则返回OH_AVFormat实例的指针，如果失败，则返回NULL。
+ *     <br>可能的失败原因：
+ *     <br>1. 输入的buffer为空指针。
+ *     <br>2. 输入buffer的meta为空指针。
+ *     <br>3. buffer结构校验失败。
  * @since 11
  */
 OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
@@ -131,10 +131,10 @@ OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @param format 指向OH_AVFormat实例的指针。
  * @return AV_ERR_OK：操作成功。
- * <br>AV_ERR_INVALID_VAL：可能的原因：
- * <br>1. 输入的buffer或format为空指针。
- * <br>2. 输入buffer的meta为空指针。
- * <br>3. buffer结构校验失败。
+ *     <br>AV_ERR_INVALID_VAL：可能的原因：
+ *     <br>1. 输入的buffer或format为空指针。
+ *     <br>2. 输入buffer的meta为空指针。
+ *     <br>3. buffer结构校验失败。
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *format);
@@ -144,10 +144,10 @@ OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *fo
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return 如果成功，则返回数据缓冲区的虚拟地址，如果失败，则返回NULL。
- * 可能的失败原因：
- * <br>1.输入的buffer为空指针。
- * <br>2.OH_AVBuffer结构校验失败。
- * <br>3.出现内部错误。
+ *     可能的失败原因：
+ *     <br>1.输入的buffer为空指针。
+ *     <br>2.OH_AVBuffer结构校验失败。
+ *     <br>3.出现内部错误。
  * @since 11
  */
 uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
@@ -157,24 +157,24 @@ uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return 如果成功，则返回数据缓冲区的容量，如果失败，则返回-1。
- * <br>可能的失败原因：
- * <br>1.输入的buffer为空指针。
- * <br>2.OH_AVBuffer结构校验失败。
- * <br>3.出现内部错误。
+ *     <br>可能的失败原因：
+ *     <br>1.输入的buffer为空指针。
+ *     <br>2.OH_AVBuffer结构校验失败。
+ *     <br>3.出现内部错误。
  * @since 11
  */
 int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
 
 /**
  * @brief 获取OH_NativeBuffer实例的指针。
- * 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要开发者主动调用接口释放，请参阅{@link OH_NativeBuffer_Unreference}。
+ * 需要注意的是，返回值指向的OH_NativeBuffer实例需要开发者主动调用接口释放，请参阅{@link OH_NativeBuffer_Unreference}。
  *
  * @param buffer 指向OH_AVBuffer实例的指针。
  * @return 如果成功，则返回OH_NativeBuffer实例的指针，如果失败，则返回NULL。
- * <br>可能的失败原因：
- * <br>1.输入的buffer为空指针。
- * <br>2.OH_AVBuffer结构校验失败。
- * <br>3.出现内部错误。
+ *     <br>可能的失败原因：
+ *     <br>1.输入的buffer为空指针。
+ *     <br>2.OH_AVBuffer结构校验失败。
+ *     <br>3.出现内部错误。
  * @since 11
  */
 OH_NativeBuffer *OH_AVBuffer_GetNativeBuffer(OH_AVBuffer *buffer);

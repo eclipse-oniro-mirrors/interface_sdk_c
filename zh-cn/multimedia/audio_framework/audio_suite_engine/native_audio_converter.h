@@ -76,6 +76,7 @@ typedef struct OH_AudioConverter_Format {
 /**
  * @brief 定义扩展音频转换器格式信息结构体，用于描述支持任意采样率的音频格式。
  *
+ * @systemapi
  * @since 26.1.0
  */
 typedef struct OH_AudioSuite_ConverterFormatEx {
@@ -126,6 +127,7 @@ typedef struct OH_AudioSuite_ConverterFormatEx {
 /**
  * @brief 定义音频转换器输入数据结构体。
  *
+ * @systemapi
  * @since 26.1.0
  */
 typedef struct OH_AudioSuite_ConverterInputInfo {
@@ -148,6 +150,7 @@ typedef struct OH_AudioSuite_ConverterInputInfo {
 /**
  * @brief 定义音频转换器输出数据结构体，用于直接处理模式接收转换后的音频数据。
  *
+ * @systemapi
  * @since 26.1.0
  */
 typedef struct OH_AudioSuite_ConverterOutputInfo {
@@ -255,6 +258,7 @@ typedef enum {
  *     <br>AUDIOCONVERTER_ERROR_INVALID_PARAM：函数输入参数无效，需要检查传入的音频格式转换器指针是否非空指针。
  *     <br>AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT：音频输入/输出格式组合不支持，输入或输出格式超出允许范围，
  *     需要检查配置的音频格式。
+ *     <br>AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED：创建音频格式转换器内存分配失败。
  *     <br>AUDIOCONVERTER_ERROR_SYSTEM：系统错误，需要检查是否使用已销毁的音频格式转换器执行格式转换。
  * @release OH_AudioConverter_Destroy {converter}
  * @since 26.0.0
@@ -325,16 +329,16 @@ typedef int32_t (*OH_AudioConverter_RequestDataCallback)(
  * @param callback 回调函数用于写入音频数据。
  * @param userData 指向将传递给回调函数的应用程序数据结构的指针。
  * @return <ul>
- *     <li>{@link #AUDIOCONVERTER_SUCCESS} 设置输入回调函数成功，可以正常执行后续流程。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} 函数输入参数无效，
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} 设置输入回调函数成功，可以正常执行后续流程。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} 函数输入参数无效，
  *     需要检查传入的音频格式转换器指针是否非空指针。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZED} 音频格式转换器未初始化，
+ *     <li>{@link AUDIOCONVERTER_ERROR_NOT_INITIALIZED} 音频格式转换器未初始化，
  *     需要检查当前音频格式转换器是否有效。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} 回调函数无效，
+ *     <li>{@link AUDIOCONVERTER_ERROR_CALLBACK_INVALID} 回调函数无效，
  *     需要检查输入回调函数返回数据量是否在允许范围内。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET} 回调函数未设置，需要检查回调函数指针是否非空。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} 系统错误，需要检查是否使用已销毁的音频格式转换器执行格式转换。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION} 当前处理流程不支持设置回调。[since 26.1.0]</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET} 回调函数未设置，需要检查回调函数指针是否非空。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_SYSTEM} 系统错误，需要检查是否使用已销毁的音频格式转换器执行格式转换。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION} 当前处理流程不支持设置回调。[since 26.1.0]</li>
  *     </ul>
  * @since 26.0.0
  */
@@ -381,16 +385,16 @@ OH_AudioConverter_Result OH_AudioConverter_Process(
  * @param outOwnedConverter [出参] 用于接收创建的音频转换器实例的指针。调用方拥有该结果并必须使用
  *     {@link OH_AudioConverter_Destroy}释放。不能为NULL，无需初始化。调用失败时不会写入内容。
  * @return <ul>
- *     <li>{@link #AUDIOCONVERTER_SUCCESS} 执行成功。</li>
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} 执行成功。</li>
  *     <li>202 权限校验失败，非系统应用使用了系统API。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
  *     <br>1. inputFormat为NULL。
  *     <br>2. outputFormat为NULL。
  *     <br>3. outOwnedConverter为NULL。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT} inputFormat/outputFormat中的音频格式不支持。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} 内存分配失败。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT} inputFormat/outputFormat中的音频格式不支持。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} 内存分配失败。</li>
  *     </ul>
- * @release ohaudiosuite/OH_AudioConverter_Destroy {outOwnedConverter}
+ * @release OH_AudioConverter_Destroy {outOwnedConverter}
  * @since 26.1.0
  */
 OH_AudioConverter_Result OH_AudioSuite_ConverterCreateEx(
@@ -408,9 +412,9 @@ OH_AudioConverter_Result OH_AudioSuite_ConverterCreateEx(
  * @param inputMinSize [出参] 返回最小输入字节数，单位为字节。不能为NULL，无需初始化；调用失败时不会写入内容。
  * @param outputMinSize [出参] 返回对应最小输出字节数，单位为字节。不能为NULL，无需初始化；调用失败时不会写入内容。
  * @return <ul>
- *     <li>{@link #AUDIOCONVERTER_SUCCESS} 执行成功。</li>
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} 执行成功。</li>
  *     <li>202 权限校验失败，非系统应用使用了系统API。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
  *     <br>1. converter为NULL。
  *     <br>2. inputMinSize为NULL。
  *     <br>3. outputMinSize为NULL。</li>
@@ -440,9 +444,9 @@ OH_AudioConverter_Result OH_AudioSuite_ConverterGetMinInOutSizes(
  *     <br>转换结果写入**outData->data**，实际写入字节数通过**outData->writeSize**返回。
  *     <br>调用失败时不会写入内容。
  * @return <ul>
- *     <li>{@link #AUDIOCONVERTER_SUCCESS} 执行成功。</li>
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} 执行成功。</li>
  *     <li>202 权限校验失败，非系统应用使用了系统API。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
  *     <br>1. converter为NULL。
  *     <br>2. inData为NULL。
  *     <br>3. **inData->data**为NULL。
@@ -451,9 +455,9 @@ OH_AudioConverter_Result OH_AudioSuite_ConverterGetMinInOutSizes(
  *     <br>6. **inData->size**对应的音频时长超过1000毫秒。
  *     <br>7. outData为NULL。
  *     <br>8. **outData->data**为NULL。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION} 已通过{@link OH_AudioConverter_SetInputCallback}设置回调。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL} 输出缓冲区不足。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} 系统内部错误。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_UNSUPPORTED_OPERATION} 已通过{@link OH_AudioConverter_SetInputCallback}设置回调。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL} 输出缓冲区不足。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_SYSTEM} 系统内部错误。</li>
  *     </ul>
  * @since 26.1.0
  */
@@ -474,9 +478,9 @@ OH_AudioConverter_Result OH_AudioSuite_ConverterDirectProcess(
  * @param delaySize [出参] 返回首次输出数据前面填充的静音数据字节数，单位为字节。
  *     不能为NULL，无需初始化；调用失败时不会写入内容。
  * @return <ul>
- *     <li>{@link #AUDIOCONVERTER_SUCCESS} 执行成功。</li>
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} 执行成功。</li>
  *     <li>202 权限校验失败，非系统应用使用了系统API。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，可能原因如下：
  *     <br>1. converter为NULL。
  *     <br>2. delaySize为NULL。</li>
  *     </ul>
@@ -494,9 +498,9 @@ OH_AudioConverter_Result OH_AudioSuite_ConverterGetDelaySize(OH_AudioConverter *
  * @param converter [入参] 由{@link OH_AudioSuite_ConverterCreateEx}或{@link OH_AudioConverter_Create}创建的转换器实例。
  *     不能为NULL，调用期间必须保持有效。
  * @return <ul>
- *     <li>{@link #AUDIOCONVERTER_SUCCESS} 执行成功。</li>
+ *     <li>{@link AUDIOCONVERTER_SUCCESS} 执行成功。</li>
  *     <li>202 权限校验失败，非系统应用使用了系统API。</li>
- *     <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，converter为NULL。</li>
+ *     <li>{@link AUDIOCONVERTER_ERROR_INVALID_PARAM} 参数无效，converter为NULL。</li>
  *     </ul>
  * @since 26.1.0
  */

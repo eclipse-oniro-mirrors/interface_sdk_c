@@ -119,7 +119,6 @@ int32_t OH_Usb_GetConfigDescriptor(
 /**
  * @brief 释放配置描述符。使用完配置描述符后必须调用此接口释放，否则会造成内存泄漏。
  *
- * @permission ohos.permission.ACCESS_DDK_USB
  * @param config 配置描述符，通过{@link OH_Usb_GetConfigDescriptor}获得的配置描述符。
  * @since 10
  * @version 1.0
@@ -285,7 +284,6 @@ int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMa
 /**
  * @brief 销毁缓冲区。使用完缓冲区后必须调用此接口销毁，否则会造成资源泄漏。
  *
- * @permission ohos.permission.ACCESS_DDK_USB
  * @param devMmap 销毁由{@link OH_Usb_CreateDeviceMemMap}创建的缓冲区。
  * @since 10
  * @version 1.0

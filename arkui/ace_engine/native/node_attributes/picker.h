@@ -41,6 +41,8 @@
 #define ARKUI_NATIVE_NODE_ATTRIBUTES_PICKER_H
 
 #include <stdint.h>
+#include "text.h"
+#include "text_common.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -494,6 +496,141 @@ ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerInd
  * @since 23
  */
 void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
+
+/**
+ * @brief Defines the text style of the selector component.
+ *
+ * @since 26.1.0
+ */
+typedef struct ArkUI_PickerComponentTextStyle ArkUI_PickerComponentTextStyle;
+/**
+ * @brief Creates a text style instance of the Selector component. Destroy the instance by calling
+ * {@link OH_ArkUI_PickerComponentTextStyle_Dispose}.
+ *
+ * @returnPointer to the {@link ArkUI_PickerComponentTextStyle} instance. If a null pointer is returned, the
+ *     creation fails.
+ * @release OH_ArkUI_PickerComponentTextStyle_Dispose {return}
+ * @since 26.1.0
+ */
+ArkUI_PickerComponentTextStyle* OH_ArkUI_PickerComponentTextStyle_Create(void);
+
+/**
+ * @brief Destroys a text style instance of the selector component. This parameter must be used in pairs with
+ * {@link OH_ArkUI_PickerComponentTextStyle_Create}. Otherwise, memory leakage may occur.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance to be destroyed. If a null
+ *     pointer is passed, no operation is performed.
+ * @since 26.1.0
+ */
+void OH_ArkUI_PickerComponentTextStyle_Dispose(ArkUI_PickerComponentTextStyle* style);
+
+/**
+ * @brief Sets the font color for the Selector component text style.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance,
+ * Obtain the value from {@OH_ArkUI_PickerComponentTextStyle_Create}. If a null pointer is passed, no operation is
+ * performed.
+ * @param color [in] Font color. The format is 0xARGB, for example, 0xFF182431. Default value: sys.color.font_primary.
+ * @returnReturn the result.
+ * <ul>
+ * <li>If {@link ARKUI_ERROR_CODE_NO_ERROR} is returned, the operation is successful. </li>
+ * <li>If {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned, the **style** parameter is a null pointer. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetColor(
+    ArkUI_PickerComponentTextStyle* style, uint32_t color);
+
+/**
+ * @brief Sets the font size for the Selector component text style.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance,
+ * Obtain the value from {@OH_ArkUI_PickerComponentTextStyle_Create}. If a null pointer is passed, no operation is
+ * performed.
+ * @param fontSize [in] Font size, in fp. Default value: 20.0.
+ * @returnReturn the result.
+ * <ul>
+ * <li>If {@link ARKUI_ERROR_CODE_NO_ERROR} is returned, the operation is successful. </li>
+ * <li>If {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned, the **style** parameter is a null pointer. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetFontSize(
+    ArkUI_PickerComponentTextStyle* style, float fontSize);
+
+/**
+ * @brief Sets the font weight for the Selector component text style.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance,
+ * Obtain the value from {@OH_ArkUI_PickerComponentTextStyle_Create}. If a null pointer is passed, no operation is
+ * performed.
+ * @param fontWeight [in] Font thickness. The value is an enumerated value of {@link ArkUI_FontWeight}. Default
+ *     value: ArkUI_FontWeight.Normal.
+ * @returnReturn the result.
+ * <ul>
+ * <li>If {@link ARKUI_ERROR_CODE_NO_ERROR} is returned, the operation is successful. </li>
+ * <li>If {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned, the **style** parameter is a null pointer. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetFontWeight(
+    ArkUI_PickerComponentTextStyle* style, ArkUI_FontWeight fontWeight);
+
+/**
+ * @brief Sets the minimum font size for the selector component text style. Use with **maxFontSize** to enable font size
+ * scaling. When **minFontSize** and
+If * **maxFontSize** is set at the same time, **fontSize** does not take effect.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance,
+ * Obtain the value from {@OH_ArkUI_PickerComponentTextStyle_Create}. If a null pointer is passed, no operation is
+ * performed.
+ * @param minFontSize [in] Minimum font size, in fp.
+ * @returnReturn the result.
+ * <ul>
+ * <li>If {@link ARKUI_ERROR_CODE_NO_ERROR} is returned, the operation is successful. </li>
+ * <li>If {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned, the **style** parameter is a null pointer. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetMinFontSize(
+    ArkUI_PickerComponentTextStyle* style, float minFontSize);
+
+/**
+ * @brief Sets the maximum font size for the Selector component text style. Use with **minFontSize** to enable font size
+ * scaling. When **minFontSize** and
+If * **maxFontSize** is set at the same time, **fontSize** does not take effect.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance,
+ * Obtain the value from {@OH_ArkUI_PickerComponentTextStyle_Create}. If a null pointer is passed, no operation is
+ * performed.
+ * @param maxFontSize [in] Maximum font size, in fp.
+ * @returnReturn the result.
+ * <ul>
+ * <li>If {@link ARKUI_ERROR_CODE_NO_ERROR} is returned, the operation is successful. </li>
+ * <li>If {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned, the **style** parameter is a null pointer. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetMaxFontSize(
+    ArkUI_PickerComponentTextStyle* style, float maxFontSize);
+
+/**
+ * @brief Sets how text overflow is handled for selector component text styles. This parameter does not take effect when
+ * this parameter is set to <b>ARKUI_TEXT_OVERFLOW_MARQUEE</b>.
+ *
+ * @param style [in] Pointer to the {@link ArkUI_PickerComponentTextStyle} instance,
+ * Obtain the value from {@OH_ArkUI_PickerComponentTextStyle_Create}. If a null pointer is passed, no operation is
+ * performed.
+ * @param overflow [in] Text overflow processing mode. The value is an enumerated value of {@link ArkUI_TextOverflow}.
+ * @returnReturn the result.
+ * <ul>
+ * <li>If {@link ARKUI_ERROR_CODE_NO_ERROR} is returned, the operation is successful. </li>
+ * <li>If {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned, the **style** parameter is a null pointer. </li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_PickerComponentTextStyle_SetOverflow(
+    ArkUI_PickerComponentTextStyle* style, ArkUI_TextOverflow overflow);
 
 #ifdef __cplusplus
 }

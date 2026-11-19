@@ -19,7 +19,6 @@
  *
  * @brief AVDemuxer模块提供从媒体文件码流中提取sample的接口。
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 10
  */
 
@@ -28,7 +27,6 @@
  * @file native_avdemuxer.h
  *
  * @brief 声明用于音视频媒体数据解析的接口。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avdemuxer.h>
@@ -66,10 +64,10 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
  *
  * 需要使用{@link OH_AVDemuxer_SetMediaKeySystemInfoCallback}接口将其设置为回调。
  *
- * @deprecated since 14
- * @useinstead {@link Demuxer_MediaKeySystemInfoCallback}
+ * @deprecated 14
+ * @useinstead Demuxer_MediaKeySystemInfoCallback
  * @since 11
-*/
+ */
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeySystemInfo);
 
 /**
@@ -77,10 +75,10 @@ typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeyS
  *
  * 需要使用{@link OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback}接口将其设置为回调，推荐使用。
  *
- * @param demuxer 播放器所用的OH_AVDemuxer实例。
+ * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param mediaKeySystemInfo DRM信息。
  * @since 12
-*/
+ */
 typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
@@ -90,12 +88,12 @@ typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_Me
  *
  * @param source 指向OH_AVSource实例的指针。
  * @return 返回一个指向OH_AVDemuxer实例的指针。
- * <br>如果执行成功，则返回指向OH_AVDemuxer实例的指针，否则返回NULL。
- * <br>可能的失败原因：
- * <br>1. source无效，即空指针或非OH_AVSource实例。
- * <br>2. 非OH_AVSource实例。
+ *     <br>如果执行成功，则返回指向OH_AVDemuxer实例的指针，否则返回NULL。
+ *     <br>可能的失败原因：
+ *     <br> 1. source为空指针。
+ *     <br> 2. source为非OH_AVSource实例。
  * @since 10
-*/
+ */
 OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
 
 /**
@@ -105,9 +103,9 @@ OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
  *
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：当输入的demuxer指针为空或非解封装器实例。
+ *     <br>AV_ERR_INVALID_VAL：当输入的demuxer指针为空或非解封装器实例。
  * @since 10
-*/
+ */
 OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);
 
 /**
@@ -120,13 +118,13 @@ OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param trackIndex 需选择的轨道的索引。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：
- *                           <br>1. 输入的demuxer指针为空或为非解封装器实例。
- *                           <br>2. 轨道的索引超出范围。
- *                           <br>3. 不支持读取轨道。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的demuxer指针为空或为非解封装器实例。
+ *     <br>2. 轨道的索引超出范围。
+ *     <br>3. 不支持读取轨道。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
  * @since 10
-*/
+ */
 OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);
 
 /**
@@ -139,10 +137,10 @@ OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackI
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param trackIndex 需取消选择的轨道的索引。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
+ *     <br>AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
  * @since 10
-*/
+ */
 OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);
 
 /**
@@ -155,79 +153,78 @@ OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trac
  * @param sample 指向OH_AVMemory实例的指针，用于储存压缩帧数据。
  * @param info 指向OH_AVCodecBufferAttr实例的指针，用于储存压缩帧的相关信息。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：
- *                           <br>1. 输入的demuxer指针为空或为非解封装器实例。
- *                           <br>2. 轨道的索引超出范围。
- *                           <br>3. 不支持读取轨道。
- *                           <br>4. 输入sample为空。
- *                           <br>5. 输入info为空。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：
- *                           <br>1. 轨道的索引没有被选中。
- *                           <br>2. demuxer没有正确的初始化。
- *         <br>AV_ERR_NO_MEMORY：sample容量不足以存储所有帧数据。
- *         <br>AV_ERR_UNKNOWN：无法从文件中读取或解析帧。
- * @deprecated since 11
- * @useinstead {@link OH_AVDemuxer_ReadSampleBuffer}
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的demuxer指针为空或为非解封装器实例。
+ *     <br>2. 轨道的索引超出范围。
+ *     <br>3. 不支持读取轨道。
+ *     <br>4. 输入sample为空。
+ *     <br>5. 输入info为空。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：
+ *     <br>1. 轨道的索引没有被选中。
+ *     <br>2. demuxer没有正确的初始化。
+ *     <br>AV_ERR_NO_MEMORY：sample容量不足以存储所有帧数据。
+ *     <br>AV_ERR_UNKNOWN：无法从文件中读取或解析帧。
+ * @deprecated 11
+ * @useinstead OH_AVDemuxer_ReadSampleBuffer
  * @since 10
-*/
+ */
 OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
     OH_AVMemory *sample, OH_AVCodecBufferAttr *info);
 
 /**
  * @brief 获取指定轨道的sample及相关信息。
  *
- * 注意，读取轨道sample前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
+ * 注意，读取轨道sample前，轨道必须被选中，可使用OH_AVDemuxer_SelectTrackByID。调用接口后解封装器将自动前进到下一帧。
  *
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param trackIndex 本次读取压缩帧的轨道的索引。
  * @param sample 指向OH_AVBuffer实例的指针，用于储存压缩帧数据以及相关信息。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：
- *                           <br>1. 输入的demuxer指针为空或为非解封装器实例。
- *                           <br>2. sample为空指针。
- *                           <br>3. 轨道的索引超出范围。
- *                           <br>4. 输入sample为空。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：
- *                           <br>1. 轨道的索引没有被选中。
- *                           <br>2. demuxer没有正确的初始化。
- *         <br>AV_ERR_NO_MEMORY：sample容量不足以存储所有帧数据。
- *         <br>AV_ERR_UNKNOWN：无法从文件中读取或解析帧。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的demuxer指针为空或为非解封装器实例。
+ *     <br>2. sample为空指针。
+ *     <br>3. 轨道的索引超出范围。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：
+ *     <br>1. 轨道的索引没有被选中。
+ *     <br>2. demuxer没有正确的初始化。
+ *     <br>AV_ERR_NO_MEMORY：sample容量不足以存储所有帧数据。
+ *     <br>AV_ERR_UNKNOWN：无法从文件中读取或解析帧。
  * @since 11
-*/
+ */
 OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t trackIndex,
     OH_AVBuffer *sample);
 
 /**
- * @brief 根据设定的跳转模式，将所有选中的轨道到指定时间附近。
+ * @brief 根据设定的跳转模式，将所有选中的轨道跳转到指定时间附近。调用前需先通过OH_AVDemuxer_SelectTrackByID选中轨道。
  *
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param millisecond 期望跳转位置对应的时间，单位为ms，该时间戳是相对文件开始的位置。
  * @param mode 跳转的模式。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：
- *                           <br>1. 输入的demuxer指针为空或为非解封装器实例。
- *                           <br>2. 毫秒值超出范围。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：
- *                           <br>1. 轨道的索引没有被选中。
- *                           <br>2. demuxer没有正确的初始化。
- *                           <br>3. 资源无法seek。
- *         <br>AV_ERR_UNKNOWN：
- *                           <br>1. seek失败。
- *                           <br>2. OH_AVSeekMode选择SEEK_MODE_NEXT_SYNC，并且时间点后无I帧，可能会跳转失败。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的demuxer指针为空或为非解封装器实例。
+ *     <br>2. 毫秒值超出范围。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：
+ *     <br>1. 轨道的索引没有被选中。
+ *     <br>2. demuxer没有正确的初始化。
+ *     <br>3. 资源无法seek。
+ *     <br>AV_ERR_UNKNOWN：
+ *     <br>1. seek失败。
+ *     <br>2. OH_AVSeekMode选择SEEK_MODE_NEXT_SYNC，并且时间点后无I帧，可能会跳转失败。
  * @since 10
-*/
+ */
 OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond, OH_AVSeekMode mode);
 
 /**
  * @brief  设置DRM信息回调函数。
  *
- * @deprecated since 14
- * @useinstead {@link OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback}
+ * @deprecated 14
+ * @useinstead OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param callback 回调函数。
  * @return AV_ERR_OK：操作成功。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
- *         <br>AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
+ *     <br>AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
  * @since 11
  */
 OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
@@ -239,8 +236,8 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param callback 回调函数。
  * @return AV_ERR_OK：操作成功。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
- *         <br>AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
+ *     <br>AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
  * @since 12
  */
 OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
@@ -253,10 +250,10 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
  * @param demuxer 指向OH_AVDemuxer实例的指针。
  * @param mediaKeySystemInfo 指向DRM信息的指针。
  * @return AV_ERR_OK：操作成功。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：解封装引擎未初始化或初始化失败。
- *         <br>AV_ERR_INVALID_VAL：
- *                           <br>1. 输入的demuxer指针为空或为非解封装器实例。
- *                           <br>2. mediaKeySystemInfo为nullptr。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：解封装引擎未初始化或初始化失败。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的demuxer指针为空或为非解封装器实例。
+ *     <br>2. mediaKeySystemInfo为nullptr。
  * @since 11
  */
 OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo);

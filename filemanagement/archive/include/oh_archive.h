@@ -164,7 +164,7 @@ typedef enum {
 typedef struct {
     /**
      * @brief Size of each memory block in bytes (e.g., 32768 bytes, 65536 bytes),
-     * for COMPRESS_DEFLATED, block_size>=32768 bytes
+     * for OH_ARCHIVE_COMPRESS_DEFLATE, block_size>=32768 bytes
      * @since 26.0.0
      */
     uint32_t blockSize;

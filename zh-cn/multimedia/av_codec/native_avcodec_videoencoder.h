@@ -27,7 +27,6 @@
  * @file native_avcodec_videoencoder.h
  *
  * @brief 声明用于视频编码的接口。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avcodec_videoencoder.h>
@@ -67,7 +66,7 @@ typedef void (*OH_VideoEncoder_OnNeedInputParameter)(OH_AVCodec *codec, uint32_t
  *
  * @param mime MIME类型描述字符串，请参阅{@link AVCODEC_MIME_TYPE}。
  * @return 成功则返回一个指向视频编码实例的指针。
- * 如果输入为不支持的编码器类型或内存不足时，则返回NULL。
+ *     如果输入为不支持的编码器类型或内存不足时，则返回NULL。
  * @since 9
  */
 OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
@@ -77,7 +76,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
  *
  * @param name 视频编码器名称。
  * @return 成功则返回一个指向视频编码实例的指针。
- * 如果输入是不支持编码器名称或者内存资源不足，则返回NULL。
+ *     如果输入是不支持编码器名称或者内存资源不足，则返回NULL。
  * @since 9
  */
 OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
@@ -96,8 +95,8 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * @param mime MIME类型字符串，不可为NULL。必须是支持的类型。请参阅{@link AVCODEC_MIME_TYPE}。
  * @param codec 双指针，用于接收创建的编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：mime为NULL/codec为NULL/MIME类型不支持。
- *         <br>AV_ERR_NO_MEMORY：内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：mime为NULL/codec为NULL/MIME类型不支持。
+ *     <br>AV_ERR_NO_MEMORY：内存分配失败。
  *
  * @since 26.0.0
  */
@@ -126,17 +125,17 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  * @param codec 双指针，用于接收创建的副编码器实例，不可为NULL。创建成功后需通过{@link OH_VideoEncoder_Destroy}销毁。
  *
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：primary为NULL/codec为NULL/primary不是有效的主编码器。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：主编码器已存在关联的副编码器。
- *         <br>AV_ERR_NO_MEMORY：内存分配失败。
+ *     <br>AV_ERR_INVALID_VAL：primary为NULL/codec为NULL/primary不是有效的主编码器。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：主编码器已存在关联的副编码器。
+ *     <br>AV_ERR_NO_MEMORY：内存分配失败。
  *
  * @note 生命周期管理：
- *      <br>- 主编码器的生命周期必须长于从编码器。
- *      <br>- 建议销毁顺序：先销毁从编码器，再销毁主编码器。
- *      <br>- 若主编码器在从编码器之前被销毁，系统会在释放主编码器资源前自动销毁从编码器。
- *      <br>- 两个编码器都必须通过调用 {@link OH_VideoEncoder_Destroy} 接口完成销毁。
- *      <br>- 一个主编码器同一时刻仅可关联一个从编码器。
- *         从编码器销毁完成后，可基于同一个主编码器重新创建新的从编码器。
+ *     <br>- 主编码器的生命周期必须长于从编码器。
+ *     <br>- 建议销毁顺序：先销毁从编码器，再销毁主编码器。
+ *     <br>- 若主编码器在从编码器之前被销毁，系统会在释放主编码器资源前自动销毁从编码器。
+ *     <br>- 两个编码器都必须通过调用{@link OH_VideoEncoder_Destroy}接口完成销毁。
+ *     <br>- 一个主编码器同一时刻仅可关联一个从编码器。
+ *     从编码器销毁完成后，可基于同一个主编码器重新创建新的从编码器。
  *
  * @since 26.0.0
  */
@@ -147,10 +146,10 @@ OH_AVErrCode OH_VideoEncoder_CreateSecondaryFromPrimary(OH_AVCodec *primary, OH_
  *
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
@@ -162,12 +161,12 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
  * @param callback 所有回调函数的集合。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- * @deprecated since 11
- * @useinstead {@link OH_VideoEncoder_RegisterCallback}
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ * @deprecated 11
+ * @useinstead OH_VideoEncoder_RegisterCallback
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
@@ -179,28 +178,28 @@ OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @param callback 所有回调函数的集合。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
 
 /**
- * @brief 注册OH_VideoEncoder_OnNeedInputParameter输入参数回调函数，让应用可以响应视频编码器生成的事件。编码Surface模式，
+ * @brief 注册OH_VideoEncoder_OnNeedInputParameter输入参数回调函数，让应用可以响应视频编码器生成的事件。在Surface编码模式下，需要设置随帧参数时，须使用该接口。
  *
- * 需要设置随帧参数时，须使用该接口。如果使用该接口，必须在{@link OH_VideoEncoder_Configure}之前调用该接口。
+ * 如果使用该接口，必须在{@link OH_VideoEncoder_Configure}之前调用该接口。
  *
  * @param codec 指向视频编码实例的指针。
  * @param onInputParameter 输入参数回调指针。
  * @param userData 开发者执行回调所依赖的数据。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Configure接口前调用，如果在其他状态时调用，则返回此错误码。
  * @since 12
  */
 OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
@@ -243,12 +242,12 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * @param codec 指向视频编码实例的指针。
  * @param format 指向OH_AVFormat的指针，用于给出要编码的视频轨的描述。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非编码器实例，或者为空指针；<br>2. 输入format参数不支持。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
- *         <br>AV_ERR_UNSUPPORT：不支持的像素格式。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非编码器实例，或者为空指针；<br>2. 输入format参数不支持。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
+ *     <br>AV_ERR_UNSUPPORT：不支持的像素格式。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
@@ -258,11 +257,11 @@ OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  *
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
@@ -276,11 +275,11 @@ OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
  *
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
@@ -290,11 +289,11 @@ OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
  *
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
@@ -305,11 +304,11 @@ OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
  * 调用此接口后，以前通过异步回调上报的所有缓冲区index都将失效，请确保不要访问这些index对应的缓冲区。该接口不能连续调用。
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
@@ -319,10 +318,10 @@ OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
  *
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec);
@@ -333,7 +332,7 @@ OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec);
  * 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者通过调用接口{@link OH_AVFormat_Destroy}释放。
  * @param codec 指向视频编码实例的指针。
  * @return 返回指向OH_AVFormat实例的指针。
- * 当输入的codec指针非编码实例，或者为空指针，则返回NULL。
+ *     当输入的codec指针非编码实例，或者为空指针，则返回NULL。
  * @since 9
  */
 OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
@@ -345,11 +344,11 @@ OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
  * @param codec 指向视频编码实例的指针。
  * @param format 指向OH_AVFormat实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非编码器实例，或者为空指针；<br>2. 输入format参数不支持。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：<br>1. 输入的codec指针为非编码器实例，或者为空指针；<br>2. 输入format参数不支持。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
@@ -359,10 +358,10 @@ OH_AVErrCode OH_VideoEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  *
  * @param codec 指向视频编码实例的指针。
  * @param window 指向OHNativeWindow实例的指针, 请参阅{@link OHNativeWindow}。
- * 应用负责管理window的生命周期，结束时调用{@link OH_NativeWindow_DestroyNativeWindow}释放。
+ *     应用负责管理window的生命周期，结束时调用{@link OH_NativeWindow_DestroyNativeWindow}释放。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **window);
@@ -373,13 +372,13 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  * @param codec 指向视频编码实例的指针。
  * @param index 输出缓冲区对应的索引值。由{@link OH_AVCodecOnNewOutputData}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
- * @deprecated since 11
- * @useinstead {@link OH_VideoEncoder_FreeOutputBuffer}
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ * @deprecated 11
+ * @useinstead OH_VideoEncoder_FreeOutputBuffer
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
@@ -390,11 +389,11 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  *
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
@@ -406,15 +405,15 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
  * @param index 输入缓冲区对应的索引值。由{@link OH_AVCodecOnNeedInputData}给出。
  * @param attr 缓冲区中包含数据的描述信息。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非编码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续编码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
- * @deprecated since 11
- * @useinstead {@link OH_VideoEncoder_PushInputBuffer}
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非编码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续编码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ * @deprecated 11
+ * @useinstead OH_VideoEncoder_PushInputBuffer
  * @since 10
  */
 OH_AVErrCode OH_VideoEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
@@ -425,13 +424,13 @@ OH_AVErrCode OH_VideoEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @param codec 指向视频编码实例的指针。
  * @param index 输入缓冲区对应的索引值。由{@link OH_AVCodecOnNeedInputBuffer}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非编码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续编码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非编码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续编码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -442,30 +441,30 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param codec 指向视频编码实例的指针。
  * @param index 输入参数缓冲区对应的索引值。由{@link OH_VideoEncoder_OnNeedInputParameter}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非编码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续编码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非编码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续编码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 12
  */
 OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
+ * @brief 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓冲区，否则会阻塞编码流程。
  *
  * @param codec 指向视频编码实例的指针。
  * @param index 输出缓冲区对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
- *         <br>AV_ERR_INVALID_VAL：
- *         <br>1. 输入的codec指针为非编码器实例，或者为空指针；
- *         <br>2. index非法，该错误不影响后续编码流程。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. 输入的codec指针为非编码器实例，或者为空指针；
+ *     <br>2. index非法，该错误不影响后续编码流程。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -477,7 +476,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
  *
  * @param codec 指向视频编码实例的指针。
  * @return 返回指向OH_AVFormat实例的指针。
- * 当codec指针非编码实例，或者为空指针，则返回NULL。
+ *     当codec指针非编码实例，或者为空指针，则返回NULL。
  * @since 10
  */
 OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec);
@@ -487,9 +486,9 @@ OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec);
  *
  * @param codec 指向视频编码实例的指针。
  * @param isValid 输出参数，指向布尔类型的指针。
- * 只有当接口返回AV_ERR_OK时，该值表示编码器实例的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
+ *     只有当接口返回AV_ERR_OK时，该值表示编码器实例的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
  * @since 10
  */
 OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
@@ -497,28 +496,37 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
 /**
  * @brief 视频编码器的码率控制模式。
  *
- * @deprecated since 14
- * @useinstead {@link OH_BitrateMode}
+ * @deprecated 14
+ * @useinstead OH_BitrateMode
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
     /**
      * @brief 恒定码率模式。
-     * @deprecated since 14
-     * @useinstead {@link BITRATE_MODE_CBR}
-    */
+     *
+     * @deprecated 14
+     * @useinstead BITRATE_MODE_CBR
+     *
+     * @since 9
+     */
     CBR = 0,
     /**
      * @brief 可变码率模式。
-     * @deprecated since 14
-     * @useinstead {@link BITRATE_MODE_VBR}
-    */
+     *
+     * @deprecated 14
+     * @useinstead BITRATE_MODE_VBR
+     *
+     * @since 9
+     */
     VBR = 1,
     /**
      * @brief 恒定QP模式。
-     * @deprecated since 14
-     * @useinstead {@link BITRATE_MODE_CQ}
-    */
+     *
+     * @deprecated 14
+     * @useinstead BITRATE_MODE_CQ
+     *
+     * @since 9
+     */
     CQ = 2,
 } OH_VideoEncodeBitrateMode;
 
@@ -533,12 +541,12 @@ typedef enum OH_VideoEncodeBitrateMode {
  * @param index 输入buffer对应的索引值。
  * @param timeoutUs 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
- *         <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+ *     <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
  * @since 20
  */
 OH_AVErrCode OH_VideoEncoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
@@ -549,7 +557,7 @@ OH_AVErrCode OH_VideoEncoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t
  * 需要注意的是，此接口仅适用于同步模式。
  *
  * @param codec 指向视频编码实例的指针。
- * @param index 输入buffer对应的索引值，可通过{@link OH_VideoEncoder_QueryInputBuffer} 接口获取。
+ * @param index 输入buffer对应的索引值，可通过{@link OH_VideoEncoder_QueryInputBuffer}接口获取。
  * @return 如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
  * @since 20
  */
@@ -566,13 +574,13 @@ OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  * @param index 输出buffer对应的索引值。
  * @param timeoutUs 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：等待指定时长后退出。
  * @return AV_ERR_OK：执行成功。
- *         <br>AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
- *         <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
- *         <br>AV_ERR_UNKNOWN：未知错误。
- *         <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
- *         <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
- *         <br>AV_ERR_STREAM_CHANGED：流格式已变更，可以通过调用{@link OH_VideoEncoder_GetOutputDescription}接口获取新的流信息。
- *         <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+ *     <br>AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
+ *     <br>AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+ *     <br>AV_ERR_UNKNOWN：未知错误。
+ *     <br>AV_ERR_INVALID_STATE：当前编码器状态不支持调用本接口。
+ *     <br>AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+ *     <br>AV_ERR_STREAM_CHANGED：流格式已变更，可以通过调用{@link OH_VideoEncoder_GetOutputDescription}接口获取新的流信息。
+ *     <br>AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
  * @since 20
  */
 OH_AVErrCode OH_VideoEncoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);

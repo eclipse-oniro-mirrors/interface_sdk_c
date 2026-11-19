@@ -17,11 +17,11 @@
  * @addtogroup HiCollie
  * @{
  *
- * @brief 提供检测业务线程卡死、卡顿的能力。请注意，该线程不应与主线程相同。
- *
- * 可应用于以下两种场景：
- * (1) 业务线程卡死6秒；
- * (2) 业务线程短暂卡顿，通常小于1秒。
+ * @brief 提供检测业务线程卡死、卡顿，以及上报卡死事件的能力。本模块函数支持以下功能：
+ * （1）注册应用业务线程卡死的周期性检测任务；
+ * （2）注册应用业务线程卡顿检测的回调函数；
+ * （3）上报应用业务线程卡死事件。
+ * 使用场景：应用卡顿问题定位、线程健康状态监控、开发调试阶段的卡死问题诊断、卡顿数据采集与分析。
  *
  * @since 12
  */
@@ -29,7 +29,7 @@
 /**
  * @file hicollie.h
  *
- * @brief 定义HiCollie模块的接口。
+ * @brief HiCollie模块提供检测业务线程卡死卡顿以及上报卡死事件的能力。
  *
  * @library libohhicollie.so
  * @kit PerformanceAnalysisKit
@@ -140,17 +140,17 @@ typedef void (*OH_HiCollie_BeginFunc)(const char* eventName);
 typedef void (*OH_HiCollie_EndFunc)(const char* eventName);
 
 /**
- * @brief 检测业务线程卡顿的相关参数。请注意，API 12及以上支持。
+ * @brief 检测业务线程卡顿的相关参数，可用于应用线程卡顿检测与分析等场景。请注意，从API version 12及以上支持。
  *
  * @since 12
  */
 typedef struct HiCollie_DetectionParam {
     /**
-     * 卡顿场景下，触发采样栈的时间阈值。
+     * 保留字段，用于后续功能扩展。
      */
     int sampleStackTriggerTime;
     /**
-     * 扩展参数以供将来使用。
+     * 保留字段，用于后续功能扩展。
      */
     int reserved;
 } HiCollie_DetectionParam;
@@ -259,17 +259,18 @@ typedef enum HiCollie_Flag {
 } HiCollie_Flag;
 
 /**
- * @brief 定义OH_HiCollie_SetTimer函数的输入参数。
+ * @brief 定义OH_HiCollie_SetTimer函数的输入参数，用于设置定时器监控任务的名称、任务超时时间阈值、超时回调函数及执行动作标志。
+ * 使用场景：适用于需要监控任务执行时间的场景，帮助开发者监控和处理任务超时问题。
  *
  * @since 18
  */
 typedef struct HiCollie_SetTimerParam {
     /**
-     * timer 任务名称。
+     * timer任务名称。任务名称不可为空。
      */
     const char *name;
     /**
-     * 任务超时时间阈值，单位：秒。
+     * 任务超时时间阈值，单位：s，取值为大于0的正整数。当任务执行时间超过该阈值时，将触发超时处理机制。建议根据实际业务场景设置。
      */
     unsigned int timeout;
     /**

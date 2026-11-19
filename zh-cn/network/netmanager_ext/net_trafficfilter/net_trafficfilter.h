@@ -17,7 +17,10 @@
  * @addtogroup TrafficFilter
  * @{
  *
- * @brief 声明网络流量过滤与重定向功能的C接口。
+ * @brief 实现网络流量过滤与重定向功能。流量过滤是指在系统内核网络协议栈中拦截网络数据包（报文），根据预设规则决定报文的放行或丢弃，适用于防火墙、家长控制、应用流量管控等场景。
+ * <br>流量重定向是指将匹配规则的TCP流量转发到指定的代理服务器，适用于企业网络审计、内容过滤代理、VPN透明代理等场景。
+ * <br>使用时，先创建控制器或重定向器实例，再添加过滤或重定向规则，即可对网络流量进行管控。使用完毕后需调用对应的销毁接口释放资源。
+
  *
  * @since 26.0.0
  */
@@ -44,13 +47,17 @@ extern "C" {
 #endif
 
 /**
- * @brief 创建流量重定向实例，用于将TCP流量重定向到代理服务器。资源管理：必须调用{@link OH_TrafficFilter_DestroyRedirector}释放资源。如果该函数失败，不会返回有效的重定向器。
+ * @brief 创建流量重定向实例，用于将TCP流量重定向到代理服务器。
+ * 资源管理：必须调用{@link OH_TrafficFilter_DestroyRedirector}释放资源。
+ * 如果该函数失败，不会返回有效的重定向器。
  *
- * @param group_id 重定向链标识符。这是应用内的逻辑分组ID。同一应用内的多个重定向器可以使用不同的group_id。不同应用的相同group_id会自动隔离。有效范围为[
- *     {@link OH_TRAFFICFILTER_MIN_GROUP_ID}, {@link OH_TRAFFICFILTER_MAX_GROUP_ID}]，包含两个边界。如果group_id超出此范围，该函数返回
- *     {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}。
- * @param priority 优先级。决定不同group_id链之间的执行顺序，数值越小越先执行。注意：重定向器优先级高于报文过滤器优先级。有效范围为[{@link OH_TRAFFICFILTER_MIN_PRIORITY},
- *     {@link OH_TRAFFICFILTER_MAX_PRIORITY}]，包含两个边界。如果priority超出此范围，该函数返回{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}。
+ * @param group_id 重定向链标识符。这是应用内的逻辑分组ID。同一应用内的多个重定向器可以使用不同的group_id。
+ *     不同应用的相同group_id会自动隔离。有效范围为[{@link OH_TRAFFICFILTER_MIN_GROUP_ID}, {@link OH_TRAFFICFILTER_MAX_GROUP_ID}]，包含两个边界。
+ *     如果group_id超出此范围，该函数返回 {@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}。
+ * @param priority 优先级。决定不同group_id链之间的执行顺序，数值越小越先执行。
+ *     注意：重定向器优先级高于报文过滤器优先级。
+ *     有效范围为[{@link OH_TRAFFICFILTER_MIN_PRIORITY}, {@link OH_TRAFFICFILTER_MAX_PRIORITY}]，包含两个边界。
+ *     如果priority超出此范围，该函数返回{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM}。
  * @param redirector 出参，成功时为重定向句柄。
  * @return {@link OH_TRAFFICFILTER_OK} - 成功。
  *     <br>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。
@@ -80,11 +87,10 @@ int32_t OH_TrafficFilter_CreateRedirector(
 int32_t OH_TrafficFilter_DestroyRedirector(OH_TrafficFilter_Redirector* redirector);
 
 /**
- * @brief 添加重定向规则
- * 添加TCP流量重定向规则，将匹配的流量重定向到指定的代理服务器
- * 要清除重定向规则，需要调用{@link OH_TrafficFilter_ClearRedirectRule}。
+ * @brief 添加TCP流量重定向规则，将匹配的流量重定向到指定的代理服务器。
+ * 如需清除重定向规则，需要调用{@link OH_TrafficFilter_ClearRedirectRule}。
  *
- * @param redirector OH_TrafficFilter_Redirector句柄
+ * @param redirector OH_TrafficFilter_Redirector句柄。
  * @param rule 重定向规则。不能为NULL。
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK} - 成功。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。</li>
@@ -111,7 +117,8 @@ int32_t OH_TrafficFilter_AddRedirectRule(
 int32_t OH_TrafficFilter_ClearRedirectRule(OH_TrafficFilter_Redirector* redirector);
 
 /**
- * @brief 根据网络连接信息查询对应的进程信息。通过源IP、目的IP、源端口、目的端口和协议类型组成的五元组连接信息，查询发起该连接的进程信息。
+ * @brief 根据网络连接信息查询对应的进程信息。
+ * 通过源IP、目的IP、源端口、目的端口和协议类型组成的五元组连接信息，查询发起该连接的进程信息。
  *
  * @param connection_info 输入的连接信息。
  * @param process_info 输出的进程信息。
@@ -126,16 +133,11 @@ int32_t OH_TrafficFilter_QueryProcess(
     const OH_TrafficFilter_ConnectionInfo* connection_info,
     OH_TrafficFilter_ProcessInfo* process_info
 );
-
 /**
  * @brief 设置报文过滤规则
  * 向控制器链添加报文过滤规则。
  * 仅匹配规则的报文会被拦截并发送到回调函数。
- * @note Logical relationship:
- *     - Conditions within a single OH_TrafficFilter_FilterRule structure are combined with logical AND.
- *     - Multiple rules added to the same OH_TrafficFilter_PacketController are combined with logical OR.
- *     To clear filter rules, you need to call {@link OH_TrafficFilter_ClearPacketRule}.
- * @param controller [in] OH_TrafficFilter_PacketController句柄
+ * @param controller [in] OH_TrafficFilter_PacketController句柄。
  * @param rule [in] 过滤规则。不能为NULL。
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK} - 成功。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。</li>
@@ -151,10 +153,9 @@ int32_t OH_TrafficFilter_AddPacketRule(
 );
 
 /**
- * @brief 清除报文过滤规则
- * 清除控制器中的所有报文过滤规则。
+ * @brief 清除控制器中的所有报文过滤规则。
  *
- * @param controller [in] OH_TrafficFilter_PacketController句柄
+ * @param controller [in] OH_TrafficFilter_PacketController句柄。
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK} - 成功。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} - controller为NULL。</li></ul>
@@ -166,22 +167,21 @@ int32_t OH_TrafficFilter_ClearPacketRule(OH_TrafficFilter_PacketController* cont
 
 /**
  * @brief 创建报文控制器实例。
- * 创建用于拦截和过滤网络报文的报文控制器
+ * 创建用于拦截和过滤网络报文的报文控制器。
  * 资源管理：该实例占用系统资源。
  * 必须调用{@link OH_TrafficFilter_DestroyPacketController}释放资源。
  * 如果该函数失败，不会返回有效的控制器。
  *
  * @param groupId [in] 过滤链标识符。
  *     这是应用内的逻辑分组ID。
- *     同一应用内的多个控制器可以使用不同的group_id。
- *     不同应用的相同group_id会自动隔离。
- * @param priority [in] 优先级（决定不同group_id链之间的执行顺序，
- *     数值越小越先执行）
- * @param config [in] 配置参数（可以为NULL以使用默认配置）
+ *     同一应用内的多个控制器可以使用不同的groupId。
+ *     不同应用的相同groupId会自动隔离。
+ * @param priority [in] 优先级（决定不同groupId链之间的执行顺序，数值越小越先执行）。
+ * @param config [in] 配置参数（可以为NULL以使用默认配置）。
  * @param controller [out] 出参，<ul><li>成功时为报文控制器句柄。</li></ul>
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK} - 成功。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。</li>
- *     <li>{@link OH_TRAFFICFILTER_ERROR_GROUP_ID_IN_USE} - group_id已存在。</li>
+ *     <li>{@link OH_TRAFFICFILTER_ERROR_GROUP_ID_IN_USE} - groupId已存在。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} - priority无效。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_NFQUEUE_ERROR} - NFQueue初始化失败。</li></ul>
  *
@@ -201,7 +201,7 @@ int32_t OH_TrafficFilter_CreatePacketController(
  * 销毁控制器并释放相关资源，包括规则和回调。
  * 调用此函数后，句柄将失效，请勿再次使用。
  *
- * @param controller [in] OH_TrafficFilter_PacketController句柄
+ * @param controller [in] OH_TrafficFilter_PacketController句柄。
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK} - 成功。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} - controller为NULL。</li>
@@ -211,42 +211,10 @@ int32_t OH_TrafficFilter_CreatePacketController(
  * @since 26.0.1
  */
 int32_t OH_TrafficFilter_DestroyPacketController(OH_TrafficFilter_PacketController* controller);
-
 /**
  * @brief 注册报文回调函数。
  * 注册回调函数以处理拦截的报文。
  * 当报文匹配过滤规则时，将触发该回调。
- *
- * @note <strong>Callback Model:</strong>
- *     <ul>
- *     <li><strong>Single Slot Model:</strong> A single <code>controller</code> instance supports only one active
- *         callback at a time.</li>
- *     <li><strong>Repeated Registration:</strong> If called again with a non-NULL callback, the new callback
- *         <strong>replaces</strong> the previously registered one. The previous callback is immediately unregistered.
- *         No error is returned for repeated registration.</li>
- *     <li><strong>Unregister/Destroy Semantics:</strong>
- *       <ul>
- *         <li>Calling {@link OH_TrafficFilter_UnregisterPacketCallback} or destroying the <code>controller</code>
- *             immediately stops delivery of new packets to the callback.</li>
- *         <li><strong>No In-Flight Callbacks:</strong> Once unregistered or destroyed, the framework guarantees that
- *             no further callback invocations will occur for that registration, even if packet processing is in
- *             progress at the moment of unregistration.</li>
- *       </ul>
- *     </li>
- *     <li><strong>Callback Execution Constraints:</strong>
- *       <ul>
- *         <li><strong>User Data Lifetime:</strong> The <code>user_data</code> must remain valid from registration until
- *             after the callback is unregistered and all ongoing callback invocations have returned.</li>
- *         <li><strong>Thread Context:</strong> The callback may be invoked on any thread. Callers must ensure thread
- *             safety for shared resources.</li>
- *         <li><strong>Ordering and Concurrency:</strong> Callbacks are not guaranteed to be serialized or preserve
- *             packet order. Multiple callbacks may be invoked concurrently.</li>
- *         <li><strong>Reentrancy:</strong> The callback must not call any <code>OH_TrafficFilter_*</code> registration,
- *             unregistration, or controller destruction functions, as this may cause deadlock or undefined
- *             behavior.</li>
- *     </ul>
- *     </li>
- *     </ul>
  *
  * @param controller [in] OH_TrafficFilter_PacketController句柄。不能为NULL。
  * @param callback [in] 回调函数指针。不能为NULL。
@@ -265,11 +233,10 @@ int32_t OH_TrafficFilter_RegisterPacketCallback(
 );
 
 /**
- * @brief 注销报文回调函数。
- * 注销当前的报文回调函数。
+ * @brief 注销当前的报文回调函数。
  * 调用此函数后，将不再向回调传递报文。
  *
- * @param controller [in] OH_TrafficFilter_PacketController句柄
+ * @param controller [in] OH_TrafficFilter_PacketController句柄。
  * @return <ul><li>{@link OH_TRAFFICFILTER_OK} - 成功。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_PERMISSION_DENIED} - 缺少权限。</li>
  *     <li>{@link OH_TRAFFICFILTER_ERROR_INVALID_PARAM} - controller为NULL。</li></ul>

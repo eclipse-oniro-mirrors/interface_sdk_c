@@ -800,17 +800,17 @@ typedef enum {
      * @brief 自定义阴影效果，与NODE_SHADOW互斥，同一组件只能使用一种阴影属性设置方式，同时设置时后者将覆盖前者。
      * 如需使用预定义阴影样式请使用NODE_SHADOW，如需自定义阴影参数请使用NODE_CUSTOM_SHADOW。支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
-     * **参数：**
+     * 参数：**
      * <ul>
      * <li>.value[0]?.f32：阴影模糊半径，取值范围[0, +∞)，传入负值时返回参数校验失败。单位为px，默认值0.0。</li>
      * <li>.value[1]?.i32：是否开启智能取色，0代表不开启（使用固定颜色），1代表开启（自动从组件周围取色适配背景），默认不开启。</li>
      * <li>.value[2]?.f32：阴影X轴偏移量，单位为px，默认值0.0。</li>
      * <li>.value[3]?.f32：阴影Y轴偏移量，单位为px，默认值0.0。</li>
      * <li>.value[4]?.i32：阴影类型，参数类型为{@link ArkUI_ShadowType}，默认值为ARKUI_SHADOW_TYPE_COLOR。</li>
-     * <li>.value[5]?.u32：智能取色关闭（.value[1]为0）时表示阴影颜色，0xargb格式，形如0xFFFF0000表示红色，不传入时默认值为0xFF000000（黑色）；智能取色开启（.value[1]为1）时表示颜色策略，取{@link ArkUI_ColorStrategy}枚举值。</li>
+     * <li>.value[5]?.u32：智能取色关闭（.value[1]为0）时表示阴影颜色，0xAARRGGBB格式，形如0xFFFF0000表示红色，不传入时默认值为0xFF000000（黑色）；智能取色开启（.value[1]为1）时表示颜色策略，取{@link ArkUI_ColorStrategy}枚举值。</li>
      * <li>.value[6]?.u32：阴影是否内部填充，0表示不填充，1表示填充。</li>
      * </ul>
-     * **返回：**
+     * 返回：**
      * <ul>
      * <li>.value[0].f32：阴影模糊半径，单位为px。</li>
      * <li>.value[1].i32：是否开启智能取色，0代表不开启，1代表开启。</li>
@@ -1207,10 +1207,10 @@ typedef enum {
      * @brief 组件上加上指定形状的遮罩，支持属性设置，属性重置和属性获取接口。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * **参数：**
-     * 1.rect类型：
+     * 1.rectangle类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_RECTANGLE。</li>
      * <li>.value[4].f32：矩形宽度，单位为vp。</li>
@@ -1224,8 +1224,8 @@ typedef enum {
      * </ul>
      * 2.circle类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_CIRCLE。</li>
      * <li>.value[4].f32：圆形宽度，单位为vp。</li>
@@ -1233,8 +1233,8 @@ typedef enum {
      * </ul>
      * 3.ellipse类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_ELLIPSE。</li>
      * <li>.value[4].f32：椭圆形宽度，单位为vp。</li>
@@ -1242,8 +1242,8 @@ typedef enum {
      * </ul>
      * 4.path类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型，参数类型{@link ArkUI_MaskType}，ARKUI_MASK_TYPE_PATH。</li>
      * <li>.value[4].f32：路径宽度，单位为vp。</li>
@@ -1258,25 +1258,25 @@ typedef enum {
      * <li>.value[3].u32：进度遮罩的颜色。</li>
      * </ul>
      * **返回：**
-     * 1.rect类型：
+     * 1.rectangle类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型。</li>
      * <li>.value[4].f32：矩形宽度，单位为vp。</li>
      * <li>.value[5].f32：矩形高度，单位为vp。</li>
      * <li>.value[6].f32：矩形圆角宽度，单位为vp。</li>
      * <li>.value[7].f32：矩形圆角高度，单位为vp。</li>
-     * <li>.value[8]?.f32：矩形形状的左上圆角半径，单位为vp。</li>
-     * <li>.value[9]?.f32：矩形形状的左下圆角半径，单位为vp。</li>
-     * <li>.value[10]?.f32：矩形形状的右上圆角半径，单位为vp。</li>
-     * <li>.value[11]?.f32：矩形形状的右下圆角半径，单位为vp。</li>
+     * <li>.value[8].f32：矩形形状的左上圆角半径，单位为vp。</li>
+     * <li>.value[9].f32：矩形形状的左下圆角半径，单位为vp。</li>
+     * <li>.value[10].f32：矩形形状的右上圆角半径，单位为vp。</li>
+     * <li>.value[11].f32：矩形形状的右下圆角半径，单位为vp。</li>
      * </ul>
      * 2.circle类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型。</li>
      * <li>.value[4].f32：圆形宽度，单位为vp。</li>
@@ -1284,8 +1284,8 @@ typedef enum {
      * </ul>
      * 3.ellipse类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型。</li>
      * <li>.value[4].f32：椭圆形宽度，单位为vp。</li>
@@ -1293,8 +1293,8 @@ typedef enum {
      * </ul>
      * 4.path类型：
      * <ul>
-     * <li>.value[0].u32：填充颜色，0xargb类型。</li>
-     * <li>.value[1].u32：描边颜色，0xargb类型。</li>
+     * <li>.value[0].u32：填充颜色，0xAARRGGBB类型。</li>
+     * <li>.value[1].u32：描边颜色，0xAARRGGBB类型。</li>
      * <li>.value[2].f32：描边宽度，单位为vp。</li>
      * <li>.value[3].i32：遮罩类型。</li>
      * <li>.value[4].f32：路径宽度，单位为vp。</li>
@@ -1436,7 +1436,7 @@ typedef enum {
      * </ul>
      * **返回：**
      * <ul>
-     * <li>.value[0].u32：颜色数值，0xargb类型。</li>
+     * <li>.value[0].u32：颜色数值，0xAARRGGBB类型。</li>
      * </ul>
      *
      * @ingroup Visual [视效属性]
@@ -1882,21 +1882,21 @@ typedef enum {
      * **参数：**
      * 1. 仅传入.value[0]时，统一设置四条边的边框颜色：
      * <ul>
-     * <li>.value[0].u32：统一设置四条边的边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[0].u32：统一设置四条边的边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
      * </ul>
      * 2. 传入.value[0]至.value[3]四个值时，分别设置四条边的边框颜色：
      * <ul>
-     * <li>.value[0].u32：设置上侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[1].u32：设置右侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[2].u32：设置下侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[3].u32：设置左侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[0].u32：设置上侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
+     * <li>.value[1].u32：设置右侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
+     * <li>.value[2].u32：设置下侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
+     * <li>.value[3].u32：设置左侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
      * </ul>
      * **返回：**
      * <ul>
-     * <li>.value[0].u32：设置上侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[1].u32：设置右侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[2].u32：设置下侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
-     * <li>.value[3].u32：设置左侧边框颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[0].u32：设置上侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
+     * <li>.value[1].u32：设置右侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
+     * <li>.value[2].u32：设置下侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
+     * <li>.value[3].u32：设置左侧边框颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
      * </ul>
      *
      * @ingroup Visual [视效属性]
@@ -1943,11 +1943,11 @@ typedef enum {
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * **参数：**
      * <ul>
-     * <li>.value[0].u32：叠加的颜色，使用0xargb表示，默认值为0x00000000。</li>
+     * <li>.value[0].u32：叠加的颜色，使用0xAARRGGBB表示，默认值为0x00000000。</li>
      * </ul>
      * **返回：**
      * <ul>
-     * <li>.value[0].u32：叠加的颜色，使用0xargb表示，如0xFFFF11FF。</li>
+     * <li>.value[0].u32：叠加的颜色，使用0xAARRGGBB表示，如0xFFFF11FF。</li>
      * </ul>
      *
      * @ingroup Visual [视效属性]
@@ -9937,7 +9937,7 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.value[0].i32是否支持键盘方向键滚动，0：不支持键盘方向键滚动，1：支持键盘方向键滚动。默认值：1。</li>
+     * <li>.value[0].i32是否支持键盘方向键滚动，0：不支持键盘方向键滚动，1：支持键盘方向键滚动。默认值：0。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
@@ -12597,6 +12597,29 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_PICKER_ITEM_HEIGHT = 1018005,
+
+    /**
+     * @brief <b>Picker</b>组件选中项的文本样式。此属性支持按需设置、重置和获取。
+     *
+     * **设置属性时的{@link ArkUI_AttributeItem}参数格式：**
+     * <ul>
+     * <li>.object：选中项的文本样式。参数类型为{@link ArkUI_PickerComponentTextStyle}。
+     * 使用{@link OH_ArkUI_PickerComponentTextStyle_Create}创建实例，通过{@link OH_ArkUI_PickerComponentTextStyle_SetColor}、
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetFontSize}、{@link OH_ArkUI_PickerComponentTextStyle_SetFontWeight}、
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetMinFontSize}、{@link OH_ArkUI_PickerComponentTextStyle_SetMaxFontSize}、
+     * {@link OH_ArkUI_PickerComponentTextStyle_SetOverflow}设置属性后，将指针传入**.object**。
+     * 设置完成后，调用{@link OH_ArkUI_PickerComponentTextStyle_Dispose}销毁实例。未设置时使用系统默认样式。</li>
+     * </ul>
+     *
+     * **返回值{@link ArkUI_AttributeItem}的格式：**
+     * <ul>
+     * <li>.object：选中项的文本样式。参数类型为{@link ArkUI_PickerComponentTextStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
+     * @since 26.1.0
+     */
+    NODE_PICKER_SELECTED_TEXT_STYLE = 1018007,
 } ArkUI_NodeAttributeType;
 
 /**
@@ -17088,7 +17111,8 @@ ArkUI_ErrorCode OH_ArkUI_NodeUtils_SetUiDvsyncSwitch(ArkUI_ContextHandle context
  */
 typedef enum {
     /**
-     * 被接纳节点的浮层节点基于接纳此节点的寄养父节点链计算显示位置，并在每个接纳边距应用开发者提供的补偿。
+     * 被接纳节点的浮层节点基于接纳此节点的寄养父节点链计算显示位置，并在每个接纳边界应用开发者调用
+     * {@link OH_ArkUI_NativeModule_SetAdoptedChildOverlayPositionCompensation}接口提供的补偿。
      *
      * @since 26.1.0
      */
@@ -17096,14 +17120,15 @@ typedef enum {
 } OH_ArkUI_AdoptPolicy;
 
 /**
- * @brief 当前节点接纳目标节点为附属节点。被接纳的节点不能已有父节点。调用该接口实际上不会将其添加为子节点。
+ * @brief 当前节点接纳目标节点为附属节点。被接纳的节点不能已有父节点。调用该接口实际上不会将其添加为子节点，
  * 而是仅允许其接收对应子节点的生命周期回调。通过策略配置被接纳节点的浮层节点渲染位置。
  *
- * @param node [in] ArkUI_NodeHandle指针, 指定待接纳节点的父节点。
- * @param child [in] ArkUI_NodeHandle指针, 指定被接纳的子节点。
+ * @param node [in] ArkUI_NodeHandle指针，指定待接纳节点的父节点。
+ * @param child [in] ArkUI_NodeHandle指针，指定待被接纳的子节点。
  * @param policy [in] 被接纳节点的浮层节点渲染位置策略。有效值对应{@link OH_ArkUI_AdoptPolicy}。
- * @return 返回值.
+ * @return 返回值。
  *     <ul><li>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
+ *     <li>如果参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>
  *     <li>如果CAPI初始化失败，返回{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}。</li>
  *     <li>如果被接纳的节点已有父节点，返回{@link ARKUI_ERROR_CODE_NODE_HAS_PARENT}。</li>
  *     <li>如果节点无法被接纳为附属节点，返回{@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED}。</li>
@@ -17112,16 +17137,17 @@ typedef enum {
  */
 int32_t OH_ArkUI_NativeModule_AdoptChildWithPolicy(
     ArkUI_NodeHandle node, ArkUI_NodeHandle child, OH_ArkUI_AdoptPolicy policy);
-
+ 
 /**
- * @brief 设置从被接纳的子节点到接纳其的父节点件的位置补偿。此补偿代表了它们之间的纯渲染节点树的总体影响。首先通过 compensationOffset平移
- * 然后通过CompensationTransform 进行变换。补偿只有当子节点已通过以下策略被接纳时才生效：
+ * @brief 设置从被接纳的子节点到接纳其的父节点间的位置补偿。此补偿代表了它们之间的纯渲染节点树的总体影响。
+ * compensationOffset是纯渲染节点的累计偏移量补偿，只包含每个节点的偏移。compensationTransform是纯渲染节点的累计变换补偿矩阵，
+ * 包含每个节点的偏移、旋转和缩放等变换。补偿只有当子节点已通过以下策略被接纳时才生效：
  * {@link OH_ARKUI_NATIVE_MODULE_ADOPT_POLICY_OVERLAY_POSITION_FOLLOWS_ADOPT_PARENT_CHAIN}。
  *
- * @param adoptedChild [in] 需要进行位置补偿的被接纳节点.
- * @param compensationOffset [in] x/y 偏移量补偿（以像素为单位）.
- * @param compensationTransform [in] 聚合变换补偿.
- * @return 返回值.
+ * @param adoptedChild [in] 需要进行位置补偿的被接纳节点。
+ * @param compensationOffset [in] x/y 补偿偏移量（以像素为单位）。
+ * @param compensationTransform [in] 聚合变换补偿矩阵。
+ * @return 返回值。
  *     <ul><li>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。</li>
  *     <li>如果CAPI初始化失败，返回{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR}。</li>
  *     <li>如果参数异常，返回 {@link ARKUI_ERROR_CODE_PARAM_INVALID}。</li>

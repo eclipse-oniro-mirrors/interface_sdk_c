@@ -19,7 +19,6 @@
  *
  * @brief Core模块提供用于媒体系统的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */
 
@@ -28,7 +27,6 @@
  * @file native_avbuffer_info.h
  *
  * @brief 声明了媒体数据结构AVBuffer属性的定义。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avbuffer_info.h>
@@ -54,36 +52,43 @@ extern "C" {
 typedef enum OH_AVCodecBufferFlags {
     /**
      * @brief 表示为普通帧。
+     *
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_NONE = 0,
     /**
      * @brief 表示缓冲区是流结束帧。
+     *
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_EOS = 1 << 0,
     /**
      * @brief 表示缓冲区包含关键帧。
+     *
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 << 1,
     /**
      * @brief 表示缓冲区中的数据只是帧的一部分。
+     *
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 << 2,
     /**
      * @brief 表示缓冲区包含编解码特定数据。
+     *
      * @since 9
      */
     AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 << 3,
     /**
-     * @brief 表示缓冲区被解码依赖，解码之后的数据可丢弃。
+     * @brief 表示缓冲区被解码器依赖，解码之后的数据可丢弃。
+     *
      * @since 12
      */
     AVCODEC_BUFFER_FLAGS_DISCARD = 1 << 4,
     /**
      * @brief 表示缓冲区不被参考可直接丢弃。
+     *
      * @since 12
      */
     AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 << 5,
@@ -97,21 +102,25 @@ typedef enum OH_AVCodecBufferFlags {
 typedef struct OH_AVCodecBufferAttr {
     /**
      * @brief 此缓冲区的显示时间戳（以微秒为单位）。
+     *
      * @since 9
      */
     int64_t pts;
     /**
      * @brief 缓冲区中包含的数据的大小（以字节为单位）。
+     *
      * @since 9
      */
     int32_t size;
     /**
      * @brief 此缓冲区中有效数据的起始偏移量。
+     *
      * @since 9
      */
     int32_t offset;
     /**
      * @brief 此缓冲区具有的标志，请参阅{@link OH_AVCodecBufferFlags}。
+     *
      * @since 9
      */
     uint32_t flags;

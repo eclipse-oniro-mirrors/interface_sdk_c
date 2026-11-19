@@ -546,7 +546,14 @@ Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput
  * @version 1.0
  */
 typedef struct OH_Camera_PhotoCaptureSettingExt OH_Camera_PhotoCaptureSettingExt;
- 
+
+/**
+ * @brief C2PA（Coalition for Content Provenance and Authenticity）签名配置。
+ *
+ * @since 26.0.1
+ */
+typedef struct OH_Camera_C2PASignatureConfig OH_Camera_C2PASignatureConfig;
+
 /**
  * @brief 使用扩展拍照设置执行拍照操作。
  *
@@ -696,6 +703,82 @@ Camera_ErrorCode OH_PhotoOutput_IsAutoAuxiliaryPhotoDeliverySupported(const Came
  */
 Camera_ErrorCode OH_PhotoOutput_SetAutoAuxiliaryPhotosDeliveryEnabled(Camera_PhotoOutput* photoOutput,
     const OH_Camera_AuxiliaryPhotoType* auxPhotoTypes, uint32_t size, bool enable);
+
+/**
+ * @brief 检查是否支持C2PA签名。
+ *
+ * @param photoOutput 目标PhotoOutput实例的指针。
+ * @param isSupported C2PA签名是否支持的检查结果的指针。**true**表示支持，**false**表示不支持。
+ * @return <ul>
+ *         <li>**CAMERA_OK**：操作成功。</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**：参数缺失或参数类型不正确。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_IsC2PASignatureSupported(const Camera_PhotoOutput* photoOutput, bool* isSupported);
+ 
+/**
+ * @brief 创建{@link OH_Camera_C2PASignatureConfig}实例。
+ * 通过调用{@link OH_Camera_C2PASignatureConfig_Destroy}销毁C2PA签名配置。
+ *
+ * @return 返回指向已创建的{@link OH_Camera_C2PASignatureConfig}实例的指针，如果创建失败则返回**NULL**。
+ * @release OH_Camera_C2PASignatureConfig_Destroy {return};
+ * @since 26.0.1
+ */
+OH_Camera_C2PASignatureConfig* OH_Camera_C2PASignatureConfig_Create(void);
+ 
+/**
+ * @brief 销毁{@link OH_Camera_C2PASignatureConfig}实例。
+ *
+ * @param config 指向待销毁的{@link OH_Camera_C2PASignatureConfig}实例的指针。
+ * @since 26.0.1
+ */
+void OH_Camera_C2PASignatureConfig_Destroy(OH_Camera_C2PASignatureConfig* config);
+ 
+/**
+ * @brief 设置C2PA签名配置中的作者名称。
+ *
+ * @param config 目标{@link OH_Camera_C2PASignatureConfig}实例的指针。
+ * @param authorName 指向待设置的作者名称字符串的指针。
+ * @return <ul>
+ *         <li>**CAMERA_OK**：操作成功。</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**：参数缺失或参数类型不正确。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorName(
+    OH_Camera_C2PASignatureConfig* config, const char* authorName);
+ 
+/**
+ * @brief 设置C2PA签名配置中的作者ID。
+ *
+ * @param config 目标{@link OH_Camera_C2PASignatureConfig}实例的指针。
+ * @param authorID 指向待设置的作者ID字符串的指针。
+ * @return <ul>
+ *         <li>**CAMERA_OK**：操作成功。</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**：参数缺失或参数类型不正确。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_Camera_C2PASignatureConfig_SetAuthorID(OH_Camera_C2PASignatureConfig* config, const char* authorID);
+ 
+/**
+ * @brief 配置C2PA签名设置。该函数用于启用或禁用C2PA签名，并可选地设置C2PA签名的作者信息。
+ *
+ * 调用该函数前，需先通过{@link OH_PhotoOutput_IsC2PASignatureSupported}检查是否支持C2PA签名。
+ *
+ * @param photoOutput 目标PhotoOutput实例的指针。
+ * @param enableC2PA 是否启用C2PA签名。**true**表示启用，**false**表示禁用。
+ * @param config {@link OH_Camera_C2PASignatureConfig}实例的指针，包含作者名称和作者ID。如果为**NULL**，生成的C2PA签名将不包含作者信息。
+ * @return <ul>
+ *         <li>**CAMERA_OK**：操作成功。</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**：参数缺失或参数类型不正确。</li>
+ *         <li>**CAMERA_SERVICE_FATAL_ERROR**：相机服务异常。</li>
+ *         </ul>
+ * @since 26.0.1
+ */
+Camera_ErrorCode OH_PhotoOutput_ConfigureC2PASignature(
+    Camera_PhotoOutput* photoOutput, bool enableC2PA, OH_Camera_C2PASignatureConfig* config);
 #ifdef __cplusplus
 }
 #endif

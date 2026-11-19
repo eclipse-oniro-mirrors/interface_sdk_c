@@ -78,16 +78,17 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCopy(const OH_Drawing_Matrix* matrix);
 OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation(float deg, float x, float y);
 
 /**
- * @brief Creates an **OH_Drawing_Matrix** with the scale attribute.
- * The matrix is obtained by scaling an identity matrix with the factor (sx, sy) at the rotation point (px, py).
+ * @brief Creates a matrix object with scale attributes.
+ * <br>The matrix object is obtained by scaling the identity matrix around the scale center (px, py) with sx and sy as
+ * the scale factors. After using the matrix object created by this function, you must call
+ * {@link OH_Drawing_MatrixDestroy} to release the memory occupied by the object.
  *
- * @param sx Scale factor on the X axis. If a negative number is passed in, the matrix is mirrored around y = px before
- * being scaled. The value is a floating point number.
- * @param sy Scale factor on the Y axis. If a negative number is passed in, the matrix is mirrored around x = py before
- * being scaled. The value is a floating point number.
- * @param px Coordinate point on the X axis.
- * @param py Coordinate point on the Y axis.
- * @return Returns the pointer to the <b>OH_Drawing_Matrix</b> object created.
+ * @param sx Horizontal scale factor. A negative value indicates that the object is mirrored about x = px before
+ *     scaling.
+ * @param sy Vertical scale factor. A negative value indicates that the object is mirrored about y = py before scaling.
+ * @param px X-coordinate of the scale center, in physical pixels (px).
+ * @param py Y-coordinate of the scale center, in physical pixels (px).
+ * @return Returns a pointer to the created {@link OH_Drawing_Matrix} object.
  * @since 12
  * @version 1.0
  */
@@ -192,15 +193,16 @@ bool OH_Drawing_MatrixSetRectToRect(OH_Drawing_Matrix* matrix, const OH_Drawing_
 void OH_Drawing_MatrixPreRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
 
 /**
- * @brief Premultiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).
+ * @brief Premultiplies this matrix by a matrix that is derived from an identity matrix after it has been scaled by the
+ * factors (sx, sy) around the scale point (px, py).
+ * <br>This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * <br>If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
  * @param matrix Pointer to the {@link OH_Drawing_Matrix} object.
- * @param sx Scale factor on the X axis. If a negative number is passed in, the matrix is mirrored around y = px before
- * being scaled. The value is a floating point number.
- * @param sy Scale factor on the Y axis. If a negative number is passed in, the matrix is mirrored around x = py before
- * being scaled. The value is a floating point number.
- * @param px X coordinate of the scale point.
- * @param py Y coordinate of the scale point.
+ * @param sx Horizontal scale factor. A negative value indicates that the image is mirrored about x = px before scaling.
+ * @param sy Vertical scale factor. A negative value indicates that the image is mirrored about y = py before scaling.
+ * @param px X-coordinate of the scale center, in physical pixels (px).
+ * @param py Y-coordinate of the scale center, in physical pixels (px).
  * @since 12
  * @version 1.0
  */
@@ -241,18 +243,17 @@ void OH_Drawing_MatrixPreTranslate(OH_Drawing_Matrix* matrix, float dx, float dy
 void OH_Drawing_MatrixPostRotate(OH_Drawing_Matrix* matrix, float degree, float px, float py);
 
 /**
- * @brief Post multiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px,
- * py).
- * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
- * If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
+ * @brief Post multiplies this matrix by a matrix that is derived from an identity matrix after it has been scaled by
+ * the factors (sx, sy) around the scale point (px, py).
+ * <br>This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * <br>If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
  * @param matrix Pointer to the {@link OH_Drawing_Matrix} object.
- * @param sx Scale factor on the X axis. If a negative number is passed in, the matrix is mirrored around y = px before
- * being scaled. The value is a floating point number.
- * @param sy Scale factor on the Y axis. If a negative number is passed in, the matrix is mirrored around x = py before
- * being scaled. The value is a floating point number.
- * @param px X coordinate of the scale point.
- * @param py Y coordinate of the scale point.
+ * @param sx Horizontal scale factor. If the value is negative, the matrix is first mirrored about x = px and then
+ *     scaled.
+ * @param sy Vertical scale factor. If the value is negative, the matrix is first mirrored about y = py and then scaled.
+ * @param px X-coordinate of the scale center, in physical pixels (px).
+ * @param py Y-coordinate of the scale center, in physical pixels (px).
  * @since 12
  * @version 1.0
  */
@@ -374,17 +375,16 @@ void OH_Drawing_MatrixRotate(OH_Drawing_Matrix* matrix, float degree, float px, 
 void OH_Drawing_MatrixTranslate(OH_Drawing_Matrix* matrix, float dx, float dy);
 
 /**
- * @brief Sets a matrix as an identity matrix and scales it with the factor (sx, sy) at the rotation point (px, py).
- * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
- * If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
+ * @brief Sets this matrix as an identity matrix and scales it with the factors (sx, sy) at the scale point (px, py).
+ * <br>This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * <br>If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
  * @param matrix Pointer to the {@link OH_Drawing_Matrix} object.
- * @param sx Scale factor on the X axis. If a negative number is passed in, the matrix is mirrored around y = px before
- * being scaled. The value is a floating point number.
- * @param sy Scale factor on the Y axis. If a negative number is passed in, the matrix is mirrored around x = py before
- * being scaled. The value is a floating point number.
- * @param px Coordinate point on the X axis.
- * @param py Coordinate point on the Y axis.
+ * @param sx Horizontal scale factor. If the value is negative, the matrix is first mirrored about x = px and then
+ *     scaled.
+ * @param sy Vertical scale factor. If the value is negative, the matrix is first mirrored about y = py and then scaled.
+ * @param px X-coordinate of the scale center, in physical pixels (px).
+ * @param py Y-coordinate of the scale center, in physical pixels (px).
  * @since 12
  * @version 1.0
  */

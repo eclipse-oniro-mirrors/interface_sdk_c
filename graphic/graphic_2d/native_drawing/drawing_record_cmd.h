@@ -66,20 +66,21 @@ OH_Drawing_RecordCmdUtils* OH_Drawing_RecordCmdUtilsCreate(void);
 OH_Drawing_ErrorCode OH_Drawing_RecordCmdUtilsDestroy(OH_Drawing_RecordCmdUtils* recordCmdUtils);
 
 /**
- * @brief Starts recording. This API must be used together with {@link OH_Drawing_RecordCmdUtilsFinishRecording}.
- * The **OH_Drawing_RecordCmdUtils** object generates a canvas object of the recording type and calls the interface of
- * the drawing object to record all drawing commands.
+ * @brief Starts recording. This interface must be used in pair with the
+ * {@link OH_Drawing_RecordCmdUtilsFinishRecording} interface.
+ * <br>The record command utility generates a recording-type canvas object, on which the drawing interfaces can be
+ * called to record all subsequent drawing commands.
  *
- * @param recordCmdUtils Pointer to an {@link OH_Drawing_RecordCmdUtils} object.
- * @param width Width of the canvas.
- * @param height Height of the canvas.
+ * @param recordCmdUtils Pointer to the record command utility object {@link OH_Drawing_RecordCmdUtils}.
+ * @param width Width of the canvas, which must be greater than 0.
+ * @param height Height of the canvas, which must be greater than 0.
  * @param canvas Double pointer to the {@link OH_Drawing_Canvas} object. You do not need to release this pointer.
- * This object does not support nested calling of {@link OH_Drawing_CanvasDrawRecordCmd}.
- * @return Returns one of the following result codes:
- * **OH_DRAWING_SUCCESS** if the operation is successful.
- * **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **recordCmdUtils** or **canvas** is NULL.
- * **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **width** or **height** is less than 0.
- * **OH_DRAWING_ERROR_ALLOCATION_FAILED** if the system memory is insufficient.
+ *     <br>This object does not support nested calling of {@link OH_Drawing_CanvasDrawRecordCmd}.
+ * @return Result code.
+ *     <br>Returns OH_DRAWING_SUCCESS if the operation is successful.
+ *     <br>Returns OH_DRAWING_ERROR_INVALID_PARAMETER if recordCmdUtils or canvas is null.
+ *     <br>Returns OH_DRAWING_ERROR_INVALID_PARAMETER if width or height is less than or equal to 0.
+ *     <br>Returns OH_DRAWING_ERROR_ALLOCATION_FAILED if the system memory is insufficient.
  * @since 13
  * @version 1.0
  */

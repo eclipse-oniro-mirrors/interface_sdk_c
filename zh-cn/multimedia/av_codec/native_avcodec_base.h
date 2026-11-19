@@ -26,7 +26,7 @@
  * @file native_avcodec_base.h
  *
  * @brief 声明用于音视频封装、解封装、编解码基础功能的Native API。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avcodec_base.h>
  * @library libnative_media_codecbase.so
@@ -47,12 +47,14 @@ extern "C" {
 #endif
 /**
  * @brief 为图形接口定义native层对象。
+ *
  * @since 9
  */
 typedef struct NativeWindow OHNativeWindow;
 
 /**
  * @brief 为音视频编解码接口定义native层对象。
+ *
  * @since 9
  */
 typedef struct OH_AVCodec OH_AVCodec;
@@ -96,8 +98,8 @@ typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format
  * @param index 与新可用的输入缓冲区相对应的索引。
  * @param data 新的可用输入缓冲区。
  * @param userData 开发者执行回调所依赖的数据。
- * @deprecated since 11
- * @useinstead {@link OH_AVCodecOnNeedInputBuffer}
+ * @deprecated 11
+ * @useinstead OH_AVCodecOnNeedInputBuffer
  * @since 9
  */
 typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData);
@@ -111,8 +113,8 @@ typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_
  * @param data 包含新输出数据的缓冲区。
  * @param attr 新输出缓冲区的说明。
  * @param userData 开发者执行回调所依赖的数据。
- * @deprecated since 11
- * @useinstead {@link OH_AVCodecOnNewOutputBuffer}
+ * @deprecated 11
+ * @useinstead OH_AVCodecOnNewOutputBuffer
  * @since 9
  */
 typedef void (*OH_AVCodecOnNewOutputData)(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data,
@@ -148,8 +150,8 @@ typedef void (*OH_AVCodecOnNewOutputBuffer)(OH_AVCodec *codec, uint32_t index, O
  * @param onStreamChanged 监控编解码器流变化，详情参考{@link OH_AVCodecOnStreamChanged}。
  * @param onNeedInputData 监控编解码器需要输入数据，详情参考{@link OH_AVCodecOnNeedInputData}。
  * @param onNeedOutputData 监控编解码器已生成输出数据，详情参考{@link OH_AVCodecOnNewOutputData}。
- * @deprecated since 11
- * @useinstead {@link OH_AVCodecCallback}
+ * @deprecated 11
+ * @useinstead OH_AVCodecCallback
  * @since 9
  */
 typedef struct OH_AVCodecAsyncCallback {
@@ -165,8 +167,8 @@ typedef struct OH_AVCodecAsyncCallback {
  *
  * @param onError 监控编解码器操作错误，详情参考{@link OH_AVCodecOnError}。
  * @param onStreamChanged 监控编解码器流变化，详情参考{@link OH_AVCodecOnStreamChanged}。
- * @param onNeedInputBuffer 监控编解码器需要输入数据，详情参考{@link OH_AVCodecOnNeedInputData}。
- * @param onNewOutputBuffer 监控编解码器已生成输出数据，详情参考{@link OH_AVCodecOnNewOutputData}。
+ * @param onNeedInputBuffer 监控编解码器需要输入数据，详情参考{@link OH_AVCodecOnNeedInputBuffer}。
+ * @param onNewOutputBuffer 监控编解码器已生成输出数据，详情参考{@link OH_AVCodecOnNewOutputBuffer}。
  * @since 11
  */
 typedef struct OH_AVCodecCallback {
@@ -184,21 +186,25 @@ typedef struct OH_AVCodecCallback {
  * @param pos 从偏移量位置读取。
  * @return 读取到缓冲区的数据的实际长度。
  * @since 12
-*/
+ */
 typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int64_t pos);
 
 /**
  * @brief 用户自定义数据源。
  *
  * @since 12
-*/
+ */
 typedef struct OH_AVDataSource {
     /**
-     * @brief 数据源的总大小。
+     * @brief 数据源的总大小，单位为字节。
+     *
+     * @since 12
      */
     int64_t size;
     /**
-     * @brief 数据源的数据回调。
+     * @brief 数据源的数据读取回调。
+     *
+     * @since 12
      */
     OH_AVDataSourceReadAt readAt;
 } OH_AVDataSource;
@@ -212,21 +218,25 @@ typedef struct OH_AVDataSource {
  * @param userData 用户自定义数据。
  * @return 读取到缓冲区的数据的实际长度。
  * @since 20
-*/
+ */
 typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData);
 
 /**
  * @brief 用户自定义数据源，回调支持通过userData传递用户自定义数据。
  *
  * @since 20
-*/
+ */
 typedef struct OH_AVDataSourceExt {
     /**
-     * @brief 数据源的总大小。
+     * @brief 数据源的总大小，单位为字节。
+     *
+     * @since 20
      */
     int64_t size;
     /**
-     * @brief 数据源的数据回调。
+     * @brief 数据源的数据读取回调。
+     *
+     * @since 20
      */
     OH_AVDataSourceReadAtExt readAt;
 } OH_AVDataSourceExt;
@@ -243,7 +253,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_AVC;
  * @brief AAC音频编解码器的MIME类型。
  *
  * @since 9
-*/
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AAC;
 
 /* 枚举音频和视频编解码器的MIME类型。 */
@@ -258,19 +268,19 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_FLAC;
  * @brief VORBIS音频解码器的MIME类型。
  *
  * @since 10
-*/
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VORBIS;
 /**
  * @brief MP3音频编解码器的MIME类型。
  *
  * @since 10
-*/
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_MPEG;
 /**
  * @brief HEVC(H.265)视频编解码器的MIME类型。
  *
  * @since 10
-*/
+ */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
 
 /* 枚举封装的视频类型。*/
@@ -278,8 +288,8 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
 /**
  * @brief MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
  *
- * @deprecated since 11
- * @useinstead {@link OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2}
+ * @deprecated 11
+ * @useinstead OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
@@ -391,6 +401,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1;
 
 /**
  * @brief WMV1视频编解码器的MIME类型。
+ *
  * @since 26.1.0
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WMV1;
@@ -440,13 +451,11 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VIVID;
 /**
  * @brief AMR_NB音频解码器的MIME类型。
  *
- *
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB;
 /**
  * @brief AMR_WB音频解码器的MIME类型。
- *
  *
  * @since 11
  */
@@ -454,13 +463,11 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB;
 /**
  * @brief OPUS音频编解码器的MIME类型。
  *
- *
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS;
 /**
  * @brief G711MU音频编解码器的MIME类型。
- *
  *
  * @since 11
  */
@@ -511,7 +518,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO;
  * 和{@link OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO}。
  *
  * @since 22
-*/
+ */
 extern const char *OH_MD_KEY_BLOCK_ALIGN;
 /**
  * @brief GSM（Global System for Mobile Communications）音频解码器的MIME类型。
@@ -584,20 +591,17 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
 /**
  * @brief APE音频解码器的MIME类型。
  *
- *
  * @since 12
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
 /**
  * @brief SRT字幕解封装器的MIME类型。
  *
- *
  * @since 12
  */
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 /**
  * @brief WEBVTT字幕解封装器的MIME类型。
- *
  *
  * @since 12
  */
@@ -606,14 +610,12 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 /**
  * @brief RAW音频码流的MIME类型。
  *
- *
  * @since 18
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
 
 /**
  * @brief G711A音频解码器的MIME类型。
- *
  *
  * @since 20
  */
@@ -622,14 +624,14 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
 /**
  * @brief 表示surfacebuffer时间戳的键，值类型为int64_t。
  *
- * @deprecated since 14
+ * @deprecated 14
  * @since 9
  */
 extern const char *OH_ED_KEY_TIME_STAMP;
-/** 
+/**
  * @brief 表示surfacebuffer流结束符的键，值类型为int32_t。
  *
- * @deprecated since 14
+ * @deprecated 14
  * @since 9
  */
 extern const char *OH_ED_KEY_EOS;
@@ -654,7 +656,7 @@ extern const char *OH_MD_KEY_CODEC_MIME;
  */
 extern const char *OH_MD_KEY_DURATION;
 /**
- * @brief 比特率的键，值类型为int64_t。
+ * @brief 比特率的键，单位为bps，值类型为int64_t。
  * 可以通过能力查询接口{@link OH_AVCapability_GetEncoderBitrateRange}接口来获取取值范围。
  *
  * @since 9
@@ -671,7 +673,7 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
  *
  * 对于视频编码，该键用于设置目标编码分辨率。对于视频解码，该键是解码器预分配内部缓冲区的分辨率提示。实际解码输出尺寸由OH_MD_KEY_VIDEO_PIC_WIDTH提供。
  *
- * 虽然该键主要用于控制内存分配，但可参考{@link OH_AVCapability_GetVideoWidthRange}获取推荐值范围，该接口定义了编码器支持的解码宽度范围。
+ * 虽然该键主要用于控制内存分配，但可参考{@link OH_AVCapability_GetVideoWidthRange}获取推荐值范围，该接口定义了编解码器支持的解码宽度范围。
  *
  * @since 9
  */
@@ -883,7 +885,7 @@ extern const char *OH_MD_KEY_LANGUAGE;
  * @brief 媒体文件描述的键，值类型为char *。
  *
  * @since 10
-*/
+ */
 extern const char *OH_MD_KEY_DESCRIPTION;
 /**
  * @brief 媒体文件歌词的键，值类型为char *。
@@ -904,7 +906,7 @@ extern const char *OH_MD_KEY_TRACK_COUNT;
  */
 extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
 /**
- * @brief 每个编码样本位数的键，值类型为int32_t。
+ * @brief 每个编码样本位数的键，值类型为int32_t。该键是可选的。
  *
  * API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。
  *
@@ -949,8 +951,8 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
  * 建议直接调用{@link OH_NativeWindow_NativeWindowSetScalingModeV2}接口进行设置。该键是可选的且只用于视频解码Surface模式。
  *
  * @since 10
- * @useinstead {@link OH_NativeWindow_NativeWindowSetScalingModeV2}
- * @deprecated since 14
+ * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
+ * @deprecated 14
  */
 extern const char *OH_MD_KEY_SCALING_MODE;
 /**
@@ -1034,9 +1036,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  *
  * 时域层号为0时，表示基础层，1及以上时表示增强层，
  *
- * 最大时域层号与{@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE}参数,
+ * 最大时域层号与{@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE}参数和
  *
- * 和{@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE}相关。
+ * {@link OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE}参数相关。
  *
  * 该键目前仅用于查询编码器输出的AVBuffer中携带的时域层号。
  *
@@ -1070,6 +1072,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT;
  * 只在长期参考帧（LTR）个数被配置后生效。
  *
  * 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
+ *
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR;
@@ -1300,7 +1303,7 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
  */
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
 /**
- * @brief 媒体文件创建时间的元数据，值类型为char *。使用ISO 8601标准的时间格式且为UTC时间，时间格式参考："2024-12-28T00:00:00:000000Z"。
+ * @brief 媒体文件创建时间的元数据，值类型为char *。使用ISO 8601标准的时间格式且为UTC时间，时间格式参考："2024-12-28T00:00:00.000000Z"。
  *
  * @since 14
  */
@@ -1372,7 +1375,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
 
 /**
  * @brief 用于设置感兴趣区域（ROI）参数的键。
- *     值类型为字符串，格式为"Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];"。
+ * 值类型为字符串，格式为"Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];"。
  *
  * 每个"Top,Left-Bottom,Right"代表一个ROI的坐标信息。
  * "[=Params]"是可选的。
@@ -1393,13 +1396,13 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  * 在Buffer模式下，通过{@link OH_AVBuffer_SetParameter}进行配置。
  *
  * @note 从API版本26.0.0开始，推荐使用{@link OH_VideoMetadata_AppendRoiString}
- * 来安全地格式化和追加ROI配置，而不是手动拼接字符串。
+ *     来安全地格式化和追加ROI配置，而不是手动拼接字符串。
  * @since 20
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
 
 /**
- * @brief 指定SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好。
+ * @brief 指定SQR码控模式的质量参数，仅支持H265（HEVC）。取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好。
  *
  * 在Configure/SetParameter阶段使用。
  *
@@ -1407,7 +1410,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
  */
 extern const char *OH_MD_KEY_SQR_FACTOR;
 /**
- * @brief 指定SQR码控模式的最大码率，使用{@link OH_AVCapability_GetEncoderBitrateRange}方法获取取值范围（同OH_MD_KEY_BITRATE），
+ * @brief 指定SQR码控模式的最大码率，仅支持H265（HEVC）。使用{@link OH_AVCapability_GetEncoderBitrateRange}方法获取取值范围（同OH_MD_KEY_BITRATE），
  * 单位bps，值类型为int64_t。
  *
  * 在Configure/SetParameter阶段使用。
@@ -1433,22 +1436,22 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
  * @brief 媒体文件轨道间参考、被参考关系，值类型为int32_t*。
  *
  * @since 20
-*/
+ */
 extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS;
 /**
  * @brief 媒体文件辅助轨类型，值类型为char *。
  *
  * @since 20
-*/
+ */
 extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
 /**
  * @brief 媒体文件辅助轨描述信息，值类型为char *。
  *
  * @since 20
-*/
+ */
 extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
 /**
- * @brief 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选。
+ * @brief 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的。
  *
  * 如果使能，需要注意：
  *
@@ -1475,38 +1478,46 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
  * @brief 用于查询视频编解码中native buffer像素格式的键，值类型为int32_t。
  *
  * 具体取值请参见{@link OH_NativeBuffer_Format}中定义的像素格式。
- * 
+ *
  * 该键主要用于以下两种场景：
  *
  * 1. 视频解码：调用{@link OH_VideoDecoder_GetOutputDescription}接口或
- *    {@link OH_AVCodecOnStreamChanged}，从返回的OH_AVFormat对象中获取当前输出格式。
+ * {@link OH_AVCodecOnStreamChanged}，从返回的OH_AVFormat对象中获取当前输出格式。
  *
  * 2. 视频编码：调用{@link OH_VideoEncoder_GetInputDescription}接口，
- *    从返回的OH_AVFormat对象中获取当前输入格式。
+ * 从返回的OH_AVFormat对象中获取当前输入格式。
  *
  * @since 22
  */
 extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 
 /**
- * @brief OH_AVBuffer中携带的键，仅解封装支持。在解封装输出音频的起始、末尾帧可能携带此键。
+ * @brief OH_AVBuffer中携带的键，用于跳过音频解码输出的数据。以采样点为单位，值类型为uint8_t*，当使用mp3、vorbis、opus解码器解码时，可设置该键。
  *
- * 此键对应一个10字节的uint8_t[]类型的数组，记录的是音频文件元数据中解码后需跳过的音频采样点数。
+ * 仅音频的起始、末尾帧携带该键，该键是可选的。使用方法一：解封装时获取该信息并设置到解码输入的OH_AVBuffer。
  *
- * 具体结构如下：
+ * 1. 从{@link OH_AVCodecCallback}的回调函数{@link OH_AVCodecOnNeedInputBuffer}里获取解码用的{@link OH_AVBuffer}。
+ *
+ * 2. 调用{@link OH_AVDemuxer_ReadSampleBuffer}接口读取音频数据，该接口会自行设置OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO。
+ *
+ * 3. 调用{@link OH_AudioCodec_PushInputBuffer}输入{@link OH_AVBuffer}进行解码。
+ *
+ * 使用方法二：构造该键需要的数据并设置到解码输入的OH_AVBuffer。
+ *
+ * 开发者需要先创建一个10字节uint8_t[]类型的数组，具体结构如下：
  *
  * 1. 数组0~3，这4个字节表示从当前帧第一个采样点开始往后跳过的采样点数，以小端序存储uint32_t值。
  *
  * 2. 数组4~7，这4个字节表示从当前帧最后一个采样点开始往前跳过的采样点数（不大于1帧采样点数），以小端序存储uint32_t值。
  *
- * 3. 数组8~9，这2个字节表示保留位，默认输出为0。
+ * 3. 数组8~9，这2个字节填0即可。
  *
  * @since 23
  */
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
- * @brief 在音频解码器中使能OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO功能的键，值类型为int32_t。
+ * @brief 在音频解码器中使能OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO的键，值类型为int32_t。
  * 1表示使能，0表示不使能，默认值为0。配置非1值将按照配置0处理，表示不使能。
  *
  * 该键是可选的。仅用于音频解码器。
@@ -1524,7 +1535,7 @@ extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES;
 extern const char *OH_MD_KEY_LATITUDE;
 
 /**
- * @brief 经度的键, 值类型为float，范围为[-180.0, 180.0]。
+ * @brief 经度的键，值类型为float，范围为[-180.0, 180.0]。
  * 表示地理位置信息中的经度。
  *
  * @since 24
@@ -1532,7 +1543,7 @@ extern const char *OH_MD_KEY_LATITUDE;
 extern const char *OH_MD_KEY_LONGITUDE;
 
 /**
- * @brief 海拔的键, 值类型为float。
+ * @brief 海拔的键，值类型为float，
  * 该键是可选的。表示地理位置信息中的海拔。
  *
  * @since 24
@@ -1741,20 +1752,21 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
 
 /**
-* @brief 设置视频编解码器DMABUF名称后缀的键，值类型为字符串。
-*
-* 该后缀使用':'作为分隔符，拼接在编解码器内部DMABUF名称之后。最终的DMABUF名称格式为：{系统自定义字符串}:{后缀}。
-* 注意：前缀为当前系统自定义字符串，可能会随系统版本变化。
-*
-* 后缀值的约束：
-* 1. 仅允许ASCII可打印字符，若后缀包含任何非ASCII字符、空格、换行、制表符或其他不可见（控制）字符。将返回 {@link AV_ERR_INVALID_VAL}。
-* 2. 后缀必须至少包含一个非数字字符，否则将返回 {@link AV_ERR_INVALID_VAL}。
-*
-* 该键是可选项，未设置时DMABUF名称保持不变。
-* 可通过{@link OH_VideoDecoder_Configure}或{@link OH_VideoEncoder_Configure}进行配置。
-*
-* @since 26.0.1
-*/
+ * @brief 设置视频编解码器DMABUF名称后缀的键，值类型为字符串。
+ *
+ * 后缀使用英文冒号`:`作为分隔符，拼接在编解码器内部DMABUF名称之后。最终的DMABUF名称格式为：{系统自定义字符串}:{后缀}。
+ *
+ * 后缀值的约束条件如下：
+ *
+ * 1. 仅允许ASCII可打印字符，若后缀包含任何非ASCII字符、空格、换行、制表符或其他不可见（控制）字符，将返回{@link AV_ERR_INVALID_VAL}。
+ *
+ * 2. 后缀必须至少包含一个非数字字符，否则将返回{@link AV_ERR_INVALID_VAL}。
+ *
+ * 该键是可选项，未设置时DMABUF名称保持不变。
+ * 可通过{@link OH_VideoDecoder_Configure()}或{@link OH_VideoEncoder_Configure()}进行配置。
+ *
+ * @since 26.0.1
+ */
 extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
 
 /**
@@ -1765,26 +1777,31 @@ extern const char *OH_MD_KEY_VIDEO_SET_DMABUF_NAME_SUFFIX;
 typedef enum OH_MediaType {
     /**
      * @brief 音频轨。
+     *
      * @since 9
      */
     MEDIA_TYPE_AUD = 0,
     /**
      * @brief 视频轨。
+     *
      * @since 9
      */
     MEDIA_TYPE_VID = 1,
     /**
      * @brief 字幕轨。
+     *
      * @since 12
      */
     MEDIA_TYPE_SUBTITLE = 2,
-     /** 
-     * @brief timed metadata轨。
-     * @since 20
-     */
+     /**
+      * @brief timed metadata轨。
+      *
+      * @since 20
+      */
     MEDIA_TYPE_TIMED_METADATA = 5,
-    /** 
+    /**
      * @brief 辅助轨。
+     *
      * @since 20
      */
     MEDIA_TYPE_AUXILIARY = 6,
@@ -1798,16 +1815,19 @@ typedef enum OH_MediaType {
 typedef enum OH_AACProfile {
     /**
      * @brief AAC编码档次为Low Complexity级别。
+     *
      * @since 9
      */
     AAC_PROFILE_LC = 0,
     /**
      * @brief AAC编码档次为High Efficiency级别。包含音频对象类型：AAC LC和SBR。
+     *
      * @since 14
      */
     AAC_PROFILE_HE = 3,
     /**
      * @brief AAC编码档次为High Efficiency v2级别。包含音频对象类型：AAC LC、SBR和PS。
+     *
      * @since 14
      */
     AAC_PROFILE_HE_V2 = 4,
@@ -1820,17 +1840,20 @@ typedef enum OH_AACProfile {
  */
 typedef enum OH_AVCProfile {
     /**
-     * AVC编码档次为基本档次。
+     * @brief AVC编码档次为基本档次。
+     *
      * @since 9
      */
     AVC_PROFILE_BASELINE = 0,
     /**
-     * AVC编码档次为高档次。
+     * @brief AVC编码档次为高档次。
+     *
      * @since 9
      */
     AVC_PROFILE_HIGH = 4,
     /**
-     * AVC编码档次为主档次。
+     * @brief AVC编码档次为主档次。
+     *
      * @since 9
      */
     AVC_PROFILE_MAIN = 8,
@@ -1843,28 +1866,37 @@ typedef enum OH_AVCProfile {
  */
 typedef enum OH_HEVCProfile {
     /**
-     * HEVC编码档次为主档次。
+     * @brief HEVC编码档次为主档次。
+     *
      * @since 10
      */
     HEVC_PROFILE_MAIN = 0,
     /**
-     * HEVC编码档次为10bit主档次。
+     * @brief HEVC编码档次为10bit主档次。
+     *
      * @since 10
      */
     HEVC_PROFILE_MAIN_10 = 1,
     /**
-     * HEVC编码档次为静止图像主档次。
+     * @brief HEVC编码档次为静止图像主档次。
+     *
      * @since 10
      */
     HEVC_PROFILE_MAIN_STILL = 2,
     /**
      * @brief HEVC编码档次为HDR10主档次。
-     * @deprecated since 14
+     *
+     * @deprecated 14
+     *
+     * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
     /**
      * @brief HEVC编码档次为HDR10+主档次。
-     * @deprecated since 14
+     *
+     * @deprecated 14
+     *
+     * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
 } OH_HEVCProfile;
@@ -1877,76 +1909,91 @@ typedef enum OH_HEVCProfile {
 typedef enum OH_VVCProfile {
     /**
      * @brief VVC编码档次为10bit主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_10 = 1,
     /**
      * @brief VVC编码档次为12bit主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_12 = 2,
     /**
      * @brief VVC编码档次为12bit帧内主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_12_INTRA = 10,
     /**
      * @brief VVC编码档次为多层编码10bit主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MULTI_MAIN_10 = 17,
     /**
      * @brief VVC编码档次为10bit全采样主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_10_444 = 33,
     /**
      * @brief VVC编码档次为12bit全采样主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_12_444 = 34,
     /**
      * @brief VVC编码档次为16bit全采样主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_16_444 = 36,
     /**
      * @brief VVC编码档次为12bit全采样帧内主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_12_444_INTRA = 42,
     /**
      * @brief VVC编码档次为16bit全采样帧内主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_16_444_INTRA = 44,
     /**
      * @brief VVC编码档次为多层编码10bit全采样主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MULTI_MAIN_10_444 = 49,
     /**
      * @brief VVC编码档次为10bit静止图像主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_10_STILL = 65,
     /**
      * @brief VVC编码档次为12bit静止图像主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_12_STILL = 66,
     /**
      * @brief VVC编码档次为10bit全采样静止图像主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_10_444_STILL = 97,
     /**
      * @brief VVC编码档次为12bit全采样静止图像主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_12_444_STILL = 98,
     /**
      * @brief VVC编码档次为16bit全采样静止图像主档次。
+     *
      * @since 15
      */
     VVC_PROFILE_MAIN_16_444_STILL = 100,
@@ -1960,31 +2007,37 @@ typedef enum OH_VVCProfile {
 typedef enum OH_MPEG2Profile {
     /**
      * @brief 简单档次。
+     *
      * @since 17
      */
     MPEG2_PROFILE_SIMPLE = 0,
     /**
      * @brief 主档次。
+     *
      * @since 17
      */
     MPEG2_PROFILE_MAIN  = 1,
     /**
      * @brief 信噪比可分级档次。
+     *
      * @since 17
      */
     MPEG2_PROFILE_SNR_SCALABLE  = 2,
     /**
      * @brief 空间可分级档次。
+     *
      * @since 17
      */
     MPEG2_PROFILE_SPATIALLY_SCALABLE = 3,
     /**
      * @brief 高级档次。
+     *
      * @since 17
      */
     MPEG2_PROFILE_HIGH = 4,
     /**
      * @brief 4:2:2档次。
+     *
      * @since 17
      */
     MPEG2_PROFILE_422 = 5,
@@ -1998,76 +2051,91 @@ typedef enum OH_MPEG2Profile {
 typedef enum OH_MPEG4Profile {
     /**
      * @brief 简单档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_SIMPLE = 0,
     /**
      * @brief 简单可分级档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_SIMPLE_SCALABLE = 1,
     /**
      * @brief 核心档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_CORE = 2,
     /**
      * @brief 主档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_MAIN = 3,
     /**
      * @brief N位档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_N_BIT  = 4,
     /**
      * @brief 混合档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_HYBRID = 5,
     /**
      * @brief 基本动画纹理档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,
     /**
      * @brief 可分级纹理档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_SCALABLE_TEXTURE = 7,
     /**
      * @brief 简单FA档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_SIMPLE_FA = 8,
     /**
      * @brief 高级实时简单档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,
     /**
      * @brief 核心可分级档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_CORE_SCALABLE = 10,
     /**
      * @brief 高级编码效率档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,
     /**
      * @brief 高级核心档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_CORE = 12,
     /**
      * @brief 高级可分级纹理档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,
     /**
      * @brief 高级简单档次。
+     *
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_SIMPLE = 17,
@@ -2081,11 +2149,13 @@ typedef enum OH_MPEG4Profile {
 typedef enum OH_H263Profile {
     /**
      * @brief 基线档次。
+     *
      * @since 17
      */
     H263_PROFILE_BASELINE = 0,
     /**
      * @brief 版本1向后兼容档次。
+     *
      * @since 17
      */
     H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2,
@@ -2099,16 +2169,19 @@ typedef enum OH_H263Profile {
 typedef enum OH_VC1Profile {
     /**
      * @brief 简单档次。
+     *
      * @since 22
      */
     VC1_PROFILE_SIMPLE = 0,
     /**
      * @brief 主档次。
+     *
      * @since 22
      */
     VC1_PROFILE_MAIN = 1,
     /**
      * @brief 高级档次。
+     *
      * @since 22
      */
     VC1_PROFILE_ADVANCED = 2,
@@ -2122,57 +2195,65 @@ typedef enum OH_VC1Profile {
 typedef enum OH_AV1Profile {
     /**
      * @brief 主档次。
+     *
      * @since 23
      */
     AV1_PROFILE_MAIN = 0,
     /**
      * @brief 高级档次。
+     *
      * @since 23
      */
     AV1_PROFILE_HIGH = 1,
     /**
      * @brief 专业档次。
+     *
      * @since 23
      */
     AV1_PROFILE_PROFESSIONAL = 2,
 } OH_AV1Profile;
 
 /**
-* @brief VP9档次。
-*
-* @since 23
-*/
+ * @brief VP9档次。
+ *
+ * @since 23
+ */
 typedef enum OH_VP9Profile {
     /**
      * @brief 0档次。
+     *
      * @since 23
      */
     VP9_PROFILE_0 = 0,
     /**
      * @brief 1档次。
+     *
      * @since 23
      */
     VP9_PROFILE_1 = 1,
     /**
      * @brief 2档次。
+     *
      * @since 23
      */
     VP9_PROFILE_2 = 2,
     /**
      * @brief 3档次。
+     *
      * @since 23
      */
     VP9_PROFILE_3 = 3,
 } OH_VP9Profile;
 
 /**
-* @brief WVC1档次。
-*
-* @since 23
-*/
+ * @brief WVC1档次。
+ *
+ * @since 23
+ */
 typedef enum OH_WVC1Profile {
     /**
      * @brief 高级档次。
+     *
      * @since 23
      */
     WVC1_PROFILE_ADVANCED = 0,
@@ -2181,17 +2262,18 @@ typedef enum OH_WVC1Profile {
 /**
  * @brief WMV3档次。
  *
- *
  * @since 22
  */
 typedef enum OH_WMV3Profile {
     /**
      * @brief 简单档次。
+     *
      * @since 22
      */
     WMV3_PROFILE_SIMPLE = 0,
     /**
      * @brief 主档次。
+     *
      * @since 22
      */
     WMV3_PROFILE_MAIN = 1,
@@ -2205,51 +2287,61 @@ typedef enum OH_WMV3Profile {
 typedef enum OH_AVOutputFormat {
     /**
      * @brief 输出文件格式默认值，默认为MP4格式。
+     *
      * @since 10
      */
     AV_OUTPUT_FORMAT_DEFAULT = 0,
     /**
      * @brief 输出文件格式为MP4格式。
+     *
      * @since 10
      */
     AV_OUTPUT_FORMAT_MPEG_4 = 2,
     /**
      * @brief 输出文件格式为M4A格式。
+     *
      * @since 10
      */
     AV_OUTPUT_FORMAT_M4A = 6,
 	/**
-     * @brief 输出文件格式为AMR格式。
-     * @since 12
-     */
+	 * @brief 输出文件格式为AMR格式。
+	 *
+	 * @since 12
+	 */
     AV_OUTPUT_FORMAT_AMR = 8,
 	/**
-     * @brief 输出文件格式为MP3格式。
-     * @since 12
-     */
+	 * @brief 输出文件格式为MP3格式。
+	 *
+	 * @since 12
+	 */
     AV_OUTPUT_FORMAT_MP3 = 9,
     /**
      * @brief 输出文件格式为WAV格式。
+     *
      * @since 12
      */
     AV_OUTPUT_FORMAT_WAV = 10,
     /**
      * @brief 输出文件格式为AAC格式。
+     *
      * @since 18
      */
     AV_OUTPUT_FORMAT_AAC = 11,
     /**
      * @brief 输出文件格式为FLAC格式。
+     *
      * @since 20
      */
     AV_OUTPUT_FORMAT_FLAC = 12,
     /**
      * @brief 输出文件格式为OGG格式。
+     *
      * @since 23
      */
     AV_OUTPUT_FORMAT_OGG = 13,
     /**
      * @brief 输出文件格式为FLV格式。
+     *
      * @since 26.0.0
      */
     AV_OUTPUT_FORMAT_FLV = 14,
@@ -2263,16 +2355,19 @@ typedef enum OH_AVOutputFormat {
 typedef enum OH_AVSeekMode {
     /**
      * @brief 指定时间位置的下一I帧。若时间点后没有I帧，该模式可能跳转失败。
+     *
      * @since 10
      */
     SEEK_MODE_NEXT_SYNC = 0,
     /**
      * @brief 指定时间位置的上一I帧。
+     *
      * @since 10
      */
     SEEK_MODE_PREVIOUS_SYNC,
     /**
      * @brief 指定时间位置的最近I帧。
+     *
      * @since 10
      */
     SEEK_MODE_CLOSEST_SYNC,
@@ -2281,22 +2376,28 @@ typedef enum OH_AVSeekMode {
 /**
  * @brief 缩放模式，只在Surface模式下使用。
  *
- * @deprecated since 14
- * @useinstead {@link OHScalingModeV2}
+ * @deprecated 14
+ * @useinstead OHScalingModeV2
  * @since 10
  */
 typedef enum OH_ScalingMode {
     /**
      * @brief 根据窗口尺寸自适应调整图像大小。
-     * @deprecated since 14
-     * @useinstead {@link OH_SCALING_MODE_SCALE_TO_WINDOW_V2}
-    */
+     *
+     * @deprecated 14
+     * @useinstead OH_SCALING_MODE_SCALE_TO_WINDOW_V2
+     *
+     * @since 10
+     */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
-    /** 
-     * 根据窗口尺寸裁剪图像大小。
-     * @deprecated since 14
-     * @useinstead {@link OH_SCALING_MODE_SCALE_CROP_V2}
-    */
+    /**
+     * @brief 根据窗口尺寸裁剪图像大小。
+     *
+     * @deprecated 14
+     * @useinstead OH_SCALING_MODE_SCALE_CROP_V2
+     *
+     * @since 10
+     */
     SCALING_MODE_SCALE_CROP = 2,
 } OH_ScalingMode;
 
@@ -2308,56 +2409,67 @@ typedef enum OH_ScalingMode {
 typedef enum OH_BitsPerSample {
     /**
      * @brief 8位无符号整数采样。
+     *
      * @since 10
      */
     SAMPLE_U8 = 0,
     /**
-     * @brief 16位有符号整数交样。
+     * @brief 16位有符号整数采样。
+     *
      * @since 10
      */
     SAMPLE_S16LE = 1,
     /**
      * @brief 24位有符号整数采样。
+     *
      * @since 10
      */
     SAMPLE_S24LE = 2,
     /**
      * @brief 32位有符号整数采样。
+     *
      * @since 10
      */
     SAMPLE_S32LE = 3,
     /**
      * @brief 32位浮点采样。
+     *
      * @since 10
      */
     SAMPLE_F32LE = 4,
     /**
      * @brief 8位无符号整数平面采样。
+     *
      * @since 10
      */
     SAMPLE_U8P = 5,
     /**
      * @brief 16位有符号整数平面采样。
+     *
      * @since 10
      */
     SAMPLE_S16P = 6,
     /**
      * @brief 24位有符号整数平面采样。
+     *
      * @since 10
      */
     SAMPLE_S24P = 7,
     /**
      * @brief 32位有符号整数平面采样。
+     *
      * @since 10
      */
     SAMPLE_S32P = 8,
     /**
      * @brief 32位浮点平面采样。
+     *
      * @since 10
      */
     SAMPLE_F32P = 9,
     /**
      * @brief 无效采样格式。
+     *
      * @since 10
      */
     INVALID_WIDTH = -1
@@ -2371,56 +2483,67 @@ typedef enum OH_BitsPerSample {
 typedef enum OH_ColorPrimary {
     /**
      * @brief BT709色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_BT709 = 1,
     /**
      * @brief 未指定色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_UNSPECIFIED = 2,
     /**
      * @brief BT470_M色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_BT470_M = 4,
     /**
      * @brief BT601_625色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_BT601_625 = 5,
     /**
      * @brief BT601_525色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_BT601_525 = 6,
     /**
      * @brief SMPTE_ST240色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_SMPTE_ST240 = 7,
     /**
      * @brief GENERIC_FILM色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_GENERIC_FILM = 8,
     /**
      * @brief BT2020色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_BT2020 = 9,
     /**
      * @brief SMPTE_ST428色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_SMPTE_ST428 = 10,
     /**
      * @brief P3DCI色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_P3DCI = 11,
     /**
      * @brief P3D65色域。
+     *
      * @since 10
      */
     COLOR_PRIMARY_P3D65 = 12,
@@ -2434,86 +2557,103 @@ typedef enum OH_ColorPrimary {
 typedef enum OH_TransferCharacteristic {
     /**
      * @brief BT709传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT709 = 1,
     /**
      * @brief 未指定传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,
     /**
      * @brief GAMMA_2_2传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,
     /**
      * @brief GAMMA_2_8传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,
     /**
      * @brief BT601传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT601 = 6,
     /**
      * @brief SMPTE_ST240传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,
     /**
      * @brief LINEAR传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_LINEAR = 8,
     /**
      * @brief LOG传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_LOG = 9,
     /**
      * @brief LOG_SQRT传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,
     /**
      * @brief IEC_61966_2_4传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,
     /**
      * @brief BT1361传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT1361 = 12,
     /**
      * @brief IEC_61966_2_1传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,
     /**
      * @brief BT2020_10BIT传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,
     /**
      * @brief BT2020_12BIT传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,
     /**
      * @brief PQ传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_PQ = 16,
     /**
      * @brief SMPTE_ST428传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,
     /**
      * @brief HLG传递函数。
+     *
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_HLG = 18,
@@ -2527,71 +2667,85 @@ typedef enum OH_TransferCharacteristic {
 typedef enum OH_MatrixCoefficient {
     /**
      * @brief 单位矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_IDENTITY = 0,
     /**
      * @brief BT709转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_BT709 = 1,
     /**
      * @brief 未指定转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_UNSPECIFIED = 2,
     /**
      * @brief FCC转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_FCC = 4,
     /**
      * @brief BT601_625转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_BT601_625 = 5,
     /**
      * @brief BT601_525转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_BT601_525 = 6,
     /**
      * @brief SMPTE_ST240转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_SMPTE_ST240 = 7,
     /**
      * @brief YCGCO转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_YCGCO = 8,
     /**
      * @brief BT2020_NCL转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_BT2020_NCL = 9,
     /**
      * @brief BT2020_CL转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_BT2020_CL = 10,
     /**
      * @brief SMPTE_ST2085转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,
     /**
      * @brief CHROMATICITY_NCL转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,
     /**
      * @brief CHROMATICITY_CL转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,
     /**
      * @brief ICTCP转换矩阵。
+     *
      * @since 10
      */
     MATRIX_COEFFICIENT_ICTCP = 14,
@@ -2605,101 +2759,121 @@ typedef enum OH_MatrixCoefficient {
 typedef enum OH_AVCLevel {
     /**
      * @brief 级别1。
+     *
      * @since 12
      */
     AVC_LEVEL_1 = 0,
     /**
      * @brief 级别1b。
+     *
      * @since 12
      */
     AVC_LEVEL_1b = 1,
     /**
      * @brief 级别1.1。
+     *
      * @since 12
      */
     AVC_LEVEL_11 = 2,
     /**
      * @brief 级别1.2。
+     *
      * @since 12
      */
     AVC_LEVEL_12 = 3,
     /**
      * @brief 级别1.3。
+     *
      * @since 12
      */
     AVC_LEVEL_13 = 4,
     /**
      * @brief 级别2。
+     *
      * @since 12
      */
     AVC_LEVEL_2 = 5,
     /**
      * @brief 级别2.1。
+     *
      * @since 12
      */
     AVC_LEVEL_21 = 6,
     /**
      * @brief 级别2.2。
+     *
      * @since 12
      */
     AVC_LEVEL_22 = 7,
     /**
      * @brief 级别3。
+     *
      * @since 12
      */
     AVC_LEVEL_3 = 8,
     /**
      * @brief 级别3.1。
+     *
      * @since 12
      */
     AVC_LEVEL_31 = 9,
     /**
      * @brief 级别3.2。
+     *
      * @since 12
      */
     AVC_LEVEL_32 = 10,
     /**
      * @brief 级别4。
+     *
      * @since 12
      */
     AVC_LEVEL_4 = 11,
     /**
      * @brief 级别4.1。
+     *
      * @since 12
      */
     AVC_LEVEL_41 = 12,
     /**
      * @brief 级别4.2。
+     *
      * @since 12
      */
     AVC_LEVEL_42 = 13,
     /**
      * @brief 级别5。
+     *
      * @since 12
      */
     AVC_LEVEL_5 = 14,
     /**
      * @brief 级别5.1。
+     *
      * @since 12
      */
     AVC_LEVEL_51 = 15,
     /**
      * @brief 级别5.2。
+     *
      * @since 12
      */
     AVC_LEVEL_52 = 16,
     /**
      * @brief 级别6。
+     *
      * @since 12
      */
     AVC_LEVEL_6 = 17,
     /**
      * @brief 级别6.1。
+     *
      * @since 12
      */
     AVC_LEVEL_61 = 18,
     /**
      * @brief 级别6.2。
+     *
      * @since 12
      */
     AVC_LEVEL_62 = 19,
@@ -2713,66 +2887,79 @@ typedef enum OH_AVCLevel {
 typedef enum OH_HEVCLevel {
     /**
      * @brief 级别1。
+     *
      * @since 12
      */
     HEVC_LEVEL_1 = 0,
     /**
      * @brief 级别2。
+     *
      * @since 12
      */
     HEVC_LEVEL_2 = 1,
     /**
      * @brief 级别2.1。
+     *
      * @since 12
      */
     HEVC_LEVEL_21 = 2,
     /**
      * @brief 级别3。
+     *
      * @since 12
      */
     HEVC_LEVEL_3 = 3,
     /**
      * @brief 级别3.1。
+     *
      * @since 12
      */
     HEVC_LEVEL_31 = 4,
     /**
      * @brief 级别4。
+     *
      * @since 12
      */
     HEVC_LEVEL_4 = 5,
     /**
      * @brief 级别4.1。
+     *
      * @since 12
      */
     HEVC_LEVEL_41 = 6,
     /**
      * @brief 级别5。
+     *
      * @since 12
      */
     HEVC_LEVEL_5 = 7,
     /**
      * @brief 级别5.1。
+     *
      * @since 12
      */
     HEVC_LEVEL_51 = 8,
     /**
      * @brief 级别5.2。
+     *
      * @since 12
      */
     HEVC_LEVEL_52 = 9,
     /**
      * @brief 级别6。
+     *
      * @since 12
      */
     HEVC_LEVEL_6 = 10,
     /**
      * @brief 级别6.1。
+     *
      * @since 12
      */
     HEVC_LEVEL_61 = 11,
     /**
      * @brief 级别6.2。
+     *
      * @since 12
      */
     HEVC_LEVEL_62 = 12,
@@ -2786,76 +2973,91 @@ typedef enum OH_HEVCLevel {
 typedef enum OH_VVCLevel {
     /**
      * @brief 级别1.0。
+     *
      * @since 15
      */
     VVC_LEVEL_1 = 16,
     /**
      * @brief 级别2.0。
+     *
      * @since 15
      */
     VVC_LEVEL_2 = 32,
     /**
      * @brief 级别2.1。
+     *
      * @since 15
      */
     VVC_LEVEL_21 = 35,
     /**
      * @brief 级别3.0。
+     *
      * @since 15
      */
     VVC_LEVEL_3 = 48,
     /**
      * @brief 级别3.1。
+     *
      * @since 15
      */
     VVC_LEVEL_31 = 51,
     /**
      * @brief 级别4.0。
+     *
      * @since 15
      */
     VVC_LEVEL_4 = 64,
     /**
      * @brief 级别4.1。
+     *
      * @since 15
      */
     VVC_LEVEL_41 = 67,
     /**
      * @brief 级别5.0。
+     *
      * @since 15
      */
     VVC_LEVEL_5 = 80,
     /**
      * @brief 级别5.1。
+     *
      * @since 15
      */
     VVC_LEVEL_51 = 83,
     /**
      * @brief 级别5.2。
+     *
      * @since 15
      */
     VVC_LEVEL_52 = 86,
     /**
      * @brief 级别6.0。
+     *
      * @since 15
      */
     VVC_LEVEL_6 = 96,
     /**
      * @brief 级别6.1。
+     *
      * @since 15
      */
     VVC_LEVEL_61 = 99,
     /**
      * @brief 级别6.2。
+     *
      * @since 15
      */
     VVC_LEVEL_62 = 102,
     /**
      * @brief 级别6.3。
+     *
      * @since 15
      */
     VVC_LEVEL_63 = 105,
     /**
      * @brief 级别15.5。
+     *
      * @since 15
      */
     VVC_LEVEL_155 = 255,
@@ -2869,21 +3071,25 @@ typedef enum OH_VVCLevel {
 typedef enum OH_MPEG2Level {
     /**
      * @brief 低级别。
+     *
      * @since 17
      */
     MPEG2_LEVEL_LOW = 0,
     /**
      * @brief 主级别。
+     *
      * @since 17
      */
     MPEG2_LEVEL_MAIN = 1,
     /**
      * @brief 高1440级别。
+     *
      * @since 17
      */
     MPEG2_LEVEL_HIGH_1440 = 2,
     /**
      * @brief 高级别。
+     *
      * @since 17
      */
     MPEG2_LEVEL_HIGH = 3,
@@ -2897,51 +3103,61 @@ typedef enum OH_MPEG2Level {
 typedef enum OH_MPEG4Level {
     /**
      * @brief 级别0。
+     *
      * @since 17
      */
     MPEG4_LEVEL_0  = 0,
     /**
      * @brief 级别0B。
+     *
      * @since 17
      */
     MPEG4_LEVEL_0B = 1,
     /**
      * @brief 级别1。
+     *
      * @since 17
      */
     MPEG4_LEVEL_1  = 2,
     /**
      * @brief 级别2。
+     *
      * @since 17
      */
     MPEG4_LEVEL_2  = 3,
     /**
      * @brief 级别3。
+     *
      * @since 17
      */
     MPEG4_LEVEL_3  = 4,
     /**
      * @brief 级别3B。
+     *
      * @since 17
      */
     MPEG4_LEVEL_3B = 5,
     /**
      * @brief 级别4。
+     *
      * @since 17
      */
     MPEG4_LEVEL_4  = 6,
     /**
      * @brief 级别4A。
+     *
      * @since 17
      */
     MPEG4_LEVEL_4A = 7,
     /**
      * @brief 级别5。
+     *
      * @since 17
      */
     MPEG4_LEVEL_5  = 8,
     /**
      * @brief 级别6。
+     *
      * @since 17
      */
     MPEG4_LEVEL_6  = 9,
@@ -2955,41 +3171,49 @@ typedef enum OH_MPEG4Level {
 typedef enum OH_H263Level {
     /**
      * @brief 级别10。
+     *
      * @since 17
      */
     H263_LEVEL_10 = 0,
     /**
      * @brief 级别20。
+     *
      * @since 17
      */
     H263_LEVEL_20 = 1,
     /**
      * @brief 级别30。
+     *
      * @since 17
      */
     H263_LEVEL_30 = 2,
     /**
      * @brief 级别40。
+     *
      * @since 17
      */
     H263_LEVEL_40 = 3,
     /**
      * @brief 级别45。
+     *
      * @since 17
      */
     H263_LEVEL_45 = 4,
     /**
      * @brief 级别50。
+     *
      * @since 17
      */
     H263_LEVEL_50 = 5,
     /**
      * @brief 级别60。
+     *
      * @since 17
      */
     H263_LEVEL_60 = 6,
     /**
      * @brief 级别70。
+     *
      * @since 17
      */
     H263_LEVEL_70 = 7,
@@ -3003,41 +3227,49 @@ typedef enum OH_H263Level {
 typedef enum OH_VC1Level {
     /**
      * @brief 级别L0。
+     *
      * @since 22
      */
     VC1_LEVEL_L0 = 0,
     /**
      * @brief 级别L1。
+     *
      * @since 22
      */
     VC1_LEVEL_L1 = 1,
     /**
      * @brief 级别L2。
+     *
      * @since 22
      */
     VC1_LEVEL_L2 = 2,
     /**
      * @brief 级别L3。
+     *
      * @since 22
      */
     VC1_LEVEL_L3 = 3,
     /**
      * @brief 级别L4。
+     *
      * @since 22
      */
     VC1_LEVEL_L4 = 4,
     /**
      * @brief 低级别。
+     *
      * @since 22
      */
     VC1_LEVEL_LOW = 5,
     /**
      * @brief 中级别。
+     *
      * @since 22
      */
     VC1_LEVEL_MEDIUM = 6,
     /**
      * @brief 高级别。
+     *
      * @since 22
      */
     VC1_LEVEL_HIGH = 7,
@@ -3051,121 +3283,145 @@ typedef enum OH_VC1Level {
 typedef enum OH_AV1Level {
     /**
      * @brief 2.0级别。
+     *
      * @since 23
      */
     AV1_LEVEL_20 = 0,
     /**
      * @brief 2.1级别。
+     *
      * @since 23
      */
     AV1_LEVEL_21 = 1,
     /**
      * @brief 2.2级别。
+     *
      * @since 23
      */
     AV1_LEVEL_22 = 2,
     /**
      * @brief 2.3级别。
+     *
      * @since 23
      */
     AV1_LEVEL_23 = 3,
     /**
      * @brief 3.0级别。
+     *
      * @since 23
      */
     AV1_LEVEL_30 = 4,
     /**
      * @brief 3.1级别。
+     *
      * @since 23
      */
     AV1_LEVEL_31 = 5,
     /**
      * @brief 3.2级别。
+     *
      * @since 23
      */
     AV1_LEVEL_32 = 6,
     /**
      * @brief 3.3级别。
+     *
      * @since 23
      */
     AV1_LEVEL_33 = 7,
     /**
      * @brief 4.0级别。
+     *
      * @since 23
      */
     AV1_LEVEL_40 = 8,
     /**
      * @brief 4.1级别。
+     *
      * @since 23
      */
     AV1_LEVEL_41 = 9,
     /**
      * @brief 4.2级别。
+     *
      * @since 23
      */
     AV1_LEVEL_42 = 10,
     /**
      * @brief 4.3级别。
+     *
      * @since 23
      */
     AV1_LEVEL_43 = 11,
     /**
      * @brief 5.0级别。
+     *
      * @since 23
      */
     AV1_LEVEL_50 = 12,
     /**
      * @brief 5.1级别。
+     *
      * @since 23
      */
     AV1_LEVEL_51 = 13,
     /**
      * @brief 5.2级别。
+     *
      * @since 23
      */
     AV1_LEVEL_52 = 14,
     /**
      * @brief 5.3级别。
+     *
      * @since 23
      */
     AV1_LEVEL_53 = 15,
     /**
      * @brief 6.0级别。
+     *
      * @since 23
      */
     AV1_LEVEL_60 = 16,
     /**
      * @brief 6.1级别。
+     *
      * @since 23
      */
     AV1_LEVEL_61 = 17,
     /**
      * @brief 6.2级别。
+     *
      * @since 23
      */
     AV1_LEVEL_62 = 18,
     /**
      * @brief 6.3级别。
+     *
      * @since 23
      */
     AV1_LEVEL_63 = 19,
     /**
      * @brief 7.0级别。
+     *
      * @since 23
      */
     AV1_LEVEL_70 = 20,
     /**
      * @brief 7.1级别。
+     *
      * @since 23
      */
     AV1_LEVEL_71 = 21,
     /**
      * @brief 7.2级别。
+     *
      * @since 23
      */
     AV1_LEVEL_72 = 22,
     /**
      * @brief 7.3级别。
+     *
      * @since 23
      */
     AV1_LEVEL_73 = 23,
@@ -3179,71 +3435,85 @@ typedef enum OH_AV1Level {
 typedef enum OH_VP9Level {
     /**
      * @brief 1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_1 = 0,
     /**
      * @brief 1.1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_11 = 1,
     /**
      * @brief 2级别。
+     *
      * @since 23
      */
     VP9_LEVEL_2 = 2,
     /**
      * @brief 2.1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_21 = 3,
     /**
      * @brief 3级别。
+     *
      * @since 23
      */
     VP9_LEVEL_3 = 4,
     /**
      * @brief 3.1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_31 = 5,
     /**
      * @brief 4级别。
+     *
      * @since 23
      */
     VP9_LEVEL_4 = 6,
     /**
      * @brief 4.1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_41 = 7,
     /**
      * @brief 5级别。
+     *
      * @since 23
      */
     VP9_LEVEL_5 = 8,
     /**
      * @brief 5.1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_51 = 9,
     /**
      * @brief 5.2级别。
+     *
      * @since 23
      */
     VP9_LEVEL_52 = 10,
     /**
      * @brief 6级别。
+     *
      * @since 23
      */
     VP9_LEVEL_6 = 11,
     /**
      * @brief 6.1级别。
+     *
      * @since 23
      */
     VP9_LEVEL_61 = 12,
     /**
      * @brief 6.2级别。
+     *
      * @since 23
      */
     VP9_LEVEL_62 = 13,
@@ -3257,26 +3527,31 @@ typedef enum OH_VP9Level {
 typedef enum OH_WVC1Level {
     /**
      * @brief L0级别。
+     *
      * @since 23
      */
     WVC1_LEVEL_L0 = 0,
     /**
      * @brief L1级别。
+     *
      * @since 23
      */
     WVC1_LEVEL_L1 = 1,
     /**
      * @brief L2级别。
+     *
      * @since 23
      */
     WVC1_LEVEL_L2 = 2,
     /**
      * @brief L3级别。
+     *
      * @since 23
      */
     WVC1_LEVEL_L3 = 3,
     /**
      * @brief L4级别。
+     *
      * @since 23
      */
     WVC1_LEVEL_L4 = 4,
@@ -3290,16 +3565,19 @@ typedef enum OH_WVC1Level {
 typedef enum OH_WMV3Level {
     /**
      * @brief 低级别。
+     *
      * @since 22
      */
     WMV3_LEVEL_LOW = 0,
     /**
      * @brief 中级别。
+     *
      * @since 22
      */
     WMV3_LEVEL_MEDIUM = 1,
     /**
      * @brief 高级别。
+     *
      * @since 22
      */
     WMV3_LEVEL_HIGH = 2,
@@ -3313,16 +3591,19 @@ typedef enum OH_WMV3Level {
 typedef enum OH_TemporalGopReferenceMode {
     /**
      * @brief 参考最近的短期参考帧。
+     *
      * @since 12
      */
     ADJACENT_REFERENCE = 0,
     /**
      * @brief 参考最近的长期参考帧。
+     *
      * @since 12
      */
     JUMP_REFERENCE = 1,
     /**
      * @brief 均匀分层参考结构，在丢弃最高层级视频帧后，视频帧均匀分布。其中时域图片组个数必须为2的幂。
+     *
      * @since 12
      */
     UNIFORMLY_SCALED_REFERENCE = 2,
@@ -3336,26 +3617,31 @@ typedef enum OH_TemporalGopReferenceMode {
 typedef enum OH_BitrateMode {
     /**
      * @brief 恒定比特率模式。
+     *
      * @since 10
      */
     BITRATE_MODE_CBR = 0,
     /**
      * @brief 可变比特率模式。
+     *
      * @since 10
      */
     BITRATE_MODE_VBR = 1,
     /**
      * @brief 恒定质量模式。
+     *
      * @since 10
      */
     BITRATE_MODE_CQ = 2,
     /**
      * @brief 质量稳定模式，仅支持H265（HEVC）。
+     *
      * @since 20
      */
     BITRATE_MODE_SQR = 3,
     /**
      * @brief 高质量恒定比特率模式，仅支持H265（HEVC）。
+     *
      * @since 26.0.0
      */
     BITRATE_MODE_CBR_HIGH_QUALITY = 4
@@ -3376,17 +3662,18 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE;
 /**
  * @brief 设置视频解码帧保留比例的键。取值类型为double。
  *
- * 当{@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE}设置为
- * {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_UNIFORM}时，
- * 或者未配置保留模式（隐式默认走到均匀逻辑）时，该参数生效。
+ * 当OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE设置为
+ * OH_FRAME_RETENTION_MODE_UNIFORM时，
+ * 或者未配置保留模式（隐式默认采用均匀逻辑）时，该参数生效。
  *
- * 仅当保留模式显式设置为{@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_ADAPTIVE}
- * 或{@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_FULL}时，此配置才会被忽略。
+ * 仅当保留模式显式设置为OH_FRAME_RETENTION_MODE_ADAPTIVE
+ * 或OH_FRAME_RETENTION_MODE_FULL时，此配置才会被忽略。
  *
  * 有效范围是[0.01, 1.0]（其中1.0表示保留所有帧，0.01为最小限制），
  * 任何超出此范围的值都将被视为无效并被忽略。
  *
- * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。
+ * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。每种模式的详细说明及其行为请参考枚举定义
+ * {@link OH_FrameRetentionMode}。
  *
  * @since 26.0.0
  */
@@ -3396,13 +3683,14 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO;
  * @brief 配置视频解码器播放倍速的键。取值类型为double。
  *
  * 该键用于指定视频的目标播放倍速。主要推荐与
- * {@link OH_FrameRetentionMode#OH_FRAME_RETENTION_MODE_ADAPTIVE}模式结合使用，
+ * OH_FRAME_RETENTION_MODE_ADAPTIVE模式结合使用，
  * 以辅助感知自适应算法准确评估丢帧对视觉感知的影响。
  *
  * 取值必须严格大于0.0，推荐的标准值包括0.5、0.75、1.0（正常速度）、1.25、1.5、2.0 和 3.0，
  * 任何小于或等于0.0的值都会被视为无效。
  *
- * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。
+ * 可以通过{@link OH_VideoDecoder_Configure}和{@link OH_VideoDecoder_SetParameter}接口进行配置。每种模式的详细说明及其行为请参考枚举定义
+ * {@link OH_FrameRetentionMode}。
  *
  * @since 26.0.0
  */
@@ -3417,6 +3705,7 @@ typedef enum OH_FrameRetentionMode {
     /**
      * @brief 全量保留模式。解码器工作在透明直通状态，100%保留所有输入帧，
      * 实质上禁用了抽帧功能。所有底层的视觉感知算法将被完全跳过，实现零算法开销。
+     *
      * @since 26.0.0
      */
     OH_FRAME_RETENTION_MODE_FULL = 0,
@@ -3424,12 +3713,14 @@ typedef enum OH_FrameRetentionMode {
      * @brief 感知自适应保留模式。解码器动态分析视频特征，优先丢弃对视觉感知影响最小的帧，
      * 在最小化播放体验损失的同时保持视觉平滑度。为了获得最佳的算法准确性，
      * 强烈建议通过{@link OH_MD_KEY_VIDEO_DECODER_SPEED}显式配置当前的播放倍速。
+     *
      * @since 26.0.0
      */
     OH_FRAME_RETENTION_MODE_ADAPTIVE = 1,
     /**
      * @brief 平滑定比保留模式。根据用户配置的保留比例（通过{@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO}配置）
      * 均匀地保留视频帧。如果没有显式配置保留比例，解码器默认将输出限制在最高30fps。
+     *
      * @since 26.0.0
      */
     OH_FRAME_RETENTION_MODE_UNIFORM = 2

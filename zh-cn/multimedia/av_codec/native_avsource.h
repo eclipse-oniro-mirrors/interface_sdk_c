@@ -19,7 +19,6 @@
  *
  * @brief AVSource模块提供用于构造媒体资源对象功能的函数。
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 10
  */
 
@@ -27,7 +26,6 @@
  * @file native_avsource.h
  *
  * @brief 声明用于音视频媒体数据解析的接口。
- * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avsource.h>
@@ -49,6 +47,7 @@ extern "C" {
 #endif
 /**
  * @brief 为媒体资源接口定义native层对象。
+ *
  * @since 10
  */
 typedef struct OH_AVSource OH_AVSource;
@@ -60,15 +59,15 @@ typedef struct OH_AVSource OH_AVSource;
  *
  * @param dataSource 用户自定义数据源。
  * @return 如果执行成功，则返回一个指向OH_AVSource实例的指针，否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. dataSource为nullptr。
- * <br>2. dataSource->size == 0。
- * <br>3. 设置数据源失败。
- * <br>4. 内存不足。
- * <br>5. 解码器引擎为nullptr。
- * <br>6. dataSource-&gt;readAt == nullptr。
+ *     <br>可能的故障原因：
+ *     <br>1. dataSource为nullptr。
+ *     <br>2. dataSource->size == 0。
+ *     <br>3. 设置数据源失败。
+ *     <br>4. 内存不足。
+ *     <br>5. 解码器引擎为nullptr。
+ *     <br>6. dataSource-&gt;readAt == nullptr。
  * @since 12
-*/
+ */
 OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
 
 /**
@@ -81,15 +80,15 @@ OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
  * @param dataSource 指向数据源结构体的指针，该结构体可用于获取输入数据。
  * @param userData 指向用户自定义数据的指针。
  * @return 如果执行成功，则返回一个指向OH_AVSource实例的指针，否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. dataSource为nullptr。
- * <br>2. dataSource->size == 0。
- * <br>3. 设置数据源失败。
- * <br>4. 内存不足。
- * <br>5. 解码器引擎为nullptr。
- * <br>6. dataSource-&gt;readAt == nullptr。
+ *     <br>可能的故障原因：
+ *     <br>1. dataSource为nullptr。
+ *     <br>2. dataSource->size == 0。
+ *     <br>3. 设置数据源失败。
+ *     <br>4. 内存不足。
+ *     <br>5. 解码器引擎为nullptr。
+ *     <br>6. dataSource-&gt;readAt == nullptr。
  * @since 20
-*/
+ */
 OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData);
 
 /**
@@ -99,32 +98,32 @@ OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource,
  *
  * @param uri 远程媒体资源的统一资源标识符。
  * @return 执行成功返回一个指向OH_AVSource实例的指针, 否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. 网络异常。
- * <br>2. 资源无效。
- * <br>3. 文件格式不支持。
- * <br>4. 应用配置明文拦截。
+ *     <br>可能的故障原因：
+ *     <br>1. 网络异常。
+ *     <br>2. 资源无效。
+ *     <br>3. 文件格式不支持。
+ *     <br>4. 应用配置明文拦截。
  * @since 10
-*/
+ */
 OH_AVSource *OH_AVSource_CreateWithURI(char *uri);
 
 /**
  * @brief 为文件描述符对应的资源对象创建OH_AVSource实例。可以通过调用{@link OH_AVSource_Destroy}接口释放实例。
  *
- * 接口如果传入offset不为文件起始位置，或size不为文件大小时，可能会因数据获取不完整导致 OH_AVSource创建失败、后续解封装失败等未定义错误。
+ * 调用该接口时，如果传入的offset不是文件起始位置，或size不是文件大小，可能会因数据获取不完整导致OH_AVSource创建失败或后续解封装失败。
  *
  * @param fd 数据资源的文件描述符。
  * @param offset 开始读取数据的位置。
  * @param size 文件的字节数大小。
  * @return 执行成功返回一个指向OH_AVSource实例的指针, 否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. fd无效。
- * <br>2. 传入offset不是文件起始位置。
- * <br>3. size错误。
- * <br>4. 资源无效。
- * <br>5. 文件格式不支持。
+ *     <br>可能的故障原因：
+ *     <br>1. fd无效。
+ *     <br>2. 传入offset不是文件起始位置。
+ *     <br>3. size错误。
+ *     <br>4. 资源无效。
+ *     <br>5. 文件格式不支持。
  * @since 10
-*/
+ */
 OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size);
 
 /**
@@ -134,11 +133,11 @@ OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size);
  *
  * @param source 指向OH_AVSource实例的指针。
  * @return <br>AV_ERR_OK：操作成功。
- *         <br>AV_ERR_INVALID_VAL：
- *                          <br>1. source指针无效，空指针。
- *                          <br>2. 非OH_AVSource实例。
+ *     <br>AV_ERR_INVALID_VAL：
+ *     <br>1. source指针无效，空指针。
+ *     <br>2. 非OH_AVSource实例。
  * @since 10
-*/
+ */
 OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
 
 /**
@@ -148,12 +147,12 @@ OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
  *
  * @param source 指向OH_AVSource实例的指针。
  * @return 执行成功返回文件的基础信息，否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. source指针无效。
- * <br>2. 空指针或非OH_AVSource实例。
- * <br>3. source没有初始化。
+ *     <br>可能的故障原因：
+ *     <br>1. source指针无效。
+ *     <br>2. 空指针或非OH_AVSource实例。
+ *     <br>3. source没有初始化。
  * @since 10
-*/
+ */
 OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
 
 /**
@@ -164,27 +163,27 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
  * @param source 指向OH_AVSource实例的指针。
  * @param trackIndex 需要获取信息的轨道的索引。
  * @return 执行成功返回轨道的基础信息，否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. source指针无效，空指针或非OH_AVSource实例。
- * <br>2. 轨道的索引超出范围。
- * <br>3. source没有初始化。
+ *     <br>可能的故障原因：
+ *     <br>1. source指针无效，空指针或非OH_AVSource实例。
+ *     <br>2. 轨道的索引超出范围。
+ *     <br>3. source没有初始化。
  * @since 10
-*/
+ */
 OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex);
 
 /**
  * @brief 获取自定义元数据的基础信息。
  *
- * 需要注意的是，指向的OH_AVFormat实例在生命周期结束时需开发者通过调用接口{@link OH_AVFormat_Destroy}释放。
+ * 需要注意的是，指向的OH_AVFormat实例在生命周期结束时需调用者通过调用接口{@link OH_AVFormat_Destroy}释放。
  *
  * @param source 指向OH_AVSource实例的指针。
  * @return 执行成功返回元数据的基础信息，否则返回NULL。
- * <br>可能的故障原因：
- * <br>1. source指针无效。
- * <br>2. 空指针或非OH_AVSource实例。
- * <br>3. source没有初始化。
+ *     <br>可能的故障原因：
+ *     <br>1. source指针无效。
+ *     <br>2. 空指针或非OH_AVSource实例。
+ *     <br>3. source没有初始化。
  * @since 18
-*/
+ */
 OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source);
 
 #ifdef __cplusplus

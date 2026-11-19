@@ -69,9 +69,11 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilt
     OH_Drawing_ColorFilter* innerColorFilter);
 
 /**
- * @brief Creates an **OH_Drawing_ColorFilter** object with a given 5x4 color matrix.
- * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
- * If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
+ * @brief Creates a color filter with a 4x5 color matrix, which is suitable for scenarios where custom color
+ * transformation is required.
+ * <br>This API generates an error code, which can be viewed through {@link OH_Drawing_ErrorCodeGet}.
+ * <br>If matrix is NULL, OH_DRAWING_ERROR_INVALID_PARAMETER is returned. Check and ensure that the passed matrix is a
+ * valid pointer to a floating-point array.
  *
  * @param matrix Matrix, which is represented by a floating-point array with a length of 20.
  * @return Returns the pointer to the **OH_Drawing_ColorFilter** object created.

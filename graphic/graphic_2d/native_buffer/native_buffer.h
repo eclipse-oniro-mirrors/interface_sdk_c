@@ -356,7 +356,7 @@ int32_t OH_NativeBuffer_SetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffe
     int32_t size, uint8_t *metadata);
 
 /**
- * @brief Set the metadata type of the OH_NativeBuffer.\n
+ * @brief Get the metadata type of the OH_NativeBuffer.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer

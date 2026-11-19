@@ -27,15 +27,15 @@
  * @since 12
  */
  /**
- * @file native_cencinfo.h
- *
- * @brief The file declares the native APIs used to set decryption parameters.
- *
- * @kit AVCodecKit
- * @library libnative_media_avcencinfo.so
- * @syscap SystemCapability.Multimedia.Media.Spliter
- * @since 12
- */
+  * @file native_cencinfo.h
+  *
+  * @brief The file declares the native APIs used to set decryption parameters.
+  *
+  * @kit AVCodecKit
+  * @library libnative_media_avcencinfo.so
+  * @syscap SystemCapability.Multimedia.Media.Spliter
+  * @since 12
+  */
 
 #ifndef NATIVE_AVCENCINFO_H
 #define NATIVE_AVCENCINFO_H
@@ -50,7 +50,7 @@ extern "C" {
 /**
  * @brief The struct describes a native object for the media memory interface.
  *
- * @since 12
+ * @since 11
  * @version 1.0
  */
 typedef struct OH_AVBuffer OH_AVBuffer;
@@ -92,27 +92,39 @@ typedef struct OH_AVCencInfo OH_AVCencInfo;
  */
 typedef enum DrmCencAlgorithm {
     /**
-     * Unencrypted.
+     * @brief Unencrypted.
+     *
+     * @since 12
      */
     DRM_ALG_CENC_UNENCRYPTED = 0x0,
     /**
-     * Aes ctr.
+     * @brief AES CTR algorithm.
+     *
+     * @since 12
      */
     DRM_ALG_CENC_AES_CTR = 0x1,
     /**
-     * Aes wv.
+     * @brief AES WV algorithm.
+     *
+     * @since 12
      */
     DRM_ALG_CENC_AES_WV = 0x2,
     /**
-     * Aes cbc.
+     * @brief AES CBC algorithm.
+     *
+     * @since 12
      */
     DRM_ALG_CENC_AES_CBC = 0x3,
     /**
-     * Sm4 cbc.
+     * @brief SM4 CBC algorithm.
+     *
+     * @since 12
      */
     DRM_ALG_CENC_SM4_CBC = 0x4,
     /**
-     * Sm4 ctr.
+     * @brief SM4 CTR algorithm.
+     *
+     * @since 12
      */
     DRM_ALG_CENC_SM4_CTR = 0x5
 } DrmCencAlgorithm;
@@ -124,9 +136,17 @@ typedef enum DrmCencAlgorithm {
  * @version 1.0
  */
 typedef enum DrmCencInfoMode {
-    /* key/iv/subsample set. */
+    /**
+     * @brief The key ID, IV, and subsample are set.
+     *
+     * @since 12
+     */
     DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET = 0x0,
-    /* key/iv/subsample not set. */
+    /**
+     * @brief The key ID, IV, and subsample are not set.
+     *
+     * @since 12
+     */
     DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET = 0x1
 } DrmCencInfoMode;
 
@@ -137,9 +157,17 @@ typedef enum DrmCencInfoMode {
  * @version 1.0
  */
 typedef struct DrmSubsample {
-    /* Clear header len. */
+    /**
+     * @brief Length of the clear header.
+     *
+     * @since 12
+     */
     uint32_t clearHeaderLen;
-    /* Payload Len. */
+    /**
+     * @brief Length of the encrypted payload.
+     *
+     * @since 12
+     */
     uint32_t payLoadLen;
 } DrmSubsample;
 

@@ -87,11 +87,9 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT;
 
 /**
- * @brief Key for describing the quantization parameter offset of a single ROI, value type is int32_t.
- *
- * The value range is [-51, 51].
- * This is an optional key used when configuring ROI parameters.
- * If this key is not set, the encoder uses its default quantization parameter strategy for this region.
+ * @brief Pointer to the key that describes the relative quantization parameter (QP) offset value of a single ROI.
+ * The value type is int32_t. The value range is [-51, 51]. This key is optional for ROI configuration. If
+ * this key is not set, the encoder will use its default quantization parameter strategy for this region.
  *
  * @since 26.0.0
  */
@@ -109,18 +107,18 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP;
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
 
 /**
- * @brief Key used to set whether to enable joint capture and encoding low-power consumption optimization.
+ * @brief Key that defines the enabling of joint capture and encoding low-power optimization.
  *
- * This key is used to enable or disable joint capture and encoding low-power consumption optimization.
- * Use {@link OH_AVFormat_SetIntValue} to set the enabling status.
- * - **1**: Enables joint capture and encoding low-power consumption optimization.
- * - **0** (default): Disables joint capture and encoding low-power consumption optimization.
- * Usage constraints:
- * This key is valid only for the video encoder.
- * This key is optional for encoding. This key can be enabled or disabled during encoder initialization by calling
- * {@link OH_VideoEncoder_Configure}.
- * Alternatively, you can use {@link OH_VideoEncoder_SetParameter} to enable or disable the feature at runtime.
- * The camera capture module adjusts its capture policy based on the encoding information to reduce power consumption.
+ * This key is the configuration switch for joint capture and encoding low-power optimization.
+ *
+ * Use {@link OH_AVFormat_SetIntValue} to set the enabling status: **1** indicates that joint capture and encoding
+ * low-power optimization is enabled, and **0** (default) indicates that this capability is disabled.
+ *
+ * Usage constraints: This key is valid only for the video encoder and is an optional parameter. You can configure it
+ * during initialization through {@link OH_VideoEncoder_Configure}, or enable it at runtime through
+ * {@link OH_VideoEncoder_SetParameter}. Once enabled, the capture side adjusts the capture configuration policy based
+ * on the encoding information to reduce overall power consumption.
+ *
  * @since 26.0.1
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_WITH_LOWPOWER_CAMERA;
@@ -174,16 +172,15 @@ typedef enum OH_VideoMetadataRoiSemanticLabel {
 OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *format);
 
 /**
- * @brief Pre-parses the ROI string to obtain the number of valid ROI regions contained within it.
+ * @brief Pre-parse the ROI string to retrieve the number of valid ROI regions it contains.
  *
- * This interface is decoupled from specific backend capacity limits and accurately returns
- * the number of valid regions identified in the string based on syntax rules.
+ * This API is not affected by specific backend capacity limits and identifies the number of ROI regions that meet the
+ * rule requirements in the ROI string based on the syntax rules.
  *
- * @param roiStr The input ROI configuration string.
- * @param outCount [OUT] Returns the number of valid ROI regions parsed from the string.
- * @return Result code.
- *     <br>Returns {@link AV_ERR_OK} if the operation is successful.
- *     <br>Returns {@link AV_ERR_INVALID_VAL} if the roiStr or outCount pointer is NULL.
+ * @param roiStr Input ROI configuration string.
+ * @param outCount Returns the number of valid ROI regions parsed from the string.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: roiStr or outCount is NULL.
  * @since 26.0.0
  */
 OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount);
