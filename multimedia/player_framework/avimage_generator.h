@@ -56,7 +56,7 @@ typedef struct OH_AVImageGenerator OH_AVImageGenerator;
 /**
  * @brief Creates an OH_AVImageGenerator instance, which is used to generate video frames at given time points.
  * 
- * @return Returns a pointer to an OH_AVImageGenerator instance for success, nullptr for failure.
+ * @return Pointer to the OH_AVImageGenerator instance created if the operation is successful; nullptr otherwise.
  * @since 18
  */
 OH_AVImageGenerator *OH_AVImageGenerator_Create(void);
