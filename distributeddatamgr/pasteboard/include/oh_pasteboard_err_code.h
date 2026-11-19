@@ -47,7 +47,7 @@ extern "C" {
 /**
  * @brief Enumerates pasteboard error codes, which are used to identify the pasteboard operation results. You can
  * determine whether an operation is successful and find the cause of a failure based on the error codes.
- * 
+ *
  * @since 13
  */
 typedef enum PASTEBOARD_ErrCode {
