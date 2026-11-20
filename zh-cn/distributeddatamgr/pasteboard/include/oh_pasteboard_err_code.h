@@ -49,46 +49,46 @@ extern "C" {
  */
 typedef enum PASTEBOARD_ErrCode {
     /**
-     * @error 执行成功。
+     * @brief 执行成功。
      */
     ERR_OK = 0,
     /**
-     * @error 权限校验失败。
+     * @brief 权限校验失败。
      */
     ERR_PERMISSION_ERROR = 201,
     /**
-     * @error 非法参数。
+     * @brief 非法参数。
      */
     ERR_INVALID_PARAMETER = 401,
     /**
-     * @error 设备能力不支持。
+     * @brief 设备能力不支持。
      */
     ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * @error 内部错误。
+     * @brief 内部错误。
      */
     ERR_INNER_ERROR = 12900000,
     /**
-     * @error 系统忙。
+     * @brief 系统忙。
      */
     ERR_BUSY = 12900003,
     /**
-     * @error 文件拷贝失败。
+     * @brief 文件拷贝失败。
      * @since 15
      */
     ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007,
     /**
-     * @error 拉起进度显示失败。
+     * @brief 拉起进度显示失败。
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008,
     /**
-     * @error 进度显示异常。
+     * @brief 进度显示异常。
      * @since 15
      */
     ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009,
     /**
-     * @error 获取剪贴板数据失败。
+     * @brief 获取剪贴板数据失败。
      * @since 15
      */
     ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,
