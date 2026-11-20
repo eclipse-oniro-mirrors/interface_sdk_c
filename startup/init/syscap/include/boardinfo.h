@@ -51,7 +51,8 @@ const char *OH_BoardInfo_GetCpuId(void);
  
 /**
  * @brief The value of Sn.value len of the obtained device is 16. The size of the parameter buffer cannot be less than
- * 17 bytes(including the terminator). * * Required Permissions **:ohos.permission.ACCESS_BOARD_INFO
+ * 17 bytes(including the terminator). 
+ * ** Required Permissions **:ohos.permission.ACCESS_BOARD_INFO
  *
  * @param boardSn [out] Serial number of the board. The buffer size cannot be less than 17 bytes(including the
  *     terminator).
