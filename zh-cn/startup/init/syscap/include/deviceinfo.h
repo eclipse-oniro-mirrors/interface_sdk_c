@@ -336,7 +336,7 @@ const char *OH_GetDistributionOSReleaseType(void);
 /**
  * @brief 获取磁盘序列号。参数缓冲区容量不能低于65字节。
  *
- * @param diskSn 【out】 磁盘序列号。缓冲区容量不能低于65字节。
+ * @param diskSn 【out】 磁盘序列号。参数缓冲区容量不能低于65字节。
  * @return <ul>
  *         <li>如果操作成功，则返回0。</li>
  *         <li>201如果调用者没有ohos.permission.ACCESS_DISK_PHY_INFO。</li>

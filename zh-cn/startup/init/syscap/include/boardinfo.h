@@ -57,10 +57,10 @@ const char *OH_BoardInfo_GetCpuId(void);
  * @param boardSn 【out】单板序列号。缓冲区容量不能低于17字节(包含结束符)。
  *
  * @return <ul>
- * <li>如果操作成功，则返回0。</li>
- * <li>201如果调用者没有ohos.permission.ACCESS_BOARD_INFO。</li>
- * <li>401如果调用者传入的入参为空或非法。</li>
- * </ul>
+ *         <li>如果操作成功，则返回0。</li>
+ *         <li>201如果调用者没有ohos.permission.ACCESS_BOARD_INFO。</li>
+ *         <li>401如果调用者传入的入参为空或非法。</li>
+ *         </ul>
  * @permission ohos.permission.ACCESS_BOARD_INFO
  * @since 26.1.0
  */

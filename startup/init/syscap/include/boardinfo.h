@@ -50,17 +50,17 @@ extern "C" {
 const char *OH_BoardInfo_GetCpuId(void);
  
 /**
- * @brief Obtains the device Board Sn.value len is 16.The parameter buffer capacity can't be less than 17 bytes(Includes the terminator).
- * 
- * **Required permission**: ohos.permission.ACCESS_BOARD_INFO
+ * @brief The value of Sn.value len of the obtained device is 16.The size of the parameter buffer cannot be less than 
+ * 17 bytes(includes the terminator).* *Required permission**: ohos.permission.ACCESS_BOARD_INFO
  *
- * @param boardSn [out] Board Serial Number.The buffer capacity must not be less than 17 bytes(Includes the terminator).
+ * @param boardSn [out] Serial number of the board.The buffer size cannot be less than 17 bytes(including the
+ *     terminator).
  *
  * @return <ul>
- *         <li>0 if the operation is successful.</li>
- *         <li>201 if the caller does not have ohos.permission.ACCESS_BOARD_INFO.</li>
- *         <li>401 If the caller passes null or invalid parameters.</li>
- *         </ul>
+ *             <li>0 if the operation is successful.</li>
+ *             <li>201 if the caller does not have ohos.permission.ACCESS_BOARD_INFO.</li>
+ *             <li>401 If the caller passes null or invalid parameters.</li>
+ *             </ul>
  * @permission ohos.permission.ACCESS_BOARD_INFO
  * @since 26.1.0
  */
