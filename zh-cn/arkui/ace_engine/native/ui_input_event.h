@@ -124,7 +124,13 @@ typedef enum {
      *
      * @since 24
      */
-    ARKUI_UIINPUTEVENT_TYPE_DIGITAL_CROWN = 5
+    ARKUI_UIINPUTEVENT_TYPE_DIGITAL_CROWN = 5,
+    /**
+     * @brief 触控板事件。
+     *
+     * @since 26.1.0
+     */
+    ARKUI_UIINPUTEVENT_TYPE_TOUCHPAD = 6,
 } ArkUI_UIInputEvent_Type;
 
 /**
@@ -265,7 +271,48 @@ enum {
      * @since 22
      */
     UI_INPUT_EVENT_SOURCE_TYPE_JOYSTICK = 5,
+    /**
+     * @brief 触控板原始触点输入。
+     *
+     * @since 26.1.0
+     */
+    UI_INPUT_EVENT_SOURCE_TYPE_TOUCHPAD_TOUCH = 6,
 };
+
+/**
+ * @brief 定义触控板事件的阶段。
+ *
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * @brief 触点开始接触。
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_BEGIN = 0,
+ 
+    /**
+     * @brief 触点移动。
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_MOVE = 1,
+ 
+    /**
+     * @brief 触点结束接触。
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_END = 2,
+ 
+    /**
+     * @brief 触点事件取消。
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_CANCEL = 3,
+} OH_ArkUI_TouchPadEventPhase;
 
 /**
  * @brief 定义触摸测试类型的枚举值。
@@ -2340,6 +2387,85 @@ ArkUI_CrownEvent_Action OH_ArkUI_DigitalCrownEvent_GetAction(const ArkUI_UIInput
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DigitalCrownEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
+
+/**
+ * @brief 根据索引获取触控板事件中的触点ID。
+ *
+ * @param event [in] 指向UI输入事件的指针，不能为空。
+ * @param index [in] 触点在触点列表中的索引，取值范围为[0, {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]。
+ * @return 触点ID。
+ * <ul>
+ * <li>触点ID。</li>
+ * <li>参数异常、索引越界或事件不是触控板事件时返回<b>-1</b>。</li>
+ * </ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_TouchPadEvent_GetIdByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief 根据索引获取触控板事件中的触点阶段。
+ *
+ * @param event [in] 指向UI输入事件的指针，不能为空。
+ * @param index [in] 触点在触点列表中的索引，取值范围为[0, {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]，
+ * 索引越界时返回-1。
+ * @return 触点阶段。
+ * <ul>
+ * <li>触点阶段，取值由{@link OH_ArkUI_TouchPadEventPhase}定义。</li>
+ * <li>参数异常、索引越界或事件不是触控板事件时返回<b>-1</b>。</li>
+ * </ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_TouchPadEvent_GetPhaseByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief 根据索引获取触控板事件中触点归一化后的X轴位置。
+ *
+ * @param event [in] 指向UI输入事件的指针，不能为空。
+ * @param index [in] 触点在触点列表中的索引，取值范围为[0, {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]，
+ * 索引越界时返回0.0。
+ * @return 触点归一化后的X轴位置。
+ * <ul>
+ * <li>触点归一化后的X轴位置，取值范围为[0, 1]。</li>
+ * <li>参数异常、索引越界或事件不是触控板事件时返回<b>0.0</b>。</li>
+ * </ul>
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetNormalizedPositionXByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief 根据索引获取触控板事件中触点归一化后的Y轴位置。
+ *
+ * @param event [in] 指向UI输入事件的指针，不能为空。
+ * @param index [in] 触点在触点列表中的索引，取值范围为[0, {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]，
+ * 索引越界时返回0.0。
+ * @return 触点归一化后的Y轴位置。
+ * <ul>
+ * <li>触点归一化后的Y轴位置，取值范围为[0, 1]。</li>
+ * <li>参数异常、索引越界或事件不是触控板事件时返回<b>0.0</b>。</li>
+ * </ul>
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetNormalizedPositionYByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief 根据触控板事件获取触控板的宽度。
+ *
+ * @param event [in] 指向UI输入事件的指针，不能为空。
+ * @return 触控板的宽度，单位：mm。
+ *      参数异常或事件不是触控板事件时返回0.0。
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetDeviceWidth(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief 根据触控板事件获取触控板的高度。
+ *
+ * @param event [in] 指向UI输入事件的指针，不能为空。
+ * @return 触控板的高度，单位：mm。
+ *      参数异常或事件不是触控板事件时返回0.0。
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetDeviceHeight(const ArkUI_UIInputEvent* event);
 
 #ifdef __cplusplus
 };

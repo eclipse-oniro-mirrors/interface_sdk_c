@@ -382,6 +382,19 @@ void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
 ArkUI_ErrorCode OH_ArkUI_EnableEventPassthrough(ArkUI_ContextHandle uiContext, bool enabled,
     ArkUI_RawInputEventType type);
 
+/**
+ * @brief 设置应用是否上报触控板事件。
+ *
+ * @param enabled [in] 是否使能应用级触控板事件上报。true表示使能，false表示禁用，默认值为false。
+ * @return 错误码。
+ * <ul>
+ * <li>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。</li>
+ * <li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} C API未初始化。</li>
+ * </ul>
+ * @since 26.1.0
+ */
+ArkUI_ErrorCode OH_ArkUI_EnableTouchPadEvent(bool enabled);
+
 #ifdef __cplusplus
 };
 #endif

@@ -13206,6 +13206,30 @@ typedef enum {
     NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,
 
     /**
+     * @brief 定义上报原始触控板事件时触发的事件。
+     * 事件回调触发时，可通过{@link OH_ArkUI_NodeEvent_GetInputEvent}从{@link ArkUI_NodeEvent}对象中获取
+     * {@link ArkUI_UIInputEvent}对象，输入事件类型为{@link ARKUI_UIINPUTEVENT_TYPE_TOUCHPAD}。
+     *
+     * @ingroup 交互事件
+     *
+     * @since 26.1.0
+     */
+    NODE_ON_TOUCH_PAD_EVENT = 38,
+ 
+    /**
+     * @brief 定义触控板事件命中测试的拦截事件。
+     * 事件回调触发时，可通过{@link OH_ArkUI_NodeEvent_GetInputEvent}从{@link ArkUI_NodeEvent}对象中获取
+     * {@link ArkUI_UIInputEvent}对象，输入事件类型为{@link ARKUI_UIINPUTEVENT_TYPE_TOUCHPAD}。使用获取到的输入事件
+     * 调用{@link OH_ArkUI_PointerEvent_SetInterceptHitTestMode}设置命中测试模式。设置的模式决定组件在当前触控板
+     * 事件链中的命中测试行为，不影响触摸、鼠标、轴事件或系统手势事件链。
+     *
+     * @ingroup 交互事件
+     *
+     * @since 26.1.0
+     */
+    NODE_ON_TOUCH_PAD_EVENT_INTERCEPT = 39,
+
+    /**
      * @brief 文本设置TextDataDetectorConfig且识别成功时，触发onDetectResultUpdate回调。
      *
      * 触发该事件的条件：文本设置TextDataDetectorConfig且识别成功后。\n

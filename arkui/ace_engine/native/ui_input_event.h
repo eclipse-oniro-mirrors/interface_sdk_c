@@ -149,6 +149,12 @@ typedef enum {
      * @since 24
      */
     ARKUI_UIINPUTEVENT_TYPE_DIGITAL_CROWN = 5,
+    /**
+     * @brief Touchpad event.
+     *
+     * @since 26.1.0
+     */
+    ARKUI_UIINPUTEVENT_TYPE_TOUCHPAD = 6,
 } ArkUI_UIInputEvent_Type;
 
 /**
@@ -216,7 +222,48 @@ enum {
      * @since 22
      */
     UI_INPUT_EVENT_SOURCE_TYPE_JOYSTICK = 5,
+    /**
+     * @brief Raw contact input from a touchpad.
+     *
+     * @since 26.1.0
+     */
+    UI_INPUT_EVENT_SOURCE_TYPE_TOUCHPAD_TOUCH = 6,
 };
+
+/**
+ * @brief Enumerates the phases of a touchpad event.
+ *
+ * @since 26.1.0
+ */
+typedef enum {
+    /**
+     * @brief A contact begins.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_BEGIN = 0,
+ 
+    /**
+     * @brief A contact moves.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_MOVE = 1,
+ 
+    /**
+     * @brief A contact ends.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_END = 2,
+ 
+    /**
+     * @brief A contact is canceled.
+     *
+     * @since 26.1.0
+     */
+    OH_ARKUI_TOUCH_PAD_EVENT_PHASE_CANCEL = 3,
+} OH_ArkUI_TouchPadEventPhase;
 
 /**
  * @brief Enumerates the hit test modes.
@@ -2947,6 +2994,85 @@ ArkUI_ErrorCode OH_ArkUI_ClonedEvent_SetPressedButtons(
 ArkUI_ErrorCode OH_ArkUI_PointerEvent_PostClonedEventWithStrategy(ArkUI_NodeHandle node,
     const ArkUI_UIInputEvent* event, ArkUI_CompetitionStrategy strategy);
 
+/**
+ * @brief Obtains the ID of a contact by index from a touchpad event.
+ *
+ * @param event [in] Pointer to the UI input event. The value must not be <b>nullptr</b>.
+ * @param index [in] Index of the contact in the contact list. The value range is [0,
+ *     {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]. If the value is out of range, <b>-1</b> is returned.
+ * @return ID of the contact.
+ *     <ul>
+ *     <li>Contact ID, if the operation is successful.</li>
+ *     <li><b>-1</b>, if a parameter error occurs, the index is out of range, or the event is not a touchpad event.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_TouchPadEvent_GetIdByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief Obtains the phase of a contact by index from a touchpad event.
+ *
+ * @param event [in] Pointer to the UI input event. The value must not be <b>nullptr</b>.
+ * @param index [in] Index of the contact in the contact list. The value range is [0,
+ *     {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]. If the value is out of range, <b>-1</b> is returned.
+ * @return Phase of the contact.
+ *     <ul>
+ *     <li>Phase of the contact. The value is defined by {@link OH_ArkUI_TouchPadEventPhase}.</li>
+ *     <li><b>-1</b>, if a parameter error occurs, the index is out of range, or the event is not a touchpad event.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+int32_t OH_ArkUI_TouchPadEvent_GetPhaseByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief Obtains the normalized X position of a contact by index from a touchpad event.
+ *
+ * @param event [in] Pointer to the UI input event. The value must not be <b>nullptr</b>.
+ * @param index [in] Index of the contact in the contact list. The value range is [0,
+ *     {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]. If the value is out of range, <b>0.0</b> is returned.
+ * @return Normalized X position of the contact.
+ *     <ul>
+ *     <li>Normalized X position of the contact. The value range is [0, 1].</li>
+ *     <li><b>0.0</b>, if a parameter error occurs, the index is out of range, or the event is not a touchpad event.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetNormalizedPositionXByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief Obtains the normalized Y position of a contact by index from a touchpad event.
+ *
+ * @param event [in] Pointer to the UI input event. The value must not be <b>nullptr</b>.
+ * @param index [in] Index of the contact in the contact list. The value range is [0,
+ *     {@link OH_ArkUI_PointerEvent_GetPointerCount()} - 1]. If the value is out of range, <b>0.0</b> is returned.
+ * @return Normalized Y position of the contact.
+ *     <ul>
+ *     <li>Normalized Y position of the contact. The value range is [0, 1].</li>
+ *     <li><b>0.0</b>, if a parameter error occurs, the index is out of range, or the event is not a touchpad event.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetNormalizedPositionYByIndex(const ArkUI_UIInputEvent* event, uint32_t index);
+
+/**
+ * @brief obtaining the width of the touchpad according to the touchpad event.
+ *
+ * @param event [in] Pointer to the UI input event, which cannot be null.
+ * @return Width of the touchpad, in mm. If the parameter is abnormal or the event is not a touchpad event, 0.0 is
+ *     returned.
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetDeviceWidth(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief obtaining the height of the touchpad according to the touchpad event.
+ *
+ * @param event [in] Pointer to the UI input event, which cannot be null.
+ * @return Height of the touchpad, in mm. If the parameter is abnormal or the event is not a touchpad event, 0.0 is
+ *     returned.
+ * @since 26.1.0
+ */
+double OH_ArkUI_TouchPadEvent_GetDeviceHeight(const ArkUI_UIInputEvent* event);
 
 #ifdef __cplusplus
 };

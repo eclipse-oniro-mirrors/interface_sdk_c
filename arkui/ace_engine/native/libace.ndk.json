@@ -7728,6 +7728,34 @@
     },
     {
         "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_EnableTouchPadEvent"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_TouchPadEvent_GetIdByIndex"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_TouchPadEvent_GetPhaseByIndex"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_TouchPadEvent_GetNormalizedPositionXByIndex"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_TouchPadEvent_GetNormalizedPositionYByIndex"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_TouchPadEvent_GetDeviceWidth"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_TouchPadEvent_GetDeviceHeight"
+    },
+    {
+        "first_introduced": "26.1.0",
         "name": "OH_ArkUI_XComponent_EnableSurfaceVisibilityLifecycle"
     }
 ]
