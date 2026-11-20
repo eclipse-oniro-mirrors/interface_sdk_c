@@ -770,7 +770,9 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief Total size of the cloud file, in bytes.
+     * @brief Total size of the cloud file, in bytes. It is determined when **OH_CloudDisk_Execute()** is called for the
+     * first time.
+     * The size must be the same for subsequent calls.
      *
      * @since 26.0.1
      */
@@ -947,14 +949,19 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
 
 /**
- * @brief Creates a placeholder in a registered sync folder.
+ * @brief Creates a placeholder file in the registered sync root path. When the placeholder file is created, the system
+ * sets the local file size to the value of **logicalSize** in **placeholderInfo**.
+ * The system does not guarantee the consistency between the size of the local placeholder file and that of the cloud
+ * file. The app needs to
+ * ensure the consistency between the metadata of the local placeholder file and that of the cloud file using
+ * **OH_CloudDisk_UpdatePlaceholder()**.
  *
- * @param syncFolderPath [in] Indicates the registered sync folder path.
- * @param relativePathInfo [in] Indicates the relative path in the sync folder.
- * @param placeholderInfo [in] Indicates the placeholder metadata information.
- * @param customInfo [in] Indicates optional opaque custom information. NULL means it is not provided.
- * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
- *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @param syncFolderPath Registered sync root path.
+ * @param relativePathInfo Relative path in the sync root.
+ * @param placeholderInfo Placeholder metadata information.
+ * @param customInfo Optional opaque custom information. **NULL** indicates that the information is not provided.
+ * @return {@link_DISK_OK} is returned if the operation is successful.
+ *     <br>{@link CloudDisk_ErrorCode} is returned otherwise.
  * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_CreatePlaceholder(const CloudDisk_SyncFolderPath syncFolderPath,
@@ -1087,13 +1094,17 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
 CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFolderPath syncFolderPath);
 
 /**
- * @brief Responds to a callback request.
+ * @brief Responds to a callback request and writes the obtained data block to the active placeholder hydration task.
+ * The size of a single data block cannot exceed 128 KiB.
+ * Before returning a result, the function copies all input fields and data. The total amount of data to be hydrated is
+ * subject to the **fetchData.totalSize** returned for the first time.
+ * The size must be the same for subsequent calls.
  *
- * @param reqHead [in] Callback request header.
- * @param reqContext [in] Callback request context.
- * @param rsp [in] Callback response.
- * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully;
- *     <br>returns {@link CloudDisk_ErrorCode} otherwise.
+ * @param reqHead Callback request header.
+ * @param reqContext Callback request context.
+ * @param rsp Callback response.
+ * @return {@link_DISK_OK} is returned if the operation is successful.
+ *     <br>{@link CloudDisk_ErrorCode} is returned otherwise.
  * @since 26.0.1
  */
 CloudDisk_ErrorCode OH_CloudDisk_Execute(const OH_CloudDisk_CallbackReqHead reqHead,

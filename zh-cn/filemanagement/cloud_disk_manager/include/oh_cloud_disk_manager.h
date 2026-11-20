@@ -699,7 +699,8 @@ typedef struct OH_CloudDisk_FetchData {
      */
     uint64_t size;
     /**
-     * @brief 云端文件总大小，以字节为单位。
+     * @brief 云端文件总大小，以字节为单位。由首次调用OH_CloudDisk_Execute()回传时决定，
+     * 后续回传需保持一致。
      *
      * @since 26.0.1
      */
@@ -863,7 +864,9 @@ CloudDisk_ErrorCode OH_CloudDisk_UpdateCustomAlias(
     const CloudDisk_SyncFolderPath syncFolderPath, const char *customAlias, size_t customAliasLength);
 
 /**
- * @brief 在已注册的同步文件夹中创建占位符。
+ * @brief 在已注册的同步根路径下创建占位符文件。创建时系统将本地文件大小设置为placeholderInfo中
+ * 预设的logicalSize，系统不保障本地占位符文件与云端文件大小的一致性，应用需通过
+ * OH_CloudDisk_UpdatePlaceholder()接口保障本地占位符文件的元数据与云端文件元数据的一致性。
  *
  * @param syncFolderPath 已注册同步根路径。
  * @param relativePathInfo 同步根内相对路径。
@@ -941,7 +944,9 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterCallbackTable(
 CloudDisk_ErrorCode OH_CloudDisk_UnregisterCallbackTable(const CloudDisk_SyncFolderPath syncFolderPath);
 
 /**
- * @brief 响应回调请求。
+ * @brief 响应回调请求，将获取的数据块写入活跃的占位符水合任务。单个数据块不能超过128KiB。
+ * 函数在返回前会拷贝所有输入字段和数据。水合总量以首次回传的fetchData.totalSize为准，
+ * 后续回传需保持一致。
  *
  * @param reqHead [in] 回调请求头。
  * @param reqContext [in] 回调请求上下文。
