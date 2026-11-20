@@ -30,8 +30,8 @@
  * @since 26.1.0
  */
 
-#ifndef DEVICEINFO_CSDK_H
-#define DEVICEINFO_CSDK_H
+#ifndef BOARDINFO_CSDK_H
+#define BOARDINFO_CSDK_H
 
 #include <stdint.h>
 
@@ -72,5 +72,5 @@ int32_t OH_BoardInfo_GetBoardSn(char *boardSn);
 }
 #endif // #if __cplusplus
 #endif // #ifdef __cplusplus
-#endif // DEVICEINFO_CSDK_H
+#endif // BOARDINFO_CSDK_H
 /** @} */
