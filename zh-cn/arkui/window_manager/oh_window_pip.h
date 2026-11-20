@@ -27,7 +27,7 @@
  * @file oh_window_pip.h
  *
  * @brief 定义画中画功能的相关接口，包含创建、删除画中画控制器，以及启动、停止画中画等。主要用于视频播放、直播、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
- *
+ * @include <window_manager/oh_window_pip.h>
  * @kit ArkUI
  * @library libnative_window_manager.so
  * @syscap SystemCapability.Window.SessionManager
@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Picture in picture config.
+ * @brief 画中画参数配置器。
  * @since 20
  */
 typedef void* PictureInPicture_PipConfig;
@@ -331,7 +331,7 @@ int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfi
 int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig);
 
 /**
- * @brief Sets the 拉起画中画的主窗口Id。
+ * @brief 设置拉起画中画的主窗口Id。
  *
  * @param pipConfig 画中画参数配置器。
  * @param mainWindowId 拉起画中画的主窗口Id。
@@ -541,7 +541,7 @@ int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int3
 int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
 
 /**
- * @brief 开启画中画窗口创建完成的监听。
+ * @brief 开启画中画surface创建完成的监听。
  *
  * @param controllerId 画中画控制器Id，为非负整数。
  * @param callback 画中画窗口创建完成的回调函数。
@@ -555,10 +555,10 @@ int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
 int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback);
 
 /**
- * @brief 关闭画中画窗口创建完成的监听。
+ * @brief 关闭画中画surface创建完成的监听。
  *
  * @param controllerId 画中画控制器Id，为非负整数。
- * @param callback 画中画窗口创建完成的回调函数。
+ * @param callback 画中画surface创建完成的回调函数。
  * @return 返回结果代码。
  * 返回OK，表示函数调用成功。
  * 返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。
@@ -569,7 +569,7 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
 int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback);
 
 /**
- * @brief 关闭所有画中画窗口创建完成的监听。
+ * @brief 关闭所有画中画surface创建完成的监听。
  *
  * @param controllerId 画中画控制器Id，为非负整数。
  * @return 返回结果代码。
@@ -705,7 +705,8 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
 int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId);
 
 /**
- * @brief 设置是否在返回桌面时自动启动画中画，默认不自动拉起。
+ * @brief 设置在拉起画中画的应用主窗退后台时是否自动启动画中画，默认不自动拉起。
+ * 在开启自动拉起的情况下，当应用主窗为智慧多窗悬浮窗状态且被收入侧边栏时，应用主窗虽退后台，但不会自动拉起画中画。
  *
  * @param controllerId 画中画控制器ID。取值为非负整数。
  * @param enabled 如返回桌面时需自动启动画中画，则该参数配置为true，否则为false。若设置-系统-智慧多窗-自动启动画中画开关为关闭状态，就算该参数配置为true，应用返回桌面时也不会自动启动画中画窗口。
