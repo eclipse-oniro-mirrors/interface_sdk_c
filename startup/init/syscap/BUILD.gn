@@ -33,9 +33,10 @@ ohos_ndk_headers("deviceinfo_header") {
   ]
 }
 
-ohos_ndk_library("libboardinfo_ndk") {
+ohos_ndk_library("libboardinfo") {
   cflags = [ "-fstack-protector-all" ]
-  output_name = "boardinfo_ndk"
+  output_name = "boardinfo"
+  output_extension = "so"
   ndk_description_file = "./libboardinfo.ndk.json"
   system_capability = "SystemCapability.Startup.BoardInfo"
   system_capability_headers = [
