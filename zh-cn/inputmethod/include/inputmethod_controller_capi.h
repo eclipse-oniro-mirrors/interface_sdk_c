@@ -180,14 +180,16 @@ extern "C" {
  * OH_InputMethodController_Detach后此指针立即失效，
  *     不可继续使用，否则会导致未定义行为或崩溃。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。此时*inputMethodProxy有效，可用于后续交互。
- *     <br>{@link IME_ERR_PARAMCHECK} - 表示参数错误。检查textEditorProxy、options、inputMethodProxy是否为有效指针。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。可能是输入法服务未就绪或连接异常。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。可能是系统输入法管理服务异常。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。textEditorProxy、options或inputMethodProxy为NULL时返回。
- *     <br>**错误处理建议：** 若返回非IME_ERR_OK，应检查参数有效性后重试；若返回IME_ERR_IMCLIENT或IME_ERR_IMMS，说明服务异常，
- * 建议稍后重试。具体错误码可以参考
- *     {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。此时*inputMethodProxy有效，可用于后续交互。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 表示参数错误。检查textEditorProxy、options、inputMethodProxy是否为有效指针。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。可能是输入法服务未就绪或连接异常。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。可能是系统输入法管理服务异常。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。textEditorProxy、options或inputMethodProxy为NULL时返回。</li>
+ *     <li>**错误处理建议：** 若返回非IME_ERR_OK，应检查参数有效性后重试；若返回IME_ERR_IMCLIENT或IME_ERR_IMMS，说明服务异常，
+ *     建议稍后重试。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProxy *textEditorProxy,
@@ -253,16 +255,18 @@ InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProx
  * 指针处理、内存管理、
  *     相关参数制约均与OH_InputMethodController_Attach中的inputMethodProxy参数一致。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。此时*inputMethodProxy有效，可用于后续交互。
- *     <br>{@link IME_ERR_PARAMCHECK} - 表示参数错误。检查context、textEditorProxy、options、inputMethodProxy是否为有效指
- * 针。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。context、textEditorProxy、options或inputMethodProxy为NULL时返
- * 回。
- *     <br>**错误处理建议：** 若返回非IME_ERR_OK，应检查参数有效性后重试；若返回IME_ERR_IMCLIENT或IME_ERR_IMMS，说明服务异常，
- * 建议稍后重试。具体错误码可以参考
- *     {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。此时*inputMethodProxy有效，可用于后续交互。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 表示参数错误。检查context、textEditorProxy、options、inputMethodProxy是否为有效指
+ *     针。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。context、textEditorProxy、options或inputMethodProxy为NULL时返
+ *     回。</li>
+ *     <li>**错误处理建议：** 若返回非IME_ERR_OK，应检查参数有效性后重试；若返回IME_ERR_IMCLIENT或IME_ERR_IMMS，说明服务异常，
+ *     建议稍后重试。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 23
  */
 InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_ContextHandle context,
@@ -311,16 +315,18 @@ InputMethod_ErrorCode OH_InputMethodController_AttachWithUIContext(ArkUI_Context
  *     <br>**使用注意：** Detach后此指针立即失效，将此指针传入任何InputMethodProxy相关函数会导致未定义行为。
  * 同一inputMethodProxy不可重复调用OH_InputMethodController_Detach。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。解绑完成，inputMethodProxy不再有效。
- *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。
- *     <br>{@link IME_ERR_DETACHED} - 当前无已绑定的输入法客户端。
- *     <br>{@link IME_ERR_IMCLIENT} - 表示输入法客户端错误。可能是客户端连接异常或已断开。
- *     <br>{@link IME_ERR_IMMS} - 表示输入法服务错误。可能是服务端异常。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。inputMethodProxy为NULL时返回。
- *     <br>**错误处理建议：** 若返回IME_ERR_OK，解绑成功，后续可安全销毁所有创建的对象；若返回IME_ERR_IMCLIENT，说明客户端状态
- * 异常，建议记录日志并销毁相关对象；
- *     若返回IME_ERR_NULL_POINTER，说明传入的指针无效，应检查是否已OH_InputMethodController_Detach或指针已失效。具体错误码可以
- * 参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。解绑完成，inputMethodProxy不再有效。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 当前无已绑定的输入法客户端。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 表示输入法客户端错误。可能是客户端连接异常或已断开。</li>
+ *     <li>{@link IME_ERR_IMMS} - 表示输入法服务错误。可能是服务端异常。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。inputMethodProxy为NULL时返回。</li>
+ *     <li>**错误处理建议：** 若返回IME_ERR_OK，解绑成功，后续可安全销毁所有创建的对象；若返回IME_ERR_IMCLIENT，说明客户端状态
+ *     异常，建议记录日志并销毁相关对象；
+ *     若返回IME_ERR_NULL_POINTER，说明传入的指针无效，应检查是否已OH_InputMethodController_Detach或指针已失效。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  *
  * @since 12
  */

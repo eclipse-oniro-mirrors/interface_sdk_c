@@ -237,10 +237,12 @@ void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
  * IME_TEXT_INPUT_TYPE_TEXT、IME_TEXT_INPUT_TYPE_NUMBER、IME_TEXT_INPUT_TYPE_PHONE等。使用后效果：不同类型将触发输入法切换到
  * 不同的键盘布局。
  * @return 返回一个特定的错误码。
- *     <br>IME_ERR_OK = 0：表示成功。
- *     <br>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。
- *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>IME_ERR_OK = 0：表示成功。</li>
+ *     <li>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。</li>
+ *     <li>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType inputType);
@@ -255,10 +257,12 @@ InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config,
  * @param enterKeyType 输入参数，回车键功能类型。取值范围：{@link InputMethod_EnterKeyType}枚举值。使用后效果：不同类型对应不
  * 同的回车键行为和显示标签。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
@@ -276,10 +280,12 @@ InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
  * SetPreviewTextFunc回调；false表示不支持预上屏。此参数为必需参数，
  *     必须设置。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig *config, bool supported);
@@ -295,10 +301,12 @@ InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig
  * @param end 输入参数，所选文本的结束位置（单位：字符偏移量，从0开始计数）。取值原则：end应大于等于start且小于等于文本总长度。无
  * 选中文本时start与end相等表示光标位置。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config, int32_t start, int32_t end);
@@ -312,10 +320,12 @@ InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config,
  * @param config 输入指针，指向即将被设置值的TextConfig实例的指针。不可为NULL。
  * @param windowId 输入参数，绑定输入法的应用所属窗口的窗口id。此参数为必需参数，必须设置。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, int32_t windowId);
@@ -334,9 +344,12 @@ InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, 
  * 会被设置为空字符串。2. UTF-16编码的最大长度为255个字符（
  *     不包含结尾符），超过255个字符会被截断。
  * @return {@link InputMethod_ErrorCode}：
- *     <br>IME_ERR_OK = 0：表示成功。
- *     <br>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。
- *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。
+ *     <ul>
+ *     <li>IME_ERR_OK = 0：表示成功。</li>
+ *     <li>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。</li>
+ *     <li>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *config, const char16_t *placeholder,
@@ -354,9 +367,12 @@ InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *confi
  * @param length 输入参数，abilityName指针指向的UTF-16字符个数（不包含结尾符）。取值范围：0到127。1. 如果长度为0，abilityName
  * 会被设置为空字符串。2. UTF-16编码的最大长度为127个字符（不包含结尾符），超过127个字符会被截断。
  * @return {@link InputMethod_ErrorCode}：
- *     <br>IME_ERR_OK = 0：表示成功。
- *     <br>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。
- *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。
+ *     <ul>
+ *     <li>IME_ERR_OK = 0：表示成功。</li>
+ *     <li>IME_ERR_PARAMCHECK = 401：对象句柄未注册或已失效。</li>
+ *     <li>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *config, const char16_t *abilityName,
@@ -380,10 +396,12 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName(InputMethod_TextConfig *confi
  * 辑框具备完整处理按键事件的能力，输入法框架将跳过对字母、字符、功能等按键的处理，由编辑框自行消费；false表示编辑框不具备此能力，
  * 按键事件将由输入法框架处理。此参数为必需参数，必须设置。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 26.0.0
  */
 InputMethod_ErrorCode OH_TextConfig_SetConsumeKeyEvents(InputMethod_TextConfig *config, bool consumeKeyEvents);
@@ -397,10 +415,12 @@ InputMethod_ErrorCode OH_TextConfig_SetConsumeKeyEvents(InputMethod_TextConfig *
  * @param inputType 输出指针，表示指向{@link InputMethod_TextInputType}变量的指针。由调用者分配内存，函数将把输入类型值写入此
  * 地址。不可为NULL。取值范围：{@link InputMethod_TextInputType}枚举值。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或inputType为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或inputType为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config, InputMethod_TextInputType *inputType);
@@ -412,10 +432,12 @@ InputMethod_ErrorCode OH_TextConfig_GetInputType(InputMethod_TextConfig *config,
  * @param config 输入指针，指向即将被获取值的TextConfig实例的指针。不可为NULL。
  * @param enterKeyType 输出指针，表示指向{@link InputMethod_EnterKeyType}变量的指针。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或enterKeyType为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或enterKeyType为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
@@ -429,10 +451,12 @@ InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType(
  * @param supported 输出指针，用于返回是否支持预上屏。由调用者分配内存。不可为NULL。取值范围：true表示支持预上屏，false表示不支
  * 持预上屏。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或supported为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或supported为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfig *config, bool *supported);
@@ -448,10 +472,12 @@ InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported(InputMethod_TextConfi
  * @param cursorInfo [out] 输出双指针，不可为NULL。返回config内嵌的{@link InputMethod_CursorInfo}的可写借用视图。
  *     不可调用{@link OH_CursorInfo_Destroy}或free释放该视图，也不可在config失效后继续访问。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或cursorInfo为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或cursorInfo为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config, InputMethod_CursorInfo **cursorInfo);
@@ -473,10 +499,12 @@ InputMethod_ErrorCode OH_TextConfig_GetCursorInfo(InputMethod_TextConfig *config
  * @param avoidInfo [out] 输出双指针，不可为NULL。返回config内嵌的{@link InputMethod_TextAvoidInfo}的可写借用视图。
  *     不可调用{@link OH_TextAvoidInfo_Destroy}或free释放该视图，也不可在config失效后继续访问。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或avoidInfo为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或avoidInfo为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
@@ -491,10 +519,12 @@ InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo(
  * @param start 输出指针，所选文本的起始位置（单位：字符偏移量）。由调用者分配内存。不可为NULL。
  * @param end 输出指针，所选文本的结束位置（单位：字符偏移量）。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config、start或end为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config、start或end为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config, int32_t *start, int32_t *end);
@@ -506,10 +536,12 @@ InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config,
  * @param config 输入指针，指向即将被获取值的TextConfig实例的指针。不可为NULL。
  * @param windowId 输出指针，绑定输入法的应用所属窗口的窗口id。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或windowId为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或windowId为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, int32_t *windowId);
@@ -530,10 +562,13 @@ InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, 
  * 用长度（最大支持255个字符）；作为出参时，表示实际的占位文本长度。
  *     不可为NULL。
  * @return {@link InputMethod_ErrorCode}：
- *     <br>IME_ERR_OK = 0：表示成功。
- *     <br>IME_ERR_PARAMCHECK = 401：参数检查失败，可能是placeholder为NULL或length不足，此时length会被设置为实际长度；
- *     也可能是对象句柄未注册或已失效。
- *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config或length为NULL。
+ *     <ul>
+ *     <li>IME_ERR_OK = 0：表示成功。</li>
+ *     <li>IME_ERR_PARAMCHECK = 401：参数检查失败，可能是placeholder为NULL或length不足，此时length会被设置为实际长度；
+ *     也可能是对象句柄未注册或已失效。</li>
+ *     <li>IME_ERR_NULL_POINTER = 12802000：非预期的空指针，config或length为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t *placeholder,
@@ -555,9 +590,12 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
  * 用长度（最大支持127个字符）；作为出参时，
  *     表示实际的abilityName长度。不可为NULL。
  * @return {@link InputMethod_ErrorCode}：
- *     <br>IME_ERR_OK = 0：表示成功。
- *     <br>IME_ERR_PARAMCHECK = 401：参数检查失败，或对象句柄未注册或已失效。
- *     <br>IME_ERR_NULL_POINTER = 12802000：非预期的空指针。
+ *     <ul>
+ *     <li>IME_ERR_OK = 0：表示成功。</li>
+ *     <li>IME_ERR_PARAMCHECK = 401：参数检查失败，或对象句柄未注册或已失效。</li>
+ *     <li>IME_ERR_NULL_POINTER = 12802000：非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 20
  */
 InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *config, char16_t *abilityName,
@@ -578,10 +616,12 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *confi
  * 取值范围：true表示编辑框具备完整处理按键事件的能力，输入法框架将跳过对字母、
  *     字符、功能等按键的处理；false表示编辑框不具备此能力，按键事件将由输入法框架处理。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或consumeKeyEvents为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，config或consumeKeyEvents为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 26.0.0
  */
 InputMethod_ErrorCode OH_TextConfig_GetConsumeKeyEvents(InputMethod_TextConfig *config, bool *consumeKeyEvents);

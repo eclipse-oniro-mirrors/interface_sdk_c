@@ -513,9 +513,11 @@ void OH_TextEditorProxy_Destroy(InputMethod_TextEditorProxy *proxy);
  * IME_ERR_NULL_POINTER。
  * @param getTextConfigFunc 输入参数，表示被设置到proxy的回调函数{@link OH_TextEditorProxy_GetTextConfigFunc}。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，proxy或getTextConfigFunc为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，proxy或getTextConfigFunc为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextConfigFunc(
@@ -532,9 +534,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextConfigFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param insertTextFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetInsertTextFunc(
@@ -551,9 +555,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetInsertTextFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param deleteForwardFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteForwardFunc(
@@ -570,9 +576,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteForwardFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param deleteBackwardFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteBackwardFunc(
@@ -584,9 +592,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteBackwardFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param sendKeyboardStatusFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetSendKeyboardStatusFunc(
@@ -598,9 +608,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSendKeyboardStatusFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param sendEnterKeyFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetSendEnterKeyFunc(
@@ -612,9 +624,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSendEnterKeyFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param moveCursorFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetMoveCursorFunc(
@@ -626,9 +640,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetMoveCursorFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param handleSetSelectionFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetHandleSetSelectionFunc(
@@ -640,9 +656,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetHandleSetSelectionFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param handleExtendActionFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetHandleExtendActionFunc(
@@ -654,9 +672,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetHandleExtendActionFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param getLeftTextOfCursorFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(
@@ -668,9 +688,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param getRightTextOfCursorFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetRightTextOfCursorFunc(
@@ -682,9 +704,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetRightTextOfCursorFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param getTextIndexAtCursorFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextIndexAtCursorFunc(
@@ -696,9 +720,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextIndexAtCursorFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param receivePrivateCommandFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc(
@@ -710,9 +736,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc(
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param setPreviewTextFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc(
@@ -742,9 +770,11 @@ InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_SetSetPreviewTextWithStyleF
  * @param proxy 输入指针，指向即将被设置的TextEditorProxy实例的指针。不可为NULL。
  * @param finishTextPreviewFunc 输入参数，表示被设置到proxy的回调函数。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetFinishTextPreviewFunc(
@@ -757,9 +787,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetFinishTextPreviewFunc(
  * @param getTextConfigFunc 输出指针，表示从proxy获取到的函数指针。由调用者分配内存，函数将把回调函数指针写入此地址。不可为
  * NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，proxy或getTextConfigFunc为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，proxy或getTextConfigFunc为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextConfigFunc(
@@ -770,9 +802,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextConfigFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param insertTextFunc 输出指针，表示从proxy获取到的函数指针。由调用者分配内存。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetInsertTextFunc(
@@ -783,9 +817,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetInsertTextFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param deleteForwardFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteForwardFunc(
@@ -796,9 +832,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteForwardFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param deleteBackwardFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteBackwardFunc(
@@ -809,9 +847,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteBackwardFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param sendKeyboardStatusFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSendKeyboardStatusFunc(
@@ -822,9 +862,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSendKeyboardStatusFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param sendEnterKeyFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSendEnterKeyFunc(
@@ -835,9 +877,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSendEnterKeyFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param moveCursorFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetMoveCursorFunc(
@@ -848,9 +892,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetMoveCursorFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param handleSetSelectionFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetHandleSetSelectionFunc(
@@ -861,9 +907,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetHandleSetSelectionFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param handleExtendActionFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetHandleExtendActionFunc(
@@ -874,9 +922,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetHandleExtendActionFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param getLeftTextOfCursorFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetLeftTextOfCursorFunc(
@@ -887,9 +937,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetLeftTextOfCursorFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param getRightTextOfCursorFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetRightTextOfCursorFunc(
@@ -900,9 +952,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetRightTextOfCursorFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param getTextIndexAtCursorFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextIndexAtCursorFunc(
@@ -913,9 +967,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextIndexAtCursorFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param receivePrivateCommandFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
@@ -926,9 +982,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc(
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param setPreviewTextFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
@@ -956,9 +1014,11 @@ InputMethod_ErrorCode OH_InputMethod_TextEditorProxy_GetSetPreviewTextWithStyleF
  * @param proxy 输入指针，指向被读取的TextEditorProxy实例的指针。不可为NULL。
  * @param finishTextPreviewFunc 输出指针，表示从proxy获取到的函数指针。不可为NULL。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc(
@@ -983,9 +1043,11 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc(
  * 免多线程并发问题），避免在回调内执行耗时操作防止主线程阻塞；false-回调函数在IPC线程执行（可能存在多线程并发情况），响应速度更
  * 快。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 配置成功。
- *     <br>{@link IME_ERR_NULL_POINTER} - 当proxy为NULL时返回。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 配置成功。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 当proxy为NULL时返回。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 22
  */
 InputMethod_ErrorCode OH_TextEditorProxy_SetCallbackInMainThread(

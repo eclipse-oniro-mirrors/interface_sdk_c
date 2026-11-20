@@ -159,14 +159,16 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该指针不
  *     可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效，不可再用于调用任何InputMethodProxy相关函数。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，键盘已请求显示。
- *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误，可能是客户端内部异常。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误，可能是输入法管理服务不可用。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，表示已调用Detach，需重新Attach后再使用。
- *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，传入的inputMethodProxy为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，键盘已请求显示。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误，可能是客户端内部异常。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误，可能是输入法管理服务不可用。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，表示已调用Detach，需重新Attach后再使用。</li>
+ *     <li>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，传入的inputMethodProxy为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
@@ -197,13 +199,15 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodPr
  * 求键盘输入的原因。AttachOptions中的ShowKeyboard属性在此接口中始终为true，无需额外关注。
  *     options必须是有效的AttachOptions句柄；未注册或已失效的值对象句柄返回IME_ERR_PARAMCHECK。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配，或options句柄未注册或已失效。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或options为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配，或options句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或options为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 15
  */
 InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
@@ -227,14 +231,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(
  *     [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。该
  *     指针不可为NULL，若传入NULL指针将返回IME_ERR_NULL_POINTER错误码。Detach后该指针失效。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，键盘已请求隐藏。
- *     <br>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
- *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，键盘已请求隐藏。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - inputMethodProxy与当前代理不匹配。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。</li>
+ *     <li>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodProxy *inputMethodProxy);
@@ -272,14 +278,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodPr
  * @param end [in] 输入参数，所选文本的结束位置（单位：字符偏移量，从0开始计数）。取值范围：大于等于start且小于等于text的实际长度。取
  *     值原则：当无选中文本时，start与end相等，表示光标位置。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是length超过8K限制、start/end范围不合法等， 请检查参数值是否在有效范围内。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
- *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是length超过8K限制、start/end范围不合法等， 请检查参数值是否在有效范围内。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。</li>
+ *     <li>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
@@ -311,14 +319,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
  *     IME_TEXT_INPUT_TYPE_TEXT、IME_TEXT_INPUT_TYPE_NUMBER等。使用后效果：输入法将据此切换键盘布局（如数字键盘、文本键盘
  *     等）。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是enterKey或textType值不合法，请检查枚举值是否在有效范围内。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
- *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是enterKey或textType值不合法，请检查枚举值是否在有效范围内。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。</li>
+ *     <li>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_InputMethodProxy *inputMethodProxy,
@@ -350,14 +360,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_
  *     函数仅读取其内部数据，不会修改或释放。通过{@link OH_CursorInfo_Create}独立创建的对象由调用者在使用完毕后通过
  *     {@link OH_CursorInfo_Destroy}释放；借用视图不可销毁。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是cursorInfo内部数据不合法，或其句柄未注册或已失效，请检查光标信息参数。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
- *     <br>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或cursorInfo为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是cursorInfo内部数据不合法，或其句柄未注册或已失效，请检查光标信息参数。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。</li>
+ *     <li>{@link IME_ERR_EDITABLE} - 输入框处于非编辑态；绑定关系可能仍然有效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或cursorInfo为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
@@ -394,14 +406,16 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  * （即size参数最大为5）。
  * @param size [in] 输入参数，私有命令数组的元素个数。取值范围：大于0且不超过5。超过5将返回IME_ERR_PARAMCHECK错误码。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，私有命令已发送。
- *     <br>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是size超过5、privateCommand为NULL、单个命令超过32KB，
- *     或数组中的对象句柄未注册或已失效，请检查参数值。
- *     <br>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。
- *     <br>{@link IME_ERR_IMMS} - 输入法服务错误。
- *     <br>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或privateCommand为NULL。
- *     <br>具体错误码可以参考{@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，私有命令已发送。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 参数错误，可能是size超过5、privateCommand为NULL、单个命令超过32KB，
+ *     或数组中的对象句柄未注册或已失效，请检查参数值。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 输入法客户端错误。</li>
+ *     <li>{@link IME_ERR_IMMS} - 输入法服务错误。</li>
+ *     <li>{@link IME_ERR_DETACHED} - 未绑定输入法，已Detach需重新Attach。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，inputMethodProxy或privateCommand为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(

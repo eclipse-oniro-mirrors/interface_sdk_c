@@ -192,10 +192,12 @@ void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
  * @param positionY Y坐标值，即输入框顶点与物理屏幕上侧距离的绝对值，单位px。取值范围≥0，建议使用物理屏幕的实际坐标值。传入负值不
  * 会报错，但在实际避让计算中无意义。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *info, double positionY);
@@ -212,10 +214,12 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetPositionY(InputMethod_TextAvoidInfo *i
  * IME_ERR_NULL_POINTER。
  * @param height 高度值，单位px。取值范围≥0，建议使用编辑框的实际像素高度。传入负值不会报错，但在实际避让计算中无意义。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info, double height);
@@ -234,10 +238,12 @@ InputMethod_ErrorCode OH_TextAvoidInfo_SetHeight(InputMethod_TextAvoidInfo *info
  * @param positionY 输出参数，用于接收Y坐标值，即输入框顶点与物理屏幕上侧距离的绝对值，单位px。此参数为输出指针，调用方需分配
  * double类型变量的内存并将其地址传入。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，positionY指针指向的内存已被写入Y坐标值。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info或positionY参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，positionY指针指向的内存已被写入Y坐标值。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info或positionY参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *info, double *positionY);
@@ -256,10 +262,12 @@ InputMethod_ErrorCode OH_TextAvoidInfo_GetPositionY(InputMethod_TextAvoidInfo *i
  * @param height 输出参数，用于接收输入框高度，单位px。此参数为输出指针，调用方需分配double类型变量的内存并将其地址传入。不允许传
  * 入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @return 返回一个特定的错误码。
- *     <br>{@link IME_ERR_OK} - 表示成功，height指针指向的内存已被写入高度值。
- *     <br>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。
- *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info或height参数为NULL。
- *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功，height指针指向的内存已被写入高度值。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 对象句柄未注册或已失效。</li>
+ *     <li>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，info或height参数为NULL。</li>
+ *     <li>具体错误码可以参考{@link InputMethod_ErrorCode}。</li>
+ *     </ul>
  * @since 12
  */
 InputMethod_ErrorCode OH_TextAvoidInfo_GetHeight(InputMethod_TextAvoidInfo *info, double *height);
