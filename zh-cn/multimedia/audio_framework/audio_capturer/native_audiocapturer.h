@@ -64,7 +64,7 @@ extern "C" {
  * @brief 释放音频录制流。
  * <br>输入的OH_AudioCapturer指针指向的内存也会释放，不能再被使用，建议开发者在释放后主动将指针置空。
  *
- * @permission ohos.permission.MICROPHONE
+ * @permission ohos.permission.MICROPHONE [since 10 - 26.0.1]
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @return <ul>
@@ -96,7 +96,7 @@ OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
  * @brief 暂停音频录制流。
  * <br>在暂停音频后，后续需要恢复录音的场景，建议使用此接口。但在录音数据处理方面，此接口与OH_AudioCapturer_Stop无差异。
  *
- * @permission ohos.permission.MICROPHONE
+ * @permission ohos.permission.MICROPHONE [since 10 - 26.0.1]
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @return <ul>
@@ -112,7 +112,7 @@ OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
  * @brief 停止音频录制流。
  * <br>在需要彻底结束录音的场景，建议使用此接口。但在录音数据处理方面，此接口与OH_AudioCapturer_Pause无差异。
  *
- * @permission ohos.permission.MICROPHONE
+ * @permission ohos.permission.MICROPHONE [since 10 - 26.0.1]
  *
  * @param capturer [in] 指向{@link OH_AudioStreamBuilder_GenerateCapturer}创建的音频流实例。
  * @return <ul>
