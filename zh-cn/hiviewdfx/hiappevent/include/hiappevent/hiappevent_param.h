@@ -118,6 +118,13 @@ extern "C" {
 #define MAIN_THREAD_JANK_PARAM_AUTO_STOP_SAMPLING "auto_stop_sampling"
 
 /**
+ * @brief 用于MAIN_THREAD_JANK_V2事件，主线程超时发生时，是否采集EventHandler任务队列信息。
+ *
+ * @since 26.1.0
+ */
+#define MAIN_THREAD_JANK_PARAM_ENABLE_EVENT_HANDLER_DUMP "enable_event_handler_dump"
+
+/**
  * @brief 用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，是否打印PC、LR寄存器扩展字节范围的内存内容。
  *
  * @since 24
