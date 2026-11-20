@@ -544,6 +544,7 @@
     { "filePath": "sensors/sensor/oh_sensor.h", "kitName": "NA", "subSystem": "泛sensor服务" },
     { "filePath": "sensors/sensor/oh_sensor_type.h", "kitName": "NA", "subSystem": "泛sensor服务" },
     { "filePath": "startup/init/syscap/include/deviceinfo.h", "kitName": "NA", "subSystem": "启动恢复" },
+    { "filePath": "startup/init/syscap/include/boardinfo.h", "kitName": "NA", "subSystem": "启动恢复" },
     { "filePath": "startup/init/syscap/include/syscap_ndk.h", "kitName": "NA", "subSystem": "启动恢复" },
     {
       "filePath": "third_party/icu4c/ndk_headers/unicode/parseerr.h",
