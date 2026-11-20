@@ -620,6 +620,78 @@ uint32_t OH_Drawing_GetFontCountFromBuffer(uint8_t* fontBuffer, size_t length);
  * @since 23
  */
 OH_Drawing_String* OH_Drawing_GetFontPathsByType(OH_Drawing_SystemFontType fontType, size_t* pathCount);
+
+/**
+ * @brief 复制字体家族映射表的内容。
+ * @param outCopiedMappings [out] 成功时返回字体家族映射表的内容。
+ *     使用完毕后需通过{@link OH_Drawing_FreeFontFamilyMappings}释放内存。
+ * @param outBorrowedCount [out] 成功时返回字体家族映射表中的条目数量。
+ * @return <ul>
+ *     <li>{@link OH_DRAWING_SUCCESS}表示执行成功。</li>
+ *     <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}表示参数outCopiedMappings或者outBorrowedCount为空指针。</li>
+ *     </ul>
+ * @since 26.1.0
+ * @release OH_Drawing_FreeFontFamilyMappings {outCopiedMappings}
+ */
+OH_Drawing_ErrorCode OH_Drawing_CopyFontFamilyMappings(const OH_Drawing_FontFamilyMapping ***outCopiedMappings,
+    uint32_t *outBorrowedCount);
+ 
+/**
+ * @brief 发布字体映射表
+ * @param mappings 【入参】 指向字体映射表的指针。
+ * @return 执行结果。
+ *     <br>**OH_DRAWING_SUCCESS** 操作成功。
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** 如果 **mappings** 为空指针。
+ * @since 26.1.0
+ */
+void OH_Drawing_FreeFontFamilyMappings(const OH_Drawing_FontFamilyMapping **mappings);
+ 
+/**
+ * @brief 从指定的字体家族映射对象中获取源字体家族名。
+ *
+ * @param mapping [in] 指向单个字体家族映射对象的指针。不得为空，调用期间必须保持有效，被调用方不保留该引用，调用方无需释放。
+ * @param outBorrowedSourceFamily [out] 成功时返回源字体家族名，编码为UTF-8。失败时该参数内容保持不变。
+ *     不得为空，调用前无需初始化。该字符串由mapping持有，调用方不得释放，在mapping被修改或销毁后失效。
+ * @return <ul>
+ *     <li>{@link OH_DRAWING_SUCCESS}表示执行成功。</li>
+ *     <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}表示参数mapping或者outBorrowedSourceFamily为空指针。</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetSourceFamilyFromMapping(const OH_Drawing_FontFamilyMapping *mapping,
+    const char **outBorrowedSourceFamily);
+ 
+/**
+ * @brief 获取指定字体家族映射对象中包含的目标字体家族的数量。
+ *
+ * @param mapping [in] 指向单个字体家族映射对象的指针。不得为空，调用期间必须保持有效，被调用方不保留该引用，调用方无需释放。
+ * @param outBorrowedTargetCount [out] 成功时返回目标字体家族名个数。失败时该参数内容保持不变。
+ * @return <ul>
+ *     <li>{@link OH_DRAWING_SUCCESS}表示执行成功。</li>
+ *     <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}表示参数mapping或者outBorrowedTargetCount为空指针。</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetTargetCountFromMapping(const OH_Drawing_FontFamilyMapping *mapping,
+    uint32_t *outBorrowedTargetCount);
+ 
+/**
+ * @brief 根据索引从指定的字体家族映射对象中获取对应的目标字体家族名。
+ *
+ * @param mapping [in] 指向单个字体家族映射对象的指针。不得为空，调用期间必须保持有效，被调用方不保留该引用，调用方无需释放。
+ * @param index [in] 目标字体家族名的位置索引，取值范围[0, targetCount - 1]。
+ *     可通过{@link OH_Drawing_GetTargetCountFromMapping}获取targetCount。
+ * @param outBorrowedTargetFamily [out] 成功时返回目标字体家族名，编码为UTF-8。失败时该参数内容保持不变。
+ *     不得为空，调用前无需初始化。该字符串由mapping持有，调用方不得释放，在mapping被修改或销毁后失效。
+ * @return <ul>
+ *     <li>{@link OH_DRAWING_SUCCESS}表示执行成功。</li>
+ *     <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}表示参数mapping或者outBorrowedTargetFamily为空指针。</li>
+ *     <li>{@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE}表示参数index超出范围。</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetTargetFamilyFromMapping(const OH_Drawing_FontFamilyMapping *mapping,
+    uint32_t index, const char **outBorrowedTargetFamily);
 #ifdef __cplusplus
 }
 #endif
