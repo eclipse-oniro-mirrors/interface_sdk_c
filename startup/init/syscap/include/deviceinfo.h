@@ -347,14 +347,14 @@ int OH_GetDistributionOSApiVersion(void);
 const char *OH_GetDistributionOSReleaseType(void);
 
 /**
- * @brief Obtains the disk serial number.The size of the parameter buffer cannot be less than 65 bytes.
+ * @brief Obtain the disk serial number. The size of the parameter buffer cannot be less than 65 bytes.
  *
- * @param diskSn [out] Serial number of the disk.The size of the parameter buffer cannot be less than 65 bytes.
+ * @param diskSn [out] Serial number of the disk. The size of the parameter buffer cannot be less than 65 bytes.
  * @return <ul>
- *         <li>0 if the operation is successful.</li>
- *         <li>201 if the caller does not have ohos.permission.ACCESS_DISK_PHY_INFO.</li>
- *         <li>401 if the caller passes an invalid input parameter.</li>
- *         </ul>
+ *             <li>0 if the operation is successful.</li>
+ *             <li>201 if the caller does not have ohos.permission.ACCESS_DISK_PHY_INFO.</li>
+ *             <li>401 if the caller passes an invalid input parameter.</li>
+ *             </ul>
  * @permission ohos.permission.ACCESS_DISK_PHY_INFO
  * @since 26.1.0
  */
