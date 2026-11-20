@@ -55,7 +55,6 @@ const char *OH_BoardInfo_GetCpuId(void);
  *
  * @param boardSn [out] Serial number of the board. The buffer size cannot be less than 17 bytes(including the
  *     terminator).
- *
  * @return <ul>
  *             <li>0 if the operation is successful.</li>
  *             <li>201 if the caller does not have ohos.permission.ACCESS_BOARD_INFO.</li>
