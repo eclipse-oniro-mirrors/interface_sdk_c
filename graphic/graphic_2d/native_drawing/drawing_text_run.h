@@ -33,6 +33,7 @@
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @include <native_drawing/drawing_text_run.h>
  * @since 18
  * @version 1.0
  */
