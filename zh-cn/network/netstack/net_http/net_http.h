@@ -17,7 +17,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief 定义HTTP请求模块的接口。
+ * @brief 提供HTTP请求模块的C接口。
  *
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
@@ -25,7 +25,7 @@
 
 /**
  * @file net_http.h
- * @brief 定义HTTP请求模块的接口。
+ * @brief 定义HTTP请求模块的C接口。
  *
  * @library libnet_http.so
  * @kit NetworkKit
@@ -122,7 +122,8 @@ Http_Request *OH_Http_CreateRequest(const char *url);
  * @param callback 请求的响应，指向Http_ResponseCallback。
  * @param handler 监听不同HTTP事件的回调函数，指向Http_EventsHandler。
  * @return 请求发起成功返回0，非0表示请求发起失败，错误码的具体描述，可以参考Http_ErrCode。
- *     <br>在Http_ResponseCallback中也会携带errCode信息，表示请求发起成功，但是因为一些原因，和服务器的交互异常，具体异常原因，同步参考Http_ErrCode。
+ *     <br>在Http_ResponseCallback中也会携带errCode信息，表示请求发起成功，但是因为一些原因，和服务器的交互异常，
+ *     具体异常原因，同步参考Http_ErrCode。
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 20

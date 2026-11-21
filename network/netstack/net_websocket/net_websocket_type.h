@@ -112,18 +112,16 @@ struct WebSocket_OpenResult {
 };
 
 /**
- * @brief Callback invoked when the WebSocket client receives an **Open** message.
- *
- * @param client WebSocket client.
- * @param openResult Content of the **Open** message sent from the WebSocket server to client.
+ * @brief Defines a callback invoked when the WebSocket client receives an open message.
+ * @param client Pointer to the WebSocket client.
+ * @param openResult Content of the connection establishment message received by the WebSocket client.
  * @since 11
  * @version 1.0
  */
 typedef void (*WebSocket_OnOpenCallback)(struct WebSocket *client, WebSocket_OpenResult openResult);
 
 /**
- * @brief Callback invoked when the WebSocket client receives a **Message** message.
- *
+ * @brief Defines a callback invoked when the WebSocket client receives data.
  * @param client WebSocket client.
  * @param data Data received by the WebSocket client.
  * @param length Length of the data received by the WebSocket client.
@@ -133,20 +131,18 @@ typedef void (*WebSocket_OnOpenCallback)(struct WebSocket *client, WebSocket_Ope
 typedef void (*WebSocket_OnMessageCallback)(struct WebSocket *client, char *data, uint32_t length);
 
 /**
- * @brief Callback invoked when the WebSocket client receives an **Error** message.
- *
- * @param client WebSocket client.
- * @param errorResult Content of the **Error** message sent from the WebSocket server to client.
+ * @brief Defines a callback invoked when the WebSocket client receives an error message.
+ * @param client Pointer to the WebSocket client.
+ * @param errorResult Content of the connection error message received by the WebSocket client.
  * @since 11
  * @version 1.0
  */
 typedef void (*WebSocket_OnErrorCallback)(struct WebSocket *client, WebSocket_ErrorResult errorResult);
 
 /**
- * @brief Callback invoked when the WebSocket client receives a **Close** message.
- *
+ * @brief Defines a callback invoked when the WebSocket client receives a close message.
  * @param client WebSocket client.
- * @param closeResult Content of the **Close** message sent from the WebSocket server to client.
+ * @param closeResult Content of the close message received by the WebSocket client.
  * @since 11
  * @version 1.0
  */
@@ -181,11 +177,14 @@ struct WebSocket_Header {
  * @version 1.0
  */
 struct WebSocket_RequestOptions {
+    /**
+     * Pointer to the header information.
+     */
     struct WebSocket_Header *headers;
 };
 
 /**
- * @brief Defines the parameters for the connection closure received by the WebSocket client.
+ * @brief Defines the struct of the WebSocket client.
  *
  * @since 11
  * @version 1.0
@@ -203,96 +202,120 @@ struct WebSocket {
     WebSocket_RequestOptions requestOptions;
 };
 
+/**
+ * @brief Defines the error codes of WebSocket requests.
+ *
+ * @since 11
+ * @version 1.0
+ */
 typedef enum WebSocket_ErrCode {
     /**
      * Operation successful.
      */
     WEBSOCKET_OK = 0,
+
     /**
      * @brief Base value of the error code.
      *
      */
     E_BASE = 1000,
+
     /**
      * @brief The WebSocket client is empty.
      *
      */
     WEBSOCKET_CLIENT_NULL = (E_BASE + 1),
+
     /**
      * @brief The WebSocket client is not created.
      *
      */
     WEBSOCKET_CLIENT_NOT_CREATED = (E_BASE + 2),
+
     /**
      * @brief An error occurred during WebSocket connection establishment.
      *
      */
     WEBSOCKET_CONNECTION_ERROR = (E_BASE + 3),
+
     /**
      * @brief An error occurred when parsing WebSocket connection parameters.
      *
      */
     WEBSOCKET_CONNECTION_PARSE_URL_ERROR = (E_BASE + 5),
+
     /**
      * @brief The memory is insufficient during WebSocket client connection establishment.
      *
      */
     WEBSOCKET_CONNECTION_NO_MEMORY = (E_BASE + 6),
+
     /**
      * @brief The WebSocket connection is closed by the peer end.
      *
      */
     WEBSOCKET_CONNECTION_CLOSED_BY_PEER = (E_BASE + 7),
+
     /**
      * @brief The WebSocket connection is disconnected.
      *
      */
     WEBSOCKET_DESTROYED = (E_BASE + 8),
+
     /**
      * @brief Incorrect protocol.
      *
      */
     WEBSOCKET_PROTOCOL_ERROR = (E_BASE + 9),
+
     /**
      * @brief The system memory is insufficient when the WebSocket client sends data.
      *
      */
     WEBSOCKET_SEND_NO_MEMORY = (E_BASE + 10),
+
     /**
      * @brief The sent data is empty.
      *
      */
     WEBSOCKET_SEND_DATA_NULL = (E_BASE + 11),
+
     /**
      * @brief The length of the sent data exceeds the limit.
      *
      */
     WEBSOCKET_DATA_LENGTH_EXCEEDED = (E_BASE + 12),
+
     /**
      * @brief The length of the sent data queue exceeds the limit.
      *
      */
     WEBSOCKET_QUEUE_LENGTH_EXCEEDED = (E_BASE + 13),
+
     /**
      * @brief The context of the WebSocket client is null.
      *
      */
     WEBSOCKET_NO_CLIENT_CONTEXT = (E_BASE + 14),
+
     /**
      * @brief The protocol header of the WebSocket client is empty.
      *
      */
     WEBSOCKET_NO_HEADER_CONTEXT = (E_BASE + 15),
+
     /**
      * @brief The protocol header of the WebSocket client exceeds the limit.
      *
      */
     WEBSOCKET_HEADER_EXCEEDED = (E_BASE + 16),
+
     /**
      * @brief The WebSocket client is not connected.
      *
      */
     WEBSOCKET_NO_CONNECTION = (E_BASE + 17),
+
     /**
      * @brief No WebSocket connection context is released.
      *
@@ -305,4 +328,5 @@ typedef enum WebSocket_ErrCode {
 #endif
 
 /** @} */
+
 #endif // NET_WEBSOCKET_TYPE_H

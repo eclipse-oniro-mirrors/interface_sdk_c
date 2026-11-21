@@ -17,7 +17,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the Http client module.
+ * @brief Provides C APIs for the HTTP request module.
  *
  * @since 20
  */
@@ -64,169 +64,197 @@ extern "C" {
 #define OHOS_HTTP_DNS_SERVER_NUM_MAX 3
 
 /**
- * @brief Defines http error code.
- *
+ * @brief Enumerates the error codes of an HTTP request.
  * @since 20
  */
 typedef enum Http_ErrCode {
-  /** Operation success. */
-  OH_HTTP_RESULT_OK = 0,
-  /** @brief Parameter error. */
-  OH_HTTP_PARAMETER_ERROR = 401,
-  /** @brief Permission denied. */
-  OH_HTTP_PERMISSION_DENIED = 201,
-  /** @brief Error code base. */
-  OH_HTTP_NETSTACK_E_BASE = 2300000,
-  /** @brief Unsupported protocol. */
-  OH_HTTP_UNSUPPORTED_PROTOCOL = (OH_HTTP_NETSTACK_E_BASE + 1),
-  /** @brief Invalid URL format or missing URL. */
-  OH_HTTP_INVALID_URL = (OH_HTTP_NETSTACK_E_BASE + 3),
-  /** @brief Failed to resolve the proxy name. */
-  OH_HTTP_RESOLVE_PROXY_FAILED = (OH_HTTP_NETSTACK_E_BASE + 5),
-  /** @brief Failed to resolve the host name. */
-  OH_HTTP_RESOLVE_HOST_FAILED = (OH_HTTP_NETSTACK_E_BASE + 6),
-  /** @brief Failed to connect to the server. */
-  OH_HTTP_CONNECT_SERVER_FAILED = (OH_HTTP_NETSTACK_E_BASE + 7),
-  /** @brief Invalid server response. */
-  OH_HTTP_INVALID_SERVER_RESPONSE = (OH_HTTP_NETSTACK_E_BASE + 8),
-  /** @brief Access to the remote resource denied. */
-  OH_HTTP_ACCESS_REMOTE_DENIED = (OH_HTTP_NETSTACK_E_BASE + 9),
-  /** @brief Error in the HTTP2 framing layer. */
-  OH_HTTP_HTTP2_FRAMING_ERROR = (OH_HTTP_NETSTACK_E_BASE + 16),
-  /** @brief Transferred a partial file. */
-  OH_HTTP_TRANSFER_PARTIAL_FILE = (OH_HTTP_NETSTACK_E_BASE + 18),
-  /** @brief Failed to write the received data to the disk or application. */
-  OH_HTTP_WRITE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 23),
-  /** @brief Upload failed. */
-  OH_HTTP_UPLOAD_FAILED = (OH_HTTP_NETSTACK_E_BASE + 25),
-  /** @brief Failed to open or read local data from the file or application. */
-  OH_HTTP_OPEN_LOCAL_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 26),
-  /** @brief Out of memory. */
-  OH_HTTP_OUT_OF_MEMORY = (OH_HTTP_NETSTACK_E_BASE + 27),
-  /** @brief Operation timeout. */
-  OH_HTTP_OPERATION_TIMEOUT = (OH_HTTP_NETSTACK_E_BASE + 28),
-  /** @brief The number of redirections reaches the maximum allowed. */
-  OH_HTTP_TOO_MANY_REDIRECTIONS = (OH_HTTP_NETSTACK_E_BASE + 47),
-  /** @brief The server returned nothing (no header or data). */
-  OH_HTTP_SERVER_RETURNED_NOTHING = (OH_HTTP_NETSTACK_E_BASE + 52),
-  /** @brief Failed to send data to the peer. */
-  OH_HTTP_SEND_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 55),
-  /** @brief Failed to receive data from the peer. */
-  OH_HTTP_RECEIVE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 56),
-  /** @brief Local SSL certificate error. */
-  OH_HTTP_SSL_CERTIFICATE_ERROR = (OH_HTTP_NETSTACK_E_BASE + 58),
-  /** @brief The specified SSL cipher cannot be used. */
-  OH_HTTP_SSL_CIPHER_USED_ERROR = (OH_HTTP_NETSTACK_E_BASE + 59),
-  /** @brief Invalid SSL peer certificate or SSH remote key. */
-  OH_HTTP_INVALID_SSL_PEER_CERT = (OH_HTTP_NETSTACK_E_BASE + 60),
-  /** @brief Invalid HTTP encoding format. */
-  OH_HTTP_INVALID_ENCODING_FORMAT = (OH_HTTP_NETSTACK_E_BASE + 61),
-  /** @brief Maximum file size exceeded. */
-  OH_HTTP_FILE_TOO_LARGE = (OH_HTTP_NETSTACK_E_BASE + 63),
-  /** @brief Remote disk full. */
-  OH_HTTP_REMOTE_DISK_FULL = (OH_HTTP_NETSTACK_E_BASE + 70),
-  /** @brief Remote file already exists. */
-  OH_HTTP_REMOTE_FILE_EXISTS = (OH_HTTP_NETSTACK_E_BASE + 73),
-  /** @brief The SSL CA certificate does not exist or is inaccessible. */
-  OH_HTTP_SSL_CA_NOT_EXIST = (OH_HTTP_NETSTACK_E_BASE + 77),
-  /** @brief Remote file not found. */
-  OH_HTTP_REMOTE_FILE_NOT_FOUND = (OH_HTTP_NETSTACK_E_BASE + 78),
-  /** @brief Authentication error. */
-  OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
-  /**
-   * @brief The request was intercepted by the HTTP global interceptor.
-   * @since 26.0.0
-   */
-  OH_HTTP_REQUEST_INTERCEPTED = (OH_HTTP_NETSTACK_E_BASE + 996),
-  /** @brief It is not allowed to access this domain. */
-  OH_HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (OH_HTTP_NETSTACK_E_BASE + 998),
-  /** @brief Unknown error. */
-  OH_HTTP_UNKNOWN_ERROR = (OH_HTTP_NETSTACK_E_BASE + 999)
+    /** The request succeeded. */
+    OH_HTTP_RESULT_OK = 0,
+    /** @brief Invalid parameter. */
+    OH_HTTP_PARAMETER_ERROR = 401,
+    /** @brief Permission denied. */
+    OH_HTTP_PERMISSION_DENIED = 201,
+    /** @brief Base error code offset. */
+    OH_HTTP_NETSTACK_E_BASE = 2300000,
+    /** @brief Unsupported protocol. */
+    OH_HTTP_UNSUPPORTED_PROTOCOL = (OH_HTTP_NETSTACK_E_BASE + 1),
+    /** @brief Invalid URL format. */
+    OH_HTTP_INVALID_URL = (OH_HTTP_NETSTACK_E_BASE + 3),
+    /** @brief Failed to resolve the proxy server domain name. */
+    OH_HTTP_RESOLVE_PROXY_FAILED = (OH_HTTP_NETSTACK_E_BASE + 5),
+    /** @brief Failed to resolve the domain name. */
+    OH_HTTP_RESOLVE_HOST_FAILED = (OH_HTTP_NETSTACK_E_BASE + 6),
+    /** @brief Failed to connect to the server. */
+    OH_HTTP_CONNECT_SERVER_FAILED = (OH_HTTP_NETSTACK_E_BASE + 7),
+    /** @brief The server returned invalid data. */
+    OH_HTTP_INVALID_SERVER_RESPONSE = (OH_HTTP_NETSTACK_E_BASE + 8),
+    /** @brief Access to the remote resource is denied. */
+    OH_HTTP_ACCESS_REMOTE_DENIED = (OH_HTTP_NETSTACK_E_BASE + 9),
+    /** @brief An error occurred in the HTTP/2 framing layer. */
+    OH_HTTP_HTTP2_FRAMING_ERROR = (OH_HTTP_NETSTACK_E_BASE + 16),
+    /** @brief Part of the file was transferred. */
+    OH_HTTP_TRANSFER_PARTIAL_FILE = (OH_HTTP_NETSTACK_E_BASE + 18),
+    /** @brief Failed to write the received data to the disk or application. */
+    OH_HTTP_WRITE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 23),
+    /** @brief Upload failed. */
+    OH_HTTP_UPLOAD_FAILED = (OH_HTTP_NETSTACK_E_BASE + 25),
+    /** @brief Failed to open or read local data from the file or application. */
+    OH_HTTP_OPEN_LOCAL_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 26),
+    /** @brief Insufficient memory. */
+    OH_HTTP_OUT_OF_MEMORY = (OH_HTTP_NETSTACK_E_BASE + 27),
+    /** @brief Operation timed out. */
+    OH_HTTP_OPERATION_TIMEOUT = (OH_HTTP_NETSTACK_E_BASE + 28),
+    /** @brief The number of redirections has reached the maximum allowed. */
+    OH_HTTP_TOO_MANY_REDIRECTIONS = (OH_HTTP_NETSTACK_E_BASE + 47),
+    /** @brief The server returned nothing (no header or data). */
+    OH_HTTP_SERVER_RETURNED_NOTHING = (OH_HTTP_NETSTACK_E_BASE + 52),
+    /** @brief Failed to send data. */
+    OH_HTTP_SEND_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 55),
+    /** @brief Failed to receive data. */
+    OH_HTTP_RECEIVE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 56),
+    /** @brief Local SSL certificate error. */
+    OH_HTTP_SSL_CERTIFICATE_ERROR = (OH_HTTP_NETSTACK_E_BASE + 58),
+    /** @brief The specified cipher suite is unavailable. */
+    OH_HTTP_SSL_CIPHER_USED_ERROR = (OH_HTTP_NETSTACK_E_BASE + 59),
+    /** @brief Invalid SSL peer certificate or SSH remote key. */
+    OH_HTTP_INVALID_SSL_PEER_CERT = (OH_HTTP_NETSTACK_E_BASE + 60),
+    /** @brief Invalid HTTP encoding format. */
+    OH_HTTP_INVALID_ENCODING_FORMAT = (OH_HTTP_NETSTACK_E_BASE + 61),
+    /** @brief The maximum file size is exceeded. */
+    OH_HTTP_FILE_TOO_LARGE = (OH_HTTP_NETSTACK_E_BASE + 63),
+    /** @brief The remote disk is full. */
+    OH_HTTP_REMOTE_DISK_FULL = (OH_HTTP_NETSTACK_E_BASE + 70),
+    /** @brief The remote file already exists. */
+    OH_HTTP_REMOTE_FILE_EXISTS = (OH_HTTP_NETSTACK_E_BASE + 73),
+    /** @brief The SSL CA certificate does not exist or is inaccessible. */
+    OH_HTTP_SSL_CA_NOT_EXIST = (OH_HTTP_NETSTACK_E_BASE + 77),
+    /** @brief The remote file was not found. */
+    OH_HTTP_REMOTE_FILE_NOT_FOUND = (OH_HTTP_NETSTACK_E_BASE + 78),
+    /** @brief Authentication error. */
+    OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
+    /**
+     * @brief The request was intercepted by the HTTP global interceptor.
+     * @since 26.0.0
+     */
+    OH_HTTP_REQUEST_INTERCEPTED = (OH_HTTP_NETSTACK_E_BASE + 996),
+    /** @brief Access to the domain is not allowed. */
+    OH_HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (OH_HTTP_NETSTACK_E_BASE + 998),
+    /** @brief Unknown error. */
+    OH_HTTP_UNKNOWN_ERROR = (OH_HTTP_NETSTACK_E_BASE + 999)
 } Http_ErrCode;
 
 /**
- * @brief Defines http response code.
- *
+ * @brief Enumerates the result codes of an HTTP response.
  * @since 20
  */
 typedef enum Http_ResponseCode {
-    /** @brief The request was successful. */
+    /** Request succeeded. */
     OH_HTTP_OK = 200,
-    /** @brief Successfully requested and created a new resource. */
+    /** "Created." The request has been successfully sent and a new resource is created. */
     OH_HTTP_CREATED = 201,
-    /** @brief The request has been accepted but has not been processed completely. */
+    /** "Accepted." The request has been accepted for processing, but the processing has not been completed. */
     OH_HTTP_ACCEPTED = 202,
-    /** @brief Unauthorized information. The request was successful. */
+    /**
+     * "Non-Authoritative Information." The request was successfully processed, but the returned response body
+     * contains non-authoritative information.
+     */
     OH_HTTP_NON_AUTHORITATIVE_INFO = 203,
-    /** @brief No content. The server successfully processed, but did not return content. */
+    /**
+     * "No Content." The server has successfully fulfilled the request but there is no additional content to send in
+     * the response payload body.
+     */
     OH_HTTP_NO_CONTENT = 204,
-    /** @brief Reset the content. */
+    /**
+     * "Reset Content." The server has successfully fulfilled the request and desires that the user agent
+     * reset the content.
+     */
     OH_HTTP_RESET = 205,
-    /** @brief Partial content. The server successfully processed some GET requests. */
+    /** "Partial Content." The server has successfully fulfilled the partial GET request for a given resource. */
     OH_HTTP_PARTIAL = 206,
-    /** @brief Multiple options. */
+    /** "Multiple Choices." The requested resource corresponds to any one of a set of representations. */
     OH_HTTP_MULTI_CHOICE = 300,
     /**
-     * @brief Permanently move. The requested resource has been permanently moved to a new URI,
-     * and the returned information will include the new URI. The browser will automatically redirect to the new URI.
+     * "Moved Permanently." The requested resource has been assigned a new permanent URI and any future references
+     * to this resource will be redirected to this URI.
      */
     OH_HTTP_MOVED_PERM = 301,
-    /** @brief Temporary movement. */
+    /** "Moved Temporarily." The requested resource is moved temporarily to a different URI. */
     OH_HTTP_MOVED_TEMP = 302,
-    /** @brief View other addresses. */
+    /** "See Other." The response to the request can be found under a different URI. */
     OH_HTTP_SEE_OTHER = 303,
-    /** @brief Not modified. */
+    /**
+     * "Not Modified." The client has performed a conditional GET request and access is allowed, but the content
+     * has not been modified.
+     */
     OH_HTTP_NOT_MODIFIED = 304,
-    /** @brief Using proxies. */
+    /** "Use Proxy." The requested resource can only be accessed through the proxy. */
     OH_HTTP_USE_PROXY = 305,
-    /** @brief The server cannot understand the syntax error error requested by the client. */
+    /** "Bad Request." The request could not be understood by the server due to incorrect syntax. */
     OH_HTTP_BAD_REQUEST = 400,
-    /** @brief Request for user authentication. */
+    /** "Unauthorized." The request requires user authentication. */
     OH_HTTP_UNAUTHORIZED = 401,
-    /** @brief Reserved for future use. */
+    /** "Payment Required." This code is reserved for future use. */
     OH_HTTP_PAYMENT_REQUIRED = 402,
-    /** @brief The server understands the request from the requesting client, but refuses to execute it. */
+    /** "Forbidden." The server understands the request but refuses to process it. */
     OH_HTTP_FORBIDDEN = 403,
-    /** @brief The server was unable to find resources (web pages) based on the client's request. */
+    /** "Not Found." The server does not find anything matching the Request-URI. */
     OH_HTTP_NOT_FOUND = 404,
-    /** @brief The method in the client request is prohibited. */
+    /**
+     * "Method Not Allowed." The method specified in the request is not allowed for the resource identified by the
+     * Request-URI.
+     */
     OH_HTTP_BAD_METHOD = 405,
-    /** @brief The server unabled to complete request based on the content characteristics requested by the client. */
+    /**
+     * "Not Acceptable." The server cannot fulfill the request according to the content characteristics
+     * of the request.
+     */
     OH_HTTP_NOT_ACCEPTABLE = 406,
-    /** @brief Request authentication of the proxy's identity. */
+    /** "Proxy Authentication Required." The request requires user authentication with the proxy. */
     OH_HTTP_PROXY_AUTH = 407,
-    /** @brief The request took too long and timed out. */
+    /** "Request Timeout." The client fails to generate a request within the timeout period. */
     OH_HTTP_CLIENT_TIMEOUT = 408,
     /**
-     * @brief The server may have returned this code when completing the client's PUT request,
-     * as there was a conflict when the server was processing the request.
+     * "Conflict." The request cannot be fulfilled due to a conflict with the current state of the resource.
+     * Conflicts are most likely to occur in response to a PUT request.
      */
     OH_HTTP_CONFLICT = 409,
-    /** @brief The resource requested by the client no longer exists. */
+    /** "Gone." The requested resource has been deleted permanently and is no longer available. */
     OH_HTTP_GONE = 410,
-    /** @brief The server is unable to process request information sent by the client without Content Length. */
+    /** "Length Required." The server refuses to process the request without a defined Content-Length. */
     OH_HTTP_LENGTH_REQUIRED = 411,
-    /** @brief The prerequisite for requesting information from the client is incorrect. */
+    /** "Precondition Failed." The precondition in the request is incorrect. */
     OH_HTTP_PRECON_FAILED = 412,
-    /** @brief The request was rejected because the requested entity was too large for the server to process. */
+    /**
+     * "Request Entity Too Large." The server refuses to process a request because the request entity is larger
+     * than the server is able to process.
+     */
     OH_HTTP_ENTITY_TOO_LARGE = 413,
-    /** @brief The requested URI is too long (usually a URL) and the server cannot process it. */
+    /** "Request-URI Too Long." The Request-URI is too long for the server to process. */
     OH_HTTP_REQUEST_TOO_LONG = 414,
-    /** @brief The server is unable to process the requested format. */
+    /** "Unsupported Media Type." The server is unable to process the media format in the request. */
     OH_HTTP_UNSUPPORTED_TYPE = 415,
-    /** @brief Requested Range not satisfiable. */
+    /** "Range Not Satisfiable." The server cannot serve the requested ranges. */
     OH_HTTP_RANGE_NOT_MET = 416,
-    /** @brief Internal server error, unable to complete the request. */
+    /**
+     * "Internal Server Error." The server encounters an unexpected error that prevents it from fulfilling
+     * the request.
+     */
     OH_HTTP_INTERNAL_ERROR = 500,
-    /** @brief The server does not support the requested functionality and cannot complete the request. */
+    /** "Not Implemented." The server does not support the function required to fulfill the request. */
     OH_HTTP_NOT_IMPLEMENTED = 501,
-    /** @brief The server acting as a gateway or proxy received an invalid request from the remote server. */
+    /** "Bad Gateway." The server acting as a gateway or proxy receives an invalid response from the upstream server. */
     OH_HTTP_BAD_GATEWAY = 502,
-    /** @brief Due to overload or system maintenance, the server is temporarily unable to process client requests. */
+    /**
+     * "Service Unavailable." The server is currently unable to process the request due to a temporary overload
+     * or system maintenance.
+     */
     OH_HTTP_UNAVAILABLE = 503,
-    /** @brief The server acting as gateway did not obtain requests from the remote server in a timely manner. */
+    /**
+     * "Gateway Timeout." The server acting as a gateway or proxy does not receive requests from the remote
+     * server within the timeout period.
+     */
     OH_HTTP_GATEWAY_TIMEOUT = 504,
-    /** @brief The version of the HTTP protocol requested by the server. */
+    /** "HTTP Version Not Supported." The server does not support the HTTP protocol version used in the request. */
     OH_HTTP_VERSION = 505
 } Http_ResponseCode;
 
@@ -247,16 +275,15 @@ typedef struct Http_Buffer {
 } Http_Buffer;
 
 /**
- * @brief Defines the address Family.
- *
+ * @brief Enumerates the IP address family of the target domain name.
  * @since 20
  */
 typedef enum Http_AddressFamilyType {
-    /** Default, The system automatically selects the IPv4 or IPv6 address of the domain name. */
+    /** Default value. The system determines whether to use the IPv4 or IPv6 address of the target domain name. */
     HTTP_ADDRESS_FAMILY_DEFAULT = 0,
-    /** IPv4, Selects the IPv4 address of the domain name. */
+    /** The system resolves only the IPv4 address of the target domain name and ignores the IPv6 address. */
     HTTP_ADDRESS_FAMILY_ONLY_V4 = 1,
-    /** IPv6, Selects the IPv4 address of the domain name. */
+    /** The system resolves only the IPv6 address of the target domain name and ignores the IPv4 address. */
     HTTP_ADDRESS_FAMILY_ONLY_V6 = 2
 } Http_AddressFamilyType;
 
@@ -287,6 +314,7 @@ typedef enum Http_AddressFamilyType {
  * @since 20
  */
 #define NET_HTTPMETHOD_TRACE "TRACE"
+
 /**
  * @brief Sets the HTTP request method to DELETE.
  *
@@ -316,12 +344,11 @@ typedef enum Http_AddressFamilyType {
 #define NET_HTTP_METHOD_PATCH "CONNECT"
 
 /**
- * @brief Defines the HTTP version.
- *
+ * @brief Enumerates HTTP protocol versions.
  * @since 20
  */
 typedef enum Http_HttpProtocol {
-    /** Default choose by curl. */
+    /** Protocol version complies with cURL. */
     OH_HTTP_NONE = 0,
     /** HTTP 1.1 version. */
     OH_HTTP1_1,
@@ -332,16 +359,15 @@ typedef enum Http_HttpProtocol {
 } Http_HttpProtocol;
 
 /**
- * @brief Defines the Cert Type.
- *
+ * @brief Enumerates certificate types.
  * @since 20
  */
 typedef enum Http_CertType {
-    /** PEM Cert Type. */
+    /** PEM certificate. */
     OH_HTTP_PEM = 0,
-    /** DER Cert Type. */
+    /** DER certificate. */
     OH_HTTP_DER = 1,
-    /** P12 Cert Type. */
+    /** P12 certificate. */
     OH_HTTP_P12 = 2
 } Http_CertType;
 
@@ -414,16 +440,15 @@ typedef struct Http_ClientCert {
 } Http_ClientCert;
 
 /**
- * @brief Proxy type. Used to distinguish different proxy configurations.
- *
+ * @brief Enumerates proxy types.
  * @since 20
  */
 typedef enum Http_ProxyType {
-    /** No proxy */
+    /** No proxy. */
     HTTP_PROXY_NOT_USE,
-    /** System proxy */
+    /** The system proxy is used. */
     HTTP_PROXY_SYSTEM,
-    /** Use custom proxy */
+    /** The custom proxy is used. */
     HTTP_PROXY_CUSTOM
 } Http_ProxyType;
 
@@ -434,10 +459,17 @@ typedef enum Http_ProxyType {
  */
 typedef struct Http_CustomProxy {
     /**
-     * Host name of the proxy server. If no port is explicitly set, the port number is defaulted to **1080**.
+     * Hostname of the proxy server. If no port is explicitly set, the port defaults to 1080.
      */
     const char *host;
+    /**
+     * Host port. The value range is [0, 65535].
+     */
     int32_t port;
+    /**
+     * List of the names of hosts that do not use the HTTP proxy server. The host name can be a domain name,
+     * IP address, or wildcard.
+     */
     const char *exclusionLists;
 } Http_CustomProxy;
 
@@ -611,43 +643,38 @@ typedef struct Http_Request {
 } Http_Request;
 
 /**
- * @brief Callback function that is invoked when response is received.
- *
- * @param response Http response struct, see {@link Http_Response}.
- * @param errCode Response error code.
+ * @brief Callback invoked when an HTTP response is received.
+ * @param response Pointer to the HTTP response. For details, see {@link Http_Response}.
+ * @param errCode Response code.
  * @since 20
  */
 typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t errCode);
 
 /**
- * @brief Callback function that is invoked when a response body is received.
- *
+ * @brief Callback invoked when data is received.
  * @param data Response body.
- * @param length Length of response body.
+ * @param length Length of the response body.
  * @since 20
  */
 typedef void (*Http_OnDataReceiveCallback)(const char *data, size_t length);
 
 /**
- * @brief Callback function invoked during request/response data transmission.
- *
- * @param totalSize total size.
- * @param transferredSize transferred size.
+ * @brief Callback invoked during request/response data transmission.
+ * @param totalSize Total data size.
+ * @param transferredSize Size of transferred data.
  * @since 20
  */
 typedef void (*Http_OnProgressCallback)(uint64_t totalSize, uint64_t transferredSize);
 
 /**
- * @brief Callback called when header are received.
- *
- * @param headers Headers of the received requests, which points to the pointer of {@link Http_Headers}.
+ * @brief Callback invoked when an HTTP response header is received.
+ * @param headers Pointer to the received request header. For details, see {@link Http_Headers}.
  * @since 20
  */
 typedef void (*Http_OnHeaderReceiveCallback)(Http_Headers *headers);
 
 /**
- * @brief Empty callback function for requested DataEnd or Canceled event callback.
- *
+ * @brief Callback invoked when a DataEnd or Cancel event is received.
  * @since 20
  */
 typedef void (*Http_OnVoidCallback)(void);
@@ -687,6 +714,7 @@ typedef struct Http_EventsHandler {
 #ifdef __cplusplus
 }
 #endif
+
 #endif // NET_HTTP_TYPE_H
 
 /** @} */

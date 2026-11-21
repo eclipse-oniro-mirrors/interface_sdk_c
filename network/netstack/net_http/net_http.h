@@ -17,7 +17,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Defines the APIs for http.
+ * @brief Provides C APIs for the HTTP request module.
  *
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
@@ -46,70 +46,72 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates headers for a request or response.
+ * @brief Creates an HTTP request or response header.
  *
- * @return Http_Headers* Pointer to {@link Http_Headers}.
+ * > **NOTE**
+ * >
+ * > You are advised to call {@link OH_Http_DestroyHeaders} to destroy the HTTP request or response header and clear
+ * > resources after the HTTP request is complete.
+ *
+ * @return Pointer to the HTTP request or response header.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
 Http_Headers *OH_Http_CreateHeaders(void);
 
 /**
- * @brief Destroys the headers of a request or response.
- *
- * @param headers Pointer to the {@link Http_Headers} to be destroyed, headers ends with null.
+ * @brief Destroys an HTTP request or response header.
+ * @param headers HTTP request or response header to be destroyed. The header is generated using
+ *     **OH_Http_CreateHeaders**.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
 void OH_Http_DestroyHeaders(Http_Headers **headers);
 
 /**
- * @brief Sets the key-value pair of the request or response header.
- *
- * @param headers Pointer to the {@link Http_Headers} to be set.
- * @param name Key.
- * @param value Value.
- * @return uint32_t 0 - success. 401 - Parameter error. 2300027 - Out of memory.
+ * @brief Sets the key-value pairs of an HTTP request or response header.
+ * @param headers Pointer to **Http_Headers**.
+ * @param name Key name.
+ * @param value Key value.
+ * @return A status code of the uint32_t type. <ul><li>**0**: Success.</li>
+ *     <li>**401**: Invalid parameter.</li>
+ *     <li>**2300027**: Insufficient memory.</li></ul>
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
 uint32_t OH_Http_SetHeaderValue(struct Http_Headers *headers, const char *name, const char *value);
 
 /**
- * @brief Obtains the value of a request or response header by key.
- *
+ * @brief Obtains the value of an HTTP request or response header based on the specified key.
  * @param headers Pointer to {@link Http_Headers}.
- * @param name Key.
- * @return Http_HeaderValue* Pointer to the obtained {@link Http_HeaderValue}.
+ * @param name Key name.
+ * @return Pointer to **Http_HeaderValue**.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
 Http_HeaderValue *OH_Http_GetHeaderValue(Http_Headers *headers, const char *name);
 
 /**
- * @brief Obtains all the key-value pairs of a request or response header.
- *
- * @param headers Pointer to {@link Http_Headersaders}.
- * @return Http_HeaderEntry* Pointers to all obtained key-value pairs {@link Http_HeaderEntry}.
+ * @brief Obtains all key-value pairs from an HTTP request or response header.
+ * @param headers Pointer to {@link Http_Headers}.
+ * @return Pointer to **Http_HeaderEntry**.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
 Http_HeaderEntry *OH_Http_GetHeaderEntries(Http_Headers *headers);
 
 /**
- * @brief Destroys all key-value pairs obtained in {@link OH_Http_GetHeaderEntries}.
- *
- * @param headerEntry Pointer to the {@link Http_HeaderEntry} to be destroyed, headerEntry ends with null.
+ * @brief Destroys all key-value pairs obtained from **OH_Http_GetHeaderEntries**.
+ * @param headerEntry Pointer to **Http_HeaderEntry**, which is obtained through **OH_Http_GetHeaderEntries**.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
 void OH_Http_DestroyHeaderEntries(Http_HeaderEntry **headerEntry);
 
 /**
- * @brief Create a http request.
- *
- * @param url Http request url.
- * @return Pointer of HttpRequest if success; Null otherwise.
+ * @brief Creates an HTTP request.
+ * @param url Request URL.
+ * @return Pointer to **Http_Request**.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */
@@ -118,10 +120,17 @@ Http_Request *OH_Http_CreateRequest(const char *url);
 /**
  * @brief Initiates an HTTP request.
  *
+ * > **NOTE**
+ * >
+ * > You are advised to call {@link OH_Http_Destroy} to interrupt the HTTP request after the HTTP request receives a
+ * > response and the response is processed.
+ *
  * @param request Pointer to {@link Http_Request}.
- * @param callback Http response info, pointer to {@link Http_ResponseCallback}
- * @param handler Callbacks to watch different events, pointer to {@link Http_EventsHandler}.
- * @return 0 if success; non-0 otherwise. For details about error codes, see {@link Http_ErrCode}.
+ * @param callback HTTP response callback.
+ * @param handler HTTP event handler.
+ * @return **0** if the operation is successful; an error code otherwise. For details about the error code description,
+ *     see **Http_ErrCode**.<br>**Http_ResponseCallback** also carries **errCode**, indicating that the operation is
+ *     successful but server communication is abnormal due to some reasons. For details, see **Http_ErrCode**.
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
@@ -129,9 +138,9 @@ Http_Request *OH_Http_CreateRequest(const char *url);
 int OH_Http_Request(Http_Request *request, Http_ResponseCallback callback, Http_EventsHandler handler);
 
 /**
- * @brief Destroy the HTTP request.
- *
- * @param request Pointer to the http request {@link Http_Request}.
+ * @brief Stops the HTTP request.
+ * @param request Pointer to the request to be interrupted, which is a pointer to **Http_Request**. For details, see
+ *     {@link Http_Request}.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  */

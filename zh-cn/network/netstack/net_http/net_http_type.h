@@ -69,113 +69,79 @@ extern "C" {
  * @since 20
  */
 typedef enum Http_ErrCode {
-    /**
-     * 请求成功。
-     */
+    /** 请求成功。 */
     OH_HTTP_RESULT_OK = 0,
-    /** @brief 参数错误。
-* */
+    /** @brief 参数错误。 */
     OH_HTTP_PARAMETER_ERROR = 401,
-    /** @brief 权限校验失败。
-* */
+    /** @brief 权限校验失败。 */
     OH_HTTP_PERMISSION_DENIED = 201,
-    /** @brief 基础错误码偏移。
-* */
+    /** @brief 基础错误码偏移。 */
     OH_HTTP_NETSTACK_E_BASE = 2300000,
-    /** @brief 不支持的协议。
-* */
+    /** @brief 不支持的协议。 */
     OH_HTTP_UNSUPPORTED_PROTOCOL = (OH_HTTP_NETSTACK_E_BASE + 1),
-    /** @brief URL格式错误。
-* */
+    /** @brief URL格式错误。 */
     OH_HTTP_INVALID_URL = (OH_HTTP_NETSTACK_E_BASE + 3),
-    /** @brief 代理服务器域名解析失败。
-* */
+    /** @brief 代理服务器域名解析失败。 */
     OH_HTTP_RESOLVE_PROXY_FAILED = (OH_HTTP_NETSTACK_E_BASE + 5),
-    /** @brief 域名解析失败。
-* */
+    /** @brief 域名解析失败。 */
     OH_HTTP_RESOLVE_HOST_FAILED = (OH_HTTP_NETSTACK_E_BASE + 6),
-    /** @brief 无法连接到服务器。
-* */
+    /** @brief 无法连接到服务器。 */
     OH_HTTP_CONNECT_SERVER_FAILED = (OH_HTTP_NETSTACK_E_BASE + 7),
-    /** @brief 服务器返回非法数据。
-* */
+    /** @brief 服务器返回非法数据。 */
     OH_HTTP_INVALID_SERVER_RESPONSE = (OH_HTTP_NETSTACK_E_BASE + 8),
-    /** @brief 拒绝访问远程资源。
-* */
+    /** @brief 拒绝访问远程资源。 */
     OH_HTTP_ACCESS_REMOTE_DENIED = (OH_HTTP_NETSTACK_E_BASE + 9),
-    /** @brief HTTP2框架层出现错误。
-* */
+    /** @brief HTTP2框架层出现错误。 */
     OH_HTTP_HTTP2_FRAMING_ERROR = (OH_HTTP_NETSTACK_E_BASE + 16),
-    /** @brief 传输了部分文件。
-* */
+    /** @brief 传输了部分文件。 */
     OH_HTTP_TRANSFER_PARTIAL_FILE = (OH_HTTP_NETSTACK_E_BASE + 18),
-    /** @brief 无法将接收到的数据写入磁盘或应用程序。
-* */
+    /** @brief 无法将接收到的数据写入磁盘或应用程序。 */
     OH_HTTP_WRITE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 23),
-    /** @brief 上传失败。
-* */
+    /** @brief 上传失败。 */
     OH_HTTP_UPLOAD_FAILED = (OH_HTTP_NETSTACK_E_BASE + 25),
-    /** @brief 无法打开或读取文件或应用程序中的本地数据。
-* */
+    /** @brief 无法打开或读取文件或应用程序中的本地数据。 */
     OH_HTTP_OPEN_LOCAL_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 26),
-    /** @brief 内存不足。
-* */
+    /** @brief 内存不足。 */
     OH_HTTP_OUT_OF_MEMORY = (OH_HTTP_NETSTACK_E_BASE + 27),
-    /** @brief 操作超时。
-* */
+    /** @brief 操作超时。 */
     OH_HTTP_OPERATION_TIMEOUT = (OH_HTTP_NETSTACK_E_BASE + 28),
-    /** @brief 重定向次数已达到允许的最大值。
-* */
+    /** @brief 重定向次数已达到允许的最大值。 */
     OH_HTTP_TOO_MANY_REDIRECTIONS = (OH_HTTP_NETSTACK_E_BASE + 47),
-    /** @brief 服务器没有返回任何内容（没有标头或数据）。
-* */
+    /** @brief 服务器没有返回任何内容（没有标头或数据）。 */
     OH_HTTP_SERVER_RETURNED_NOTHING = (OH_HTTP_NETSTACK_E_BASE + 52),
-    /** @brief 发送数据失败。
-* */
+    /** @brief 发送数据失败。 */
     OH_HTTP_SEND_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 55),
-    /** @brief 接收数据失败。
-* */
+    /** @brief 接收数据失败。 */
     OH_HTTP_RECEIVE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 56),
-    /** @brief 本地SSL证书错误。
-* */
+    /** @brief 本地SSL证书错误。 */
     OH_HTTP_SSL_CERTIFICATE_ERROR = (OH_HTTP_NETSTACK_E_BASE + 58),
-    /** @brief 指定的加密套件不可用。
-* */
+    /** @brief 指定的加密套件不可用。 */
     OH_HTTP_SSL_CIPHER_USED_ERROR = (OH_HTTP_NETSTACK_E_BASE + 59),
-    /** @brief SSL对等证书或SSH远程密钥无效。
-* */
+    /** @brief SSL对等证书或SSH远程密钥无效。 */
     OH_HTTP_INVALID_SSL_PEER_CERT = (OH_HTTP_NETSTACK_E_BASE + 60),
-    /** @brief HTTP编码格式无效。
-* */
+    /** @brief HTTP编码格式无效。 */
     OH_HTTP_INVALID_ENCODING_FORMAT = (OH_HTTP_NETSTACK_E_BASE + 61),
-    /** @brief 超出最大文件大小。
-* */
+    /** @brief 超出最大文件大小。 */
     OH_HTTP_FILE_TOO_LARGE = (OH_HTTP_NETSTACK_E_BASE + 63),
-    /** @brief 远端磁盘满。
-* */
+    /** @brief 远端磁盘满。 */
     OH_HTTP_REMOTE_DISK_FULL = (OH_HTTP_NETSTACK_E_BASE + 70),
-    /** @brief 远端文件已存在。
-* */
+    /** @brief 远端文件已存在。 */
     OH_HTTP_REMOTE_FILE_EXISTS = (OH_HTTP_NETSTACK_E_BASE + 73),
-    /** @brief SSL CA证书不存在或无法访问。
-* */
+    /** @brief SSL CA证书不存在或无法访问。 */
     OH_HTTP_SSL_CA_NOT_EXIST = (OH_HTTP_NETSTACK_E_BASE + 77),
-    /** @brief 远端文件未找到。
-* */
+    /** @brief 远端文件未找到。 */
     OH_HTTP_REMOTE_FILE_NOT_FOUND = (OH_HTTP_NETSTACK_E_BASE + 78),
-    /** @brief 身份验证错误。
-* */
+    /** @brief 身份验证错误。 */
     OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
     /**
      * @brief 请求已被 HTTP 全局拦截器拦截。
+     *
      * @since 26.0.0
      */
     OH_HTTP_REQUEST_INTERCEPTED = (OH_HTTP_NETSTACK_E_BASE + 996),
-    /** @brief 不允许访问该域。
-* */
+    /** @brief 不允许访问该域。 */
     OH_HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (OH_HTTP_NETSTACK_E_BASE + 998),
-    /** @brief 未知错误。
-* */
+    /** @brief 未知错误。 */
     OH_HTTP_UNKNOWN_ERROR = (OH_HTTP_NETSTACK_E_BASE + 999)
 } Http_ErrCode;
 
@@ -185,117 +151,77 @@ typedef enum Http_ErrCode {
  * @since 20
  */
 typedef enum Http_ResponseCode {
-    /** @brief 请求成功。
-* */
+    /** 请求成功。 */
     OH_HTTP_OK = 200,
-    /** @brief 成功请求并创建新资源。
-* */
+    /** 成功请求并创建新资源。 */
     OH_HTTP_CREATED = 201,
-    /** @brief 请求已被接受但尚未完全处理。
-* */
+    /** 请求已被接受但尚未完全处理。 */
     OH_HTTP_ACCEPTED = 202,
-    /** @brief 请求成功。但是有未授权信息。
-* */
+    /** 请求成功，但是有未授权信息。 */
     OH_HTTP_NON_AUTHORITATIVE_INFO = 203,
-    /** @brief 服务器处理成功，但未返回内容。
-* */
+    /** 服务器处理成功，但未返回内容。 */
     OH_HTTP_NO_CONTENT = 204,
-    /** @brief 重置内容。
-* */
+    /** 重置内容。 */
     OH_HTTP_RESET = 205,
-    /** @brief 服务器成功处理了部分GET请求。
-* */
+    /** 服务器成功处理了部分GET请求。 */
     OH_HTTP_PARTIAL = 206,
-    /** @brief 多种选择。
-* */
+    /** 多种选择。 */
     OH_HTTP_MULTI_CHOICE = 300,
-    /**
-     * @brief 请求的资源已永久移动到新的URI，返回信息将包含新的URI。浏览器将自动重定向到新的URI。
-     *
-     */
+    /** 请求的资源已永久移动到新的URI，返回信息将包含新的URI。浏览器将自动重定向到新的URI。 */
     OH_HTTP_MOVED_PERM = 301,
-    /** @brief 临时重定向。
-* */
+    /** 临时重定向。 */
     OH_HTTP_MOVED_TEMP = 302,
-    /** @brief 查看其他地址。请求的资源已移动到新的URL，客户端应使用GET方法访问该URL。
-* */
+    /** 查看其他地址。请求的资源已移动到新的URL，客户端应使用GET方法访问该URL。 */
     OH_HTTP_SEE_OTHER = 303,
-    /** @brief 请求的资源没有修改。
-* */
+    /** 请求的资源没有修改。 */
     OH_HTTP_NOT_MODIFIED = 304,
-    /** @brief 请求资源需要使用代理访问。
-* */
+    /** 请求资源需要使用代理访问。 */
     OH_HTTP_USE_PROXY = 305,
-    /** @brief 服务器无法理解客户端请求的语法错误。
-* */
+    /** 服务器无法理解客户端请求的语法错误。 */
     OH_HTTP_BAD_REQUEST = 400,
-    /** @brief 请求用户身份验证。
-* */
+    /** 请求用户身份验证。 */
     OH_HTTP_UNAUTHORIZED = 401,
-    /** @brief 保留以供将来使用。
-* */
+    /** 保留以供将来使用。 */
     OH_HTTP_PAYMENT_REQUIRED = 402,
-    /** @brief 服务器理解来自请求客户端的请求，但拒绝执行。
-* */
+    /** 服务器理解来自请求客户端的请求，但拒绝执行。 */
     OH_HTTP_FORBIDDEN = 403,
-    /** @brief 服务器无法根据客户端的请求找到资源。
-* */
+    /** 服务器无法根据客户端的请求找到资源。 */
     OH_HTTP_NOT_FOUND = 404,
-    /** @brief 客户端请求中的方法被禁止。
-* */
+    /** 客户端请求中的方法被禁止。 */
     OH_HTTP_BAD_METHOD = 405,
-    /** @brief 服务器无法根据客户端请求的内容特征完成请求。
-* */
+    /** 服务器无法根据客户端请求的内容特征完成请求。 */
     OH_HTTP_NOT_ACCEPTABLE = 406,
-    /** @brief 请求验证代理人的身份。
-* */
+    /** 请求验证代理人的身份。 */
     OH_HTTP_PROXY_AUTH = 407,
-    /** @brief 请求耗时太长，超时。
-* */
+    /** 请求耗时太长，超时。 */
     OH_HTTP_CLIENT_TIMEOUT = 408,
-    /**
-     * @brief 服务器在完成客户端的PUT请求时可能返回此代码，因为服务器在处理请求时发生冲突。
-     *
-     */
+    /** 服务器在完成客户端的PUT请求时可能返回此代码，因为服务器在处理请求时发生冲突。 */
     OH_HTTP_CONFLICT = 409,
-    /** @brief 客户端请求的资源不再存在。
-* */
+    /** 客户端请求的资源不再存在。 */
     OH_HTTP_GONE = 410,
-    /** @brief 服务器无法处理客户端发送的不带Content Length的请求信息。
-* */
+    /** 服务器无法处理客户端发送的不带Content Length的请求信息。 */
     OH_HTTP_LENGTH_REQUIRED = 411,
-    /** @brief 向客户端请求信息的前提条件不正确。
-* */
+    /** 向客户端请求信息的前提条件不正确。 */
     OH_HTTP_PRECON_FAILED = 412,
-    /** @brief 请求被拒绝，因为请求的实体太大，服务器无法处理。
-* */
+    /** 请求被拒绝，因为请求的实体太大，服务器无法处理。 */
     OH_HTTP_ENTITY_TOO_LARGE = 413,
-    /** @brief 请求的URI超过了服务器能够解析的长度，服务器无法处理。
-* */
+    /** 请求的URI超过了服务器能够解析的长度，服务器无法处理。 */
     OH_HTTP_REQUEST_TOO_LONG = 414,
-    /** @brief 服务器无法处理请求的格式。
-* */
+    /** 服务器无法处理请求的格式。 */
     OH_HTTP_UNSUPPORTED_TYPE = 415,
-    /** @brief 请求的范围无法满足。
-* */
+    /** 请求的范围无法满足。 */
     OH_HTTP_RANGE_NOT_MET = 416,
-    /** @brief 内部服务器错误，无法完成请求。
-* */
+    /** 内部服务器错误，无法完成请求。 */
     OH_HTTP_INTERNAL_ERROR = 500,
-    /** @brief 服务器不支持请求的功能，无法完成请求。
-* */
+    /** 服务器不支持请求的功能，无法完成请求。 */
     OH_HTTP_NOT_IMPLEMENTED = 501,
-    /** @brief 充当网关或代理的服务器从远程服务器收到无效请求。
-* */
+    /** 充当网关或代理的服务器从远程服务器收到无效请求。 */
     OH_HTTP_BAD_GATEWAY = 502,
-    /** @brief 由于超载或系统维护，服务器暂时无法处理客户端请求。
-* */
+    /** 由于超载或系统维护，服务器暂时无法处理客户端请求。 */
     OH_HTTP_UNAVAILABLE = 503,
-    /** @brief 作为网关的服务器没有及时从远程服务器获取请求。
-* */
+    /** 作为网关的服务器没有及时从远程服务器获取请求。 */
     OH_HTTP_GATEWAY_TIMEOUT = 504,
-    /** @brief 服务器请求的HTTP协议版本。
-* */
+    /** 服务器请求的HTTP协议版本。 */
     OH_HTTP_VERSION = 505
 } Http_ResponseCode;
 
@@ -362,6 +288,7 @@ typedef enum Http_AddressFamilyType {
  * @since 20
  */
 #define NET_HTTPMETHOD_TRACE "TRACE"
+
 /**
  * @brief HTTP请求DELETE方法。
  *
@@ -468,7 +395,7 @@ typedef struct Http_HeaderEntry {
      */
     char *key;
     /**
-     * Value of the key in the request or response header. For details, see {@link Http_HeaderValue}.
+     * 请求或者响应的标头中的键对应的值，参考{@link Http_HeaderValue}。
      */
     Http_HeaderValue *value;
     /**
@@ -488,7 +415,7 @@ typedef struct Http_ClientCert {
      */
     char *certPath;
     /**
-     * Certificate type. The default value is **PEM**. For details, see {@link Http_CertType}.
+     * 证书类型，默认是PEM，参考{@link Http_CertType}。
      */
     Http_CertType type;
     /**
@@ -528,10 +455,16 @@ typedef enum Http_ProxyType {
  */
 typedef struct Http_CustomProxy {
     /**
-     * 代理服务器主机名， 如果没有显式设置端口，端口将默认为1080。
+     * 代理服务器主机名，如果没有显式设置端口，端口将默认为1080。
      */
     const char *host;
+    /**
+     * 主机端口。取值范围[0, 65535]。
+     */
     int32_t port;
+    /**
+     * 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式。
+     */
     const char *exclusionLists;
 } Http_CustomProxy;
 
@@ -542,11 +475,11 @@ typedef struct Http_CustomProxy {
  */
 typedef struct Http_Proxy {
     /**
-     * Proxy configuration type. For details, see {@link Http_ProxyType}.
+     * 代理配置类型，参考{@link Http_ProxyType}。
      */
     Http_ProxyType proxyType;
     /**
-     * Custom proxy configuration. For details, see {@link Http_CustomProxy}.
+     * 自定义代理配置信息，参考{@link Http_CustomProxy}。
      */
     Http_CustomProxy customProxy;
 } Http_Proxy;
@@ -602,7 +535,7 @@ typedef struct Http_RequestOptions {
      */
     uint32_t priority;
     /**
-     * Pointer to the HTTP request header. For details, see {@link Http_Headers}.
+     * HTTP请求头，指向Http_Headers的指针，参考{@link Http_Headers}。
      */
     Http_Headers *headers;
     /**
@@ -614,12 +547,11 @@ typedef struct Http_RequestOptions {
      */
     uint32_t connectTimeout;
     /**
-     * HTTP protocol. For details, see {@link Http_HttpProtocol}.
+     * 使用的协议，参考{@link Http_HttpProtocol}。
      */
     Http_HttpProtocol httpProtocol;
     /**
-     * Pointer to the HTTP proxy configuration, which indicates whether to use a proxy. By default, proxy is not used.
-     * For details, see {@link Http_Proxy}.
+     * 代理配置信息，表示是否使用代理，默认不使用代理，参考{@link Http_Proxy}。
      */
     Http_Proxy *httpProxy;
     /**
@@ -635,7 +567,7 @@ typedef struct Http_RequestOptions {
      */
     int64_t resumeTo;
     /**
-     * Pointer to the client certificate configuration. For details, see {@link Http_ClientCert}.
+     * 传输客户端证书配置信息，参考{@link Http_ClientCert}。
      */
     Http_ClientCert *clientCert;
     /**
@@ -643,7 +575,7 @@ typedef struct Http_RequestOptions {
      */
     const char *dnsOverHttps;
     /**
-     * IP address family. For details, see {@link Http_AddressFamilyType}.
+     * 支持解析目标域名时限定地址类型，参考{@link Http_AddressFamilyType}。
      */
     Http_AddressFamilyType addressFamily;
 } Http_RequestOptions;
@@ -655,15 +587,15 @@ typedef struct Http_RequestOptions {
  */
 typedef struct Http_Response {
     /**
-     * HTTP response data. For details, see {@link Http_Buffer}.
+     * HTTP请求响应的数据，参考{@link Http_Buffer}。
      */
     Http_Buffer body;
     /**
-     * HTTP response code. For details, see {@link Http_ResponseCode}.
+     * HTTP请求响应码，参考{@link Http_ResponseCode}。
      */
     Http_ResponseCode responseCode;
     /**
-     * Pointer to the HTTP response header. For details, see {@link Http_Headers}.
+     * HTTP响应的头，指向Http_Headers的指针，参考{@link Http_Headers}。
      */
     Http_Headers *headers;
     /**
@@ -671,7 +603,7 @@ typedef struct Http_Response {
      */
     char *cookies;
     /**
-     * Pointer to the HTTP response timing. For details, see {@link Http_PerformanceTiming}.
+     * HTTP响应时间信息，指向Http_PerformanceTiming的指针，参考{@link Http_PerformanceTiming}。
      */
     Http_PerformanceTiming *performanceTiming;
     /**
@@ -698,7 +630,7 @@ typedef struct Http_Request {
      */
     char *url;
     /**
-     * Pointer to the HTTP request configuration. For details, see {@link Http_RequestOptions}.
+     * HTTP请求配置，指向Http_RequestOptions的指针，参考{@link Http_RequestOptions}。
      */
     Http_RequestOptions *options;
 } Http_Request;
@@ -707,7 +639,7 @@ typedef struct Http_Request {
  * @brief 接收到HTTP响应的回调函数。
  *
  * @param response HTTP响应结构体，指向Http_Response的指针，参考{@link Http_Response}。
- * @param errCode 响应码。
+ * @param errCode HTTP请求错误码。
  * @since 20
  */
 typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t errCode);
@@ -752,27 +684,27 @@ typedef void (*Http_OnVoidCallback)(void);
  */
 typedef struct Http_EventsHandler {
     /**
-     * Callback invoked when a response body is received. For details, see {@link Http_OnDataReceiveCallback}.
+     * 收到响应体时的回调函数，参考{@link Http_OnDataReceiveCallback}。
      */
     Http_OnDataReceiveCallback onDataReceive;
     /**
-     * Callback invoked when an upload is triggered. For details, see {@link Http_OnProgressCallback}.
+     * 上传时调用的回调函数，参考{@link Http_OnProgressCallback}。
      */
     Http_OnProgressCallback onUploadProgress;
     /**
-     * Callback invoked when a download is triggered. For details, see {@link Http_OnProgressCallback}.
+     * 下载时调用的回调函数，参考{@link Http_OnProgressCallback}。
      */
     Http_OnProgressCallback onDownloadProgress;
     /**
-     * Callback invoked when a header is received. For details, see {@link Http_OnHeaderReceiveCallback}.
+     * 收到header时的回调函数，参考{@link Http_OnHeaderReceiveCallback}。
      */
     Http_OnHeaderReceiveCallback onHeadersReceive;
     /**
-     * Callback invoked when the transmission is complete. For details, see {@link Http_OnVoidCallback}.
+     * 传输结束时的回调函数，参考{@link Http_OnVoidCallback}。
      */
     Http_OnVoidCallback onDataEnd;
     /**
-     * Callback invoked when the request is canceled. For details, see {@link Http_OnVoidCallback}.
+     * 请求被取消时的回调函数，参考{@link Http_OnVoidCallback}。
      */
     Http_OnVoidCallback onCanceled;
 } Http_EventsHandler;
@@ -780,6 +712,7 @@ typedef struct Http_EventsHandler {
 #ifdef __cplusplus
 }
 #endif
+
 #endif // NET_HTTP_TYPE_H
 
 /** @} */
