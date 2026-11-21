@@ -134,7 +134,7 @@ int OH_WebSocketClient_Close(struct WebSocket *client, struct WebSocket_CloseOpt
  * > socket leaks may occur and the connection may not be closed after the system memory resources are released.
  *
  * @param client WebSocket client.
- * @return return If the return value is 0, the execution is successful. If the return value is not 0, the execution fails.
+ * @return If the return value is 0, the execution is successful. If the return value is not 0, the execution fails.
  *     For details about the returned value, see {@link WebSocket_ErrCode}.
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetStack
