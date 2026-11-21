@@ -772,8 +772,9 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
  * @brief Sets the configuration name of the processor.
  *
  * @param processor Pointer to the processor, that is, the pointer returned by {@link OH_HiAppEvent_CreateProcessor}.
- * @param configName Configuration name of the data processor, which can contain only letters, digits,
- *     underscores (_), and dollar signs ($). It cannot start with a digit and cannot exceed 256 characters.
+ * @param configName <!--RP1-->Configuration name of the data processor. The value can contain only uppercase
+ *     letters, lowercase letters, digits, underscores(_), and dollar sign($), and cannot start with a digit. The value
+ *     cannot be empty and cannot exceed 256 characters. <!--RP1End-->
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} Operation successful.</li>
  *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The **processor** parameter is empty.</li>

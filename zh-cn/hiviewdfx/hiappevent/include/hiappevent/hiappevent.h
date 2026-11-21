@@ -717,7 +717,7 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
  * @brief 设置处理者的配置名称的接口。
  *
  * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
- * @param configName 数据处理者的配置名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。
+ * @param configName <!--RP1-->数据处理者的配置名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。<!--RP1End-->
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} 接口调用成功</li>
  *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} processor入参为空</li>
