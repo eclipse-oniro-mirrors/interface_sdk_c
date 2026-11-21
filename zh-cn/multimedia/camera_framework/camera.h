@@ -1625,7 +1625,13 @@ typedef enum Camera_PhotoQualityPrioritization {
     /**
      * 性能优先，会降低画质来提升拍照的速度。
      */
-    CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1
+    CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1,
+
+    /**
+     * 低画质优先，以最短的拍摄时间为目标，同时降低图片质量以最小化系统开销。
+     * @since 26.1.0
+     */
+    CAMERA_PHOTO_QUALITY_PRIORITIZATION_LOW_QUALITY = 2
 } Camera_PhotoQualityPrioritization;
 
 /**
