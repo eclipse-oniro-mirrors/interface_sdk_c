@@ -148,8 +148,33 @@ typedef enum CloudDisk_OperationType {
      *
      * @since 26.0.1
      */
-    OH_CLOUD_DISK_CLOSE_MODIFY = 6
+    OH_CLOUD_DISK_CLOSE_MODIFY = 6,
+    /**
+     * @brief Open the file.
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_FILE_OPEN = 7
 } CloudDisk_OperationType;
+
+/**
+ * @brief Array that stores the enumeration of file change types.
+ * @since 26.1.0
+ */
+typedef struct OH_CloudDisk_OperationTypeArray {
+    /**
+     * Pointer to an array of element type {@link CloudDisk_OperationType}.
+     *
+     * @since 26.1.0
+     */
+    const CloudDisk_OperationType *data;
+    /**
+     * Length of an array. The value ranges from 1 to 8.
+     *
+     * @since 26.1.0
+     */
+    int64_t length;
+} OH_CloudDisk_OperationTypeArray;
 
 /**
  * @brief Enumerates the file sync failure causes.
@@ -845,6 +870,44 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolderChanges(const CloudDisk_SyncFolder
                                                       uint64_t startUsn,
                                                       size_t count,
                                                       CloudDisk_ChangesResult **changesResult);
+
+/**
+ * @brief Registers a callback function for listening for synchronization folder changes and filters events by the
+ * specified operation type.
+ *
+ * @param syncFolderPath [in] indicates the synchronization root path. For details, see {@link CloudDisk_PathInfo}.
+ * @param operationTypes [in] indicates the array used to filter file changes. For details, see
+ *     {@link OH_CloudDisk_OperationTypeArray}.
+ * @param callback [in] Registered callback function.
+ * @return If the callback function is successfully registered, {@link CLOUD_DISK_OK} is returned.
+ *     <br>Otherwise, the error code defined in {@link cloud_disk_error_code.h} is returned.
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderChangesWithEvents(
+    const CloudDisk_SyncFolderPath syncFolderPath,
+    const OH_CloudDisk_OperationTypeArray *operationTypes,
+    void (*callback)(const CloudDisk_SyncFolderPath syncFolderPath,
+                     const CloudDisk_ChangeData changeDatas[],
+                     size_t bufferLength));
+
+/**
+ * @brief This interface is used to obtain the change data filtered by operation type in a specified folder.
+ *
+ * @param syncFolderPath [in] indicates the synchronization root path. For details, see {@link CloudDisk_PathInfo}.
+ * @param startUsn [in] indicates the start update sequence number.
+ * @param count [in] indicates the number of files. The value ranges from 1 to 100.
+ * @param operationTypes [in] indicates the array used to filter file changes. For details, see
+ *     {@link OH_CloudDisk_OperationTypeArray}.
+ * @param changesResult [in] indicates the file change query result. For details, see {@link CloudDisk_ChangesResult}.
+ * @return If the function is successfully executed, {@link CLOUD_DISK_OK} is returned.
+ *     <br>Otherwise, the error code defined in {@link cloud_disk_error_code.h} is returned.
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolderChangesWithEvents(const CloudDisk_SyncFolderPath syncFolderPath,
+    int64_t startUsn,
+    int64_t count,
+    const OH_CloudDisk_OperationTypeArray *operationTypes,
+    CloudDisk_ChangesResult **changesResult);
 
 /**
  * @brief Sets the file sync state in the sync root path.
