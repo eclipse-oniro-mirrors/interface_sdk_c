@@ -22,7 +22,6 @@
  * @since 9
  * @version 2.0
  */
-
 /**
  * @file neural_network_core.h
  *
@@ -266,7 +265,7 @@ OH_NN_ReturnCode OH_NNCompilation_SetCache(OH_NNCompilation *compilation, const 
  * In this case, the device performs computing in the default performance mode. \n
  *
  * If this method is called on the device that does not support the setting of the performance mode,
- * the {@link OH_NN_UNAVALIDABLE_DEVICE} error code is returned. \n
+ * the {@link OH_NN_UNAVAILABLE_DEVICE} error code is returned. \n
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param performanceMode Performance mode. For details about the available performance modes,
@@ -288,7 +287,7 @@ OH_NN_ReturnCode OH_NNCompilation_SetPerformanceMode(OH_NNCompilation *compilati
  * The settings will not affect models created by processes with different UIDs on different devices. \n
  *
  * If this method is called on the device that does not support the priority setting,
- * the {@link OH_NN_UNAVALIDABLE_DEVICE} error code is returned. \n
+ * the {@link OH_NN_UNAVAILABLE_DEVICE} error code is returned. \n
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param priority Priority. For details about the optional priorities, see {@link OH_NN_Priority}.
@@ -309,7 +308,7 @@ OH_NN_ReturnCode OH_NNCompilation_SetPriority(OH_NNCompilation *compilation, OH_
  * This option is useless for the model of int type, e.g. int8 type. \n
  *
  * If this method is called on the device that does not support float16,
- * the {@link OH_NN_UNAVALIDABLE_DEVICE} error code is returned. \n
+ * the {@link OH_NN_UNAVAILABLE_DEVICE} error code is returned. \n
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param enableFloat16 Indicates whether to enable float16. If this parameter is set to <b>true</b>, float16 inference
@@ -494,7 +493,7 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetShape(NN_TensorDesc *tensorDesc, const int32
  * Call this method to obtain the shape of the specified {@link NN_TensorDesc} instance. \n
  *
  * if <b>tensorDesc</b>, <b>shape</b> or <b>shapeLength</b> is a null pointer, this method will return error code.
- * As an output parameter, <b>*shape</b> must be a null pointer, otherwise the method will return an error code.
+ * As an output parameter, <b>*shape</b> cannot be a null pointer, otherwise the method will return an error code.
  * Fou example, you should define int32_t* tensorShape = NULL, and pass &tensorShape as the argument of <b>shape</b>. \n
  *
  * You do not need to release the memory of <b>shape</b>. It will be released when <b>tensorDesc</b> is destroied. \n
@@ -810,7 +809,7 @@ OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation);
  * If the <b>outputIndex</b> is greater than or equal to the output tensor number, this method will return error code.
  * The output tensor number can be got by {@link OH_NNExecutor_GetOutputCount}.\n
  *
- * As an output parameter, <b>*shape</b> must be a null pointer, otherwise the method will return an error code.
+ * As an output parameter, <b>*shape</b> cannot be a null pointer., otherwise the method will return an error code.
  * Fou example, you should define int32_t* tensorShape = NULL, and pass &tensorShape as the argument of <b>shape</b>.\n
  *
  * You do not need to release the memory of <b>shape</b>. It will be released when <b>executor</b> is destroied.\n
@@ -925,7 +924,7 @@ NN_TensorDesc *OH_NNExecutor_CreateOutputTensorDesc(const OH_NNExecutor *executo
  * If the <b>index</b> is greater than or equal to the input tensor number, this method will return error code.
  * The input tensor number can be got by {@link OH_NNExecutor_GetInputCount}.\n
  *
- * As an output parameter, <b>*minInputDims</b> or <b>*maxInputDims</b> must be a null pointer, otherwise the method
+ * As an output parameter, <b>*minInputDims</b> or <b>*maxInputDims</b> cannot be a null pointer., otherwise the method
  * will return an error code. For example, you should define int32_t* minInDims = NULL, and pass &minInDims as the
  * argument of <b>minInputDims</b>.\n
  *

@@ -202,7 +202,6 @@ typedef enum {
     OH_NN_UNAVAILABLE_DEVICE = 14
 } OH_NN_ReturnCode;
 
-
 /**
  * @brief Defines the callback function handle for the post-process when the asynchronous execution has been done.
  *
@@ -327,7 +326,6 @@ typedef enum {
     /** float64 */
     OH_NN_FLOAT64 = 12
 } OH_NN_DataType;
-
 
 /**
  * @brief Defines operator types.
@@ -1010,7 +1008,7 @@ typedef enum {
      *       no padding. The excessive pixels will be discarded.
      * * <b>roundMode</b>: Boundary handling method. When the pool cannot completely cover the input feature map,
      *       the output feature map is rounded up, 0 means round down, 1 means round up.
-     * * <b>global</b>: Whether to do global pooling.
+     * * <b>global</b>: Boolean value indicating whether to perform the average pooling operation on the entire input tensor.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
      *
@@ -1031,7 +1029,7 @@ typedef enum {
      *       and the nearest neighbor values are used for padding.
      * * <b>roundMode</b>: Boundary handling method. When the pool cannot completely cover the input feature map,
      *       the output feature map is rounded up, 0 means round down, 1 means round up.
-     * * <b>global</b>: Whether to do global pooling.
+     * * <b>global</b>: Boolean value indicating whether to perform the average pooling operation on the entire input tensor.
      * * <b>activationType</b> is an integer constant which is contained in <b>OH_NN_FuseType</b>.
      *       The specified activation function is called before output.
      *
@@ -1803,7 +1801,11 @@ typedef enum {
      *
      * * <b>axis</b>: dimension for calculating the index of the maximum.
      * * <b>keepDims</b>: indicates whether to maintain the input tensor dimension. The value is a Boolean value.
-     * * <b>topK</b>: Whether to keep the output dimensions the same as the input dimensions.
+     * * <b>topK</b>: number of maximum values to be returned. The default value is **1**. 
+     *      If **topK** is equal to **1**, the index of the max value in the input tensor is returned. 
+     *      If **topK** is greater than **1**, the indices of the first top K max values in the input tensor is returned.
+     *      Returns the indices of the first top K maximum values in the input tensor. 
+     *      If multiple values in the input tensor are the max value, any of them is returned.
      * * <b>outMaxValue</b>: Return the index if the value is false. Return the value if the value is true.
      *       The default value is false.
      *
@@ -2224,7 +2226,7 @@ typedef enum {
      * * <b>wIh</b>: Weight tensor of input-layer to hidden-layer,
      *       shape is [numDirections* numLayers, 4 * hiddenSize, inputSize].
      * * <b>wHh</b>: Weight tensor of hidden-layer to hidden-layer,
-     *       shape is [numDirections * numLayers, 4 * hiddenSize, hiddenSize].
+     *       shape is [numDirections * numLayers, 4 * hiddenSize, inputSize].
      * * <b>bias</b>: Bias tensor of input-layer and hidden-layer to hidden-layer,
      *       shape is [numDirections* numLayers, 8 * hiddenSize].
      * * <b>hx</b>: Init state of hidden-layer, shape is [numDirections * numLayers, batchSize, hiddenSize].
@@ -3500,12 +3502,12 @@ typedef enum {
      *  @since 12
      */
     OH_NN_DETECTION_POST_PROCESS_MAX_DETECTIONS = 135,
-    /** This enumerated value is used when the tensor is used as the <b>detectionsPerClass</b> parameter
+    /** This enumerated value is used when the tensor is used as the <b>perClass</b> parameter
      *  of the detectionPostProcess operator.
      *  @since 12
      */
     OH_NN_DETECTION_POST_PROCESS_DETECTIONS_PER_CLASS = 136,
-    /** This enumerated value is used when the tensor is used as the <b>maxClassesPerDetection</b> parameter
+    /** This enumerated value is used when the tensor is used as the <b>maxClassPerDetection</b> parameter
      *  of the detectionPostProcess operator.
      *  @since 12
      */
@@ -3638,7 +3640,7 @@ typedef enum {
      *  of the ReduceL2 operator.
      *  @since 12
      */
-    OH_NN_REDUCE_L2_COEFF = 162,
+    OH_NN_REDUCE_L2_COEFF = 162
 } OH_NN_TensorType;
 
 /**

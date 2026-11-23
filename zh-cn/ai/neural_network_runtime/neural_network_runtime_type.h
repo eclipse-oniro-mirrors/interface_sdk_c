@@ -106,63 +106,68 @@ typedef struct NN_Tensor NN_Tensor;
  * @version 1.0
  */
 typedef enum {
-    /** 无性能模式偏好。 */
+/** 无性能模式偏好。 */
     OH_NN_PERFORMANCE_NONE = 0,
-    /** 低能耗模式。 */
+/** 低能耗模式。 */
     OH_NN_PERFORMANCE_LOW = 1,
-    /** 中性能模式。 */
+/** 中性能模式。 */
     OH_NN_PERFORMANCE_MEDIUM = 2,
-    /** 高性能模式。 */
+/** 高性能模式。 */
     OH_NN_PERFORMANCE_HIGH = 3,
-    /** 极致性能模式。 */
+/** 极致性能模式。 */
     OH_NN_PERFORMANCE_EXTREME = 4
 } OH_NN_PerformanceMode;
 
 /**
- * @brief 模型推理任务优先级
+ * @brief 模型推理任务优先级。
  *
  * @since 9
  * @version 1.0
  */
 typedef enum {
-    /** 无优先级偏好。 */
+/** 无优先级偏好。 */
     OH_NN_PRIORITY_NONE = 0,
-    /** 低优先级。 */
+/** 低优先级。 */
     OH_NN_PRIORITY_LOW = 1,
-    /** 中优先级。 */
+/** 中优先级。 */
     OH_NN_PRIORITY_MEDIUM = 2,
-    /** 高优先级。 */
+/** 高优先级。 */
     OH_NN_PRIORITY_HIGH = 3
 } OH_NN_Priority;
 
 /**
- * @brief Neural Network Runtime 定义的错误码类型。
+ * @brief Neural Network Runtime定义的错误码类型。
  *
  * @since 9
  * @version 2.0
  */
 typedef enum {
-    /** 操作成功。 */
+/** 操作成功。 */
     OH_NN_SUCCESS = 0,
-    /** 操作失败。 */
+/** 操作失败。 */
     OH_NN_FAILED = 1,
-    /** 非法参数。 */
+/** 非法参数。 */
     OH_NN_INVALID_PARAMETER = 2,
-    /** 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。 */
+    /**
+     * 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。
+     *
+     * @since 9
+     */
     OH_NN_MEMORY_ERROR = 3,
-    /** 非法操作。 */
+/** 非法操作。 */
     OH_NN_OPERATION_FORBIDDEN = 4,
-    /** 空指针异常。 */
+/** 空指针异常。 */
     OH_NN_NULL_PTR = 5,
-    /** 无效文件。 */
+/** 无效文件。 */
     OH_NN_INVALID_FILE = 6,
     /**
      * 硬件发生错误，错误可能包含：HDL服务崩溃。
      * @deprecated since 11
      * @useinstead {@link OH_NN_UNAVAILABLE_DEVICE}
+     * @since 9
      */
     OH_NN_UNAVALIDABLE_DEVICE = 7,
-    /** 非法路径。 */
+/** 非法路径。 */
     OH_NN_INVALID_PATH = 8,
     /**
      * 执行超时。
@@ -227,32 +232,32 @@ typedef void (*NN_OnRunDone)(void *userData, OH_NN_ReturnCode errCode, void *out
 typedef void (*NN_OnServiceDied)(void *userData);
 
 /**
- * @brief Neural Network Runtime 融合算子中激活函数的类型。
+ * @brief Neural Network Runtime融合算子中激活函数的类型。
  *
  * @since 9
  * @version 1.0
  */
 typedef enum : int8_t {
-    /** 未指定融合激活函数。 */
+/** 未指定融合激活函数。 */
     OH_NN_FUSED_NONE = 0,
-    /** 融合relu激活函数。 */
+/** 融合relu激活函数。 */
     OH_NN_FUSED_RELU = 1,
-    /** 融合relu6激活函数。 */
+/** 融合relu6激活函数。 */
     OH_NN_FUSED_RELU6 = 2
 } OH_NN_FuseType;
 
 /**
- * @brief ；张量数据的排布类型。
+ * @brief 张量数据的排布类型。
  *
  * @since 9
  * @version 2.0
  */
 typedef enum {
-    /** 当张量没有特定的排布类型时（如标量或矢量），使用本枚举值。 */
+/** 当张量没有特定的排布类型时（如标量或矢量），使用本枚举值。 */
     OH_NN_FORMAT_NONE = 0,
-    /** 当张量按照NCHW的格式排布数据时，使用本枚举值。 */
+/** 当张量按照NCHW的格式排布数据时，使用本枚举值。 */
     OH_NN_FORMAT_NCHW = 1,
-    /** 当张量按照NHWC的格式排布数据时，使用本枚举值。 */
+/** 当张量按照NHWC的格式排布数据时，使用本枚举值。 */
     OH_NN_FORMAT_NHWC = 2,
     /** 当张量按照ND的格式排布数据时，使用本枚举值。
      * @since 11
@@ -261,59 +266,59 @@ typedef enum {
 } OH_NN_Format;
 
 /**
- * @brief Neural Network Runtime 支持的设备类型
+ * @brief Neural Network Runtime支持的设备类型
  *
  * @since 9
  * @version 1.0
  */
 typedef enum {
-    /** 不属于CPU、GPU、专用加速器的设备。 */
+/** 不属于CPU、GPU、专用加速器的设备。 */
     OH_NN_OTHERS = 0,
-    /** CPU设备。 */
+/** CPU设备。 */
     OH_NN_CPU = 1,
-    /** GPU设备。 */
+/** GPU设备。 */
     OH_NN_GPU = 2,
-    /** 专用硬件加速器。 */
-    OH_NN_ACCELERATOR = 3，
+/** 专用硬件加速器。 */
+    OH_NN_ACCELERATOR = 3
 } OH_NN_DeviceType;
 
 /**
- * @brief Neural Network Runtime 支持的数据类型。
+ * @brief Neural Network Runtime支持的数据类型。
  *
  * @since 9
  * @version 1.0
  */
 typedef enum {
-    /** 张量数据类型未知。 */
+/** 张量数据类型未知。 */
     OH_NN_UNKNOWN = 0,
-    /** 张量数据类型为bool。 */
+/** 张量数据类型为bool。 */
     OH_NN_BOOL = 1,
-    /** 张量数据类型为int8。 */
+/** 张量数据类型为int8。 */
     OH_NN_INT8 = 2,
-    /** 张量数据类型为int16。 */
+/** 张量数据类型为int16。 */
     OH_NN_INT16 = 3,
-    /** 张量数据类型为int32。 */
+/** 张量数据类型为int32。 */
     OH_NN_INT32 = 4,
-    /** 张量数据类型为int64。 */
+/** 张量数据类型为int64。 */
     OH_NN_INT64 = 5,
-    /** 张量数据类型为uint8。 */
+/** 张量数据类型为uint8。 */
     OH_NN_UINT8 = 6,
-    /** 张量数据类型为uint16。 */
+/** 张量数据类型为uint16。 */
     OH_NN_UINT16 = 7,
-    /** 张量数据类型为uint32。 */
+/** 张量数据类型为uint32。 */
     OH_NN_UINT32 = 8,
-    /** 张量数据类型为uint64。 */
+/** 张量数据类型为uint64。 */
     OH_NN_UINT64 = 9,
-    /** 张量数据类型为float16。 */
+/** 张量数据类型为float16。 */
     OH_NN_FLOAT16 = 10,
-    /** 张量数据类型为float32。 */
+/** 张量数据类型为float32。 */
     OH_NN_FLOAT32 = 11,
-    /** 张量数据类型为float64。 */
+/** 张量数据类型为float64。 */
     OH_NN_FLOAT64 = 12
 } OH_NN_DataType;
 
 /**
- * @brief Neural Network Runtime 支持算子的类型。
+ * @brief Neural Network Runtime支持算子的类型。
  *
  * @since 9
  * @version 2.0
@@ -1194,7 +1199,7 @@ typedef enum {
     OH_NN_OPS_SQUARED_DIFFERENCE = 34,
 
     /**
-     * 去除axis中， 长度为1的维度。 支持int8量化输入假设input的shape为[2，1，1，2，2]， axis为[0,1]，
+     * 去除axis中，长度为1的维度。支持int8量化输入假设input的shape为[2，1，1，2，2]，axis为[0,1]，
      * 则output的shape为[2，1，2，2]。第0维到第一维之间，长度为0的维度被去除。
      *
      * 输入：\n
@@ -2598,10 +2603,10 @@ typedef enum {
 } OH_NN_OperationType;
 
 /**
- * @brief 张量的类型。 \n
+ * @brief 张量的类型。
  *
  * 张量通常用于设置模型的输入、输出和算子参数。作为模型（或算子）的输入和输出时，需要将张量类型设置为{@link OH_NN_TENSOR}；
- * 当张量作为算子参数时，需要选择除{@link OH_NN_TENSOR}以外合适的枚举值，作为张量的类型。\n
+ * 当张量作为算子参数时，需要选择除{@link OH_NN_TENSOR}以外合适的枚举值，作为张量的类型。
  * 假设正在设置{@link OH_NN_OPS_CONV2D}算子的pad参数，则需要将{@link OH_NN_Tensor}实例的type属性设置为
  * {@link OH_NN_PAD}。其他算子参数的设置以此类推，枚举值的命名遵守 OH_NN_{算子名词}_{属性名} 的格式。
  *
@@ -2609,194 +2614,194 @@ typedef enum {
  * @version 2.0
  */
 typedef enum {
-    /** 当张量作为模型（或算子）的输入或输出时，使用本枚举值。 */
+/** 当张量作为模型（或算子）的输入或输出时，使用本枚举值。 */
     OH_NN_TENSOR = 0,
 
-    /** 当张量作为Add算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Add算子的activationType参数时，使用本枚举值。 */
     OH_NN_ADD_ACTIVATIONTYPE = 1,
 
-    /** 当张量作为AvgPool算子的kernelSize参数时，使用本枚举值。 */
+/** 当张量作为AvgPool算子的kernelSize参数时，使用本枚举值。 */
     OH_NN_AVG_POOL_KERNEL_SIZE = 2,
-    /** 当张量作为AvgPool算子的stride参数时，使用本枚举值。 */
+/** 当张量作为AvgPool算子的stride参数时，使用本枚举值。 */
     OH_NN_AVG_POOL_STRIDE = 3,
-    /** 当张量作为AvgPool算子的padMode参数时，使用本枚举值。 */
+/** 当张量作为AvgPool算子的padMode参数时，使用本枚举值。 */
     OH_NN_AVG_POOL_PAD_MODE = 4,
-    /** 当张量作为AvgPool算子的pad参数时，使用本枚举值。 */
+/** 当张量作为AvgPool算子的pad参数时，使用本枚举值。 */
     OH_NN_AVG_POOL_PAD = 5,
-    /** 当张量作为AvgPool算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为AvgPool算子的activationType参数时，使用本枚举值。 */
     OH_NN_AVG_POOL_ACTIVATION_TYPE = 6,
 
-    /** 当张量作为BatchNorm算子的epsilon参数时，使用本枚举值。 */
+/** 当张量作为BatchNorm算子的epsilon参数时，使用本枚举值。 */
     OH_NN_BATCH_NORM_EPSILON = 7,
 
-    /** 当张量作为BatchToSpaceND算子的blockSize参数时，使用本枚举值。 */
+/** 当张量作为BatchToSpaceND算子的blockSize参数时，使用本枚举值。 */
     OH_NN_BATCH_TO_SPACE_ND_BLOCKSIZE = 8,
-    /** 当张量作为BatchToSpaceND算子的crops参数时，使用本枚举值。 */
+/** 当张量作为BatchToSpaceND算子的crops参数时，使用本枚举值。 */
     OH_NN_BATCH_TO_SPACE_ND_CROPS = 9,
 
-    /** 当张量作为Concat算子的axis参数时，使用本枚举值。 */
+/** 当张量作为Concat算子的axis参数时，使用本枚举值。 */
     OH_NN_CONCAT_AXIS = 10,
 
-    /** 当张量作为Conv2D算子的strides参数时，使用本枚举值。 */
+/** 当张量作为Conv2D算子的strides参数时，使用本枚举值。 */
     OH_NN_CONV2D_STRIDES = 11,
-    /** 当张量作为Conv2D算子的pad参数时，使用本枚举值。 */
+/** 当张量作为Conv2D算子的pad参数时，使用本枚举值。 */
     OH_NN_CONV2D_PAD = 12,
-    /** 当张量作为Conv2D算子的dilation参数时，使用本枚举值。 */
+/** 当张量作为Conv2D算子的dilation参数时，使用本枚举值。 */
     OH_NN_CONV2D_DILATION = 13,
-    /** 当张量作为Conv2D算子的padMode参数时，使用本枚举值。 */
+/** 当张量作为Conv2D算子的padMode参数时，使用本枚举值。 */
     OH_NN_CONV2D_PAD_MODE = 14,
-    /** 当张量作为Conv2D算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Conv2D算子的activationType参数时，使用本枚举值。 */
     OH_NN_CONV2D_ACTIVATION_TYPE = 15,
-    /** 当张量作为Conv2D算子的group参数时，使用本枚举值。 */
+/** 当张量作为Conv2D算子的group参数时，使用本枚举值。 */
     OH_NN_CONV2D_GROUP = 16,
 
-    /** 当张量作为Conv2DTranspose算子的strides参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的strides参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_STRIDES = 17,
-    /** 当张量作为Conv2DTranspose算子的pad参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的pad参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_PAD = 18,
-    /** 当张量作为Conv2DTranspose算子的dilation参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的dilation参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_DILATION = 19,
-    /** 当张量作为Conv2DTranspose算子的outputPaddings参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的outputPaddings参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_OUTPUT_PADDINGS = 20,
-    /** 当张量作为Conv2DTranspose算子的padMode参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的padMode参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_PAD_MODE = 21,
-    /** 当张量作为Conv2DTranspose算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的activationType参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_ACTIVATION_TYPE = 22,
-    /** 当张量作为Conv2DTranspose算子的group参数时，使用本枚举值。 */
+/** 当张量作为Conv2DTranspose算子的group参数时，使用本枚举值。 */
     OH_NN_CONV2D_TRANSPOSE_GROUP = 23,
 
-    /** 当张量作为DepthwiseConv2dNative算子的strides参数时，使用本枚举值。 */
+/** 当张量作为DepthwiseConv2dNative算子的strides参数时，使用本枚举值。 */
     OH_NN_DEPTHWISE_CONV2D_NATIVE_STRIDES = 24,
-    /** 当张量作为DepthwiseConv2dNative算子的pad参数时，使用本枚举值。 */
+/** 当张量作为DepthwiseConv2dNative算子的pad参数时，使用本枚举值。 */
     OH_NN_DEPTHWISE_CONV2D_NATIVE_PAD = 25,
-    /** 当张量作为DepthwiseConv2dNative算子的dilation参数时，使用本枚举值。 */
+/** 当张量作为DepthwiseConv2dNative算子的dilation参数时，使用本枚举值。 */
     OH_NN_DEPTHWISE_CONV2D_NATIVE_DILATION = 26,
-    /** 当张量作为DepthwiseConv2dNative算子的padMode参数时，使用本枚举值。 */
+/** 当张量作为DepthwiseConv2dNative算子的padMode参数时，使用本枚举值。 */
     OH_NN_DEPTHWISE_CONV2D_NATIVE_PAD_MODE = 27,
-    /** 当张量作为DepthwiseConv2dNative算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为DepthwiseConv2dNative算子的activationType参数时，使用本枚举值。 */
     OH_NN_DEPTHWISE_CONV2D_NATIVE_ACTIVATION_TYPE = 28,
 
-    /** 当张量作为Div算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Div算子的activationType参数时，使用本枚举值。 */
     OH_NN_DIV_ACTIVATIONTYPE = 29,
 
-    /** 当张量作为Eltwise算子的mode参数时，使用本枚举值。 */
+/** 当张量作为Eltwise算子的mode参数时，使用本枚举值。 */
     OH_NN_ELTWISE_MODE = 30,
 
-    /** 当张量作为FullConnection算子的axis参数时，使用本枚举值。 */
+/** 当张量作为FullConnection算子的axis参数时，使用本枚举值。 */
     OH_NN_FULL_CONNECTION_AXIS = 31,
-    /** 当张量作为FullConnection算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为FullConnection算子的activationType参数时，使用本枚举值。 */
     OH_NN_FULL_CONNECTION_ACTIVATIONTYPE = 32,
 
-    /** 当张量作为Matmul算子的transposeA参数时，使用本枚举值。 */
+/** 当张量作为Matmul算子的transposeA参数时，使用本枚举值。 */
     OH_NN_MATMUL_TRANSPOSE_A = 33,
-    /** 当张量作为Matmul算子的transposeB参数时，使用本枚举值。 */
+/** 当张量作为Matmul算子的transposeB参数时，使用本枚举值。 */
     OH_NN_MATMUL_TRANSPOSE_B = 34,
-    /** 当张量作为Matmul算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Matmul算子的activationType参数时，使用本枚举值。 */
     OH_NN_MATMUL_ACTIVATION_TYPE = 35,
 
-    /** 当张量作为MaxPool算子的kernelSize参数时，使用本枚举值。 */
+/** 当张量作为MaxPool算子的kernelSize参数时，使用本枚举值。 */
     OH_NN_MAX_POOL_KERNEL_SIZE = 36,
-    /** 当张量作为MaxPool算子的stride参数时，使用本枚举值。 */
+/** 当张量作为MaxPool算子的stride参数时，使用本枚举值。 */
     OH_NN_MAX_POOL_STRIDE = 37,
-    /** 当张量作为MaxPool算子的padMode参数时，使用本枚举值。 */
+/** 当张量作为MaxPool算子的padMode参数时，使用本枚举值。 */
     OH_NN_MAX_POOL_PAD_MODE = 38,
-    /** 当张量作为MaxPool算子的pad参数时，使用本枚举值。 */
+/** 当张量作为MaxPool算子的pad参数时，使用本枚举值。 */
     OH_NN_MAX_POOL_PAD = 39,
-    /** 当张量作为MaxPool算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为MaxPool算子的activationType参数时，使用本枚举值。 */
     OH_NN_MAX_POOL_ACTIVATION_TYPE = 40,
 
-    /** 当张量作为Mul算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Mul算子的activationType参数时，使用本枚举值。 */
     OH_NN_MUL_ACTIVATION_TYPE = 41,
 
-    /** 当张量作为OneHot算子的axis参数时，使用本枚举值。 */
+/** 当张量作为OneHot算子的axis参数时，使用本枚举值。 */
     OH_NN_ONE_HOT_AXIS = 42,
 
-    /** 当张量作为Pad算子的constantValue参数时，使用本枚举值。 */
+/** 当张量作为Pad算子的constantValue参数时，使用本枚举值。 */
     OH_NN_PAD_CONSTANT_VALUE = 43,
 
-    /** 当张量作为Scale算子的activationType参数时，使用本枚举值。 */
+/** 当张量作为Scale算子的activationType参数时，使用本枚举值。 */
     OH_NN_SCALE_ACTIVATIONTYPE = 44,
-    /** 当张量作为Scale算子的axis参数时，使用本枚举值。 */
+/** 当张量作为Scale算子的axis参数时，使用本枚举值。 */
     OH_NN_SCALE_AXIS = 45,
 
-    /** 当张量作为Softmax算子的axis参数时，使用本枚举值。 */
+/** 当张量作为Softmax算子的axis参数时，使用本枚举值。 */
     OH_NN_SOFTMAX_AXIS = 46,
 
-    /** 当张量作为SpaceToBatchND算子的BlockShape参数时，使用本枚举值。 */
+/** 当张量作为SpaceToBatchND算子的BlockShape参数时，使用本枚举值。 */
     OH_NN_SPACE_TO_BATCH_ND_BLOCK_SHAPE = 47,
-    /** 当张量作为SpaceToBatchND算子的Paddings参数时，使用本枚举值。 */
+/** 当张量作为SpaceToBatchND算子的Paddings参数时，使用本枚举值。 */
     OH_NN_SPACE_TO_BATCH_ND_PADDINGS = 48,
 
-    /** 当张量作为Split算子的Axis参数时，使用本枚举值。 */
+/** 当张量作为Split算子的Axis参数时，使用本枚举值。 */
     OH_NN_SPLIT_AXIS = 49,
-    /** 当张量作为Split算子的OutputNum参数时，使用本枚举值。 */
+/** 当张量作为Split算子的OutputNum参数时，使用本枚举值。 */
     OH_NN_SPLIT_OUTPUT_NUM = 50,
-    /** 当张量作为Split算子的SizeSplits参数时，使用本枚举值。 */
+/** 当张量作为Split算子的SizeSplits参数时，使用本枚举值。 */
     OH_NN_SPLIT_SIZE_SPLITS = 51,
 
-    /** 当张量作为Squeeze算子的Axis参数时，使用本枚举值。 */
+/** 当张量作为Squeeze算子的Axis参数时，使用本枚举值。 */
     OH_NN_SQUEEZE_AXIS = 52,
 
-    /** 当张量作为Stack算子的Axis参数时，使用本枚举值。 */
+/** 当张量作为Stack算子的Axis参数时，使用本枚举值。 */
     OH_NN_STACK_AXIS = 53,
 
-    /** 当张量作为StridedSlice算子的BeginMask参数时，使用本枚举值。 */
+/** 当张量作为StridedSlice算子的BeginMask参数时，使用本枚举值。 */
     OH_NN_STRIDED_SLICE_BEGIN_MASK = 54,
-    /** 当张量作为StridedSlice算子的EndMask参数时，使用本枚举值。 */
+/** 当张量作为StridedSlice算子的EndMask参数时，使用本枚举值。 */
     OH_NN_STRIDED_SLICE_END_MASK = 55,
-    /** 当张量作为StridedSlice算子的EllipsisMask参数时，使用本枚举值。 */
+/** 当张量作为StridedSlice算子的EllipsisMask参数时，使用本枚举值。 */
     OH_NN_STRIDED_SLICE_ELLIPSIS_MASK = 56,
-    /** 当张量作为StridedSlice算子的NewAxisMask参数时，使用本枚举值。 */
+/** 当张量作为StridedSlice算子的NewAxisMask参数时，使用本枚举值。 */
     OH_NN_STRIDED_SLICE_NEW_AXIS_MASK = 57,
-    /** 当张量作为StridedSlice算子的ShrinkAxisMask参数时，使用本枚举值。 */
+/** 当张量作为StridedSlice算子的ShrinkAxisMask参数时，使用本枚举值。 */
     OH_NN_STRIDED_SLICE_SHRINK_AXIS_MASK = 58,
 
-    /** 当张量作为Sub算子的ActivationType参数时，使用本枚举值。 */
+/** 当张量作为Sub算子的ActivationType参数时，使用本枚举值。 */
     OH_NN_SUB_ACTIVATIONTYPE = 59,
 
-    /** 当张量作为ReduceMean算子的keepDims参数时，使用本枚举值。 */
+/** 当张量作为ReduceMean算子的keepDims参数时，使用本枚举值。 */
     OH_NN_REDUCE_MEAN_KEEP_DIMS = 60,
 
-    /** 当张量作为ResizeBilinear算子的newHeight参数时，使用本枚举值。 */
+/** 当张量作为ResizeBilinear算子的newHeight参数时，使用本枚举值。 */
     OH_NN_RESIZE_BILINEAR_NEW_HEIGHT = 61,
-    /** 当张量作为ResizeBilinear算子的newWidth参数时，使用本枚举值。 */
+/** 当张量作为ResizeBilinear算子的newWidth参数时，使用本枚举值。 */
     OH_NN_RESIZE_BILINEAR_NEW_WIDTH = 62,
-    /** 当张量作为ResizeBilinear算子的preserveAspectRatio参数时，使用本枚举值。 */
+/** 当张量作为ResizeBilinear算子的preserveAspectRatio参数时，使用本枚举值。 */
     OH_NN_RESIZE_BILINEAR_PRESERVE_ASPECT_RATIO = 63,
-    /** 当张量作为ResizeBilinear算子的coordinateTransformMode参数时，使用本枚举值。 */
+/** 当张量作为ResizeBilinear算子的coordinateTransformMode参数时，使用本枚举值。 */
     OH_NN_RESIZE_BILINEAR_COORDINATE_TRANSFORM_MODE = 64,
-    /** 当张量作为ResizeBilinear算子的excludeOutside参数时，使用本枚举值。 */
+/** 当张量作为ResizeBilinear算子的excludeOutside参数时，使用本枚举值。 */
     OH_NN_RESIZE_BILINEAR_EXCLUDE_OUTSIDE = 65,
 
-    /** 当张量作为LayerNorm算子的beginNormAxis参数时，使用本枚举值。 */
+/** 当张量作为LayerNorm算子的beginNormAxis参数时，使用本枚举值。 */
     OH_NN_LAYER_NORM_BEGIN_NORM_AXIS = 66,
-    /** 当张量作为LayerNorm算子的epsilon参数时，使用本枚举值。 */
+/** 当张量作为LayerNorm算子的epsilon参数时，使用本枚举值。 */
     OH_NN_LAYER_NORM_EPSILON = 67,
-    /** 当张量作为LayerNorm算子的beginParamsAxis参数时，使用本枚举值。 */
+/** 当张量作为LayerNorm算子的beginParamsAxis参数时，使用本枚举值。 */
     OH_NN_LAYER_NORM_BEGIN_PARAM_AXIS = 68,
-    /** 当张量作为LayerNorm算子的elementwiseAffine参数时，使用本枚举值。 */
+/** 当张量作为LayerNorm算子的elementwiseAffine参数时，使用本枚举值。 */
     OH_NN_LAYER_NORM_ELEMENTWISE_AFFINE = 69,
 
-    /** 当张量作为ReduceProd算子的keepDims参数时，使用本枚举值。 */
+/** 当张量作为ReduceProd算子的keepDims参数时，使用本枚举值。 */
     OH_NN_REDUCE_PROD_KEEP_DIMS = 70,
 
-    /** 当张量作为ReduceAll算子的keepDims参数时，使用本枚举值。 */
+/** 当张量作为ReduceAll算子的keepDims参数时，使用本枚举值。 */
     OH_NN_REDUCE_ALL_KEEP_DIMS = 71,
 
-    /** 当张量作为QuantDTypeCast算子的srcT参数时，使用本枚举值。 */
+/** 当张量作为QuantDTypeCast算子的srcT参数时，使用本枚举值。 */
     OH_NN_QUANT_DTYPE_CAST_SRC_T = 72,
-    /** 当张量作为QuantDTypeCast算子的dstT参数时，使用本枚举值。 */
+/** 当张量作为QuantDTypeCast算子的dstT参数时，使用本枚举值。 */
     OH_NN_QUANT_DTYPE_CAST_DST_T = 73,
 
-    /** 当张量作为Topk算子的Sorted参数时，使用本枚举值。 */
+/** 当张量作为Topk算子的Sorted参数时，使用本枚举值。 */
     OH_NN_TOP_K_SORTED = 74,
 
-    /** 当张量作为ArgMax算子的axis参数时，使用本枚举值。 */
+/** 当张量作为ArgMax算子的axis参数时，使用本枚举值。 */
     OH_NN_ARG_MAX_AXIS = 75,
-    /** 当张量作为ArgMax算子的keepDims参数时，使用本枚举值。 */
+/** 当张量作为ArgMax算子的keepDims参数时，使用本枚举值。 */
     OH_NN_ARG_MAX_KEEPDIMS = 76,
 
-    /** 当张量作为Unsqueeze算子的Axis参数时，使用本枚举值。 */
+/** 当张量作为Unsqueeze算子的Axis参数时，使用本枚举值。 */
     OH_NN_UNSQUEEZE_AXIS = 77,
 
     /** 当张量作为Unstack算子的axis参数时，使用本枚举值。
@@ -3174,7 +3179,7 @@ typedef enum {
     /** 当张量作为ReduceL2算子的coeff参数时，使用本枚举值。
      *  @since 12
      */
-    OH_NN_REDUCE_L2_COEFF = 162,
+    OH_NN_REDUCE_L2_COEFF = 162
 } OH_NN_TensorType;
 
 /**
@@ -3184,9 +3189,9 @@ typedef enum {
  * @version 1.0
  */
 typedef struct OH_NN_UInt32Array {
-    /** 无符号整型数组的指针。 */
+/** 无符号整型数组的指针。 */
     uint32_t *data;
-    /** 数组长度。 */
+/** 数组长度。 */
     uint32_t size;
 } OH_NN_UInt32Array;
 
@@ -3194,7 +3199,6 @@ typedef struct OH_NN_UInt32Array {
  * @brief 量化信息。
  *
  * 在量化的场景中，32位浮点型数据根据以下公式量化为定点数据：
-
  * 其中s和z是量化参数，在{@link OH_NN_QuantParam}中通过scale和zeroPoint保存，r是浮点数，q是量化后的结果，
  * q_min是量化结果的下界，q_max是量化结果的上界，计算方式如下：
  * clamp函数定义如下：
@@ -3205,15 +3209,17 @@ typedef struct OH_NN_UInt32Array {
  * @version 1.0
  */
 typedef struct OH_NN_QuantParam {
-    /** 指定numBits、scale和zeroPoint数组的长度。在per-layer量化的场景下，quantCount通常指定为1，
+    /**
+     * 指定numBits、scale和zeroPoint数组的长度。在per-layer量化的场景下，quantCount通常指定为1，
      * 即一个张量所有通道共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。
+     * @since 9
      */
     uint32_t quantCount;
-    /** 量化位数。 */
+/** 量化位数。 */
     const uint32_t *numBits;
-    /** 指向量化公式中scale数据的指针。 */
+/** 指向量化公式中scale数据的指针。 */
     const double *scale;
-    /** 指向量化公式中zero point数据的指针。 */
+/** 指向量化公式中zero point数据的指针。 */
     const int32_t *zeroPoint;
 } OH_NN_QuantParam;
 
@@ -3230,14 +3236,16 @@ typedef struct OH_NN_QuantParam {
 typedef struct OH_NN_Tensor {
     /** 指定张量的数据类型，要求从{@link OH_NN_DataType}枚举类型中取值。 */
     OH_NN_DataType dataType;
-    /** 指定张量的维数。 */
+/** 指定张量的维数。 */
     uint32_t dimensionCount;
-    /** 指定张量的维度信息（形状）。 */
+/** 指定张量的维度信息（形状）。 */
     const int32_t *dimensions;
     /** 指定张量的量化信息，数据类型要求为{@link OH_NN_QuantParam}。 */
     const OH_NN_QuantParam *quantParam;
-    /** 指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为{@link OH_NN_TENSOR}；
-     * 当张量用作算子参数，则要求从{@link OH_NN_TensorType}中选择除{@link OH_NN_TENSOR}以外的枚举值。
+    /**
+     * 指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为{@link OH_NN_TENSOR}；
+     *  当张量用作算子参数，则要求从{@link OH_NN_TensorType}中选择除{@link OH_NN_TENSOR}以外的枚举值。
+     * @since 9
      */
     OH_NN_TensorType type;
 } OH_NN_Tensor;
@@ -3251,9 +3259,9 @@ typedef struct OH_NN_Tensor {
  * @version 1.0
  */
 typedef struct OH_NN_Memory {
-    /** 指向共享内存的指针，该共享内存通常由底层硬件驱动申请。 */
+/** 指向共享内存的指针，该共享内存通常由底层硬件驱动申请。 */
     void * const data;
-    /** 记录共享内存的字节长度。 */
+/** 记录共享内存的字节长度。 */
     const size_t length;
 } OH_NN_Memory;
 
