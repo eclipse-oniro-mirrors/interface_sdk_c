@@ -147,8 +147,33 @@ typedef enum CloudDisk_OperationType {
      *
      * @since 26.0.1
      */
-    OH_CLOUD_DISK_CLOSE_MODIFY = 6
+    OH_CLOUD_DISK_CLOSE_MODIFY = 6,
+    /**
+     * @brief 打开文件。
+     *
+     * @since 26.1.0
+     */
+    OH_CLOUD_DISK_FILE_OPEN = 7
 } CloudDisk_OperationType;
+
+/**
+ * @brief 存放文件变更类型枚举的数组。
+ * @since 26.1.0
+ */
+typedef struct OH_CloudDisk_OperationTypeArray {
+    /**
+     * 指向元素类型为{@link CloudDisk_OperationType}数组的指针。
+     *
+     * @since 26.1.0
+     */
+    const CloudDisk_OperationType *data;
+    /**
+     * 数组的长度，范围是[1, 8]。
+     *
+     * @since 26.1.0
+     */
+    int64_t length;
+} OH_CloudDisk_OperationTypeArray;
 
 /**
  * @brief 文件同步失败原因的枚举值。
@@ -769,6 +794,41 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolderChanges(const CloudDisk_SyncFolder
                                                       uint64_t startUsn,
                                                       size_t count,
                                                       CloudDisk_ChangesResult **changesResult);
+
+/**
+ * @brief 注册用于监听同步文件夹变更的回调函数，并按指定的操作类型筛选事件。
+ *
+ * @param syncFolderPath [in] 表示同步根路径，参考：{@link CloudDisk_PathInfo}。
+ * @param operationTypes [in] 表示用于筛选文件变更的数组，参考：{@link OH_CloudDisk_OperationTypeArray}。
+ * @param callback [in] 注册的回调函数。
+ * @return 如果回调函数注册成功，则返回{@link CLOUD_DISK_OK}；
+ *     <br> 否则返回{@link cloud_disk_error_code.h}中定义的错误码。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderChangesWithEvents(
+    const CloudDisk_SyncFolderPath syncFolderPath,
+    const OH_CloudDisk_OperationTypeArray *operationTypes,
+    void (*callback)(const CloudDisk_SyncFolderPath syncFolderPath,
+                     const CloudDisk_ChangeData changeDatas[],
+                     size_t bufferLength));
+
+/**
+ * @brief 获取指定文件夹中按操作类型筛选的变更数据。
+ *
+ * @param syncFolderPath [in] 表示同步根路径，参考：{@link CloudDisk_PathInfo}。
+ * @param startUsn [in] 表示起始更新序列号。
+ * @param count [in] 表示文件数量，范围：[1, 100]。
+ * @param operationTypes [in] 表示用于筛选文件变更的数组，参考：{@link OH_CloudDisk_OperationTypeArray}。
+ * @param changesResult [in] 表示文件变更的查询结果，参考：{@link CloudDisk_ChangesResult}。
+ * @return 如果函数执行成功，则返回{@link CLOUD_DISK_OK}；
+ *     <br> 否则返回{@link cloud_disk_error_code.h}中定义的错误码。
+ * @since 26.1.0
+ */
+CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolderChangesWithEvents(const CloudDisk_SyncFolderPath syncFolderPath,
+    int64_t startUsn,
+    int64_t count,
+    const OH_CloudDisk_OperationTypeArray *operationTypes,
+    CloudDisk_ChangesResult **changesResult);
 
 /**
  * @brief 应用设置同步根路径下文件的同步状态。
