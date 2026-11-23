@@ -846,6 +846,13 @@ typedef enum OH_Huks_ErrCode {
      * @since 22
      */
     OH_HUKS_ERR_CODE_EXCEED_LIMIT = 12000025,
+
+    /**
+     * @brief 网络不可用。
+     *
+     * @since 26.1.0
+     */
+    OH_HUKS_ERR_CODE_NETWORK_UNAVAILABLE = 12000027
 } OH_Huks_ErrCode;
 
 /**
