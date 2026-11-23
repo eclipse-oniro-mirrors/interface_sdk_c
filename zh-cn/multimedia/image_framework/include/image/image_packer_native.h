@@ -232,7 +232,7 @@ Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,
  * @param options 被操作的OH_PackingOptions指针。
  * @param quality 编码质量，取值范围为[0, 100]，默认值为0。
  * @return IMAGE_SUCCESS：执行成功。
- *     <br>IMAGE_BAD_PARAMETER：参数错误。
+ *     <br>IMAGE_BAD_PARAMETER：options或quality为空。
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
