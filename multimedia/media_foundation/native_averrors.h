@@ -117,6 +117,11 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_UNSUPPORTED_FORMAT = 11,
     /**
+     * @brief The instance has been reclaimed by the system.
+     * @since 26.1.0
+     */
+    AV_ERR_RECLAIM = 13,
+    /**
      * @brief extend err start.
      *
      * @since 9

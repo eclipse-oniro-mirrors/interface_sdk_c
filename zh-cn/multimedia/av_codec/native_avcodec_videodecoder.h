@@ -519,6 +519,43 @@ OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
  */
 OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
 
+/**
+ * @brief OH_AVCodec实例由于资源压力被系统回收，例如：
+ * 硬件解码资源或内存占用率高。影响系统体验。
+ * 该函数指针将被调用。
+ * 调用该回调后，{@link OH_VideoDecoder_Destroy}可以正常调用。
+ * 对编解码器的任何其他接口调用都返回{@link AV_ERR_RECLAIM}。
+ * 用户收到回调后，需要及时释放业务对象。
+ * 如果还需要解码，请重新创建解码器实例。
+ * @param codec [in] OH_AV编解码器实例.
+ * 该值不能为NULL，在函数执行期间保证codec有效
+ * @param userData [in] 用户用于执行回调的数据，
+ * 该值可以为NULL
+ * @since 26.1.0
+ */
+typedef void (*OH_AVCodecOnReclaim)(OH_AVCodec *codec, void *userData);
+
+/**
+ * @brief 视频解码器注册回收回调函数，使应用能够在解码实例被系统回收时收到通知。
+ * 该接口必须在{@link OH_VideoDecoder_Prepare}之前调用。注册成功后不允许重复注册，
+ * 但在{@link OH_VideoDecoder_Reset}成功后允许重新注册。
+ * 只有已注册回收回调的实例才会进入回收候选名单，并在实例被回收后回调通知。
+ * @param codec [in] 指向OH_AVCodec实例的指针。不允许为NULL。codec在执行期间必须有效。
+ * @param onReclaim [in] 回调函数[in]。详情请参见{@link OH_AVCodecReclaimCallback}。
+ *     该值不能为NULL。
+ * @param userData [in] 用户执行回调时使用的数据[in]，
+ *     该值可以为NULL。
+ * @return 接口执行成功返回{@link AV_ERR_OK}，
+ *     否则返回错误码。详情请参见{@link OH_AVErrCode}。
+ *     不同返回值及其可能的原因如下：
+ *     <ul><li>{@link AV_ERR_RECLAIM}：实例已被系统回收。
+ *     {@link AV_ERR_INVALID_STATE}，在无效状态下调用了该接口。
+ *     {@link AV_ERR_INVALID_VAL}，错误原因：1. 输入的codec指针不是解码器实例或为空。
+ *     2. 回调值为NULL。
+ *     {@link AV_ERR_OPERATE_NOT_PERMIT}：重复注册。</li></ul>
+ * @since 26.1.0
+ */
+OH_AVErrCode OH_VideoDecoder_RegisterReclaimCallback(OH_AVCodec *codec, OH_AVCodecOnReclaim onReclaim, void *userData);
 #ifdef __cplusplus
 }
 #endif
