@@ -157,7 +157,7 @@ extern "C" {
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
 
 /**
- * @brief Enable minidump in the APP_CRASH event
+ * @brief <!--RP1-->Indicates whether to enable minidump for the APP_CRASH event. <!--RP1End-->
  *
  * @since 26.0.0
  */

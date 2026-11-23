@@ -153,7 +153,7 @@ extern "C" {
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
 
 /**
- * @brief 用于APP_CRASH事件，是否使能minidump。
+ * @brief <!--RP1-->用于APP_CRASH事件，是否使能minidump。<!--RP1End-->
  *
  * @since 26.0.0
  */
