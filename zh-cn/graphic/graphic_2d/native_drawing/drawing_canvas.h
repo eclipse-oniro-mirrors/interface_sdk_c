@@ -189,6 +189,26 @@ void OH_Drawing_CanvasSave(OH_Drawing_Canvas* canvas);
 void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect, const OH_Drawing_Brush* brush);
 
 /**
+ * @brief 保存矩阵和裁剪区域，为后续绘制分配位图。可以使用已有内容初始化位图。
+ * 调用恢复接口{@link OH_Drawing_CanvasRestore}后，将舍弃对矩阵和裁剪区域所做的更改，并绘制位图。
+ *
+ * @param canvas [入参] 指向画布对象{@link OH_Drawing_Canvas}的指针，不能为NULL。
+ * @param rect [入参] 指向矩形对象{@link OH_Drawing_Rect}的指针，用于限制图层大小，为NULL表示无限制。
+ * @param brush [入参] 指向画刷对象{@link OH_Drawing_Brush}的指针，绘制位图时会应用画刷对象的透明度、滤波器效果和混合模式，为NULL表示不应用任何效果。
+ * @param saveLayerFlags [入参] 表示新分配位图的初始化方式，仅支持以下取值：
+ *     0：位图以透明像素初始化，等价于{@link OH_Drawing_CanvasSaveLayer}。
+ *     2：位图以画布上已有的内容初始化。
+ * @return <ul>
+ *         <li>操作成功时返回{@link OH_DRAWING_SUCCESS}。</li>
+ *         <li>当canvas为空指针时返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}。</li>
+ *         <li>当saveLayerFlags不为0或2时返回{@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE}。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasSaveLayerWithFlag(OH_Drawing_Canvas *canvas,
+    const OH_Drawing_Rect *rect, const OH_Drawing_Brush *brush, uint32_t saveLayerFlags);
+
+/**
  * @brief 用于恢复保存在栈顶的画布状态（画布矩阵）。
  * <br>本接口会产生错误码，可以通过{@link OH_Drawing_ErrorCodeGet}查看错误码的取值。
  * <br>canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。

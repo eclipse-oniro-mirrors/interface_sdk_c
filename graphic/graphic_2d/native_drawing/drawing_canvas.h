@@ -188,7 +188,31 @@ void OH_Drawing_CanvasSave(OH_Drawing_Canvas* canvas);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect* rect, const OH_Drawing_Brush* brush);
+void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas *canvas, const OH_Drawing_Rect *rect, const OH_Drawing_Brush *brush);
+
+/**
+ * @brief Saves the matrix and crop regions to allocate bitmaps for subsequent drawing. You can initialize the bitmap
+ * with existing content. After the recovery interface {@link OH_Drawing_CanvasRestore} is called, the changes made to
+ * the matrix and crop region are discarded and the bitmap is drawn.
+ *
+ * @param canvas [in] Pointer to canvas object {@link OH_Drawing_Canvas}, which cannot be null.
+ * @param rect [in] Pointer to the rectangular object {@link OH_Drawing_Rect}, which is used to limit
+ *     the size of a layer. If the value is NULL, there is no limit.
+ * @param brush [in] Pointer to the brush object {@link OH_Drawing_Brush}. When a bitmap is drawn, the
+ *     transparency, filter effect, and blending mode of the brush object are applied. The value NULL indicates that no
+ *     effect is applied.
+ * @param saveLayerFlags [in] Initialization mode of the newly allocated bitmap. The value 0 indicates
+ *     that the bitmap is initialized by transparent pixels, which is equivalent to {@link OH_Drawing_CanvasSaveLayer}.
+ *     2: The bitmap is initialized with the existing content on the canvas.
+ * @return <ul>
+ *     <li>{@link OH_DRAWING_SUCCESS} is returned when the operation is successful. </li>
+ *     <li>{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} is returned when canvas is a null pointer. </li>
+ *     <li>{@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} is returned when saveLayerFlags is not 0 or 2. </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasSaveLayerWithFlag(OH_Drawing_Canvas *canvas,
+    const OH_Drawing_Rect *rect, const OH_Drawing_Brush *brush, uint32_t saveLayerFlags);
 
 /**
  * @brief Restores the canvas status (canvas matrix) saved on the top of the stack.
