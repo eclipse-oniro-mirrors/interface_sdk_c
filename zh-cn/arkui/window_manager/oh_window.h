@@ -24,8 +24,7 @@
 /**
  * @file oh_window.h
  *
- * @brief The file declares the window management APIs. You can use the APIs to set and obtain the properties of a
- * window, and set its status bar style and navigation bar style.
+ * @brief 定义窗口管理的相关接口，主要用于设置和获取指定窗口的属性，以及设置指定窗口的状态栏样式、导航栏样式。
  *
  * @library libnative_window_manager.so
  * @kit ArkUI
@@ -53,6 +52,7 @@ extern "C" {
 
 /**
  * @brief 设置主窗口是否显示状态栏。
+ * 调用生效后返回并不表示状态栏的显示或隐藏已完成。主窗口在非全屏/最大化模式（智慧多窗悬浮窗、分屏等场景）下配置不生效，进入全屏/最大化模式后配置生效。
  *
  * @param windowId 主窗口id。传入非主窗口id时调用无效。不存在对应窗口id时接口返回错误码WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL。
  * @param enabled 设置状态栏是否显示。true表示设置状态栏显示，false表示设置状态栏隐藏。
@@ -81,7 +81,7 @@ int32_t OH_WindowManager_SetWindowStatusBarEnabled(int32_t windowId, bool enable
 int32_t OH_WindowManager_SetWindowStatusBarColor(int32_t windowId, int32_t color);
 
 /**
- * @brief 设置主窗口是否显示导航栏。<!--RP2--><!--RP2End-->
+ * @brief 设置主窗口是否显示导航栏或工具栏。当前工具栏仅Car设备支持。除Car设备以外，此接口仅在导航区域只能表现为三键导航的设备上生效。<!--RP2--><!--RP2End-->
  *
  * @param windowId 主窗口id。传入非主窗口id时调用无效。不存在对应窗口id时接口返回错误码WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL。
  * @param enabled 设置导航栏是否显示。true表示设置导航栏显示，false表示设置导航栏隐藏。

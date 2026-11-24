@@ -27,7 +27,7 @@
 /**
  * @file oh_window_comm.h
  *
- * @brief The file declares the common enums and definitions of the window manager.
+ * @brief 提供窗口的公共枚举，公共定义等。
  *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so

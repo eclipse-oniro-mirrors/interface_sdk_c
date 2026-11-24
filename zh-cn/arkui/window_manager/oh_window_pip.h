@@ -18,7 +18,7 @@
  * @addtogroup WindowManager
  * @{
  *
- * @brief Provides abilities of windowManager on the native side, such as picture in picture window.
+ * @brief 提供应用窗口的管理能力。
  *
  * @since 12
  */
