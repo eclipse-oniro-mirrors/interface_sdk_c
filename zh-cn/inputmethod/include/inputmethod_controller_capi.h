@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -352,6 +352,27 @@ InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodPro
  */
 InputMethod_ErrorCode OH_InputMethod_InputMethodController_GetCurrentInputMethod(
     char **bundleName, uint32_t *bundleNameLength, char **abilityName, uint32_t *abilityNameLength);
+
+/**
+ * @brief 向当前获焦、与输入法应用绑定且处于编辑状态的编辑框发送文本。
+ *
+ * @permission ohos.permission.OPERATE_TEXT_ACROSS_APPLICATION or ohos.permission.CONTROL_DEVICE
+ * @param text [in] 指向被注入文本字符串的指针，要求为以NULL结尾的UTF-8编码字符串，不可为nullptr，至少有textLen字节可读。
+ *     缓冲区由调用方管理，须至少保持有效至函数返回，返回后可释放。
+ * @param textLen [in] 注入文本字符串长度（单位：字节），取值范围为[0, 512]，不含末尾终止符。
+ * @return 返回一个特定的错误码。
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - 表示成功。请求发送成功，不确认编辑完成。</li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - 参数错误，text为空指针或textLen不合法。</li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_PERMISSION_DENIED} - 权限验证失败。缺少注入文本所需权限时返回此错误，请申请相应权限后再试。</li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_DEVICE_NOT_SUPPORTED} - 表示设备不支持。</li>
+ *     <li>{@link IME_ERR_IMCLIENT} - 表示输入法客户端错误。可能是无合法获焦且绑定的目标，或目标失效。</li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_EDITABLE} - 表示输入法客户端不可编辑。可能是不可编辑的目标客户端。</li>
+ *     <li>{@link IME_ERR_IMMS} - 表示输入法服务错误。可能是服务端异常。</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethodController_InjectText(const char *text, uint32_t textLen);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

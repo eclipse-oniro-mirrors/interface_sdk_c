@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -262,6 +262,35 @@ InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodPro
  */
 InputMethod_ErrorCode OH_InputMethod_InputMethodController_GetCurrentInputMethod(
     char **bundleName, uint32_t *bundleNameLength, char **abilityName, uint32_t *abilityNameLength);
+
+/**
+ * @brief Sends text to the edit box that is currently in focus, bound to the input application, and in editing state.
+ *
+ * @permission ohos.permission.OPERATE_TEXT_ACROSS_APPLICATION or ohos.permission.CONTROL_DEVICE
+ * @param text [in] Pointer to the injected text string. The value must be a NULL-terminated UTF-8 encoded string.
+ *     The value cannot be nullptr. At least textLen bytes can be read. The buffer is managed by the caller and must
+ *     remain valid at least until the function returns, after which it can be released.
+ * @param textLen [in] Length of the injected text string, in bytes. The value range is [0, 512], excluding the end
+ *     terminator.
+ * @return Returns a specific error code.
+ *     <ul>
+ *     <li>{@link IME_ERR_OK} - indicates success. The request is sent successfully. Do not confirm that the editing is
+ *     complete. </li>
+ *     <li>{@link IME_ERR_PARAMCHECK} - Parameter error. The text pointer is null or the textLen is invalid. </li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_PERMISSION_DENIED} - Permission verification failed. This error code is returned
+ *     when the permission required for text injection is missing. Apply for the permission and try again. </li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_DEVICE_NOT_SUPPORTED} - Indicates that the device does not support this function.
+ *     </li>
+ *     <li>{@link IME_ERR_IMCLIENT} - Indicates that the input method client is incorrect. There may be no valid focus
+ *     and bound target, or the target is invalid. </li>
+ *     <li>{@link OH_INPUTMETHOD_ERR_EDITABLE} - indicates that the input method is not editable on the client. It may
+ *     be a non-editable target client. </li>
+ *     <li>{@link IME_ERR_IMMS} - Indicates that the input method service is incorrect. The server may be abnormal.
+ *     </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+InputMethod_ErrorCode OH_InputMethodController_InjectText(const char *text, uint32_t textLen);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
