@@ -12,24 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup CertManager
  * @{
  *
- * @brief Describes the OpenHarmony Certificate Manager capabilities, including certificate and credential management
- * operations, provided for applications.
+ * @brief Provides certificate management capabilities, including querying and importing certificates and credentials
+ * for applications.
  *
  * @since 22
  */
-
 /**
- * @file cm_native_api.h
+ * @file cm_native_api.h 
  *
- * @brief Declares the APIs used to obtain details of specific certificates.
- *
+ * @brief Defines APIs for querying the list and details of different types of certificates and credentials and
+ * importing USB key certificates.
+ * @syscap SystemCapability.Security.CertificateManager
+ * @include <security/device_certificate/certmanager/cm_native_api.h>
  * @library libohcert_manager.z.so
  * @kit DeviceCertificateKit
- * @syscap SystemCapability.Security.CertificateManager
  * @since 22
  */
 
@@ -41,6 +42,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
  * @brief 获取USB证书凭据的详情信息列表。调用完成后，需要调用OH_CertManager_FreeUkeyCertificate释放certificateList内存。
  *
@@ -67,28 +69,28 @@ extern "C" {
  */
 int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
     const OH_CM_UkeyInfo *ukeyInfo, OH_CM_CredentialDetailList *certificateList);
+
 /**
  * @brief 获取特定应用私有证书凭据详细信息。
- *
+ * 
  * @param keyUri 存放应用私有证书凭据的唯一标识符（字符串格式）。
  * @param certificate 获取到的应用私有凭据的详情。
- * @return <ul>
- * <li>{@link OH_CM_ErrorCode}：</li>
- * <li>OH_CM_SUCCESS = 0 ：操作成功。</li>
- * <li>OH_CM_HAS_NO_PERMISSION = 201 ：权限校验失败。</li>
- * <li>OH_CM_PARAMETER_VALIDATION_FAILED = 17500011 ：入参校验失败。可能原因：</li>
+ * @return {@link OH_CM_ErrorCode}：
+ * OH_CM_SUCCESS = 0 ：操作成功。
+ * OH_CM_HAS_NO_PERMISSION = 201 ：权限校验失败。
+ * OH_CM_PARAMETER_VALIDATION_FAILED = 17500011 ：入参校验失败。可能原因：
  * 1.参数格式错误。
- * 2.参数范围无效。</li>
- * <li>OH_CM_INNER_FAILURE = 17500001 ：内部错误。可能原因：
+ * 2.参数范围无效。
+ * OH_CM_INNER_FAILURE = 17500001 ：内部错误。可能原因：
  * 1.IPC通讯失败。
  * 2.内存操作错误。
- * 3.文件操作错误。</li>
- * <li>OH_CM_NOT_FOUND = 17500002 ：证书不存在。</li>
- * </ul>
+ * 3.文件操作错误。
+ * OH_CM_NOT_FOUND = 17500002 ：证书不存在。
  * @permission ohos.permission.ACCESS_CERT_MANAGER
  * @since 22
  */
 int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Credential *certificate);
+
 /**
  * @brief 获取特定用户公共证书凭据详细信息。调用完成后，需要调用OH_CertManager_FreeCredential释放certificate内存。
  *
@@ -115,7 +117,7 @@ int32_t OH_CertManager_GetPublicCertificate(const OH_CM_Blob *keyUri, OH_CM_Cred
 
 /**
  * @brief 销毁证书详情信息列表。
- *
+ * 
  * @param certificateList 待销毁的证书凭据详细列表。
  * @since 22
  */
@@ -123,11 +125,62 @@ void OH_CertManager_FreeUkeyCertificate(OH_CM_CredentialDetailList *certificateL
 
 /**
  * @brief 销毁证书详情。
- *
+ * 
  * @param certificate 待销毁的证书凭据详情。
  * @since 22
  */
 void OH_CertManager_FreeCredential(OH_CM_Credential *certificate);
+
+/**
+ * @brief 查询USB Key证书凭据列表。调用完成后，需要调用OH_CertManager_FreeUkeyCertificate释放certificateList内存。
+ *
+ * @param ukeyProvider [入参] USB Key设备提供商名称。
+ * @param ukeyInfo [入参] USB证书凭据属性信息。
+ * @param certificateList [出参] 获取到的USB证书凭据列表。
+ * @return 证书管理的错误码，错误码定义请参考{@link OH_CM_ErrorCode}。<ul>
+ *     <li>{@link OH_CM_SUCCESS}: 操作成功。</li>
+ *     <li>{@link OH_CM_HAS_NO_PERMISSION}: 权限校验失败。</li>
+ *     <li>{@link OH_CM_CAPABILITY_NOT_SUPPORTED}: 设备不支持。</li>
+ *     <li>{@link OH_CM_INNER_FAILURE}: 内部错误。可能原因：
+ *     <br>1.IPC通讯失败。
+ *     <br>2.内存操作错误。
+ *     <br>3.文件操作错误。</li>
+ *     <li>{@link OH_CM_ACCESS_UKEY_SERVICE_FAILED}: USB证书凭据访问失败。</li>
+ *     <li>{@link OH_CM_PARAMETER_VALIDATION_FAILED}: 入参校验失败。可能原因：
+ *     <br>1.参数格式错误。
+ *     <br>2.参数范围无效。</li>
+ *     </ul>
+ * @permission ohos.permission.ACCESS_CERT_MANAGER
+ * @since 26.1.0
+ */
+int32_t OH_CertManager_GetUkeyCertificateList(const OH_CM_Blob *ukeyProvider,
+    const OH_CM_UkeyInfo *ukeyInfo, OH_CM_CredentialDetailList *certificateList);
+
+/**
+ * @brief 导入证书到USB Key设备。
+ *
+ * @param keyUri [入参] 存放USB证书凭据的唯一标识符（字符串格式）。
+ * @param cert [入参] 待导入的证书文件。
+ * @param ukeyInfo [入参] USB证书凭据属性信息。
+ * @return 证书管理的错误码，错误码定义请参考{@link OH_CM_ErrorCode}。<ul>
+ *     <li>{@link OH_CM_SUCCESS}: 操作成功。</li>
+ *     <li>{@link OH_CM_HAS_NO_PERMISSION}: 权限校验失败。</li>
+ *     <li>{@link OH_CM_CAPABILITY_NOT_SUPPORTED}: 设备不支持。</li>
+ *     <li>{@link OH_CM_INNER_FAILURE}: 内部错误。可能原因：
+ *     <br>1.IPC通讯失败。
+ *     <br>2.内存操作错误。
+ *     <br>3.文件操作错误。</li>
+ *     <li>{@link OH_CM_NOT_FOUND}: keyUri指定的证书凭据不存在。</li>
+ *     <li>{@link OH_CM_ACCESS_UKEY_SERVICE_FAILED}: USB证书凭据访问失败。</li>
+ *     <li>{@link OH_CM_PARAMETER_VALIDATION_FAILED}: 入参校验失败。可能原因：
+ *     <br>1.参数格式错误。
+ *     <br>2.参数范围无效。</li>
+ *     </ul>
+ * @permission ohos.permission.ACCESS_CERT_MANAGER
+ * @since 26.1.0
+ */
+int32_t OH_CertManager_ImportUkeyCert(const OH_CM_Blob *keyUri,
+    const OH_CM_Blob *cert, const OH_CM_UkeyInfo *ukeyInfo);
 
 #ifdef __cplusplus
 }
