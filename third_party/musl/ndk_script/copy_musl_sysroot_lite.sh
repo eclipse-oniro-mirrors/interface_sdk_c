@@ -55,6 +55,9 @@ cp ${SOURCE_DIR}/strings.h     ${OUT_DIR}
 cp ${SOURCE_DIR}/time.h        ${OUT_DIR}
 cp ${SOURCE_DIR}/unistd.h      ${OUT_DIR}
 
+mkdir -p ${OUT_DIR}/info
+cp ${SOURCE_DIR}/info/application_target_sdk_version.h ${OUT_DIR}/info/application_target_sdk_version.h
+
 case "$(uname -s)" in
     Darwin*|FreeBSD*|OpenBSD*|NetBSD*)
         sed -E -i '' '/PTHREAD_[A-Z]+_INITIALIZER/d' ${OUT_DIR}/pthread.h ;;
