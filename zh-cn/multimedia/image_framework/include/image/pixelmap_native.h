@@ -468,7 +468,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
     int32_t *pixelFormat);
 
 /**
- * @brief 设置像素格式。
+ * @brief 设置像素格式。未调用此接口或设为PIXEL_FORMAT_UNKNOWN时，默认使用PIXEL_FORMAT_RGBA_8888。
  *
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param pixelFormat 像素格式{@link PIXEL_FORMAT}。
@@ -492,7 +492,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
     int32_t *srcpixelFormat);
 
 /**
- * @brief 设置源像素格式（创建Pixelmap时输入数据的像素格式）。
+ * @brief 设置源像素格式（创建Pixelmap时输入数据的像素格式）。未调用此接口或设为PIXEL_FORMAT_UNKNOWN时，默认使用PIXEL_FORMAT_BGRA_8888。
  *
  * @param options 被操作的OH_Pixelmap_InitializationOptions指针。
  * @param srcpixelFormat 源像素格式{@link PIXEL_FORMAT}。
@@ -797,9 +797,13 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 /**
  * @brief 将缓冲区中的图像像素数据按照Pixelmap的像素格式写入Pixelmap。
  *
+ * > **说明**
+ * >
+ * > 如需写入指定区域的像素数据，或源数据具有自定义行跨距或偏移量，请使用{@link OH_PixelmapNative_WritePixelsToArea}。
+ *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
- * @param source 源数据缓冲区，该缓冲区内的图像像素数据会被写入Pixelmap。缓冲区内的像素数据必须是整个Pixelmap的像素数据，
- *     且像素格式需与Pixelmap相同，不包含内存对齐填充字节。
+ * @param source 源像素数据的缓冲区，其数据会被拷贝并覆盖写入整个Pixelmap，必须包含整个Pixelmap全部像素的源数据，而非仅部分区域的数据。
+ *     <br>数据需按Pixelmap自身的像素格式紧密排列，不含行末填充字节。
  * @param bufferSize 缓冲区大小。单位：字节（Byte）。可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
  *     RGBA格式的缓冲区大小等于width \* height \* 4，
  *     NV21与NV12格式的缓冲区大小等于width \* height + ((width+1)/2) \* ((height+1)/2) \* 2。
@@ -820,7 +824,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。
  * > - 如需写入与当前Pixelmap像素格式相同的源数据（包括[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式），
  * 请使用{@link OH_PixelmapNative_WritePixels}。
- * > - 如需写入具有自定义行跨距或偏移量的源数据，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
+ * > - 如需写入指定区域的像素数据，或源数据具有自定义行跨距或偏移量，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
  *
  * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
  *
@@ -830,9 +834,9 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * 各格式的每像素占用字节数见[PixelMapFormat](docroot://reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)。
  *
  * @param pixelmap [in][out] 待修改像素数据的Pixelmap指针，不能为空指针。
- * @param source [in] 源像素数据缓冲区指针，不能为空指针，该缓冲区内的像素数据会被拷贝至Pixelmap。
- *     缓冲区内的像素数据必须至少包含整个Pixelmap的像素数据，且不包含内存对齐填充字节。
- * @param bufferSize [in] 缓冲区大小。单位：字节（Byte）。所需的最小缓冲区大小请参考上方说明中的计算公式。
+ * @param source [in] 源像素数据的缓冲区指针，不能为空指针，其数据会被拷贝并覆盖写入整个Pixelmap，必须包含整个Pixelmap全部像素的源数据，而非仅部分区域的数据。
+ *     <br>数据按sourcePixelFormat格式紧密排列，不含行末填充字节；缓冲区大小不得小于上方公式的计算结果。
+ * @param bufferSize [in] 缓冲区大小。单位：字节（Byte）。所需的最小缓冲区大小请参考上方计算公式。
  * @param sourcePixelFormat [in] 源数据的像素格式。支持的值为PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、
  *     PIXEL_FORMAT_RGB_888、PIXEL_FORMAT_RGB_565和PIXEL_FORMAT_RGBA_F16。
  * @return IMAGE_SUCCESS：操作成功。
