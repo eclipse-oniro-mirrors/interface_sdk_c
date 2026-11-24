@@ -658,6 +658,25 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
     OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 
+/**
+ * @brief Sets whether the low power mode is allowed for the audio playback stream.
+ * This API can only be used by the audio playback stream builder.
+ * In music or audiobook playback scenarios, the system uses the low power mode by default to reduce power consumption
+ * during background playback.
+ * However, in low power mode, a large amount of cache data is stored in the audio system, which is not suitable for
+ * real-time audio generation scenarios. In such cases, you can disable this mode.
+ * @param builder [in] Pointer to the {@link OH_AudioStreamBuilder} object created
+ *     by calling {@link OH_AudioStreamBuilder_Create}.
+ * @param allowed [in] Indicates whether the low power mode is allowed. The default value is **true**.
+ * @return <ul>
+ *     <li>{@link AUDIOSTREAM_SUCCESS}: The API call is successful.</li>
+ *     <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM}: 1. The **builder** parameter is a null pointer. 2. The stream
+ *     created by **builder** is not of the renderer type.</li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetOffloadAllowed(OH_AudioStreamBuilder *builder, bool allowed);
+
 #ifdef __cplusplus
 }
 #endif

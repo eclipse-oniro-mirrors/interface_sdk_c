@@ -826,5 +826,9 @@
     {
         "first_introduced": "26.1.0",
         "name": "OH_AudioRenderer_Standby"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioStreamBuilder_SetOffloadAllowed"
     }
 ]

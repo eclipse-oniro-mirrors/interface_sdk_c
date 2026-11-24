@@ -677,6 +677,21 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
     OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 
+/**
+ * @brief 设置音频播放流是否允许使用低功耗模式。
+ * 此接口仅允许音频播放流构造器使用。
+ * 当音频播放使用场景为音乐或听书时，系统会默认使用低功耗模式播放音频，可在后台播放时降低功耗。
+ * 然而低功耗模式下，音频系统内缓存数据量很大，在实时生成音频数据的场景并不适用，此时开发者可设置不使用此模式。
+ * @param builder [in] 指向{@link OH_AudioStreamBuilder_Create}创建的{@link OH_AudioStreamBuilder}对象。
+ * @param allowed [in] 是否允许使用低功耗模式，默认值是true。
+ * @return <ul>
+ *         <li>{@link #AUDIOSTREAM_SUCCESS} 接口调用成功。</li>
+ *         <li>{@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1.builder参数为空指针。2.builder不是播放流类型。</li>
+ *         </ul>
+ * @since 26.1.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetOffloadAllowed(OH_AudioStreamBuilder *builder, bool allowed);
+
 #ifdef __cplusplus
 }
 #endif
