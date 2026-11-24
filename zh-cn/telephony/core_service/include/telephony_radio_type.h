@@ -110,7 +110,7 @@ typedef enum {
     TEL_RADIO_TECHNOLOGY_TD_SCDMA = 6,
     /* Evolution-Data Optimized (EVDO) */
     TEL_RADIO_TECHNOLOGY_EVDO = 7,
-    /* Evolved High Rate Package Data (EHRPD) */
+    /* Evolved High Rate Packet Data (EHRPD) */
     TEL_RADIO_TECHNOLOGY_EHRPD = 8,
     /* Long Term Evolution (LTE) */
     TEL_RADIO_TECHNOLOGY_LTE = 9,
