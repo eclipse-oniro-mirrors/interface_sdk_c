@@ -25,7 +25,7 @@
  * @brief 声明用于查询硬件设备信息的API。
  * @syscap SystemCapability.Startup.BoardInfo
  * @include <boardinfo.h>
- * @library libboardinfo_ndk.z.so
+ * @library libboardinfo.so
  * @kit BasicServicesKit
  * @since 26.1.0
  */
