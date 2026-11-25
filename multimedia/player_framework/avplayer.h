@@ -17,7 +17,7 @@
  *
  * @brief Provides APIs of Playback capability for Media Source.
  *
- * @Syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
  */
 /**
