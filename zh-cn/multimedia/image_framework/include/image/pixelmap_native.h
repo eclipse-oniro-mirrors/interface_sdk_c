@@ -784,7 +784,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, na
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
  * @param destination 目标缓冲区，获取的像素数据会被拷贝至该缓冲区。缓冲区内像素的格式与Pixelmap相同，不包含内存对齐填充字节。
- * @param bufferSize 缓冲区大小。单位：字节（Byte）。可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
+ * @param bufferSize 缓冲区大小。单位：字节（Byte）。可通过{@link OH_PixelmapNative_GetByteCount()}接口获取。
  *     RGBA格式的缓冲区大小等于width \* height \* 4，
  *     NV21与NV12格式的缓冲区大小等于width \* height + ((width+1)/2) \* ((height+1)/2) \* 2。
  * @return IMAGE_SUCCESS：执行成功。
@@ -799,12 +799,12 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
  *
  * > **说明**
  * >
- * > 从API版本22开始，如需写入指定区域的像素数据，或源数据具有自定义行跨距或偏移量，请使用{@link OH_PixelmapNative_WritePixelsToArea}。
+ * > 从API版本22开始，如需写入指定区域的像素数据，或源数据具有自定义行跨距或偏移量，请使用{@link OH_PixelmapNative_WritePixelsToArea()}。
  *
  * @param pixelmap 被操作的OH_PixelmapNative指针。
  * @param source 源像素数据的缓冲区，其数据会被拷贝并覆盖写入整个Pixelmap。
  *     <br>数据按Pixelmap自身的像素格式紧密排列，不含行末填充字节。缓冲区大小必须大于等于整个Pixelmap的像素数据大小，超出部分不会被写入。
- * @param bufferSize 缓冲区大小。单位：字节（Byte）。可通过{@link OH_PixelmapNative_GetByteCount}接口获取。
+ * @param bufferSize 缓冲区大小。单位：字节（Byte）。可通过{@link OH_PixelmapNative_GetByteCount()}接口获取。
  *     RGBA格式的缓冲区大小等于width \* height \* 4，
  *     NV21与NV12格式的缓冲区大小等于width \* height + ((width+1)/2) \* ((height+1)/2) \* 2。
  * @return IMAGE_SUCCESS：执行成功。
@@ -823,8 +823,8 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
  * > - 本接口仅支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
  * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。
  * > - 如需写入与当前Pixelmap像素格式相同的源数据（包括[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式），
- * 请使用{@link OH_PixelmapNative_WritePixels}。
- * > - 如需写入指定区域的像素数据，或源数据具有自定义行跨距或偏移量，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat}。
+ * 请使用{@link OH_PixelmapNative_WritePixels()}。
+ * > - 如需写入指定区域的像素数据，或源数据具有自定义行跨距或偏移量，请使用{@link OH_PixelmapNative_WritePixelsToAreaWithPixelFormat()}。
  *
  * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
  *
@@ -929,7 +929,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixelsToArea(OH_PixelmapNative *pixelmap,
  * > - 本接口仅支持被以下像素格式的Pixelmap调用：PIXEL_FORMAT_BGRA_8888、PIXEL_FORMAT_RGBA_8888、PIXEL_FORMAT_RGB_888、
  * PIXEL_FORMAT_RGB_565、PIXEL_FORMAT_RGBA_F16、PIXEL_FORMAT_RGBA_1010102。
  * > - 如需向[YUV](docroot://media/image/image-glossary.md#yuv-pixel-formatyuv像素格式)格式的Pixelmap中写入相同格式的像素数据，
- * 请使用{@link OH_PixelmapNative_WritePixelsToArea}。
+ * 请使用{@link OH_PixelmapNative_WritePixelsToArea()}。
  *
  * 所需的最小缓冲区大小，单位为字节（Byte），计算公式如下：
  *
@@ -1470,8 +1470,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmapFromNativeBuffer(OH_NativeBuffer
  * > **注意**
  * >
  * > - 获取到的OH_NativeBuffer与Pixelmap底层的SurfaceBuffer对应同一对象，其内存映射由SurfaceBuffer统一管理。
- * 不可对该对象调用{@link OH_NativeBuffer_Unmap}提前解除映射，否则可能导致Pixelmap中保存的像素地址失效，影响后续像素访问。
- * > - 本接口会增加OH_NativeBuffer的引用计数，使用完毕后需调用{@link OH_NativeBuffer_Unreference}释放本次获取的引用。
+ * 不可对该对象调用{@link OH_NativeBuffer_Unmap()}提前解除映射，否则可能导致Pixelmap中保存的像素地址失效，影响后续像素访问。
+ * > - 本接口会增加OH_NativeBuffer的引用计数，使用完毕后需调用{@link OH_NativeBuffer_Unreference()}释放本次获取的引用。
  *
  * @param pixelmap 要获取NativeBuffer的源Pixelmap，内存类型必须是DMA。
  * @param nativeBuffer 被创建的NativeBuffer对象指针。
@@ -1568,7 +1568,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 /**
  * @brief 获取Pixelmap实际分配的用于存储像素数据的内存字节数，包含内存对齐填充字节。
- * 与{@link OH_PixelmapNative_GetByteCount}（不包含内存填充）不同，本接口返回的是系统为Pixelmap分配的真实内存大小。
+ * 与{@link OH_PixelmapNative_GetByteCount()}（不包含内存填充）不同，本接口返回的是系统为Pixelmap分配的真实内存大小。
  *
  * @param pixelmap 被操作的Pixelmap指针。
  * @param allocationByteCount 获取的内存字节数。
