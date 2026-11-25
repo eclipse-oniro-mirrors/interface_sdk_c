@@ -18,7 +18,7 @@
  *
  * @brief 提供媒体源的播放能力接口。
  *
- * @Syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
  */
 /**
@@ -26,7 +26,7 @@
  *
  * @brief 定义AVPlayer的结构体和枚举。
  * 
- * @Syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  *
  * @kit MediaKit
  * @include <multimedia/player_framework/avplayer_base.h>
