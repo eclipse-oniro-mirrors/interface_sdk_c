@@ -1678,7 +1678,8 @@ typedef enum Camera_PhotoQualityPrioritization {
     CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1,
 
     /**
-     * Focuses on low overhead, prioritizing the shortest capture time with reduced image quality.
+     * Low image quality targeting the shortest shooting time, while reducing image quality to minimize system
+     * overhead.
      * @since 26.1.0
      */
     CAMERA_PHOTO_QUALITY_PRIORITIZATION_LOW_QUALITY = 2
