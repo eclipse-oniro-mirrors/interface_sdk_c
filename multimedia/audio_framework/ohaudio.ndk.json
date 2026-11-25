@@ -830,5 +830,9 @@
     {
         "first_introduced": "26.1.0",
         "name": "OH_AudioStreamBuilder_SetOffloadAllowed"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "OH_AudioStreamBuilder_SetKeepActiveOnSilence"
     }
 ]
