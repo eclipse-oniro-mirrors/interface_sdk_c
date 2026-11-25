@@ -22,7 +22,6 @@
  * @since 9
  * @version 2.0
  */
-
 /**
  * @file neural_network_core.h
  *
@@ -32,7 +31,6 @@
  * API version 11 版本之前即支持使用，各版本均可正常使用。
  * Neural Network Core的接口目前均不支持多线程并发调用。
  *
- * include "neural_network_runtime/neural_network_core.h"
  * @library libneural_network_core.so
  * @kit NeuralNetworkRuntimeKit
  * @syscap SystemCapability.AI.NeuralNetworkRuntime
@@ -430,7 +428,7 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetShape(NN_TensorDesc *tensorDesc, const int32
  *
  * 调用该接口获取指定{@link NN_TensorDesc}实例的形状。\n
  *
- * 如果tensorDesc、shape或shapeLength为空指针，则该接口将返回错误码。作为输出参数，*shape必须为空指针，
+ * 如果tensorDesc、shape或shapeLength为空指针，则该接口将返回错误码。作为输出参数，*shape不能为空指针，
  * 否则该接口将返回错误码。\n
  * 例如您应该定义 int32_t* tensorShape = NULL，并传递&tensorShape作为shape的参数。\n
  *
