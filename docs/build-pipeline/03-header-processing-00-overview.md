@@ -1,6 +1,6 @@
 # 03 头文件加工（`_parse_ndk_headers` / `_parse_lite_ndk_headers` / `parse_native_headers.py`）
 
-> 对应 [00-总览](./00-总览.md)「环节 03」。
+> 对应 [00-总览](./00-overview.md)「环节 03」。
 > action：`build/ohos/ndk/BUILD.gn:82-96` `_parse_ndk_headers`、98-113 `_parse_lite_ndk_headers`。
 > 主脚本：`interface/sdk_c/build-tools/parse_native_headers.py`（546 行）。
 > 依赖：`all_ndk_targets_list`（非 lite）/ `all_lite_ndk_targets_list`（lite，先拷贝齐所有头文件），**就地修改** `sysroot/usr/include` / `sysroot_lite`。
@@ -26,7 +26,7 @@
 | 其余参数 | `--sdk-api-version` / `--sdk-build-public` / `--sdk-build-check-level` 相同，Step 1 / Step 2 同样执行 | 同左 |
 | 输出 stamp | `parse_ndk_headers.tmp` | `parse_lite_ndk_headers.tmp` |
 
-执行逻辑完全一致：Step 1 裁剪 `@systemapi`（`sdk_build_public=true` 时）、Step 2 校验 `@since`（`sdk_build_check_level != 0` 时），仅 Step 3 版本宏注入被 lite 分支用 `--skip-version-macro` 跳过。后续分别由 [04](./04-syscap与ANI清理.md) 的 `_collect_ndk_syscap` / `_collect_lite_ndk_syscap` 承接。
+执行逻辑完全一致：Step 1 裁剪 `@systemapi`（`sdk_build_public=true` 时）、Step 2 校验 `@since`（`sdk_build_check_level != 0` 时），仅 Step 3 版本宏注入被 lite 分支用 `--skip-version-macro` 跳过。后续分别由 [04](./04-syscap-and-ani-cleanup.md) 的 `_collect_ndk_syscap` / `_collect_lite_ndk_syscap` 承接。
 
 ## 2. 处理流程
 
@@ -56,7 +56,7 @@ flowchart TD
 - 成功后 `_copy_processed_back`（418-431 行）覆盖回原目录。
 
 > `@systemapi` 是内部系统 API，公共 SDK 不对外暴露，构建 public SDK 时整段删除。
-> 详见 [03.1 删除系统 API](./03-头文件加工-01删除系统API.md)。
+> 详见 [03.1 删除系统 API](./03-header-processing-01-remove-system-api.md)。
 
 ### 3.2 Step 2：校验 `@since` 版本（`--sdk-build-check-level != 0`）
 
@@ -67,7 +67,7 @@ flowchart TD
    用 **libclang AST** 深度校验 `@since` 版本不得高于 `--sdk-api-version`；
 3. 违规 `raise ValueError` 阻断构建。
 
-> `--sdk-build-check-level` 默认为 `"0"`（不校验）。详见 [03.2 API 版本校验](./03-头文件加工-02API版本校验.md)。
+> `--sdk-build-check-level` 默认为 `"0"`（不校验）。详见 [03.2 API 版本校验](./03-header-processing-02-api-version-check.md)。
 
 ### 3.3 Step 3：注入版本可用性宏（非 `--skip-version-macro`）
 
@@ -83,7 +83,7 @@ flowchart TD
 
 `--skip-version-macro` 仅 lite 构建（`_parse_lite_ndk_headers`）使用，跳过本步。
 
-> 详见 [03.3 注入 API 版本可用性宏](./03-头文件加工-03API版本宏注入.md)。
+> 详见 [03.3 注入 API 版本可用性宏](./03-header-processing-03-api-version-macro-injection.md)。
 
 ## 4. 跳过目录
 

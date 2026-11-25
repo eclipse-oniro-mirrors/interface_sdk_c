@@ -1,6 +1,6 @@
 # 03.3 注入 API 版本可用性宏（`HeaderProcessor` / `parse_native_headers.py`）
 
-> 对应 [03-头文件加工](./03-头文件加工-00总览.md) 的 Step 3。
+> 对应 [03-头文件加工](./03-header-processing-00-overview.md) 的 Step 3。
 > 触发条件：非 `--skip-version-macro`（lite 构建跳过本步）。
 > 脚本：`interface/sdk_c/build-tools/parse_native_headers.py`（546 行），核心类 `HeaderProcessor`。
 
@@ -56,7 +56,7 @@ flowchart TD
 | 三段+括号 `5.0.3(15)` | `15.0.0`（取括号内主版本） |
 | 其他格式 | `raise ValueError` |
 
-> `__OH_AVAILABILITY` / `__OH_VERSION` **不是**本脚本生成的宏，而是 [03.2 API 版本校验](./03-头文件加工-02API版本校验.md) 的 `parse_interfaces_since.py` 在 clang 校验时用 `-D` 屏蔽 `__availability__` 属性的占位宏。
+> `__OH_AVAILABILITY` / `__OH_VERSION` **不是**本脚本生成的宏，而是 [03.2 API 版本校验](./03-header-processing-02-api-version-check.md) 的 `parse_interfaces_since.py` 在 clang 校验时用 `-D` 屏蔽 `__availability__` 属性的占位宏。
 
 ### 3.3 声明改写（`_process_since_comment_related_code`，121-153 行）
 
@@ -68,7 +68,7 @@ flowchart TD
 
 - 优先在头文件保护宏后插入 `#include "info/application_target_sdk_version.h"`；
 - 无保护宏时，在第一个 `#include` 前插入；
-- 该版本头由 [02-子系统BUILD](./02-子系统BUILD.md) 的 musl `updated_version` 目标用 `api_version` 生成（含 `APIAVAILABLE` 宏 / `get_application_target_sdk_version` 等）。
+- 该版本头由 [02-子系统BUILD](./02-subsystem-build.md) 的 musl `updated_version` 目标用 `api_version` 生成（含 `APIAVAILABLE` 宏 / `get_application_target_sdk_version` 等）。
 
 ### 3.5 格式排版（`_format_declaration`，235-248 行）
 

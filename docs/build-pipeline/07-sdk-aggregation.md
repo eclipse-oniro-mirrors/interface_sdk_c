@@ -1,6 +1,6 @@
 # 07 SDK 聚合与完整性校验（NDK + TS SDK）
 
-> 对应 [00-总览](./00-总览.md)「环节 07」。
+> 对应 [00-总览](./00-overview.md)「环节 07」。
 > 聚合入口：`build/core/gn/BUILD.gn` 的 `build_ohos_sdk` group。
 > 完整性校验：`build/ohos/sdk/BUILD.gn` 的 `check_sdk_completeness`。
 

@@ -1,6 +1,6 @@
 # 05 汇聚、文档生成与 Notice 合规
 
-> 对应 [00-总览](./00-总览.md)「环节 05」。
+> 对应 [00-总览](./00-overview.md)「环节 05」。
 > 相关目标：`all_ndk_targets` group、`ndk_doxygen` group、`ndk_notice` group
 > （`build/ohos/ndk/BUILD.gn:156-176`、`191-362`）。
 
@@ -73,7 +73,7 @@ if (未指定 ext_ndk_config_file && !sdk_build_arkts) { deps += [ ":_clean_ndk_
 - `merge_ndk_notice` 的 `--image-name ndk`，Notice 标题为
   "Notices for files and software contained in sdk-native in this directory:"；
 - 各库 / 拷贝目标通过 `collect_notice` 写入 `$ndk_notice_dir`，最终合并为 `NOTICE.txt`；
-- 该 `NOTICE.txt` 会被 [06-打包归档](./06-打包归档.md) 追加进 native zip。
+- 该 `NOTICE.txt` 会被 [06-打包归档](./06-packaging-and-archive.md) 追加进 native zip。
 
 开关：`enable_process_notice`。
 

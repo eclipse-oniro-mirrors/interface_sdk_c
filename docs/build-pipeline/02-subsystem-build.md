@@ -1,6 +1,6 @@
 # 02 子系统 BUILD 与 NDK 模板（`build/ohos/ndk/ndk.gni`）
 
-> 对应 [00-总览](./00-总览.md)「环节 02」，ninja 期真正干活的一环。
+> 对应 [00-总览](./00-overview.md)「环节 02」，ninja 期真正干活的一环。
 > 各子系统目录（`global/i18n`、`security/huks` 等）的 `BUILD.gn` 使用
 > `build/ohos/ndk/ndk.gni` 中的 `ohos_*` 模板产出 NDK 库与头文件。
 
@@ -115,13 +115,13 @@ ohos_ndk_headers("huks_header") {
 - `interface/sdk_c/third_party/musl/ndk_script/BUILD.gn` 的 `copy_musl_sysroot`（280-288 行）
   把 musl libc 头文件（含 arch bits/uapi）拷贝到 `$ndk_headers_out_dir`；
 - `updated_version`（271-278 行）用 `api_version` 生成 `info/application_target_sdk_version.h`
-  —— [03-头文件加工](./03-头文件加工-00总览.md) 的版本宏注入会 `#include` 这个头。
+  —— [03-头文件加工](./03-header-processing-00-overview.md) 的版本宏注入会 `#include` 这个头。
 
 ## 4. 关键细节
 
 - 库是 **stub 库**（无真实实现，仅导出符号表），运行时实现由系统库提供；
 - `z.so` 后缀库与 `.map.txt` 版本脚本配套，控制导出符号白名单；
-- 每个库目标生成一份 `.build_config`，是 [04-syscap](./04-syscap与ANI清理.md) 收集 syscap 的输入。
+- 每个库目标生成一份 `.build_config`，是 [04-syscap](./04-syscap-and-ani-cleanup.md) 收集 syscap 的输入。
 
 ## 5. 相关文件
 

@@ -33,9 +33,9 @@ flowchart TD
 
 > 注：**03 的 `_parse_ndk_headers` 与 `_parse_lite_ndk_headers` 是两个独立 action、并行执行**（无相互依赖，ninja 按各自 deps 调度）。
 > 二者调用同一个 `parse_native_headers.py`，仅 lite 分支追加 `--skip-version-macro`；
-> 后续分别由 04 的 `_collect_ndk_syscap` / `_collect_lite_ndk_syscap` 承接，见 [03](./03-头文件加工-00总览.md) 1.1 与 [04](./04-syscap与ANI清理.md) 4。
+> 后续分别由 04 的 `_collect_ndk_syscap` / `_collect_lite_ndk_syscap` 承接，见 [03](./03-header-processing-00-overview.md) 1.1 与 [04](./04-syscap-and-ani-cleanup.md) 4。
 
-> 与 [sdk-js 全链路汇总](../../../sdk-js/docs/build-pipeline/00-总览.md) 的分工：
+> 与 [sdk-js 全链路汇总](../../../sdk-js/docs/build-pipeline/00-overview.md) 的分工：
 > **NDK（sdk_c）是 C 侧**，产出 `native` 包（头文件 + stub 库 + 工具链 + sysroot）；
 > **TS SDK（sdk-js）是 ArkTS 侧**，产出 `ets` / `js` / `previewer` 包。
 > 两者由 `build/core/gn/BUILD.gn` 的 `build_ohos_sdk` 一并拉起，最终同目录落盘。
@@ -44,13 +44,13 @@ flowchart TD
 
 | 文件                          | 环节（GN 顺序）         | 核心脚本 / 模板                                                                                                   | 输入 → 输出                                                          |
 | ----------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [01](./01-目标注册表.md)        | 目标注册 `ndk_targets.gni` | `interface/sdk_c/ndk_targets.gni`                                                                             | 285+ 目标 → `all_ndk_targets_list` / `all_lite_ndk_targets_list` |
-| [02](./02-子系统BUILD.md)       | 各子系统 `BUILD.gn`     | `build/ohos/ndk/ndk.gni` 模板：`ohos_ndk_library` / `ohos_ndk_headers` / `ohos_ndk_copy` / `ohos_ndk_prebuilt_library`<sup>预留</sup> / `ohos_ndk_lite_library` | `.ndk.json` + 头文件 → `out/<产品>/sdk-native/os-irrelevant/sysroot/usr/{include,lib}` |
-| [03](./03-头文件加工-00总览.md)  | 头文件加工 `_parse_ndk_headers` / `_parse_lite_ndk_headers` | `interface/sdk_c/build-tools/parse_native_headers.py` → `header_processor.py`、`parse_interfaces_since.py`      | `sysroot/usr/include` / `sysroot_lite` → 就地修改（裁剪 / 校验 / 加宏）              |
-| [04](./04-syscap与ANI清理.md)  | syscap 收集 + ANI 清理  | `build/ohos/ndk/collect_ndk_syscap.py`、`interface/sdk_c/build-tools/clean_ndk_ani.py`                            | `.build_config` → `ndk_system_capability.json`、`nativeapi_syscap_config.json`、`clean_ndk_ani_header.tmp` |
-| [05](./05-汇聚与检查.md)        | 汇聚 + 文档 + Notice   | `all_ndk_targets` group、`generate_ndk_docs.py`、`create_ndk_docs_portal.py`、`merge_notice_files.py`、`verify_notice.sh` | `all_ndk_targets` → docs / NOTICE.txt                                  |
-| [06](./06-打包归档.md)          | 打包归档 `archive_*_ndk` | `build/ohos/ndk/archive_ndk.py`                                                                               | `sdk-native/os-irrelevant` + `os-specific` → `out/<产品>/packages/<产品名>/<os>/native-*.zip` |
-| [07](./07-SDK聚合.md)           | SDK 聚合与完整性校验    | `build/core/gn/BUILD.gn`、`build/ohos/sdk/BUILD.gn`（`check_sdk_completeness`）、`sdk_delivery_list.json` | `native-*.zip` + `ets/js/previewer/toolchains` → 完整 SDK             |
+| [01](./01-target-registry.md)        | 目标注册 `ndk_targets.gni` | `interface/sdk_c/ndk_targets.gni`                                                                             | 285+ 目标 → `all_ndk_targets_list` / `all_lite_ndk_targets_list` |
+| [02](./02-subsystem-build.md)       | 各子系统 `BUILD.gn`     | `build/ohos/ndk/ndk.gni` 模板：`ohos_ndk_library` / `ohos_ndk_headers` / `ohos_ndk_copy` / `ohos_ndk_prebuilt_library`<sup>预留</sup> / `ohos_ndk_lite_library` | `.ndk.json` + 头文件 → `out/<产品>/sdk-native/os-irrelevant/sysroot/usr/{include,lib}` |
+| [03](./03-header-processing-00-overview.md)  | 头文件加工 `_parse_ndk_headers` / `_parse_lite_ndk_headers` | `interface/sdk_c/build-tools/parse_native_headers.py` → `header_processor.py`、`parse_interfaces_since.py`      | `sysroot/usr/include` / `sysroot_lite` → 就地修改（裁剪 / 校验 / 加宏）              |
+| [04](./04-syscap-and-ani-cleanup.md)  | syscap 收集 + ANI 清理  | `build/ohos/ndk/collect_ndk_syscap.py`、`interface/sdk_c/build-tools/clean_ndk_ani.py`                            | `.build_config` → `ndk_system_capability.json`、`nativeapi_syscap_config.json`、`clean_ndk_ani_header.tmp` |
+| [05](./05-aggregation-docs-and-notice.md)        | 汇聚 + 文档 + Notice   | `all_ndk_targets` group、`generate_ndk_docs.py`、`create_ndk_docs_portal.py`、`merge_notice_files.py`、`verify_notice.sh` | `all_ndk_targets` → docs / NOTICE.txt                                  |
+| [06](./06-packaging-and-archive.md)          | 打包归档 `archive_*_ndk` | `build/ohos/ndk/archive_ndk.py`                                                                               | `sdk-native/os-irrelevant` + `os-specific` → `out/<产品>/packages/<产品名>/<os>/native-*.zip` |
+| [07](./07-sdk-aggregation.md)           | SDK 聚合与完整性校验    | `build/core/gn/BUILD.gn`、`build/ohos/sdk/BUILD.gn`（`check_sdk_completeness`）、`sdk_delivery_list.json` | `native-*.zip` + `ets/js/previewer/toolchains` → 完整 SDK             |
 
 ## 3. 脚本 / 模板总览（按执行顺序）
 
@@ -77,7 +77,7 @@ flowchart TD
 | 03.2 | `parse_native_headers.py` 调 `parse_interfaces_since.py` | `sdk_build_check_level != "0"` | 校验 `@since` 版本不高于构建 API 版本 |
 | 03.3 | `parse_native_headers.py` 的 `HeaderProcessor` | 非 `--skip-version-macro`（lite 跳过） | 为带 `@since` 的声明注入 `__attribute__((availability))` 宏 + include 版本头 |
 
-> `_parse_ndk_headers` 与 `_parse_lite_ndk_headers` 并行调用同一脚本，lite 分支额外传 `--skip-version-macro`（见 [03](./03-头文件加工-00总览.md) 1.1）。
+> `_parse_ndk_headers` 与 `_parse_lite_ndk_headers` 并行调用同一脚本，lite 分支额外传 `--skip-version-macro`（见 [03](./03-header-processing-00-overview.md) 1.1）。
 
 ### 04 syscap 收集 + ANI 清理
 

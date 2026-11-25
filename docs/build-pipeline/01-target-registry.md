@@ -1,6 +1,6 @@
 # 01 目标注册表（`interface/sdk_c/ndk_targets.gni`）
 
-> 对应 [00-总览](./00-总览.md)「环节 01」，GN 生成期的目标注册表。
+> 对应 [00-总览](./00-overview.md)「环节 01」，GN 生成期的目标注册表。
 > 被 `build/ohos/ndk/BUILD.gn:26` import，产出 `all_ndk_targets_list` / `all_lite_ndk_targets_list`，
 > 供 `_parse_ndk_headers` / `_collect_ndk_syscap` 等 action 作为 deps。
 
@@ -21,8 +21,8 @@
 
 | 类型 | 命名 | 数量（约） | 由哪个模板生成 |
 | ---- | ---- | ---------- | -------------- |
-| 库目标 | `:libxxx_ndk` / `:libxxx` | 141 | [2.1 `ohos_ndk_library`](./02-子系统BUILD.md#ohos_ndk_library) |
-| 头文件目标 | `:xxx_header` / `:ohxxx_header` | 144 | [2.2 `ohos_ndk_headers`](./02-子系统BUILD.md#ohos_ndk_headers) |
+| 库目标 | `:libxxx_ndk` / `:libxxx` | 141 | [2.1 `ohos_ndk_library`](./02-subsystem-build.md#ohos_ndk_library) |
+| 头文件目标 | `:xxx_header` / `:ohxxx_header` | 144 | [2.2 `ohos_ndk_headers`](./02-subsystem-build.md#ohos_ndk_headers) |
 
 > 特殊条目：`//interface/sdk_c/third_party/musl/ndk_script:copy_compatible_config`
 > （musl 兼容性配置拷贝）、`//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite`（lite libc）。
@@ -63,14 +63,14 @@ all_lite_ndk_targets_list =
 ## 4. 消费关系
 
 > 各 action 依赖的目标列表（`all_ndk_targets_list` / `all_lite_ndk_targets_list`，见 [3. 聚合列表](#3-聚合列表)）
-> 由 `ohos_ndk_library` / `ohos_ndk_headers` 等模板实例构成，模板机制详见 [02-子系统BUILD](./02-子系统BUILD.md)。
+> 由 `ohos_ndk_library` / `ohos_ndk_headers` 等模板实例构成，模板机制详见 [02-子系统BUILD](./02-subsystem-build.md)。
 
 | 消费者（`build/ohos/ndk/BUILD.gn`） | 依赖的列表 | 消费后动作（详细环节） |
 | ----------------------------------- | ---------- | ---------------------- |
-| `_parse_ndk_headers`（82-96 行）     | `all_ndk_targets_list`（先拷贝齐所有头文件再加工） | [03 头文件加工](./03-头文件加工-00总览.md) |
-| `_collect_ndk_syscap`（57-80 行）    | `all_ndk_targets_list`（读取每个目标的 `.build_config`） | [04 syscap 收集](./04-syscap与ANI清理.md) |
-| `_parse_lite_ndk_headers`（98-113 行） | `all_lite_ndk_targets_list` | [03 头文件加工（lite 分支）](./03-头文件加工-00总览.md) |
-| `_collect_lite_ndk_syscap`（115-138 行） | `all_lite_ndk_targets_list` | [04 syscap 收集（lite 分支）](./04-syscap与ANI清理.md) |
+| `_parse_ndk_headers`（82-96 行）     | `all_ndk_targets_list`（先拷贝齐所有头文件再加工） | [03 头文件加工](./03-header-processing-00-overview.md) |
+| `_collect_ndk_syscap`（57-80 行）    | `all_ndk_targets_list`（读取每个目标的 `.build_config`） | [04 syscap 收集](./04-syscap-and-ani-cleanup.md) |
+| `_parse_lite_ndk_headers`（98-113 行） | `all_lite_ndk_targets_list` | [03 头文件加工（lite 分支）](./03-header-processing-00-overview.md) |
+| `_collect_lite_ndk_syscap`（115-138 行） | `all_lite_ndk_targets_list` | [04 syscap 收集（lite 分支）](./04-syscap-and-ani-cleanup.md) |
 
 ## 5. 相关文件
 

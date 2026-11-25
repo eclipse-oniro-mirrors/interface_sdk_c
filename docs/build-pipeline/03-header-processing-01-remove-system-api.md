@@ -1,6 +1,6 @@
 # 03.1 删除系统 API（`header_processor.py`）
 
-> 对应 [03-头文件加工](./03-头文件加工-00总览.md) 的 Step 1。
+> 对应 [03-头文件加工](./03-header-processing-00-overview.md) 的 Step 1。
 > 触发条件：`sdk_build_public == "true"`（public SDK 构建时裁剪 `@systemapi`）。
 > 脚本：`interface/sdk_c/build-tools/header_processor.py`（1887 行）。
 

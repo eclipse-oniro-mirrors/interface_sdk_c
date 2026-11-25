@@ -1,6 +1,6 @@
 # 03.2 API 版本校验（`parse_interfaces_since.py`）
 
-> 对应 [03-头文件加工](./03-头文件加工-00总览.md) 的 Step 2。
+> 对应 [03-头文件加工](./03-header-processing-00-overview.md) 的 Step 2。
 > 触发条件：`sdk_build_check_level != "0"`。
 > 脚本：`interface/sdk_c/build-tools/parse_interfaces_since.py`（572 行），基于 **libclang**。
 

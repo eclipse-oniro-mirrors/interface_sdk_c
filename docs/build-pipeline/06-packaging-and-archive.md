@@ -1,6 +1,6 @@
 # 06 打包归档（`archive_*_ndk` / `archive_ndk.py`）
 
-> 对应 [00-总览](./00-总览.md)「环节 06」。
+> 对应 [00-总览](./00-overview.md)「环节 06」。
 > action：`build/ohos/ndk/BUILD.gn:396-556`（5 个平台的 `archive_*_ndk`）。
 > 脚本：`build/ohos/ndk/archive_ndk.py`（121 行）。
 

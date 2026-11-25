@@ -1,6 +1,6 @@
 # 04 syscap 收集与 ANI 清理（`_collect_ndk_syscap` / `_clean_ndk_ani`）
 
-> 对应 [00-总览](./00-总览.md)「环节 04」。
+> 对应 [00-总览](./00-overview.md)「环节 04」。
 > action：`build/ohos/ndk/BUILD.gn:57-80`（`_collect_ndk_syscap`）、115-138（`_collect_lite_ndk_syscap`）、141-154（`_clean_ndk_ani`）。
 > 脚本：`build/ohos/ndk/collect_ndk_syscap.py`（80 行）、`interface/sdk_c/build-tools/clean_ndk_ani.py`（143 行）。
 
@@ -80,7 +80,7 @@ flowchart TD
     B2 --> D
 ```
 
-> 注：`_parse_ndk_headers`（P1）与 `_parse_lite_ndk_headers`（P2）属于 [03-头文件加工](./03-头文件加工-00总览.md)，二者无相互依赖、ninja 并行执行；
+> 注：`_parse_ndk_headers`（P1）与 `_parse_lite_ndk_headers`（P2）属于 [03-头文件加工](./03-header-processing-00-overview.md)，二者无相互依赖、ninja 并行执行；
 > 本环节的 `_collect_ndk_syscap`（B）与 `_collect_lite_ndk_syscap`（B2）分别承接 P1 / P2，两条链并行，最终汇入 `all_ndk_targets` group，`_clean_ndk_ani`（C）仅挂在非 lite 链后。
 
 ## 5. 相关文件
