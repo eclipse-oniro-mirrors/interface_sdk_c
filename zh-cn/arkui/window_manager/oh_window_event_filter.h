@@ -26,8 +26,7 @@
 /**
  * @file oh_window_event_filter.h
  *
- * @brief The file declares the APIs for a window to filter multimodal key events. When a multimodal input event passes
- * through the window, the window can interrupt the event to prevent it from being further distributed.
+ * @brief 定义窗口管理事件过滤的接口。当多模输入的事件经过窗口时，可通过过滤接口拦截事件，阻止事件向下分发。
  *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
