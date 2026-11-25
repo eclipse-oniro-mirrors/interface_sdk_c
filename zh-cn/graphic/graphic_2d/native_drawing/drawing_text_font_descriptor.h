@@ -637,11 +637,8 @@ OH_Drawing_ErrorCode OH_Drawing_CopyFontFamilyMappings(const OH_Drawing_FontFami
     uint32_t *outBorrowedCount);
  
 /**
- * @brief 发布字体映射表
- * @param mappings 【入参】 指向字体映射表的指针。
- * @return 执行结果。
- *     <br>**OH_DRAWING_SUCCESS** 操作成功。
- *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** 如果 **mappings** 为空指针。
+ * @brief 释放字体家族映射表。
+ * @param mappings [in] 指向字体家族映射表的指针。
  * @since 26.1.0
  */
 void OH_Drawing_FreeFontFamilyMappings(const OH_Drawing_FontFamilyMapping **mappings);
