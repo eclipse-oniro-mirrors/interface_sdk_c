@@ -658,6 +658,45 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
     OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 
+/**
+ * @brief Sets whether the low-power mode is allowed for the audio playback stream. This interface can only be used by
+ * the audio playback stream constructor. When the audio playback scenario is music or book listening, the system plays
+ * the audio in low-power mode by default, which reduces power consumption when the audio is played in the background.
+ * However, in low-power mode, a large amount of data is buffered in the audio system. Therefore, this mode is not
+ * applicable to scenarios where audio data is generated in real time. In this case, developers can set this mode not to
+ * be used.
+ * @param builder [in] Point to the constructor instance created by {@link OH_AudioStreamBuilder_Create}.
+ * @param allowed [in] Indicates whether to enable the low-power mode. The default value is true.
+ * @return <ul>
+ *     <li>{@link #AUDIOSTREAM_SUCCESS}Interface invoking succeeded</li>
+ *     <li>{@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1. The builder parameter is a null pointer. 2. The builder is not a
+ *     playback stream type. </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetOffloadAllowed(OH_AudioStreamBuilder* builder, bool allowed);
+
+/**
+ * @brief Indicates whether to keep the audio channel running when the audio is muted. The default value is false. By
+ * default, mute data is played, including volume 0 and input mute data. After detecting the mute data, the system stops
+ * the audio channel and hardware to save power consumption. When the audio data is restored, the system is restored
+ * immediately. However, the recovery takes a short period of time. If the application needs to keep the channel running
+ * when playing mute data to ensure that the data output time is fixed, you can disable this function by calling this
+ * API. The close effect is valid only during the running phase of the audio playback stream.
+ * @param builder [in] Point to the constructor instance created by {@link OH_AudioStreamBuilder_Create}.
+ * @param keepActive [in] Indicates whether to keep the audio channel running when the audio is muted. The value
+ *     true indicates that the audio channel is kept. The value false indicates that the audio channel is not kept. The
+ *     default value is false.
+ * @return <ul>
+ *     <li>{@link #AUDIOSTREAM_SUCCESS}The interface is successfully invoked. </li>
+ *     <li>{@link #AUDIOSTREAM_ERROR_INVALID_PARAM}
+ *     1. The builder parameter is a null pointer.
+ *     2. The builder is not a playback stream type. </li>
+ *     </ul>
+ * @since 26.1.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetKeepActiveOnSilence(OH_AudioStreamBuilder* builder, bool keepActive);
+
 #ifdef __cplusplus
 }
 #endif
