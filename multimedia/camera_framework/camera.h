@@ -1675,7 +1675,14 @@ typedef enum Camera_PhotoQualityPrioritization {
     /**
      * Focuses on performance, trading off image quality for faster capture times.
      */
-    CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1
+    CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1,
+
+    /**
+     * Low image quality first, targeting the shortest shooting time, while reducing image quality to minimize system
+     * overhead.
+     * @since 26.1.0
+     */
+    CAMERA_PHOTO_QUALITY_PRIORITIZATION_LOW_QUALITY = 2
 } Camera_PhotoQualityPrioritization;
 
 /**
