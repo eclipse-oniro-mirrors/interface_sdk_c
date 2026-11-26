@@ -28,7 +28,7 @@
  * @brief Provides C interface for the telephony radio.
  *
  * @kit TelephonyKit
- * @include <telephony/core_service/telephony_radio_type.h>
+ * @include <telephony/core_service/telephony_radio.h>
  * @syscap SystemCapability.Telephony.CoreService
  * @library libtelephony_radio.so
  * @since 13
