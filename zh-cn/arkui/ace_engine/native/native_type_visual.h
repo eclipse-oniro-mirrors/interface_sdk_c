@@ -1001,7 +1001,7 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options
  * @brief 获取阴影选项的模糊半径。
  *
  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
- * @param radius 阴影的模糊半径，单位为px。值为0时无模糊效果。
+ * @param radius 阴影的模糊半径，单位为vp。值为0时无模糊效果。
  * @return 返回结果码。
  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
