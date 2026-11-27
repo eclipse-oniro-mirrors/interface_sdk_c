@@ -266,6 +266,7 @@ int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info,
  * IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL：共享内存数据错误。<br>
  * IMAGE_RESULT_DATA_UNSUPPORT：属性无效或图像数据不支持。<br>
  * IMAGE_RESULT_UNKNOWN_FORMAT：图像格式未知。
+ * @see OH_PixelMap_CreatePixelMapWithStride
  * @since 12
  * @version 1.0
  */
