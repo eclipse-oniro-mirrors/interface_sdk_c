@@ -149,25 +149,25 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 默认音频场景。
+     * @brief 默认音频场景。
      * @since 12
      */
     AUDIO_SCENE_DEFAULT = 0,
 
     /**
-     * 响铃场景。
+     * @brief 响铃场景。
      * @since 12
      */
     AUDIO_SCENE_RINGING = 1,
 
     /**
-     * 电话场景。
+     * @brief 电话场景。
      * @since 12
      */
     AUDIO_SCENE_PHONE_CALL = 2,
 
     /**
-     * 语音聊天场景。
+     * @brief 语音聊天场景。
      * @since 12
      */
     AUDIO_SCENE_VOICE_CHAT = 3
@@ -180,17 +180,17 @@ typedef enum {
  */
 typedef enum {
     /**
-     * 静音模式。
+     * @brief 静音模式。
      * @since 20
      */
     AUDIO_RINGER_MODE_SILENT = 0,
     /**
-     * 振动模式。
+     * @brief 振动模式。
      * @since 20
      */
     AUDIO_RINGER_MODE_VIBRATE = 1,
     /**
-     * 响铃模式。
+     * @brief 响铃模式。
      * @since 20
      */
     AUDIO_RINGER_MODE_NORMAL = 2
