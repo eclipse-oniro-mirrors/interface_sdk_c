@@ -17,6 +17,7 @@ update only the links in this index.
 | C API naming and ABI rules | naming a new symbol or reviewing public C API design | [capi_naming.md](./docs/capi_naming.md) |
 | C API declaration-comment and user-facing API rules | writing or validating Doxygen/API documentation | [user_guide.md](./docs/user_guide.md) |
 | Adding C API build targets and NDK version metadata | adding a library/header target or determining introduction version | [howto_add.md](./docs/howto_add.md) |
+| C API / NDK build pipeline internals | working on `build/ohos/ndk` scripts, header processing, syscap/ANI cleanup, or Native SDK artifact layout | [AGENTS-build-pipeline.md](./docs/AGENTS-build-pipeline.md) |
 
 The C metadata guide dynamically links to:
 
@@ -31,6 +32,12 @@ For API contract generation, the metadata-format entry is mandatory; also load
 the naming/comment/build entries that apply to the task. A deterministic
 repository rule must be used directly and cited as the evidence source; do not
 ask the developer to reconfirm a fact already resolved by this knowledge index.
+
+The C API / NDK build pipeline knowledge (target registration, subsystem BUILD
+templates, header processing, syscap/ANI cleanup, archive packaging) is indexed
+under [AGENTS-build-pipeline.md](./docs/AGENTS-build-pipeline.md); load the
+relevant stage docs there when working on `build/ohos/ndk` scripts or Native SDK
+artifact layout.
 
 ## Important Notes
 
