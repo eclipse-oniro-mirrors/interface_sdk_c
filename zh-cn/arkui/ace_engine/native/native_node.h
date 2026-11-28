@@ -11636,6 +11636,68 @@ typedef enum {
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
     /**
+     * @brief 设置瀑布流组件的头部显示组件。头部显示在主轴起始端，参与瀑布流的总大小和可滚动边界。
+     * 当头部大小发生变化时，总大小和可滚动范围会相应更新。支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数类型为{@link ArkUI_NodeHandle}，作为瀑布流组件的头部显示组件。默认值：nullptr。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 作为瀑布流组件头部显示组件的{@link ArkUI_NodeHandle}对象。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @since 26.1.0
+     */
+    NODE_WATER_FLOW_SET_HEADER = 1010015,
+
+    /**
+     * @brief 设置瀑布流组件的尾部显示组件。尾部显示在主轴末端，参与瀑布流的总大小和可滚动边界。
+     * 当尾部大小发生变化时，总大小和可滚动范围会相应更新。支持属性设置、属性重置和属性获取接口。
+     *
+     * 该属性的优先级高于{@link NODE_WATER_FLOW_FOOTER}：两者同时设置时，以该属性设置的尾部为准，{@link NODE_WATER_FLOW_FOOTER}不生效。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 参数类型为{@link ArkUI_NodeHandle}，作为瀑布流组件的尾部显示组件。默认值：nullptr。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object 作为瀑布流组件尾部显示组件的{@link ArkUI_NodeHandle}对象。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @since 26.1.0
+     */
+    NODE_WATER_FLOW_SET_FOOTER = 1010016,
+
+    /**
+     * @brief 针对通过{@link NODE_WATER_FLOW_SET_HEADER}设置的头部显示组件、通过{@link NODE_WATER_FLOW_SET_FOOTER}设置的尾部显示组件，设置头部是否吸顶、尾部是否吸底。
+     * 仅在设置了头部或尾部显示组件时生效。支持属性设置、属性重置和属性获取接口。
+     * 作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 头部和尾部显示组件的吸顶吸底样式，参数类型为{@link ArkUI_StickyStyle}。默认值：ARKUI_STICKY_STYLE_NONE。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32 头部和尾部显示组件的吸顶吸底样式，参数类型为{@link ArkUI_StickyStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component[滚动容器类组件]
+     * @since 26.1.0
+     */
+    NODE_WATER_FLOW_STICKY = 1010017,
+
+    /**
      * @brief 设置RelativeContainer容器内的辅助线，支持属性设置，属性重置和属性获取接口。
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**

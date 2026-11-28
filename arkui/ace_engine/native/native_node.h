@@ -13953,6 +13953,84 @@ typedef enum {
     NODE_WATER_FLOW_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1010014,
 
     /**
+     * @brief Sets the head display component of the waterfall component. The head is shown at the beginning of the main
+     * axis, participating in the total size of the waterfall flow and the rollable boundary.
+     * When the header size changes, the total size and scrollable range are updated accordingly. Interfaces for setting,
+     * resetting, and obtaining attributes are supported.
+The format of * as the return value of the attribute setting method parameter and attribute obtaining method
+     * {@link ArkUI_AttributeItem} is as follows:
+     *
+     * **Property Setting Method Parameter{@link ArkUI_AttributeItem} Format: * *
+     * <ul>
+     * <li>.object The parameter type is {@link ArkUI_NodeHandle}, which is used as the header display component of the
+     * waterfall component. Default value: nullptr. </li>
+     * </ul>
+     *
+     * **Return value of the attribute obtaining method {@link ArkUI_AttributeItem} Format: * *
+     * <ul>
+     * <li>.object The {@link ArkUI_NodeHandle} object of the display component as the head of the Waterfall Flow component.
+     * </li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component [Scrollable Container Component]
+     * @since 26.1.0
+     */
+    NODE_WATER_FLOW_SET_HEADER = 1010015,
+
+    /**
+     * @brief Sets the tail display component of the waterfall component. The tail is shown at the end of the main axis,
+     * participating in the total size of the waterfall flow and the rollable boundary.
+     * When the tail size changes, the total size and scrollable range are updated accordingly. Interfaces for setting,
+     * resetting, and obtaining attributes are supported.
+     *
+     * The priority of this attribute is higher than that of {@link NODE_WATER_FLOW_FOOTER}. If both of them are set, the
+     * end of this attribute takes effect, and {@link NODE_WATER_FLOW_FOOTER} does not take effect.
+The format of * as the return value of the attribute setting method parameter and attribute obtaining method
+     * {@link ArkUI_AttributeItem} is as follows:
+     *
+     * **Property Setting Method Parameter{@link ArkUI_AttributeItem} Format: * *
+     * <ul>
+     * <li>.object The parameter type is {@link ArkUI_NodeHandle}, which is used as the tail display component of the
+     * waterfall component. Default value: nullptr. </li>
+     * </ul>
+     *
+     * **Return value of the attribute obtaining method{@link ArkUI_AttributeItem}format: * *
+     * <ul>
+     * <li>.object as the {@link ArkUI_NodeHandle} object of the display component as the tail of the Waterfall Flow
+     * component. </li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component [Scrollable Container Component]
+     * @since 26.1.0
+     */
+    NODE_WATER_FLOW_SET_FOOTER = 1010016,
+
+    /**
+     * @brief For the head display assembly set by {@link NODE_WATER_FLOW_SET_HEADER} and the tail display assembly set by
+     * {@link NODE_WATER_FLOW_SET_FOOTER}, set whether the head is ceiling-mounted and whether the tail is bottom-mounted.
+     * This parameter is valid only when the head or tail display component is set. Interfaces for setting, resetting, and
+     * obtaining attributes are supported.
+The format of * as the return value of the attribute setting method parameter and attribute obtaining method
+     * {@link ArkUI_AttributeItem} is as follows:
+     *
+     * **Property Setting Method Parameter{@link ArkUI_AttributeItem} Format: * *
+     * <ul>
+     * <li>.value[0].i32: ceiling and bottom styles of the head and tail display components. The parameter type is
+     * {@link ArkUI_StickyStyle}. Default value: ARKUI_STICKY_ FLIGHT_NONE. </li>
+     * </ul>
+     *
+     * **Return value of the attribute obtaining method{@link ArkUI_AttributeItem}format: * *
+     * <ul>
+     * <li>.value[0].i32: ceiling and bottom styles of the head and tail display components. The parameter type is
+     * {@link ArkUI_StickyStyle}. </li>
+     * </ul>
+     *
+     * @ingroup Scrollable Container Component [Scrollable Container Component]
+     * @since 26.1.0
+     */
+    NODE_WATER_FLOW_STICKY = 1010017,
+
+    /**
      * @brief Set the auxiliary line in the RelativeContainer container, supporting property setting,
      * property reset and property acquisition interfaces.
      * The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
