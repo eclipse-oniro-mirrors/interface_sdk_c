@@ -2759,11 +2759,11 @@ typedef uint64_t OH_Input_EventTypeMask;
 #define OH_INPUT_EVENT_TYPE_MASK_AXIS  (1ULL << OH_INPUT_EVENT_AXIS)
 
 /**
- * @brief 定义handler接收到input事件时调用的函数。
+ * @brief 定义handler接收到输入事件时调用的函数。
  *
  * @param handler [in] 接收事件的handler对象。
  * @param event [in] 传入的事件，始终为非NULL。
- * @return 返回该事件表示将其传递给后续处理，返回NULL表示删除该事件。
+ * @return 返回该事件表示将其传递给后续处理，返回NULL表示拦截该事件。
  * @since 26.1.0
  */
 typedef const OH_Input_Event* (*OH_Input_EventHandler_OnEventFunc)(OH_Input_EventHandler* handler,
@@ -2787,10 +2787,10 @@ typedef void (*OH_Input_EventHandler_OnDisabledFunc)(OH_Input_EventHandler* hand
  *                     请参见{@link OH_Input_EventHandler_OnEventFunc}。
  * @param onDisabledFunc [in] 当handler因超时而被禁用时调用的函数，
  *                     请参见{@link OH_Input_EventHandler_OnDisabledFunc}。
- * @param handler [out] 指向{@link OH_Input_EventHandler}对象的指针。在成功的时候，
+ * @param handler [out] 指向{@link OH_Input_EventHandler}对象的指针。成功时，
  *                   handler指向新创建的handler。
  * @return OH_Input_EventHandler_Create 函数返回值。
- *         <br>{@link INPUT_SUCCESS} 创建处理程序成功。
+ *         <br>{@link INPUT_SUCCESS} 创建handler成功。
  *         <br>{@link INPUT_PERMISSION_DENIED} 权限校验失败。
  *         <br>{@link INPUT_PARAMETER_ERROR} 参数检查失败。原因：mask为0、
  *             onEventFunc为NULL、onDisabledFunc为NULL、handler为NULL，
@@ -2809,13 +2809,13 @@ Input_Result OH_Input_EventHandler_Create(OH_Input_EventTypeMask mask,
  * @brief 销毁输入事件的handler并释放资源。
  *
  * @param handler [in] 要销毁的{@link OH_Input_EventHandler}对象。
- *     传入NULL不执行任何操作。
+ *     传入NULL时不执行任何操作。
  * @since 26.1.0
  */
 void OH_Input_EventHandler_Destroy(OH_Input_EventHandler* handler);
 
 /**
- * @brief 启用或禁用输入事件handler。每个进程只允许有一个handler。
+ * @brief 启用或禁用输入事件handler。每个进程只允许启用一个handler。
  *
  * @permission ohos.permission.HOOK_INPUT_EVENT
  * @param handler [in] {@link OH_Input_EventHandler}对象。
@@ -2835,7 +2835,7 @@ Input_Result OH_Input_EventHandler_Enable(OH_Input_EventHandler* handler, bool e
  * @brief 查询是否启用了handler。
  *
  * @param handler [in] {@link OH_Input_EventHandler}对象。
- * @param enabled [out] 指针类型，指向使能状态。true表示handler已启用，
+ * @param enabled [out] 指针类型，指向启用状态。true表示handler已启用，
  *                false表示handler已禁用。
  * @return OH_Input_EventHandler_IsEnabled 函数返回值。
  *         <br>{@link INPUT_SUCCESS} 操作成功。
@@ -2875,12 +2875,12 @@ Input_Result OH_Input_EventHandler_GetMask(const OH_Input_EventHandler* handler,
 Input_Result OH_Input_Event_GetType(const OH_Input_Event* event, OH_Input_EventType* type);
 
 /**
- * @brief 从event事件中获取只读的{@link Input_KeyEvent}。
+ * @brief 从输入事件中获取只读的{@link Input_KeyEvent}。
  * 仅在事件类型为{@link OH_INPUT_EVENT_KEY}时有效。
  * 返回的指针是一个不拥有所有权的只读指针，其生命周期依附于 event。
  * 仅在当前调用期间（即 event有效期间）有效。
  * 请勿使用{@link OH_Input_DestroyKeyEvent}释放该指针，请勿对其调用 Set* 类函数。
- * 使用现有的Get*访问器（例如{@link OH_Input_GetKeyEventKeyCode}）读取按键事件字段。
+ * 请使用现有的Get*访问器（例如{@link OH_Input_GetKeyEventKeyCode}）读取按键事件字段。
  *
  * @param event [in] 在handler函数中获取的{@link OH_Input_Event}对象。
  * @param keyEvent [out] 指向{@link Input_KeyEvent}的指针。
@@ -2893,7 +2893,7 @@ Input_Result OH_Input_Event_GetType(const OH_Input_Event* event, OH_Input_EventT
 Input_Result OH_Input_Event_AsKeyEvent(const OH_Input_Event* event, const Input_KeyEvent** keyEvent);
 
 /**
- * @brief 从event事件中获取只读的{@link Input_MouseEvent}。
+ * @brief 从输入事件中获取只读的{@link Input_MouseEvent}。
  * 仅在事件类型为{@link OH_INPUT_EVENT_MOUSE}时有效。
  * 返回的指针是一个不拥有所有权的只读指针，其生命周期依附于 event。
  * 仅在当前调用期间（即 event有效期间）有效。
@@ -2911,9 +2911,9 @@ Input_Result OH_Input_Event_AsKeyEvent(const OH_Input_Event* event, const Input_
 Input_Result OH_Input_Event_AsMouseEvent(const OH_Input_Event* event, const Input_MouseEvent** mouseEvent);
 
 /**
- * @brief 从event事件中获取只读的{@link Input_TouchEvent}。
- * 仅当事件类型为{@link OH_INPUT_EVENT_TOUCH}时有效。
- * 它返回的指针是一个不拥有所有权的只读指针，其生命周期依附于 event。
+ * @brief 从输入事件中获取只读的{@link Input_TouchEvent}。
+ * 仅在事件类型为{@link OH_INPUT_EVENT_TOUCH}时有效。
+ * 返回的指针是一个不拥有所有权的只读指针，其生命周期依附于 event。
  * 仅在当前调用期间（即 event有效期间）有效。
  * 请勿使用{@link OH_Input_DestroyTouchEvent}释放该指针，请勿对其调用 Set* 类函数。
  * 请使用现有的Get*访问器（例如{@link OH_Input_GetTouchEventAction}）读取触摸事件字段。
@@ -2929,10 +2929,10 @@ Input_Result OH_Input_Event_AsMouseEvent(const OH_Input_Event* event, const Inpu
 Input_Result OH_Input_Event_AsTouchEvent(const OH_Input_Event* event, const Input_TouchEvent** touchEvent);
 
 /**
- * @brief 从event事件中获取只读的{@link Input_AxisEvent}。
- * 仅当事件类型为{@link OH_INPUT_EVENT_AXIS}时有效。
+ * @brief 从输入事件中获取只读的{@link Input_AxisEvent}。
+ * 仅在事件类型为{@link OH_INPUT_EVENT_AXIS}时有效。
  * 返回的指针是一个不拥有所有权的只读指针，其生命周期依附于 event。
- * 它仅在当前调用期间（即 event有效期间）有效。
+ * 仅在当前调用期间（即 event有效期间）有效。
  * 请勿使用{@link OH_Input_DestroyAxisEvent}释放该指针，请勿对其调用 Set* 类函数。
  * 请使用现有的Get*访问器（例如{@link OH_Input_GetAxisEventAction}）读取轴事件字段。
  *
